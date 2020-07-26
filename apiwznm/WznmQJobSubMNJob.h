@@ -1,0 +1,55 @@
+/**
+	* \file WznmQJobSubMNJob.h
+	* API code for table TblWznmQJobSubMNJob (declarations)
+	* \author Alexander Wirthmueller
+	* \date created: 11 Jul 2020
+	* \date modified: 11 Jul 2020
+	*/
+
+#ifndef WZNMQJOBSUBMNJOB_H
+#define WZNMQJOBSUBMNJOB_H
+
+#include <sbecore/Xmlio.h>
+
+/**
+	* WznmQJobSubMNJob
+	*/
+class WznmQJobSubMNJob {
+
+public:
+	WznmQJobSubMNJob(const Sbecore::uint jnum = 0, const std::string stubMref = "", const std::string Short = "", const std::string yesnoMulti = "", const std::string srefIxVConstract = "", const std::string titIxVConstract = "");
+
+public:
+	Sbecore::uint jnum;
+	std::string stubMref;
+	std::string Short;
+	std::string yesnoMulti;
+	std::string srefIxVConstract;
+	std::string titIxVConstract;
+
+public:
+	bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+};
+
+/**
+	* ListWznmQJobSubMNJob
+	*/
+class ListWznmQJobSubMNJob {
+
+public:
+	ListWznmQJobSubMNJob();
+	ListWznmQJobSubMNJob(const ListWznmQJobSubMNJob& src);
+	ListWznmQJobSubMNJob& operator=(const ListWznmQJobSubMNJob& src);
+	~ListWznmQJobSubMNJob();
+
+	void clear();
+
+public:
+	std::vector<WznmQJobSubMNJob*> nodes;
+
+public:
+	bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+};
+
+#endif
+

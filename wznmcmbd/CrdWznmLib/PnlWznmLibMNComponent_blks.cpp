@@ -1,0 +1,471 @@
+/**
+	* \file PnlWznmLibMNComponent_blks.cpp
+	* job handler for job PnlWznmLibMNComponent (implementation of blocks)
+	* \author Alexander Wirthmueller
+	* \date created: 11 Jul 2020
+	* \date modified: 11 Jul 2020
+	*/
+
+using namespace std;
+using namespace Sbecore;
+using namespace Xmlio;
+
+/******************************************************************************
+ class PnlWznmLibMNComponent::VecVDo
+ ******************************************************************************/
+
+uint PnlWznmLibMNComponent::VecVDo::getIx(
+			const string& sref
+		) {
+	string s = StrMod::lc(sref);
+
+	if (s == "butaddclick") return BUTADDCLICK;
+	if (s == "butsubclick") return BUTSUBCLICK;
+	if (s == "butrefreshclick") return BUTREFRESHCLICK;
+
+	return(0);
+};
+
+string PnlWznmLibMNComponent::VecVDo::getSref(
+			const uint ix
+		) {
+	if (ix == BUTADDCLICK) return("ButAddClick");
+	if (ix == BUTSUBCLICK) return("ButSubClick");
+	if (ix == BUTREFRESHCLICK) return("ButRefreshClick");
+
+	return("");
+};
+
+/******************************************************************************
+ class PnlWznmLibMNComponent::ContInf
+ ******************************************************************************/
+
+PnlWznmLibMNComponent::ContInf::ContInf(
+			const uint numFCsiQst
+		) :
+			Block()
+		{
+	this->numFCsiQst = numFCsiQst;
+
+	mask = {NUMFCSIQST};
+};
+
+void PnlWznmLibMNComponent::ContInf::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWznmLibMNComponent";
+
+	string itemtag;
+	if (shorttags) itemtag = "Ci";
+	else itemtag = "ContitemInfWznmLibMNComponent";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeUintAttr(wr, itemtag, "sref", "numFCsiQst", numFCsiQst);
+	xmlTextWriterEndElement(wr);
+};
+
+set<uint> PnlWznmLibMNComponent::ContInf::comm(
+			const ContInf* comp
+		) {
+	set<uint> items;
+
+	if (numFCsiQst == comp->numFCsiQst) insert(items, NUMFCSIQST);
+
+	return(items);
+};
+
+set<uint> PnlWznmLibMNComponent::ContInf::diff(
+			const ContInf* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {NUMFCSIQST};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class PnlWznmLibMNComponent::StatApp
+ ******************************************************************************/
+
+void PnlWznmLibMNComponent::StatApp::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+			, const uint ixWznmVExpstate
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmLibMNComponent";
+
+	string itemtag;
+	if (shorttags) itemtag = "Si";
+	else itemtag = "StatitemAppWznmLibMNComponent";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
+	xmlTextWriterEndElement(wr);
+};
+
+/******************************************************************************
+ class PnlWznmLibMNComponent::StatShr
+ ******************************************************************************/
+
+PnlWznmLibMNComponent::StatShr::StatShr(
+			const bool ButAddAvail
+			, const bool ButSubAvail
+			, const bool ButSubActive
+		) :
+			Block()
+		{
+	this->ButAddAvail = ButAddAvail;
+	this->ButSubAvail = ButSubAvail;
+	this->ButSubActive = ButSubActive;
+
+	mask = {BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
+};
+
+void PnlWznmLibMNComponent::StatShr::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmLibMNComponent";
+
+	string itemtag;
+	if (shorttags) itemtag = "Si";
+	else itemtag = "StatitemShrWznmLibMNComponent";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeBoolAttr(wr, itemtag, "sref", "ButAddAvail", ButAddAvail);
+		writeBoolAttr(wr, itemtag, "sref", "ButSubAvail", ButSubAvail);
+		writeBoolAttr(wr, itemtag, "sref", "ButSubActive", ButSubActive);
+	xmlTextWriterEndElement(wr);
+};
+
+set<uint> PnlWznmLibMNComponent::StatShr::comm(
+			const StatShr* comp
+		) {
+	set<uint> items;
+
+	if (ButAddAvail == comp->ButAddAvail) insert(items, BUTADDAVAIL);
+	if (ButSubAvail == comp->ButSubAvail) insert(items, BUTSUBAVAIL);
+	if (ButSubActive == comp->ButSubActive) insert(items, BUTSUBACTIVE);
+
+	return(items);
+};
+
+set<uint> PnlWznmLibMNComponent::StatShr::diff(
+			const StatShr* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class PnlWznmLibMNComponent::StgIac
+ ******************************************************************************/
+
+PnlWznmLibMNComponent::StgIac::StgIac(
+			const uint TcoMrefWidth
+		) :
+			Block()
+		{
+	this->TcoMrefWidth = TcoMrefWidth;
+	mask = {TCOMREFWIDTH};
+};
+
+bool PnlWznmLibMNComponent::StgIac::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StgIacWznmLibMNComponent");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	string itemtag = "StgitemIacWznmLibMNComponent";
+
+	if (basefound) {
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoMrefWidth", TcoMrefWidth)) add(TCOMREFWIDTH);
+	};
+
+	return basefound;
+};
+
+void PnlWznmLibMNComponent::StgIac::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "StgIacWznmLibMNComponent";
+
+	string itemtag;
+	if (shorttags) itemtag = "Si";
+	else itemtag = "StgitemIacWznmLibMNComponent";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeUintAttr(wr, itemtag, "sref", "TcoMrefWidth", TcoMrefWidth);
+	xmlTextWriterEndElement(wr);
+};
+
+set<uint> PnlWznmLibMNComponent::StgIac::comm(
+			const StgIac* comp
+		) {
+	set<uint> items;
+
+	if (TcoMrefWidth == comp->TcoMrefWidth) insert(items, TCOMREFWIDTH);
+
+	return(items);
+};
+
+set<uint> PnlWznmLibMNComponent::StgIac::diff(
+			const StgIac* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {TCOMREFWIDTH};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class PnlWznmLibMNComponent::Tag
+ ******************************************************************************/
+
+void PnlWznmLibMNComponent::Tag::writeXML(
+			const uint ixWznmVLocale
+			, xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmLibMNComponent";
+
+	string itemtag;
+	if (shorttags) itemtag = "Ti";
+	else itemtag = "TagitemWznmLibMNComponent";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+			writeStringAttr(wr, itemtag, "sref", "Cpt", "Components");
+			writeStringAttr(wr, itemtag, "sref", "TcoMref", "Component");
+		};
+		writeStringAttr(wr, itemtag, "sref", "TxtRecord1", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::REC, ixWznmVLocale)));
+		writeStringAttr(wr, itemtag, "sref", "TxtRecord2", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::EMPLONG, ixWznmVLocale)));
+		writeStringAttr(wr, itemtag, "sref", "Trs", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::GOTO, ixWznmVLocale)) + " ...");
+		writeStringAttr(wr, itemtag, "sref", "TxtShowing1", VecWznmVTag::getTitle(VecWznmVTag::SHOWSHORT, ixWznmVLocale));
+		writeStringAttr(wr, itemtag, "sref", "TxtShowing2", VecWznmVTag::getTitle(VecWznmVTag::EMPSHORT, ixWznmVLocale));
+	xmlTextWriterEndElement(wr);
+};
+
+/******************************************************************************
+ class PnlWznmLibMNComponent::DpchAppData
+ ******************************************************************************/
+
+PnlWznmLibMNComponent::DpchAppData::DpchAppData() :
+			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMLIBMNCOMPONENTDATA)
+		{
+};
+
+string PnlWznmLibMNComponent::DpchAppData::getSrefsMask() {
+	vector<string> ss;
+	string srefs;
+
+	if (has(JREF)) ss.push_back("jref");
+	if (has(STGIAC)) ss.push_back("stgiac");
+	if (has(STGIACQRY)) ss.push_back("stgiacqry");
+
+	StrMod::vectorToString(ss, srefs);
+
+	return(srefs);
+};
+
+void PnlWznmLibMNComponent::DpchAppData::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	string scrJref;
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "DpchAppWznmLibMNComponentData");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	if (basefound) {
+		if (extractStringUclc(docctx, basexpath, "scrJref", "", scrJref)) {
+			jref = Scr::descramble(scrJref);
+			add(JREF);
+		};
+		if (stgiac.readXML(docctx, basexpath, true)) add(STGIAC);
+		if (stgiacqry.readXML(docctx, basexpath, true)) add(STGIACQRY);
+	} else {
+		stgiac = StgIac();
+		stgiacqry = QryWznmLibMNComponent::StgIac();
+	};
+};
+
+/******************************************************************************
+ class PnlWznmLibMNComponent::DpchAppDo
+ ******************************************************************************/
+
+PnlWznmLibMNComponent::DpchAppDo::DpchAppDo() :
+			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMLIBMNCOMPONENTDO)
+		{
+	ixVDo = 0;
+};
+
+string PnlWznmLibMNComponent::DpchAppDo::getSrefsMask() {
+	vector<string> ss;
+	string srefs;
+
+	if (has(JREF)) ss.push_back("jref");
+	if (has(IXVDO)) ss.push_back("ixVDo");
+
+	StrMod::vectorToString(ss, srefs);
+
+	return(srefs);
+};
+
+void PnlWznmLibMNComponent::DpchAppDo::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	string scrJref;
+	string srefIxVDo;
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "DpchAppWznmLibMNComponentDo");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	if (basefound) {
+		if (extractStringUclc(docctx, basexpath, "scrJref", "", scrJref)) {
+			jref = Scr::descramble(scrJref);
+			add(JREF);
+		};
+		if (extractStringUclc(docctx, basexpath, "srefIxVDo", "", srefIxVDo)) {
+			ixVDo = VecVDo::getIx(srefIxVDo);
+			add(IXVDO);
+		};
+	} else {
+	};
+};
+
+/******************************************************************************
+ class PnlWznmLibMNComponent::DpchEngData
+ ******************************************************************************/
+
+PnlWznmLibMNComponent::DpchEngData::DpchEngData(
+			const ubigint jref
+			, ContInf* continf
+			, Feed* feedFCsiQst
+			, StatShr* statshr
+			, StgIac* stgiac
+			, ListWznmQLibMNComponent* rst
+			, QryWznmLibMNComponent::StatShr* statshrqry
+			, QryWznmLibMNComponent::StgIac* stgiacqry
+			, const set<uint>& mask
+		) :
+			DpchEngWznm(VecWznmVDpch::DPCHENGWZNMLIBMNCOMPONENTDATA, jref)
+		{
+	if (find(mask, ALL)) this->mask = {JREF, CONTINF, FEEDFCSIQST, STATAPP, STATSHR, STGIAC, TAG, RST, STATAPPQRY, STATSHRQRY, STGIACQRY};
+	else this->mask = mask;
+
+	if (find(this->mask, CONTINF) && continf) this->continf = *continf;
+	if (find(this->mask, FEEDFCSIQST) && feedFCsiQst) this->feedFCsiQst = *feedFCsiQst;
+	if (find(this->mask, STATSHR) && statshr) this->statshr = *statshr;
+	if (find(this->mask, STGIAC) && stgiac) this->stgiac = *stgiac;
+	if (find(this->mask, RST) && rst) this->rst = *rst;
+	if (find(this->mask, STATSHRQRY) && statshrqry) this->statshrqry = *statshrqry;
+	if (find(this->mask, STGIACQRY) && stgiacqry) this->stgiacqry = *stgiacqry;
+};
+
+string PnlWznmLibMNComponent::DpchEngData::getSrefsMask() {
+	vector<string> ss;
+	string srefs;
+
+	if (has(JREF)) ss.push_back("jref");
+	if (has(CONTINF)) ss.push_back("continf");
+	if (has(FEEDFCSIQST)) ss.push_back("feedFCsiQst");
+	if (has(STATAPP)) ss.push_back("statapp");
+	if (has(STATSHR)) ss.push_back("statshr");
+	if (has(STGIAC)) ss.push_back("stgiac");
+	if (has(TAG)) ss.push_back("tag");
+	if (has(RST)) ss.push_back("rst");
+	if (has(STATAPPQRY)) ss.push_back("statappqry");
+	if (has(STATSHRQRY)) ss.push_back("statshrqry");
+	if (has(STGIACQRY)) ss.push_back("stgiacqry");
+
+	StrMod::vectorToString(ss, srefs);
+
+	return(srefs);
+};
+
+void PnlWznmLibMNComponent::DpchEngData::merge(
+			DpchEngWznm* dpcheng
+		) {
+	DpchEngData* src = (DpchEngData*) dpcheng;
+
+	if (src->has(JREF)) {jref = src->jref; add(JREF);};
+	if (src->has(CONTINF)) {continf = src->continf; add(CONTINF);};
+	if (src->has(FEEDFCSIQST)) {feedFCsiQst = src->feedFCsiQst; add(FEEDFCSIQST);};
+	if (src->has(STATAPP)) add(STATAPP);
+	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
+	if (src->has(STGIAC)) {stgiac = src->stgiac; add(STGIAC);};
+	if (src->has(TAG)) add(TAG);
+	if (src->has(RST)) {rst = src->rst; add(RST);};
+	if (src->has(STATAPPQRY)) add(STATAPPQRY);
+	if (src->has(STATSHRQRY)) {statshrqry = src->statshrqry; add(STATSHRQRY);};
+	if (src->has(STGIACQRY)) {stgiacqry = src->stgiacqry; add(STGIACQRY);};
+};
+
+void PnlWznmLibMNComponent::DpchEngData::writeXML(
+			const uint ixWznmVLocale
+			, xmlTextWriter* wr
+		) {
+	xmlTextWriterStartElement(wr, BAD_CAST "DpchEngWznmLibMNComponentData");
+	xmlTextWriterWriteAttribute(wr, BAD_CAST "xmlns", BAD_CAST "http://www.mpsitech.com/wznm");
+		if (has(JREF)) writeString(wr, "scrJref", Scr::scramble(jref));
+		if (has(CONTINF)) continf.writeXML(wr);
+		if (has(FEEDFCSIQST)) feedFCsiQst.writeXML(wr);
+		if (has(STATAPP)) StatApp::writeXML(wr);
+		if (has(STATSHR)) statshr.writeXML(wr);
+		if (has(STGIAC)) stgiac.writeXML(wr);
+		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
+		if (has(RST)) rst.writeXML(wr);
+		if (has(STATAPPQRY)) QryWznmLibMNComponent::StatApp::writeXML(wr);
+		if (has(STATSHRQRY)) statshrqry.writeXML(wr);
+		if (has(STGIACQRY)) stgiacqry.writeXML(wr);
+	xmlTextWriterEndElement(wr);
+};
+

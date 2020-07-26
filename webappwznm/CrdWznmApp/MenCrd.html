@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+	<head>
+		<title>MenCrd</title>
+		<script>
+			function initMenCrd() {parent.window.initMenCrd();};
+			function handleMitCrdNewClick() {parent.window.handleMitClick("Crd","MitCrdNew");};
+			function handleMitCrdIstClick() {parent.window.handleMitClick("Crd","MitCrdIst");};
+			function handleMitCrdWrcClick() {parent.window.handleMitClick("Crd","MitCrdWrc");};
+		</script>
+		<link href="../style/menu.css" rel="styleSheet" type="text/css">
+	</head>
+	<body marginwidth="0" marginheight="0" onload="initMenCrd()">
+		<table cellspacing="0" border="0" cellpadding="0">
+			<colgroup>
+				<col width="1">
+				<col width="2">
+				<col id="colCont" width="250">
+			</colgroup>
+			<tr id="trMspCrd1" class="show">
+				<td height="1" colspan="3" class="frame"></td>
+			</tr>
+			<tr id="trMitCrdNew" class="show">
+				<td height="20" class="frame"></td><td class="iframe"></td>
+				<td class="iframe"><span id="MitCrdNew" class="item" onclick="handleMitCrdNewClick()">MitCrdNew</span></td>
+			</tr>
+			<tr id="trMspCrd2" class="show">
+				<td height="1" colspan="3" class="frame"></td>
+			</tr>
+			<tr id="trMtxCrdApp" class="show">
+				<td height="20" class="frame"></td><td class="iframe"></td>
+				<td class="iframe"><span id="MtxCrdApp" class="itemdis"">MtxCrdApp</span></td>
+			</tr>
+			<tr id="trMitCrdIst" class="show">
+				<td height="20" class="frame"></td><td class="iframe"></td>
+				<td class="iframe"><span id="MitCrdIst" class="item" onclick="handleMitCrdIstClick()">MitCrdIst</span></td>
+			</tr>
+			<tr id="trMitCrdWrc" class="show">
+				<td height="20" class="frame"></td><td class="iframe"></td>
+				<td class="iframe"><span id="MitCrdWrc" class="item" onclick="handleMitCrdWrcClick()">MitCrdWrc</span></td>
+			</tr>
+			<tr id="trMspCrd3" class="show">
+				<td height="1" colspan="3" class="frame"></td>
+			</tr>
+		</table>
+	</body>
+</html>
+

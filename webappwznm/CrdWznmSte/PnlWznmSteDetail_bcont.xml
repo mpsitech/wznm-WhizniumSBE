@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<head>
+		<title>Detail_bcont</title>
+		<script>
+			function handleButSeqViewClick() {parent.parent.window.handleButCrdopenClick("ButSeqView");};
+			function handlePupEacChange() {parent.parent.window.handlePupChange(document,"PupEac","");};
+			function handleButErjViewClick() {parent.parent.window.handleButCrdopenClick("ButErjView");};
+			function handleButEveViewClick() {parent.parent.window.handleButCrdopenClick("ButEveView");};
+			function handleButEviViewClick() {parent.parent.window.handleButCrdopenClick("ButEviView");};
+			function handleButEsnViewClick() {parent.parent.window.handleButCrdopenClick("ButEsnView");};
+			function handlePupLacChange() {parent.parent.window.handlePupChange(document,"PupLac","");};
+			function handleChkCstChange() {parent.parent.window.handleChkChange(document,"ChkCst");};
+			function handleTxfCmtKey(evt) {return parent.parent.window.handleTxftKey(document,"TxfCmt",evt);};
+			function handleTxfCmtChange() {parent.parent.window.handleTxftChange(document,"TxfCmt");};
+			<!-- IP custScript - INSERT -->
+		</script>
+		<link href="../style/pnlDetail.css" rel="styleSheet" type="text/css"/>
+		<!-- IP custStyle - INSERT -->
+	</head>
+	<body marginwidth="0" marginheight="0">
+		<table cellspacing="0" border="0" cellpadding="0"><form action="">
+			<colgroup>
+				<col width="5"/>
+				<col width="155"/>
+				<col width="5"/>
+				<col width="78"/>
+				<col width="2"/>
+				<col width="38"/>
+				<col width="2"/>
+				<col width="78"/>
+				<col width="2"/>
+				<col width="1"/>
+				<col width="74"/>
+			</colgroup>
+			<tbody id="tbl">
+				<tr><td colspan="11" height="5"></td></tr>
+				<tr id="trSrf" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptSrf" class="cpt">CptSrf</span>
+					</td>
+					<td></td>
+					<td colspan="3" align="left">
+						<input id="TxtSrf" class="txfsnoed" type="text" readonly="readonly" value="TxtSrf"/>
+					</td>
+					<td></td>
+					<td colspan="4"></td>
+				</tr>
+				<tr id="trA1" class="show"><td colspan="11" height="3"></td></tr>
+				<tr id="trA2" class="show">
+					<td height="1"></td>
+					<td colspan="10" bgcolor="#7f7f7f"></td>
+				</tr>
+				<tr id="trA3" class="show"><td colspan="11" height="3"></td></tr>
+				<tr id="trSeq" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptSeq" class="cpt">CptSeq</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<input id="TxtSeq" class="txfnoed" type="text" readonly="readonly" value="TxtSeq"/>
+					</td>
+					<td></td>
+					<td id="rdynSeq" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trEac" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptEac" class="cpt">CptEac</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<select id="PupEac" class="pup" size="1" onchange="handlePupEacChange()"/>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr id="trErj" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptErj" class="cpt">CptErj</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<input id="TxtErj" class="txfnoed" type="text" readonly="readonly" value="TxtErj"/>
+					</td>
+					<td></td>
+					<td id="rdynErj" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trEve" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptEve" class="cpt">CptEve</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<input id="TxtEve" class="txfnoed" type="text" readonly="readonly" value="TxtEve"/>
+					</td>
+					<td></td>
+					<td id="rdynEve" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trEvi" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptEvi" class="cpt">CptEvi</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<input id="TxtEvi" class="txfnoed" type="text" readonly="readonly" value="TxtEvi"/>
+					</td>
+					<td></td>
+					<td id="rdynEvi" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trEsn" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptEsn" class="cpt">CptEsn</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<input id="TxtEsn" class="txfnoed" type="text" readonly="readonly" value="TxtEsn"/>
+					</td>
+					<td></td>
+					<td id="rdynEsn" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trLac" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptLac" class="cpt">CptLac</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<select id="PupLac" class="pup" size="1" onchange="handlePupLacChange()"/>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr id="trCst" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptCst" class="cpt">CptCst</span>
+					</td>
+					<td></td>
+					<td align="left">
+						<input id="ChkCst" class="chk" name="ChkCst" type="checkbox" checked="checked" onchange="handleChkCstChange()"/>
+					</td>
+					<td colspan="7"></td>
+				</tr>
+				<tr id="trCmt" class="show">
+					<td height="75"></td>
+					<td align="right" valign="top">
+						<span id="CptCmt" class="cpt">CptCmt</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<textarea id="TxfCmt" class="txf" rows="4" cols="20" type="text" value="TxfCmt" onchange="handleTxfCmtChange()" onkeypress="return handleTxfCmtKey(event)"/>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr><td colspan="11" height="4"></td></tr>
+			</tbody>
+		</form></table>
+	</body>
+</html>
+

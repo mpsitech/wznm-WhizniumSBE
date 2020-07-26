@@ -1,0 +1,38 @@
+# file Makefile
+# make file for CrdWznmUsr card job handler, release wznmcmbd_jack
+# author Alexander Wirthmueller
+# date created: 11 Jul 2020
+# modified: 11 Jul 2020
+
+include ../Makefile.inc
+
+CPP = g++
+CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -DWZNMCMBD
+
+STATLIB = ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmcmbd/VecWznm -I$(SRCROOT)/wznmcmbd/IexWznm -I$(SRCROOT)/wznmcmbd
+INCPATH += -I/home/mpsitech/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/include/postgresql -I/usr/local/include
+
+OBJS = CrdWznmUsr.o PnlWznmUsrList.o QryWznmUsrList.o PnlWznmUsrHeadbar.o PnlWznmUsrRec.o PnlWznmUsrMNUsergroup.o QryWznmUsrMNUsergroup.o PnlWznmUsr1NSession.o QryWznmUsr1NSession.o PnlWznmUsrAAccess.o QryWznmUsrAAccess.o PnlWznmUsrDetail.o DlgWznmUsrMngkeypair.o
+
+LIB = libcrdwznmusr
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a $(LIBROOT)/wznmcmbd/
+
+clean:
+	rm -f *.o
+

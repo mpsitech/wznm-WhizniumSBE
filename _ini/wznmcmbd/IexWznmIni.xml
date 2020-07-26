@@ -1,0 +1,1164 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<IexWznmIni version="1.0.2">
+	<ImeIAVKeylistKey1>
+		<Ii num="1">
+			<kls>KlstKWznmCtpGenjtrCustop</kls>
+			<srf>WznmCtpGenjtrAcv</srf>
+			<tit>add stages to upload dialog</tit>
+		</Ii>
+		<Ii num="2">
+			<kls>KlstKWznmCtpGenjtrCustop</kls>
+			<srf>WznmCtpGenjtrDlgimp</srf>
+			<tit>add stages to data import dialog</tit>
+		</Ii>
+		<Ii num="3">
+			<kls>KlstKWznmCtpGenjtrCustop</kls>
+			<srf>WznmCtpGenjtrDlgloaini</srf>
+			<tit>add stages to initialization load dialog</tit>
+		</Ii>
+		<Ii num="4">
+			<kls>KlstKWznmCtpGenuiCustop</kls>
+			<srf>WznmCtpGenuiAcv</srf>
+			<tit>prettify file card and add upload/download dialogs</tit>
+		</Ii>
+		<Ii num="5">
+			<kls>KlstKWznmCtpGenuiCustop</kls>
+			<srf>WznmCtpGenuiDlgimp</srf>
+			<tit>generate data import dialog</tit>
+		</Ii>
+		<Ii num="6">
+			<kls>KlstKWznmCtpGenuiCustop</kls>
+			<srf>WznmCtpGenuiDlgloaini</srf>
+			<tit>generate initialization load dialog</tit>
+		</Ii>
+		<Ii num="7">
+			<kls>KlstKWznmCtpWrsrvCustop</kls>
+			<srf>WznmCtpWrsrvAcv</srf>
+			<tit>implement upload/download dialogs</tit>
+		</Ii>
+		<Ii num="8">
+			<kls>KlstKWznmCtpWrsrvCustop</kls>
+			<srf>WznmCtpWrsrvDlgimp</srf>
+			<tit>implement data import dialog</tit>
+		</Ii>
+		<Ii num="9">
+			<kls>KlstKWznmCtpWrsrvCustop</kls>
+			<srf>WznmCtpWrsrvDlgloaini</srf>
+			<tit>implement initialization load dialog</tit>
+		</Ii>
+		<Ii num="10">
+			<kls>KlstKWznmCtpWrstkitCustop</kls>
+			<srf>WznmCtpWrstkitAcv</srf>
+			<tit>database and basic UI</tit>
+		</Ii>
+		<Ii num="11">
+			<kls>KlstKWznmCtpWrstkitCustop</kls>
+			<srf>WznmCtpWrstkitArm</srf>
+			<tit>database, basic UI and import/export </tit>
+		</Ii>
+		<Ii num="12">
+			<kls>KlstWznmKAMControlParKey</kls>
+			<srf>action</srf>
+			<tit>triggered action</tit>
+		</Ii>
+		<Ii num="13">
+			<kls>KlstWznmKAMControlParKey</kls>
+			<srf>cptwidth</srf>
+			<tit>caption width</tit>
+		</Ii>
+		<Ii num="14">
+			<kls>KlstWznmKAMControlParKey</kls>
+			<srf>height</srf>
+			<tit>height</tit>
+		</Ii>
+		<Ii num="15">
+			<kls>KlstWznmKAMControlParKey</kls>
+			<srf>icon</srf>
+			<tit>icon</tit>
+		</Ii>
+		<Ii num="16">
+			<kls>KlstWznmKAMControlParKey</kls>
+			<srf>stdicon</srf>
+			<tit>standard icon</tit>
+		</Ii>
+		<Ii num="17">
+			<kls>KlstWznmKAMControlParKey</kls>
+			<srf>width</srf>
+			<tit>width</tit>
+		</Ii>
+		<Ii num="18">
+			<kls>KlstWznmKAMControlParVal</kls>
+			<srf>crdopen</srf>
+			<tit>open card</tit>
+		</Ii>
+		<Ii num="19">
+			<kls>KlstWznmKAMControlParVal</kls>
+			<srf>dlgopen</srf>
+			<tit>open dialog</tit>
+		</Ii>
+		<Ii num="20">
+			<kls>KlstWznmKAMControlParVal</kls>
+			<srf>dlgclose</srf>
+			<tit>close dialog</tit>
+		</Ii>
+		<Ii num="21">
+			<kls>KlstWznmKAMLibraryMakefileTag</kls>
+			<srf>incpath</srf>
+			<tit>include path</tit>
+		</Ii>
+		<Ii num="22">
+			<kls>KlstWznmKAMLibraryMakefileTag</kls>
+			<srf>libpath</srf>
+			<tit>library path</tit>
+		</Ii>
+		<Ii num="23">
+			<kls>KlstWznmKAMLibraryMakefileTag</kls>
+			<srf>libs</srf>
+			<tit>link libraries</tit>
+		</Ii>
+		<Ii num="24">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>sbeconfig</srf>
+			<tit>WhizniumSBE core library configuration</tit>
+		</Ii>
+		<Ii num="25">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>rootfs</srf>
+			<tit>root file system path</tit>
+		</Ii>
+		<Ii num="26">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>reproot</srf>
+			<tit>repository root directory</tit>
+		</Ii>
+		<Ii num="27">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>srcroot</srf>
+			<tit>source root directory</tit>
+		</Ii>
+		<Ii num="28">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>uasrvroot</srf>
+			<tit>OPC UA SDK root directory</tit>
+		</Ii>
+		<Ii num="29">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>nddshome</srf>
+			<tit>DDS home directory</tit>
+		</Ii>
+		<Ii num="30">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>libroot</srf>
+			<tit>library root directory</tit>
+		</Ii>
+		<Ii num="31">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>binroot</srf>
+			<tit>binary root directory</tit>
+		</Ii>
+		<Ii num="32">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>webroot</srf>
+			<tit>web server root directory</tit>
+		</Ii>
+		<Ii num="33">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>javaroot</srf>
+			<tit>Java root directory</tit>
+		</Ii>
+		<Ii num="34">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>acvroot</srf>
+			<tit>archive root directory</tit>
+		</Ii>
+		<Ii num="35">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>tmproot</srf>
+			<tit>temporary data root directory</tit>
+		</Ii>
+		<Ii num="36">
+			<kls>KlstWznmKAMMachineParKey</kls>
+			<srf>ncore</srf>
+			<tit>number of cores</tit>
+		</Ii>
+		<Ii num="37">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>cpp</srf>
+			<tit>C++ compiler</tit>
+		</Ii>
+		<Ii num="38">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>cppflags</srf>
+			<tit>C++ compiler flags</tit>
+		</Ii>
+		<Ii num="39">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>statlib</srf>
+			<tit>static library tool</tit>
+		</Ii>
+		<Ii num="40">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>statlibflags</srf>
+			<tit>static library tool flags</tit>
+		</Ii>
+		<Ii num="41">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>dynlib</srf>
+			<tit>dynamic link library tool</tit>
+		</Ii>
+		<Ii num="42">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>dynlibflags</srf>
+			<tit>dynamic link library tool flags</tit>
+		</Ii>
+		<Ii num="43">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>dynlibext</srf>
+			<tit>dynamic link library file extension</tit>
+		</Ii>
+		<Ii num="44">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>link</srf>
+			<tit>linker</tit>
+		</Ii>
+		<Ii num="45">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>linkflags</srf>
+			<tit>linker flags</tit>
+		</Ii>
+		<Ii num="46">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>incpath</srf>
+			<tit>include path</tit>
+		</Ii>
+		<Ii num="47">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>libpath</srf>
+			<tit>library path</tit>
+		</Ii>
+		<Ii num="48">
+			<kls>KlstWznmKAMMachtypeMakefileTag</kls>
+			<srf>libs</srf>
+			<tit>link libraries</tit>
+		</Ii>
+		<Ii num="49">
+			<kls>KlstWznmKAMPersonDetailType</kls>
+			<srf>eml</srf>
+			<tit>e-mail</tit>
+		</Ii>
+		<Ii num="50">
+			<kls>KlstWznmKAMPersonDetailType</kls>
+			<srf>fax</srf>
+			<tit>fax</tit>
+		</Ii>
+		<Ii num="51">
+			<kls>KlstWznmKAMPersonDetailType</kls>
+			<srf>mbl</srf>
+			<tit>mobile</tit>
+		</Ii>
+		<Ii num="52">
+			<kls>KlstWznmKAMPersonDetailType</kls>
+			<srf>tel</srf>
+			<tit>phone</tit>
+		</Ii>
+		<Ii num="53">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>bicol</srf>
+			<tit>bi-column</tit>
+		</Ii>
+		<Ii num="54">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>cap</srf>
+			<tit>capitalized title</tit>
+		</Ii>
+		<Ii num="55">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>ddd</srf>
+			<tit>title complement ' ...'</tit>
+		</Ii>
+		<Ii num="56">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>flexh</srf>
+			<tit>flexible height</tit>
+		</Ii>
+		<Ii num="57">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>icon</srf>
+			<tit>icon</tit>
+		</Ii>
+		<Ii num="58">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>iframe</srf>
+			<tit>inline frame</tit>
+		</Ii>
+		<Ii num="59">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>live</srf>
+			<tit>live data display</tit>
+		</Ii>
+		<Ii num="60">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>log</srf>
+			<tit>logarithmic scale</tit>
+		</Ii>
+		<Ii num="61">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>multsel</srf>
+			<tit>multiple item selection</tit>
+		</Ii>
+		<Ii num="62">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>mdnup</srf>
+			<tit>mouse down/up tracking</tit>
+		</Ii>
+		<Ii num="63">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>onoff</srf>
+			<tit>on and off states</tit>
+		</Ii>
+		<Ii num="64">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>pwd</srf>
+			<tit>password</tit>
+		</Ii>
+		<Ii num="65">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>rast</srf>
+			<tit>value raster</tit>
+		</Ii>
+		<Ii num="66">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>s</srf>
+			<tit>small</tit>
+		</Ii>
+		<Ii num="67">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>t</srf>
+			<tit>tall</tit>
+		</Ii>
+		<Ii num="68">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>tmstamp</srf>
+			<tit>time stamp scale</tit>
+		</Ii>
+		<Ii num="69">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>tmdate</srf>
+			<tit>date scale</tit>
+		</Ii>
+		<Ii num="70">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>tmtime</srf>
+			<tit>time scale</tit>
+		</Ii>
+		<Ii num="71">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>tricol</srf>
+			<tit>tri-column</tit>
+		</Ii>
+		<Ii num="72">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>xs</srf>
+			<tit>extra small</tit>
+		</Ii>
+		<Ii num="73">
+			<kls>KlstWznmKMFileContent</kls>
+			<srf>appstr</srf>
+			<tit>accessor app structure data</tit>
+		</Ii>
+		<Ii num="74">
+			<kls>KlstWznmKMFileContent</kls>
+			<srf>cftpl</srf>
+			<tit>code file template</tit>
+		</Ii>
+		<Ii num="75">
+			<kls>KlstWznmKMFileContent</kls>
+			<srf>custip</srf>
+			<tit>custom insertion points</tit>
+		</Ii>
+		<Ii num="76">
+			<kls>KlstWznmKMFileContent</kls>
+			<srf>lic</srf>
+			<tit>license</tit>
+		</Ii>
+		<Ii num="77">
+			<kls>KlstWznmKMFileContent</kls>
+			<srf>mod</srf>
+			<tit>model data</tit>
+		</Ii>
+		<Ii num="78">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>bmp</srf>
+			<tit>image/bmp</tit>
+		</Ii>
+		<Ii num="79">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>cpp</srf>
+			<tit>text/x-c</tit>
+		</Ii>
+		<Ii num="80">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>css</srf>
+			<tit>text/css</tit>
+		</Ii>
+		<Ii num="81">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>csv</srf>
+			<tit>text/comma-separated-values</tit>
+		</Ii>
+		<Ii num="82">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>doc</srf>
+			<tit>application/msword</tit>
+		</Ii>
+		<Ii num="83">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>docx</srf>
+			<tit>application/vnd.openxmlformats-officedocument.wordprocessingml.document</tit>
+		</Ii>
+		<Ii num="84">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>eps</srf>
+			<tit>application/postscript</tit>
+		</Ii>
+		<Ii num="85">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>gif</srf>
+			<tit>image/gif</tit>
+		</Ii>
+		<Ii num="86">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>h</srf>
+			<tit>text/x-h</tit>
+		</Ii>
+		<Ii num="87">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>hdf</srf>
+			<tit>application/x-hdf</tit>
+		</Ii>
+		<Ii num="88">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>html</srf>
+			<tit>text/html</tit>
+		</Ii>
+		<Ii num="89">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>jpg</srf>
+			<tit>image/jpeg</tit>
+		</Ii>
+		<Ii num="90">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>js</srf>
+			<tit>text/javascript</tit>
+		</Ii>
+		<Ii num="91">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>make</srf>
+			<tit>text/x-makefile</tit>
+		</Ii>
+		<Ii num="92">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>nc</srf>
+			<tit>application/x-netcdf</tit>
+		</Ii>
+		<Ii num="93">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>pdf</srf>
+			<tit>application/pdf</tit>
+		</Ii>
+		<Ii num="94">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>png</srf>
+			<tit>image/png</tit>
+		</Ii>
+		<Ii num="95">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>ppt</srf>
+			<tit>application/mspowerpoint</tit>
+		</Ii>
+		<Ii num="96">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>pptx</srf>
+			<tit>application/vnd.openxmlformats-officedocument.presentationml.presentation</tit>
+		</Ii>
+		<Ii num="97">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>sh</srf>
+			<tit>application/x-sh</tit>
+		</Ii>
+		<Ii num="98">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>sql</srf>
+			<tit>text/x-sql</tit>
+		</Ii>
+		<Ii num="99">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>svg</srf>
+			<tit>image/svg+xml</tit>
+		</Ii>
+		<Ii num="100">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>tex</srf>
+			<tit>application/x-tex</tit>
+		</Ii>
+		<Ii num="101">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>tgz</srf>
+			<tit>application/x-gzip</tit>
+		</Ii>
+		<Ii num="102">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>tif</srf>
+			<tit>image/tiff</tit>
+		</Ii>
+		<Ii num="103">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>txt</srf>
+			<tit>text/plain</tit>
+		</Ii>
+		<Ii num="104">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>xls</srf>
+			<tit>application/msexcel</tit>
+		</Ii>
+		<Ii num="105">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>xlsx</srf>
+			<tit>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</tit>
+		</Ii>
+		<Ii num="106">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>xml</srf>
+			<tit>text/xml</tit>
+		</Ii>
+		<Ii num="107">
+			<kls>KlstWznmKMFileMimetype</kls>
+			<srf>zip</srf>
+			<tit>application/zip</tit>
+		</Ii>
+		<Ii num="108">
+			<kls>KlstWznmKMLibraryLictype</kls>
+			<srf>apch2</srf>
+			<tit>Apache 2.0</tit>
+		</Ii>
+		<Ii num="109">
+			<kls>KlstWznmKMLibraryLictype</kls>
+			<srf>bsd2</srf>
+			<tit>BSD 2-clause</tit>
+		</Ii>
+		<Ii num="110">
+			<kls>KlstWznmKMLibraryLictype</kls>
+			<srf>bsd3</srf>
+			<tit>BSD 3-clause</tit>
+		</Ii>
+		<Ii num="111">
+			<kls>KlstWznmKMLibraryLictype</kls>
+			<srf>gpl</srf>
+			<tit>GNU general public</tit>
+		</Ii>
+		<Ii num="112">
+			<kls>KlstWznmKMLibraryLictype</kls>
+			<srf>lgpl</srf>
+			<tit>GNU lesser general public</tit>
+		</Ii>
+		<Ii num="113">
+			<kls>KlstWznmKMLibraryLictype</kls>
+			<srf>mit</srf>
+			<tit>MIT</tit>
+		</Ii>
+		<Ii num="114">
+			<kls>KlstWznmKMLibraryLictype</kls>
+			<srf>zlib</srf>
+			<tit>zlib/libpng</tit>
+		</Ii>
+		<Ii num="115">
+			<kls>KlstWznmKMMachtypeOs</kls>
+			<srf>linaro</srf>
+			<tit>Linaro</tit>
+		</Ii>
+		<Ii num="116">
+			<kls>KlstWznmKMMachtypeOs</kls>
+			<srf>macos</srf>
+			<tit>macOS X</tit>
+		</Ii>
+		<Ii num="117">
+			<kls>KlstWznmKMMachtypeOs</kls>
+			<srf>mingw</srf>
+			<tit>Minimalist GNU for Windows</tit>
+		</Ii>
+		<Ii num="118">
+			<kls>KlstWznmKMMachtypeOs</kls>
+			<srf>plnx</srf>
+			<tit>Xilinx PetaLinux</tit>
+		</Ii>
+		<Ii num="119">
+			<kls>KlstWznmKMMachtypeOs</kls>
+			<srf>ubt</srf>
+			<tit>Ubuntu</tit>
+		</Ii>
+		<Ii num="120">
+			<kls>KlstWznmKMMachtypeOs</kls>
+			<srf>yocto</srf>
+			<tit>Yocto</tit>
+		</Ii>
+		<Ii num="121">
+			<kls>KlstWznmKMMachtypePkgmgr</kls>
+			<srf>apt</srf>
+			<tit>advanced package manager</tit>
+		</Ii>
+		<Ii num="122">
+			<kls>KlstWznmKMMachtypePkgmgr</kls>
+			<srf>brew</srf>
+			<tit>Homebrew</tit>
+		</Ii>
+		<Ii num="123">
+			<kls>KlstWznmKMMachtypePkgmgr</kls>
+			<srf>yum</srf>
+			<tit>yum</tit>
+		</Ii>
+		<Ii num="124">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>self</srf>
+			<tit>self-reference</tit>
+		</Ii>
+		<Ii num="125">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>preffrom</srf>
+			<tit>preferred in from table</tit>
+		</Ii>
+		<Ii num="126">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>prefto</srf>
+			<tit>preferred in to table</tit>
+		</Ii>
+		<Ii num="127">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>enumfrom</srf>
+			<tit>enum by from table</tit>
+		</Ii>
+		<Ii num="128">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>enumto</srf>
+			<tit>enum by to table</tit>
+		</Ii>
+		<Ii num="129">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>pref</srf>
+			<tit>preferred in to table</tit>
+		</Ii>
+		<Ii num="130">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>enum</srf>
+			<tit>enumerated</tit>
+		</Ii>
+		<Ii num="131">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>ins</srf>
+			<tit>insert operation</tit>
+		</Ii>
+		<Ii num="132">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>rmv</srf>
+			<tit>remove operation</tit>
+		</Ii>
+		<Ii num="133">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>ina</srf>
+			<tit>insert after operation</tit>
+		</Ii>
+		<Ii num="134">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>swp</srf>
+			<tit>swap operation</tit>
+		</Ii>
+		<Ii num="135">
+			<kls>KlstWznmKMRelationOption</kls>
+			<srf>affil</srf>
+			<tit>affiliation determining</tit>
+		</Ii>
+		<Ii num="136">
+			<kls>KlstWznmKMReleaseOption</kls>
+			<srf>linkstat</srf>
+			<tit>link static libraries only</tit>
+		</Ii>
+		<Ii num="137">
+			<kls>KlstWznmKMReleaseOption</kls>
+			<srf>dynlib</srf>
+			<tit>generate dynamic link library</tit>
+		</Ii>
+		<Ii num="138">
+			<kls>KlstWznmKMReleaseOption</kls>
+			<srf>stripdbg</srf>
+			<tit>strip debug symbols</tit>
+		</Ii>
+		<Ii num="139">
+			<kls>KlstWznmKMTablecolOption</kls>
+			<srf>idx</srf>
+			<tit>indexed</tit>
+		</Ii>
+		<Ii num="140">
+			<kls>KlstWznmKMVectorOption</kls>
+			<srf>noloc</srf>
+			<tit>non-localized</tit>
+		</Ii>
+		<Ii num="141">
+			<kls>KlstWznmKMVectorOption</kls>
+			<srf>notit</srf>
+			<tit>no titles</tit>
+		</Ii>
+		<Ii num="142">
+			<kls>KlstWznmKMVectorOption</kls>
+			<srf>cmt</srf>
+			<tit>comments</tit>
+		</Ii>
+		<Ii num="143">
+			<kls>KlstWznmKMVectorOption</kls>
+			<srf>apdfed</srf>
+			<tit>append to feed</tit>
+		</Ii>
+		<Ii num="144">
+			<kls>KlstWznmKMVectorOption</kls>
+			<srf>filfed</srf>
+			<tit>fill feed</tit>
+		</Ii>
+		<Ii num="145">
+			<kls>KlstWznmKRMPersonMProjectFunction</kls>
+			<srf>eng</srf>
+			<tit>software engineer</tit>
+		</Ii>
+		<Ii num="146">
+			<kls>KlstWznmKRMPersonMProjectFunction</kls>
+			<srf>mgr</srf>
+			<tit>manager</tit>
+		</Ii>
+		<Ii num="147">
+			<kls>KlstWznmKRMPersonMProjectFunction</kls>
+			<srf>pro</srf>
+			<tit>programmer</tit>
+		</Ii>
+		<Ii num="148">
+			<kls>KlstWznmKRMPersonMProjectFunction</kls>
+			<srf>tan</srf>
+			<tit>test analyst</tit>
+		</Ii>
+		<Ii num="149">
+			<kls>KlstWznmKRMPersonMProjectFunction</kls>
+			<srf>uxd</srf>
+			<tit>user experience designer</tit>
+		</Ii>
+		<Ii num="150">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>access</srf>
+			<tit>VecXxxxWAccess item</tit>
+		</Ii>
+		<Ii num="151">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>adrtype</srf>
+			<tit>address type</tit>
+		</Ii>
+		<Ii num="152">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>ctdet</srf>
+			<tit>contact detail</tit>
+		</Ii>
+		<Ii num="153">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>ctry</srf>
+			<tit>country</tit>
+		</Ii>
+		<Ii num="154">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>error</srf>
+			<tit>VecXxxxVError item</tit>
+		</Ii>
+		<Ii num="155">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>expstate</srf>
+			<tit>VecXxxxVExpstate item</tit>
+		</Ii>
+		<Ii num="156">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>iexsge</srf>
+			<tit>import/export complex job stage</tit>
+		</Ii>
+		<Ii num="157">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>iop</srf>
+			<tit>VecXxxxVIop item</tit>
+		</Ii>
+		<Ii num="158">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>lat</srf>
+			<tit>VecXxxxVLat item</tit>
+		</Ii>
+		<Ii num="159">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>lop</srf>
+			<tit>VecXxxxVLop item</tit>
+		</Ii>
+		<Ii num="160">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>mimetype</srf>
+			<tit>MIME type</tit>
+		</Ii>
+		<Ii num="161">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>no</srf>
+			<tit>no thing</tit>
+		</Ii>
+		<Ii num="162">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>none</srf>
+			<tit>none</tit>
+		</Ii>
+		<Ii num="163">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>oolop</srf>
+			<tit>VecXxxxVOolop item</tit>
+		</Ii>
+		<Ii num="164">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>prs</srf>
+			<tit>default person</tit>
+		</Ii>
+		<Ii num="165">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>prstit</srf>
+			<tit>person title</tit>
+		</Ii>
+		<Ii num="166">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>qrystate</srf>
+			<tit>VecXxxxVQrystate item</tit>
+		</Ii>
+		<Ii num="167">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>recaccess</srf>
+			<tit>VecXxxxVRecaccess item</tit>
+		</Ii>
+		<Ii num="168">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>reqitmode</srf>
+			<tit>VecXxxxVReqitmode item</tit>
+		</Ii>
+		<Ii num="169">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>sex</srf>
+			<tit>sex</tit>
+		</Ii>
+		<Ii num="170">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>start</srf>
+			<tit>login card</tit>
+		</Ii>
+		<Ii num="171">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>stdalr</srf>
+			<tit>standard alert message</tit>
+		</Ii>
+		<Ii num="172">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>stdiex</srf>
+			<tit>standard import/export complex title</tit>
+		</Ii>
+		<Ii num="173">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>stdrel</srf>
+			<tit>standard relation title</tit>
+		</Ii>
+		<Ii num="174">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>stdtbl</srf>
+			<tit>standard table title</tit>
+		</Ii>
+		<Ii num="175">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>stdtco</srf>
+			<tit>standard table column title</tit>
+		</Ii>
+		<Ii num="176">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>stdvec</srf>
+			<tit>standard vector title</tit>
+		</Ii>
+		<Ii num="177">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>userlevel</srf>
+			<tit>VecXxxxVUserlevel item</tit>
+		</Ii>
+		<Ii num="178">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>usrste</srf>
+			<tit>user state</tit>
+		</Ii>
+		<Ii num="179">
+			<kls>KlstWznmKTaggrp</kls>
+			<srf>wkday</srf>
+			<tit>weekday</tit>
+		</Ii>
+	</ImeIAVKeylistKey1>
+	<ImeIMUsergroup>
+		<Ii num="1">
+			<srf>wznmusers</srf>
+			<ImeIAMUsergroupAccess>
+				<Ii num="1">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmUsg</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="2">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmUsr</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="3">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmPrs</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="4">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmFil</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="5">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmLoc</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="6">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmTag</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="7">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmCtp</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="8">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmMty</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="9">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmMch</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="10">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmLib</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="11">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmPrj</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="12">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmVer</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="13">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmCap</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="14">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmErr</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="15">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmTbl</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="16">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmTco</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="17">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmSbs</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="18">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmRel</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="19">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmVec</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="20">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmVit</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="21">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmChk</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="22">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmStb</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="23">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmIex</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="24">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmIme</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="25">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmIel</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="26">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmPst</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="27">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmMdl</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="28">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmCar</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="29">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmDlg</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="30">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmPnl</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="31">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmQry</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="32">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmQco</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="33">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmQmd</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="34">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmCon</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="35">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmOpk</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="36">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmOpx</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="37">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmJob</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="38">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmSge</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="39">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmMtd</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="40">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmBlk</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="41">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmCal</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="42">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmCmp</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="43">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmRls</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="44">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmApp</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="45">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmRtj</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="46">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmSeq</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="47">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmSte</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="48">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmUtl</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+			</ImeIAMUsergroupAccess>
+			<ImeIMUser>
+				<Ii num="1">
+					<srf>wznmuser</srf>
+					<ste>act</ste>
+					<lcl>enus</lcl>
+					<ulv>adm</ulv>
+					<pwd>asdf1234</pwd>
+					<ImeIMPerson>
+						<Ii num="1">
+							<sex>f</sex>
+							<tit>Mrs.</tit>
+							<fnm>Emily</fnm>
+							<lnm>Johnson</lnm>
+						</Ii>
+					</ImeIMPerson>
+				</Ii>
+			</ImeIMUser>
+		</Ii>
+	</ImeIMUsergroup>
+</IexWznmIni>

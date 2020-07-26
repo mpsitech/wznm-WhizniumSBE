@@ -1,0 +1,241 @@
+- IexWznmIni v1.0.2
+- ImeIAVKeylistKey1.srefKlsIxWznmVKeylist	sref	Avail	Implied	Title	Comment
+- KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrAcv			add stages to upload dialog	
+- KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgimp			add stages to data import dialog	
+- KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgloaini			add stages to initialization load dialog	
+- KlstKWznmCtpGenuiCustop	WznmCtpGenuiAcv			prettify file card and add upload/download dialogs	
+- KlstKWznmCtpGenuiCustop	WznmCtpGenuiDlgimp			generate data import dialog	
+- KlstKWznmCtpGenuiCustop	WznmCtpGenuiDlgloaini			generate initialization load dialog	
+- KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvAcv			implement upload/download dialogs	
+- KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvDlgimp			implement data import dialog	
+- KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvDlgloaini			implement initialization load dialog	
+- KlstKWznmCtpWrstkitCustop	WznmCtpWrstkitAcv			database and basic UI	
+- KlstKWznmCtpWrstkitCustop	WznmCtpWrstkitArm			database, basic UI and import/export 	
+- KlstWznmKAMControlParKey	action			triggered action	
+- KlstWznmKAMControlParKey	cptwidth			caption width	
+- KlstWznmKAMControlParKey	height			height	
+- KlstWznmKAMControlParKey	icon			icon	
+- KlstWznmKAMControlParKey	stdicon			standard icon	
+- KlstWznmKAMControlParKey	width			width	
+- KlstWznmKAMControlParVal	crdopen			open card	
+- KlstWznmKAMControlParVal	dlgopen			open dialog	
+- KlstWznmKAMControlParVal	dlgclose			close dialog	
+- KlstWznmKAMLibraryMakefileTag	incpath			include path	
+- KlstWznmKAMLibraryMakefileTag	libpath			library path	
+- KlstWznmKAMLibraryMakefileTag	libs			link libraries	
+- KlstWznmKAMMachineParKey	sbeconfig			WhizniumSBE core library configuration	
+- KlstWznmKAMMachineParKey	rootfs			root file system path	
+- KlstWznmKAMMachineParKey	reproot			repository root directory	
+- KlstWznmKAMMachineParKey	srcroot			source root directory	
+- KlstWznmKAMMachineParKey	uasrvroot			OPC UA SDK root directory	
+- KlstWznmKAMMachineParKey	nddshome			DDS home directory	
+- KlstWznmKAMMachineParKey	libroot			library root directory	
+- KlstWznmKAMMachineParKey	binroot			binary root directory	
+- KlstWznmKAMMachineParKey	webroot			web server root directory	
+- KlstWznmKAMMachineParKey	javaroot			Java root directory	
+- KlstWznmKAMMachineParKey	acvroot			archive root directory	
+- KlstWznmKAMMachineParKey	tmproot			temporary data root directory	
+- KlstWznmKAMMachineParKey	ncore			number of cores	
+- KlstWznmKAMMachtypeMakefileTag	cpp			C++ compiler	
+- KlstWznmKAMMachtypeMakefileTag	cppflags			C++ compiler flags	
+- KlstWznmKAMMachtypeMakefileTag	statlib			static library tool	
+- KlstWznmKAMMachtypeMakefileTag	statlibflags			static library tool flags	
+- KlstWznmKAMMachtypeMakefileTag	dynlib			dynamic link library tool	
+- KlstWznmKAMMachtypeMakefileTag	dynlibflags			dynamic link library tool flags	
+- KlstWznmKAMMachtypeMakefileTag	dynlibext			dynamic link library file extension	
+- KlstWznmKAMMachtypeMakefileTag	link			linker	
+- KlstWznmKAMMachtypeMakefileTag	linkflags			linker flags	
+- KlstWznmKAMMachtypeMakefileTag	incpath			include path	
+- KlstWznmKAMMachtypeMakefileTag	libpath			library path	
+- KlstWznmKAMMachtypeMakefileTag	libs			link libraries	
+- KlstWznmKAMPersonDetailType	eml			e-mail	
+- KlstWznmKAMPersonDetailType	fax			fax	
+- KlstWznmKAMPersonDetailType	mbl			mobile	
+- KlstWznmKAMPersonDetailType	tel			phone	
+- KlstWznmKMControlOption	bicol			bi-column	
+- KlstWznmKMControlOption	cap			capitalized title	
+- KlstWznmKMControlOption	ddd			title complement ' ...'	
+- KlstWznmKMControlOption	flexh			flexible height	
+- KlstWznmKMControlOption	icon			icon	
+- KlstWznmKMControlOption	iframe			inline frame	
+- KlstWznmKMControlOption	live			live data display	
+- KlstWznmKMControlOption	log			logarithmic scale	
+- KlstWznmKMControlOption	multsel			multiple item selection	
+- KlstWznmKMControlOption	mdnup			mouse down/up tracking	
+- KlstWznmKMControlOption	onoff			on and off states	
+- KlstWznmKMControlOption	pwd			password	
+- KlstWznmKMControlOption	rast			value raster	
+- KlstWznmKMControlOption	s			small	
+- KlstWznmKMControlOption	t			tall	
+- KlstWznmKMControlOption	tmstamp			time stamp scale	
+- KlstWznmKMControlOption	tmdate			date scale	
+- KlstWznmKMControlOption	tmtime			time scale	
+- KlstWznmKMControlOption	tricol			tri-column	
+- KlstWznmKMControlOption	xs			extra small	
+- KlstWznmKMFileContent	appstr			accessor app structure data	
+- KlstWznmKMFileContent	cftpl			code file template	
+- KlstWznmKMFileContent	custip			custom insertion points	
+- KlstWznmKMFileContent	lic			license	
+- KlstWznmKMFileContent	mod			model data	
+- KlstWznmKMFileMimetype	bmp			image/bmp	
+- KlstWznmKMFileMimetype	cpp			text/x-c	
+- KlstWznmKMFileMimetype	css			text/css	
+- KlstWznmKMFileMimetype	csv			text/comma-separated-values	
+- KlstWznmKMFileMimetype	doc			application/msword	
+- KlstWznmKMFileMimetype	docx			application/vnd.openxmlformats-officedocument.wordprocessingml.document	
+- KlstWznmKMFileMimetype	eps			application/postscript	
+- KlstWznmKMFileMimetype	gif			image/gif	
+- KlstWznmKMFileMimetype	h			text/x-h	
+- KlstWznmKMFileMimetype	hdf			application/x-hdf	
+- KlstWznmKMFileMimetype	html			text/html	
+- KlstWznmKMFileMimetype	jpg			image/jpeg	
+- KlstWznmKMFileMimetype	js			text/javascript	
+- KlstWznmKMFileMimetype	make			text/x-makefile	
+- KlstWznmKMFileMimetype	nc			application/x-netcdf	
+- KlstWznmKMFileMimetype	pdf			application/pdf	
+- KlstWznmKMFileMimetype	png			image/png	
+- KlstWznmKMFileMimetype	ppt			application/mspowerpoint	
+- KlstWznmKMFileMimetype	pptx			application/vnd.openxmlformats-officedocument.presentationml.presentation	
+- KlstWznmKMFileMimetype	sh			application/x-sh	
+- KlstWznmKMFileMimetype	sql			text/x-sql	
+- KlstWznmKMFileMimetype	svg			image/svg+xml	
+- KlstWznmKMFileMimetype	tex			application/x-tex	
+- KlstWznmKMFileMimetype	tgz			application/x-gzip	
+- KlstWznmKMFileMimetype	tif			image/tiff	
+- KlstWznmKMFileMimetype	txt			text/plain	
+- KlstWznmKMFileMimetype	xls			application/msexcel	
+- KlstWznmKMFileMimetype	xlsx			application/vnd.openxmlformats-officedocument.spreadsheetml.sheet	
+- KlstWznmKMFileMimetype	xml			text/xml	
+- KlstWznmKMFileMimetype	zip			application/zip	
+- KlstWznmKMLibraryLictype	apch2			Apache 2.0	
+- KlstWznmKMLibraryLictype	bsd2			BSD 2-clause	
+- KlstWznmKMLibraryLictype	bsd3			BSD 3-clause	
+- KlstWznmKMLibraryLictype	gpl			GNU general public	
+- KlstWznmKMLibraryLictype	lgpl			GNU lesser general public	
+- KlstWznmKMLibraryLictype	mit			MIT	
+- KlstWznmKMLibraryLictype	zlib			zlib/libpng	
+- KlstWznmKMMachtypeOs	linaro			Linaro	
+- KlstWznmKMMachtypeOs	macos			macOS X	
+- KlstWznmKMMachtypeOs	mingw			Minimalist GNU for Windows	
+- KlstWznmKMMachtypeOs	plnx			Xilinx PetaLinux	
+- KlstWznmKMMachtypeOs	ubt			Ubuntu	
+- KlstWznmKMMachtypeOs	yocto			Yocto	
+- KlstWznmKMMachtypePkgmgr	apt			advanced package manager	
+- KlstWznmKMMachtypePkgmgr	brew			Homebrew	
+- KlstWznmKMMachtypePkgmgr	yum			yum	
+- KlstWznmKMRelationOption	self			self-reference	
+- KlstWznmKMRelationOption	preffrom			preferred in from table	
+- KlstWznmKMRelationOption	prefto			preferred in to table	
+- KlstWznmKMRelationOption	enumfrom			enum by from table	
+- KlstWznmKMRelationOption	enumto			enum by to table	
+- KlstWznmKMRelationOption	pref			preferred in to table	
+- KlstWznmKMRelationOption	enum			enumerated	
+- KlstWznmKMRelationOption	ins			insert operation	
+- KlstWznmKMRelationOption	rmv			remove operation	
+- KlstWznmKMRelationOption	ina			insert after operation	
+- KlstWznmKMRelationOption	swp			swap operation	
+- KlstWznmKMRelationOption	affil			affiliation determining	
+- KlstWznmKMReleaseOption	linkstat			link static libraries only	
+- KlstWznmKMReleaseOption	dynlib			generate dynamic link library	
+- KlstWznmKMReleaseOption	stripdbg			strip debug symbols	
+- KlstWznmKMTablecolOption	idx			indexed	
+- KlstWznmKMVectorOption	noloc			non-localized	
+- KlstWznmKMVectorOption	notit			no titles	
+- KlstWznmKMVectorOption	cmt			comments	
+- KlstWznmKMVectorOption	apdfed			append to feed	
+- KlstWznmKMVectorOption	filfed			fill feed	
+- KlstWznmKRMPersonMProjectFunction	eng			software engineer	
+- KlstWznmKRMPersonMProjectFunction	mgr			manager	
+- KlstWznmKRMPersonMProjectFunction	pro			programmer	
+- KlstWznmKRMPersonMProjectFunction	tan			test analyst	
+- KlstWznmKRMPersonMProjectFunction	uxd			user experience designer	
+- KlstWznmKTaggrp	access			VecXxxxWAccess item	
+- KlstWznmKTaggrp	adrtype			address type	
+- KlstWznmKTaggrp	ctdet			contact detail	
+- KlstWznmKTaggrp	ctry			country	
+- KlstWznmKTaggrp	error			VecXxxxVError item	
+- KlstWznmKTaggrp	expstate			VecXxxxVExpstate item	
+- KlstWznmKTaggrp	iexsge			import/export complex job stage	
+- KlstWznmKTaggrp	iop			VecXxxxVIop item	
+- KlstWznmKTaggrp	lat			VecXxxxVLat item	
+- KlstWznmKTaggrp	lop			VecXxxxVLop item	
+- KlstWznmKTaggrp	mimetype			MIME type	
+- KlstWznmKTaggrp	no			no thing	
+- KlstWznmKTaggrp	none			none	
+- KlstWznmKTaggrp	oolop			VecXxxxVOolop item	
+- KlstWznmKTaggrp	prs			default person	
+- KlstWznmKTaggrp	prstit			person title	
+- KlstWznmKTaggrp	qrystate			VecXxxxVQrystate item	
+- KlstWznmKTaggrp	recaccess			VecXxxxVRecaccess item	
+- KlstWznmKTaggrp	reqitmode			VecXxxxVReqitmode item	
+- KlstWznmKTaggrp	sex			sex	
+- KlstWznmKTaggrp	start			login card	
+- KlstWznmKTaggrp	stdalr			standard alert message	
+- KlstWznmKTaggrp	stdiex			standard import/export complex title	
+- KlstWznmKTaggrp	stdrel			standard relation title	
+- KlstWznmKTaggrp	stdtbl			standard table title	
+- KlstWznmKTaggrp	stdtco			standard table column title	
+- KlstWznmKTaggrp	stdvec			standard vector title	
+- KlstWznmKTaggrp	userlevel			VecXxxxVUserlevel item	
+- KlstWznmKTaggrp	usrste			user state	
+- KlstWznmKTaggrp	wkday			weekday	
+- ImeIAVKeylistKey1.end
+- ImeIMUsergroup.sref	Comment
+- wznmusers
+	- ImeIAMUsergroupAccess.srefX1IxWznmVFeatgroup	x2FeaSrefUix	srefsIxWznmWAccess
+	- VecWznmVCard	CrdWznmUsg	edit;exec;view
+	- VecWznmVCard	CrdWznmUsr	edit;exec;view
+	- VecWznmVCard	CrdWznmPrs	edit;exec;view
+	- VecWznmVCard	CrdWznmFil	edit;exec;view
+	- VecWznmVCard	CrdWznmLoc	edit;exec;view
+	- VecWznmVCard	CrdWznmTag	edit;exec;view
+	- VecWznmVCard	CrdWznmCtp	edit;exec;view
+	- VecWznmVCard	CrdWznmMty	edit;exec;view
+	- VecWznmVCard	CrdWznmMch	edit;exec;view
+	- VecWznmVCard	CrdWznmLib	edit;exec;view
+	- VecWznmVCard	CrdWznmPrj	edit;exec;view
+	- VecWznmVCard	CrdWznmVer	edit;exec;view
+	- VecWznmVCard	CrdWznmCap	edit;exec;view
+	- VecWznmVCard	CrdWznmErr	edit;exec;view
+	- VecWznmVCard	CrdWznmTbl	edit;exec;view
+	- VecWznmVCard	CrdWznmTco	edit;exec;view
+	- VecWznmVCard	CrdWznmSbs	edit;exec;view
+	- VecWznmVCard	CrdWznmRel	edit;exec;view
+	- VecWznmVCard	CrdWznmVec	edit;exec;view
+	- VecWznmVCard	CrdWznmVit	edit;exec;view
+	- VecWznmVCard	CrdWznmChk	edit;exec;view
+	- VecWznmVCard	CrdWznmStb	edit;exec;view
+	- VecWznmVCard	CrdWznmIex	edit;exec;view
+	- VecWznmVCard	CrdWznmIme	edit;exec;view
+	- VecWznmVCard	CrdWznmIel	edit;exec;view
+	- VecWznmVCard	CrdWznmPst	edit;exec;view
+	- VecWznmVCard	CrdWznmMdl	edit;exec;view
+	- VecWznmVCard	CrdWznmCar	edit;exec;view
+	- VecWznmVCard	CrdWznmDlg	edit;exec;view
+	- VecWznmVCard	CrdWznmPnl	edit;exec;view
+	- VecWznmVCard	CrdWznmQry	edit;exec;view
+	- VecWznmVCard	CrdWznmQco	edit;exec;view
+	- VecWznmVCard	CrdWznmQmd	edit;exec;view
+	- VecWznmVCard	CrdWznmCon	edit;exec;view
+	- VecWznmVCard	CrdWznmOpk	edit;exec;view
+	- VecWznmVCard	CrdWznmOpx	edit;exec;view
+	- VecWznmVCard	CrdWznmJob	edit;exec;view
+	- VecWznmVCard	CrdWznmSge	edit;exec;view
+	- VecWznmVCard	CrdWznmMtd	edit;exec;view
+	- VecWznmVCard	CrdWznmBlk	edit;exec;view
+	- VecWznmVCard	CrdWznmCal	edit;exec;view
+	- VecWznmVCard	CrdWznmCmp	edit;exec;view
+	- VecWznmVCard	CrdWznmRls	edit;exec;view
+	- VecWznmVCard	CrdWznmApp	edit;exec;view
+	- VecWznmVCard	CrdWznmRtj	edit;exec;view
+	- VecWznmVCard	CrdWznmSeq	edit;exec;view
+	- VecWznmVCard	CrdWznmSte	edit;exec;view
+	- VecWznmVCard	CrdWznmUtl	edit;exec;view
+	- ImeIAMUsergroupAccess.end
+	- ImeIMUser.sref	srefIxVState	srefIxWznmVLocale	srefIxWznmVUserlevel	Password	Comment
+	- wznmuser	act	enus	adm	asdf1234
+		- ImeIMPerson.srefIxVSex	Title	Firstname	Lastname
+		- f	Mrs.	Emily	Johnson
+		- ImeIMPerson.end
+	- ImeIMUser.end
+- ImeIMUsergroup.end

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PrefWznmd>
+	<StgWznmAppearance>
+		<Si sref="histlength">20</Si>
+		<Si sref="suspsess">true</Si>
+	</StgWznmAppearance>
+	<StgWznmAppsrv>
+		<Si sref="port"></Si>
+		<Si sref="https">false</Si>
+	</StgWznmAppsrv>
+	<StgWznmd>
+		<Si sref="jobprcn">1</Si>
+		<Si sref="opengsrvport"></Si>
+		<Si sref="appsrv">true</Si>
+	</StgWznmd>
+	<StgWznmDatabase>
+		<Si sref="srefIxDbsVDbstype"/>
+		<Si sref="dbspath"></Si>
+		<Si sref="dbsname"></Si>
+		<Si sref="username">mpsitech</Si>
+		<Si sref="password">f9w8feeh</Si>
+		<Si sref="ip"></Si>
+		<Si sref="port"></Si>
+	</StgWznmDatabase>
+	<StgWznmPath>
+		<Si sref="acvpath"></Si>
+		<Si sref="keypath"></Si>
+		<Si sref="monpath"></Si>
+		<Si sref="tmppath"></Si>
+		<Si sref="webpath"></Si>
+		<Si sref="helpurl"></Si>
+	</StgWznmPath>
+	<StgWznmTenant>
+		<Si sref="orgname"></Si>
+		<Si sref="orgweb"></Si>
+		<Si sref="dbsusername"></Si>
+		<Si sref="dbspassword"></Si>
+	</StgWznmTenant>
+	<StgJobWznmLicense>
+		<Si sref="engip">license.mpsitech.cloud</Si>
+		<Si sref="engport">13110</Si>
+		<Si sref="username"></Si>
+		<Si sref="password"></Si>
+		<Si sref="licenseBase"></Si>
+		<Si sref="licenseUa"></Si>
+		<Si sref="licenseDds"></Si>
+		<Si sref="lastAttempt"></Si>
+		<Si sref="lastSuccess"></Si>
+		<Si sref="lastSync"></Si>
+	</StgJobWznmLicense>
+</PrefWznmd>

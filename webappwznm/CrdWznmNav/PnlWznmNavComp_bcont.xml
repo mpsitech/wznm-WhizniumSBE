@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<head>
+		<title>Comp_bcont</title>
+		<script>
+			function handleButOpkExpandClick() {parent.parent.window.handleButExpandClick("LstOpk");};
+			function handleButOpkCollapseClick() {parent.parent.window.handleButCollapseClick("LstOpk");};
+			function handleButOpkViewClick() {parent.parent.window.handleButCrdopenClick("ButOpkView");};
+			function handleButOpkNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButOpkNewcrd");};
+			function handleButOpxExpandClick() {parent.parent.window.handleButExpandClick("LstOpx");};
+			function handleButOpxCollapseClick() {parent.parent.window.handleButCollapseClick("LstOpx");};
+			function handleButOpxViewClick() {parent.parent.window.handleButCrdopenClick("ButOpxView");};
+			function handleButOpxNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButOpxNewcrd");};
+			<!-- IP custScript - INSERT -->
+		</script>
+		<link href="../style/pnlDetail3_2.css" rel="styleSheet" type="text/css"/>
+		<!-- IP custStyle - INSERT -->
+	</head>
+	<body marginwidth="0" marginheight="0">
+		<table cellspacing="0" border="0" cellpadding="0"><form action="">
+			<colgroup>
+				<col width="5"/>
+				<col width="215"/>
+				<col width="5"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="68"/>
+				<col width="2"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="1"/>
+				<col width="114"/>
+			</colgroup>
+			<tbody id="tbl">
+				<tr><td colspan="11" height="5"></td></tr>
+				<tr id="trOpk" class="show">
+					<td height="25"></td>
+					<td id="ldynOpk" align="right">
+					</td>
+					<td></td>
+					<td id="dynOpk" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynOpk" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trOpk2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trOpx" class="show">
+					<td height="25"></td>
+					<td id="ldynOpx" align="right">
+					</td>
+					<td></td>
+					<td id="dynOpx" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynOpx" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trOpx2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr><td colspan="11" height="4"></td></tr>
+			</tbody>
+		</form></table>
+	</body>
+</html>
+

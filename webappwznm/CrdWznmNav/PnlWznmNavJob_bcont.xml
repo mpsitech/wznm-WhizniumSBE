@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<head>
+		<title>Job_bcont</title>
+		<script>
+			function handleButJobExpandClick() {parent.parent.window.handleButExpandClick("LstJob");};
+			function handleButJobCollapseClick() {parent.parent.window.handleButCollapseClick("LstJob");};
+			function handleButJobViewClick() {parent.parent.window.handleButCrdopenClick("ButJobView");};
+			function handleButJobNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButJobNewcrd");};
+			function handleButSgeExpandClick() {parent.parent.window.handleButExpandClick("LstSge");};
+			function handleButSgeCollapseClick() {parent.parent.window.handleButCollapseClick("LstSge");};
+			function handleButSgeViewClick() {parent.parent.window.handleButCrdopenClick("ButSgeView");};
+			function handleButSgeNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButSgeNewcrd");};
+			function handleButMtdExpandClick() {parent.parent.window.handleButExpandClick("LstMtd");};
+			function handleButMtdCollapseClick() {parent.parent.window.handleButCollapseClick("LstMtd");};
+			function handleButMtdViewClick() {parent.parent.window.handleButCrdopenClick("ButMtdView");};
+			function handleButMtdNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButMtdNewcrd");};
+			function handleButBlkExpandClick() {parent.parent.window.handleButExpandClick("LstBlk");};
+			function handleButBlkCollapseClick() {parent.parent.window.handleButCollapseClick("LstBlk");};
+			function handleButBlkViewClick() {parent.parent.window.handleButCrdopenClick("ButBlkView");};
+			function handleButBlkNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButBlkNewcrd");};
+			function handleButCalExpandClick() {parent.parent.window.handleButExpandClick("LstCal");};
+			function handleButCalCollapseClick() {parent.parent.window.handleButCollapseClick("LstCal");};
+			function handleButCalViewClick() {parent.parent.window.handleButCrdopenClick("ButCalView");};
+			function handleButCalNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButCalNewcrd");};
+			<!-- IP custScript - INSERT -->
+		</script>
+		<link href="../style/pnlDetail3_2.css" rel="styleSheet" type="text/css"/>
+		<!-- IP custStyle - INSERT -->
+	</head>
+	<body marginwidth="0" marginheight="0">
+		<table cellspacing="0" border="0" cellpadding="0"><form action="">
+			<colgroup>
+				<col width="5"/>
+				<col width="215"/>
+				<col width="5"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="68"/>
+				<col width="2"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="1"/>
+				<col width="114"/>
+			</colgroup>
+			<tbody id="tbl">
+				<tr><td colspan="11" height="5"></td></tr>
+				<tr id="trJob" class="show">
+					<td height="25"></td>
+					<td id="ldynJob" align="right">
+					</td>
+					<td></td>
+					<td id="dynJob" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynJob" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trJob2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trSge" class="show">
+					<td height="25"></td>
+					<td id="ldynSge" align="right">
+					</td>
+					<td></td>
+					<td id="dynSge" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynSge" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trSge2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trMtd" class="show">
+					<td height="25"></td>
+					<td id="ldynMtd" align="right">
+					</td>
+					<td></td>
+					<td id="dynMtd" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynMtd" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trMtd2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trBlk" class="show">
+					<td height="25"></td>
+					<td id="ldynBlk" align="right">
+					</td>
+					<td></td>
+					<td id="dynBlk" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynBlk" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trBlk2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trCal" class="show">
+					<td height="25"></td>
+					<td id="ldynCal" align="right">
+					</td>
+					<td></td>
+					<td id="dynCal" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynCal" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trCal2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr><td colspan="11" height="4"></td></tr>
+			</tbody>
+		</form></table>
+	</body>
+</html>
+

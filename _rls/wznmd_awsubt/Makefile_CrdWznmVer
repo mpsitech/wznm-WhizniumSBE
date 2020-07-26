@@ -1,0 +1,38 @@
+# file Makefile
+# make file for CrdWznmVer card job handler, release wznmd_awsubt
+# author Alexander Wirthmueller
+# date created: 11 Jul 2020
+# modified: 11 Jul 2020
+
+include ../Makefile.inc
+
+CPP = g++
+CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -DWZNMD
+
+STATLIB = ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
+INCPATH += -I/home/ubuntu/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
+
+OBJS = CrdWznmVer.o PnlWznmVerList.o QryWznmVerList.o PnlWznmVerHeadbar.o DlgWznmVerWrstkit.o PnlWznmVerRec.o PnlWznmVerMNLocale.o QryWznmVerMNLocale.o PnlWznmVerRef1NFile.o QryWznmVerRef1NFile.o PnlWznmVer1NPreset.o QryWznmVer1NPreset.o PnlWznmVerBvr1NVersion.o QryWznmVerBvr1NVersion.o PnlWznmVer1NBlock.o QryWznmVer1NBlock.o PnlWznmVer1NQuery.o QryWznmVer1NQuery.o PnlWznmVer1NRelation.o QryWznmVer1NRelation.o PnlWznmVer1NTable.o QryWznmVer1NTable.o PnlWznmVer1NCall.o QryWznmVer1NCall.o PnlWznmVer1NComponent.o QryWznmVer1NComponent.o PnlWznmVer1NOppack.o QryWznmVer1NOppack.o PnlWznmVer1NJob.o QryWznmVer1NJob.o PnlWznmVer1NImpexpcplx.o QryWznmVer1NImpexpcplx.o PnlWznmVer1NVector.o QryWznmVer1NVector.o PnlWznmVerVer1NModule.o QryWznmVerVer1NModule.o PnlWznmVerVer1NApp.o QryWznmVerVer1NApp.o PnlWznmVer1NCapability.o QryWznmVer1NCapability.o PnlWznmVerVer1NError.o QryWznmVerVer1NError.o PnlWznmVerDetail.o DlgWznmVerNew.o DlgWznmVerOppack.o DlgWznmVerGlobal.o DlgWznmVerImpexp.o DlgWznmVerGenui.o DlgWznmVerGenjtr.o DlgWznmVerFinmod.o DlgWznmVerDeploy.o DlgWznmVerDbstr.o DlgWznmVerCustui.o DlgWznmVerCustjtr.o DlgWznmVerCustjob.o DlgWznmVerBscui.o
+
+LIB = libcrdwznmver
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a $(LIBROOT)/wznmd/
+
+clean:
+	rm -f *.o
+

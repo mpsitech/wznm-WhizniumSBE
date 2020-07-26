@@ -1,0 +1,38 @@
+# file Makefile
+# make file for CrdWznmTbl card job handler, release wznmd_ungenio
+# author Alexander Wirthmueller
+# date created: 11 Jul 2020
+# modified: 11 Jul 2020
+
+include ../Makefile.inc
+
+CPP = g++
+CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -DWZNMD
+
+STATLIB = ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
+INCPATH += -I/Library/PostgreSQL/9.6/include -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
+
+OBJS = CrdWznmTbl.o PnlWznmTblList.o QryWznmTblList.o PnlWznmTblHeadbar.o PnlWznmTblRec.o PnlWznmTblMNQuery.o QryWznmTblMNQuery.o PnlWznmTblMNVector.o QryWznmTblMNVector.o PnlWznmTblPst1NQuerymod.o QryWznmTblPst1NQuerymod.o PnlWznmTblSrc1NFeed.o QryWznmTblSrc1NFeed.o PnlWznmTblRef1NPanel.o QryWznmTblRef1NPanel.o PnlWznmTblRef1NDialog.o QryWznmTblRef1NDialog.o PnlWznmTblHk1NVector.o QryWznmTblHk1NVector.o PnlWznmTblRef1NCall.o QryWznmTblRef1NCall.o PnlWznmTblFct1NTablecol.o QryWznmTblFct1NTablecol.o PnlWznmTblRef1NQuerymod.o QryWznmTblRef1NQuerymod.o PnlWznmTblRef1NRtblock.o QryWznmTblRef1NRtblock.o PnlWznmTblFr1NRelation.o QryWznmTblFr1NRelation.o PnlWznmTblTo1NRelation.o QryWznmTblTo1NRelation.o PnlWznmTbl1NStub.o QryWznmTbl1NStub.o PnlWznmTbl1NSubset.o QryWznmTbl1NSubset.o PnlWznmTbl1NCheck.o QryWznmTbl1NCheck.o PnlWznmTbl1NImpexp.o QryWznmTbl1NImpexp.o PnlWznmTblTbl1NTablecol.o QryWznmTblTbl1NTablecol.o PnlWznmTblALoadfct.o QryWznmTblALoadfct.o PnlWznmTblATitle.o QryWznmTblATitle.o PnlWznmTblDetail.o
+
+LIB = libcrdwznmtbl
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a $(LIBROOT)/wznmd/
+
+clean:
+	rm -f *.o
+

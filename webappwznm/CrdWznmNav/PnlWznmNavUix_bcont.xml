@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<head>
+		<title>Uix_bcont</title>
+		<script>
+			function handleButPstExpandClick() {parent.parent.window.handleButExpandClick("LstPst");};
+			function handleButPstCollapseClick() {parent.parent.window.handleButCollapseClick("LstPst");};
+			function handleButPstViewClick() {parent.parent.window.handleButCrdopenClick("ButPstView");};
+			function handleButPstNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButPstNewcrd");};
+			function handleButMdlExpandClick() {parent.parent.window.handleButExpandClick("LstMdl");};
+			function handleButMdlCollapseClick() {parent.parent.window.handleButCollapseClick("LstMdl");};
+			function handleButMdlViewClick() {parent.parent.window.handleButCrdopenClick("ButMdlView");};
+			function handleButMdlNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButMdlNewcrd");};
+			function handleButCarExpandClick() {parent.parent.window.handleButExpandClick("LstCar");};
+			function handleButCarCollapseClick() {parent.parent.window.handleButCollapseClick("LstCar");};
+			function handleButCarViewClick() {parent.parent.window.handleButCrdopenClick("ButCarView");};
+			function handleButCarNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButCarNewcrd");};
+			function handleButDlgExpandClick() {parent.parent.window.handleButExpandClick("LstDlg");};
+			function handleButDlgCollapseClick() {parent.parent.window.handleButCollapseClick("LstDlg");};
+			function handleButDlgViewClick() {parent.parent.window.handleButCrdopenClick("ButDlgView");};
+			function handleButDlgNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButDlgNewcrd");};
+			function handleButPnlExpandClick() {parent.parent.window.handleButExpandClick("LstPnl");};
+			function handleButPnlCollapseClick() {parent.parent.window.handleButCollapseClick("LstPnl");};
+			function handleButPnlViewClick() {parent.parent.window.handleButCrdopenClick("ButPnlView");};
+			function handleButPnlNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButPnlNewcrd");};
+			function handleButQryExpandClick() {parent.parent.window.handleButExpandClick("LstQry");};
+			function handleButQryCollapseClick() {parent.parent.window.handleButCollapseClick("LstQry");};
+			function handleButQryViewClick() {parent.parent.window.handleButCrdopenClick("ButQryView");};
+			function handleButQryNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButQryNewcrd");};
+			function handleButQcoExpandClick() {parent.parent.window.handleButExpandClick("LstQco");};
+			function handleButQcoCollapseClick() {parent.parent.window.handleButCollapseClick("LstQco");};
+			function handleButQcoViewClick() {parent.parent.window.handleButCrdopenClick("ButQcoView");};
+			function handleButQcoNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButQcoNewcrd");};
+			function handleButQmdExpandClick() {parent.parent.window.handleButExpandClick("LstQmd");};
+			function handleButQmdCollapseClick() {parent.parent.window.handleButCollapseClick("LstQmd");};
+			function handleButQmdViewClick() {parent.parent.window.handleButCrdopenClick("ButQmdView");};
+			function handleButQmdNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButQmdNewcrd");};
+			function handleButConExpandClick() {parent.parent.window.handleButExpandClick("LstCon");};
+			function handleButConCollapseClick() {parent.parent.window.handleButCollapseClick("LstCon");};
+			function handleButConViewClick() {parent.parent.window.handleButCrdopenClick("ButConView");};
+			function handleButConNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButConNewcrd");};
+			<!-- IP custScript - INSERT -->
+		</script>
+		<link href="../style/pnlDetail3_2.css" rel="styleSheet" type="text/css"/>
+		<!-- IP custStyle - INSERT -->
+	</head>
+	<body marginwidth="0" marginheight="0">
+		<table cellspacing="0" border="0" cellpadding="0"><form action="">
+			<colgroup>
+				<col width="5"/>
+				<col width="215"/>
+				<col width="5"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="68"/>
+				<col width="2"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="1"/>
+				<col width="114"/>
+			</colgroup>
+			<tbody id="tbl">
+				<tr><td colspan="11" height="5"></td></tr>
+				<tr id="trPst" class="show">
+					<td height="25"></td>
+					<td id="ldynPst" align="right">
+					</td>
+					<td></td>
+					<td id="dynPst" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynPst" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trPst2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trMdl" class="show">
+					<td height="25"></td>
+					<td id="ldynMdl" align="right">
+					</td>
+					<td></td>
+					<td id="dynMdl" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynMdl" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trMdl2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trCar" class="show">
+					<td height="25"></td>
+					<td id="ldynCar" align="right">
+					</td>
+					<td></td>
+					<td id="dynCar" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynCar" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trCar2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trDlg" class="show">
+					<td height="25"></td>
+					<td id="ldynDlg" align="right">
+					</td>
+					<td></td>
+					<td id="dynDlg" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynDlg" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trDlg2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trPnl" class="show">
+					<td height="25"></td>
+					<td id="ldynPnl" align="right">
+					</td>
+					<td></td>
+					<td id="dynPnl" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynPnl" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trPnl2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trQry" class="show">
+					<td height="25"></td>
+					<td id="ldynQry" align="right">
+					</td>
+					<td></td>
+					<td id="dynQry" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynQry" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trQry2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trQco" class="show">
+					<td height="25"></td>
+					<td id="ldynQco" align="right">
+					</td>
+					<td></td>
+					<td id="dynQco" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynQco" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trQco2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trQmd" class="show">
+					<td height="25"></td>
+					<td id="ldynQmd" align="right">
+					</td>
+					<td></td>
+					<td id="dynQmd" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynQmd" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trQmd2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trCon" class="show">
+					<td height="25"></td>
+					<td id="ldynCon" align="right">
+					</td>
+					<td></td>
+					<td id="dynCon" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynCon" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trCon2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr><td colspan="11" height="4"></td></tr>
+			</tbody>
+		</form></table>
+	</body>
+</html>
+

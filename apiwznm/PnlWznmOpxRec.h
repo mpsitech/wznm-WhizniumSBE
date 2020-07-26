@@ -1,0 +1,197 @@
+/**
+	* \file PnlWznmOpxRec.h
+	* API code for job PnlWznmOpxRec (declarations)
+	* \author Alexander Wirthmueller
+	* \date created: 11 Jul 2020
+	* \date modified: 11 Jul 2020
+	*/
+
+#ifndef PNLWZNMOPXREC_H
+#define PNLWZNMOPXREC_H
+
+#include "ApiWznm_blks.h"
+
+#define VecVWznmOpxRecDo PnlWznmOpxRec::VecVDo
+
+#define ContInfWznmOpxRec PnlWznmOpxRec::ContInf
+#define StatAppWznmOpxRec PnlWznmOpxRec::StatApp
+#define StatShrWznmOpxRec PnlWznmOpxRec::StatShr
+#define TagWznmOpxRec PnlWznmOpxRec::Tag
+
+#define DpchAppWznmOpxRecDo PnlWznmOpxRec::DpchAppDo
+#define DpchEngWznmOpxRecData PnlWznmOpxRec::DpchEngData
+
+/**
+	* PnlWznmOpxRec
+	*/
+namespace PnlWznmOpxRec {
+	/**
+		* VecVDo (full: VecVWznmOpxRecDo)
+		*/
+	class VecVDo {
+
+	public:
+		static const Sbecore::uint BUTMINIMIZECLICK = 1;
+		static const Sbecore::uint BUTREGULARIZECLICK = 2;
+
+		static Sbecore::uint getIx(const std::string& sref);
+		static std::string getSref(const Sbecore::uint ix);
+	};
+
+	/**
+	  * ContInf (full: ContInfWznmOpxRec)
+	  */
+	class ContInf : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint TXTREF = 1;
+
+	public:
+		ContInf(const std::string& TxtRef = "");
+
+	public:
+		std::string TxtRef;
+
+	public:
+		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		std::set<Sbecore::uint> comm(const ContInf* comp);
+		std::set<Sbecore::uint> diff(const ContInf* comp);
+	};
+
+	/**
+	  * StatApp (full: StatAppWznmOpxRec)
+	  */
+	class StatApp : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint INITDONEDETAIL = 1;
+		static const Sbecore::uint INITDONEAINVARG = 2;
+		static const Sbecore::uint INITDONEARETVAL = 3;
+		static const Sbecore::uint INITDONEREF1NBLOCK = 4;
+		static const Sbecore::uint INITDONEMNJOB = 5;
+		static const Sbecore::uint INITDONESQKMNSTUB = 6;
+
+	public:
+		StatApp(const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
+
+	public:
+		bool initdoneDetail;
+		bool initdoneAInvarg;
+		bool initdoneARetval;
+		bool initdoneRef1NBlock;
+		bool initdoneMNJob;
+		bool initdoneSqkMNStub;
+
+	public:
+		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		std::set<Sbecore::uint> comm(const StatApp* comp);
+		std::set<Sbecore::uint> diff(const StatApp* comp);
+	};
+
+	/**
+	  * StatShr (full: StatShrWznmOpxRec)
+	  */
+	class StatShr : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
+		static const Sbecore::uint SCRJREFDETAIL = 2;
+		static const Sbecore::uint SCRJREFAINVARG = 3;
+		static const Sbecore::uint SCRJREFARETVAL = 4;
+		static const Sbecore::uint SCRJREFREF1NBLOCK = 5;
+		static const Sbecore::uint SCRJREFMNJOB = 6;
+		static const Sbecore::uint SCRJREFSQKMNSTUB = 7;
+		static const Sbecore::uint PNLSQKMNSTUBAVAIL = 8;
+		static const Sbecore::uint BUTREGULARIZEACTIVE = 9;
+
+	public:
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAInvarg = "", const std::string& scrJrefARetval = "", const std::string& scrJrefRef1NBlock = "", const std::string& scrJrefMNJob = "", const std::string& scrJrefSqkMNStub = "", const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
+
+	public:
+		Sbecore::uint ixWznmVExpstate;
+		std::string scrJrefDetail;
+		std::string scrJrefAInvarg;
+		std::string scrJrefARetval;
+		std::string scrJrefRef1NBlock;
+		std::string scrJrefMNJob;
+		std::string scrJrefSqkMNStub;
+		bool pnlsqkmnstubAvail;
+		bool ButRegularizeActive;
+
+	public:
+		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		std::set<Sbecore::uint> comm(const StatShr* comp);
+		std::set<Sbecore::uint> diff(const StatShr* comp);
+	};
+
+	/**
+	  * Tag (full: TagWznmOpxRec)
+	  */
+	class Tag : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint CPT = 1;
+
+	public:
+		Tag(const std::string& Cpt = "");
+
+	public:
+		std::string Cpt;
+
+	public:
+		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+	};
+
+	/**
+		* DpchAppDo (full: DpchAppWznmOpxRecDo)
+		*/
+	class DpchAppDo : public DpchAppWznm {
+
+	public:
+		static const Sbecore::uint SCRJREF = 1;
+		static const Sbecore::uint IXVDO = 2;
+		static const Sbecore::uint ALL = 3;
+
+	public:
+		DpchAppDo(const std::string& scrJref = "", const Sbecore::uint ixVDo = 0, const std::set<Sbecore::uint>& mask = {NONE});
+
+	public:
+		Sbecore::uint ixVDo;
+
+	public:
+		std::string getSrefsMask();
+
+		void writeXML(xmlTextWriter* wr);
+	};
+
+	/**
+		* DpchEngData (full: DpchEngWznmOpxRecData)
+		*/
+	class DpchEngData : public DpchEngWznm {
+
+	public:
+		static const Sbecore::uint SCRJREF = 1;
+		static const Sbecore::uint CONTINF = 2;
+		static const Sbecore::uint STATAPP = 3;
+		static const Sbecore::uint STATSHR = 4;
+		static const Sbecore::uint TAG = 5;
+
+	public:
+		DpchEngData();
+
+	public:
+		ContInf continf;
+		StatApp statapp;
+		StatShr statshr;
+		Tag tag;
+
+	public:
+		std::string getSrefsMask();
+
+		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+	};
+
+};
+
+#endif
+

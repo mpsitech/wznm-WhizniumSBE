@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<head>
+		<title>Detail_bcont</title>
+		<script>
+			function handlePupTypChange() {parent.parent.window.handlePupChange(document,"PupTyp","");};
+			function handleButQryViewClick() {parent.parent.window.handleButCrdopenClick("ButQryView");};
+			function handleButPstViewClick() {parent.parent.window.handleButCrdopenClick("ButPstView");};
+			function handlePupRetChange() {parent.parent.window.handlePupChange(document,"PupRet","xs");};
+			function handleButReuViewClick() {parent.parent.window.handleButCrdopenClick("ButReuView");};
+			function handleTxfAvlKey(evt) {return parent.parent.window.handleTxftKey(document,"TxfAvl",evt);};
+			function handleTxfAvlChange() {parent.parent.window.handleTxftChange(document,"TxfAvl");};
+			<!-- IP custScript - INSERT -->
+		</script>
+		<link href="../style/pnlDetail.css" rel="styleSheet" type="text/css"/>
+		<!-- IP custStyle - INSERT -->
+	</head>
+	<body marginwidth="0" marginheight="0">
+		<table cellspacing="0" border="0" cellpadding="0"><form action="">
+			<colgroup>
+				<col width="5"/>
+				<col width="155"/>
+				<col width="5"/>
+				<col width="78"/>
+				<col width="2"/>
+				<col width="38"/>
+				<col width="2"/>
+				<col width="78"/>
+				<col width="2"/>
+				<col width="1"/>
+				<col width="74"/>
+			</colgroup>
+			<tbody id="tbl">
+				<tr><td colspan="11" height="5"></td></tr>
+				<tr id="trTyp" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptTyp" class="cpt">CptTyp</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<select id="PupTyp" class="pup" size="1" onchange="handlePupTypChange()"/>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr id="trQry" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptQry" class="cpt">CptQry</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<input id="TxtQry" class="txfnoed" type="text" readonly="readonly" value="TxtQry"/>
+					</td>
+					<td></td>
+					<td id="rdynQry" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trPst" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptPst" class="cpt">CptPst</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<input id="TxtPst" class="txfnoed" type="text" readonly="readonly" value="TxtPst"/>
+					</td>
+					<td></td>
+					<td id="rdynPst" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trReu" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptReu" class="cpt">CptReu</span>
+					</td>
+					<td></td>
+					<td colspan="2" align="left">
+						<select id="PupRet" class="pupxs" size="1" onchange="handlePupRetChange()"/>
+					</td>
+					<td colspan="3" align="left">
+						<input id="TxtReu" class="txfsnoed" type="text" readonly="readonly" value="TxtReu"/>
+					</td>
+					<td></td>
+					<td id="rdynReu" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trAvl" class="show">
+					<td height="75"></td>
+					<td align="right" valign="top">
+						<span id="CptAvl" class="cpt">CptAvl</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<textarea id="TxfAvl" class="txf" rows="4" cols="20" type="text" value="TxfAvl" onchange="handleTxfAvlChange()" onkeypress="return handleTxfAvlKey(event)"/>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr><td colspan="11" height="4"></td></tr>
+			</tbody>
+		</form></table>
+	</body>
+</html>
+

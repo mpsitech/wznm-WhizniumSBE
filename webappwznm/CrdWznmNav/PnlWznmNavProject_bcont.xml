@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<head>
+		<title>Project_bcont</title>
+		<script>
+			function handleButPrjExpandClick() {parent.parent.window.handleButExpandClick("LstPrj");};
+			function handleButPrjCollapseClick() {parent.parent.window.handleButCollapseClick("LstPrj");};
+			function handleButPrjViewClick() {parent.parent.window.handleButCrdopenClick("ButPrjView");};
+			function handleButPrjNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButPrjNewcrd");};
+			function handleButVerExpandClick() {parent.parent.window.handleButExpandClick("LstVer");};
+			function handleButVerCollapseClick() {parent.parent.window.handleButCollapseClick("LstVer");};
+			function handleButVerViewClick() {parent.parent.window.handleButCrdopenClick("ButVerView");};
+			function handleButVerNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButVerNewcrd");};
+			function handleButCapExpandClick() {parent.parent.window.handleButExpandClick("LstCap");};
+			function handleButCapCollapseClick() {parent.parent.window.handleButCollapseClick("LstCap");};
+			function handleButCapViewClick() {parent.parent.window.handleButCrdopenClick("ButCapView");};
+			function handleButCapNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButCapNewcrd");};
+			function handleButErrExpandClick() {parent.parent.window.handleButExpandClick("LstErr");};
+			function handleButErrCollapseClick() {parent.parent.window.handleButCollapseClick("LstErr");};
+			function handleButErrViewClick() {parent.parent.window.handleButCrdopenClick("ButErrView");};
+			function handleButErrNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButErrNewcrd");};
+			<!-- IP custScript - INSERT -->
+		</script>
+		<link href="../style/pnlDetail3_2.css" rel="styleSheet" type="text/css"/>
+		<!-- IP custStyle - INSERT -->
+	</head>
+	<body marginwidth="0" marginheight="0">
+		<table cellspacing="0" border="0" cellpadding="0"><form action="">
+			<colgroup>
+				<col width="5"/>
+				<col width="215"/>
+				<col width="5"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="68"/>
+				<col width="2"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="1"/>
+				<col width="114"/>
+			</colgroup>
+			<tbody id="tbl">
+				<tr><td colspan="11" height="5"></td></tr>
+				<tr id="trPrj" class="show">
+					<td height="25"></td>
+					<td id="ldynPrj" align="right">
+					</td>
+					<td></td>
+					<td id="dynPrj" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynPrj" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trPrj2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trVer" class="show">
+					<td height="25"></td>
+					<td id="ldynVer" align="right">
+					</td>
+					<td></td>
+					<td id="dynVer" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynVer" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trVer2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trCap" class="show">
+					<td height="25"></td>
+					<td id="ldynCap" align="right">
+					</td>
+					<td></td>
+					<td id="dynCap" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynCap" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trCap2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trErr" class="show">
+					<td height="25"></td>
+					<td id="ldynErr" align="right">
+					</td>
+					<td></td>
+					<td id="dynErr" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynErr" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trErr2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr><td colspan="11" height="4"></td></tr>
+			</tbody>
+		</form></table>
+	</body>
+</html>
+

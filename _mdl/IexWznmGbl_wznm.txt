@@ -1,0 +1,39 @@
+- IexWznmGbl v0.9.29						
+- ImeIMError.sref	Title					
+- lic.auth	&srvmsg;					
+- lic.ctwarn	Last contact with licensing server was on &lastAttempt;. WhizniumSBE will cease to function unless contact is re-established by &finalAttempt;.					
+- lic.ctlost	Last contact with licensing server was on &lastAttempt;. Please contact support at support@mpsitech.com.					
+- ImeIMError.end						
+- ImeIMVector.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption			
+- lin	VecWznmVBasereptype		filfed			
+	- ImeIAMVectorTitle.srefX1IxVType	srefX2RefWznmMLocale	Title			
+	- full	enus	base repository type			
+	- ImeIAMVectorTitle.end					
+	- ImeIMVectoritem.sref	Avail	Implied	Title	Comment	
+	- void			empty		
+	- prjgit			project Git		
+	- custgit			custom Git		
+	- uld			upload		
+	- ImeIMVectoritem.end					
+- ImeIMVector.end						
+- ImeIMBlock.srefsReaIxWznmWScope	srefsWriIxWznmWScope	sref	Comment			
+- cmbeng;eng	cmbeng;eng	StgWznmTenant				
+	- ImeIAMBlockItem.irefRefWznmCAMBlockItem	srefIxVBasetype	sref	srefIxWznmVVartype	Defval	Comment
+	- 0	var	orgname	string		
+	- 0	var	orgweb	string		
+	- 0	var	dbsusername	string		
+	- 0	var	dbspassword	string		
+	- ImeIAMBlockItem.end					
+- ImeIMBlock.end						
+- ImeIMCapability.srefTplRefWznmMCapability	sref	Title				
+- acv	Acv					
+	- ImeIAMCapabilityPar.x1SrefKKey	Val				
+	- dld	true				
+	- uld	true				
+	- ImeIAMCapabilityPar.end					
+- arm	Arm					
+- dlgloaini	DlgWznmNavLoaini					
+	- ImeIAMCapabilityPar.x1SrefKKey	Val				
+	- acv	true				
+	- ImeIAMCapabilityPar.end					
+- ImeIMCapability.end						

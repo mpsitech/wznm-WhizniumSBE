@@ -1,0 +1,38 @@
+# file Makefile
+# make file for CrdWznmOpk card job handler, release wznmd_awsubt
+# author Alexander Wirthmueller
+# date created: 11 Jul 2020
+# modified: 11 Jul 2020
+
+include ../Makefile.inc
+
+CPP = g++
+CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -DWZNMD
+
+STATLIB = ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
+INCPATH += -I/home/ubuntu/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
+
+OBJS = CrdWznmOpk.o PnlWznmOpkList.o QryWznmOpkList.o PnlWznmOpkHeadbar.o PnlWznmOpkRec.o PnlWznmOpkSqkMNStub.o QryWznmOpkSqkMNStub.o PnlWznmOpkMNComponent.o QryWznmOpkMNComponent.o PnlWznmOpkMNLibrary.o QryWznmOpkMNLibrary.o PnlWznmOpkMNJob.o QryWznmOpkMNJob.o PnlWznmOpkRef1NBlock.o QryWznmOpkRef1NBlock.o PnlWznmOpk1NOp.o QryWznmOpk1NOp.o PnlWznmOpkAInvarg.o QryWznmOpkAInvarg.o PnlWznmOpkARetval.o QryWznmOpkARetval.o PnlWznmOpkDetail.o
+
+LIB = libcrdwznmopk
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a $(LIBROOT)/wznmd/
+
+clean:
+	rm -f *.o
+

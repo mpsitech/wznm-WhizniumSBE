@@ -1,0 +1,59 @@
+/**
+  * \file WznmQUsgAAccess.h
+  * Java API code for record of table TblWznmQUsgAAccess
+  * \author Alexander Wirthmueller
+  * \date created: 11 Jul 2020
+  * \date modified: 11 Jul 2020
+  */
+
+package apiwznm;
+
+import org.w3c.dom.*;
+import sbecore.*;
+
+public class WznmQUsgAAccess {
+	
+	public WznmQUsgAAccess(
+				int jnum
+				, String srefX1IxWznmVFeatgroup
+				, String titX1IxWznmVFeatgroup
+				, String x2FeaSrefUix
+				, String srefsIxWznmWAccess
+				, String titsIxWznmWAccess
+			) {
+		this.jnum = jnum;
+		this.srefX1IxWznmVFeatgroup = srefX1IxWznmVFeatgroup;
+		this.titX1IxWznmVFeatgroup = titX1IxWznmVFeatgroup;
+		this.x2FeaSrefUix = x2FeaSrefUix;
+		this.srefsIxWznmWAccess = srefsIxWznmWAccess;
+		this.titsIxWznmWAccess = titsIxWznmWAccess;
+	};
+
+	public int jnum;
+	public String srefX1IxWznmVFeatgroup;
+	public String titX1IxWznmVFeatgroup;
+	public String x2FeaSrefUix;
+	public String srefsIxWznmWAccess;
+	public String titsIxWznmWAccess;
+	
+	public boolean readXML(
+				Document doc
+				, String basexpath
+				, boolean addbasetag
+			) {
+		if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "WznmQUsgAAccess");
+
+		if (Xmlio.checkXPath(doc, basexpath)) {
+			srefX1IxWznmVFeatgroup = Xmlio.extractStringUclc(doc, basexpath, "srefX1IxWznmVFeatgroup", "feg", null, 0);
+			titX1IxWznmVFeatgroup = Xmlio.extractStringUclc(doc, basexpath, "titX1IxWznmVFeatgroup", "feg2", null, 0);
+			x2FeaSrefUix = Xmlio.extractStringUclc(doc, basexpath, "x2FeaSrefUix", "fea", null, 0);
+			srefsIxWznmWAccess = Xmlio.extractStringUclc(doc, basexpath, "srefsIxWznmWAccess", "acc", null, 0);
+			titsIxWznmWAccess = Xmlio.extractStringUclc(doc, basexpath, "titsIxWznmWAccess", "acc2", null, 0);
+			
+			return true;
+		};
+
+		return false;
+	};
+};
+
