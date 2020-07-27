@@ -2,7 +2,7 @@
 
 The Whiznium Service Builder's Edition, finally as Open Source Software project.
 
-WhizniumSBE (SBE = Service Builder’s Edition) is a tool for the model-based development of modern, multi-threaded, connected C++ application software, with focus on single board computers.
+WhizniumSBE is a tool for the model-based development of modern, multi-threaded, connected C++ application software, with focus on single board computers.
 
 ## How it works
 
@@ -19,7 +19,7 @@ WhizniumSBE-generated code is free from any use restrictions, except for the obv
 
 ### WhizniumSBE-backed projects
 
-Only few libraries are required, all of which are equipped with permissive licenses, allowing to deploy WhizniumSBE-backed software both as Open Source Software and commercially.
+Only few libraries are required, all of which are equipped with permissive licenses, allowing to deploy WhizniumSBE-backed software both as Open Source Software and commercially:
 
 - [Gnome libxml2](http://xmlsoft.org), to serlialize / deserialize XML blocks both for HTTP(S) transfers and preferences files
 - [GNU Libmicrohttpd](https://www.gnu.org/software/libmicrohttpd), a lightweight multi-threading-capable web-server library included in every WhizniumSBE-backed project
@@ -59,6 +59,11 @@ WhizniumSBE is a WhizniumSBE-backed project. Accordingly, it requires libxml2, G
 ### Marketing material
 
 Most of these publications pre-date Whiznium's Open Source era.
+
+- WhizniumSBE/DBE [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/flyer_en_v1.1.pdf)
+- WhizniumSBE technology overview [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/whizniumsbe.pdf)
+- Whiznium-related services offerings for the photonics industry [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/epic_flyer.pdf)
+- Co-marketing of Whiznium and Matrikon's FLEX OPC UA SDK for industrial automation applications [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/FLEX_MPSI_DataSheet-V2.1.pdf)
 
 ## Upcoming documentation
 
