@@ -2,6 +2,13 @@
 
 The Whiznium Service Builder's Edition, finally as Open Source Software project.
 
+WhizniumSBE (SBE = Service Builder’s Edition) is a tool for the model-based development of modern, multi-threaded, connected C++ application software, with focus on single board computers.
+
+Besides being model-based, software development with WhizniumSBE rests on the foundation of these three principles:
+-	Full coverage: one single method of model entry is used for all application aspects, ranging from database access to thread-safe inter-object communication to preferences file and web-based user interface with detailes access rights management
+-	All code in plain sight: no functionality is hidden away in libraries
+-	Mixing of auto-generated code with manual additions: auto-generated code provides the backbone of the (single) project source code tree; it is meant to be extended manually, with manual changes carried over to the next version when the model changes
+
 ## How it works
 
 ![](_exp/sbe.png)
@@ -41,6 +48,7 @@ WhizniumSBE is a WhizniumSBE-backed project. Accordingly, it requires libxml2, G
 - FabSight: montioring of industrial appliances, [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/fabsight.pdf) and [YouTube video](https://youtu.be/Z-NvdSHfAvM) showing device in action including .NET API access
 - The ICARUS detector: a [European robotics research project](http://www.fp7-icarus.eu) alongside which WhizniumSBE/DBE developed lots of its functionality, [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/icarus.pdf)
 - Multi-spectral detector: developed from the ICARUS detector, combines stereo vision with a thermal imager and a laser mounted on a tilt/pan unit. [.pdf code walk-through](https://mpsitech-public.s3.eu-central-1.amazonaws.com/Thermal_Imager_Data_Path.pdf) available
+- BeamRelay: a cool air traffic simulation developed when Whiznium's focus was still on distributed simulation applications, [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/beamrelay.pdf) available and [ICNS conference proceedings .pdf](https://mpsitech-public.s3.eu-central-1.amazonaws.com/Global_coverage_free_space.pdf)
 
 ### Reference / documentation
 
