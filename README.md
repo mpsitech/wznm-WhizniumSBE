@@ -4,12 +4,12 @@ The Whiznium Service Builder's Edition, finally as Open Source Software project.
 
 WhizniumSBE (SBE = Service Builder’s Edition) is a tool for the model-based development of modern, multi-threaded, connected C++ application software, with focus on single board computers.
 
+## How it works
+
 Besides being model-based, software development with WhizniumSBE rests on the foundation of these three principles:
 -	Full coverage: one single method of model entry is used for all application aspects, ranging from database access to thread-safe inter-object communication to preferences file and web-based user interface with detailed access rights management
 -	All code in plain sight: no functionality is hidden away in libraries
 -	Mixing of auto-generated code with manual additions: auto-generated code provides the backbone of the (single) project source code tree; it is meant to be extended manually, with manual changes carried over to the next version when the model changes
-
-## How it works
 
 ![](_exp/sbe.png)
 
@@ -54,7 +54,7 @@ WhizniumSBE is a WhizniumSBE-backed project. Accordingly, it requires libxml2, G
 
 - Documentation of model files (slightly outdated) as [Git repository](https://github.com/mpsitech/WhizniumSBE-docs)
 - [YouTube video](https://youtu.be/yBvqSAvEhDg) of the most essential workflow step when using WhizniumSBE - iterating a source code tree
-- A [datasheet .pdf](https://mpsitech-public.s3.eu-central-1.amazonaws.com/M2M_communication_v2.pdf) highlighting M2M communication options in WhizniumSBE-backed projects
+- A [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/M2M_communication_v2.pdf) highlighting M2M communication options in WhizniumSBE-backed projects
 
 ### Marketing material
 
