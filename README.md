@@ -5,7 +5,7 @@ The Whiznium Service Builder's Edition, finally as Open Source Software project.
 WhizniumSBE (SBE = Service Builder’s Edition) is a tool for the model-based development of modern, multi-threaded, connected C++ application software, with focus on single board computers.
 
 Besides being model-based, software development with WhizniumSBE rests on the foundation of these three principles:
--	Full coverage: one single method of model entry is used for all application aspects, ranging from database access to thread-safe inter-object communication to preferences file and web-based user interface with detailes access rights management
+-	Full coverage: one single method of model entry is used for all application aspects, ranging from database access to thread-safe inter-object communication to preferences file and web-based user interface with detailed access rights management
 -	All code in plain sight: no functionality is hidden away in libraries
 -	Mixing of auto-generated code with manual additions: auto-generated code provides the backbone of the (single) project source code tree; it is meant to be extended manually, with manual changes carried over to the next version when the model changes
 
@@ -52,13 +52,17 @@ WhizniumSBE is a WhizniumSBE-backed project. Accordingly, it requires libxml2, G
 
 ### Reference / documentation
 
+- Documentation of model files (slightly outdated) as [Git repository](https://github.com/mpsitech/WhizniumSBE-docs)
+- [YouTube video](https://youtu.be/yBvqSAvEhDg) of the most essential workflow step when using WhizniumSBE - iterating a source code tree
+- A [datasheet .pdf](https://mpsitech-public.s3.eu-central-1.amazonaws.com/M2M_communication_v2.pdf) highlighting M2M communication options in WhizniumSBE-backed projects
+
 ### Marketing material
 
 Most of these publications pre-date Whiznium's Open Source era.
 
 ## Upcoming documentation
 
-- The Whiznium book (draft available [here](https://mpsitech-public.s3.eu-central-1.amazonaws.com/book.pdf)), offering an introduction to WhizniumSBE/DBE by means of a handy use case in the firsrt chapters, but also with a complete reference in the later chapters
+- The Whiznium book (draft available [here](https://mpsitech-public.s3.eu-central-1.amazonaws.com/book.pdf)), offering an introduction to WhizniumSBE/DBE by means of a handy use case in the first chapters, but also with a complete reference in the later chapters
 
 ## Related Repositories
 
