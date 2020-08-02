@@ -9,7 +9,7 @@ WhizniumSBE is a tool for the model-based development of modern, multi-threaded,
 Besides being model-based, software development with WhizniumSBE rests on the foundation of these three principles:
 -	Full coverage: one single method of model entry is used for all application aspects, ranging from database access to thread-safe inter-object communication to preferences file and web-based user interface with detailed access rights management
 -	All code in plain sight: no functionality is hidden away in libraries
--	Mixing of auto-generated code with manual additions: auto-generated code provides the backbone of the (single) project source code tree; it is meant to be extended manually, with manual changes carried over to the next version when the model changes
+-	Mixing of auto-generated code with manual additions: auto-generated code provides the backbone of the (single) project source code tree; it is meant to be extended manually, with manual code carried over to the next version when the model changes
 
 ![](_exp/sbe.png)
 
@@ -39,9 +39,9 @@ File|Functionality|
 -|-|
 wznmcmbd/CrdWznmVer/DlgWznmVerNew.cpp|UI element (dialog) where a new project version can be created|
 wznmcmbd/CrdWznmRls/DlgWznmRlsWrite.cpp|dialog which (re-)composes a project's source code tree, handles the required repository transactions, and which delegates code writing - fragmented into thousands of atomic operations - to the operation engines|
-wznmcmbd/IexWznm/JobWznmIexDbs.cpp|mixed auto-generared/manual parsing (and collecting/writing) of database structure model files; relevant method enterSgeParse()|
+wznmcmbd/IexWznm/JobWznmIexDbs.cpp|mixed auto-generared/manual parsing (and data collecting/writing) of database structure model files; relevant method enterSgeParse()|
 wznmcmbd/IexWznm/IexWznmDbs.cpp|auto-generated combined XML/text reader/writer for database structure model files|
-wznmcmbd/WznmPrctree/WznmPrctree.cpp|parsing of source code files, and tokenizing for identification of insertion points, the feature allowing Whiznium to extract manually written code from source code trees|
+wznmcmbd/WznmPrctree/WznmPrctree.cpp|parsing of source code files and tokenizing for identification of insertion points, the feature allowing Whiznium to extract manually written code from source code trees|
 wznmcmbd/WznmGen/WznmGenDetui.cpp|generate detailed user interface (panels, queries, dialogs and controls) based mainly on basic UI and database structure information|
 wznmcmbd/WznmGen/WznmGenJob.cpp|generate job tree (hierarchy of run-time C++ classes) based on previously imported and generated model information|
 wznmcmbd/WznmWrdbs/WznmWrdbsTbl.cpp|write wrapper code for single database table, morphing records in C++ objects and record sets in C++ STL containers; includes convenient SQL-free load functions|
@@ -51,7 +51,23 @@ wznmcmbd/WznmWrweb/WznmWrweb.cpp|write HTML and JS code e.g. for controls|
 
 ## Template files
 
+WhizniumSBE's automated source code generation relies on template files with inline placeholders and insertion points for multi-line code fragments. For each version of WhizniumSBE, the relevant template files can be found [online](https://mpsitech-public.s3.eu-central-1.amazonaws.com/WhizniumSBE/v1.0.2/files.tgz); they are part of the tool initialization routine.
+
 ### Some highlights
+
+File|Functionality|
+-|-|
+CrdXxxxYyy.html|HTML code for a card, representing the top-level file for a browser tab|
+CrdXxxxYyy.js|JavaScript code for a card, handling - among other things - server XHD interaction|
+DbsXxxx.h|database access library C++ header|
+JobXxxxYyyZzzzz.cpp|C++ code for every job (run-time C++ class)|
+Makefile_Cmbeng|Makefile for combined engine|
+PnlXxxxYyyZzzzz.js|JavaScript code for a tabular data view panel|
+Xxxx.h|C++ header for common engine/operation functionality|
+Xxxxcmbd_exe.cpp|combined engine executable C++ code including main()|
+Xxxxcmbd.cpp|combined engine exchange object C++ code|
+XxxxcmbdAppsrv.cpp|GNU Libmicrohttpd-based application server C++ code|
+XxxxcmbdJobprc.cpp|job processor C++ code|
 
 ## Dependencies
 
