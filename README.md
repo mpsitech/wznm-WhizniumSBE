@@ -13,6 +13,46 @@ Besides being model-based, software development with WhizniumSBE rests on the fo
 
 ![](_exp/sbe.png)
 
+## Source code
+
+### Directory structure
+
+Sub-folder|Content|
+-|-|
+_ini|database/tool initialization files|
+_mdl|model files, text-based and diff-able between versions|
+_rls|Makefiles and build/deploy scripts|
+apiwznm|auto-generated C++ API library (not in use for now)|
+dbswznm|auto-generated C++ database access library|
+japiwznm|auto-generated Java API library (used for WhizniumSBE Bootstrap and WhizniumSBE Iterator)|
+webappwznm|mixed auto-generated/manual HTML5/JS web-based user interface|
+wznmcmbd|mixed auto-generated/manual C++ sources for all WhizniumSBE functionality|
+wznmd|auto-generated C++ code specific for WhizniumSBE engine|
+wznmopd1|auto-generated C++ code specific for WhizniumSBE operation engine 1 / non-template functionality|
+wznmopd2|auto-generated C++ code specific for WhizniumSBE operation engine 2 / user-specific template functionality|
+
+### Code highlights
+
+Below is a non-exhaustive list of C++ source code files where interesting things happen:
+
+File|Functionality|
+-|-|
+wznmcmbd/CrdWznmVer/DlgWznmVerNew.cpp|UI element (dialog) where a new project version can be created|
+wznmcmbd/CrdWznmRls/DlgWznmRlsWrite.cpp|dialog which (re-)composes a project's source code tree, handles the required repository transactions, and which delegates code writing - fragmented into thousands of atomic operations - to the operation engines|
+wznmcmbd/IexWznm/JobWznmIexDbs.cpp|mixed auto-generared/manual parsing (and collecting/writing) of database structure model files; relevant method enterSgeParse()|
+wznmcmbd/IexWznm/IexWznmDbs.cpp|auto-generated combined XML/text reader/writer for database structure model files|
+wznmcmbd/WznmPrctree/WznmPrctree.cpp|parsing of source code files, and tokenizing for identification of insertion points, the feature allowing Whiznium to extract manually written code from source code trees|
+wznmcmbd/WznmGen/WznmGenDetui.cpp|generate detailed user interface (panels, queries, dialogs and controls) based mainly on basic UI and database structure information|
+wznmcmbd/WznmGen/WznmGenJob.cpp|generate job tree (hierarchy of run-time C++ classes) based on previously imported and generated model information|
+wznmcmbd/WznmWrdbs/WznmWrdbsTbl.cpp|write wrapper code for single database table, morphing records in C++ objects and record sets in C++ STL containers; includes convenient SQL-free load functions|
+wznmcmbd/WznmWrsrv/WznmWrsrvJob.cpp|write basic structure of every job (run-time C++ class) including sensitivities and optional state machine|
+wznmcmbd/WznmWrsrv/WznmWrsrvDlg.cpp|write code specific for dialog (UI element) jobs|
+wznmcmbd/WznmWrweb/WznmWrweb.cpp|write HTML and JS code e.g. for controls|
+
+## Template files
+
+### Some highlights
+
 ## Dependencies
 
 WhizniumSBE-generated code is free from any use restrictions, except for the obvious fact that no exclusivity for the resulting coding style and / or web UI look & feel can be claimed by any user.
@@ -40,6 +80,8 @@ In some applications so far, WhizniumSBE-backed projects needed either OPC UA or
 ### WhizniumSBE itself
 
 WhizniumSBE is a WhizniumSBE-backed project. Accordingly, it requires libxml2, GNU Libmicrohttpd and libcurl to work. Our preferred choice for DBMS is MariaDB.
+
+## Deployment
 
 ## Resources for now
 
