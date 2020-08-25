@@ -2,8 +2,8 @@
   * \file QryWznmRelList.java
   * Java API code for job QryWznmRelList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -23,8 +23,8 @@ public class QryWznmRelList {
 		public static final int SUP = 3;
 		public static final int VER = 4;
 		public static final int TYP = 5;
-		public static final int TOS = 6;
-		public static final int TOT = 7;
+		public static final int TOT = 6;
+		public static final int TOS = 7;
 		public static final int FRS = 8;
 		public static final int FRT = 9;
 
@@ -38,8 +38,8 @@ public class QryWznmRelList {
 			if (s.equals("sup")) return SUP;
 			if (s.equals("ver")) return VER;
 			if (s.equals("typ")) return TYP;
-			if (s.equals("tos")) return TOS;
 			if (s.equals("tot")) return TOT;
+			if (s.equals("tos")) return TOS;
 			if (s.equals("frs")) return FRS;
 			if (s.equals("frt")) return FRT;
 
@@ -54,8 +54,8 @@ public class QryWznmRelList {
 			if (ix == SUP) return("sup");
 			if (ix == VER) return("ver");
 			if (ix == TYP) return("typ");
-			if (ix == TOS) return("tos");
 			if (ix == TOT) return("tot");
+			if (ix == TOS) return("tos");
 			if (ix == FRS) return("frs");
 			if (ix == FRT) return("frt");
 

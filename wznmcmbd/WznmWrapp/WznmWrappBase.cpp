@@ -2,8 +2,8 @@
 	* \file WznmWrappBase.cpp
 	* Wznm operation processor - write code for accessor app (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -30,6 +30,7 @@ DpchRetWznm* WznmWrappBase::run(
 		) {
 	ubigint refWznmMApp = dpchinv->refWznmMApp;
 	string folder = dpchinv->folder;
+	bool ipAllNotSpec = dpchinv->ipAllNotSpec;
 
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
@@ -37,7 +38,14 @@ DpchRetWznm* WznmWrappBase::run(
 	WznmMApp* app = NULL;
 
 	ListWznmMRtjob rtjs;
+	ListWznmMEvent evts;
+
 	ListWznmMSequence seqs;
+	ListWznmMState stes;
+	vector<unsigned int> icsSeqs;
+	vector<uint> cntsEnt;
+	vector<uint> cntsReent;
+	vector<uint> cntsLve;
 
 	string Appshort;
 	string Prjshort;
@@ -48,7 +56,9 @@ DpchRetWznm* WznmWrappBase::run(
 
 	if (dbswznm->tblwznmmapp->loadRecByRef(refWznmMApp, &app)) {
 		loadRtjtree(dbswznm, refWznmMApp, rtjs);
-		dbswznm->tblwznmmsequence->loadRstBySQL("SELECT * FROM TblWznmMSequence WHERE appRefWznmMApp = " + to_string(app->ref) + " ORDER BY appNum ASC", false, seqs);
+		dbswznm->tblwznmmevent->loadRstByApp(refWznmMApp, false, evts);
+
+		analyzeStes(dbswznm, app->ref, seqs, stes, icsSeqs, cntsEnt, cntsReent, cntsLve);
 
 		Appshort = StrMod::cap(app->Short);
 
@@ -58,26 +68,38 @@ DpchRetWznm* WznmWrappBase::run(
 		// AppXxxx.h
 		s = xchg->tmppath + "/" + folder + "/App" + Appshort + ".h.ip";
 		outfile.open(s.c_str(), ios::out);
-		writeAppHcxx(dbswznm, outfile, app, Prjshort, rtjs, seqs);
+		writeAppHcxx(dbswznm, outfile, app, Prjshort, rtjs, evts, stes, cntsEnt, cntsReent, cntsLve, ipAllNotSpec);
 		outfile.close();
 
 		// AppXxxx.cpp/.mm
-		if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) s = xchg->tmppath + "/" + folder + "/App" + Appshort + ".mm.ip";
+		if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) s = xchg->tmppath + "/" + folder + "/App" + Appshort + ".mm.ip";
 		else s = xchg->tmppath + "/" + folder + "/App" + Appshort + ".cpp.ip";
 		outfile.open(s.c_str(), ios::out);
-		writeAppCxx(dbswznm, outfile, app, Prjshort, rtjs, seqs);
+		writeAppCxx(dbswznm, outfile, app, Prjshort, rtjs, evts, seqs, stes, icsSeqs, cntsEnt, cntsReent, cntsLve, ipAllNotSpec);
 		outfile.close();
 
-		// VecXxxxVSte.h
-		s = xchg->tmppath + "/" + folder + "/Vec" + Appshort + "VSte.h.ip";
+		// VecXxxxVEvent.h
+		s = xchg->tmppath + "/" + folder + "/Vec" + Appshort + "VEvent.h.ip";
 		outfile.open(s.c_str(), ios::out);
-		writeVecSteH(dbswznm, outfile, seqs);
+		writeVecEvtH(dbswznm, outfile, evts);
 		outfile.close();
 
-		// VecXxxxVSte.cpp
-		s = xchg->tmppath + "/" + folder + "/Vec" + Appshort + "VSte.cpp.ip";
+		// VecXxxxVEvent.cpp
+		s = xchg->tmppath + "/" + folder + "/Vec" + Appshort + "VEvent.cpp.ip";
 		outfile.open(s.c_str(), ios::out);
-		writeVecSteCpp(dbswznm, outfile, seqs);
+		writeVecEvtCpp(dbswznm, outfile, evts);
+		outfile.close();
+
+		// VecXxxxVState.h
+		s = xchg->tmppath + "/" + folder + "/Vec" + Appshort + "VState.h.ip";
+		outfile.open(s.c_str(), ios::out);
+		writeVecSteH(dbswznm, outfile, seqs, stes, icsSeqs);
+		outfile.close();
+
+		// VecXxxxVState.cpp
+		s = xchg->tmppath + "/" + folder + "/Vec" + Appshort + "VState.cpp.ip";
+		outfile.open(s.c_str(), ios::out);
+		writeVecSteCpp(dbswznm, outfile, seqs, stes);
 		outfile.close();
 
 		delete app;
@@ -94,7 +116,12 @@ void WznmWrappBase::writeAppHcxx(
 			, WznmMApp* app
 			, const string& Prjshort
 			, ListWznmMRtjob& rtjs
-			, ListWznmMSequence& seqs
+			, ListWznmMEvent& evts
+			, ListWznmMState& stes
+			, vector<uint>& cntsEnt
+			, vector<uint>& cntsReent
+			, vector<uint>& cntsLve
+			, const bool ipAllNotSpec
 		) {
 	WznmMRtjob* rtj = NULL;
 	WznmMJob* job = NULL;
@@ -104,49 +131,47 @@ void WznmWrappBase::writeAppHcxx(
 
 	WznmMBlock* blk = NULL;
 
-	WznmMSequence* seq = NULL;
-
-	ListWznmMState stes;
 	WznmMState* ste = NULL;
 
 	string s;
 
-	if (app->ixVTarget != VecWznmVMAppTarget::COCOA_OBJC) {
+	if (app->ixWznmVApptarget != VecWznmVApptarget::COCOA_OBJC) {
 		// --- DOM.summary
 		outfile << "// IP DOM.summary --- IBEGIN" << endl;
-		writeRtjtree(dbswznm, outfile, app->ixVTarget, rtjs);
+		writeRtjtree(dbswznm, outfile, app->ixWznmVApptarget, rtjs);
 		outfile << "// IP DOM.summary --- IEND" << endl;
 
 		// --- DOM.vars
 		outfile << "// IP DOM.vars --- IBEGIN" << endl;
-		writeRtobjs(dbswznm, outfile, app->ixVTarget, rtjs);
+		writeRtobjs(dbswznm, outfile, app->ixWznmVApptarget, rtjs);
 		outfile << "// IP DOM.vars --- IEND" << endl;
 	};
 
-	// --- enterLeaveStes
-	outfile << "// IP enterLeaveStes --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
-		seq = seqs.nodes[i];
+	// --- states
+	outfile << "// IP states --- IBEGIN" << endl;
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
 
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
+		s = StrMod::cap(StrMod::dotToUsc(ste->sref));
 
-		for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-			ste = stes.nodes[j];
-
-			s = StrMod::cap(StrMod::dotToUsc(ste->sref));
-
-			if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) {
-				outfile << "- (unsigned int) enterSte" << s << ";" << endl;
-				outfile << "- (void) leaveSte" << s << ";" << endl;
-			} else {
-				outfile << "\tunsigned int enterSte" << s << "();" << endl;
-				outfile << "\tvoid leaveSte" << s << "();" << endl;
-			};
+		if (ipAllNotSpec || cntsEnt[i]) {
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)enter" << s << ";" << endl;
+			else outfile << "\tunsigned int enter" << s << "();" << endl;
 		};
 
-		outfile << endl;
+		if (ipAllNotSpec || cntsReent[i]) {
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)renter" << s << ":(unsigned int)ixVEvent withDpcheng:(DpchEng" << Prjshort << "*)_dpcheng;" << endl;
+			else outfile << "\tunsigned int reenter" << s << "(const unsigned int ixVEvent, DpchEng" << Prjshort << "* _dpcheng);" << endl;
+		};
+
+		if (ipAllNotSpec || cntsLve[i]) {
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (void)leave" << s << ";" << endl;
+			else outfile << "\tvoid leave" << s << "();" << endl;
+		};
+
+		if (ipAllNotSpec || (cntsEnt[i] + cntsReent[i] + cntsLve[i])) outfile << endl;
 	};
-	outfile << "// IP enterLeaveStes --- IEND" << endl;
+	outfile << "// IP states --- IEND" << endl;
 
 	// --- mergeDpchEngs
 	outfile << "// IP mergeDpchEngs --- IBEGIN" << endl;
@@ -162,7 +187,7 @@ void WznmWrappBase::writeAppHcxx(
 					rtd = rtds.nodes[j];
 
 					if (dbswznm->tblwznmmblock->loadRecByRef(rtd->refWznmMBlock, &blk)) {
-						if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "- (bool)merge" << blk->sref << ":(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "*)dpcheng;" << endl;
+						if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (bool)merge" << blk->sref << ":(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "*)dpcheng;" << endl;
 						else outfile << "\tbool merge" << blk->sref << "(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "* dpcheng);" << endl;
 
 						delete blk;
@@ -174,16 +199,6 @@ void WznmWrappBase::writeAppHcxx(
 		};
 	};
 	outfile << "// IP mergeDpchEngs --- IEND" << endl;
-
-	// --- handleDpchEngs
-	outfile << "// IP handleDpchEngs --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
-		seq = seqs.nodes[i];
-
-		if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "- (bool)handleDpchEng" << StrMod::cap(seq->sref) << ":(DpchEng" << Prjshort << "*)_dpcheng;" << endl;
-		else outfile << "\tbool handleDpchEng" << StrMod::cap(seq->sref) << "(DpchEng" << Prjshort << "* _dpcheng);" << endl;
-	};
-	outfile << "// IP handleDpchEngs --- IEND" << endl;
 };
 
 void WznmWrappBase::writeAppCxx(
@@ -192,7 +207,14 @@ void WznmWrappBase::writeAppCxx(
 			, WznmMApp* app
 			, const string& Prjshort
 			, ListWznmMRtjob& rtjs
+			, ListWznmMEvent& evts
 			, ListWznmMSequence& seqs
+			, ListWznmMState& stes
+			, vector<unsigned int>& icsSeqs
+			, vector<uint>& cntsEnt
+			, vector<uint>& cntsReent
+			, vector<uint>& cntsLve
+			, const bool ipAllNotSpec
 		) {
 	WznmMRtjob* rtj = NULL;
 	WznmMJob* job = NULL;
@@ -204,10 +226,11 @@ void WznmWrappBase::writeAppCxx(
 
 	WznmMBlock* blk = NULL;
 
-	WznmMSequence* seq = NULL;
-
-	ListWznmMState stes;
 	WznmMState* ste = NULL;
+
+	map<string,string> trigs;
+
+	string dom, indent, subdlm, dpchjref;
 
 	string dpchsref;
 
@@ -217,56 +240,77 @@ void WznmWrappBase::writeAppCxx(
 
 	string Appshort = StrMod::cap(app->Short);
 
-	if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) {
+	getTargetStrs(app->ixWznmVApptarget, dom, indent, subdlm, dpchjref);
+
+	if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) {
 		// --- DOM.summary
 		outfile << "// IP DOM.summary --- IBEGIN" << endl;
-		writeRtjtree(dbswznm, outfile, app->ixVTarget, rtjs);
+		writeRtjtree(dbswznm, outfile, app->ixWznmVApptarget, rtjs);
 		outfile << "// IP DOM.summary --- IEND" << endl;
 
 		// --- DOM.vars
 		outfile << "// IP DOM.vars --- IBEGIN" << endl;
-		writeRtobjs(dbswznm, outfile, app->ixVTarget, rtjs);
+		writeRtobjs(dbswznm, outfile, app->ixWznmVApptarget, rtjs);
 		outfile << "// IP DOM.vars --- IEND" << endl;
 	};
 
-	// --- changeState
-	outfile << "// IP changeState --- IBEGIN" << endl;
-	writeChangeState(dbswznm, outfile, app, seqs);
-	outfile << "// IP changeState --- IEND" << endl;
+	writeHandleTrigger(dbswznm, outfile, app, seqs, stes, icsSeqs, cntsEnt, cntsReent, cntsLve, ipAllNotSpec);
 
-	// --- enterLeaveStes
-	outfile << "// IP enterLeaveStes --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
-		seq = seqs.nodes[i];
+	// --- states
+	outfile << "// IP states --- IBEGIN" << endl;
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
 
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
+		s = StrMod::cap(StrMod::dotToUsc(ste->sref));
 
-		for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-			ste = stes.nodes[j];
+		getSteTrigs(dbswznm, Prjshort, Appshort, app->ixWznmVApptarget, ste->ref, dom, subdlm, trigs);
 
-			s = StrMod::cap(StrMod::dotToUsc(ste->sref));
+		if (ipAllNotSpec || cntsEnt[i]) {
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)enter" << s << " {" << endl;
+			else outfile << "unsigned int App" << Appshort << "::enter" << s << "() {" << endl;
 
-			if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "- (unsigned int)enterSte" << s << " {" << endl;
-			else outfile << "unsigned int App" << Appshort << "::enterSte" << s << "() {" << endl;
+			outfile << "\tunsigned int retval = Vec" << Appshort << "VState::" << StrMod::uc(s) << ";" << endl;
 
-			outfile << "\tunsigned int retval = 0;" << endl;
-
-			writeEnterSte(dbswznm, outfile, Prjshort, app, ste);
+			outfile << endl;
+			writeState(dbswznm, outfile, Prjshort, Appshort, app->ixWznmVApptarget, dom, indent, subdlm, dpchjref, ste, trigs, VecWznmVAMStateActionSection::ENT);
+			outfile << endl;
 
 			outfile << "\treturn retval;" << endl;
 			outfile << "};" << endl;
 			outfile << endl;
+		};
 
-			if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "- (void)leaveSte" << s << " {" << endl;
-			else outfile << "void App" << Appshort << "::leaveSte" << s << "() {" << endl;
+		if (ipAllNotSpec || cntsReent[i]) {
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)renter" << s << ":(unsigned int)ixVEvent withDpcheng:(DpchEng" << Prjshort << "*)_dpcheng {" << endl;
+			else {
+				outfile << "unsigned int App" << Appshort << "::reenter" << s << "(" << endl;
+				outfile << "\t\t\tconst unsigned int ixVEvent" << endl;
+				outfile << "\t\t\t, DpchEng" << Prjshort << "* _dpcheng" << endl;
+				outfile << "\t\t) {" << endl;
+			};
+	
+			outfile << "\tunsigned int retval = Vec" << Appshort << "VState::" << StrMod::uc(s) << ";" << endl;
+	
+			outfile << endl;
+			writeState(dbswznm, outfile, Prjshort, Appshort, app->ixWznmVApptarget, dom, indent, subdlm, dpchjref, ste, trigs, VecWznmVAMStateActionSection::REENT);
+			outfile << endl;
 
-			writeLeaveSte(outfile, app->ixVTarget, ste);
+			outfile << "\treturn retval;" << endl;
+			outfile << "};" << endl;
+			outfile << endl;
+		};
+
+		if (ipAllNotSpec || cntsLve[i]) {
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)leave" << s << " {" << endl;
+			else outfile << "unsigned int App" << Appshort << "::leave" << s << "() {" << endl;
+
+			writeState(dbswznm, outfile, Prjshort, Appshort, app->ixWznmVApptarget, dom, indent, subdlm, dpchjref, ste, trigs, VecWznmVAMStateActionSection::LVE);
 
 			outfile << "};" << endl;
 			outfile << endl;
 		};
 	};
-	outfile << "// IP enterLeaveStes --- IEND" << endl;
+	outfile << "// IP states --- IEND" << endl;
 
 	// --- mergeDpchEngs
 	outfile << "// IP mergeDpchEngs --- IBEGIN" << endl;
@@ -285,14 +329,14 @@ void WznmWrappBase::writeAppCxx(
 					if (dbswznm->tblwznmmblock->loadRecByRef(rtd->refWznmMBlock, &blk)) {
 						dpchsref = job->sref + "::" + Wznm::getSubsref(job, blk->sref);
 
-						if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "- (bool)merge" << blk->sref << ":(" << dpchsref << "*)dpcheng {" << endl;
+						if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (bool)merge" << blk->sref << ":(" << dpchsref << "*)dpcheng {" << endl;
 						else {
 							outfile << "bool App" << Appshort << "::merge" << blk->sref << "(" << endl;
 							outfile << "\t\t\t" << dpchsref << "* dpcheng" << endl;
 							outfile << "\t\t) {" << endl;
 						};
 
-						writeMerge(dbswznm, outfile, app, blk, dpchsref, rtbs);
+						writeMerge(dbswznm, outfile, app->ixWznmVApptarget, blk, dpchsref, rtbs);
 
 						outfile << "};" << endl;
 						outfile << endl;
@@ -305,75 +349,105 @@ void WznmWrappBase::writeAppCxx(
 	};
 	outfile << "// IP mergeDpchEngs --- IEND" << endl;
 
-	// --- handleDpchEngs
-	outfile << "// IP handleDpchEngs --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
-		seq = seqs.nodes[i];
-
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
-
-		if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "- (bool)handleDpchEng" << StrMod::cap(seq->sref) << ":(DpchEng" << Prjshort << "*)_dpcheng {" << endl;
-		else {
-			outfile << "bool App" << Appshort << "::handleDpchEng" << StrMod::cap(seq->sref) << "(" << endl;
-			outfile << "\t\t\tDpchEng" << Prjshort << "* _dpcheng" << endl;
-			outfile << "\t\t) {" << endl;
-		};
-
-		outfile << "\tbool skipRefresh = false;" << endl;
-		outfile << "\tuint oldIxVSte = ixVSte;" << endl;
-
-		writeHandleDpchEng(dbswznm, outfile, app->ixVTarget, Appshort, Prjshort, seq, stes);
-
-		outfile << endl;
-		outfile << "\tif (!skipRefresh && (ixVSte != oldIxVSte)) skipRefresh = true;" << endl;
-		outfile << "\treturn skipRefresh;" << endl;
-		outfile << "};" << endl;
-		outfile << endl;
-	};
-	outfile << "// IP handleDpchEngs --- IEND" << endl;
-
 	// --- handleDpchEng.merge
 	outfile << "// IP handleDpchEng.merge --- IBEGIN" << endl;
-	writeDpchEngMerge(dbswznm, outfile, app->ixVTarget, Prjshort, rtjs);
+	writeDpchEngMerge(dbswznm, outfile, Prjshort, app->ixWznmVApptarget, rtjs);
 	outfile << "// IP handleDpchEng.merge --- IEND" << endl;
+};
 
-	// --- handleDpchEng.handle
-	outfile << "// IP handleDpchEng.handle --- IBEGIN" << endl;
-	writeDpchEngHandle(dbswznm, outfile, app->ixVTarget, Appshort, seqs);
-	outfile << "// IP handleDpchEng.handle --- IEND" << endl;
+void WznmWrappBase::writeVecEvtH(
+			DbsWznm* dbswznm
+			, fstream& outfile
+			, ListWznmMEvent& evts
+		) {
+	WznmMEvent* evt = NULL;
+
+	unsigned int num;
+
+	// --- vec
+	outfile << "// IP vec --- IBEGIN" << endl;
+
+	num = 1;
+
+	for (unsigned int i = 0; i < evts.nodes.size(); i++) {
+		evt = evts.nodes[i];
+
+		outfile << "\tconst unsigned int " << StrMod::uc(StrMod::dotToUsc(evt->sref)) << " = " << num << ";" << endl;
+		num++;
+	};
+
+	outfile << "// IP vec --- IEND" << endl;
+};
+
+void WznmWrappBase::writeVecEvtCpp(
+			DbsWznm* dbswznm
+			, fstream& outfile
+			, ListWznmMEvent& evts
+		) {
+	WznmMEvent* evt = NULL;
+
+	// --- getSref
+	outfile << "// IP getSref --- IBEGIN" << endl;
+
+	for (unsigned int i = 0; i < evts.nodes.size(); i++) {
+		evt = evts.nodes[i];
+		outfile << "\tif (ix == " << StrMod::uc(StrMod::dotToUsc(evt->sref)) << ") return(\"" << evt->sref << "\");" << endl;
+	};
+
+	outfile << "// IP getSref --- IEND" << endl;
 };
 
 void WznmWrappBase::writeVecSteH(
 			DbsWznm* dbswznm
 			, fstream& outfile
 			, ListWznmMSequence& seqs
+			, ListWznmMState& stes
+			, vector<unsigned int>& icsSeqs
 		) {
 	WznmMSequence* seq = NULL;
-
-	ListWznmMState stes;
 	WznmMState* ste = NULL;
+
+	unsigned int ixSeqsLast;
 
 	unsigned int num;
 
 	// --- vec
 	outfile << "// IP vec --- IBEGIN" << endl;
+
+	ixSeqsLast = 0;
+	ixSeqsLast--;
+
 	num = 1;
+
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
+
+		if (icsSeqs[i] != ixSeqsLast) {
+			ixSeqsLast = icsSeqs[i];
+			seq = seqs.nodes[ixSeqsLast];
+
+			if (i != 0) outfile << endl;
+			outfile << "\t// " << seq->Title << endl;
+		};
+
+		outfile << "\tconst unsigned int " << StrMod::uc(StrMod::dotToUsc(ste->sref)) << " = " << num++ << ";" << endl;
+	};
+	outfile << endl;
+
+	outfile << "\t// alibi-states for entering a sub-sequence" << endl;
 	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
 		seq = seqs.nodes[i];
 
-		outfile << "\t// " << seq->Title << endl;
-
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
-
-		for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-			ste = stes.nodes[j];
-
-			outfile << "\tconst unsigned int " << StrMod::uc(StrMod::dotToUsc(ste->sref)) << " = " << num << ";" << endl;
-			num++;
-		};
-
-		outfile << endl;
+		outfile << "\tconst unsigned int SUBSEQ_" << StrMod::uc(StrMod::dotToUsc(seq->sref)) << " = " << num++ << ";" << endl;
 	};
+	outfile << endl;
+
+	outfile << "\t// alibi-state for returning from a sub-sequence" << endl;
+	outfile << "\tconst unsigned int RETSEQ = " << num++ << ";" << endl;
+	outfile << endl;
+
+	outfile << "\t// alibi-state for interrupting the state update loop" << endl;
+	outfile << "\tconst unsigned int BREAK = " << num++ << ";" << endl;
 	outfile << "// IP vec --- IEND" << endl;
 };
 
@@ -381,30 +455,29 @@ void WznmWrappBase::writeVecSteCpp(
 			DbsWznm* dbswznm
 			, fstream& outfile
 			, ListWznmMSequence& seqs
+			, ListWznmMState& stes
 		) {
 	WznmMSequence* seq = NULL;
-
-	ListWznmMState stes;
 	WznmMState* ste = NULL;
 
 	// --- getSref
 	outfile << "// IP getSref --- IBEGIN" << endl;
+
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
+		outfile << "\tif (ix == " << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ") return(\"" << ste->sref << "\");" << endl;
+	};
+
 	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
 		seq = seqs.nodes[i];
-
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
-		for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-			ste = stes.nodes[j];
-
-			outfile << "\tif (ix == " << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ") return(\"" << ste->sref << "\");" << endl;
-		};
-
-		outfile << endl;
+		outfile << "\tif (ix == SUBSEQ_" << StrMod::uc(StrMod::dotToUsc(seq->sref)) << ") return(\"subseq." << seq->sref << "\");" << endl;
 	};
+
+	outfile << "\tif (ix == RETSEQ) return(\"retseq\");" << endl;
+	outfile << "\tif (ix == BREAK) return(\"break\");" << endl;
+
 	outfile << "// IP getSref --- IEND" << endl;
 };
-
-
 // IP cust --- IEND
 
 

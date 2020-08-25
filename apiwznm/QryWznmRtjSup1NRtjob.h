@@ -2,8 +2,8 @@
 	* \file QryWznmRtjSup1NRtjob.h
 	* API code for job QryWznmRtjSup1NRtjob (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMRTJSUP1NRTJOB_H

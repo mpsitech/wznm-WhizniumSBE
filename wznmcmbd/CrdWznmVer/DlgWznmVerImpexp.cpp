@@ -2,8 +2,8 @@
 	* \file DlgWznmVerImpexp.cpp
 	* job handler for job DlgWznmVerImpexp (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -144,8 +144,8 @@ void DlgWznmVerImpexp::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrLfi oldStatshrlfi(statshrlfi);
 	ContInfLfi oldContinflfi(continflfi);
+	StatShrLfi oldStatshrlfi(statshrlfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -155,8 +155,8 @@ void DlgWznmVerImpexp::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
+	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 };
 
 void DlgWznmVerImpexp::refresh(
@@ -164,23 +164,23 @@ void DlgWznmVerImpexp::refresh(
 			, set<uint>& moditems
 		) {
 	StatShr oldStatshr(statshr);
-	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
+	ContIac oldContiac(contiac);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// contiac
-	contiac.numFDse = ixVDit;
-
 	// continf
 	continf.numFSge = ixVSge;
 
+	// contiac
+	contiac.numFDse = ixVDit;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 
 	refreshIfi(dbswznm, moditems);
 	refreshImp(dbswznm, moditems);
@@ -271,8 +271,8 @@ void DlgWznmVerImpexp::handleRequest(
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
 		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 	};
 };
 
@@ -387,18 +387,18 @@ void DlgWznmVerImpexp::handleTimerInSgePrsidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmVerImpexp::handleTimerWithSrefMonInSgeImport(
-			DbsWznm* dbswznm
-		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
-};
-
 void DlgWznmVerImpexp::handleTimerInSgeImpidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
 	changeStage(dbswznm, nextIxVSgeSuccess);
+};
+
+void DlgWznmVerImpexp::handleTimerWithSrefMonInSgeImport(
+			DbsWznm* dbswznm
+		) {
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
 };
 
 void DlgWznmVerImpexp::changeStage(

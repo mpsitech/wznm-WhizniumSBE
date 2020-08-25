@@ -2,8 +2,8 @@
 	* \file Wznm.cpp
 	* Wznm global functionality (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "Wznm.h"
@@ -2507,6 +2507,7 @@ string StubWznm::getStub(
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCPBSTD) return getStubCpbStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCTPSTD) return getStubCtpStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMDLGSTD) return getStubDlgStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	else if (ixWznmVStub == VecWznmVStub::STUBWZNMEVTSTD) return getStubEvtStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMFEDSREF) return getStubFedSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMFEDSTD) return getStubFedStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMFILSTD) return getStubFilStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
@@ -2527,6 +2528,7 @@ string StubWznm::getStub(
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMOPXSTD) return getStubOpxStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMOWNER) return getStubOwner(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPNLSTD) return getStubPnlStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPRJSHORT) return getStubPrjShort(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPRJSTD) return getStubPrjStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPRSSTD) return getStubPrsStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPSTSTD) return getStubPstStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
@@ -2554,6 +2556,7 @@ string StubWznm::getStub(
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMUSRSTD) return getStubUsrStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVECSTD) return getStubVecStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVERNO) return getStubVerNo(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVERSHORT) return getStubVerShort(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVERSTD) return getStubVerStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVITSREF) return getStubVitSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVITSTD) return getStubVitStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
@@ -2570,7 +2573,7 @@ string StubWznm::getStubAppStd(
 			, stcchitemref_t* strefSub
 			, const bool refresh
 		) {
-	// example: "WhizniumDBE Iterator (WhizniumDBE 0.1.1 #3)"
+	// example: "WhizniumDBE Iterator (wdbe v0.1.1) variant 3"
 	string stub;
 
 	WznmMApp* rec = NULL;
@@ -2597,7 +2600,7 @@ string StubWznm::getStubAppStd(
 		if (dbswznm->tblwznmmapp->loadRecByRef(ref, &rec)) {
 			if (stcch && !stit) stit = stcch->addStit(stref);
 			// IP getStubAppStd --- IBEGIN
-			stub = rec->Title + " (" + getStubVerStd(dbswznm, rec->verRefWznmMVersion, ixWznmVLocale, ixVNonetype, stcch, &stref) + ")";
+			stub = rec->Title + " (" + getStubVerShort(dbswznm, rec->verRefWznmMVersion, ixWznmVLocale, ixVNonetype, stcch, &stref) + ") variant " + to_string(rec->verNum);
 			// IP getStubAppStd --- IEND
 			if (stit) stit->stub = stub;
 			delete rec;
@@ -2990,7 +2993,14 @@ string StubWznm::getStubCpbStd(
 	if (ref != 0) {
 		if (dbswznm->tblwznmmcapability->loadRecByRef(ref, &rec)) {
 			if (stcch && !stit) stit = stcch->addStit(stref);
-			// IP getStubCpbStd --- INSERT
+			// IP getStubCpbStd --- IBEGIN
+			if (rec->refWznmMVersion != 0) {
+				stub = rec->Title;
+				if (rec->tplRefWznmMCapability != 0) stub += " (" + getStubCtpStd(dbswznm, rec->tplRefWznmMCapability, ixWznmVLocale, ixVNonetype, stcch, &stref) + ")";			
+			} else {
+				stub = getStubCtpStd(dbswznm, rec->ref, ixWznmVLocale, ixVNonetype, stcch, &stref);
+			};
+			// IP getStubCpbStd --- IEND
 			if (stit) stit->stub = stub;
 			delete rec;
 		};
@@ -3034,7 +3044,7 @@ string StubWznm::getStubCtpStd(
 	if (ref != 0) {
 		if (dbswznm->tblwznmmcapability->loadRecByRef(ref, &rec)) {
 			if (stcch && !stit) stit = stcch->addStit(stref);
-			// IP getStubCtpStd --- INSERT
+			stub = rec->sref + " - " + rec->Title; // IP getStubCtpStd --- ILINE
 			if (stit) stit->stub = stub;
 			delete rec;
 		};
@@ -3075,6 +3085,48 @@ string StubWznm::getStubDlgStd(
 
 	if (ref != 0) {
 		if (dbswznm->tblwznmmdialog->loadSrfByRef(ref, stub)) {
+			if (stcch) {
+				if (!stit) stit = stcch->addStit(stref);
+				stit->stub = stub;
+			};
+		};
+	};
+
+	return stub;
+};
+
+string StubWznm::getStubEvtStd(
+			DbsWznm* dbswznm
+			, const ubigint ref
+			, const uint ixWznmVLocale
+			, const uint ixVNonetype
+			, Stcch* stcch
+			, stcchitemref_t* strefSub
+			, const bool refresh
+		) {
+	// example: "ButConnectClick"
+	string stub;
+
+	stcchitemref_t stref(VecWznmVStub::STUBWZNMEVTSTD, ref, ixWznmVLocale);
+	Stcchitem* stit = NULL;
+
+	if (stcch) {
+		stit = stcch->getStitByStref(stref);
+		if (stit && !refresh) {
+			if (strefSub) stcch->link(stref, *strefSub);
+			return stit->stub;
+		};
+	};
+
+	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
+	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
+	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no event)";
+	};
+
+	if (ref != 0) {
+		if (dbswznm->tblwznmmevent->loadSrfByRef(ref, stub)) {
 			if (stcch) {
 				if (!stit) stit = stcch->addStit(stref);
 				stit->stub = stub;
@@ -3938,6 +3990,48 @@ string StubWznm::getStubPnlStd(
 
 	if (ref != 0) {
 		if (dbswznm->tblwznmmpanel->loadSrfByRef(ref, stub)) {
+			if (stcch) {
+				if (!stit) stit = stcch->addStit(stref);
+				stit->stub = stub;
+			};
+		};
+	};
+
+	return stub;
+};
+
+string StubWznm::getStubPrjShort(
+			DbsWznm* dbswznm
+			, const ubigint ref
+			, const uint ixWznmVLocale
+			, const uint ixVNonetype
+			, Stcch* stcch
+			, stcchitemref_t* strefSub
+			, const bool refresh
+		) {
+	// example: "brly"
+	string stub;
+
+	stcchitemref_t stref(VecWznmVStub::STUBWZNMPRJSHORT, ref, ixWznmVLocale);
+	Stcchitem* stit = NULL;
+
+	if (stcch) {
+		stit = stcch->getStitByStref(stref);
+		if (stit && !refresh) {
+			if (strefSub) stcch->link(stref, *strefSub);
+			return stit->stub;
+		};
+	};
+
+	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
+	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
+	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no project)";
+	};
+
+	if (ref != 0) {
+		if (dbswznm->tblwznmmproject->loadShoByRef(ref, stub)) {
 			if (stcch) {
 				if (!stit) stit = stcch->addStit(stref);
 				stit->stub = stub;
@@ -5145,6 +5239,50 @@ string StubWznm::getStubVerNo(
 	return stub;
 };
 
+string StubWznm::getStubVerShort(
+			DbsWznm* dbswznm
+			, const ubigint ref
+			, const uint ixWznmVLocale
+			, const uint ixVNonetype
+			, Stcch* stcch
+			, stcchitemref_t* strefSub
+			, const bool refresh
+		) {
+	// example: "brly v0.1.1 (77)"
+	string stub;
+
+	WznmMVersion* rec = NULL;
+
+	stcchitemref_t stref(VecWznmVStub::STUBWZNMVERSHORT, ref, ixWznmVLocale);
+	Stcchitem* stit = NULL;
+
+	if (stcch) {
+		stit = stcch->getStitByStref(stref);
+		if (stit && !refresh) {
+			if (strefSub) stcch->link(stref, *strefSub);
+			return stit->stub;
+		};
+	};
+
+	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
+	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
+	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no version)";
+	};
+
+	if (ref != 0) {
+		if (dbswznm->tblwznmmversion->loadRecByRef(ref, &rec)) {
+			if (stcch && !stit) stit = stcch->addStit(stref);
+			stub = getStubPrjShort(dbswznm, rec->prjRefWznmMProject, ixWznmVLocale, ixVNonetype, stcch, &stref) + " v" + to_string((int) (rec->Major)) + "." + to_string((int) (rec->Minor)) + "." + to_string((int) (rec->Sub)); // IP getStubVerShort --- ILINE
+			if (stit) stit->stub = stub;
+			delete rec;
+		};
+	};
+
+	return stub;
+};
+
 string StubWznm::getStubVerStd(
 			DbsWznm* dbswznm
 			, const ubigint ref
@@ -5154,7 +5292,7 @@ string StubWznm::getStubVerStd(
 			, stcchitemref_t* strefSub
 			, const bool refresh
 		) {
-	// example: "BeamRelay 0.1.1 (candidate 77)"
+	// example: "BeamRelay v0.1.1 (candidate 77)"
 	string stub;
 
 	WznmMVersion* rec = NULL;
@@ -5182,7 +5320,7 @@ string StubWznm::getStubVerStd(
 			if (stcch && !stit) stit = stcch->addStit(stref);
 			// IP getStubVerStd --- IBEGIN
 
-			stub = getStubPrjStd(dbswznm, rec->prjRefWznmMProject, ixWznmVLocale, ixVNonetype, stcch, &stref) + " " + to_string(rec->Major) + "." + to_string(rec->Minor) + "." + to_string(rec->Sub);
+			stub = getStubPrjStd(dbswznm, rec->prjRefWznmMProject, ixWznmVLocale, ixVNonetype, stcch, &stref) + " v" + to_string(rec->Major) + "." + to_string(rec->Minor) + "." + to_string(rec->Sub);
 
 			if ((rec->ixVState == VecWznmVMVersionState::NEWCRE) || (rec->ixVState == VecWznmVMVersionState::NEWIMP) || (rec->ixVState == VecWznmVMVersionState::ABANDON)) stub += " " + VecWznmVMVersionState::getTitle(rec->ixVState, ixWznmVLocale);
 			else if (rec->ixVState != VecWznmVMVersionState::READY) stub += " (candidate " + to_string(rec->prjNum) + ")"; 

@@ -2,8 +2,8 @@
 	* \file QryWznmQmdList.h
 	* API code for job QryWznmQmdList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMQMDLIST_H
@@ -27,8 +27,8 @@ namespace QryWznmQmdList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint REU = 1;
-		static const Sbecore::uint RET = 2;
+		static const Sbecore::uint RET = 1;
+		static const Sbecore::uint REU = 2;
 		static const Sbecore::uint PST = 3;
 		static const Sbecore::uint TYP = 4;
 		static const Sbecore::uint QRY = 5;

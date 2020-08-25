@@ -2,8 +2,8 @@
 	* \file PnlWznmFilDetail_evals.cpp
 	* job handler for job PnlWznmFilDetail (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -137,23 +137,23 @@ bool PnlWznmFilDetail::evalTxtReuActive(
 bool PnlWznmFilDetail::evalButReuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// fil.reuEq(0)|((pre.ixCrdaccVer()&fil.retEq(ver))|(pre.ixCrdaccLib()&fil.retEq(lib))|(pre.ixCrdaccApp()&fil.retEq(app)))
+	// fil.reuEq(0)|((pre.ixCrdaccLib()&fil.retEq(lib))|(pre.ixCrdaccVer()&fil.retEq(ver))|(pre.ixCrdaccApp()&fil.retEq(app)))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recFil.refUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER);
+	a = false; a = (recFil.refIxVTbl == VecWznmVMFileRefTbl::LIB);
 	args.push_back(a);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recFil.refIxVTbl == VecWznmVMFileRefTbl::LIB);
+	a = false; a = (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER);
 	args.push_back(a);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();

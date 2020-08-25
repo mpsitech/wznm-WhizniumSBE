@@ -2,8 +2,8 @@
   * \file QryWznmQryList.java
   * Java API code for job QryWznmQryList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -23,8 +23,8 @@ public class QryWznmQryList {
 		public static final int SRL = 3;
 		public static final int SUP = 4;
 		public static final int VER = 5;
-		public static final int SRF = 6;
-		public static final int TYP = 7;
+		public static final int TYP = 6;
+		public static final int SRF = 7;
 
 		public static int getIx(
 					String sref
@@ -36,8 +36,8 @@ public class QryWznmQryList {
 			if (s.equals("srl")) return SRL;
 			if (s.equals("sup")) return SUP;
 			if (s.equals("ver")) return VER;
-			if (s.equals("srf")) return SRF;
 			if (s.equals("typ")) return TYP;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -50,8 +50,8 @@ public class QryWznmQryList {
 			if (ix == SRL) return("srl");
 			if (ix == SUP) return("sup");
 			if (ix == VER) return("ver");
-			if (ix == SRF) return("srf");
 			if (ix == TYP) return("typ");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

@@ -2,8 +2,8 @@
 	* \file PnlWznmAppDetail_blks.cpp
 	* job handler for job PnlWznmAppDetail (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -307,7 +307,7 @@ void PnlWznmAppDetail::Tag::writeXML(
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			writeStringAttr(wr, itemtag, "sref", "CptSho", "acronym");
 			writeStringAttr(wr, itemtag, "sref", "CptTit", "title");
-			writeStringAttr(wr, itemtag, "sref", "CptTrg", "target");
+			writeStringAttr(wr, itemtag, "sref", "CptTrg", "accessor app target");
 			writeStringAttr(wr, itemtag, "sref", "CptVer", "version");
 			writeStringAttr(wr, itemtag, "sref", "CptCmt", "comment");
 		};

@@ -2,8 +2,8 @@
 	* \file CrdWznmApp.cpp
 	* job handler for job CrdWznmApp (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -46,13 +46,15 @@ CrdWznmApp::CrdWznmApp(
 	pnlheadbar = NULL;
 	pnlrec = NULL;
 	dlgimpstr = NULL;
-	dlgnew = NULL;
 	dlgwrite = NULL;
+	dlgnew = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
+	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFAPP, ref);
+
 	// initialize according to ref
-	changeRef(dbswznm, jref, ((ref+1) == 0) ? 0 : ref, false);
+	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWznmAppList(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmAppHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
@@ -67,7 +69,7 @@ CrdWznmApp::CrdWznmApp(
 	set<uint> moditems;
 	refresh(dbswznm, moditems);
 
-	if ((ref+1) == 0) {
+	if ((ref + 1) == 0) {
 		dlgnew = new DlgWznmAppNew(xchg, dbswznm, jref, ixWznmVLocale);
 		statshr.jrefDlgnew = dlgnew->jref;
 	};

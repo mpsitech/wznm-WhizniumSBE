@@ -1,6 +1,6 @@
 - IexWznmIex v0.9.23														
 - ImeIMImpexpcplx.sref	Short	Title	Minversion	Comment										
-- IexWznmApp	app	app features												
+- IexWznmApp	app	app features	1.0.2											
 	- ImeIMImpexp.iref	irefSupRefWznmMImpexp	srefRefWznmMTable	sref	rtrSrefsWznmMImpexpcol	srefsIxWIop	Comment							
 	- 129	0	TblWznmMRtjob	ImeIMRtjob		ins								
 		- ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem		
@@ -31,6 +31,12 @@
 		- tbl	fil;tbl	sref	sref	srf		void						
 		- tbl	fil;tbl	Merge	Merge	mrg		void						
 		- ImeIMImpexpcol.end												
+	- 187	0	TblWznmMEvent	ImeIMEvent		ins								
+		- ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem		
+		- tbl	tbl	refWznmMApp	refWznmMApp			preset		PreWznmRefApp				
+		- tbl	fil;tbl	sref	sref	srf		void						
+		- tbl	fil;tbl	Comment	Comment	cmt		void						
+		- ImeIMImpexpcol.end												
 	- 132	0	TblWznmMSequence	ImeIMSequence		ins								
 		- ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem		
 		- tbl	tbl	appRefWznmMApp	appRefWznmMApp			preset		PreWznmRefApp				
@@ -43,27 +49,46 @@
 		- tbl	tbl	seqRefWznmMSequence	seqRefWznmMSequence			sup						
 		- tbl	tbl	seqNum	seqNum		0	incr						
 		- tbl	fil;tbl	sref	sref	srf		void						
-		- vsref	fil	eacIxVAction	srefEacIxVAction	eac		ixsref						
-		- iref	fil	erjRefWznmMRtjob	irefErjRefWznmMRtjob	erj	129	previmp						
-		- tsref	fil	eveRefWznmMVector	srefEveRefWznmMVector	eve		custsql			StubWznmVecStd			
-		- tsref	fil	eviRefWznmMVectoritem	srefEviRefWznmMVectoritem	evi		custsql			StubWznmVitSref			
-		- tsref	fil	esnRefWznmMState	srefEsnRefWznmMState	esn		imppp			StubWznmSteStd			
-		- vsref	fil	lacIxVAction	srefLacIxVAction	lac		ixsref						
-		- tbl	fil;tbl	Custstep	Custstep	cst		void						
 		- tbl	fil;tbl	Comment	Comment	cmt		void						
 		- ImeIMImpexpcol.end												
-	- 134	133	TblWznmAMStateStep	ImeIAMStateStep		ins								
+	- 134	133	TblWznmAMStateAction	ImeIAMStateAction		ins								
+		- ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem		
+		- tbl	tbl	steRefWznmMState	steRefWznmMState			sup						
+		- tbl	tbl	steNum	steNum		0	incr						
+		- vsref	fil	ixVSection	srefIxVSection	sct		ixsref						
+		- vsref	fil	ixVType	srefIxVType	typ		ixsref						
+		- iref	fil	refWznmMRtjob	irefRefWznmMRtjob	rtj	129	previmp						
+		- tsref	fil	refWznmMVector	srefRefWznmMVector	vec		custsql			StubWznmVecStd			
+		- tsref	fil	refWznmMVectoritem	srefRefWznmMVectoritem	vit		custsql			StubWznmVitSref			
+		- tsref	fil	snxRefWznmMState	srefSnxRefWznmMState	snx		imppp			StubWznmSteStd			
+		- tsref	fil	refWznmMSequence	srefRefWznmMSequence	seq		imppp			StubWznmSeqStd			
+		- tbl	fil;tbl	tr1SrefATrig	tr1SrefATrig	tr1		void						
+		- tbl	fil;tbl	Ip1	Ip1	ip1		void						
+		- tbl	fil;tbl	tr2SrefATrig	tr2SrefATrig	tr2		void						
+		- tbl	fil;tbl	Ip2	Ip2	ip2		void						
+		- tbl	fil;tbl	tr3SrefATrig	tr3SrefATrig	tr3		void						
+		- tbl	fil;tbl	Ip3	Ip3	ip3		void						
+		- tbl	fil;tbl	tr4SrefATrig	tr4SrefATrig	tr4		void						
+		- tbl	fil;tbl	Ip4	Ip4	ip4		void						
+		- ImeIMImpexpcol.end												
+	- 185	133	TblWznmAMStateTrig	ImeIAMStateTrig		ins								
 		- ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem		
 		- tbl	tbl	refWznmMState	refWznmMState			sup						
-		- tsref	fil	snxRefWznmMState	srefSnxRefWznmMState	snx		imppp			StubWznmSteStd			
-		- vsref	fil	ixVTrigger	srefIxVTrigger	trg		ixsref						
+		- tbl	fil;tbl	sref	sref	srf		void						
+		- vsref	fil	ixVType	srefIxVType	typ		ixsref						
+		- tsref	fil	refWznmMEvent	srefRefWznmMEvent	evt	187	previmp						
 		- iref	fil	refWznmMRtjob	irefRefWznmMRtjob	rtj	129	previmp						
 		- tsref	fil	refWznmMVectoritem	srefRefWznmMVectoritem	vit		custsql			StubWznmVitSref			
 		- tbl	fil;tbl	xsref	xsref	xsr		void						
 		- tsref	fil	refWznmMRtdpch	srefRefWznmMRtdpch	rtd		previmp			StubWznmRtdStd			
 		- tbl	fil;tbl	srefsMask	srefsMask	msk		void						
 		- tbl	fil;tbl	Cond	Cond	cnd		void						
-		- tbl	fil;tbl	Custcode	Custcode	ccd		void						
+		- ImeIMImpexpcol.end												
+	- 186	185	TblWznmJAMStateTrigCond	ImeIJAMStateTrigCond		ins								
+		- ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem		
+		- tbl	tbl	refWznmAMStateTrig	refWznmAMStateTrig			sup						
+		- vsref	fil	x1IxWznmVApptarget	srefX1IxWznmVApptarget	trg		ixsref						
+		- tbl	fil;tbl	Cond	Cond	cnd		void						
 		- ImeIMImpexpcol.end												
 	- ImeIMImpexp.end													
 - IexWznmBui	bui	basic user interface structure	0.9.23	modules and cards										

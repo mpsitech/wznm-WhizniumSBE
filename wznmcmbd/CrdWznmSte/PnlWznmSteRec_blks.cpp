@@ -2,8 +2,8 @@
 	* \file PnlWznmSteRec_blks.cpp
 	* job handler for job PnlWznmSteRec (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -97,7 +97,7 @@ void PnlWznmSteRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdoneAStep
+			, const bool initdoneATrig
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmSteRec";
 
@@ -107,7 +107,7 @@ void PnlWznmSteRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneAStep", initdoneAStep);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneATrig", initdoneATrig);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -118,17 +118,17 @@ void PnlWznmSteRec::StatApp::writeXML(
 PnlWznmSteRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jrefAStep
+			, const ubigint jrefATrig
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
-	this->jrefAStep = jrefAStep;
+	this->jrefATrig = jrefATrig;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFASTEP, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATRIG, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmSteRec::StatShr::writeXML(
@@ -145,7 +145,7 @@ void PnlWznmSteRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefAStep", Scr::scramble(jrefAStep));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefATrig", Scr::scramble(jrefATrig));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -157,7 +157,7 @@ set<uint> PnlWznmSteRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jrefAStep == comp->jrefAStep) insert(items, JREFASTEP);
+	if (jrefATrig == comp->jrefATrig) insert(items, JREFATRIG);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -171,7 +171,7 @@ set<uint> PnlWznmSteRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFASTEP, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATRIG, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

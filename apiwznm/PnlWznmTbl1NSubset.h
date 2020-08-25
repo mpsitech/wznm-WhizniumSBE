@@ -2,8 +2,8 @@
 	* \file PnlWznmTbl1NSubset.h
 	* API code for job PnlWznmTbl1NSubset (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMTBL1NSUBSET_H

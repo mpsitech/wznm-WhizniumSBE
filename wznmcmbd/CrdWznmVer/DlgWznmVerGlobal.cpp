@@ -2,8 +2,8 @@
 	* \file DlgWznmVerGlobal.cpp
 	* job handler for job DlgWznmVerGlobal (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -270,9 +270,9 @@ void DlgWznmVerGlobal::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
+		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
 		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 	};
 };
 
@@ -380,11 +380,11 @@ string DlgWznmVerGlobal::handleDownloadInSgeDone(
 	return(""); // IP handleDownloadInSgeDone --- LINE
 };
 
-void DlgWznmVerGlobal::handleTimerWithSrefMonInSgeImport(
+void DlgWznmVerGlobal::handleTimerInSgePrsidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmVerGlobal::handleTimerInSgeImpidle(
@@ -394,11 +394,11 @@ void DlgWznmVerGlobal::handleTimerInSgeImpidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmVerGlobal::handleTimerInSgePrsidle(
+void DlgWznmVerGlobal::handleTimerWithSrefMonInSgeImport(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
 };
 
 void DlgWznmVerGlobal::changeStage(

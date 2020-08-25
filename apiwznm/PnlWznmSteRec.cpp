@@ -2,8 +2,8 @@
 	* \file PnlWznmSteRec.cpp
 	* API code for job PnlWznmSteRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "PnlWznmSteRec.h"
@@ -103,14 +103,14 @@ set<uint> PnlWznmSteRec::ContInf::diff(
 
 PnlWznmSteRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdoneAStep
+			, const bool initdoneATrig
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdoneAStep = initdoneAStep;
+	this->initdoneATrig = initdoneATrig;
 
-	mask = {INITDONEDETAIL, INITDONEASTEP};
+	mask = {INITDONEDETAIL, INITDONEATRIG};
 };
 
 bool PnlWznmSteRec::StatApp::readXML(
@@ -131,7 +131,7 @@ bool PnlWznmSteRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAStep", initdoneAStep)) add(INITDONEASTEP);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneATrig", initdoneATrig)) add(INITDONEATRIG);
 	};
 
 	return basefound;
@@ -143,7 +143,7 @@ set<uint> PnlWznmSteRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdoneAStep == comp->initdoneAStep) insert(items, INITDONEASTEP);
+	if (initdoneATrig == comp->initdoneATrig) insert(items, INITDONEATRIG);
 
 	return(items);
 };
@@ -156,7 +156,7 @@ set<uint> PnlWznmSteRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEASTEP};
+	diffitems = {INITDONEDETAIL, INITDONEATRIG};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -169,17 +169,17 @@ set<uint> PnlWznmSteRec::StatApp::diff(
 PnlWznmSteRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJrefAStep
+			, const string& scrJrefATrig
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAStep = scrJrefAStep;
+	this->scrJrefATrig = scrJrefATrig;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFASTEP, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmSteRec::StatShr::readXML(
@@ -206,7 +206,7 @@ bool PnlWznmSteRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAStep", scrJrefAStep)) add(SCRJREFASTEP);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefATrig", scrJrefATrig)) add(SCRJREFATRIG);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
 
@@ -220,7 +220,7 @@ set<uint> PnlWznmSteRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJrefAStep == comp->scrJrefAStep) insert(items, SCRJREFASTEP);
+	if (scrJrefATrig == comp->scrJrefATrig) insert(items, SCRJREFATRIG);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -234,7 +234,7 @@ set<uint> PnlWznmSteRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFASTEP, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

@@ -2,8 +2,8 @@
 	* \file DlgWznmAppWrite_evals.cpp
 	* job handler for job DlgWznmAppWrite (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -48,6 +48,20 @@ bool DlgWznmAppWrite::evalFiaDldActive(
 	return(args.back());
 };
 
+bool DlgWznmAppWrite::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(fail)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::FAIL);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool DlgWznmAppWrite::evalWrcButRunActive(
 			DbsWznm* dbswznm
 		) {
@@ -86,20 +100,6 @@ bool DlgWznmAppWrite::evalWrcButStoActive(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-
-	return(args.back());
-};
-
-bool DlgWznmAppWrite::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(fail)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::FAIL);
-	args.push_back(a);
 
 	return(args.back());
 };

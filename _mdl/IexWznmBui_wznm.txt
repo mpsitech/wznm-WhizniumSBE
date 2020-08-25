@@ -71,6 +71,7 @@
 	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
 	- tbl	TblWznmMApp	CrdWznmApp			
 	- tbl	TblWznmMRtjob	CrdWznmRtj			pre.refApp()
+	- tbl	TblWznmMEvent	CrdWznmEvt			pre.refApp()
 	- tbl	TblWznmMSequence	CrdWznmSeq			pre.refApp()
 	- tbl	TblWznmMState	CrdWznmSte			pre.refApp()
 	- ImeIMCard.end					

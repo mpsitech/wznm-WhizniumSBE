@@ -2,8 +2,8 @@
 	* \file VecWznmVDpch.cpp
 	* vector VecWznmVDpch (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "VecWznmVDpch.h"
@@ -80,6 +80,8 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappdlgwznmverwrstkitdo") return DPCHAPPDLGWZNMVERWRSTKITDO;
 	if (s == "dpchapprootwznmlogin") return DPCHAPPROOTWZNMLOGIN;
 	if (s == "dpchappwznmalert") return DPCHAPPWZNMALERT;
+	if (s == "dpchappwznmapp1neventdata") return DPCHAPPWZNMAPP1NEVENTDATA;
+	if (s == "dpchappwznmapp1neventdo") return DPCHAPPWZNMAPP1NEVENTDO;
 	if (s == "dpchappwznmapp1nrtjobdata") return DPCHAPPWZNMAPP1NRTJOBDATA;
 	if (s == "dpchappwznmapp1nrtjobdo") return DPCHAPPWZNMAPP1NRTJOBDO;
 	if (s == "dpchappwznmappapp1nsequencedata") return DPCHAPPWZNMAPPAPP1NSEQUENCEDATA;
@@ -200,6 +202,12 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappwznmerrlistdata") return DPCHAPPWZNMERRLISTDATA;
 	if (s == "dpchappwznmerrlistdo") return DPCHAPPWZNMERRLISTDO;
 	if (s == "dpchappwznmerrrecdo") return DPCHAPPWZNMERRRECDO;
+	if (s == "dpchappwznmevtdetaildata") return DPCHAPPWZNMEVTDETAILDATA;
+	if (s == "dpchappwznmevtdetaildo") return DPCHAPPWZNMEVTDETAILDO;
+	if (s == "dpchappwznmevtdo") return DPCHAPPWZNMEVTDO;
+	if (s == "dpchappwznmevtlistdata") return DPCHAPPWZNMEVTLISTDATA;
+	if (s == "dpchappwznmevtlistdo") return DPCHAPPWZNMEVTLISTDO;
+	if (s == "dpchappwznmevtrecdo") return DPCHAPPWZNMEVTRECDO;
 	if (s == "dpchappwznmfildetaildata") return DPCHAPPWZNMFILDETAILDATA;
 	if (s == "dpchappwznmfildetaildo") return DPCHAPPWZNMFILDETAILDO;
 	if (s == "dpchappwznmfildo") return DPCHAPPWZNMFILDO;
@@ -555,8 +563,8 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappwznmstbsubmnstubdo") return DPCHAPPWZNMSTBSUBMNSTUBDO;
 	if (s == "dpchappwznmstbsupmnstubdata") return DPCHAPPWZNMSTBSUPMNSTUBDATA;
 	if (s == "dpchappwznmstbsupmnstubdo") return DPCHAPPWZNMSTBSUPMNSTUBDO;
-	if (s == "dpchappwznmsteastepdata") return DPCHAPPWZNMSTEASTEPDATA;
-	if (s == "dpchappwznmsteastepdo") return DPCHAPPWZNMSTEASTEPDO;
+	if (s == "dpchappwznmsteatrigdata") return DPCHAPPWZNMSTEATRIGDATA;
+	if (s == "dpchappwznmsteatrigdo") return DPCHAPPWZNMSTEATRIGDO;
 	if (s == "dpchappwznmstedetaildata") return DPCHAPPWZNMSTEDETAILDATA;
 	if (s == "dpchappwznmstedetaildo") return DPCHAPPWZNMSTEDETAILDO;
 	if (s == "dpchappwznmstedo") return DPCHAPPWZNMSTEDO;
@@ -758,6 +766,7 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengsesswznmdata") return DPCHENGSESSWZNMDATA;
 	if (s == "dpchengwznmack") return DPCHENGWZNMACK;
 	if (s == "dpchengwznmalert") return DPCHENGWZNMALERT;
+	if (s == "dpchengwznmapp1neventdata") return DPCHENGWZNMAPP1NEVENTDATA;
 	if (s == "dpchengwznmapp1nrtjobdata") return DPCHENGWZNMAPP1NRTJOBDATA;
 	if (s == "dpchengwznmappapp1nsequencedata") return DPCHENGWZNMAPPAPP1NSEQUENCEDATA;
 	if (s == "dpchengwznmappdata") return DPCHENGWZNMAPPDATA;
@@ -841,6 +850,11 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengwznmerrheadbardata") return DPCHENGWZNMERRHEADBARDATA;
 	if (s == "dpchengwznmerrlistdata") return DPCHENGWZNMERRLISTDATA;
 	if (s == "dpchengwznmerrrecdata") return DPCHENGWZNMERRRECDATA;
+	if (s == "dpchengwznmevtdata") return DPCHENGWZNMEVTDATA;
+	if (s == "dpchengwznmevtdetaildata") return DPCHENGWZNMEVTDETAILDATA;
+	if (s == "dpchengwznmevtheadbardata") return DPCHENGWZNMEVTHEADBARDATA;
+	if (s == "dpchengwznmevtlistdata") return DPCHENGWZNMEVTLISTDATA;
+	if (s == "dpchengwznmevtrecdata") return DPCHENGWZNMEVTRECDATA;
 	if (s == "dpchengwznmfildata") return DPCHENGWZNMFILDATA;
 	if (s == "dpchengwznmfildetaildata") return DPCHENGWZNMFILDETAILDATA;
 	if (s == "dpchengwznmfilheadbardata") return DPCHENGWZNMFILHEADBARDATA;
@@ -1074,7 +1088,7 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengwznmstbrecdata") return DPCHENGWZNMSTBRECDATA;
 	if (s == "dpchengwznmstbsubmnstubdata") return DPCHENGWZNMSTBSUBMNSTUBDATA;
 	if (s == "dpchengwznmstbsupmnstubdata") return DPCHENGWZNMSTBSUPMNSTUBDATA;
-	if (s == "dpchengwznmsteastepdata") return DPCHENGWZNMSTEASTEPDATA;
+	if (s == "dpchengwznmsteatrigdata") return DPCHENGWZNMSTEATRIGDATA;
 	if (s == "dpchengwznmstedata") return DPCHENGWZNMSTEDATA;
 	if (s == "dpchengwznmstedetaildata") return DPCHENGWZNMSTEDETAILDATA;
 	if (s == "dpchengwznmsteheadbardata") return DPCHENGWZNMSTEHEADBARDATA;
@@ -1317,6 +1331,8 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPDLGWZNMVERWRSTKITDO) return("DpchAppDlgWznmVerWrstkitDo");
 	if (ix == DPCHAPPROOTWZNMLOGIN) return("DpchAppRootWznmLogin");
 	if (ix == DPCHAPPWZNMALERT) return("DpchAppWznmAlert");
+	if (ix == DPCHAPPWZNMAPP1NEVENTDATA) return("DpchAppWznmApp1NEventData");
+	if (ix == DPCHAPPWZNMAPP1NEVENTDO) return("DpchAppWznmApp1NEventDo");
 	if (ix == DPCHAPPWZNMAPP1NRTJOBDATA) return("DpchAppWznmApp1NRtjobData");
 	if (ix == DPCHAPPWZNMAPP1NRTJOBDO) return("DpchAppWznmApp1NRtjobDo");
 	if (ix == DPCHAPPWZNMAPPAPP1NSEQUENCEDATA) return("DpchAppWznmAppApp1NSequenceData");
@@ -1437,6 +1453,12 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPWZNMERRLISTDATA) return("DpchAppWznmErrListData");
 	if (ix == DPCHAPPWZNMERRLISTDO) return("DpchAppWznmErrListDo");
 	if (ix == DPCHAPPWZNMERRRECDO) return("DpchAppWznmErrRecDo");
+	if (ix == DPCHAPPWZNMEVTDETAILDATA) return("DpchAppWznmEvtDetailData");
+	if (ix == DPCHAPPWZNMEVTDETAILDO) return("DpchAppWznmEvtDetailDo");
+	if (ix == DPCHAPPWZNMEVTDO) return("DpchAppWznmEvtDo");
+	if (ix == DPCHAPPWZNMEVTLISTDATA) return("DpchAppWznmEvtListData");
+	if (ix == DPCHAPPWZNMEVTLISTDO) return("DpchAppWznmEvtListDo");
+	if (ix == DPCHAPPWZNMEVTRECDO) return("DpchAppWznmEvtRecDo");
 	if (ix == DPCHAPPWZNMFILDETAILDATA) return("DpchAppWznmFilDetailData");
 	if (ix == DPCHAPPWZNMFILDETAILDO) return("DpchAppWznmFilDetailDo");
 	if (ix == DPCHAPPWZNMFILDO) return("DpchAppWznmFilDo");
@@ -1792,8 +1814,8 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPWZNMSTBSUBMNSTUBDO) return("DpchAppWznmStbSubMNStubDo");
 	if (ix == DPCHAPPWZNMSTBSUPMNSTUBDATA) return("DpchAppWznmStbSupMNStubData");
 	if (ix == DPCHAPPWZNMSTBSUPMNSTUBDO) return("DpchAppWznmStbSupMNStubDo");
-	if (ix == DPCHAPPWZNMSTEASTEPDATA) return("DpchAppWznmSteAStepData");
-	if (ix == DPCHAPPWZNMSTEASTEPDO) return("DpchAppWznmSteAStepDo");
+	if (ix == DPCHAPPWZNMSTEATRIGDATA) return("DpchAppWznmSteATrigData");
+	if (ix == DPCHAPPWZNMSTEATRIGDO) return("DpchAppWznmSteATrigDo");
 	if (ix == DPCHAPPWZNMSTEDETAILDATA) return("DpchAppWznmSteDetailData");
 	if (ix == DPCHAPPWZNMSTEDETAILDO) return("DpchAppWznmSteDetailDo");
 	if (ix == DPCHAPPWZNMSTEDO) return("DpchAppWznmSteDo");
@@ -1995,6 +2017,7 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGSESSWZNMDATA) return("DpchEngSessWznmData");
 	if (ix == DPCHENGWZNMACK) return("DpchEngWznmAck");
 	if (ix == DPCHENGWZNMALERT) return("DpchEngWznmAlert");
+	if (ix == DPCHENGWZNMAPP1NEVENTDATA) return("DpchEngWznmApp1NEventData");
 	if (ix == DPCHENGWZNMAPP1NRTJOBDATA) return("DpchEngWznmApp1NRtjobData");
 	if (ix == DPCHENGWZNMAPPAPP1NSEQUENCEDATA) return("DpchEngWznmAppApp1NSequenceData");
 	if (ix == DPCHENGWZNMAPPDATA) return("DpchEngWznmAppData");
@@ -2078,6 +2101,11 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGWZNMERRHEADBARDATA) return("DpchEngWznmErrHeadbarData");
 	if (ix == DPCHENGWZNMERRLISTDATA) return("DpchEngWznmErrListData");
 	if (ix == DPCHENGWZNMERRRECDATA) return("DpchEngWznmErrRecData");
+	if (ix == DPCHENGWZNMEVTDATA) return("DpchEngWznmEvtData");
+	if (ix == DPCHENGWZNMEVTDETAILDATA) return("DpchEngWznmEvtDetailData");
+	if (ix == DPCHENGWZNMEVTHEADBARDATA) return("DpchEngWznmEvtHeadbarData");
+	if (ix == DPCHENGWZNMEVTLISTDATA) return("DpchEngWznmEvtListData");
+	if (ix == DPCHENGWZNMEVTRECDATA) return("DpchEngWznmEvtRecData");
 	if (ix == DPCHENGWZNMFILDATA) return("DpchEngWznmFilData");
 	if (ix == DPCHENGWZNMFILDETAILDATA) return("DpchEngWznmFilDetailData");
 	if (ix == DPCHENGWZNMFILHEADBARDATA) return("DpchEngWznmFilHeadbarData");
@@ -2311,7 +2339,7 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGWZNMSTBRECDATA) return("DpchEngWznmStbRecData");
 	if (ix == DPCHENGWZNMSTBSUBMNSTUBDATA) return("DpchEngWznmStbSubMNStubData");
 	if (ix == DPCHENGWZNMSTBSUPMNSTUBDATA) return("DpchEngWznmStbSupMNStubData");
-	if (ix == DPCHENGWZNMSTEASTEPDATA) return("DpchEngWznmSteAStepData");
+	if (ix == DPCHENGWZNMSTEATRIGDATA) return("DpchEngWznmSteATrigData");
 	if (ix == DPCHENGWZNMSTEDATA) return("DpchEngWznmSteData");
 	if (ix == DPCHENGWZNMSTEDETAILDATA) return("DpchEngWznmSteDetailData");
 	if (ix == DPCHENGWZNMSTEHEADBARDATA) return("DpchEngWznmSteHeadbarData");

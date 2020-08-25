@@ -2,8 +2,8 @@
 	* \file PnlWznmVerDetail.h
 	* job handler for job PnlWznmVerDetail (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMVERDETAIL_H
@@ -382,8 +382,8 @@ private:
 	bool handleCallWznmVerUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmVer_steEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmVer_prjEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVer_bvrEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmVer_locEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVer_bvrEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

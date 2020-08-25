@@ -2,8 +2,8 @@
 	* \file PnlWznmUsrRec.cpp
 	* job handler for job PnlWznmUsrRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -46,8 +46,8 @@ PnlWznmUsrRec::PnlWznmUsrRec(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMUSR_PRSEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMUSR_USGEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMUSR_PRSEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -251,10 +251,10 @@ void PnlWznmUsrRec::handleCall(
 		) {
 	if (call->ixVCall == VecWznmVCall::CALLWZNMUSRUPD_REFEQ) {
 		call->abort = handleCallWznmUsrUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSR_PRSEQ) {
-		call->abort = handleCallWznmUsr_prsEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSR_USGEQ) {
 		call->abort = handleCallWznmUsr_usgEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSR_PRSEQ) {
+		call->abort = handleCallWznmUsr_prsEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -267,17 +267,6 @@ bool PnlWznmUsrRec::handleCallWznmUsrUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmUsrRec::handleCallWznmUsr_prsEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recUsr.refWznmMPerson == refInv); // IP handleCallWznmUsr_prsEq --- LINE
-	return retval;
-};
-
 bool PnlWznmUsrRec::handleCallWznmUsr_usgEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -286,6 +275,17 @@ bool PnlWznmUsrRec::handleCallWznmUsr_usgEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recUsr.refWznmMUsergroup == refInv); // IP handleCallWznmUsr_usgEq --- LINE
+	return retval;
+};
+
+bool PnlWznmUsrRec::handleCallWznmUsr_prsEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recUsr.refWznmMPerson == refInv); // IP handleCallWznmUsr_prsEq --- LINE
 	return retval;
 };
 

@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmUtl card job handler, release wznmcmbd_awsubt
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmcmbd/VecWznm -I$(SRCROOT)/wznmcmbd/IexWznm -I$(SRCROOT)/wznmcmbd
 INCPATH += -I/home/ubuntu/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
 
-OBJS = CrdWznmUtl.o PnlWznmUtlHeadbar.o DlgWznmUtlMrgip.o DlgWznmUtlExtrip.o DlgWznmUtlIexconv.o
+OBJS = CrdWznmUtl.o PnlWznmUtlHeadbar.o DlgWznmUtlExtrip.o DlgWznmUtlIexconv.o DlgWznmUtlMrgip.o
 
 LIB = libcrdwznmutl
 

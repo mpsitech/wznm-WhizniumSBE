@@ -2,8 +2,8 @@
 # file makeall.sh
 # make script for Wznm API library, release apiwznm_awsubt
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 make ApiWznm.h.gch
 if [ $? -ne 0 ]; then

@@ -2,8 +2,8 @@
 	* \file PnlWznmRtjDetail.h
 	* job handler for job PnlWznmRtjDetail (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMRTJDETAIL_H
@@ -288,8 +288,8 @@ public:
 private:
 	bool handleCallWznmRtjUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmRtj_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmRtj_appEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmRtj_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmRtj_appEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

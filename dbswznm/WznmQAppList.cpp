@@ -2,8 +2,8 @@
 	* \file WznmQAppList.cpp
 	* Dbs and XML wrapper for table TblWznmQAppList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmQAppList.h"
@@ -27,9 +27,9 @@ WznmQAppList::WznmQAppList(
 			, const string stubOwn
 			, const string Short
 			, const string Title
-			, const uint ixVTarget
-			, const string srefIxVTarget
-			, const string titIxVTarget
+			, const uint ixWznmVApptarget
+			, const string srefIxWznmVApptarget
+			, const string titIxWznmVApptarget
 			, const ubigint verRefWznmMVersion
 			, const string stubVerRefWznmMVersion
 		) {
@@ -43,9 +43,9 @@ WznmQAppList::WznmQAppList(
 	this->stubOwn = stubOwn;
 	this->Short = Short;
 	this->Title = Title;
-	this->ixVTarget = ixVTarget;
-	this->srefIxVTarget = srefIxVTarget;
-	this->titIxVTarget = titIxVTarget;
+	this->ixWznmVApptarget = ixWznmVApptarget;
+	this->srefIxWznmVApptarget = srefIxWznmVApptarget;
+	this->titIxWznmVApptarget = titIxWznmVApptarget;
 	this->verRefWznmMVersion = verRefWznmMVersion;
 	this->stubVerRefWznmMVersion = stubVerRefWznmMVersion;
 };
@@ -65,16 +65,16 @@ void WznmQAppList::writeXML(
 		writeString(wr, "own", stubOwn);
 		writeString(wr, "sho", Short);
 		writeString(wr, "tit", Title);
-		writeString(wr, "trg", srefIxVTarget);
-		writeString(wr, "trg2", titIxVTarget);
+		writeString(wr, "trg", srefIxWznmVApptarget);
+		writeString(wr, "trg2", titIxWznmVApptarget);
 		writeString(wr, "ver", stubVerRefWznmMVersion);
 	} else {
 		writeString(wr, "stubGrp", stubGrp);
 		writeString(wr, "stubOwn", stubOwn);
 		writeString(wr, "Short", Short);
 		writeString(wr, "Title", Title);
-		writeString(wr, "srefIxVTarget", srefIxVTarget);
-		writeString(wr, "titIxVTarget", titIxVTarget);
+		writeString(wr, "srefIxWznmVApptarget", srefIxWznmVApptarget);
+		writeString(wr, "titIxWznmVApptarget", titIxWznmVApptarget);
 		writeString(wr, "stubVerRefWznmMVersion", stubVerRefWznmMVersion);
 	};
 	xmlTextWriterEndElement(wr);
@@ -184,16 +184,16 @@ ubigint TblWznmQAppList::insertNewRec(
 			, const string stubOwn
 			, const string Short
 			, const string Title
-			, const uint ixVTarget
-			, const string srefIxVTarget
-			, const string titIxVTarget
+			, const uint ixWznmVApptarget
+			, const string srefIxWznmVApptarget
+			, const string titIxWznmVApptarget
 			, const ubigint verRefWznmMVersion
 			, const string stubVerRefWznmMVersion
 		) {
 	ubigint retval = 0;
 	WznmQAppList* _rec = NULL;
 
-	_rec = new WznmQAppList(0, jref, jnum, ref, grp, stubGrp, own, stubOwn, Short, Title, ixVTarget, srefIxVTarget, titIxVTarget, verRefWznmMVersion, stubVerRefWznmMVersion);
+	_rec = new WznmQAppList(0, jref, jnum, ref, grp, stubGrp, own, stubOwn, Short, Title, ixWznmVApptarget, srefIxWznmVApptarget, titIxWznmVApptarget, verRefWznmMVersion, stubVerRefWznmMVersion);
 	insertRec(_rec);
 
 	retval = _rec->qref;
@@ -216,16 +216,16 @@ ubigint TblWznmQAppList::appendNewRecToRst(
 			, const string stubOwn
 			, const string Short
 			, const string Title
-			, const uint ixVTarget
-			, const string srefIxVTarget
-			, const string titIxVTarget
+			, const uint ixWznmVApptarget
+			, const string srefIxWznmVApptarget
+			, const string titIxWznmVApptarget
 			, const ubigint verRefWznmMVersion
 			, const string stubVerRefWznmMVersion
 		) {
 	ubigint retval = 0;
 	WznmQAppList* _rec = NULL;
 
-	retval = insertNewRec(&_rec, jref, jnum, ref, grp, stubGrp, own, stubOwn, Short, Title, ixVTarget, srefIxVTarget, titIxVTarget, verRefWznmMVersion, stubVerRefWznmMVersion);
+	retval = insertNewRec(&_rec, jref, jnum, ref, grp, stubGrp, own, stubOwn, Short, Title, ixWznmVApptarget, srefIxWznmVApptarget, titIxWznmVApptarget, verRefWznmMVersion, stubVerRefWznmMVersion);
 	rst.nodes.push_back(_rec);
 
 	if (rec != NULL) *rec = _rec;
@@ -296,8 +296,8 @@ MyTblWznmQAppList::~MyTblWznmQAppList() {
 };
 
 void MyTblWznmQAppList::initStatements() {
-	stmtInsertRec = createStatement("INSERT INTO TblWznmQAppList (jref, jnum, ref, grp, own, Short, Title, ixVTarget, verRefWznmMVersion) VALUES (?,?,?,?,?,?,?,?,?)", false);
-	stmtUpdateRec = createStatement("UPDATE TblWznmQAppList SET jref = ?, jnum = ?, ref = ?, grp = ?, own = ?, Short = ?, Title = ?, ixVTarget = ?, verRefWznmMVersion = ? WHERE qref = ?", false);
+	stmtInsertRec = createStatement("INSERT INTO TblWznmQAppList (jref, jnum, ref, grp, own, Short, Title, ixWznmVApptarget, verRefWznmMVersion) VALUES (?,?,?,?,?,?,?,?,?)", false);
+	stmtUpdateRec = createStatement("UPDATE TblWznmQAppList SET jref = ?, jnum = ?, ref = ?, grp = ?, own = ?, Short = ?, Title = ?, ixWznmVApptarget = ?, verRefWznmMVersion = ? WHERE qref = ?", false);
 	stmtRemoveRecByQref = createStatement("DELETE FROM TblWznmQAppList WHERE qref = ?", false);
 	stmtRemoveRstByJref = createStatement("DELETE FROM TblWznmQAppList WHERE jref = ?", false);
 };
@@ -336,7 +336,7 @@ bool MyTblWznmQAppList::loadRecBySQL(
 		if (dbrow[5]) _rec->own = atoll((char*) dbrow[5]); else _rec->own = 0;
 		if (dbrow[6]) _rec->Short.assign(dbrow[6], dblengths[6]); else _rec->Short = "";
 		if (dbrow[7]) _rec->Title.assign(dbrow[7], dblengths[7]); else _rec->Title = "";
-		if (dbrow[8]) _rec->ixVTarget = atol((char*) dbrow[8]); else _rec->ixVTarget = 0;
+		if (dbrow[8]) _rec->ixWznmVApptarget = atol((char*) dbrow[8]); else _rec->ixWznmVApptarget = 0;
 		if (dbrow[9]) _rec->verRefWznmMVersion = atoll((char*) dbrow[9]); else _rec->verRefWznmMVersion = 0;
 
 		retval = true;
@@ -388,7 +388,7 @@ ubigint MyTblWznmQAppList::loadRstBySQL(
 			if (dbrow[5]) rec->own = atoll((char*) dbrow[5]); else rec->own = 0;
 			if (dbrow[6]) rec->Short.assign(dbrow[6], dblengths[6]); else rec->Short = "";
 			if (dbrow[7]) rec->Title.assign(dbrow[7], dblengths[7]); else rec->Title = "";
-			if (dbrow[8]) rec->ixVTarget = atol((char*) dbrow[8]); else rec->ixVTarget = 0;
+			if (dbrow[8]) rec->ixWznmVApptarget = atol((char*) dbrow[8]); else rec->ixWznmVApptarget = 0;
 			if (dbrow[9]) rec->verRefWznmMVersion = atoll((char*) dbrow[9]); else rec->verRefWznmMVersion = 0;
 			rst.nodes.push_back(rec);
 
@@ -417,7 +417,7 @@ ubigint MyTblWznmQAppList::insertRec(
 		bindUbigint(&rec->own,&(l[4]),&(n[4]),&(e[4])),
 		bindCstring((char*) (rec->Short.c_str()),&(l[5]),&(n[5]),&(e[5])),
 		bindCstring((char*) (rec->Title.c_str()),&(l[6]),&(n[6]),&(e[6])),
-		bindUint(&rec->ixVTarget,&(l[7]),&(n[7]),&(e[7])),
+		bindUint(&rec->ixWznmVApptarget,&(l[7]),&(n[7]),&(e[7])),
 		bindUbigint(&rec->verRefWznmMVersion,&(l[8]),&(n[8]),&(e[8]))
 	};
 
@@ -456,7 +456,7 @@ void MyTblWznmQAppList::updateRec(
 		bindUbigint(&rec->own,&(l[4]),&(n[4]),&(e[4])),
 		bindCstring((char*) (rec->Short.c_str()),&(l[5]),&(n[5]),&(e[5])),
 		bindCstring((char*) (rec->Title.c_str()),&(l[6]),&(n[6]),&(e[6])),
-		bindUint(&rec->ixVTarget,&(l[7]),&(n[7]),&(e[7])),
+		bindUint(&rec->ixWznmVApptarget,&(l[7]),&(n[7]),&(e[7])),
 		bindUbigint(&rec->verRefWznmMVersion,&(l[8]),&(n[8]),&(e[8])),
 		bindUbigint(&rec->qref,&(l[9]),&(n[9]),&(e[9]))
 	};
@@ -547,13 +547,13 @@ PgTblWznmQAppList::~PgTblWznmQAppList() {
 };
 
 void PgTblWznmQAppList::initStatements() {
-	createStatement("TblWznmQAppList_insertRec", "INSERT INTO TblWznmQAppList (jref, jnum, ref, grp, own, Short, Title, ixVTarget, verRefWznmMVersion) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING qref", 9);
-	createStatement("TblWznmQAppList_updateRec", "UPDATE TblWznmQAppList SET jref = $1, jnum = $2, ref = $3, grp = $4, own = $5, Short = $6, Title = $7, ixVTarget = $8, verRefWznmMVersion = $9 WHERE qref = $10", 10);
+	createStatement("TblWznmQAppList_insertRec", "INSERT INTO TblWznmQAppList (jref, jnum, ref, grp, own, Short, Title, ixWznmVApptarget, verRefWznmMVersion) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9) RETURNING qref", 9);
+	createStatement("TblWznmQAppList_updateRec", "UPDATE TblWznmQAppList SET jref = $1, jnum = $2, ref = $3, grp = $4, own = $5, Short = $6, Title = $7, ixWznmVApptarget = $8, verRefWznmMVersion = $9 WHERE qref = $10", 10);
 	createStatement("TblWznmQAppList_removeRecByQref", "DELETE FROM TblWznmQAppList WHERE qref = $1", 1);
 	createStatement("TblWznmQAppList_removeRstByJref", "DELETE FROM TblWznmQAppList WHERE jref = $1", 1);
 
-	createStatement("TblWznmQAppList_loadRecByQref", "SELECT qref, jref, jnum, ref, grp, own, Short, Title, ixVTarget, verRefWznmMVersion FROM TblWznmQAppList WHERE qref = $1", 1);
-	createStatement("TblWznmQAppList_loadRstByJref", "SELECT qref, jref, jnum, ref, grp, own, Short, Title, ixVTarget, verRefWznmMVersion FROM TblWznmQAppList WHERE jref = $1 ORDER BY jnum ASC", 1);
+	createStatement("TblWznmQAppList_loadRecByQref", "SELECT qref, jref, jnum, ref, grp, own, Short, Title, ixWznmVApptarget, verRefWznmMVersion FROM TblWznmQAppList WHERE qref = $1", 1);
+	createStatement("TblWznmQAppList_loadRstByJref", "SELECT qref, jref, jnum, ref, grp, own, Short, Title, ixWznmVApptarget, verRefWznmMVersion FROM TblWznmQAppList WHERE jref = $1 ORDER BY jnum ASC", 1);
 };
 
 bool PgTblWznmQAppList::loadRec(
@@ -577,7 +577,7 @@ bool PgTblWznmQAppList::loadRec(
 			PQfnumber(res, "own"),
 			PQfnumber(res, "short"),
 			PQfnumber(res, "title"),
-			PQfnumber(res, "ixvtarget"),
+			PQfnumber(res, "ixwznmvapptarget"),
 			PQfnumber(res, "verrefwznmmversion")
 		};
 
@@ -589,7 +589,7 @@ bool PgTblWznmQAppList::loadRec(
 		ptr = PQgetvalue(res, 0, fnum[5]); _rec->own = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[6]); _rec->Short.assign(ptr, PQgetlength(res, 0, fnum[6]));
 		ptr = PQgetvalue(res, 0, fnum[7]); _rec->Title.assign(ptr, PQgetlength(res, 0, fnum[7]));
-		ptr = PQgetvalue(res, 0, fnum[8]); _rec->ixVTarget = atol(ptr);
+		ptr = PQgetvalue(res, 0, fnum[8]); _rec->ixWznmVApptarget = atol(ptr);
 		ptr = PQgetvalue(res, 0, fnum[9]); _rec->verRefWznmMVersion = atoll(ptr);
 
 		retval = true;
@@ -625,7 +625,7 @@ ubigint PgTblWznmQAppList::loadRst(
 			PQfnumber(res, "own"),
 			PQfnumber(res, "short"),
 			PQfnumber(res, "title"),
-			PQfnumber(res, "ixvtarget"),
+			PQfnumber(res, "ixwznmvapptarget"),
 			PQfnumber(res, "verrefwznmmversion")
 		};
 
@@ -640,7 +640,7 @@ ubigint PgTblWznmQAppList::loadRst(
 			ptr = PQgetvalue(res, numread, fnum[5]); rec->own = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[6]); rec->Short.assign(ptr, PQgetlength(res, numread, fnum[6]));
 			ptr = PQgetvalue(res, numread, fnum[7]); rec->Title.assign(ptr, PQgetlength(res, numread, fnum[7]));
-			ptr = PQgetvalue(res, numread, fnum[8]); rec->ixVTarget = atol(ptr);
+			ptr = PQgetvalue(res, numread, fnum[8]); rec->ixWznmVApptarget = atol(ptr);
 			ptr = PQgetvalue(res, numread, fnum[9]); rec->verRefWznmMVersion = atoll(ptr);
 
 			rst.nodes.push_back(rec);
@@ -739,7 +739,7 @@ ubigint PgTblWznmQAppList::insertRec(
 	ubigint _ref = htonl64(rec->ref);
 	ubigint _grp = htonl64(rec->grp);
 	ubigint _own = htonl64(rec->own);
-	uint _ixVTarget = htonl(rec->ixVTarget);
+	uint _ixWznmVApptarget = htonl(rec->ixWznmVApptarget);
 	ubigint _verRefWznmMVersion = htonl64(rec->verRefWznmMVersion);
 
 	const char* vals[] = {
@@ -750,7 +750,7 @@ ubigint PgTblWznmQAppList::insertRec(
 		(char*) &_own,
 		rec->Short.c_str(),
 		rec->Title.c_str(),
-		(char*) &_ixVTarget,
+		(char*) &_ixWznmVApptarget,
 		(char*) &_verRefWznmMVersion
 	};
 	const int l[] = {
@@ -796,7 +796,7 @@ void PgTblWznmQAppList::updateRec(
 	ubigint _ref = htonl64(rec->ref);
 	ubigint _grp = htonl64(rec->grp);
 	ubigint _own = htonl64(rec->own);
-	uint _ixVTarget = htonl(rec->ixVTarget);
+	uint _ixWznmVApptarget = htonl(rec->ixWznmVApptarget);
 	ubigint _verRefWznmMVersion = htonl64(rec->verRefWznmMVersion);
 	ubigint _qref = htonl64(rec->qref);
 
@@ -808,7 +808,7 @@ void PgTblWznmQAppList::updateRec(
 		(char*) &_own,
 		rec->Short.c_str(),
 		rec->Title.c_str(),
-		(char*) &_ixVTarget,
+		(char*) &_ixWznmVApptarget,
 		(char*) &_verRefWznmMVersion,
 		(char*) &_qref
 	};

@@ -2,8 +2,8 @@
 	* \file PnlWznmOpkMNComponent.h
 	* API code for job PnlWznmOpkMNComponent (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMOPKMNCOMPONENT_H

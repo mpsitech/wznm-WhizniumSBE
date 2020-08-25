@@ -2,8 +2,8 @@
 	* \file QryWznmAppList.h
 	* job handler for job QryWznmAppList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMAPPLIST_H
@@ -33,8 +33,8 @@ public:
 	public:
 		static const Sbecore::uint VER = 1;
 		static const Sbecore::uint TRG = 2;
-		static const Sbecore::uint OWN = 3;
-		static const Sbecore::uint TIT = 4;
+		static const Sbecore::uint TIT = 3;
+		static const Sbecore::uint OWN = 4;
 		static const Sbecore::uint GRP = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -145,8 +145,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmAppMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmAppUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmAppMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };

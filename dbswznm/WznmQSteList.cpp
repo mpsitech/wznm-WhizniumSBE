@@ -2,8 +2,8 @@
 	* \file WznmQSteList.cpp
 	* Dbs and XML wrapper for table TblWznmQSteList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmQSteList.h"
@@ -24,14 +24,6 @@ WznmQSteList::WznmQSteList(
 			, const string sref
 			, const ubigint seqRefWznmMSequence
 			, const string stubSeqRefWznmMSequence
-			, const uint eacIxVAction
-			, const string srefEacIxVAction
-			, const string titEacIxVAction
-			, const uint lacIxVAction
-			, const string srefLacIxVAction
-			, const string titLacIxVAction
-			, const bool Custstep
-			, const string yesnoCuststep
 		) {
 	this->qref = qref;
 	this->jref = jref;
@@ -40,14 +32,6 @@ WznmQSteList::WznmQSteList(
 	this->sref = sref;
 	this->seqRefWznmMSequence = seqRefWznmMSequence;
 	this->stubSeqRefWznmMSequence = stubSeqRefWznmMSequence;
-	this->eacIxVAction = eacIxVAction;
-	this->srefEacIxVAction = srefEacIxVAction;
-	this->titEacIxVAction = titEacIxVAction;
-	this->lacIxVAction = lacIxVAction;
-	this->srefLacIxVAction = srefLacIxVAction;
-	this->titLacIxVAction = titLacIxVAction;
-	this->Custstep = Custstep;
-	this->yesnoCuststep = yesnoCuststep;
 };
 
 void WznmQSteList::writeXML(
@@ -63,19 +47,9 @@ void WznmQSteList::writeXML(
 	if (shorttags) {
 		writeString(wr, "srf", sref);
 		writeString(wr, "seq", stubSeqRefWznmMSequence);
-		writeString(wr, "eac", srefEacIxVAction);
-		writeString(wr, "eac2", titEacIxVAction);
-		writeString(wr, "lac", srefLacIxVAction);
-		writeString(wr, "lac2", titLacIxVAction);
-		writeString(wr, "cst", yesnoCuststep);
 	} else {
 		writeString(wr, "sref", sref);
 		writeString(wr, "stubSeqRefWznmMSequence", stubSeqRefWznmMSequence);
-		writeString(wr, "srefEacIxVAction", srefEacIxVAction);
-		writeString(wr, "titEacIxVAction", titEacIxVAction);
-		writeString(wr, "srefLacIxVAction", srefLacIxVAction);
-		writeString(wr, "titLacIxVAction", titLacIxVAction);
-		writeString(wr, "yesnoCuststep", yesnoCuststep);
 	};
 	xmlTextWriterEndElement(wr);
 };
@@ -181,19 +155,11 @@ ubigint TblWznmQSteList::insertNewRec(
 			, const string sref
 			, const ubigint seqRefWznmMSequence
 			, const string stubSeqRefWznmMSequence
-			, const uint eacIxVAction
-			, const string srefEacIxVAction
-			, const string titEacIxVAction
-			, const uint lacIxVAction
-			, const string srefLacIxVAction
-			, const string titLacIxVAction
-			, const bool Custstep
-			, const string yesnoCuststep
 		) {
 	ubigint retval = 0;
 	WznmQSteList* _rec = NULL;
 
-	_rec = new WznmQSteList(0, jref, jnum, ref, sref, seqRefWznmMSequence, stubSeqRefWznmMSequence, eacIxVAction, srefEacIxVAction, titEacIxVAction, lacIxVAction, srefLacIxVAction, titLacIxVAction, Custstep, yesnoCuststep);
+	_rec = new WznmQSteList(0, jref, jnum, ref, sref, seqRefWznmMSequence, stubSeqRefWznmMSequence);
 	insertRec(_rec);
 
 	retval = _rec->qref;
@@ -213,19 +179,11 @@ ubigint TblWznmQSteList::appendNewRecToRst(
 			, const string sref
 			, const ubigint seqRefWznmMSequence
 			, const string stubSeqRefWznmMSequence
-			, const uint eacIxVAction
-			, const string srefEacIxVAction
-			, const string titEacIxVAction
-			, const uint lacIxVAction
-			, const string srefLacIxVAction
-			, const string titLacIxVAction
-			, const bool Custstep
-			, const string yesnoCuststep
 		) {
 	ubigint retval = 0;
 	WznmQSteList* _rec = NULL;
 
-	retval = insertNewRec(&_rec, jref, jnum, ref, sref, seqRefWznmMSequence, stubSeqRefWznmMSequence, eacIxVAction, srefEacIxVAction, titEacIxVAction, lacIxVAction, srefLacIxVAction, titLacIxVAction, Custstep, yesnoCuststep);
+	retval = insertNewRec(&_rec, jref, jnum, ref, sref, seqRefWznmMSequence, stubSeqRefWznmMSequence);
 	rst.nodes.push_back(_rec);
 
 	if (rec != NULL) *rec = _rec;
@@ -296,8 +254,8 @@ MyTblWznmQSteList::~MyTblWznmQSteList() {
 };
 
 void MyTblWznmQSteList::initStatements() {
-	stmtInsertRec = createStatement("INSERT INTO TblWznmQSteList (jref, jnum, ref, sref, seqRefWznmMSequence, eacIxVAction, lacIxVAction, Custstep) VALUES (?,?,?,?,?,?,?,?)", false);
-	stmtUpdateRec = createStatement("UPDATE TblWznmQSteList SET jref = ?, jnum = ?, ref = ?, sref = ?, seqRefWznmMSequence = ?, eacIxVAction = ?, lacIxVAction = ?, Custstep = ? WHERE qref = ?", false);
+	stmtInsertRec = createStatement("INSERT INTO TblWznmQSteList (jref, jnum, ref, sref, seqRefWznmMSequence) VALUES (?,?,?,?,?)", false);
+	stmtUpdateRec = createStatement("UPDATE TblWznmQSteList SET jref = ?, jnum = ?, ref = ?, sref = ?, seqRefWznmMSequence = ? WHERE qref = ?", false);
 	stmtRemoveRecByQref = createStatement("DELETE FROM TblWznmQSteList WHERE qref = ?", false);
 	stmtRemoveRstByJref = createStatement("DELETE FROM TblWznmQSteList WHERE jref = ?", false);
 };
@@ -334,9 +292,6 @@ bool MyTblWznmQSteList::loadRecBySQL(
 		if (dbrow[3]) _rec->ref = atoll((char*) dbrow[3]); else _rec->ref = 0;
 		if (dbrow[4]) _rec->sref.assign(dbrow[4], dblengths[4]); else _rec->sref = "";
 		if (dbrow[5]) _rec->seqRefWznmMSequence = atoll((char*) dbrow[5]); else _rec->seqRefWznmMSequence = 0;
-		if (dbrow[6]) _rec->eacIxVAction = atol((char*) dbrow[6]); else _rec->eacIxVAction = 0;
-		if (dbrow[7]) _rec->lacIxVAction = atol((char*) dbrow[7]); else _rec->lacIxVAction = 0;
-		if (dbrow[8]) _rec->Custstep = (atoi((char*) dbrow[8]) != 0); else _rec->Custstep = false;
 
 		retval = true;
 	};
@@ -385,9 +340,6 @@ ubigint MyTblWznmQSteList::loadRstBySQL(
 			if (dbrow[3]) rec->ref = atoll((char*) dbrow[3]); else rec->ref = 0;
 			if (dbrow[4]) rec->sref.assign(dbrow[4], dblengths[4]); else rec->sref = "";
 			if (dbrow[5]) rec->seqRefWznmMSequence = atoll((char*) dbrow[5]); else rec->seqRefWznmMSequence = 0;
-			if (dbrow[6]) rec->eacIxVAction = atol((char*) dbrow[6]); else rec->eacIxVAction = 0;
-			if (dbrow[7]) rec->lacIxVAction = atol((char*) dbrow[7]); else rec->lacIxVAction = 0;
-			if (dbrow[8]) rec->Custstep = (atoi((char*) dbrow[8]) != 0); else rec->Custstep = false;
 			rst.nodes.push_back(rec);
 
 			numread++;
@@ -402,20 +354,16 @@ ubigint MyTblWznmQSteList::loadRstBySQL(
 ubigint MyTblWznmQSteList::insertRec(
 			WznmQSteList* rec
 		) {
-	unsigned long l[8]; my_bool n[8]; my_bool e[8];
+	unsigned long l[5]; my_bool n[5]; my_bool e[5];
 
 	l[3] = rec->sref.length();
-	tinyint Custstep = rec->Custstep;
 
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->jref,&(l[0]),&(n[0]),&(e[0])),
 		bindUint(&rec->jnum,&(l[1]),&(n[1]),&(e[1])),
 		bindUbigint(&rec->ref,&(l[2]),&(n[2]),&(e[2])),
 		bindCstring((char*) (rec->sref.c_str()),&(l[3]),&(n[3]),&(e[3])),
-		bindUbigint(&rec->seqRefWznmMSequence,&(l[4]),&(n[4]),&(e[4])),
-		bindUint(&rec->eacIxVAction,&(l[5]),&(n[5]),&(e[5])),
-		bindUint(&rec->lacIxVAction,&(l[6]),&(n[6]),&(e[6])),
-		bindTinyint(&Custstep,&(l[7]),&(n[7]),&(e[7]))
+		bindUbigint(&rec->seqRefWznmMSequence,&(l[4]),&(n[4]),&(e[4]))
 	};
 
 	if (mysql_stmt_bind_param(stmtInsertRec, bind)) {
@@ -440,10 +388,9 @@ void MyTblWznmQSteList::insertRst(
 void MyTblWznmQSteList::updateRec(
 			WznmQSteList* rec
 		) {
-	unsigned long l[9]; my_bool n[9]; my_bool e[9];
+	unsigned long l[6]; my_bool n[6]; my_bool e[6];
 
 	l[3] = rec->sref.length();
-	tinyint Custstep = rec->Custstep;
 
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->jref,&(l[0]),&(n[0]),&(e[0])),
@@ -451,10 +398,7 @@ void MyTblWznmQSteList::updateRec(
 		bindUbigint(&rec->ref,&(l[2]),&(n[2]),&(e[2])),
 		bindCstring((char*) (rec->sref.c_str()),&(l[3]),&(n[3]),&(e[3])),
 		bindUbigint(&rec->seqRefWznmMSequence,&(l[4]),&(n[4]),&(e[4])),
-		bindUint(&rec->eacIxVAction,&(l[5]),&(n[5]),&(e[5])),
-		bindUint(&rec->lacIxVAction,&(l[6]),&(n[6]),&(e[6])),
-		bindTinyint(&Custstep,&(l[7]),&(n[7]),&(e[7])),
-		bindUbigint(&rec->qref,&(l[8]),&(n[8]),&(e[8]))
+		bindUbigint(&rec->qref,&(l[5]),&(n[5]),&(e[5]))
 	};
 
 	if (mysql_stmt_bind_param(stmtUpdateRec, bind)) {
@@ -543,13 +487,13 @@ PgTblWznmQSteList::~PgTblWznmQSteList() {
 };
 
 void PgTblWznmQSteList::initStatements() {
-	createStatement("TblWznmQSteList_insertRec", "INSERT INTO TblWznmQSteList (jref, jnum, ref, sref, seqRefWznmMSequence, eacIxVAction, lacIxVAction, Custstep) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING qref", 8);
-	createStatement("TblWznmQSteList_updateRec", "UPDATE TblWznmQSteList SET jref = $1, jnum = $2, ref = $3, sref = $4, seqRefWznmMSequence = $5, eacIxVAction = $6, lacIxVAction = $7, Custstep = $8 WHERE qref = $9", 9);
+	createStatement("TblWznmQSteList_insertRec", "INSERT INTO TblWznmQSteList (jref, jnum, ref, sref, seqRefWznmMSequence) VALUES ($1,$2,$3,$4,$5) RETURNING qref", 5);
+	createStatement("TblWznmQSteList_updateRec", "UPDATE TblWznmQSteList SET jref = $1, jnum = $2, ref = $3, sref = $4, seqRefWznmMSequence = $5 WHERE qref = $6", 6);
 	createStatement("TblWznmQSteList_removeRecByQref", "DELETE FROM TblWznmQSteList WHERE qref = $1", 1);
 	createStatement("TblWznmQSteList_removeRstByJref", "DELETE FROM TblWznmQSteList WHERE jref = $1", 1);
 
-	createStatement("TblWznmQSteList_loadRecByQref", "SELECT qref, jref, jnum, ref, sref, seqRefWznmMSequence, eacIxVAction, lacIxVAction, Custstep FROM TblWznmQSteList WHERE qref = $1", 1);
-	createStatement("TblWznmQSteList_loadRstByJref", "SELECT qref, jref, jnum, ref, sref, seqRefWznmMSequence, eacIxVAction, lacIxVAction, Custstep FROM TblWznmQSteList WHERE jref = $1 ORDER BY jnum ASC", 1);
+	createStatement("TblWznmQSteList_loadRecByQref", "SELECT qref, jref, jnum, ref, sref, seqRefWznmMSequence FROM TblWznmQSteList WHERE qref = $1", 1);
+	createStatement("TblWznmQSteList_loadRstByJref", "SELECT qref, jref, jnum, ref, sref, seqRefWznmMSequence FROM TblWznmQSteList WHERE jref = $1 ORDER BY jnum ASC", 1);
 };
 
 bool PgTblWznmQSteList::loadRec(
@@ -570,10 +514,7 @@ bool PgTblWznmQSteList::loadRec(
 			PQfnumber(res, "jnum"),
 			PQfnumber(res, "ref"),
 			PQfnumber(res, "sref"),
-			PQfnumber(res, "seqrefwznmmsequence"),
-			PQfnumber(res, "eacixvaction"),
-			PQfnumber(res, "lacixvaction"),
-			PQfnumber(res, "custstep")
+			PQfnumber(res, "seqrefwznmmsequence")
 		};
 
 		ptr = PQgetvalue(res, 0, fnum[0]); _rec->qref = atoll(ptr);
@@ -582,9 +523,6 @@ bool PgTblWznmQSteList::loadRec(
 		ptr = PQgetvalue(res, 0, fnum[3]); _rec->ref = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[4]); _rec->sref.assign(ptr, PQgetlength(res, 0, fnum[4]));
 		ptr = PQgetvalue(res, 0, fnum[5]); _rec->seqRefWznmMSequence = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[6]); _rec->eacIxVAction = atol(ptr);
-		ptr = PQgetvalue(res, 0, fnum[7]); _rec->lacIxVAction = atol(ptr);
-		ptr = PQgetvalue(res, 0, fnum[8]); _rec->Custstep = (atoi(ptr) != 0);
 
 		retval = true;
 	};
@@ -616,10 +554,7 @@ ubigint PgTblWznmQSteList::loadRst(
 			PQfnumber(res, "jnum"),
 			PQfnumber(res, "ref"),
 			PQfnumber(res, "sref"),
-			PQfnumber(res, "seqrefwznmmsequence"),
-			PQfnumber(res, "eacixvaction"),
-			PQfnumber(res, "lacixvaction"),
-			PQfnumber(res, "custstep")
+			PQfnumber(res, "seqrefwznmmsequence")
 		};
 
 		while (numread < numrow) {
@@ -631,9 +566,6 @@ ubigint PgTblWznmQSteList::loadRst(
 			ptr = PQgetvalue(res, numread, fnum[3]); rec->ref = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[4]); rec->sref.assign(ptr, PQgetlength(res, numread, fnum[4]));
 			ptr = PQgetvalue(res, numread, fnum[5]); rec->seqRefWznmMSequence = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[6]); rec->eacIxVAction = atol(ptr);
-			ptr = PQgetvalue(res, numread, fnum[7]); rec->lacIxVAction = atol(ptr);
-			ptr = PQgetvalue(res, numread, fnum[8]); rec->Custstep = (atoi(ptr) != 0);
 
 			rst.nodes.push_back(rec);
 
@@ -730,33 +662,24 @@ ubigint PgTblWznmQSteList::insertRec(
 	uint _jnum = htonl(rec->jnum);
 	ubigint _ref = htonl64(rec->ref);
 	ubigint _seqRefWznmMSequence = htonl64(rec->seqRefWznmMSequence);
-	uint _eacIxVAction = htonl(rec->eacIxVAction);
-	uint _lacIxVAction = htonl(rec->lacIxVAction);
-	smallint _Custstep = htons((smallint) rec->Custstep);
 
 	const char* vals[] = {
 		(char*) &_jref,
 		(char*) &_jnum,
 		(char*) &_ref,
 		rec->sref.c_str(),
-		(char*) &_seqRefWznmMSequence,
-		(char*) &_eacIxVAction,
-		(char*) &_lacIxVAction,
-		(char*) &_Custstep
+		(char*) &_seqRefWznmMSequence
 	};
 	const int l[] = {
 		sizeof(ubigint),
 		sizeof(uint),
 		sizeof(ubigint),
 		0,
-		sizeof(ubigint),
-		sizeof(uint),
-		sizeof(uint),
-		sizeof(smallint)
+		sizeof(ubigint)
 	};
-	const int f[] = {1, 1, 1, 0, 1, 1, 1, 1};
+	const int f[] = {1, 1, 1, 0, 1};
 
-	res = PQexecPrepared(dbs, "TblWznmQSteList_insertRec", 8, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmQSteList_insertRec", 5, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_TUPLES_OK)	{
 		string dbms = "PgTblWznmQSteList::insertRec() / " + string(PQerrorMessage(dbs));
@@ -785,9 +708,6 @@ void PgTblWznmQSteList::updateRec(
 	uint _jnum = htonl(rec->jnum);
 	ubigint _ref = htonl64(rec->ref);
 	ubigint _seqRefWznmMSequence = htonl64(rec->seqRefWznmMSequence);
-	uint _eacIxVAction = htonl(rec->eacIxVAction);
-	uint _lacIxVAction = htonl(rec->lacIxVAction);
-	smallint _Custstep = htons((smallint) rec->Custstep);
 	ubigint _qref = htonl64(rec->qref);
 
 	const char* vals[] = {
@@ -796,9 +716,6 @@ void PgTblWznmQSteList::updateRec(
 		(char*) &_ref,
 		rec->sref.c_str(),
 		(char*) &_seqRefWznmMSequence,
-		(char*) &_eacIxVAction,
-		(char*) &_lacIxVAction,
-		(char*) &_Custstep,
 		(char*) &_qref
 	};
 	const int l[] = {
@@ -807,14 +724,11 @@ void PgTblWznmQSteList::updateRec(
 		sizeof(ubigint),
 		0,
 		sizeof(ubigint),
-		sizeof(uint),
-		sizeof(uint),
-		sizeof(smallint),
 		sizeof(ubigint)
 	};
-	const int f[] = {1, 1, 1, 0, 1, 1, 1, 1, 1};
+	const int f[] = {1, 1, 1, 0, 1, 1};
 
-	res = PQexecPrepared(dbs, "TblWznmQSteList_updateRec", 9, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmQSteList_updateRec", 6, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_COMMAND_OK) {
 		string dbms = "PgTblWznmQSteList::updateRec() / " + string(PQerrorMessage(dbs));

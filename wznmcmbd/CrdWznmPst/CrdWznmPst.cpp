@@ -2,8 +2,8 @@
 	* \file CrdWznmPst.cpp
 	* job handler for job CrdWznmPst (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -52,8 +52,10 @@ CrdWznmPst::CrdWznmPst(
 	xchg->addIxPreset(VecWznmVPreset::PREWZNMIXPRE, jref, ixWznmVPreset);
 	if (ixWznmVPreset != VecWznmVPreset::VOID) xchg->addRefPreset(ixWznmVPreset, jref, preUref);
 
+	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFPST, ref);
+
 	// initialize according to ref
-	changeRef(dbswznm, jref, ((ref+1) == 0) ? 0 : ref, false);
+	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWznmPstList(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmPstHeadbar(xchg, dbswznm, jref, ixWznmVLocale);

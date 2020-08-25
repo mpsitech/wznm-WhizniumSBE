@@ -2,8 +2,8 @@
 	* \file DlgWznmRlsFinreptr.cpp
 	* job handler for job DlgWznmRlsFinreptr (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -295,9 +295,9 @@ void DlgWznmRlsFinreptr::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if ((req->sref == "mon") && (ixVSge == VecVSge::PUSHGIT)) handleTimerWithSrefMonInSgePushgit(dbswznm);
+		if (ixVSge == VecVSge::FINIDLE) handleTimerInSgeFinidle(dbswznm, req->sref);
 		else if (ixVSge == VecVSge::PSGIDLE) handleTimerInSgePsgidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::FINIDLE) handleTimerInSgeFinidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::PUSHGIT)) handleTimerWithSrefMonInSgePushgit(dbswznm);
 	};
 };
 
@@ -387,11 +387,11 @@ string DlgWznmRlsFinreptr::handleDownloadInSgeDone(
 	return(xchg->tmppath + "/" + tgzfile); // IP handleDownloadInSgeDone --- RLINE
 };
 
-void DlgWznmRlsFinreptr::handleTimerWithSrefMonInSgePushgit(
+void DlgWznmRlsFinreptr::handleTimerInSgeFinidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgePushgit --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsFinreptr::handleTimerInSgePsgidle(
@@ -401,11 +401,11 @@ void DlgWznmRlsFinreptr::handleTimerInSgePsgidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmRlsFinreptr::handleTimerInSgeFinidle(
+void DlgWznmRlsFinreptr::handleTimerWithSrefMonInSgePushgit(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgePushgit --- ILINE
 };
 
 void DlgWznmRlsFinreptr::changeStage(

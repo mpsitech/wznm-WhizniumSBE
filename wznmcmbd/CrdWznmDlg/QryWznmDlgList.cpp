@@ -2,8 +2,8 @@
 	* \file QryWznmDlgList.cpp
 	* job handler for job QryWznmDlgList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -290,12 +290,12 @@ void QryWznmDlgList::fetch(
 			rec->stubRefWznmMCard = StubWznm::getStubCarStd(dbswznm, rec->refWznmMCard, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->srefRefIxVTbl = VecWznmVMDialogRefTbl::getSref(rec->refIxVTbl);
 			rec->titRefIxVTbl = VecWznmVMDialogRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
-			if (rec->refIxVTbl == VecWznmVMDialogRefTbl::IEX) {
-				rec->stubRefUref = StubWznm::getStubIexStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMDialogRefTbl::REL) {
+			if (rec->refIxVTbl == VecWznmVMDialogRefTbl::REL) {
 				rec->stubRefUref = StubWznm::getStubRelStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMDialogRefTbl::TBL) {
 				rec->stubRefUref = StubWznm::getStubTblStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMDialogRefTbl::IEX) {
+				rec->stubRefUref = StubWznm::getStubIexStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";
 		};
 
@@ -443,27 +443,13 @@ void QryWznmDlgList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMDLGUPD_REFEQ) {
-		call->abort = handleCallWznmDlgUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMDLGMOD) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMDLGMOD) {
 		call->abort = handleCallWznmDlgMod(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMDLGUPD_REFEQ) {
+		call->abort = handleCallWznmDlgUpd_refEq(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmDlgList::handleCallWznmDlgUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
-		ixWznmVQrystate = VecWznmVQrystate::OOD;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmDlgList::handleCallWznmDlgMod(
@@ -474,6 +460,20 @@ bool QryWznmDlgList::handleCallWznmDlgMod(
 
 	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
 		ixWznmVQrystate = VecWznmVQrystate::MNR;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWznmDlgList::handleCallWznmDlgUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
+		ixWznmVQrystate = VecWznmVQrystate::OOD;
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 

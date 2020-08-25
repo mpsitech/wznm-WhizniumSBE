@@ -2,8 +2,8 @@
 	* \file PnlWznmIexRec.cpp
 	* API code for job PnlWznmIexRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "PnlWznmIexRec.h"
@@ -104,17 +104,17 @@ set<uint> PnlWznmIexRec::ContInf::diff(
 PnlWznmIexRec::StatApp::StatApp(
 			const bool initdoneDetail
 			, const bool initdone1NImpexp
-			, const bool initdoneHk1NVector
 			, const bool initdoneRef1NDialog
+			, const bool initdoneHk1NVector
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
 	this->initdone1NImpexp = initdone1NImpexp;
-	this->initdoneHk1NVector = initdoneHk1NVector;
 	this->initdoneRef1NDialog = initdoneRef1NDialog;
+	this->initdoneHk1NVector = initdoneHk1NVector;
 
-	mask = {INITDONEDETAIL, INITDONE1NIMPEXP, INITDONEHK1NVECTOR, INITDONEREF1NDIALOG};
+	mask = {INITDONEDETAIL, INITDONE1NIMPEXP, INITDONEREF1NDIALOG, INITDONEHK1NVECTOR};
 };
 
 bool PnlWznmIexRec::StatApp::readXML(
@@ -136,8 +136,8 @@ bool PnlWznmIexRec::StatApp::readXML(
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NImpexp", initdone1NImpexp)) add(INITDONE1NIMPEXP);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneHk1NVector", initdoneHk1NVector)) add(INITDONEHK1NVECTOR);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NDialog", initdoneRef1NDialog)) add(INITDONEREF1NDIALOG);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneHk1NVector", initdoneHk1NVector)) add(INITDONEHK1NVECTOR);
 	};
 
 	return basefound;
@@ -150,8 +150,8 @@ set<uint> PnlWznmIexRec::StatApp::comm(
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
 	if (initdone1NImpexp == comp->initdone1NImpexp) insert(items, INITDONE1NIMPEXP);
-	if (initdoneHk1NVector == comp->initdoneHk1NVector) insert(items, INITDONEHK1NVECTOR);
 	if (initdoneRef1NDialog == comp->initdoneRef1NDialog) insert(items, INITDONEREF1NDIALOG);
+	if (initdoneHk1NVector == comp->initdoneHk1NVector) insert(items, INITDONEHK1NVECTOR);
 
 	return(items);
 };
@@ -164,7 +164,7 @@ set<uint> PnlWznmIexRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONE1NIMPEXP, INITDONEHK1NVECTOR, INITDONEREF1NDIALOG};
+	diffitems = {INITDONEDETAIL, INITDONE1NIMPEXP, INITDONEREF1NDIALOG, INITDONEHK1NVECTOR};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -178,8 +178,8 @@ PnlWznmIexRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
 			, const string& scrJref1NImpexp
-			, const string& scrJrefHk1NVector
 			, const string& scrJrefRef1NDialog
+			, const string& scrJrefHk1NVector
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -187,11 +187,11 @@ PnlWznmIexRec::StatShr::StatShr(
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
 	this->scrJref1NImpexp = scrJref1NImpexp;
-	this->scrJrefHk1NVector = scrJrefHk1NVector;
 	this->scrJrefRef1NDialog = scrJrefRef1NDialog;
+	this->scrJrefHk1NVector = scrJrefHk1NVector;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NIMPEXP, SCRJREFHK1NVECTOR, SCRJREFREF1NDIALOG, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NIMPEXP, SCRJREFREF1NDIALOG, SCRJREFHK1NVECTOR, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmIexRec::StatShr::readXML(
@@ -219,8 +219,8 @@ bool PnlWznmIexRec::StatShr::readXML(
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NImpexp", scrJref1NImpexp)) add(SCRJREF1NIMPEXP);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefHk1NVector", scrJrefHk1NVector)) add(SCRJREFHK1NVECTOR);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NDialog", scrJrefRef1NDialog)) add(SCRJREFREF1NDIALOG);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefHk1NVector", scrJrefHk1NVector)) add(SCRJREFHK1NVECTOR);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
 
@@ -235,8 +235,8 @@ set<uint> PnlWznmIexRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
 	if (scrJref1NImpexp == comp->scrJref1NImpexp) insert(items, SCRJREF1NIMPEXP);
-	if (scrJrefHk1NVector == comp->scrJrefHk1NVector) insert(items, SCRJREFHK1NVECTOR);
 	if (scrJrefRef1NDialog == comp->scrJrefRef1NDialog) insert(items, SCRJREFREF1NDIALOG);
+	if (scrJrefHk1NVector == comp->scrJrefHk1NVector) insert(items, SCRJREFHK1NVECTOR);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -250,7 +250,7 @@ set<uint> PnlWznmIexRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NIMPEXP, SCRJREFHK1NVECTOR, SCRJREFREF1NDIALOG, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NIMPEXP, SCRJREFREF1NDIALOG, SCRJREFHK1NVECTOR, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

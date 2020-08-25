@@ -1,4 +1,4 @@
-- IexWznmIni v1.0.2
+- IexWznmIni vv1.0.6
 - ImeIAVKeylistKey1.srefKlsIxWznmVKeylist	sref	Avail	Implied	Title	Comment
 - KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrAcv			add stages to upload dialog	
 - KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgimp			add stages to data import dialog	
@@ -228,6 +228,7 @@
 	- VecWznmVCard	CrdWznmRls	edit;exec;view
 	- VecWznmVCard	CrdWznmApp	edit;exec;view
 	- VecWznmVCard	CrdWznmRtj	edit;exec;view
+	- VecWznmVCard	CrdWznmEvt	edit;exec;view
 	- VecWznmVCard	CrdWznmSeq	edit;exec;view
 	- VecWznmVCard	CrdWznmSte	edit;exec;view
 	- VecWznmVCard	CrdWznmUtl	edit;exec;view

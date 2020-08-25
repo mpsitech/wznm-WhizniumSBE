@@ -2,8 +2,8 @@
 	* \file PnlWznmIexRec.cpp
 	* job handler for job PnlWznmIexRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,8 +37,8 @@ PnlWznmIexRec::PnlWznmIexRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlref1ndialog = NULL;
 	pnlhk1nvector = NULL;
+	pnlref1ndialog = NULL;
 	pnl1nimpexp = NULL;
 	pnldetail = NULL;
 
@@ -98,19 +98,19 @@ void PnlWznmIexRec::refresh(
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnl1nimpexp) {delete pnl1nimpexp; pnl1nimpexp = NULL;};
-		if (pnlhk1nvector) {delete pnlhk1nvector; pnlhk1nvector = NULL;};
 		if (pnlref1ndialog) {delete pnlref1ndialog; pnlref1ndialog = NULL;};
+		if (pnlhk1nvector) {delete pnlhk1nvector; pnlhk1nvector = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmIexDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nimpexp) pnl1nimpexp = new PnlWznmIex1NImpexp(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlhk1nvector) pnlhk1nvector = new PnlWznmIexHk1NVector(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1ndialog) pnlref1ndialog = new PnlWznmIexRef1NDialog(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlhk1nvector) pnlhk1nvector = new PnlWznmIexHk1NVector(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jref1NImpexp = ((pnl1nimpexp) ? pnl1nimpexp->jref : 0);
-	statshr.jrefHk1NVector = ((pnlhk1nvector) ? pnlhk1nvector->jref : 0);
 	statshr.jrefRef1NDialog = ((pnlref1ndialog) ? pnlref1ndialog->jref : 0);
+	statshr.jrefHk1NVector = ((pnlhk1nvector) ? pnlhk1nvector->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -138,8 +138,8 @@ void PnlWznmIexRec::updatePreset(
 		if (recIex.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nimpexp) pnl1nimpexp->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlhk1nvector) pnlhk1nvector->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1ndialog) pnlref1ndialog->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlhk1nvector) pnlhk1nvector->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswznm, moditems);

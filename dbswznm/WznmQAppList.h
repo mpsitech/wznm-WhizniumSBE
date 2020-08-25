@@ -2,8 +2,8 @@
 	* \file WznmQAppList.h
 	* Dbs and XML wrapper for table TblWznmQAppList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMQAPPLIST_H
@@ -24,7 +24,7 @@
 class WznmQAppList {
 
 public:
-	WznmQAppList(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint grp = 0, const std::string stubGrp = "", const Sbecore::ubigint own = 0, const std::string stubOwn = "", const std::string Short = "", const std::string Title = "", const Sbecore::uint ixVTarget = 0, const std::string srefIxVTarget = "", const std::string titIxVTarget = "", const Sbecore::ubigint verRefWznmMVersion = 0, const std::string stubVerRefWznmMVersion = "");
+	WznmQAppList(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint grp = 0, const std::string stubGrp = "", const Sbecore::ubigint own = 0, const std::string stubOwn = "", const std::string Short = "", const std::string Title = "", const Sbecore::uint ixWznmVApptarget = 0, const std::string srefIxWznmVApptarget = "", const std::string titIxWznmVApptarget = "", const Sbecore::ubigint verRefWznmMVersion = 0, const std::string stubVerRefWznmMVersion = "");
 
 public:
 	Sbecore::ubigint qref;
@@ -37,9 +37,9 @@ public:
 	std::string stubOwn;
 	std::string Short;
 	std::string Title;
-	Sbecore::uint ixVTarget;
-	std::string srefIxVTarget;
-	std::string titIxVTarget;
+	Sbecore::uint ixWznmVApptarget;
+	std::string srefIxWznmVApptarget;
+	std::string titIxWznmVApptarget;
 	Sbecore::ubigint verRefWznmMVersion;
 	std::string stubVerRefWznmMVersion;
 
@@ -84,8 +84,8 @@ public:
 	virtual Sbecore::ubigint loadRstBySQL(const std::string& sqlstr, const bool append, ListWznmQAppList& rst);
 
 	virtual Sbecore::ubigint insertRec(WznmQAppList* rec);
-	Sbecore::ubigint insertNewRec(WznmQAppList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint grp = 0, const std::string stubGrp = "", const Sbecore::ubigint own = 0, const std::string stubOwn = "", const std::string Short = "", const std::string Title = "", const Sbecore::uint ixVTarget = 0, const std::string srefIxVTarget = "", const std::string titIxVTarget = "", const Sbecore::ubigint verRefWznmMVersion = 0, const std::string stubVerRefWznmMVersion = "");
-	Sbecore::ubigint appendNewRecToRst(ListWznmQAppList& rst, WznmQAppList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint grp = 0, const std::string stubGrp = "", const Sbecore::ubigint own = 0, const std::string stubOwn = "", const std::string Short = "", const std::string Title = "", const Sbecore::uint ixVTarget = 0, const std::string srefIxVTarget = "", const std::string titIxVTarget = "", const Sbecore::ubigint verRefWznmMVersion = 0, const std::string stubVerRefWznmMVersion = "");
+	Sbecore::ubigint insertNewRec(WznmQAppList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint grp = 0, const std::string stubGrp = "", const Sbecore::ubigint own = 0, const std::string stubOwn = "", const std::string Short = "", const std::string Title = "", const Sbecore::uint ixWznmVApptarget = 0, const std::string srefIxWznmVApptarget = "", const std::string titIxWznmVApptarget = "", const Sbecore::ubigint verRefWznmMVersion = 0, const std::string stubVerRefWznmMVersion = "");
+	Sbecore::ubigint appendNewRecToRst(ListWznmQAppList& rst, WznmQAppList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint grp = 0, const std::string stubGrp = "", const Sbecore::ubigint own = 0, const std::string stubOwn = "", const std::string Short = "", const std::string Title = "", const Sbecore::uint ixWznmVApptarget = 0, const std::string srefIxWznmVApptarget = "", const std::string titIxWznmVApptarget = "", const Sbecore::ubigint verRefWznmMVersion = 0, const std::string stubVerRefWznmMVersion = "");
 	virtual void insertRst(ListWznmQAppList& rst);
 	virtual void updateRec(WznmQAppList* rec);
 	virtual void updateRst(ListWznmQAppList& rst);

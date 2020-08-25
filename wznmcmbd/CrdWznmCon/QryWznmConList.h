@@ -2,8 +2,8 @@
 	* \file QryWznmConList.h
 	* job handler for job QryWznmConList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMCONLIST_H
@@ -34,8 +34,8 @@ public:
 		static const Sbecore::uint SUP = 1;
 		static const Sbecore::uint REU = 2;
 		static const Sbecore::uint RET = 3;
-		static const Sbecore::uint HKU = 4;
-		static const Sbecore::uint SCT = 5;
+		static const Sbecore::uint SCT = 4;
+		static const Sbecore::uint HKU = 5;
 		static const Sbecore::uint HKT = 6;
 		static const Sbecore::uint TYP = 7;
 		static const Sbecore::uint SRF = 8;

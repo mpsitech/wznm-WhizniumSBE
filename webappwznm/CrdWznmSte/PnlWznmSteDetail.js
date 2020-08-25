@@ -2,8 +2,8 @@
   * \file PnlWznmSteDetail.js
   * web client functionality for panel PnlWznmSteDetail
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 // IP cust --- INSERT
@@ -61,15 +61,6 @@ function initBD(bNotD) {
 	// IP initBD --- BEGIN
 	initCpt(contcontdoc, "CptSrf", retrieveTi(srcdoc, "TagWznmSteDetail", "CptSrf"));
 	initCpt(contcontdoc, "CptSeq", retrieveTi(srcdoc, "TagWznmSteDetail", "CptSeq"));
-	initCpt(contcontdoc, "CptEac", retrieveTi(srcdoc, "TagWznmSteDetail", "CptEac"));
-	refreshPup(contcontdoc, srcdoc, "PupEac", "", "FeedFPupEac", retrieveCi(srcdoc, "ContIacWznmSteDetail", "numFPupEac"), retrieveSi(srcdoc, "StatShrWznmSteDetail", "PupEacActive"), false);
-	initCpt(contcontdoc, "CptErj", retrieveTi(srcdoc, "TagWznmSteDetail", "CptErj"));
-	initCpt(contcontdoc, "CptEve", retrieveTi(srcdoc, "TagWznmSteDetail", "CptEve"));
-	initCpt(contcontdoc, "CptEvi", retrieveTi(srcdoc, "TagWznmSteDetail", "CptEvi"));
-	initCpt(contcontdoc, "CptEsn", retrieveTi(srcdoc, "TagWznmSteDetail", "CptEsn"));
-	initCpt(contcontdoc, "CptLac", retrieveTi(srcdoc, "TagWznmSteDetail", "CptLac"));
-	refreshPup(contcontdoc, srcdoc, "PupLac", "", "FeedFPupLac", retrieveCi(srcdoc, "ContIacWznmSteDetail", "numFPupLac"), retrieveSi(srcdoc, "StatShrWznmSteDetail", "PupLacActive"), false);
-	initCpt(contcontdoc, "CptCst", retrieveTi(srcdoc, "TagWznmSteDetail", "CptCst"));
 	initCpt(contcontdoc, "CptCmt", retrieveTi(srcdoc, "TagWznmSteDetail", "CptCmt"));
 	// IP initBD --- END
 
@@ -94,7 +85,7 @@ function refreshA() {
 function refreshBD(bNotD) {
 	if (!contcontdoc) return;
 
-	var height = 317; // full cont height
+	var height = 142; // full cont height
 
 	// IP refreshBD.vars --- BEGIN
 	var TxtSrfActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "TxtSrfActive") == "true");
@@ -102,28 +93,6 @@ function refreshBD(bNotD) {
 	var TxtSeqActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "TxtSeqActive") == "true");
 	var ButSeqViewAvail = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButSeqViewAvail") == "true");
 	var ButSeqViewActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButSeqViewActive") == "true");
-
-	var PupEacActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "PupEacActive") == "true");
-
-	var TxtErjActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "TxtErjActive") == "true");
-	var ButErjViewAvail = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButErjViewAvail") == "true");
-	var ButErjViewActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButErjViewActive") == "true");
-
-	var TxtEveActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "TxtEveActive") == "true");
-	var ButEveViewAvail = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButEveViewAvail") == "true");
-	var ButEveViewActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButEveViewActive") == "true");
-
-	var TxtEviActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "TxtEviActive") == "true");
-	var ButEviViewAvail = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButEviViewAvail") == "true");
-	var ButEviViewActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButEviViewActive") == "true");
-
-	var TxtEsnActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "TxtEsnActive") == "true");
-	var ButEsnViewAvail = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButEsnViewAvail") == "true");
-	var ButEsnViewActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ButEsnViewActive") == "true");
-
-	var PupLacActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "PupLacActive") == "true");
-
-	var ChkCstActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "ChkCstActive") == "true");
 
 	var TxfCmtActive = (retrieveSi(srcdoc, "StatShrWznmSteDetail", "TxfCmtActive") == "true");
 
@@ -150,80 +119,6 @@ function refreshBD(bNotD) {
 	refreshTxt(contcontdoc, "TxtSeq", retrieveCi(srcdoc, "ContInfWznmSteDetail", "TxtSeq"));
 
 	if (ButSeqViewAvail) refreshButicon(contcontdoc, "ButSeqView", "icon/view", ButSeqViewActive, false);
-
-	contcontdoc.getElementById("PupEac").value = retrieveCi(srcdoc, "ContIacWznmSteDetail", "numFPupEac");
-
-	if ((ButErjViewAvail == !contcontdoc.getElementById("ButErjView"))) {
-		mytd = contcontdoc.getElementById("rdynErj");
-		clearElem(mytd);
-
-		first = true;
-
-		if (ButErjViewAvail) {
-			if (first) first = false;
-			else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
-			mytd.appendChild(makeImgBut(contcontdoc, "ButErjView", "icon/view"));
-		};
-	};
-
-	refreshTxt(contcontdoc, "TxtErj", retrieveCi(srcdoc, "ContInfWznmSteDetail", "TxtErj"));
-
-	if (ButErjViewAvail) refreshButicon(contcontdoc, "ButErjView", "icon/view", ButErjViewActive, false);
-
-	if ((ButEveViewAvail == !contcontdoc.getElementById("ButEveView"))) {
-		mytd = contcontdoc.getElementById("rdynEve");
-		clearElem(mytd);
-
-		first = true;
-
-		if (ButEveViewAvail) {
-			if (first) first = false;
-			else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
-			mytd.appendChild(makeImgBut(contcontdoc, "ButEveView", "icon/view"));
-		};
-	};
-
-	refreshTxt(contcontdoc, "TxtEve", retrieveCi(srcdoc, "ContInfWznmSteDetail", "TxtEve"));
-
-	if (ButEveViewAvail) refreshButicon(contcontdoc, "ButEveView", "icon/view", ButEveViewActive, false);
-
-	if ((ButEviViewAvail == !contcontdoc.getElementById("ButEviView"))) {
-		mytd = contcontdoc.getElementById("rdynEvi");
-		clearElem(mytd);
-
-		first = true;
-
-		if (ButEviViewAvail) {
-			if (first) first = false;
-			else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
-			mytd.appendChild(makeImgBut(contcontdoc, "ButEviView", "icon/view"));
-		};
-	};
-
-	refreshTxt(contcontdoc, "TxtEvi", retrieveCi(srcdoc, "ContInfWznmSteDetail", "TxtEvi"));
-
-	if (ButEviViewAvail) refreshButicon(contcontdoc, "ButEviView", "icon/view", ButEviViewActive, false);
-
-	if ((ButEsnViewAvail == !contcontdoc.getElementById("ButEsnView"))) {
-		mytd = contcontdoc.getElementById("rdynEsn");
-		clearElem(mytd);
-
-		first = true;
-
-		if (ButEsnViewAvail) {
-			if (first) first = false;
-			else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
-			mytd.appendChild(makeImgBut(contcontdoc, "ButEsnView", "icon/view"));
-		};
-	};
-
-	refreshTxt(contcontdoc, "TxtEsn", retrieveCi(srcdoc, "ContInfWznmSteDetail", "TxtEsn"));
-
-	if (ButEsnViewAvail) refreshButicon(contcontdoc, "ButEsnView", "icon/view", ButEsnViewActive, false);
-
-	contcontdoc.getElementById("PupLac").value = retrieveCi(srcdoc, "ContIacWznmSteDetail", "numFPupLac");
-
-	refreshChk(contcontdoc, "ChkCst", (retrieveCi(srcdoc, "ContIacWznmSteDetail", "ChkCst") == "true"), ChkCstActive);
 
 	refreshTxft(contcontdoc, "TxfCmt", retrieveCi(srcdoc, "ContIacWznmSteDetail", "TxfCmt"), TxfCmtActive, false, true);
 
@@ -286,29 +181,6 @@ function handleButCrdopenClick(ctlsref) {
 	sendReq(str, doc, handleDpchAppDoCrdopenReply);
 };
 
-function handleChkChange(_doc, ctlsref) {
-	var elem = _doc.getElementById(ctlsref);
-	var checked;
-
-	elem.setAttribute("class", "chkmod");
-
-	if (elem.checked == true) checked = "true"; else checked = "false";
-	setCi(srcdoc, "ContIacWznmSteDetail", ctlsref, checked);
-
-	var str = serializeDpchAppData(srcdoc, "DpchAppWznmSteDetailData", scrJref, "ContIacWznmSteDetail");
-	sendReq(str, doc, handleDpchAppDataDoReply);
-};
-
-function handlePupChange(_doc, ctlsref, size) {
-	var elem = _doc.getElementById(ctlsref);
-
-	elem.setAttribute("class", "pup" + size + "mod");
-	setCi(srcdoc, "ContIacWznmSteDetail", "numF" + ctlsref, elem.value);
-
-	var str = serializeDpchAppData(srcdoc, "DpchAppWznmSteDetailData", scrJref, "ContIacWznmSteDetail");
-	sendReq(str, doc, handleDpchAppDataDoReply);
-};
-
 function handleTxftKey(_doc, ctlsref, evt) {
 	var elem = _doc.getElementById(ctlsref);
 
@@ -334,8 +206,6 @@ function mergeDpchEngData(dom) {
 
 	if (updateSrcblock(dom, "DpchEngWznmSteDetailData", "ContIacWznmSteDetail", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmSteDetailData", "ContInfWznmSteDetail", srcdoc)) mask.push("continf");
-	if (updateSrcblock(dom, "DpchEngWznmSteDetailData", "FeedFPupEac", srcdoc)) mask.push("feedFPupEac");
-	if (updateSrcblock(dom, "DpchEngWznmSteDetailData", "FeedFPupLac", srcdoc)) mask.push("feedFPupLac");
 	if (updateSrcblock(dom, "DpchEngWznmSteDetailData", "StatAppWznmSteDetail", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmSteDetailData", "StatShrWznmSteDetail", srcdoc)) mask.push("statshr");
 	if (updateSrcblock(dom, "DpchEngWznmSteDetailData", "TagWznmSteDetail", srcdoc)) mask.push("tag");

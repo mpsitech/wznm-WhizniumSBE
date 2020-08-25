@@ -2,8 +2,8 @@
 	* \file PnlWznmVerDetail.cpp
 	* job handler for job PnlWznmVerDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -54,8 +54,8 @@ PnlWznmVerDetail::PnlWznmVerDetail(
 
 	xchg->addClstn(VecWznmVCall::CALLWZNMVER_STEEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMVER_PRJEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMVER_BVREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMVER_LOCEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMVER_BVREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -535,10 +535,10 @@ void PnlWznmVerDetail::handleCall(
 		call->abort = handleCallWznmVer_steEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_PRJEQ) {
 		call->abort = handleCallWznmVer_prjEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_BVREQ) {
-		call->abort = handleCallWznmVer_bvrEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_LOCEQ) {
 		call->abort = handleCallWznmVer_locEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_BVREQ) {
+		call->abort = handleCallWznmVer_bvrEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -599,17 +599,6 @@ bool PnlWznmVerDetail::handleCallWznmVer_prjEq(
 	return retval;
 };
 
-bool PnlWznmVerDetail::handleCallWznmVer_bvrEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recVer.bvrRefWznmMVersion == refInv); // IP handleCallWznmVer_bvrEq --- LINE
-	return retval;
-};
-
 bool PnlWznmVerDetail::handleCallWznmVer_locEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -618,6 +607,17 @@ bool PnlWznmVerDetail::handleCallWznmVer_locEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recVer.refWznmMLocale == refInv); // IP handleCallWznmVer_locEq --- LINE
+	return retval;
+};
+
+bool PnlWznmVerDetail::handleCallWznmVer_bvrEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recVer.bvrRefWznmMVersion == refInv); // IP handleCallWznmVer_bvrEq --- LINE
 	return retval;
 };
 

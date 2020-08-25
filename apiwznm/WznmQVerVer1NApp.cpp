@@ -2,8 +2,8 @@
 	* \file WznmQVerVer1NApp.cpp
 	* API code for table TblWznmQVerVer1NApp (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmQVerVer1NApp.h"

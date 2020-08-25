@@ -399,6 +399,7 @@
 		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
 		- 0	refWznmMApp	ubigint						
 		- 0	folder	string						
+		- 0	ipAllNotSpec	boolean						
 		- ImeIAMOpInvarg.end								
 		- ImeIMSquawk2.Title	Example							
 		- write code for accessor app '&StubWznmAppStd;'	write code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'							
@@ -410,6 +411,7 @@
 		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
 		- 0	refWznmMApp	ubigint						
 		- 0	folder	string						
+		- 0	ipAllNotSpec	boolean						
 		- ImeIAMOpInvarg.end								
 		- ImeIMSquawk2.Title	Example							
 		- write code for Java accessor app '&StubWznmAppStd;'	write code for Java accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'							

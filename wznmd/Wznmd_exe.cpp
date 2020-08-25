@@ -2,8 +2,8 @@
 	* \file Wznmd_exe.cpp
 	* Wznm daemon main (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "Wznmd.h"
@@ -491,7 +491,7 @@ int main(
 
 	try {
 		// welcome message
-		cout << "Welcome to WhizniumSBE 1.0.2!" << endl;
+		cout << "Welcome to WhizniumSBE v1.0.6!" << endl;
 
 		// calls wznmd.init()
 		wznmd = new Wznmd(exedir, clearAll, startMon);

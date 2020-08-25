@@ -2,8 +2,8 @@
 	* \file QryWznmVer1NOppack.h
 	* API code for job QryWznmVer1NOppack (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMVER1NOPPACK_H

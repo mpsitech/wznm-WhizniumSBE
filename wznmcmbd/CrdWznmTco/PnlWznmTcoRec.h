@@ -2,8 +2,8 @@
 	* \file PnlWznmTcoRec.h
 	* job handler for job PnlWznmTcoRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMTCOREC_H
@@ -14,8 +14,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmTco1NCheck.h"
-#include "PnlWznmTcoRef1NQuerymod.h"
 #include "PnlWznmTcoRef1NControl.h"
+#include "PnlWznmTcoRef1NQuerymod.h"
 #include "PnlWznmTco1NQuerycol.h"
 #include "PnlWznmTco1NImpexpcol.h"
 #include "PnlWznmTcoATitle.h"
@@ -198,8 +198,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmTco1NCheck* pnl1ncheck;
-	PnlWznmTcoRef1NQuerymod* pnlref1nquerymod;
 	PnlWznmTcoRef1NControl* pnlref1ncontrol;
+	PnlWznmTcoRef1NQuerymod* pnlref1nquerymod;
 	PnlWznmTco1NQuerycol* pnl1nquerycol;
 	PnlWznmTco1NImpexpcol* pnl1nimpexpcol;
 	PnlWznmTcoATitle* pnlatitle;
@@ -239,13 +239,13 @@ public:
 
 private:
 	bool handleCallWznmTcoUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmTco_fctEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmTco_fcuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmTco_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmTco_relEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmTco_sbsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmTco_tbl_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmTco_tblEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmTco_tbl_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmTco_sbsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmTco_relEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmTco_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmTco_fcuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmTco_fctEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 
 };
 

@@ -2,8 +2,8 @@
 	* \file CrdWznmNav.cpp
 	* job handler for job CrdWznmNav (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -42,18 +42,18 @@ CrdWznmNav::CrdWznmNav(
 	VecVSge::fillFeed(feedFSge);
 
 	pnlauxfct = NULL;
-	pnldeploy = NULL;
 	pnlappdev = NULL;
+	pnldeploy = NULL;
 	pnljob = NULL;
 	pnlcomp = NULL;
 	pnluix = NULL;
 	pnldbstr = NULL;
 	pnlproject = NULL;
 	pnlglobal = NULL;
-	pnlpre = NULL;
 	pnladmin = NULL;
-	dlgmnglic = NULL;
+	pnlpre = NULL;
 	pnlheadbar = NULL;
+	dlgmnglic = NULL;
 	dlgloaini = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -62,16 +62,16 @@ CrdWznmNav::CrdWznmNav(
 	refresh(dbswznm, moditems);
 
 	pnlauxfct = new PnlWznmNavAuxfct(xchg, dbswznm, jref, ixWznmVLocale);
-	pnldeploy = new PnlWznmNavDeploy(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlappdev = new PnlWznmNavAppdev(xchg, dbswznm, jref, ixWznmVLocale);
+	pnldeploy = new PnlWznmNavDeploy(xchg, dbswznm, jref, ixWznmVLocale);
 	pnljob = new PnlWznmNavJob(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlcomp = new PnlWznmNavComp(xchg, dbswznm, jref, ixWznmVLocale);
 	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
 	pnldbstr = new PnlWznmNavDbstr(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlproject = new PnlWznmNavProject(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlglobal = new PnlWznmNavGlobal(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlpre = new PnlWznmNavPre(xchg, dbswznm, jref, ixWznmVLocale);
 	pnladmin = new PnlWznmNavAdmin(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlpre = new PnlWznmNavPre(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmNavHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
@@ -242,6 +242,8 @@ void CrdWznmNav::refresh(
 	statshr.MitCrdAppAvail = evalMitCrdAppAvail(dbswznm);
 	statshr.MitCrdRtjAvail = evalMitCrdRtjAvail(dbswznm);
 	statshr.MitCrdRtjActive = evalMitCrdRtjActive(dbswznm);
+	statshr.MitCrdEvtAvail = evalMitCrdEvtAvail(dbswznm);
+	statshr.MitCrdEvtActive = evalMitCrdEvtActive(dbswznm);
 	statshr.MitCrdSeqAvail = evalMitCrdSeqAvail(dbswznm);
 	statshr.MitCrdSeqActive = evalMitCrdSeqActive(dbswznm);
 	statshr.MitCrdSteAvail = evalMitCrdSteAvail(dbswznm);
@@ -402,6 +404,8 @@ void CrdWznmNav::handleRequest(
 					handleDpchAppDoMitCrdAppClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDRTJCLICK) {
 					handleDpchAppDoMitCrdRtjClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::MITCRDEVTCLICK) {
+					handleDpchAppDoMitCrdEvtClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDSEQCLICK) {
 					handleDpchAppDoMitCrdSeqClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDSTECLICK) {
@@ -1000,6 +1004,18 @@ void CrdWznmNav::handleDpchAppDoMitCrdRtjClick(
 
 	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
 	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmRtj");
+};
+
+void CrdWznmNav::handleDpchAppDoMitCrdEvtClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	ubigint jrefNew = 0;
+
+	xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, "CrdWznmEvt", 0, jrefNew);
+
+	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
+	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmEvt");
 };
 
 void CrdWznmNav::handleDpchAppDoMitCrdSeqClick(

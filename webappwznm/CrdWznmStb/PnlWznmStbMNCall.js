@@ -2,8 +2,8 @@
   * \file PnlWznmStbMNCall.js
   * web client functionality for panel PnlWznmStbMNCall
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 // --- expand state management

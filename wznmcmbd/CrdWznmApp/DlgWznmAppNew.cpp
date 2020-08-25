@@ -2,8 +2,8 @@
 	* \file DlgWznmAppNew.cpp
 	* job handler for job DlgWznmAppNew (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -38,7 +38,7 @@ DlgWznmAppNew::DlgWznmAppNew(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	feedFDetPupTrg.tag = "FeedFDetPupTrg";
-	VecWznmVMAppTarget::fillFeed(ixWznmVLocale, feedFDetPupTrg);
+	VecWznmVApptarget::fillFeed(feedFDetPupTrg);
 	feedFDetPupVer.tag = "FeedFDetPupVer";
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
@@ -308,8 +308,10 @@ uint DlgWznmAppNew::enterSgeCreate(
 
 	app.grp = xchg->getRefPreset(VecWznmVPreset::PREWZNMGROUP, jref);
 	app.own = xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref);
-	app.ixVTarget = feedFDetPupTrg.getByNum(contiac.numFDetPupTrg)->ix;
+	app.ixWznmVApptarget = feedFDetPupTrg.getByNum(contiac.numFDetPupTrg)->ix;
 	app.verRefWznmMVersion = feedFDetPupVer.getByNum(contiac.numFDetPupVer)->ref;
+	app.verNum = 1;
+	if (dbswznm->loadUintBySQL("SELECT verNum FROM TblWznmMApp WHERE verRefWznmMVersion = " + to_string(app.verRefWznmMVersion) + " AND Short = '" + contiac.DetTxfSho + "' ORDER BY verNum DESC LIMIT 1", app.verNum)) app.verNum++;
 	app.Short = contiac.DetTxfSho;
 	app.Title = contiac.DetTxfTit;
 

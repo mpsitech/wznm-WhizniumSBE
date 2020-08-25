@@ -2,8 +2,8 @@
   * \file PnlWznmStbList.js
   * web client functionality for panel PnlWznmStbList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 // --- expand state management
@@ -139,7 +139,7 @@ function refreshB(chgcol) {
 			} else if (i == 2) {
 				doc.cols.push("TcoTyp"); doc.widths.push(TcoTypWidth); doc.fs.push("typ2"); doc.tos.push(0); wtot += TcoTypWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoTbl"); doc.widths.push(TcoTblWidth); doc.fs.push("tbl"); doc.tos.push(3); wtot += TcoTblWidth;
+				doc.cols.push("TcoTbl"); doc.widths.push(TcoTblWidth); doc.fs.push("tbl"); doc.tos.push(2); wtot += TcoTblWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoSbs"); doc.widths.push(TcoSbsWidth); doc.fs.push("sbs"); doc.tos.push(1); wtot += TcoSbsWidth;
 			} else if (i == 5) {

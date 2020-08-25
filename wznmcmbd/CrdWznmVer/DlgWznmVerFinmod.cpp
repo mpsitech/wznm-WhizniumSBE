@@ -2,8 +2,8 @@
 	* \file DlgWznmVerFinmod.cpp
 	* job handler for job DlgWznmVerFinmod (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -85,8 +85,8 @@ void DlgWznmVerFinmod::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShr oldStatshr(statshr);
 	ContInf oldContinf(continf);
+	StatShr oldStatshr(statshr);
 
 	// IP refresh --- RBEGIN
 	// statshr
@@ -99,8 +99,8 @@ void DlgWznmVerFinmod::refresh(
 	continf.FnmTxtPrg = getSquawk(dbswznm);
 
 	// IP refresh --- REND
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 };
 
 void DlgWznmVerFinmod::handleRequest(

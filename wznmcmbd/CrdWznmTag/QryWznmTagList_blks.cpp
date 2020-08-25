@@ -2,8 +2,8 @@
 	* \file QryWznmTagList_blks.cpp
 	* job handler for job QryWznmTagList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -19,9 +19,9 @@ uint QryWznmTagList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
+	if (s == "cpb") return CPB;
 	if (s == "grp") return GRP;
 	if (s == "srf") return SRF;
-	if (s == "cpb") return CPB;
 
 	return(0);
 };
@@ -29,9 +29,9 @@ uint QryWznmTagList::VecVOrd::getIx(
 string QryWznmTagList::VecVOrd::getSref(
 			const uint ix
 		) {
+	if (ix == CPB) return("cpb");
 	if (ix == GRP) return("grp");
 	if (ix == SRF) return("srf");
-	if (ix == CPB) return("cpb");
 
 	return("");
 };

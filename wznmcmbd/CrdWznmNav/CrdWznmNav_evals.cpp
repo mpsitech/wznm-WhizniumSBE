@@ -2,8 +2,8 @@
 	* \file CrdWznmNav_evals.cpp
 	* job handler for job CrdWznmNav (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -319,7 +319,7 @@ bool CrdWznmNav::evalPnldeployAvail(
 bool CrdWznmNav::evalPnlappdevAvail(
 			DbsWznm* dbswznm
 		) {
-	// pre.ixCrdaccApp()|pre.ixCrdaccRtj()|pre.ixCrdaccSeq()|pre.ixCrdaccSte()
+	// pre.ixCrdaccApp()|pre.ixCrdaccRtj()|pre.ixCrdaccEvt()|pre.ixCrdaccSeq()|pre.ixCrdaccSte()
 
 	vector<bool> args;
 	bool a, b;
@@ -328,10 +328,15 @@ bool CrdWznmNav::evalPnlappdevAvail(
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCRTJ, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCEVT, jref) != 0);
+	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSEQ, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSTE, jref) != 0);
 	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -1652,7 +1657,7 @@ bool CrdWznmNav::evalMitCrdRlsActive(
 bool CrdWznmNav::evalMspCrd9Avail(
 			DbsWznm* dbswznm
 		) {
-	// MitCrdAppAvail()|MitCrdRtjAvail()|MitCrdSeqAvail()|MitCrdSteAvail()
+	// MitCrdAppAvail()|MitCrdRtjAvail()|MitCrdEvtAvail()|MitCrdSeqAvail()|MitCrdSteAvail()
 
 	vector<bool> args;
 	bool a, b;
@@ -1661,10 +1666,15 @@ bool CrdWznmNav::evalMspCrd9Avail(
 	args.push_back(a);
 	a = false; a = evalMitCrdRtjAvail(dbswznm);
 	args.push_back(a);
+	a = false; a = evalMitCrdEvtAvail(dbswznm);
+	args.push_back(a);
 	a = false; a = evalMitCrdSeqAvail(dbswznm);
 	args.push_back(a);
 	a = false; a = evalMitCrdSteAvail(dbswznm);
 	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -1707,6 +1717,34 @@ bool CrdWznmNav::evalMitCrdRtjAvail(
 };
 
 bool CrdWznmNav::evalMitCrdRtjActive(
+			DbsWznm* dbswznm
+		) {
+	// pre.refApp()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFAPP, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWznmNav::evalMitCrdEvtAvail(
+			DbsWznm* dbswznm
+		) {
+	// pre.ixCrdaccEvt()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCEVT, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWznmNav::evalMitCrdEvtActive(
 			DbsWznm* dbswznm
 		) {
 	// pre.refApp()

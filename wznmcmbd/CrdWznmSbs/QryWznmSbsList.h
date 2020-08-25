@@ -2,8 +2,8 @@
 	* \file QryWznmSbsList.h
 	* job handler for job QryWznmSbsList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMSBSLIST_H
@@ -143,8 +143,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmSbsMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmSbsUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmSbsMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };

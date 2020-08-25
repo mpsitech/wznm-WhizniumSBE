@@ -2,8 +2,8 @@
 	* \file WznmQMdlMdl1NCard.h
 	* Dbs and XML wrapper for table TblWznmQMdlMdl1NCard (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMQMDLMDL1NCARD_H

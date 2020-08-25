@@ -2,8 +2,8 @@
 	* \file QryWznmAppList.h
 	* API code for job QryWznmAppList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMAPPLIST_H
@@ -29,8 +29,8 @@ namespace QryWznmAppList {
 	public:
 		static const Sbecore::uint VER = 1;
 		static const Sbecore::uint TRG = 2;
-		static const Sbecore::uint OWN = 3;
-		static const Sbecore::uint TIT = 4;
+		static const Sbecore::uint TIT = 3;
+		static const Sbecore::uint OWN = 4;
 		static const Sbecore::uint GRP = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);

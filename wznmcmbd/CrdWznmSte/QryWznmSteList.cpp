@@ -2,8 +2,8 @@
 	* \file QryWznmSteList.cpp
 	* job handler for job QryWznmSteList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -174,8 +174,8 @@ void QryWznmSteList::rerun(
 void QryWznmSteList::rerun_baseSQL(
 			string& sqlstr
 		) {
-	sqlstr = "INSERT INTO TblWznmQSteList(jref, jnum, ref, sref, seqRefWznmMSequence, eacIxVAction, lacIxVAction, Custstep)";
-	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMState.ref, TblWznmMState.sref, TblWznmMState.seqRefWznmMSequence, TblWznmMState.eacIxVAction, TblWznmMState.lacIxVAction, TblWznmMState.Custstep";
+	sqlstr = "INSERT INTO TblWznmQSteList(jref, jnum, ref, sref, seqRefWznmMSequence)";
+	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMState.ref, TblWznmMState.sref, TblWznmMState.seqRefWznmMSequence";
 };
 
 void QryWznmSteList::rerun_filtSQL(
@@ -241,11 +241,6 @@ void QryWznmSteList::fetch(
 
 			rec->jnum = statshr.jnumFirstload + i;
 			rec->stubSeqRefWznmMSequence = StubWznm::getStubSeqStd(dbswznm, rec->seqRefWznmMSequence, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			rec->srefEacIxVAction = VecWznmVMStateAction::getSref(rec->eacIxVAction);
-			rec->titEacIxVAction = VecWznmVMStateAction::getTitle(rec->eacIxVAction, ixWznmVLocale);
-			rec->srefLacIxVAction = VecWznmVMStateAction::getSref(rec->lacIxVAction);
-			rec->titLacIxVAction = VecWznmVMStateAction::getTitle(rec->lacIxVAction, ixWznmVLocale);
-			if (rec->Custstep) rec->yesnoCuststep = VecWznmVTag::getTitle(VecWznmVTag::YES, ixWznmVLocale); else rec->yesnoCuststep = VecWznmVTag::getTitle(VecWznmVTag::NO, ixWznmVLocale);
 		};
 
 		stmgr->commit();
@@ -354,14 +349,6 @@ bool QryWznmSteList::handleShow(
 	cout << "\tsref";
 	cout << "\tseqRefWznmMSequence";
 	cout << "\tstubSeqRefWznmMSequence";
-	cout << "\teacIxVAction";
-	cout << "\tsrefEacIxVAction";
-	cout << "\ttitEacIxVAction";
-	cout << "\tlacIxVAction";
-	cout << "\tsrefLacIxVAction";
-	cout << "\ttitLacIxVAction";
-	cout << "\tCuststep";
-	cout << "\tyesnoCuststep";
 	cout << endl;
 
 	// record rows
@@ -375,14 +362,6 @@ bool QryWznmSteList::handleShow(
 		cout << "\t" << rec->sref;
 		cout << "\t" << rec->seqRefWznmMSequence;
 		cout << "\t" << rec->stubSeqRefWznmMSequence;
-		cout << "\t" << rec->eacIxVAction;
-		cout << "\t" << rec->srefEacIxVAction;
-		cout << "\t" << rec->titEacIxVAction;
-		cout << "\t" << rec->lacIxVAction;
-		cout << "\t" << rec->srefLacIxVAction;
-		cout << "\t" << rec->titLacIxVAction;
-		cout << "\t" << rec->Custstep;
-		cout << "\t" << rec->yesnoCuststep;
 		cout << endl;
 	};
 	return retval;

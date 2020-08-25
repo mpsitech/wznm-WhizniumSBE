@@ -2,8 +2,8 @@
 	* \file WznmCtpGenjtrDlgloaini.h
 	* Wznm operation processor - add stages to initialization load dialog (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMCTPGENJTRDLGLOAINI_H

@@ -2,8 +2,8 @@
 	* \file DlgWznmRlsFinreptr.h
 	* job handler for job DlgWznmRlsFinreptr (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMRLSFINREPTR_H
@@ -479,9 +479,9 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
-	void handleTimerWithSrefMonInSgePushgit(DbsWznm* dbswznm);
-	void handleTimerInSgePsgidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeFinidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgePsgidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerWithSrefMonInSgePushgit(DbsWznm* dbswznm);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

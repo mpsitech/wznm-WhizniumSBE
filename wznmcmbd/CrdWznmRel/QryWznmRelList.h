@@ -2,8 +2,8 @@
 	* \file QryWznmRelList.h
 	* job handler for job QryWznmRelList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMRELLIST_H
@@ -36,8 +36,8 @@ public:
 		static const Sbecore::uint SUP = 3;
 		static const Sbecore::uint VER = 4;
 		static const Sbecore::uint TYP = 5;
-		static const Sbecore::uint TOS = 6;
-		static const Sbecore::uint TOT = 7;
+		static const Sbecore::uint TOT = 6;
+		static const Sbecore::uint TOS = 7;
 		static const Sbecore::uint FRS = 8;
 		static const Sbecore::uint FRT = 9;
 

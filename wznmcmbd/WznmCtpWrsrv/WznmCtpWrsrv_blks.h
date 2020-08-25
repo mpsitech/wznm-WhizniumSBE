@@ -2,8 +2,8 @@
 	* \file WznmCtpWrsrv_blks.h
 	* invocation / return data blocks for operation pack WznmCtpWrsrv (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMCTPWRSRV_BLKS_H

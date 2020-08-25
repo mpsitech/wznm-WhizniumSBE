@@ -2,20 +2,21 @@
 	* \file ApiWznm.h
 	* Wznm API library global functionality (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef APIWZNM_H
 #define APIWZNM_H
 
-#define WZNM_VERSION "1.0.2"
+#define WZNM_VERSION "1.0.6"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 0
-#define WZNM_VERSION_SUB 2
+#define WZNM_VERSION_SUB 6
 
 #include "ApiWznm_blks.h"
 
+#include "WznmQApp1NEvent.h"
 #include "WznmQApp1NRtjob.h"
 #include "WznmQAppApp1NSequence.h"
 #include "WznmQAppList.h"
@@ -54,6 +55,7 @@
 #include "WznmQDlgMNQuery.h"
 #include "WznmQDlgRef1NControl.h"
 #include "WznmQErrList.h"
+#include "WznmQEvtList.h"
 #include "WznmQFilList.h"
 #include "WznmQIelList.h"
 #include "WznmQIex1NImpexp.h"
@@ -166,7 +168,7 @@
 #include "WznmQStbMNSquawk.h"
 #include "WznmQStbSubMNStub.h"
 #include "WznmQStbSupMNStub.h"
-#include "WznmQSteAStep.h"
+#include "WznmQSteATrig.h"
 #include "WznmQSteList.h"
 #include "WznmQTagList.h"
 #include "WznmQTbl1NCheck.h"
@@ -244,6 +246,7 @@
 #include "CrdWznmCtp.h"
 #include "CrdWznmDlg.h"
 #include "CrdWznmErr.h"
+#include "CrdWznmEvt.h"
 #include "CrdWznmFil.h"
 #include "CrdWznmIel.h"
 #include "CrdWznmIex.h"
@@ -312,6 +315,7 @@
 #include "DlgWznmVerNew.h"
 #include "DlgWznmVerOppack.h"
 #include "DlgWznmVerWrstkit.h"
+#include "PnlWznmApp1NEvent.h"
 #include "PnlWznmApp1NRtjob.h"
 #include "PnlWznmAppApp1NSequence.h"
 #include "PnlWznmAppDetail.h"
@@ -383,6 +387,10 @@
 #include "PnlWznmErrHeadbar.h"
 #include "PnlWznmErrList.h"
 #include "PnlWznmErrRec.h"
+#include "PnlWznmEvtDetail.h"
+#include "PnlWznmEvtHeadbar.h"
+#include "PnlWznmEvtList.h"
+#include "PnlWznmEvtRec.h"
 #include "PnlWznmFilDetail.h"
 #include "PnlWznmFilHeadbar.h"
 #include "PnlWznmFilList.h"
@@ -588,7 +596,7 @@
 #include "PnlWznmStbRec.h"
 #include "PnlWznmStbSubMNStub.h"
 #include "PnlWznmStbSupMNStub.h"
-#include "PnlWznmSteAStep.h"
+#include "PnlWznmSteATrig.h"
 #include "PnlWznmSteDetail.h"
 #include "PnlWznmSteHeadbar.h"
 #include "PnlWznmSteList.h"
@@ -682,6 +690,7 @@
 #include "PnlWznmVitHeadbar.h"
 #include "PnlWznmVitList.h"
 #include "PnlWznmVitRec.h"
+#include "QryWznmApp1NEvent.h"
 #include "QryWznmApp1NRtjob.h"
 #include "QryWznmAppApp1NSequence.h"
 #include "QryWznmAppList.h"
@@ -720,6 +729,7 @@
 #include "QryWznmDlgMNQuery.h"
 #include "QryWznmDlgRef1NControl.h"
 #include "QryWznmErrList.h"
+#include "QryWznmEvtList.h"
 #include "QryWznmFilList.h"
 #include "QryWznmIelList.h"
 #include "QryWznmIex1NImpexp.h"
@@ -832,7 +842,7 @@
 #include "QryWznmStbMNSquawk.h"
 #include "QryWznmStbSubMNStub.h"
 #include "QryWznmStbSupMNStub.h"
-#include "QryWznmSteAStep.h"
+#include "QryWznmSteATrig.h"
 #include "QryWznmSteList.h"
 #include "QryWznmTagList.h"
 #include "QryWznmTbl1NCheck.h"

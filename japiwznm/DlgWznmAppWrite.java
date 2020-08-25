@@ -2,8 +2,8 @@
   * \file DlgWznmAppWrite.java
   * Java API code for job DlgWznmAppWrite
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -18,16 +18,18 @@ public class DlgWznmAppWrite {
 		*/
 	public static class VecVDit {
 
-		public static final int CUC = 1;
-		public static final int WRC = 2;
-		public static final int LFI = 3;
-		public static final int FIA = 4;
+		public static final int DET = 1;
+		public static final int CUC = 2;
+		public static final int WRC = 3;
+		public static final int LFI = 4;
+		public static final int FIA = 5;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
+			if (s.equals("det")) return DET;
 			if (s.equals("cuc")) return CUC;
 			if (s.equals("wrc")) return WRC;
 			if (s.equals("lfi")) return LFI;
@@ -39,6 +41,7 @@ public class DlgWznmAppWrite {
 		public static String getSref(
 					int ix
 				) {
+			if (ix == DET) return("Det");
 			if (ix == CUC) return("Cuc");
 			if (ix == WRC) return("Wrc");
 			if (ix == LFI) return("Lfi");
@@ -241,6 +244,91 @@ public class DlgWznmAppWrite {
 			commitems = comm(comp);
 
 			diffitems = new HashSet<Integer>(Arrays.asList(NUMFDSE));
+			for (Integer ci: commitems) diffitems.remove(ci);
+
+			return(diffitems);
+		};
+
+	};
+
+	/**
+	  * ContIacDet (full: ContIacDlgWznmAppWriteDet)
+	  */
+	public class ContIacDet extends Block {
+
+		public static final int CHKUSF = 1;
+
+		public ContIacDet(
+					boolean ChkUsf
+				) {
+			this.ChkUsf = ChkUsf;
+
+			mask = new HashSet<Integer>(Arrays.asList(CHKUSF));
+		};
+
+		public boolean ChkUsf;
+
+		public boolean readXML(
+					Document doc
+					, String basexpath
+					, boolean addbasetag
+				) {
+
+			clear();
+
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "ContIacDlgWznmAppWriteDet");
+
+			String itemtag = "ContitemIacDlgWznmAppWriteDet";
+
+			if (Xmlio.checkXPath(doc, basexpath)) {
+				ChkUsf = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "ChkUsf", mask, CHKUSF);
+
+				return true;
+			};
+
+			return false;
+		};
+
+		public void writeXML(
+					Document doc
+					, Element sup
+					, String difftag
+					, boolean shorttags
+				) {
+			if (difftag.isEmpty()) difftag = "ContIacDlgWznmAppWriteDet";
+
+			String itemtag;
+
+			if (shorttags) itemtag = "Ci";
+			else itemtag = "ContitemIacDlgWznmAppWriteDet";
+
+			Element el = doc.createElement(difftag);
+
+			if (sup == null) doc.appendChild(el);
+			else sup.appendChild(el);
+
+			Xmlio.writeBooleanAttr(doc, el, itemtag, "sref", "ChkUsf", ChkUsf);
+		};
+
+		public HashSet<Integer> comm(
+					ContIacDet comp
+				) {
+			HashSet<Integer> items = new HashSet<Integer>();
+
+			if (ChkUsf == comp.ChkUsf) items.add(CHKUSF);
+
+			return(items);
+		};
+
+		public HashSet<Integer> diff(
+					ContIacDet comp
+				) {
+			HashSet<Integer> commitems;
+			HashSet<Integer> diffitems;
+
+			commitems = comm(comp);
+
+			diffitems = new HashSet<Integer>(Arrays.asList(CHKUSF));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -1041,6 +1129,70 @@ public class DlgWznmAppWrite {
 	};
 
 	/**
+	  * TagDet (full: TagDlgWznmAppWriteDet)
+	  */
+	public class TagDet extends Block {
+
+		public static final int CPTUSF = 1;
+
+		public TagDet(
+					String CptUsf
+				) {
+			this.CptUsf = CptUsf;
+
+			mask = new HashSet<Integer>(Arrays.asList(CPTUSF));
+		};
+
+		public String CptUsf;
+
+		public boolean readXML(
+					Document doc
+					, String basexpath
+					, boolean addbasetag
+				) {
+
+			clear();
+
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "TagDlgWznmAppWriteDet");
+
+			String itemtag = "TagitemDlgWznmAppWriteDet";
+
+			if (Xmlio.checkXPath(doc, basexpath)) {
+				CptUsf = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptUsf", mask, CPTUSF);
+
+				return true;
+			};
+
+			return false;
+		};
+
+		public HashSet<Integer> comm(
+					TagDet comp
+				) {
+			HashSet<Integer> items = new HashSet<Integer>();
+
+			if (CptUsf.equals(comp.CptUsf)) items.add(CPTUSF);
+
+			return(items);
+		};
+
+		public HashSet<Integer> diff(
+					TagDet comp
+				) {
+			HashSet<Integer> commitems;
+			HashSet<Integer> diffitems;
+
+			commitems = comm(comp);
+
+			diffitems = new HashSet<Integer>(Arrays.asList(CPTUSF));
+			for (Integer ci: commitems) diffitems.remove(ci);
+
+			return(diffitems);
+		};
+
+	};
+
+	/**
 	  * TagFia (full: TagDlgWznmAppWriteFia)
 	  */
 	public class TagFia extends Block {
@@ -1251,11 +1403,13 @@ public class DlgWznmAppWrite {
 
 		public static final int SCRJREF = 1;
 		public static final int CONTIAC = 2;
-		public static final int ALL = 3;
+		public static final int CONTIACDET = 3;
+		public static final int ALL = 4;
 
 		public DpchAppData(
 					String scrJref
 					, ContIac contiac
+					, ContIacDet contiacdet
 					, Integer[] mask
 				) {
 			super(VecWznmVDpch.DPCHAPPDLGWZNMAPPWRITEDATA, scrJref);
@@ -1264,20 +1418,23 @@ public class DlgWznmAppWrite {
 
 			for (Integer i: mask)
 				if (i == ALL) {
-					this.mask = new HashSet<Integer>(Arrays.asList(SCRJREF, CONTIAC));
+					this.mask = new HashSet<Integer>(Arrays.asList(SCRJREF, CONTIAC, CONTIACDET));
 					break;
 				};
 
 			if (has(CONTIAC)) this.contiac = contiac;
+			if (has(CONTIACDET)) this.contiacdet = contiacdet;
 		};
 
 		public ContIac contiac;
+		public ContIacDet contiacdet;
 
 		public String getSrefsMask() {
 			ArrayList<String> ss = new ArrayList<String>();
 
 			if (has(SCRJREF)) ss.add("scrJref");
 			if (has(CONTIAC)) ss.add("contiac");
+			if (has(CONTIACDET)) ss.add("contiacdet");
 
 			return StrMod.vectorToString(ss, ';');
 		};
@@ -1295,6 +1452,7 @@ public class DlgWznmAppWrite {
 
 			if (has(SCRJREF)) Xmlio.writeString(doc, el, "scrJref", scrJref);
 			if (has(CONTIAC)) contiac.writeXML(doc, el, "", true);
+			if (has(CONTIACDET)) contiacdet.writeXML(doc, el, "", true);
 		};
 
 	};
@@ -1367,28 +1525,31 @@ public class DlgWznmAppWrite {
 
 		public static final int SCRJREF = 1;
 		public static final int CONTIAC = 2;
-		public static final int CONTINF = 3;
-		public static final int CONTINFFIA = 4;
-		public static final int CONTINFLFI = 5;
-		public static final int CONTINFWRC = 6;
-		public static final int FEEDFDSE = 7;
-		public static final int FEEDFSGE = 8;
-		public static final int STATAPP = 9;
-		public static final int STATSHR = 10;
-		public static final int STATSHRCUC = 11;
-		public static final int STATSHRFIA = 12;
-		public static final int STATSHRLFI = 13;
-		public static final int STATSHRWRC = 14;
-		public static final int TAG = 15;
-		public static final int TAGCUC = 16;
-		public static final int TAGFIA = 17;
-		public static final int TAGLFI = 18;
-		public static final int TAGWRC = 19;
+		public static final int CONTIACDET = 3;
+		public static final int CONTINF = 4;
+		public static final int CONTINFFIA = 5;
+		public static final int CONTINFLFI = 6;
+		public static final int CONTINFWRC = 7;
+		public static final int FEEDFDSE = 8;
+		public static final int FEEDFSGE = 9;
+		public static final int STATAPP = 10;
+		public static final int STATSHR = 11;
+		public static final int STATSHRCUC = 12;
+		public static final int STATSHRFIA = 13;
+		public static final int STATSHRLFI = 14;
+		public static final int STATSHRWRC = 15;
+		public static final int TAG = 16;
+		public static final int TAGCUC = 17;
+		public static final int TAGDET = 18;
+		public static final int TAGFIA = 19;
+		public static final int TAGLFI = 20;
+		public static final int TAGWRC = 21;
 
 		public DpchEngData() {
 			super(VecWznmVDpch.DPCHENGDLGWZNMAPPWRITEDATA);
 
 			contiac = new ContIac(0);
+			contiacdet = new ContIacDet(false);
 			continf = new ContInf(0);
 			continffia = new ContInfFia("");
 			continflfi = new ContInfLfi("");
@@ -1403,12 +1564,14 @@ public class DlgWznmAppWrite {
 			statshrwrc = new StatShrWrc(false, false);
 			tag = new Tag("", "");
 			tagcuc = new TagCuc("", "");
+			tagdet = new TagDet("");
 			tagfia = new TagFia("");
 			taglfi = new TagLfi("");
 			tagwrc = new TagWrc("", "", "");
 		};
 
 		public ContIac contiac;
+		public ContIacDet contiacdet;
 		public ContInf continf;
 		public ContInfFia continffia;
 		public ContInfLfi continflfi;
@@ -1423,6 +1586,7 @@ public class DlgWznmAppWrite {
 		public StatShrWrc statshrwrc;
 		public Tag tag;
 		public TagCuc tagcuc;
+		public TagDet tagdet;
 		public TagFia tagfia;
 		public TagLfi taglfi;
 		public TagWrc tagwrc;
@@ -1432,6 +1596,7 @@ public class DlgWznmAppWrite {
 
 			if (has(SCRJREF)) ss.add("scrJref");
 			if (has(CONTIAC)) ss.add("contiac");
+			if (has(CONTIACDET)) ss.add("contiacdet");
 			if (has(CONTINF)) ss.add("continf");
 			if (has(CONTINFFIA)) ss.add("continffia");
 			if (has(CONTINFLFI)) ss.add("continflfi");
@@ -1446,6 +1611,7 @@ public class DlgWznmAppWrite {
 			if (has(STATSHRWRC)) ss.add("statshrwrc");
 			if (has(TAG)) ss.add("tag");
 			if (has(TAGCUC)) ss.add("tagcuc");
+			if (has(TAGDET)) ss.add("tagdet");
 			if (has(TAGFIA)) ss.add("tagfia");
 			if (has(TAGLFI)) ss.add("taglfi");
 			if (has(TAGWRC)) ss.add("tagwrc");
@@ -1466,6 +1632,7 @@ public class DlgWznmAppWrite {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				scrJref = Xmlio.extractStringUclc(doc, basexpath, "scrJref", "", mask, SCRJREF);
 				if (contiac.readXML(doc, basexpath, true)) add(CONTIAC);
+				if (contiacdet.readXML(doc, basexpath, true)) add(CONTIACDET);
 				if (continf.readXML(doc, basexpath, true)) add(CONTINF);
 				if (continffia.readXML(doc, basexpath, true)) add(CONTINFFIA);
 				if (continflfi.readXML(doc, basexpath, true)) add(CONTINFLFI);
@@ -1480,12 +1647,14 @@ public class DlgWznmAppWrite {
 				if (statshrwrc.readXML(doc, basexpath, true)) add(STATSHRWRC);
 				if (tag.readXML(doc, basexpath, true)) add(TAG);
 				if (tagcuc.readXML(doc, basexpath, true)) add(TAGCUC);
+				if (tagdet.readXML(doc, basexpath, true)) add(TAGDET);
 				if (tagfia.readXML(doc, basexpath, true)) add(TAGFIA);
 				if (taglfi.readXML(doc, basexpath, true)) add(TAGLFI);
 				if (tagwrc.readXML(doc, basexpath, true)) add(TAGWRC);
 			} else {
 				scrJref = "";
 				contiac = new ContIac(0);
+				contiacdet = new ContIacDet(false);
 				continf = new ContInf(0);
 				continffia = new ContInfFia("");
 				continflfi = new ContInfLfi("");
@@ -1500,6 +1669,7 @@ public class DlgWznmAppWrite {
 				statshrwrc = new StatShrWrc(false, false);
 				tag = new Tag("", "");
 				tagcuc = new TagCuc("", "");
+				tagdet = new TagDet("");
 				tagfia = new TagFia("");
 				taglfi = new TagLfi("");
 				tagwrc = new TagWrc("", "", "");

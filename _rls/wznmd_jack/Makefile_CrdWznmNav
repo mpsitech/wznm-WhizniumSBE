@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmNav card job handler, release wznmd_jack
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
 INCPATH += -I/home/mpsitech/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/include/postgresql -I/usr/local/include
 
-OBJS = CrdWznmNav.o PnlWznmNavAuxfct.o PnlWznmNavDeploy.o PnlWznmNavAppdev.o PnlWznmNavJob.o PnlWznmNavComp.o PnlWznmNavUix.o PnlWznmNavDbstr.o PnlWznmNavProject.o PnlWznmNavGlobal.o PnlWznmNavPre.o PnlWznmNavAdmin.o DlgWznmNavMnglic.o PnlWznmNavHeadbar.o DlgWznmNavLoaini.o
+OBJS = CrdWznmNav.o PnlWznmNavAuxfct.o PnlWznmNavAppdev.o PnlWznmNavDeploy.o PnlWznmNavJob.o PnlWznmNavComp.o PnlWznmNavUix.o PnlWznmNavDbstr.o PnlWznmNavProject.o PnlWznmNavGlobal.o PnlWznmNavAdmin.o PnlWznmNavPre.o PnlWznmNavHeadbar.o DlgWznmNavMnglic.o DlgWznmNavLoaini.o
 
 LIB = libcrdwznmnav
 

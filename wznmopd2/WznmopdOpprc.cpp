@@ -2,8 +2,8 @@
 	* \file WznmopdOpprc.cpp
 	* operation processor for Wznm operation daemon wznmopd2 (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "Wznmopd.h"

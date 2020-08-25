@@ -2,8 +2,8 @@
 	* \file DlgWznmVerDeploy.h
 	* job handler for job DlgWznmVerDeploy (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMVERDEPLOY_H
@@ -474,8 +474,8 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
-	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 
 private:

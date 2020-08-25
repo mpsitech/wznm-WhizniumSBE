@@ -2,8 +2,8 @@
 	* \file PnlWznmOpxRef1NBlock.h
 	* job handler for job PnlWznmOpxRef1NBlock (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMOPXREF1NBLOCK_H

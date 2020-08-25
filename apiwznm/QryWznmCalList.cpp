@@ -2,8 +2,8 @@
 	* \file QryWznmCalList.cpp
 	* API code for job QryWznmCalList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "QryWznmCalList.h"
@@ -24,8 +24,8 @@ uint QryWznmCalList::VecVOrd::getIx(
 	if (s == "rat") return RAT;
 	if (s == "iat") return IAT;
 	if (s == "reu") return REU;
-	if (s == "ret") return RET;
 	if (s == "ver") return VER;
+	if (s == "ret") return RET;
 	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
 
@@ -38,8 +38,8 @@ string QryWznmCalList::VecVOrd::getSref(
 	if (ix == RAT) return("rat");
 	if (ix == IAT) return("iat");
 	if (ix == REU) return("reu");
-	if (ix == RET) return("ret");
 	if (ix == VER) return("ver");
+	if (ix == RET) return("ret");
 	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
 

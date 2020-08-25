@@ -12,6 +12,10 @@
 			function handleButRtjCollapseClick() {parent.parent.window.handleButCollapseClick("LstRtj");};
 			function handleButRtjViewClick() {parent.parent.window.handleButCrdopenClick("ButRtjView");};
 			function handleButRtjNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButRtjNewcrd");};
+			function handleButEvtExpandClick() {parent.parent.window.handleButExpandClick("LstEvt");};
+			function handleButEvtCollapseClick() {parent.parent.window.handleButCollapseClick("LstEvt");};
+			function handleButEvtViewClick() {parent.parent.window.handleButCrdopenClick("ButEvtView");};
+			function handleButEvtNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButEvtNewcrd");};
 			function handleButSeqExpandClick() {parent.parent.window.handleButExpandClick("LstSeq");};
 			function handleButSeqCollapseClick() {parent.parent.window.handleButCollapseClick("LstSeq");};
 			function handleButSeqViewClick() {parent.parent.window.handleButCrdopenClick("ButSeqView");};
@@ -69,6 +73,21 @@
 					</td>
 				</tr>
 				<tr id="trRtj2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trEvt" class="show">
+					<td height="25"></td>
+					<td id="ldynEvt" align="right">
+					</td>
+					<td></td>
+					<td id="dynEvt" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynEvt" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trEvt2" class="hide">
 					<td colspan="3" height="67"></td>
 					<td colspan="3"></td>
 				</tr>

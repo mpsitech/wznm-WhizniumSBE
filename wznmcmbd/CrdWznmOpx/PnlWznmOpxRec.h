@@ -2,8 +2,8 @@
 	* \file PnlWznmOpxRec.h
 	* job handler for job PnlWznmOpxRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMOPXREC_H
@@ -16,8 +16,8 @@
 #include "PnlWznmOpxSqkMNStub.h"
 #include "PnlWznmOpxMNJob.h"
 #include "PnlWznmOpxRef1NBlock.h"
-#include "PnlWznmOpxAInvarg.h"
 #include "PnlWznmOpxARetval.h"
+#include "PnlWznmOpxAInvarg.h"
 #include "PnlWznmOpxDetail.h"
 
 #define VecVWznmOpxRecDo PnlWznmOpxRec::VecVDo
@@ -185,8 +185,8 @@ public:
 	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
 	PnlWznmOpxMNJob* pnlmnjob;
 	PnlWznmOpxRef1NBlock* pnlref1nblock;
-	PnlWznmOpxAInvarg* pnlainvarg;
 	PnlWznmOpxARetval* pnlaretval;
+	PnlWznmOpxAInvarg* pnlainvarg;
 	PnlWznmOpxDetail* pnldetail;
 
 	WznmMOp recOpx;

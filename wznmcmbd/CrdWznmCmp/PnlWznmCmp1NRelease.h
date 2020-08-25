@@ -2,8 +2,8 @@
 	* \file PnlWznmCmp1NRelease.h
 	* job handler for job PnlWznmCmp1NRelease (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMCMP1NRELEASE_H

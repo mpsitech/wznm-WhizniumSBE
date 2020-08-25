@@ -2,8 +2,8 @@
   * \file PnlWznmNavAppdev.java
   * Java API code for job PnlWznmNavAppdev
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -22,10 +22,12 @@ public class PnlWznmNavAppdev {
 		public static final int BUTAPPNEWCRDCLICK = 2;
 		public static final int BUTRTJVIEWCLICK = 3;
 		public static final int BUTRTJNEWCRDCLICK = 4;
-		public static final int BUTSEQVIEWCLICK = 5;
-		public static final int BUTSEQNEWCRDCLICK = 6;
-		public static final int BUTSTEVIEWCLICK = 7;
-		public static final int BUTSTENEWCRDCLICK = 8;
+		public static final int BUTEVTVIEWCLICK = 5;
+		public static final int BUTEVTNEWCRDCLICK = 6;
+		public static final int BUTSEQVIEWCLICK = 7;
+		public static final int BUTSEQNEWCRDCLICK = 8;
+		public static final int BUTSTEVIEWCLICK = 9;
+		public static final int BUTSTENEWCRDCLICK = 10;
 
 		public static int getIx(
 					String sref
@@ -36,6 +38,8 @@ public class PnlWznmNavAppdev {
 			if (s.equals("butappnewcrdclick")) return BUTAPPNEWCRDCLICK;
 			if (s.equals("butrtjviewclick")) return BUTRTJVIEWCLICK;
 			if (s.equals("butrtjnewcrdclick")) return BUTRTJNEWCRDCLICK;
+			if (s.equals("butevtviewclick")) return BUTEVTVIEWCLICK;
+			if (s.equals("butevtnewcrdclick")) return BUTEVTNEWCRDCLICK;
 			if (s.equals("butseqviewclick")) return BUTSEQVIEWCLICK;
 			if (s.equals("butseqnewcrdclick")) return BUTSEQNEWCRDCLICK;
 			if (s.equals("butsteviewclick")) return BUTSTEVIEWCLICK;
@@ -51,6 +55,8 @@ public class PnlWznmNavAppdev {
 			if (ix == BUTAPPNEWCRDCLICK) return("ButAppNewcrdClick");
 			if (ix == BUTRTJVIEWCLICK) return("ButRtjViewClick");
 			if (ix == BUTRTJNEWCRDCLICK) return("ButRtjNewcrdClick");
+			if (ix == BUTEVTVIEWCLICK) return("ButEvtViewClick");
+			if (ix == BUTEVTNEWCRDCLICK) return("ButEvtNewcrdClick");
 			if (ix == BUTSEQVIEWCLICK) return("ButSeqViewClick");
 			if (ix == BUTSEQNEWCRDCLICK) return("ButSeqNewcrdClick");
 			if (ix == BUTSTEVIEWCLICK) return("ButSteViewClick");
@@ -68,25 +74,29 @@ public class PnlWznmNavAppdev {
 
 		public static final int NUMFLSTAPP = 1;
 		public static final int NUMFLSTRTJ = 2;
-		public static final int NUMFLSTSEQ = 3;
-		public static final int NUMFLSTSTE = 4;
+		public static final int NUMFLSTEVT = 3;
+		public static final int NUMFLSTSEQ = 4;
+		public static final int NUMFLSTSTE = 5;
 
 		public ContIac(
 					int numFLstApp
 					, int numFLstRtj
+					, int numFLstEvt
 					, int numFLstSeq
 					, int numFLstSte
 				) {
 			this.numFLstApp = numFLstApp;
 			this.numFLstRtj = numFLstRtj;
+			this.numFLstEvt = numFLstEvt;
 			this.numFLstSeq = numFLstSeq;
 			this.numFLstSte = numFLstSte;
 
-			mask = new HashSet<Integer>(Arrays.asList(NUMFLSTAPP, NUMFLSTRTJ, NUMFLSTSEQ, NUMFLSTSTE));
+			mask = new HashSet<Integer>(Arrays.asList(NUMFLSTAPP, NUMFLSTRTJ, NUMFLSTEVT, NUMFLSTSEQ, NUMFLSTSTE));
 		};
 
 		public int numFLstApp;
 		public int numFLstRtj;
+		public int numFLstEvt;
 		public int numFLstSeq;
 		public int numFLstSte;
 
@@ -105,6 +115,7 @@ public class PnlWznmNavAppdev {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				numFLstApp = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFLstApp", mask, NUMFLSTAPP);
 				numFLstRtj = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFLstRtj", mask, NUMFLSTRTJ);
+				numFLstEvt = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFLstEvt", mask, NUMFLSTEVT);
 				numFLstSeq = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFLstSeq", mask, NUMFLSTSEQ);
 				numFLstSte = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFLstSte", mask, NUMFLSTSTE);
 
@@ -134,6 +145,7 @@ public class PnlWznmNavAppdev {
 
 			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "numFLstApp", numFLstApp);
 			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "numFLstRtj", numFLstRtj);
+			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "numFLstEvt", numFLstEvt);
 			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "numFLstSeq", numFLstSeq);
 			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "numFLstSte", numFLstSte);
 		};
@@ -145,6 +157,7 @@ public class PnlWznmNavAppdev {
 
 			if (numFLstApp == comp.numFLstApp) items.add(NUMFLSTAPP);
 			if (numFLstRtj == comp.numFLstRtj) items.add(NUMFLSTRTJ);
+			if (numFLstEvt == comp.numFLstEvt) items.add(NUMFLSTEVT);
 			if (numFLstSeq == comp.numFLstSeq) items.add(NUMFLSTSEQ);
 			if (numFLstSte == comp.numFLstSte) items.add(NUMFLSTSTE);
 
@@ -159,7 +172,7 @@ public class PnlWznmNavAppdev {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(NUMFLSTAPP, NUMFLSTRTJ, NUMFLSTSEQ, NUMFLSTSTE));
+			diffitems = new HashSet<Integer>(Arrays.asList(NUMFLSTAPP, NUMFLSTRTJ, NUMFLSTEVT, NUMFLSTSEQ, NUMFLSTSTE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -175,44 +188,52 @@ public class PnlWznmNavAppdev {
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int LSTAPPALT = 2;
 		public static final int LSTRTJALT = 3;
-		public static final int LSTSEQALT = 4;
-		public static final int LSTSTEALT = 5;
-		public static final int LSTAPPNUMFIRSTDISP = 6;
-		public static final int LSTRTJNUMFIRSTDISP = 7;
-		public static final int LSTSEQNUMFIRSTDISP = 8;
-		public static final int LSTSTENUMFIRSTDISP = 9;
+		public static final int LSTEVTALT = 4;
+		public static final int LSTSEQALT = 5;
+		public static final int LSTSTEALT = 6;
+		public static final int LSTAPPNUMFIRSTDISP = 7;
+		public static final int LSTRTJNUMFIRSTDISP = 8;
+		public static final int LSTEVTNUMFIRSTDISP = 9;
+		public static final int LSTSEQNUMFIRSTDISP = 10;
+		public static final int LSTSTENUMFIRSTDISP = 11;
 
 		public StatApp(
 					int ixWznmVExpstate
 					, boolean LstAppAlt
 					, boolean LstRtjAlt
+					, boolean LstEvtAlt
 					, boolean LstSeqAlt
 					, boolean LstSteAlt
 					, int LstAppNumFirstdisp
 					, int LstRtjNumFirstdisp
+					, int LstEvtNumFirstdisp
 					, int LstSeqNumFirstdisp
 					, int LstSteNumFirstdisp
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.LstAppAlt = LstAppAlt;
 			this.LstRtjAlt = LstRtjAlt;
+			this.LstEvtAlt = LstEvtAlt;
 			this.LstSeqAlt = LstSeqAlt;
 			this.LstSteAlt = LstSteAlt;
 			this.LstAppNumFirstdisp = LstAppNumFirstdisp;
 			this.LstRtjNumFirstdisp = LstRtjNumFirstdisp;
+			this.LstEvtNumFirstdisp = LstEvtNumFirstdisp;
 			this.LstSeqNumFirstdisp = LstSeqNumFirstdisp;
 			this.LstSteNumFirstdisp = LstSteNumFirstdisp;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, LSTAPPALT, LSTRTJALT, LSTSEQALT, LSTSTEALT, LSTAPPNUMFIRSTDISP, LSTRTJNUMFIRSTDISP, LSTSEQNUMFIRSTDISP, LSTSTENUMFIRSTDISP));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, LSTAPPALT, LSTRTJALT, LSTEVTALT, LSTSEQALT, LSTSTEALT, LSTAPPNUMFIRSTDISP, LSTRTJNUMFIRSTDISP, LSTEVTNUMFIRSTDISP, LSTSEQNUMFIRSTDISP, LSTSTENUMFIRSTDISP));
 		};
 
 		public int ixWznmVExpstate;
 		public boolean LstAppAlt;
 		public boolean LstRtjAlt;
+		public boolean LstEvtAlt;
 		public boolean LstSeqAlt;
 		public boolean LstSteAlt;
 		public int LstAppNumFirstdisp;
 		public int LstRtjNumFirstdisp;
+		public int LstEvtNumFirstdisp;
 		public int LstSeqNumFirstdisp;
 		public int LstSteNumFirstdisp;
 
@@ -234,10 +255,12 @@ public class PnlWznmNavAppdev {
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				LstAppAlt = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstAppAlt", mask, LSTAPPALT);
 				LstRtjAlt = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstRtjAlt", mask, LSTRTJALT);
+				LstEvtAlt = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstEvtAlt", mask, LSTEVTALT);
 				LstSeqAlt = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstSeqAlt", mask, LSTSEQALT);
 				LstSteAlt = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstSteAlt", mask, LSTSTEALT);
 				LstAppNumFirstdisp = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstAppNumFirstdisp", mask, LSTAPPNUMFIRSTDISP);
 				LstRtjNumFirstdisp = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstRtjNumFirstdisp", mask, LSTRTJNUMFIRSTDISP);
+				LstEvtNumFirstdisp = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstEvtNumFirstdisp", mask, LSTEVTNUMFIRSTDISP);
 				LstSeqNumFirstdisp = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstSeqNumFirstdisp", mask, LSTSEQNUMFIRSTDISP);
 				LstSteNumFirstdisp = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstSteNumFirstdisp", mask, LSTSTENUMFIRSTDISP);
 
@@ -255,10 +278,12 @@ public class PnlWznmNavAppdev {
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (LstAppAlt == comp.LstAppAlt) items.add(LSTAPPALT);
 			if (LstRtjAlt == comp.LstRtjAlt) items.add(LSTRTJALT);
+			if (LstEvtAlt == comp.LstEvtAlt) items.add(LSTEVTALT);
 			if (LstSeqAlt == comp.LstSeqAlt) items.add(LSTSEQALT);
 			if (LstSteAlt == comp.LstSteAlt) items.add(LSTSTEALT);
 			if (LstAppNumFirstdisp == comp.LstAppNumFirstdisp) items.add(LSTAPPNUMFIRSTDISP);
 			if (LstRtjNumFirstdisp == comp.LstRtjNumFirstdisp) items.add(LSTRTJNUMFIRSTDISP);
+			if (LstEvtNumFirstdisp == comp.LstEvtNumFirstdisp) items.add(LSTEVTNUMFIRSTDISP);
 			if (LstSeqNumFirstdisp == comp.LstSeqNumFirstdisp) items.add(LSTSEQNUMFIRSTDISP);
 			if (LstSteNumFirstdisp == comp.LstSteNumFirstdisp) items.add(LSTSTENUMFIRSTDISP);
 
@@ -273,7 +298,7 @@ public class PnlWznmNavAppdev {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, LSTAPPALT, LSTRTJALT, LSTSEQALT, LSTSTEALT, LSTAPPNUMFIRSTDISP, LSTRTJNUMFIRSTDISP, LSTSEQNUMFIRSTDISP, LSTSTENUMFIRSTDISP));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, LSTAPPALT, LSTRTJALT, LSTEVTALT, LSTSEQALT, LSTSTEALT, LSTAPPNUMFIRSTDISP, LSTRTJNUMFIRSTDISP, LSTEVTNUMFIRSTDISP, LSTSEQNUMFIRSTDISP, LSTSTENUMFIRSTDISP));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -291,12 +316,15 @@ public class PnlWznmNavAppdev {
 		public static final int LSTRTJAVAIL = 3;
 		public static final int BUTRTJVIEWACTIVE = 4;
 		public static final int BUTRTJNEWCRDACTIVE = 5;
-		public static final int LSTSEQAVAIL = 6;
-		public static final int BUTSEQVIEWACTIVE = 7;
-		public static final int BUTSEQNEWCRDACTIVE = 8;
-		public static final int LSTSTEAVAIL = 9;
-		public static final int BUTSTEVIEWACTIVE = 10;
-		public static final int BUTSTENEWCRDACTIVE = 11;
+		public static final int LSTEVTAVAIL = 6;
+		public static final int BUTEVTVIEWACTIVE = 7;
+		public static final int BUTEVTNEWCRDACTIVE = 8;
+		public static final int LSTSEQAVAIL = 9;
+		public static final int BUTSEQVIEWACTIVE = 10;
+		public static final int BUTSEQNEWCRDACTIVE = 11;
+		public static final int LSTSTEAVAIL = 12;
+		public static final int BUTSTEVIEWACTIVE = 13;
+		public static final int BUTSTENEWCRDACTIVE = 14;
 
 		public StatShr(
 					boolean LstAppAvail
@@ -304,6 +332,9 @@ public class PnlWznmNavAppdev {
 					, boolean LstRtjAvail
 					, boolean ButRtjViewActive
 					, boolean ButRtjNewcrdActive
+					, boolean LstEvtAvail
+					, boolean ButEvtViewActive
+					, boolean ButEvtNewcrdActive
 					, boolean LstSeqAvail
 					, boolean ButSeqViewActive
 					, boolean ButSeqNewcrdActive
@@ -316,6 +347,9 @@ public class PnlWznmNavAppdev {
 			this.LstRtjAvail = LstRtjAvail;
 			this.ButRtjViewActive = ButRtjViewActive;
 			this.ButRtjNewcrdActive = ButRtjNewcrdActive;
+			this.LstEvtAvail = LstEvtAvail;
+			this.ButEvtViewActive = ButEvtViewActive;
+			this.ButEvtNewcrdActive = ButEvtNewcrdActive;
 			this.LstSeqAvail = LstSeqAvail;
 			this.ButSeqViewActive = ButSeqViewActive;
 			this.ButSeqNewcrdActive = ButSeqNewcrdActive;
@@ -323,7 +357,7 @@ public class PnlWznmNavAppdev {
 			this.ButSteViewActive = ButSteViewActive;
 			this.ButSteNewcrdActive = ButSteNewcrdActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(LSTAPPAVAIL, BUTAPPVIEWACTIVE, LSTRTJAVAIL, BUTRTJVIEWACTIVE, BUTRTJNEWCRDACTIVE, LSTSEQAVAIL, BUTSEQVIEWACTIVE, BUTSEQNEWCRDACTIVE, LSTSTEAVAIL, BUTSTEVIEWACTIVE, BUTSTENEWCRDACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(LSTAPPAVAIL, BUTAPPVIEWACTIVE, LSTRTJAVAIL, BUTRTJVIEWACTIVE, BUTRTJNEWCRDACTIVE, LSTEVTAVAIL, BUTEVTVIEWACTIVE, BUTEVTNEWCRDACTIVE, LSTSEQAVAIL, BUTSEQVIEWACTIVE, BUTSEQNEWCRDACTIVE, LSTSTEAVAIL, BUTSTEVIEWACTIVE, BUTSTENEWCRDACTIVE));
 		};
 
 		public boolean LstAppAvail;
@@ -331,6 +365,9 @@ public class PnlWznmNavAppdev {
 		public boolean LstRtjAvail;
 		public boolean ButRtjViewActive;
 		public boolean ButRtjNewcrdActive;
+		public boolean LstEvtAvail;
+		public boolean ButEvtViewActive;
+		public boolean ButEvtNewcrdActive;
 		public boolean LstSeqAvail;
 		public boolean ButSeqViewActive;
 		public boolean ButSeqNewcrdActive;
@@ -356,6 +393,9 @@ public class PnlWznmNavAppdev {
 				LstRtjAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstRtjAvail", mask, LSTRTJAVAIL);
 				ButRtjViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRtjViewActive", mask, BUTRTJVIEWACTIVE);
 				ButRtjNewcrdActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRtjNewcrdActive", mask, BUTRTJNEWCRDACTIVE);
+				LstEvtAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstEvtAvail", mask, LSTEVTAVAIL);
+				ButEvtViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButEvtViewActive", mask, BUTEVTVIEWACTIVE);
+				ButEvtNewcrdActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButEvtNewcrdActive", mask, BUTEVTNEWCRDACTIVE);
 				LstSeqAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstSeqAvail", mask, LSTSEQAVAIL);
 				ButSeqViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSeqViewActive", mask, BUTSEQVIEWACTIVE);
 				ButSeqNewcrdActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSeqNewcrdActive", mask, BUTSEQNEWCRDACTIVE);
@@ -379,6 +419,9 @@ public class PnlWznmNavAppdev {
 			if (LstRtjAvail == comp.LstRtjAvail) items.add(LSTRTJAVAIL);
 			if (ButRtjViewActive == comp.ButRtjViewActive) items.add(BUTRTJVIEWACTIVE);
 			if (ButRtjNewcrdActive == comp.ButRtjNewcrdActive) items.add(BUTRTJNEWCRDACTIVE);
+			if (LstEvtAvail == comp.LstEvtAvail) items.add(LSTEVTAVAIL);
+			if (ButEvtViewActive == comp.ButEvtViewActive) items.add(BUTEVTVIEWACTIVE);
+			if (ButEvtNewcrdActive == comp.ButEvtNewcrdActive) items.add(BUTEVTNEWCRDACTIVE);
 			if (LstSeqAvail == comp.LstSeqAvail) items.add(LSTSEQAVAIL);
 			if (ButSeqViewActive == comp.ButSeqViewActive) items.add(BUTSEQVIEWACTIVE);
 			if (ButSeqNewcrdActive == comp.ButSeqNewcrdActive) items.add(BUTSEQNEWCRDACTIVE);
@@ -397,7 +440,7 @@ public class PnlWznmNavAppdev {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(LSTAPPAVAIL, BUTAPPVIEWACTIVE, LSTRTJAVAIL, BUTRTJVIEWACTIVE, BUTRTJNEWCRDACTIVE, LSTSEQAVAIL, BUTSEQVIEWACTIVE, BUTSEQNEWCRDACTIVE, LSTSTEAVAIL, BUTSTEVIEWACTIVE, BUTSTENEWCRDACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(LSTAPPAVAIL, BUTAPPVIEWACTIVE, LSTRTJAVAIL, BUTRTJVIEWACTIVE, BUTRTJNEWCRDACTIVE, LSTEVTAVAIL, BUTEVTVIEWACTIVE, BUTEVTNEWCRDACTIVE, LSTSEQAVAIL, BUTSEQVIEWACTIVE, BUTSEQNEWCRDACTIVE, LSTSTEAVAIL, BUTSTEVIEWACTIVE, BUTSTENEWCRDACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -413,28 +456,32 @@ public class PnlWznmNavAppdev {
 		public static final int CPT = 1;
 		public static final int CPTAPP = 2;
 		public static final int CPTRTJ = 3;
-		public static final int CPTSEQ = 4;
-		public static final int CPTSTE = 5;
+		public static final int CPTEVT = 4;
+		public static final int CPTSEQ = 5;
+		public static final int CPTSTE = 6;
 
 		public Tag(
 					String Cpt
 					, String CptApp
 					, String CptRtj
+					, String CptEvt
 					, String CptSeq
 					, String CptSte
 				) {
 			this.Cpt = Cpt;
 			this.CptApp = CptApp;
 			this.CptRtj = CptRtj;
+			this.CptEvt = CptEvt;
 			this.CptSeq = CptSeq;
 			this.CptSte = CptSte;
 
-			mask = new HashSet<Integer>(Arrays.asList(CPT, CPTAPP, CPTRTJ, CPTSEQ, CPTSTE));
+			mask = new HashSet<Integer>(Arrays.asList(CPT, CPTAPP, CPTRTJ, CPTEVT, CPTSEQ, CPTSTE));
 		};
 
 		public String Cpt;
 		public String CptApp;
 		public String CptRtj;
+		public String CptEvt;
 		public String CptSeq;
 		public String CptSte;
 
@@ -454,6 +501,7 @@ public class PnlWznmNavAppdev {
 				Cpt = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "Cpt", mask, CPT);
 				CptApp = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptApp", mask, CPTAPP);
 				CptRtj = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptRtj", mask, CPTRTJ);
+				CptEvt = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptEvt", mask, CPTEVT);
 				CptSeq = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptSeq", mask, CPTSEQ);
 				CptSte = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptSte", mask, CPTSTE);
 
@@ -471,6 +519,7 @@ public class PnlWznmNavAppdev {
 			if (Cpt.equals(comp.Cpt)) items.add(CPT);
 			if (CptApp.equals(comp.CptApp)) items.add(CPTAPP);
 			if (CptRtj.equals(comp.CptRtj)) items.add(CPTRTJ);
+			if (CptEvt.equals(comp.CptEvt)) items.add(CPTEVT);
 			if (CptSeq.equals(comp.CptSeq)) items.add(CPTSEQ);
 			if (CptSte.equals(comp.CptSte)) items.add(CPTSTE);
 
@@ -485,7 +534,7 @@ public class PnlWznmNavAppdev {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(CPT, CPTAPP, CPTRTJ, CPTSEQ, CPTSTE));
+			diffitems = new HashSet<Integer>(Arrays.asList(CPT, CPTAPP, CPTRTJ, CPTEVT, CPTSEQ, CPTSTE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -611,28 +660,31 @@ public class PnlWznmNavAppdev {
 		public static final int SCRJREF = 1;
 		public static final int CONTIAC = 2;
 		public static final int FEEDFLSTAPP = 3;
-		public static final int FEEDFLSTRTJ = 4;
-		public static final int FEEDFLSTSEQ = 5;
-		public static final int FEEDFLSTSTE = 6;
-		public static final int STATAPP = 7;
-		public static final int STATSHR = 8;
-		public static final int TAG = 9;
+		public static final int FEEDFLSTEVT = 4;
+		public static final int FEEDFLSTRTJ = 5;
+		public static final int FEEDFLSTSEQ = 6;
+		public static final int FEEDFLSTSTE = 7;
+		public static final int STATAPP = 8;
+		public static final int STATSHR = 9;
+		public static final int TAG = 10;
 
 		public DpchEngData() {
 			super(VecWznmVDpch.DPCHENGWZNMNAVAPPDEVDATA);
 
-			contiac = new ContIac(0, 0, 0, 0);
+			contiac = new ContIac(0, 0, 0, 0, 0);
 			feedFLstApp = new Feed("FeedFLstApp");
+			feedFLstEvt = new Feed("FeedFLstEvt");
 			feedFLstRtj = new Feed("FeedFLstRtj");
 			feedFLstSeq = new Feed("FeedFLstSeq");
 			feedFLstSte = new Feed("FeedFLstSte");
-			statapp = new StatApp(0, false, false, false, false, 0, 0, 0, 0);
-			statshr = new StatShr(false, false, false, false, false, false, false, false, false, false, false);
-			tag = new Tag("", "", "", "", "");
+			statapp = new StatApp(0, false, false, false, false, false, 0, 0, 0, 0, 0);
+			statshr = new StatShr(false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+			tag = new Tag("", "", "", "", "", "");
 		};
 
 		public ContIac contiac;
 		public Feed feedFLstApp;
+		public Feed feedFLstEvt;
 		public Feed feedFLstRtj;
 		public Feed feedFLstSeq;
 		public Feed feedFLstSte;
@@ -646,6 +698,7 @@ public class PnlWznmNavAppdev {
 			if (has(SCRJREF)) ss.add("scrJref");
 			if (has(CONTIAC)) ss.add("contiac");
 			if (has(FEEDFLSTAPP)) ss.add("feedFLstApp");
+			if (has(FEEDFLSTEVT)) ss.add("feedFLstEvt");
 			if (has(FEEDFLSTRTJ)) ss.add("feedFLstRtj");
 			if (has(FEEDFLSTSEQ)) ss.add("feedFLstSeq");
 			if (has(FEEDFLSTSTE)) ss.add("feedFLstSte");
@@ -670,6 +723,7 @@ public class PnlWznmNavAppdev {
 				scrJref = Xmlio.extractStringUclc(doc, basexpath, "scrJref", "", mask, SCRJREF);
 				if (contiac.readXML(doc, basexpath, true)) add(CONTIAC);
 				if (feedFLstApp.readXML(doc, basexpath, true)) add(FEEDFLSTAPP);
+				if (feedFLstEvt.readXML(doc, basexpath, true)) add(FEEDFLSTEVT);
 				if (feedFLstRtj.readXML(doc, basexpath, true)) add(FEEDFLSTRTJ);
 				if (feedFLstSeq.readXML(doc, basexpath, true)) add(FEEDFLSTSEQ);
 				if (feedFLstSte.readXML(doc, basexpath, true)) add(FEEDFLSTSTE);
@@ -678,14 +732,15 @@ public class PnlWznmNavAppdev {
 				if (tag.readXML(doc, basexpath, true)) add(TAG);
 			} else {
 				scrJref = "";
-				contiac = new ContIac(0, 0, 0, 0);
+				contiac = new ContIac(0, 0, 0, 0, 0);
 				feedFLstApp = new Feed("FeedFLstApp");
+				feedFLstEvt = new Feed("FeedFLstEvt");
 				feedFLstRtj = new Feed("FeedFLstRtj");
 				feedFLstSeq = new Feed("FeedFLstSeq");
 				feedFLstSte = new Feed("FeedFLstSte");
-				statapp = new StatApp(0, false, false, false, false, 0, 0, 0, 0);
-				statshr = new StatShr(false, false, false, false, false, false, false, false, false, false, false);
-				tag = new Tag("", "", "", "", "");
+				statapp = new StatApp(0, false, false, false, false, false, 0, 0, 0, 0, 0);
+				statshr = new StatShr(false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+				tag = new Tag("", "", "", "", "", "");
 			};
 		};
 

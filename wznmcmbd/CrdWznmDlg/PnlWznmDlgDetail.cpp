@@ -2,8 +2,8 @@
 	* \file PnlWznmDlgDetail.cpp
 	* job handler for job PnlWznmDlgDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -274,13 +274,13 @@ void PnlWznmDlgDetail::handleDpchAppDoButReuViewClick(
 	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
 
 	if (statshr.ButReuViewAvail && statshr.ButReuViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref)) if (recDlg.refIxVTbl == VecWznmVMDialogRefTbl::REL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-			sref = "CrdWznmRel";
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref)) if (recDlg.refIxVTbl == VecWznmVMDialogRefTbl::IEX) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+			sref = "CrdWznmIex";
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recDlg.refUref, jrefNew);
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref)) if (recDlg.refIxVTbl == VecWznmVMDialogRefTbl::IEX) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmIex";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref)) if (recDlg.refIxVTbl == VecWznmVMDialogRefTbl::REL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmRel";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recDlg.refUref, jrefNew);
 			};
 		};

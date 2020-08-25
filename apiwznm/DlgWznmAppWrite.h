@@ -2,8 +2,8 @@
 	* \file DlgWznmAppWrite.h
 	* API code for job DlgWznmAppWrite (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMAPPWRITE_H
@@ -17,6 +17,7 @@
 #define VecVDlgWznmAppWriteSge DlgWznmAppWrite::VecVSge
 
 #define ContIacDlgWznmAppWrite DlgWznmAppWrite::ContIac
+#define ContIacDlgWznmAppWriteDet DlgWznmAppWrite::ContIacDet
 #define ContInfDlgWznmAppWrite DlgWznmAppWrite::ContInf
 #define ContInfDlgWznmAppWriteFia DlgWznmAppWrite::ContInfFia
 #define ContInfDlgWznmAppWriteLfi DlgWznmAppWrite::ContInfLfi
@@ -29,6 +30,7 @@
 #define StatShrDlgWznmAppWriteWrc DlgWznmAppWrite::StatShrWrc
 #define TagDlgWznmAppWrite DlgWznmAppWrite::Tag
 #define TagDlgWznmAppWriteCuc DlgWznmAppWrite::TagCuc
+#define TagDlgWznmAppWriteDet DlgWznmAppWrite::TagDet
 #define TagDlgWznmAppWriteFia DlgWznmAppWrite::TagFia
 #define TagDlgWznmAppWriteLfi DlgWznmAppWrite::TagLfi
 #define TagDlgWznmAppWriteWrc DlgWznmAppWrite::TagWrc
@@ -47,10 +49,11 @@ namespace DlgWznmAppWrite {
 	class VecVDit {
 
 	public:
-		static const Sbecore::uint CUC = 1;
-		static const Sbecore::uint WRC = 2;
-		static const Sbecore::uint LFI = 3;
-		static const Sbecore::uint FIA = 4;
+		static const Sbecore::uint DET = 1;
+		static const Sbecore::uint CUC = 2;
+		static const Sbecore::uint WRC = 3;
+		static const Sbecore::uint LFI = 4;
+		static const Sbecore::uint FIA = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -122,6 +125,27 @@ namespace DlgWznmAppWrite {
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContIac* comp);
 		std::set<Sbecore::uint> diff(const ContIac* comp);
+	};
+
+	/**
+	  * ContIacDet (full: ContIacDlgWznmAppWriteDet)
+	  */
+	class ContIacDet : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint CHKUSF = 1;
+
+	public:
+		ContIacDet(const bool ChkUsf = false);
+
+	public:
+		bool ChkUsf;
+
+	public:
+		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
+		std::set<Sbecore::uint> comm(const ContIacDet* comp);
+		std::set<Sbecore::uint> diff(const ContIacDet* comp);
 	};
 
 	/**
@@ -369,6 +393,24 @@ namespace DlgWznmAppWrite {
 	};
 
 	/**
+	  * TagDet (full: TagDlgWznmAppWriteDet)
+	  */
+	class TagDet : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint CPTUSF = 1;
+
+	public:
+		TagDet(const std::string& CptUsf = "");
+
+	public:
+		std::string CptUsf;
+
+	public:
+		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+	};
+
+	/**
 	  * TagFia (full: TagDlgWznmAppWriteFia)
 	  */
 	class TagFia : public Sbecore::Xmlio::Block {
@@ -434,13 +476,15 @@ namespace DlgWznmAppWrite {
 	public:
 		static const Sbecore::uint SCRJREF = 1;
 		static const Sbecore::uint CONTIAC = 2;
-		static const Sbecore::uint ALL = 3;
+		static const Sbecore::uint CONTIACDET = 3;
+		static const Sbecore::uint ALL = 4;
 
 	public:
-		DpchAppData(const std::string& scrJref = "", ContIac* contiac = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchAppData(const std::string& scrJref = "", ContIac* contiac = NULL, ContIacDet* contiacdet = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContIac contiac;
+		ContIacDet contiacdet;
 
 	public:
 		std::string getSrefsMask();
@@ -480,29 +524,32 @@ namespace DlgWznmAppWrite {
 	public:
 		static const Sbecore::uint SCRJREF = 1;
 		static const Sbecore::uint CONTIAC = 2;
-		static const Sbecore::uint CONTINF = 3;
-		static const Sbecore::uint CONTINFFIA = 4;
-		static const Sbecore::uint CONTINFLFI = 5;
-		static const Sbecore::uint CONTINFWRC = 6;
-		static const Sbecore::uint FEEDFDSE = 7;
-		static const Sbecore::uint FEEDFSGE = 8;
-		static const Sbecore::uint STATAPP = 9;
-		static const Sbecore::uint STATSHR = 10;
-		static const Sbecore::uint STATSHRCUC = 11;
-		static const Sbecore::uint STATSHRFIA = 12;
-		static const Sbecore::uint STATSHRLFI = 13;
-		static const Sbecore::uint STATSHRWRC = 14;
-		static const Sbecore::uint TAG = 15;
-		static const Sbecore::uint TAGCUC = 16;
-		static const Sbecore::uint TAGFIA = 17;
-		static const Sbecore::uint TAGLFI = 18;
-		static const Sbecore::uint TAGWRC = 19;
+		static const Sbecore::uint CONTIACDET = 3;
+		static const Sbecore::uint CONTINF = 4;
+		static const Sbecore::uint CONTINFFIA = 5;
+		static const Sbecore::uint CONTINFLFI = 6;
+		static const Sbecore::uint CONTINFWRC = 7;
+		static const Sbecore::uint FEEDFDSE = 8;
+		static const Sbecore::uint FEEDFSGE = 9;
+		static const Sbecore::uint STATAPP = 10;
+		static const Sbecore::uint STATSHR = 11;
+		static const Sbecore::uint STATSHRCUC = 12;
+		static const Sbecore::uint STATSHRFIA = 13;
+		static const Sbecore::uint STATSHRLFI = 14;
+		static const Sbecore::uint STATSHRWRC = 15;
+		static const Sbecore::uint TAG = 16;
+		static const Sbecore::uint TAGCUC = 17;
+		static const Sbecore::uint TAGDET = 18;
+		static const Sbecore::uint TAGFIA = 19;
+		static const Sbecore::uint TAGLFI = 20;
+		static const Sbecore::uint TAGWRC = 21;
 
 	public:
 		DpchEngData();
 
 	public:
 		ContIac contiac;
+		ContIacDet contiacdet;
 		ContInf continf;
 		ContInfFia continffia;
 		ContInfLfi continflfi;
@@ -517,6 +564,7 @@ namespace DlgWznmAppWrite {
 		StatShrWrc statshrwrc;
 		Tag tag;
 		TagCuc tagcuc;
+		TagDet tagdet;
 		TagFia tagfia;
 		TagLfi taglfi;
 		TagWrc tagwrc;

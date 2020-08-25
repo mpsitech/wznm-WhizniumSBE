@@ -2,8 +2,8 @@
 	* \file CrdWznmJob.cpp
 	* job handler for job CrdWznmJob (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -44,20 +44,22 @@ CrdWznmJob::CrdWznmJob(
 	VecVSge::fillFeed(feedFSge);
 
 	pnllist = NULL;
-	pnlrec = NULL;
 	pnlheadbar = NULL;
+	pnlrec = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	xchg->addIxPreset(VecWznmVPreset::PREWZNMIXPRE, jref, ixWznmVPreset);
 	if (ixWznmVPreset != VecWznmVPreset::VOID) xchg->addRefPreset(ixWznmVPreset, jref, preUref);
 
+	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFJOB, ref);
+
 	// initialize according to ref
-	changeRef(dbswznm, jref, ((ref+1) == 0) ? 0 : ref, false);
+	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWznmJobList(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlrec = new PnlWznmJobRec(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmJobHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlrec = new PnlWznmJobRec(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

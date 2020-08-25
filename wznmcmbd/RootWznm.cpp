@@ -2,8 +2,8 @@
 	* \file RootWznm.cpp
 	* job handler for job RootWznm (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -106,7 +106,8 @@ void RootWznm::clearAll(
 	dbswznm->executeQuery("DELETE FROM TblWznmAMQueryClause");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMQueryOrder");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMRelationTitle");
-	dbswznm->executeQuery("DELETE FROM TblWznmAMStateStep");
+	dbswznm->executeQuery("DELETE FROM TblWznmAMStateAction");
+	dbswznm->executeQuery("DELETE FROM TblWznmAMStateTrig");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMSubsetTitle");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMTablecolTitle");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMTableLoadfct");
@@ -137,6 +138,7 @@ void RootWznm::clearAll(
 	else if (dbswznm->ixDbsVDbstype == VecDbsVDbstype::PG) dbswznm->executeQuery("ALTER SEQUENCE TblWznmCRelation RESTART WITH 1");
 	dbswznm->executeQuery("DELETE FROM TblWznmHistRMUserUniversal");
 	dbswznm->executeQuery("DELETE FROM TblWznmJAMBlockItem");
+	dbswznm->executeQuery("DELETE FROM TblWznmJAMStateTrigCond");
 	dbswznm->executeQuery("DELETE FROM TblWznmJAVKeylistKey");
 	dbswznm->executeQuery("DELETE FROM TblWznmJMCardTitle");
 	dbswznm->executeQuery("DELETE FROM TblWznmJMControl");
@@ -165,6 +167,7 @@ void RootWznm::clearAll(
 	dbswznm->executeQuery("DELETE FROM TblWznmMControl");
 	dbswznm->executeQuery("DELETE FROM TblWznmMDialog");
 	dbswznm->executeQuery("DELETE FROM TblWznmMError");
+	dbswznm->executeQuery("DELETE FROM TblWznmMEvent");
 	dbswznm->executeQuery("DELETE FROM TblWznmMFeed");
 	dbswznm->executeQuery("DELETE FROM TblWznmMFile");
 	dbswznm->executeQuery("DELETE FROM TblWznmMImpexp");
@@ -267,6 +270,7 @@ void RootWznm::clearAll(
 void RootWznm::clearQtb(
 			DbsWznm* dbswznm
 		) {
+	dbswznm->executeQuery("DELETE FROM TblWznmQApp1NEvent");
 	dbswznm->executeQuery("DELETE FROM TblWznmQApp1NRtjob");
 	dbswznm->executeQuery("DELETE FROM TblWznmQAppApp1NSequence");
 	dbswznm->executeQuery("DELETE FROM TblWznmQAppList");
@@ -305,6 +309,7 @@ void RootWznm::clearQtb(
 	dbswznm->executeQuery("DELETE FROM TblWznmQDlgMNQuery");
 	dbswznm->executeQuery("DELETE FROM TblWznmQDlgRef1NControl");
 	dbswznm->executeQuery("DELETE FROM TblWznmQErrList");
+	dbswznm->executeQuery("DELETE FROM TblWznmQEvtList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQFilList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQIelList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQIex1NImpexp");
@@ -419,7 +424,7 @@ void RootWznm::clearQtb(
 	dbswznm->executeQuery("DELETE FROM TblWznmQStbMNSquawk");
 	dbswznm->executeQuery("DELETE FROM TblWznmQStbSubMNStub");
 	dbswznm->executeQuery("DELETE FROM TblWznmQStbSupMNStub");
-	dbswznm->executeQuery("DELETE FROM TblWznmQSteAStep");
+	dbswznm->executeQuery("DELETE FROM TblWznmQSteATrig");
 	dbswznm->executeQuery("DELETE FROM TblWznmQSteList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQTagList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQTbl1NCheck");

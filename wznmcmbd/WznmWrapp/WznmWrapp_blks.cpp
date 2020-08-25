@@ -2,8 +2,8 @@
 	* \file WznmWrapp_blks.cpp
 	* invocation / return data blocks for operation pack WznmWrapp (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmWrapp_blks.h"
@@ -21,11 +21,13 @@ DpchInvWznmWrappBase::DpchInvWznmWrappBase(
 			, const ubigint jref
 			, const ubigint refWznmMApp
 			, const string& folder
+			, const bool ipAllNotSpec
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRAPPBASE, oref, jref)
 		{
 	this->refWznmMApp = refWznmMApp;
 	this->folder = folder;
+	this->ipAllNotSpec = ipAllNotSpec;
 };
 
 void DpchInvWznmWrappBase::readXML(
@@ -47,6 +49,7 @@ void DpchInvWznmWrappBase::readXML(
 		if (extractStringUclc(docctx, basexpath, "scrJref", "", scrJref)) add(SCRJREF);
 		if (extractUbigintUclc(docctx, basexpath, "refWznmMApp", "", refWznmMApp)) add(REFWZNMMAPP);
 		if (extractStringUclc(docctx, basexpath, "folder", "", folder)) add(FOLDER);
+		if (extractBoolUclc(docctx, basexpath, "ipAllNotSpec", "", ipAllNotSpec)) add(IPALLNOTSPEC);
 	};
 };
 
@@ -59,6 +62,7 @@ void DpchInvWznmWrappBase::writeXML(
 		writeString(wr, "scrJref", Scr::scramble(jref));
 		writeUbigint(wr, "refWznmMApp", refWznmMApp);
 		writeString(wr, "folder", folder);
+		writeBool(wr, "ipAllNotSpec", ipAllNotSpec);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -71,11 +75,13 @@ DpchInvWznmWrappJbase::DpchInvWznmWrappJbase(
 			, const ubigint jref
 			, const ubigint refWznmMApp
 			, const string& folder
+			, const bool ipAllNotSpec
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRAPPJBASE, oref, jref)
 		{
 	this->refWznmMApp = refWznmMApp;
 	this->folder = folder;
+	this->ipAllNotSpec = ipAllNotSpec;
 };
 
 void DpchInvWznmWrappJbase::readXML(
@@ -97,6 +103,7 @@ void DpchInvWznmWrappJbase::readXML(
 		if (extractStringUclc(docctx, basexpath, "scrJref", "", scrJref)) add(SCRJREF);
 		if (extractUbigintUclc(docctx, basexpath, "refWznmMApp", "", refWznmMApp)) add(REFWZNMMAPP);
 		if (extractStringUclc(docctx, basexpath, "folder", "", folder)) add(FOLDER);
+		if (extractBoolUclc(docctx, basexpath, "ipAllNotSpec", "", ipAllNotSpec)) add(IPALLNOTSPEC);
 	};
 };
 
@@ -109,6 +116,7 @@ void DpchInvWznmWrappJbase::writeXML(
 		writeString(wr, "scrJref", Scr::scramble(jref));
 		writeUbigint(wr, "refWznmMApp", refWznmMApp);
 		writeString(wr, "folder", folder);
+		writeBool(wr, "ipAllNotSpec", ipAllNotSpec);
 	xmlTextWriterEndElement(wr);
 };
 

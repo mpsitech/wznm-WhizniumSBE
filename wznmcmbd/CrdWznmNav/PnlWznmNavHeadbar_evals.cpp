@@ -2,8 +2,8 @@
 	* \file PnlWznmNavHeadbar_evals.cpp
 	* job handler for job PnlWznmNavHeadbar (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -942,7 +942,7 @@ bool PnlWznmNavHeadbar::evalMitCrdRlsAvail(
 bool PnlWznmNavHeadbar::evalMspCrd9Avail(
 			DbsWznm* dbswznm
 		) {
-	// MitCrdAppAvail()|MitCrdRtjAvail()|MitCrdSeqAvail()|MitCrdSteAvail()
+	// MitCrdAppAvail()|MitCrdRtjAvail()|MitCrdEvtAvail()|MitCrdSeqAvail()|MitCrdSteAvail()
 
 	vector<bool> args;
 	bool a, b;
@@ -951,10 +951,15 @@ bool PnlWznmNavHeadbar::evalMspCrd9Avail(
 	args.push_back(a);
 	a = false; a = evalMitCrdRtjAvail(dbswznm);
 	args.push_back(a);
+	a = false; a = evalMitCrdEvtAvail(dbswznm);
+	args.push_back(a);
 	a = false; a = evalMitCrdSeqAvail(dbswznm);
 	args.push_back(a);
 	a = false; a = evalMitCrdSteAvail(dbswznm);
 	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -991,6 +996,20 @@ bool PnlWznmNavHeadbar::evalMitCrdRtjAvail(
 	bool a;
 
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCRTJ, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmNavHeadbar::evalMitCrdEvtAvail(
+			DbsWznm* dbswznm
+		) {
+	// pre.ixCrdaccEvt()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCEVT, jref) != 0);
 	args.push_back(a);
 
 	return(args.back());

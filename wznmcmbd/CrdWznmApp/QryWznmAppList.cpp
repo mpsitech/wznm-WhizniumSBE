@@ -2,8 +2,8 @@
 	* \file QryWznmAppList.cpp
 	* job handler for job QryWznmAppList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -109,8 +109,8 @@ void QryWznmAppList::rerun(
 		else stgiac.jnumFirstload = 1;
 	};
 
-	sqlstr = "INSERT INTO TblWznmQAppList(jref, jnum, ref, grp, own, Short, Title, ixVTarget, verRefWznmMVersion)";
-	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMApp.ref, TblWznmMApp.grp, TblWznmMApp.own, TblWznmMApp.Short, TblWznmMApp.Title, TblWznmMApp.ixVTarget, TblWznmMApp.verRefWznmMVersion";
+	sqlstr = "INSERT INTO TblWznmQAppList(jref, jnum, ref, grp, own, Short, Title, ixWznmVApptarget, verRefWznmMVersion)";
+	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMApp.ref, TblWznmMApp.grp, TblWznmMApp.own, TblWznmMApp.Short, TblWznmMApp.Title, TblWznmMApp.ixWznmVApptarget, TblWznmMApp.verRefWznmMVersion";
 	sqlstr += " FROM TblWznmMApp, TblWznmQSelect";
 	sqlstr += " WHERE TblWznmQSelect.jref = " + to_string(preJrefSess) + "";
 	sqlstr += " AND TblWznmMApp.grp = TblWznmQSelect.ref";
@@ -160,7 +160,7 @@ void QryWznmAppList::rerun_filtSQL(
 
 	if (preTrg != 0) {
 		rerun_filtSQL_append(sqlstr, first);
-		sqlstr += "TblWznmMApp.ixVTarget = " + to_string(preTrg) + "";
+		sqlstr += "TblWznmMApp.ixWznmVApptarget = " + to_string(preTrg) + "";
 	};
 
 	if (preVer != 0) {
@@ -184,9 +184,9 @@ void QryWznmAppList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMApp.verRefWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::TRG) sqlstr += " ORDER BY TblWznmMApp.ixVTarget ASC";
-	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMApp.own ASC";
+	else if (preIxOrd == VecVOrd::TRG) sqlstr += " ORDER BY TblWznmMApp.ixWznmVApptarget ASC";
 	else if (preIxOrd == VecVOrd::TIT) sqlstr += " ORDER BY TblWznmMApp.Title ASC";
+	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMApp.own ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMApp.grp ASC";
 };
 
@@ -217,8 +217,8 @@ void QryWznmAppList::fetch(
 			rec->jnum = statshr.jnumFirstload + i;
 			rec->stubGrp = StubWznm::getStubGroup(dbswznm, rec->grp, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->stubOwn = StubWznm::getStubOwner(dbswznm, rec->own, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			rec->srefIxVTarget = VecWznmVMAppTarget::getSref(rec->ixVTarget);
-			rec->titIxVTarget = VecWznmVMAppTarget::getTitle(rec->ixVTarget, ixWznmVLocale);
+			rec->srefIxWznmVApptarget = VecWznmVApptarget::getSref(rec->ixWznmVApptarget);
+			rec->titIxWznmVApptarget = VecWznmVApptarget::getTitle(rec->ixWznmVApptarget);
 			rec->stubVerRefWznmMVersion = StubWznm::getStubVerStd(dbswznm, rec->verRefWznmMVersion, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 		};
 
@@ -331,9 +331,9 @@ bool QryWznmAppList::handleShow(
 	cout << "\tstubOwn";
 	cout << "\tShort";
 	cout << "\tTitle";
-	cout << "\tixVTarget";
-	cout << "\tsrefIxVTarget";
-	cout << "\ttitIxVTarget";
+	cout << "\tixWznmVApptarget";
+	cout << "\tsrefIxWznmVApptarget";
+	cout << "\ttitIxWznmVApptarget";
 	cout << "\tverRefWznmMVersion";
 	cout << "\tstubVerRefWznmMVersion";
 	cout << endl;
@@ -352,9 +352,9 @@ bool QryWznmAppList::handleShow(
 		cout << "\t" << rec->stubOwn;
 		cout << "\t" << rec->Short;
 		cout << "\t" << rec->Title;
-		cout << "\t" << rec->ixVTarget;
-		cout << "\t" << rec->srefIxVTarget;
-		cout << "\t" << rec->titIxVTarget;
+		cout << "\t" << rec->ixWznmVApptarget;
+		cout << "\t" << rec->srefIxWznmVApptarget;
+		cout << "\t" << rec->titIxWznmVApptarget;
 		cout << "\t" << rec->verRefWznmMVersion;
 		cout << "\t" << rec->stubVerRefWznmMVersion;
 		cout << endl;
@@ -366,27 +366,13 @@ void QryWznmAppList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMAPPMOD) {
-		call->abort = handleCallWznmAppMod(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMAPPUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMAPPUPD_REFEQ) {
 		call->abort = handleCallWznmAppUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMAPPMOD) {
+		call->abort = handleCallWznmAppMod(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmAppList::handleCallWznmAppMod(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
-		ixWznmVQrystate = VecWznmVQrystate::MNR;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmAppList::handleCallWznmAppUpd_refEq(
@@ -397,6 +383,20 @@ bool QryWznmAppList::handleCallWznmAppUpd_refEq(
 
 	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
 		ixWznmVQrystate = VecWznmVQrystate::OOD;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWznmAppList::handleCallWznmAppMod(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
+		ixWznmVQrystate = VecWznmVQrystate::MNR;
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 

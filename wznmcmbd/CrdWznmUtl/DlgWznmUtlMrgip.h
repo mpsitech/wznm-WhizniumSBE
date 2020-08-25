@@ -2,8 +2,8 @@
 	* \file DlgWznmUtlMrgip.h
 	* job handler for job DlgWznmUtlMrgip (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMUTLMRGIP_H
@@ -577,8 +577,8 @@ private:
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
 	void handleUploadInSgeSuldone(DbsWznm* dbswznm, const std::string& filename);
-	void handleUploadInSgeSupdone(DbsWznm* dbswznm, const std::string& filename);
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeSupdone(DbsWznm* dbswznm, const std::string& filename);
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
@@ -586,8 +586,8 @@ private:
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerInSgeTupidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeSupidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeTupidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

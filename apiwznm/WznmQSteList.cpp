@@ -2,8 +2,8 @@
 	* \file WznmQSteList.cpp
 	* API code for table TblWznmQSteList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmQSteList.h"
@@ -20,20 +20,10 @@ WznmQSteList::WznmQSteList(
 			const uint jnum
 			, const string sref
 			, const string stubSeqRefWznmMSequence
-			, const string srefEacIxVAction
-			, const string titEacIxVAction
-			, const string srefLacIxVAction
-			, const string titLacIxVAction
-			, const string yesnoCuststep
 		) {
 	this->jnum = jnum;
 	this->sref = sref;
 	this->stubSeqRefWznmMSequence = stubSeqRefWznmMSequence;
-	this->srefEacIxVAction = srefEacIxVAction;
-	this->titEacIxVAction = titEacIxVAction;
-	this->srefLacIxVAction = srefLacIxVAction;
-	this->titLacIxVAction = titLacIxVAction;
-	this->yesnoCuststep = yesnoCuststep;
 };
 
 bool WznmQSteList::readXML(
@@ -51,11 +41,6 @@ bool WznmQSteList::readXML(
 	if (basefound) {
 		extractStringUclc(docctx, basexpath, "sref", "srf", sref);
 		extractStringUclc(docctx, basexpath, "stubSeqRefWznmMSequence", "seq", stubSeqRefWznmMSequence);
-		extractStringUclc(docctx, basexpath, "srefEacIxVAction", "eac", srefEacIxVAction);
-		extractStringUclc(docctx, basexpath, "titEacIxVAction", "eac2", titEacIxVAction);
-		extractStringUclc(docctx, basexpath, "srefLacIxVAction", "lac", srefLacIxVAction);
-		extractStringUclc(docctx, basexpath, "titLacIxVAction", "lac2", titLacIxVAction);
-		extractStringUclc(docctx, basexpath, "yesnoCuststep", "cst", yesnoCuststep);
 	};
 
 	return basefound;

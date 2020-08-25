@@ -2,8 +2,8 @@
 	* \file WznmWrsrvCrd.cpp
 	* Wznm operation processor - write specific job C++ code for card (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -219,8 +219,14 @@ void WznmWrsrvCrd::writeCrdCpp(
 			outfile << endl;
 		};
 
+		if (dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMPreset WHERE refWznmMVersion = " + to_string(job->refWznmMVersion) + " AND sref = 'Pre" + Prjshort + "Ref" + car->sref.substr(3+4) + "'", ref)) {
+			// session-wide presetting
+			outfile << "\tif ((ref + 1) != 0) xchg->triggerIxRefCall(dbs" << prjshort << ", Vec" << Prjshort << "VCall::CALL" << PRJSHORT << "REFPRESET, jref, " << ixCarpst << ", ref);" << endl;
+			outfile << endl;
+		};
+
 		outfile << "\t// initialize according to ref" << endl;
-		outfile << "\tchangeRef(dbs" << prjshort << ", jref, ((ref+1) == 0) ? 0 : ref, false);" << endl;
+		outfile << "\tchangeRef(dbs" << prjshort << ", jref, ((ref + 1) == 0) ? 0 : ref, false);" << endl;
 		outfile << endl;
 
 		outfile << "// IP constructor.spec1 --- IEND" << endl;
@@ -243,7 +249,7 @@ void WznmWrsrvCrd::writeCrdCpp(
 		if (dbswznm->tblwznmmdialog->loadRecBySQL("SELECT * FROM TblWznmMDialog WHERE refWznmMCard = " + to_string(car->ref) + " AND ixVBasetype = " + to_string(VecWznmVMDialogBasetype::NEW), &dlg)) {
 			s2 = StrMod::lc("Dlg" + dlg->sref.substr(3+4+3));
 
-			outfile << "\tif ((ref+1) == 0) {" << endl;
+			outfile << "\tif ((ref + 1) == 0) {" << endl;
 			outfile << "\t\t" + s2 + " = new " << dlg->sref << "(xchg, dbs" << prjshort << ", jref, ix" << Prjshort << "VLocale);" << endl;
 			outfile << "\t\tstatshr.jref" << StrMod::cap(s2) << " = " << s2 << "->jref;" << endl;
 			outfile << "\t};" << endl;

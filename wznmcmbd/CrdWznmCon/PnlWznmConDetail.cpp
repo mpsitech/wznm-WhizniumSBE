@@ -2,8 +2,8 @@
 	* \file PnlWznmConDetail.cpp
 	* job handler for job PnlWznmConDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -793,9 +793,15 @@ void PnlWznmConDetail::handleDpchAppDoButHkuViewClick(
 	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
 
 	if (statshr.ButHkuViewAvail && statshr.ButHkuViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref)) if (recCon.hkIxVTbl == VecWznmVMControlHkTbl::DLG) if (ixPre == VecWznmVPreset::PREWZNMREFCAR) {
-			sref = "CrdWznmDlg";
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref)) if (recCon.hkIxVTbl == VecWznmVMControlHkTbl::CAR) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+			sref = "CrdWznmCar";
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recCon.hkUref, jrefNew);
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref)) if (recCon.hkIxVTbl == VecWznmVMControlHkTbl::DLG) if (ixPre == VecWznmVPreset::PREWZNMREFCAR) {
+				sref = "CrdWznmDlg";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recCon.hkUref, jrefNew);
+			};
 		};
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref)) if (recCon.hkIxVTbl == VecWznmVMControlHkTbl::DLG) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
@@ -812,12 +818,6 @@ void PnlWznmConDetail::handleDpchAppDoButHkuViewClick(
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref)) if (recCon.hkIxVTbl == VecWznmVMControlHkTbl::PNL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmPnl";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recCon.hkUref, jrefNew);
-			};
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref)) if (recCon.hkIxVTbl == VecWznmVMControlHkTbl::CAR) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmCar";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recCon.hkUref, jrefNew);
 			};
 		};

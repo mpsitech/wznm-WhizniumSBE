@@ -2,8 +2,8 @@
 	* \file QryWznmCapList_blks.cpp
 	* job handler for job QryWznmCapList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -19,8 +19,8 @@ uint QryWznmCapList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ver") return VER;
 	if (s == "tpl") return TPL;
+	if (s == "ver") return VER;
 	if (s == "srf") return SRF;
 
 	return(0);
@@ -29,8 +29,8 @@ uint QryWznmCapList::VecVOrd::getIx(
 string QryWznmCapList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == VER) return("ver");
 	if (ix == TPL) return("tpl");
+	if (ix == VER) return("ver");
 	if (ix == SRF) return("srf");
 
 	return("");

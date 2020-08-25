@@ -2,8 +2,8 @@
 	* \file PnlWznmIexRec.h
 	* API code for job PnlWznmIexRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMIEXREC_H
@@ -66,17 +66,17 @@ namespace PnlWznmIexRec {
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONE1NIMPEXP = 2;
-		static const Sbecore::uint INITDONEHK1NVECTOR = 3;
-		static const Sbecore::uint INITDONEREF1NDIALOG = 4;
+		static const Sbecore::uint INITDONEREF1NDIALOG = 3;
+		static const Sbecore::uint INITDONEHK1NVECTOR = 4;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NDialog = false);
+		StatApp(const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneRef1NDialog = false, const bool initdoneHk1NVector = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdone1NImpexp;
-		bool initdoneHk1NVector;
 		bool initdoneRef1NDialog;
+		bool initdoneHk1NVector;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -93,19 +93,19 @@ namespace PnlWznmIexRec {
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREF1NIMPEXP = 3;
-		static const Sbecore::uint SCRJREFHK1NVECTOR = 4;
-		static const Sbecore::uint SCRJREFREF1NDIALOG = 5;
+		static const Sbecore::uint SCRJREFREF1NDIALOG = 4;
+		static const Sbecore::uint SCRJREFHK1NVECTOR = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NImpexp = "", const std::string& scrJrefHk1NVector = "", const std::string& scrJrefRef1NDialog = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NImpexp = "", const std::string& scrJrefRef1NDialog = "", const std::string& scrJrefHk1NVector = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJref1NImpexp;
-		std::string scrJrefHk1NVector;
 		std::string scrJrefRef1NDialog;
+		std::string scrJrefHk1NVector;
 		bool ButRegularizeActive;
 
 	public:

@@ -2,8 +2,8 @@
 	* \file QryWznmTblSrc1NFeed.h
 	* job handler for job QryWznmTblSrc1NFeed (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMTBLSRC1NFEED_H

@@ -2,8 +2,8 @@
 	* \file WznmQAppList.cpp
 	* API code for table TblWznmQAppList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmQAppList.h"
@@ -22,8 +22,8 @@ WznmQAppList::WznmQAppList(
 			, const string stubOwn
 			, const string Short
 			, const string Title
-			, const string srefIxVTarget
-			, const string titIxVTarget
+			, const string srefIxWznmVApptarget
+			, const string titIxWznmVApptarget
 			, const string stubVerRefWznmMVersion
 		) {
 	this->jnum = jnum;
@@ -31,8 +31,8 @@ WznmQAppList::WznmQAppList(
 	this->stubOwn = stubOwn;
 	this->Short = Short;
 	this->Title = Title;
-	this->srefIxVTarget = srefIxVTarget;
-	this->titIxVTarget = titIxVTarget;
+	this->srefIxWznmVApptarget = srefIxWznmVApptarget;
+	this->titIxWznmVApptarget = titIxWznmVApptarget;
 	this->stubVerRefWznmMVersion = stubVerRefWznmMVersion;
 };
 
@@ -53,8 +53,8 @@ bool WznmQAppList::readXML(
 		extractStringUclc(docctx, basexpath, "stubOwn", "own", stubOwn);
 		extractStringUclc(docctx, basexpath, "Short", "sho", Short);
 		extractStringUclc(docctx, basexpath, "Title", "tit", Title);
-		extractStringUclc(docctx, basexpath, "srefIxVTarget", "trg", srefIxVTarget);
-		extractStringUclc(docctx, basexpath, "titIxVTarget", "trg2", titIxVTarget);
+		extractStringUclc(docctx, basexpath, "srefIxWznmVApptarget", "trg", srefIxWznmVApptarget);
+		extractStringUclc(docctx, basexpath, "titIxWznmVApptarget", "trg2", titIxWznmVApptarget);
 		extractStringUclc(docctx, basexpath, "stubVerRefWznmMVersion", "ver", stubVerRefWznmMVersion);
 	};
 

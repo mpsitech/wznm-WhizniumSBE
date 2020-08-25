@@ -2,8 +2,8 @@
 	* \file PnlWznmLibRec.h
 	* job handler for job PnlWznmLibRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMLIBREC_H
@@ -13,8 +13,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmLibMNOppack.h"
 #include "PnlWznmLibMNComponent.h"
+#include "PnlWznmLibMNOppack.h"
 #include "PnlWznmLibRef1NFile.h"
 #include "PnlWznmLibAMakefile.h"
 #include "PnlWznmLibAPkglist.h"
@@ -179,8 +179,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmLibMNOppack* pnlmnoppack;
 	PnlWznmLibMNComponent* pnlmncomponent;
+	PnlWznmLibMNOppack* pnlmnoppack;
 	PnlWznmLibRef1NFile* pnlref1nfile;
 	PnlWznmLibAMakefile* pnlamakefile;
 	PnlWznmLibAPkglist* pnlapkglist;

@@ -2,8 +2,8 @@
 	* \file WznmcmbdAppsrv.h
 	* application server for Wznm combined daemon (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMCMBDAPPSRV_H

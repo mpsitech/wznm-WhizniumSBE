@@ -2,8 +2,8 @@
 	* \file QryWznmCapList.cpp
 	* job handler for job QryWznmCapList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -220,8 +220,8 @@ void QryWznmCapList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMCapability.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::TPL) sqlstr += " ORDER BY TblWznmMCapability.tplRefWznmMCapability ASC";
+	if (preIxOrd == VecVOrd::TPL) sqlstr += " ORDER BY TblWznmMCapability.tplRefWznmMCapability ASC";
+	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMCapability.refWznmMVersion ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMCapability.sref ASC";
 };
 

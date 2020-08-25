@@ -2,8 +2,8 @@
 	* \file DlgWznmVerDeploy.cpp
 	* job handler for job DlgWznmVerDeploy (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -104,8 +104,8 @@ void DlgWznmVerDeploy::refreshImp(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfImp oldContinfimp(continfimp);
 	StatShrImp oldStatshrimp(statshrimp);
+	ContInfImp oldContinfimp(continfimp);
 
 	// IP refreshImp --- RBEGIN
 	// continfimp
@@ -116,8 +116,8 @@ void DlgWznmVerDeploy::refreshImp(
 	statshrimp.ButStoActive = evalImpButStoActive(dbswznm);
 
 	// IP refreshImp --- REND
-	if (continfimp.diff(&oldContinfimp).size() != 0) insert(moditems, DpchEngData::CONTINFIMP);
 	if (statshrimp.diff(&oldStatshrimp).size() != 0) insert(moditems, DpchEngData::STATSHRIMP);
+	if (continfimp.diff(&oldContinfimp).size() != 0) insert(moditems, DpchEngData::CONTINFIMP);
 };
 
 void DlgWznmVerDeploy::refreshLfi(
@@ -222,8 +222,8 @@ void DlgWznmVerDeploy::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 	};
 };
@@ -314,14 +314,14 @@ string DlgWznmVerDeploy::handleDownloadInSgeDone(
 	return(""); // IP handleDownloadInSgeDone --- LINE
 };
 
-void DlgWznmVerDeploy::handleTimerInSgeImpidle(
+void DlgWznmVerDeploy::handleTimerInSgePrsidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmVerDeploy::handleTimerInSgePrsidle(
+void DlgWznmVerDeploy::handleTimerInSgeImpidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
@@ -627,7 +627,25 @@ uint DlgWznmVerDeploy::enterSgeDone(
 		) {
 	uint retval = VecVSge::DONE;
 
-	// IP enterSgeDone --- INSERT
+	// IP enterSgeDone --- IBEGIN
+	ubigint refWznmMVersion;
+	string Prjshort, Filename, srefKMimetype;
+
+	refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
+
+	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(refWznmMVersion), Prjshort);
+	Prjshort = StrMod::cap(Prjshort);
+
+	if (ifitxt) {
+		Filename = "IexWznmDpl_" + StrMod::lc(Prjshort) + ".txt";
+		srefKMimetype = "txt";
+	} else if (ifixml) {
+		Filename = "IexWznmDpl_" + StrMod::lc(Prjshort) + ".xml";
+		srefKMimetype = "xml";
+	};
+
+	Acv::addfile(dbswznm, xchg->acvpath, infilename, xchg->getRefPreset(VecWznmVPreset::PREWZNMGROUP, jref), xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref), VecWznmVMFileRefTbl::VER, refWznmMVersion, "mod", Filename, srefKMimetype, "");
+	// IP enterSgeDone --- IEND
 
 	return retval;
 };

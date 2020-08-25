@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<IexWznmIni version="1.0.2">
+<IexWznmIni version="v1.0.6">
 	<ImeIAVKeylistKey1>
 		<Ii num="1">
 			<kls>KlstKWznmCtpGenjtrCustop</kls>
@@ -1128,15 +1128,20 @@
 				</Ii>
 				<Ii num="46">
 					<feg>VecWznmVCard</feg>
-					<fea>CrdWznmSeq</fea>
+					<fea>CrdWznmEvt</fea>
 					<acc>edit;exec;view</acc>
 				</Ii>
 				<Ii num="47">
 					<feg>VecWznmVCard</feg>
-					<fea>CrdWznmSte</fea>
+					<fea>CrdWznmSeq</fea>
 					<acc>edit;exec;view</acc>
 				</Ii>
 				<Ii num="48">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmSte</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="49">
 					<feg>VecWznmVCard</feg>
 					<fea>CrdWznmUtl</fea>
 					<acc>edit;exec;view</acc>

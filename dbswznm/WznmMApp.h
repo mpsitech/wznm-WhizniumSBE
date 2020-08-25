@@ -2,8 +2,8 @@
 	* \file WznmMApp.h
 	* database access for table TblWznmMApp (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMMAPP_H
@@ -18,23 +18,19 @@
 	#include <sbecore/PgDbs.h>
 #endif
 
-#include <sbecore/Xmlio.h>
-
-#define VecWznmVMAppTarget TblWznmMApp::VecVTarget
-
 /**
 	* WznmMApp: record of TblWznmMApp
 	*/
 class WznmMApp {
 
 public:
-	WznmMApp(const Sbecore::ubigint ref = 0, const Sbecore::ubigint grp = 0, const Sbecore::ubigint own = 0, const Sbecore::uint ixVTarget = 0, const Sbecore::ubigint verRefWznmMVersion = 0, const Sbecore::uint verNum = 0, const std::string Short = "", const std::string Title = "", const std::string Comment = "");
+	WznmMApp(const Sbecore::ubigint ref = 0, const Sbecore::ubigint grp = 0, const Sbecore::ubigint own = 0, const Sbecore::uint ixWznmVApptarget = 0, const Sbecore::ubigint verRefWznmMVersion = 0, const Sbecore::uint verNum = 0, const std::string Short = "", const std::string Title = "", const std::string Comment = "");
 
 public:
 	Sbecore::ubigint ref;
 	Sbecore::ubigint grp;
 	Sbecore::ubigint own;
-	Sbecore::uint ixVTarget;
+	Sbecore::uint ixWznmVApptarget;
 	Sbecore::ubigint verRefWznmMVersion;
 	Sbecore::uint verNum;
 	std::string Short;
@@ -75,26 +71,6 @@ public:
 class TblWznmMApp {
 
 public:
-	/**
-		* VecVTarget (full: VecWznmVMAppTarget)
-		*/
-	class VecVTarget {
-
-	public:
-		static const Sbecore::uint COCOA_OBJC = 1;
-		static const Sbecore::uint DOTNET_CPPCLI = 2;
-		static const Sbecore::uint JAVA = 3;
-		static const Sbecore::uint JS = 4;
-		static const Sbecore::uint POSIX_CPP = 5;
-		static const Sbecore::uint WINRT_CPP = 6;
-
-		static Sbecore::uint getIx(const std::string& sref);
-		static std::string getSref(const Sbecore::uint ix);
-
-		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWznmVLocale);
-
-		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Xmlio::Feed& feed);
-	};
 
 public:
 	TblWznmMApp();
@@ -105,8 +81,8 @@ public:
 	virtual Sbecore::ubigint loadRstBySQL(const std::string& sqlstr, const bool append, ListWznmMApp& rst);
 
 	virtual Sbecore::ubigint insertRec(WznmMApp* rec);
-	Sbecore::ubigint insertNewRec(WznmMApp** rec = NULL, const Sbecore::ubigint grp = 0, const Sbecore::ubigint own = 0, const Sbecore::uint ixVTarget = 0, const Sbecore::ubigint verRefWznmMVersion = 0, const Sbecore::uint verNum = 0, const std::string Short = "", const std::string Title = "", const std::string Comment = "");
-	Sbecore::ubigint appendNewRecToRst(ListWznmMApp& rst, WznmMApp** rec = NULL, const Sbecore::ubigint grp = 0, const Sbecore::ubigint own = 0, const Sbecore::uint ixVTarget = 0, const Sbecore::ubigint verRefWznmMVersion = 0, const Sbecore::uint verNum = 0, const std::string Short = "", const std::string Title = "", const std::string Comment = "");
+	Sbecore::ubigint insertNewRec(WznmMApp** rec = NULL, const Sbecore::ubigint grp = 0, const Sbecore::ubigint own = 0, const Sbecore::uint ixWznmVApptarget = 0, const Sbecore::ubigint verRefWznmMVersion = 0, const Sbecore::uint verNum = 0, const std::string Short = "", const std::string Title = "", const std::string Comment = "");
+	Sbecore::ubigint appendNewRecToRst(ListWznmMApp& rst, WznmMApp** rec = NULL, const Sbecore::ubigint grp = 0, const Sbecore::ubigint own = 0, const Sbecore::uint ixWznmVApptarget = 0, const Sbecore::ubigint verRefWznmMVersion = 0, const Sbecore::uint verNum = 0, const std::string Short = "", const std::string Title = "", const std::string Comment = "");
 	virtual void insertRst(ListWznmMApp& rst, bool transact = false);
 	virtual void updateRec(WznmMApp* rec);
 	virtual void updateRst(ListWznmMApp& rst, bool transact = false);

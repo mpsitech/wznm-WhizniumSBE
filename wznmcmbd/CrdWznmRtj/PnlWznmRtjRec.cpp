@@ -2,8 +2,8 @@
 	* \file PnlWznmRtjRec.cpp
 	* job handler for job PnlWznmRtjRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -38,8 +38,8 @@ PnlWznmRtjRec::PnlWznmRtjRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlsup1nrtjob = NULL;
-	pnl1nrtdpch = NULL;
 	pnl1nrtblock = NULL;
+	pnl1nrtdpch = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -98,19 +98,19 @@ void PnlWznmRtjRec::refresh(
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
-		if (pnl1nrtblock) {delete pnl1nrtblock; pnl1nrtblock = NULL;};
 		if (pnl1nrtdpch) {delete pnl1nrtdpch; pnl1nrtdpch = NULL;};
+		if (pnl1nrtblock) {delete pnl1nrtblock; pnl1nrtblock = NULL;};
 		if (pnlsup1nrtjob) {delete pnlsup1nrtjob; pnlsup1nrtjob = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmRtjDetail(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnl1nrtblock) pnl1nrtblock = new PnlWznmRtj1NRtblock(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nrtdpch) pnl1nrtdpch = new PnlWznmRtj1NRtdpch(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnl1nrtblock) pnl1nrtblock = new PnlWznmRtj1NRtblock(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlsup1nrtjob) pnlsup1nrtjob = new PnlWznmRtjSup1NRtjob(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
-	statshr.jref1NRtblock = ((pnl1nrtblock) ? pnl1nrtblock->jref : 0);
 	statshr.jref1NRtdpch = ((pnl1nrtdpch) ? pnl1nrtdpch->jref : 0);
+	statshr.jref1NRtblock = ((pnl1nrtblock) ? pnl1nrtblock->jref : 0);
 	statshr.jrefSup1NRtjob = ((pnlsup1nrtjob) ? pnlsup1nrtjob->jref : 0);
 
 	// IP refresh --- END
@@ -138,8 +138,8 @@ void PnlWznmRtjRec::updatePreset(
 
 		if (recRtj.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnl1nrtblock) pnl1nrtblock->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nrtdpch) pnl1nrtdpch->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnl1nrtblock) pnl1nrtblock->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlsup1nrtjob) pnlsup1nrtjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 

@@ -2,8 +2,8 @@
   * \file QryWznmTblList.java
   * Java API code for job QryWznmTblList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -21,8 +21,8 @@ public class QryWznmTblList {
 		public static final int REU = 1;
 		public static final int RET = 2;
 		public static final int VER = 3;
-		public static final int SRF = 4;
-		public static final int TYP = 5;
+		public static final int TYP = 4;
+		public static final int SRF = 5;
 
 		public static int getIx(
 					String sref
@@ -32,8 +32,8 @@ public class QryWznmTblList {
 			if (s.equals("reu")) return REU;
 			if (s.equals("ret")) return RET;
 			if (s.equals("ver")) return VER;
-			if (s.equals("srf")) return SRF;
 			if (s.equals("typ")) return TYP;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -44,8 +44,8 @@ public class QryWznmTblList {
 			if (ix == REU) return("reu");
 			if (ix == RET) return("ret");
 			if (ix == VER) return("ver");
-			if (ix == SRF) return("srf");
 			if (ix == TYP) return("typ");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

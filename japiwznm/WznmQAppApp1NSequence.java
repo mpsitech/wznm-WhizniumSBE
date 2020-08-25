@@ -2,8 +2,8 @@
   * \file WznmQAppApp1NSequence.h
   * Java API code for record of table TblWznmQAppApp1NSequence
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;

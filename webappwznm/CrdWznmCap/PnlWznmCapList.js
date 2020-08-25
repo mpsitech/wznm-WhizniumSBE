@@ -2,8 +2,8 @@
   * \file PnlWznmCapList.js
   * web client functionality for panel PnlWznmCapList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 // --- expand state management
@@ -139,9 +139,9 @@ function refreshB(chgcol) {
 			} else if (i == 2) {
 				doc.cols.push("TcoTit"); doc.widths.push(TcoTitWidth); doc.fs.push("tit"); doc.tos.push(0); wtot += TcoTitWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoVer"); doc.widths.push(TcoVerWidth); doc.fs.push("ver"); doc.tos.push(1); wtot += TcoVerWidth;
+				doc.cols.push("TcoVer"); doc.widths.push(TcoVerWidth); doc.fs.push("ver"); doc.tos.push(2); wtot += TcoVerWidth;
 			} else if (i == 4) {
-				doc.cols.push("TcoTpl"); doc.widths.push(TcoTplWidth); doc.fs.push("tpl"); doc.tos.push(2); wtot += TcoTplWidth;
+				doc.cols.push("TcoTpl"); doc.widths.push(TcoTplWidth); doc.fs.push("tpl"); doc.tos.push(1); wtot += TcoTplWidth;
 			} else if (i == 5) {
 				doc.cols.push("TcoAtf"); doc.widths.push(TcoAtfWidth); doc.fs.push("atf"); doc.tos.push(0); wtot += TcoAtfWidth;
 			} else {

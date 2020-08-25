@@ -2,8 +2,8 @@
 	* \file QryWznmErrList.cpp
 	* job handler for job QryWznmErrList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -209,8 +209,8 @@ void QryWznmErrList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMError.verRefWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMError.sref ASC";
+	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMError.sref ASC";
+	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMError.verRefWznmMVersion ASC";
 };
 
 void QryWznmErrList::fetch(

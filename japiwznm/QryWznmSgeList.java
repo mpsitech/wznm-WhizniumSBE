@@ -2,8 +2,8 @@
   * \file QryWznmSgeList.java
   * Java API code for job QryWznmSgeList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -19,8 +19,8 @@ public class QryWznmSgeList {
 	public static class VecVOrd {
 
 		public static final int JOB = 1;
-		public static final int TYP = 2;
-		public static final int SRF = 3;
+		public static final int SRF = 2;
+		public static final int TYP = 3;
 
 		public static int getIx(
 					String sref
@@ -28,8 +28,8 @@ public class QryWznmSgeList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("job")) return JOB;
-			if (s.equals("typ")) return TYP;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("typ")) return TYP;
 
 			return 0;
 		};
@@ -38,8 +38,8 @@ public class QryWznmSgeList {
 					int ix
 				) {
 			if (ix == JOB) return("job");
-			if (ix == TYP) return("typ");
 			if (ix == SRF) return("srf");
+			if (ix == TYP) return("typ");
 
 			return "";
 		};

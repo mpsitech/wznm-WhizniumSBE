@@ -2,8 +2,8 @@
 	* \file PnlWznmSteList.h
 	* API code for job PnlWznmSteList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMSTELIST_H
@@ -125,19 +125,13 @@ namespace PnlWznmSteList {
 	public:
 		static const Sbecore::uint TCOSRFWIDTH = 1;
 		static const Sbecore::uint TCOSEQWIDTH = 2;
-		static const Sbecore::uint TCOEACWIDTH = 3;
-		static const Sbecore::uint TCOLACWIDTH = 4;
-		static const Sbecore::uint TCOCSTWIDTH = 5;
 
 	public:
-		StgIac(const Sbecore::uint TcoSrfWidth = 100, const Sbecore::uint TcoSeqWidth = 100, const Sbecore::uint TcoEacWidth = 100, const Sbecore::uint TcoLacWidth = 100, const Sbecore::uint TcoCstWidth = 100);
+		StgIac(const Sbecore::uint TcoSrfWidth = 100, const Sbecore::uint TcoSeqWidth = 100);
 
 	public:
 		Sbecore::uint TcoSrfWidth;
 		Sbecore::uint TcoSeqWidth;
-		Sbecore::uint TcoEacWidth;
-		Sbecore::uint TcoLacWidth;
-		Sbecore::uint TcoCstWidth;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -161,12 +155,9 @@ namespace PnlWznmSteList {
 		static const Sbecore::uint TXTSHOWING2 = 7;
 		static const Sbecore::uint TCOSRF = 8;
 		static const Sbecore::uint TCOSEQ = 9;
-		static const Sbecore::uint TCOEAC = 10;
-		static const Sbecore::uint TCOLAC = 11;
-		static const Sbecore::uint TCOCST = 12;
 
 	public:
-		Tag(const std::string& Cpt = "", const std::string& TxtFor = "", const std::string& TxtRecord1 = "", const std::string& TxtRecord2 = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoSrf = "", const std::string& TcoSeq = "", const std::string& TcoEac = "", const std::string& TcoLac = "", const std::string& TcoCst = "");
+		Tag(const std::string& Cpt = "", const std::string& TxtFor = "", const std::string& TxtRecord1 = "", const std::string& TxtRecord2 = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoSrf = "", const std::string& TcoSeq = "");
 
 	public:
 		std::string Cpt;
@@ -178,9 +169,6 @@ namespace PnlWznmSteList {
 		std::string TxtShowing2;
 		std::string TcoSrf;
 		std::string TcoSeq;
-		std::string TcoEac;
-		std::string TcoLac;
-		std::string TcoCst;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);

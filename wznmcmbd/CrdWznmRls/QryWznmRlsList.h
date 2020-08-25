@@ -2,8 +2,8 @@
 	* \file QryWznmRlsList.h
 	* job handler for job QryWznmRlsList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMRLSLIST_H
@@ -32,8 +32,8 @@ public:
 
 	public:
 		static const Sbecore::uint MCH = 1;
-		static const Sbecore::uint SRF = 2;
-		static const Sbecore::uint CMP = 3;
+		static const Sbecore::uint CMP = 2;
+		static const Sbecore::uint SRF = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

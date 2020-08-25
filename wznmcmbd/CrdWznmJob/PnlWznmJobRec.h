@@ -2,8 +2,8 @@
 	* \file PnlWznmJobRec.h
 	* job handler for job PnlWznmJobRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMJOBREC_H
@@ -15,8 +15,8 @@
 
 #include "PnlWznmJobSubMNJob.h"
 #include "PnlWznmJobSupMNJob.h"
-#include "PnlWznmJobMNOppack.h"
 #include "PnlWznmJobMNOp.h"
+#include "PnlWznmJobMNOppack.h"
 #include "PnlWznmJobRef1NBlock.h"
 #include "PnlWznmJobHk1NVector.h"
 #include "PnlWznmJob1NSensitivity.h"
@@ -205,8 +205,8 @@ public:
 
 	PnlWznmJobSubMNJob* pnlsubmnjob;
 	PnlWznmJobSupMNJob* pnlsupmnjob;
-	PnlWznmJobMNOppack* pnlmnoppack;
 	PnlWznmJobMNOp* pnlmnop;
+	PnlWznmJobMNOppack* pnlmnoppack;
 	PnlWznmJobRef1NBlock* pnlref1nblock;
 	PnlWznmJobHk1NVector* pnlhk1nvector;
 	PnlWznmJob1NSensitivity* pnl1nsensitivity;

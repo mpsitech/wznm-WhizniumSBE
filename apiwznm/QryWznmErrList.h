@@ -2,8 +2,8 @@
 	* \file QryWznmErrList.h
 	* API code for job QryWznmErrList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMERRLIST_H
@@ -27,8 +27,8 @@ namespace QryWznmErrList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint VER = 1;
-		static const Sbecore::uint SRF = 2;
+		static const Sbecore::uint SRF = 1;
+		static const Sbecore::uint VER = 2;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

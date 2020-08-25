@@ -2,8 +2,8 @@
 	* \file QryWznmCalList.h
 	* job handler for job QryWznmCalList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMCALLIST_H
@@ -34,8 +34,8 @@ public:
 		static const Sbecore::uint RAT = 1;
 		static const Sbecore::uint IAT = 2;
 		static const Sbecore::uint REU = 3;
-		static const Sbecore::uint RET = 4;
-		static const Sbecore::uint VER = 5;
+		static const Sbecore::uint VER = 4;
+		static const Sbecore::uint RET = 5;
 		static const Sbecore::uint TYP = 6;
 		static const Sbecore::uint SRF = 7;
 

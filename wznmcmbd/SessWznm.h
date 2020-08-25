@@ -2,8 +2,8 @@
 	* \file SessWznm.h
 	* job handler for job SessWznm (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef SESSWZNM_H
@@ -16,6 +16,7 @@
 #include "CrdWznmUtl.h"
 #include "CrdWznmSte.h"
 #include "CrdWznmSeq.h"
+#include "CrdWznmEvt.h"
 #include "CrdWznmRtj.h"
 #include "CrdWznmApp.h"
 #include "CrdWznmRls.h"
@@ -128,6 +129,7 @@ public:
 	std::list<CrdWznmUtl*> crdutls;
 	std::list<CrdWznmSte*> crdstes;
 	std::list<CrdWznmSeq*> crdseqs;
+	std::list<CrdWznmEvt*> crdevts;
 	std::list<CrdWznmRtj*> crdrtjs;
 	std::list<CrdWznmApp*> crdapps;
 	std::list<CrdWznmRls*> crdrlss;
@@ -222,6 +224,7 @@ public:
 	Sbecore::uint evalCrdcmpActive();
 	Sbecore::uint evalCrdrlsActive();
 	Sbecore::uint evalCrdrtjActive();
+	Sbecore::uint evalCrdevtActive();
 	Sbecore::uint evalCrdseqActive();
 	Sbecore::uint evalCrdsteActive();
 
@@ -253,6 +256,7 @@ private:
 	bool handleCreateCrdctp(DbsWznm* dbswznm);
 	bool handleCreateCrddlg(DbsWznm* dbswznm);
 	bool handleCreateCrderr(DbsWznm* dbswznm);
+	bool handleCreateCrdevt(DbsWznm* dbswznm);
 	bool handleCreateCrdfil(DbsWznm* dbswznm);
 	bool handleCreateCrdiel(DbsWznm* dbswznm);
 	bool handleCreateCrdiex(DbsWznm* dbswznm);
@@ -301,6 +305,7 @@ private:
 	bool handleEraseCrdctp(DbsWznm* dbswznm);
 	bool handleEraseCrddlg(DbsWznm* dbswznm);
 	bool handleEraseCrderr(DbsWznm* dbswznm);
+	bool handleEraseCrdevt(DbsWznm* dbswznm);
 	bool handleEraseCrdfil(DbsWznm* dbswznm);
 	bool handleEraseCrdiel(DbsWznm* dbswznm);
 	bool handleEraseCrdiex(DbsWznm* dbswznm);
@@ -346,11 +351,11 @@ public:
 
 private:
 	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
-	bool handleCallWznmLog(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv);
 	bool handleCallWznmRecaccess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, Sbecore::uint& ixRet);
+	bool handleCallWznmLog(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv);
+	bool handleCallWznmCrdClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv);
 	bool handleCallWznmCrdOpen(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv, Sbecore::ubigint& refRet);
 	bool handleCallWznmCrdActive(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, Sbecore::uint& ixRet);
-	bool handleCallWznmCrdClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv);
 
 };
 

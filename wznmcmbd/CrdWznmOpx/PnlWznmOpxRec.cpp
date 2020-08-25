@@ -2,8 +2,8 @@
 	* \file PnlWznmOpxRec.cpp
 	* job handler for job PnlWznmOpxRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -40,8 +40,8 @@ PnlWznmOpxRec::PnlWznmOpxRec(
 	pnlsqkmnstub = NULL;
 	pnlmnjob = NULL;
 	pnlref1nblock = NULL;
-	pnlainvarg = NULL;
 	pnlaretval = NULL;
+	pnlainvarg = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT

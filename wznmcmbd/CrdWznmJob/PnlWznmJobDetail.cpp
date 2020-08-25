@@ -2,8 +2,8 @@
 	* \file PnlWznmJobDetail.cpp
 	* job handler for job PnlWznmJobDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -270,21 +270,9 @@ void PnlWznmJobDetail::handleDpchAppDoButReuViewClick(
 	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
 
 	if (statshr.ButReuViewAvail && statshr.ButReuViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::CAR) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-			sref = "CrdWznmCar";
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::PNL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+			sref = "CrdWznmPnl";
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::DLG) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmDlg";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
-			};
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::PNL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmPnl";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
-			};
 		};
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCQRY, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::QRY) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
@@ -293,8 +281,20 @@ void PnlWznmJobDetail::handleDpchAppDoButReuViewClick(
 			};
 		};
 		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::CAR) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmCar";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::IEX) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmIex";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::DLG) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmDlg";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
 			};
 		};

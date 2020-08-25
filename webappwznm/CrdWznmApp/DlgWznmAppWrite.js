@@ -2,13 +2,25 @@
   * \file DlgWznmAppWrite.js
   * web client functionality for dialog DlgWznmAppWrite
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 // IP cust --- INSERT
 
 // --- view initialization and refresh
+function initDet() {
+	contdoc = doc.getElementById("_cont").contentDocument;
+
+	// IP initDet --- BEGIN
+	initCpt(contdoc, "CptUsf", retrieveTi(srcdoc, "TagDlgWznmAppWriteDet", "CptUsf"));
+	// IP initDet --- END
+
+	setSi(srcdoc, "StatAppDlgWznmAppWrite", "initdone", "true");
+
+	refreshDet();
+};
+
 function initCuc() {
 	contdoc = doc.getElementById("_cont").contentDocument;
 
@@ -81,7 +93,7 @@ function refreshHdr() {
 
 	var myspan, myrect;
 
-	for (var num = 1; num <= 4; num++) {
+	for (var num = 1; num <= 5; num++) {
 		sref = retrieveValue(srcdoc, "//wznm:FeedFDse/wznm:Fi[@num='" + num + "']/wznm:sref");
 		Title = retrieveValue(srcdoc, "//wznm:FeedFDse/wznm:Fi[@num='" + num + "']/wznm:tit1");
 
@@ -100,6 +112,17 @@ function refreshHdr() {
 			myrect.setAttribute("onclick", "handleDseSelect(" + num + ")");
 		};
 	};
+};
+
+function refreshDet() {
+	// IP refreshDet.vars --- BEGIN
+
+	// IP refreshDet.vars --- END
+
+	// IP refreshDet --- BEGIN
+	refreshChk(contdoc, "ChkUsf", (retrieveCi(srcdoc, "ContIacDlgWznmAppWriteDet", "ChkUsf") == "true"), true);
+
+	// IP refreshDet --- END
 };
 
 function refreshCuc() {
@@ -179,7 +202,9 @@ function refresh(updDit, updHdr) {
 
 	} else if (initdone) {
 		// update current dialog item
-		if (shortDit == "Cuc") {
+		if (shortDit == "Det") {
+			refreshDet();
+		} else if (shortDit == "Cuc") {
 			refreshCuc();
 		} else if (shortDit == "Wrc") {
 			refreshWrc();
@@ -208,6 +233,8 @@ function handleLoad() {
 
 // --- specific event handlers for app controls
 
+// --- specific event handlers for app controls of dialog item Det
+
 // --- specific event handlers for app controls of dialog item Cuc
 
 // --- specific event handlers for app controls of dialog item Wrc
@@ -222,6 +249,19 @@ function handleLoad() {
 
 function handleButClick(ditshort, ctlsref) {
 	var str = serializeDpchAppDoDlg(srcdoc, "DpchAppDlgWznmAppWriteDo", scrJref, ditshort, ctlsref + "Click");
+	sendReq(str, doc, handleDpchAppDataDoReply);
+};
+
+function handleChkChange(_doc, ditshort, ctlsref) {
+	var elem = _doc.getElementById(ctlsref);
+	var checked;
+
+	elem.setAttribute("class", "chkmod");
+
+	if (elem.checked == true) checked = "true"; else checked = "false";
+	setCi(srcdoc, "ContIacDlgWznmAppWrite" + ditshort, ctlsref, checked);
+
+	var str = serializeDpchAppData(srcdoc, "DpchAppDlgWznmAppWriteData", scrJref, "ContIacDlgWznmAppWrite" + ditshort);
 	sendReq(str, doc, handleDpchAppDataDoReply);
 };
 
@@ -243,6 +283,7 @@ function mergeDpchEngData(dom) {
 	var mask = [];
 
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "ContIacDlgWznmAppWrite", srcdoc)) mask.push("contiac");
+	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "ContIacDlgWznmAppWriteDet", srcdoc)) mask.push("contiacdet");
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "ContInfDlgWznmAppWrite", srcdoc)) mask.push("continf");
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "ContInfDlgWznmAppWriteFia", srcdoc)) mask.push("continffia");
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "ContInfDlgWznmAppWriteLfi", srcdoc)) mask.push("continflfi");
@@ -257,6 +298,7 @@ function mergeDpchEngData(dom) {
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "StatShrDlgWznmAppWriteWrc", srcdoc)) mask.push("statshrwrc");
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "TagDlgWznmAppWrite", srcdoc)) mask.push("tag");
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "TagDlgWznmAppWriteCuc", srcdoc)) mask.push("tagcuc");
+	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "TagDlgWznmAppWriteDet", srcdoc)) mask.push("tagdet");
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "TagDlgWznmAppWriteFia", srcdoc)) mask.push("tagfia");
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "TagDlgWznmAppWriteLfi", srcdoc)) mask.push("taglfi");
 	if (updateSrcblock(dom, "DpchEngDlgWznmAppWriteData", "TagDlgWznmAppWriteWrc", srcdoc)) mask.push("tagwrc");

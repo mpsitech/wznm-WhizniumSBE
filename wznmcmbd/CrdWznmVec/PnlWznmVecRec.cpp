@@ -2,8 +2,8 @@
 	* \file PnlWznmVecRec.cpp
 	* job handler for job PnlWznmVecRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,10 +37,10 @@ PnlWznmVecRec::PnlWznmVecRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlpst1nquerymod = NULL;
 	pnlmntable = NULL;
-	pnlsrc1nfeed = NULL;
+	pnlpst1nquerymod = NULL;
 	pnlref1npanel = NULL;
+	pnlsrc1nfeed = NULL;
 	pnlfct1ntablecol = NULL;
 	pnlvec1nvectoritem = NULL;
 	pnlatitle = NULL;
@@ -51,11 +51,11 @@ PnlWznmVecRec::PnlWznmVecRec(
 	// IP constructor.cust2 --- INSERT
 
 	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_VEREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_HKTEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_HKUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_INSBS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_PSTEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_TYPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_PSTEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_INSBS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_HKUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMVEC_HKTEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMPST_VEREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMPST_REUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMPST_RETEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
@@ -295,16 +295,16 @@ void PnlWznmVecRec::handleCall(
 		call->abort = handleCallWznmPstUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_VEREQ) {
 		call->abort = handleCallWznmVec_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_HKTEQ) {
-		call->abort = handleCallWznmVec_hktEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_HKUEQ) {
-		call->abort = handleCallWznmVec_hkuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_INSBS) {
-		call->abort = handleCallWznmVec_inSbs(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_PSTEQ) {
-		call->abort = handleCallWznmVec_pstEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_TYPEQ) {
 		call->abort = handleCallWznmVec_typEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_PSTEQ) {
+		call->abort = handleCallWznmVec_pstEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_INSBS) {
+		call->abort = handleCallWznmVec_inSbs(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_HKUEQ) {
+		call->abort = handleCallWznmVec_hkuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_HKTEQ) {
+		call->abort = handleCallWznmVec_hktEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPST_VEREQ) {
 		call->abort = handleCallWznmPst_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPST_REUEQ) {
@@ -343,36 +343,14 @@ bool PnlWznmVecRec::handleCallWznmVec_verEq(
 	return retval;
 };
 
-bool PnlWznmVecRec::handleCallWznmVec_hktEq(
+bool PnlWznmVecRec::handleCallWznmVec_typEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 			, const uint ixInv
 			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recVec.hkIxVTbl == ixInv); // IP handleCallWznmVec_hktEq --- LINE
-	return retval;
-};
-
-bool PnlWznmVecRec::handleCallWznmVec_hkuEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recVec.hkUref == refInv); // IP handleCallWznmVec_hkuEq --- LINE
-	return retval;
-};
-
-bool PnlWznmVecRec::handleCallWznmVec_inSbs(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = ((ixWSubsetVec & ixInv) != 0); // IP handleCallWznmVec_inSbs --- LINE
+	boolvalRet = (recVec.ixVBasetype == ixInv); // IP handleCallWznmVec_typEq --- LINE
 	return retval;
 };
 
@@ -387,14 +365,36 @@ bool PnlWznmVecRec::handleCallWznmVec_pstEq(
 	return retval;
 };
 
-bool PnlWznmVecRec::handleCallWznmVec_typEq(
+bool PnlWznmVecRec::handleCallWznmVec_inSbs(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 			, const uint ixInv
 			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recVec.ixVBasetype == ixInv); // IP handleCallWznmVec_typEq --- LINE
+	boolvalRet = ((ixWSubsetVec & ixInv) != 0); // IP handleCallWznmVec_inSbs --- LINE
+	return retval;
+};
+
+bool PnlWznmVecRec::handleCallWznmVec_hkuEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recVec.hkUref == refInv); // IP handleCallWznmVec_hkuEq --- LINE
+	return retval;
+};
+
+bool PnlWznmVecRec::handleCallWznmVec_hktEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recVec.hkIxVTbl == ixInv); // IP handleCallWznmVec_hktEq --- LINE
 	return retval;
 };
 

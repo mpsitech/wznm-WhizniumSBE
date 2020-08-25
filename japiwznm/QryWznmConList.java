@@ -2,8 +2,8 @@
   * \file QryWznmConList.java
   * Java API code for job QryWznmConList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -21,8 +21,8 @@ public class QryWznmConList {
 		public static final int SUP = 1;
 		public static final int REU = 2;
 		public static final int RET = 3;
-		public static final int HKU = 4;
-		public static final int SCT = 5;
+		public static final int SCT = 4;
+		public static final int HKU = 5;
 		public static final int HKT = 6;
 		public static final int TYP = 7;
 		public static final int SRF = 8;
@@ -35,8 +35,8 @@ public class QryWznmConList {
 			if (s.equals("sup")) return SUP;
 			if (s.equals("reu")) return REU;
 			if (s.equals("ret")) return RET;
-			if (s.equals("hku")) return HKU;
 			if (s.equals("sct")) return SCT;
+			if (s.equals("hku")) return HKU;
 			if (s.equals("hkt")) return HKT;
 			if (s.equals("typ")) return TYP;
 			if (s.equals("srf")) return SRF;
@@ -50,8 +50,8 @@ public class QryWznmConList {
 			if (ix == SUP) return("sup");
 			if (ix == REU) return("reu");
 			if (ix == RET) return("ret");
-			if (ix == HKU) return("hku");
 			if (ix == SCT) return("sct");
+			if (ix == HKU) return("hku");
 			if (ix == HKT) return("hkt");
 			if (ix == TYP) return("typ");
 			if (ix == SRF) return("srf");

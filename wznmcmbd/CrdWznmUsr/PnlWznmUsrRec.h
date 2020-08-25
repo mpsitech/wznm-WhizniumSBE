@@ -2,8 +2,8 @@
 	* \file PnlWznmUsrRec.h
 	* job handler for job PnlWznmUsrRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMUSRREC_H
@@ -211,8 +211,8 @@ public:
 
 private:
 	bool handleCallWznmUsrUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmUsr_prsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmUsr_usgEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmUsr_prsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

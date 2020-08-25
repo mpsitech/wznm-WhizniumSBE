@@ -2,8 +2,8 @@
   * \file PnlWznmNavAppdev.js
   * web client functionality for panel PnlWznmNavAppdev
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 // IP cust --- INSERT
@@ -83,7 +83,7 @@ function refreshA() {
 function refreshBD(bNotD) {
 	if (!contcontdoc) return;
 
-	var height = 394; // full cont height
+	var height = 490; // full cont height
 
 	// IP refreshBD.vars --- BEGIN
 	var LstAppAlt = (retrieveSi(srcdoc, "StatAppWznmNavAppdev", "LstAppAlt") == "true");
@@ -96,6 +96,12 @@ function refreshBD(bNotD) {
 	var ButRtjViewAvail = !LstRtjAlt;
 	var ButRtjViewActive = (retrieveSi(srcdoc, "StatShrWznmNavAppdev", "ButRtjViewActive") == "true");
 	var ButRtjNewcrdActive = (retrieveSi(srcdoc, "StatShrWznmNavAppdev", "ButRtjNewcrdActive") == "true");
+
+	var LstEvtAlt = (retrieveSi(srcdoc, "StatAppWznmNavAppdev", "LstEvtAlt") == "true");
+	var LstEvtAvail = (retrieveSi(srcdoc, "StatShrWznmNavAppdev", "LstEvtAvail") == "true");
+	var ButEvtViewAvail = !LstEvtAlt;
+	var ButEvtViewActive = (retrieveSi(srcdoc, "StatShrWznmNavAppdev", "ButEvtViewActive") == "true");
+	var ButEvtNewcrdActive = (retrieveSi(srcdoc, "StatShrWznmNavAppdev", "ButEvtNewcrdActive") == "true");
 
 	var LstSeqAlt = (retrieveSi(srcdoc, "StatAppWznmNavAppdev", "LstSeqAlt") == "true");
 	var LstSeqAvail = (retrieveSi(srcdoc, "StatShrWznmNavAppdev", "LstSeqAvail") == "true");
@@ -221,6 +227,61 @@ function refreshBD(bNotD) {
 		refreshButicon(contcontdoc, "ButRtjNewcrd", "icon/newcrd", ButRtjNewcrdActive, false);
 
 	} else setCtlAvail(contcontdoc, "Rtj2", false, 0);
+
+	height -= setCtlAvail(contcontdoc, "Evt", LstEvtAvail, 96);
+	height -= setCtlAvail(contcontdoc, "Evt2", LstEvtAvail && !LstEvtAlt, (LstEvtAvail) ? 71 : 0);
+	if (LstEvtAvail) {
+		if ( (LstEvtAlt == !contcontdoc.getElementById("ButEvtExpand")) || (!LstEvtAlt == !contcontdoc.getElementById("ButEvtCollapse")) ) {
+			mytd = contcontdoc.getElementById("ldynEvt");
+			clearElem(mytd);
+
+			mytd.appendChild(makeSpanCpt(contcontdoc, "CptEvt", retrieveTi(srcdoc, "TagWznmNavAppdev", "CptEvt")));
+
+			mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
+			if (LstEvtAlt) mytd.appendChild(makeImgBut(contcontdoc, "ButEvtExpand", "icon/expand"));
+			else mytd.appendChild(makeImgBut(contcontdoc, "ButEvtCollapse", "icon/collapse"));
+		};
+
+		if (!LstEvtAlt == !contcontdoc.getElementById("LstEvt")) {
+			mytd = contcontdoc.getElementById("rdynEvt");
+			clearElem(mytd);
+			mytd = contcontdoc.getElementById("dynEvt");
+			clearElem(mytd);
+
+			if (LstEvtAlt) {
+				mytd.setAttribute("rowspan", "1");
+			} else {
+				mytd.setAttribute("rowspan", "2");
+				mytd.appendChild(makeIframeLst(contcontdoc, "LstEvt", "./PnlWznmNavAppdev_LstEvt.xml", true));
+			};
+
+		} else {
+			if (!LstEvtAlt) refreshLst(contcontdoc.getElementById("LstEvt").contentWindow.document, srcdoc, 1, true, false, "FeedFLstEvt",
+						parseInt(retrieveSi(srcdoc, "StatAppWznmNavAppdev", "LstEvtNumFirstdisp")), [parseInt(retrieveCi(srcdoc, "ContIacWznmNavAppdev", "numFLstEvt"))]);
+		};
+
+		if ((ButEvtViewAvail == !contcontdoc.getElementById("ButEvtView")) || !contcontdoc.getElementById("ButEvtNewcrd")) {
+			if (LstEvtAlt) mytd = contcontdoc.getElementById("dynEvt");
+			else mytd = contcontdoc.getElementById("rdynEvt");
+			clearElem(mytd);
+
+			first = true;
+
+			if (ButEvtViewAvail) {
+				if (first) first = false;
+				else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
+				mytd.appendChild(makeImgBut(contcontdoc, "ButEvtView", "icon/view"));
+			};
+
+			if (first) first = false;
+			else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
+			mytd.appendChild(makeImgBut(contcontdoc, "ButEvtNewcrd", "icon/newcrd"));
+		};
+
+		if (ButEvtViewAvail) refreshButicon(contcontdoc, "ButEvtView", "icon/view", ButEvtViewActive, false);
+		refreshButicon(contcontdoc, "ButEvtNewcrd", "icon/newcrd", ButEvtNewcrdActive, false);
+
+	} else setCtlAvail(contcontdoc, "Evt2", false, 0);
 
 	height -= setCtlAvail(contcontdoc, "Seq", LstSeqAvail, 96);
 	height -= setCtlAvail(contcontdoc, "Seq2", LstSeqAvail && !LstSeqAlt, (LstSeqAvail) ? 71 : 0);
@@ -525,6 +586,7 @@ function mergeDpchEngData(dom) {
 
 	if (updateSrcblock(dom, "DpchEngWznmNavAppdevData", "ContIacWznmNavAppdev", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmNavAppdevData", "FeedFLstApp", srcdoc)) mask.push("feedFLstApp");
+	if (updateSrcblock(dom, "DpchEngWznmNavAppdevData", "FeedFLstEvt", srcdoc)) mask.push("feedFLstEvt");
 	if (updateSrcblock(dom, "DpchEngWznmNavAppdevData", "FeedFLstRtj", srcdoc)) mask.push("feedFLstRtj");
 	if (updateSrcblock(dom, "DpchEngWznmNavAppdevData", "FeedFLstSeq", srcdoc)) mask.push("feedFLstSeq");
 	if (updateSrcblock(dom, "DpchEngWznmNavAppdevData", "FeedFLstSte", srcdoc)) mask.push("feedFLstSte");

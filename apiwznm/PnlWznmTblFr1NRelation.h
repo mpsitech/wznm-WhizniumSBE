@@ -2,8 +2,8 @@
 	* \file PnlWznmTblFr1NRelation.h
 	* API code for job PnlWznmTblFr1NRelation (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMTBLFR1NRELATION_H

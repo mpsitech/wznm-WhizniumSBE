@@ -2,13 +2,11 @@
 	* \file WznmMState.cpp
 	* database access for table TblWznmMState (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmMState.h"
-
-#include "WznmMState_vecs.cpp"
 
 using namespace std;
 using namespace Sbecore;
@@ -22,13 +20,6 @@ WznmMState::WznmMState(
 			, const ubigint seqRefWznmMSequence
 			, const uint seqNum
 			, const string sref
-			, const uint eacIxVAction
-			, const ubigint erjRefWznmMRtjob
-			, const ubigint eveRefWznmMVector
-			, const ubigint eviRefWznmMVectoritem
-			, const ubigint esnRefWznmMState
-			, const uint lacIxVAction
-			, const bool Custstep
 			, const string Comment
 		) {
 
@@ -36,13 +27,6 @@ WznmMState::WznmMState(
 	this->seqRefWznmMSequence = seqRefWznmMSequence;
 	this->seqNum = seqNum;
 	this->sref = sref;
-	this->eacIxVAction = eacIxVAction;
-	this->erjRefWznmMRtjob = erjRefWznmMRtjob;
-	this->eveRefWznmMVector = eveRefWznmMVector;
-	this->eviRefWznmMVectoritem = eviRefWznmMVectoritem;
-	this->esnRefWznmMState = esnRefWznmMState;
-	this->lacIxVAction = lacIxVAction;
-	this->Custstep = Custstep;
 	this->Comment = Comment;
 };
 
@@ -177,19 +161,12 @@ ubigint TblWznmMState::insertNewRec(
 			, const ubigint seqRefWznmMSequence
 			, const uint seqNum
 			, const string sref
-			, const uint eacIxVAction
-			, const ubigint erjRefWznmMRtjob
-			, const ubigint eveRefWznmMVector
-			, const ubigint eviRefWznmMVectoritem
-			, const ubigint esnRefWznmMState
-			, const uint lacIxVAction
-			, const bool Custstep
 			, const string Comment
 		) {
 	ubigint retval = 0;
 	WznmMState* _rec = NULL;
 
-	_rec = new WznmMState(0, seqRefWznmMSequence, seqNum, sref, eacIxVAction, erjRefWznmMRtjob, eveRefWznmMVector, eviRefWznmMVectoritem, esnRefWznmMState, lacIxVAction, Custstep, Comment);
+	_rec = new WznmMState(0, seqRefWznmMSequence, seqNum, sref, Comment);
 	insertRec(_rec);
 
 	retval = _rec->ref;
@@ -206,19 +183,12 @@ ubigint TblWznmMState::appendNewRecToRst(
 			, const ubigint seqRefWznmMSequence
 			, const uint seqNum
 			, const string sref
-			, const uint eacIxVAction
-			, const ubigint erjRefWznmMRtjob
-			, const ubigint eveRefWznmMVector
-			, const ubigint eviRefWznmMVectoritem
-			, const ubigint esnRefWznmMState
-			, const uint lacIxVAction
-			, const bool Custstep
 			, const string Comment
 		) {
 	ubigint retval = 0;
 	WznmMState* _rec = NULL;
 
-	retval = insertNewRec(&_rec, seqRefWznmMSequence, seqNum, sref, eacIxVAction, erjRefWznmMRtjob, eveRefWznmMVector, eviRefWznmMVectoritem, esnRefWznmMState, lacIxVAction, Custstep, Comment);
+	retval = insertNewRec(&_rec, seqRefWznmMSequence, seqNum, sref, Comment);
 	rst.nodes.push_back(_rec);
 
 	if (rec != NULL) *rec = _rec;
@@ -317,8 +287,8 @@ MyTblWznmMState::~MyTblWznmMState() {
 };
 
 void MyTblWznmMState::initStatements() {
-	stmtInsertRec = createStatement("INSERT INTO TblWznmMState (seqRefWznmMSequence, seqNum, sref, eacIxVAction, erjRefWznmMRtjob, eveRefWznmMVector, eviRefWznmMVectoritem, esnRefWznmMState, lacIxVAction, Custstep, Comment) VALUES (?,?,?,?,?,?,?,?,?,?,?)", false);
-	stmtUpdateRec = createStatement("UPDATE TblWznmMState SET seqRefWznmMSequence = ?, seqNum = ?, sref = ?, eacIxVAction = ?, erjRefWznmMRtjob = ?, eveRefWznmMVector = ?, eviRefWznmMVectoritem = ?, esnRefWznmMState = ?, lacIxVAction = ?, Custstep = ?, Comment = ? WHERE ref = ?", false);
+	stmtInsertRec = createStatement("INSERT INTO TblWznmMState (seqRefWznmMSequence, seqNum, sref, Comment) VALUES (?,?,?,?)", false);
+	stmtUpdateRec = createStatement("UPDATE TblWznmMState SET seqRefWznmMSequence = ?, seqNum = ?, sref = ?, Comment = ? WHERE ref = ?", false);
 	stmtRemoveRecByRef = createStatement("DELETE FROM TblWznmMState WHERE ref = ?", false);
 };
 
@@ -352,14 +322,7 @@ bool MyTblWznmMState::loadRecBySQL(
 		if (dbrow[1]) _rec->seqRefWznmMSequence = atoll((char*) dbrow[1]); else _rec->seqRefWznmMSequence = 0;
 		if (dbrow[2]) _rec->seqNum = atol((char*) dbrow[2]); else _rec->seqNum = 0;
 		if (dbrow[3]) _rec->sref.assign(dbrow[3], dblengths[3]); else _rec->sref = "";
-		if (dbrow[4]) _rec->eacIxVAction = atol((char*) dbrow[4]); else _rec->eacIxVAction = 0;
-		if (dbrow[5]) _rec->erjRefWznmMRtjob = atoll((char*) dbrow[5]); else _rec->erjRefWznmMRtjob = 0;
-		if (dbrow[6]) _rec->eveRefWznmMVector = atoll((char*) dbrow[6]); else _rec->eveRefWznmMVector = 0;
-		if (dbrow[7]) _rec->eviRefWznmMVectoritem = atoll((char*) dbrow[7]); else _rec->eviRefWznmMVectoritem = 0;
-		if (dbrow[8]) _rec->esnRefWznmMState = atoll((char*) dbrow[8]); else _rec->esnRefWznmMState = 0;
-		if (dbrow[9]) _rec->lacIxVAction = atol((char*) dbrow[9]); else _rec->lacIxVAction = 0;
-		if (dbrow[10]) _rec->Custstep = (atoi((char*) dbrow[10]) != 0); else _rec->Custstep = false;
-		if (dbrow[11]) _rec->Comment.assign(dbrow[11], dblengths[11]); else _rec->Comment = "";
+		if (dbrow[4]) _rec->Comment.assign(dbrow[4], dblengths[4]); else _rec->Comment = "";
 
 		retval = true;
 	};
@@ -406,14 +369,7 @@ ubigint MyTblWznmMState::loadRstBySQL(
 			if (dbrow[1]) rec->seqRefWznmMSequence = atoll((char*) dbrow[1]); else rec->seqRefWznmMSequence = 0;
 			if (dbrow[2]) rec->seqNum = atol((char*) dbrow[2]); else rec->seqNum = 0;
 			if (dbrow[3]) rec->sref.assign(dbrow[3], dblengths[3]); else rec->sref = "";
-			if (dbrow[4]) rec->eacIxVAction = atol((char*) dbrow[4]); else rec->eacIxVAction = 0;
-			if (dbrow[5]) rec->erjRefWznmMRtjob = atoll((char*) dbrow[5]); else rec->erjRefWznmMRtjob = 0;
-			if (dbrow[6]) rec->eveRefWznmMVector = atoll((char*) dbrow[6]); else rec->eveRefWznmMVector = 0;
-			if (dbrow[7]) rec->eviRefWznmMVectoritem = atoll((char*) dbrow[7]); else rec->eviRefWznmMVectoritem = 0;
-			if (dbrow[8]) rec->esnRefWznmMState = atoll((char*) dbrow[8]); else rec->esnRefWznmMState = 0;
-			if (dbrow[9]) rec->lacIxVAction = atol((char*) dbrow[9]); else rec->lacIxVAction = 0;
-			if (dbrow[10]) rec->Custstep = (atoi((char*) dbrow[10]) != 0); else rec->Custstep = false;
-			if (dbrow[11]) rec->Comment.assign(dbrow[11], dblengths[11]); else rec->Comment = "";
+			if (dbrow[4]) rec->Comment.assign(dbrow[4], dblengths[4]); else rec->Comment = "";
 			rst.nodes.push_back(rec);
 
 			numread++;
@@ -428,24 +384,16 @@ ubigint MyTblWznmMState::loadRstBySQL(
 ubigint MyTblWznmMState::insertRec(
 			WznmMState* rec
 		) {
-	unsigned long l[11]; my_bool n[11]; my_bool e[11];
+	unsigned long l[4]; my_bool n[4]; my_bool e[4];
 
 	l[2] = rec->sref.length();
-	tinyint Custstep = rec->Custstep;
-	l[10] = rec->Comment.length();
+	l[3] = rec->Comment.length();
 
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->seqRefWznmMSequence,&(l[0]),&(n[0]),&(e[0])),
 		bindUint(&rec->seqNum,&(l[1]),&(n[1]),&(e[1])),
 		bindCstring((char*) (rec->sref.c_str()),&(l[2]),&(n[2]),&(e[2])),
-		bindUint(&rec->eacIxVAction,&(l[3]),&(n[3]),&(e[3])),
-		bindUbigint(&rec->erjRefWznmMRtjob,&(l[4]),&(n[4]),&(e[4])),
-		bindUbigint(&rec->eveRefWznmMVector,&(l[5]),&(n[5]),&(e[5])),
-		bindUbigint(&rec->eviRefWznmMVectoritem,&(l[6]),&(n[6]),&(e[6])),
-		bindUbigint(&rec->esnRefWznmMState,&(l[7]),&(n[7]),&(e[7])),
-		bindUint(&rec->lacIxVAction,&(l[8]),&(n[8]),&(e[8])),
-		bindTinyint(&Custstep,&(l[9]),&(n[9]),&(e[9])),
-		bindCstring((char*) (rec->Comment.c_str()),&(l[10]),&(n[10]),&(e[10]))
+		bindCstring((char*) (rec->Comment.c_str()),&(l[3]),&(n[3]),&(e[3]))
 	};
 
 	if (mysql_stmt_bind_param(stmtInsertRec, bind)) {
@@ -473,25 +421,17 @@ void MyTblWznmMState::insertRst(
 void MyTblWznmMState::updateRec(
 			WznmMState* rec
 		) {
-	unsigned long l[12]; my_bool n[12]; my_bool e[12];
+	unsigned long l[5]; my_bool n[5]; my_bool e[5];
 
 	l[2] = rec->sref.length();
-	tinyint Custstep = rec->Custstep;
-	l[10] = rec->Comment.length();
+	l[3] = rec->Comment.length();
 
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->seqRefWznmMSequence,&(l[0]),&(n[0]),&(e[0])),
 		bindUint(&rec->seqNum,&(l[1]),&(n[1]),&(e[1])),
 		bindCstring((char*) (rec->sref.c_str()),&(l[2]),&(n[2]),&(e[2])),
-		bindUint(&rec->eacIxVAction,&(l[3]),&(n[3]),&(e[3])),
-		bindUbigint(&rec->erjRefWznmMRtjob,&(l[4]),&(n[4]),&(e[4])),
-		bindUbigint(&rec->eveRefWznmMVector,&(l[5]),&(n[5]),&(e[5])),
-		bindUbigint(&rec->eviRefWznmMVectoritem,&(l[6]),&(n[6]),&(e[6])),
-		bindUbigint(&rec->esnRefWznmMState,&(l[7]),&(n[7]),&(e[7])),
-		bindUint(&rec->lacIxVAction,&(l[8]),&(n[8]),&(e[8])),
-		bindTinyint(&Custstep,&(l[9]),&(n[9]),&(e[9])),
-		bindCstring((char*) (rec->Comment.c_str()),&(l[10]),&(n[10]),&(e[10])),
-		bindUbigint(&rec->ref,&(l[11]),&(n[11]),&(e[11]))
+		bindCstring((char*) (rec->Comment.c_str()),&(l[3]),&(n[3]),&(e[3])),
+		bindUbigint(&rec->ref,&(l[4]),&(n[4]),&(e[4]))
 	};
 
 	if (mysql_stmt_bind_param(stmtUpdateRec, bind)) {
@@ -555,7 +495,7 @@ ubigint MyTblWznmMState::loadRstBySeq(
 			, const bool append
 			, ListWznmMState& rst
 		) {
-	return loadRstBySQL("SELECT ref, seqRefWznmMSequence, seqNum, sref, eacIxVAction, erjRefWznmMRtjob, eveRefWznmMVector, eviRefWznmMVectoritem, esnRefWznmMState, lacIxVAction, Custstep, Comment FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seqRefWznmMSequence) + " ORDER BY seqNum ASC", append, rst);
+	return loadRstBySQL("SELECT ref, seqRefWznmMSequence, seqNum, sref, Comment FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seqRefWznmMSequence) + " ORDER BY seqNum ASC", append, rst);
 };
 
 bool MyTblWznmMState::loadSrfByRef(
@@ -583,13 +523,13 @@ PgTblWznmMState::~PgTblWznmMState() {
 };
 
 void PgTblWznmMState::initStatements() {
-	createStatement("TblWznmMState_insertRec", "INSERT INTO TblWznmMState (seqRefWznmMSequence, seqNum, sref, eacIxVAction, erjRefWznmMRtjob, eveRefWznmMVector, eviRefWznmMVectoritem, esnRefWznmMState, lacIxVAction, Custstep, Comment) VALUES ($1,$2,$3,$4,$5,$6,$7,$8,$9,$10,$11) RETURNING ref", 11);
-	createStatement("TblWznmMState_updateRec", "UPDATE TblWznmMState SET seqRefWznmMSequence = $1, seqNum = $2, sref = $3, eacIxVAction = $4, erjRefWznmMRtjob = $5, eveRefWznmMVector = $6, eviRefWznmMVectoritem = $7, esnRefWznmMState = $8, lacIxVAction = $9, Custstep = $10, Comment = $11 WHERE ref = $12", 12);
+	createStatement("TblWznmMState_insertRec", "INSERT INTO TblWznmMState (seqRefWznmMSequence, seqNum, sref, Comment) VALUES ($1,$2,$3,$4) RETURNING ref", 4);
+	createStatement("TblWznmMState_updateRec", "UPDATE TblWznmMState SET seqRefWznmMSequence = $1, seqNum = $2, sref = $3, Comment = $4 WHERE ref = $5", 5);
 	createStatement("TblWznmMState_removeRecByRef", "DELETE FROM TblWznmMState WHERE ref = $1", 1);
 
-	createStatement("TblWznmMState_loadRecByRef", "SELECT ref, seqRefWznmMSequence, seqNum, sref, eacIxVAction, erjRefWznmMRtjob, eveRefWznmMVector, eviRefWznmMVectoritem, esnRefWznmMState, lacIxVAction, Custstep, Comment FROM TblWznmMState WHERE ref = $1", 1);
+	createStatement("TblWznmMState_loadRecByRef", "SELECT ref, seqRefWznmMSequence, seqNum, sref, Comment FROM TblWznmMState WHERE ref = $1", 1);
 	createStatement("TblWznmMState_loadRefsBySeq", "SELECT ref FROM TblWznmMState WHERE seqRefWznmMSequence = $1", 1);
-	createStatement("TblWznmMState_loadRstBySeq", "SELECT ref, seqRefWznmMSequence, seqNum, sref, eacIxVAction, erjRefWznmMRtjob, eveRefWznmMVector, eviRefWznmMVectoritem, esnRefWznmMState, lacIxVAction, Custstep, Comment FROM TblWznmMState WHERE seqRefWznmMSequence = $1 ORDER BY seqNum ASC", 1);
+	createStatement("TblWznmMState_loadRstBySeq", "SELECT ref, seqRefWznmMSequence, seqNum, sref, Comment FROM TblWznmMState WHERE seqRefWznmMSequence = $1 ORDER BY seqNum ASC", 1);
 	createStatement("TblWznmMState_loadSrfByRef", "SELECT sref FROM TblWznmMState WHERE ref = $1", 1);
 };
 
@@ -610,13 +550,6 @@ bool PgTblWznmMState::loadRec(
 			PQfnumber(res, "seqrefwznmmsequence"),
 			PQfnumber(res, "seqnum"),
 			PQfnumber(res, "sref"),
-			PQfnumber(res, "eacixvaction"),
-			PQfnumber(res, "erjrefwznmmrtjob"),
-			PQfnumber(res, "everefwznmmvector"),
-			PQfnumber(res, "evirefwznmmvectoritem"),
-			PQfnumber(res, "esnrefwznmmstate"),
-			PQfnumber(res, "lacixvaction"),
-			PQfnumber(res, "custstep"),
 			PQfnumber(res, "comment")
 		};
 
@@ -624,14 +557,7 @@ bool PgTblWznmMState::loadRec(
 		ptr = PQgetvalue(res, 0, fnum[1]); _rec->seqRefWznmMSequence = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[2]); _rec->seqNum = atol(ptr);
 		ptr = PQgetvalue(res, 0, fnum[3]); _rec->sref.assign(ptr, PQgetlength(res, 0, fnum[3]));
-		ptr = PQgetvalue(res, 0, fnum[4]); _rec->eacIxVAction = atol(ptr);
-		ptr = PQgetvalue(res, 0, fnum[5]); _rec->erjRefWznmMRtjob = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[6]); _rec->eveRefWznmMVector = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[7]); _rec->eviRefWznmMVectoritem = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[8]); _rec->esnRefWznmMState = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[9]); _rec->lacIxVAction = atol(ptr);
-		ptr = PQgetvalue(res, 0, fnum[10]); _rec->Custstep = (atoi(ptr) != 0);
-		ptr = PQgetvalue(res, 0, fnum[11]); _rec->Comment.assign(ptr, PQgetlength(res, 0, fnum[11]));
+		ptr = PQgetvalue(res, 0, fnum[4]); _rec->Comment.assign(ptr, PQgetlength(res, 0, fnum[4]));
 
 		retval = true;
 	};
@@ -662,13 +588,6 @@ ubigint PgTblWznmMState::loadRst(
 			PQfnumber(res, "seqrefwznmmsequence"),
 			PQfnumber(res, "seqnum"),
 			PQfnumber(res, "sref"),
-			PQfnumber(res, "eacixvaction"),
-			PQfnumber(res, "erjrefwznmmrtjob"),
-			PQfnumber(res, "everefwznmmvector"),
-			PQfnumber(res, "evirefwznmmvectoritem"),
-			PQfnumber(res, "esnrefwznmmstate"),
-			PQfnumber(res, "lacixvaction"),
-			PQfnumber(res, "custstep"),
 			PQfnumber(res, "comment")
 		};
 
@@ -679,14 +598,7 @@ ubigint PgTblWznmMState::loadRst(
 			ptr = PQgetvalue(res, numread, fnum[1]); rec->seqRefWznmMSequence = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[2]); rec->seqNum = atol(ptr);
 			ptr = PQgetvalue(res, numread, fnum[3]); rec->sref.assign(ptr, PQgetlength(res, numread, fnum[3]));
-			ptr = PQgetvalue(res, numread, fnum[4]); rec->eacIxVAction = atol(ptr);
-			ptr = PQgetvalue(res, numread, fnum[5]); rec->erjRefWznmMRtjob = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[6]); rec->eveRefWznmMVector = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[7]); rec->eviRefWznmMVectoritem = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[8]); rec->esnRefWznmMState = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[9]); rec->lacIxVAction = atol(ptr);
-			ptr = PQgetvalue(res, numread, fnum[10]); rec->Custstep = (atoi(ptr) != 0);
-			ptr = PQgetvalue(res, numread, fnum[11]); rec->Comment.assign(ptr, PQgetlength(res, numread, fnum[11]));
+			ptr = PQgetvalue(res, numread, fnum[4]); rec->Comment.assign(ptr, PQgetlength(res, numread, fnum[4]));
 
 			rst.nodes.push_back(rec);
 
@@ -781,43 +693,22 @@ ubigint PgTblWznmMState::insertRec(
 
 	ubigint _seqRefWznmMSequence = htonl64(rec->seqRefWznmMSequence);
 	uint _seqNum = htonl(rec->seqNum);
-	uint _eacIxVAction = htonl(rec->eacIxVAction);
-	ubigint _erjRefWznmMRtjob = htonl64(rec->erjRefWznmMRtjob);
-	ubigint _eveRefWznmMVector = htonl64(rec->eveRefWznmMVector);
-	ubigint _eviRefWznmMVectoritem = htonl64(rec->eviRefWznmMVectoritem);
-	ubigint _esnRefWznmMState = htonl64(rec->esnRefWznmMState);
-	uint _lacIxVAction = htonl(rec->lacIxVAction);
-	smallint _Custstep = htons((smallint) rec->Custstep);
 
 	const char* vals[] = {
 		(char*) &_seqRefWznmMSequence,
 		(char*) &_seqNum,
 		rec->sref.c_str(),
-		(char*) &_eacIxVAction,
-		(char*) &_erjRefWznmMRtjob,
-		(char*) &_eveRefWznmMVector,
-		(char*) &_eviRefWznmMVectoritem,
-		(char*) &_esnRefWznmMState,
-		(char*) &_lacIxVAction,
-		(char*) &_Custstep,
 		rec->Comment.c_str()
 	};
 	const int l[] = {
 		sizeof(ubigint),
 		sizeof(uint),
 		0,
-		sizeof(uint),
-		sizeof(ubigint),
-		sizeof(ubigint),
-		sizeof(ubigint),
-		sizeof(ubigint),
-		sizeof(uint),
-		sizeof(smallint),
 		0
 	};
-	const int f[] = {1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0};
+	const int f[] = {1, 1, 0, 0};
 
-	res = PQexecPrepared(dbs, "TblWznmMState_insertRec", 11, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmMState_insertRec", 4, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_TUPLES_OK) {
 		string dbms = "PgTblWznmMState::insertRec() / " + string(PQerrorMessage(dbs));
@@ -847,26 +738,12 @@ void PgTblWznmMState::updateRec(
 
 	ubigint _seqRefWznmMSequence = htonl64(rec->seqRefWznmMSequence);
 	uint _seqNum = htonl(rec->seqNum);
-	uint _eacIxVAction = htonl(rec->eacIxVAction);
-	ubigint _erjRefWznmMRtjob = htonl64(rec->erjRefWznmMRtjob);
-	ubigint _eveRefWznmMVector = htonl64(rec->eveRefWznmMVector);
-	ubigint _eviRefWznmMVectoritem = htonl64(rec->eviRefWznmMVectoritem);
-	ubigint _esnRefWznmMState = htonl64(rec->esnRefWznmMState);
-	uint _lacIxVAction = htonl(rec->lacIxVAction);
-	smallint _Custstep = htons((smallint) rec->Custstep);
 	ubigint _ref = htonl64(rec->ref);
 
 	const char* vals[] = {
 		(char*) &_seqRefWznmMSequence,
 		(char*) &_seqNum,
 		rec->sref.c_str(),
-		(char*) &_eacIxVAction,
-		(char*) &_erjRefWznmMRtjob,
-		(char*) &_eveRefWznmMVector,
-		(char*) &_eviRefWznmMVectoritem,
-		(char*) &_esnRefWznmMState,
-		(char*) &_lacIxVAction,
-		(char*) &_Custstep,
 		rec->Comment.c_str(),
 		(char*) &_ref
 	};
@@ -874,19 +751,12 @@ void PgTblWznmMState::updateRec(
 		sizeof(ubigint),
 		sizeof(uint),
 		0,
-		sizeof(uint),
-		sizeof(ubigint),
-		sizeof(ubigint),
-		sizeof(ubigint),
-		sizeof(ubigint),
-		sizeof(uint),
-		sizeof(smallint),
 		0,
 		sizeof(ubigint)
 	};
-	const int f[] = {1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1};
+	const int f[] = {1, 1, 0, 0, 1};
 
-	res = PQexecPrepared(dbs, "TblWznmMState_updateRec", 12, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmMState_updateRec", 5, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_COMMAND_OK) {
 		string dbms = "PgTblWznmMState::updateRec() / " + string(PQerrorMessage(dbs));

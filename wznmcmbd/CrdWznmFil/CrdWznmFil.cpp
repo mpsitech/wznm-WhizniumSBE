@@ -2,8 +2,8 @@
 	* \file CrdWznmFil.cpp
 	* job handler for job CrdWznmFil (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -50,8 +50,10 @@ CrdWznmFil::CrdWznmFil(
 
 	// IP constructor.cust1 --- INSERT
 
+	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFFIL, ref);
+
 	// initialize according to ref
-	changeRef(dbswznm, jref, ((ref+1) == 0) ? 0 : ref, false);
+	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWznmFilList(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmFilHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
@@ -66,7 +68,7 @@ CrdWznmFil::CrdWznmFil(
 	set<uint> moditems;
 	refresh(dbswznm, moditems);
 
-	if ((ref+1) == 0) {
+	if ((ref + 1) == 0) {
 		dlgnew = new DlgWznmFilNew(xchg, dbswznm, jref, ixWznmVLocale);
 		statshr.jrefDlgnew = dlgnew->jref;
 	};

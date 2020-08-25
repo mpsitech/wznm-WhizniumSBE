@@ -2,8 +2,8 @@
 	* \file QryWznmJobRef1NBlock.h
 	* API code for job QryWznmJobRef1NBlock (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMJOBREF1NBLOCK_H

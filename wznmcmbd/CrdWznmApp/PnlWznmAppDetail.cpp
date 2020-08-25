@@ -2,8 +2,8 @@
 	* \file PnlWznmAppDetail.cpp
 	* job handler for job PnlWznmAppDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -38,7 +38,7 @@ PnlWznmAppDetail::PnlWznmAppDetail(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	feedFPupTrg.tag = "FeedFPupTrg";
-	VecWznmVMAppTarget::fillFeed(ixWznmVLocale, feedFPupTrg);
+	VecWznmVApptarget::fillFeed(feedFPupTrg);
 
 	// IP constructor.cust1 --- INSERT
 
@@ -97,7 +97,7 @@ void PnlWznmAppDetail::refreshRecApp(
 
 	contiac.TxfSho = recApp.Short;
 	contiac.TxfTit = recApp.Title;
-	contiac.numFPupTrg = feedFPupTrg.getNumByIx(recApp.ixVTarget);
+	contiac.numFPupTrg = feedFPupTrg.getNumByIx(recApp.ixWznmVApptarget);
 	continf.TxtVer = StubWznm::getStubVerStd(dbswznm, recApp.verRefWznmMVersion, ixWznmVLocale, Stub::VecVNonetype::FULL);
 	contiac.TxfCmt = recApp.Comment;
 

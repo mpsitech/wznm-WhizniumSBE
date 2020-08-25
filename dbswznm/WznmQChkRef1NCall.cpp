@@ -2,8 +2,8 @@
 	* \file WznmQChkRef1NCall.cpp
 	* Dbs and XML wrapper for table TblWznmQChkRef1NCall (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmQChkRef1NCall.h"

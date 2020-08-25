@@ -2,8 +2,8 @@
 	* \file WznmQPrsList.h
 	* API code for table TblWznmQPrsList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMQPRSLIST_H

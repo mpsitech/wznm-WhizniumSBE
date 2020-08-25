@@ -56,7 +56,7 @@
 			- ImeIMFeed3.end																
 		- 3	pup	0	cont	void		0	shr	DetPupTrg	void								
 			- ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment											
-			- vec	VecWznmVMAppTarget	FeedFDetPupTrg														
+			- vec	VecWznmVApptarget	FeedFDetPupTrg														
 			- ImeIMFeed3.end																
 		- 4	cpt	0	cont	void		3	app	DetCptTrg	void		Target						
 		- 5	pup	0	cont	void		0	shr	DetPupVer	void								
@@ -97,27 +97,30 @@
 				- lin	VecVDlgWznmAppWriteDit		filfed												
 				- ImeIMVector3.end															
 			- ImeIMFeed3.end																
-		- 4	dit	0	void	void		0	shr	DitCuc	dituld		Custom code						
-		- 5	uld	0	cont	void		4	app	CucUld	void	upload					sge(idle)	cap	
-		- 6	cpt	0	cont	void		5	app	CucCpt	void	filename						cap	
-		- 7	dit	0	void	void		0	shr	DitWrc	ditprg		Writing						
-		- 8	txt	0	cont	void		7	shr	WrcTxtPrg	void							t	
-		- 9	cpt	0	cont	void		8	app	WrcCptPrg	void	progress						cap	
-		- 10	sep	0	cont	void		7	app	WrcSep1	void								
-		- 11	but	1	cont	void		7	shr	WrcButRun	void	run					sge(idle|upkdone)	cap	
-		- 12	but	1	cont	void		7	shr	WrcButSto	void	stop					sge(!idle&!done)	cap	
-		- 13	dit	0	void	void		0	shr	DitLfi	ditdld		Log file						
-		- 14	dld	0	cont	void		13	app	LfiDld	void	download					sge(fail)	cap	
-		- 15	dit	0	void	void		0	shr	DitFia	ditdld		File archive						
-		- 16	dld	0	cont	void		15	app	FiaDld	void	download					sge(done)	cap	
-		- 17	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|fail|done)	cap	
+		- 4	dit	0	void	void		0	shr	DitDet	ditstd		Details						
+		- 5	chk	0	cont	void		4	shr	DetChkUsf	void								
+		- 6	cpt	0	cont	void		5	app	DetCptUsf	void		Unspec. st. mach. features						
+		- 7	dit	0	void	void		0	shr	DitCuc	dituld		Custom code						
+		- 8	uld	0	cont	void		7	app	CucUld	void	upload					sge(idle)	cap	
+		- 9	cpt	0	cont	void		8	app	CucCpt	void	filename						cap	
+		- 10	dit	0	void	void		0	shr	DitWrc	ditprg		Writing						
+		- 11	txt	0	cont	void		10	shr	WrcTxtPrg	void							t	
+		- 12	cpt	0	cont	void		11	app	WrcCptPrg	void	progress						cap	
+		- 13	sep	0	cont	void		10	app	WrcSep1	void								
+		- 14	but	1	cont	void		10	shr	WrcButRun	void	run					sge(idle|upkdone)	cap	
+		- 15	but	1	cont	void		10	shr	WrcButSto	void	stop					sge(!idle&!done)	cap	
+		- 16	dit	0	void	void		0	shr	DitLfi	ditdld		Log file						
+		- 17	dld	0	cont	void		16	app	LfiDld	void	download					sge(fail)	cap	
+		- 18	dit	0	void	void		0	shr	DitFia	ditdld		File archive						
+		- 19	dld	0	cont	void		18	app	FiaDld	void	download					sge(done)	cap	
+		- 20	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|fail|done)	cap	
 			- ImeIAMControlPar3.x1SrefKKey	srefX2RefWznmMLocale	osrefKVal														
 			- action		dlgclose														
 			- ImeIAMControlPar3.end																
-		- 18	alr	0	void	void		0	shr	AlrMer	void								
-		- 19	txt	0	void	void		18	shr	TxtMerCpt	void	error						cap	
-		- 20	txt	0	void	void		18	shr	TxtMerMsg1	void		Merge error (&aspect;). View log file for details.						
-		- 21	mcb	0	void	void		18	shr	McbMer	void	ok							
+		- 21	alr	0	void	void		0	shr	AlrMer	void								
+		- 22	txt	0	void	void		21	shr	TxtMerCpt	void	error						cap	
+		- 23	txt	0	void	void		21	shr	TxtMerMsg1	void		Merge error (&aspect;). View log file for details.						
+		- 24	mcb	0	void	void		21	shr	McbMer	void	ok							
 		- ImeIMControl3.end																	
 	- ImeIMDialog.end																		
 - CrdWznmFil																			

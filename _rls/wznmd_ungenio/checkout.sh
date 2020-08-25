@@ -2,8 +2,8 @@
 # file checkout.sh
 # checkout script for Wznm daemon, release wznmd_ungenio
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 export set SRCROOT=/Users/mpsitech/src
 export set LIBROOT=/Users/mpsitech/lib
@@ -60,6 +60,7 @@ mkdir $SRCROOT/wznmd/CrdWznmCmp
 mkdir $SRCROOT/wznmd/CrdWznmRls
 mkdir $SRCROOT/wznmd/CrdWznmApp
 mkdir $SRCROOT/wznmd/CrdWznmRtj
+mkdir $SRCROOT/wznmd/CrdWznmEvt
 mkdir $SRCROOT/wznmd/CrdWznmSeq
 mkdir $SRCROOT/wznmd/CrdWznmSte
 mkdir $SRCROOT/wznmd/CrdWznmUtl
@@ -350,6 +351,11 @@ cp Makefile_CrdWznmRtj $SRCROOT/wznmd/CrdWznmRtj/Makefile
 cp $CMBDSRCROOT/CrdWznmRtj/*.h $SRCROOT/wznmd/CrdWznmRtj/
 cp $CMBDSRCROOT/CrdWznmRtj/*.cpp $SRCROOT/wznmd/CrdWznmRtj/
 
+cp Makefile_CrdWznmEvt $SRCROOT/wznmd/CrdWznmEvt/Makefile
+
+cp $CMBDSRCROOT/CrdWznmEvt/*.h $SRCROOT/wznmd/CrdWznmEvt/
+cp $CMBDSRCROOT/CrdWznmEvt/*.cpp $SRCROOT/wznmd/CrdWznmEvt/
+
 cp Makefile_CrdWznmSeq $SRCROOT/wznmd/CrdWznmSeq/Makefile
 
 cp $CMBDSRCROOT/CrdWznmSeq/*.h $SRCROOT/wznmd/CrdWznmSeq/
@@ -365,6 +371,11 @@ cp Makefile_CrdWznmUtl $SRCROOT/wznmd/CrdWznmUtl/Makefile
 cp $CMBDSRCROOT/CrdWznmUtl/*.h $SRCROOT/wznmd/CrdWznmUtl/
 cp $CMBDSRCROOT/CrdWznmUtl/*.cpp $SRCROOT/wznmd/CrdWznmUtl/
 
+cp $CMBDSRCROOT/WznmWrsrv/WznmWrsrv_blks.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmWrsrv/WznmWrsrv_blks.cpp $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmWrsrv/SqkWznmWrsrv.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmWrsrv/SqkWznmWrsrv.cpp $SRCROOT/wznmd/
+
 cp $CMBDSRCROOT/WznmWrweb/WznmWrweb_blks.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrweb/WznmWrweb_blks.cpp $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrweb/SqkWznmWrweb.h $SRCROOT/wznmd/
@@ -375,68 +386,63 @@ cp $CMBDSRCROOT/WznmWrjapi/WznmWrjapi_blks.cpp $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrjapi/SqkWznmWrjapi.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrjapi/SqkWznmWrjapi.cpp $SRCROOT/wznmd/
 
-cp $CMBDSRCROOT/WznmWrsrv/WznmWrsrv_blks.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmWrsrv/WznmWrsrv_blks.cpp $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmWrsrv/SqkWznmWrsrv.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmWrsrv/SqkWznmWrsrv.cpp $SRCROOT/wznmd/
-
 cp $CMBDSRCROOT/WznmWrdbs/WznmWrdbs_blks.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrdbs/WznmWrdbs_blks.cpp $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrdbs/SqkWznmWrdbs.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrdbs/SqkWznmWrdbs.cpp $SRCROOT/wznmd/
-
-cp $CMBDSRCROOT/WznmWrapp/WznmWrapp_blks.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmWrapp/WznmWrapp_blks.cpp $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmWrapp/SqkWznmWrapp.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmWrapp/SqkWznmWrapp.cpp $SRCROOT/wznmd/
 
 cp $CMBDSRCROOT/WznmPrctree/WznmPrctree_blks.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmPrctree/WznmPrctree_blks.cpp $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmPrctree/SqkWznmPrctree.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmPrctree/SqkWznmPrctree.cpp $SRCROOT/wznmd/
 
+cp $CMBDSRCROOT/WznmWrapp/WznmWrapp_blks.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmWrapp/WznmWrapp_blks.cpp $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmWrapp/SqkWznmWrapp.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmWrapp/SqkWznmWrapp.cpp $SRCROOT/wznmd/
+
 cp $CMBDSRCROOT/WznmWrapi/WznmWrapi_blks.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrapi/WznmWrapi_blks.cpp $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrapi/SqkWznmWrapi.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmWrapi/SqkWznmWrapi.cpp $SRCROOT/wznmd/
-
-cp $CMBDSRCROOT/WznmGen/WznmGen_blks.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmGen/WznmGen_blks.cpp $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmGen/SqkWznmGen.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmGen/SqkWznmGen.cpp $SRCROOT/wznmd/
 
 cp $CMBDSRCROOT/WznmPrcfile/WznmPrcfile_blks.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmPrcfile/WznmPrcfile_blks.cpp $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmPrcfile/SqkWznmPrcfile.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmPrcfile/SqkWznmPrcfile.cpp $SRCROOT/wznmd/
 
-cp $CMBDSRCROOT/WznmCtpWrsrv/WznmCtpWrsrv_blks.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmCtpWrsrv/WznmCtpWrsrv_blks.cpp $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmCtpWrsrv/SqkWznmCtpWrsrv.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmCtpWrsrv/SqkWznmCtpWrsrv.cpp $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmGen/WznmGen_blks.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmGen/WznmGen_blks.cpp $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmGen/SqkWznmGen.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmGen/SqkWznmGen.cpp $SRCROOT/wznmd/
 
 cp $CMBDSRCROOT/WznmCtpWrweb/WznmCtpWrweb_blks.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmCtpWrweb/WznmCtpWrweb_blks.cpp $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmCtpWrweb/SqkWznmCtpWrweb.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmCtpWrweb/SqkWznmCtpWrweb.cpp $SRCROOT/wznmd/
 
-cp $CMBDSRCROOT/WznmCtpWrstkit/WznmCtpWrstkit_blks.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmCtpWrstkit/WznmCtpWrstkit_blks.cpp $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmCtpWrstkit/SqkWznmCtpWrstkit.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmCtpWrstkit/SqkWznmCtpWrstkit.cpp $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCtpWrsrv/WznmCtpWrsrv_blks.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCtpWrsrv/WznmCtpWrsrv_blks.cpp $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCtpWrsrv/SqkWznmCtpWrsrv.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCtpWrsrv/SqkWznmCtpWrsrv.cpp $SRCROOT/wznmd/
 
 cp $CMBDSRCROOT/WznmCtpGenui/WznmCtpGenui_blks.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmCtpGenui/WznmCtpGenui_blks.cpp $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmCtpGenui/SqkWznmCtpGenui.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmCtpGenui/SqkWznmCtpGenui.cpp $SRCROOT/wznmd/
 
-cp $CMBDSRCROOT/WznmCompl/WznmCompl_blks.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmCompl/WznmCompl_blks.cpp $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmCompl/SqkWznmCompl.h $SRCROOT/wznmd/
-cp $CMBDSRCROOT/WznmCompl/SqkWznmCompl.cpp $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCtpWrstkit/WznmCtpWrstkit_blks.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCtpWrstkit/WznmCtpWrstkit_blks.cpp $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCtpWrstkit/SqkWznmCtpWrstkit.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCtpWrstkit/SqkWznmCtpWrstkit.cpp $SRCROOT/wznmd/
 
 cp $CMBDSRCROOT/WznmCtpGenjtr/WznmCtpGenjtr_blks.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmCtpGenjtr/WznmCtpGenjtr_blks.cpp $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmCtpGenjtr/SqkWznmCtpGenjtr.h $SRCROOT/wznmd/
 cp $CMBDSRCROOT/WznmCtpGenjtr/SqkWznmCtpGenjtr.cpp $SRCROOT/wznmd/
+
+cp $CMBDSRCROOT/WznmCompl/WznmCompl_blks.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCompl/WznmCompl_blks.cpp $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCompl/SqkWznmCompl.h $SRCROOT/wznmd/
+cp $CMBDSRCROOT/WznmCompl/SqkWznmCompl.cpp $SRCROOT/wznmd/
 

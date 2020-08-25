@@ -2,27 +2,13 @@
 	* \file PnlWznmTblRec_evals.cpp
 	* job handler for job PnlWznmTblRec (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
-
-bool PnlWznmTblRec::evalPnlaloadfctAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
 
 bool PnlWznmTblRec::evalPnlatitleAvail(
 			DbsWznm* dbswznm
@@ -38,7 +24,7 @@ bool PnlWznmTblRec::evalPnlatitleAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nimpexpAvail(
+bool PnlWznmTblRec::evalPnlaloadfctAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -47,6 +33,20 @@ bool PnlWznmTblRec::evalPnl1nimpexpAvail(
 	bool a;
 
 	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnl1nstubAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(mtb)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -80,15 +80,15 @@ bool PnlWznmTblRec::evalPnl1nsubsetAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nstubAvail(
+bool PnlWznmTblRec::evalPnl1nimpexpAvail(
 			DbsWznm* dbswznm
 		) {
-	// tbl.inSbs(mtb)
+	// tbl.inSbs(stt)
 
 	vector<bool> args;
 	bool a;
 
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
 	args.push_back(a);
 
 	return(args.back());

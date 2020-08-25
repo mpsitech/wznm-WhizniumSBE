@@ -2,8 +2,8 @@
 	* \file ApiWznm_blks.cpp
 	* Wznm API library global data blocks (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "ApiWznm_blks.h"

@@ -2,8 +2,8 @@
 	* \file WznmMProject.h
 	* database access for table TblWznmMProject (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMMPROJECT_H
@@ -88,6 +88,7 @@ public:
 	virtual void removeRecByRef(Sbecore::ubigint ref);
 
 	virtual bool loadRecByRef(Sbecore::ubigint ref, WznmMProject** rec);
+	virtual bool loadShoByRef(Sbecore::ubigint ref, std::string& Short);
 	virtual bool loadTitByRef(Sbecore::ubigint ref, std::string& Title);
 	Sbecore::ubigint loadRstByRefs(std::vector<Sbecore::ubigint>& refs, const bool append, ListWznmMProject& rst);
 };
@@ -121,6 +122,7 @@ public:
 	void removeRecByRef(Sbecore::ubigint ref);
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmMProject** rec);
+	bool loadShoByRef(Sbecore::ubigint ref, std::string& Short);
 	bool loadTitByRef(Sbecore::ubigint ref, std::string& Title);
 };
 #endif
@@ -154,6 +156,7 @@ public:
 	void removeRecByRef(Sbecore::ubigint ref);
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmMProject** rec);
+	bool loadShoByRef(Sbecore::ubigint ref, std::string& Short);
 	bool loadTitByRef(Sbecore::ubigint ref, std::string& Title);
 };
 #endif

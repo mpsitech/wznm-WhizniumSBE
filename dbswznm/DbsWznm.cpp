@@ -2,8 +2,8 @@
 	* \file DbsWznm.cpp
 	* C++ wrapper for database DbsWznm (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "DbsWznm.h"
@@ -131,8 +131,10 @@ void DbsWznm::initMy() {
 	((MyTblWznmAMQueryOrder*) tblwznmamqueryorder)->init(dbsMy);
 	tblwznmamrelationtitle = new MyTblWznmAMRelationTitle();
 	((MyTblWznmAMRelationTitle*) tblwznmamrelationtitle)->init(dbsMy);
-	tblwznmamstatestep = new MyTblWznmAMStateStep();
-	((MyTblWznmAMStateStep*) tblwznmamstatestep)->init(dbsMy);
+	tblwznmamstateaction = new MyTblWznmAMStateAction();
+	((MyTblWznmAMStateAction*) tblwznmamstateaction)->init(dbsMy);
+	tblwznmamstatetrig = new MyTblWznmAMStateTrig();
+	((MyTblWznmAMStateTrig*) tblwznmamstatetrig)->init(dbsMy);
 	tblwznmamsubsettitle = new MyTblWznmAMSubsetTitle();
 	((MyTblWznmAMSubsetTitle*) tblwznmamsubsettitle)->init(dbsMy);
 	tblwznmamtablecoltitle = new MyTblWznmAMTablecolTitle();
@@ -175,6 +177,8 @@ void DbsWznm::initMy() {
 	((MyTblWznmHistRMUserUniversal*) tblwznmhistrmuseruniversal)->init(dbsMy);
 	tblwznmjamblockitem = new MyTblWznmJAMBlockItem();
 	((MyTblWznmJAMBlockItem*) tblwznmjamblockitem)->init(dbsMy);
+	tblwznmjamstatetrigcond = new MyTblWznmJAMStateTrigCond();
+	((MyTblWznmJAMStateTrigCond*) tblwznmjamstatetrigcond)->init(dbsMy);
 	tblwznmjavkeylistkey = new MyTblWznmJAVKeylistKey();
 	((MyTblWznmJAVKeylistKey*) tblwznmjavkeylistkey)->init(dbsMy);
 	tblwznmjmcardtitle = new MyTblWznmJMCardTitle();
@@ -231,6 +235,8 @@ void DbsWznm::initMy() {
 	((MyTblWznmMDialog*) tblwznmmdialog)->init(dbsMy);
 	tblwznmmerror = new MyTblWznmMError();
 	((MyTblWznmMError*) tblwznmmerror)->init(dbsMy);
+	tblwznmmevent = new MyTblWznmMEvent();
+	((MyTblWznmMEvent*) tblwznmmevent)->init(dbsMy);
 	tblwznmmfeed = new MyTblWznmMFeed();
 	((MyTblWznmMFeed*) tblwznmmfeed)->init(dbsMy);
 	tblwznmmfile = new MyTblWznmMFile();
@@ -356,6 +362,8 @@ void DbsWznm::initMy() {
 	tblwznmtmquerymodmquery = new MyTblWznmTMQuerymodMQuery();
 	((MyTblWznmTMQuerymodMQuery*) tblwznmtmquerymodmquery)->init(dbsMy);
 
+	tblwznmqapp1nevent = new MyTblWznmQApp1NEvent();
+	((MyTblWznmQApp1NEvent*) tblwznmqapp1nevent)->init(dbsMy);
 	tblwznmqapp1nrtjob = new MyTblWznmQApp1NRtjob();
 	((MyTblWznmQApp1NRtjob*) tblwznmqapp1nrtjob)->init(dbsMy);
 	tblwznmqappapp1nsequence = new MyTblWznmQAppApp1NSequence();
@@ -432,6 +440,8 @@ void DbsWznm::initMy() {
 	((MyTblWznmQDlgRef1NControl*) tblwznmqdlgref1ncontrol)->init(dbsMy);
 	tblwznmqerrlist = new MyTblWznmQErrList();
 	((MyTblWznmQErrList*) tblwznmqerrlist)->init(dbsMy);
+	tblwznmqevtlist = new MyTblWznmQEvtList();
+	((MyTblWznmQEvtList*) tblwznmqevtlist)->init(dbsMy);
 	tblwznmqfillist = new MyTblWznmQFilList();
 	((MyTblWznmQFilList*) tblwznmqfillist)->init(dbsMy);
 	tblwznmqiellist = new MyTblWznmQIelList();
@@ -660,8 +670,8 @@ void DbsWznm::initMy() {
 	((MyTblWznmQStbSubMNStub*) tblwznmqstbsubmnstub)->init(dbsMy);
 	tblwznmqstbsupmnstub = new MyTblWznmQStbSupMNStub();
 	((MyTblWznmQStbSupMNStub*) tblwznmqstbsupmnstub)->init(dbsMy);
-	tblwznmqsteastep = new MyTblWznmQSteAStep();
-	((MyTblWznmQSteAStep*) tblwznmqsteastep)->init(dbsMy);
+	tblwznmqsteatrig = new MyTblWznmQSteATrig();
+	((MyTblWznmQSteATrig*) tblwznmqsteatrig)->init(dbsMy);
 	tblwznmqstelist = new MyTblWznmQSteList();
 	((MyTblWznmQSteList*) tblwznmqstelist)->init(dbsMy);
 	tblwznmqtaglist = new MyTblWznmQTagList();
@@ -850,8 +860,10 @@ void DbsWznm::initPg() {
 	((PgTblWznmAMQueryOrder*) tblwznmamqueryorder)->init(dbsPg);
 	tblwznmamrelationtitle = new PgTblWznmAMRelationTitle();
 	((PgTblWznmAMRelationTitle*) tblwznmamrelationtitle)->init(dbsPg);
-	tblwznmamstatestep = new PgTblWznmAMStateStep();
-	((PgTblWznmAMStateStep*) tblwznmamstatestep)->init(dbsPg);
+	tblwznmamstateaction = new PgTblWznmAMStateAction();
+	((PgTblWznmAMStateAction*) tblwznmamstateaction)->init(dbsPg);
+	tblwznmamstatetrig = new PgTblWznmAMStateTrig();
+	((PgTblWznmAMStateTrig*) tblwznmamstatetrig)->init(dbsPg);
 	tblwznmamsubsettitle = new PgTblWznmAMSubsetTitle();
 	((PgTblWznmAMSubsetTitle*) tblwznmamsubsettitle)->init(dbsPg);
 	tblwznmamtablecoltitle = new PgTblWznmAMTablecolTitle();
@@ -894,6 +906,8 @@ void DbsWznm::initPg() {
 	((PgTblWznmHistRMUserUniversal*) tblwznmhistrmuseruniversal)->init(dbsPg);
 	tblwznmjamblockitem = new PgTblWznmJAMBlockItem();
 	((PgTblWznmJAMBlockItem*) tblwznmjamblockitem)->init(dbsPg);
+	tblwznmjamstatetrigcond = new PgTblWznmJAMStateTrigCond();
+	((PgTblWznmJAMStateTrigCond*) tblwznmjamstatetrigcond)->init(dbsPg);
 	tblwznmjavkeylistkey = new PgTblWznmJAVKeylistKey();
 	((PgTblWznmJAVKeylistKey*) tblwznmjavkeylistkey)->init(dbsPg);
 	tblwznmjmcardtitle = new PgTblWznmJMCardTitle();
@@ -950,6 +964,8 @@ void DbsWznm::initPg() {
 	((PgTblWznmMDialog*) tblwznmmdialog)->init(dbsPg);
 	tblwznmmerror = new PgTblWznmMError();
 	((PgTblWznmMError*) tblwznmmerror)->init(dbsPg);
+	tblwznmmevent = new PgTblWznmMEvent();
+	((PgTblWznmMEvent*) tblwznmmevent)->init(dbsPg);
 	tblwznmmfeed = new PgTblWznmMFeed();
 	((PgTblWznmMFeed*) tblwznmmfeed)->init(dbsPg);
 	tblwznmmfile = new PgTblWznmMFile();
@@ -1075,6 +1091,8 @@ void DbsWznm::initPg() {
 	tblwznmtmquerymodmquery = new PgTblWznmTMQuerymodMQuery();
 	((PgTblWznmTMQuerymodMQuery*) tblwznmtmquerymodmquery)->init(dbsPg);
 
+	tblwznmqapp1nevent = new PgTblWznmQApp1NEvent();
+	((PgTblWznmQApp1NEvent*) tblwznmqapp1nevent)->init(dbsPg);
 	tblwznmqapp1nrtjob = new PgTblWznmQApp1NRtjob();
 	((PgTblWznmQApp1NRtjob*) tblwznmqapp1nrtjob)->init(dbsPg);
 	tblwznmqappapp1nsequence = new PgTblWznmQAppApp1NSequence();
@@ -1151,6 +1169,8 @@ void DbsWznm::initPg() {
 	((PgTblWznmQDlgRef1NControl*) tblwznmqdlgref1ncontrol)->init(dbsPg);
 	tblwznmqerrlist = new PgTblWznmQErrList();
 	((PgTblWznmQErrList*) tblwznmqerrlist)->init(dbsPg);
+	tblwznmqevtlist = new PgTblWznmQEvtList();
+	((PgTblWznmQEvtList*) tblwznmqevtlist)->init(dbsPg);
 	tblwznmqfillist = new PgTblWznmQFilList();
 	((PgTblWznmQFilList*) tblwznmqfillist)->init(dbsPg);
 	tblwznmqiellist = new PgTblWznmQIelList();
@@ -1379,8 +1399,8 @@ void DbsWznm::initPg() {
 	((PgTblWznmQStbSubMNStub*) tblwznmqstbsubmnstub)->init(dbsPg);
 	tblwznmqstbsupmnstub = new PgTblWznmQStbSupMNStub();
 	((PgTblWznmQStbSupMNStub*) tblwznmqstbsupmnstub)->init(dbsPg);
-	tblwznmqsteastep = new PgTblWznmQSteAStep();
-	((PgTblWznmQSteAStep*) tblwznmqsteastep)->init(dbsPg);
+	tblwznmqsteatrig = new PgTblWznmQSteATrig();
+	((PgTblWznmQSteATrig*) tblwznmqsteatrig)->init(dbsPg);
 	tblwznmqstelist = new PgTblWznmQSteList();
 	((PgTblWznmQSteList*) tblwznmqstelist)->init(dbsPg);
 	tblwznmqtaglist = new PgTblWznmQTagList();

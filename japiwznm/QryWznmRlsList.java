@@ -2,8 +2,8 @@
   * \file QryWznmRlsList.java
   * Java API code for job QryWznmRlsList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -19,8 +19,8 @@ public class QryWznmRlsList {
 	public static class VecVOrd {
 
 		public static final int MCH = 1;
-		public static final int SRF = 2;
-		public static final int CMP = 3;
+		public static final int CMP = 2;
+		public static final int SRF = 3;
 
 		public static int getIx(
 					String sref
@@ -28,8 +28,8 @@ public class QryWznmRlsList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("mch")) return MCH;
-			if (s.equals("srf")) return SRF;
 			if (s.equals("cmp")) return CMP;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -38,8 +38,8 @@ public class QryWznmRlsList {
 					int ix
 				) {
 			if (ix == MCH) return("mch");
-			if (ix == SRF) return("srf");
 			if (ix == CMP) return("cmp");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

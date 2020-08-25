@@ -2,8 +2,8 @@
   * \file PnlWznmCalList.js
   * web client functionality for panel PnlWznmCalList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 // --- expand state management
@@ -141,7 +141,7 @@ function refreshB(chgcol) {
 			} else if (i == 2) {
 				doc.cols.push("TcoTyp"); doc.widths.push(TcoTypWidth); doc.fs.push("typ2"); doc.tos.push(0); wtot += TcoTypWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoVer"); doc.widths.push(TcoVerWidth); doc.fs.push("ver"); doc.tos.push(5); wtot += TcoVerWidth;
+				doc.cols.push("TcoVer"); doc.widths.push(TcoVerWidth); doc.fs.push("ver"); doc.tos.push(4); wtot += TcoVerWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoRet"); doc.widths.push(TcoRetWidth); doc.fs.push("ret2"); doc.tos.push(0); wtot += TcoRetWidth;
 			} else if (i == 5) {

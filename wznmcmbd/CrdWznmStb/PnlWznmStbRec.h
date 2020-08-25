@@ -2,8 +2,8 @@
 	* \file PnlWznmStbRec.h
 	* job handler for job PnlWznmStbRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMSTBREC_H
@@ -14,8 +14,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmStbMNCall.h"
-#include "PnlWznmStbMNSquawk.h"
 #include "PnlWznmStbSubMNStub.h"
+#include "PnlWznmStbMNSquawk.h"
 #include "PnlWznmStbSupMNStub.h"
 #include "PnlWznmStbDetail.h"
 
@@ -177,8 +177,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmStbMNCall* pnlmncall;
-	PnlWznmStbMNSquawk* pnlmnsquawk;
 	PnlWznmStbSubMNStub* pnlsubmnstub;
+	PnlWznmStbMNSquawk* pnlmnsquawk;
 	PnlWznmStbSupMNStub* pnlsupmnstub;
 	PnlWznmStbDetail* pnldetail;
 
@@ -215,8 +215,8 @@ public:
 
 private:
 	bool handleCallWznmStbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmStb_sbsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmStb_tcoEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmStb_sbsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

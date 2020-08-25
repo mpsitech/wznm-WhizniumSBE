@@ -2,8 +2,8 @@
 	* \file CrdWznmUsg.cpp
 	* job handler for job CrdWznmUsg (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -47,8 +47,10 @@ CrdWznmUsg::CrdWznmUsg(
 
 	// IP constructor.cust1 --- INSERT
 
+	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFUSG, ref);
+
 	// initialize according to ref
-	changeRef(dbswznm, jref, ((ref+1) == 0) ? 0 : ref, false);
+	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWznmUsgList(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmUsgHeadbar(xchg, dbswznm, jref, ixWznmVLocale);

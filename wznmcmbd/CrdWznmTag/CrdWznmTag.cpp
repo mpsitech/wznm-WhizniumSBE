@@ -2,8 +2,8 @@
 	* \file CrdWznmTag.cpp
 	* job handler for job CrdWznmTag (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -41,17 +41,19 @@ CrdWznmTag::CrdWznmTag(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnlheadbar = NULL;
 	pnllist = NULL;
+	pnlheadbar = NULL;
 	pnlrec = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
-	// initialize according to ref
-	changeRef(dbswznm, jref, ((ref+1) == 0) ? 0 : ref, false);
+	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFTAG, ref);
 
-	pnlheadbar = new PnlWznmTagHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	// initialize according to ref
+	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
+
 	pnllist = new PnlWznmTagList(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmTagHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlrec = new PnlWznmTagRec(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT

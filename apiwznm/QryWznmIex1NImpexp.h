@@ -2,8 +2,8 @@
 	* \file QryWznmIex1NImpexp.h
 	* API code for job QryWznmIex1NImpexp (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMIEX1NIMPEXP_H

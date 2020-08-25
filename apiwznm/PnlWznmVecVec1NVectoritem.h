@@ -2,8 +2,8 @@
 	* \file PnlWznmVecVec1NVectoritem.h
 	* API code for job PnlWznmVecVec1NVectoritem (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMVECVEC1NVECTORITEM_H

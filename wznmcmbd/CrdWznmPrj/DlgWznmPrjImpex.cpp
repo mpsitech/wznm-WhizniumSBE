@@ -2,8 +2,8 @@
 	* \file DlgWznmPrjImpex.cpp
 	* job handler for job DlgWznmPrjImpex (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -147,23 +147,23 @@ void DlgWznmPrjImpex::refresh(
 			, set<uint>& moditems
 		) {
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshIfi(dbswznm, moditems);
 	refreshImp(dbswznm, moditems);
@@ -227,9 +227,9 @@ void DlgWznmPrjImpex::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
+		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
 		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 	};
 };
 
@@ -330,11 +330,11 @@ string DlgWznmPrjImpex::handleDownloadInSgeDone(
 	return(""); // IP handleDownloadInSgeDone --- LINE
 };
 
-void DlgWznmPrjImpex::handleTimerWithSrefMonInSgeImport(
+void DlgWznmPrjImpex::handleTimerInSgePrsidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmPrjImpex::handleTimerInSgeImpidle(
@@ -344,11 +344,11 @@ void DlgWznmPrjImpex::handleTimerInSgeImpidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmPrjImpex::handleTimerInSgePrsidle(
+void DlgWznmPrjImpex::handleTimerWithSrefMonInSgeImport(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
 };
 
 void DlgWznmPrjImpex::changeStage(

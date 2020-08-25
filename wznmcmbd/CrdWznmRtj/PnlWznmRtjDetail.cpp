@@ -2,8 +2,8 @@
 	* \file PnlWznmRtjDetail.cpp
 	* job handler for job PnlWznmRtjDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -44,8 +44,8 @@ PnlWznmRtjDetail::PnlWznmRtjDetail(
 	// IP constructor.cust2 --- INSERT
 
 	xchg->addClstn(VecWznmVCall::CALLWZNMRTJ_SUPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMRTJ_APPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMRTJ_JOBEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMRTJ_APPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -296,10 +296,10 @@ void PnlWznmRtjDetail::handleCall(
 		call->abort = handleCallWznmRtjUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMRTJ_SUPEQ) {
 		call->abort = handleCallWznmRtj_supEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMRTJ_APPEQ) {
-		call->abort = handleCallWznmRtj_appEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMRTJ_JOBEQ) {
 		call->abort = handleCallWznmRtj_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMRTJ_APPEQ) {
+		call->abort = handleCallWznmRtj_appEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -323,17 +323,6 @@ bool PnlWznmRtjDetail::handleCallWznmRtj_supEq(
 	return retval;
 };
 
-bool PnlWznmRtjDetail::handleCallWznmRtj_appEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recRtj.refWznmMApp == refInv); // IP handleCallWznmRtj_appEq --- LINE
-	return retval;
-};
-
 bool PnlWznmRtjDetail::handleCallWznmRtj_jobEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -342,6 +331,17 @@ bool PnlWznmRtjDetail::handleCallWznmRtj_jobEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recRtj.refWznmMJob == refInv); // IP handleCallWznmRtj_jobEq --- LINE
+	return retval;
+};
+
+bool PnlWznmRtjDetail::handleCallWznmRtj_appEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recRtj.refWznmMApp == refInv); // IP handleCallWznmRtj_appEq --- LINE
 	return retval;
 };
 

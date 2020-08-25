@@ -2,8 +2,8 @@
 	* \file PnlWznmOpkRec.cpp
 	* API code for job PnlWznmOpkRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "PnlWznmOpkRec.h"
@@ -108,8 +108,8 @@ PnlWznmOpkRec::StatApp::StatApp(
 			, const bool initdone1NOp
 			, const bool initdoneRef1NBlock
 			, const bool initdoneMNJob
-			, const bool initdoneMNLibrary
 			, const bool initdoneMNComponent
+			, const bool initdoneMNLibrary
 			, const bool initdoneSqkMNStub
 		) :
 			Block()
@@ -120,11 +120,11 @@ PnlWznmOpkRec::StatApp::StatApp(
 	this->initdone1NOp = initdone1NOp;
 	this->initdoneRef1NBlock = initdoneRef1NBlock;
 	this->initdoneMNJob = initdoneMNJob;
-	this->initdoneMNLibrary = initdoneMNLibrary;
 	this->initdoneMNComponent = initdoneMNComponent;
+	this->initdoneMNLibrary = initdoneMNLibrary;
 	this->initdoneSqkMNStub = initdoneSqkMNStub;
 
-	mask = {INITDONEDETAIL, INITDONEARETVAL, INITDONEAINVARG, INITDONE1NOP, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONEMNLIBRARY, INITDONEMNCOMPONENT, INITDONESQKMNSTUB};
+	mask = {INITDONEDETAIL, INITDONEARETVAL, INITDONEAINVARG, INITDONE1NOP, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONEMNCOMPONENT, INITDONEMNLIBRARY, INITDONESQKMNSTUB};
 };
 
 bool PnlWznmOpkRec::StatApp::readXML(
@@ -150,8 +150,8 @@ bool PnlWznmOpkRec::StatApp::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NOp", initdone1NOp)) add(INITDONE1NOP);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NBlock", initdoneRef1NBlock)) add(INITDONEREF1NBLOCK);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNJob", initdoneMNJob)) add(INITDONEMNJOB);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNLibrary", initdoneMNLibrary)) add(INITDONEMNLIBRARY);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNComponent", initdoneMNComponent)) add(INITDONEMNCOMPONENT);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNLibrary", initdoneMNLibrary)) add(INITDONEMNLIBRARY);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSqkMNStub", initdoneSqkMNStub)) add(INITDONESQKMNSTUB);
 	};
 
@@ -169,8 +169,8 @@ set<uint> PnlWznmOpkRec::StatApp::comm(
 	if (initdone1NOp == comp->initdone1NOp) insert(items, INITDONE1NOP);
 	if (initdoneRef1NBlock == comp->initdoneRef1NBlock) insert(items, INITDONEREF1NBLOCK);
 	if (initdoneMNJob == comp->initdoneMNJob) insert(items, INITDONEMNJOB);
-	if (initdoneMNLibrary == comp->initdoneMNLibrary) insert(items, INITDONEMNLIBRARY);
 	if (initdoneMNComponent == comp->initdoneMNComponent) insert(items, INITDONEMNCOMPONENT);
+	if (initdoneMNLibrary == comp->initdoneMNLibrary) insert(items, INITDONEMNLIBRARY);
 	if (initdoneSqkMNStub == comp->initdoneSqkMNStub) insert(items, INITDONESQKMNSTUB);
 
 	return(items);
@@ -184,7 +184,7 @@ set<uint> PnlWznmOpkRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEARETVAL, INITDONEAINVARG, INITDONE1NOP, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONEMNLIBRARY, INITDONEMNCOMPONENT, INITDONESQKMNSTUB};
+	diffitems = {INITDONEDETAIL, INITDONEARETVAL, INITDONEAINVARG, INITDONE1NOP, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONEMNCOMPONENT, INITDONEMNLIBRARY, INITDONESQKMNSTUB};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -202,8 +202,8 @@ PnlWznmOpkRec::StatShr::StatShr(
 			, const string& scrJref1NOp
 			, const string& scrJrefRef1NBlock
 			, const string& scrJrefMNJob
-			, const string& scrJrefMNLibrary
 			, const string& scrJrefMNComponent
+			, const string& scrJrefMNLibrary
 			, const string& scrJrefSqkMNStub
 			, const bool pnlsqkmnstubAvail
 			, const bool ButRegularizeActive
@@ -217,13 +217,13 @@ PnlWznmOpkRec::StatShr::StatShr(
 	this->scrJref1NOp = scrJref1NOp;
 	this->scrJrefRef1NBlock = scrJrefRef1NBlock;
 	this->scrJrefMNJob = scrJrefMNJob;
-	this->scrJrefMNLibrary = scrJrefMNLibrary;
 	this->scrJrefMNComponent = scrJrefMNComponent;
+	this->scrJrefMNLibrary = scrJrefMNLibrary;
 	this->scrJrefSqkMNStub = scrJrefSqkMNStub;
 	this->pnlsqkmnstubAvail = pnlsqkmnstubAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFARETVAL, SCRJREFAINVARG, SCRJREF1NOP, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFMNLIBRARY, SCRJREFMNCOMPONENT, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFARETVAL, SCRJREFAINVARG, SCRJREF1NOP, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFMNCOMPONENT, SCRJREFMNLIBRARY, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmOpkRec::StatShr::readXML(
@@ -255,8 +255,8 @@ bool PnlWznmOpkRec::StatShr::readXML(
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NOp", scrJref1NOp)) add(SCRJREF1NOP);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NBlock", scrJrefRef1NBlock)) add(SCRJREFREF1NBLOCK);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNJob", scrJrefMNJob)) add(SCRJREFMNJOB);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNLibrary", scrJrefMNLibrary)) add(SCRJREFMNLIBRARY);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNComponent", scrJrefMNComponent)) add(SCRJREFMNCOMPONENT);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNLibrary", scrJrefMNLibrary)) add(SCRJREFMNLIBRARY);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSqkMNStub", scrJrefSqkMNStub)) add(SCRJREFSQKMNSTUB);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "pnlsqkmnstubAvail", pnlsqkmnstubAvail)) add(PNLSQKMNSTUBAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
@@ -277,8 +277,8 @@ set<uint> PnlWznmOpkRec::StatShr::comm(
 	if (scrJref1NOp == comp->scrJref1NOp) insert(items, SCRJREF1NOP);
 	if (scrJrefRef1NBlock == comp->scrJrefRef1NBlock) insert(items, SCRJREFREF1NBLOCK);
 	if (scrJrefMNJob == comp->scrJrefMNJob) insert(items, SCRJREFMNJOB);
-	if (scrJrefMNLibrary == comp->scrJrefMNLibrary) insert(items, SCRJREFMNLIBRARY);
 	if (scrJrefMNComponent == comp->scrJrefMNComponent) insert(items, SCRJREFMNCOMPONENT);
+	if (scrJrefMNLibrary == comp->scrJrefMNLibrary) insert(items, SCRJREFMNLIBRARY);
 	if (scrJrefSqkMNStub == comp->scrJrefSqkMNStub) insert(items, SCRJREFSQKMNSTUB);
 	if (pnlsqkmnstubAvail == comp->pnlsqkmnstubAvail) insert(items, PNLSQKMNSTUBAVAIL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
@@ -294,7 +294,7 @@ set<uint> PnlWznmOpkRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFARETVAL, SCRJREFAINVARG, SCRJREF1NOP, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFMNLIBRARY, SCRJREFMNCOMPONENT, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFARETVAL, SCRJREFAINVARG, SCRJREF1NOP, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFMNCOMPONENT, SCRJREFMNLIBRARY, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

@@ -2,8 +2,8 @@
 	* \file WznmWrapp.cpp
 	* Wznm operation pack global code (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -41,7 +41,7 @@ void WznmWrapp::loadRtjtree(
 			if (rtjs.nodes[j]->ref == rtj->supRefWznmMRtjob) {
 				// super job found, insert sub-job as last sub-job to this super job (alphabetical order is ensured by initial order)
 
-				for (unsigned int k=j+1;k<i;k++) if (rtjs.nodes[k]->supRefWznmMRtjob == rtj->supRefWznmMRtjob) j++; else break;
+				for (unsigned int k = j + 1; k < i; k++) if (rtjs.nodes[k]->supRefWznmMRtjob == rtj->supRefWznmMRtjob) j++; else break;
 
 				// move sub-job up to position j+1, push down all jobs between j+1 and i-1
 				if ((j+1) != i) {
@@ -58,7 +58,7 @@ void WznmWrapp::loadRtjtree(
 void WznmWrapp::writeRtjtree(
 			DbsWznm* dbswznm
 			, fstream& outfile
-			, const uint ixVTarget
+			, const uint ixWznmVApptarget
 			, ListWznmMRtjob& rtjs
 		) {
 	WznmMRtjob* rtj = NULL;
@@ -68,7 +68,7 @@ void WznmWrapp::writeRtjtree(
 
 	string indent;
 
-	if (ixVTarget != VecWznmVMAppTarget::COCOA_OBJC) indent = "\t";
+	if (ixWznmVApptarget != VecWznmVApptarget::COCOA_OBJC) indent = "\t";
 
 	for (unsigned int i = 0; i < rtjs.nodes.size(); i++) {
 		rtj = rtjs.nodes[i];
@@ -99,7 +99,7 @@ void WznmWrapp::writeRtjtree(
 void WznmWrapp::writeRtobjs(
 			DbsWznm* dbswznm
 			, fstream& outfile
-			, const uint ixVTarget
+			, const uint ixWznmVApptarget
 			, ListWznmMRtjob& rtjs
 		) {
 	WznmMRtjob* rtj = NULL;
@@ -115,7 +115,7 @@ void WznmWrapp::writeRtobjs(
 
 	string indent, pre, str, subdlm;
 
-	if (ixVTarget == VecWznmVMAppTarget::JAVA) {
+	if (ixWznmVApptarget == VecWznmVApptarget::JAVA) {
 		pre = "public ";
 		str = "String";
 		subdlm = ".";
@@ -124,7 +124,7 @@ void WznmWrapp::writeRtobjs(
 		subdlm = "::";
 	};
 
-	if (ixVTarget != VecWznmVMAppTarget::COCOA_OBJC) indent = "\t";
+	if (ixWznmVApptarget != VecWznmVApptarget::COCOA_OBJC) indent = "\t";
 
 	for (unsigned int i = 0; i < rtjs.nodes.size(); i++) {
 		rtj = rtjs.nodes[i];
@@ -172,238 +172,601 @@ void WznmWrapp::writeRtobjs(
 	};
 };
 
-void WznmWrapp::writeChangeState(
+void WznmWrapp::analyzeStes(
+			DbsWznm* dbswznm
+			, const ubigint refWznmMApp
+			, ListWznmMSequence& seqs
+			, ListWznmMState& stes
+			, vector<unsigned int>& icsSeqs
+			, vector<uint>& cntsEnt
+			, vector<uint>& cntsReent
+			, vector<uint>& cntsLve
+		) {
+	WznmMSequence* seq = NULL;
+	WznmMState* ste = NULL;
+
+	unsigned int ix0;
+
+	uint cnt;
+
+	dbswznm->tblwznmmsequence->loadRstByApp(refWznmMApp, false, seqs);
+
+	stes.clear();
+	cntsEnt.clear();
+	cntsReent.clear();
+	cntsLve.clear();
+
+	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
+		seq = seqs.nodes[i];
+
+		ix0 = stes.nodes.size();
+
+		dbswznm->tblwznmmstate->loadRstBySeq(seq->ref, true, stes);
+		for (unsigned int j = ix0; j < stes.nodes.size(); j++) icsSeqs.push_back(i);
+	};
+
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
+
+		dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmAMStateAction WHERE steRefWznmMState = " + to_string(ste->ref) + " AND ixVSection = " + to_string(VecWznmVAMStateActionSection::ENT), cnt);
+		cntsEnt.push_back(cnt);
+
+		dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmAMStateAction WHERE steRefWznmMState = " + to_string(ste->ref) + " AND ixVSection = " + to_string(VecWznmVAMStateActionSection::REENT), cnt);
+		cntsReent.push_back(cnt);
+
+		dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmAMStateAction WHERE steRefWznmMState = " + to_string(ste->ref) + " AND ixVSection = " + to_string(VecWznmVAMStateActionSection::LVE), cnt);
+		cntsLve.push_back(cnt);
+	};
+};
+
+void WznmWrapp::writeHandleTrigger(
 			DbsWznm* dbswznm
 			, fstream& outfile
 			, WznmMApp* app
 			, ListWznmMSequence& seqs
+			, ListWznmMState& stes
+			, vector<unsigned int>& icsSeqs
+			, vector<uint>& cntsEnt
+			, vector<uint>& cntsReent
+			, vector<uint>& cntsLve
+			, const bool ipAllNotSpec
 		) {
 	WznmMSequence* seq = NULL;
-
-	ListWznmMState stes;
 	WznmMState* ste = NULL;
 
 	string indent, dlm;
 
 	string Appshort = StrMod::cap(app->Short);
 
-	if (app->ixVTarget == VecWznmVMAppTarget::JAVA) indent = "\t\t\t";
-	else indent = "\t\t";
+	unsigned int ixSeqsLast;
 
-	if (app->ixVTarget == VecWznmVMAppTarget::JAVA) dlm = ".";
+	if (app->ixWznmVApptarget == VecWznmVApptarget::JAVA) indent = "\t\t\t\t";
+	else indent = "\t\t\t";
+
+	if (app->ixWznmVApptarget == VecWznmVApptarget::JAVA) dlm = ".";
 	else dlm = "::";
 
-	outfile << indent << "switch (ixVSte) {" << endl;
+	// --- handleTrigger.reenter
+	outfile << "// IP handleTrigger.reenter --- IBEGIN" << endl;
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
 
-	// leaveSte...
-	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
-		seq = seqs.nodes[i];
+		if (ipAllNotSpec || (cntsReent[i] > 0)) {
+			outfile << indent << "case Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": _ixVState = ";
 
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "[self reenter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << ":ixVEvent withDpcheng:dpcheng]; break;" << endl;
+			else outfile <<  "reenter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(ixVEvent, dpcheng); break;" << endl;
+		};
+	};
+	outfile << "// IP handleTrigger.reenter --- IEND" << endl;
 
-		for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-			ste = stes.nodes[j];
+	// --- handleTrigger.leave
+	outfile << "// IP handleTrigger.leave --- IBEGIN" << endl;
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
 
-			outfile << indent << "\tcase Vec" << Appshort << "VSte" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": ";
+		if (ipAllNotSpec || (cntsLve[i] > 0)) {
+			outfile << indent << "\tcase Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": ";
 
-			if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "[self leaveSte" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
-			else outfile <<  "leaveSte" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(); break;" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "[self leave" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
+			else outfile <<  "leave" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(); break;" << endl;
+		};
+	};
+	outfile << "// IP handleTrigger.leave --- IEND" << endl;
+
+	// --- handleTrigger.subseq
+	outfile << "// IP handleTrigger.subseq --- IBEGIN" << endl;
+
+	ixSeqsLast = 0;
+	ixSeqsLast--;
+
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
+
+		if (icsSeqs[i] != ixSeqsLast) {
+			ixSeqsLast = icsSeqs[i];
+			seq = seqs.nodes[ixSeqsLast];
+
+			outfile << indent << "\tcase Vec" << Appshort << "VState" << dlm << "SUBSEQ_" << StrMod::uc(StrMod::dotToUsc(seq->sref)) << ": ";
+
+			if (app->ixWznmVApptarget == VecWznmVApptarget::JAVA) outfile << "stkIcsVState.push";
+			else outfile << "stkIcsVState.push_back";
+
+			outfile << "(_ixVState); ixVState = Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << "; break;" << endl;
 		};
 	};
 
-	outfile << indent << "};" << endl;
-	outfile << endl;
+	outfile << "// IP handleTrigger.subseq --- IEND" << endl;
 
-	outfile << indent << "ixVSte = _ixVSte;" << endl;
+	// --- handleTrigger.enter
+	outfile << "// IP handleTrigger.enter --- IBEGIN" << endl;
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
 
-	if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << indent << "[self refresh];" << endl;
-	else outfile << indent << "refresh();" << endl;
+		if (ipAllNotSpec || (cntsEnt[i] > 0)) {
+			outfile << indent << "\tcase Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": _ixVState = ";
 
-	outfile << endl;
-
-	outfile << indent << "switch (_ixVSte) {" << endl;
-
-	// enterSte...
-	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
-		seq = seqs.nodes[i];
-
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
-
-		for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-			ste = stes.nodes[j];
-
-			outfile << indent << "\tcase Vec" << Appshort << "VSte" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": _ixVSte = ";
-
-			if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "[self enterSte" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
-			else outfile <<  "enterSte" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(); break;" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "[self enter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
+			else outfile <<  "enter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(); break;" << endl;
 		};
 	};
-
-	outfile << indent << "};" << endl;
+	outfile << "// IP handleTrigger.enter --- IEND" << endl;
 };
 
-void WznmWrapp::writeEnterSte(
+void WznmWrapp::getSteTrigs(
+			DbsWznm* dbswznm
+			, const string& Prjshort
+			, const string& Appshort
+			, const uint ixWznmVApptarget
+			, const ubigint refWznmMState
+			, const string& dom
+			, const string& subdlm
+			, map<string,string>& trigs
+		) {
+	ListWznmAMStateTrig steAtrgs;
+	WznmAMStateTrig* steAtrg = NULL;
+
+	trigs.clear();
+
+	dbswznm->tblwznmamstatetrig->loadRstBySte(refWznmMState, false, steAtrgs);
+
+	for (unsigned int i = 0; i < steAtrgs.nodes.size(); i++) {
+		steAtrg = steAtrgs.nodes[i];
+		trigs[steAtrg->sref] = getSteTrigs_string(dbswznm, Prjshort, Appshort, ixWznmVApptarget, steAtrg, dom, subdlm);
+	};
+};
+
+string WznmWrapp::getSteTrigs_string(
+			DbsWznm* dbswznm
+			, const string& Prjshort
+			, const string& Appshort
+			, const uint ixWznmVApptarget
+			, WznmAMStateTrig* steAtrg
+			, const string& dom
+			, const string& subdlm
+		) {
+	string retval;
+
+	WznmMEvent* evt = NULL;
+	WznmMRtjob* rtj = NULL;
+	WznmMJob* job = NULL;
+	WznmMVectoritem* vit = NULL;
+	WznmMRtdpch* rtd = NULL;
+	WznmMBlock* blk = NULL;
+
+	WznmMRtblock* rtb = NULL;
+	WznmMRtblock* rtb2 = NULL;
+
+	string dpchsref;
+
+	vector<string> ss;
+
+	if (steAtrg->refWznmMEvent != 0) dbswznm->tblwznmmevent->loadRecByRef(steAtrg->refWznmMEvent, &evt);
+	if (steAtrg->refWznmMRtjob != 0) {
+		dbswznm->tblwznmmrtjob->loadRecByRef(steAtrg->refWznmMRtjob, &rtj);
+		if (rtj) dbswznm->tblwznmmjob->loadRecByRef(rtj->refWznmMJob, &job);
+	};
+	if (steAtrg->refWznmMVectoritem != 0) dbswznm->tblwznmmvectoritem->loadRecByRef(steAtrg->refWznmMVectoritem, &vit);
+	if (steAtrg->refWznmMRtdpch != 0) {
+		dbswznm->tblwznmmrtdpch->loadRecByRef(steAtrg->refWznmMRtdpch, &rtd);
+		if (rtd) dbswznm->tblwznmmblock->loadRecByRef(rtd->refWznmMBlock, &blk);
+	};
+	if (steAtrg->Cond != "") dbswznm->tblwznmjamstatetrigcond->loadCndByStrTrg(steAtrg->ref, ixWznmVApptarget, steAtrg->Cond);
+
+	if ((steAtrg->ixVType == VecWznmVAMStateTrigType::EVT) && evt) {
+		retval = "ixVEvent == Vec" + Appshort + "VEvent" + subdlm + StrMod::uc(StrMod::dotToUsc(evt->sref));
+
+	} else if ((steAtrg->ixVType == VecWznmVAMStateTrigType::SGEEQ) && rtj && vit) {
+		// find feed and continf run-time data block
+		if (dbswznm->tblwznmmrtblock->loadRecBySQL("SELECT TblWznmMRtblock.* FROM TblWznmMRtblock, TblWznmMFeed WHERE TblWznmMRtblock.refWznmMRtjob = " + to_string(rtj->ref)
+					+ " AND TblWznmMRtblock.refIxVTbl = " + to_string(VecWznmVMRtblockRefTbl::FED) + " AND TblWznmMRtblock.refUref = TblWznmMFeed.ref AND TblWznmMFeed.sref LIKE '%Sge'", &rtb)) {
+
+			if (dbswznm->tblwznmmrtblock->loadRecBySQL("SELECT TblWznmMRtblock.* FROM TblWznmMRtblock, TblWznmMBlock WHERE TblWznmMRtblock.refWznmMRtjob = " + to_string(rtj->ref)
+						+ " AND TblWznmMRtblock.refIxVTbl = " + to_string(VecWznmVMRtblockRefTbl::BLK) + " AND TblWznmMRtblock.refUref = TblWznmMBlock.ref AND TblWznmMBlock.sref LIKE 'ContInf%' ORDER BY TblWznmMBlock.sref ASC LIMIT 1", &rtb2)) {
+
+				if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval = dom + rtb->sref + ".getSrefByNum(" + dom + rtb2->sref + ".numFSge).equals(\"" + vit->sref + "\")";
+				else retval = dom + rtb->sref + ".getSrefByNum(" + dom + rtb2->sref + ".numFSge) == \"" + vit->sref + "\"";
+
+				delete rtb2;
+			};
+
+			delete rtb;
+		};
+
+	} else if ((steAtrg->ixVType == VecWznmVAMStateTrigType::JOBEX) && rtj && job) {
+		if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval = "!" + dom + getScrJrefVar(dbswznm, rtj, job) + ".equals(\"\")";
+		else retval = dom + getScrJrefVar(dbswznm, rtj, job) + " != \"\"";
+
+	} else if ((steAtrg->ixVType == VecWznmVAMStateTrigType::JOBNEX) && rtj && job) {
+		if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval = dom + getScrJrefVar(dbswznm, rtj, job) + ".equals(\"\")";
+		else retval = dom + getScrJrefVar(dbswznm, rtj, job) + " == \"\"";
+
+	} else if ((steAtrg->ixVType == VecWznmVAMStateTrigType::CONFACC) && rtj && job) {
+		if (job->ixVBasetype == VecWznmVMJobBasetype::SESS) {
+			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEngConfirmAccepted:_dpcheng]";
+			else retval = "dpchEngConfirmAccepted(_dpcheng, \"\", \"\")";
+
+		} else if (steAtrg->xsref != "") {
+			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEngConfirmAccepted:_dpcheng withScrJref:\"\" withSref:\"" + steAtrg->xsref + "\"]";
+			else retval = "dpchEngConfirmAccepted(_dpcheng, \"\", \"" + steAtrg->xsref + "\")";
+
+		} else {
+			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEngConfirmAccepted:_dpcheng withScrJref:" + dom + getScrJrefVar(dbswznm, rtj, job) + "]";
+			else retval = "dpchEngConfirmAccepted(_dpcheng, " + dom + getScrJrefVar(dbswznm, rtj, job) + ", \"\")";
+		};
+
+	} else if ((steAtrg->ixVType == VecWznmVAMStateTrigType::CONFDNY) && rtj && job) {
+		if (job->ixVBasetype == VecWznmVMJobBasetype::SESS) {
+			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEngConfirmDenied:_dpcheng]";
+			else if (ixWznmVApptarget == VecWznmVApptarget::JAVA)  retval = "dpchEngConfirmDenied(_dpcheng, \"\")";
+			else retval = "dpchEngConfirmDenied(_dpcheng)";
+		};
+
+	} else if ((steAtrg->ixVType == VecWznmVAMStateTrigType::DPCHRCV) && rtj && job && rtd && blk) {
+		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEng:_dpcheng isOfType:Vec" + Prjshort + "VDpch::" + StrMod::uc(blk->sref) + " withScrJref:" + dom + getScrJrefVar(dbswznm, rtj, job) + "]";
+		else retval = "dpchEngIsOfType(_dpcheng, Vec" + Prjshort + "VDpch" + subdlm + StrMod::uc(blk->sref) + ", " + dom + getScrJrefVar(dbswznm, rtj, job) + ")";
+
+		if (steAtrg->srefsMask != "") {
+			dpchsref = job->sref + subdlm + Wznm::getSubsref(job, blk->sref);
+			StrMod::stringToVector(steAtrg->srefsMask, ss);
+
+			if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval += " && _dpcheng.hasAll(new Integer[]";
+			else retval += " && _dpcheng->hasAll(";
+
+			retval += "{";
+			for (unsigned int i = 0; i < ss.size(); i++) {
+				if (i != 0) retval += ",";
+				retval += dpchsref + subdlm + StrMod::uc(ss[i]);
+			};
+			retval += "})";
+		};
+
+	} else if (steAtrg->ixVType == VecWznmVAMStateTrigType::CUST) {
+		retval = steAtrg->Cond;
+	};
+
+	if (evt) delete evt;
+	if (rtj) delete rtj;
+	if (job) delete job;
+	if (vit) delete vit;
+	if (rtd) delete rtd;
+	if (blk) delete blk;
+
+	return retval;
+};
+
+void WznmWrapp::writeState(
 			DbsWznm* dbswznm
 			, fstream& outfile
 			, const string& Prjshort
-			, WznmMApp* app
+			, const string& Appshort
+			, const uint ixWznmVApptarget
+			, const string& dom
+			, const string& indent
+			, const string& subdlm
+			, const string& dpchjref
 			, WznmMState* ste
+			, map<string,string>& trigs
+			, const uint ixVSection
 		) {
+	ListWznmAMStateAction steAacts;
+	WznmAMStateAction* steAact = NULL;
+
+	string ipbase;
+
+	vector<string> conds, lastconds;
+	vector<string> ips, lastips;
+
+	bool rootip;
+
+	unsigned int lvl, lastlvl, matchlvl;
+
+	unsigned int il;
+
+	vector<string> ss;
+	string s;
+
+	bool found;
+
+	if (ixVSection == VecWznmVAMStateActionSection::ENT) ipbase = "enter";
+	else if (ixVSection == VecWznmVAMStateActionSection::REENT) ipbase = "reenter";
+	else if (ixVSection == VecWznmVAMStateActionSection::LVE) ipbase = "leave";
+	ipbase += StrMod::cap(StrMod::dotToUsc(ste->sref));
+
+	dbswznm->tblwznmamstateaction->loadRstBySQL("SELECT * FROM TblWznmAMStateAction WHERE steRefWznmMState = " + to_string(ste->ref) + " AND ixVSection = " + to_string(ixVSection) + " ORDER BY steNum ASC", false, steAacts);
+
+	if (steAacts.nodes.size() == 0) {
+		outfile << indent << "// IP " << ipbase << " --- INSERT" << endl;
+
+	} else {
+		conds.resize(4);
+		lastconds = conds;
+
+		ips.resize(4);
+		lastips = ips;
+
+		lvl = 0;
+		lastlvl = 0;
+
+		// check for non-conditional IP common to all actions
+		rootip = !steAacts.nodes.empty();
+
+		for (unsigned int k = 0; k < steAacts.nodes.size(); k++) {
+			steAact = steAacts.nodes[k];
+
+			if (k == 0) {
+				conds[0] = steAact->tr1SrefATrig;
+				ips[0] = steAact->Ip1;
+
+				rootip = (conds[0] == "") && (ips[0] != "");
+
+			} else {
+				rootip = (conds[0] == steAact->tr1SrefATrig) && (ips[0] == steAact->Ip1);
+			};
+
+			if (!rootip) break;
+		};
+
+		if (rootip) outfile << indent << "// IP " << ipbase << "." << ips[0] << " --- INSERT" << endl;
+
+		// write out decision tree
+		for (unsigned int k = 0; k < steAacts.nodes.size(); k++) {
+			steAact = steAacts.nodes[k];
+
+			conds[0] = steAact->tr1SrefATrig; ips[0] = steAact->Ip1;
+			conds[1] = steAact->tr2SrefATrig; ips[1] = steAact->Ip2;
+			conds[2] = steAact->tr3SrefATrig; ips[2] = steAact->Ip3;
+			conds[3] = steAact->tr4SrefATrig; ips[3] = steAact->Ip4;
+
+			if (rootip) {
+				for (unsigned int l = 0; l < 3; l++) {
+					conds[l] = conds[l+1];
+					ips[l] = ips[l+1];
+				};
+
+				conds[3] = ""; ips[3] = "";
+			};
+
+			lvl = 0;
+			for (unsigned int l = 0; l < 4; l++) {
+				if (conds[l] != "") lvl++;
+				else break;
+			};
+
+			for (matchlvl = 0; matchlvl < lvl; matchlvl++) if ((lastconds[matchlvl] != conds[matchlvl]) || (lastips[matchlvl] != lastips[matchlvl])) break;
+
+			// end if's
+			if (lastlvl > 0) for (unsigned int l = lastlvl - 1; l > matchlvl; l--) outfile << indent << string(l, '\t') << "};" << endl;
+
+			for (unsigned int l = matchlvl; l <= lvl; l++) {
+				// if's / else if's / else's
+				if (l < 4) if (conds[l] != "") {
+					outfile << indent << string(l, '\t');
+					if (conds[l] == "else") {
+						outfile << "} else {" << endl;
+
+					} else {
+						if ((k > 0) && (l == matchlvl)) outfile << "} else if";
+						else outfile << "if";
+
+						outfile << " (";
+
+						s = conds[l];
+
+						found = (s[0] == '!');
+
+						if (found) {
+							outfile << "!(";
+							s = s.substr(1);
+						};
+
+						auto it = trigs.find(s);
+						if (it != trigs.end()) outfile << it->second;
+						else outfile <<  "false";
+
+						if (found) outfile << ")";
+
+						outfile << ") {" << endl;
+					};
+				};
+
+				if (l < 4) if (ips[l] != "") {
+					if (lvl > 0) il = l + 1;
+					else il = 0;
+
+					outfile << indent << string(il, '\t') << "// IP " << ipbase << "." << ips[l] << " --- INSERT" << endl;
+				};
+
+				if (l == lvl) {
+					s = writeState_action(dbswznm, Prjshort, Appshort, ixWznmVApptarget, dom, subdlm, dpchjref, steAact);
+					
+					if (s != "") {
+						StrMod::stringToVector(s, ss, '\n');
+						for (unsigned int m = 0; m < ss.size(); m++) outfile << indent << string(l, '\t') << ss[m] << endl;
+					};
+				};
+			};
+
+			lastconds = conds;
+			lastips = ips;
+
+			lastlvl = lvl;
+		};
+
+		// remaining end if's
+		for (unsigned int l = lvl; l > 0; l--) outfile << indent << string(l-1, '\t') << "};" << endl;
+	};
+};
+
+string WznmWrapp::writeState_action(
+			DbsWznm* dbswznm
+			, const string& Prjshort
+			, const string& Appshort
+			, const uint ixWznmVApptarget
+			, const string& dom
+			, const string& subdlm
+			, const string& dpchjref
+			, WznmAMStateAction* steAact
+		) {
+	string retval;
+
 	ubigint ref;
 
-	WznmMRtjob* erj = NULL;
+	WznmMRtjob* rtj = NULL;
 	WznmMJob* job = NULL;
 
-	WznmMVector* eve = NULL;
-	WznmMVectoritem* evi = NULL;
+	WznmMVector* vec = NULL;
+	WznmMVectoritem* vit = NULL;
 
-	WznmMState* esn = NULL;
+	WznmMSequence* seq = NULL;
+	WznmMState* snx = NULL;
 
 	ListWznmAMBlockItem blkAitms;
 	WznmAMBlockItem* blkAitm = NULL;
 
 	string s2;
 
-	string indent, subdlm, dom;
-
 	string prjshort = StrMod::lc(Prjshort);
 
-	string Appshort = StrMod::cap(app->Short);
+	if (steAact->ixVType == VecWznmVAMStateActionType::LOGIN) {
+		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self sendDpchApp:";
+		else retval = "sendDpchApp(";
 
-	string s = StrMod::cap(StrMod::dotToUsc(ste->sref));
+		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += "new Root" + Prjshort + "::DpchAppLogin(\"\", stg" + prjshort + "api.username, stg" + prjshort + "api.password, false, false, {Root" + Prjshort + "::DpchAppLogin::ALL})";
+		else if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval += "(new Root" + Prjshort + "()).new DpchAppLogin(\"\", stg" + prjshort + "api.username, stg" + prjshort + "api.password, false, false, new Integer[]{Root" + Prjshort + ".DpchAppLogin.ALL})";
+		else retval += "new Root" + Prjshort + "::DpchAppLogin(\"\", stg" + prjshort + "api->username, stg" + prjshort + "api->password, false, false, {Root" + Prjshort + "::DpchAppLogin::ALL})";
 
-	if (app->ixVTarget == VecWznmVMAppTarget::JAVA) {
-		indent = "\t\t";
-		subdlm = ".";
-	} else {
-		indent = "\t";
-		subdlm = "::";
-	};
+		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += "];";
+		else retval += ");";
 
-	if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) dom = "";
-	else if (app->ixVTarget == VecWznmVMAppTarget::JAVA) dom = "DOM.";
-	else dom = "DOM->";
+	} else if ((steAact->ixVType == VecWznmVAMStateActionType::INIT) || (steAact->ixVType == VecWznmVAMStateActionType::DO)) {
+		if (dbswznm->tblwznmmrtjob->loadRecByRef(steAact->refWznmMRtjob, &rtj)) {
+			if (dbswznm->tblwznmmjob->loadRecByRef(rtj->refWznmMJob, &job)) {
+				if (steAact->ixVType == VecWznmVAMStateActionType::INIT) {
+					if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self sendDpchApp:";
+					else retval = "sendDpchApp(";
 
-	if ((ste->eacIxVAction == VecWznmVMStateAction::VOID) || (ste->eacIxVAction == VecWznmVMStateAction::CUST)) {
-		outfile << indent << "// IP enterSte" << s << " --- INSERT" << endl;
+					if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval += "new DpchApp" + Prjshort + "Init(" + dom + getScrJrefVar(dbswznm, rtj, job) + ")";
+					else retval += "new DpchApp" + Prjshort + "Init(" + dom + getScrJrefVar(dbswznm, rtj, job) + ")";
 
-	} else {
-		outfile << indent << "// IP enterSte" << s << " --- BEGIN" << endl;
+					if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += "];";
+					else retval += ");";
 
-		if (ste->eacIxVAction == VecWznmVMStateAction::LOGIN) {
-			if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << indent << "[self sendDpchApp:";
-			else outfile << indent << "sendDpchApp(";
+				} else if (steAact->ixVType == VecWznmVAMStateActionType::DO) {
+					if (dbswznm->tblwznmmvector->loadRecByRef(steAact->refWznmMVector, &vec)) {
+						if (dbswznm->tblwznmmvectoritem->loadRecByRef(steAact->refWznmMVectoritem, &vit)) {
+							if (dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMBlock WHERE refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::JOB) + " AND refUref = " + to_string(job->ref)
+										+ " AND sref LIKE 'DpchApp%Do'", ref)) {
 
-			if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "new Root" << Prjshort << "::DpchAppLogin(\"\", stg" << prjshort << "api.username, stg" << prjshort << "api.password, false, false, {Root" << Prjshort << "::DpchAppLogin::ALL})";
-			else if (app->ixVTarget == VecWznmVMAppTarget::JAVA) outfile << "(new Root" << Prjshort << "()).new DpchAppLogin(\"\", stg" << prjshort << "api.username, stg" << prjshort << "api.password, false, false, new Integer[]{Root" << Prjshort << ".DpchAppLogin.ALL})";
-			else outfile << "new Root" << Prjshort << "::DpchAppLogin(\"\", stg" << prjshort << "api->username, stg" << prjshort << "api->password, false, false, {Root" << Prjshort << "::DpchAppLogin::ALL})";
+								if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self sendDpchApp:";
+								else retval = "sendDpchApp(";
 
-			if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "];" << endl;
-			else outfile << ");" << endl;
+								if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval += "(new " + job->sref + "()).new DpchAppDo(";
+								else retval += "new " + job->sref + "::DpchAppDo(";
 
-		} else if ((ste->eacIxVAction == VecWznmVMStateAction::INIT) || (ste->eacIxVAction == VecWznmVMStateAction::DO)) {
-			if (dbswznm->tblwznmmrtjob->loadRecByRef(ste->erjRefWznmMRtjob, &erj)) {
-				if (dbswznm->tblwznmmjob->loadRecByRef(erj->refWznmMJob, &job)) {
-					if (ste->eacIxVAction == VecWznmVMStateAction::INIT) {
-						if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << indent << "[self sendDpchApp:";
-						else outfile << indent << "sendDpchApp(";
+								retval += dom + getScrJrefVar(dbswznm, rtj, job);
 
-						if (app->ixVTarget == VecWznmVMAppTarget::JAVA) outfile << "new DpchApp" << Prjshort << "Init(" << dom << getScrJrefVar(dbswznm, erj, job) << ")";
-						else outfile << "new DpchApp" << Prjshort << "Init(" << dom << getScrJrefVar(dbswznm, erj, job) << ")";
+								s2 = "";
 
-						if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "];" << endl;
-						else outfile << ");" << endl;
+								dbswznm->tblwznmamblockitem->loadRstByBlk(ref, false, blkAitms);
 
-					} else if (ste->eacIxVAction == VecWznmVMStateAction::DO) {
-						if (dbswznm->tblwznmmvector->loadRecByRef(ste->eveRefWznmMVector, &eve)) {
-							if (dbswznm->tblwznmmvectoritem->loadRecByRef(ste->eviRefWznmMVectoritem, &evi)) {
-								if (dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMBlock WHERE refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::JOB) + " AND refUref = " + to_string(job->ref)
-											+ " AND sref LIKE 'DpchApp%Do'", ref)) {
+								for (unsigned int k = 0; k < blkAitms.nodes.size(); k++) {
+									blkAitm = blkAitms.nodes[k];
 
-									if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << indent << "[self sendDpchApp:";
-									else outfile << indent << "sendDpchApp(";
-
-									if (app->ixVTarget == VecWznmVMAppTarget::JAVA) outfile << "(new " << job->sref << "()).new DpchAppDo(";
-									else outfile << "new " << job->sref << "::DpchAppDo(";
-
-									outfile << dom << getScrJrefVar(dbswznm, erj, job);
-
-									s2 = "";
-
-									dbswznm->tblwznmamblockitem->loadRstByBlk(ref, false, blkAitms);
-
-									for (unsigned int k = 0; k < blkAitms.nodes.size(); k++) {
-										blkAitm = blkAitms.nodes[k];
-
-										if (blkAitm->refWznmMVector != 0) {
-											if (blkAitm->refWznmMVector == eve->ref) {
-												s2 = blkAitm->sref;
-												outfile << ", " << job->sref << subdlm << "Vec" << blkAitm->sref.substr(2) << subdlm << StrMod::uc(evi->sref);
-											} else outfile << ", 0";
-										};
+									if (blkAitm->refWznmMVector != 0) {
+										if (blkAitm->refWznmMVector == vec->ref) {
+											s2 = blkAitm->sref;
+											retval += ", " + job->sref + subdlm + "Vec" + blkAitm->sref.substr(2) + subdlm + StrMod::uc(vit->sref);
+										} else retval += ", 0";
 									};
-
-									if (app->ixVTarget == VecWznmVMAppTarget::JAVA) outfile << ", new Integer[]{";
-									else outfile << ", {";
-
-									if (blkAitms.nodes.size() == 2) outfile << job->sref << subdlm << "DpchAppDo" << subdlm << "ALL";
-									else outfile << job->sref << subdlm << "DpchAppDo" << subdlm << "SCRJREF, " << job->sref << subdlm << "DpchAppDo" << subdlm << StrMod::uc(s2);
-									outfile << "}";
-
-									if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << ")];" << endl;
-									else outfile << "));" << endl;
 								};
 
-								delete evi;
+								if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval += ", new Integer[]{";
+								else retval += ", {";
+
+								if (blkAitms.nodes.size() == 2) retval += job->sref + subdlm + "DpchAppDo" + subdlm + "ALL";
+								else retval += job->sref + subdlm + "DpchAppDo" + subdlm + "SCRJREF, " + job->sref + subdlm + "DpchAppDo" + subdlm + StrMod::uc(s2);
+								retval += "}";
+
+								if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += ")];";
+								else retval += "));";
 							};
 
-							delete eve;
+							delete vit;
 						};
-					};
 
-					delete job;
+						delete vec;
+					};
 				};
 
-				delete erj;
+				delete job;
 			};
 
-		} else if (ste->eacIxVAction == VecWznmVMStateAction::STEP) {
-			if (dbswznm->tblwznmmstate->loadRecByRef(ste->esnRefWznmMState, &esn)) {
-				outfile << indent << "retval = Vec" << Appshort << "VSte" << subdlm << StrMod::uc(StrMod::dotToUsc(esn->sref)) << ";" << endl;
-				delete esn;
-			};
+			delete rtj;
 		};
 
-		outfile << indent << "// IP enterSte" << s << " --- END" << endl;
+	} else if ((steAact->ixVType == VecWznmVAMStateActionType::CSJSTEP) || (steAact->ixVType == VecWznmVAMStateActionType::STEP)) {
+		if (dbswznm->tblwznmmstate->loadRecByRef(steAact->snxRefWznmMState, &snx)) {
+			if (steAact->ixVType == VecWznmVAMStateActionType::CSJSTEP) {
+				if (dbswznm->tblwznmmrtjob->loadRecByRef(steAact->refWznmMRtjob, &rtj)) {
+					if (dbswznm->tblwznmmjob->loadRecByRef(rtj->refWznmMJob, &job)) {
+						retval = dom + getScrJrefVar(dbswznm, rtj, job) + " = " + dpchjref + ";\n";
+						delete job;
+					};
+					delete rtj;
+				};
+			};
+			retval += "retval = Vec" + Appshort + "VState" + subdlm + StrMod::uc(StrMod::dotToUsc(snx->sref)) + ";";
+
+			delete snx;
+		};
+
+	} else if (steAact->ixVType == VecWznmVAMStateActionType::STEPSEQ) {
+		if (dbswznm->tblwznmmstate->loadRecBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(steAact->refWznmMSequence) + " AND seqNum = 1", &snx)) {
+			retval = "retval = Vec" + Appshort + "VState" + subdlm + StrMod::uc(StrMod::dotToUsc(snx->sref)) + ";";
+			delete snx;
+		};
+
+	} else if (steAact->ixVType == VecWznmVAMStateActionType::SUBSEQ) {
+		if (dbswznm->tblwznmmsequence->loadRecByRef(steAact->refWznmMSequence, &seq)) {
+			retval = "retval = Vec" + Appshort + "VState" + subdlm + "SUBSEQ_" + StrMod::uc(StrMod::dotToUsc(seq->sref)) + ";";
+			delete seq;
+		};
+
+	} else if (steAact->ixVType == VecWznmVAMStateActionType::RETSEQ) {
+		retval = "retval = Vec" + Appshort + "VState" + subdlm + "RETSEQ;";
+
+	} else if (steAact->ixVType == VecWznmVAMStateActionType::BREAK) {
+		retval = "retval = Vec" + Appshort + "VState" + subdlm + "BREAK;";
 	};
-};
 
-void WznmWrapp::writeLeaveSte(
-			fstream& outfile
-			, const uint ixVTarget
-			, WznmMState* ste
-		) {
-	string indent;
-
-	string s = StrMod::cap(StrMod::dotToUsc(ste->sref));
-
-	if (ixVTarget == VecWznmVMAppTarget::JAVA) indent = "\t\t";
-	else indent = "\t";
-
-	if ((ste->lacIxVAction == VecWznmVMStateAction::VOID) || (ste->lacIxVAction == VecWznmVMStateAction::CUST)) {
-		outfile << indent << "// IP leaveSte" << s << " --- INSERT" << endl;
-
-	} else {
-		outfile << indent << "// IP leaveSte" << s << " --- BEGIN" << endl;
-		// other actions not foreseen
-		outfile << indent << "// IP leaveSte" << s << " --- END" << endl;
-	};
+	return retval;
 };
 
 void WznmWrapp::writeMerge(
 			DbsWznm* dbswznm
 			, fstream& outfile
-			, WznmMApp* app
+			, const uint ixWznmVApptarget
 			, WznmMBlock* blk
 			, const string& dpchsref
 			, ListWznmMRtblock& rtbs
@@ -412,22 +775,12 @@ void WznmWrapp::writeMerge(
 
 	vector<string> maskitems;
 
-	string indent, subdlm, dom;
+	string dom, indent, subdlm, dpchjref;
 
 	vector<string> ss;
 	string s;
 
-	if (app->ixVTarget == VecWznmVMAppTarget::JAVA) {
-		indent = "\t\t";
-		subdlm = ".";
-	} else {
-		indent = "\t";
-		subdlm = "::";
-	};
-
-	if (app->ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) dom = "";
-	else if (app->ixVTarget == VecWznmVMAppTarget::JAVA) dom = "DOM.";
-	else dom = "DOM->";
+	getTargetStrs(ixWznmVApptarget, dom, indent, subdlm, dpchjref);
 
 	// dispatch block items that serve as source for run-time data block are found in rtb->srcSrefsWznmAMBlockItem
 	for (unsigned int i = 0; i < rtbs.nodes.size(); i++) {
@@ -441,12 +794,12 @@ void WznmWrapp::writeMerge(
 				s = s.substr(blk->sref.length() + 1);
 				maskitems.push_back(s);
 
-				if (app->ixVTarget == VecWznmVMAppTarget::JAVA) outfile << indent << "if (dpcheng.has(";
+				if (ixWznmVApptarget == VecWznmVApptarget::JAVA) outfile << indent << "if (dpcheng.has(";
 				else outfile << indent << "if (dpcheng->has(";
 
 				outfile << dpchsref << subdlm << StrMod::uc(s) << ")) ";
 
-				if (app->ixVTarget == VecWznmVMAppTarget::JAVA) outfile << dom << rtb->sref << " = dpcheng." << s << ";" << endl;
+				if (ixWznmVApptarget == VecWznmVApptarget::JAVA) outfile << dom << rtb->sref << " = dpcheng." << s << ";" << endl;
 				else outfile << dom << rtb->sref << " = dpcheng->" << s << ";" << endl;
 			};
 		};
@@ -457,7 +810,7 @@ void WznmWrapp::writeMerge(
 
 		outfile << indent << "return(dpcheng";
 
-		if (app->ixVTarget == VecWznmVMAppTarget::JAVA) outfile << ".hasAny(new Integer[]";
+		if (ixWznmVApptarget == VecWznmVApptarget::JAVA) outfile << ".hasAny(new Integer[]";
 		else outfile << "->hasAny(";
 		
 		outfile << "{";
@@ -472,246 +825,11 @@ void WznmWrapp::writeMerge(
 	};
 };
 
-void WznmWrapp::writeHandleDpchEng(
-			DbsWznm* dbswznm
-			, fstream& outfile
-			, const uint ixVTarget
-			, const string& Appshort
-			, const string& Prjshort
-			, WznmMSequence* seq
-			, ListWznmMState& stes
-		) {
-	WznmMRtjob* rtj = NULL;
-	WznmMJob* job = NULL;
-
-	WznmMRtdpch* rtd = NULL;
-
-	WznmMBlock* blk = NULL;
-
-	WznmMState* ste = NULL;
-
-	ListWznmAMStateStep steAstps;
-	WznmAMStateStep* steAstp = NULL;
-
-	WznmMState* snx = NULL;
-	WznmMVectoritem* vit = NULL;
-
-	string indent, subdlm;
-
-	string s;
-	size_t ptr;
-
-	bool first, first2;
-
-	if (ixVTarget == VecWznmVMAppTarget::JAVA) {
-		indent = "\t\t";
-		subdlm = ".";
-	} else {
-		indent = "\t";
-		subdlm = "::";
-	};
-
-	first = true;
-
-	for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-		ste = stes.nodes[j];
-
-		dbswznm->tblwznmamstatestep->loadRstBySQL("SELECT * FROM TblWznmAMStateStep WHERE refWznmMState = " + to_string(ste->ref), false, steAstps);
-
-		if (ste->Custstep || (steAstps.nodes.size() > 0)) {
-			outfile << endl;
-
-			outfile << indent;
-			if (first) first = false;
-			else outfile << "} else ";
-			outfile << "if (ixVSte == Vec" << Appshort << "VSte" << subdlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ") {" << endl;
-
-			if (ste->Custstep) {
-				outfile << indent << "\t// IP handleDpchEng" << StrMod::cap(seq->sref) << "." << ste->sref << " --- INSERT" << endl;
-			} else {
-				first2 = true;
-				
-				for (unsigned int k = 0; k < steAstps.nodes.size(); k++) {
-					steAstp = steAstps.nodes[k];
-
-					if (dbswznm->tblwznmmstate->loadRecByRef(steAstp->snxRefWznmMState, &snx)) {
-						rtj = NULL; job = NULL;
-						if (steAstp->refWznmMRtjob != 0) {
-							dbswznm->tblwznmmrtjob->loadRecByRef(steAstp->refWznmMRtjob, &rtj);
-							if (rtj) dbswznm->tblwznmmjob->loadRecByRef(rtj->refWznmMJob, &job);
-						};
-						vit = NULL; if (steAstp->refWznmMVectoritem != 0) dbswznm->tblwznmmvectoritem->loadRecByRef(steAstp->refWznmMVectoritem, &vit);
-						rtd = NULL; blk = NULL;
-						if (steAstp->refWznmMRtdpch != 0) {
-							dbswznm->tblwznmmrtdpch->loadRecByRef(steAstp->refWznmMRtdpch, &rtd);
-							if (rtd) dbswznm->tblwznmmblock->loadRecByRef(rtd->refWznmMBlock, &blk);
-						};
-
-						s = writeHandleDpchEng_genSteastpif(dbswznm, ixVTarget, Prjshort, steAstp, rtj, job, vit, rtd, blk);
-
-						if (s != "") {
-							outfile << indent << "\t";
-							if (first2) first2 = false;
-							else outfile << "} else ";
-
-							if (steAstp->Custcode) {
-								ptr = s.rfind('\n');
-
-								if (ptr == (s.length()-1)) {
-									outfile << s;
-									outfile << indent << "\t\t// IP handleDpchEng" << StrMod::cap(seq->sref) << "." << ste->sref << (k+1) << " --- INSERT" << endl;
-
-									if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << indent << "\t\t[self changeState:Vec" << Appshort << "VSte::" << StrMod::uc(StrMod::dotToUsc(snx->sref)) << "];" << endl;
-									else outfile << indent << "\t\tchangeState(Vec" << Appshort << "VSte" << subdlm << StrMod::uc(StrMod::dotToUsc(snx->sref)) << ");" << endl;
-
-								} else {
-									outfile << s.substr(0, ptr) << " {" << endl;
-									outfile << indent << "\t\t// IP handleDpchEng" << StrMod::cap(seq->sref) << "." << ste->sref << (k+1) << " --- INSERT" << endl;
-									for (size_t l=ptr+1;l<s.length();l++) outfile << "\t";
-
-									if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << indent << "\t[self changeState:Vec" << Appshort << "VSte::" << StrMod::uc(StrMod::dotToUsc(snx->sref)) << "];" << endl;
-									else outfile << indent << "\tchangeState(Vec" << Appshort << "VSte" << subdlm << StrMod::uc(StrMod::dotToUsc(snx->sref)) << ");" << endl;
-
-									for (size_t l=ptr+1;l<s.length();l++) outfile << "\t";
-									outfile << indent << "};" << endl;
-								};
-
-							} else {
-								if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << s << indent <<  "\t\t[self changeState:Vec" << Appshort << "VSte::" << StrMod::uc(StrMod::dotToUsc(snx->sref)) << "];" << endl;
-								else outfile << s << indent << "\t\tchangeState(Vec" << Appshort << "VSte" << subdlm << StrMod::uc(StrMod::dotToUsc(snx->sref)) << ");" << endl;
-							};
-						};
-
-						if (rtj) delete rtj;
-						if (job) delete job;
-						if (vit) delete vit;
-						if (rtd) delete rtd;
-						if (blk) delete blk;
-
-						delete snx;
-					};
-				};
-
-				if (!first2) outfile << indent << "\t};" << endl;
-			};
-		};
-	};
-
-	if (!first) outfile << indent << "};" << endl;
-};
-
-string WznmWrapp::writeHandleDpchEng_genSteastpif(
-			DbsWznm* dbswznm
-			, const uint ixVTarget
-			, const string& Prjshort
-			, WznmAMStateStep* steAstp
-			, WznmMRtjob* rtj
-			, WznmMJob* job
-			, WznmMVectoritem* vit
-			, WznmMRtdpch* rtd
-			, WznmMBlock* blk
-		) {
-	string retval;
-
-	WznmMRtblock* rtb = NULL;
-	WznmMRtblock* rtb2 = NULL;
-
-	string dpchsref;
-
-	string indent, subdlm, dom, dpchjref;
-
-	vector<string> ss;
-
-	if (ixVTarget == VecWznmVMAppTarget::JAVA) {
-		indent = "\t\t\t";
-		subdlm = ".";
-		dpchjref = "_dpcheng.scrJref";
-	} else {
-		indent = "\t\t";
-		subdlm = "::";
-		dpchjref = "_dpcheng->scrJref";
-	};
-
-	if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) dom = "";
-	else if (ixVTarget == VecWznmVMAppTarget::JAVA) dom = "DOM.";
-	else dom = "DOM->";
-
-	if ((steAstp->ixVTrigger == VecWznmVAMStateStepTrigger::SGEEQ) && rtj && vit) {
-		// find feed and continf run-time data block
-		if (dbswznm->tblwznmmrtblock->loadRecBySQL("SELECT TblWznmMRtblock.* FROM TblWznmMRtblock, TblWznmMFeed WHERE TblWznmMRtblock.refWznmMRtjob = " + to_string(rtj->ref)
-					+ " AND TblWznmMRtblock.refIxVTbl = " + to_string(VecWznmVMRtblockRefTbl::FED) + " AND TblWznmMRtblock.refUref = TblWznmMFeed.ref AND TblWznmMFeed.sref LIKE '%Sge'", &rtb))
-
-			if (dbswznm->tblwznmmrtblock->loadRecBySQL("SELECT TblWznmMRtblock.* FROM TblWznmMRtblock, TblWznmMBlock WHERE TblWznmMRtblock.refWznmMRtjob = " + to_string(rtj->ref)
-						+ " AND TblWznmMRtblock.refIxVTbl = " + to_string(VecWznmVMRtblockRefTbl::BLK) + " AND TblWznmMRtblock.refUref = TblWznmMBlock.ref AND TblWznmMBlock.sref LIKE 'ContInf%' ORDER BY TblWznmMBlock.sref ASC LIMIT 1", &rtb2)) {
-
-				if (ixVTarget == VecWznmVMAppTarget::JAVA) retval = "if (" + dom + rtb->sref + ".getSrefByNum(" + dom + rtb2->sref + ".numFSge).equals(\"" + vit->sref + "\")) {\n";
-				else retval = "if (" + dom + rtb->sref + ".getSrefByNum(" + dom + rtb2->sref + ".numFSge) == \"" + vit->sref + "\") {\n";
-			};
-
-	} else if ((steAstp->ixVTrigger == VecWznmVAMStateStepTrigger::JOBEX) && rtj && job) {
-		if (ixVTarget == VecWznmVMAppTarget::JAVA) retval = "if (!" + dom + getScrJrefVar(dbswznm, rtj, job) + ".equals(\"\")) {\n";
-		else retval = "if (" + dom + getScrJrefVar(dbswznm, rtj, job) + " != \"\") {\n";
-
-	} else if ((steAstp->ixVTrigger == VecWznmVAMStateStepTrigger::JOBNEX) && rtj && job) {
-		if (ixVTarget == VecWznmVMAppTarget::JAVA) retval = "if (" + dom + getScrJrefVar(dbswznm, rtj, job) + ".equals(\"\")) {\n";
-		else retval = "if (" + dom + getScrJrefVar(dbswznm, rtj, job) + " == \"\") {\n";
-
-	} else if ((steAstp->ixVTrigger == VecWznmVAMStateStepTrigger::CONFACC) && rtj && job) {
-		if (job->ixVBasetype == VecWznmVMJobBasetype::SESS) {
-			if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) retval = "if ([self dpchEngConfirmAccepted:_dpcheng]) {\n";
-			else retval = "if (dpchEngConfirmAccepted(_dpcheng, \"\", \"\")) {\n";
-
-			retval += indent + "\t" + dom + getScrJrefVar(dbswznm, rtj, job) + " = " + dpchjref + ";\n";
-
-		} else if (steAstp->xsref != "") {
-			if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) retval = "if ([self dpchEngConfirmAccepted:_dpcheng withScrJref:\"\" withSref:\"" + steAstp->xsref + "\"]) {\n";
-			else retval = "if (dpchEngConfirmAccepted(_dpcheng, \"\", \"" + steAstp->xsref + "\")) {\n";
-
-			retval += indent + "\t" + dom + getScrJrefVar(dbswznm, rtj, job) + " = " + dpchjref + ";\n";
-
-		} else {
-			if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) retval = "if ([self dpchEngConfirmAccepted:_dpcheng withScrJref:" + dom + getScrJrefVar(dbswznm, rtj, job) + "]) {\n";
-			else retval = "if (dpchEngConfirmAccepted(_dpcheng, " + dom + getScrJrefVar(dbswznm, rtj, job) + ", \"\")) {\n";
-		};
-
-	} else if ((steAstp->ixVTrigger == VecWznmVAMStateStepTrigger::CONFDNY) && rtj && job) {
-		if (job->ixVBasetype == VecWznmVMJobBasetype::SESS) {
-			if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) retval = "if ([self dpchEngConfirmDenied:_dpcheng]) {\n";
-			else if (ixVTarget == VecWznmVMAppTarget::JAVA)  retval = "if (dpchEngConfirmDenied(_dpcheng, \"\")) {\n";
-			else retval = "if (dpchEngConfirmDenied(_dpcheng)) {\n";
-		};
-
-	} else if ((steAstp->ixVTrigger == VecWznmVAMStateStepTrigger::DPCHRCV) && rtj && job && rtd && blk) {
-		if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) retval = "if ([self dpchEng:_dpcheng isOfType:Vec" + Prjshort + "VDpch::" + StrMod::uc(blk->sref) + " withScrJref:" + dom + getScrJrefVar(dbswznm, rtj, job) + "]) {\n";
-		else retval = "if (dpchEngIsOfType(_dpcheng, Vec" + Prjshort + "VDpch" + subdlm + StrMod::uc(blk->sref) + ", " + dom + getScrJrefVar(dbswznm, rtj, job) + ")) {\n";
-
-		if (steAstp->srefsMask != "") {
-			dpchsref = job->sref + subdlm + Wznm::getSubsref(job, blk->sref);
-			StrMod::stringToVector(steAstp->srefsMask, ss);
-
-			if (ixVTarget == VecWznmVMAppTarget::JAVA) retval += indent + "\tif (_dpcheng.hasAll(new Integer[]";
-			else retval += indent + "\tif (_dpcheng->hasAll(";
-
-			retval += "{";
-			for (unsigned int i = 0; i < ss.size(); i++) {
-				if (i != 0) retval += ",";
-				retval += dpchsref + subdlm + StrMod::uc(ss[i]);
-			};
-			retval += "}))\n" + indent;
-		};
-
-	} else if (steAstp->ixVTrigger == VecWznmVAMStateStepTrigger::CUST) {
-		retval = "if (" + steAstp->Cond + ") {\n";
-	};
-
-	return retval;
-};
-
 void WznmWrapp::writeDpchEngMerge(
 			DbsWznm* dbswznm
 			, fstream& outfile
-			, const uint ixVTarget
 			, const string& Prjshort
+			, const uint ixWznmVApptarget
 			, ListWznmMRtjob& rtjs
 		) {
 	WznmMRtjob* rtj = NULL;
@@ -723,24 +841,14 @@ void WznmWrapp::writeDpchEngMerge(
 
 	WznmMBlock* blk = NULL;
 
-	string indent, subdlm, dom;
+	string dom, indent, subdlm, dpchjref;
 
 	vector<string> ss;
 	string s;
 
 	bool first;
 
-	if (ixVTarget == VecWznmVMAppTarget::JAVA) {
-		indent = "\t\t";
-		subdlm = ".";
-	} else {
-		indent = "\t";
-		subdlm = "::";
-	};
-
-	if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) dom = "";
-	else if (ixVTarget == VecWznmVMAppTarget::JAVA) dom = "DOM.";
-	else dom = "DOM->";
+	getTargetStrs(ixWznmVApptarget, dom, indent, subdlm, dpchjref);
 
 	first = true;
 
@@ -759,11 +867,11 @@ void WznmWrapp::writeDpchEngMerge(
 						if (first) first = false;
 						else outfile << "} else ";
 						
-						if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << "if ([self dpchEng:_dpcheng isOfType:Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << " withScrJref:" << dom << getScrJrefVar(dbswznm, rtj, job) << "]) {" << endl;
+						if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "if ([self dpchEng:_dpcheng isOfType:Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << " withScrJref:" << dom << getScrJrefVar(dbswznm, rtj, job) << "]) {" << endl;
 						else outfile << "if (dpchEngIsOfType(_dpcheng, Vec" << Prjshort << "VDpch" << subdlm << StrMod::uc(blk->sref) << ", " << dom << getScrJrefVar(dbswznm, rtj, job) << ")) {" << endl;
 
-						if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << indent << "\t[self merge" << blk->sref << ":(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "*) _dpcheng];" << endl;
-						else if (ixVTarget == VecWznmVMAppTarget::JAVA) outfile << indent << "\tmerge" << blk->sref << "((" << job->sref << subdlm << Wznm::getSubsref(job, blk->sref) << ") _dpcheng);" << endl;
+						if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << indent << "\t[self merge" << blk->sref << ":(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "*) _dpcheng];" << endl;
+						else if (ixWznmVApptarget == VecWznmVApptarget::JAVA) outfile << indent << "\tmerge" << blk->sref << "((" << job->sref << subdlm << Wznm::getSubsref(job, blk->sref) << ") _dpcheng);" << endl;
 						else  outfile << indent << "\tmerge" << blk->sref << "((" << job->sref << subdlm << Wznm::getSubsref(job, blk->sref) << "*) _dpcheng);" << endl;
 					};
 				};
@@ -773,52 +881,29 @@ void WznmWrapp::writeDpchEngMerge(
 		};
 	};
 
-	if (!first) outfile << "\t};" << endl;
+	if (!first) outfile << indent << "};" << endl;
 };
 
-void WznmWrapp::writeDpchEngHandle(
-			DbsWznm* dbswznm
-			, fstream& outfile
-			, const uint ixVTarget
-			, const string& Appshort
-			, ListWznmMSequence seqs
+void WznmWrapp::getTargetStrs(
+			const uint ixWznmVApptarget
+			, string& dom
+			, string& indent
+			, string& subdlm
+			, string& dpchjref
 		) {
-	WznmMSequence* seq = NULL;
+	if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) dom = "";
+	else if (ixWznmVApptarget == VecWznmVApptarget::JAVA) dom = "DOM.";
+	else dom = "DOM->";
 
-	ListWznmMState stes;
-
-	string indent, subdlm;
-
-	bool first;
-
-	if (ixVTarget == VecWznmVMAppTarget::JAVA) {
+	if (ixWznmVApptarget == VecWznmVApptarget::JAVA) {
 		indent = "\t\t";
 		subdlm = ".";
+		dpchjref = "_dpcheng.scrJref";
 	} else {
 		indent = "\t";
 		subdlm = "::";
+		dpchjref = "_dpcheng->scrJref";
 	};
-
-	first = true;
-
-	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
-		seq = seqs.nodes[i];
-
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
-
-		if (stes.nodes.size() > 1) {
-			outfile << indent;
-			if (first) first = false;
-			else outfile << "} else ";
-
-			outfile << "if ((ixVSte >= Vec" << Appshort << "VSte" << subdlm << StrMod::uc(StrMod::dotToUsc(stes.nodes[0]->sref)) << ") && (ixVSte <= Vec" << Appshort << "VSte" << subdlm << StrMod::uc(StrMod::dotToUsc(stes.nodes[stes.nodes.size()-1]->sref)) << ")) {" << endl;
-
-			if (ixVTarget == VecWznmVMAppTarget::COCOA_OBJC) outfile << indent << "\tif ([self handleDpchEng" << StrMod::cap(seq->sref) << ":_dpcheng]) _refresh = false;" << endl;
-			else outfile << indent << "\tif (handleDpchEng" << StrMod::cap(seq->sref) << "(_dpcheng)) _refresh = false;" << endl;
-		};
-	};
-
-	if (!first) outfile << indent << "};" << endl;
 };
 
 string WznmWrapp::getScrJrefVar(

@@ -2,8 +2,8 @@
   * \file PnlWznmTblList.js
   * web client functionality for panel PnlWznmTblList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 // --- expand state management
@@ -136,7 +136,7 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(4); wtot += TcoSrfWidth;
+				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(5); wtot += TcoSrfWidth;
 			} else if (i == 2) {
 				doc.cols.push("TcoSho"); doc.widths.push(TcoShoWidth); doc.fs.push("sho"); doc.tos.push(0); wtot += TcoShoWidth;
 			} else if (i == 3) {

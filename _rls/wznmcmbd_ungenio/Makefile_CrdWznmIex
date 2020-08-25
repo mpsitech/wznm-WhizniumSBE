@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmIex card job handler, release wznmcmbd_ungenio
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmcmbd/VecWznm -I$(SRCROOT)/wznmcmbd/IexWznm -I$(SRCROOT)/wznmcmbd
 INCPATH += -I/Library/PostgreSQL/9.6/include -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmIex.o PnlWznmIexList.o QryWznmIexList.o PnlWznmIexHeadbar.o PnlWznmIexRec.o PnlWznmIexRef1NDialog.o QryWznmIexRef1NDialog.o PnlWznmIexHk1NVector.o QryWznmIexHk1NVector.o PnlWznmIex1NImpexp.o QryWznmIex1NImpexp.o PnlWznmIexDetail.o
+OBJS = CrdWznmIex.o PnlWznmIexList.o QryWznmIexList.o PnlWznmIexHeadbar.o PnlWznmIexRec.o PnlWznmIexHk1NVector.o QryWznmIexHk1NVector.o PnlWznmIexRef1NDialog.o QryWznmIexRef1NDialog.o PnlWznmIex1NImpexp.o QryWznmIex1NImpexp.o PnlWznmIexDetail.o
 
 LIB = libcrdwznmiex
 

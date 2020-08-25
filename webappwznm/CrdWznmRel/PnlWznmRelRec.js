@@ -2,8 +2,8 @@
   * \file PnlWznmRelRec.js
   * web client functionality for panel PnlWznmRelRec
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 function updateScrJrefs() {
@@ -11,8 +11,8 @@ function updateScrJrefs() {
 	scrJrefATitle = retrieveSi(srcdoc, "StatShrWznmRelRec", "scrJrefATitle");
 	scrJref1NTablecol = retrieveSi(srcdoc, "StatShrWznmRelRec", "scrJref1NTablecol");
 	scrJrefSup1NRelation = retrieveSi(srcdoc, "StatShrWznmRelRec", "scrJrefSup1NRelation");
-	scrJrefRef1NPanel = retrieveSi(srcdoc, "StatShrWznmRelRec", "scrJrefRef1NPanel");
 	scrJrefRef1NControl = retrieveSi(srcdoc, "StatShrWznmRelRec", "scrJrefRef1NControl");
+	scrJrefRef1NPanel = retrieveSi(srcdoc, "StatShrWznmRelRec", "scrJrefRef1NPanel");
 	scrJrefRef1NDialog = retrieveSi(srcdoc, "StatShrWznmRelRec", "scrJrefRef1NDialog");
 };
 
@@ -21,8 +21,8 @@ function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmRelRec", "initdoneATitle", "false");
 	setSi(srcdoc, "StatAppWznmRelRec", "initdone1NTablecol", "false");
 	setSi(srcdoc, "StatAppWznmRelRec", "initdoneSup1NRelation", "false");
-	setSi(srcdoc, "StatAppWznmRelRec", "initdoneRef1NPanel", "false");
 	setSi(srcdoc, "StatAppWznmRelRec", "initdoneRef1NControl", "false");
+	setSi(srcdoc, "StatAppWznmRelRec", "initdoneRef1NPanel", "false");
 	setSi(srcdoc, "StatAppWznmRelRec", "initdoneRef1NDialog", "false");
 };
 
@@ -31,8 +31,8 @@ function resetHeights() {
 	heightATitle = 30;
 	height1NTablecol = 30;
 	heightSup1NRelation = 30;
-	heightRef1NPanel = 30;
 	heightRef1NControl = 30;
+	heightRef1NPanel = 30;
 	heightRef1NDialog = 30;
 };
 
@@ -55,8 +55,8 @@ function checkInitdone() {
 	var initdoneATitle = (retrieveSi(srcdoc, "StatAppWznmRelRec", "initdoneATitle") == "true");
 	var initdone1NTablecol = (retrieveSi(srcdoc, "StatAppWznmRelRec", "initdone1NTablecol") == "true");
 	var initdoneSup1NRelation = (retrieveSi(srcdoc, "StatAppWznmRelRec", "initdoneSup1NRelation") == "true");
-	var initdoneRef1NPanel = (retrieveSi(srcdoc, "StatAppWznmRelRec", "initdoneRef1NPanel") == "true");
 	var initdoneRef1NControl = (retrieveSi(srcdoc, "StatAppWznmRelRec", "initdoneRef1NControl") == "true");
+	var initdoneRef1NPanel = (retrieveSi(srcdoc, "StatAppWznmRelRec", "initdoneRef1NPanel") == "true");
 	var initdoneRef1NDialog = (retrieveSi(srcdoc, "StatAppWznmRelRec", "initdoneRef1NDialog") == "true");
 
 	if (!initdoneDetail) {
@@ -67,10 +67,10 @@ function checkInitdone() {
 		rhsdoc.getElementById("1NTablecol").src = "./PnlWznmRel1NTablecol.html?scrJref=" + scrJref1NTablecol;
 	} else if (!initdoneSup1NRelation) {
 		rhsdoc.getElementById("Sup1NRelation").src = "./PnlWznmRelSup1NRelation.html?scrJref=" + scrJrefSup1NRelation;
-	} else if (!initdoneRef1NPanel) {
-		rhsdoc.getElementById("Ref1NPanel").src = "./PnlWznmRelRef1NPanel.html?scrJref=" + scrJrefRef1NPanel;
 	} else if (!initdoneRef1NControl) {
 		rhsdoc.getElementById("Ref1NControl").src = "./PnlWznmRelRef1NControl.html?scrJref=" + scrJrefRef1NControl;
+	} else if (!initdoneRef1NPanel) {
+		rhsdoc.getElementById("Ref1NPanel").src = "./PnlWznmRelRef1NPanel.html?scrJref=" + scrJrefRef1NPanel;
 	} else if (!initdoneRef1NDialog) {
 		rhsdoc.getElementById("Ref1NDialog").src = "./PnlWznmRelRef1NDialog.html?scrJref=" + scrJrefRef1NDialog;
 
@@ -115,8 +115,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "ATitle") heightATitle = height;
 		else if (short == "1NTablecol") height1NTablecol = height;
 		else if (short == "Sup1NRelation") heightSup1NRelation = height;
-		else if (short == "Ref1NPanel") heightRef1NPanel = height;
 		else if (short == "Ref1NControl") heightRef1NControl = height;
+		else if (short == "Ref1NPanel") heightRef1NPanel = height;
 		else if (short == "Ref1NDialog") heightRef1NDialog = height;
 	};
 
@@ -164,8 +164,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "ATitle") heightATitle = height;
 	else if (pnlshort == "1NTablecol") height1NTablecol = height;
 	else if (pnlshort == "Sup1NRelation") heightSup1NRelation = height;
-	else if (pnlshort == "Ref1NPanel") heightRef1NPanel = height;
 	else if (pnlshort == "Ref1NControl") heightRef1NControl = height;
+	else if (pnlshort == "Ref1NPanel") heightRef1NPanel = height;
 	else if (pnlshort == "Ref1NDialog") heightRef1NDialog = height;
 
 	if (update) updateHeight();
@@ -175,7 +175,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + heightATitle+13 + 5;
-	heightRhs = height1NTablecol+13 + heightSup1NRelation+13 + heightRef1NPanel+13 + heightRef1NControl+13 + heightRef1NDialog+13 + 5;
+	heightRhs = height1NTablecol+13 + heightSup1NRelation+13 + heightRef1NControl+13 + heightRef1NPanel+13 + heightRef1NDialog+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -372,10 +372,10 @@ function handleDpchEng(dom, dpch) {
 				if (getInitdone("1NTablecol")) rhsdoc.getElementById("1NTablecol").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefSup1NRelation) {
 				if (getInitdone("Sup1NRelation")) rhsdoc.getElementById("Sup1NRelation").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefRef1NPanel) {
-				if (getInitdone("Ref1NPanel")) rhsdoc.getElementById("Ref1NPanel").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefRef1NControl) {
 				if (getInitdone("Ref1NControl")) rhsdoc.getElementById("Ref1NControl").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefRef1NPanel) {
+				if (getInitdone("Ref1NPanel")) rhsdoc.getElementById("Ref1NPanel").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefRef1NDialog) {
 				if (getInitdone("Ref1NDialog")) rhsdoc.getElementById("Ref1NDialog").contentWindow.handleDpchEng(dom, dpch);
 			} else {

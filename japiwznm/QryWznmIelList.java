@@ -2,8 +2,8 @@
   * \file QryWznmIelList.java
   * Java API code for job QryWznmIelList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -20,8 +20,8 @@ public class QryWznmIelList {
 
 		public static final int TCO = 1;
 		public static final int IME = 2;
-		public static final int SRF = 3;
-		public static final int TYP = 4;
+		public static final int TYP = 3;
+		public static final int SRF = 4;
 
 		public static int getIx(
 					String sref
@@ -30,8 +30,8 @@ public class QryWznmIelList {
 
 			if (s.equals("tco")) return TCO;
 			if (s.equals("ime")) return IME;
-			if (s.equals("srf")) return SRF;
 			if (s.equals("typ")) return TYP;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -41,8 +41,8 @@ public class QryWznmIelList {
 				) {
 			if (ix == TCO) return("tco");
 			if (ix == IME) return("ime");
-			if (ix == SRF) return("srf");
 			if (ix == TYP) return("typ");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

@@ -2,8 +2,8 @@
 	* \file IexWznmDbs.h
 	* data blocks and readers/writers for import/export complex IexWznmDbs (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef IEXWZNMDBS_H

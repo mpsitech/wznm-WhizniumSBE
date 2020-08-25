@@ -2,8 +2,8 @@
 	* \file QryWznmErrList.cpp
 	* API code for job QryWznmErrList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "QryWznmErrList.h"
@@ -21,8 +21,8 @@ uint QryWznmErrList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ver") return VER;
 	if (s == "srf") return SRF;
+	if (s == "ver") return VER;
 
 	return(0);
 };
@@ -30,8 +30,8 @@ uint QryWznmErrList::VecVOrd::getIx(
 string QryWznmErrList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == VER) return("ver");
 	if (ix == SRF) return("srf");
+	if (ix == VER) return("ver");
 
 	return("");
 };

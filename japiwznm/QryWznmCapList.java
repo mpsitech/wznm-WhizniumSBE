@@ -2,8 +2,8 @@
   * \file QryWznmCapList.java
   * Java API code for job QryWznmCapList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -18,8 +18,8 @@ public class QryWznmCapList {
 		*/
 	public static class VecVOrd {
 
-		public static final int VER = 1;
-		public static final int TPL = 2;
+		public static final int TPL = 1;
+		public static final int VER = 2;
 		public static final int SRF = 3;
 
 		public static int getIx(
@@ -27,8 +27,8 @@ public class QryWznmCapList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("ver")) return VER;
 			if (s.equals("tpl")) return TPL;
+			if (s.equals("ver")) return VER;
 			if (s.equals("srf")) return SRF;
 
 			return 0;
@@ -37,8 +37,8 @@ public class QryWznmCapList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == VER) return("ver");
 			if (ix == TPL) return("tpl");
+			if (ix == VER) return("ver");
 			if (ix == SRF) return("srf");
 
 			return "";

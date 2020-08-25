@@ -2,8 +2,8 @@
 	* \file PnlWznmSteList.cpp
 	* API code for job PnlWznmSteList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "PnlWznmSteList.h"
@@ -271,19 +271,13 @@ set<uint> PnlWznmSteList::StatShr::diff(
 PnlWznmSteList::StgIac::StgIac(
 			const uint TcoSrfWidth
 			, const uint TcoSeqWidth
-			, const uint TcoEacWidth
-			, const uint TcoLacWidth
-			, const uint TcoCstWidth
 		) :
 			Block()
 		{
 	this->TcoSrfWidth = TcoSrfWidth;
 	this->TcoSeqWidth = TcoSeqWidth;
-	this->TcoEacWidth = TcoEacWidth;
-	this->TcoLacWidth = TcoLacWidth;
-	this->TcoCstWidth = TcoCstWidth;
 
-	mask = {TCOSRFWIDTH, TCOSEQWIDTH, TCOEACWIDTH, TCOLACWIDTH, TCOCSTWIDTH};
+	mask = {TCOSRFWIDTH, TCOSEQWIDTH};
 };
 
 bool PnlWznmSteList::StgIac::readXML(
@@ -305,9 +299,6 @@ bool PnlWznmSteList::StgIac::readXML(
 	if (basefound) {
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoSrfWidth", TcoSrfWidth)) add(TCOSRFWIDTH);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoSeqWidth", TcoSeqWidth)) add(TCOSEQWIDTH);
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoEacWidth", TcoEacWidth)) add(TCOEACWIDTH);
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoLacWidth", TcoLacWidth)) add(TCOLACWIDTH);
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoCstWidth", TcoCstWidth)) add(TCOCSTWIDTH);
 	};
 
 	return basefound;
@@ -327,9 +318,6 @@ void PnlWznmSteList::StgIac::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUintAttr(wr, itemtag, "sref", "TcoSrfWidth", TcoSrfWidth);
 		writeUintAttr(wr, itemtag, "sref", "TcoSeqWidth", TcoSeqWidth);
-		writeUintAttr(wr, itemtag, "sref", "TcoEacWidth", TcoEacWidth);
-		writeUintAttr(wr, itemtag, "sref", "TcoLacWidth", TcoLacWidth);
-		writeUintAttr(wr, itemtag, "sref", "TcoCstWidth", TcoCstWidth);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -340,9 +328,6 @@ set<uint> PnlWznmSteList::StgIac::comm(
 
 	if (TcoSrfWidth == comp->TcoSrfWidth) insert(items, TCOSRFWIDTH);
 	if (TcoSeqWidth == comp->TcoSeqWidth) insert(items, TCOSEQWIDTH);
-	if (TcoEacWidth == comp->TcoEacWidth) insert(items, TCOEACWIDTH);
-	if (TcoLacWidth == comp->TcoLacWidth) insert(items, TCOLACWIDTH);
-	if (TcoCstWidth == comp->TcoCstWidth) insert(items, TCOCSTWIDTH);
 
 	return(items);
 };
@@ -355,7 +340,7 @@ set<uint> PnlWznmSteList::StgIac::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TCOSRFWIDTH, TCOSEQWIDTH, TCOEACWIDTH, TCOLACWIDTH, TCOCSTWIDTH};
+	diffitems = {TCOSRFWIDTH, TCOSEQWIDTH};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -375,9 +360,6 @@ PnlWznmSteList::Tag::Tag(
 			, const string& TxtShowing2
 			, const string& TcoSrf
 			, const string& TcoSeq
-			, const string& TcoEac
-			, const string& TcoLac
-			, const string& TcoCst
 		) :
 			Block()
 		{
@@ -390,11 +372,8 @@ PnlWznmSteList::Tag::Tag(
 	this->TxtShowing2 = TxtShowing2;
 	this->TcoSrf = TcoSrf;
 	this->TcoSeq = TcoSeq;
-	this->TcoEac = TcoEac;
-	this->TcoLac = TcoLac;
-	this->TcoCst = TcoCst;
 
-	mask = {CPT, TXTFOR, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSRF, TCOSEQ, TCOEAC, TCOLAC, TCOCST};
+	mask = {CPT, TXTFOR, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSRF, TCOSEQ};
 };
 
 bool PnlWznmSteList::Tag::readXML(
@@ -423,9 +402,6 @@ bool PnlWznmSteList::Tag::readXML(
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtShowing2", TxtShowing2)) add(TXTSHOWING2);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TcoSrf", TcoSrf)) add(TCOSRF);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TcoSeq", TcoSeq)) add(TCOSEQ);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TcoEac", TcoEac)) add(TCOEAC);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TcoLac", TcoLac)) add(TCOLAC);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TcoCst", TcoCst)) add(TCOCST);
 	};
 
 	return basefound;

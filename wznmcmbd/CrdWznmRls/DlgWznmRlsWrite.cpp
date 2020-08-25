@@ -2,8 +2,8 @@
 	* \file DlgWznmRlsWrite.cpp
 	* job handler for job DlgWznmRlsWrite (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -2573,8 +2573,8 @@ void DlgWznmRlsWrite::refreshWrc(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfWrc oldContinfwrc(continfwrc);
 	StatShrWrc oldStatshrwrc(statshrwrc);
+	ContInfWrc oldContinfwrc(continfwrc);
 
 	// IP refreshWrc --- RBEGIN
 	// continfwrc
@@ -2586,8 +2586,8 @@ void DlgWznmRlsWrite::refreshWrc(
 	statshrwrc.ButStoActive = evalWrcButStoActive(dbswznm);
 
 	// IP refreshWrc --- REND
-	if (continfwrc.diff(&oldContinfwrc).size() != 0) insert(moditems, DpchEngData::CONTINFWRC);
 	if (statshrwrc.diff(&oldStatshrwrc).size() != 0) insert(moditems, DpchEngData::STATSHRWRC);
+	if (continfwrc.diff(&oldContinfwrc).size() != 0) insert(moditems, DpchEngData::CONTINFWRC);
 };
 
 void DlgWznmRlsWrite::refreshLfi(
@@ -2634,23 +2634,23 @@ void DlgWznmRlsWrite::refresh(
 			, set<uint>& moditems
 		) {
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshDet(dbswznm, moditems);
 	refreshCuc(dbswznm, moditems);
@@ -2745,10 +2745,10 @@ void DlgWznmRlsWrite::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
+		if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
 		else if (ixVSge == VecVSge::CREIDLE) handleTimerInSgeCreidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
 	};
 };
 
@@ -2887,18 +2887,11 @@ string DlgWznmRlsWrite::handleDownloadInSgeFail(
 	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
-void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
+void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
-};
-
-void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
-			DbsWznm* dbswznm
-		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeCreate --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsWrite::handleTimerInSgeCreidle(
@@ -2908,11 +2901,18 @@ void DlgWznmRlsWrite::handleTimerInSgeCreidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
+void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeCreate --- ILINE
+};
+
+void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
+			DbsWznm* dbswznm
+		) {
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
 };
 
 void DlgWznmRlsWrite::changeStage(

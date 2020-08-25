@@ -2,8 +2,8 @@
 	* \file QryWznmVer1NRelation.h
 	* job handler for job QryWznmVer1NRelation (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMVER1NRELATION_H

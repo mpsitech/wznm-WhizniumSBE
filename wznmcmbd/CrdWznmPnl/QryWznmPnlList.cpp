@@ -2,8 +2,8 @@
 	* \file QryWznmPnlList.cpp
 	* job handler for job QryWznmPnlList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -292,12 +292,12 @@ void QryWznmPnlList::fetch(
 			rec->titRefIxVTbl = VecWznmVMPanelRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
 			if (rec->refIxVTbl == VecWznmVMPanelRefTbl::TBL) {
 				rec->stubRefUref = StubWznm::getStubTblStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMPanelRefTbl::MDL) {
-				rec->stubRefUref = StubWznm::getStubMdlStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMPanelRefTbl::VEC) {
-				rec->stubRefUref = StubWznm::getStubVecStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMPanelRefTbl::REL) {
 				rec->stubRefUref = StubWznm::getStubRelStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMPanelRefTbl::VEC) {
+				rec->stubRefUref = StubWznm::getStubVecStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMPanelRefTbl::MDL) {
+				rec->stubRefUref = StubWznm::getStubMdlStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";
 		};
 

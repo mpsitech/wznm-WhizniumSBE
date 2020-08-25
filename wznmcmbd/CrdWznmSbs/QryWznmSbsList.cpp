@@ -2,8 +2,8 @@
 	* \file QryWznmSbsList.cpp
 	* job handler for job QryWznmSbsList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -392,27 +392,13 @@ void QryWznmSbsList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMSBSMOD) {
-		call->abort = handleCallWznmSbsMod(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSBSUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMSBSUPD_REFEQ) {
 		call->abort = handleCallWznmSbsUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSBSMOD) {
+		call->abort = handleCallWznmSbsMod(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmSbsList::handleCallWznmSbsMod(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
-		ixWznmVQrystate = VecWznmVQrystate::MNR;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmSbsList::handleCallWznmSbsUpd_refEq(
@@ -423,6 +409,20 @@ bool QryWznmSbsList::handleCallWznmSbsUpd_refEq(
 
 	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
 		ixWznmVQrystate = VecWznmVQrystate::OOD;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWznmSbsList::handleCallWznmSbsMod(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
+		ixWznmVQrystate = VecWznmVQrystate::MNR;
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 

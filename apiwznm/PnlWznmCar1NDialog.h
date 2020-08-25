@@ -2,8 +2,8 @@
 	* \file PnlWznmCar1NDialog.h
 	* API code for job PnlWznmCar1NDialog (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMCAR1NDIALOG_H

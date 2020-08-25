@@ -2,8 +2,8 @@
 	* \file QryWznmLibAPkglist.cpp
 	* job handler for job QryWznmLibAPkglist (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -143,10 +143,10 @@ void QryWznmLibAPkglist::fetch(
 			rec->jnum = statshr.jnumFirstload + i;
 			rec->srefX1RefIxVTbl = VecWznmVAMLibraryPkglistRefTbl::getSref(rec->x1RefIxVTbl);
 			rec->titX1RefIxVTbl = VecWznmVAMLibraryPkglistRefTbl::getTitle(rec->x1RefIxVTbl, ixWznmVLocale);
-			if (rec->x1RefIxVTbl == VecWznmVAMLibraryPkglistRefTbl::MTY) {
-				rec->stubX1RefUref = StubWznm::getStubMtyStd(dbswznm, rec->x1RefUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->x1RefIxVTbl == VecWznmVAMLibraryPkglistRefTbl::MCH) {
+			if (rec->x1RefIxVTbl == VecWznmVAMLibraryPkglistRefTbl::MCH) {
 				rec->stubX1RefUref = StubWznm::getStubMchStd(dbswznm, rec->x1RefUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->x1RefIxVTbl == VecWznmVAMLibraryPkglistRefTbl::MTY) {
+				rec->stubX1RefUref = StubWznm::getStubMtyStd(dbswznm, rec->x1RefUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubX1RefUref = "-";
 		};
 

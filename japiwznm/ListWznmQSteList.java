@@ -2,8 +2,8 @@
   * \file ListWznmQSteList.java
   * Java API code for record set of table TblWznmQSteList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -44,7 +44,7 @@ public class ListWznmQSteList {
 			clear();
 			
 			for (int i = 0; i < ics.size(); i++) {
-				rec = new WznmQSteList(i+1, "", "", "", "", "", "", "");
+				rec = new WznmQSteList(i+1, "", "");
 
 				if (shorttags.get(i)) s = basexpath + "/row[@jnum='" + ics.get(i).toString() + "']";
 				else s = basexpath + "/WznmQSteList[@jnum='" + ics.get(i).toString() + "']";

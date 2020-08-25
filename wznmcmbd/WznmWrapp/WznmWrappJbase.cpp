@@ -2,8 +2,8 @@
 	* \file WznmWrappJbase.cpp
 	* Wznm operation processor - write code for Java accessor app (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -30,6 +30,7 @@ DpchRetWznm* WznmWrappJbase::run(
 		) {
 	ubigint refWznmMApp = dpchinv->refWznmMApp;
 	string folder = dpchinv->folder;
+	bool ipAllNotSpec = dpchinv->ipAllNotSpec;
 
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
@@ -37,7 +38,14 @@ DpchRetWznm* WznmWrappJbase::run(
 	WznmMApp* app = NULL;
 
 	ListWznmMRtjob rtjs;
+	ListWznmMEvent evts;
+
 	ListWznmMSequence seqs;
+	ListWznmMState stes;
+	vector<unsigned int> icsSeqs;
+	vector<uint> cntsEnt;
+	vector<uint> cntsReent;
+	vector<uint> cntsLve;
 
 	string Appshort;
 	string Prjshort;
@@ -48,7 +56,9 @@ DpchRetWznm* WznmWrappJbase::run(
 
 	if (dbswznm->tblwznmmapp->loadRecByRef(refWznmMApp, &app)) {
 		loadRtjtree(dbswznm, refWznmMApp, rtjs);
-		dbswznm->tblwznmmsequence->loadRstBySQL("SELECT * FROM TblWznmMSequence WHERE appRefWznmMApp = " + to_string(app->ref) + " ORDER BY appNum ASC", false, seqs);
+		dbswznm->tblwznmmevent->loadRstByApp(refWznmMApp, false, evts);
+
+		analyzeStes(dbswznm, app->ref, seqs, stes, icsSeqs, cntsEnt, cntsReent, cntsLve);
 
 		Appshort = StrMod::cap(app->Short);
 
@@ -58,7 +68,7 @@ DpchRetWznm* WznmWrappJbase::run(
 		// AppXxxx.java
 		s = xchg->tmppath + "/" + folder + "/App" + Appshort + ".java.ip";
 		outfile.open(s.c_str(), ios::out);
-		writeAppJ(dbswznm, outfile, app, Prjshort, rtjs, seqs);
+		writeAppJ(dbswznm, outfile, app, Prjshort, rtjs, evts, seqs, stes, icsSeqs, cntsEnt, cntsReent, cntsLve, ipAllNotSpec);
 		outfile.close();
 
 		// DOMXxxx.java
@@ -67,10 +77,16 @@ DpchRetWznm* WznmWrappJbase::run(
 		writeDOMJ(dbswznm, outfile, rtjs);
 		outfile.close();
 
-		// VecXxxxVSte.java
-		s = xchg->tmppath + "/" + folder + "/Vec" + Appshort + "VSte.java.ip";
+		// VecXxxxVEvent.java
+		s = xchg->tmppath + "/" + folder + "/Vec" + Appshort + "VEvent.java.ip";
 		outfile.open(s.c_str(), ios::out);
-		writeVecSteJ(dbswznm, outfile, seqs);
+		writeVecEvtJ(dbswznm, outfile, evts);
+		outfile.close();
+
+		// VecXxxxVState.java
+		s = xchg->tmppath + "/" + folder + "/Vec" + Appshort + "VState.java.ip";
+		outfile.open(s.c_str(), ios::out);
+		writeVecSteJ(dbswznm, outfile, seqs, stes, icsSeqs);
 		outfile.close();
 
 		delete app;
@@ -87,7 +103,14 @@ void WznmWrappJbase::writeAppJ(
 			, WznmMApp* app
 			, const string& Prjshort
 			, ListWznmMRtjob& rtjs
+			, ListWznmMEvent& evts
 			, ListWznmMSequence& seqs
+			, ListWznmMState& stes
+			, vector<unsigned int>& icsSeqs
+			, vector<uint>& cntsEnt
+			, vector<uint>& cntsReent
+			, vector<uint>& cntsLve
+			, const bool ipAllNotSpec
 		) {
 	WznmMRtjob* rtj = NULL;
 	WznmMJob* job = NULL;
@@ -99,10 +122,11 @@ void WznmWrappJbase::writeAppJ(
 
 	WznmMBlock* blk = NULL;
 
-	WznmMSequence* seq = NULL;
-
-	ListWznmMState stes;
 	WznmMState* ste = NULL;
+
+	map<string,string> trigs;
+
+	string dom, indent, subdlm, dpchjref;
 
 	string dpchsref;
 
@@ -110,41 +134,60 @@ void WznmWrappJbase::writeAppJ(
 
 	string Appshort = StrMod::cap(app->Short);
 
-	// --- changeState
-	outfile << "// IP changeState --- IBEGIN" << endl;
-	writeChangeState(dbswznm, outfile, app, seqs);
-	outfile << "// IP changeState --- IEND" << endl;
+	getTargetStrs(app->ixWznmVApptarget, dom, indent, subdlm, dpchjref);
 
-	// --- enterLeaveStes
-	outfile << "// IP enterLeaveStes --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
-		seq = seqs.nodes[i];
+	writeHandleTrigger(dbswznm, outfile, app, seqs, stes, icsSeqs, cntsEnt, cntsReent, cntsLve, ipAllNotSpec);
 
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
+	// --- states
+	outfile << "// IP states --- IBEGIN" << endl;
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
 
-		for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-			ste = stes.nodes[j];
+		s = StrMod::cap(StrMod::dotToUsc(ste->sref));
 
-			s = StrMod::cap(StrMod::dotToUsc(ste->sref));
+		getSteTrigs(dbswznm, Prjshort, Appshort, app->ixWznmVApptarget, ste->ref, dom, subdlm, trigs);
 
-			outfile << "\tpublic int enterSte" << s << "() {" << endl;
-			outfile << "\t\tint retval = 0;" << endl;
+		if (ipAllNotSpec || cntsEnt[i]) {
+			outfile << "\tpublic int enter" << s << "() {" << endl;
 
-			writeEnterSte(dbswznm, outfile, Prjshort, app, ste);
+			outfile << "\t\tint retval = Vec" << Appshort << "VState." << StrMod::uc(s) << ";" << endl;
+
+			outfile << endl;
+			writeState(dbswznm, outfile, Prjshort, Appshort, app->ixWznmVApptarget, dom, indent, subdlm, dpchjref, ste, trigs, VecWznmVAMStateActionSection::ENT);
+			outfile << endl;
 
 			outfile << "\t\treturn retval;" << endl;
 			outfile << "\t};" << endl;
 			outfile << endl;
+		};
 
-			outfile << "\tpublic void leaveSte" << s << "() {" << endl;
+		if (ipAllNotSpec || cntsReent[i]) {
+			outfile << "\tpublic int reenter" << s << "(" << endl;
+			outfile << "\t\t\t\tint ixVEvent" << endl;
+			outfile << "\t\t\t\t, DpchEng" << Prjshort << " _dpcheng" << endl;
+			outfile << "\t\t\t) {" << endl;
+	
+			outfile << "\t\tint retval = Vec" << Appshort << "VState." << StrMod::uc(s) << ";" << endl;
 
-			writeLeaveSte(outfile, VecWznmVMAppTarget::JAVA, ste);
+			outfile << endl;
+			writeState(dbswznm, outfile, Prjshort, Appshort, app->ixWznmVApptarget, dom, indent, subdlm, dpchjref, ste, trigs, VecWznmVAMStateActionSection::REENT);
+			outfile << endl;
+
+			outfile << "\t\treturn retval;" << endl;
+			outfile << "\t};" << endl;
+			outfile << endl;
+		};
+
+		if (ipAllNotSpec || cntsLve[i]) {
+			outfile << "\tpublic void leave" << s << "() {" << endl;
+
+			writeState(dbswznm, outfile, Prjshort, Appshort, app->ixWznmVApptarget, dom, indent, subdlm, dpchjref, ste, trigs, VecWznmVAMStateActionSection::LVE);
 
 			outfile << "\t};" << endl;
 			outfile << endl;
 		};
 	};
-	outfile << "// IP enterLeaveStes --- IEND" << endl;
+	outfile << "// IP states --- IEND" << endl;
 
 	// --- mergeDpchEngs
 	outfile << "// IP mergeDpchEngs --- IBEGIN" << endl;
@@ -167,7 +210,7 @@ void WznmWrappJbase::writeAppJ(
 						outfile << "\t\t\t\t" << dpchsref << " dpcheng" << endl;
 						outfile << "\t\t\t) {" << endl;
 
-						writeMerge(dbswznm, outfile, app, blk, dpchsref, rtbs);
+						writeMerge(dbswznm, outfile, VecWznmVApptarget::JAVA, blk, dpchsref, rtbs);
 
 						outfile << "\t};" << endl;
 						outfile << endl;
@@ -180,39 +223,10 @@ void WznmWrappJbase::writeAppJ(
 	};
 	outfile << "// IP mergeDpchEngs --- IEND" << endl;
 
-	// --- handleDpchEngs
-	outfile << "// IP handleDpchEngs --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
-		seq = seqs.nodes[i];
-
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
-
-		outfile << "\tpublic boolean handleDpchEng" << StrMod::cap(seq->sref) << "(" << endl;
-		outfile << "\t\t\t\tDpchEng" << Prjshort << " _dpcheng" << endl;
-		outfile << "\t\t\t) {" << endl;
-
-		outfile << "\t\tboolean skipRefresh = false;" << endl;
-		outfile << "\t\tint oldIxVSte = ixVSte;" << endl;
-
-		writeHandleDpchEng(dbswznm, outfile, VecWznmVMAppTarget::JAVA, Appshort, Prjshort, seq, stes);
-
-		outfile << endl;
-		outfile << "\t\tif (!skipRefresh && (ixVSte != oldIxVSte)) skipRefresh = true;" << endl;
-		outfile << "\t\treturn skipRefresh;" << endl;
-		outfile << "\t};" << endl;
-		outfile << endl;
-	};
-	outfile << "// IP handleDpchEngs --- IEND" << endl;
-
 	// --- handleDpchEng.merge
 	outfile << "// IP handleDpchEng.merge --- IBEGIN" << endl;
-	writeDpchEngMerge(dbswznm, outfile, VecWznmVMAppTarget::JAVA, Prjshort, rtjs);
+	writeDpchEngMerge(dbswznm, outfile, Prjshort, VecWznmVApptarget::JAVA, rtjs);
 	outfile << "// IP handleDpchEng.merge --- IEND" << endl;
-
-	// --- handleDpchEng.handle
-	outfile << "// IP handleDpchEng.handle --- IBEGIN" << endl;
-	writeDpchEngHandle(dbswznm, outfile, VecWznmVMAppTarget::JAVA, Appshort, seqs);
-	outfile << "// IP handleDpchEng.handle --- IEND" << endl;
 };
 
 void WznmWrappJbase::writeDOMJ(
@@ -233,7 +247,7 @@ void WznmWrappJbase::writeDOMJ(
 
 	// --- summary
 	outfile << "// IP summary --- IBEGIN" << endl;
-	writeRtjtree(dbswznm, outfile, VecWznmVMAppTarget::JAVA, rtjs);
+	writeRtjtree(dbswznm, outfile, VecWznmVApptarget::JAVA, rtjs);
 	outfile << "// IP summary --- IEND" << endl;
 
 	// --- constructor
@@ -284,57 +298,114 @@ void WznmWrappJbase::writeDOMJ(
 
 	// --- vars
 	outfile << "// IP vars --- IBEGIN" << endl;
-	writeRtobjs(dbswznm, outfile, VecWznmVMAppTarget::JAVA, rtjs);
+	writeRtobjs(dbswznm, outfile, VecWznmVApptarget::JAVA, rtjs);
 	outfile << "// IP vars --- IEND" << endl;
+};
+
+void WznmWrappJbase::writeVecEvtJ(
+			DbsWznm* dbswznm
+			, fstream& outfile
+			, ListWznmMEvent& evts
+		) {
+	WznmMEvent* evt = NULL;
+
+	unsigned int num;
+
+	// --- vec
+	outfile << "// IP vec --- IBEGIN" << endl;
+
+	num = 1;
+
+	for (unsigned int i = 0; i < evts.nodes.size(); i++) {
+		evt = evts.nodes[i];
+
+		outfile << "\tpublic static final int " << StrMod::uc(StrMod::dotToUsc(evt->sref)) << " = " << num << ";" << endl;
+		num++;
+	};
+
+	outfile << "// IP vec --- IEND" << endl;
+
+	// --- getSref
+	outfile << "// IP getSref --- IBEGIN" << endl;
+
+	for (unsigned int i = 0; i < evts.nodes.size(); i++) {
+		evt = evts.nodes[i];
+		outfile << "\t\tif (ix == " << StrMod::uc(StrMod::dotToUsc(evt->sref)) << ") return(\"" << evt->sref << "\");" << endl;
+	};
+
+	outfile << "// IP getSref --- IEND" << endl;
 };
 
 void WznmWrappJbase::writeVecSteJ(
 			DbsWznm* dbswznm
 			, fstream& outfile
 			, ListWznmMSequence& seqs
+			, ListWznmMState& stes
+			, vector<unsigned int>& icsSeqs
 		) {
 	WznmMSequence* seq = NULL;
-
-	ListWznmMState stes;
 	WznmMState* ste = NULL;
+
+	unsigned int ixSeqsLast;
 
 	unsigned int num;
 
 	// --- vec
 	outfile << "// IP vec --- IBEGIN" << endl;
+
+	ixSeqsLast = 0;
+	ixSeqsLast--;
+
 	num = 1;
+
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
+
+		if (icsSeqs[i] != ixSeqsLast) {
+			ixSeqsLast = icsSeqs[i];
+			seq = seqs.nodes[ixSeqsLast];
+
+			if (i != 0) outfile << endl;
+			outfile << "\t// " << seq->Title << endl;
+		};
+
+		outfile << "\tpublic static final int " << StrMod::uc(StrMod::dotToUsc(ste->sref)) << " = " << num++ << ";" << endl;
+	};
+	outfile << endl;
+
+	outfile << "\t// alibi-states for entering a sub-sequence" << endl;
 	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
 		seq = seqs.nodes[i];
 
-		outfile << "\t// " << seq->Title << endl;
-
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
-
-		for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-			ste = stes.nodes[j];
-
-			outfile << "\tpublic static final int " << StrMod::uc(StrMod::dotToUsc(ste->sref)) << " = " << num << ";" << endl;
-			num++;
-		};
-
-		outfile << endl;
+		outfile << "\tpublic static final int SUBSEQ_" << StrMod::uc(StrMod::dotToUsc(seq->sref)) << " = " << num++ << ";" << endl;
 	};
+	outfile << endl;
+
+	outfile << "\t// alibi-state for returning from a sub-sequence" << endl;
+	outfile << "\tpublic static final int RETSEQ = " << num++ << ";" << endl;
+	outfile << endl;
+
+	outfile << "\t// alibi-state for interrupting the state update loop" << endl;
+	outfile << "\tpublic static final int BREAK = " << num++ << ";" << endl;
+
 	outfile << "// IP vec --- IEND" << endl;
 
 	// --- getSref
 	outfile << "// IP getSref --- IBEGIN" << endl;
+
+	for (unsigned int i = 0; i < stes.nodes.size(); i++) {
+		ste = stes.nodes[i];
+		outfile << "\t\tif (ix == " << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ") return(\"" << ste->sref << "\");" << endl;
+	};
+
 	for (unsigned int i = 0; i < seqs.nodes.size(); i++) {
 		seq = seqs.nodes[i];
-
-		dbswznm->tblwznmmstate->loadRstBySQL("SELECT * FROM TblWznmMState WHERE seqRefWznmMSequence = " + to_string(seq->ref) + " ORDER BY seqNum ASC", false, stes);
-		for (unsigned int j = 0; j < stes.nodes.size(); j++) {
-			ste = stes.nodes[j];
-
-			outfile << "\t\tif (ix == " << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ") return(\"" << ste->sref << "\");" << endl;
-		};
-
-		outfile << endl;
+		outfile << "\t\tif (ix == SUBSEQ_" << StrMod::uc(StrMod::dotToUsc(seq->sref)) << ") return(\"subseq." << seq->sref << "\");" << endl;
 	};
+
+	outfile << "\t\tif (ix == RETSEQ) return(\"retseq\");" << endl;
+	outfile << "\t\tif (ix == BREAK) return(\"break\");" << endl;
+
 	outfile << "// IP getSref --- IEND" << endl;
 };
 

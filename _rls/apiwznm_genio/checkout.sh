@@ -2,8 +2,8 @@
 # file checkout.sh
 # checkout script for Wznm API library, release apiwznm_genio
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 export set SRCROOT=/home/mpsitech/src
 

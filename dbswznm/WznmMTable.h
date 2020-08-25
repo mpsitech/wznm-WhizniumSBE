@@ -2,8 +2,8 @@
 	* \file WznmMTable.h
 	* database access for table TblWznmMTable (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMMTABLE_H

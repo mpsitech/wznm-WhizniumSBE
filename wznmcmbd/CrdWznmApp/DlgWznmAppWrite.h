@@ -2,8 +2,8 @@
 	* \file DlgWznmAppWrite.h
 	* job handler for job DlgWznmAppWrite (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMAPPWRITE_H
@@ -19,6 +19,7 @@
 #define VecVDlgWznmAppWriteSge DlgWznmAppWrite::VecVSge
 
 #define ContIacDlgWznmAppWrite DlgWznmAppWrite::ContIac
+#define ContIacDlgWznmAppWriteDet DlgWznmAppWrite::ContIacDet
 #define ContInfDlgWznmAppWrite DlgWznmAppWrite::ContInf
 #define ContInfDlgWznmAppWriteFia DlgWznmAppWrite::ContInfFia
 #define ContInfDlgWznmAppWriteLfi DlgWznmAppWrite::ContInfLfi
@@ -31,6 +32,7 @@
 #define StatShrDlgWznmAppWriteWrc DlgWznmAppWrite::StatShrWrc
 #define TagDlgWznmAppWrite DlgWznmAppWrite::Tag
 #define TagDlgWznmAppWriteCuc DlgWznmAppWrite::TagCuc
+#define TagDlgWznmAppWriteDet DlgWznmAppWrite::TagDet
 #define TagDlgWznmAppWriteFia DlgWznmAppWrite::TagFia
 #define TagDlgWznmAppWriteLfi DlgWznmAppWrite::TagLfi
 #define TagDlgWznmAppWriteWrc DlgWznmAppWrite::TagWrc
@@ -51,10 +53,11 @@ public:
 	class VecVDit {
 
 	public:
-		static const Sbecore::uint CUC = 1;
-		static const Sbecore::uint WRC = 2;
-		static const Sbecore::uint LFI = 3;
-		static const Sbecore::uint FIA = 4;
+		static const Sbecore::uint DET = 1;
+		static const Sbecore::uint CUC = 2;
+		static const Sbecore::uint WRC = 3;
+		static const Sbecore::uint LFI = 4;
+		static const Sbecore::uint FIA = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -132,6 +135,27 @@ public:
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContIac* comp);
 		std::set<Sbecore::uint> diff(const ContIac* comp);
+	};
+
+	/**
+	  * ContIacDet (full: ContIacDlgWznmAppWriteDet)
+	  */
+	class ContIacDet : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint CHKUSF = 1;
+
+	public:
+		ContIacDet(const bool ChkUsf = false);
+
+	public:
+		bool ChkUsf;
+
+	public:
+		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
+		std::set<Sbecore::uint> comm(const ContIacDet* comp);
+		std::set<Sbecore::uint> diff(const ContIacDet* comp);
 	};
 
 	/**
@@ -344,6 +368,15 @@ public:
 	};
 
 	/**
+		* TagDet (full: TagDlgWznmAppWriteDet)
+		*/
+	class TagDet {
+
+	public:
+		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
+	};
+
+	/**
 		* TagFia (full: TagDlgWznmAppWriteFia)
 		*/
 	class TagFia {
@@ -378,12 +411,14 @@ public:
 	public:
 		static const Sbecore::uint JREF = 1;
 		static const Sbecore::uint CONTIAC = 2;
+		static const Sbecore::uint CONTIACDET = 3;
 
 	public:
 		DpchAppData();
 
 	public:
 		ContIac contiac;
+		ContIacDet contiacdet;
 
 	public:
 		std::string getSrefsMask();
@@ -422,30 +457,33 @@ public:
 	public:
 		static const Sbecore::uint JREF = 1;
 		static const Sbecore::uint CONTIAC = 2;
-		static const Sbecore::uint CONTINF = 3;
-		static const Sbecore::uint CONTINFFIA = 4;
-		static const Sbecore::uint CONTINFLFI = 5;
-		static const Sbecore::uint CONTINFWRC = 6;
-		static const Sbecore::uint FEEDFDSE = 7;
-		static const Sbecore::uint FEEDFSGE = 8;
-		static const Sbecore::uint STATAPP = 9;
-		static const Sbecore::uint STATSHR = 10;
-		static const Sbecore::uint STATSHRCUC = 11;
-		static const Sbecore::uint STATSHRFIA = 12;
-		static const Sbecore::uint STATSHRLFI = 13;
-		static const Sbecore::uint STATSHRWRC = 14;
-		static const Sbecore::uint TAG = 15;
-		static const Sbecore::uint TAGCUC = 16;
-		static const Sbecore::uint TAGFIA = 17;
-		static const Sbecore::uint TAGLFI = 18;
-		static const Sbecore::uint TAGWRC = 19;
-		static const Sbecore::uint ALL = 20;
+		static const Sbecore::uint CONTIACDET = 3;
+		static const Sbecore::uint CONTINF = 4;
+		static const Sbecore::uint CONTINFFIA = 5;
+		static const Sbecore::uint CONTINFLFI = 6;
+		static const Sbecore::uint CONTINFWRC = 7;
+		static const Sbecore::uint FEEDFDSE = 8;
+		static const Sbecore::uint FEEDFSGE = 9;
+		static const Sbecore::uint STATAPP = 10;
+		static const Sbecore::uint STATSHR = 11;
+		static const Sbecore::uint STATSHRCUC = 12;
+		static const Sbecore::uint STATSHRFIA = 13;
+		static const Sbecore::uint STATSHRLFI = 14;
+		static const Sbecore::uint STATSHRWRC = 15;
+		static const Sbecore::uint TAG = 16;
+		static const Sbecore::uint TAGCUC = 17;
+		static const Sbecore::uint TAGDET = 18;
+		static const Sbecore::uint TAGFIA = 19;
+		static const Sbecore::uint TAGLFI = 20;
+		static const Sbecore::uint TAGWRC = 21;
+		static const Sbecore::uint ALL = 22;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContInf* continf = NULL, ContInfFia* continffia = NULL, ContInfLfi* continflfi = NULL, ContInfWrc* continfwrc = NULL, Sbecore::Xmlio::Feed* feedFDse = NULL, Sbecore::Xmlio::Feed* feedFSge = NULL, StatShr* statshr = NULL, StatShrCuc* statshrcuc = NULL, StatShrFia* statshrfia = NULL, StatShrLfi* statshrlfi = NULL, StatShrWrc* statshrwrc = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContIacDet* contiacdet = NULL, ContInf* continf = NULL, ContInfFia* continffia = NULL, ContInfLfi* continflfi = NULL, ContInfWrc* continfwrc = NULL, Sbecore::Xmlio::Feed* feedFDse = NULL, Sbecore::Xmlio::Feed* feedFSge = NULL, StatShr* statshr = NULL, StatShrCuc* statshrcuc = NULL, StatShrFia* statshrfia = NULL, StatShrLfi* statshrlfi = NULL, StatShrWrc* statshrwrc = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContIac contiac;
+		ContIacDet contiacdet;
 		ContInf continf;
 		ContInfFia continffia;
 		ContInfLfi continflfi;
@@ -467,9 +505,9 @@ public:
 
 	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalFiaDldActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalWrcButRunActive(DbsWznm* dbswznm);
 	bool evalWrcButStoActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalCucUldActive(DbsWznm* dbswznm);
 
 public:
@@ -478,6 +516,7 @@ public:
 
 public:
 	ContIac contiac;
+	ContIacDet contiacdet;
 	ContInf continf;
 	ContInfFia continffia;
 	ContInfLfi continflfi;
@@ -523,6 +562,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
+	void refreshDet(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshCuc(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshWrc(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
@@ -539,6 +579,7 @@ private:
 
 	void handleDpchAppWznmInit(DbsWznm* dbswznm, DpchAppWznmInit* dpchappwznminit, DpchEngWznm** dpcheng);
 	void handleDpchAppDataContiac(DbsWznm* dbswznm, ContIac* _contiac, DpchEngWznm** dpcheng);
+	void handleDpchAppDataContiacdet(DbsWznm* dbswznm, ContIacDet* _contiacdet, DpchEngWznm** dpcheng);
 
 	void handleDpchAppDoButDneClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 
@@ -548,8 +589,8 @@ private:
 
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 

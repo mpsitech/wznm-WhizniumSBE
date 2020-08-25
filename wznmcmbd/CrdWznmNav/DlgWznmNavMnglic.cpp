@@ -2,8 +2,8 @@
 	* \file DlgWznmNavMnglic.cpp
 	* job handler for job DlgWznmNavMnglic (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -88,22 +88,22 @@ void DlgWznmNavMnglic::refresh(
 			, set<uint>& moditems
 		) {
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	//statshr.DetButActActive = CUSTOM;
 
+	// contiac
+
 	// continf
 	continf.numFSge = ixVSge;
 
-	// contiac
-
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 };
 
 void DlgWznmNavMnglic::handleRequest(

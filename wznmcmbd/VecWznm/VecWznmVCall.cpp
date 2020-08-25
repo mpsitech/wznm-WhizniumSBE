@@ -2,8 +2,8 @@
 	* \file VecWznmVCall.cpp
 	* vector VecWznmVCall (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "VecWznmVCall.h"
@@ -122,6 +122,10 @@ uint VecWznmVCall::getIx(
 	if (s == "callwznmerrmod") return CALLWZNMERRMOD;
 	if (s == "callwznmerrmod.vereq") return CALLWZNMERRMOD_VEREQ;
 	if (s == "callwznmerrupd.refeq") return CALLWZNMERRUPD_REFEQ;
+	if (s == "callwznmevt.appeq") return CALLWZNMEVT_APPEQ;
+	if (s == "callwznmevtmod") return CALLWZNMEVTMOD;
+	if (s == "callwznmevtmod.appeq") return CALLWZNMEVTMOD_APPEQ;
+	if (s == "callwznmevtupd.refeq") return CALLWZNMEVTUPD_REFEQ;
 	if (s == "callwznmfed.srteq") return CALLWZNMFED_SRTEQ;
 	if (s == "callwznmfed.srueq") return CALLWZNMFED_SRUEQ;
 	if (s == "callwznmfedmod") return CALLWZNMFEDMOD;
@@ -375,16 +379,13 @@ uint VecWznmVCall::getIx(
 	if (s == "callwznmstbrstbmod.subeq") return CALLWZNMSTBRSTBMOD_SUBEQ;
 	if (s == "callwznmstbrstbmod.supeq") return CALLWZNMSTBRSTBMOD_SUPEQ;
 	if (s == "callwznmstbupd.refeq") return CALLWZNMSTBUPD_REFEQ;
-	if (s == "callwznmste.erjeq") return CALLWZNMSTE_ERJEQ;
-	if (s == "callwznmste.esneq") return CALLWZNMSTE_ESNEQ;
-	if (s == "callwznmste.eveeq") return CALLWZNMSTE_EVEEQ;
-	if (s == "callwznmste.evieq") return CALLWZNMSTE_EVIEQ;
 	if (s == "callwznmste.seqeq") return CALLWZNMSTE_SEQEQ;
-	if (s == "callwznmsteastpmod.steeq") return CALLWZNMSTEASTPMOD_STEEQ;
+	if (s == "callwznmsteatrgmod.steeq") return CALLWZNMSTEATRGMOD_STEEQ;
 	if (s == "callwznmstemod") return CALLWZNMSTEMOD;
 	if (s == "callwznmstemod.seqeq") return CALLWZNMSTEMOD_SEQEQ;
 	if (s == "callwznmsteupd.refeq") return CALLWZNMSTEUPD_REFEQ;
 	if (s == "callwznmstgchg") return CALLWZNMSTGCHG;
+	if (s == "callwznmstrjcndmod.steatrgeq") return CALLWZNMSTRJCNDMOD_STEATRGEQ;
 	if (s == "callwznmstubchg") return CALLWZNMSTUBCHG;
 	if (s == "callwznmsuspsess") return CALLWZNMSUSPSESS;
 	if (s == "callwznmtag.cpbeq") return CALLWZNMTAG_CPBEQ;
@@ -569,6 +570,10 @@ string VecWznmVCall::getSref(
 	if (ix == CALLWZNMERRMOD) return("CallWznmErrMod");
 	if (ix == CALLWZNMERRMOD_VEREQ) return("CallWznmErrMod.verEq");
 	if (ix == CALLWZNMERRUPD_REFEQ) return("CallWznmErrUpd.refEq");
+	if (ix == CALLWZNMEVT_APPEQ) return("CallWznmEvt.appEq");
+	if (ix == CALLWZNMEVTMOD) return("CallWznmEvtMod");
+	if (ix == CALLWZNMEVTMOD_APPEQ) return("CallWznmEvtMod.appEq");
+	if (ix == CALLWZNMEVTUPD_REFEQ) return("CallWznmEvtUpd.refEq");
 	if (ix == CALLWZNMFED_SRTEQ) return("CallWznmFed.srtEq");
 	if (ix == CALLWZNMFED_SRUEQ) return("CallWznmFed.sruEq");
 	if (ix == CALLWZNMFEDMOD) return("CallWznmFedMod");
@@ -822,16 +827,13 @@ string VecWznmVCall::getSref(
 	if (ix == CALLWZNMSTBRSTBMOD_SUBEQ) return("CallWznmStbRstbMod.subEq");
 	if (ix == CALLWZNMSTBRSTBMOD_SUPEQ) return("CallWznmStbRstbMod.supEq");
 	if (ix == CALLWZNMSTBUPD_REFEQ) return("CallWznmStbUpd.refEq");
-	if (ix == CALLWZNMSTE_ERJEQ) return("CallWznmSte.erjEq");
-	if (ix == CALLWZNMSTE_ESNEQ) return("CallWznmSte.esnEq");
-	if (ix == CALLWZNMSTE_EVEEQ) return("CallWznmSte.eveEq");
-	if (ix == CALLWZNMSTE_EVIEQ) return("CallWznmSte.eviEq");
 	if (ix == CALLWZNMSTE_SEQEQ) return("CallWznmSte.seqEq");
-	if (ix == CALLWZNMSTEASTPMOD_STEEQ) return("CallWznmSteAstpMod.steEq");
+	if (ix == CALLWZNMSTEATRGMOD_STEEQ) return("CallWznmSteAtrgMod.steEq");
 	if (ix == CALLWZNMSTEMOD) return("CallWznmSteMod");
 	if (ix == CALLWZNMSTEMOD_SEQEQ) return("CallWznmSteMod.seqEq");
 	if (ix == CALLWZNMSTEUPD_REFEQ) return("CallWznmSteUpd.refEq");
 	if (ix == CALLWZNMSTGCHG) return("CallWznmStgChg");
+	if (ix == CALLWZNMSTRJCNDMOD_STEATRGEQ) return("CallWznmStrJcndMod.steAtrgEq");
 	if (ix == CALLWZNMSTUBCHG) return("CallWznmStubChg");
 	if (ix == CALLWZNMSUSPSESS) return("CallWznmSuspsess");
 	if (ix == CALLWZNMTAG_CPBEQ) return("CallWznmTag.cpbEq");

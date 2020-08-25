@@ -2,8 +2,8 @@
 	* \file ApiWznm.cpp
 	* Wznm API library global functionality (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "ApiWznm.h"
@@ -225,6 +225,9 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMALERT) {
 			*dpcheng = new DpchEngWznmAlert();
 			((DpchEngWznmAlert*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMAPP1NEVENTDATA) {
+			*dpcheng = new PnlWznmApp1NEvent::DpchEngData();
+			((PnlWznmApp1NEvent::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMAPP1NRTJOBDATA) {
 			*dpcheng = new PnlWznmApp1NRtjob::DpchEngData();
 			((PnlWznmApp1NRtjob::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
@@ -474,6 +477,21 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMERRRECDATA) {
 			*dpcheng = new PnlWznmErrRec::DpchEngData();
 			((PnlWznmErrRec::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMEVTDATA) {
+			*dpcheng = new CrdWznmEvt::DpchEngData();
+			((CrdWznmEvt::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMEVTDETAILDATA) {
+			*dpcheng = new PnlWznmEvtDetail::DpchEngData();
+			((PnlWznmEvtDetail::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMEVTHEADBARDATA) {
+			*dpcheng = new PnlWznmEvtHeadbar::DpchEngData();
+			((PnlWznmEvtHeadbar::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMEVTLISTDATA) {
+			*dpcheng = new PnlWznmEvtList::DpchEngData();
+			((PnlWznmEvtList::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMEVTRECDATA) {
+			*dpcheng = new PnlWznmEvtRec::DpchEngData();
+			((PnlWznmEvtRec::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMFILDATA) {
 			*dpcheng = new CrdWznmFil::DpchEngData();
 			((CrdWznmFil::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
@@ -1173,9 +1191,9 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMSTBSUPMNSTUBDATA) {
 			*dpcheng = new PnlWznmStbSupMNStub::DpchEngData();
 			((PnlWznmStbSupMNStub::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMSTEASTEPDATA) {
-			*dpcheng = new PnlWznmSteAStep::DpchEngData();
-			((PnlWznmSteAStep::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMSTEATRIGDATA) {
+			*dpcheng = new PnlWznmSteATrig::DpchEngData();
+			((PnlWznmSteATrig::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMSTEDATA) {
 			*dpcheng = new CrdWznmSte::DpchEngData();
 			((CrdWznmSte::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);

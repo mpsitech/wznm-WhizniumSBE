@@ -2,8 +2,8 @@
 	* \file QryWznmFilList.cpp
 	* job handler for job QryWznmFilList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -221,10 +221,10 @@ void QryWznmFilList::fetch(
 			rec->titRefIxVTbl = VecWznmVMFileRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
 			if (rec->refIxVTbl == VecWznmVMFileRefTbl::APP) {
 				rec->stubRefUref = StubWznm::getStubAppStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMFileRefTbl::LIB) {
-				rec->stubRefUref = StubWznm::getStubLibStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMFileRefTbl::VER) {
 				rec->stubRefUref = StubWznm::getStubVerStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMFileRefTbl::LIB) {
+				rec->stubRefUref = StubWznm::getStubLibStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";
 			rec->titOsrefKContent = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKMFILECONTENT, rec->osrefKContent, ixWznmVLocale);
 			rec->titSrefKMimetype = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKMFILEMIMETYPE, rec->srefKMimetype, ixWznmVLocale);

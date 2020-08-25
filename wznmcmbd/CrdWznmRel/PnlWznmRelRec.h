@@ -2,8 +2,8 @@
 	* \file PnlWznmRelRec.h
 	* job handler for job PnlWznmRelRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMRELREC_H
@@ -76,7 +76,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NTablecol = false, const bool initdoneSup1NRelation = false, const bool initdoneRef1NPanel = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NDialog = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NTablecol = false, const bool initdoneSup1NRelation = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NPanel = false, const bool initdoneRef1NDialog = false);
 	};
 
 	/**
@@ -90,13 +90,13 @@ public:
 		static const Sbecore::uint JREFATITLE = 3;
 		static const Sbecore::uint JREF1NTABLECOL = 4;
 		static const Sbecore::uint JREFSUP1NRELATION = 5;
-		static const Sbecore::uint JREFREF1NPANEL = 6;
-		static const Sbecore::uint JREFREF1NCONTROL = 7;
+		static const Sbecore::uint JREFREF1NCONTROL = 6;
+		static const Sbecore::uint JREFREF1NPANEL = 7;
 		static const Sbecore::uint JREFREF1NDIALOG = 8;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 9;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const Sbecore::ubigint jref1NTablecol = 0, const Sbecore::ubigint jrefSup1NRelation = 0, const Sbecore::ubigint jrefRef1NPanel = 0, const Sbecore::ubigint jrefRef1NControl = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const Sbecore::ubigint jref1NTablecol = 0, const Sbecore::ubigint jrefSup1NRelation = 0, const Sbecore::ubigint jrefRef1NControl = 0, const Sbecore::ubigint jrefRef1NPanel = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
@@ -104,8 +104,8 @@ public:
 		Sbecore::ubigint jrefATitle;
 		Sbecore::ubigint jref1NTablecol;
 		Sbecore::ubigint jrefSup1NRelation;
-		Sbecore::ubigint jrefRef1NPanel;
 		Sbecore::ubigint jrefRef1NControl;
+		Sbecore::ubigint jrefRef1NPanel;
 		Sbecore::ubigint jrefRef1NDialog;
 		bool ButRegularizeActive;
 

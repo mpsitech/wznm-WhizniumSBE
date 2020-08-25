@@ -2,8 +2,8 @@
 	* \file JobWznmIexApp.h
 	* job handler for job JobWznmIexApp (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef JOBWZNMIEXAPP_H
@@ -61,6 +61,7 @@ public:
 
 	bool shorttags;
 
+	IexWznmApp::ImeIMEvent imeimevent;
 	IexWznmApp::ImeIMRtjob imeimrtjob;
 	IexWznmApp::ImeIMSequence imeimsequence;
 

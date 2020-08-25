@@ -2,8 +2,8 @@
 	* \file DlgWznmVerCustjob.h
 	* API code for job DlgWznmVerCustjob (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMVERCUSTJOB_H

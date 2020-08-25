@@ -2,8 +2,8 @@
 	* \file DlgWznmVerGlobal.h
 	* job handler for job DlgWznmVerGlobal (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMVERGLOBAL_H
@@ -560,9 +560,9 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
-	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
-	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

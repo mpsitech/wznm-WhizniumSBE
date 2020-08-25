@@ -2,8 +2,8 @@
 	* \file CrdWznmSbs.cpp
 	* job handler for job CrdWznmSbs (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -43,8 +43,8 @@ CrdWznmSbs::CrdWznmSbs(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnlheadbar = NULL;
 	pnllist = NULL;
+	pnlheadbar = NULL;
 	pnlrec = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -52,11 +52,13 @@ CrdWznmSbs::CrdWznmSbs(
 	xchg->addIxPreset(VecWznmVPreset::PREWZNMIXPRE, jref, ixWznmVPreset);
 	if (ixWznmVPreset != VecWznmVPreset::VOID) xchg->addRefPreset(ixWznmVPreset, jref, preUref);
 
-	// initialize according to ref
-	changeRef(dbswznm, jref, ((ref+1) == 0) ? 0 : ref, false);
+	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFSBS, ref);
 
-	pnlheadbar = new PnlWznmSbsHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	// initialize according to ref
+	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
+
 	pnllist = new PnlWznmSbsList(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmSbsHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlrec = new PnlWznmSbsRec(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT

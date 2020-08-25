@@ -2,8 +2,8 @@
   * \file QryWznmStbList.java
   * Java API code for job QryWznmStbList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -19,8 +19,8 @@ public class QryWznmStbList {
 	public static class VecVOrd {
 
 		public static final int SBS = 1;
-		public static final int TYP = 2;
-		public static final int TBL = 3;
+		public static final int TBL = 2;
+		public static final int TYP = 3;
 		public static final int SRF = 4;
 
 		public static int getIx(
@@ -29,8 +29,8 @@ public class QryWznmStbList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("sbs")) return SBS;
-			if (s.equals("typ")) return TYP;
 			if (s.equals("tbl")) return TBL;
+			if (s.equals("typ")) return TYP;
 			if (s.equals("srf")) return SRF;
 
 			return 0;
@@ -40,8 +40,8 @@ public class QryWznmStbList {
 					int ix
 				) {
 			if (ix == SBS) return("sbs");
-			if (ix == TYP) return("typ");
 			if (ix == TBL) return("tbl");
+			if (ix == TYP) return("typ");
 			if (ix == SRF) return("srf");
 
 			return "";

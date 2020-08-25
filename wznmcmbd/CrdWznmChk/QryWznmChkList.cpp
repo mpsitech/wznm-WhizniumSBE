@@ -2,8 +2,8 @@
 	* \file QryWznmChkList.cpp
 	* job handler for job QryWznmChkList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -246,8 +246,8 @@ void QryWznmChkList::rerun_orderSQL(
 		) {
 	if (preIxOrd == VecVOrd::TCO) sqlstr += " ORDER BY TblWznmMCheck.refWznmMTablecol ASC";
 	else if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMCheck.refWznmMTable ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMCheck.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMCheck.sref ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMCheck.ixVBasetype ASC";
 };
 
 void QryWznmChkList::fetch(
@@ -419,27 +419,13 @@ void QryWznmChkList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMCHKUPD_REFEQ) {
-		call->abort = handleCallWznmChkUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCHKMOD) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCHKMOD) {
 		call->abort = handleCallWznmChkMod(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCHKUPD_REFEQ) {
+		call->abort = handleCallWznmChkUpd_refEq(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmChkList::handleCallWznmChkUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
-		ixWznmVQrystate = VecWznmVQrystate::OOD;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmChkList::handleCallWznmChkMod(
@@ -450,6 +436,20 @@ bool QryWznmChkList::handleCallWznmChkMod(
 
 	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
 		ixWznmVQrystate = VecWznmVQrystate::MNR;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWznmChkList::handleCallWznmChkUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
+		ixWznmVQrystate = VecWznmVQrystate::OOD;
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 

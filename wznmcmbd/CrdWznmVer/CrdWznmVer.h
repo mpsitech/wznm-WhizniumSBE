@@ -2,8 +2,8 @@
 	* \file CrdWznmVer.h
 	* job handler for job CrdWznmVer (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef CRDWZNMVER_H
@@ -15,21 +15,21 @@
 
 #include "PnlWznmVerList.h"
 #include "PnlWznmVerHeadbar.h"
-#include "DlgWznmVerWrstkit.h"
 #include "PnlWznmVerRec.h"
-#include "DlgWznmVerNew.h"
+#include "DlgWznmVerBscui.h"
+#include "DlgWznmVerCustjob.h"
+#include "DlgWznmVerCustjtr.h"
+#include "DlgWznmVerWrstkit.h"
 #include "DlgWznmVerOppack.h"
-#include "DlgWznmVerGlobal.h"
+#include "DlgWznmVerNew.h"
 #include "DlgWznmVerImpexp.h"
+#include "DlgWznmVerGlobal.h"
 #include "DlgWznmVerGenui.h"
 #include "DlgWznmVerGenjtr.h"
 #include "DlgWznmVerFinmod.h"
 #include "DlgWznmVerDeploy.h"
 #include "DlgWznmVerDbstr.h"
 #include "DlgWznmVerCustui.h"
-#include "DlgWznmVerCustjtr.h"
-#include "DlgWznmVerCustjob.h"
-#include "DlgWznmVerBscui.h"
 
 #define VecVWznmVerDo CrdWznmVer::VecVDo
 #define VecVWznmVerSge CrdWznmVer::VecVSge
@@ -356,21 +356,21 @@ public:
 
 	PnlWznmVerList* pnllist;
 	PnlWznmVerHeadbar* pnlheadbar;
-	DlgWznmVerWrstkit* dlgwrstkit;
 	PnlWznmVerRec* pnlrec;
-	DlgWznmVerNew* dlgnew;
+	DlgWznmVerBscui* dlgbscui;
+	DlgWznmVerCustjob* dlgcustjob;
+	DlgWznmVerCustjtr* dlgcustjtr;
+	DlgWznmVerWrstkit* dlgwrstkit;
 	DlgWznmVerOppack* dlgoppack;
-	DlgWznmVerGlobal* dlgglobal;
+	DlgWznmVerNew* dlgnew;
 	DlgWznmVerImpexp* dlgimpexp;
+	DlgWznmVerGlobal* dlgglobal;
 	DlgWznmVerGenui* dlggenui;
 	DlgWznmVerGenjtr* dlggenjtr;
 	DlgWznmVerFinmod* dlgfinmod;
 	DlgWznmVerDeploy* dlgdeploy;
 	DlgWznmVerDbstr* dlgdbstr;
 	DlgWznmVerCustui* dlgcustui;
-	DlgWznmVerCustjtr* dlgcustjtr;
-	DlgWznmVerCustjob* dlgcustjob;
-	DlgWznmVerBscui* dlgbscui;
 
 	// IP vars.cust --- INSERT
 

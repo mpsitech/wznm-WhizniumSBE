@@ -2,8 +2,8 @@
 	* \file DlgWznmVerBscui.cpp
 	* job handler for job DlgWznmVerBscui (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -144,8 +144,8 @@ void DlgWznmVerBscui::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrLfi oldStatshrlfi(statshrlfi);
 	ContInfLfi oldContinflfi(continflfi);
+	StatShrLfi oldStatshrlfi(statshrlfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -155,8 +155,8 @@ void DlgWznmVerBscui::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
+	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 };
 
 void DlgWznmVerBscui::refresh(
@@ -274,9 +274,9 @@ void DlgWznmVerBscui::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
+		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
 		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 	};
 };
 
@@ -391,11 +391,11 @@ string DlgWznmVerBscui::handleDownloadInSgeDone(
 	return(""); // IP handleDownloadInSgeDone --- LINE
 };
 
-void DlgWznmVerBscui::handleTimerWithSrefMonInSgeImport(
+void DlgWznmVerBscui::handleTimerInSgePrsidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm);  // IP handleTimerWithSrefMonInSgeImport --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmVerBscui::handleTimerInSgeImpidle(
@@ -405,11 +405,11 @@ void DlgWznmVerBscui::handleTimerInSgeImpidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmVerBscui::handleTimerInSgePrsidle(
+void DlgWznmVerBscui::handleTimerWithSrefMonInSgeImport(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm);  // IP handleTimerWithSrefMonInSgeImport --- ILINE
 };
 
 void DlgWznmVerBscui::changeStage(

@@ -2,8 +2,8 @@
 	* \file WznmQSteList.h
 	* Dbs and XML wrapper for table TblWznmQSteList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMQSTELIST_H
@@ -24,7 +24,7 @@
 class WznmQSteList {
 
 public:
-	WznmQSteList(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint seqRefWznmMSequence = 0, const std::string stubSeqRefWznmMSequence = "", const Sbecore::uint eacIxVAction = 0, const std::string srefEacIxVAction = "", const std::string titEacIxVAction = "", const Sbecore::uint lacIxVAction = 0, const std::string srefLacIxVAction = "", const std::string titLacIxVAction = "", const bool Custstep = false, const std::string yesnoCuststep = "");
+	WznmQSteList(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint seqRefWznmMSequence = 0, const std::string stubSeqRefWznmMSequence = "");
 
 public:
 	Sbecore::ubigint qref;
@@ -34,14 +34,6 @@ public:
 	std::string sref;
 	Sbecore::ubigint seqRefWznmMSequence;
 	std::string stubSeqRefWznmMSequence;
-	Sbecore::uint eacIxVAction;
-	std::string srefEacIxVAction;
-	std::string titEacIxVAction;
-	Sbecore::uint lacIxVAction;
-	std::string srefLacIxVAction;
-	std::string titLacIxVAction;
-	bool Custstep;
-	std::string yesnoCuststep;
 
 public:
 	void writeXML(xmlTextWriter* wr, std::string difftag = "", bool jnumattr = false, bool shorttags = false);
@@ -84,8 +76,8 @@ public:
 	virtual Sbecore::ubigint loadRstBySQL(const std::string& sqlstr, const bool append, ListWznmQSteList& rst);
 
 	virtual Sbecore::ubigint insertRec(WznmQSteList* rec);
-	Sbecore::ubigint insertNewRec(WznmQSteList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint seqRefWznmMSequence = 0, const std::string stubSeqRefWznmMSequence = "", const Sbecore::uint eacIxVAction = 0, const std::string srefEacIxVAction = "", const std::string titEacIxVAction = "", const Sbecore::uint lacIxVAction = 0, const std::string srefLacIxVAction = "", const std::string titLacIxVAction = "", const bool Custstep = false, const std::string yesnoCuststep = "");
-	Sbecore::ubigint appendNewRecToRst(ListWznmQSteList& rst, WznmQSteList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint seqRefWznmMSequence = 0, const std::string stubSeqRefWznmMSequence = "", const Sbecore::uint eacIxVAction = 0, const std::string srefEacIxVAction = "", const std::string titEacIxVAction = "", const Sbecore::uint lacIxVAction = 0, const std::string srefLacIxVAction = "", const std::string titLacIxVAction = "", const bool Custstep = false, const std::string yesnoCuststep = "");
+	Sbecore::ubigint insertNewRec(WznmQSteList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint seqRefWznmMSequence = 0, const std::string stubSeqRefWznmMSequence = "");
+	Sbecore::ubigint appendNewRecToRst(ListWznmQSteList& rst, WznmQSteList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint seqRefWznmMSequence = 0, const std::string stubSeqRefWznmMSequence = "");
 	virtual void insertRst(ListWznmQSteList& rst);
 	virtual void updateRec(WznmQSteList* rec);
 	virtual void updateRst(ListWznmQSteList& rst);

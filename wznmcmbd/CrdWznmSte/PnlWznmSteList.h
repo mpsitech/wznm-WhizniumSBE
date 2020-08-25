@@ -2,8 +2,8 @@
 	* \file PnlWznmSteList.h
 	* job handler for job PnlWznmSteList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMSTELIST_H
@@ -127,19 +127,13 @@ public:
 	public:
 		static const Sbecore::uint TCOSRFWIDTH = 1;
 		static const Sbecore::uint TCOSEQWIDTH = 2;
-		static const Sbecore::uint TCOEACWIDTH = 3;
-		static const Sbecore::uint TCOLACWIDTH = 4;
-		static const Sbecore::uint TCOCSTWIDTH = 5;
 
 	public:
-		StgIac(const Sbecore::uint TcoSrfWidth = 100, const Sbecore::uint TcoSeqWidth = 100, const Sbecore::uint TcoEacWidth = 100, const Sbecore::uint TcoLacWidth = 100, const Sbecore::uint TcoCstWidth = 100);
+		StgIac(const Sbecore::uint TcoSrfWidth = 100, const Sbecore::uint TcoSeqWidth = 100);
 
 	public:
 		Sbecore::uint TcoSrfWidth;
 		Sbecore::uint TcoSeqWidth;
-		Sbecore::uint TcoEacWidth;
-		Sbecore::uint TcoLacWidth;
-		Sbecore::uint TcoCstWidth;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);

@@ -23,11 +23,8 @@
 		<table cellspacing="0" border="0" cellpadding="0"><form action="">
 			<colgroup id="cols">
 				<col width="20"></col>
-				<col width="180"></col>
-				<col width="180"></col>
-				<col width="180"></col>
-				<col width="180"></col>
-				<col width="181"></col>
+				<col width="450"></col>
+				<col width="451"></col>
 				<col width="25"></col>
 			</colgroup>
 			<tbody id="tbl">
@@ -35,9 +32,6 @@
 					<td height="20" class="col" id="rhcl"><img width="10" height="10" alt="rhcl" src="../icon/void.png"></img></td>
 				<td class="col" id="TcoSrf">TcoSrf</td>
 				<td class="col" id="TcoSeq">TcoSeq</td>
-				<td class="col" id="TcoEac">TcoEac</td>
-				<td class="col" id="TcoLac">TcoLac</td>
-				<td class="col" id="TcoCst">TcoCst</td>
 					<td class="nonsel" rowspan="11" id="tdTsb">sb</td>
 				</tr>
 			</tbody>

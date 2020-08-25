@@ -2,8 +2,8 @@
 	* \file WznmdAppsrv.cpp
 	* application server for Wznm daemon (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "Wznmd.h"
@@ -850,6 +850,12 @@ uint WznmdAppsrv::readDpchApp(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMALERT) {
 			req->dpchapp = new DpchAppWznmAlert();
 			((DpchAppWznmAlert*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMAPP1NEVENTDATA) {
+			req->dpchapp = new PnlWznmApp1NEvent::DpchAppData();
+			((PnlWznmApp1NEvent::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMAPP1NEVENTDO) {
+			req->dpchapp = new PnlWznmApp1NEvent::DpchAppDo();
+			((PnlWznmApp1NEvent::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMAPP1NRTJOBDATA) {
 			req->dpchapp = new PnlWznmApp1NRtjob::DpchAppData();
 			((PnlWznmApp1NRtjob::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);
@@ -1210,6 +1216,24 @@ uint WznmdAppsrv::readDpchApp(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMERRRECDO) {
 			req->dpchapp = new PnlWznmErrRec::DpchAppDo();
 			((PnlWznmErrRec::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMEVTDETAILDATA) {
+			req->dpchapp = new PnlWznmEvtDetail::DpchAppData();
+			((PnlWznmEvtDetail::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMEVTDETAILDO) {
+			req->dpchapp = new PnlWznmEvtDetail::DpchAppDo();
+			((PnlWznmEvtDetail::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMEVTDO) {
+			req->dpchapp = new CrdWznmEvt::DpchAppDo();
+			((CrdWznmEvt::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMEVTLISTDATA) {
+			req->dpchapp = new PnlWznmEvtList::DpchAppData();
+			((PnlWznmEvtList::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMEVTLISTDO) {
+			req->dpchapp = new PnlWznmEvtList::DpchAppDo();
+			((PnlWznmEvtList::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMEVTRECDO) {
+			req->dpchapp = new PnlWznmEvtRec::DpchAppDo();
+			((PnlWznmEvtRec::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMFILDETAILDATA) {
 			req->dpchapp = new PnlWznmFilDetail::DpchAppData();
 			((PnlWznmFilDetail::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);
@@ -2275,12 +2299,12 @@ uint WznmdAppsrv::readDpchApp(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTBSUPMNSTUBDO) {
 			req->dpchapp = new PnlWznmStbSupMNStub::DpchAppDo();
 			((PnlWznmStbSupMNStub::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTEASTEPDATA) {
-			req->dpchapp = new PnlWznmSteAStep::DpchAppData();
-			((PnlWznmSteAStep::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTEASTEPDO) {
-			req->dpchapp = new PnlWznmSteAStep::DpchAppDo();
-			((PnlWznmSteAStep::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTEATRIGDATA) {
+			req->dpchapp = new PnlWznmSteATrig::DpchAppData();
+			((PnlWznmSteATrig::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTEATRIGDO) {
+			req->dpchapp = new PnlWznmSteATrig::DpchAppDo();
+			((PnlWznmSteATrig::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTEDETAILDATA) {
 			req->dpchapp = new PnlWznmSteDetail::DpchAppData();
 			((PnlWznmSteDetail::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);

@@ -2,8 +2,8 @@
 	* \file DlgWznmUtlExtrip.cpp
 	* job handler for job DlgWznmUtlExtrip (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -139,8 +139,8 @@ void DlgWznmUtlExtrip::refreshRes(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfRes oldContinfres(continfres);
 	StatShrRes oldStatshrres(statshrres);
+	ContInfRes oldContinfres(continfres);
 
 	// IP refreshRes --- RBEGIN
 	// statshrres
@@ -151,8 +151,8 @@ void DlgWznmUtlExtrip::refreshRes(
 	else continfres.Dld = "extracted.tgz";
 
 	// IP refreshRes --- REND
-	if (continfres.diff(&oldContinfres).size() != 0) insert(moditems, DpchEngData::CONTINFRES);
 	if (statshrres.diff(&oldStatshrres).size() != 0) insert(moditems, DpchEngData::STATSHRRES);
+	if (continfres.diff(&oldContinfres).size() != 0) insert(moditems, DpchEngData::CONTINFRES);
 };
 
 void DlgWznmUtlExtrip::refresh(

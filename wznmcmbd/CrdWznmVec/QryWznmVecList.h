@@ -2,8 +2,8 @@
 	* \file QryWznmVecList.h
 	* job handler for job QryWznmVecList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMVECLIST_H
@@ -32,8 +32,8 @@ public:
 
 	public:
 		static const Sbecore::uint TGR = 1;
-		static const Sbecore::uint HKU = 2;
-		static const Sbecore::uint HKT = 3;
+		static const Sbecore::uint HKT = 2;
+		static const Sbecore::uint HKU = 3;
 		static const Sbecore::uint VER = 4;
 		static const Sbecore::uint TYP = 5;
 		static const Sbecore::uint SRF = 6;

@@ -2,8 +2,8 @@
 	* \file QryWznmCapList.h
 	* API code for job QryWznmCapList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMCAPLIST_H
@@ -27,8 +27,8 @@ namespace QryWznmCapList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint VER = 1;
-		static const Sbecore::uint TPL = 2;
+		static const Sbecore::uint TPL = 1;
+		static const Sbecore::uint VER = 2;
 		static const Sbecore::uint SRF = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);

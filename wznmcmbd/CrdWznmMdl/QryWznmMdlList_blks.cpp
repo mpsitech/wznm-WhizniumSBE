@@ -2,8 +2,8 @@
 	* \file QryWznmMdlList_blks.cpp
 	* job handler for job QryWznmMdlList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -19,8 +19,8 @@ uint QryWznmMdlList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ver") return VER;
 	if (s == "srf") return SRF;
+	if (s == "ver") return VER;
 
 	return(0);
 };
@@ -28,8 +28,8 @@ uint QryWznmMdlList::VecVOrd::getIx(
 string QryWznmMdlList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == VER) return("ver");
 	if (ix == SRF) return("srf");
+	if (ix == VER) return("ver");
 
 	return("");
 };

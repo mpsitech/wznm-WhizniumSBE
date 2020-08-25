@@ -2,8 +2,8 @@
   * \file PnlWznmNavHeadbar.js
   * web client functionality for panel PnlWznmNavHeadbar
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 // --- view initialization
@@ -67,7 +67,7 @@ function handleMenSesClick() {
 };
 
 function handleMenCrdClick() {
-	getCrdwnd().toggleMenu("Crd", getMenLeft("Crd"), parseInt(retrieveSi(srcdoc, "StgInfWznmNavHeadbar", "MenCrdWidth")), 951);
+	getCrdwnd().toggleMenu("Crd", getMenLeft("Crd"), parseInt(retrieveSi(srcdoc, "StgInfWznmNavHeadbar", "MenCrdWidth")), 971);
 };
 
 // --- server interaction

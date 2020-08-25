@@ -2,8 +2,8 @@
 	* \file IexWznmApp.h
 	* data blocks and readers/writers for import/export complex IexWznmApp (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef IEXWZNMAPP_H
@@ -17,6 +17,10 @@
 
 #define VecVIexWznmAppIme IexWznmApp::VecVIme
 
+#define ImeitemIWznmAppMEvent IexWznmApp::ImeitemIMEvent
+#define ImeIWznmAppMEvent IexWznmApp::ImeIMEvent
+#define VecWImeIWznmAppMEventIel IexWznmApp::ImeIMEvent::VecWIel
+
 #define ImeitemIWznmAppMRtblock IexWznmApp::ImeitemIMRtblock
 #define ImeIWznmAppMRtblock IexWznmApp::ImeIMRtblock
 #define VecWImeIWznmAppMRtblockIel IexWznmApp::ImeIMRtblock::VecWIel
@@ -29,9 +33,17 @@
 #define ImeIWznmAppMRtjob IexWznmApp::ImeIMRtjob
 #define VecWImeIWznmAppMRtjobIel IexWznmApp::ImeIMRtjob::VecWIel
 
-#define ImeitemIWznmAppAMStateStep IexWznmApp::ImeitemIAMStateStep
-#define ImeIWznmAppAMStateStep IexWznmApp::ImeIAMStateStep
-#define VecWImeIWznmAppAMStateStepIel IexWznmApp::ImeIAMStateStep::VecWIel
+#define ImeitemIWznmAppAMStateAction IexWznmApp::ImeitemIAMStateAction
+#define ImeIWznmAppAMStateAction IexWznmApp::ImeIAMStateAction
+#define VecWImeIWznmAppAMStateActionIel IexWznmApp::ImeIAMStateAction::VecWIel
+
+#define ImeitemIWznmAppJAMStateTrigCond IexWznmApp::ImeitemIJAMStateTrigCond
+#define ImeIWznmAppJAMStateTrigCond IexWznmApp::ImeIJAMStateTrigCond
+#define VecWImeIWznmAppJAMStateTrigCondIel IexWznmApp::ImeIJAMStateTrigCond::VecWIel
+
+#define ImeitemIWznmAppAMStateTrig IexWznmApp::ImeitemIAMStateTrig
+#define ImeIWznmAppAMStateTrig IexWznmApp::ImeIAMStateTrig
+#define VecWImeIWznmAppAMStateTrigIel IexWznmApp::ImeIAMStateTrig::VecWIel
 
 #define ImeitemIWznmAppMState IexWznmApp::ImeitemIMState
 #define ImeIWznmAppMState IexWznmApp::ImeIMState
@@ -51,15 +63,76 @@ namespace IexWznmApp {
 	class VecVIme {
 
 	public:
-		static const Sbecore::uint IMEIAMSTATESTEP = 1;
-		static const Sbecore::uint IMEIMRTBLOCK = 2;
-		static const Sbecore::uint IMEIMRTDPCH = 3;
-		static const Sbecore::uint IMEIMRTJOB = 4;
-		static const Sbecore::uint IMEIMSEQUENCE = 5;
-		static const Sbecore::uint IMEIMSTATE = 6;
+		static const Sbecore::uint IMEIAMSTATEACTION = 1;
+		static const Sbecore::uint IMEIAMSTATETRIG = 2;
+		static const Sbecore::uint IMEIJAMSTATETRIGCOND = 3;
+		static const Sbecore::uint IMEIMEVENT = 4;
+		static const Sbecore::uint IMEIMRTBLOCK = 5;
+		static const Sbecore::uint IMEIMRTDPCH = 6;
+		static const Sbecore::uint IMEIMRTJOB = 7;
+		static const Sbecore::uint IMEIMSEQUENCE = 8;
+		static const Sbecore::uint IMEIMSTATE = 9;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
+	};
+
+	/**
+		* ImeitemIMEvent (full: ImeitemIWznmAppMEvent)
+		*/
+	class ImeitemIMEvent : public WznmMEvent {
+
+	public:
+		ImeitemIMEvent(const std::string& sref = "", const std::string& Comment = "");
+		ImeitemIMEvent(DbsWznm* dbswznm, const Sbecore::ubigint ref);
+
+	public:
+		Sbecore::uint lineno;
+		Sbecore::uint ixWIelValid;
+
+	public:
+		void readTxt(Sbecore::Txtrd& txtrd);
+		void readXML(xmlXPathContext* docctx, const std::string& basexpath);
+
+		void writeTxt(std::fstream& outfile);
+		void writeXML(xmlTextWriter* wr, const Sbecore::uint num, const bool shorttags = true);
+	};
+
+	/**
+		* ImeIMEvent (full: ImeIWznmAppMEvent)
+		*/
+	class ImeIMEvent {
+
+	public:
+		/**
+			* VecWIel (full: VecWImeIWznmAppMEventIel)
+			*/
+		class VecWIel {
+
+		public:
+			static const Sbecore::uint SREF = 1;
+			static const Sbecore::uint COMMENT = 2;
+
+			static Sbecore::uint getIx(const std::string& srefs);
+			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
+			static std::string getSrefs(const Sbecore::uint ix);
+		};
+
+	public:
+		ImeIMEvent();
+		~ImeIMEvent();
+
+	public:
+		std::vector<ImeitemIMEvent*> nodes;
+
+	public:
+		void clear();
+
+		void readTxt(Sbecore::Txtrd& txtrd);
+		void readXML(xmlXPathContext* docctx, std::string basexpath);
+
+		void writeTxt(std::fstream& outfile);
+		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
 	/**
@@ -255,23 +328,25 @@ namespace IexWznmApp {
 	};
 
 	/**
-		* ImeitemIAMStateStep (full: ImeitemIWznmAppAMStateStep)
+		* ImeitemIAMStateAction (full: ImeitemIWznmAppAMStateAction)
 		*/
-	class ImeitemIAMStateStep : public WznmAMStateStep {
+	class ImeitemIAMStateAction : public WznmAMStateAction {
 
 	public:
-		ImeitemIAMStateStep(const std::string& srefSnxRefWznmMState = "", const Sbecore::uint ixVTrigger = 0, const Sbecore::ubigint irefRefWznmMRtjob = 0, const std::string& srefRefWznmMVectoritem = "", const std::string& xsref = "", const std::string& srefRefWznmMRtdpch = "", const std::string& srefsMask = "", const std::string& Cond = "", const bool Custcode = false);
-		ImeitemIAMStateStep(DbsWznm* dbswznm, const Sbecore::ubigint ref);
+		ImeitemIAMStateAction(const Sbecore::uint ixVSection = 0, const Sbecore::uint ixVType = 0, const Sbecore::ubigint irefRefWznmMRtjob = 0, const std::string& srefRefWznmMVector = "", const std::string& srefRefWznmMVectoritem = "", const std::string& srefSnxRefWznmMState = "", const std::string& srefRefWznmMSequence = "", const std::string& tr1SrefATrig = "", const std::string& Ip1 = "", const std::string& tr2SrefATrig = "", const std::string& Ip2 = "", const std::string& tr3SrefATrig = "", const std::string& Ip3 = "", const std::string& tr4SrefATrig = "", const std::string& Ip4 = "");
+		ImeitemIAMStateAction(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
 		Sbecore::uint lineno;
 		Sbecore::uint ixWIelValid;
 
-		std::string srefSnxRefWznmMState;
-		std::string srefIxVTrigger;
+		std::string srefIxVSection;
+		std::string srefIxVType;
 		Sbecore::ubigint irefRefWznmMRtjob;
+		std::string srefRefWznmMVector;
 		std::string srefRefWznmMVectoritem;
-		std::string srefRefWznmMRtdpch;
+		std::string srefSnxRefWznmMState;
+		std::string srefRefWznmMSequence;
 
 	public:
 		void readTxt(Sbecore::Txtrd& txtrd);
@@ -282,26 +357,32 @@ namespace IexWznmApp {
 	};
 
 	/**
-		* ImeIAMStateStep (full: ImeIWznmAppAMStateStep)
+		* ImeIAMStateAction (full: ImeIWznmAppAMStateAction)
 		*/
-	class ImeIAMStateStep {
+	class ImeIAMStateAction {
 
 	public:
 		/**
-			* VecWIel (full: VecWImeIWznmAppAMStateStepIel)
+			* VecWIel (full: VecWImeIWznmAppAMStateActionIel)
 			*/
 		class VecWIel {
 
 		public:
-			static const Sbecore::uint SREFSNXREFWZNMMSTATE = 1;
-			static const Sbecore::uint SREFIXVTRIGGER = 2;
+			static const Sbecore::uint SREFIXVSECTION = 1;
+			static const Sbecore::uint SREFIXVTYPE = 2;
 			static const Sbecore::uint IREFREFWZNMMRTJOB = 4;
-			static const Sbecore::uint SREFREFWZNMMVECTORITEM = 8;
-			static const Sbecore::uint XSREF = 16;
-			static const Sbecore::uint SREFREFWZNMMRTDPCH = 32;
-			static const Sbecore::uint SREFSMASK = 64;
-			static const Sbecore::uint COND = 128;
-			static const Sbecore::uint CUSTCODE = 256;
+			static const Sbecore::uint SREFREFWZNMMVECTOR = 8;
+			static const Sbecore::uint SREFREFWZNMMVECTORITEM = 16;
+			static const Sbecore::uint SREFSNXREFWZNMMSTATE = 32;
+			static const Sbecore::uint SREFREFWZNMMSEQUENCE = 64;
+			static const Sbecore::uint TR1SREFATRIG = 128;
+			static const Sbecore::uint IP1 = 256;
+			static const Sbecore::uint TR2SREFATRIG = 512;
+			static const Sbecore::uint IP2 = 1024;
+			static const Sbecore::uint TR3SREFATRIG = 2048;
+			static const Sbecore::uint IP3 = 4096;
+			static const Sbecore::uint TR4SREFATRIG = 8192;
+			static const Sbecore::uint IP4 = 16384;
 
 			static Sbecore::uint getIx(const std::string& srefs);
 			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
@@ -309,11 +390,144 @@ namespace IexWznmApp {
 		};
 
 	public:
-		ImeIAMStateStep();
-		~ImeIAMStateStep();
+		ImeIAMStateAction();
+		~ImeIAMStateAction();
 
 	public:
-		std::vector<ImeitemIAMStateStep*> nodes;
+		std::vector<ImeitemIAMStateAction*> nodes;
+
+	public:
+		void clear();
+
+		void readTxt(Sbecore::Txtrd& txtrd);
+		void readXML(xmlXPathContext* docctx, std::string basexpath);
+
+		void writeTxt(std::fstream& outfile);
+		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
+	};
+
+	/**
+		* ImeitemIJAMStateTrigCond (full: ImeitemIWznmAppJAMStateTrigCond)
+		*/
+	class ImeitemIJAMStateTrigCond : public WznmJAMStateTrigCond {
+
+	public:
+		ImeitemIJAMStateTrigCond(const Sbecore::uint x1IxWznmVApptarget = 0, const std::string& Cond = "");
+		ImeitemIJAMStateTrigCond(DbsWznm* dbswznm, const Sbecore::ubigint ref);
+
+	public:
+		Sbecore::uint lineno;
+		Sbecore::uint ixWIelValid;
+
+		std::string srefX1IxWznmVApptarget;
+
+	public:
+		void readTxt(Sbecore::Txtrd& txtrd);
+		void readXML(xmlXPathContext* docctx, const std::string& basexpath);
+
+		void writeTxt(std::fstream& outfile);
+		void writeXML(xmlTextWriter* wr, const Sbecore::uint num, const bool shorttags = true);
+	};
+
+	/**
+		* ImeIJAMStateTrigCond (full: ImeIWznmAppJAMStateTrigCond)
+		*/
+	class ImeIJAMStateTrigCond {
+
+	public:
+		/**
+			* VecWIel (full: VecWImeIWznmAppJAMStateTrigCondIel)
+			*/
+		class VecWIel {
+
+		public:
+			static const Sbecore::uint SREFX1IXWZNMVAPPTARGET = 1;
+			static const Sbecore::uint COND = 2;
+
+			static Sbecore::uint getIx(const std::string& srefs);
+			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
+			static std::string getSrefs(const Sbecore::uint ix);
+		};
+
+	public:
+		ImeIJAMStateTrigCond();
+		~ImeIJAMStateTrigCond();
+
+	public:
+		std::vector<ImeitemIJAMStateTrigCond*> nodes;
+
+	public:
+		void clear();
+
+		void readTxt(Sbecore::Txtrd& txtrd);
+		void readXML(xmlXPathContext* docctx, std::string basexpath);
+
+		void writeTxt(std::fstream& outfile);
+		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
+	};
+
+	/**
+		* ImeitemIAMStateTrig (full: ImeitemIWznmAppAMStateTrig)
+		*/
+	class ImeitemIAMStateTrig : public WznmAMStateTrig {
+
+	public:
+		ImeitemIAMStateTrig(const std::string& sref = "", const Sbecore::uint ixVType = 0, const std::string& srefRefWznmMEvent = "", const Sbecore::ubigint irefRefWznmMRtjob = 0, const std::string& srefRefWznmMVectoritem = "", const std::string& xsref = "", const std::string& srefRefWznmMRtdpch = "", const std::string& srefsMask = "", const std::string& Cond = "");
+		ImeitemIAMStateTrig(DbsWznm* dbswznm, const Sbecore::ubigint ref);
+
+	public:
+		Sbecore::uint lineno;
+		Sbecore::uint ixWIelValid;
+
+		std::string srefIxVType;
+		std::string srefRefWznmMEvent;
+		Sbecore::ubigint irefRefWznmMRtjob;
+		std::string srefRefWznmMVectoritem;
+		std::string srefRefWznmMRtdpch;
+
+		ImeIJAMStateTrigCond imeijamstatetrigcond;
+
+	public:
+		void readTxt(Sbecore::Txtrd& txtrd);
+		void readXML(xmlXPathContext* docctx, const std::string& basexpath);
+
+		void writeTxt(std::fstream& outfile);
+		void writeXML(xmlTextWriter* wr, const Sbecore::uint num, const bool shorttags = true);
+	};
+
+	/**
+		* ImeIAMStateTrig (full: ImeIWznmAppAMStateTrig)
+		*/
+	class ImeIAMStateTrig {
+
+	public:
+		/**
+			* VecWIel (full: VecWImeIWznmAppAMStateTrigIel)
+			*/
+		class VecWIel {
+
+		public:
+			static const Sbecore::uint SREF = 1;
+			static const Sbecore::uint SREFIXVTYPE = 2;
+			static const Sbecore::uint SREFREFWZNMMEVENT = 4;
+			static const Sbecore::uint IREFREFWZNMMRTJOB = 8;
+			static const Sbecore::uint SREFREFWZNMMVECTORITEM = 16;
+			static const Sbecore::uint XSREF = 32;
+			static const Sbecore::uint SREFREFWZNMMRTDPCH = 64;
+			static const Sbecore::uint SREFSMASK = 128;
+			static const Sbecore::uint COND = 256;
+
+			static Sbecore::uint getIx(const std::string& srefs);
+			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
+			static std::string getSrefs(const Sbecore::uint ix);
+		};
+
+	public:
+		ImeIAMStateTrig();
+		~ImeIAMStateTrig();
+
+	public:
+		std::vector<ImeitemIAMStateTrig*> nodes;
 
 	public:
 		void clear();
@@ -331,21 +545,15 @@ namespace IexWznmApp {
 	class ImeitemIMState : public WznmMState {
 
 	public:
-		ImeitemIMState(const std::string& sref = "", const Sbecore::uint eacIxVAction = 0, const Sbecore::ubigint irefErjRefWznmMRtjob = 0, const std::string& srefEveRefWznmMVector = "", const std::string& srefEviRefWznmMVectoritem = "", const std::string& srefEsnRefWznmMState = "", const Sbecore::uint lacIxVAction = 0, const bool Custstep = false, const std::string& Comment = "");
+		ImeitemIMState(const std::string& sref = "", const std::string& Comment = "");
 		ImeitemIMState(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
 		Sbecore::uint lineno;
 		Sbecore::uint ixWIelValid;
 
-		std::string srefEacIxVAction;
-		Sbecore::ubigint irefErjRefWznmMRtjob;
-		std::string srefEveRefWznmMVector;
-		std::string srefEviRefWznmMVectoritem;
-		std::string srefEsnRefWznmMState;
-		std::string srefLacIxVAction;
-
-		ImeIAMStateStep imeiamstatestep;
+		ImeIAMStateAction imeiamstateaction;
+		ImeIAMStateTrig imeiamstatetrig;
 
 	public:
 		void readTxt(Sbecore::Txtrd& txtrd);
@@ -368,14 +576,7 @@ namespace IexWznmApp {
 
 		public:
 			static const Sbecore::uint SREF = 1;
-			static const Sbecore::uint SREFEACIXVACTION = 2;
-			static const Sbecore::uint IREFERJREFWZNMMRTJOB = 4;
-			static const Sbecore::uint SREFEVEREFWZNMMVECTOR = 8;
-			static const Sbecore::uint SREFEVIREFWZNMMVECTORITEM = 16;
-			static const Sbecore::uint SREFESNREFWZNMMSTATE = 32;
-			static const Sbecore::uint SREFLACIXVACTION = 64;
-			static const Sbecore::uint CUSTSTEP = 128;
-			static const Sbecore::uint COMMENT = 256;
+			static const Sbecore::uint COMMENT = 2;
 
 			static Sbecore::uint getIx(const std::string& srefs);
 			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
@@ -460,14 +661,14 @@ namespace IexWznmApp {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
-	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
+	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
 
-	void readTxt(Sbecore::Txtrd& txtrd, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
-	void readXML(xmlXPathContext* docctx, std::string basexpath, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
+	void readTxt(Sbecore::Txtrd& txtrd, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
+	void readXML(xmlXPathContext* docctx, std::string basexpath, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
 
-	void writeTxt(std::fstream& outfile, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
-	void writeXML(xmlTextWriter* wr, const bool shorttags, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
+	void writeTxt(std::fstream& outfile, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
+	void writeXML(xmlTextWriter* wr, const bool shorttags, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
 
 	std::map<Sbecore::uint,Sbecore::uint> icsWznmVIopInsAll();
 	Sbecore::uint getIxWznmVIop(const std::map<Sbecore::uint,Sbecore::uint>& icsWznmVIop, const Sbecore::uint ixVIme, Sbecore::uint& ixWznmVIop);

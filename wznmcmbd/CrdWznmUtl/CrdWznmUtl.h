@@ -2,8 +2,8 @@
 	* \file CrdWznmUtl.h
 	* job handler for job CrdWznmUtl (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef CRDWZNMUTL_H
@@ -14,9 +14,9 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmUtlHeadbar.h"
-#include "DlgWznmUtlMrgip.h"
 #include "DlgWznmUtlExtrip.h"
 #include "DlgWznmUtlIexconv.h"
+#include "DlgWznmUtlMrgip.h"
 
 #define VecVWznmUtlDo CrdWznmUtl::VecVDo
 #define VecVWznmUtlSge CrdWznmUtl::VecVSge
@@ -194,9 +194,9 @@ public:
 	Sbecore::Xmlio::Feed feedFSge;
 
 	PnlWznmUtlHeadbar* pnlheadbar;
-	DlgWznmUtlMrgip* dlgmrgip;
 	DlgWznmUtlExtrip* dlgextrip;
 	DlgWznmUtlIexconv* dlgiexconv;
+	DlgWznmUtlMrgip* dlgmrgip;
 
 	// IP vars.cust --- INSERT
 

@@ -2,8 +2,8 @@
 	* \file CrdWznmApp.h
 	* job handler for job CrdWznmApp (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef CRDWZNMAPP_H
@@ -17,8 +17,8 @@
 #include "PnlWznmAppHeadbar.h"
 #include "PnlWznmAppRec.h"
 #include "DlgWznmAppImpstr.h"
-#include "DlgWznmAppNew.h"
 #include "DlgWznmAppWrite.h"
+#include "DlgWznmAppNew.h"
 
 #define VecVWznmAppDo CrdWznmApp::VecVDo
 #define VecVWznmAppSge CrdWznmApp::VecVSge
@@ -224,8 +224,8 @@ public:
 	PnlWznmAppHeadbar* pnlheadbar;
 	PnlWznmAppRec* pnlrec;
 	DlgWznmAppImpstr* dlgimpstr;
-	DlgWznmAppNew* dlgnew;
 	DlgWznmAppWrite* dlgwrite;
+	DlgWznmAppNew* dlgnew;
 
 	// IP vars.cust --- INSERT
 

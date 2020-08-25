@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmSbs card job handler, release wznmd_awsubt
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
 INCPATH += -I/home/ubuntu/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
 
-OBJS = CrdWznmSbs.o PnlWznmSbsHeadbar.o PnlWznmSbsList.o QryWznmSbsList.o PnlWznmSbsRec.o PnlWznmSbsBsbMNSubset.o QryWznmSbsBsbMNSubset.o PnlWznmSbsAsbMNSubset.o QryWznmSbsAsbMNSubset.o PnlWznmSbsPst1NQuerymod.o QryWznmSbsPst1NQuerymod.o PnlWznmSbsFrs1NRelation.o QryWznmSbsFrs1NRelation.o PnlWznmSbsTos1NRelation.o QryWznmSbsTos1NRelation.o PnlWznmSbs1NTablecol.o QryWznmSbs1NTablecol.o PnlWznmSbs1NStub.o QryWznmSbs1NStub.o PnlWznmSbsATitle.o QryWznmSbsATitle.o PnlWznmSbsDetail.o
+OBJS = CrdWznmSbs.o PnlWznmSbsList.o QryWznmSbsList.o PnlWznmSbsHeadbar.o PnlWznmSbsRec.o PnlWznmSbsBsbMNSubset.o QryWznmSbsBsbMNSubset.o PnlWznmSbsAsbMNSubset.o QryWznmSbsAsbMNSubset.o PnlWznmSbsPst1NQuerymod.o QryWznmSbsPst1NQuerymod.o PnlWznmSbsFrs1NRelation.o QryWznmSbsFrs1NRelation.o PnlWznmSbs1NTablecol.o QryWznmSbs1NTablecol.o PnlWznmSbsTos1NRelation.o QryWznmSbsTos1NRelation.o PnlWznmSbs1NStub.o QryWznmSbs1NStub.o PnlWznmSbsATitle.o QryWznmSbsATitle.o PnlWznmSbsDetail.o
 
 LIB = libcrdwznmsbs
 

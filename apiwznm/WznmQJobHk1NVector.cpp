@@ -2,8 +2,8 @@
 	* \file WznmQJobHk1NVector.cpp
 	* API code for table TblWznmQJobHk1NVector (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmQJobHk1NVector.h"

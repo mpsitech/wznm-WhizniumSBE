@@ -2,8 +2,8 @@
 	* \file WznmQAppList.h
 	* API code for table TblWznmQAppList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMQAPPLIST_H
@@ -17,7 +17,7 @@
 class WznmQAppList {
 
 public:
-	WznmQAppList(const Sbecore::uint jnum = 0, const std::string stubGrp = "", const std::string stubOwn = "", const std::string Short = "", const std::string Title = "", const std::string srefIxVTarget = "", const std::string titIxVTarget = "", const std::string stubVerRefWznmMVersion = "");
+	WznmQAppList(const Sbecore::uint jnum = 0, const std::string stubGrp = "", const std::string stubOwn = "", const std::string Short = "", const std::string Title = "", const std::string srefIxWznmVApptarget = "", const std::string titIxWznmVApptarget = "", const std::string stubVerRefWznmMVersion = "");
 
 public:
 	Sbecore::uint jnum;
@@ -25,8 +25,8 @@ public:
 	std::string stubOwn;
 	std::string Short;
 	std::string Title;
-	std::string srefIxVTarget;
-	std::string titIxVTarget;
+	std::string srefIxWznmVApptarget;
+	std::string titIxWznmVApptarget;
 	std::string stubVerRefWznmMVersion;
 
 public:

@@ -2,8 +2,8 @@
 	* \file QryWznmPstList.cpp
 	* job handler for job QryWznmPstList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -231,10 +231,10 @@ void QryWznmPstList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::ATY) sqlstr += " ORDER BY TblWznmMPreset.ixWznmWArgtype ASC";
-	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMPreset.refUref ASC";
 	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMPreset.refIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMPreset.refWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMPreset.refUref ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMPreset.sref ASC";
+	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMPreset.refWznmMVersion ASC";
 };
 
 void QryWznmPstList::fetch(

@@ -2,8 +2,8 @@
 	* \file QryWznmVecList_blks.cpp
 	* job handler for job QryWznmVecList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -20,8 +20,8 @@ uint QryWznmVecList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "tgr") return TGR;
-	if (s == "hku") return HKU;
 	if (s == "hkt") return HKT;
+	if (s == "hku") return HKU;
 	if (s == "ver") return VER;
 	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
@@ -33,8 +33,8 @@ string QryWznmVecList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == TGR) return("tgr");
-	if (ix == HKU) return("hku");
 	if (ix == HKT) return("hkt");
+	if (ix == HKU) return("hku");
 	if (ix == VER) return("ver");
 	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");

@@ -2,8 +2,8 @@
 	* \file QryWznmConList_blks.cpp
 	* job handler for job QryWznmConList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -22,8 +22,8 @@ uint QryWznmConList::VecVOrd::getIx(
 	if (s == "sup") return SUP;
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
-	if (s == "hku") return HKU;
 	if (s == "sct") return SCT;
+	if (s == "hku") return HKU;
 	if (s == "hkt") return HKT;
 	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
@@ -37,8 +37,8 @@ string QryWznmConList::VecVOrd::getSref(
 	if (ix == SUP) return("sup");
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
-	if (ix == HKU) return("hku");
 	if (ix == SCT) return("sct");
+	if (ix == HKU) return("hku");
 	if (ix == HKT) return("hkt");
 	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");

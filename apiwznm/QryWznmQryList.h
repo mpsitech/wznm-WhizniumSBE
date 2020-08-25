@@ -2,8 +2,8 @@
 	* \file QryWznmQryList.h
 	* API code for job QryWznmQryList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMQRYLIST_H
@@ -32,8 +32,8 @@ namespace QryWznmQryList {
 		static const Sbecore::uint SRL = 3;
 		static const Sbecore::uint SUP = 4;
 		static const Sbecore::uint VER = 5;
-		static const Sbecore::uint SRF = 6;
-		static const Sbecore::uint TYP = 7;
+		static const Sbecore::uint TYP = 6;
+		static const Sbecore::uint SRF = 7;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

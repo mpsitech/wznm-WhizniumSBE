@@ -2,8 +2,8 @@
 	* \file WznmQVecPst1NQuerymod.cpp
 	* Dbs and XML wrapper for table TblWznmQVecPst1NQuerymod (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmQVecPst1NQuerymod.h"

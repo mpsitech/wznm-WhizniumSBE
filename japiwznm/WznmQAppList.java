@@ -2,8 +2,8 @@
   * \file WznmQAppList.h
   * Java API code for record of table TblWznmQAppList
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -19,8 +19,8 @@ public class WznmQAppList {
 				, String stubOwn
 				, String Short
 				, String Title
-				, String srefIxVTarget
-				, String titIxVTarget
+				, String srefIxWznmVApptarget
+				, String titIxWznmVApptarget
 				, String stubVerRefWznmMVersion
 			) {
 		this.jnum = jnum;
@@ -28,8 +28,8 @@ public class WznmQAppList {
 		this.stubOwn = stubOwn;
 		this.Short = Short;
 		this.Title = Title;
-		this.srefIxVTarget = srefIxVTarget;
-		this.titIxVTarget = titIxVTarget;
+		this.srefIxWznmVApptarget = srefIxWznmVApptarget;
+		this.titIxWznmVApptarget = titIxWznmVApptarget;
 		this.stubVerRefWznmMVersion = stubVerRefWznmMVersion;
 	};
 
@@ -38,8 +38,8 @@ public class WznmQAppList {
 	public String stubOwn;
 	public String Short;
 	public String Title;
-	public String srefIxVTarget;
-	public String titIxVTarget;
+	public String srefIxWznmVApptarget;
+	public String titIxWznmVApptarget;
 	public String stubVerRefWznmMVersion;
 	
 	public boolean readXML(
@@ -54,8 +54,8 @@ public class WznmQAppList {
 			stubOwn = Xmlio.extractStringUclc(doc, basexpath, "stubOwn", "own", null, 0);
 			Short = Xmlio.extractStringUclc(doc, basexpath, "Short", "sho", null, 0);
 			Title = Xmlio.extractStringUclc(doc, basexpath, "Title", "tit", null, 0);
-			srefIxVTarget = Xmlio.extractStringUclc(doc, basexpath, "srefIxVTarget", "trg", null, 0);
-			titIxVTarget = Xmlio.extractStringUclc(doc, basexpath, "titIxVTarget", "trg2", null, 0);
+			srefIxWznmVApptarget = Xmlio.extractStringUclc(doc, basexpath, "srefIxWznmVApptarget", "trg", null, 0);
+			titIxWznmVApptarget = Xmlio.extractStringUclc(doc, basexpath, "titIxWznmVApptarget", "trg2", null, 0);
 			stubVerRefWznmMVersion = Xmlio.extractStringUclc(doc, basexpath, "stubVerRefWznmMVersion", "ver", null, 0);
 			
 			return true;

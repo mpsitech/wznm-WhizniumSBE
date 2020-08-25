@@ -2,13 +2,11 @@
 	* \file WznmMApp.cpp
 	* database access for table TblWznmMApp (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmMApp.h"
-
-#include "WznmMApp_vecs.cpp"
 
 using namespace std;
 using namespace Sbecore;
@@ -21,7 +19,7 @@ WznmMApp::WznmMApp(
 			const ubigint ref
 			, const ubigint grp
 			, const ubigint own
-			, const uint ixVTarget
+			, const uint ixWznmVApptarget
 			, const ubigint verRefWznmMVersion
 			, const uint verNum
 			, const string Short
@@ -32,7 +30,7 @@ WznmMApp::WznmMApp(
 	this->ref = ref;
 	this->grp = grp;
 	this->own = own;
-	this->ixVTarget = ixVTarget;
+	this->ixWznmVApptarget = ixWznmVApptarget;
 	this->verRefWznmMVersion = verRefWznmMVersion;
 	this->verNum = verNum;
 	this->Short = Short;
@@ -170,7 +168,7 @@ ubigint TblWznmMApp::insertNewRec(
 			WznmMApp** rec
 			, const ubigint grp
 			, const ubigint own
-			, const uint ixVTarget
+			, const uint ixWznmVApptarget
 			, const ubigint verRefWznmMVersion
 			, const uint verNum
 			, const string Short
@@ -180,7 +178,7 @@ ubigint TblWznmMApp::insertNewRec(
 	ubigint retval = 0;
 	WznmMApp* _rec = NULL;
 
-	_rec = new WznmMApp(0, grp, own, ixVTarget, verRefWznmMVersion, verNum, Short, Title, Comment);
+	_rec = new WznmMApp(0, grp, own, ixWznmVApptarget, verRefWznmMVersion, verNum, Short, Title, Comment);
 	insertRec(_rec);
 
 	retval = _rec->ref;
@@ -196,7 +194,7 @@ ubigint TblWznmMApp::appendNewRecToRst(
 			, WznmMApp** rec
 			, const ubigint grp
 			, const ubigint own
-			, const uint ixVTarget
+			, const uint ixWznmVApptarget
 			, const ubigint verRefWznmMVersion
 			, const uint verNum
 			, const string Short
@@ -206,7 +204,7 @@ ubigint TblWznmMApp::appendNewRecToRst(
 	ubigint retval = 0;
 	WznmMApp* _rec = NULL;
 
-	retval = insertNewRec(&_rec, grp, own, ixVTarget, verRefWznmMVersion, verNum, Short, Title, Comment);
+	retval = insertNewRec(&_rec, grp, own, ixWznmVApptarget, verRefWznmMVersion, verNum, Short, Title, Comment);
 	rst.nodes.push_back(_rec);
 
 	if (rec != NULL) *rec = _rec;
@@ -290,8 +288,8 @@ MyTblWznmMApp::~MyTblWznmMApp() {
 };
 
 void MyTblWznmMApp::initStatements() {
-	stmtInsertRec = createStatement("INSERT INTO TblWznmMApp (grp, own, ixVTarget, verRefWznmMVersion, verNum, Short, Title, Comment) VALUES (?,?,?,?,?,?,?,?)", false);
-	stmtUpdateRec = createStatement("UPDATE TblWznmMApp SET grp = ?, own = ?, ixVTarget = ?, verRefWznmMVersion = ?, verNum = ?, Short = ?, Title = ?, Comment = ? WHERE ref = ?", false);
+	stmtInsertRec = createStatement("INSERT INTO TblWznmMApp (grp, own, ixWznmVApptarget, verRefWznmMVersion, verNum, Short, Title, Comment) VALUES (?,?,?,?,?,?,?,?)", false);
+	stmtUpdateRec = createStatement("UPDATE TblWznmMApp SET grp = ?, own = ?, ixWznmVApptarget = ?, verRefWznmMVersion = ?, verNum = ?, Short = ?, Title = ?, Comment = ? WHERE ref = ?", false);
 	stmtRemoveRecByRef = createStatement("DELETE FROM TblWznmMApp WHERE ref = ?", false);
 };
 
@@ -324,7 +322,7 @@ bool MyTblWznmMApp::loadRecBySQL(
 		if (dbrow[0]) _rec->ref = atoll((char*) dbrow[0]); else _rec->ref = 0;
 		if (dbrow[1]) _rec->grp = atoll((char*) dbrow[1]); else _rec->grp = 0;
 		if (dbrow[2]) _rec->own = atoll((char*) dbrow[2]); else _rec->own = 0;
-		if (dbrow[3]) _rec->ixVTarget = atol((char*) dbrow[3]); else _rec->ixVTarget = 0;
+		if (dbrow[3]) _rec->ixWznmVApptarget = atol((char*) dbrow[3]); else _rec->ixWznmVApptarget = 0;
 		if (dbrow[4]) _rec->verRefWznmMVersion = atoll((char*) dbrow[4]); else _rec->verRefWznmMVersion = 0;
 		if (dbrow[5]) _rec->verNum = atol((char*) dbrow[5]); else _rec->verNum = 0;
 		if (dbrow[6]) _rec->Short.assign(dbrow[6], dblengths[6]); else _rec->Short = "";
@@ -375,7 +373,7 @@ ubigint MyTblWznmMApp::loadRstBySQL(
 			if (dbrow[0]) rec->ref = atoll((char*) dbrow[0]); else rec->ref = 0;
 			if (dbrow[1]) rec->grp = atoll((char*) dbrow[1]); else rec->grp = 0;
 			if (dbrow[2]) rec->own = atoll((char*) dbrow[2]); else rec->own = 0;
-			if (dbrow[3]) rec->ixVTarget = atol((char*) dbrow[3]); else rec->ixVTarget = 0;
+			if (dbrow[3]) rec->ixWznmVApptarget = atol((char*) dbrow[3]); else rec->ixWznmVApptarget = 0;
 			if (dbrow[4]) rec->verRefWznmMVersion = atoll((char*) dbrow[4]); else rec->verRefWznmMVersion = 0;
 			if (dbrow[5]) rec->verNum = atol((char*) dbrow[5]); else rec->verNum = 0;
 			if (dbrow[6]) rec->Short.assign(dbrow[6], dblengths[6]); else rec->Short = "";
@@ -404,7 +402,7 @@ ubigint MyTblWznmMApp::insertRec(
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->grp,&(l[0]),&(n[0]),&(e[0])),
 		bindUbigint(&rec->own,&(l[1]),&(n[1]),&(e[1])),
-		bindUint(&rec->ixVTarget,&(l[2]),&(n[2]),&(e[2])),
+		bindUint(&rec->ixWznmVApptarget,&(l[2]),&(n[2]),&(e[2])),
 		bindUbigint(&rec->verRefWznmMVersion,&(l[3]),&(n[3]),&(e[3])),
 		bindUint(&rec->verNum,&(l[4]),&(n[4]),&(e[4])),
 		bindCstring((char*) (rec->Short.c_str()),&(l[5]),&(n[5]),&(e[5])),
@@ -446,7 +444,7 @@ void MyTblWznmMApp::updateRec(
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->grp,&(l[0]),&(n[0]),&(e[0])),
 		bindUbigint(&rec->own,&(l[1]),&(n[1]),&(e[1])),
-		bindUint(&rec->ixVTarget,&(l[2]),&(n[2]),&(e[2])),
+		bindUint(&rec->ixWznmVApptarget,&(l[2]),&(n[2]),&(e[2])),
 		bindUbigint(&rec->verRefWznmMVersion,&(l[3]),&(n[3]),&(e[3])),
 		bindUint(&rec->verNum,&(l[4]),&(n[4]),&(e[4])),
 		bindCstring((char*) (rec->Short.c_str()),&(l[5]),&(n[5]),&(e[5])),
@@ -508,7 +506,7 @@ ubigint MyTblWznmMApp::loadRstByVer(
 			, const bool append
 			, ListWznmMApp& rst
 		) {
-	return loadRstBySQL("SELECT ref, grp, own, ixVTarget, verRefWznmMVersion, verNum, Short, Title, Comment FROM TblWznmMApp WHERE verRefWznmMVersion = " + to_string(verRefWznmMVersion) + " ORDER BY verNum ASC", append, rst);
+	return loadRstBySQL("SELECT ref, grp, own, ixWznmVApptarget, verRefWznmMVersion, verNum, Short, Title, Comment FROM TblWznmMApp WHERE verRefWznmMVersion = " + to_string(verRefWznmMVersion) + " ORDER BY verNum ASC", append, rst);
 };
 
 #endif
@@ -529,12 +527,12 @@ PgTblWznmMApp::~PgTblWznmMApp() {
 };
 
 void PgTblWznmMApp::initStatements() {
-	createStatement("TblWznmMApp_insertRec", "INSERT INTO TblWznmMApp (grp, own, ixVTarget, verRefWznmMVersion, verNum, Short, Title, Comment) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING ref", 8);
-	createStatement("TblWznmMApp_updateRec", "UPDATE TblWznmMApp SET grp = $1, own = $2, ixVTarget = $3, verRefWznmMVersion = $4, verNum = $5, Short = $6, Title = $7, Comment = $8 WHERE ref = $9", 9);
+	createStatement("TblWznmMApp_insertRec", "INSERT INTO TblWznmMApp (grp, own, ixWznmVApptarget, verRefWznmMVersion, verNum, Short, Title, Comment) VALUES ($1,$2,$3,$4,$5,$6,$7,$8) RETURNING ref", 8);
+	createStatement("TblWznmMApp_updateRec", "UPDATE TblWznmMApp SET grp = $1, own = $2, ixWznmVApptarget = $3, verRefWznmMVersion = $4, verNum = $5, Short = $6, Title = $7, Comment = $8 WHERE ref = $9", 9);
 	createStatement("TblWznmMApp_removeRecByRef", "DELETE FROM TblWznmMApp WHERE ref = $1", 1);
 
-	createStatement("TblWznmMApp_loadRecByRef", "SELECT ref, grp, own, ixVTarget, verRefWznmMVersion, verNum, Short, Title, Comment FROM TblWznmMApp WHERE ref = $1", 1);
-	createStatement("TblWznmMApp_loadRstByVer", "SELECT ref, grp, own, ixVTarget, verRefWznmMVersion, verNum, Short, Title, Comment FROM TblWznmMApp WHERE verRefWznmMVersion = $1 ORDER BY verNum ASC", 1);
+	createStatement("TblWznmMApp_loadRecByRef", "SELECT ref, grp, own, ixWznmVApptarget, verRefWznmMVersion, verNum, Short, Title, Comment FROM TblWznmMApp WHERE ref = $1", 1);
+	createStatement("TblWznmMApp_loadRstByVer", "SELECT ref, grp, own, ixWznmVApptarget, verRefWznmMVersion, verNum, Short, Title, Comment FROM TblWznmMApp WHERE verRefWznmMVersion = $1 ORDER BY verNum ASC", 1);
 };
 
 bool PgTblWznmMApp::loadRec(
@@ -553,7 +551,7 @@ bool PgTblWznmMApp::loadRec(
 			PQfnumber(res, "ref"),
 			PQfnumber(res, "grp"),
 			PQfnumber(res, "own"),
-			PQfnumber(res, "ixvtarget"),
+			PQfnumber(res, "ixwznmvapptarget"),
 			PQfnumber(res, "verrefwznmmversion"),
 			PQfnumber(res, "vernum"),
 			PQfnumber(res, "short"),
@@ -564,7 +562,7 @@ bool PgTblWznmMApp::loadRec(
 		ptr = PQgetvalue(res, 0, fnum[0]); _rec->ref = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[1]); _rec->grp = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[2]); _rec->own = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[3]); _rec->ixVTarget = atol(ptr);
+		ptr = PQgetvalue(res, 0, fnum[3]); _rec->ixWznmVApptarget = atol(ptr);
 		ptr = PQgetvalue(res, 0, fnum[4]); _rec->verRefWznmMVersion = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[5]); _rec->verNum = atol(ptr);
 		ptr = PQgetvalue(res, 0, fnum[6]); _rec->Short.assign(ptr, PQgetlength(res, 0, fnum[6]));
@@ -599,7 +597,7 @@ ubigint PgTblWznmMApp::loadRst(
 			PQfnumber(res, "ref"),
 			PQfnumber(res, "grp"),
 			PQfnumber(res, "own"),
-			PQfnumber(res, "ixvtarget"),
+			PQfnumber(res, "ixwznmvapptarget"),
 			PQfnumber(res, "verrefwznmmversion"),
 			PQfnumber(res, "vernum"),
 			PQfnumber(res, "short"),
@@ -613,7 +611,7 @@ ubigint PgTblWznmMApp::loadRst(
 			ptr = PQgetvalue(res, numread, fnum[0]); rec->ref = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[1]); rec->grp = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[2]); rec->own = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[3]); rec->ixVTarget = atol(ptr);
+			ptr = PQgetvalue(res, numread, fnum[3]); rec->ixWznmVApptarget = atol(ptr);
 			ptr = PQgetvalue(res, numread, fnum[4]); rec->verRefWznmMVersion = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[5]); rec->verNum = atol(ptr);
 			ptr = PQgetvalue(res, numread, fnum[6]); rec->Short.assign(ptr, PQgetlength(res, numread, fnum[6]));
@@ -713,14 +711,14 @@ ubigint PgTblWznmMApp::insertRec(
 
 	ubigint _grp = htonl64(rec->grp);
 	ubigint _own = htonl64(rec->own);
-	uint _ixVTarget = htonl(rec->ixVTarget);
+	uint _ixWznmVApptarget = htonl(rec->ixWznmVApptarget);
 	ubigint _verRefWznmMVersion = htonl64(rec->verRefWznmMVersion);
 	uint _verNum = htonl(rec->verNum);
 
 	const char* vals[] = {
 		(char*) &_grp,
 		(char*) &_own,
-		(char*) &_ixVTarget,
+		(char*) &_ixWznmVApptarget,
 		(char*) &_verRefWznmMVersion,
 		(char*) &_verNum,
 		rec->Short.c_str(),
@@ -769,7 +767,7 @@ void PgTblWznmMApp::updateRec(
 
 	ubigint _grp = htonl64(rec->grp);
 	ubigint _own = htonl64(rec->own);
-	uint _ixVTarget = htonl(rec->ixVTarget);
+	uint _ixWznmVApptarget = htonl(rec->ixWznmVApptarget);
 	ubigint _verRefWznmMVersion = htonl64(rec->verRefWznmMVersion);
 	uint _verNum = htonl(rec->verNum);
 	ubigint _ref = htonl64(rec->ref);
@@ -777,7 +775,7 @@ void PgTblWznmMApp::updateRec(
 	const char* vals[] = {
 		(char*) &_grp,
 		(char*) &_own,
-		(char*) &_ixVTarget,
+		(char*) &_ixWznmVApptarget,
 		(char*) &_verRefWznmMVersion,
 		(char*) &_verNum,
 		rec->Short.c_str(),

@@ -2,8 +2,8 @@
 	* \file WznmWrappJbase.h
 	* Wznm operation processor - write code for Java accessor app (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMWRAPPJBASE_H
@@ -18,9 +18,10 @@ namespace WznmWrappJbase {
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmWrappJbase* dpchinv);
 	// IP cust --- IBEGIN
 
-  void writeAppJ(DbsWznm* dbswznm, std::fstream& outfile, WznmMApp* app, const std::string& Prjshort, ListWznmMRtjob& rtjs, ListWznmMSequence& seqs);
+  void writeAppJ(DbsWznm* dbswznm, std::fstream& outfile, WznmMApp* app, const std::string& Prjshort, ListWznmMRtjob& rtjs, ListWznmMEvent& evts, ListWznmMSequence& seqs, ListWznmMState& stes, std::vector<unsigned int>& icsSeqs, std::vector<Sbecore::uint>& cntsEnt, std::vector<Sbecore::uint>& cntsReent, std::vector<Sbecore::uint>& cntsLve, const bool ipAllNotSpec);
   void writeDOMJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMRtjob& rtjs);
-  void writeVecSteJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs);
+  void writeVecEvtJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMEvent& evts);
+  void writeVecSteJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs, ListWznmMState& stes, std::vector<unsigned int>& icsSeqs);
 
   std::string getBlknew(DbsWznm* dbswznm, WznmMJob* hostjob, WznmMBlock* blk);
   std::string getBitJType(WznmAMBlockItem* bit);

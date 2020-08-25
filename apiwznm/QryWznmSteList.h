@@ -2,8 +2,8 @@
 	* \file QryWznmSteList.h
 	* API code for job QryWznmSteList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMSTELIST_H
@@ -46,7 +46,7 @@ namespace QryWznmSteList {
 		static const Sbecore::uint NDISP = 4;
 
 	public:
-		StatApp(const Sbecore::uint firstcol = 1, const Sbecore::uint jnumFirstdisp = 1, const Sbecore::uint ncol = 7, const Sbecore::uint ndisp = 25);
+		StatApp(const Sbecore::uint firstcol = 1, const Sbecore::uint jnumFirstdisp = 1, const Sbecore::uint ncol = 2, const Sbecore::uint ndisp = 25);
 
 	public:
 		Sbecore::uint firstcol;

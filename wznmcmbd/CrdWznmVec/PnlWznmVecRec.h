@@ -2,8 +2,8 @@
 	* \file PnlWznmVecRec.h
 	* job handler for job PnlWznmVecRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMVECREC_H
@@ -13,10 +13,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmVecPst1NQuerymod.h"
 #include "PnlWznmVecMNTable.h"
-#include "PnlWznmVecSrc1NFeed.h"
+#include "PnlWznmVecPst1NQuerymod.h"
 #include "PnlWznmVecRef1NPanel.h"
+#include "PnlWznmVecSrc1NFeed.h"
 #include "PnlWznmVecFct1NTablecol.h"
 #include "PnlWznmVecVec1NVectoritem.h"
 #include "PnlWznmVecATitle.h"
@@ -194,10 +194,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmVecPst1NQuerymod* pnlpst1nquerymod;
 	PnlWznmVecMNTable* pnlmntable;
-	PnlWznmVecSrc1NFeed* pnlsrc1nfeed;
+	PnlWznmVecPst1NQuerymod* pnlpst1nquerymod;
 	PnlWznmVecRef1NPanel* pnlref1npanel;
+	PnlWznmVecSrc1NFeed* pnlsrc1nfeed;
 	PnlWznmVecFct1NTablecol* pnlfct1ntablecol;
 	PnlWznmVecVec1NVectoritem* pnlvec1nvectoritem;
 	PnlWznmVecATitle* pnlatitle;
@@ -241,11 +241,11 @@ private:
 	bool handleCallWznmVecUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPstUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmVec_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVec_hktEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmVec_hkuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVec_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmVec_pstEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmVec_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmVec_pstEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVec_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmVec_hkuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVec_hktEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmPst_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);

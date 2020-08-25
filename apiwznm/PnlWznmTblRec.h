@@ -2,8 +2,8 @@
 	* \file PnlWznmTblRec.h
 	* API code for job PnlWznmTblRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMTBLREC_H
@@ -65,49 +65,49 @@ namespace PnlWznmTblRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEALOADFCT = 2;
-		static const Sbecore::uint INITDONEATITLE = 3;
-		static const Sbecore::uint INITDONETBL1NTABLECOL = 4;
-		static const Sbecore::uint INITDONE1NIMPEXP = 5;
+		static const Sbecore::uint INITDONEATITLE = 2;
+		static const Sbecore::uint INITDONEALOADFCT = 3;
+		static const Sbecore::uint INITDONE1NSTUB = 4;
+		static const Sbecore::uint INITDONETBL1NTABLECOL = 5;
 		static const Sbecore::uint INITDONE1NCHECK = 6;
 		static const Sbecore::uint INITDONE1NSUBSET = 7;
-		static const Sbecore::uint INITDONE1NSTUB = 8;
+		static const Sbecore::uint INITDONE1NIMPEXP = 8;
 		static const Sbecore::uint INITDONETO1NRELATION = 9;
 		static const Sbecore::uint INITDONEFR1NRELATION = 10;
 		static const Sbecore::uint INITDONEREF1NRTBLOCK = 11;
 		static const Sbecore::uint INITDONEREF1NQUERYMOD = 12;
-		static const Sbecore::uint INITDONEFCT1NTABLECOL = 13;
-		static const Sbecore::uint INITDONEHK1NVECTOR = 14;
-		static const Sbecore::uint INITDONEREF1NCALL = 15;
-		static const Sbecore::uint INITDONEREF1NDIALOG = 16;
-		static const Sbecore::uint INITDONEREF1NPANEL = 17;
-		static const Sbecore::uint INITDONESRC1NFEED = 18;
+		static const Sbecore::uint INITDONEHK1NVECTOR = 13;
+		static const Sbecore::uint INITDONEFCT1NTABLECOL = 14;
+		static const Sbecore::uint INITDONESRC1NFEED = 15;
+		static const Sbecore::uint INITDONEREF1NCALL = 16;
+		static const Sbecore::uint INITDONEREF1NDIALOG = 17;
+		static const Sbecore::uint INITDONEREF1NPANEL = 18;
 		static const Sbecore::uint INITDONEPST1NQUERYMOD = 19;
 		static const Sbecore::uint INITDONEMNVECTOR = 20;
 		static const Sbecore::uint INITDONEMNQUERY = 21;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneALoadfct = false, const bool initdoneATitle = false, const bool initdoneTbl1NTablecol = false, const bool initdone1NImpexp = false, const bool initdone1NCheck = false, const bool initdone1NSubset = false, const bool initdone1NStub = false, const bool initdoneTo1NRelation = false, const bool initdoneFr1NRelation = false, const bool initdoneRef1NRtblock = false, const bool initdoneRef1NQuerymod = false, const bool initdoneFct1NTablecol = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NCall = false, const bool initdoneRef1NDialog = false, const bool initdoneRef1NPanel = false, const bool initdoneSrc1NFeed = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNVector = false, const bool initdoneMNQuery = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneALoadfct = false, const bool initdone1NStub = false, const bool initdoneTbl1NTablecol = false, const bool initdone1NCheck = false, const bool initdone1NSubset = false, const bool initdone1NImpexp = false, const bool initdoneTo1NRelation = false, const bool initdoneFr1NRelation = false, const bool initdoneRef1NRtblock = false, const bool initdoneRef1NQuerymod = false, const bool initdoneHk1NVector = false, const bool initdoneFct1NTablecol = false, const bool initdoneSrc1NFeed = false, const bool initdoneRef1NCall = false, const bool initdoneRef1NDialog = false, const bool initdoneRef1NPanel = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNVector = false, const bool initdoneMNQuery = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdoneALoadfct;
 		bool initdoneATitle;
+		bool initdoneALoadfct;
+		bool initdone1NStub;
 		bool initdoneTbl1NTablecol;
-		bool initdone1NImpexp;
 		bool initdone1NCheck;
 		bool initdone1NSubset;
-		bool initdone1NStub;
+		bool initdone1NImpexp;
 		bool initdoneTo1NRelation;
 		bool initdoneFr1NRelation;
 		bool initdoneRef1NRtblock;
 		bool initdoneRef1NQuerymod;
-		bool initdoneFct1NTablecol;
 		bool initdoneHk1NVector;
+		bool initdoneFct1NTablecol;
+		bool initdoneSrc1NFeed;
 		bool initdoneRef1NCall;
 		bool initdoneRef1NDialog;
 		bool initdoneRef1NPanel;
-		bool initdoneSrc1NFeed;
 		bool initdonePst1NQuerymod;
 		bool initdoneMNVector;
 		bool initdoneMNQuery;
@@ -126,34 +126,34 @@ namespace PnlWznmTblRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFALOADFCT = 3;
-		static const Sbecore::uint PNLALOADFCTAVAIL = 4;
-		static const Sbecore::uint SCRJREFATITLE = 5;
-		static const Sbecore::uint PNLATITLEAVAIL = 6;
-		static const Sbecore::uint SCRJREFTBL1NTABLECOL = 7;
-		static const Sbecore::uint SCRJREF1NIMPEXP = 8;
-		static const Sbecore::uint PNL1NIMPEXPAVAIL = 9;
+		static const Sbecore::uint SCRJREFATITLE = 3;
+		static const Sbecore::uint PNLATITLEAVAIL = 4;
+		static const Sbecore::uint SCRJREFALOADFCT = 5;
+		static const Sbecore::uint PNLALOADFCTAVAIL = 6;
+		static const Sbecore::uint SCRJREF1NSTUB = 7;
+		static const Sbecore::uint PNL1NSTUBAVAIL = 8;
+		static const Sbecore::uint SCRJREFTBL1NTABLECOL = 9;
 		static const Sbecore::uint SCRJREF1NCHECK = 10;
 		static const Sbecore::uint PNL1NCHECKAVAIL = 11;
 		static const Sbecore::uint SCRJREF1NSUBSET = 12;
 		static const Sbecore::uint PNL1NSUBSETAVAIL = 13;
-		static const Sbecore::uint SCRJREF1NSTUB = 14;
-		static const Sbecore::uint PNL1NSTUBAVAIL = 15;
+		static const Sbecore::uint SCRJREF1NIMPEXP = 14;
+		static const Sbecore::uint PNL1NIMPEXPAVAIL = 15;
 		static const Sbecore::uint SCRJREFTO1NRELATION = 16;
 		static const Sbecore::uint PNLTO1NRELATIONAVAIL = 17;
 		static const Sbecore::uint SCRJREFFR1NRELATION = 18;
 		static const Sbecore::uint PNLFR1NRELATIONAVAIL = 19;
 		static const Sbecore::uint SCRJREFREF1NRTBLOCK = 20;
 		static const Sbecore::uint SCRJREFREF1NQUERYMOD = 21;
-		static const Sbecore::uint SCRJREFFCT1NTABLECOL = 22;
-		static const Sbecore::uint PNLFCT1NTABLECOLAVAIL = 23;
-		static const Sbecore::uint SCRJREFHK1NVECTOR = 24;
-		static const Sbecore::uint SCRJREFREF1NCALL = 25;
-		static const Sbecore::uint PNLREF1NCALLAVAIL = 26;
-		static const Sbecore::uint SCRJREFREF1NDIALOG = 27;
-		static const Sbecore::uint PNLREF1NDIALOGAVAIL = 28;
-		static const Sbecore::uint SCRJREFREF1NPANEL = 29;
-		static const Sbecore::uint SCRJREFSRC1NFEED = 30;
+		static const Sbecore::uint SCRJREFHK1NVECTOR = 22;
+		static const Sbecore::uint SCRJREFFCT1NTABLECOL = 23;
+		static const Sbecore::uint PNLFCT1NTABLECOLAVAIL = 24;
+		static const Sbecore::uint SCRJREFSRC1NFEED = 25;
+		static const Sbecore::uint SCRJREFREF1NCALL = 26;
+		static const Sbecore::uint PNLREF1NCALLAVAIL = 27;
+		static const Sbecore::uint SCRJREFREF1NDIALOG = 28;
+		static const Sbecore::uint PNLREF1NDIALOGAVAIL = 29;
+		static const Sbecore::uint SCRJREFREF1NPANEL = 30;
 		static const Sbecore::uint SCRJREFPST1NQUERYMOD = 31;
 		static const Sbecore::uint PNLPST1NQUERYMODAVAIL = 32;
 		static const Sbecore::uint SCRJREFMNVECTOR = 33;
@@ -163,39 +163,39 @@ namespace PnlWznmTblRec {
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 37;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefALoadfct = "", const bool pnlaloadfctAvail = false, const std::string& scrJrefATitle = "", const bool pnlatitleAvail = false, const std::string& scrJrefTbl1NTablecol = "", const std::string& scrJref1NImpexp = "", const bool pnl1nimpexpAvail = false, const std::string& scrJref1NCheck = "", const bool pnl1ncheckAvail = false, const std::string& scrJref1NSubset = "", const bool pnl1nsubsetAvail = false, const std::string& scrJref1NStub = "", const bool pnl1nstubAvail = false, const std::string& scrJrefTo1NRelation = "", const bool pnlto1nrelationAvail = false, const std::string& scrJrefFr1NRelation = "", const bool pnlfr1nrelationAvail = false, const std::string& scrJrefRef1NRtblock = "", const std::string& scrJrefRef1NQuerymod = "", const std::string& scrJrefFct1NTablecol = "", const bool pnlfct1ntablecolAvail = false, const std::string& scrJrefHk1NVector = "", const std::string& scrJrefRef1NCall = "", const bool pnlref1ncallAvail = false, const std::string& scrJrefRef1NDialog = "", const bool pnlref1ndialogAvail = false, const std::string& scrJrefRef1NPanel = "", const std::string& scrJrefSrc1NFeed = "", const std::string& scrJrefPst1NQuerymod = "", const bool pnlpst1nquerymodAvail = false, const std::string& scrJrefMNVector = "", const bool pnlmnvectorAvail = false, const std::string& scrJrefMNQuery = "", const bool pnlmnqueryAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const bool pnlatitleAvail = false, const std::string& scrJrefALoadfct = "", const bool pnlaloadfctAvail = false, const std::string& scrJref1NStub = "", const bool pnl1nstubAvail = false, const std::string& scrJrefTbl1NTablecol = "", const std::string& scrJref1NCheck = "", const bool pnl1ncheckAvail = false, const std::string& scrJref1NSubset = "", const bool pnl1nsubsetAvail = false, const std::string& scrJref1NImpexp = "", const bool pnl1nimpexpAvail = false, const std::string& scrJrefTo1NRelation = "", const bool pnlto1nrelationAvail = false, const std::string& scrJrefFr1NRelation = "", const bool pnlfr1nrelationAvail = false, const std::string& scrJrefRef1NRtblock = "", const std::string& scrJrefRef1NQuerymod = "", const std::string& scrJrefHk1NVector = "", const std::string& scrJrefFct1NTablecol = "", const bool pnlfct1ntablecolAvail = false, const std::string& scrJrefSrc1NFeed = "", const std::string& scrJrefRef1NCall = "", const bool pnlref1ncallAvail = false, const std::string& scrJrefRef1NDialog = "", const bool pnlref1ndialogAvail = false, const std::string& scrJrefRef1NPanel = "", const std::string& scrJrefPst1NQuerymod = "", const bool pnlpst1nquerymodAvail = false, const std::string& scrJrefMNVector = "", const bool pnlmnvectorAvail = false, const std::string& scrJrefMNQuery = "", const bool pnlmnqueryAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJrefALoadfct;
-		bool pnlaloadfctAvail;
 		std::string scrJrefATitle;
 		bool pnlatitleAvail;
+		std::string scrJrefALoadfct;
+		bool pnlaloadfctAvail;
+		std::string scrJref1NStub;
+		bool pnl1nstubAvail;
 		std::string scrJrefTbl1NTablecol;
-		std::string scrJref1NImpexp;
-		bool pnl1nimpexpAvail;
 		std::string scrJref1NCheck;
 		bool pnl1ncheckAvail;
 		std::string scrJref1NSubset;
 		bool pnl1nsubsetAvail;
-		std::string scrJref1NStub;
-		bool pnl1nstubAvail;
+		std::string scrJref1NImpexp;
+		bool pnl1nimpexpAvail;
 		std::string scrJrefTo1NRelation;
 		bool pnlto1nrelationAvail;
 		std::string scrJrefFr1NRelation;
 		bool pnlfr1nrelationAvail;
 		std::string scrJrefRef1NRtblock;
 		std::string scrJrefRef1NQuerymod;
+		std::string scrJrefHk1NVector;
 		std::string scrJrefFct1NTablecol;
 		bool pnlfct1ntablecolAvail;
-		std::string scrJrefHk1NVector;
+		std::string scrJrefSrc1NFeed;
 		std::string scrJrefRef1NCall;
 		bool pnlref1ncallAvail;
 		std::string scrJrefRef1NDialog;
 		bool pnlref1ndialogAvail;
 		std::string scrJrefRef1NPanel;
-		std::string scrJrefSrc1NFeed;
 		std::string scrJrefPst1NQuerymod;
 		bool pnlpst1nquerymodAvail;
 		std::string scrJrefMNVector;

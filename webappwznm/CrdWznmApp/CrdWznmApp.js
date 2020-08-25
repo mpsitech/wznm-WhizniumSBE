@@ -2,8 +2,8 @@
   * \file CrdWznmApp.js
   * web client functionality for card CrdWznmApp
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 function getInitdone(pnlshort) {
@@ -364,7 +364,7 @@ function refresh() {
 		if (scrJrefDlg != scrJrefDlgwrite) showDlg("DlgWznmAppWrite", scrJrefDlgwrite);
 	} else if (scrJrefDlg != "") hideDlg();
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmApp", "MtxCrdApp") + " - WhizniumSBE 1.0.2";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmApp", "MtxCrdApp") + " - WhizniumSBE v1.0.6";
 };
 
 // --- event handlers

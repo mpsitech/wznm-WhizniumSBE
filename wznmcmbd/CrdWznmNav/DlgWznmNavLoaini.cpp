@@ -2,8 +2,8 @@
 	* \file DlgWznmNavLoaini.cpp
 	* job handler for job DlgWznmNavLoaini (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -158,23 +158,23 @@ void DlgWznmNavLoaini::refresh(
 			, set<uint>& moditems
 		) {
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshIfi(dbswznm, moditems);
 	refreshImp(dbswznm, moditems);
@@ -238,10 +238,10 @@ void DlgWznmNavLoaini::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
+		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
 		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
+		else if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
 	};
 };
 
@@ -339,7 +339,14 @@ string DlgWznmNavLoaini::handleDownloadInSgeDone(
 	return(""); // IP handleDownloadInSgeDone --- LINE
 };
 
-void DlgWznmNavLoaini::handleTimerInSgeUpkidle(
+void DlgWznmNavLoaini::handleTimerInSgePrsidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
+};
+
+void DlgWznmNavLoaini::handleTimerInSgeImpidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
@@ -353,14 +360,7 @@ void DlgWznmNavLoaini::handleTimerWithSrefMonInSgeImport(
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
 };
 
-void DlgWznmNavLoaini::handleTimerInSgeImpidle(
-			DbsWznm* dbswznm
-			, const string& sref
-		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
-};
-
-void DlgWznmNavLoaini::handleTimerInSgePrsidle(
+void DlgWznmNavLoaini::handleTimerInSgeUpkidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {

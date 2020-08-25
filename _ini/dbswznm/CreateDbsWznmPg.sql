@@ -28,7 +28,8 @@ DROP TABLE IF EXISTS TblWznmAMPersonDetail;
 DROP TABLE IF EXISTS TblWznmAMQueryClause;
 DROP TABLE IF EXISTS TblWznmAMQueryOrder;
 DROP TABLE IF EXISTS TblWznmAMRelationTitle;
-DROP TABLE IF EXISTS TblWznmAMStateStep;
+DROP TABLE IF EXISTS TblWznmAMStateAction;
+DROP TABLE IF EXISTS TblWznmAMStateTrig;
 DROP TABLE IF EXISTS TblWznmAMSubsetTitle;
 DROP TABLE IF EXISTS TblWznmAMTablecolTitle;
 DROP TABLE IF EXISTS TblWznmAMTableLoadfct;
@@ -50,6 +51,7 @@ DROP SEQUENCE IF EXISTS TblWznmCFile;
 DROP SEQUENCE IF EXISTS TblWznmCRelation;
 DROP TABLE IF EXISTS TblWznmHistRMUserUniversal;
 DROP TABLE IF EXISTS TblWznmJAMBlockItem;
+DROP TABLE IF EXISTS TblWznmJAMStateTrigCond;
 DROP TABLE IF EXISTS TblWznmJAVKeylistKey;
 DROP TABLE IF EXISTS TblWznmJMCardTitle;
 DROP TABLE IF EXISTS TblWznmJMControl;
@@ -78,6 +80,7 @@ DROP TABLE IF EXISTS TblWznmMComponent;
 DROP TABLE IF EXISTS TblWznmMControl;
 DROP TABLE IF EXISTS TblWznmMDialog;
 DROP TABLE IF EXISTS TblWznmMError;
+DROP TABLE IF EXISTS TblWznmMEvent;
 DROP TABLE IF EXISTS TblWznmMFeed;
 DROP TABLE IF EXISTS TblWznmMFile;
 DROP TABLE IF EXISTS TblWznmMImpexp;
@@ -141,6 +144,7 @@ DROP TABLE IF EXISTS TblWznmRMUsergroupUniversal;
 DROP TABLE IF EXISTS TblWznmRMUserMUsergroup;
 DROP TABLE IF EXISTS TblWznmTMQuerymodMQuery;
 
+DROP TABLE IF EXISTS TblWznmQApp1NEvent;
 DROP TABLE IF EXISTS TblWznmQApp1NRtjob;
 DROP TABLE IF EXISTS TblWznmQAppApp1NSequence;
 DROP TABLE IF EXISTS TblWznmQAppList;
@@ -179,6 +183,7 @@ DROP TABLE IF EXISTS TblWznmQDlgList;
 DROP TABLE IF EXISTS TblWznmQDlgMNQuery;
 DROP TABLE IF EXISTS TblWznmQDlgRef1NControl;
 DROP TABLE IF EXISTS TblWznmQErrList;
+DROP TABLE IF EXISTS TblWznmQEvtList;
 DROP TABLE IF EXISTS TblWznmQFilList;
 DROP TABLE IF EXISTS TblWznmQIelList;
 DROP TABLE IF EXISTS TblWznmQIex1NImpexp;
@@ -293,7 +298,7 @@ DROP TABLE IF EXISTS TblWznmQStbMNCall;
 DROP TABLE IF EXISTS TblWznmQStbMNSquawk;
 DROP TABLE IF EXISTS TblWznmQStbSubMNStub;
 DROP TABLE IF EXISTS TblWznmQStbSupMNStub;
-DROP TABLE IF EXISTS TblWznmQSteAStep;
+DROP TABLE IF EXISTS TblWznmQSteATrig;
 DROP TABLE IF EXISTS TblWznmQSteList;
 DROP TABLE IF EXISTS TblWznmQTagList;
 DROP TABLE IF EXISTS TblWznmQTbl1NCheck;
@@ -639,21 +644,47 @@ CREATE INDEX TblWznmAMRelationTitle_refWznmMRelation ON TblWznmAMRelationTitle (
 CREATE INDEX TblWznmAMRelationTitle_x1IxVType ON TblWznmAMRelationTitle (x1IxVType);
 CREATE INDEX TblWznmAMRelationTitle_x2RefWznmMLocale ON TblWznmAMRelationTitle (x2RefWznmMLocale);
 
-CREATE TABLE TblWznmAMStateStep(
+CREATE TABLE TblWznmAMStateAction(
+	ref BIGSERIAL PRIMARY KEY,
+	steRefWznmMState BIGINT,
+	steNum INT,
+	ixVSection INT,
+	ixVType INT,
+	refWznmMRtjob BIGINT,
+	refWznmMVector BIGINT,
+	refWznmMVectoritem BIGINT,
+	snxRefWznmMState BIGINT,
+	refWznmMSequence BIGINT,
+	tr1SrefATrig VARCHAR(50),
+	Ip1 VARCHAR(50),
+	tr2SrefATrig VARCHAR(50),
+	Ip2 VARCHAR(50),
+	tr3SrefATrig VARCHAR(50),
+	Ip3 VARCHAR(50),
+	tr4SrefATrig VARCHAR(50),
+	Ip4 VARCHAR(50)
+);
+ALTER TABLE TblWznmAMStateAction OWNER TO epsi;
+CREATE INDEX TblWznmAMStateAction_steRefWznmMState ON TblWznmAMStateAction (steRefWznmMState);
+CREATE INDEX TblWznmAMStateAction_steNum ON TblWznmAMStateAction (steNum);
+CREATE INDEX TblWznmAMStateAction_ixVSection ON TblWznmAMStateAction (ixVSection);
+
+CREATE TABLE TblWznmAMStateTrig(
 	ref BIGSERIAL PRIMARY KEY,
 	refWznmMState BIGINT,
-	snxRefWznmMState BIGINT,
-	ixVTrigger INT,
+	sref VARCHAR(50),
+	ixVType INT,
+	refWznmMEvent BIGINT,
 	refWznmMRtjob BIGINT,
 	refWznmMVectoritem BIGINT,
 	xsref VARCHAR(50),
 	refWznmMRtdpch BIGINT,
 	srefsMask VARCHAR(192),
-	Cond TEXT,
-	Custcode SMALLINT
+	Cond TEXT
 );
-ALTER TABLE TblWznmAMStateStep OWNER TO epsi;
-CREATE INDEX TblWznmAMStateStep_refWznmMState ON TblWznmAMStateStep (refWznmMState);
+ALTER TABLE TblWznmAMStateTrig OWNER TO epsi;
+CREATE INDEX TblWznmAMStateTrig_refWznmMState ON TblWznmAMStateTrig (refWznmMState);
+CREATE INDEX TblWznmAMStateTrig_sref ON TblWznmAMStateTrig (sref);
 
 CREATE TABLE TblWznmAMSubsetTitle(
 	ref BIGSERIAL PRIMARY KEY,
@@ -846,6 +877,16 @@ CREATE TABLE TblWznmJAMBlockItem(
 ALTER TABLE TblWznmJAMBlockItem OWNER TO epsi;
 CREATE INDEX TblWznmJAMBlockItem_refWznmAMBlockItem ON TblWznmJAMBlockItem (refWznmAMBlockItem);
 CREATE INDEX TblWznmJAMBlockItem_x1RefWznmMRelease ON TblWznmJAMBlockItem (x1RefWznmMRelease);
+
+CREATE TABLE TblWznmJAMStateTrigCond(
+	ref BIGSERIAL PRIMARY KEY,
+	refWznmAMStateTrig BIGINT,
+	x1IxWznmVApptarget INT,
+	Cond TEXT
+);
+ALTER TABLE TblWznmJAMStateTrigCond OWNER TO epsi;
+CREATE INDEX TblWznmJAMStateTrigCond_refWznmAMStateTrig ON TblWznmJAMStateTrigCond (refWznmAMStateTrig);
+CREATE INDEX TblWznmJAMStateTrigCond_x1IxWznmVApptarget ON TblWznmJAMStateTrigCond (x1IxWznmVApptarget);
 
 CREATE TABLE TblWznmJAVKeylistKey(
 	ref BIGSERIAL PRIMARY KEY,
@@ -1042,7 +1083,7 @@ CREATE TABLE TblWznmMApp(
 	ref BIGSERIAL PRIMARY KEY,
 	grp BIGINT,
 	own BIGINT,
-	ixVTarget INT,
+	ixWznmVApptarget INT,
 	verRefWznmMVersion BIGINT,
 	verNum INT,
 	Short VARCHAR(10),
@@ -1052,7 +1093,7 @@ CREATE TABLE TblWznmMApp(
 ALTER TABLE TblWznmMApp OWNER TO epsi;
 CREATE INDEX TblWznmMApp_grp ON TblWznmMApp (grp);
 CREATE INDEX TblWznmMApp_own ON TblWznmMApp (own);
-CREATE INDEX TblWznmMApp_ixVTarget ON TblWznmMApp (ixVTarget);
+CREATE INDEX TblWznmMApp_ixWznmVApptarget ON TblWznmMApp (ixWznmVApptarget);
 CREATE INDEX TblWznmMApp_verRefWznmMVersion ON TblWznmMApp (verRefWznmMVersion);
 CREATE INDEX TblWznmMApp_verNum ON TblWznmMApp (verNum);
 CREATE INDEX TblWznmMApp_Title ON TblWznmMApp (Title);
@@ -1233,6 +1274,16 @@ ALTER TABLE TblWznmMError OWNER TO epsi;
 CREATE INDEX TblWznmMError_verRefWznmMVersion ON TblWznmMError (verRefWznmMVersion);
 CREATE INDEX TblWznmMError_verNum ON TblWznmMError (verNum);
 CREATE INDEX TblWznmMError_sref ON TblWznmMError (sref);
+
+CREATE TABLE TblWznmMEvent(
+	ref BIGSERIAL PRIMARY KEY,
+	refWznmMApp BIGINT,
+	sref VARCHAR(50),
+	Comment TEXT
+);
+ALTER TABLE TblWznmMEvent OWNER TO epsi;
+CREATE INDEX TblWznmMEvent_refWznmMApp ON TblWznmMEvent (refWznmMApp);
+CREATE INDEX TblWznmMEvent_sref ON TblWznmMEvent (sref);
 
 CREATE TABLE TblWznmMFeed(
 	ref BIGSERIAL PRIMARY KEY,
@@ -1758,13 +1809,6 @@ CREATE TABLE TblWznmMState(
 	seqRefWznmMSequence BIGINT,
 	seqNum INT,
 	sref VARCHAR(50),
-	eacIxVAction INT,
-	erjRefWznmMRtjob BIGINT,
-	eveRefWznmMVector BIGINT,
-	eviRefWznmMVectoritem BIGINT,
-	esnRefWznmMState BIGINT,
-	lacIxVAction INT,
-	Custstep SMALLINT,
 	Comment TEXT
 );
 ALTER TABLE TblWznmMState OWNER TO epsi;
@@ -2169,6 +2213,16 @@ ALTER TABLE TblWznmTMQuerymodMQuery OWNER TO epsi;
 CREATE INDEX TblWznmTMQuerymodMQuery_refWznmMQuerymod ON TblWznmTMQuerymodMQuery (refWznmMQuerymod);
 CREATE INDEX TblWznmTMQuerymodMQuery_refR ON TblWznmTMQuerymodMQuery (refR);
 
+CREATE TABLE TblWznmQApp1NEvent(
+	qref BIGSERIAL PRIMARY KEY,
+	jref BIGINT,
+	jnum INT,
+	ref BIGINT
+);
+ALTER TABLE TblWznmQApp1NEvent OWNER TO epsi;
+CREATE INDEX TblWznmQApp1NEvent_jref ON TblWznmQApp1NEvent (jref);
+CREATE INDEX TblWznmQApp1NEvent_jnum ON TblWznmQApp1NEvent (jnum);
+
 CREATE TABLE TblWznmQApp1NRtjob(
 	qref BIGSERIAL PRIMARY KEY,
 	jref BIGINT,
@@ -2199,7 +2253,7 @@ CREATE TABLE TblWznmQAppList(
 	own BIGINT,
 	Short VARCHAR(10),
 	Title VARCHAR(50),
-	ixVTarget INT,
+	ixWznmVApptarget INT,
 	verRefWznmMVersion BIGINT
 );
 ALTER TABLE TblWznmQAppList OWNER TO epsi;
@@ -2653,6 +2707,18 @@ CREATE TABLE TblWznmQErrList(
 ALTER TABLE TblWznmQErrList OWNER TO epsi;
 CREATE INDEX TblWznmQErrList_jref ON TblWznmQErrList (jref);
 CREATE INDEX TblWznmQErrList_jnum ON TblWznmQErrList (jnum);
+
+CREATE TABLE TblWznmQEvtList(
+	qref BIGSERIAL PRIMARY KEY,
+	jref BIGINT,
+	jnum INT,
+	ref BIGINT,
+	sref VARCHAR(50),
+	refWznmMApp BIGINT
+);
+ALTER TABLE TblWznmQEvtList OWNER TO epsi;
+CREATE INDEX TblWznmQEvtList_jref ON TblWznmQEvtList (jref);
+CREATE INDEX TblWznmQEvtList_jnum ON TblWznmQEvtList (jnum);
 
 CREATE TABLE TblWznmQFilList(
 	qref BIGSERIAL PRIMARY KEY,
@@ -4047,24 +4113,24 @@ ALTER TABLE TblWznmQStbSupMNStub OWNER TO epsi;
 CREATE INDEX TblWznmQStbSupMNStub_jref ON TblWznmQStbSupMNStub (jref);
 CREATE INDEX TblWznmQStbSupMNStub_jnum ON TblWznmQStbSupMNStub (jnum);
 
-CREATE TABLE TblWznmQSteAStep(
+CREATE TABLE TblWznmQSteATrig(
 	qref BIGSERIAL PRIMARY KEY,
 	jref BIGINT,
 	jnum INT,
 	ref BIGINT,
-	snxRefWznmMState BIGINT,
-	ixVTrigger INT,
+	sref VARCHAR(50),
+	ixVType INT,
+	refWznmMEvent BIGINT,
 	refWznmMRtjob BIGINT,
 	refWznmMVectoritem BIGINT,
 	xsref VARCHAR(50),
 	refWznmMRtdpch BIGINT,
 	srefsMask VARCHAR(192),
-	Cond TEXT,
-	Custcode SMALLINT
+	Cond TEXT
 );
-ALTER TABLE TblWznmQSteAStep OWNER TO epsi;
-CREATE INDEX TblWznmQSteAStep_jref ON TblWznmQSteAStep (jref);
-CREATE INDEX TblWznmQSteAStep_jnum ON TblWznmQSteAStep (jnum);
+ALTER TABLE TblWznmQSteATrig OWNER TO epsi;
+CREATE INDEX TblWznmQSteATrig_jref ON TblWznmQSteATrig (jref);
+CREATE INDEX TblWznmQSteATrig_jnum ON TblWznmQSteATrig (jnum);
 
 CREATE TABLE TblWznmQSteList(
 	qref BIGSERIAL PRIMARY KEY,
@@ -4072,10 +4138,7 @@ CREATE TABLE TblWznmQSteList(
 	jnum INT,
 	ref BIGINT,
 	sref VARCHAR(50),
-	seqRefWznmMSequence BIGINT,
-	eacIxVAction INT,
-	lacIxVAction INT,
-	Custstep SMALLINT
+	seqRefWznmMSequence BIGINT
 );
 ALTER TABLE TblWznmQSteList OWNER TO epsi;
 CREATE INDEX TblWznmQSteList_jref ON TblWznmQSteList (jref);

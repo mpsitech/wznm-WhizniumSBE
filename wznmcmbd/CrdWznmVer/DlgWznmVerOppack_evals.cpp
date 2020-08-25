@@ -2,8 +2,8 @@
 	* \file DlgWznmVerOppack_evals.cpp
 	* job handler for job DlgWznmVerOppack (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -25,6 +25,20 @@ bool DlgWznmVerOppack::evalButDneActive(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
+
+	return(args.back());
+};
+
+bool DlgWznmVerOppack::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(done)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
 
 	return(args.back());
 };
@@ -58,20 +72,6 @@ bool DlgWznmVerOppack::evalImpButStoActive(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
-
-	return(args.back());
-};
-
-bool DlgWznmVerOppack::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(done)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
 
 	return(args.back());
 };

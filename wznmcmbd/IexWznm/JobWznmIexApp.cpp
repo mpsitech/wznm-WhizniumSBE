@@ -2,8 +2,8 @@
 	* \file JobWznmIexApp.cpp
 	* job handler for job JobWznmIexApp (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -217,6 +217,7 @@ uint JobWznmIexApp::enterSgeIdle(
 
 	icsWznmVIop.clear();
 
+	imeimevent.clear();
 	imeimrtjob.clear();
 	imeimsequence.clear();
 
@@ -239,7 +240,7 @@ uint JobWznmIexApp::enterSgeParse(
 	nextIxVSgeFailure = VecVSge::PRSERR;
 
 	try {
-		IexWznmApp::parseFromFile(fullpath, xmlNotTxt, imeimrtjob, imeimsequence);
+		IexWznmApp::parseFromFile(fullpath, xmlNotTxt, imeimevent, imeimrtjob, imeimsequence);
 
 	} catch (SbeException& e) {
 		if (e.ix == SbeException::PATHNF) e.vals["path"] = "<hidden>";
@@ -300,16 +301,19 @@ uint JobWznmIexApp::enterSgeImport(
 	retval = nextIxVSgeSuccess;
 	nextIxVSgeFailure = VecVSge::IMPERR;
 
+	ImeitemIMEvent* evt = NULL;
 	ImeitemIMRtjob* rtj = NULL;
 	ImeitemIMSequence* seq = NULL;
 	ImeitemIMRtblock* rtb = NULL;
 	ImeitemIMRtdpch* rtd = NULL;
 	ImeitemIMState* ste = NULL;
-	ImeitemIAMStateStep* steAstp = NULL;
+	ImeitemIAMStateAction* steAact = NULL;
+	ImeitemIAMStateTrig* steAtrg = NULL;
+	ImeitemIJAMStateTrigCond* strJcnd = NULL;
 
 	set<ubigint> irefs0;
 
-	uint num1;
+	uint num1, num2;
 
 	// IP enterSgeImport.prep --- IBEGIN
 	ubigint refWznmMApp;
@@ -325,6 +329,8 @@ uint JobWznmIexApp::enterSgeImport(
 	uint hkIxVTbl;
 
 	ImeitemIMRtjob* rtj2 = NULL;
+
+	ImeitemIMSequence* seq2 = NULL;
 
 	bool found;
 	// IP enterSgeImport.prep --- IEND
@@ -400,6 +406,18 @@ uint JobWznmIexApp::enterSgeImport(
 			};
 		};
 
+		// -- ImeIMEvent
+		for (unsigned int ix0 = 0; ix0 < imeimevent.nodes.size(); ix0++) {
+			evt = imeimevent.nodes[ix0];
+
+			evt->refWznmMApp = refWznmMApp;
+			//evt->sref: TBL
+			//evt->Comment: TBL
+
+			dbswznm->tblwznmmevent->insertRec(evt);
+			impcnt++;
+		};
+
 		// -- ImeIMSequence
 		for (unsigned int ix0 = 0; ix0 < imeimsequence.nodes.size(); ix0++) {
 			seq = imeimsequence.nodes[ix0];
@@ -421,33 +439,6 @@ uint JobWznmIexApp::enterSgeImport(
 				ste->seqRefWznmMSequence = seq->ref;
 				ste->seqNum = num1++;
 				//ste->sref: TBL
-				ste->eacIxVAction = VecWznmVMStateAction::getIx(ste->srefEacIxVAction);
-				if (ste->eacIxVAction == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",ste->srefEacIxVAction}, {"iel","srefEacIxVAction"}, {"lineno",to_string(ste->lineno)}});
-				//ste->erjRefWznmMRtjob: PREVIMP
-				if (ste->irefErjRefWznmMRtjob != 0) {
-					for (unsigned int i = 0; i < imeimrtjob.nodes.size(); i++) {
-						rtj = imeimrtjob.nodes[i];
-						if (rtj->iref == ste->irefErjRefWznmMRtjob) {
-							ste->erjRefWznmMRtjob = rtj->ref;
-							break;
-						};
-					};
-					if (ste->erjRefWznmMRtjob == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(ste->irefErjRefWznmMRtjob)}, {"iel","irefErjRefWznmMRtjob"}, {"lineno",to_string(ste->lineno)}});
-				};
-				//ste->eveRefWznmMVector: CUSTSQL
-				if (ste->srefEveRefWznmMVector != "") {
-					dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMVersion = " + to_string(refWznmMVersion) + " AND sref = '" + ste->srefEveRefWznmMVector + "'", ste->eveRefWznmMVector);
-					if (ste->eveRefWznmMVector == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",ste->srefEveRefWznmMVector}, {"iel","srefEveRefWznmMVector"}, {"lineno",to_string(ste->lineno)}});
-				};
-				//ste->eviRefWznmMVectoritem: CUSTSQL
-				if ((ste->eveRefWznmMVector != 0) && (ste->srefEviRefWznmMVectoritem != "")) {
-					dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVectoritem WHERE vecRefWznmMVector = " + to_string(ste->eveRefWznmMVector) + " AND sref = '" + ste->srefEviRefWznmMVectoritem + "'", ste->eviRefWznmMVectoritem);
-					if (ste->eviRefWznmMVectoritem == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",ste->srefEviRefWznmMVectoritem}, {"iel","srefEviRefWznmMVectoritem"}, {"lineno",to_string(ste->lineno)}});
-				};
-				//ste->esnRefWznmMState: IMPPP
-				ste->lacIxVAction = VecWznmVMStateAction::getIx(ste->srefLacIxVAction);
-				if (ste->lacIxVAction == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",ste->srefLacIxVAction}, {"iel","srefLacIxVAction"}, {"lineno",to_string(ste->lineno)}});
-				//ste->Custstep: TBL
 				//ste->Comment: TBL
 
 				dbswznm->tblwznmmstate->insertRec(ste);
@@ -455,51 +446,113 @@ uint JobWznmIexApp::enterSgeImport(
 
 				refsSte[ste->sref] = ste->ref;
 
-				for (unsigned int ix2 = 0; ix2 < ste->imeiamstatestep.nodes.size(); ix2++) {
-					steAstp = ste->imeiamstatestep.nodes[ix2];
+				for (unsigned int ix2 = 0; ix2 < ste->imeiamstatetrig.nodes.size(); ix2++) {
+					steAtrg = ste->imeiamstatetrig.nodes[ix2];
 
-					steAstp->refWznmMState = ste->ref;
-					//steAstp->snxRefWznmMState: IMPPP
-					steAstp->ixVTrigger = VecWznmVAMStateStepTrigger::getIx(steAstp->srefIxVTrigger);
-					if (steAstp->ixVTrigger == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",steAstp->srefIxVTrigger}, {"iel","srefIxVTrigger"}, {"lineno",to_string(steAstp->lineno)}});
-					//steAstp->refWznmMRtjob: PREVIMP
-					if (steAstp->irefRefWznmMRtjob != 0) {
+					steAtrg->refWznmMState = ste->ref;
+					//steAtrg->sref: TBL
+					steAtrg->ixVType = VecWznmVAMStateTrigType::getIx(steAtrg->srefIxVType);
+					if (steAtrg->ixVType == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",steAtrg->srefIxVType}, {"iel","srefIxVType"}, {"lineno",to_string(steAtrg->lineno)}});
+					if (steAtrg->srefRefWznmMEvent != "") {
+						for (unsigned int i = 0; i < imeimevent.nodes.size(); i++) {
+							evt = imeimevent.nodes[i];
+							if (evt->sref == steAtrg->srefRefWznmMEvent) {
+								steAtrg->refWznmMEvent = evt->ref;
+								break;
+							};
+						};
+						if (steAtrg->refWznmMEvent == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",steAtrg->srefRefWznmMEvent}, {"iel","srefRefWznmMEvent"}, {"lineno",to_string(steAtrg->lineno)}});
+					};
+					if (steAtrg->irefRefWznmMRtjob != 0) {
 						for (unsigned int i = 0; i < imeimrtjob.nodes.size(); i++) {
 							rtj = imeimrtjob.nodes[i];
-							if (rtj->iref == steAstp->irefRefWznmMRtjob) {
-								steAstp->refWznmMRtjob = rtj->ref;
+							if (rtj->iref == steAtrg->irefRefWznmMRtjob) {
+								steAtrg->refWznmMRtjob = rtj->ref;
 
-								//steAstp->refWznmMVectoritem: CUSTSQL
-								if (steAstp->srefRefWznmMVectoritem != "") {
+								if (steAtrg->srefRefWznmMVectoritem != "") {
 									dbswznm->loadRefBySQL("SELECT TblWznmMVectoritem.ref FROM TblWznmMVector, TblWznmMVectoritem WHERE TblWznmMVector.hkIxVTbl = " + to_string(VecWznmVMVectorHkTbl::JOB)
 												+ " AND TblWznmMVector.hkUref = " + to_string(rtj->refWznmMJob) + " AND TblWznmMVector.sref LIKE 'Vec%Sge' AND TblWznmMVectoritem.vecRefWznmMVector = TblWznmMVector.ref AND TblWznmMVectoritem.sref = '"
-												+ steAstp->srefRefWznmMVectoritem + "'", steAstp->refWznmMVectoritem);
-									if (steAstp->refWznmMVectoritem == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",steAstp->srefRefWznmMVectoritem}, {"iel","srefRefWznmMVectoritem"}, {"lineno",to_string(steAstp->lineno)}});
+												+ steAtrg->srefRefWznmMVectoritem + "'", steAtrg->refWznmMVectoritem);
+									if (steAtrg->refWznmMVectoritem == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",steAtrg->srefRefWznmMVectoritem}, {"iel","srefRefWznmMVectoritem"}, {"lineno",to_string(steAtrg->lineno)}});
 								};
-								//steAstp->refWznmMRtdpch: PREVIMP
-								if (steAstp->srefRefWznmMRtdpch != "") {
+								if (steAtrg->srefRefWznmMRtdpch != "") {
 									for (unsigned int j = 0; j < rtj->imeimrtdpch.nodes.size(); j++) {
 										rtd = rtj->imeimrtdpch.nodes[j];
-										if (rtd->sref == steAstp->srefRefWznmMRtdpch) {
-											steAstp->refWznmMRtdpch = rtd->ref;
+										if (rtd->sref == steAtrg->srefRefWznmMRtdpch) {
+											steAtrg->refWznmMRtdpch = rtd->ref;
 											break;
 										};
 									};
-									if (steAstp->refWznmMRtdpch == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",steAstp->srefRefWznmMRtdpch}, {"iel","srefRefWznmMRtdpch"}, {"lineno",to_string(steAstp->lineno)}});
+									if (steAtrg->refWznmMRtdpch == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",steAtrg->srefRefWznmMRtdpch}, {"iel","srefRefWznmMRtdpch"}, {"lineno",to_string(steAtrg->lineno)}});
 								};
 
 								break;
 							};
 						};
 
-						if (steAstp->refWznmMRtjob == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(steAstp->irefRefWznmMRtjob)}, {"iel","irefRefWznmMRtjob"}, {"lineno",to_string(steAstp->lineno)}});
+						if (steAtrg->refWznmMRtjob == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(steAtrg->irefRefWznmMRtjob)}, {"iel","irefRefWznmMRtjob"}, {"lineno",to_string(steAtrg->lineno)}});
 					};
-					//steAstp->xsref: TBL
-					//steAstp->srefsMask: TBL
-					//steAstp->Cond: TBL
-					//steAstp->Custcode: TBL
+					//steAtrg->xsref: TBL
+					//steAtrg->srefsMask: TBL
+					//steAtrg->Cond: TBL
 
-					dbswznm->tblwznmamstatestep->insertRec(steAstp);
+					dbswznm->tblwznmamstatetrig->insertRec(steAtrg);
+					impcnt++;
+
+					for (unsigned int ix3 = 0; ix3 < steAtrg->imeijamstatetrigcond.nodes.size(); ix3++) {
+						strJcnd = steAtrg->imeijamstatetrigcond.nodes[ix3];
+
+						strJcnd->refWznmAMStateTrig = steAtrg->ref;
+						strJcnd->x1IxWznmVApptarget = VecWznmVApptarget::getIx(strJcnd->srefX1IxWznmVApptarget);
+						if (strJcnd->x1IxWznmVApptarget == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",strJcnd->srefX1IxWznmVApptarget}, {"iel","srefX1IxWznmVApptarget"}, {"lineno",to_string(strJcnd->lineno)}});
+						//strJcnd->Cond: TBL
+
+						dbswznm->tblwznmjamstatetrigcond->insertRec(strJcnd);
+						impcnt++;
+					};
+				};
+
+				num2 = 1;
+
+				for (unsigned int ix2 = 0; ix2 < ste->imeiamstateaction.nodes.size(); ix2++) {
+					steAact = ste->imeiamstateaction.nodes[ix2];
+
+					steAact->steRefWznmMState = ste->ref;
+					steAact->steNum = num2++;
+					steAact->ixVSection = VecWznmVAMStateActionSection::getIx(steAact->srefIxVSection);
+					if (steAact->ixVSection == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",steAact->srefIxVSection}, {"iel","srefIxVSection"}, {"lineno",to_string(steAact->lineno)}});
+					steAact->ixVType = VecWznmVAMStateActionType::getIx(steAact->srefIxVType);
+					if (steAact->ixVType == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",steAact->srefIxVType}, {"iel","srefIxVType"}, {"lineno",to_string(steAact->lineno)}});
+					if (steAact->irefRefWznmMRtjob != 0) {
+						for (unsigned int i = 0; i < imeimrtjob.nodes.size(); i++) {
+							rtj = imeimrtjob.nodes[i];
+							if (rtj->iref == steAact->irefRefWznmMRtjob) {
+								steAact->refWznmMRtjob = rtj->ref;
+								break;
+							};
+						};
+						if (steAact->refWznmMRtjob == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(steAact->irefRefWznmMRtjob)}, {"iel","irefRefWznmMRtjob"}, {"lineno",to_string(steAact->lineno)}});
+					};
+					if (steAact->srefRefWznmMVector != "") {
+						dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMVersion = " + to_string(refWznmMVersion) + " AND sref = '" + steAact->srefRefWznmMVector + "'", steAact->refWznmMVector);
+						if (steAact->refWznmMVector == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",steAact->srefRefWznmMVector}, {"iel","srefRefWznmMVector"}, {"lineno",to_string(steAact->lineno)}});
+						if (steAact->srefRefWznmMVectoritem != "") {
+							dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVectoritem WHERE vecRefWznmMVector = " + to_string(steAact->refWznmMVector) + " AND sref = '" + steAact->srefRefWznmMVectoritem + "'", steAact->refWznmMVectoritem);
+							if (steAact->refWznmMVectoritem == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",steAact->srefRefWznmMVectoritem}, {"iel","srefRefWznmMVectoritem"}, {"lineno",to_string(steAact->lineno)}});
+						};
+					};
+					//steAact->snxRefWznmMState: IMPPP
+					//steAact->refWznmMSequence: IMPPP
+					//steAact->tr1SrefATrig: TBL
+					//steAact->Ip1: TBL
+					//steAact->tr2SrefATrig: TBL
+					//steAact->Ip2: TBL
+					//steAact->tr3SrefATrig: TBL
+					//steAact->Ip3: TBL
+					//steAact->tr4SrefATrig: TBL
+					//steAact->Ip4: TBL
+
+					dbswznm->tblwznmamstateaction->insertRec(steAact);
 					impcnt++;
 				};
 			};
@@ -553,25 +606,35 @@ uint JobWznmIexApp::enterSgeImport(
 			for (unsigned int ix1 = 0; ix1 < seq->imeimstate.nodes.size(); ix1++) {
 				ste = seq->imeimstate.nodes[ix1];
 
-				//ste->esnRefWznmMState: IMPPP
-				itRefsSte = refsSte.find(ste->srefEsnRefWznmMState);
-				if (itRefsSte != refsSte.end()) {
-					ste->esnRefWznmMState = itRefsSte->second;
-					dbswznm->tblwznmmstate->updateRec(ste);
-				};
+				for (unsigned int ix2 = 0; ix2 < ste->imeiamstateaction.nodes.size(); ix2++) {
+					steAact = ste->imeiamstateaction.nodes[ix2];
 
-				for (unsigned int ix2 = 0; ix2 < ste->imeiamstatestep.nodes.size(); ix2++) {
-					steAstp = ste->imeiamstatestep.nodes[ix2];
+					if (steAact->srefSnxRefWznmMState != "") {
+						//steAact->snxRefWznmMState: IMPPP
+						itRefsSte = refsSte.find(steAact->srefSnxRefWznmMState);
+						if (itRefsSte != refsSte.end()) {
+							steAact->snxRefWznmMState = itRefsSte->second;
+							dbswznm->tblwznmamstateaction->updateRec(steAact);
+						};
+					};
 
-					//steAstp->snxRefWznmMState: IMPPP
-					itRefsSte = refsSte.find(steAstp->srefSnxRefWznmMState);
-					if (itRefsSte != refsSte.end()) {
-						steAstp->snxRefWznmMState = itRefsSte->second;
-						dbswznm->tblwznmamstatestep->updateRec(steAstp);
+					if (steAact->srefRefWznmMSequence != "") {
+						//steAact->refWznmMSequence: IMPPP
+						for (unsigned int i = 0; i < imeimsequence.nodes.size(); i++) {
+							seq2 = imeimsequence.nodes[i];
+
+							if (seq2->sref == steAact->srefRefWznmMSequence) {
+								steAact->refWznmMSequence = seq2->ref;
+								dbswznm->tblwznmamstateaction->updateRec(steAact);
+
+								break;
+							};
+						};
 					};
 				};
 			};
 		};
+
 		// IP enterSgeImport.ppr --- IEND
 	} catch (SbeException& e) {
 		lasterror = e.getSquawk(VecWznmVError::getIx, VecWznmVError::getTitle, ixWznmVLocale);
@@ -612,12 +675,21 @@ uint JobWznmIexApp::enterSgeReverse(
 	nextIxVSgeSuccess = VecVSge::IDLE;
 	retval = nextIxVSgeSuccess;
 
+	ImeitemIMEvent* evt = NULL;
 	ImeitemIMRtjob* rtj = NULL;
 	ImeitemIMSequence* seq = NULL;
 	ImeitemIMRtblock* rtb = NULL;
 	ImeitemIMRtdpch* rtd = NULL;
 	ImeitemIMState* ste = NULL;
-	ImeitemIAMStateStep* steAstp = NULL;
+	ImeitemIAMStateAction* steAact = NULL;
+	ImeitemIAMStateTrig* steAtrg = NULL;
+	ImeitemIJAMStateTrigCond* strJcnd = NULL;
+
+	// -- ImeIMEvent
+	for (unsigned int ix0 = 0; ix0 < imeimevent.nodes.size(); ix0++) {
+		evt = imeimevent.nodes[ix0];
+		if (evt->ref != 0) dbswznm->tblwznmmevent->removeRecByRef(evt->ref);
+	};
 
 	// -- ImeIMRtjob
 	for (unsigned int ix0 = 0; ix0 < imeimrtjob.nodes.size(); ix0++) {
@@ -644,9 +716,19 @@ uint JobWznmIexApp::enterSgeReverse(
 			ste = seq->imeimstate.nodes[ix1];
 			if (ste->ref != 0) dbswznm->tblwznmmstate->removeRecByRef(ste->ref);
 
-			for (unsigned int ix2 = 0; ix2 < ste->imeiamstatestep.nodes.size(); ix2++) {
-				steAstp = ste->imeiamstatestep.nodes[ix2];
-				if (steAstp->ref != 0) dbswznm->tblwznmamstatestep->removeRecByRef(steAstp->ref);
+			for (unsigned int ix2 = 0; ix2 < ste->imeiamstateaction.nodes.size(); ix2++) {
+				steAact = ste->imeiamstateaction.nodes[ix2];
+				if (steAact->ref != 0) dbswznm->tblwznmamstateaction->removeRecByRef(steAact->ref);
+			};
+
+			for (unsigned int ix2 = 0; ix2 < ste->imeiamstatetrig.nodes.size(); ix2++) {
+				steAtrg = ste->imeiamstatetrig.nodes[ix2];
+				if (steAtrg->ref != 0) dbswznm->tblwznmamstatetrig->removeRecByRef(steAtrg->ref);
+
+				for (unsigned int ix3 = 0; ix3 < steAtrg->imeijamstatetrigcond.nodes.size(); ix3++) {
+					strJcnd = steAtrg->imeijamstatetrigcond.nodes[ix3];
+					if (strJcnd->ref != 0) dbswznm->tblwznmjamstatetrigcond->removeRecByRef(strJcnd->ref);
+				};
 			};
 		};
 	};
@@ -668,12 +750,15 @@ uint JobWznmIexApp::enterSgeCollect(
 	nextIxVSgeSuccess = VecVSge::CLTDONE;
 	retval = nextIxVSgeSuccess;
 
+	ImeitemIMEvent* evt = NULL;
 	ImeitemIMRtjob* rtj = NULL;
 	ImeitemIMSequence* seq = NULL;
 	ImeitemIMRtblock* rtb = NULL;
 	ImeitemIMRtdpch* rtd = NULL;
 	ImeitemIMState* ste = NULL;
-	ImeitemIAMStateStep* steAstp = NULL;
+	ImeitemIAMStateAction* steAact = NULL;
+	ImeitemIAMStateTrig* steAtrg = NULL;
+	ImeitemIJAMStateTrigCond* strJcnd = NULL;
 
 	uint ixWznmVIop;
 
@@ -682,6 +767,14 @@ uint JobWznmIexApp::enterSgeCollect(
 	Stcch* stcch = new Stcch(false);
 
 	// IP enterSgeCollect.traverse --- BEGIN
+
+	// -- ImeIMEvent
+	for (unsigned int ix0 = 0; ix0 < imeimevent.nodes.size(); ix0++) {
+		evt = imeimevent.nodes[ix0];
+
+		if (evt->ref != 0) {
+		};
+	};
 
 	// -- ImeIMRtjob
 	for (unsigned int ix0 = 0; ix0 < imeimrtjob.nodes.size(); ix0++) {
@@ -736,25 +829,50 @@ uint JobWznmIexApp::enterSgeCollect(
 			ste = seq->imeimstate.nodes[ix1];
 
 			if (ste->ref != 0) {
-				//ste->irefErjRefWznmMRtjob: IREF
-				ste->srefEveRefWznmMVector = StubWznm::getStubVecStd(dbswznm, ste->eveRefWznmMVector, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
-				ste->srefEviRefWznmMVectoritem = StubWznm::getStubVitSref(dbswznm, ste->eviRefWznmMVectoritem, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
-				ste->srefEsnRefWznmMState = StubWznm::getStubSteStd(dbswznm, ste->esnRefWznmMState, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
 			};
 
-			if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIAMSTATESTEP, ixWznmVIop)) {
-				dbswznm->tblwznmamstatestep->loadRefsBySte(ste->ref, false, refs);
-				for (unsigned int i = 0; i < refs.size(); i++) ste->imeiamstatestep.nodes.push_back(new ImeitemIAMStateStep(dbswznm, refs[i]));
+			if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIAMSTATEACTION, ixWznmVIop)) {
+				dbswznm->tblwznmamstateaction->loadRefsBySte(ste->ref, false, refs);
+				for (unsigned int i = 0; i < refs.size(); i++) ste->imeiamstateaction.nodes.push_back(new ImeitemIAMStateAction(dbswznm, refs[i]));
 			};
 
-			for (unsigned int ix2 = 0; ix2 < ste->imeiamstatestep.nodes.size(); ix2++) {
-				steAstp = ste->imeiamstatestep.nodes[ix2];
+			for (unsigned int ix2 = 0; ix2 < ste->imeiamstateaction.nodes.size(); ix2++) {
+				steAact = ste->imeiamstateaction.nodes[ix2];
 
-				if (steAstp->ref != 0) {
-					steAstp->srefSnxRefWznmMState = StubWznm::getStubSteStd(dbswznm, steAstp->snxRefWznmMState, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
-					//steAstp->irefRefWznmMRtjob: IREF
-					steAstp->srefRefWznmMVectoritem = StubWznm::getStubVitSref(dbswznm, steAstp->refWznmMVectoritem, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
-					steAstp->srefRefWznmMRtdpch = StubWznm::getStubRtdStd(dbswznm, steAstp->refWznmMRtdpch, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+				if (steAact->ref != 0) {
+					//steAact->irefRefWznmMRtjob: IREF
+					steAact->srefRefWznmMVector = StubWznm::getStubVecStd(dbswznm, steAact->refWznmMVector, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+					steAact->srefRefWznmMVectoritem = StubWznm::getStubVitSref(dbswznm, steAact->refWznmMVectoritem, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+					steAact->srefSnxRefWznmMState = StubWznm::getStubSteStd(dbswznm, steAact->snxRefWznmMState, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+					steAact->srefRefWznmMSequence = StubWznm::getStubSeqStd(dbswznm, steAact->refWznmMSequence, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+				};
+			};
+
+			if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIAMSTATETRIG, ixWznmVIop)) {
+				dbswznm->tblwznmamstatetrig->loadRefsBySte(ste->ref, false, refs);
+				for (unsigned int i = 0; i < refs.size(); i++) ste->imeiamstatetrig.nodes.push_back(new ImeitemIAMStateTrig(dbswznm, refs[i]));
+			};
+
+			for (unsigned int ix2 = 0; ix2 < ste->imeiamstatetrig.nodes.size(); ix2++) {
+				steAtrg = ste->imeiamstatetrig.nodes[ix2];
+
+				if (steAtrg->ref != 0) {
+					//steAtrg->srefRefWznmMEvent: STUB
+					//steAtrg->irefRefWznmMRtjob: IREF
+					steAtrg->srefRefWznmMVectoritem = StubWznm::getStubVitSref(dbswznm, steAtrg->refWznmMVectoritem, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+					steAtrg->srefRefWznmMRtdpch = StubWznm::getStubRtdStd(dbswznm, steAtrg->refWznmMRtdpch, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+				};
+
+				if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIJAMSTATETRIGCOND, ixWznmVIop)) {
+					dbswznm->tblwznmjamstatetrigcond->loadRefsByStr(steAtrg->ref, false, refs);
+					for (unsigned int i = 0; i < refs.size(); i++) steAtrg->imeijamstatetrigcond.nodes.push_back(new ImeitemIJAMStateTrigCond(dbswznm, refs[i]));
+				};
+
+				for (unsigned int ix3 = 0; ix3 < steAtrg->imeijamstatetrigcond.nodes.size(); ix3++) {
+					strJcnd = steAtrg->imeijamstatetrigcond.nodes[ix3];
+
+					if (strJcnd->ref != 0) {
+					};
 				};
 			};
 		};
@@ -798,7 +916,7 @@ uint JobWznmIexApp::enterSgeExport(
 	nextIxVSgeSuccess = VecVSge::DONE;
 	retval = nextIxVSgeSuccess;
 
-	IexWznmApp::exportToFile(fullpath, xmlNotTxt, shorttags, imeimrtjob, imeimsequence);
+	IexWznmApp::exportToFile(fullpath, xmlNotTxt, shorttags, imeimevent, imeimrtjob, imeimsequence);
 
 	return retval;
 };

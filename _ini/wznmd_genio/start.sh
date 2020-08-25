@@ -2,8 +2,8 @@
 # file start.sh
 # start script for Wznm daemon, release wznmd_genio
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 nohup ./Wznmd -nocp &
 disown

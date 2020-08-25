@@ -2,8 +2,8 @@
 # file checkout.sh
 # checkout script for Wznm combined daemon, release wznmcmbd_awsubt
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 export set SRCROOT=/home/ubuntu/src
 export set LIBROOT=/home/ubuntu/lib
@@ -58,24 +58,25 @@ mkdir $SRCROOT/wznmcmbd/CrdWznmCmp
 mkdir $SRCROOT/wznmcmbd/CrdWznmRls
 mkdir $SRCROOT/wznmcmbd/CrdWznmApp
 mkdir $SRCROOT/wznmcmbd/CrdWznmRtj
+mkdir $SRCROOT/wznmcmbd/CrdWznmEvt
 mkdir $SRCROOT/wznmcmbd/CrdWznmSeq
 mkdir $SRCROOT/wznmcmbd/CrdWznmSte
 mkdir $SRCROOT/wznmcmbd/CrdWznmUtl
+mkdir $SRCROOT/wznmcmbd/WznmWrsrv
 mkdir $SRCROOT/wznmcmbd/WznmWrweb
 mkdir $SRCROOT/wznmcmbd/WznmWrjapi
-mkdir $SRCROOT/wznmcmbd/WznmWrsrv
 mkdir $SRCROOT/wznmcmbd/WznmWrdbs
-mkdir $SRCROOT/wznmcmbd/WznmWrapp
 mkdir $SRCROOT/wznmcmbd/WznmPrctree
+mkdir $SRCROOT/wznmcmbd/WznmWrapp
 mkdir $SRCROOT/wznmcmbd/WznmWrapi
-mkdir $SRCROOT/wznmcmbd/WznmGen
 mkdir $SRCROOT/wznmcmbd/WznmPrcfile
-mkdir $SRCROOT/wznmcmbd/WznmCtpWrsrv
+mkdir $SRCROOT/wznmcmbd/WznmGen
 mkdir $SRCROOT/wznmcmbd/WznmCtpWrweb
-mkdir $SRCROOT/wznmcmbd/WznmCtpWrstkit
+mkdir $SRCROOT/wznmcmbd/WznmCtpWrsrv
 mkdir $SRCROOT/wznmcmbd/WznmCtpGenui
-mkdir $SRCROOT/wznmcmbd/WznmCompl
+mkdir $SRCROOT/wznmcmbd/WznmCtpWrstkit
 mkdir $SRCROOT/wznmcmbd/WznmCtpGenjtr
+mkdir $SRCROOT/wznmcmbd/WznmCompl
 
 mkdir $LIBROOT/wznmcmbd
 
@@ -357,6 +358,11 @@ cp Makefile_CrdWznmRtj $SRCROOT/wznmcmbd/CrdWznmRtj/Makefile
 cp ../../wznmcmbd/CrdWznmRtj/*.h $SRCROOT/wznmcmbd/CrdWznmRtj/
 cp ../../wznmcmbd/CrdWznmRtj/*.cpp $SRCROOT/wznmcmbd/CrdWznmRtj/
 
+cp Makefile_CrdWznmEvt $SRCROOT/wznmcmbd/CrdWznmEvt/Makefile
+
+cp ../../wznmcmbd/CrdWznmEvt/*.h $SRCROOT/wznmcmbd/CrdWznmEvt/
+cp ../../wznmcmbd/CrdWznmEvt/*.cpp $SRCROOT/wznmcmbd/CrdWznmEvt/
+
 cp Makefile_CrdWznmSeq $SRCROOT/wznmcmbd/CrdWznmSeq/Makefile
 
 cp ../../wznmcmbd/CrdWznmSeq/*.h $SRCROOT/wznmcmbd/CrdWznmSeq/
@@ -372,6 +378,11 @@ cp Makefile_CrdWznmUtl $SRCROOT/wznmcmbd/CrdWznmUtl/Makefile
 cp ../../wznmcmbd/CrdWznmUtl/*.h $SRCROOT/wznmcmbd/CrdWznmUtl/
 cp ../../wznmcmbd/CrdWznmUtl/*.cpp $SRCROOT/wznmcmbd/CrdWznmUtl/
 
+cp Makefile_WznmWrsrv $SRCROOT/wznmcmbd/WznmWrsrv/Makefile
+
+cp ../../wznmcmbd/WznmWrsrv/*.h $SRCROOT/wznmcmbd/WznmWrsrv/
+cp ../../wznmcmbd/WznmWrsrv/*.cpp $SRCROOT/wznmcmbd/WznmWrsrv/
+
 cp Makefile_WznmWrweb $SRCROOT/wznmcmbd/WznmWrweb/Makefile
 
 cp ../../wznmcmbd/WznmWrweb/*.h $SRCROOT/wznmcmbd/WznmWrweb/
@@ -382,68 +393,63 @@ cp Makefile_WznmWrjapi $SRCROOT/wznmcmbd/WznmWrjapi/Makefile
 cp ../../wznmcmbd/WznmWrjapi/*.h $SRCROOT/wznmcmbd/WznmWrjapi/
 cp ../../wznmcmbd/WznmWrjapi/*.cpp $SRCROOT/wznmcmbd/WznmWrjapi/
 
-cp Makefile_WznmWrsrv $SRCROOT/wznmcmbd/WznmWrsrv/Makefile
-
-cp ../../wznmcmbd/WznmWrsrv/*.h $SRCROOT/wznmcmbd/WznmWrsrv/
-cp ../../wznmcmbd/WznmWrsrv/*.cpp $SRCROOT/wznmcmbd/WznmWrsrv/
-
 cp Makefile_WznmWrdbs $SRCROOT/wznmcmbd/WznmWrdbs/Makefile
 
 cp ../../wznmcmbd/WznmWrdbs/*.h $SRCROOT/wznmcmbd/WznmWrdbs/
 cp ../../wznmcmbd/WznmWrdbs/*.cpp $SRCROOT/wznmcmbd/WznmWrdbs/
-
-cp Makefile_WznmWrapp $SRCROOT/wznmcmbd/WznmWrapp/Makefile
-
-cp ../../wznmcmbd/WznmWrapp/*.h $SRCROOT/wznmcmbd/WznmWrapp/
-cp ../../wznmcmbd/WznmWrapp/*.cpp $SRCROOT/wznmcmbd/WznmWrapp/
 
 cp Makefile_WznmPrctree $SRCROOT/wznmcmbd/WznmPrctree/Makefile
 
 cp ../../wznmcmbd/WznmPrctree/*.h $SRCROOT/wznmcmbd/WznmPrctree/
 cp ../../wznmcmbd/WznmPrctree/*.cpp $SRCROOT/wznmcmbd/WznmPrctree/
 
+cp Makefile_WznmWrapp $SRCROOT/wznmcmbd/WznmWrapp/Makefile
+
+cp ../../wznmcmbd/WznmWrapp/*.h $SRCROOT/wznmcmbd/WznmWrapp/
+cp ../../wznmcmbd/WznmWrapp/*.cpp $SRCROOT/wznmcmbd/WznmWrapp/
+
 cp Makefile_WznmWrapi $SRCROOT/wznmcmbd/WznmWrapi/Makefile
 
 cp ../../wznmcmbd/WznmWrapi/*.h $SRCROOT/wznmcmbd/WznmWrapi/
 cp ../../wznmcmbd/WznmWrapi/*.cpp $SRCROOT/wznmcmbd/WznmWrapi/
-
-cp Makefile_WznmGen $SRCROOT/wznmcmbd/WznmGen/Makefile
-
-cp ../../wznmcmbd/WznmGen/*.h $SRCROOT/wznmcmbd/WznmGen/
-cp ../../wznmcmbd/WznmGen/*.cpp $SRCROOT/wznmcmbd/WznmGen/
 
 cp Makefile_WznmPrcfile $SRCROOT/wznmcmbd/WznmPrcfile/Makefile
 
 cp ../../wznmcmbd/WznmPrcfile/*.h $SRCROOT/wznmcmbd/WznmPrcfile/
 cp ../../wznmcmbd/WznmPrcfile/*.cpp $SRCROOT/wznmcmbd/WznmPrcfile/
 
-cp Makefile_WznmCtpWrsrv $SRCROOT/wznmcmbd/WznmCtpWrsrv/Makefile
+cp Makefile_WznmGen $SRCROOT/wznmcmbd/WznmGen/Makefile
 
-cp ../../wznmcmbd/WznmCtpWrsrv/*.h $SRCROOT/wznmcmbd/WznmCtpWrsrv/
-cp ../../wznmcmbd/WznmCtpWrsrv/*.cpp $SRCROOT/wznmcmbd/WznmCtpWrsrv/
+cp ../../wznmcmbd/WznmGen/*.h $SRCROOT/wznmcmbd/WznmGen/
+cp ../../wznmcmbd/WznmGen/*.cpp $SRCROOT/wznmcmbd/WznmGen/
 
 cp Makefile_WznmCtpWrweb $SRCROOT/wznmcmbd/WznmCtpWrweb/Makefile
 
 cp ../../wznmcmbd/WznmCtpWrweb/*.h $SRCROOT/wznmcmbd/WznmCtpWrweb/
 cp ../../wznmcmbd/WznmCtpWrweb/*.cpp $SRCROOT/wznmcmbd/WznmCtpWrweb/
 
-cp Makefile_WznmCtpWrstkit $SRCROOT/wznmcmbd/WznmCtpWrstkit/Makefile
+cp Makefile_WznmCtpWrsrv $SRCROOT/wznmcmbd/WznmCtpWrsrv/Makefile
 
-cp ../../wznmcmbd/WznmCtpWrstkit/*.h $SRCROOT/wznmcmbd/WznmCtpWrstkit/
-cp ../../wznmcmbd/WznmCtpWrstkit/*.cpp $SRCROOT/wznmcmbd/WznmCtpWrstkit/
+cp ../../wznmcmbd/WznmCtpWrsrv/*.h $SRCROOT/wznmcmbd/WznmCtpWrsrv/
+cp ../../wznmcmbd/WznmCtpWrsrv/*.cpp $SRCROOT/wznmcmbd/WznmCtpWrsrv/
 
 cp Makefile_WznmCtpGenui $SRCROOT/wznmcmbd/WznmCtpGenui/Makefile
 
 cp ../../wznmcmbd/WznmCtpGenui/*.h $SRCROOT/wznmcmbd/WznmCtpGenui/
 cp ../../wznmcmbd/WznmCtpGenui/*.cpp $SRCROOT/wznmcmbd/WznmCtpGenui/
 
-cp Makefile_WznmCompl $SRCROOT/wznmcmbd/WznmCompl/Makefile
+cp Makefile_WznmCtpWrstkit $SRCROOT/wznmcmbd/WznmCtpWrstkit/Makefile
 
-cp ../../wznmcmbd/WznmCompl/*.h $SRCROOT/wznmcmbd/WznmCompl/
-cp ../../wznmcmbd/WznmCompl/*.cpp $SRCROOT/wznmcmbd/WznmCompl/
+cp ../../wznmcmbd/WznmCtpWrstkit/*.h $SRCROOT/wznmcmbd/WznmCtpWrstkit/
+cp ../../wznmcmbd/WznmCtpWrstkit/*.cpp $SRCROOT/wznmcmbd/WznmCtpWrstkit/
 
 cp Makefile_WznmCtpGenjtr $SRCROOT/wznmcmbd/WznmCtpGenjtr/Makefile
 
 cp ../../wznmcmbd/WznmCtpGenjtr/*.h $SRCROOT/wznmcmbd/WznmCtpGenjtr/
 cp ../../wznmcmbd/WznmCtpGenjtr/*.cpp $SRCROOT/wznmcmbd/WznmCtpGenjtr/
+
+cp Makefile_WznmCompl $SRCROOT/wznmcmbd/WznmCompl/Makefile
+
+cp ../../wznmcmbd/WznmCompl/*.h $SRCROOT/wznmcmbd/WznmCompl/
+cp ../../wznmcmbd/WznmCompl/*.cpp $SRCROOT/wznmcmbd/WznmCompl/
 

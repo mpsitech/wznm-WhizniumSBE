@@ -2,8 +2,8 @@
 	* \file PnlWznmAppList_blks.cpp
 	* job handler for job PnlWznmAppList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -357,7 +357,7 @@ void PnlWznmAppList::Tag::writeXML(
 			writeStringAttr(wr, itemtag, "sref", "Cpt", "Accessor apps");
 			writeStringAttr(wr, itemtag, "sref", "TcoSho", "Acronym");
 			writeStringAttr(wr, itemtag, "sref", "TcoTit", "Title");
-			writeStringAttr(wr, itemtag, "sref", "TcoTrg", "Target");
+			writeStringAttr(wr, itemtag, "sref", "TcoTrg", "Acc. app target");
 			writeStringAttr(wr, itemtag, "sref", "TcoVer", "Version");
 		};
 		writeStringAttr(wr, itemtag, "sref", "TxtRecord1", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::REC, ixWznmVLocale)));

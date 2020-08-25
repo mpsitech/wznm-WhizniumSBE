@@ -2,8 +2,8 @@
 	* \file WznmQTblRef1NRtblock.h
 	* API code for table TblWznmQTblRef1NRtblock (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNMQTBLREF1NRTBLOCK_H

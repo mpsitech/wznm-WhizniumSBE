@@ -2,8 +2,8 @@
 	* \file QryWznmMdlMdl1NCard.h
 	* API code for job QryWznmMdlMdl1NCard (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef QRYWZNMMDLMDL1NCARD_H

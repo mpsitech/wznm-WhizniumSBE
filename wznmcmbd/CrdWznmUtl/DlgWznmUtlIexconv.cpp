@@ -2,8 +2,8 @@
 	* \file DlgWznmUtlIexconv.cpp
 	* job handler for job DlgWznmUtlIexconv (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -119,18 +119,18 @@ void DlgWznmUtlIexconv::refreshRes(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrRes oldStatshrres(statshrres);
 	ContInfRes oldContinfres(continfres);
+	StatShrRes oldStatshrres(statshrres);
 
 	// IP refreshRes --- BEGIN
+	// continfres
+
 	// statshrres
 	statshrres.DldActive = evalResDldActive(dbswznm);
 
-	// continfres
-
 	// IP refreshRes --- END
-	if (statshrres.diff(&oldStatshrres).size() != 0) insert(moditems, DpchEngData::STATSHRRES);
 	if (continfres.diff(&oldContinfres).size() != 0) insert(moditems, DpchEngData::CONTINFRES);
+	if (statshrres.diff(&oldStatshrres).size() != 0) insert(moditems, DpchEngData::STATSHRRES);
 };
 
 void DlgWznmUtlIexconv::refresh(
@@ -138,23 +138,23 @@ void DlgWznmUtlIexconv::refresh(
 			, set<uint>& moditems
 		) {
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshSrc(dbswznm, moditems);
 	refreshCnv(dbswznm, moditems);

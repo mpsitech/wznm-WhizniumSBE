@@ -2,8 +2,8 @@
 	* \file CrdWznmTag.h
 	* job handler for job CrdWznmTag (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef CRDWZNMTAG_H
@@ -13,8 +13,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmTagHeadbar.h"
 #include "PnlWznmTagList.h"
+#include "PnlWznmTagHeadbar.h"
 #include "PnlWznmTagRec.h"
 
 #define VecVWznmTagDo CrdWznmTag::VecVDo
@@ -189,8 +189,8 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	PnlWznmTagHeadbar* pnlheadbar;
 	PnlWznmTagList* pnllist;
+	PnlWznmTagHeadbar* pnlheadbar;
 	PnlWznmTagRec* pnlrec;
 
 	// IP vars.cust --- INSERT

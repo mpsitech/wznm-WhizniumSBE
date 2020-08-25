@@ -2,8 +2,8 @@
 	* \file WznmMProject.cpp
 	* database access for table TblWznmMProject (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmMProject.h"
@@ -233,6 +233,13 @@ void TblWznmMProject::removeRecByRef(
 bool TblWznmMProject::loadRecByRef(
 			ubigint ref
 			, WznmMProject** rec
+		) {
+	return false;
+};
+
+bool TblWznmMProject::loadShoByRef(
+			ubigint ref
+			, string& Short
 		) {
 	return false;
 };
@@ -494,6 +501,13 @@ bool MyTblWznmMProject::loadRecByRef(
 	return loadRecBySQL("SELECT * FROM TblWznmMProject WHERE ref = " + to_string(ref), rec);
 };
 
+bool MyTblWznmMProject::loadShoByRef(
+			ubigint ref
+			, string& Short
+		) {
+	return loadStringBySQL("SELECT Short FROM TblWznmMProject WHERE ref = " + to_string(ref) + "", Short);
+};
+
 bool MyTblWznmMProject::loadTitByRef(
 			ubigint ref
 			, string& Title
@@ -524,6 +538,7 @@ void PgTblWznmMProject::initStatements() {
 	createStatement("TblWznmMProject_removeRecByRef", "DELETE FROM TblWznmMProject WHERE ref = $1", 1);
 
 	createStatement("TblWznmMProject_loadRecByRef", "SELECT ref, grp, own, refWznmMVersion, Short, Title, Giturl, Comment FROM TblWznmMProject WHERE ref = $1", 1);
+	createStatement("TblWznmMProject_loadShoByRef", "SELECT Short FROM TblWznmMProject WHERE ref = $1", 1);
 	createStatement("TblWznmMProject_loadTitByRef", "SELECT Title FROM TblWznmMProject WHERE ref = $1", 1);
 };
 
@@ -819,6 +834,23 @@ bool PgTblWznmMProject::loadRecByRef(
 	const int f[] = {1};
 
 	return loadRecByStmt("TblWznmMProject_loadRecByRef", 1, vals, l, f, rec);
+};
+
+bool PgTblWznmMProject::loadShoByRef(
+			ubigint ref
+			, string& Short
+		) {
+	ubigint _ref = htonl64(ref);
+
+	const char* vals[] = {
+		(char*) &_ref
+	};
+	const int l[] = {
+		sizeof(ubigint)
+	};
+	const int f[] = {1};
+
+	return loadStringByStmt("TblWznmMProject_loadShoByRef", 1, vals, l, f, Short);
 };
 
 bool PgTblWznmMProject::loadTitByRef(

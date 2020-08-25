@@ -2,8 +2,8 @@
 	* \file PnlWznmMdlMdl1NCard.h
 	* job handler for job PnlWznmMdlMdl1NCard (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMMDLMDL1NCARD_H

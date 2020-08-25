@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmApp card job handler, release wznmcmbd_ungenio
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmcmbd/VecWznm -I$(SRCROOT)/wznmcmbd/IexWznm -I$(SRCROOT)/wznmcmbd
 INCPATH += -I/Library/PostgreSQL/9.6/include -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmApp.o PnlWznmAppList.o QryWznmAppList.o PnlWznmAppHeadbar.o PnlWznmAppRec.o PnlWznmAppRef1NFile.o QryWznmAppRef1NFile.o PnlWznmAppApp1NSequence.o QryWznmAppApp1NSequence.o PnlWznmApp1NRtjob.o QryWznmApp1NRtjob.o PnlWznmAppDetail.o DlgWznmAppImpstr.o DlgWznmAppNew.o DlgWznmAppWrite.o
+OBJS = CrdWznmApp.o PnlWznmAppList.o QryWznmAppList.o PnlWznmAppHeadbar.o PnlWznmAppRec.o PnlWznmApp1NRtjob.o QryWznmApp1NRtjob.o PnlWznmAppRef1NFile.o QryWznmAppRef1NFile.o PnlWznmAppApp1NSequence.o QryWznmAppApp1NSequence.o PnlWznmApp1NEvent.o QryWznmApp1NEvent.o PnlWznmAppDetail.o DlgWznmAppImpstr.o DlgWznmAppWrite.o DlgWznmAppNew.o
 
 LIB = libcrdwznmapp
 

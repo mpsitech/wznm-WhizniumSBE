@@ -2,8 +2,8 @@
 	* \file WznmQVer1NQuery.cpp
 	* API code for table TblWznmQVer1NQuery (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "WznmQVer1NQuery.h"

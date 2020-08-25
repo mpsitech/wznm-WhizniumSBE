@@ -2,8 +2,8 @@
 	* \file PnlWznmIelDetail_evals.cpp
 	* job handler for job PnlWznmIelDetail (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -281,7 +281,7 @@ bool PnlWznmIelDetail::evalTxtPstActive(
 bool PnlWznmIelDetail::evalButPstViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// iel.pstEq(0)|((pre.ixCrdaccPst()&pre.refVer())|(pre.ixCrdaccSbs()&pre.refVer())|(pre.ixCrdaccTbl()&pre.refVer())|(pre.ixCrdaccVec()&pre.refVer()))
+	// iel.pstEq(0)|((pre.ixCrdaccPst()&pre.refVer())|(pre.ixCrdaccTbl()&pre.refVer())|(pre.ixCrdaccSbs()&pre.refVer())|(pre.ixCrdaccVec()&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
@@ -295,14 +295,14 @@ bool PnlWznmIelDetail::evalButPstViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);

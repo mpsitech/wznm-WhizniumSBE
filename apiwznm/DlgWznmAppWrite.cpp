@@ -2,8 +2,8 @@
 	* \file DlgWznmAppWrite.cpp
 	* API code for job DlgWznmAppWrite (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "DlgWznmAppWrite.h"
@@ -21,6 +21,7 @@ uint DlgWznmAppWrite::VecVDit::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
+	if (s == "det") return DET;
 	if (s == "cuc") return CUC;
 	if (s == "wrc") return WRC;
 	if (s == "lfi") return LFI;
@@ -32,6 +33,7 @@ uint DlgWznmAppWrite::VecVDit::getIx(
 string DlgWznmAppWrite::VecVDit::getSref(
 			const uint ix
 		) {
+	if (ix == DET) return("Det");
 	if (ix == CUC) return("Cuc");
 	if (ix == WRC) return("Wrc");
 	if (ix == LFI) return("Lfi");
@@ -200,6 +202,83 @@ set<uint> DlgWznmAppWrite::ContIac::diff(
 	commitems = comm(comp);
 
 	diffitems = {NUMFDSE};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class DlgWznmAppWrite::ContIacDet
+ ******************************************************************************/
+
+DlgWznmAppWrite::ContIacDet::ContIacDet(
+			const bool ChkUsf
+		) :
+			Block()
+		{
+	this->ChkUsf = ChkUsf;
+
+	mask = {CHKUSF};
+};
+
+bool DlgWznmAppWrite::ContIacDet::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "ContIacDlgWznmAppWriteDet");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	string itemtag = "ContitemIacDlgWznmAppWriteDet";
+
+	if (basefound) {
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "ChkUsf", ChkUsf)) add(CHKUSF);
+	};
+
+	return basefound;
+};
+
+void DlgWznmAppWrite::ContIacDet::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "ContIacDlgWznmAppWriteDet";
+
+	string itemtag;
+	if (shorttags) itemtag = "Ci";
+	else itemtag = "ContitemIacDlgWznmAppWriteDet";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeBoolAttr(wr, itemtag, "sref", "ChkUsf", ChkUsf);
+	xmlTextWriterEndElement(wr);
+};
+
+set<uint> DlgWznmAppWrite::ContIacDet::comm(
+			const ContIacDet* comp
+		) {
+	set<uint> items;
+
+	if (ChkUsf == comp->ChkUsf) insert(items, CHKUSF);
+
+	return(items);
+};
+
+set<uint> DlgWznmAppWrite::ContIacDet::diff(
+			const ContIacDet* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {CHKUSF};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -904,6 +983,43 @@ bool DlgWznmAppWrite::TagCuc::readXML(
 };
 
 /******************************************************************************
+ class DlgWznmAppWrite::TagDet
+ ******************************************************************************/
+
+DlgWznmAppWrite::TagDet::TagDet(
+			const string& CptUsf
+		) :
+			Block()
+		{
+	this->CptUsf = CptUsf;
+
+	mask = {CPTUSF};
+};
+
+bool DlgWznmAppWrite::TagDet::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "TagDlgWznmAppWriteDet");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	string itemtag = "TagitemDlgWznmAppWriteDet";
+
+	if (basefound) {
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "CptUsf", CptUsf)) add(CPTUSF);
+	};
+
+	return basefound;
+};
+
+/******************************************************************************
  class DlgWznmAppWrite::TagFia
  ******************************************************************************/
 
@@ -1027,14 +1143,16 @@ bool DlgWznmAppWrite::TagWrc::readXML(
 DlgWznmAppWrite::DpchAppData::DpchAppData(
 			const string& scrJref
 			, ContIac* contiac
+			, ContIacDet* contiacdet
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMAPPWRITEDATA, scrJref)
 		{
-	if (find(mask, ALL)) this->mask = {SCRJREF, CONTIAC};
+	if (find(mask, ALL)) this->mask = {SCRJREF, CONTIAC, CONTIACDET};
 	else this->mask = mask;
 
 		if (find(this->mask, CONTIAC) && contiac) this->contiac = *contiac;
+		if (find(this->mask, CONTIACDET) && contiacdet) this->contiacdet = *contiacdet;
 };
 
 string DlgWznmAppWrite::DpchAppData::getSrefsMask() {
@@ -1043,6 +1161,7 @@ string DlgWznmAppWrite::DpchAppData::getSrefsMask() {
 
 	if (has(SCRJREF)) ss.push_back("scrJref");
 	if (has(CONTIAC)) ss.push_back("contiac");
+	if (has(CONTIACDET)) ss.push_back("contiacdet");
 
 	StrMod::vectorToString(ss, srefs);
 
@@ -1056,6 +1175,7 @@ void DlgWznmAppWrite::DpchAppData::writeXML(
 	xmlTextWriterWriteAttribute(wr, BAD_CAST "xmlns", BAD_CAST "http://www.mpsitech.com/wznm");
 		if (has(SCRJREF)) writeString(wr, "scrJref", scrJref);
 		if (has(CONTIAC)) contiac.writeXML(wr);
+		if (has(CONTIACDET)) contiacdet.writeXML(wr);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -1119,6 +1239,7 @@ string DlgWznmAppWrite::DpchEngData::getSrefsMask() {
 
 	if (has(SCRJREF)) ss.push_back("scrJref");
 	if (has(CONTIAC)) ss.push_back("contiac");
+	if (has(CONTIACDET)) ss.push_back("contiacdet");
 	if (has(CONTINF)) ss.push_back("continf");
 	if (has(CONTINFFIA)) ss.push_back("continffia");
 	if (has(CONTINFLFI)) ss.push_back("continflfi");
@@ -1133,6 +1254,7 @@ string DlgWznmAppWrite::DpchEngData::getSrefsMask() {
 	if (has(STATSHRWRC)) ss.push_back("statshrwrc");
 	if (has(TAG)) ss.push_back("tag");
 	if (has(TAGCUC)) ss.push_back("tagcuc");
+	if (has(TAGDET)) ss.push_back("tagdet");
 	if (has(TAGFIA)) ss.push_back("tagfia");
 	if (has(TAGLFI)) ss.push_back("taglfi");
 	if (has(TAGWRC)) ss.push_back("tagwrc");
@@ -1159,6 +1281,7 @@ void DlgWznmAppWrite::DpchEngData::readXML(
 	if (basefound) {
 		if (extractStringUclc(docctx, basexpath, "scrJref", "", scrJref)) add(SCRJREF);
 		if (contiac.readXML(docctx, basexpath, true)) add(CONTIAC);
+		if (contiacdet.readXML(docctx, basexpath, true)) add(CONTIACDET);
 		if (continf.readXML(docctx, basexpath, true)) add(CONTINF);
 		if (continffia.readXML(docctx, basexpath, true)) add(CONTINFFIA);
 		if (continflfi.readXML(docctx, basexpath, true)) add(CONTINFLFI);
@@ -1173,11 +1296,13 @@ void DlgWznmAppWrite::DpchEngData::readXML(
 		if (statshrwrc.readXML(docctx, basexpath, true)) add(STATSHRWRC);
 		if (tag.readXML(docctx, basexpath, true)) add(TAG);
 		if (tagcuc.readXML(docctx, basexpath, true)) add(TAGCUC);
+		if (tagdet.readXML(docctx, basexpath, true)) add(TAGDET);
 		if (tagfia.readXML(docctx, basexpath, true)) add(TAGFIA);
 		if (taglfi.readXML(docctx, basexpath, true)) add(TAGLFI);
 		if (tagwrc.readXML(docctx, basexpath, true)) add(TAGWRC);
 	} else {
 		contiac = ContIac();
+		contiacdet = ContIacDet();
 		continf = ContInf();
 		continffia = ContInfFia();
 		continflfi = ContInfLfi();
@@ -1192,6 +1317,7 @@ void DlgWznmAppWrite::DpchEngData::readXML(
 		statshrwrc = StatShrWrc();
 		tag = Tag();
 		tagcuc = TagCuc();
+		tagdet = TagDet();
 		tagfia = TagFia();
 		taglfi = TagLfi();
 		tagwrc = TagWrc();

@@ -2,8 +2,8 @@
   * \file ListWznmQOpkMNComponent.java
   * Java API code for record set of table TblWznmQOpkMNComponent
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;

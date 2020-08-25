@@ -2,8 +2,8 @@
 	* \file VecWznmVJob.cpp
 	* vector VecWznmVJob (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "VecWznmVJob.h"
@@ -32,6 +32,7 @@ uint VecWznmVJob::getIx(
 	if (s == "crdwznmctp") return CRDWZNMCTP;
 	if (s == "crdwznmdlg") return CRDWZNMDLG;
 	if (s == "crdwznmerr") return CRDWZNMERR;
+	if (s == "crdwznmevt") return CRDWZNMEVT;
 	if (s == "crdwznmfil") return CRDWZNMFIL;
 	if (s == "crdwznmiel") return CRDWZNMIEL;
 	if (s == "crdwznmiex") return CRDWZNMIEX;
@@ -113,6 +114,7 @@ uint VecWznmVJob::getIx(
 	if (s == "jobwznmiexprj") return JOBWZNMIEXPRJ;
 	if (s == "jobwznmiexuix") return JOBWZNMIEXUIX;
 	if (s == "jobwznmlicense") return JOBWZNMLICENSE;
+	if (s == "pnlwznmapp1nevent") return PNLWZNMAPP1NEVENT;
 	if (s == "pnlwznmapp1nrtjob") return PNLWZNMAPP1NRTJOB;
 	if (s == "pnlwznmappapp1nsequence") return PNLWZNMAPPAPP1NSEQUENCE;
 	if (s == "pnlwznmappdetail") return PNLWZNMAPPDETAIL;
@@ -184,6 +186,10 @@ uint VecWznmVJob::getIx(
 	if (s == "pnlwznmerrheadbar") return PNLWZNMERRHEADBAR;
 	if (s == "pnlwznmerrlist") return PNLWZNMERRLIST;
 	if (s == "pnlwznmerrrec") return PNLWZNMERRREC;
+	if (s == "pnlwznmevtdetail") return PNLWZNMEVTDETAIL;
+	if (s == "pnlwznmevtheadbar") return PNLWZNMEVTHEADBAR;
+	if (s == "pnlwznmevtlist") return PNLWZNMEVTLIST;
+	if (s == "pnlwznmevtrec") return PNLWZNMEVTREC;
 	if (s == "pnlwznmfildetail") return PNLWZNMFILDETAIL;
 	if (s == "pnlwznmfilheadbar") return PNLWZNMFILHEADBAR;
 	if (s == "pnlwznmfillist") return PNLWZNMFILLIST;
@@ -389,7 +395,7 @@ uint VecWznmVJob::getIx(
 	if (s == "pnlwznmstbrec") return PNLWZNMSTBREC;
 	if (s == "pnlwznmstbsubmnstub") return PNLWZNMSTBSUBMNSTUB;
 	if (s == "pnlwznmstbsupmnstub") return PNLWZNMSTBSUPMNSTUB;
-	if (s == "pnlwznmsteastep") return PNLWZNMSTEASTEP;
+	if (s == "pnlwznmsteatrig") return PNLWZNMSTEATRIG;
 	if (s == "pnlwznmstedetail") return PNLWZNMSTEDETAIL;
 	if (s == "pnlwznmsteheadbar") return PNLWZNMSTEHEADBAR;
 	if (s == "pnlwznmstelist") return PNLWZNMSTELIST;
@@ -483,6 +489,7 @@ uint VecWznmVJob::getIx(
 	if (s == "pnlwznmvitheadbar") return PNLWZNMVITHEADBAR;
 	if (s == "pnlwznmvitlist") return PNLWZNMVITLIST;
 	if (s == "pnlwznmvitrec") return PNLWZNMVITREC;
+	if (s == "qrywznmapp1nevent") return QRYWZNMAPP1NEVENT;
 	if (s == "qrywznmapp1nrtjob") return QRYWZNMAPP1NRTJOB;
 	if (s == "qrywznmappapp1nsequence") return QRYWZNMAPPAPP1NSEQUENCE;
 	if (s == "qrywznmapplist") return QRYWZNMAPPLIST;
@@ -521,6 +528,7 @@ uint VecWznmVJob::getIx(
 	if (s == "qrywznmdlgmnquery") return QRYWZNMDLGMNQUERY;
 	if (s == "qrywznmdlgref1ncontrol") return QRYWZNMDLGREF1NCONTROL;
 	if (s == "qrywznmerrlist") return QRYWZNMERRLIST;
+	if (s == "qrywznmevtlist") return QRYWZNMEVTLIST;
 	if (s == "qrywznmfillist") return QRYWZNMFILLIST;
 	if (s == "qrywznmiellist") return QRYWZNMIELLIST;
 	if (s == "qrywznmiex1nimpexp") return QRYWZNMIEX1NIMPEXP;
@@ -633,7 +641,7 @@ uint VecWznmVJob::getIx(
 	if (s == "qrywznmstbmnsquawk") return QRYWZNMSTBMNSQUAWK;
 	if (s == "qrywznmstbsubmnstub") return QRYWZNMSTBSUBMNSTUB;
 	if (s == "qrywznmstbsupmnstub") return QRYWZNMSTBSUPMNSTUB;
-	if (s == "qrywznmsteastep") return QRYWZNMSTEASTEP;
+	if (s == "qrywznmsteatrig") return QRYWZNMSTEATRIG;
 	if (s == "qrywznmstelist") return QRYWZNMSTELIST;
 	if (s == "qrywznmtaglist") return QRYWZNMTAGLIST;
 	if (s == "qrywznmtbl1ncheck") return QRYWZNMTBL1NCHECK;
@@ -719,6 +727,7 @@ string VecWznmVJob::getSref(
 	if (ix == CRDWZNMCTP) return("CrdWznmCtp");
 	if (ix == CRDWZNMDLG) return("CrdWznmDlg");
 	if (ix == CRDWZNMERR) return("CrdWznmErr");
+	if (ix == CRDWZNMEVT) return("CrdWznmEvt");
 	if (ix == CRDWZNMFIL) return("CrdWznmFil");
 	if (ix == CRDWZNMIEL) return("CrdWznmIel");
 	if (ix == CRDWZNMIEX) return("CrdWznmIex");
@@ -800,6 +809,7 @@ string VecWznmVJob::getSref(
 	if (ix == JOBWZNMIEXPRJ) return("JobWznmIexPrj");
 	if (ix == JOBWZNMIEXUIX) return("JobWznmIexUix");
 	if (ix == JOBWZNMLICENSE) return("JobWznmLicense");
+	if (ix == PNLWZNMAPP1NEVENT) return("PnlWznmApp1NEvent");
 	if (ix == PNLWZNMAPP1NRTJOB) return("PnlWznmApp1NRtjob");
 	if (ix == PNLWZNMAPPAPP1NSEQUENCE) return("PnlWznmAppApp1NSequence");
 	if (ix == PNLWZNMAPPDETAIL) return("PnlWznmAppDetail");
@@ -871,6 +881,10 @@ string VecWznmVJob::getSref(
 	if (ix == PNLWZNMERRHEADBAR) return("PnlWznmErrHeadbar");
 	if (ix == PNLWZNMERRLIST) return("PnlWznmErrList");
 	if (ix == PNLWZNMERRREC) return("PnlWznmErrRec");
+	if (ix == PNLWZNMEVTDETAIL) return("PnlWznmEvtDetail");
+	if (ix == PNLWZNMEVTHEADBAR) return("PnlWznmEvtHeadbar");
+	if (ix == PNLWZNMEVTLIST) return("PnlWznmEvtList");
+	if (ix == PNLWZNMEVTREC) return("PnlWznmEvtRec");
 	if (ix == PNLWZNMFILDETAIL) return("PnlWznmFilDetail");
 	if (ix == PNLWZNMFILHEADBAR) return("PnlWznmFilHeadbar");
 	if (ix == PNLWZNMFILLIST) return("PnlWznmFilList");
@@ -1076,7 +1090,7 @@ string VecWznmVJob::getSref(
 	if (ix == PNLWZNMSTBREC) return("PnlWznmStbRec");
 	if (ix == PNLWZNMSTBSUBMNSTUB) return("PnlWznmStbSubMNStub");
 	if (ix == PNLWZNMSTBSUPMNSTUB) return("PnlWznmStbSupMNStub");
-	if (ix == PNLWZNMSTEASTEP) return("PnlWznmSteAStep");
+	if (ix == PNLWZNMSTEATRIG) return("PnlWznmSteATrig");
 	if (ix == PNLWZNMSTEDETAIL) return("PnlWznmSteDetail");
 	if (ix == PNLWZNMSTEHEADBAR) return("PnlWznmSteHeadbar");
 	if (ix == PNLWZNMSTELIST) return("PnlWznmSteList");
@@ -1170,6 +1184,7 @@ string VecWznmVJob::getSref(
 	if (ix == PNLWZNMVITHEADBAR) return("PnlWznmVitHeadbar");
 	if (ix == PNLWZNMVITLIST) return("PnlWznmVitList");
 	if (ix == PNLWZNMVITREC) return("PnlWznmVitRec");
+	if (ix == QRYWZNMAPP1NEVENT) return("QryWznmApp1NEvent");
 	if (ix == QRYWZNMAPP1NRTJOB) return("QryWznmApp1NRtjob");
 	if (ix == QRYWZNMAPPAPP1NSEQUENCE) return("QryWznmAppApp1NSequence");
 	if (ix == QRYWZNMAPPLIST) return("QryWznmAppList");
@@ -1208,6 +1223,7 @@ string VecWznmVJob::getSref(
 	if (ix == QRYWZNMDLGMNQUERY) return("QryWznmDlgMNQuery");
 	if (ix == QRYWZNMDLGREF1NCONTROL) return("QryWznmDlgRef1NControl");
 	if (ix == QRYWZNMERRLIST) return("QryWznmErrList");
+	if (ix == QRYWZNMEVTLIST) return("QryWznmEvtList");
 	if (ix == QRYWZNMFILLIST) return("QryWznmFilList");
 	if (ix == QRYWZNMIELLIST) return("QryWznmIelList");
 	if (ix == QRYWZNMIEX1NIMPEXP) return("QryWznmIex1NImpexp");
@@ -1320,7 +1336,7 @@ string VecWznmVJob::getSref(
 	if (ix == QRYWZNMSTBMNSQUAWK) return("QryWznmStbMNSquawk");
 	if (ix == QRYWZNMSTBSUBMNSTUB) return("QryWznmStbSubMNStub");
 	if (ix == QRYWZNMSTBSUPMNSTUB) return("QryWznmStbSupMNStub");
-	if (ix == QRYWZNMSTEASTEP) return("QryWznmSteAStep");
+	if (ix == QRYWZNMSTEATRIG) return("QryWznmSteATrig");
 	if (ix == QRYWZNMSTELIST) return("QryWznmSteList");
 	if (ix == QRYWZNMTAGLIST) return("QryWznmTagList");
 	if (ix == QRYWZNMTBL1NCHECK) return("QryWznmTbl1NCheck");

@@ -2,8 +2,8 @@
 	* \file CrdWznmVer.cpp
 	* job handler for job CrdWznmVer (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -46,29 +46,31 @@ CrdWznmVer::CrdWznmVer(
 
 	pnllist = NULL;
 	pnlheadbar = NULL;
-	dlgwrstkit = NULL;
 	pnlrec = NULL;
-	dlgnew = NULL;
+	dlgbscui = NULL;
+	dlgcustjob = NULL;
+	dlgcustjtr = NULL;
+	dlgwrstkit = NULL;
 	dlgoppack = NULL;
-	dlgglobal = NULL;
+	dlgnew = NULL;
 	dlgimpexp = NULL;
+	dlgglobal = NULL;
 	dlggenui = NULL;
 	dlggenjtr = NULL;
 	dlgfinmod = NULL;
 	dlgdeploy = NULL;
 	dlgdbstr = NULL;
 	dlgcustui = NULL;
-	dlgcustjtr = NULL;
-	dlgcustjob = NULL;
-	dlgbscui = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	xchg->addIxPreset(VecWznmVPreset::PREWZNMIXPRE, jref, ixWznmVPreset);
 	if (ixWznmVPreset != VecWznmVPreset::VOID) xchg->addRefPreset(ixWznmVPreset, jref, preUref);
 
+	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFVER, ref);
+
 	// initialize according to ref
-	changeRef(dbswznm, jref, ((ref+1) == 0) ? 0 : ref, false);
+	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWznmVerList(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmVerHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
@@ -83,7 +85,7 @@ CrdWznmVer::CrdWznmVer(
 	set<uint> moditems;
 	refresh(dbswznm, moditems);
 
-	if ((ref+1) == 0) {
+	if ((ref + 1) == 0) {
 		dlgnew = new DlgWznmVerNew(xchg, dbswznm, jref, ixWznmVLocale);
 		statshr.jrefDlgnew = dlgnew->jref;
 	};

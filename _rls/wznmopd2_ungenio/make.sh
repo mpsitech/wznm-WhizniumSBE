@@ -2,8 +2,8 @@
 # file make.sh
 # make script for Wznm operation daemon, release wznmopd2_ungenio
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 make Wznmopd.h.gch
 if [ $? -ne 0 ]; then

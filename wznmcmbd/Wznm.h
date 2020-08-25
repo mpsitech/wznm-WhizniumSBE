@@ -2,17 +2,17 @@
 	* \file Wznm.h
 	* Wznm global functionality (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef WZNM_H
 #define WZNM_H
 
-#define WZNM_VERSION "1.0.2"
+#define WZNM_VERSION "1.0.6"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 0
-#define WZNM_VERSION_SUB 2
+#define WZNM_VERSION_SUB 6
 
 // IP include.cust --- IBEGIN
 #include <sys/wait.h>
@@ -230,6 +230,7 @@ namespace StubWznm {
 	std::string getStubCpbStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubCtpStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubDlgStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
+	std::string getStubEvtStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubFedSref(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubFedStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubFilStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
@@ -250,6 +251,7 @@ namespace StubWznm {
 	std::string getStubOpxStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubOwner(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubPnlStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
+	std::string getStubPrjShort(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubPrjStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubPrsStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubPstStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
@@ -277,6 +279,7 @@ namespace StubWznm {
 	std::string getStubUsrStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubVecStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubVerNo(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
+	std::string getStubVerShort(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubVerStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubVitSref(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubVitStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);

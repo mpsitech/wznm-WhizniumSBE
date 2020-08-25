@@ -2,8 +2,8 @@
 	* \file CrdWznmFil.h
 	* job handler for job CrdWznmFil (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef CRDWZNMFIL_H

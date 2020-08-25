@@ -2,8 +2,8 @@
 	* \file DlgWznmVerCustjob.h
 	* job handler for job DlgWznmVerCustjob (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMVERCUSTJOB_H
@@ -408,9 +408,9 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalImpButRunActive(DbsWznm* dbswznm);
 	bool evalImpButStoActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalIfiUldActive(DbsWznm* dbswznm);
 
 public:

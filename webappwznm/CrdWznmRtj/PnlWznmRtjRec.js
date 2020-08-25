@@ -2,28 +2,28 @@
   * \file PnlWznmRtjRec.js
   * web client functionality for panel PnlWznmRtjRec
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmRtjRec", "scrJrefDetail");
-	scrJref1NRtblock = retrieveSi(srcdoc, "StatShrWznmRtjRec", "scrJref1NRtblock");
 	scrJref1NRtdpch = retrieveSi(srcdoc, "StatShrWznmRtjRec", "scrJref1NRtdpch");
+	scrJref1NRtblock = retrieveSi(srcdoc, "StatShrWznmRtjRec", "scrJref1NRtblock");
 	scrJrefSup1NRtjob = retrieveSi(srcdoc, "StatShrWznmRtjRec", "scrJrefSup1NRtjob");
 };
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmRtjRec", "initdoneDetail", "false");
-	setSi(srcdoc, "StatAppWznmRtjRec", "initdone1NRtblock", "false");
 	setSi(srcdoc, "StatAppWznmRtjRec", "initdone1NRtdpch", "false");
+	setSi(srcdoc, "StatAppWznmRtjRec", "initdone1NRtblock", "false");
 	setSi(srcdoc, "StatAppWznmRtjRec", "initdoneSup1NRtjob", "false");
 };
 
 function resetHeights() {
 	heightDetail = 30;
-	height1NRtblock = 30;
 	height1NRtdpch = 30;
+	height1NRtblock = 30;
 	heightSup1NRtjob = 30;
 };
 
@@ -43,16 +43,16 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmRtjRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmRtjRec", "initdoneDetail") == "true");
-	var initdone1NRtblock = (retrieveSi(srcdoc, "StatAppWznmRtjRec", "initdone1NRtblock") == "true");
 	var initdone1NRtdpch = (retrieveSi(srcdoc, "StatAppWznmRtjRec", "initdone1NRtdpch") == "true");
+	var initdone1NRtblock = (retrieveSi(srcdoc, "StatAppWznmRtjRec", "initdone1NRtblock") == "true");
 	var initdoneSup1NRtjob = (retrieveSi(srcdoc, "StatAppWznmRtjRec", "initdoneSup1NRtjob") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmRtjDetail.html?scrJref=" + scrJrefDetail;
-	} else if (!initdone1NRtblock) {
-		rhsdoc.getElementById("1NRtblock").src = "./PnlWznmRtj1NRtblock.html?scrJref=" + scrJref1NRtblock;
 	} else if (!initdone1NRtdpch) {
 		rhsdoc.getElementById("1NRtdpch").src = "./PnlWznmRtj1NRtdpch.html?scrJref=" + scrJref1NRtdpch;
+	} else if (!initdone1NRtblock) {
+		rhsdoc.getElementById("1NRtblock").src = "./PnlWznmRtj1NRtblock.html?scrJref=" + scrJref1NRtblock;
 	} else if (!initdoneSup1NRtjob) {
 		rhsdoc.getElementById("Sup1NRtjob").src = "./PnlWznmRtjSup1NRtjob.html?scrJref=" + scrJrefSup1NRtjob;
 
@@ -94,8 +94,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
-		else if (short == "1NRtblock") height1NRtblock = height;
 		else if (short == "1NRtdpch") height1NRtdpch = height;
+		else if (short == "1NRtblock") height1NRtblock = height;
 		else if (short == "Sup1NRtjob") heightSup1NRtjob = height;
 	};
 
@@ -140,8 +140,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
-	else if (pnlshort == "1NRtblock") height1NRtblock = height;
 	else if (pnlshort == "1NRtdpch") height1NRtdpch = height;
+	else if (pnlshort == "1NRtblock") height1NRtblock = height;
 	else if (pnlshort == "Sup1NRtjob") heightSup1NRtjob = height;
 
 	if (update) updateHeight();
@@ -151,7 +151,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + 5;
-	heightRhs = height1NRtblock+13 + height1NRtdpch+13 + heightSup1NRtjob+13 + 5;
+	heightRhs = height1NRtdpch+13 + height1NRtblock+13 + heightSup1NRtjob+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -342,10 +342,10 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NRtblock) {
-				if (getInitdone("1NRtblock")) rhsdoc.getElementById("1NRtblock").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NRtdpch) {
 				if (getInitdone("1NRtdpch")) rhsdoc.getElementById("1NRtdpch").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NRtblock) {
+				if (getInitdone("1NRtblock")) rhsdoc.getElementById("1NRtblock").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefSup1NRtjob) {
 				if (getInitdone("Sup1NRtjob")) rhsdoc.getElementById("Sup1NRtjob").contentWindow.handleDpchEng(dom, dpch);
 			} else {

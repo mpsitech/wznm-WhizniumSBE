@@ -2,8 +2,8 @@
 	* \file PnlWznmNavAppdev_evals.cpp
 	* job handler for job PnlWznmNavAppdev (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -67,6 +67,48 @@ bool PnlWznmNavAppdev::evalButRtjViewActive(
 };
 
 bool PnlWznmNavAppdev::evalButRtjNewcrdActive(
+			DbsWznm* dbswznm
+		) {
+	// pre.refApp()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFAPP, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmNavAppdev::evalLstEvtAvail(
+			DbsWznm* dbswznm
+		) {
+	// pre.ixCrdaccEvt()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCEVT, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmNavAppdev::evalButEvtViewActive(
+			DbsWznm* dbswznm
+		) {
+	// LstEvt.sel()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (contiac.numFLstEvt != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmNavAppdev::evalButEvtNewcrdActive(
 			DbsWznm* dbswznm
 		) {
 	// pre.refApp()

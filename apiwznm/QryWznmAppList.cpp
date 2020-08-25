@@ -2,8 +2,8 @@
 	* \file QryWznmAppList.cpp
 	* API code for job QryWznmAppList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "QryWznmAppList.h"
@@ -23,8 +23,8 @@ uint QryWznmAppList::VecVOrd::getIx(
 
 	if (s == "ver") return VER;
 	if (s == "trg") return TRG;
-	if (s == "own") return OWN;
 	if (s == "tit") return TIT;
+	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
 
 	return(0);
@@ -35,8 +35,8 @@ string QryWznmAppList::VecVOrd::getSref(
 		) {
 	if (ix == VER) return("ver");
 	if (ix == TRG) return("trg");
-	if (ix == OWN) return("own");
 	if (ix == TIT) return("tit");
+	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
 
 	return("");

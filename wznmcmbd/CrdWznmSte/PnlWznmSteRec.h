@@ -2,8 +2,8 @@
 	* \file PnlWznmSteRec.h
 	* job handler for job PnlWznmSteRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMSTEREC_H
@@ -13,7 +13,7 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSteAStep.h"
+#include "PnlWznmSteATrig.h"
 #include "PnlWznmSteDetail.h"
 
 #define VecVWznmSteRecDo PnlWznmSteRec::VecVDo
@@ -71,7 +71,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAStep = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATrig = false);
 	};
 
 	/**
@@ -82,16 +82,16 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFASTEP = 3;
+		static const Sbecore::uint JREFATRIG = 3;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 4;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAStep = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATrig = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefAStep;
+		Sbecore::ubigint jrefATrig;
 		bool ButRegularizeActive;
 
 	public:
@@ -167,7 +167,7 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSteAStep* pnlastep;
+	PnlWznmSteATrig* pnlatrig;
 	PnlWznmSteDetail* pnldetail;
 
 	WznmMState recSte;
@@ -203,10 +203,6 @@ public:
 
 private:
 	bool handleCallWznmSteUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmSte_erjEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmSte_esnEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmSte_eveEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmSte_eviEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmSte_seqEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };

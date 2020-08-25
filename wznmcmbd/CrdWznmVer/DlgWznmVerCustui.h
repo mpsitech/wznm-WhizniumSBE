@@ -2,8 +2,8 @@
 	* \file DlgWznmVerCustui.h
 	* job handler for job DlgWznmVerCustui (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMVERCUSTUI_H
@@ -474,9 +474,9 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
-	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

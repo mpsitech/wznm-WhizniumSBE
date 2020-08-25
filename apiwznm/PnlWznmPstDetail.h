@@ -2,8 +2,8 @@
 	* \file PnlWznmPstDetail.h
 	* API code for job PnlWznmPstDetail (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMPSTDETAIL_H

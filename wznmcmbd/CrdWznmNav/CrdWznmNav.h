@@ -2,8 +2,8 @@
 	* \file CrdWznmNav.h
 	* job handler for job CrdWznmNav (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef CRDWZNMNAV_H
@@ -14,18 +14,18 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmNavAuxfct.h"
-#include "PnlWznmNavDeploy.h"
 #include "PnlWznmNavAppdev.h"
+#include "PnlWznmNavDeploy.h"
 #include "PnlWznmNavJob.h"
 #include "PnlWznmNavComp.h"
 #include "PnlWznmNavUix.h"
 #include "PnlWznmNavDbstr.h"
 #include "PnlWznmNavProject.h"
 #include "PnlWznmNavGlobal.h"
-#include "PnlWznmNavPre.h"
 #include "PnlWznmNavAdmin.h"
-#include "DlgWznmNavMnglic.h"
+#include "PnlWznmNavPre.h"
 #include "PnlWznmNavHeadbar.h"
+#include "DlgWznmNavMnglic.h"
 #include "DlgWznmNavLoaini.h"
 
 #define VecVWznmNavDo CrdWznmNav::VecVDo
@@ -99,11 +99,12 @@ public:
 		static const Sbecore::uint MITCRDRLSCLICK = 46;
 		static const Sbecore::uint MITCRDAPPCLICK = 47;
 		static const Sbecore::uint MITCRDRTJCLICK = 48;
-		static const Sbecore::uint MITCRDSEQCLICK = 49;
-		static const Sbecore::uint MITCRDSTECLICK = 50;
-		static const Sbecore::uint MITCRDUTLCLICK = 51;
-		static const Sbecore::uint MITAPPMLCCLICK = 52;
-		static const Sbecore::uint MITAPPLOICLICK = 53;
+		static const Sbecore::uint MITCRDEVTCLICK = 49;
+		static const Sbecore::uint MITCRDSEQCLICK = 50;
+		static const Sbecore::uint MITCRDSTECLICK = 51;
+		static const Sbecore::uint MITCRDUTLCLICK = 52;
+		static const Sbecore::uint MITAPPMLCCLICK = 53;
+		static const Sbecore::uint MITAPPLOICLICK = 54;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -276,18 +277,20 @@ public:
 		static const Sbecore::uint MITCRDAPPAVAIL = 107;
 		static const Sbecore::uint MITCRDRTJAVAIL = 108;
 		static const Sbecore::uint MITCRDRTJACTIVE = 109;
-		static const Sbecore::uint MITCRDSEQAVAIL = 110;
-		static const Sbecore::uint MITCRDSEQACTIVE = 111;
-		static const Sbecore::uint MITCRDSTEAVAIL = 112;
-		static const Sbecore::uint MITCRDSTEACTIVE = 113;
-		static const Sbecore::uint MSPCRD10AVAIL = 114;
-		static const Sbecore::uint MITCRDUTLAVAIL = 115;
-		static const Sbecore::uint MSPAPP2AVAIL = 116;
-		static const Sbecore::uint MITAPPMLCAVAIL = 117;
-		static const Sbecore::uint MITAPPLOIAVAIL = 118;
+		static const Sbecore::uint MITCRDEVTAVAIL = 110;
+		static const Sbecore::uint MITCRDEVTACTIVE = 111;
+		static const Sbecore::uint MITCRDSEQAVAIL = 112;
+		static const Sbecore::uint MITCRDSEQACTIVE = 113;
+		static const Sbecore::uint MITCRDSTEAVAIL = 114;
+		static const Sbecore::uint MITCRDSTEACTIVE = 115;
+		static const Sbecore::uint MSPCRD10AVAIL = 116;
+		static const Sbecore::uint MITCRDUTLAVAIL = 117;
+		static const Sbecore::uint MSPAPP2AVAIL = 118;
+		static const Sbecore::uint MITAPPMLCAVAIL = 119;
+		static const Sbecore::uint MITAPPLOIAVAIL = 120;
 
 	public:
-		StatShr(const Sbecore::ubigint jrefDlgloaini = 0, const Sbecore::ubigint jrefDlgmnglic = 0, const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefPre = 0, const bool pnlpreAvail = false, const Sbecore::ubigint jrefAdmin = 0, const bool pnladminAvail = false, const Sbecore::ubigint jrefGlobal = 0, const bool pnlglobalAvail = false, const Sbecore::ubigint jrefProject = 0, const bool pnlprojectAvail = false, const Sbecore::ubigint jrefDbstr = 0, const bool pnldbstrAvail = false, const Sbecore::ubigint jrefUix = 0, const bool pnluixAvail = false, const Sbecore::ubigint jrefComp = 0, const bool pnlcompAvail = false, const Sbecore::ubigint jrefJob = 0, const bool pnljobAvail = false, const Sbecore::ubigint jrefDeploy = 0, const bool pnldeployAvail = false, const Sbecore::ubigint jrefAppdev = 0, const bool pnlappdevAvail = false, const Sbecore::ubigint jrefAuxfct = 0, const bool pnlauxfctAvail = false, const bool MitSesSpsAvail = true, const bool MspCrd1Avail = true, const bool MitCrdUsgAvail = true, const bool MitCrdUsrAvail = true, const bool MitCrdPrsAvail = true, const bool MitCrdFilAvail = true, const bool MspCrd2Avail = true, const bool MitCrdLocAvail = true, const bool MitCrdTagAvail = true, const bool MitCrdCtpAvail = true, const bool MitCrdMtyAvail = true, const bool MitCrdMchAvail = true, const bool MitCrdLibAvail = true, const bool MspCrd3Avail = true, const bool MitCrdPrjAvail = true, const bool MitCrdVerAvail = true, const bool MitCrdCapAvail = true, const bool MitCrdCapActive = true, const bool MitCrdErrAvail = true, const bool MitCrdErrActive = true, const bool MspCrd4Avail = true, const bool MitCrdTblAvail = true, const bool MitCrdTblActive = true, const bool MitCrdTcoAvail = true, const bool MitCrdTcoActive = true, const bool MitCrdSbsAvail = true, const bool MitCrdSbsActive = true, const bool MitCrdRelAvail = true, const bool MitCrdRelActive = true, const bool MitCrdVecAvail = true, const bool MitCrdVecActive = true, const bool MitCrdVitAvail = true, const bool MitCrdVitActive = true, const bool MitCrdChkAvail = true, const bool MitCrdChkActive = true, const bool MitCrdStbAvail = true, const bool MitCrdStbActive = true, const bool MitCrdIexAvail = true, const bool MitCrdIexActive = true, const bool MitCrdImeAvail = true, const bool MitCrdImeActive = true, const bool MspCrd5Avail = true, const bool MitCrdPstAvail = true, const bool MitCrdPstActive = true, const bool MitCrdMdlAvail = true, const bool MitCrdMdlActive = true, const bool MitCrdCarAvail = true, const bool MitCrdCarActive = true, const bool MitCrdDlgAvail = true, const bool MitCrdDlgActive = true, const bool MitCrdPnlAvail = true, const bool MitCrdPnlActive = true, const bool MitCrdQryAvail = true, const bool MitCrdQryActive = true, const bool MitCrdQcoAvail = true, const bool MitCrdQcoActive = true, const bool MitCrdQmdAvail = true, const bool MitCrdQmdActive = true, const bool MitCrdConAvail = true, const bool MitCrdConActive = true, const bool MspCrd6Avail = true, const bool MitCrdOpkAvail = true, const bool MitCrdOpkActive = true, const bool MitCrdOpxAvail = true, const bool MitCrdOpxActive = true, const bool MspCrd7Avail = true, const bool MitCrdJobAvail = true, const bool MitCrdJobActive = true, const bool MitCrdSgeAvail = true, const bool MitCrdSgeActive = true, const bool MitCrdMtdAvail = true, const bool MitCrdMtdActive = true, const bool MitCrdBlkAvail = true, const bool MitCrdBlkActive = true, const bool MitCrdCalAvail = true, const bool MitCrdCalActive = true, const bool MspCrd8Avail = true, const bool MitCrdCmpAvail = true, const bool MitCrdRlsAvail = true, const bool MitCrdRlsActive = true, const bool MspCrd9Avail = true, const bool MitCrdAppAvail = true, const bool MitCrdRtjAvail = true, const bool MitCrdRtjActive = true, const bool MitCrdSeqAvail = true, const bool MitCrdSeqActive = true, const bool MitCrdSteAvail = true, const bool MitCrdSteActive = true, const bool MspCrd10Avail = true, const bool MitCrdUtlAvail = true, const bool MspApp2Avail = true, const bool MitAppMlcAvail = true, const bool MitAppLoiAvail = true);
+		StatShr(const Sbecore::ubigint jrefDlgloaini = 0, const Sbecore::ubigint jrefDlgmnglic = 0, const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefPre = 0, const bool pnlpreAvail = false, const Sbecore::ubigint jrefAdmin = 0, const bool pnladminAvail = false, const Sbecore::ubigint jrefGlobal = 0, const bool pnlglobalAvail = false, const Sbecore::ubigint jrefProject = 0, const bool pnlprojectAvail = false, const Sbecore::ubigint jrefDbstr = 0, const bool pnldbstrAvail = false, const Sbecore::ubigint jrefUix = 0, const bool pnluixAvail = false, const Sbecore::ubigint jrefComp = 0, const bool pnlcompAvail = false, const Sbecore::ubigint jrefJob = 0, const bool pnljobAvail = false, const Sbecore::ubigint jrefDeploy = 0, const bool pnldeployAvail = false, const Sbecore::ubigint jrefAppdev = 0, const bool pnlappdevAvail = false, const Sbecore::ubigint jrefAuxfct = 0, const bool pnlauxfctAvail = false, const bool MitSesSpsAvail = true, const bool MspCrd1Avail = true, const bool MitCrdUsgAvail = true, const bool MitCrdUsrAvail = true, const bool MitCrdPrsAvail = true, const bool MitCrdFilAvail = true, const bool MspCrd2Avail = true, const bool MitCrdLocAvail = true, const bool MitCrdTagAvail = true, const bool MitCrdCtpAvail = true, const bool MitCrdMtyAvail = true, const bool MitCrdMchAvail = true, const bool MitCrdLibAvail = true, const bool MspCrd3Avail = true, const bool MitCrdPrjAvail = true, const bool MitCrdVerAvail = true, const bool MitCrdCapAvail = true, const bool MitCrdCapActive = true, const bool MitCrdErrAvail = true, const bool MitCrdErrActive = true, const bool MspCrd4Avail = true, const bool MitCrdTblAvail = true, const bool MitCrdTblActive = true, const bool MitCrdTcoAvail = true, const bool MitCrdTcoActive = true, const bool MitCrdSbsAvail = true, const bool MitCrdSbsActive = true, const bool MitCrdRelAvail = true, const bool MitCrdRelActive = true, const bool MitCrdVecAvail = true, const bool MitCrdVecActive = true, const bool MitCrdVitAvail = true, const bool MitCrdVitActive = true, const bool MitCrdChkAvail = true, const bool MitCrdChkActive = true, const bool MitCrdStbAvail = true, const bool MitCrdStbActive = true, const bool MitCrdIexAvail = true, const bool MitCrdIexActive = true, const bool MitCrdImeAvail = true, const bool MitCrdImeActive = true, const bool MspCrd5Avail = true, const bool MitCrdPstAvail = true, const bool MitCrdPstActive = true, const bool MitCrdMdlAvail = true, const bool MitCrdMdlActive = true, const bool MitCrdCarAvail = true, const bool MitCrdCarActive = true, const bool MitCrdDlgAvail = true, const bool MitCrdDlgActive = true, const bool MitCrdPnlAvail = true, const bool MitCrdPnlActive = true, const bool MitCrdQryAvail = true, const bool MitCrdQryActive = true, const bool MitCrdQcoAvail = true, const bool MitCrdQcoActive = true, const bool MitCrdQmdAvail = true, const bool MitCrdQmdActive = true, const bool MitCrdConAvail = true, const bool MitCrdConActive = true, const bool MspCrd6Avail = true, const bool MitCrdOpkAvail = true, const bool MitCrdOpkActive = true, const bool MitCrdOpxAvail = true, const bool MitCrdOpxActive = true, const bool MspCrd7Avail = true, const bool MitCrdJobAvail = true, const bool MitCrdJobActive = true, const bool MitCrdSgeAvail = true, const bool MitCrdSgeActive = true, const bool MitCrdMtdAvail = true, const bool MitCrdMtdActive = true, const bool MitCrdBlkAvail = true, const bool MitCrdBlkActive = true, const bool MitCrdCalAvail = true, const bool MitCrdCalActive = true, const bool MspCrd8Avail = true, const bool MitCrdCmpAvail = true, const bool MitCrdRlsAvail = true, const bool MitCrdRlsActive = true, const bool MspCrd9Avail = true, const bool MitCrdAppAvail = true, const bool MitCrdRtjAvail = true, const bool MitCrdRtjActive = true, const bool MitCrdEvtAvail = true, const bool MitCrdEvtActive = true, const bool MitCrdSeqAvail = true, const bool MitCrdSeqActive = true, const bool MitCrdSteAvail = true, const bool MitCrdSteActive = true, const bool MspCrd10Avail = true, const bool MitCrdUtlAvail = true, const bool MspApp2Avail = true, const bool MitAppMlcAvail = true, const bool MitAppLoiAvail = true);
 
 	public:
 		Sbecore::ubigint jrefDlgloaini;
@@ -399,6 +402,8 @@ public:
 		bool MitCrdAppAvail;
 		bool MitCrdRtjAvail;
 		bool MitCrdRtjActive;
+		bool MitCrdEvtAvail;
+		bool MitCrdEvtActive;
 		bool MitCrdSeqAvail;
 		bool MitCrdSeqActive;
 		bool MitCrdSteAvail;
@@ -569,6 +574,8 @@ public:
 	bool evalMitCrdAppAvail(DbsWznm* dbswznm);
 	bool evalMitCrdRtjAvail(DbsWznm* dbswznm);
 	bool evalMitCrdRtjActive(DbsWznm* dbswznm);
+	bool evalMitCrdEvtAvail(DbsWznm* dbswznm);
+	bool evalMitCrdEvtActive(DbsWznm* dbswznm);
 	bool evalMitCrdSeqAvail(DbsWznm* dbswznm);
 	bool evalMitCrdSeqActive(DbsWznm* dbswznm);
 	bool evalMitCrdSteAvail(DbsWznm* dbswznm);
@@ -591,18 +598,18 @@ public:
 	Sbecore::Xmlio::Feed feedFSge;
 
 	PnlWznmNavAuxfct* pnlauxfct;
-	PnlWznmNavDeploy* pnldeploy;
 	PnlWznmNavAppdev* pnlappdev;
+	PnlWznmNavDeploy* pnldeploy;
 	PnlWznmNavJob* pnljob;
 	PnlWznmNavComp* pnlcomp;
 	PnlWznmNavUix* pnluix;
 	PnlWznmNavDbstr* pnldbstr;
 	PnlWznmNavProject* pnlproject;
 	PnlWznmNavGlobal* pnlglobal;
-	PnlWznmNavPre* pnlpre;
 	PnlWznmNavAdmin* pnladmin;
-	DlgWznmNavMnglic* dlgmnglic;
+	PnlWznmNavPre* pnlpre;
 	PnlWznmNavHeadbar* pnlheadbar;
+	DlgWznmNavMnglic* dlgmnglic;
 	DlgWznmNavLoaini* dlgloaini;
 
 	// IP vars.cust --- INSERT
@@ -672,6 +679,7 @@ private:
 	void handleDpchAppDoMitCrdRlsClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdAppClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdRtjClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoMitCrdEvtClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdSeqClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdSteClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdUtlClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);

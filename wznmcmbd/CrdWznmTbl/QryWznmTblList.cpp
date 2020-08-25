@@ -2,8 +2,8 @@
 	* \file QryWznmTblList.cpp
 	* job handler for job QryWznmTblList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -233,8 +233,8 @@ void QryWznmTblList::rerun_orderSQL(
 	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMTable.refUref ASC";
 	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMTable.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMTable.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMTable.sref ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMTable.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMTable.sref ASC";
 };
 
 void QryWznmTblList::fetch(

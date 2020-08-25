@@ -2,8 +2,8 @@
 	* \file DlgWznmVerOppack.h
 	* job handler for job DlgWznmVerOppack (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DLGWZNMVEROPPACK_H
@@ -408,9 +408,9 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalImpButRunActive(DbsWznm* dbswznm);
 	bool evalImpButStoActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalIfiUldActive(DbsWznm* dbswznm);
 
 public:
@@ -475,8 +475,8 @@ private:
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

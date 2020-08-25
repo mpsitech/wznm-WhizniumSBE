@@ -2,8 +2,8 @@
   * \file ApiWznm.java
   * Wznm Java API package global functionality
   * \author Alexander Wirthmueller
-  * \date created: 11 Jul 2020
-  * \date modified: 11 Jul 2020
+  * \date created: 25 Aug 2020
+  * \date modified: 25 Aug 2020
   */
 
 package apiwznm;
@@ -22,10 +22,10 @@ import sbecore.*;
 
 public class ApiWznm {
 
-	public static final String WZNM_VERSION = "1.0.2";
+	public static final String WZNM_VERSION = "1.0.6";
 	public static final int WZNM_VERSION_MAJOR = 1;
 	public static final int WZNM_VERSION_MINOR = 0;
-	public static final int WZNM_VERSION_SUB = 2;
+	public static final int WZNM_VERSION_SUB = 6;
 
 	public static DpchEngWznm readDpchEng(
 				String s
@@ -74,6 +74,7 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGSESSWZNMDATA) dpcheng = (new SessWznm()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMACK) dpcheng = new DpchEngWznmAck();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMALERT) dpcheng = new DpchEngWznmAlert();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMAPP1NEVENTDATA) dpcheng = (new PnlWznmApp1NEvent()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMAPP1NRTJOBDATA) dpcheng = (new PnlWznmApp1NRtjob()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMAPPAPP1NSEQUENCEDATA) dpcheng = (new PnlWznmAppApp1NSequence()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMAPPDATA) dpcheng = (new CrdWznmApp()).new DpchEngData();
@@ -157,6 +158,11 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMERRHEADBARDATA) dpcheng = (new PnlWznmErrHeadbar()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMERRLISTDATA) dpcheng = (new PnlWznmErrList()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMERRRECDATA) dpcheng = (new PnlWznmErrRec()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMEVTDATA) dpcheng = (new CrdWznmEvt()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMEVTDETAILDATA) dpcheng = (new PnlWznmEvtDetail()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMEVTHEADBARDATA) dpcheng = (new PnlWznmEvtHeadbar()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMEVTLISTDATA) dpcheng = (new PnlWznmEvtList()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMEVTRECDATA) dpcheng = (new PnlWznmEvtRec()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMFILDATA) dpcheng = (new CrdWznmFil()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMFILDETAILDATA) dpcheng = (new PnlWznmFilDetail()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMFILHEADBARDATA) dpcheng = (new PnlWznmFilHeadbar()).new DpchEngData();
@@ -390,7 +396,7 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTBRECDATA) dpcheng = (new PnlWznmStbRec()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTBSUBMNSTUBDATA) dpcheng = (new PnlWznmStbSubMNStub()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTBSUPMNSTUBDATA) dpcheng = (new PnlWznmStbSupMNStub()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTEASTEPDATA) dpcheng = (new PnlWznmSteAStep()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTEATRIGDATA) dpcheng = (new PnlWznmSteATrig()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTEDATA) dpcheng = (new CrdWznmSte()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTEDETAILDATA) dpcheng = (new PnlWznmSteDetail()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTEHEADBARDATA) dpcheng = (new PnlWznmSteHeadbar()).new DpchEngData();

@@ -2,8 +2,8 @@
 	* \file PnlWznmSge1NSensitivity.h
 	* job handler for job PnlWznmSge1NSensitivity (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMSGE1NSENSITIVITY_H

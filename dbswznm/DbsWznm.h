@@ -2,17 +2,17 @@
 	* \file DbsWznm.h
 	* C++ wrapper for database DbsWznm (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef DBSWZNM_H
 #define DBSWZNM_H
 
-#define WZNM_VERSION "1.0.2"
+#define WZNM_VERSION "1.0.6"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 0
-#define WZNM_VERSION_SUB 2
+#define WZNM_VERSION_SUB 6
 
 #include <sbecore/Types.h>
 
@@ -43,7 +43,8 @@
 #include "WznmAMQueryClause.h"
 #include "WznmAMQueryOrder.h"
 #include "WznmAMRelationTitle.h"
-#include "WznmAMStateStep.h"
+#include "WznmAMStateAction.h"
+#include "WznmAMStateTrig.h"
 #include "WznmAMSubsetTitle.h"
 #include "WznmAMTablecolTitle.h"
 #include "WznmAMTableLoadfct.h"
@@ -65,6 +66,7 @@
 #include "WznmCRelation.h"
 #include "WznmHistRMUserUniversal.h"
 #include "WznmJAMBlockItem.h"
+#include "WznmJAMStateTrigCond.h"
 #include "WznmJAVKeylistKey.h"
 #include "WznmJMCardTitle.h"
 #include "WznmJMControl.h"
@@ -93,6 +95,7 @@
 #include "WznmMControl.h"
 #include "WznmMDialog.h"
 #include "WznmMError.h"
+#include "WznmMEvent.h"
 #include "WznmMFeed.h"
 #include "WznmMFile.h"
 #include "WznmMImpexp.h"
@@ -156,6 +159,7 @@
 #include "WznmRMUserMUsergroup.h"
 #include "WznmTMQuerymodMQuery.h"
 
+#include "WznmQApp1NEvent.h"
 #include "WznmQApp1NRtjob.h"
 #include "WznmQAppApp1NSequence.h"
 #include "WznmQAppList.h"
@@ -194,6 +198,7 @@
 #include "WznmQDlgMNQuery.h"
 #include "WznmQDlgRef1NControl.h"
 #include "WznmQErrList.h"
+#include "WznmQEvtList.h"
 #include "WznmQFilList.h"
 #include "WznmQIelList.h"
 #include "WznmQIex1NImpexp.h"
@@ -308,7 +313,7 @@
 #include "WznmQStbMNSquawk.h"
 #include "WznmQStbSubMNStub.h"
 #include "WznmQStbSupMNStub.h"
-#include "WznmQSteAStep.h"
+#include "WznmQSteATrig.h"
 #include "WznmQSteList.h"
 #include "WznmQTagList.h"
 #include "WznmQTbl1NCheck.h"
@@ -375,6 +380,7 @@
 #include "WznmQVerVer1NModule.h"
 #include "WznmQVitList.h"
 
+#define VecWznmVApptarget DbsWznm::VecVApptarget
 #define VecWznmVCard DbsWznm::VecVCard
 #define VecWznmVControl DbsWznm::VecVControl
 #define VecWznmVFeatgroup DbsWznm::VecVFeatgroup
@@ -401,6 +407,27 @@
 class DbsWznm {
 
 public:
+	/**
+		* VecVApptarget (full: VecWznmVApptarget)
+		*/
+	class VecVApptarget {
+
+	public:
+		static const Sbecore::uint COCOA_OBJC = 1;
+		static const Sbecore::uint DOTNET_CPPCLI = 2;
+		static const Sbecore::uint JAVA = 3;
+		static const Sbecore::uint JS = 4;
+		static const Sbecore::uint POSIX_CPP = 5;
+		static const Sbecore::uint WINRT_CPP = 6;
+
+		static Sbecore::uint getIx(const std::string& sref);
+		static std::string getSref(const Sbecore::uint ix);
+
+		static std::string getTitle(const Sbecore::uint ix);
+
+		static void fillFeed(Sbecore::Xmlio::Feed& feed);
+	};
+
 	/**
 		* VecVCard (full: VecWznmVCard)
 		*/
@@ -453,9 +480,10 @@ public:
 		static const Sbecore::uint CRDWZNMRLS = 44;
 		static const Sbecore::uint CRDWZNMAPP = 45;
 		static const Sbecore::uint CRDWZNMRTJ = 46;
-		static const Sbecore::uint CRDWZNMSEQ = 47;
-		static const Sbecore::uint CRDWZNMSTE = 48;
-		static const Sbecore::uint CRDWZNMUTL = 49;
+		static const Sbecore::uint CRDWZNMEVT = 47;
+		static const Sbecore::uint CRDWZNMSEQ = 48;
+		static const Sbecore::uint CRDWZNMSTE = 49;
+		static const Sbecore::uint CRDWZNMUTL = 50;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -586,22 +614,22 @@ public:
 		static const Sbecore::uint PNLWZNMVERLIST_TCOLOC = 113;
 		static const Sbecore::uint PNLWZNMVERLIST_TCOSTE = 114;
 		static const Sbecore::uint PNLWZNMVERLIST_TCODTY = 115;
-		static const Sbecore::uint PNLWZNMVERVER1NERROR_TCOREF = 116;
-		static const Sbecore::uint PNLWZNMVERVER1NAPP_TCOREF = 117;
-		static const Sbecore::uint PNLWZNMVER1NCAPABILITY_TCOREF = 118;
-		static const Sbecore::uint PNLWZNMVER1NVECTOR_TCOREF = 119;
-		static const Sbecore::uint PNLWZNMVERVER1NMODULE_TCOREF = 120;
-		static const Sbecore::uint PNLWZNMVER1NIMPEXPCPLX_TCOREF = 121;
-		static const Sbecore::uint PNLWZNMVER1NJOB_TCOREF = 122;
-		static const Sbecore::uint PNLWZNMVER1NOPPACK_TCOREF = 123;
-		static const Sbecore::uint PNLWZNMVER1NCOMPONENT_TCOREF = 124;
-		static const Sbecore::uint PNLWZNMVER1NCALL_TCOREF = 125;
-		static const Sbecore::uint PNLWZNMVER1NTABLE_TCOREF = 126;
-		static const Sbecore::uint PNLWZNMVER1NRELATION_TCOREF = 127;
-		static const Sbecore::uint PNLWZNMVER1NQUERY_TCOREF = 128;
-		static const Sbecore::uint PNLWZNMVERBVR1NVERSION_TCOREF = 129;
+		static const Sbecore::uint PNLWZNMVER1NCOMPONENT_TCOREF = 116;
+		static const Sbecore::uint PNLWZNMVER1NCALL_TCOREF = 117;
+		static const Sbecore::uint PNLWZNMVERVER1NERROR_TCOREF = 118;
+		static const Sbecore::uint PNLWZNMVERVER1NAPP_TCOREF = 119;
+		static const Sbecore::uint PNLWZNMVER1NCAPABILITY_TCOREF = 120;
+		static const Sbecore::uint PNLWZNMVER1NVECTOR_TCOREF = 121;
+		static const Sbecore::uint PNLWZNMVER1NQUERY_TCOREF = 122;
+		static const Sbecore::uint PNLWZNMVER1NPRESET_TCOREF = 123;
+		static const Sbecore::uint PNLWZNMVERVER1NMODULE_TCOREF = 124;
+		static const Sbecore::uint PNLWZNMVER1NIMPEXPCPLX_TCOREF = 125;
+		static const Sbecore::uint PNLWZNMVER1NJOB_TCOREF = 126;
+		static const Sbecore::uint PNLWZNMVER1NTABLE_TCOREF = 127;
+		static const Sbecore::uint PNLWZNMVERBVR1NVERSION_TCOREF = 128;
+		static const Sbecore::uint PNLWZNMVER1NRELATION_TCOREF = 129;
 		static const Sbecore::uint PNLWZNMVER1NBLOCK_TCOREF = 130;
-		static const Sbecore::uint PNLWZNMVER1NPRESET_TCOREF = 131;
+		static const Sbecore::uint PNLWZNMVER1NOPPACK_TCOREF = 131;
 		static const Sbecore::uint PNLWZNMVERREF1NFILE_TCOREF = 132;
 		static const Sbecore::uint PNLWZNMVERMNLOCALE_TCOMREF = 133;
 		static const Sbecore::uint PNLWZNMCAPLIST_TCOSRF = 134;
@@ -620,31 +648,31 @@ public:
 		static const Sbecore::uint PNLWZNMTBLLIST_TCOVER = 147;
 		static const Sbecore::uint PNLWZNMTBLLIST_TCORET = 148;
 		static const Sbecore::uint PNLWZNMTBLLIST_TCOREU = 149;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLOT = 150;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOFNA = 151;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLDX = 152;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLBY = 153;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOORD = 154;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLIT = 155;
-		static const Sbecore::uint PNLWZNMTBLATITLE_TCOTYP = 156;
-		static const Sbecore::uint PNLWZNMTBLATITLE_TCOLOC = 157;
-		static const Sbecore::uint PNLWZNMTBLATITLE_TCOGND = 158;
-		static const Sbecore::uint PNLWZNMTBLATITLE_TCOTIT = 159;
-		static const Sbecore::uint PNLWZNMTBLTBL1NTABLECOL_TCOREF = 160;
-		static const Sbecore::uint PNLWZNMTBL1NIMPEXP_TCOREF = 161;
+		static const Sbecore::uint PNLWZNMTBLATITLE_TCOTYP = 150;
+		static const Sbecore::uint PNLWZNMTBLATITLE_TCOLOC = 151;
+		static const Sbecore::uint PNLWZNMTBLATITLE_TCOGND = 152;
+		static const Sbecore::uint PNLWZNMTBLATITLE_TCOTIT = 153;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLOT = 154;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOFNA = 155;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLDX = 156;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLBY = 157;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOORD = 158;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLIT = 159;
+		static const Sbecore::uint PNLWZNMTBL1NSTUB_TCOREF = 160;
+		static const Sbecore::uint PNLWZNMTBLTBL1NTABLECOL_TCOREF = 161;
 		static const Sbecore::uint PNLWZNMTBL1NCHECK_TCOREF = 162;
 		static const Sbecore::uint PNLWZNMTBL1NSUBSET_TCOREF = 163;
-		static const Sbecore::uint PNLWZNMTBL1NSTUB_TCOREF = 164;
+		static const Sbecore::uint PNLWZNMTBL1NIMPEXP_TCOREF = 164;
 		static const Sbecore::uint PNLWZNMTBLTO1NRELATION_TCOREF = 165;
 		static const Sbecore::uint PNLWZNMTBLFR1NRELATION_TCOREF = 166;
 		static const Sbecore::uint PNLWZNMTBLREF1NRTBLOCK_TCOREF = 167;
 		static const Sbecore::uint PNLWZNMTBLREF1NQUERYMOD_TCOREF = 168;
-		static const Sbecore::uint PNLWZNMTBLFCT1NTABLECOL_TCOREF = 169;
-		static const Sbecore::uint PNLWZNMTBLHK1NVECTOR_TCOREF = 170;
-		static const Sbecore::uint PNLWZNMTBLREF1NCALL_TCOREF = 171;
-		static const Sbecore::uint PNLWZNMTBLREF1NDIALOG_TCOREF = 172;
-		static const Sbecore::uint PNLWZNMTBLREF1NPANEL_TCOREF = 173;
-		static const Sbecore::uint PNLWZNMTBLSRC1NFEED_TCOREF = 174;
+		static const Sbecore::uint PNLWZNMTBLHK1NVECTOR_TCOREF = 169;
+		static const Sbecore::uint PNLWZNMTBLFCT1NTABLECOL_TCOREF = 170;
+		static const Sbecore::uint PNLWZNMTBLSRC1NFEED_TCOREF = 171;
+		static const Sbecore::uint PNLWZNMTBLREF1NCALL_TCOREF = 172;
+		static const Sbecore::uint PNLWZNMTBLREF1NDIALOG_TCOREF = 173;
+		static const Sbecore::uint PNLWZNMTBLREF1NPANEL_TCOREF = 174;
 		static const Sbecore::uint PNLWZNMTBLPST1NQUERYMOD_TCOREF = 175;
 		static const Sbecore::uint PNLWZNMTBLMNVECTOR_TCOMREF = 176;
 		static const Sbecore::uint PNLWZNMTBLMNVECTOR_TCOSBS = 177;
@@ -675,9 +703,9 @@ public:
 		static const Sbecore::uint PNLWZNMSBSATITLE_TCOGND = 202;
 		static const Sbecore::uint PNLWZNMSBSATITLE_TCOTIT = 203;
 		static const Sbecore::uint PNLWZNMSBS1NSTUB_TCOREF = 204;
-		static const Sbecore::uint PNLWZNMSBS1NTABLECOL_TCOREF = 205;
-		static const Sbecore::uint PNLWZNMSBSTOS1NRELATION_TCOREF = 206;
-		static const Sbecore::uint PNLWZNMSBSFRS1NRELATION_TCOREF = 207;
+		static const Sbecore::uint PNLWZNMSBSTOS1NRELATION_TCOREF = 205;
+		static const Sbecore::uint PNLWZNMSBSFRS1NRELATION_TCOREF = 206;
+		static const Sbecore::uint PNLWZNMSBS1NTABLECOL_TCOREF = 207;
 		static const Sbecore::uint PNLWZNMSBSPST1NQUERYMOD_TCOREF = 208;
 		static const Sbecore::uint PNLWZNMSBSASBMNSUBSET_TCOMREF = 209;
 		static const Sbecore::uint PNLWZNMSBSASBMNSUBSET_TCORTY = 210;
@@ -698,8 +726,8 @@ public:
 		static const Sbecore::uint PNLWZNMRELATITLE_TCOTIT = 225;
 		static const Sbecore::uint PNLWZNMREL1NTABLECOL_TCOREF = 226;
 		static const Sbecore::uint PNLWZNMRELSUP1NRELATION_TCOREF = 227;
-		static const Sbecore::uint PNLWZNMRELREF1NPANEL_TCOREF = 228;
-		static const Sbecore::uint PNLWZNMRELREF1NCONTROL_TCOREF = 229;
+		static const Sbecore::uint PNLWZNMRELREF1NCONTROL_TCOREF = 228;
+		static const Sbecore::uint PNLWZNMRELREF1NPANEL_TCOREF = 229;
 		static const Sbecore::uint PNLWZNMRELREF1NDIALOG_TCOREF = 230;
 		static const Sbecore::uint PNLWZNMVECLIST_TCOSRF = 231;
 		static const Sbecore::uint PNLWZNMVECLIST_TCOTYP = 232;
@@ -740,8 +768,8 @@ public:
 		static const Sbecore::uint PNLWZNMIEXLIST_TCOVER = 267;
 		static const Sbecore::uint PNLWZNMIEXLIST_TCOMIV = 268;
 		static const Sbecore::uint PNLWZNMIEX1NIMPEXP_TCOREF = 269;
-		static const Sbecore::uint PNLWZNMIEXHK1NVECTOR_TCOREF = 270;
-		static const Sbecore::uint PNLWZNMIEXREF1NDIALOG_TCOREF = 271;
+		static const Sbecore::uint PNLWZNMIEXREF1NDIALOG_TCOREF = 270;
+		static const Sbecore::uint PNLWZNMIEXHK1NVECTOR_TCOREF = 271;
 		static const Sbecore::uint PNLWZNMIMELIST_TCOSRF = 272;
 		static const Sbecore::uint PNLWZNMIMELIST_TCOIEX = 273;
 		static const Sbecore::uint PNLWZNMIMELIST_TCOSUP = 274;
@@ -805,15 +833,15 @@ public:
 		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOVIT = 332;
 		static const Sbecore::uint PNLWZNMQRYAORDER_TCOSHO = 333;
 		static const Sbecore::uint PNLWZNMQRYAORDER_TCOTCO = 334;
-		static const Sbecore::uint PNLWZNMQRY1NQUERYMOD_TCOREF = 335;
-		static const Sbecore::uint PNLWZNMQRYSUP1NQUERY_TCOREF = 336;
-		static const Sbecore::uint PNLWZNMQRYQRY1NQUERYCOL_TCOREF = 337;
+		static const Sbecore::uint PNLWZNMQRYQRY1NQUERYCOL_TCOREF = 335;
+		static const Sbecore::uint PNLWZNMQRY1NQUERYMOD_TCOREF = 336;
+		static const Sbecore::uint PNLWZNMQRYSUP1NQUERY_TCOREF = 337;
 		static const Sbecore::uint PNLWZNMQRYMNTABLE_TCOMREF = 338;
 		static const Sbecore::uint PNLWZNMQRYMNTABLE_TCOTQMD = 339;
 		static const Sbecore::uint PNLWZNMQRYMNTABLE_TCOSRC = 340;
 		static const Sbecore::uint PNLWZNMQRYMNTABLE_TCOPFX = 341;
-		static const Sbecore::uint PNLWZNMQRYMNPANEL_TCOMREF = 342;
-		static const Sbecore::uint PNLWZNMQRYMNDIALOG_TCOMREF = 343;
+		static const Sbecore::uint PNLWZNMQRYMNDIALOG_TCOMREF = 342;
+		static const Sbecore::uint PNLWZNMQRYMNPANEL_TCOMREF = 343;
 		static const Sbecore::uint PNLWZNMQCOLIST_TCOSRF = 344;
 		static const Sbecore::uint PNLWZNMQCOLIST_TCOSHO = 345;
 		static const Sbecore::uint PNLWZNMQCOLIST_TCOTYP = 346;
@@ -858,8 +886,8 @@ public:
 		static const Sbecore::uint PNLWZNMOPK1NOP_TCOREF = 385;
 		static const Sbecore::uint PNLWZNMOPKREF1NBLOCK_TCOREF = 386;
 		static const Sbecore::uint PNLWZNMOPKMNJOB_TCOMREF = 387;
-		static const Sbecore::uint PNLWZNMOPKMNLIBRARY_TCOMREF = 388;
-		static const Sbecore::uint PNLWZNMOPKMNCOMPONENT_TCOMREF = 389;
+		static const Sbecore::uint PNLWZNMOPKMNCOMPONENT_TCOMREF = 388;
+		static const Sbecore::uint PNLWZNMOPKMNLIBRARY_TCOMREF = 389;
 		static const Sbecore::uint PNLWZNMOPKSQKMNSTUB_TCOMREF = 390;
 		static const Sbecore::uint PNLWZNMOPXLIST_TCOSRF = 391;
 		static const Sbecore::uint PNLWZNMOPXLIST_TCOOPK = 392;
@@ -970,34 +998,34 @@ public:
 		static const Sbecore::uint PNLWZNMAPPLIST_TCOTIT = 497;
 		static const Sbecore::uint PNLWZNMAPPLIST_TCOTRG = 498;
 		static const Sbecore::uint PNLWZNMAPPLIST_TCOVER = 499;
-		static const Sbecore::uint PNLWZNMAPPAPP1NSEQUENCE_TCOREF = 500;
-		static const Sbecore::uint PNLWZNMAPP1NRTJOB_TCOREF = 501;
-		static const Sbecore::uint PNLWZNMAPPREF1NFILE_TCOREF = 502;
-		static const Sbecore::uint PNLWZNMRTJLIST_TCOSRF = 503;
-		static const Sbecore::uint PNLWZNMRTJLIST_TCOAPP = 504;
-		static const Sbecore::uint PNLWZNMRTJLIST_TCOSUP = 505;
-		static const Sbecore::uint PNLWZNMRTJLIST_TCOJOB = 506;
-		static const Sbecore::uint PNLWZNMRTJ1NRTBLOCK_TCOREF = 507;
+		static const Sbecore::uint PNLWZNMAPP1NEVENT_TCOREF = 500;
+		static const Sbecore::uint PNLWZNMAPPAPP1NSEQUENCE_TCOREF = 501;
+		static const Sbecore::uint PNLWZNMAPP1NRTJOB_TCOREF = 502;
+		static const Sbecore::uint PNLWZNMAPPREF1NFILE_TCOREF = 503;
+		static const Sbecore::uint PNLWZNMRTJLIST_TCOSRF = 504;
+		static const Sbecore::uint PNLWZNMRTJLIST_TCOAPP = 505;
+		static const Sbecore::uint PNLWZNMRTJLIST_TCOSUP = 506;
+		static const Sbecore::uint PNLWZNMRTJLIST_TCOJOB = 507;
 		static const Sbecore::uint PNLWZNMRTJ1NRTDPCH_TCOREF = 508;
-		static const Sbecore::uint PNLWZNMRTJSUP1NRTJOB_TCOREF = 509;
-		static const Sbecore::uint PNLWZNMSEQLIST_TCOSRF = 510;
-		static const Sbecore::uint PNLWZNMSEQLIST_TCOTIT = 511;
-		static const Sbecore::uint PNLWZNMSEQLIST_TCOAPP = 512;
-		static const Sbecore::uint PNLWZNMSEQSEQ1NSTATE_TCOREF = 513;
-		static const Sbecore::uint PNLWZNMSTELIST_TCOSRF = 514;
-		static const Sbecore::uint PNLWZNMSTELIST_TCOSEQ = 515;
-		static const Sbecore::uint PNLWZNMSTELIST_TCOEAC = 516;
-		static const Sbecore::uint PNLWZNMSTELIST_TCOLAC = 517;
-		static const Sbecore::uint PNLWZNMSTELIST_TCOCST = 518;
-		static const Sbecore::uint PNLWZNMSTEASTEP_TCOSNX = 519;
-		static const Sbecore::uint PNLWZNMSTEASTEP_TCOTRG = 520;
-		static const Sbecore::uint PNLWZNMSTEASTEP_TCORTJ = 521;
-		static const Sbecore::uint PNLWZNMSTEASTEP_TCOVIT = 522;
-		static const Sbecore::uint PNLWZNMSTEASTEP_TCOXSR = 523;
-		static const Sbecore::uint PNLWZNMSTEASTEP_TCORTD = 524;
-		static const Sbecore::uint PNLWZNMSTEASTEP_TCOMSK = 525;
-		static const Sbecore::uint PNLWZNMSTEASTEP_TCOCND = 526;
-		static const Sbecore::uint PNLWZNMSTEASTEP_TCOCCD = 527;
+		static const Sbecore::uint PNLWZNMRTJ1NRTBLOCK_TCOREF = 509;
+		static const Sbecore::uint PNLWZNMRTJSUP1NRTJOB_TCOREF = 510;
+		static const Sbecore::uint PNLWZNMEVTLIST_TCOSRF = 511;
+		static const Sbecore::uint PNLWZNMEVTLIST_TCOAPP = 512;
+		static const Sbecore::uint PNLWZNMSEQLIST_TCOSRF = 513;
+		static const Sbecore::uint PNLWZNMSEQLIST_TCOTIT = 514;
+		static const Sbecore::uint PNLWZNMSEQLIST_TCOAPP = 515;
+		static const Sbecore::uint PNLWZNMSEQSEQ1NSTATE_TCOREF = 516;
+		static const Sbecore::uint PNLWZNMSTELIST_TCOSRF = 517;
+		static const Sbecore::uint PNLWZNMSTELIST_TCOSEQ = 518;
+		static const Sbecore::uint PNLWZNMSTEATRIG_TCOSRF = 519;
+		static const Sbecore::uint PNLWZNMSTEATRIG_TCOTYP = 520;
+		static const Sbecore::uint PNLWZNMSTEATRIG_TCOEVT = 521;
+		static const Sbecore::uint PNLWZNMSTEATRIG_TCORTJ = 522;
+		static const Sbecore::uint PNLWZNMSTEATRIG_TCOVIT = 523;
+		static const Sbecore::uint PNLWZNMSTEATRIG_TCOXSR = 524;
+		static const Sbecore::uint PNLWZNMSTEATRIG_TCORTD = 525;
+		static const Sbecore::uint PNLWZNMSTEATRIG_TCOMSK = 526;
+		static const Sbecore::uint PNLWZNMSTEATRIG_TCOCND = 527;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -1134,48 +1162,49 @@ public:
 		static const Sbecore::uint TBLWZNMMCONTROL = 9;
 		static const Sbecore::uint TBLWZNMMDIALOG = 10;
 		static const Sbecore::uint TBLWZNMMERROR = 11;
-		static const Sbecore::uint TBLWZNMMFEED = 12;
-		static const Sbecore::uint TBLWZNMMFILE = 13;
-		static const Sbecore::uint TBLWZNMMIMPEXP = 14;
-		static const Sbecore::uint TBLWZNMMIMPEXPCOL = 15;
-		static const Sbecore::uint TBLWZNMMIMPEXPCPLX = 16;
-		static const Sbecore::uint TBLWZNMMJOB = 17;
-		static const Sbecore::uint TBLWZNMMLIBRARY = 18;
-		static const Sbecore::uint TBLWZNMMLOCALE = 19;
-		static const Sbecore::uint TBLWZNMMMACHINE = 20;
-		static const Sbecore::uint TBLWZNMMMACHTYPE = 21;
-		static const Sbecore::uint TBLWZNMMMETHOD = 22;
-		static const Sbecore::uint TBLWZNMMMODULE = 23;
-		static const Sbecore::uint TBLWZNMMOP = 24;
-		static const Sbecore::uint TBLWZNMMOPPACK = 25;
-		static const Sbecore::uint TBLWZNMMPANEL = 26;
-		static const Sbecore::uint TBLWZNMMPERSON = 27;
-		static const Sbecore::uint TBLWZNMMPRESET = 28;
-		static const Sbecore::uint TBLWZNMMPROJECT = 29;
-		static const Sbecore::uint TBLWZNMMQUERY = 30;
-		static const Sbecore::uint TBLWZNMMQUERYCOL = 31;
-		static const Sbecore::uint TBLWZNMMQUERYMOD = 32;
-		static const Sbecore::uint TBLWZNMMRELATION = 33;
-		static const Sbecore::uint TBLWZNMMRELEASE = 34;
-		static const Sbecore::uint TBLWZNMMRTBLOCK = 35;
-		static const Sbecore::uint TBLWZNMMRTDPCH = 36;
-		static const Sbecore::uint TBLWZNMMRTJOB = 37;
-		static const Sbecore::uint TBLWZNMMSENSITIVITY = 38;
-		static const Sbecore::uint TBLWZNMMSEQUENCE = 39;
-		static const Sbecore::uint TBLWZNMMSESSION = 40;
-		static const Sbecore::uint TBLWZNMMSQUAWK = 41;
-		static const Sbecore::uint TBLWZNMMSTAGE = 42;
-		static const Sbecore::uint TBLWZNMMSTATE = 43;
-		static const Sbecore::uint TBLWZNMMSTUB = 44;
-		static const Sbecore::uint TBLWZNMMSUBSET = 45;
-		static const Sbecore::uint TBLWZNMMTABLE = 46;
-		static const Sbecore::uint TBLWZNMMTABLECOL = 47;
-		static const Sbecore::uint TBLWZNMMTAG = 48;
-		static const Sbecore::uint TBLWZNMMUSER = 49;
-		static const Sbecore::uint TBLWZNMMUSERGROUP = 50;
-		static const Sbecore::uint TBLWZNMMVECTOR = 51;
-		static const Sbecore::uint TBLWZNMMVECTORITEM = 52;
-		static const Sbecore::uint TBLWZNMMVERSION = 53;
+		static const Sbecore::uint TBLWZNMMEVENT = 12;
+		static const Sbecore::uint TBLWZNMMFEED = 13;
+		static const Sbecore::uint TBLWZNMMFILE = 14;
+		static const Sbecore::uint TBLWZNMMIMPEXP = 15;
+		static const Sbecore::uint TBLWZNMMIMPEXPCOL = 16;
+		static const Sbecore::uint TBLWZNMMIMPEXPCPLX = 17;
+		static const Sbecore::uint TBLWZNMMJOB = 18;
+		static const Sbecore::uint TBLWZNMMLIBRARY = 19;
+		static const Sbecore::uint TBLWZNMMLOCALE = 20;
+		static const Sbecore::uint TBLWZNMMMACHINE = 21;
+		static const Sbecore::uint TBLWZNMMMACHTYPE = 22;
+		static const Sbecore::uint TBLWZNMMMETHOD = 23;
+		static const Sbecore::uint TBLWZNMMMODULE = 24;
+		static const Sbecore::uint TBLWZNMMOP = 25;
+		static const Sbecore::uint TBLWZNMMOPPACK = 26;
+		static const Sbecore::uint TBLWZNMMPANEL = 27;
+		static const Sbecore::uint TBLWZNMMPERSON = 28;
+		static const Sbecore::uint TBLWZNMMPRESET = 29;
+		static const Sbecore::uint TBLWZNMMPROJECT = 30;
+		static const Sbecore::uint TBLWZNMMQUERY = 31;
+		static const Sbecore::uint TBLWZNMMQUERYCOL = 32;
+		static const Sbecore::uint TBLWZNMMQUERYMOD = 33;
+		static const Sbecore::uint TBLWZNMMRELATION = 34;
+		static const Sbecore::uint TBLWZNMMRELEASE = 35;
+		static const Sbecore::uint TBLWZNMMRTBLOCK = 36;
+		static const Sbecore::uint TBLWZNMMRTDPCH = 37;
+		static const Sbecore::uint TBLWZNMMRTJOB = 38;
+		static const Sbecore::uint TBLWZNMMSENSITIVITY = 39;
+		static const Sbecore::uint TBLWZNMMSEQUENCE = 40;
+		static const Sbecore::uint TBLWZNMMSESSION = 41;
+		static const Sbecore::uint TBLWZNMMSQUAWK = 42;
+		static const Sbecore::uint TBLWZNMMSTAGE = 43;
+		static const Sbecore::uint TBLWZNMMSTATE = 44;
+		static const Sbecore::uint TBLWZNMMSTUB = 45;
+		static const Sbecore::uint TBLWZNMMSUBSET = 46;
+		static const Sbecore::uint TBLWZNMMTABLE = 47;
+		static const Sbecore::uint TBLWZNMMTABLECOL = 48;
+		static const Sbecore::uint TBLWZNMMTAG = 49;
+		static const Sbecore::uint TBLWZNMMUSER = 50;
+		static const Sbecore::uint TBLWZNMMUSERGROUP = 51;
+		static const Sbecore::uint TBLWZNMMVECTOR = 52;
+		static const Sbecore::uint TBLWZNMMVECTORITEM = 53;
+		static const Sbecore::uint TBLWZNMMVERSION = 54;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -1262,292 +1291,296 @@ public:
 		static const Sbecore::uint PREWZNMDLGLIST_TYP = 52;
 		static const Sbecore::uint PREWZNMERRLIST_SRF = 53;
 		static const Sbecore::uint PREWZNMERRLIST_VER = 54;
-		static const Sbecore::uint PREWZNMEXTFOLDER = 55;
-		static const Sbecore::uint PREWZNMFILLIST_FNM = 56;
-		static const Sbecore::uint PREWZNMFILLIST_GRP = 57;
-		static const Sbecore::uint PREWZNMFILLIST_OWN = 58;
-		static const Sbecore::uint PREWZNMFILLIST_RET = 59;
-		static const Sbecore::uint PREWZNMFILLIST_REU = 60;
-		static const Sbecore::uint PREWZNMGITURL = 61;
-		static const Sbecore::uint PREWZNMGROUP = 62;
-		static const Sbecore::uint PREWZNMIELLIST_IME = 63;
-		static const Sbecore::uint PREWZNMIELLIST_SRF = 64;
-		static const Sbecore::uint PREWZNMIELLIST_TCO = 65;
-		static const Sbecore::uint PREWZNMIELLIST_TYP = 66;
-		static const Sbecore::uint PREWZNMIEXLIST_SRF = 67;
-		static const Sbecore::uint PREWZNMIEXLIST_VER = 68;
-		static const Sbecore::uint PREWZNMIMELIST_IEX = 69;
-		static const Sbecore::uint PREWZNMIMELIST_SRF = 70;
-		static const Sbecore::uint PREWZNMIMELIST_SUP = 71;
-		static const Sbecore::uint PREWZNMIMELIST_TBL = 72;
-		static const Sbecore::uint PREWZNMIP = 73;
-		static const Sbecore::uint PREWZNMIXBASEREPTYPE = 74;
-		static const Sbecore::uint PREWZNMIXCRDACCAPP = 75;
-		static const Sbecore::uint PREWZNMIXCRDACCBLK = 76;
-		static const Sbecore::uint PREWZNMIXCRDACCCAL = 77;
-		static const Sbecore::uint PREWZNMIXCRDACCCAP = 78;
-		static const Sbecore::uint PREWZNMIXCRDACCCAR = 79;
-		static const Sbecore::uint PREWZNMIXCRDACCCHK = 80;
-		static const Sbecore::uint PREWZNMIXCRDACCCMP = 81;
-		static const Sbecore::uint PREWZNMIXCRDACCCON = 82;
-		static const Sbecore::uint PREWZNMIXCRDACCCTP = 83;
-		static const Sbecore::uint PREWZNMIXCRDACCDLG = 84;
-		static const Sbecore::uint PREWZNMIXCRDACCERR = 85;
-		static const Sbecore::uint PREWZNMIXCRDACCFIL = 86;
-		static const Sbecore::uint PREWZNMIXCRDACCIEL = 87;
-		static const Sbecore::uint PREWZNMIXCRDACCIEX = 88;
-		static const Sbecore::uint PREWZNMIXCRDACCIME = 89;
-		static const Sbecore::uint PREWZNMIXCRDACCJOB = 90;
-		static const Sbecore::uint PREWZNMIXCRDACCLIB = 91;
-		static const Sbecore::uint PREWZNMIXCRDACCLOC = 92;
-		static const Sbecore::uint PREWZNMIXCRDACCMCH = 93;
-		static const Sbecore::uint PREWZNMIXCRDACCMDL = 94;
-		static const Sbecore::uint PREWZNMIXCRDACCMTD = 95;
-		static const Sbecore::uint PREWZNMIXCRDACCMTY = 96;
-		static const Sbecore::uint PREWZNMIXCRDACCOPK = 97;
-		static const Sbecore::uint PREWZNMIXCRDACCOPX = 98;
-		static const Sbecore::uint PREWZNMIXCRDACCPNL = 99;
-		static const Sbecore::uint PREWZNMIXCRDACCPRJ = 100;
-		static const Sbecore::uint PREWZNMIXCRDACCPRS = 101;
-		static const Sbecore::uint PREWZNMIXCRDACCPST = 102;
-		static const Sbecore::uint PREWZNMIXCRDACCQCO = 103;
-		static const Sbecore::uint PREWZNMIXCRDACCQMD = 104;
-		static const Sbecore::uint PREWZNMIXCRDACCQRY = 105;
-		static const Sbecore::uint PREWZNMIXCRDACCREL = 106;
-		static const Sbecore::uint PREWZNMIXCRDACCRLS = 107;
-		static const Sbecore::uint PREWZNMIXCRDACCRTJ = 108;
-		static const Sbecore::uint PREWZNMIXCRDACCSBS = 109;
-		static const Sbecore::uint PREWZNMIXCRDACCSEQ = 110;
-		static const Sbecore::uint PREWZNMIXCRDACCSGE = 111;
-		static const Sbecore::uint PREWZNMIXCRDACCSTB = 112;
-		static const Sbecore::uint PREWZNMIXCRDACCSTE = 113;
-		static const Sbecore::uint PREWZNMIXCRDACCTAG = 114;
-		static const Sbecore::uint PREWZNMIXCRDACCTBL = 115;
-		static const Sbecore::uint PREWZNMIXCRDACCTCO = 116;
-		static const Sbecore::uint PREWZNMIXCRDACCUSG = 117;
-		static const Sbecore::uint PREWZNMIXCRDACCUSR = 118;
-		static const Sbecore::uint PREWZNMIXCRDACCUTL = 119;
-		static const Sbecore::uint PREWZNMIXCRDACCVEC = 120;
-		static const Sbecore::uint PREWZNMIXCRDACCVER = 121;
-		static const Sbecore::uint PREWZNMIXCRDACCVIT = 122;
-		static const Sbecore::uint PREWZNMIXLCL = 123;
-		static const Sbecore::uint PREWZNMIXORD = 124;
-		static const Sbecore::uint PREWZNMIXPRE = 125;
-		static const Sbecore::uint PREWZNMIXRECACC = 126;
-		static const Sbecore::uint PREWZNMJOBLIST_GBL = 127;
-		static const Sbecore::uint PREWZNMJOBLIST_RET = 128;
-		static const Sbecore::uint PREWZNMJOBLIST_REU = 129;
-		static const Sbecore::uint PREWZNMJOBLIST_SRF = 130;
-		static const Sbecore::uint PREWZNMJOBLIST_TYP = 131;
-		static const Sbecore::uint PREWZNMJOBLIST_VER = 132;
-		static const Sbecore::uint PREWZNMJREFNOTIFY = 133;
-		static const Sbecore::uint PREWZNMJREFSESS = 134;
-		static const Sbecore::uint PREWZNMLIBAMAKEFILE_X2 = 135;
-		static const Sbecore::uint PREWZNMLIBLIST_SRF = 136;
-		static const Sbecore::uint PREWZNMLOCLIST_SRF = 137;
-		static const Sbecore::uint PREWZNMMCHAPAR_X1 = 138;
-		static const Sbecore::uint PREWZNMMCHLIST_SRF = 139;
-		static const Sbecore::uint PREWZNMMCHLIST_TBL = 140;
-		static const Sbecore::uint PREWZNMMDLLIST_SRF = 141;
-		static const Sbecore::uint PREWZNMMDLLIST_VER = 142;
-		static const Sbecore::uint PREWZNMMTDLIST_JOB = 143;
-		static const Sbecore::uint PREWZNMMTDLIST_SRF = 144;
-		static const Sbecore::uint PREWZNMMTYAMAKEFILE_X1 = 145;
-		static const Sbecore::uint PREWZNMMTYLIST_SRF = 146;
-		static const Sbecore::uint PREWZNMNOADM = 147;
-		static const Sbecore::uint PREWZNMOPKLIST_SRF = 148;
-		static const Sbecore::uint PREWZNMOPKLIST_TYP = 149;
-		static const Sbecore::uint PREWZNMOPKLIST_VER = 150;
-		static const Sbecore::uint PREWZNMOPXLIST_OPK = 151;
-		static const Sbecore::uint PREWZNMOPXLIST_SRF = 152;
-		static const Sbecore::uint PREWZNMOWNER = 153;
-		static const Sbecore::uint PREWZNMPNLLIST_CAR = 154;
-		static const Sbecore::uint PREWZNMPNLLIST_RET = 155;
-		static const Sbecore::uint PREWZNMPNLLIST_REU = 156;
-		static const Sbecore::uint PREWZNMPNLLIST_SRF = 157;
-		static const Sbecore::uint PREWZNMPNLLIST_TYP = 158;
-		static const Sbecore::uint PREWZNMPRJLIST_GRP = 159;
-		static const Sbecore::uint PREWZNMPRJLIST_OWN = 160;
-		static const Sbecore::uint PREWZNMPRJLIST_SHO = 161;
-		static const Sbecore::uint PREWZNMPRJLIST_TIT = 162;
-		static const Sbecore::uint PREWZNMPRJLIST_VER = 163;
-		static const Sbecore::uint PREWZNMPRJMNPERSON_X1 = 164;
-		static const Sbecore::uint PREWZNMPRSADETAIL_X1 = 165;
-		static const Sbecore::uint PREWZNMPRSLIST_GRP = 166;
-		static const Sbecore::uint PREWZNMPRSLIST_LNM = 167;
-		static const Sbecore::uint PREWZNMPRSLIST_OWN = 168;
-		static const Sbecore::uint PREWZNMPRSMNPROJECT_X1 = 169;
-		static const Sbecore::uint PREWZNMPSTLIST_ATY = 170;
-		static const Sbecore::uint PREWZNMPSTLIST_RET = 171;
-		static const Sbecore::uint PREWZNMPSTLIST_REU = 172;
-		static const Sbecore::uint PREWZNMPSTLIST_SRF = 173;
-		static const Sbecore::uint PREWZNMPSTLIST_VER = 174;
-		static const Sbecore::uint PREWZNMQCOLIST_QRY = 175;
-		static const Sbecore::uint PREWZNMQCOLIST_SRF = 176;
-		static const Sbecore::uint PREWZNMQCOLIST_TCO = 177;
-		static const Sbecore::uint PREWZNMQCOLIST_TYP = 178;
-		static const Sbecore::uint PREWZNMQMDLIST_PST = 179;
-		static const Sbecore::uint PREWZNMQMDLIST_QRY = 180;
-		static const Sbecore::uint PREWZNMQMDLIST_RET = 181;
-		static const Sbecore::uint PREWZNMQMDLIST_REU = 182;
-		static const Sbecore::uint PREWZNMQMDLIST_TYP = 183;
-		static const Sbecore::uint PREWZNMQRYACLAUSE_X1 = 184;
-		static const Sbecore::uint PREWZNMQRYLIST_QTB = 185;
-		static const Sbecore::uint PREWZNMQRYLIST_SRF = 186;
-		static const Sbecore::uint PREWZNMQRYLIST_SRL = 187;
-		static const Sbecore::uint PREWZNMQRYLIST_SUP = 188;
-		static const Sbecore::uint PREWZNMQRYLIST_TBL = 189;
-		static const Sbecore::uint PREWZNMQRYLIST_TYP = 190;
-		static const Sbecore::uint PREWZNMQRYLIST_VER = 191;
-		static const Sbecore::uint PREWZNMREFAPP = 192;
-		static const Sbecore::uint PREWZNMREFBLK = 193;
-		static const Sbecore::uint PREWZNMREFCAI = 194;
-		static const Sbecore::uint PREWZNMREFCAL = 195;
-		static const Sbecore::uint PREWZNMREFCAP = 196;
-		static const Sbecore::uint PREWZNMREFCAR = 197;
-		static const Sbecore::uint PREWZNMREFCCP = 198;
-		static const Sbecore::uint PREWZNMREFCDC = 199;
-		static const Sbecore::uint PREWZNMREFCFB = 200;
-		static const Sbecore::uint PREWZNMREFCHK = 201;
-		static const Sbecore::uint PREWZNMREFCMP = 202;
-		static const Sbecore::uint PREWZNMREFCON = 203;
-		static const Sbecore::uint PREWZNMREFCPB = 204;
-		static const Sbecore::uint PREWZNMREFCTP = 205;
-		static const Sbecore::uint PREWZNMREFDLG = 206;
-		static const Sbecore::uint PREWZNMREFERR = 207;
-		static const Sbecore::uint PREWZNMREFFED = 208;
-		static const Sbecore::uint PREWZNMREFFIL = 209;
-		static const Sbecore::uint PREWZNMREFIEL = 210;
-		static const Sbecore::uint PREWZNMREFIEX = 211;
-		static const Sbecore::uint PREWZNMREFIME = 212;
-		static const Sbecore::uint PREWZNMREFJOB = 213;
-		static const Sbecore::uint PREWZNMREFKLS = 214;
-		static const Sbecore::uint PREWZNMREFLIB = 215;
-		static const Sbecore::uint PREWZNMREFLOC = 216;
-		static const Sbecore::uint PREWZNMREFMCH = 217;
-		static const Sbecore::uint PREWZNMREFMDL = 218;
-		static const Sbecore::uint PREWZNMREFMTB = 219;
-		static const Sbecore::uint PREWZNMREFMTD = 220;
-		static const Sbecore::uint PREWZNMREFMTY = 221;
-		static const Sbecore::uint PREWZNMREFOEN = 222;
-		static const Sbecore::uint PREWZNMREFOPK = 223;
-		static const Sbecore::uint PREWZNMREFOPX = 224;
-		static const Sbecore::uint PREWZNMREFPNL = 225;
-		static const Sbecore::uint PREWZNMREFPRJ = 226;
-		static const Sbecore::uint PREWZNMREFPRS = 227;
-		static const Sbecore::uint PREWZNMREFPST = 228;
-		static const Sbecore::uint PREWZNMREFQCO = 229;
-		static const Sbecore::uint PREWZNMREFQMD = 230;
-		static const Sbecore::uint PREWZNMREFQRY = 231;
-		static const Sbecore::uint PREWZNMREFQTB = 232;
-		static const Sbecore::uint PREWZNMREFREL = 233;
-		static const Sbecore::uint PREWZNMREFRLS = 234;
-		static const Sbecore::uint PREWZNMREFRLT = 235;
-		static const Sbecore::uint PREWZNMREFRTB = 236;
-		static const Sbecore::uint PREWZNMREFRTD = 237;
-		static const Sbecore::uint PREWZNMREFRTJ = 238;
-		static const Sbecore::uint PREWZNMREFSBS = 239;
-		static const Sbecore::uint PREWZNMREFSEL = 240;
-		static const Sbecore::uint PREWZNMREFSEQ = 241;
-		static const Sbecore::uint PREWZNMREFSES = 242;
-		static const Sbecore::uint PREWZNMREFSGE = 243;
-		static const Sbecore::uint PREWZNMREFSNS = 244;
-		static const Sbecore::uint PREWZNMREFSQK = 245;
-		static const Sbecore::uint PREWZNMREFSTB = 246;
-		static const Sbecore::uint PREWZNMREFSTC = 247;
-		static const Sbecore::uint PREWZNMREFSTE = 248;
-		static const Sbecore::uint PREWZNMREFSTT = 249;
-		static const Sbecore::uint PREWZNMREFTAG = 250;
-		static const Sbecore::uint PREWZNMREFTBL = 251;
-		static const Sbecore::uint PREWZNMREFTCO = 252;
-		static const Sbecore::uint PREWZNMREFUSG = 253;
-		static const Sbecore::uint PREWZNMREFUSR = 254;
-		static const Sbecore::uint PREWZNMREFVEC = 255;
-		static const Sbecore::uint PREWZNMREFVER = 256;
-		static const Sbecore::uint PREWZNMREFVIT = 257;
-		static const Sbecore::uint PREWZNMRELATITLE_X1 = 258;
-		static const Sbecore::uint PREWZNMRELATITLE_X2 = 259;
-		static const Sbecore::uint PREWZNMRELLIST_FRS = 260;
-		static const Sbecore::uint PREWZNMRELLIST_FRT = 261;
-		static const Sbecore::uint PREWZNMRELLIST_SRL = 262;
-		static const Sbecore::uint PREWZNMRELLIST_SUP = 263;
-		static const Sbecore::uint PREWZNMRELLIST_TBL = 264;
-		static const Sbecore::uint PREWZNMRELLIST_TOS = 265;
-		static const Sbecore::uint PREWZNMRELLIST_TOT = 266;
-		static const Sbecore::uint PREWZNMRELLIST_TYP = 267;
-		static const Sbecore::uint PREWZNMRELLIST_VER = 268;
-		static const Sbecore::uint PREWZNMREPFOLDER = 269;
-		static const Sbecore::uint PREWZNMRLSLIST_CMP = 270;
-		static const Sbecore::uint PREWZNMRLSLIST_MCH = 271;
-		static const Sbecore::uint PREWZNMRLSLIST_SRF = 272;
-		static const Sbecore::uint PREWZNMRTJLIST_APP = 273;
-		static const Sbecore::uint PREWZNMRTJLIST_JOB = 274;
-		static const Sbecore::uint PREWZNMRTJLIST_SRF = 275;
-		static const Sbecore::uint PREWZNMRTJLIST_SUP = 276;
-		static const Sbecore::uint PREWZNMSBSATITLE_X1 = 277;
-		static const Sbecore::uint PREWZNMSBSATITLE_X2 = 278;
-		static const Sbecore::uint PREWZNMSBSLIST_SRF = 279;
-		static const Sbecore::uint PREWZNMSBSLIST_TBL = 280;
-		static const Sbecore::uint PREWZNMSEQLIST_APP = 281;
-		static const Sbecore::uint PREWZNMSEQLIST_SRF = 282;
-		static const Sbecore::uint PREWZNMSESS = 283;
-		static const Sbecore::uint PREWZNMSGELIST_JOB = 284;
-		static const Sbecore::uint PREWZNMSGELIST_SRF = 285;
-		static const Sbecore::uint PREWZNMSGELIST_TYP = 286;
-		static const Sbecore::uint PREWZNMSTBLIST_SBS = 287;
-		static const Sbecore::uint PREWZNMSTBLIST_SRF = 288;
-		static const Sbecore::uint PREWZNMSTBLIST_TBL = 289;
-		static const Sbecore::uint PREWZNMSTBLIST_TYP = 290;
-		static const Sbecore::uint PREWZNMSTELIST_SEQ = 291;
-		static const Sbecore::uint PREWZNMSTELIST_SRF = 292;
-		static const Sbecore::uint PREWZNMSUSPSESS = 293;
-		static const Sbecore::uint PREWZNMSYSDATE = 294;
-		static const Sbecore::uint PREWZNMSYSSTAMP = 295;
-		static const Sbecore::uint PREWZNMSYSTIME = 296;
-		static const Sbecore::uint PREWZNMTAGLIST_CPB = 297;
-		static const Sbecore::uint PREWZNMTAGLIST_GRP = 298;
-		static const Sbecore::uint PREWZNMTAGLIST_SRF = 299;
-		static const Sbecore::uint PREWZNMTBLATITLE_X1 = 300;
-		static const Sbecore::uint PREWZNMTBLATITLE_X2 = 301;
-		static const Sbecore::uint PREWZNMTBLLIST_RET = 302;
-		static const Sbecore::uint PREWZNMTBLLIST_REU = 303;
-		static const Sbecore::uint PREWZNMTBLLIST_SRF = 304;
-		static const Sbecore::uint PREWZNMTBLLIST_TYP = 305;
-		static const Sbecore::uint PREWZNMTBLLIST_VER = 306;
-		static const Sbecore::uint PREWZNMTCOATITLE_X1 = 307;
-		static const Sbecore::uint PREWZNMTCOATITLE_X2 = 308;
-		static const Sbecore::uint PREWZNMTCOLIST_FCT = 309;
-		static const Sbecore::uint PREWZNMTCOLIST_SRF = 310;
-		static const Sbecore::uint PREWZNMTCOLIST_TBL = 311;
-		static const Sbecore::uint PREWZNMTCOLIST_TYP = 312;
-		static const Sbecore::uint PREWZNMUSGAACCESS_X1 = 313;
-		static const Sbecore::uint PREWZNMUSGAACCESS_X2 = 314;
-		static const Sbecore::uint PREWZNMUSGLIST_GRP = 315;
-		static const Sbecore::uint PREWZNMUSGLIST_OWN = 316;
-		static const Sbecore::uint PREWZNMUSGLIST_SRF = 317;
-		static const Sbecore::uint PREWZNMUSRAACCESS_X1 = 318;
-		static const Sbecore::uint PREWZNMUSRAACCESS_X2 = 319;
-		static const Sbecore::uint PREWZNMUSRLIST_GRP = 320;
-		static const Sbecore::uint PREWZNMUSRLIST_OWN = 321;
-		static const Sbecore::uint PREWZNMUSRLIST_PRS = 322;
-		static const Sbecore::uint PREWZNMUSRLIST_SRF = 323;
-		static const Sbecore::uint PREWZNMUSRLIST_USG = 324;
-		static const Sbecore::uint PREWZNMVECATITLE_X1 = 325;
-		static const Sbecore::uint PREWZNMVECATITLE_X2 = 326;
-		static const Sbecore::uint PREWZNMVECLIST_HKT = 327;
-		static const Sbecore::uint PREWZNMVECLIST_HKU = 328;
-		static const Sbecore::uint PREWZNMVECLIST_SRF = 329;
-		static const Sbecore::uint PREWZNMVECLIST_TGR = 330;
-		static const Sbecore::uint PREWZNMVECLIST_TYP = 331;
-		static const Sbecore::uint PREWZNMVECLIST_VER = 332;
-		static const Sbecore::uint PREWZNMVERLIST_BVR = 333;
-		static const Sbecore::uint PREWZNMVERLIST_GRP = 334;
-		static const Sbecore::uint PREWZNMVERLIST_LOC = 335;
-		static const Sbecore::uint PREWZNMVERLIST_OWN = 336;
-		static const Sbecore::uint PREWZNMVERLIST_PRJ = 337;
-		static const Sbecore::uint PREWZNMVERLIST_STE = 338;
-		static const Sbecore::uint PREWZNMVITLIST_SRF = 339;
-		static const Sbecore::uint PREWZNMVITLIST_VEC = 340;
+		static const Sbecore::uint PREWZNMEVTLIST_APP = 55;
+		static const Sbecore::uint PREWZNMEVTLIST_SRF = 56;
+		static const Sbecore::uint PREWZNMEXTFOLDER = 57;
+		static const Sbecore::uint PREWZNMFILLIST_FNM = 58;
+		static const Sbecore::uint PREWZNMFILLIST_GRP = 59;
+		static const Sbecore::uint PREWZNMFILLIST_OWN = 60;
+		static const Sbecore::uint PREWZNMFILLIST_RET = 61;
+		static const Sbecore::uint PREWZNMFILLIST_REU = 62;
+		static const Sbecore::uint PREWZNMGITURL = 63;
+		static const Sbecore::uint PREWZNMGROUP = 64;
+		static const Sbecore::uint PREWZNMIELLIST_IME = 65;
+		static const Sbecore::uint PREWZNMIELLIST_SRF = 66;
+		static const Sbecore::uint PREWZNMIELLIST_TCO = 67;
+		static const Sbecore::uint PREWZNMIELLIST_TYP = 68;
+		static const Sbecore::uint PREWZNMIEXLIST_SRF = 69;
+		static const Sbecore::uint PREWZNMIEXLIST_VER = 70;
+		static const Sbecore::uint PREWZNMIMELIST_IEX = 71;
+		static const Sbecore::uint PREWZNMIMELIST_SRF = 72;
+		static const Sbecore::uint PREWZNMIMELIST_SUP = 73;
+		static const Sbecore::uint PREWZNMIMELIST_TBL = 74;
+		static const Sbecore::uint PREWZNMIP = 75;
+		static const Sbecore::uint PREWZNMIXBASEREPTYPE = 76;
+		static const Sbecore::uint PREWZNMIXCRDACCAPP = 77;
+		static const Sbecore::uint PREWZNMIXCRDACCBLK = 78;
+		static const Sbecore::uint PREWZNMIXCRDACCCAL = 79;
+		static const Sbecore::uint PREWZNMIXCRDACCCAP = 80;
+		static const Sbecore::uint PREWZNMIXCRDACCCAR = 81;
+		static const Sbecore::uint PREWZNMIXCRDACCCHK = 82;
+		static const Sbecore::uint PREWZNMIXCRDACCCMP = 83;
+		static const Sbecore::uint PREWZNMIXCRDACCCON = 84;
+		static const Sbecore::uint PREWZNMIXCRDACCCTP = 85;
+		static const Sbecore::uint PREWZNMIXCRDACCDLG = 86;
+		static const Sbecore::uint PREWZNMIXCRDACCERR = 87;
+		static const Sbecore::uint PREWZNMIXCRDACCEVT = 88;
+		static const Sbecore::uint PREWZNMIXCRDACCFIL = 89;
+		static const Sbecore::uint PREWZNMIXCRDACCIEL = 90;
+		static const Sbecore::uint PREWZNMIXCRDACCIEX = 91;
+		static const Sbecore::uint PREWZNMIXCRDACCIME = 92;
+		static const Sbecore::uint PREWZNMIXCRDACCJOB = 93;
+		static const Sbecore::uint PREWZNMIXCRDACCLIB = 94;
+		static const Sbecore::uint PREWZNMIXCRDACCLOC = 95;
+		static const Sbecore::uint PREWZNMIXCRDACCMCH = 96;
+		static const Sbecore::uint PREWZNMIXCRDACCMDL = 97;
+		static const Sbecore::uint PREWZNMIXCRDACCMTD = 98;
+		static const Sbecore::uint PREWZNMIXCRDACCMTY = 99;
+		static const Sbecore::uint PREWZNMIXCRDACCOPK = 100;
+		static const Sbecore::uint PREWZNMIXCRDACCOPX = 101;
+		static const Sbecore::uint PREWZNMIXCRDACCPNL = 102;
+		static const Sbecore::uint PREWZNMIXCRDACCPRJ = 103;
+		static const Sbecore::uint PREWZNMIXCRDACCPRS = 104;
+		static const Sbecore::uint PREWZNMIXCRDACCPST = 105;
+		static const Sbecore::uint PREWZNMIXCRDACCQCO = 106;
+		static const Sbecore::uint PREWZNMIXCRDACCQMD = 107;
+		static const Sbecore::uint PREWZNMIXCRDACCQRY = 108;
+		static const Sbecore::uint PREWZNMIXCRDACCREL = 109;
+		static const Sbecore::uint PREWZNMIXCRDACCRLS = 110;
+		static const Sbecore::uint PREWZNMIXCRDACCRTJ = 111;
+		static const Sbecore::uint PREWZNMIXCRDACCSBS = 112;
+		static const Sbecore::uint PREWZNMIXCRDACCSEQ = 113;
+		static const Sbecore::uint PREWZNMIXCRDACCSGE = 114;
+		static const Sbecore::uint PREWZNMIXCRDACCSTB = 115;
+		static const Sbecore::uint PREWZNMIXCRDACCSTE = 116;
+		static const Sbecore::uint PREWZNMIXCRDACCTAG = 117;
+		static const Sbecore::uint PREWZNMIXCRDACCTBL = 118;
+		static const Sbecore::uint PREWZNMIXCRDACCTCO = 119;
+		static const Sbecore::uint PREWZNMIXCRDACCUSG = 120;
+		static const Sbecore::uint PREWZNMIXCRDACCUSR = 121;
+		static const Sbecore::uint PREWZNMIXCRDACCUTL = 122;
+		static const Sbecore::uint PREWZNMIXCRDACCVEC = 123;
+		static const Sbecore::uint PREWZNMIXCRDACCVER = 124;
+		static const Sbecore::uint PREWZNMIXCRDACCVIT = 125;
+		static const Sbecore::uint PREWZNMIXLCL = 126;
+		static const Sbecore::uint PREWZNMIXORD = 127;
+		static const Sbecore::uint PREWZNMIXPRE = 128;
+		static const Sbecore::uint PREWZNMIXRECACC = 129;
+		static const Sbecore::uint PREWZNMJOBLIST_GBL = 130;
+		static const Sbecore::uint PREWZNMJOBLIST_RET = 131;
+		static const Sbecore::uint PREWZNMJOBLIST_REU = 132;
+		static const Sbecore::uint PREWZNMJOBLIST_SRF = 133;
+		static const Sbecore::uint PREWZNMJOBLIST_TYP = 134;
+		static const Sbecore::uint PREWZNMJOBLIST_VER = 135;
+		static const Sbecore::uint PREWZNMJREFNOTIFY = 136;
+		static const Sbecore::uint PREWZNMJREFSESS = 137;
+		static const Sbecore::uint PREWZNMLIBAMAKEFILE_X2 = 138;
+		static const Sbecore::uint PREWZNMLIBLIST_SRF = 139;
+		static const Sbecore::uint PREWZNMLOCLIST_SRF = 140;
+		static const Sbecore::uint PREWZNMMCHAPAR_X1 = 141;
+		static const Sbecore::uint PREWZNMMCHLIST_SRF = 142;
+		static const Sbecore::uint PREWZNMMCHLIST_TBL = 143;
+		static const Sbecore::uint PREWZNMMDLLIST_SRF = 144;
+		static const Sbecore::uint PREWZNMMDLLIST_VER = 145;
+		static const Sbecore::uint PREWZNMMTDLIST_JOB = 146;
+		static const Sbecore::uint PREWZNMMTDLIST_SRF = 147;
+		static const Sbecore::uint PREWZNMMTYAMAKEFILE_X1 = 148;
+		static const Sbecore::uint PREWZNMMTYLIST_SRF = 149;
+		static const Sbecore::uint PREWZNMNOADM = 150;
+		static const Sbecore::uint PREWZNMOPKLIST_SRF = 151;
+		static const Sbecore::uint PREWZNMOPKLIST_TYP = 152;
+		static const Sbecore::uint PREWZNMOPKLIST_VER = 153;
+		static const Sbecore::uint PREWZNMOPXLIST_OPK = 154;
+		static const Sbecore::uint PREWZNMOPXLIST_SRF = 155;
+		static const Sbecore::uint PREWZNMOWNER = 156;
+		static const Sbecore::uint PREWZNMPNLLIST_CAR = 157;
+		static const Sbecore::uint PREWZNMPNLLIST_RET = 158;
+		static const Sbecore::uint PREWZNMPNLLIST_REU = 159;
+		static const Sbecore::uint PREWZNMPNLLIST_SRF = 160;
+		static const Sbecore::uint PREWZNMPNLLIST_TYP = 161;
+		static const Sbecore::uint PREWZNMPRJLIST_GRP = 162;
+		static const Sbecore::uint PREWZNMPRJLIST_OWN = 163;
+		static const Sbecore::uint PREWZNMPRJLIST_SHO = 164;
+		static const Sbecore::uint PREWZNMPRJLIST_TIT = 165;
+		static const Sbecore::uint PREWZNMPRJLIST_VER = 166;
+		static const Sbecore::uint PREWZNMPRJMNPERSON_X1 = 167;
+		static const Sbecore::uint PREWZNMPRSADETAIL_X1 = 168;
+		static const Sbecore::uint PREWZNMPRSLIST_GRP = 169;
+		static const Sbecore::uint PREWZNMPRSLIST_LNM = 170;
+		static const Sbecore::uint PREWZNMPRSLIST_OWN = 171;
+		static const Sbecore::uint PREWZNMPRSMNPROJECT_X1 = 172;
+		static const Sbecore::uint PREWZNMPSTLIST_ATY = 173;
+		static const Sbecore::uint PREWZNMPSTLIST_RET = 174;
+		static const Sbecore::uint PREWZNMPSTLIST_REU = 175;
+		static const Sbecore::uint PREWZNMPSTLIST_SRF = 176;
+		static const Sbecore::uint PREWZNMPSTLIST_VER = 177;
+		static const Sbecore::uint PREWZNMQCOLIST_QRY = 178;
+		static const Sbecore::uint PREWZNMQCOLIST_SRF = 179;
+		static const Sbecore::uint PREWZNMQCOLIST_TCO = 180;
+		static const Sbecore::uint PREWZNMQCOLIST_TYP = 181;
+		static const Sbecore::uint PREWZNMQMDLIST_PST = 182;
+		static const Sbecore::uint PREWZNMQMDLIST_QRY = 183;
+		static const Sbecore::uint PREWZNMQMDLIST_RET = 184;
+		static const Sbecore::uint PREWZNMQMDLIST_REU = 185;
+		static const Sbecore::uint PREWZNMQMDLIST_TYP = 186;
+		static const Sbecore::uint PREWZNMQRYACLAUSE_X1 = 187;
+		static const Sbecore::uint PREWZNMQRYLIST_QTB = 188;
+		static const Sbecore::uint PREWZNMQRYLIST_SRF = 189;
+		static const Sbecore::uint PREWZNMQRYLIST_SRL = 190;
+		static const Sbecore::uint PREWZNMQRYLIST_SUP = 191;
+		static const Sbecore::uint PREWZNMQRYLIST_TBL = 192;
+		static const Sbecore::uint PREWZNMQRYLIST_TYP = 193;
+		static const Sbecore::uint PREWZNMQRYLIST_VER = 194;
+		static const Sbecore::uint PREWZNMREFAPP = 195;
+		static const Sbecore::uint PREWZNMREFBLK = 196;
+		static const Sbecore::uint PREWZNMREFCAI = 197;
+		static const Sbecore::uint PREWZNMREFCAL = 198;
+		static const Sbecore::uint PREWZNMREFCAP = 199;
+		static const Sbecore::uint PREWZNMREFCAR = 200;
+		static const Sbecore::uint PREWZNMREFCCP = 201;
+		static const Sbecore::uint PREWZNMREFCDC = 202;
+		static const Sbecore::uint PREWZNMREFCFB = 203;
+		static const Sbecore::uint PREWZNMREFCHK = 204;
+		static const Sbecore::uint PREWZNMREFCMP = 205;
+		static const Sbecore::uint PREWZNMREFCON = 206;
+		static const Sbecore::uint PREWZNMREFCPB = 207;
+		static const Sbecore::uint PREWZNMREFCTP = 208;
+		static const Sbecore::uint PREWZNMREFDLG = 209;
+		static const Sbecore::uint PREWZNMREFERR = 210;
+		static const Sbecore::uint PREWZNMREFEVT = 211;
+		static const Sbecore::uint PREWZNMREFFED = 212;
+		static const Sbecore::uint PREWZNMREFFIL = 213;
+		static const Sbecore::uint PREWZNMREFIEL = 214;
+		static const Sbecore::uint PREWZNMREFIEX = 215;
+		static const Sbecore::uint PREWZNMREFIME = 216;
+		static const Sbecore::uint PREWZNMREFJOB = 217;
+		static const Sbecore::uint PREWZNMREFKLS = 218;
+		static const Sbecore::uint PREWZNMREFLIB = 219;
+		static const Sbecore::uint PREWZNMREFLOC = 220;
+		static const Sbecore::uint PREWZNMREFMCH = 221;
+		static const Sbecore::uint PREWZNMREFMDL = 222;
+		static const Sbecore::uint PREWZNMREFMTB = 223;
+		static const Sbecore::uint PREWZNMREFMTD = 224;
+		static const Sbecore::uint PREWZNMREFMTY = 225;
+		static const Sbecore::uint PREWZNMREFOEN = 226;
+		static const Sbecore::uint PREWZNMREFOPK = 227;
+		static const Sbecore::uint PREWZNMREFOPX = 228;
+		static const Sbecore::uint PREWZNMREFPNL = 229;
+		static const Sbecore::uint PREWZNMREFPRJ = 230;
+		static const Sbecore::uint PREWZNMREFPRS = 231;
+		static const Sbecore::uint PREWZNMREFPST = 232;
+		static const Sbecore::uint PREWZNMREFQCO = 233;
+		static const Sbecore::uint PREWZNMREFQMD = 234;
+		static const Sbecore::uint PREWZNMREFQRY = 235;
+		static const Sbecore::uint PREWZNMREFQTB = 236;
+		static const Sbecore::uint PREWZNMREFREL = 237;
+		static const Sbecore::uint PREWZNMREFRLS = 238;
+		static const Sbecore::uint PREWZNMREFRLT = 239;
+		static const Sbecore::uint PREWZNMREFRTB = 240;
+		static const Sbecore::uint PREWZNMREFRTD = 241;
+		static const Sbecore::uint PREWZNMREFRTJ = 242;
+		static const Sbecore::uint PREWZNMREFSBS = 243;
+		static const Sbecore::uint PREWZNMREFSEL = 244;
+		static const Sbecore::uint PREWZNMREFSEQ = 245;
+		static const Sbecore::uint PREWZNMREFSES = 246;
+		static const Sbecore::uint PREWZNMREFSGE = 247;
+		static const Sbecore::uint PREWZNMREFSNS = 248;
+		static const Sbecore::uint PREWZNMREFSQK = 249;
+		static const Sbecore::uint PREWZNMREFSTB = 250;
+		static const Sbecore::uint PREWZNMREFSTC = 251;
+		static const Sbecore::uint PREWZNMREFSTE = 252;
+		static const Sbecore::uint PREWZNMREFSTT = 253;
+		static const Sbecore::uint PREWZNMREFTAG = 254;
+		static const Sbecore::uint PREWZNMREFTBL = 255;
+		static const Sbecore::uint PREWZNMREFTCO = 256;
+		static const Sbecore::uint PREWZNMREFUSG = 257;
+		static const Sbecore::uint PREWZNMREFUSR = 258;
+		static const Sbecore::uint PREWZNMREFVEC = 259;
+		static const Sbecore::uint PREWZNMREFVER = 260;
+		static const Sbecore::uint PREWZNMREFVIT = 261;
+		static const Sbecore::uint PREWZNMRELATITLE_X1 = 262;
+		static const Sbecore::uint PREWZNMRELATITLE_X2 = 263;
+		static const Sbecore::uint PREWZNMRELLIST_FRS = 264;
+		static const Sbecore::uint PREWZNMRELLIST_FRT = 265;
+		static const Sbecore::uint PREWZNMRELLIST_SRL = 266;
+		static const Sbecore::uint PREWZNMRELLIST_SUP = 267;
+		static const Sbecore::uint PREWZNMRELLIST_TBL = 268;
+		static const Sbecore::uint PREWZNMRELLIST_TOS = 269;
+		static const Sbecore::uint PREWZNMRELLIST_TOT = 270;
+		static const Sbecore::uint PREWZNMRELLIST_TYP = 271;
+		static const Sbecore::uint PREWZNMRELLIST_VER = 272;
+		static const Sbecore::uint PREWZNMREPFOLDER = 273;
+		static const Sbecore::uint PREWZNMRLSLIST_CMP = 274;
+		static const Sbecore::uint PREWZNMRLSLIST_MCH = 275;
+		static const Sbecore::uint PREWZNMRLSLIST_SRF = 276;
+		static const Sbecore::uint PREWZNMRTJLIST_APP = 277;
+		static const Sbecore::uint PREWZNMRTJLIST_JOB = 278;
+		static const Sbecore::uint PREWZNMRTJLIST_SRF = 279;
+		static const Sbecore::uint PREWZNMRTJLIST_SUP = 280;
+		static const Sbecore::uint PREWZNMSBSATITLE_X1 = 281;
+		static const Sbecore::uint PREWZNMSBSATITLE_X2 = 282;
+		static const Sbecore::uint PREWZNMSBSLIST_SRF = 283;
+		static const Sbecore::uint PREWZNMSBSLIST_TBL = 284;
+		static const Sbecore::uint PREWZNMSEQLIST_APP = 285;
+		static const Sbecore::uint PREWZNMSEQLIST_SRF = 286;
+		static const Sbecore::uint PREWZNMSESS = 287;
+		static const Sbecore::uint PREWZNMSGELIST_JOB = 288;
+		static const Sbecore::uint PREWZNMSGELIST_SRF = 289;
+		static const Sbecore::uint PREWZNMSGELIST_TYP = 290;
+		static const Sbecore::uint PREWZNMSTBLIST_SBS = 291;
+		static const Sbecore::uint PREWZNMSTBLIST_SRF = 292;
+		static const Sbecore::uint PREWZNMSTBLIST_TBL = 293;
+		static const Sbecore::uint PREWZNMSTBLIST_TYP = 294;
+		static const Sbecore::uint PREWZNMSTELIST_SEQ = 295;
+		static const Sbecore::uint PREWZNMSTELIST_SRF = 296;
+		static const Sbecore::uint PREWZNMSUSPSESS = 297;
+		static const Sbecore::uint PREWZNMSYSDATE = 298;
+		static const Sbecore::uint PREWZNMSYSSTAMP = 299;
+		static const Sbecore::uint PREWZNMSYSTIME = 300;
+		static const Sbecore::uint PREWZNMTAGLIST_CPB = 301;
+		static const Sbecore::uint PREWZNMTAGLIST_GRP = 302;
+		static const Sbecore::uint PREWZNMTAGLIST_SRF = 303;
+		static const Sbecore::uint PREWZNMTBLATITLE_X1 = 304;
+		static const Sbecore::uint PREWZNMTBLATITLE_X2 = 305;
+		static const Sbecore::uint PREWZNMTBLLIST_RET = 306;
+		static const Sbecore::uint PREWZNMTBLLIST_REU = 307;
+		static const Sbecore::uint PREWZNMTBLLIST_SRF = 308;
+		static const Sbecore::uint PREWZNMTBLLIST_TYP = 309;
+		static const Sbecore::uint PREWZNMTBLLIST_VER = 310;
+		static const Sbecore::uint PREWZNMTCOATITLE_X1 = 311;
+		static const Sbecore::uint PREWZNMTCOATITLE_X2 = 312;
+		static const Sbecore::uint PREWZNMTCOLIST_FCT = 313;
+		static const Sbecore::uint PREWZNMTCOLIST_SRF = 314;
+		static const Sbecore::uint PREWZNMTCOLIST_TBL = 315;
+		static const Sbecore::uint PREWZNMTCOLIST_TYP = 316;
+		static const Sbecore::uint PREWZNMUSGAACCESS_X1 = 317;
+		static const Sbecore::uint PREWZNMUSGAACCESS_X2 = 318;
+		static const Sbecore::uint PREWZNMUSGLIST_GRP = 319;
+		static const Sbecore::uint PREWZNMUSGLIST_OWN = 320;
+		static const Sbecore::uint PREWZNMUSGLIST_SRF = 321;
+		static const Sbecore::uint PREWZNMUSRAACCESS_X1 = 322;
+		static const Sbecore::uint PREWZNMUSRAACCESS_X2 = 323;
+		static const Sbecore::uint PREWZNMUSRLIST_GRP = 324;
+		static const Sbecore::uint PREWZNMUSRLIST_OWN = 325;
+		static const Sbecore::uint PREWZNMUSRLIST_PRS = 326;
+		static const Sbecore::uint PREWZNMUSRLIST_SRF = 327;
+		static const Sbecore::uint PREWZNMUSRLIST_USG = 328;
+		static const Sbecore::uint PREWZNMVECATITLE_X1 = 329;
+		static const Sbecore::uint PREWZNMVECATITLE_X2 = 330;
+		static const Sbecore::uint PREWZNMVECLIST_HKT = 331;
+		static const Sbecore::uint PREWZNMVECLIST_HKU = 332;
+		static const Sbecore::uint PREWZNMVECLIST_SRF = 333;
+		static const Sbecore::uint PREWZNMVECLIST_TGR = 334;
+		static const Sbecore::uint PREWZNMVECLIST_TYP = 335;
+		static const Sbecore::uint PREWZNMVECLIST_VER = 336;
+		static const Sbecore::uint PREWZNMVERLIST_BVR = 337;
+		static const Sbecore::uint PREWZNMVERLIST_GRP = 338;
+		static const Sbecore::uint PREWZNMVERLIST_LOC = 339;
+		static const Sbecore::uint PREWZNMVERLIST_OWN = 340;
+		static const Sbecore::uint PREWZNMVERLIST_PRJ = 341;
+		static const Sbecore::uint PREWZNMVERLIST_STE = 342;
+		static const Sbecore::uint PREWZNMVITLIST_SRF = 343;
+		static const Sbecore::uint PREWZNMVITLIST_VEC = 344;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -1856,7 +1889,8 @@ public:
 	TblWznmAMQueryClause* tblwznmamqueryclause;
 	TblWznmAMQueryOrder* tblwznmamqueryorder;
 	TblWznmAMRelationTitle* tblwznmamrelationtitle;
-	TblWznmAMStateStep* tblwznmamstatestep;
+	TblWznmAMStateAction* tblwznmamstateaction;
+	TblWznmAMStateTrig* tblwznmamstatetrig;
 	TblWznmAMSubsetTitle* tblwznmamsubsettitle;
 	TblWznmAMTablecolTitle* tblwznmamtablecoltitle;
 	TblWznmAMTableLoadfct* tblwznmamtableloadfct;
@@ -1878,6 +1912,7 @@ public:
 	TblWznmCRelation* tblwznmcrelation;
 	TblWznmHistRMUserUniversal* tblwznmhistrmuseruniversal;
 	TblWznmJAMBlockItem* tblwznmjamblockitem;
+	TblWznmJAMStateTrigCond* tblwznmjamstatetrigcond;
 	TblWznmJAVKeylistKey* tblwznmjavkeylistkey;
 	TblWznmJMCardTitle* tblwznmjmcardtitle;
 	TblWznmJMControl* tblwznmjmcontrol;
@@ -1906,6 +1941,7 @@ public:
 	TblWznmMControl* tblwznmmcontrol;
 	TblWznmMDialog* tblwznmmdialog;
 	TblWznmMError* tblwznmmerror;
+	TblWznmMEvent* tblwznmmevent;
 	TblWznmMFeed* tblwznmmfeed;
 	TblWznmMFile* tblwznmmfile;
 	TblWznmMImpexp* tblwznmmimpexp;
@@ -1969,6 +2005,7 @@ public:
 	TblWznmRMUserMUsergroup* tblwznmrmusermusergroup;
 	TblWznmTMQuerymodMQuery* tblwznmtmquerymodmquery;
 
+	TblWznmQApp1NEvent* tblwznmqapp1nevent;
 	TblWznmQApp1NRtjob* tblwznmqapp1nrtjob;
 	TblWznmQAppApp1NSequence* tblwznmqappapp1nsequence;
 	TblWznmQAppList* tblwznmqapplist;
@@ -2007,6 +2044,7 @@ public:
 	TblWznmQDlgMNQuery* tblwznmqdlgmnquery;
 	TblWznmQDlgRef1NControl* tblwznmqdlgref1ncontrol;
 	TblWznmQErrList* tblwznmqerrlist;
+	TblWznmQEvtList* tblwznmqevtlist;
 	TblWznmQFilList* tblwznmqfillist;
 	TblWznmQIelList* tblwznmqiellist;
 	TblWznmQIex1NImpexp* tblwznmqiex1nimpexp;
@@ -2121,7 +2159,7 @@ public:
 	TblWznmQStbMNSquawk* tblwznmqstbmnsquawk;
 	TblWznmQStbSubMNStub* tblwznmqstbsubmnstub;
 	TblWznmQStbSupMNStub* tblwznmqstbsupmnstub;
-	TblWznmQSteAStep* tblwznmqsteastep;
+	TblWznmQSteATrig* tblwznmqsteatrig;
 	TblWznmQSteList* tblwznmqstelist;
 	TblWznmQTagList* tblwznmqtaglist;
 	TblWznmQTbl1NCheck* tblwznmqtbl1ncheck;

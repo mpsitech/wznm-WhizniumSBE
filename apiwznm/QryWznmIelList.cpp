@@ -2,8 +2,8 @@
 	* \file QryWznmIelList.cpp
 	* API code for job QryWznmIelList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #include "QryWznmIelList.h"
@@ -23,8 +23,8 @@ uint QryWznmIelList::VecVOrd::getIx(
 
 	if (s == "tco") return TCO;
 	if (s == "ime") return IME;
-	if (s == "srf") return SRF;
 	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -34,8 +34,8 @@ string QryWznmIelList::VecVOrd::getSref(
 		) {
 	if (ix == TCO) return("tco");
 	if (ix == IME) return("ime");
-	if (ix == SRF) return("srf");
 	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

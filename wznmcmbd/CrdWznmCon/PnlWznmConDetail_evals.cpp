@@ -2,8 +2,8 @@
 	* \file PnlWznmConDetail_evals.cpp
 	* job handler for job PnlWznmConDetail (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -193,64 +193,64 @@ bool PnlWznmConDetail::evalTxtHkuActive(
 bool PnlWznmConDetail::evalButHkuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// con.hkuEq(0)|((pre.ixCrdaccDlg()&con.hktEq(dlg)&pre.refCar())|(pre.ixCrdaccDlg()&con.hktEq(dlg)&pre.refVer())|(pre.ixCrdaccPnl()&con.hktEq(pnl)&pre.refCar())|(pre.ixCrdaccPnl()&con.hktEq(pnl)&pre.refVer())|(pre.ixCrdaccCar()&con.hktEq(car)&pre.refVer()))
+	// con.hkuEq(0)|((pre.ixCrdaccCar()&con.hktEq(car)&pre.refVer())|(pre.ixCrdaccDlg()&con.hktEq(dlg)&pre.refCar())|(pre.ixCrdaccDlg()&con.hktEq(dlg)&pre.refVer())|(pre.ixCrdaccPnl()&con.hktEq(pnl)&pre.refCar())|(pre.ixCrdaccPnl()&con.hktEq(pnl)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recCon.hkUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref) != 0);
-	args.push_back(a);
-	a = false; a = (recCon.hkIxVTbl == VecWznmVMControlHkTbl::DLG);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFCAR, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref) != 0);
-	args.push_back(a);
-	a = false; a = (recCon.hkIxVTbl == VecWznmVMControlHkTbl::DLG);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref) != 0);
-	args.push_back(a);
-	a = false; a = (recCon.hkIxVTbl == VecWznmVMControlHkTbl::PNL);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFCAR, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref) != 0);
-	args.push_back(a);
-	a = false; a = (recCon.hkIxVTbl == VecWznmVMControlHkTbl::PNL);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref) != 0);
 	args.push_back(a);
 	a = false; a = (recCon.hkIxVTbl == VecWznmVMControlHkTbl::CAR);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recCon.hkIxVTbl == VecWznmVMControlHkTbl::DLG);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFCAR, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recCon.hkIxVTbl == VecWznmVMControlHkTbl::DLG);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recCon.hkIxVTbl == VecWznmVMControlHkTbl::PNL);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFCAR, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recCon.hkIxVTbl == VecWznmVMControlHkTbl::PNL);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);

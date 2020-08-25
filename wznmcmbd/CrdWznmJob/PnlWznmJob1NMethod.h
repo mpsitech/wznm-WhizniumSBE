@@ -2,8 +2,8 @@
 	* \file PnlWznmJob1NMethod.h
 	* job handler for job PnlWznmJob1NMethod (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMJOB1NMETHOD_H

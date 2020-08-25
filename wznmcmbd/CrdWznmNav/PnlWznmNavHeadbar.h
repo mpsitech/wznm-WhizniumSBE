@@ -2,8 +2,8 @@
 	* \file PnlWznmNavHeadbar.h
 	* job handler for job PnlWznmNavHeadbar (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMNAVHEADBAR_H
@@ -142,6 +142,7 @@ public:
 	bool evalMspCrd9Avail(DbsWznm* dbswznm);
 	bool evalMitCrdAppAvail(DbsWznm* dbswznm);
 	bool evalMitCrdRtjAvail(DbsWznm* dbswznm);
+	bool evalMitCrdEvtAvail(DbsWznm* dbswznm);
 	bool evalMitCrdSeqAvail(DbsWznm* dbswznm);
 	bool evalMitCrdSteAvail(DbsWznm* dbswznm);
 	bool evalMspCrd10Avail(DbsWznm* dbswznm);

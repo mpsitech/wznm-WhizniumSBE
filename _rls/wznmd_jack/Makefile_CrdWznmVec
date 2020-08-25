@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmVec card job handler, release wznmd_jack
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
 INCPATH += -I/home/mpsitech/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/include/postgresql -I/usr/local/include
 
-OBJS = CrdWznmVec.o PnlWznmVecList.o QryWznmVecList.o PnlWznmVecHeadbar.o PnlWznmVecRec.o PnlWznmVecPst1NQuerymod.o QryWznmVecPst1NQuerymod.o PnlWznmVecMNTable.o QryWznmVecMNTable.o PnlWznmVecSrc1NFeed.o QryWznmVecSrc1NFeed.o PnlWznmVecRef1NPanel.o QryWznmVecRef1NPanel.o PnlWznmVecFct1NTablecol.o QryWznmVecFct1NTablecol.o PnlWznmVecVec1NVectoritem.o QryWznmVecVec1NVectoritem.o PnlWznmVecATitle.o QryWznmVecATitle.o PnlWznmVecDetail.o
+OBJS = CrdWznmVec.o PnlWznmVecList.o QryWznmVecList.o PnlWznmVecHeadbar.o PnlWznmVecRec.o PnlWznmVecMNTable.o QryWznmVecMNTable.o PnlWznmVecPst1NQuerymod.o QryWznmVecPst1NQuerymod.o PnlWznmVecRef1NPanel.o QryWznmVecRef1NPanel.o PnlWznmVecSrc1NFeed.o QryWznmVecSrc1NFeed.o PnlWznmVecFct1NTablecol.o QryWznmVecFct1NTablecol.o PnlWznmVecVec1NVectoritem.o QryWznmVecVec1NVectoritem.o PnlWznmVecATitle.o QryWznmVecATitle.o PnlWznmVecDetail.o
 
 LIB = libcrdwznmvec
 

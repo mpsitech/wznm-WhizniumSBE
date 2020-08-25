@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmOpx card job handler, release wznmd_genio
 # author Alexander Wirthmueller
-# date created: 11 Jul 2020
-# modified: 11 Jul 2020
+# date created: 25 Aug 2020
+# modified: 25 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
 INCPATH += -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/include/postgresql -I/usr/local/include
 
-OBJS = CrdWznmOpx.o PnlWznmOpxList.o QryWznmOpxList.o PnlWznmOpxRec.o PnlWznmOpxSqkMNStub.o QryWznmOpxSqkMNStub.o PnlWznmOpxMNJob.o QryWznmOpxMNJob.o PnlWznmOpxRef1NBlock.o QryWznmOpxRef1NBlock.o PnlWznmOpxAInvarg.o QryWznmOpxAInvarg.o PnlWznmOpxARetval.o QryWznmOpxARetval.o PnlWznmOpxDetail.o PnlWznmOpxHeadbar.o
+OBJS = CrdWznmOpx.o PnlWznmOpxList.o QryWznmOpxList.o PnlWznmOpxHeadbar.o PnlWznmOpxRec.o PnlWznmOpxSqkMNStub.o QryWznmOpxSqkMNStub.o PnlWznmOpxMNJob.o QryWznmOpxMNJob.o PnlWznmOpxRef1NBlock.o QryWznmOpxRef1NBlock.o PnlWznmOpxARetval.o QryWznmOpxARetval.o PnlWznmOpxAInvarg.o QryWznmOpxAInvarg.o PnlWznmOpxDetail.o
 
 LIB = libcrdwznmopx
 

@@ -2,8 +2,8 @@
 	* \file PnlWznmSteRec.h
 	* API code for job PnlWznmSteRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 #ifndef PNLWZNMSTEREC_H
@@ -65,14 +65,14 @@ namespace PnlWznmSteRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEASTEP = 2;
+		static const Sbecore::uint INITDONEATRIG = 2;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneAStep = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneATrig = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdoneAStep;
+		bool initdoneATrig;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -88,16 +88,16 @@ namespace PnlWznmSteRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFASTEP = 3;
+		static const Sbecore::uint SCRJREFATRIG = 3;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 4;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAStep = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATrig = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJrefAStep;
+		std::string scrJrefATrig;
 		bool ButRegularizeActive;
 
 	public:

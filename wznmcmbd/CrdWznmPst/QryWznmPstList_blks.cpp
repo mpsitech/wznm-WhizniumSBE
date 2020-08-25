@@ -2,8 +2,8 @@
 	* \file QryWznmPstList_blks.cpp
 	* job handler for job QryWznmPstList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 11 Jul 2020
-	* \date modified: 11 Jul 2020
+	* \date created: 25 Aug 2020
+	* \date modified: 25 Aug 2020
 	*/
 
 using namespace std;
@@ -20,10 +20,10 @@ uint QryWznmPstList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "aty") return ATY;
-	if (s == "reu") return REU;
 	if (s == "ret") return RET;
-	if (s == "ver") return VER;
+	if (s == "reu") return REU;
 	if (s == "srf") return SRF;
+	if (s == "ver") return VER;
 
 	return(0);
 };
@@ -32,10 +32,10 @@ string QryWznmPstList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == ATY) return("aty");
-	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
-	if (ix == VER) return("ver");
+	if (ix == REU) return("reu");
 	if (ix == SRF) return("srf");
+	if (ix == VER) return("ver");
 
 	return("");
 };
