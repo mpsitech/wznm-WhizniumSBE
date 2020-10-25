@@ -2,8 +2,8 @@
 	* \file QryWznmUsr1NSession.cpp
 	* API code for job QryWznmUsr1NSession (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmUsr1NSession.h"

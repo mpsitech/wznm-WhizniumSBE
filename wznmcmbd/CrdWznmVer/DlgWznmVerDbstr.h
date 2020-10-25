@@ -2,8 +2,8 @@
 	* \file DlgWznmVerDbstr.h
 	* job handler for job DlgWznmVerDbstr (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef DLGWZNMVERDBSTR_H
@@ -486,9 +486,9 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalPprButRunActive(DbsWznm* dbswznm);
 	bool evalPprButStoActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalImpButRunActive(DbsWznm* dbswznm);
 	bool evalImpButStoActive(DbsWznm* dbswznm);
 	bool evalIfiUldActive(DbsWznm* dbswznm);

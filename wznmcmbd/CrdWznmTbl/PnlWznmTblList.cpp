@@ -2,8 +2,8 @@
 	* \file PnlWznmTblList.cpp
 	* job handler for job PnlWznmTblList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -252,7 +252,7 @@ void PnlWznmTblList::handleDpchAppDataContiac(
 	muteRefresh = true;
 
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWznmTblList::VecVOrd::REU) && (_contiac->numFTos <= QryWznmTblList::VecVOrd::SRF)) {
+		if ((_contiac->numFTos >= QryWznmTblList::VecVOrd::RET) && (_contiac->numFTos <= QryWznmTblList::VecVOrd::TYP)) {
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);
 
 			qry->rerun(dbswznm);

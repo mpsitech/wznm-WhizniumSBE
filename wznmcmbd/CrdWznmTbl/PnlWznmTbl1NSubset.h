@@ -2,8 +2,8 @@
 	* \file PnlWznmTbl1NSubset.h
 	* job handler for job PnlWznmTbl1NSubset (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMTBL1NSUBSET_H

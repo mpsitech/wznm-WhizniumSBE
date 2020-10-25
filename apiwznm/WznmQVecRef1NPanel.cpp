@@ -2,8 +2,8 @@
 	* \file WznmQVecRef1NPanel.cpp
 	* API code for table TblWznmQVecRef1NPanel (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQVecRef1NPanel.h"

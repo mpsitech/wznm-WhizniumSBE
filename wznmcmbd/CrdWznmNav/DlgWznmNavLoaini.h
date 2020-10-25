@@ -2,8 +2,8 @@
 	* \file DlgWznmNavLoaini.h
 	* job handler for job DlgWznmNavLoaini (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef DLGWZNMNAVLOAINI_H
@@ -450,9 +450,9 @@ public:
 
 	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalLfiDldActive(DbsWznm* dbswznm);
-	bool evalAcvUldActive(DbsWznm* dbswznm);
 	bool evalImpButRunActive(DbsWznm* dbswznm);
 	bool evalImpButStoActive(DbsWznm* dbswznm);
+	bool evalAcvUldActive(DbsWznm* dbswznm);
 	bool evalIfiUldActive(DbsWznm* dbswznm);
 
 public:
@@ -511,8 +511,8 @@ private:
 	void handleDpchAppDoImpButStoClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
-	void handleUploadInSgeImpdone(DbsWznm* dbswznm, const std::string& filename);
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeImpdone(DbsWznm* dbswznm, const std::string& filename);
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 

@@ -2,8 +2,8 @@
 	* \file QryWznmCalList.cpp
 	* API code for job QryWznmCalList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmCalList.h"
@@ -21,13 +21,13 @@ uint QryWznmCalList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "rat") return RAT;
-	if (s == "iat") return IAT;
-	if (s == "reu") return REU;
+	if (s == "srf") return SRF;
+	if (s == "typ") return TYP;
 	if (s == "ver") return VER;
 	if (s == "ret") return RET;
-	if (s == "typ") return TYP;
-	if (s == "srf") return SRF;
+	if (s == "reu") return REU;
+	if (s == "iat") return IAT;
+	if (s == "rat") return RAT;
 
 	return(0);
 };
@@ -35,13 +35,13 @@ uint QryWznmCalList::VecVOrd::getIx(
 string QryWznmCalList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == RAT) return("rat");
-	if (ix == IAT) return("iat");
-	if (ix == REU) return("reu");
+	if (ix == SRF) return("srf");
+	if (ix == TYP) return("typ");
 	if (ix == VER) return("ver");
 	if (ix == RET) return("ret");
-	if (ix == TYP) return("typ");
-	if (ix == SRF) return("srf");
+	if (ix == REU) return("reu");
+	if (ix == IAT) return("iat");
+	if (ix == RAT) return("rat");
 
 	return("");
 };

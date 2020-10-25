@@ -2,8 +2,8 @@
 	* \file PnlWznmRelSup1NRelation.cpp
 	* API code for job PnlWznmRelSup1NRelation (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "PnlWznmRelSup1NRelation.h"

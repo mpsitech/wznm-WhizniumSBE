@@ -2,8 +2,8 @@
 	* \file PnlWznmSgeRec.h
 	* job handler for job PnlWznmSgeRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMSGEREC_H
@@ -13,9 +13,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSgeSqkMNStub.h"
-#include "PnlWznmSge1NSensitivity.h"
 #include "PnlWznmSgeDetail.h"
+#include "PnlWznmSge1NSensitivity.h"
+#include "PnlWznmSgeSqkMNStub.h"
 
 #define VecVWznmSgeRecDo PnlWznmSgeRec::VecVDo
 
@@ -173,9 +173,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSgeSqkMNStub* pnlsqkmnstub;
-	PnlWznmSge1NSensitivity* pnl1nsensitivity;
 	PnlWznmSgeDetail* pnldetail;
+	PnlWznmSge1NSensitivity* pnl1nsensitivity;
+	PnlWznmSgeSqkMNStub* pnlsqkmnstub;
 
 	WznmMStage recSge;
 

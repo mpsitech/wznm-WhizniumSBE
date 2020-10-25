@@ -2,8 +2,8 @@
 	* \file WznmWrsrvPnl.cpp
 	* Wznm operation processor - write specific job C++ code for panel (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -238,7 +238,7 @@ void WznmWrsrvPnl::writePnlH(
 		outfile << endl;
 	};
 
-	outfile << "\tvoid refresh(Dbs" << Prjshort << "* dbs" << prjshort << ", std::set<Sbecore::uint>& moditems);" << endl;
+	outfile << "\tvoid refresh(Dbs" << Prjshort << "* dbs" << prjshort << ", std::set<Sbecore::uint>& moditems, const bool unmute = false);" << endl;
 	outfile << endl;
 
 	// updatePreset
@@ -1489,7 +1489,11 @@ void WznmWrsrvPnl::writePnlCpp(
 	outfile << "void " << pnl->sref << "::refresh(" << endl;
 	outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
 	outfile << "\t\t\t, set<uint>& moditems" << endl;
+	outfile << "\t\t\t, const bool unmute" << endl;
 	outfile << "\t\t) {" << endl;
+	outfile << "\tif (muteRefresh && !unmute) return;" << endl;
+	outfile << "\tmuteRefresh = true;" << endl;
+	outfile << endl;
 
 	if (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADBAR) {
 		if (bitsEval.size() > 0) {
@@ -1710,6 +1714,8 @@ void WznmWrsrvPnl::writePnlCpp(
 		if (bitsEval.size() > 0) outfile << "\tif (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);" << endl;
 	};
 
+	outfile << endl;
+	outfile << "\tmuteRefresh = false;" << endl;
 	outfile << "};" << endl;
 	outfile << endl;
 
@@ -1996,24 +2002,23 @@ void WznmWrsrvPnl::writePnlCpp(
 				outfile << "// IP handleDpchAppDataContiac --- IBEGIN" << endl;
 				outfile << endl;
 
-				outfile << "\tmuteRefresh = true;" << endl;
-				outfile << endl;
-
 				outfile << "\tif (has(diffitems, ContIac::NUMFTOS)) {" << endl;
 				outfile << "\t\tif ((_contiac->numFTos >= Qry" << pnl->sref.substr(3) << "::VecVOrd::" << StrMod::uc(vits.nodes[0]->sref) << ") && (_contiac->numFTos <= Qry"
 							<< pnl->sref.substr(3) << "::VecVOrd::" << StrMod::uc(vits.nodes[vits.nodes.size()-1]->sref) << ")) {" << endl;
+
+				outfile << "\t\t\tmuteRefresh = true;" << endl;
+				outfile << endl;
 
 				outfile << "\t\t\txchg->addIxPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "IXORD, jref, _contiac->numFTos);" << endl;
 				outfile << endl;
 
 				outfile << "\t\t\tqry->rerun(dbs" << prjshort << ");" << endl;
-				outfile << "\t\t\trefresh(dbs" << prjshort << ", moditems);" << endl;
+				outfile << endl;
+
+				outfile << "\t\t\trefresh(dbs" << prjshort << ", moditems, true);" << endl;
 				outfile << "\t\t\tinsert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});" << endl;
 				outfile << "\t\t};" << endl;
 				outfile << "\t};" << endl;
-				outfile << endl;
-
-				outfile << "\tmuteRefresh = false;" << endl;
 				outfile << endl;
 
 				outfile << "// IP handleDpchAppDataContiac --- IEND" << endl;
@@ -2026,9 +2031,6 @@ void WznmWrsrvPnl::writePnlCpp(
 		outfile << "\tubigint refSelNew = 0;" << endl;
 		outfile << endl;
 
-		outfile << "\tmuteRefresh = true;" << endl;
-		outfile << endl;
-
 		outfile << "\tif (!diffitems.empty()) {" << endl;
 		outfile << "\t\tqry->stgiac = *_stgiacqry;" << endl;
 		outfile << endl;
@@ -2037,8 +2039,13 @@ void WznmWrsrvPnl::writePnlCpp(
 		outfile << endl;
 
 		outfile << "\t\tif (!has(diffitems, Qry" << pnl->sref.substr(3) << "::StgIac::JNUM) || (diffitems.size() > 1)) {" << endl;
+		outfile << "\t\t\tmuteRefresh = true;" << endl;
+		outfile << endl;
+
 		outfile << "\t\t\tqry->rerun(dbs" << prjshort << ");" << endl;
-		outfile << "\t\t\trefresh(dbs" << prjshort << ", moditems);" << endl;
+		outfile << endl;
+
+		outfile << "\t\t\trefresh(dbs" << prjshort << ", moditems, true);" << endl;
 		outfile << "\t\t\tinsert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::RST});" << endl;
 		outfile << "\t\t};" << endl;
 		outfile << endl;
@@ -2048,9 +2055,6 @@ void WznmWrsrvPnl::writePnlCpp(
 		outfile << "\t\t\txchg->triggerIxRefCall(dbs" << prjshort << ", Vec" << Prjshort << "VCall::CALL" << PRJSHORT << "REFPRESET, jref, Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "REF" << StrMod::uc(pnl->sref.substr(3+4, 3)) << ", refSelNew);" << endl;
 		outfile << "\t\t};" << endl;
 		outfile << "\t};" << endl;
-		outfile << endl;
-
-		outfile << "\tmuteRefresh = false;" << endl;
 		outfile << endl;
 		outfile << "// IP handleDpchAppDataStgiacqry --- IEND" << endl;
 
@@ -2238,10 +2242,10 @@ void WznmWrsrvPnl::writePnlCpp(
 		};
 		outfile << endl;
 
-		outfile << "\tmuteRefresh = true;" << endl;
+		outfile << "\tif (!diffitems.empty()) {" << endl;
+		outfile << "\t\tmuteRefresh = true;" << endl;
 		outfile << endl;
 
-		outfile << "\tif (!diffitems.empty()) {" << endl;
 		outfile << "\t\tqry->stgiac = *_stgiacqry;" << endl;
 		outfile << endl;
 
@@ -2261,7 +2265,7 @@ void WznmWrsrvPnl::writePnlCpp(
 		outfile << "\t\t\trec" << StrMod::cap(rectbls.nodes[0]->Short) << " = " << rectbls.nodes[0]->sref.substr(3) << "();" << endl;
 		outfile << endl;
 
-		for (unsigned int i=1;i<rectbls.nodes.size(); i++) {
+		for (unsigned int i = 1; i < rectbls.nodes.size(); i++) {
 			rectbl = rectbls.nodes[i];
 
 			outfile << "\t\t\trec" << StrMod::cap(rectbl->Short) << " = " << rectbl->sref.substr(3) << "();" << endl;
@@ -2293,13 +2297,10 @@ void WznmWrsrvPnl::writePnlCpp(
 		outfile << "\t\t};" << endl;
 		outfile << endl;
 
-		outfile << "\t\trefresh(dbs" << prjshort << ", moditems);" << endl;
+		outfile << "\t\trefresh(dbs" << prjshort << ", moditems, true);" << endl;
 		outfile << "\t};" << endl;
 		outfile << endl;
 
-		outfile << "\tmuteRefresh = false;" << endl;
-
-		outfile << endl;
 		outfile << "// IP handleDpchAppDataStgiacqry --- IEND" << endl;
 	};
 
@@ -2448,10 +2449,9 @@ void WznmWrsrvPnl::writePnlCpp(
 		outfile << endl;
 
 		outfile << "\tqry->rerun(dbs" << prjshort << ", false);" << endl;
-		outfile << "\trefresh(dbs" << prjshort << ", moditems);" << endl;
 		outfile << endl;
 
-		outfile << "\tmuteRefresh = false;" << endl;
+		outfile << "\trefresh(dbs" << prjshort << ", moditems, true);" << endl;
 		outfile << endl;
 
 		outfile << "\tinsert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});" << endl;
@@ -2554,10 +2554,9 @@ void WznmWrsrvPnl::writePnlCpp(
 		outfile << endl;
 
 		outfile << "\tqry->rerun(dbs" << prjshort << ", false);" << endl;
-		outfile << "\trefresh(dbs" << prjshort << ", moditems);" << endl;
 		outfile << endl;
 
-		outfile << "\tmuteRefresh = false;" << endl;
+		outfile << "\trefresh(dbs" << prjshort << ", moditems, true);" << endl;
 		outfile << endl;
 
 		outfile << "\tinsert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});" << endl;

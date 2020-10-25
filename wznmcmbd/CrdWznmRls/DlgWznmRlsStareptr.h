@@ -2,8 +2,8 @@
 	* \file DlgWznmRlsStareptr.h
 	* job handler for job DlgWznmRlsStareptr (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef DLGWZNMRLSSTAREPTR_H
@@ -545,9 +545,9 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalExtButRunActive(DbsWznm* dbswznm);
 	bool evalExtButStoActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalIniUldAvail(DbsWznm* dbswznm);
 	bool evalIniUldActive(DbsWznm* dbswznm);
 	bool evalIniTxtPrgAvail(DbsWznm* dbswznm);
@@ -641,9 +641,9 @@ private:
 
 	void handleDpchRetWznmPrctreeExtract(DbsWznm* dbswznm, DpchRetWznmPrctreeExtract* dpchret);
 
+	void handleTimerWithSrefMonInSgeClonegit(DbsWznm* dbswznm);
 	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeClgidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerWithSrefMonInSgeClonegit(DbsWznm* dbswznm);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

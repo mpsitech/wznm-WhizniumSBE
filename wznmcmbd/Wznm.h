@@ -2,17 +2,17 @@
 	* \file Wznm.h
 	* Wznm global functionality (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNM_H
 #define WZNM_H
 
-#define WZNM_VERSION "1.0.6"
+#define WZNM_VERSION "1.0.7"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 0
-#define WZNM_VERSION_SUB 6
+#define WZNM_VERSION_SUB 7
 
 // IP include.cust --- IBEGIN
 #include <sys/wait.h>
@@ -180,6 +180,7 @@ namespace Wznm {
 	bool getPnllhs(DbsWznm* dbswznm, WznmMPanel* pnl);
 	bool getPnlrhs(DbsWznm* dbswznm, WznmMPanel* pnl);
 	std::string getConsref(WznmMControl* con, const std::string& ditshort);
+	std::string getConstatblk(WznmMControl* con);
 	unsigned int getConheight(DbsWznm* dbswznm, WznmMControl* con);
 	void loadDitcons(DbsWznm* dbswznm, const Sbecore::ubigint refDit, ListWznmMControl& cons);
 	void getBasecons(DbsWznm* dbswznm, ListWznmMControl& cons, const std::set<Sbecore::uint>& hkIcsVSection, const Sbecore::ubigint refDit, std::vector<unsigned int>& icsBasecons);

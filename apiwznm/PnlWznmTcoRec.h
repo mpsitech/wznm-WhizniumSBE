@@ -2,8 +2,8 @@
 	* \file PnlWznmTcoRec.h
 	* API code for job PnlWznmTcoRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMTCOREC_H
@@ -68,20 +68,20 @@ namespace PnlWznmTcoRec {
 		static const Sbecore::uint INITDONEATITLE = 2;
 		static const Sbecore::uint INITDONE1NIMPEXPCOL = 3;
 		static const Sbecore::uint INITDONE1NQUERYCOL = 4;
-		static const Sbecore::uint INITDONEREF1NQUERYMOD = 5;
-		static const Sbecore::uint INITDONEREF1NCONTROL = 6;
+		static const Sbecore::uint INITDONEREF1NCONTROL = 5;
+		static const Sbecore::uint INITDONEREF1NQUERYMOD = 6;
 		static const Sbecore::uint INITDONE1NCHECK = 7;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NImpexpcol = false, const bool initdone1NQuerycol = false, const bool initdoneRef1NQuerymod = false, const bool initdoneRef1NControl = false, const bool initdone1NCheck = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NImpexpcol = false, const bool initdone1NQuerycol = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NQuerymod = false, const bool initdone1NCheck = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneATitle;
 		bool initdone1NImpexpcol;
 		bool initdone1NQuerycol;
-		bool initdoneRef1NQuerymod;
 		bool initdoneRef1NControl;
+		bool initdoneRef1NQuerymod;
 		bool initdone1NCheck;
 
 	public:
@@ -104,15 +104,15 @@ namespace PnlWznmTcoRec {
 		static const Sbecore::uint PNL1NIMPEXPCOLAVAIL = 6;
 		static const Sbecore::uint SCRJREF1NQUERYCOL = 7;
 		static const Sbecore::uint PNL1NQUERYCOLAVAIL = 8;
-		static const Sbecore::uint SCRJREFREF1NQUERYMOD = 9;
-		static const Sbecore::uint PNLREF1NQUERYMODAVAIL = 10;
-		static const Sbecore::uint SCRJREFREF1NCONTROL = 11;
-		static const Sbecore::uint PNLREF1NCONTROLAVAIL = 12;
+		static const Sbecore::uint SCRJREFREF1NCONTROL = 9;
+		static const Sbecore::uint PNLREF1NCONTROLAVAIL = 10;
+		static const Sbecore::uint SCRJREFREF1NQUERYMOD = 11;
+		static const Sbecore::uint PNLREF1NQUERYMODAVAIL = 12;
 		static const Sbecore::uint SCRJREF1NCHECK = 13;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 14;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const bool pnlatitleAvail = false, const std::string& scrJref1NImpexpcol = "", const bool pnl1nimpexpcolAvail = false, const std::string& scrJref1NQuerycol = "", const bool pnl1nquerycolAvail = false, const std::string& scrJrefRef1NQuerymod = "", const bool pnlref1nquerymodAvail = false, const std::string& scrJrefRef1NControl = "", const bool pnlref1ncontrolAvail = false, const std::string& scrJref1NCheck = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const bool pnlatitleAvail = false, const std::string& scrJref1NImpexpcol = "", const bool pnl1nimpexpcolAvail = false, const std::string& scrJref1NQuerycol = "", const bool pnl1nquerycolAvail = false, const std::string& scrJrefRef1NControl = "", const bool pnlref1ncontrolAvail = false, const std::string& scrJrefRef1NQuerymod = "", const bool pnlref1nquerymodAvail = false, const std::string& scrJref1NCheck = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
@@ -123,10 +123,10 @@ namespace PnlWznmTcoRec {
 		bool pnl1nimpexpcolAvail;
 		std::string scrJref1NQuerycol;
 		bool pnl1nquerycolAvail;
-		std::string scrJrefRef1NQuerymod;
-		bool pnlref1nquerymodAvail;
 		std::string scrJrefRef1NControl;
 		bool pnlref1ncontrolAvail;
+		std::string scrJrefRef1NQuerymod;
+		bool pnlref1nquerymodAvail;
 		std::string scrJref1NCheck;
 		bool ButRegularizeActive;
 

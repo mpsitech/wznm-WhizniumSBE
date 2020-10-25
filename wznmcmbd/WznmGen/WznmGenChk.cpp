@@ -2,8 +2,8 @@
 	* \file WznmGenChk.cpp
 	* Wznm operation processor - generate feature checks (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -92,8 +92,10 @@ DpchRetWznm* WznmGenChk::run(
 		for (unsigned int j = 0; j < cons.nodes.size(); j++) {
 			con = cons.nodes[j];
 
-			if (con->Avail != "") if (expr.tokenize(con->Avail)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
-			if (con->Active != "") if (expr.tokenize(con->Active)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
+			if (con->ixVScope == VecWznmVMControlScope::SHR) {
+				if (con->Avail != "") if (expr.tokenize(con->Avail)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
+				if (con->Active != "") if (expr.tokenize(con->Active)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
+			};
 		};
 
 		dbswznm->tblwznmmpanel->loadRstByCar(car->ref, false, pnls);
@@ -113,8 +115,10 @@ DpchRetWznm* WznmGenChk::run(
 			for (unsigned int j = 0; j < cons.nodes.size(); j++) {
 				con = cons.nodes[j];
 
-				if (con->Avail != "") if (expr.tokenize(con->Avail)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
-				if (con->Active != "") if (expr.tokenize(con->Active)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
+				if (con->ixVScope == VecWznmVMControlScope::SHR) {
+					if (con->Avail != "") if (expr.tokenize(con->Avail)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
+					if (con->Active != "") if (expr.tokenize(con->Active)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
+				};
 			};
 		};
 	};
@@ -129,8 +133,10 @@ DpchRetWznm* WznmGenChk::run(
 	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
 		con = cons.nodes[i];
 
-		if (con->Avail != "") if (expr.tokenize(con->Avail)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
-		if (con->Active != "") if (expr.tokenize(con->Active)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
+		if (con->ixVScope == VecWznmVMControlScope::SHR) {
+			if (con->Avail != "") if (expr.tokenize(con->Avail)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
+			if (con->Active != "") if (expr.tokenize(con->Active)) if (expr.parse()) Wznm::collectChks(tblshorts, skiptblshorts, expr.root, chks);
+		};
 	};
 
 	// - match to existing, else insert

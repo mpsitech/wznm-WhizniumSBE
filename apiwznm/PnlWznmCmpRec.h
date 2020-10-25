@@ -2,8 +2,8 @@
 	* \file PnlWznmCmpRec.h
 	* API code for job PnlWznmCmpRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMCMPREC_H
@@ -66,17 +66,17 @@ namespace PnlWznmCmpRec {
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONE1NRELEASE = 2;
-		static const Sbecore::uint INITDONEMNOPPACK = 3;
-		static const Sbecore::uint INITDONEMNLIBRARY = 4;
+		static const Sbecore::uint INITDONEMNLIBRARY = 3;
+		static const Sbecore::uint INITDONEMNOPPACK = 4;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdone1NRelease = false, const bool initdoneMNOppack = false, const bool initdoneMNLibrary = false);
+		StatApp(const bool initdoneDetail = false, const bool initdone1NRelease = false, const bool initdoneMNLibrary = false, const bool initdoneMNOppack = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdone1NRelease;
-		bool initdoneMNOppack;
 		bool initdoneMNLibrary;
+		bool initdoneMNOppack;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -93,23 +93,23 @@ namespace PnlWznmCmpRec {
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREF1NRELEASE = 3;
-		static const Sbecore::uint SCRJREFMNOPPACK = 4;
-		static const Sbecore::uint PNLMNOPPACKAVAIL = 5;
-		static const Sbecore::uint SCRJREFMNLIBRARY = 6;
-		static const Sbecore::uint PNLMNLIBRARYAVAIL = 7;
+		static const Sbecore::uint SCRJREFMNLIBRARY = 4;
+		static const Sbecore::uint PNLMNLIBRARYAVAIL = 5;
+		static const Sbecore::uint SCRJREFMNOPPACK = 6;
+		static const Sbecore::uint PNLMNOPPACKAVAIL = 7;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 8;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NRelease = "", const std::string& scrJrefMNOppack = "", const bool pnlmnoppackAvail = false, const std::string& scrJrefMNLibrary = "", const bool pnlmnlibraryAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NRelease = "", const std::string& scrJrefMNLibrary = "", const bool pnlmnlibraryAvail = false, const std::string& scrJrefMNOppack = "", const bool pnlmnoppackAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJref1NRelease;
-		std::string scrJrefMNOppack;
-		bool pnlmnoppackAvail;
 		std::string scrJrefMNLibrary;
 		bool pnlmnlibraryAvail;
+		std::string scrJrefMNOppack;
+		bool pnlmnoppackAvail;
 		bool ButRegularizeActive;
 
 	public:

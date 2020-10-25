@@ -2,8 +2,8 @@
 	* \file WznmQVer1NCapability.cpp
 	* Dbs and XML wrapper for table TblWznmQVer1NCapability (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQVer1NCapability.h"

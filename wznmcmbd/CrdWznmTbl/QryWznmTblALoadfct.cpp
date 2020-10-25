@@ -2,8 +2,8 @@
 	* \file QryWznmTblALoadfct.cpp
 	* job handler for job QryWznmTblALoadfct (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -290,11 +290,19 @@ void QryWznmTblALoadfct::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMTBLALFCMOD_TBLEQ) {
-		call->abort = handleCallWznmTblAlfcMod_tblEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTBLALFCMOD_TBLEQ) {
+		call->abort = handleCallWznmTblAlfcMod_tblEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmTblALoadfct::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmTblALoadfct::handleCallWznmTblAlfcMod_tblEq(
@@ -308,14 +316,6 @@ bool QryWznmTblALoadfct::handleCallWznmTblAlfcMod_tblEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmTblALoadfct::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

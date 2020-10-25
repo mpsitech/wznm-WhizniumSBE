@@ -2,8 +2,8 @@
 	* \file QryWznmEvtList_blks.cpp
 	* job handler for job QryWznmEvtList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -19,8 +19,8 @@ uint QryWznmEvtList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "app") return APP;
 	if (s == "srf") return SRF;
+	if (s == "app") return APP;
 
 	return(0);
 };
@@ -28,8 +28,8 @@ uint QryWznmEvtList::VecVOrd::getIx(
 string QryWznmEvtList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == APP) return("app");
 	if (ix == SRF) return("srf");
+	if (ix == APP) return("app");
 
 	return("");
 };

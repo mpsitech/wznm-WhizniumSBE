@@ -2,8 +2,8 @@
 	* \file WznmWrsrvDlg.cpp
 	* Wznm operation processor - write specific job C++ code for dialog (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -110,7 +110,7 @@ void WznmWrsrvDlg::writeDlgH(
 	};
 	outfile << endl;
 
-	outfile << "\tvoid refresh(Dbs" << Prjshort << "* dbs" << prjshort << ", std::set<Sbecore::uint>& moditems);" << endl;
+	outfile << "\tvoid refresh(Dbs" << Prjshort << "* dbs" << prjshort << ", std::set<Sbecore::uint>& moditems, const bool unmute = false);" << endl;
 	outfile << "// IP spec --- IEND" << endl;
 };
 
@@ -202,7 +202,11 @@ void WznmWrsrvDlg::writeDlgCpp(
 	outfile << "void " << dlg->sref << "::refresh(" << endl;
 	outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
 	outfile << "\t\t\t, set<uint>& moditems" << endl;
+	outfile << "\t\t\t, const bool unmute" << endl;
 	outfile << "\t\t) {" << endl;
+	outfile << "\tif (muteRefresh && !unmute) return;" << endl;
+	outfile << "\tmuteRefresh = true;" << endl;
+	outfile << endl;
 
 	writeDlgCpp_refresh(dbswznm, outfile, job, jobblks, "", bitsEval, rulesEval, exprsEval, Prjshort, hasdse, hassge);
 	
@@ -216,6 +220,8 @@ void WznmWrsrvDlg::writeDlgCpp(
 		};
 	};
 
+	outfile << endl;
+	outfile << "\tmuteRefresh = false;" << endl;
 	outfile << "};" << endl;
 	outfile << endl;
 

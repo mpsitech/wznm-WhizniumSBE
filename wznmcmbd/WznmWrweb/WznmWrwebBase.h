@@ -2,8 +2,8 @@
 	* \file WznmWrwebBase.h
 	* Wznm operation processor - write web UI JS/HTML code basics (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMWRWEBBASE_H

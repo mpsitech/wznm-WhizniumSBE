@@ -2,8 +2,8 @@
 	* \file PnlWznmTcoRec_evals.cpp
 	* job handler for job PnlWznmTcoRec (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -52,7 +52,7 @@ bool PnlWznmTcoRec::evalPnl1nquerycolAvail(
 	return(args.back());
 };
 
-bool PnlWznmTcoRec::evalPnlref1nquerymodAvail(
+bool PnlWznmTcoRec::evalPnlref1ncontrolAvail(
 			DbsWznm* dbswznm
 		) {
 	// tco.inSbs(stc)
@@ -66,7 +66,7 @@ bool PnlWznmTcoRec::evalPnlref1nquerymodAvail(
 	return(args.back());
 };
 
-bool PnlWznmTcoRec::evalPnlref1ncontrolAvail(
+bool PnlWznmTcoRec::evalPnlref1nquerymodAvail(
 			DbsWznm* dbswznm
 		) {
 	// tco.inSbs(stc)

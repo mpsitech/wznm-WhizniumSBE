@@ -2,8 +2,8 @@
 	* \file VecWznmVJob.cpp
 	* vector VecWznmVJob (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "VecWznmVJob.h"
@@ -395,6 +395,7 @@ uint VecWznmVJob::getIx(
 	if (s == "pnlwznmstbrec") return PNLWZNMSTBREC;
 	if (s == "pnlwznmstbsubmnstub") return PNLWZNMSTBSUBMNSTUB;
 	if (s == "pnlwznmstbsupmnstub") return PNLWZNMSTBSUPMNSTUB;
+	if (s == "pnlwznmsteaaction") return PNLWZNMSTEAACTION;
 	if (s == "pnlwznmsteatrig") return PNLWZNMSTEATRIG;
 	if (s == "pnlwznmstedetail") return PNLWZNMSTEDETAIL;
 	if (s == "pnlwznmsteheadbar") return PNLWZNMSTEHEADBAR;
@@ -641,6 +642,7 @@ uint VecWznmVJob::getIx(
 	if (s == "qrywznmstbmnsquawk") return QRYWZNMSTBMNSQUAWK;
 	if (s == "qrywznmstbsubmnstub") return QRYWZNMSTBSUBMNSTUB;
 	if (s == "qrywznmstbsupmnstub") return QRYWZNMSTBSUPMNSTUB;
+	if (s == "qrywznmsteaaction") return QRYWZNMSTEAACTION;
 	if (s == "qrywznmsteatrig") return QRYWZNMSTEATRIG;
 	if (s == "qrywznmstelist") return QRYWZNMSTELIST;
 	if (s == "qrywznmtaglist") return QRYWZNMTAGLIST;
@@ -1090,6 +1092,7 @@ string VecWznmVJob::getSref(
 	if (ix == PNLWZNMSTBREC) return("PnlWznmStbRec");
 	if (ix == PNLWZNMSTBSUBMNSTUB) return("PnlWznmStbSubMNStub");
 	if (ix == PNLWZNMSTBSUPMNSTUB) return("PnlWznmStbSupMNStub");
+	if (ix == PNLWZNMSTEAACTION) return("PnlWznmSteAAction");
 	if (ix == PNLWZNMSTEATRIG) return("PnlWznmSteATrig");
 	if (ix == PNLWZNMSTEDETAIL) return("PnlWznmSteDetail");
 	if (ix == PNLWZNMSTEHEADBAR) return("PnlWznmSteHeadbar");
@@ -1336,6 +1339,7 @@ string VecWznmVJob::getSref(
 	if (ix == QRYWZNMSTBMNSQUAWK) return("QryWznmStbMNSquawk");
 	if (ix == QRYWZNMSTBSUBMNSTUB) return("QryWznmStbSubMNStub");
 	if (ix == QRYWZNMSTBSUPMNSTUB) return("QryWznmStbSupMNStub");
+	if (ix == QRYWZNMSTEAACTION) return("QryWznmSteAAction");
 	if (ix == QRYWZNMSTEATRIG) return("QryWznmSteATrig");
 	if (ix == QRYWZNMSTELIST) return("QryWznmSteList");
 	if (ix == QRYWZNMTAGLIST) return("QryWznmTagList");

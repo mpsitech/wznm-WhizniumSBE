@@ -2,8 +2,8 @@
   * \file ListWznmQTblRef1NPanel.java
   * Java API code for record set of table TblWznmQTblRef1NPanel
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;

@@ -2,8 +2,8 @@
 	* \file PnlWznmPnlRec.h
 	* job handler for job PnlWznmPnlRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMPNLREC_H
@@ -13,9 +13,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmPnlMNQuery.h"
-#include "PnlWznmPnlHk1NControl.h"
 #include "PnlWznmPnlDetail.h"
+#include "PnlWznmPnlHk1NControl.h"
+#include "PnlWznmPnlMNQuery.h"
 
 #define VecVWznmPnlRecDo PnlWznmPnlRec::VecVDo
 
@@ -170,9 +170,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmPnlMNQuery* pnlmnquery;
-	PnlWznmPnlHk1NControl* pnlhk1ncontrol;
 	PnlWznmPnlDetail* pnldetail;
+	PnlWznmPnlHk1NControl* pnlhk1ncontrol;
+	PnlWznmPnlMNQuery* pnlmnquery;
 
 	WznmMPanel recPnl;
 

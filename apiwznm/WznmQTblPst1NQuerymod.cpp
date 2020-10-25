@@ -2,8 +2,8 @@
 	* \file WznmQTblPst1NQuerymod.cpp
 	* API code for table TblWznmQTblPst1NQuerymod (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQTblPst1NQuerymod.h"

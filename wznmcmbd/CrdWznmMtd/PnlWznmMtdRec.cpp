@@ -2,8 +2,8 @@
 	* \file PnlWznmMtdRec.cpp
 	* job handler for job PnlWznmMtdRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,9 +37,9 @@ PnlWznmMtdRec::PnlWznmMtdRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
+	pnldetail = NULL;
 	pnlainvpar = NULL;
 	pnlaretpar = NULL;
-	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -95,17 +95,17 @@ void PnlWznmMtdRec::refresh(
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
-		if (pnlaretpar) {delete pnlaretpar; pnlaretpar = NULL;};
 		if (pnlainvpar) {delete pnlainvpar; pnlainvpar = NULL;};
+		if (pnlaretpar) {delete pnlaretpar; pnlaretpar = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmMtdDetail(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlaretpar) pnlaretpar = new PnlWznmMtdARetpar(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlainvpar) pnlainvpar = new PnlWznmMtdAInvpar(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlaretpar) pnlaretpar = new PnlWznmMtdARetpar(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
-	statshr.jrefARetpar = ((pnlaretpar) ? pnlaretpar->jref : 0);
 	statshr.jrefAInvpar = ((pnlainvpar) ? pnlainvpar->jref : 0);
+	statshr.jrefARetpar = ((pnlaretpar) ? pnlaretpar->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -132,8 +132,8 @@ void PnlWznmMtdRec::updatePreset(
 
 		if (recMtd.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlaretpar) pnlaretpar->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlainvpar) pnlainvpar->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlaretpar) pnlaretpar->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswznm, moditems);

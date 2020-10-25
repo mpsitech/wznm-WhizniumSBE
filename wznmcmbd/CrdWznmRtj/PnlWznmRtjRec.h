@@ -2,8 +2,8 @@
 	* \file PnlWznmRtjRec.h
 	* job handler for job PnlWznmRtjRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMRTJREC_H
@@ -13,10 +13,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmRtjSup1NRtjob.h"
+#include "PnlWznmRtjDetail.h"
 #include "PnlWznmRtj1NRtblock.h"
 #include "PnlWznmRtj1NRtdpch.h"
-#include "PnlWznmRtjDetail.h"
+#include "PnlWznmRtjSup1NRtjob.h"
 
 #define VecVWznmRtjRecDo PnlWznmRtjRec::VecVDo
 
@@ -73,7 +73,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NRtdpch = false, const bool initdone1NRtblock = false, const bool initdoneSup1NRtjob = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NRtblock = false, const bool initdone1NRtdpch = false, const bool initdoneSup1NRtjob = false);
 	};
 
 	/**
@@ -84,19 +84,19 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREF1NRTDPCH = 3;
-		static const Sbecore::uint JREF1NRTBLOCK = 4;
+		static const Sbecore::uint JREF1NRTBLOCK = 3;
+		static const Sbecore::uint JREF1NRTDPCH = 4;
 		static const Sbecore::uint JREFSUP1NRTJOB = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NRtdpch = 0, const Sbecore::ubigint jref1NRtblock = 0, const Sbecore::ubigint jrefSup1NRtjob = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NRtblock = 0, const Sbecore::ubigint jref1NRtdpch = 0, const Sbecore::ubigint jrefSup1NRtjob = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jref1NRtdpch;
 		Sbecore::ubigint jref1NRtblock;
+		Sbecore::ubigint jref1NRtdpch;
 		Sbecore::ubigint jrefSup1NRtjob;
 		bool ButRegularizeActive;
 
@@ -173,10 +173,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmRtjSup1NRtjob* pnlsup1nrtjob;
+	PnlWznmRtjDetail* pnldetail;
 	PnlWznmRtj1NRtblock* pnl1nrtblock;
 	PnlWznmRtj1NRtdpch* pnl1nrtdpch;
-	PnlWznmRtjDetail* pnldetail;
+	PnlWznmRtjSup1NRtjob* pnlsup1nrtjob;
 
 	WznmMRtjob recRtj;
 

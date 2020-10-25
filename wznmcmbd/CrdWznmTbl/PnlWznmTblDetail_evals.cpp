@@ -2,8 +2,8 @@
 	* \file PnlWznmTblDetail_evals.cpp
 	* job handler for job PnlWznmTblDetail (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -146,16 +146,16 @@ bool PnlWznmTblDetail::evalTxtReuActive(
 bool PnlWznmTblDetail::evalButReuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// tbl.reuEq(0)|((pre.ixCrdaccRel()&tbl.retEq(rel)&pre.refVer())|(pre.ixCrdaccQry()&tbl.retEq(qry)&pre.refVer()))
+	// tbl.reuEq(0)|((pre.ixCrdaccQry()&tbl.retEq(qry)&pre.refVer())|(pre.ixCrdaccRel()&tbl.retEq(rel)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recTbl.refUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCQRY, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recTbl.refIxVTbl == VecWznmVMTableRefTbl::REL);
+	a = false; a = (recTbl.refIxVTbl == VecWznmVMTableRefTbl::QRY);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -165,9 +165,9 @@ bool PnlWznmTblDetail::evalButReuViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCQRY, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recTbl.refIxVTbl == VecWznmVMTableRefTbl::QRY);
+	a = false; a = (recTbl.refIxVTbl == VecWznmVMTableRefTbl::REL);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);

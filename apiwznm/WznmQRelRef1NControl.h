@@ -2,8 +2,8 @@
 	* \file WznmQRelRef1NControl.h
 	* API code for table TblWznmQRelRef1NControl (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMQRELREF1NCONTROL_H

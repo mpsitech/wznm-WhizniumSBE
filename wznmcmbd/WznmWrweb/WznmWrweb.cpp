@@ -2,8 +2,8 @@
 	* \file WznmWrweb.cpp
 	* Wznm operation pack global code (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -1282,7 +1282,7 @@ void WznmWrweb::wrBconiniJs_pup(
 		if (con->ixVScope == VecWznmVMControlScope::SHR) numSel = "retrieveCi(srcdoc, \"ContIac" + hkroot + ditshort + "\", \"numF" + consref + "\")";
 		else numSel = "1";
 
-		if (con->Active != "") act = "retrieveSi(srcdoc, \"StatShr" + hkroot + ditshort + "\", \"" + consref + "Active\")";
+		if (con->Active != "") act = "retrieveSi(srcdoc, \"" + Wznm::getConstatblk(con) + hkroot + ditshort + "\", \"" + consref + "Active\")";
 		else act = "true";
 
 		outfile << "\trefreshPup(" << doc << ", srcdoc, \"" << consref << "\", \"" << getConsize(con) << "\", \"FeedF" << con->sref << "\", " << numSel << ", " << act << ", false);" << endl;
@@ -1308,7 +1308,7 @@ void WznmWrweb::wrBconiniJs_rbu(
 		if (con->ixVScope == VecWznmVMControlScope::SHR) numSel = "retrieveCi(srcdoc, \"ContIac" + hkroot + ditshort + "\", \"numF" + consref + "\")";
 		else numSel = "1";
 
-		if (con->Active != "") act = "retrieveSi(srcdoc, \"StatShr" + hkroot + ditshort + "\", \"" + consref + "Active\")";
+		if (con->Active != "") act = "retrieveSi(srcdoc, \"" + Wznm::getConstatblk(con) + hkroot + ditshort + "\", \"" + consref + "Active\")";
 		else act = "true";
 
 		outfile << "\trefreshRbu(" << doc << ", srcdoc, \"" << consref << "\", \"FeedF" << con->sref << "\", " << numSel << ", " << act << ");" << endl;
@@ -1353,7 +1353,7 @@ bool WznmWrweb::wrBconvarsJs(
 
 	// avail/active flags of sub-controls
 	if (cplxtype != Concplxtype::INVALID) {
-		for (unsigned int i=ix0;i<=ix1; i++) {
+		for (unsigned int i = ix0; i <= ix1; i++) {
 			con = cons.nodes[i];
 			consref = Wznm::getConsref(con, ditshort);
 
@@ -1362,18 +1362,18 @@ bool WznmWrweb::wrBconvarsJs(
 							|| (cplxtype == Concplxtype::TXT_TXFALT) ) {
 					
 					outfile << "\tvar " << consref << "Avail = !" << baseconsref << "Alt";
-					if (con->Avail != "") outfile << " && (retrieveSi(srcdoc, \"StatShr" << hkroot << ditshort << "\", \"" << consref << "Avail\") == \"true\");";
+					if (con->Avail != "") outfile << " && (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con) << hkroot << ditshort << "\", \"" << consref << "Avail\") == \"true\");";
 					outfile << ";" << endl;
 
 				} else {
-					if (con->Avail != "") outfile << "\tvar " << consref << "Avail = (retrieveSi(srcdoc, \"StatShr" << hkroot << ditshort << "\", \"" << consref << "Avail\") == \"true\");" << endl;
+					if (con->Avail != "") outfile << "\tvar " << consref << "Avail = (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con) << hkroot << ditshort << "\", \"" << consref << "Avail\") == \"true\");" << endl;
 				};
 
 			} else {
-				if (con->Avail != "") outfile << "\tvar " << consref << "Avail = (retrieveSi(srcdoc, \"StatShr" << hkroot << ditshort << "\", \"" << consref << "Avail\") == \"true\");" << endl;
+				if (con->Avail != "") outfile << "\tvar " << consref << "Avail = (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con) << hkroot << ditshort << "\", \"" << consref << "Avail\") == \"true\");" << endl;
 			};
 
-			if (con->Active != "") outfile << "\tvar " << consref << "Active = (retrieveSi(srcdoc, \"StatShr" << hkroot << ditshort << "\", \"" << consref << "Active\") == \"true\");" << endl;
+			if (con->Active != "") outfile << "\tvar " << consref << "Active = (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con) << hkroot << ditshort << "\", \"" << consref << "Active\") == \"true\");" << endl;
 		};
 	};
 
@@ -1790,13 +1790,16 @@ void WznmWrweb::wrBconrefrJs(
 		con = cons.nodes[icsButs[i]];
 		consref = Wznm::getConsref(con, ditshort);
 
-		if (con->Active != "") {
+		if ((con->Active.length() > 0) || StrMod::srefInSrefs(con->srefsKOption, "onoff")) {
 			outfile << indent;
 
 			if ( (con->Avail != "") || ((icsButs[i] == ixButView) && ((cplxtype == Concplxtype::LST_NOALT) || (cplxtype == Concplxtype::LST_TXFALT) || (cplxtype == Concplxtype::LST_TXTALT) || (cplxtype == Concplxtype::TXT_TXFALT))) ) outfile << "if (" << consref << "Avail) ";
 
-			if (StrMod::srefInSrefs(con->srefsKOption, "icon")) outfile << "refreshButicon(" << doc << ", \"" << consref << "\", \"" << getButicon(dbswznm, Prjshort, con) << "\", " << consref << "Active, false);" << endl;
-			else outfile << "refreshBut(" << doc << ", \"" << consref << "\", " << consref << "Active, false);" << endl;
+			if (StrMod::srefInSrefs(con->srefsKOption, "icon")) outfile << "refreshButicon(" << doc << ", \"" << consref << "\", \"" << getButicon(dbswznm, Prjshort, con) << "\"";
+			else outfile << "refreshBut(" << doc << ", \"" << consref << "\"";
+			if (con->Active.length() > 0) outfile << ", " << consref << "Active"; else outfile << ", true";
+			if (StrMod::srefInSrefs(con->srefsKOption, "onoff")) outfile << ", retrieveCi(srcdoc, \"ContInf" << hkroot << ditshort << "\", \"" << consref << "On\") == \"true\");" << endl;
+			else outfile << ", false);" << endl;
 		};
 	};
 

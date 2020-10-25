@@ -2,8 +2,8 @@
 	* \file PnlWznmCalRec.h
 	* job handler for job PnlWznmCalRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMCALREC_H
@@ -13,9 +13,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCalMNStub.h"
-#include "PnlWznmCal1NSensitivity.h"
 #include "PnlWznmCalDetail.h"
+#include "PnlWznmCal1NSensitivity.h"
+#include "PnlWznmCalMNStub.h"
 
 #define VecVWznmCalRecDo PnlWznmCalRec::VecVDo
 
@@ -170,9 +170,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCalMNStub* pnlmnstub;
-	PnlWznmCal1NSensitivity* pnl1nsensitivity;
 	PnlWznmCalDetail* pnldetail;
+	PnlWznmCal1NSensitivity* pnl1nsensitivity;
+	PnlWznmCalMNStub* pnlmnstub;
 
 	WznmMCall recCal;
 	Sbecore::uint ixWSubsetCal;

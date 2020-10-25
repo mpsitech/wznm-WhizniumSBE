@@ -2,8 +2,8 @@
 	* \file QryWznmJobHk1NVector.h
 	* API code for job QryWznmJobHk1NVector (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMJOBHK1NVECTOR_H

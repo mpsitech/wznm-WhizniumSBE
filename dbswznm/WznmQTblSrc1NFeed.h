@@ -2,8 +2,8 @@
 	* \file WznmQTblSrc1NFeed.h
 	* Dbs and XML wrapper for table TblWznmQTblSrc1NFeed (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMQTBLSRC1NFEED_H

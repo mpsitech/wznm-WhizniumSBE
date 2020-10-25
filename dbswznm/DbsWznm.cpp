@@ -2,8 +2,8 @@
 	* \file DbsWznm.cpp
 	* C++ wrapper for database DbsWznm (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "DbsWznm.h"
@@ -670,6 +670,8 @@ void DbsWznm::initMy() {
 	((MyTblWznmQStbSubMNStub*) tblwznmqstbsubmnstub)->init(dbsMy);
 	tblwznmqstbsupmnstub = new MyTblWznmQStbSupMNStub();
 	((MyTblWznmQStbSupMNStub*) tblwznmqstbsupmnstub)->init(dbsMy);
+	tblwznmqsteaaction = new MyTblWznmQSteAAction();
+	((MyTblWznmQSteAAction*) tblwznmqsteaaction)->init(dbsMy);
 	tblwznmqsteatrig = new MyTblWznmQSteATrig();
 	((MyTblWznmQSteATrig*) tblwznmqsteatrig)->init(dbsMy);
 	tblwznmqstelist = new MyTblWznmQSteList();
@@ -1399,6 +1401,8 @@ void DbsWznm::initPg() {
 	((PgTblWznmQStbSubMNStub*) tblwznmqstbsubmnstub)->init(dbsPg);
 	tblwznmqstbsupmnstub = new PgTblWznmQStbSupMNStub();
 	((PgTblWznmQStbSupMNStub*) tblwznmqstbsupmnstub)->init(dbsPg);
+	tblwznmqsteaaction = new PgTblWznmQSteAAction();
+	((PgTblWznmQSteAAction*) tblwznmqsteaaction)->init(dbsPg);
 	tblwznmqsteatrig = new PgTblWznmQSteATrig();
 	((PgTblWznmQSteATrig*) tblwznmqsteatrig)->init(dbsPg);
 	tblwznmqstelist = new PgTblWznmQSteList();

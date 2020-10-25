@@ -2,8 +2,8 @@
   * \file QryWznmOpxList.java
   * Java API code for job QryWznmOpxList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -18,16 +18,16 @@ public class QryWznmOpxList {
 		*/
 	public static class VecVOrd {
 
-		public static final int OPK = 1;
-		public static final int SRF = 2;
+		public static final int SRF = 1;
+		public static final int OPK = 2;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("opk")) return OPK;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("opk")) return OPK;
 
 			return 0;
 		};
@@ -35,8 +35,8 @@ public class QryWznmOpxList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == OPK) return("opk");
 			if (ix == SRF) return("srf");
+			if (ix == OPK) return("opk");
 
 			return "";
 		};

@@ -2,8 +2,8 @@
 	* \file QryWznmLibAMakefile.h
 	* job handler for job QryWznmLibAMakefile (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMLIBAMAKEFILE_H
@@ -124,8 +124,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmLibAmkfMod_libEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmLibAmkfMod_libEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

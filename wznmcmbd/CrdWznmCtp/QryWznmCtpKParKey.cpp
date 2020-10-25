@@ -2,8 +2,8 @@
 	* \file QryWznmCtpKParKey.cpp
 	* job handler for job QryWznmCtpKParKey (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -289,11 +289,19 @@ void QryWznmCtpKParKey::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSMTBURFEQ) {
-		call->abort = handleCallWznmKlsAkeyMod_klsMtbUrfEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSMTBURFEQ) {
+		call->abort = handleCallWznmKlsAkeyMod_klsMtbUrfEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmCtpKParKey::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmCtpKParKey::handleCallWznmKlsAkeyMod_klsMtbUrfEq(
@@ -307,14 +315,6 @@ bool QryWznmCtpKParKey::handleCallWznmKlsAkeyMod_klsMtbUrfEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmCtpKParKey::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

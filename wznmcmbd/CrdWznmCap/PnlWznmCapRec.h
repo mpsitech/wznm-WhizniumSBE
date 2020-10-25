@@ -2,8 +2,8 @@
 	* \file PnlWznmCapRec.h
 	* job handler for job PnlWznmCapRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMCAPREC_H
@@ -13,8 +13,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCapAPar.h"
 #include "PnlWznmCapDetail.h"
+#include "PnlWznmCapAPar.h"
 
 #define VecVWznmCapRecDo PnlWznmCapRec::VecVDo
 
@@ -167,8 +167,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCapAPar* pnlapar;
 	PnlWznmCapDetail* pnldetail;
+	PnlWznmCapAPar* pnlapar;
 
 	WznmMCapability recCpb;
 	Sbecore::uint ixWSubsetCpb;

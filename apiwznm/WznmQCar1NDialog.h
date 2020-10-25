@@ -2,8 +2,8 @@
 	* \file WznmQCar1NDialog.h
 	* API code for table TblWznmQCar1NDialog (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMQCAR1NDIALOG_H

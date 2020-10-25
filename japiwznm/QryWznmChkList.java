@@ -2,8 +2,8 @@
   * \file QryWznmChkList.java
   * Java API code for job QryWznmChkList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -18,8 +18,8 @@ public class QryWznmChkList {
 		*/
 	public static class VecVOrd {
 
-		public static final int TCO = 1;
-		public static final int TBL = 2;
+		public static final int TBL = 1;
+		public static final int TCO = 2;
 		public static final int SRF = 3;
 		public static final int TYP = 4;
 
@@ -28,8 +28,8 @@ public class QryWznmChkList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("tco")) return TCO;
 			if (s.equals("tbl")) return TBL;
+			if (s.equals("tco")) return TCO;
 			if (s.equals("srf")) return SRF;
 			if (s.equals("typ")) return TYP;
 
@@ -39,8 +39,8 @@ public class QryWznmChkList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == TCO) return("tco");
 			if (ix == TBL) return("tbl");
+			if (ix == TCO) return("tco");
 			if (ix == SRF) return("srf");
 			if (ix == TYP) return("typ");
 

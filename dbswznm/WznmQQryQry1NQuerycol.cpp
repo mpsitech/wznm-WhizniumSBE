@@ -2,8 +2,8 @@
 	* \file WznmQQryQry1NQuerycol.cpp
 	* Dbs and XML wrapper for table TblWznmQQryQry1NQuerycol (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQQryQry1NQuerycol.h"

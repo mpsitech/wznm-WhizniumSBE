@@ -2,8 +2,8 @@
 	* \file WznmWrsrvUa.cpp
 	* Wznm operation processor - write C++ code for OPC UA server (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD

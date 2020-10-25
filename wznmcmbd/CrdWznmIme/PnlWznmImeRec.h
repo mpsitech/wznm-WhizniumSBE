@@ -2,8 +2,8 @@
 	* \file PnlWznmImeRec.h
 	* job handler for job PnlWznmImeRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMIMEREC_H
@@ -13,10 +13,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmImeHk1NVector.h"
-#include "PnlWznmImeSup1NImpexp.h"
-#include "PnlWznmImeIme1NImpexpcol.h"
 #include "PnlWznmImeDetail.h"
+#include "PnlWznmImeIme1NImpexpcol.h"
+#include "PnlWznmImeSup1NImpexp.h"
+#include "PnlWznmImeHk1NVector.h"
 
 #define VecVWznmImeRecDo PnlWznmImeRec::VecVDo
 
@@ -173,10 +173,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmImeHk1NVector* pnlhk1nvector;
-	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
-	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
 	PnlWznmImeDetail* pnldetail;
+	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
+	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
+	PnlWznmImeHk1NVector* pnlhk1nvector;
 
 	WznmMImpexp recIme;
 

@@ -2,8 +2,8 @@
 	* \file PnlWznmMdlRec.h
 	* job handler for job PnlWznmMdlRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMMDLREC_H
@@ -13,9 +13,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmMdlRef1NPanel.h"
-#include "PnlWznmMdlMdl1NCard.h"
 #include "PnlWznmMdlDetail.h"
+#include "PnlWznmMdlMdl1NCard.h"
+#include "PnlWznmMdlRef1NPanel.h"
 
 #define VecVWznmMdlRecDo PnlWznmMdlRec::VecVDo
 
@@ -170,9 +170,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmMdlRef1NPanel* pnlref1npanel;
-	PnlWznmMdlMdl1NCard* pnlmdl1ncard;
 	PnlWznmMdlDetail* pnldetail;
+	PnlWznmMdlMdl1NCard* pnlmdl1ncard;
+	PnlWznmMdlRef1NPanel* pnlref1npanel;
 
 	WznmMModule recMdl;
 

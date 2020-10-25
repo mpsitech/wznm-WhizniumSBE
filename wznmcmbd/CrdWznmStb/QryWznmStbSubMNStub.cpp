@@ -2,8 +2,8 @@
 	* \file QryWznmStbSubMNStub.cpp
 	* job handler for job QryWznmStbSubMNStub (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -84,7 +84,7 @@ void QryWznmStbSubMNStub::rerun(
 	dbswznm->tblwznmqstbsubmnstub->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMStubMStub.ref)";
-	sqlstr += " FROM TblWznmMStub, TblWznmRMStubMStub";
+	sqlstr += " FROM TblWznmRMStubMStub, TblWznmMStub";
 	sqlstr += " WHERE TblWznmRMStubMStub.supRefWznmMStub = TblWznmMStub.ref";
 	sqlstr += " AND TblWznmRMStubMStub.subRefWznmMStub = " + to_string(preRefStb) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -99,7 +99,7 @@ void QryWznmStbSubMNStub::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQStbSubMNStub(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMStub.ref, TblWznmRMStubMStub.ref";
-	sqlstr += " FROM TblWznmMStub, TblWznmRMStubMStub";
+	sqlstr += " FROM TblWznmRMStubMStub, TblWznmMStub";
 	sqlstr += " WHERE TblWznmRMStubMStub.supRefWznmMStub = TblWznmMStub.ref";
 	sqlstr += " AND TblWznmRMStubMStub.subRefWznmMStub = " + to_string(preRefStb) + "";
 	sqlstr += " ORDER BY TblWznmMStub.sref ASC";
@@ -273,11 +273,19 @@ void QryWznmStbSubMNStub::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMSTBRSTBMOD_SUBEQ) {
-		call->abort = handleCallWznmStbRstbMod_subEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTBRSTBMOD_SUBEQ) {
+		call->abort = handleCallWznmStbRstbMod_subEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmStbSubMNStub::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmStbSubMNStub::handleCallWznmStbRstbMod_subEq(
@@ -291,14 +299,6 @@ bool QryWznmStbSubMNStub::handleCallWznmStbRstbMod_subEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmStbSubMNStub::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

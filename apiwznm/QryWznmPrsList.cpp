@@ -2,8 +2,8 @@
 	* \file QryWznmPrsList.cpp
 	* API code for job QryWznmPrsList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmPrsList.h"
@@ -21,8 +21,8 @@ uint QryWznmPrsList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "lnm") return LNM;
 	if (s == "own") return OWN;
+	if (s == "lnm") return LNM;
 	if (s == "grp") return GRP;
 
 	return(0);
@@ -31,8 +31,8 @@ uint QryWznmPrsList::VecVOrd::getIx(
 string QryWznmPrsList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == LNM) return("lnm");
 	if (ix == OWN) return("own");
+	if (ix == LNM) return("lnm");
 	if (ix == GRP) return("grp");
 
 	return("");

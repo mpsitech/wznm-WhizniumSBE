@@ -2,27 +2,13 @@
 	* \file PnlWznmTblRec_evals.cpp
 	* job handler for job PnlWznmTblRec (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
-
-bool PnlWznmTblRec::evalPnlatitleAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
 
 bool PnlWznmTblRec::evalPnlaloadfctAvail(
 			DbsWznm* dbswznm
@@ -38,21 +24,7 @@ bool PnlWznmTblRec::evalPnlaloadfctAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nstubAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(mtb)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmTblRec::evalPnl1ncheckAvail(
+bool PnlWznmTblRec::evalPnlatitleAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -61,20 +33,6 @@ bool PnlWznmTblRec::evalPnl1ncheckAvail(
 	bool a;
 
 	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmTblRec::evalPnl1nsubsetAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(mtb)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -94,7 +52,7 @@ bool PnlWznmTblRec::evalPnl1nimpexpAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnlto1nrelationAvail(
+bool PnlWznmTblRec::evalPnl1ncheckAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -122,7 +80,7 @@ bool PnlWznmTblRec::evalPnlfr1nrelationAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnlfct1ntablecolAvail(
+bool PnlWznmTblRec::evalPnlto1nrelationAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -131,6 +89,48 @@ bool PnlWznmTblRec::evalPnlfct1ntablecolAvail(
 	bool a;
 
 	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnl1nstubAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(mtb)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnl1nsubsetAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(mtb)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnlref1ndialogAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(mtb)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -150,15 +150,15 @@ bool PnlWznmTblRec::evalPnlref1ncallAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnlref1ndialogAvail(
+bool PnlWznmTblRec::evalPnlfct1ntablecolAvail(
 			DbsWznm* dbswznm
 		) {
-	// tbl.inSbs(mtb)
+	// tbl.inSbs(stt)
 
 	vector<bool> args;
 	bool a;
 
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
 	args.push_back(a);
 
 	return(args.back());

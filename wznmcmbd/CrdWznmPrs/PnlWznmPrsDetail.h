@@ -2,8 +2,8 @@
 	* \file PnlWznmPrsDetail.h
 	* job handler for job PnlWznmPrsDetail (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMPRSDETAIL_H
@@ -305,8 +305,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmPrsJlnmMod_prsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPrsUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmPrsJlnmMod_prsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

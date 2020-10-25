@@ -2,8 +2,8 @@
 	* \file PnlWznmCarHk1NControl.h
 	* job handler for job PnlWznmCarHk1NControl (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMCARHK1NCONTROL_H

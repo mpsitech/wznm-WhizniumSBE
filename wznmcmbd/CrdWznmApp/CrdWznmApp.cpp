@@ -2,8 +2,8 @@
 	* \file CrdWznmApp.cpp
 	* job handler for job CrdWznmApp (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -42,12 +42,12 @@ CrdWznmApp::CrdWznmApp(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnllist = NULL;
-	pnlheadbar = NULL;
-	pnlrec = NULL;
-	dlgimpstr = NULL;
-	dlgwrite = NULL;
 	dlgnew = NULL;
+	dlgwrite = NULL;
+	dlgimpstr = NULL;
+	pnlrec = NULL;
+	pnlheadbar = NULL;
+	pnllist = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -56,9 +56,9 @@ CrdWznmApp::CrdWznmApp(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnllist = new PnlWznmAppList(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlheadbar = new PnlWznmAppHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlrec = new PnlWznmAppRec(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmAppHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnllist = new PnlWznmAppList(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

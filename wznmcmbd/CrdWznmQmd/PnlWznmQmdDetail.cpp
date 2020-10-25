@@ -2,8 +2,8 @@
 	* \file PnlWznmQmdDetail.cpp
 	* job handler for job PnlWznmQmdDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -276,6 +276,12 @@ void PnlWznmQmdDetail::handleDpchAppDoButPstViewClick(
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recQmd.refWznmMPreset, jrefNew);
 		};
 		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmVec";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMPreset = " + to_string(recQmd.refWznmMPreset), ref); return ref;}(), jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmTbl";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMTable WHERE refWznmMPreset = " + to_string(recQmd.refWznmMPreset), ref); return ref;}(), jrefNew);
@@ -285,12 +291,6 @@ void PnlWznmQmdDetail::handleDpchAppDoButPstViewClick(
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmSbs";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMSubset WHERE refWznmMPreset = " + to_string(recQmd.refWznmMPreset), ref); return ref;}(), jrefNew);
-			};
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmVec";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMPreset = " + to_string(recQmd.refWznmMPreset), ref); return ref;}(), jrefNew);
 			};
 		};
 

@@ -2,8 +2,8 @@
 	* \file QryWznmOpk1NOp.cpp
 	* API code for job QryWznmOpk1NOp (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmOpk1NOp.h"

@@ -2,8 +2,8 @@
 	* \file DlgWznmRlsFinreptr.h
 	* job handler for job DlgWznmRlsFinreptr (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef DLGWZNMRLSFINREPTR_H
@@ -401,14 +401,14 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalFinButRunActive(DbsWznm* dbswznm);
+	bool evalFinButStoActive(DbsWznm* dbswznm);
 	bool evalResDldAvail(DbsWznm* dbswznm);
 	bool evalResDldActive(DbsWznm* dbswznm);
 	bool evalResTxtPrgAvail(DbsWznm* dbswznm);
 	bool evalResSep1Avail(DbsWznm* dbswznm);
 	bool evalResButPsgAvail(DbsWznm* dbswznm);
 	bool evalResButPsgActive(DbsWznm* dbswznm);
-	bool evalFinButRunActive(DbsWznm* dbswznm);
-	bool evalFinButStoActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmRlsFinreptr(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);

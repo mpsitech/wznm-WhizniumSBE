@@ -2,8 +2,8 @@
 	* \file CrdWznmVer.cpp
 	* job handler for job CrdWznmVer (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -47,9 +47,6 @@ CrdWznmVer::CrdWznmVer(
 	pnllist = NULL;
 	pnlheadbar = NULL;
 	pnlrec = NULL;
-	dlgbscui = NULL;
-	dlgcustjob = NULL;
-	dlgcustjtr = NULL;
 	dlgwrstkit = NULL;
 	dlgoppack = NULL;
 	dlgnew = NULL;
@@ -61,6 +58,9 @@ CrdWznmVer::CrdWznmVer(
 	dlgdeploy = NULL;
 	dlgdbstr = NULL;
 	dlgcustui = NULL;
+	dlgcustjtr = NULL;
+	dlgcustjob = NULL;
+	dlgbscui = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

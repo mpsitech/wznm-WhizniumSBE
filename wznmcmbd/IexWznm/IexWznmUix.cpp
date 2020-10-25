@@ -2,8 +2,8 @@
 	* \file IexWznmUix.cpp
 	* data blocks and readers/writers for import/export complex IexWznmUix (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "IexWznmUix.h"

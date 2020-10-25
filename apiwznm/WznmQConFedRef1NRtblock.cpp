@@ -2,8 +2,8 @@
 	* \file WznmQConFedRef1NRtblock.cpp
 	* API code for table TblWznmQConFedRef1NRtblock (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQConFedRef1NRtblock.h"

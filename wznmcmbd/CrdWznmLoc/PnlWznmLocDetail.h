@@ -2,8 +2,8 @@
 	* \file PnlWznmLocDetail.h
 	* job handler for job PnlWznmLocDetail (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMLOCDETAIL_H
@@ -266,8 +266,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmLocJtitMod_locEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmLocUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmLocJtitMod_locEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

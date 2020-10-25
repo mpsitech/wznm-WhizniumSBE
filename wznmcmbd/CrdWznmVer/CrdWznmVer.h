@@ -2,8 +2,8 @@
 	* \file CrdWznmVer.h
 	* job handler for job CrdWznmVer (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef CRDWZNMVER_H
@@ -16,9 +16,6 @@
 #include "PnlWznmVerList.h"
 #include "PnlWznmVerHeadbar.h"
 #include "PnlWznmVerRec.h"
-#include "DlgWznmVerBscui.h"
-#include "DlgWznmVerCustjob.h"
-#include "DlgWznmVerCustjtr.h"
 #include "DlgWznmVerWrstkit.h"
 #include "DlgWznmVerOppack.h"
 #include "DlgWznmVerNew.h"
@@ -30,6 +27,9 @@
 #include "DlgWznmVerDeploy.h"
 #include "DlgWznmVerDbstr.h"
 #include "DlgWznmVerCustui.h"
+#include "DlgWznmVerCustjtr.h"
+#include "DlgWznmVerCustjob.h"
+#include "DlgWznmVerBscui.h"
 
 #define VecVWznmVerDo CrdWznmVer::VecVDo
 #define VecVWznmVerSge CrdWznmVer::VecVSge
@@ -357,9 +357,6 @@ public:
 	PnlWznmVerList* pnllist;
 	PnlWznmVerHeadbar* pnlheadbar;
 	PnlWznmVerRec* pnlrec;
-	DlgWznmVerBscui* dlgbscui;
-	DlgWznmVerCustjob* dlgcustjob;
-	DlgWznmVerCustjtr* dlgcustjtr;
 	DlgWznmVerWrstkit* dlgwrstkit;
 	DlgWznmVerOppack* dlgoppack;
 	DlgWznmVerNew* dlgnew;
@@ -371,6 +368,9 @@ public:
 	DlgWznmVerDeploy* dlgdeploy;
 	DlgWznmVerDbstr* dlgdbstr;
 	DlgWznmVerCustui* dlgcustui;
+	DlgWznmVerCustjtr* dlgcustjtr;
+	DlgWznmVerCustjob* dlgcustjob;
+	DlgWznmVerBscui* dlgbscui;
 
 	// IP vars.cust --- INSERT
 

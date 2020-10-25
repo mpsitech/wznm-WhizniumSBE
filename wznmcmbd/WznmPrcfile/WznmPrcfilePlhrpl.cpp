@@ -2,8 +2,8 @@
 	* \file WznmPrcfilePlhrpl.cpp
 	* Wznm operation processor - replace placeholders in template file and write into output file (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD

@@ -2,8 +2,8 @@
 	* \file QryWznmImeList.h
 	* job handler for job QryWznmImeList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMIMELIST_H
@@ -32,8 +32,8 @@ public:
 
 	public:
 		static const Sbecore::uint TBL = 1;
-		static const Sbecore::uint SUP = 2;
-		static const Sbecore::uint IEX = 3;
+		static const Sbecore::uint IEX = 2;
+		static const Sbecore::uint SUP = 3;
 		static const Sbecore::uint SRF = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -145,8 +145,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmImeUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmImeMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmImeUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };

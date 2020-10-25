@@ -2,8 +2,8 @@
 # file checkout.sh
 # checkout script for Wznm operation daemon, release wznmopd2_jack
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 export set SRCROOT=/home/mpsitech/src
 export set LIBROOT=/home/mpsitech/lib
@@ -14,11 +14,11 @@ export set CMBDSRCROOT=$REPROOT/wznm/wznmcmbd
 mkdir $SRCROOT/wznmopd2
 mkdir $SRCROOT/wznmopd2/IexWznm
 mkdir $SRCROOT/wznmopd2/VecWznm
-mkdir $SRCROOT/wznmopd2/WznmCtpWrweb
-mkdir $SRCROOT/wznmopd2/WznmCtpWrsrv
-mkdir $SRCROOT/wznmopd2/WznmCtpWrstkit
-mkdir $SRCROOT/wznmopd2/WznmCtpGenui
 mkdir $SRCROOT/wznmopd2/WznmCtpGenjtr
+mkdir $SRCROOT/wznmopd2/WznmCtpGenui
+mkdir $SRCROOT/wznmopd2/WznmCtpWrstkit
+mkdir $SRCROOT/wznmopd2/WznmCtpWrsrv
+mkdir $SRCROOT/wznmopd2/WznmCtpWrweb
 
 mkdir $LIBROOT/wznmopd2
 
@@ -55,28 +55,28 @@ cp Makefile_VecWznm $SRCROOT/wznmopd2/VecWznm/Makefile
 cp $CMBDSRCROOT/VecWznm/Vec*.h $SRCROOT/wznmopd2/VecWznm/
 cp $CMBDSRCROOT/VecWznm/Vec*.cpp $SRCROOT/wznmopd2/VecWznm/
 
-cp Makefile_WznmCtpWrweb $SRCROOT/wznmopd2/WznmCtpWrweb/Makefile
+cp Makefile_WznmCtpGenjtr $SRCROOT/wznmopd2/WznmCtpGenjtr/Makefile
 
-cp $CMBDSRCROOT/WznmCtpWrweb/WznmCtpWrweb*.h $SRCROOT/wznmopd2/WznmCtpWrweb/
-cp $CMBDSRCROOT/WznmCtpWrweb/WznmCtpWrweb*.cpp $SRCROOT/wznmopd2/WznmCtpWrweb/
-
-cp Makefile_WznmCtpWrsrv $SRCROOT/wznmopd2/WznmCtpWrsrv/Makefile
-
-cp $CMBDSRCROOT/WznmCtpWrsrv/WznmCtpWrsrv*.h $SRCROOT/wznmopd2/WznmCtpWrsrv/
-cp $CMBDSRCROOT/WznmCtpWrsrv/WznmCtpWrsrv*.cpp $SRCROOT/wznmopd2/WznmCtpWrsrv/
-
-cp Makefile_WznmCtpWrstkit $SRCROOT/wznmopd2/WznmCtpWrstkit/Makefile
-
-cp $CMBDSRCROOT/WznmCtpWrstkit/WznmCtpWrstkit*.h $SRCROOT/wznmopd2/WznmCtpWrstkit/
-cp $CMBDSRCROOT/WznmCtpWrstkit/WznmCtpWrstkit*.cpp $SRCROOT/wznmopd2/WznmCtpWrstkit/
+cp $CMBDSRCROOT/WznmCtpGenjtr/WznmCtpGenjtr*.h $SRCROOT/wznmopd2/WznmCtpGenjtr/
+cp $CMBDSRCROOT/WznmCtpGenjtr/WznmCtpGenjtr*.cpp $SRCROOT/wznmopd2/WznmCtpGenjtr/
 
 cp Makefile_WznmCtpGenui $SRCROOT/wznmopd2/WznmCtpGenui/Makefile
 
 cp $CMBDSRCROOT/WznmCtpGenui/WznmCtpGenui*.h $SRCROOT/wznmopd2/WznmCtpGenui/
 cp $CMBDSRCROOT/WznmCtpGenui/WznmCtpGenui*.cpp $SRCROOT/wznmopd2/WznmCtpGenui/
 
-cp Makefile_WznmCtpGenjtr $SRCROOT/wznmopd2/WznmCtpGenjtr/Makefile
+cp Makefile_WznmCtpWrstkit $SRCROOT/wznmopd2/WznmCtpWrstkit/Makefile
 
-cp $CMBDSRCROOT/WznmCtpGenjtr/WznmCtpGenjtr*.h $SRCROOT/wznmopd2/WznmCtpGenjtr/
-cp $CMBDSRCROOT/WznmCtpGenjtr/WznmCtpGenjtr*.cpp $SRCROOT/wznmopd2/WznmCtpGenjtr/
+cp $CMBDSRCROOT/WznmCtpWrstkit/WznmCtpWrstkit*.h $SRCROOT/wznmopd2/WznmCtpWrstkit/
+cp $CMBDSRCROOT/WznmCtpWrstkit/WznmCtpWrstkit*.cpp $SRCROOT/wznmopd2/WznmCtpWrstkit/
+
+cp Makefile_WznmCtpWrsrv $SRCROOT/wznmopd2/WznmCtpWrsrv/Makefile
+
+cp $CMBDSRCROOT/WznmCtpWrsrv/WznmCtpWrsrv*.h $SRCROOT/wznmopd2/WznmCtpWrsrv/
+cp $CMBDSRCROOT/WznmCtpWrsrv/WznmCtpWrsrv*.cpp $SRCROOT/wznmopd2/WznmCtpWrsrv/
+
+cp Makefile_WznmCtpWrweb $SRCROOT/wznmopd2/WznmCtpWrweb/Makefile
+
+cp $CMBDSRCROOT/WznmCtpWrweb/WznmCtpWrweb*.h $SRCROOT/wznmopd2/WznmCtpWrweb/
+cp $CMBDSRCROOT/WznmCtpWrweb/WznmCtpWrweb*.cpp $SRCROOT/wznmopd2/WznmCtpWrweb/
 

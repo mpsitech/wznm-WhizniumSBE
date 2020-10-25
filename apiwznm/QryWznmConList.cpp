@@ -2,8 +2,8 @@
 	* \file QryWznmConList.cpp
 	* API code for job QryWznmConList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmConList.h"
@@ -21,14 +21,14 @@ uint QryWznmConList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sup") return SUP;
-	if (s == "reu") return REU;
-	if (s == "ret") return RET;
-	if (s == "sct") return SCT;
-	if (s == "hku") return HKU;
-	if (s == "hkt") return HKT;
-	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
+	if (s == "typ") return TYP;
+	if (s == "hkt") return HKT;
+	if (s == "hku") return HKU;
+	if (s == "sct") return SCT;
+	if (s == "ret") return RET;
+	if (s == "reu") return REU;
+	if (s == "sup") return SUP;
 
 	return(0);
 };
@@ -36,14 +36,14 @@ uint QryWznmConList::VecVOrd::getIx(
 string QryWznmConList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SUP) return("sup");
-	if (ix == REU) return("reu");
-	if (ix == RET) return("ret");
-	if (ix == SCT) return("sct");
-	if (ix == HKU) return("hku");
-	if (ix == HKT) return("hkt");
-	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
+	if (ix == TYP) return("typ");
+	if (ix == HKT) return("hkt");
+	if (ix == HKU) return("hku");
+	if (ix == SCT) return("sct");
+	if (ix == RET) return("ret");
+	if (ix == REU) return("reu");
+	if (ix == SUP) return("sup");
 
 	return("");
 };

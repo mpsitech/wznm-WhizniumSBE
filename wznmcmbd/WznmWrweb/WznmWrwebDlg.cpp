@@ -2,8 +2,8 @@
 	* \file WznmWrwebDlg.cpp
 	* Wznm operation processor - write web UI JS/HTML code for dialog (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -424,7 +424,7 @@ void WznmWrwebDlg::writeDlgJsfile(
 	outfile << "\t// IP refresh.vars --- BEGIN" << endl;
 	for (unsigned int i = 0; i < ftrcons.nodes.size(); i++) {
 		con = ftrcons.nodes[i];
-		if (con->Active.length() > 0) outfile << "\tvar " << con->sref << "Active = (retrieveSi(srcdoc, \"StatShr" << dlg->sref << "\", \"" << con->sref << "Active\") == \"true\");" << endl;
+		if (con->Active.length() > 0) outfile << "\tvar " << con->sref << "Active = (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con) << dlg->sref << "\", \"" << con->sref << "Active\") == \"true\");" << endl;
 	};
 	outfile << "\t// IP refresh.vars --- END" << endl;
 	outfile << "// IP refresh.vars --- IEND" << endl;
@@ -538,7 +538,7 @@ void WznmWrwebDlg::writeDlgndJsfile(
 
 	for (unsigned int i = 0; i < ftrcons.nodes.size(); i++) {
 		con = ftrcons.nodes[i];
-		if (con->Active.length() > 0) outfile << "\tvar " << con->sref << "Active = (retrieveSi(srcdoc, \"StatShr" << dlg->sref << "\", \"" << con->sref << "Active\") == \"true\");" << endl;
+		if (con->Active.length() > 0) outfile << "\tvar " << con->sref << "Active = (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con) << dlg->sref << "\", \"" << con->sref << "Active\") == \"true\");" << endl;
 	};
 	outfile << "\t// IP refresh.vars --- END" << endl;
 	outfile << "// IP refresh.vars --- IEND" << endl;

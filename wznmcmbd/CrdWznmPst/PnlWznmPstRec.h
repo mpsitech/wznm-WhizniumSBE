@@ -2,8 +2,8 @@
 	* \file PnlWznmPstRec.h
 	* job handler for job PnlWznmPstRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMPSTREC_H
@@ -13,8 +13,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmPst1NQuerymod.h"
 #include "PnlWznmPstDetail.h"
+#include "PnlWznmPst1NQuerymod.h"
 
 #define VecVWznmPstRecDo PnlWznmPstRec::VecVDo
 
@@ -167,8 +167,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmPst1NQuerymod* pnl1nquerymod;
 	PnlWznmPstDetail* pnldetail;
+	PnlWznmPst1NQuerymod* pnl1nquerymod;
 
 	WznmMPreset recPst;
 

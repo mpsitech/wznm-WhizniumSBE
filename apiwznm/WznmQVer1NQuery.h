@@ -2,8 +2,8 @@
 	* \file WznmQVer1NQuery.h
 	* API code for table TblWznmQVer1NQuery (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMQVER1NQUERY_H

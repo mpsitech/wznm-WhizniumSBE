@@ -2,8 +2,8 @@
 	* \file PnlWznmOpxRec.h
 	* job handler for job PnlWznmOpxRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMOPXREC_H
@@ -13,12 +13,12 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmOpxSqkMNStub.h"
-#include "PnlWznmOpxMNJob.h"
-#include "PnlWznmOpxRef1NBlock.h"
-#include "PnlWznmOpxARetval.h"
-#include "PnlWznmOpxAInvarg.h"
 #include "PnlWznmOpxDetail.h"
+#include "PnlWznmOpxAInvarg.h"
+#include "PnlWznmOpxARetval.h"
+#include "PnlWznmOpxRef1NBlock.h"
+#include "PnlWznmOpxMNJob.h"
+#include "PnlWznmOpxSqkMNStub.h"
 
 #define VecVWznmOpxRecDo PnlWznmOpxRec::VecVDo
 
@@ -182,12 +182,12 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
-	PnlWznmOpxMNJob* pnlmnjob;
-	PnlWznmOpxRef1NBlock* pnlref1nblock;
-	PnlWznmOpxARetval* pnlaretval;
-	PnlWznmOpxAInvarg* pnlainvarg;
 	PnlWznmOpxDetail* pnldetail;
+	PnlWznmOpxAInvarg* pnlainvarg;
+	PnlWznmOpxARetval* pnlaretval;
+	PnlWznmOpxRef1NBlock* pnlref1nblock;
+	PnlWznmOpxMNJob* pnlmnjob;
+	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
 
 	WznmMOp recOpx;
 

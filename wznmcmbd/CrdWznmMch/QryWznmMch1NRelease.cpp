@@ -2,8 +2,8 @@
 	* \file QryWznmMch1NRelease.cpp
 	* job handler for job QryWznmMch1NRelease (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -269,11 +269,19 @@ void QryWznmMch1NRelease::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMRLSMOD_MCHEQ) {
-		call->abort = handleCallWznmRlsMod_mchEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMRLSMOD_MCHEQ) {
+		call->abort = handleCallWznmRlsMod_mchEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmMch1NRelease::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmMch1NRelease::handleCallWznmRlsMod_mchEq(
@@ -287,14 +295,6 @@ bool QryWznmMch1NRelease::handleCallWznmRlsMod_mchEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmMch1NRelease::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

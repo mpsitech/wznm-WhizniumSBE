@@ -2,8 +2,8 @@
   * \file PnlWznmImeList.js
   * web client functionality for panel PnlWznmImeList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 // --- expand state management
@@ -136,9 +136,9 @@ function refreshB(chgcol) {
 			if (i == 1) {
 				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(4); wtot += TcoSrfWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoIex"); doc.widths.push(TcoIexWidth); doc.fs.push("iex"); doc.tos.push(3); wtot += TcoIexWidth;
+				doc.cols.push("TcoIex"); doc.widths.push(TcoIexWidth); doc.fs.push("iex"); doc.tos.push(2); wtot += TcoIexWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoSup"); doc.widths.push(TcoSupWidth); doc.fs.push("sup"); doc.tos.push(2); wtot += TcoSupWidth;
+				doc.cols.push("TcoSup"); doc.widths.push(TcoSupWidth); doc.fs.push("sup"); doc.tos.push(3); wtot += TcoSupWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoTbl"); doc.widths.push(TcoTblWidth); doc.fs.push("tbl"); doc.tos.push(1); wtot += TcoTblWidth;
 			} else {

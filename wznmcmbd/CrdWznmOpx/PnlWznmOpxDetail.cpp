@@ -2,8 +2,8 @@
 	* \file PnlWznmOpxDetail.cpp
 	* job handler for job PnlWznmOpxDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -374,9 +374,7 @@ void PnlWznmOpxDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMSQKJTITMOD_SQKEQ) {
-		call->abort = handleCallWznmSqkJtitMod_sqkEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSQKUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMSQKUPD_REFEQ) {
 		call->abort = handleCallWznmSqkUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPXUPD_REFEQ) {
 		call->abort = handleCallWznmOpxUpd_refEq(dbswznm, call->jref);
@@ -384,20 +382,9 @@ void PnlWznmOpxDetail::handleCall(
 		call->abort = handleCallWznmOpx_sqkEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPX_OPKEQ) {
 		call->abort = handleCallWznmOpx_opkEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSQKJTITMOD_SQKEQ) {
+		call->abort = handleCallWznmSqkJtitMod_sqkEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmOpxDetail::handleCallWznmSqkJtitMod_sqkEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	set<uint> moditems;
-
-	refreshSqkJti(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
-	return retval;
 };
 
 bool PnlWznmOpxDetail::handleCallWznmSqkUpd_refEq(
@@ -437,6 +424,19 @@ bool PnlWznmOpxDetail::handleCallWznmOpx_opkEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recOpx.refWznmMOppack == refInv); // IP handleCallWznmOpx_opkEq --- LINE
+	return retval;
+};
+
+bool PnlWznmOpxDetail::handleCallWznmSqkJtitMod_sqkEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	refreshSqkJti(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
 

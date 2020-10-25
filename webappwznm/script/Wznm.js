@@ -2,14 +2,14 @@
   * \file Wznm.js
   * web client global functionality for Wznm
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
-WZNM_VERSION = "1.0.6";
+WZNM_VERSION = "1.0.7";
 WZNM_VERSION_MAJOR = 1;
 WZNM_VERSION_MINOR = 0;
-WZNM_VERSION_SUB = 6;
+WZNM_VERSION_SUB = 7;
 
 function getCrdwnd() {
 	if (window.name == "Crd") return window;

@@ -2,8 +2,8 @@
 	* \file QryWznmUsrList.h
 	* API code for job QryWznmUsrList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMUSRLIST_H
@@ -28,8 +28,8 @@ namespace QryWznmUsrList {
 
 	public:
 		static const Sbecore::uint USG = 1;
-		static const Sbecore::uint SRF = 2;
-		static const Sbecore::uint PRS = 3;
+		static const Sbecore::uint PRS = 2;
+		static const Sbecore::uint SRF = 3;
 		static const Sbecore::uint OWN = 4;
 		static const Sbecore::uint GRP = 5;
 

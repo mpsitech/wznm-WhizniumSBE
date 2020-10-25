@@ -2,8 +2,8 @@
 	* \file WznmQDlgHk1NControl.cpp
 	* API code for table TblWznmQDlgHk1NControl (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQDlgHk1NControl.h"

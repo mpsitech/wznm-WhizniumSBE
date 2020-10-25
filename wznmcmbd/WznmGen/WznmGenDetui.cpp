@@ -2,8 +2,8 @@
 	* \file WznmGenDetui.cpp
 	* Wznm operation processor - generate detailed user interface (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -1127,9 +1127,11 @@ void WznmGenDetui::genPnlnav(
 		Wznm::getCarpsts(sesspsts, mdlcar, carsesspsts, carpsts, always, never);
 
 		s = "";
-		for (unsigned int j = 0; j < carsesspsts.size(); j++) {
-			if (j != 0) s = s + "|";
-			s = s + "pre." + carsesspsts[j] + "()";
+		if (!always) {
+			for (unsigned int j = 0; j < carsesspsts.size(); j++) {
+				if (j != 0) s = s + "|";
+				s = s + "pre." + carsesspsts[j] + "()";
+			};
 		};
 
 		if ((mdlcar->refIxVTbl == VecWznmVMCardRefTbl::VOID) && !never) {

@@ -2,8 +2,8 @@
 	* \file WznmQTco1NImpexpcol.cpp
 	* API code for table TblWznmQTco1NImpexpcol (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQTco1NImpexpcol.h"

@@ -2,8 +2,8 @@
 	* \file QryWznmRtjList_blks.cpp
 	* job handler for job QryWznmRtjList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -19,10 +19,10 @@ uint QryWznmRtjList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "job") return JOB;
-	if (s == "sup") return SUP;
-	if (s == "app") return APP;
 	if (s == "srf") return SRF;
+	if (s == "app") return APP;
+	if (s == "sup") return SUP;
+	if (s == "job") return JOB;
 
 	return(0);
 };
@@ -30,10 +30,10 @@ uint QryWznmRtjList::VecVOrd::getIx(
 string QryWznmRtjList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == JOB) return("job");
-	if (ix == SUP) return("sup");
-	if (ix == APP) return("app");
 	if (ix == SRF) return("srf");
+	if (ix == APP) return("app");
+	if (ix == SUP) return("sup");
+	if (ix == JOB) return("job");
 
 	return("");
 };

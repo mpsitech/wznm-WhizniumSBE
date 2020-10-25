@@ -2,8 +2,8 @@
 	* \file QryWznmJobSupMNJob.h
 	* job handler for job QryWznmJobSupMNJob (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMJOBSUPMNJOB_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmJobRjobMod_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmJobRjobMod_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

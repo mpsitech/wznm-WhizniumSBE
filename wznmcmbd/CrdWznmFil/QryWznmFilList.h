@@ -2,8 +2,8 @@
 	* \file QryWznmFilList.h
 	* job handler for job QryWznmFilList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMFILLIST_H
@@ -31,10 +31,10 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint REU = 1;
-		static const Sbecore::uint RET = 2;
-		static const Sbecore::uint FNM = 3;
-		static const Sbecore::uint OWN = 4;
+		static const Sbecore::uint RET = 1;
+		static const Sbecore::uint REU = 2;
+		static const Sbecore::uint OWN = 3;
+		static const Sbecore::uint FNM = 4;
 		static const Sbecore::uint GRP = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -145,8 +145,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmFilUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmFilMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmFilUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };

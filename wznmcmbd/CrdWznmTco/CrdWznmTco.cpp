@@ -2,8 +2,8 @@
 	* \file CrdWznmTco.cpp
 	* job handler for job CrdWznmTco (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -43,9 +43,9 @@ CrdWznmTco::CrdWznmTco(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnllist = NULL;
-	pnlheadbar = NULL;
 	pnlrec = NULL;
+	pnlheadbar = NULL;
+	pnllist = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -57,9 +57,9 @@ CrdWznmTco::CrdWznmTco(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnllist = new PnlWznmTcoList(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlheadbar = new PnlWznmTcoHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlrec = new PnlWznmTcoRec(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmTcoHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnllist = new PnlWznmTcoList(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

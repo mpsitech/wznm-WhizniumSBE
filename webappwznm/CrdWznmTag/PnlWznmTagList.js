@@ -2,8 +2,8 @@
   * \file PnlWznmTagList.js
   * web client functionality for panel PnlWznmTagList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 // --- expand state management
@@ -120,7 +120,7 @@ function refreshB(chgcol) {
 			} else if (i == 2) {
 				doc.cols.push("TcoTit"); doc.widths.push(TcoTitWidth); doc.fs.push("tit"); doc.tos.push(0); wtot += TcoTitWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoCpb"); doc.widths.push(TcoCpbWidth); doc.fs.push("cpb"); doc.tos.push(1); wtot += TcoCpbWidth;
+				doc.cols.push("TcoCpb"); doc.widths.push(TcoCpbWidth); doc.fs.push("cpb"); doc.tos.push(2); wtot += TcoCpbWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoGrp"); doc.widths.push(TcoGrpWidth); doc.fs.push("grp2"); doc.tos.push(0); wtot += TcoGrpWidth;
 			} else {

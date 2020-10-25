@@ -2,8 +2,8 @@
 	* \file QryWznmAppApp1NSequence.cpp
 	* API code for job QryWznmAppApp1NSequence (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmAppApp1NSequence.h"

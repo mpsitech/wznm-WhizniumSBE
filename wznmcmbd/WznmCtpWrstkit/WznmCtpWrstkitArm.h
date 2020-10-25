@@ -2,8 +2,8 @@
 	* \file WznmCtpWrstkitArm.h
 	* Wznm operation processor - database, basic UI and import/export (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMCTPWRSTKITARM_H

@@ -2,8 +2,8 @@
 	* \file QryWznmPrjList_blks.cpp
 	* job handler for job QryWznmPrjList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -19,11 +19,11 @@ uint QryWznmPrjList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ver") return VER;
 	if (s == "tit") return TIT;
+	if (s == "ver") return VER;
 	if (s == "sho") return SHO;
-	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
+	if (s == "own") return OWN;
 
 	return(0);
 };
@@ -31,11 +31,11 @@ uint QryWznmPrjList::VecVOrd::getIx(
 string QryWznmPrjList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == VER) return("ver");
 	if (ix == TIT) return("tit");
+	if (ix == VER) return("ver");
 	if (ix == SHO) return("sho");
-	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
+	if (ix == OWN) return("own");
 
 	return("");
 };

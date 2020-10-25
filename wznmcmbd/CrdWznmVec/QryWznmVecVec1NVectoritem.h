@@ -2,8 +2,8 @@
 	* \file QryWznmVecVec1NVectoritem.h
 	* job handler for job QryWznmVecVec1NVectoritem (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMVECVEC1NVECTORITEM_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmVitMod_vecEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmVitMod_vecEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

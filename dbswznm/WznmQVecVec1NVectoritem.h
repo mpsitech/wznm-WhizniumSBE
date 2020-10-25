@@ -2,8 +2,8 @@
 	* \file WznmQVecVec1NVectoritem.h
 	* Dbs and XML wrapper for table TblWznmQVecVec1NVectoritem (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMQVECVEC1NVECTORITEM_H

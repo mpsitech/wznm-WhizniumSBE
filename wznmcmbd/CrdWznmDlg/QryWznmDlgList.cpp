@@ -2,8 +2,8 @@
 	* \file QryWznmDlgList.cpp
 	* job handler for job QryWznmDlgList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -110,7 +110,7 @@ void QryWznmDlgList::rerun(
 
 	} else if (preIxPre == VecWznmVPreset::PREWZNMREFVER) {
 		sqlstr = "SELECT COUNT(TblWznmMDialog.ref)";
-		sqlstr += " FROM TblWznmMDialog, TblWznmMModule, TblWznmMCard";
+		sqlstr += " FROM TblWznmMDialog, TblWznmMCard, TblWznmMModule";
 		sqlstr += " WHERE TblWznmMDialog.refWznmMCard = TblWznmMCard.ref";
 		sqlstr += " AND TblWznmMCard.mdlRefWznmMModule = TblWznmMModule.ref";
 		sqlstr += " AND TblWznmMModule.verRefWznmMVersion = " + to_string(preRefVer) + "";
@@ -165,7 +165,7 @@ void QryWznmDlgList::rerun(
 
 	} else if (preIxPre == VecWznmVPreset::PREWZNMREFVER) {
 		rerun_baseSQL(sqlstr);
-		sqlstr += " FROM TblWznmMDialog, TblWznmMModule, TblWznmMCard";
+		sqlstr += " FROM TblWznmMDialog, TblWznmMCard, TblWznmMModule";
 		sqlstr += " WHERE TblWznmMDialog.refWznmMCard = TblWznmMCard.ref";
 		sqlstr += " AND TblWznmMCard.mdlRefWznmMModule = TblWznmMModule.ref";
 		sqlstr += " AND TblWznmMModule.verRefWznmMVersion = " + to_string(preRefVer) + "";
@@ -253,11 +253,11 @@ void QryWznmDlgList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMDialog.refUref ASC";
-	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMDialog.refIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::CAR) sqlstr += " ORDER BY TblWznmMDialog.refWznmMCard ASC";
+	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMDialog.sref ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMDialog.ixVBasetype ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMDialog.sref ASC";
+	else if (preIxOrd == VecVOrd::CAR) sqlstr += " ORDER BY TblWznmMDialog.refWznmMCard ASC";
+	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMDialog.refIxVTbl ASC";
+	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMDialog.refUref ASC";
 };
 
 void QryWznmDlgList::fetch(
@@ -290,10 +290,10 @@ void QryWznmDlgList::fetch(
 			rec->stubRefWznmMCard = StubWznm::getStubCarStd(dbswznm, rec->refWznmMCard, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->srefRefIxVTbl = VecWznmVMDialogRefTbl::getSref(rec->refIxVTbl);
 			rec->titRefIxVTbl = VecWznmVMDialogRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
-			if (rec->refIxVTbl == VecWznmVMDialogRefTbl::REL) {
-				rec->stubRefUref = StubWznm::getStubRelStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMDialogRefTbl::TBL) {
+			if (rec->refIxVTbl == VecWznmVMDialogRefTbl::TBL) {
 				rec->stubRefUref = StubWznm::getStubTblStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMDialogRefTbl::REL) {
+				rec->stubRefUref = StubWznm::getStubRelStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMDialogRefTbl::IEX) {
 				rec->stubRefUref = StubWznm::getStubIexStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";

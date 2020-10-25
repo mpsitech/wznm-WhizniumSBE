@@ -2,8 +2,8 @@
 	* \file WznmMMethod.h
 	* database access for table TblWznmMMethod (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMMMETHOD_H

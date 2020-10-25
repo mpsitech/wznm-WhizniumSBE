@@ -1,8 +1,8 @@
 # file Makefile
 # make file for Wznm operation daemon, release wznmopd2_awsubt
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 include Makefile.inc
 
@@ -13,7 +13,7 @@ LINK = g++
 LINKFLAGS =
 
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmopd2/VecWznm -I$(SRCROOT)/wznmopd2/IexWznm -I$(SRCROOT)/wznmopd2
-INCPATH += -I$(SRCROOT)/wznmopd2/WznmCtpWrweb -I$(SRCROOT)/wznmopd2/WznmCtpWrsrv -I$(SRCROOT)/wznmopd2/WznmCtpWrstkit -I$(SRCROOT)/wznmopd2/WznmCtpGenui -I$(SRCROOT)/wznmopd2/WznmCtpGenjtr
+INCPATH += -I$(SRCROOT)/wznmopd2/WznmCtpGenjtr -I$(SRCROOT)/wznmopd2/WznmCtpGenui -I$(SRCROOT)/wznmopd2/WznmCtpWrstkit -I$(SRCROOT)/wznmopd2/WznmCtpWrsrv -I$(SRCROOT)/wznmopd2/WznmCtpWrweb
 INCPATH += -I/usr/include -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
 
 PCHS = Wznmopd.h.gch
@@ -26,7 +26,7 @@ LIBPATH += -L$(LIBROOT)/wznmopd2
 LIBPATH += -L/usr/lib/x86_64-linux-gnu -L/usr/local/lib
 LIBPATH += -L/lib/x86_64-linux-gnu
 
-LIBS = -lwznmctpwrweb -lwznmctpwrsrv -lwznmctpwrstkit -lwznmctpgenui -lwznmctpgenjtr
+LIBS = -lwznmctpgenjtr -lwznmctpgenui -lwznmctpwrstkit -lwznmctpwrsrv -lwznmctpwrweb
 LIBS += -liexwznm -lvecwznm -ldbswznm
 LIBS += -lcurl -lmicrohttpd -lsbecore_mar
 LIBS += -lmariadbclient -lsbecore_plus

@@ -2,8 +2,8 @@
   * \file QryWznmSteList.java
   * Java API code for job QryWznmSteList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -18,16 +18,16 @@ public class QryWznmSteList {
 		*/
 	public static class VecVOrd {
 
-		public static final int SEQ = 1;
-		public static final int SRF = 2;
+		public static final int SRF = 1;
+		public static final int SEQ = 2;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("seq")) return SEQ;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("seq")) return SEQ;
 
 			return 0;
 		};
@@ -35,8 +35,8 @@ public class QryWznmSteList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == SEQ) return("seq");
 			if (ix == SRF) return("srf");
+			if (ix == SEQ) return("seq");
 
 			return "";
 		};

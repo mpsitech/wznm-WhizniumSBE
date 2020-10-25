@@ -2,8 +2,8 @@
 	* \file WznmQIex1NImpexp.cpp
 	* API code for table TblWznmQIex1NImpexp (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQIex1NImpexp.h"

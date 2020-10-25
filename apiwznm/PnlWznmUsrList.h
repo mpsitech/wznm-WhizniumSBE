@@ -2,8 +2,8 @@
 	* \file PnlWznmUsrList.h
 	* API code for job PnlWznmUsrList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMUSRLIST_H

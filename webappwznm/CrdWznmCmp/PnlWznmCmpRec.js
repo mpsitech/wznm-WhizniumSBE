@@ -2,29 +2,29 @@
   * \file PnlWznmCmpRec.js
   * web client functionality for panel PnlWznmCmpRec
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmCmpRec", "scrJrefDetail");
 	scrJref1NRelease = retrieveSi(srcdoc, "StatShrWznmCmpRec", "scrJref1NRelease");
-	scrJrefMNOppack = retrieveSi(srcdoc, "StatShrWznmCmpRec", "scrJrefMNOppack");
 	scrJrefMNLibrary = retrieveSi(srcdoc, "StatShrWznmCmpRec", "scrJrefMNLibrary");
+	scrJrefMNOppack = retrieveSi(srcdoc, "StatShrWznmCmpRec", "scrJrefMNOppack");
 };
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmCmpRec", "initdoneDetail", "false");
 	setSi(srcdoc, "StatAppWznmCmpRec", "initdone1NRelease", "false");
-	setSi(srcdoc, "StatAppWznmCmpRec", "initdoneMNOppack", "false");
 	setSi(srcdoc, "StatAppWznmCmpRec", "initdoneMNLibrary", "false");
+	setSi(srcdoc, "StatAppWznmCmpRec", "initdoneMNOppack", "false");
 };
 
 function resetHeights() {
 	heightDetail = 30;
 	height1NRelease = 30;
-	heightMNOppack = 30;
 	heightMNLibrary = 30;
+	heightMNOppack = 30;
 };
 
 function getInitdone(pnlshort) {
@@ -44,17 +44,17 @@ function checkInitdone() {
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmCmpRec", "initdoneDetail") == "true");
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmCmpRec", "initdone1NRelease") == "true");
-	var initdoneMNOppack = (retrieveSi(srcdoc, "StatAppWznmCmpRec", "initdoneMNOppack") == "true");
 	var initdoneMNLibrary = (retrieveSi(srcdoc, "StatAppWznmCmpRec", "initdoneMNLibrary") == "true");
+	var initdoneMNOppack = (retrieveSi(srcdoc, "StatAppWznmCmpRec", "initdoneMNOppack") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmCmpDetail.html?scrJref=" + scrJrefDetail;
 	} else if (!initdone1NRelease) {
 		rhsdoc.getElementById("1NRelease").src = "./PnlWznmCmp1NRelease.html?scrJref=" + scrJref1NRelease;
-	} else if (!initdoneMNOppack) {
-		rhsdoc.getElementById("MNOppack").src = "./PnlWznmCmpMNOppack.html?scrJref=" + scrJrefMNOppack;
 	} else if (!initdoneMNLibrary) {
 		rhsdoc.getElementById("MNLibrary").src = "./PnlWznmCmpMNLibrary.html?scrJref=" + scrJrefMNLibrary;
+	} else if (!initdoneMNOppack) {
+		rhsdoc.getElementById("MNOppack").src = "./PnlWznmCmpMNOppack.html?scrJref=" + scrJrefMNOppack;
 
 	} else {
 		refreshB();
@@ -95,8 +95,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
 		else if (short == "1NRelease") height1NRelease = height;
-		else if (short == "MNOppack") heightMNOppack = height;
 		else if (short == "MNLibrary") heightMNLibrary = height;
+		else if (short == "MNOppack") heightMNOppack = height;
 	};
 
 	return(avail != oldAvail);
@@ -141,8 +141,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
 	else if (pnlshort == "1NRelease") height1NRelease = height;
-	else if (pnlshort == "MNOppack") heightMNOppack = height;
 	else if (pnlshort == "MNLibrary") heightMNLibrary = height;
+	else if (pnlshort == "MNOppack") heightMNOppack = height;
 
 	if (update) updateHeight();
 };
@@ -151,7 +151,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + 5;
-	heightRhs = height1NRelease+13 + heightMNOppack+13 + heightMNLibrary+13 + 5;
+	heightRhs = height1NRelease+13 + heightMNLibrary+13 + heightMNOppack+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -253,13 +253,13 @@ function refreshA() {
 function refreshB() {
 	var updh = false;
 
-	var pnlmnoppackAvail = (retrieveSi(srcdoc, "StatShrWznmCmpRec", "pnlmnoppackAvail") == "true");
 	var pnlmnlibraryAvail = (retrieveSi(srcdoc, "StatShrWznmCmpRec", "pnlmnlibraryAvail") == "true");
+	var pnlmnoppackAvail = (retrieveSi(srcdoc, "StatShrWznmCmpRec", "pnlmnoppackAvail") == "true");
 
 	setTextContent(hdrdoc, hdrdoc.getElementById("TxtRef"), retrieveCi(srcdoc, "ContInfWznmCmpRec", "TxtRef"));
 
-	if (setPnlAvail("MNOppack", pnlmnoppackAvail)) updh = true;
 	if (setPnlAvail("MNLibrary", pnlmnlibraryAvail)) updh = true;
+	if (setPnlAvail("MNOppack", pnlmnoppackAvail)) updh = true;
 
 	if (updh) updateHeight();
 };
@@ -352,10 +352,10 @@ function handleDpchEng(dom, dpch) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NRelease) {
 				if (getInitdone("1NRelease")) rhsdoc.getElementById("1NRelease").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefMNOppack) {
-				if (getInitdone("MNOppack")) rhsdoc.getElementById("MNOppack").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNLibrary) {
 				if (getInitdone("MNLibrary")) rhsdoc.getElementById("MNLibrary").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefMNOppack) {
+				if (getInitdone("MNOppack")) rhsdoc.getElementById("MNOppack").contentWindow.handleDpchEng(dom, dpch);
 			} else {
 				// alert("got a '" + dpch + "' from job with scrJref " + _scrJref);
 			};

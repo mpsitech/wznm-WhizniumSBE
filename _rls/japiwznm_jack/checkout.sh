@@ -2,8 +2,8 @@
 # file checkout.sh
 # checkout script for Wznm Java API library, release &rlssref;
 # author &author;
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 export set JAVAROOT=/home/mpsitech/srcjava
 

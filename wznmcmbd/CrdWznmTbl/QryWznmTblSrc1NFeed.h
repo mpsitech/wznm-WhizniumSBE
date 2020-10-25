@@ -2,8 +2,8 @@
 	* \file QryWznmTblSrc1NFeed.h
 	* job handler for job QryWznmTblSrc1NFeed (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMTBLSRC1NFEED_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmFedMod_srtSruEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmFedMod_srtSruEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

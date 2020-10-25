@@ -2,8 +2,8 @@
 	* \file QryWznmSeqList.cpp
 	* API code for job QryWznmSeqList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmSeqList.h"
@@ -21,8 +21,8 @@ uint QryWznmSeqList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "app") return APP;
 	if (s == "srf") return SRF;
+	if (s == "app") return APP;
 
 	return(0);
 };
@@ -30,8 +30,8 @@ uint QryWznmSeqList::VecVOrd::getIx(
 string QryWznmSeqList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == APP) return("app");
 	if (ix == SRF) return("srf");
+	if (ix == APP) return("app");
 
 	return("");
 };

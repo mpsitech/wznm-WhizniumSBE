@@ -2,8 +2,8 @@
 	* \file DlgWznmVerWrstkit.h
 	* job handler for job DlgWznmVerWrstkit (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef DLGWZNMVERWRSTKIT_H
@@ -366,9 +366,9 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalFiaDldActive(DbsWznm* dbswznm);
 	bool evalWriButRunActive(DbsWznm* dbswznm);
 	bool evalWriButStoActive(DbsWznm* dbswznm);
+	bool evalFiaDldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmVerWrstkit(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);

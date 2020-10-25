@@ -2,8 +2,8 @@
 	* \file WznmWrdbsTbl.cpp
 	* Wznm operation processor - write database access library C++ code for table (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD

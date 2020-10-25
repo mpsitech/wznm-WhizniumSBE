@@ -2,8 +2,8 @@
 	* \file QryWznmCtp1NTag.h
 	* API code for job QryWznmCtp1NTag (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMCTP1NTAG_H

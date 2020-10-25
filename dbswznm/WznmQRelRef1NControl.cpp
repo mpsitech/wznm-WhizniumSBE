@@ -2,8 +2,8 @@
 	* \file WznmQRelRef1NControl.cpp
 	* Dbs and XML wrapper for table TblWznmQRelRef1NControl (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQRelRef1NControl.h"

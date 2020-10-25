@@ -2,8 +2,8 @@
 	* \file CrdWznmApp.h
 	* job handler for job CrdWznmApp (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef CRDWZNMAPP_H
@@ -13,12 +13,12 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmAppList.h"
-#include "PnlWznmAppHeadbar.h"
-#include "PnlWznmAppRec.h"
-#include "DlgWznmAppImpstr.h"
-#include "DlgWznmAppWrite.h"
 #include "DlgWznmAppNew.h"
+#include "DlgWznmAppWrite.h"
+#include "DlgWznmAppImpstr.h"
+#include "PnlWznmAppRec.h"
+#include "PnlWznmAppHeadbar.h"
+#include "PnlWznmAppList.h"
 
 #define VecVWznmAppDo CrdWznmApp::VecVDo
 #define VecVWznmAppSge CrdWznmApp::VecVSge
@@ -220,12 +220,12 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	PnlWznmAppList* pnllist;
-	PnlWznmAppHeadbar* pnlheadbar;
-	PnlWznmAppRec* pnlrec;
-	DlgWznmAppImpstr* dlgimpstr;
-	DlgWznmAppWrite* dlgwrite;
 	DlgWznmAppNew* dlgnew;
+	DlgWznmAppWrite* dlgwrite;
+	DlgWznmAppImpstr* dlgimpstr;
+	PnlWznmAppRec* pnlrec;
+	PnlWznmAppHeadbar* pnlheadbar;
+	PnlWznmAppList* pnllist;
 
 	// IP vars.cust --- INSERT
 

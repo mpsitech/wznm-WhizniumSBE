@@ -2,8 +2,8 @@
   * \file PnlWznmTbl1NCheck.java
   * Java API code for job PnlWznmTbl1NCheck
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;

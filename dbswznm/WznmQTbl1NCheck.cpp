@@ -2,8 +2,8 @@
 	* \file WznmQTbl1NCheck.cpp
 	* Dbs and XML wrapper for table TblWznmQTbl1NCheck (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQTbl1NCheck.h"

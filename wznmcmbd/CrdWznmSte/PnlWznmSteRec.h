@@ -2,8 +2,8 @@
 	* \file PnlWznmSteRec.h
 	* job handler for job PnlWznmSteRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMSTEREC_H
@@ -13,8 +13,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSteATrig.h"
 #include "PnlWznmSteDetail.h"
+#include "PnlWznmSteATrig.h"
+#include "PnlWznmSteAAction.h"
 
 #define VecVWznmSteRecDo PnlWznmSteRec::VecVDo
 
@@ -71,7 +72,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATrig = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATrig = false, const bool initdoneAAction = false);
 	};
 
 	/**
@@ -83,15 +84,17 @@ public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREFATRIG = 3;
-		static const Sbecore::uint BUTREGULARIZEACTIVE = 4;
+		static const Sbecore::uint JREFAACTION = 4;
+		static const Sbecore::uint BUTREGULARIZEACTIVE = 5;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATrig = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATrig = 0, const Sbecore::ubigint jrefAAction = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jrefATrig;
+		Sbecore::ubigint jrefAAction;
 		bool ButRegularizeActive;
 
 	public:
@@ -167,8 +170,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSteATrig* pnlatrig;
 	PnlWznmSteDetail* pnldetail;
+	PnlWznmSteATrig* pnlatrig;
+	PnlWznmSteAAction* pnlaaction;
 
 	WznmMState recSte;
 

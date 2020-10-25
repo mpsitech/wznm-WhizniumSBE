@@ -2,8 +2,8 @@
 	* \file PnlWznmQryQry1NQuerycol.cpp
 	* API code for job PnlWznmQryQry1NQuerycol (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "PnlWznmQryQry1NQuerycol.h"

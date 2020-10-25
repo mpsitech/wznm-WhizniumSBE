@@ -2,8 +2,8 @@
   * \file ApiWznm.java
   * Wznm Java API package global functionality
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -22,10 +22,10 @@ import sbecore.*;
 
 public class ApiWznm {
 
-	public static final String WZNM_VERSION = "1.0.6";
+	public static final String WZNM_VERSION = "1.0.7";
 	public static final int WZNM_VERSION_MAJOR = 1;
 	public static final int WZNM_VERSION_MINOR = 0;
-	public static final int WZNM_VERSION_SUB = 6;
+	public static final int WZNM_VERSION_SUB = 7;
 
 	public static DpchEngWznm readDpchEng(
 				String s
@@ -396,6 +396,7 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTBRECDATA) dpcheng = (new PnlWznmStbRec()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTBSUBMNSTUBDATA) dpcheng = (new PnlWznmStbSubMNStub()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTBSUPMNSTUBDATA) dpcheng = (new PnlWznmStbSupMNStub()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTEAACTIONDATA) dpcheng = (new PnlWznmSteAAction()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTEATRIGDATA) dpcheng = (new PnlWznmSteATrig()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTEDATA) dpcheng = (new CrdWznmSte()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMSTEDETAILDATA) dpcheng = (new PnlWznmSteDetail()).new DpchEngData();

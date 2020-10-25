@@ -2,8 +2,8 @@
 	* \file DlgWznmVerGenui.h
 	* job handler for job DlgWznmVerGenui (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef DLGWZNMVERGENUI_H
@@ -312,10 +312,10 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalGuiButRunActive(DbsWznm* dbswznm);
 	bool evalGuiButStoActive(DbsWznm* dbswznm);
 	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmVerGenui(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);

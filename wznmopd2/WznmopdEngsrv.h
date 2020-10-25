@@ -2,8 +2,8 @@
 	* \file WznmopdEngsrv.h
 	* engine server for Wznm operation daemon (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMOPDENGSRV_H
@@ -13,11 +13,11 @@
 	#include <arpa/inet.h>
 #endif
 
-#include "WznmCtpWrweb_blks.h"
-#include "WznmCtpWrsrv_blks.h"
-#include "WznmCtpWrstkit_blks.h"
-#include "WznmCtpGenui_blks.h"
 #include "WznmCtpGenjtr_blks.h"
+#include "WznmCtpGenui_blks.h"
+#include "WznmCtpWrstkit_blks.h"
+#include "WznmCtpWrsrv_blks.h"
+#include "WznmCtpWrweb_blks.h"
 
 /**
 	* WznmopdEngsrv

@@ -2,8 +2,8 @@
 	* \file QryWznmVecVec1NVectoritem.cpp
 	* API code for job QryWznmVecVec1NVectoritem (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmVecVec1NVectoritem.h"

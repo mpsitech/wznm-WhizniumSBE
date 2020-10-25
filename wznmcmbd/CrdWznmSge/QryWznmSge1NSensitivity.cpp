@@ -2,8 +2,8 @@
 	* \file QryWznmSge1NSensitivity.cpp
 	* job handler for job QryWznmSge1NSensitivity (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD

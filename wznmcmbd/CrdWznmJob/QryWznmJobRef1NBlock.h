@@ -2,8 +2,8 @@
 	* \file QryWznmJobRef1NBlock.h
 	* job handler for job QryWznmJobRef1NBlock (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMJOBREF1NBLOCK_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmBlkMod_retReuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmBlkMod_retReuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

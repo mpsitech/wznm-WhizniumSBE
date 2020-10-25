@@ -2,8 +2,8 @@
 	* \file WznmQTblTo1NRelation.cpp
 	* API code for table TblWznmQTblTo1NRelation (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQTblTo1NRelation.h"

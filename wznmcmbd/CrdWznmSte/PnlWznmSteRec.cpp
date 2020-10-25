@@ -2,8 +2,8 @@
 	* \file PnlWznmSteRec.cpp
 	* job handler for job PnlWznmSteRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,8 +37,9 @@ PnlWznmSteRec::PnlWznmSteRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlatrig = NULL;
 	pnldetail = NULL;
+	pnlatrig = NULL;
+	pnlaaction = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -95,13 +96,16 @@ void PnlWznmSteRec::refresh(
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnlatrig) {delete pnlatrig; pnlatrig = NULL;};
+		if (pnlaaction) {delete pnlaaction; pnlaaction = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmSteDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlatrig) pnlatrig = new PnlWznmSteATrig(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlaaction) pnlaaction = new PnlWznmSteAAction(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jrefATrig = ((pnlatrig) ? pnlatrig->jref : 0);
+	statshr.jrefAAction = ((pnlaaction) ? pnlaaction->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -129,6 +133,7 @@ void PnlWznmSteRec::updatePreset(
 		if (recSte.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlatrig) pnlatrig->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlaaction) pnlaaction->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswznm, moditems);

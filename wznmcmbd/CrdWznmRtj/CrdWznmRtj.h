@@ -2,8 +2,8 @@
 	* \file CrdWznmRtj.h
 	* job handler for job CrdWznmRtj (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef CRDWZNMRTJ_H
@@ -13,9 +13,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmRtjList.h"
-#include "PnlWznmRtjHeadbar.h"
 #include "PnlWznmRtjRec.h"
+#include "PnlWznmRtjHeadbar.h"
+#include "PnlWznmRtjList.h"
 
 #define VecVWznmRtjDo CrdWznmRtj::VecVDo
 #define VecVWznmRtjSge CrdWznmRtj::VecVSge
@@ -189,9 +189,9 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	PnlWznmRtjList* pnllist;
-	PnlWznmRtjHeadbar* pnlheadbar;
 	PnlWznmRtjRec* pnlrec;
+	PnlWznmRtjHeadbar* pnlheadbar;
+	PnlWznmRtjList* pnllist;
 
 	// IP vars.cust --- INSERT
 

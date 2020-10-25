@@ -2,8 +2,8 @@
 	* \file WznmQJob1NSensitivity.h
 	* API code for table TblWznmQJob1NSensitivity (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMQJOB1NSENSITIVITY_H

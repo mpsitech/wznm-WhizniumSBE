@@ -2,17 +2,17 @@
 	* \file ApiWznm.h
 	* Wznm API library global functionality (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef APIWZNM_H
 #define APIWZNM_H
 
-#define WZNM_VERSION "1.0.6"
+#define WZNM_VERSION "1.0.7"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 0
-#define WZNM_VERSION_SUB 6
+#define WZNM_VERSION_SUB 7
 
 #include "ApiWznm_blks.h"
 
@@ -168,6 +168,7 @@
 #include "WznmQStbMNSquawk.h"
 #include "WznmQStbSubMNStub.h"
 #include "WznmQStbSupMNStub.h"
+#include "WznmQSteAAction.h"
 #include "WznmQSteATrig.h"
 #include "WznmQSteList.h"
 #include "WznmQTagList.h"
@@ -596,6 +597,7 @@
 #include "PnlWznmStbRec.h"
 #include "PnlWznmStbSubMNStub.h"
 #include "PnlWznmStbSupMNStub.h"
+#include "PnlWznmSteAAction.h"
 #include "PnlWznmSteATrig.h"
 #include "PnlWznmSteDetail.h"
 #include "PnlWznmSteHeadbar.h"
@@ -842,6 +844,7 @@
 #include "QryWznmStbMNSquawk.h"
 #include "QryWznmStbSubMNStub.h"
 #include "QryWznmStbSupMNStub.h"
+#include "QryWznmSteAAction.h"
 #include "QryWznmSteATrig.h"
 #include "QryWznmSteList.h"
 #include "QryWznmTagList.h"

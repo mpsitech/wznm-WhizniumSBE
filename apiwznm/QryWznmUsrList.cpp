@@ -2,8 +2,8 @@
 	* \file QryWznmUsrList.cpp
 	* API code for job QryWznmUsrList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmUsrList.h"
@@ -22,8 +22,8 @@ uint QryWznmUsrList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "usg") return USG;
-	if (s == "srf") return SRF;
 	if (s == "prs") return PRS;
+	if (s == "srf") return SRF;
 	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
 
@@ -34,8 +34,8 @@ string QryWznmUsrList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == USG) return("usg");
-	if (ix == SRF) return("srf");
 	if (ix == PRS) return("prs");
+	if (ix == SRF) return("srf");
 	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
 

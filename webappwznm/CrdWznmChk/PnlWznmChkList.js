@@ -2,8 +2,8 @@
   * \file PnlWznmChkList.js
   * web client functionality for panel PnlWznmChkList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 // --- expand state management
@@ -138,9 +138,9 @@ function refreshB(chgcol) {
 			} else if (i == 2) {
 				doc.cols.push("TcoTyp"); doc.widths.push(TcoTypWidth); doc.fs.push("typ2"); doc.tos.push(0); wtot += TcoTypWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoTbl"); doc.widths.push(TcoTblWidth); doc.fs.push("tbl"); doc.tos.push(2); wtot += TcoTblWidth;
+				doc.cols.push("TcoTbl"); doc.widths.push(TcoTblWidth); doc.fs.push("tbl"); doc.tos.push(1); wtot += TcoTblWidth;
 			} else if (i == 4) {
-				doc.cols.push("TcoTco"); doc.widths.push(TcoTcoWidth); doc.fs.push("tco"); doc.tos.push(1); wtot += TcoTcoWidth;
+				doc.cols.push("TcoTco"); doc.widths.push(TcoTcoWidth); doc.fs.push("tco"); doc.tos.push(2); wtot += TcoTcoWidth;
 			} else {
 				ix--;
 			};

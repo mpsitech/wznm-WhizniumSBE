@@ -2,8 +2,8 @@
 	* \file WznmQRelSup1NRelation.cpp
 	* Dbs and XML wrapper for table TblWznmQRelSup1NRelation (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQRelSup1NRelation.h"

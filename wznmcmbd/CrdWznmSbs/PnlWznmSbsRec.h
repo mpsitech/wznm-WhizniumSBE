@@ -2,8 +2,8 @@
 	* \file PnlWznmSbsRec.h
 	* job handler for job PnlWznmSbsRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMSBSREC_H
@@ -13,15 +13,15 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSbsBsbMNSubset.h"
-#include "PnlWznmSbsAsbMNSubset.h"
-#include "PnlWznmSbsPst1NQuerymod.h"
-#include "PnlWznmSbsFrs1NRelation.h"
-#include "PnlWznmSbs1NTablecol.h"
-#include "PnlWznmSbsTos1NRelation.h"
-#include "PnlWznmSbs1NStub.h"
-#include "PnlWznmSbsATitle.h"
 #include "PnlWznmSbsDetail.h"
+#include "PnlWznmSbsATitle.h"
+#include "PnlWznmSbsFrs1NRelation.h"
+#include "PnlWznmSbsTos1NRelation.h"
+#include "PnlWznmSbs1NTablecol.h"
+#include "PnlWznmSbs1NStub.h"
+#include "PnlWznmSbsPst1NQuerymod.h"
+#include "PnlWznmSbsAsbMNSubset.h"
+#include "PnlWznmSbsBsbMNSubset.h"
 
 #define VecVWznmSbsRecDo PnlWznmSbsRec::VecVDo
 
@@ -78,7 +78,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NStub = false, const bool initdoneTos1NRelation = false, const bool initdoneFrs1NRelation = false, const bool initdone1NTablecol = false, const bool initdonePst1NQuerymod = false, const bool initdoneAsbMNSubset = false, const bool initdoneBsbMNSubset = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneFrs1NRelation = false, const bool initdoneTos1NRelation = false, const bool initdone1NTablecol = false, const bool initdone1NStub = false, const bool initdonePst1NQuerymod = false, const bool initdoneAsbMNSubset = false, const bool initdoneBsbMNSubset = false);
 	};
 
 	/**
@@ -90,10 +90,10 @@ public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREFATITLE = 3;
-		static const Sbecore::uint JREF1NSTUB = 4;
+		static const Sbecore::uint JREFFRS1NRELATION = 4;
 		static const Sbecore::uint JREFTOS1NRELATION = 5;
-		static const Sbecore::uint JREFFRS1NRELATION = 6;
-		static const Sbecore::uint JREF1NTABLECOL = 7;
+		static const Sbecore::uint JREF1NTABLECOL = 6;
+		static const Sbecore::uint JREF1NSTUB = 7;
 		static const Sbecore::uint JREFPST1NQUERYMOD = 8;
 		static const Sbecore::uint PNLPST1NQUERYMODAVAIL = 9;
 		static const Sbecore::uint JREFASBMNSUBSET = 10;
@@ -101,16 +101,16 @@ public:
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 12;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const Sbecore::ubigint jref1NStub = 0, const Sbecore::ubigint jrefTos1NRelation = 0, const Sbecore::ubigint jrefFrs1NRelation = 0, const Sbecore::ubigint jref1NTablecol = 0, const Sbecore::ubigint jrefPst1NQuerymod = 0, const bool pnlpst1nquerymodAvail = false, const Sbecore::ubigint jrefAsbMNSubset = 0, const Sbecore::ubigint jrefBsbMNSubset = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const Sbecore::ubigint jrefFrs1NRelation = 0, const Sbecore::ubigint jrefTos1NRelation = 0, const Sbecore::ubigint jref1NTablecol = 0, const Sbecore::ubigint jref1NStub = 0, const Sbecore::ubigint jrefPst1NQuerymod = 0, const bool pnlpst1nquerymodAvail = false, const Sbecore::ubigint jrefAsbMNSubset = 0, const Sbecore::ubigint jrefBsbMNSubset = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jrefATitle;
-		Sbecore::ubigint jref1NStub;
-		Sbecore::ubigint jrefTos1NRelation;
 		Sbecore::ubigint jrefFrs1NRelation;
+		Sbecore::ubigint jrefTos1NRelation;
 		Sbecore::ubigint jref1NTablecol;
+		Sbecore::ubigint jref1NStub;
 		Sbecore::ubigint jrefPst1NQuerymod;
 		bool pnlpst1nquerymodAvail;
 		Sbecore::ubigint jrefAsbMNSubset;
@@ -191,15 +191,15 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSbsBsbMNSubset* pnlbsbmnsubset;
-	PnlWznmSbsAsbMNSubset* pnlasbmnsubset;
-	PnlWznmSbsPst1NQuerymod* pnlpst1nquerymod;
-	PnlWznmSbsFrs1NRelation* pnlfrs1nrelation;
-	PnlWznmSbs1NTablecol* pnl1ntablecol;
-	PnlWznmSbsTos1NRelation* pnltos1nrelation;
-	PnlWznmSbs1NStub* pnl1nstub;
-	PnlWznmSbsATitle* pnlatitle;
 	PnlWznmSbsDetail* pnldetail;
+	PnlWznmSbsATitle* pnlatitle;
+	PnlWznmSbsFrs1NRelation* pnlfrs1nrelation;
+	PnlWznmSbsTos1NRelation* pnltos1nrelation;
+	PnlWznmSbs1NTablecol* pnl1ntablecol;
+	PnlWznmSbs1NStub* pnl1nstub;
+	PnlWznmSbsPst1NQuerymod* pnlpst1nquerymod;
+	PnlWznmSbsAsbMNSubset* pnlasbmnsubset;
+	PnlWznmSbsBsbMNSubset* pnlbsbmnsubset;
 
 	WznmMSubset recSbs;
 

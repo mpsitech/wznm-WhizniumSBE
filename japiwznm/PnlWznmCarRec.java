@@ -2,8 +2,8 @@
   * \file PnlWznmCarRec.java
   * Java API code for job PnlWznmCarRec
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -113,27 +113,27 @@ public class PnlWznmCarRec {
 	public class StatApp extends Block {
 
 		public static final int INITDONEDETAIL = 1;
-		public static final int INITDONECAR1NPANEL = 2;
-		public static final int INITDONE1NDIALOG = 3;
+		public static final int INITDONE1NDIALOG = 2;
+		public static final int INITDONECAR1NPANEL = 3;
 		public static final int INITDONEHK1NCONTROL = 4;
 
 		public StatApp(
 					boolean initdoneDetail
-					, boolean initdoneCar1NPanel
 					, boolean initdone1NDialog
+					, boolean initdoneCar1NPanel
 					, boolean initdoneHk1NControl
 				) {
 			this.initdoneDetail = initdoneDetail;
-			this.initdoneCar1NPanel = initdoneCar1NPanel;
 			this.initdone1NDialog = initdone1NDialog;
+			this.initdoneCar1NPanel = initdoneCar1NPanel;
 			this.initdoneHk1NControl = initdoneHk1NControl;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONECAR1NPANEL, INITDONE1NDIALOG, INITDONEHK1NCONTROL));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NDIALOG, INITDONECAR1NPANEL, INITDONEHK1NCONTROL));
 		};
 
 		public boolean initdoneDetail;
-		public boolean initdoneCar1NPanel;
 		public boolean initdone1NDialog;
+		public boolean initdoneCar1NPanel;
 		public boolean initdoneHk1NControl;
 
 		public boolean readXML(
@@ -150,8 +150,8 @@ public class PnlWznmCarRec {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
-				initdoneCar1NPanel = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneCar1NPanel", mask, INITDONECAR1NPANEL);
 				initdone1NDialog = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NDialog", mask, INITDONE1NDIALOG);
+				initdoneCar1NPanel = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneCar1NPanel", mask, INITDONECAR1NPANEL);
 				initdoneHk1NControl = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneHk1NControl", mask, INITDONEHK1NCONTROL);
 
 				return true;
@@ -166,8 +166,8 @@ public class PnlWznmCarRec {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
-			if (initdoneCar1NPanel == comp.initdoneCar1NPanel) items.add(INITDONECAR1NPANEL);
 			if (initdone1NDialog == comp.initdone1NDialog) items.add(INITDONE1NDIALOG);
+			if (initdoneCar1NPanel == comp.initdoneCar1NPanel) items.add(INITDONECAR1NPANEL);
 			if (initdoneHk1NControl == comp.initdoneHk1NControl) items.add(INITDONEHK1NCONTROL);
 
 			return(items);
@@ -181,7 +181,7 @@ public class PnlWznmCarRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONECAR1NPANEL, INITDONE1NDIALOG, INITDONEHK1NCONTROL));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NDIALOG, INITDONECAR1NPANEL, INITDONEHK1NCONTROL));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -196,33 +196,33 @@ public class PnlWznmCarRec {
 
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
-		public static final int SCRJREFCAR1NPANEL = 3;
-		public static final int SCRJREF1NDIALOG = 4;
+		public static final int SCRJREF1NDIALOG = 3;
+		public static final int SCRJREFCAR1NPANEL = 4;
 		public static final int SCRJREFHK1NCONTROL = 5;
 		public static final int BUTREGULARIZEACTIVE = 6;
 
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
-					, String scrJrefCar1NPanel
 					, String scrJref1NDialog
+					, String scrJrefCar1NPanel
 					, String scrJrefHk1NControl
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
-			this.scrJrefCar1NPanel = scrJrefCar1NPanel;
 			this.scrJref1NDialog = scrJref1NDialog;
+			this.scrJrefCar1NPanel = scrJrefCar1NPanel;
 			this.scrJrefHk1NControl = scrJrefHk1NControl;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFCAR1NPANEL, SCRJREF1NDIALOG, SCRJREFHK1NCONTROL, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NDIALOG, SCRJREFCAR1NPANEL, SCRJREFHK1NCONTROL, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
-		public String scrJrefCar1NPanel;
 		public String scrJref1NDialog;
+		public String scrJrefCar1NPanel;
 		public String scrJrefHk1NControl;
 		public boolean ButRegularizeActive;
 
@@ -243,8 +243,8 @@ public class PnlWznmCarRec {
 				srefIxWznmVExpstate = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "srefIxWznmVExpstate", mask, IXWZNMVEXPSTATE);
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
-				scrJrefCar1NPanel = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefCar1NPanel", mask, SCRJREFCAR1NPANEL);
 				scrJref1NDialog = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NDialog", mask, SCRJREF1NDIALOG);
+				scrJrefCar1NPanel = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefCar1NPanel", mask, SCRJREFCAR1NPANEL);
 				scrJrefHk1NControl = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefHk1NControl", mask, SCRJREFHK1NCONTROL);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
@@ -261,8 +261,8 @@ public class PnlWznmCarRec {
 
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
-			if (scrJrefCar1NPanel.equals(comp.scrJrefCar1NPanel)) items.add(SCRJREFCAR1NPANEL);
 			if (scrJref1NDialog.equals(comp.scrJref1NDialog)) items.add(SCRJREF1NDIALOG);
+			if (scrJrefCar1NPanel.equals(comp.scrJrefCar1NPanel)) items.add(SCRJREFCAR1NPANEL);
 			if (scrJrefHk1NControl.equals(comp.scrJrefHk1NControl)) items.add(SCRJREFHK1NCONTROL);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
@@ -277,7 +277,7 @@ public class PnlWznmCarRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFCAR1NPANEL, SCRJREF1NDIALOG, SCRJREFHK1NCONTROL, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NDIALOG, SCRJREFCAR1NPANEL, SCRJREFHK1NCONTROL, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

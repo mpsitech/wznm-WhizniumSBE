@@ -2,8 +2,8 @@
 	* \file QryWznmTagList.h
 	* job handler for job QryWznmTagList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMTAGLIST_H
@@ -31,8 +31,8 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint CPB = 1;
-		static const Sbecore::uint GRP = 2;
+		static const Sbecore::uint GRP = 1;
+		static const Sbecore::uint CPB = 2;
 		static const Sbecore::uint SRF = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -143,8 +143,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmTagMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmTagUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmTagMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };

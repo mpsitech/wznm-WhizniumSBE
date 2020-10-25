@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmCal card job handler, release wznmd_jack
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
 INCPATH += -I/home/mpsitech/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/include/postgresql -I/usr/local/include
 
-OBJS = CrdWznmCal.o PnlWznmCalList.o QryWznmCalList.o PnlWznmCalHeadbar.o PnlWznmCalRec.o PnlWznmCalMNStub.o QryWznmCalMNStub.o PnlWznmCal1NSensitivity.o QryWznmCal1NSensitivity.o PnlWznmCalDetail.o
+OBJS = CrdWznmCal.o PnlWznmCalRec.o PnlWznmCalDetail.o PnlWznmCal1NSensitivity.o QryWznmCal1NSensitivity.o PnlWznmCalMNStub.o QryWznmCalMNStub.o PnlWznmCalHeadbar.o PnlWznmCalList.o QryWznmCalList.o
 
 LIB = libcrdwznmcal
 

@@ -2,8 +2,8 @@
 	* \file PnlWznmVecRec.cpp
 	* job handler for job PnlWznmVecRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,14 +37,14 @@ PnlWznmVecRec::PnlWznmVecRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlmntable = NULL;
-	pnlpst1nquerymod = NULL;
-	pnlref1npanel = NULL;
-	pnlsrc1nfeed = NULL;
-	pnlfct1ntablecol = NULL;
-	pnlvec1nvectoritem = NULL;
-	pnlatitle = NULL;
 	pnldetail = NULL;
+	pnlatitle = NULL;
+	pnlvec1nvectoritem = NULL;
+	pnlsrc1nfeed = NULL;
+	pnlref1npanel = NULL;
+	pnlfct1ntablecol = NULL;
+	pnlpst1nquerymod = NULL;
+	pnlmntable = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -113,18 +113,18 @@ void PnlWznmVecRec::refresh(
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnlatitle) {delete pnlatitle; pnlatitle = NULL;};
 		if (pnlvec1nvectoritem) {delete pnlvec1nvectoritem; pnlvec1nvectoritem = NULL;};
-		if (pnlfct1ntablecol) {delete pnlfct1ntablecol; pnlfct1ntablecol = NULL;};
-		if (pnlref1npanel) {delete pnlref1npanel; pnlref1npanel = NULL;};
 		if (pnlsrc1nfeed) {delete pnlsrc1nfeed; pnlsrc1nfeed = NULL;};
+		if (pnlref1npanel) {delete pnlref1npanel; pnlref1npanel = NULL;};
+		if (pnlfct1ntablecol) {delete pnlfct1ntablecol; pnlfct1ntablecol = NULL;};
 		if (pnlpst1nquerymod) {delete pnlpst1nquerymod; pnlpst1nquerymod = NULL;};
 		if (pnlmntable) {delete pnlmntable; pnlmntable = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmVecDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlatitle) pnlatitle = new PnlWznmVecATitle(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlvec1nvectoritem) pnlvec1nvectoritem = new PnlWznmVecVec1NVectoritem(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlfct1ntablecol) pnlfct1ntablecol = new PnlWznmVecFct1NTablecol(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlref1npanel) pnlref1npanel = new PnlWznmVecRef1NPanel(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlsrc1nfeed) pnlsrc1nfeed = new PnlWznmVecSrc1NFeed(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlref1npanel) pnlref1npanel = new PnlWznmVecRef1NPanel(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlfct1ntablecol) pnlfct1ntablecol = new PnlWznmVecFct1NTablecol(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlpst1nquerymod) pnlpst1nquerymod = new PnlWznmVecPst1NQuerymod(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmntable) pnlmntable = new PnlWznmVecMNTable(xchg, dbswznm, jref, ixWznmVLocale);
 	};
@@ -132,9 +132,9 @@ void PnlWznmVecRec::refresh(
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jrefATitle = ((pnlatitle) ? pnlatitle->jref : 0);
 	statshr.jrefVec1NVectoritem = ((pnlvec1nvectoritem) ? pnlvec1nvectoritem->jref : 0);
-	statshr.jrefFct1NTablecol = ((pnlfct1ntablecol) ? pnlfct1ntablecol->jref : 0);
-	statshr.jrefRef1NPanel = ((pnlref1npanel) ? pnlref1npanel->jref : 0);
 	statshr.jrefSrc1NFeed = ((pnlsrc1nfeed) ? pnlsrc1nfeed->jref : 0);
+	statshr.jrefRef1NPanel = ((pnlref1npanel) ? pnlref1npanel->jref : 0);
+	statshr.jrefFct1NTablecol = ((pnlfct1ntablecol) ? pnlfct1ntablecol->jref : 0);
 	statshr.jrefPst1NQuerymod = ((pnlpst1nquerymod) ? pnlpst1nquerymod->jref : 0);
 	statshr.jrefMNTable = ((pnlmntable) ? pnlmntable->jref : 0);
 
@@ -175,9 +175,9 @@ void PnlWznmVecRec::updatePreset(
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlatitle) pnlatitle->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlvec1nvectoritem) pnlvec1nvectoritem->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlfct1ntablecol) pnlfct1ntablecol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlref1npanel) pnlref1npanel->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlsrc1nfeed) pnlsrc1nfeed->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlref1npanel) pnlref1npanel->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlfct1ntablecol) pnlfct1ntablecol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlpst1nquerymod) pnlpst1nquerymod->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmntable) pnlmntable->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};

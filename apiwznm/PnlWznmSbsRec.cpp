@@ -2,8 +2,8 @@
 	* \file PnlWznmSbsRec.cpp
 	* API code for job PnlWznmSbsRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "PnlWznmSbsRec.h"
@@ -104,10 +104,10 @@ set<uint> PnlWznmSbsRec::ContInf::diff(
 PnlWznmSbsRec::StatApp::StatApp(
 			const bool initdoneDetail
 			, const bool initdoneATitle
-			, const bool initdone1NStub
-			, const bool initdoneTos1NRelation
 			, const bool initdoneFrs1NRelation
+			, const bool initdoneTos1NRelation
 			, const bool initdone1NTablecol
+			, const bool initdone1NStub
 			, const bool initdonePst1NQuerymod
 			, const bool initdoneAsbMNSubset
 			, const bool initdoneBsbMNSubset
@@ -116,15 +116,15 @@ PnlWznmSbsRec::StatApp::StatApp(
 		{
 	this->initdoneDetail = initdoneDetail;
 	this->initdoneATitle = initdoneATitle;
-	this->initdone1NStub = initdone1NStub;
-	this->initdoneTos1NRelation = initdoneTos1NRelation;
 	this->initdoneFrs1NRelation = initdoneFrs1NRelation;
+	this->initdoneTos1NRelation = initdoneTos1NRelation;
 	this->initdone1NTablecol = initdone1NTablecol;
+	this->initdone1NStub = initdone1NStub;
 	this->initdonePst1NQuerymod = initdonePst1NQuerymod;
 	this->initdoneAsbMNSubset = initdoneAsbMNSubset;
 	this->initdoneBsbMNSubset = initdoneBsbMNSubset;
 
-	mask = {INITDONEDETAIL, INITDONEATITLE, INITDONE1NSTUB, INITDONETOS1NRELATION, INITDONEFRS1NRELATION, INITDONE1NTABLECOL, INITDONEPST1NQUERYMOD, INITDONEASBMNSUBSET, INITDONEBSBMNSUBSET};
+	mask = {INITDONEDETAIL, INITDONEATITLE, INITDONEFRS1NRELATION, INITDONETOS1NRELATION, INITDONE1NTABLECOL, INITDONE1NSTUB, INITDONEPST1NQUERYMOD, INITDONEASBMNSUBSET, INITDONEBSBMNSUBSET};
 };
 
 bool PnlWznmSbsRec::StatApp::readXML(
@@ -146,10 +146,10 @@ bool PnlWznmSbsRec::StatApp::readXML(
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneATitle", initdoneATitle)) add(INITDONEATITLE);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NStub", initdone1NStub)) add(INITDONE1NSTUB);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneTos1NRelation", initdoneTos1NRelation)) add(INITDONETOS1NRELATION);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneFrs1NRelation", initdoneFrs1NRelation)) add(INITDONEFRS1NRELATION);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneTos1NRelation", initdoneTos1NRelation)) add(INITDONETOS1NRELATION);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NTablecol", initdone1NTablecol)) add(INITDONE1NTABLECOL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NStub", initdone1NStub)) add(INITDONE1NSTUB);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdonePst1NQuerymod", initdonePst1NQuerymod)) add(INITDONEPST1NQUERYMOD);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAsbMNSubset", initdoneAsbMNSubset)) add(INITDONEASBMNSUBSET);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneBsbMNSubset", initdoneBsbMNSubset)) add(INITDONEBSBMNSUBSET);
@@ -165,10 +165,10 @@ set<uint> PnlWznmSbsRec::StatApp::comm(
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
 	if (initdoneATitle == comp->initdoneATitle) insert(items, INITDONEATITLE);
-	if (initdone1NStub == comp->initdone1NStub) insert(items, INITDONE1NSTUB);
-	if (initdoneTos1NRelation == comp->initdoneTos1NRelation) insert(items, INITDONETOS1NRELATION);
 	if (initdoneFrs1NRelation == comp->initdoneFrs1NRelation) insert(items, INITDONEFRS1NRELATION);
+	if (initdoneTos1NRelation == comp->initdoneTos1NRelation) insert(items, INITDONETOS1NRELATION);
 	if (initdone1NTablecol == comp->initdone1NTablecol) insert(items, INITDONE1NTABLECOL);
+	if (initdone1NStub == comp->initdone1NStub) insert(items, INITDONE1NSTUB);
 	if (initdonePst1NQuerymod == comp->initdonePst1NQuerymod) insert(items, INITDONEPST1NQUERYMOD);
 	if (initdoneAsbMNSubset == comp->initdoneAsbMNSubset) insert(items, INITDONEASBMNSUBSET);
 	if (initdoneBsbMNSubset == comp->initdoneBsbMNSubset) insert(items, INITDONEBSBMNSUBSET);
@@ -184,7 +184,7 @@ set<uint> PnlWznmSbsRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEATITLE, INITDONE1NSTUB, INITDONETOS1NRELATION, INITDONEFRS1NRELATION, INITDONE1NTABLECOL, INITDONEPST1NQUERYMOD, INITDONEASBMNSUBSET, INITDONEBSBMNSUBSET};
+	diffitems = {INITDONEDETAIL, INITDONEATITLE, INITDONEFRS1NRELATION, INITDONETOS1NRELATION, INITDONE1NTABLECOL, INITDONE1NSTUB, INITDONEPST1NQUERYMOD, INITDONEASBMNSUBSET, INITDONEBSBMNSUBSET};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -198,10 +198,10 @@ PnlWznmSbsRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
 			, const string& scrJrefATitle
-			, const string& scrJref1NStub
-			, const string& scrJrefTos1NRelation
 			, const string& scrJrefFrs1NRelation
+			, const string& scrJrefTos1NRelation
 			, const string& scrJref1NTablecol
+			, const string& scrJref1NStub
 			, const string& scrJrefPst1NQuerymod
 			, const bool pnlpst1nquerymodAvail
 			, const string& scrJrefAsbMNSubset
@@ -213,17 +213,17 @@ PnlWznmSbsRec::StatShr::StatShr(
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
 	this->scrJrefATitle = scrJrefATitle;
-	this->scrJref1NStub = scrJref1NStub;
-	this->scrJrefTos1NRelation = scrJrefTos1NRelation;
 	this->scrJrefFrs1NRelation = scrJrefFrs1NRelation;
+	this->scrJrefTos1NRelation = scrJrefTos1NRelation;
 	this->scrJref1NTablecol = scrJref1NTablecol;
+	this->scrJref1NStub = scrJref1NStub;
 	this->scrJrefPst1NQuerymod = scrJrefPst1NQuerymod;
 	this->pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
 	this->scrJrefAsbMNSubset = scrJrefAsbMNSubset;
 	this->scrJrefBsbMNSubset = scrJrefBsbMNSubset;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NSTUB, SCRJREFTOS1NRELATION, SCRJREFFRS1NRELATION, SCRJREF1NTABLECOL, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFASBMNSUBSET, SCRJREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFFRS1NRELATION, SCRJREFTOS1NRELATION, SCRJREF1NTABLECOL, SCRJREF1NSTUB, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFASBMNSUBSET, SCRJREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmSbsRec::StatShr::readXML(
@@ -251,10 +251,10 @@ bool PnlWznmSbsRec::StatShr::readXML(
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefATitle", scrJrefATitle)) add(SCRJREFATITLE);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NStub", scrJref1NStub)) add(SCRJREF1NSTUB);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefTos1NRelation", scrJrefTos1NRelation)) add(SCRJREFTOS1NRELATION);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefFrs1NRelation", scrJrefFrs1NRelation)) add(SCRJREFFRS1NRELATION);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefTos1NRelation", scrJrefTos1NRelation)) add(SCRJREFTOS1NRELATION);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NTablecol", scrJref1NTablecol)) add(SCRJREF1NTABLECOL);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NStub", scrJref1NStub)) add(SCRJREF1NSTUB);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefPst1NQuerymod", scrJrefPst1NQuerymod)) add(SCRJREFPST1NQUERYMOD);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "pnlpst1nquerymodAvail", pnlpst1nquerymodAvail)) add(PNLPST1NQUERYMODAVAIL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAsbMNSubset", scrJrefAsbMNSubset)) add(SCRJREFASBMNSUBSET);
@@ -273,10 +273,10 @@ set<uint> PnlWznmSbsRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
 	if (scrJrefATitle == comp->scrJrefATitle) insert(items, SCRJREFATITLE);
-	if (scrJref1NStub == comp->scrJref1NStub) insert(items, SCRJREF1NSTUB);
-	if (scrJrefTos1NRelation == comp->scrJrefTos1NRelation) insert(items, SCRJREFTOS1NRELATION);
 	if (scrJrefFrs1NRelation == comp->scrJrefFrs1NRelation) insert(items, SCRJREFFRS1NRELATION);
+	if (scrJrefTos1NRelation == comp->scrJrefTos1NRelation) insert(items, SCRJREFTOS1NRELATION);
 	if (scrJref1NTablecol == comp->scrJref1NTablecol) insert(items, SCRJREF1NTABLECOL);
+	if (scrJref1NStub == comp->scrJref1NStub) insert(items, SCRJREF1NSTUB);
 	if (scrJrefPst1NQuerymod == comp->scrJrefPst1NQuerymod) insert(items, SCRJREFPST1NQUERYMOD);
 	if (pnlpst1nquerymodAvail == comp->pnlpst1nquerymodAvail) insert(items, PNLPST1NQUERYMODAVAIL);
 	if (scrJrefAsbMNSubset == comp->scrJrefAsbMNSubset) insert(items, SCRJREFASBMNSUBSET);
@@ -294,7 +294,7 @@ set<uint> PnlWznmSbsRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NSTUB, SCRJREFTOS1NRELATION, SCRJREFFRS1NRELATION, SCRJREF1NTABLECOL, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFASBMNSUBSET, SCRJREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFFRS1NRELATION, SCRJREFTOS1NRELATION, SCRJREF1NTABLECOL, SCRJREF1NSTUB, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFASBMNSUBSET, SCRJREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

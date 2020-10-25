@@ -2,8 +2,8 @@
 	* \file QryWznmQryQry1NQuerycol.h
 	* job handler for job QryWznmQryQry1NQuerycol (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMQRYQRY1NQUERYCOL_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmQcoMod_qryEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmQcoMod_qryEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

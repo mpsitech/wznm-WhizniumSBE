@@ -2,8 +2,8 @@
   * \file QryWznmQmdList.java
   * Java API code for job QryWznmQmdList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -18,22 +18,22 @@ public class QryWznmQmdList {
 		*/
 	public static class VecVOrd {
 
-		public static final int RET = 1;
-		public static final int REU = 2;
+		public static final int TYP = 1;
+		public static final int QRY = 2;
 		public static final int PST = 3;
-		public static final int TYP = 4;
-		public static final int QRY = 5;
+		public static final int RET = 4;
+		public static final int REU = 5;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("ret")) return RET;
-			if (s.equals("reu")) return REU;
-			if (s.equals("pst")) return PST;
 			if (s.equals("typ")) return TYP;
 			if (s.equals("qry")) return QRY;
+			if (s.equals("pst")) return PST;
+			if (s.equals("ret")) return RET;
+			if (s.equals("reu")) return REU;
 
 			return 0;
 		};
@@ -41,11 +41,11 @@ public class QryWznmQmdList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == RET) return("ret");
-			if (ix == REU) return("reu");
-			if (ix == PST) return("pst");
 			if (ix == TYP) return("typ");
 			if (ix == QRY) return("qry");
+			if (ix == PST) return("pst");
+			if (ix == RET) return("ret");
+			if (ix == REU) return("reu");
 
 			return "";
 		};

@@ -2,8 +2,8 @@
 	* \file QryWznmChkList_blks.cpp
 	* job handler for job QryWznmChkList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -19,8 +19,8 @@ uint QryWznmChkList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "tco") return TCO;
 	if (s == "tbl") return TBL;
+	if (s == "tco") return TCO;
 	if (s == "srf") return SRF;
 	if (s == "typ") return TYP;
 
@@ -30,8 +30,8 @@ uint QryWznmChkList::VecVOrd::getIx(
 string QryWznmChkList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TCO) return("tco");
 	if (ix == TBL) return("tbl");
+	if (ix == TCO) return("tco");
 	if (ix == SRF) return("srf");
 	if (ix == TYP) return("typ");
 

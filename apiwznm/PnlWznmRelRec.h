@@ -2,8 +2,8 @@
 	* \file PnlWznmRelRec.h
 	* API code for job PnlWznmRelRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMRELREC_H
@@ -66,23 +66,23 @@ namespace PnlWznmRelRec {
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONEATITLE = 2;
-		static const Sbecore::uint INITDONE1NTABLECOL = 3;
-		static const Sbecore::uint INITDONESUP1NRELATION = 4;
+		static const Sbecore::uint INITDONESUP1NRELATION = 3;
+		static const Sbecore::uint INITDONE1NTABLECOL = 4;
 		static const Sbecore::uint INITDONEREF1NCONTROL = 5;
-		static const Sbecore::uint INITDONEREF1NPANEL = 6;
-		static const Sbecore::uint INITDONEREF1NDIALOG = 7;
+		static const Sbecore::uint INITDONEREF1NDIALOG = 6;
+		static const Sbecore::uint INITDONEREF1NPANEL = 7;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NTablecol = false, const bool initdoneSup1NRelation = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NPanel = false, const bool initdoneRef1NDialog = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneSup1NRelation = false, const bool initdone1NTablecol = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NDialog = false, const bool initdoneRef1NPanel = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneATitle;
-		bool initdone1NTablecol;
 		bool initdoneSup1NRelation;
+		bool initdone1NTablecol;
 		bool initdoneRef1NControl;
-		bool initdoneRef1NPanel;
 		bool initdoneRef1NDialog;
+		bool initdoneRef1NPanel;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -99,25 +99,25 @@ namespace PnlWznmRelRec {
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREFATITLE = 3;
-		static const Sbecore::uint SCRJREF1NTABLECOL = 4;
-		static const Sbecore::uint SCRJREFSUP1NRELATION = 5;
+		static const Sbecore::uint SCRJREFSUP1NRELATION = 4;
+		static const Sbecore::uint SCRJREF1NTABLECOL = 5;
 		static const Sbecore::uint SCRJREFREF1NCONTROL = 6;
-		static const Sbecore::uint SCRJREFREF1NPANEL = 7;
-		static const Sbecore::uint SCRJREFREF1NDIALOG = 8;
+		static const Sbecore::uint SCRJREFREF1NDIALOG = 7;
+		static const Sbecore::uint SCRJREFREF1NPANEL = 8;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 9;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJref1NTablecol = "", const std::string& scrJrefSup1NRelation = "", const std::string& scrJrefRef1NControl = "", const std::string& scrJrefRef1NPanel = "", const std::string& scrJrefRef1NDialog = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJrefSup1NRelation = "", const std::string& scrJref1NTablecol = "", const std::string& scrJrefRef1NControl = "", const std::string& scrJrefRef1NDialog = "", const std::string& scrJrefRef1NPanel = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJrefATitle;
-		std::string scrJref1NTablecol;
 		std::string scrJrefSup1NRelation;
+		std::string scrJref1NTablecol;
 		std::string scrJrefRef1NControl;
-		std::string scrJrefRef1NPanel;
 		std::string scrJrefRef1NDialog;
+		std::string scrJrefRef1NPanel;
 		bool ButRegularizeActive;
 
 	public:

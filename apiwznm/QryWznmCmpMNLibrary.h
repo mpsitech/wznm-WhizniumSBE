@@ -2,8 +2,8 @@
 	* \file QryWznmCmpMNLibrary.h
 	* API code for job QryWznmCmpMNLibrary (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMCMPMNLIBRARY_H

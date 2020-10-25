@@ -2,8 +2,8 @@
   * \file CrdWznmUsg.js
   * web client functionality for card CrdWznmUsg
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 function getInitdone(pnlshort) {
@@ -332,7 +332,7 @@ function changeHeight(pnlshort, height) {
 // --- view initialization and refresh
 function refresh() {
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmUsg", "MtxCrdUsg") + " - WhizniumSBE v1.0.6";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmUsg", "MtxCrdUsg") + " - WhizniumSBE v1.0.7";
 };
 
 // --- event handlers

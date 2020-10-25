@@ -2,8 +2,8 @@
 	* \file QryWznmBlk1NRtdpch.h
 	* job handler for job QryWznmBlk1NRtdpch (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMBLK1NRTDPCH_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmRtdMod_blkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmRtdMod_blkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

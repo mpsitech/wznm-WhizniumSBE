@@ -2,8 +2,8 @@
 	* \file QryWznmLocMNVersion.cpp
 	* job handler for job QryWznmLocMNVersion (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -84,7 +84,7 @@ void QryWznmLocMNVersion::rerun(
 	dbswznm->tblwznmqlocmnversion->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMLocaleMVersion.ref)";
-	sqlstr += " FROM TblWznmMVersion, TblWznmRMLocaleMVersion";
+	sqlstr += " FROM TblWznmRMLocaleMVersion, TblWznmMVersion";
 	sqlstr += " WHERE TblWznmRMLocaleMVersion.refWznmMVersion = TblWznmMVersion.ref";
 	sqlstr += " AND TblWznmRMLocaleMVersion.refWznmMLocale = " + to_string(preRefLoc) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -99,7 +99,7 @@ void QryWznmLocMNVersion::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQLocMNVersion(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMVersion.ref, TblWznmRMLocaleMVersion.ref";
-	sqlstr += " FROM TblWznmMVersion, TblWznmRMLocaleMVersion";
+	sqlstr += " FROM TblWznmRMLocaleMVersion, TblWznmMVersion";
 	sqlstr += " WHERE TblWznmRMLocaleMVersion.refWznmMVersion = TblWznmMVersion.ref";
 	sqlstr += " AND TblWznmRMLocaleMVersion.refWznmMLocale = " + to_string(preRefLoc) + "";
 	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
@@ -272,11 +272,19 @@ void QryWznmLocMNVersion::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMLOCRVERMOD_LOCEQ) {
-		call->abort = handleCallWznmLocRverMod_locEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOCRVERMOD_LOCEQ) {
+		call->abort = handleCallWznmLocRverMod_locEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmLocMNVersion::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmLocMNVersion::handleCallWznmLocRverMod_locEq(
@@ -290,14 +298,6 @@ bool QryWznmLocMNVersion::handleCallWznmLocRverMod_locEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmLocMNVersion::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

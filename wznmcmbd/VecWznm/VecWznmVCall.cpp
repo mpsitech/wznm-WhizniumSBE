@@ -2,8 +2,8 @@
 	* \file VecWznmVCall.cpp
 	* vector VecWznmVCall (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "VecWznmVCall.h"
@@ -380,6 +380,7 @@ uint VecWznmVCall::getIx(
 	if (s == "callwznmstbrstbmod.supeq") return CALLWZNMSTBRSTBMOD_SUPEQ;
 	if (s == "callwznmstbupd.refeq") return CALLWZNMSTBUPD_REFEQ;
 	if (s == "callwznmste.seqeq") return CALLWZNMSTE_SEQEQ;
+	if (s == "callwznmsteaactmod.steeq") return CALLWZNMSTEAACTMOD_STEEQ;
 	if (s == "callwznmsteatrgmod.steeq") return CALLWZNMSTEATRGMOD_STEEQ;
 	if (s == "callwznmstemod") return CALLWZNMSTEMOD;
 	if (s == "callwznmstemod.seqeq") return CALLWZNMSTEMOD_SEQEQ;
@@ -828,6 +829,7 @@ string VecWznmVCall::getSref(
 	if (ix == CALLWZNMSTBRSTBMOD_SUPEQ) return("CallWznmStbRstbMod.supEq");
 	if (ix == CALLWZNMSTBUPD_REFEQ) return("CallWznmStbUpd.refEq");
 	if (ix == CALLWZNMSTE_SEQEQ) return("CallWznmSte.seqEq");
+	if (ix == CALLWZNMSTEAACTMOD_STEEQ) return("CallWznmSteAactMod.steEq");
 	if (ix == CALLWZNMSTEATRGMOD_STEEQ) return("CallWznmSteAtrgMod.steEq");
 	if (ix == CALLWZNMSTEMOD) return("CallWznmSteMod");
 	if (ix == CALLWZNMSTEMOD_SEQEQ) return("CallWznmSteMod.seqEq");

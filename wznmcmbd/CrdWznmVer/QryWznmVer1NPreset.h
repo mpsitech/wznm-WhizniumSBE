@@ -2,8 +2,8 @@
 	* \file QryWznmVer1NPreset.h
 	* job handler for job QryWznmVer1NPreset (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMVER1NPRESET_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmPstMod_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmPstMod_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

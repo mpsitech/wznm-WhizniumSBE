@@ -2,8 +2,8 @@
 	* \file WznmWrsrvJob.cpp
 	* Wznm operation processor - write C++ code for job (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -533,24 +533,22 @@ void WznmWrsrvJob::writeJobH(
 	for (unsigned int i = 0; i < mtds.nodes.size(); i++) {
 		mtd = mtds.nodes[i];
 
-		if ((mtd->sref != "start") && (mtd->sref != "stop")) {
-			dbswznm->tblwznmammethodinvpar->loadRstByMtd(mtd->ref, false, ipas);
-			dbswznm->tblwznmammethodretpar->loadRstByMtd(mtd->ref, false, rpas);
+		dbswznm->tblwznmammethodinvpar->loadRstByMtd(mtd->ref, false, ipas);
+		dbswznm->tblwznmammethodretpar->loadRstByMtd(mtd->ref, false, rpas);
 
-			outfile << "\tbool " << mtd->sref << "(Dbs" << Prjshort << "* dbs" << prjshort;
+		outfile << "\tbool " << mtd->sref << "(Dbs" << Prjshort << "* dbs" << prjshort;
 
-			for (unsigned int j = 0; j < ipas.nodes.size(); j++) {
-				ipa = ipas.nodes[j];
-				wrIparpa(outfile, ipa->sref, ipa->ixWznmVVartype, false, false, true);
-			};
-
-			for (unsigned int j = 0; j < rpas.nodes.size(); j++) {
-				rpa = rpas.nodes[j];
-				wrIparpa(outfile, rpa->sref, rpa->ixWznmVVartype, false, true, true);
-			};
-
-			outfile << ");" << endl;
+		for (unsigned int j = 0; j < ipas.nodes.size(); j++) {
+			ipa = ipas.nodes[j];
+			wrIparpa(outfile, ipa->sref, ipa->ixWznmVVartype, false, false, true);
 		};
+
+		for (unsigned int j = 0; j < rpas.nodes.size(); j++) {
+			rpa = rpas.nodes[j];
+			wrIparpa(outfile, rpa->sref, rpa->ixWznmVVartype, false, true, true);
+		};
+
+		outfile << ");" << endl;
 	};
 	if (mtds.nodes.size() > 0) outfile << endl;
 	outfile << "// IP methods --- IEND" << endl;
@@ -1107,58 +1105,56 @@ void WznmWrsrvJob::writeJobCpp(
 	for (unsigned int i = 0; i < mtds.nodes.size(); i++) {
 		mtd = mtds.nodes[i];
 
-		if ((mtd->sref != "start") && (mtd->sref != "stop")) {
-			dbswznm->tblwznmammethodinvpar->loadRstByMtd(mtd->ref, false, ipas);
-			dbswznm->tblwznmammethodretpar->loadRstByMtd(mtd->ref, false, rpas);
+		dbswznm->tblwznmammethodinvpar->loadRstByMtd(mtd->ref, false, ipas);
+		dbswznm->tblwznmammethodretpar->loadRstByMtd(mtd->ref, false, rpas);
 
-			outfile << "bool " << job->sref << "::" << mtd->sref << "(" << endl;
-			outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
+		outfile << "bool " << job->sref << "::" << mtd->sref << "(" << endl;
+		outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
 
-			for (unsigned int j = 0; j < ipas.nodes.size(); j++) {
-				ipa = ipas.nodes[j];
-				wrIparpa(outfile, ipa->sref, ipa->ixWznmVVartype, true, false, false);
-			};
+		for (unsigned int j = 0; j < ipas.nodes.size(); j++) {
+			ipa = ipas.nodes[j];
+			wrIparpa(outfile, ipa->sref, ipa->ixWznmVVartype, true, false, false);
+		};
 
-			for (unsigned int j = 0; j < rpas.nodes.size(); j++) {
-				rpa = rpas.nodes[j];
-				wrIparpa(outfile, rpa->sref, rpa->ixWznmVVartype, true, true, false);
-			};
+		for (unsigned int j = 0; j < rpas.nodes.size(); j++) {
+			rpa = rpas.nodes[j];
+			wrIparpa(outfile, rpa->sref, rpa->ixWznmVVartype, true, true, false);
+		};
 
-			outfile << "\t\t) {" << endl;
-			outfile << "\tbool retval = true;" << endl;
+		outfile << "\t\t) {" << endl;
+		outfile << "\tbool retval = true;" << endl;
+		outfile << endl;
+
+		if (mtd->Execsrv) {
+			outfile << "\tif (!srvNotCli) {" << endl;
+			outfile << "\t\tif (srv) {" << endl;
+
+			outfile << "\t\t\tretval = ((" << job->sref << "*) srv)->" << mtd->sref << "(dbs" << prjshort;
+			for (unsigned int j = 0; j < ipas.nodes.size(); j++) outfile << ", " << ipas.nodes[j]->sref;
+			for (unsigned int j = 0; j < rpas.nodes.size(); j++) outfile << ", " << rpas.nodes[j]->sref;
+			outfile << ");" << endl;
 			outfile << endl;
 
-			if (mtd->Execsrv) {
-				outfile << "\tif (!srvNotCli) {" << endl;
-				outfile << "\t\tif (srv) {" << endl;
-
-				outfile << "\t\t\tretval = ((" << job->sref << "*) srv)->" << mtd->sref << "(dbs" << prjshort;
-				for (unsigned int j = 0; j < ipas.nodes.size(); j++) outfile << ", " << ipas.nodes[j]->sref;
-				for (unsigned int j = 0; j < rpas.nodes.size(); j++) outfile << ", " << rpas.nodes[j]->sref;
-				outfile << ");" << endl;
-				outfile << endl;
-
-				outfile << "\t\t} else retval = false;" << endl;
-				outfile << endl;
-
-				outfile << "\t\treturn retval;" << endl;
-				outfile << "\t};" << endl;
-				outfile << endl;
-			};
-
-			outfile << "\tlockAccess(\"" << mtd->sref << "\");" << endl;
+			outfile << "\t\t} else retval = false;" << endl;
 			outfile << endl;
 
-			outfile << "\t// IP " << mtd->sref << " --- INSERT" << endl;
-			outfile << endl;
-
-			outfile << "\tunlockAccess(\"" << mtd->sref <<  "\");" << endl;
-			outfile << endl;
-
-			outfile << "\treturn retval;" << endl;
-			outfile << "};" << endl;
+			outfile << "\t\treturn retval;" << endl;
+			outfile << "\t};" << endl;
 			outfile << endl;
 		};
+
+		outfile << "\tlockAccess(\"" << mtd->sref << "\");" << endl;
+		outfile << endl;
+
+		outfile << "\t// IP " << mtd->sref << " --- INSERT" << endl;
+		outfile << endl;
+
+		outfile << "\tunlockAccess(\"" << mtd->sref <<  "\");" << endl;
+		outfile << endl;
+
+		outfile << "\treturn retval;" << endl;
+		outfile << "};" << endl;
+		outfile << endl;
 	};
 	outfile << "// IP methods --- IEND" << endl;
 
@@ -1846,7 +1842,7 @@ void WznmWrsrvJob::writeJobCpp(
 		// --- changeStage.refresh1
 		if (hasdpch) {
 			outfile << "// IP changeStage.refresh1 --- IBEGIN" << endl;
-			outfile << "\t\t\tif (!muteRefresh) refreshWithDpchEng(dbs" << prjshort << ", dpcheng); // IP changeStage.refresh1 --- LINE" << endl;
+			outfile << "\t\t\trefreshWithDpchEng(dbs" << prjshort << ", dpcheng); // IP changeStage.refresh1 --- LINE" << endl;
 			outfile << "// IP changeStage.refresh1 --- IEND" << endl;
 		};
 

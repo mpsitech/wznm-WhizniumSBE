@@ -2,8 +2,8 @@
 	* \file QryWznmLibMNOppack.cpp
 	* job handler for job QryWznmLibMNOppack (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -84,7 +84,7 @@ void QryWznmLibMNOppack::rerun(
 	dbswznm->tblwznmqlibmnoppack->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMLibraryMOppack.ref)";
-	sqlstr += " FROM TblWznmMOppack, TblWznmRMLibraryMOppack";
+	sqlstr += " FROM TblWznmRMLibraryMOppack, TblWznmMOppack";
 	sqlstr += " WHERE TblWznmRMLibraryMOppack.refWznmMOppack = TblWznmMOppack.ref";
 	sqlstr += " AND TblWznmRMLibraryMOppack.refWznmMLibrary = " + to_string(preRefLib) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -99,7 +99,7 @@ void QryWznmLibMNOppack::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQLibMNOppack(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMOppack.ref, TblWznmRMLibraryMOppack.ref";
-	sqlstr += " FROM TblWznmMOppack, TblWznmRMLibraryMOppack";
+	sqlstr += " FROM TblWznmRMLibraryMOppack, TblWznmMOppack";
 	sqlstr += " WHERE TblWznmRMLibraryMOppack.refWznmMOppack = TblWznmMOppack.ref";
 	sqlstr += " AND TblWznmRMLibraryMOppack.refWznmMLibrary = " + to_string(preRefLib) + "";
 	sqlstr += " ORDER BY TblWznmMOppack.sref ASC";
@@ -273,11 +273,19 @@ void QryWznmLibMNOppack::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMLIBROPKMOD_LIBEQ) {
-		call->abort = handleCallWznmLibRopkMod_libEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBROPKMOD_LIBEQ) {
+		call->abort = handleCallWznmLibRopkMod_libEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmLibMNOppack::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmLibMNOppack::handleCallWznmLibRopkMod_libEq(
@@ -291,14 +299,6 @@ bool QryWznmLibMNOppack::handleCallWznmLibRopkMod_libEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmLibMNOppack::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

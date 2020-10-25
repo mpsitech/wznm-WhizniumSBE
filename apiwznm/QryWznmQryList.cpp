@@ -2,8 +2,8 @@
 	* \file QryWznmQryList.cpp
 	* API code for job QryWznmQryList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmQryList.h"
@@ -21,13 +21,13 @@ uint QryWznmQryList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "qtb") return QTB;
-	if (s == "tbl") return TBL;
-	if (s == "srl") return SRL;
-	if (s == "sup") return SUP;
-	if (s == "ver") return VER;
-	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
+	if (s == "typ") return TYP;
+	if (s == "ver") return VER;
+	if (s == "sup") return SUP;
+	if (s == "srl") return SRL;
+	if (s == "tbl") return TBL;
+	if (s == "qtb") return QTB;
 
 	return(0);
 };
@@ -35,13 +35,13 @@ uint QryWznmQryList::VecVOrd::getIx(
 string QryWznmQryList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == QTB) return("qtb");
-	if (ix == TBL) return("tbl");
-	if (ix == SRL) return("srl");
-	if (ix == SUP) return("sup");
-	if (ix == VER) return("ver");
-	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
+	if (ix == TYP) return("typ");
+	if (ix == VER) return("ver");
+	if (ix == SUP) return("sup");
+	if (ix == SRL) return("srl");
+	if (ix == TBL) return("tbl");
+	if (ix == QTB) return("qtb");
 
 	return("");
 };

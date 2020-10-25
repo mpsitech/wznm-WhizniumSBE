@@ -2,8 +2,8 @@
 	* \file QryWznmOpkList.cpp
 	* API code for job QryWznmOpkList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmOpkList.h"
@@ -21,9 +21,9 @@ uint QryWznmOpkList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ver") return VER;
-	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
+	if (s == "typ") return TYP;
+	if (s == "ver") return VER;
 
 	return(0);
 };
@@ -31,9 +31,9 @@ uint QryWznmOpkList::VecVOrd::getIx(
 string QryWznmOpkList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == VER) return("ver");
-	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
+	if (ix == TYP) return("typ");
+	if (ix == VER) return("ver");
 
 	return("");
 };

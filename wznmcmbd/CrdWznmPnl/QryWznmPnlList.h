@@ -2,8 +2,8 @@
 	* \file QryWznmPnlList.h
 	* job handler for job QryWznmPnlList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMPNLLIST_H
@@ -31,11 +31,11 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint REU = 1;
-		static const Sbecore::uint RET = 2;
+		static const Sbecore::uint SRF = 1;
+		static const Sbecore::uint TYP = 2;
 		static const Sbecore::uint CAR = 3;
-		static const Sbecore::uint TYP = 4;
-		static const Sbecore::uint SRF = 5;
+		static const Sbecore::uint RET = 4;
+		static const Sbecore::uint REU = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -146,8 +146,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmPnlUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPnlMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmPnlUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };

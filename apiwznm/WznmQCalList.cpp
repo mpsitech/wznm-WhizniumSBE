@@ -2,8 +2,8 @@
 	* \file WznmQCalList.cpp
 	* API code for table TblWznmQCalList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQCalList.h"

@@ -2,8 +2,8 @@
 	* \file QryWznmPstList.cpp
 	* API code for job QryWznmPstList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmPstList.h"
@@ -24,8 +24,8 @@ uint QryWznmPstList::VecVOrd::getIx(
 	if (s == "aty") return ATY;
 	if (s == "ret") return RET;
 	if (s == "reu") return REU;
-	if (s == "srf") return SRF;
 	if (s == "ver") return VER;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -36,8 +36,8 @@ string QryWznmPstList::VecVOrd::getSref(
 	if (ix == ATY) return("aty");
 	if (ix == RET) return("ret");
 	if (ix == REU) return("reu");
-	if (ix == SRF) return("srf");
 	if (ix == VER) return("ver");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

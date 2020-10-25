@@ -2,8 +2,8 @@
 	* \file PnlWznmBlkRec.h
 	* job handler for job PnlWznmBlkRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMBLKREC_H
@@ -13,10 +13,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmBlkRef1NRtblock.h"
-#include "PnlWznmBlk1NRtdpch.h"
-#include "PnlWznmBlkAItem.h"
 #include "PnlWznmBlkDetail.h"
+#include "PnlWznmBlkAItem.h"
+#include "PnlWznmBlk1NRtdpch.h"
+#include "PnlWznmBlkRef1NRtblock.h"
 
 #define VecVWznmBlkRecDo PnlWznmBlkRec::VecVDo
 
@@ -173,10 +173,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmBlkRef1NRtblock* pnlref1nrtblock;
-	PnlWznmBlk1NRtdpch* pnl1nrtdpch;
-	PnlWznmBlkAItem* pnlaitem;
 	PnlWznmBlkDetail* pnldetail;
+	PnlWznmBlkAItem* pnlaitem;
+	PnlWznmBlk1NRtdpch* pnl1nrtdpch;
+	PnlWznmBlkRef1NRtblock* pnlref1nrtblock;
 
 	WznmMBlock recBlk;
 

@@ -2,8 +2,8 @@
 	* \file WznmQRtjSup1NRtjob.cpp
 	* API code for table TblWznmQRtjSup1NRtjob (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQRtjSup1NRtjob.h"

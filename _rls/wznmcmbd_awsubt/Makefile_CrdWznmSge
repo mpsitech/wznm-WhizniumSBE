@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmSge card job handler, release wznmcmbd_awsubt
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmcmbd/VecWznm -I$(SRCROOT)/wznmcmbd/IexWznm -I$(SRCROOT)/wznmcmbd
 INCPATH += -I/home/ubuntu/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
 
-OBJS = CrdWznmSge.o PnlWznmSgeList.o QryWznmSgeList.o PnlWznmSgeHeadbar.o PnlWznmSgeRec.o PnlWznmSgeSqkMNStub.o QryWznmSgeSqkMNStub.o PnlWznmSge1NSensitivity.o QryWznmSge1NSensitivity.o PnlWznmSgeDetail.o
+OBJS = CrdWznmSge.o PnlWznmSgeRec.o PnlWznmSgeDetail.o PnlWznmSge1NSensitivity.o QryWznmSge1NSensitivity.o PnlWznmSgeSqkMNStub.o QryWznmSgeSqkMNStub.o PnlWznmSgeHeadbar.o PnlWznmSgeList.o QryWznmSgeList.o
 
 LIB = libcrdwznmsge
 

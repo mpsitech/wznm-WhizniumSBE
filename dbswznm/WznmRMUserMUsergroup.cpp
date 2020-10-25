@@ -2,8 +2,8 @@
 	* \file WznmRMUserMUsergroup.cpp
 	* database access for table TblWznmRMUserMUsergroup (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmRMUserMUsergroup.h"

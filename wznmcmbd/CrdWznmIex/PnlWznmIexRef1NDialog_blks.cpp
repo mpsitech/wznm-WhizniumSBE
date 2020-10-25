@@ -2,8 +2,8 @@
 	* \file PnlWznmIexRef1NDialog_blks.cpp
 	* job handler for job PnlWznmIexRef1NDialog (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;

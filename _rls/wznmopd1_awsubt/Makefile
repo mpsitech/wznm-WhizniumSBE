@@ -1,8 +1,8 @@
 # file Makefile
 # make file for Wznm operation daemon, release wznmopd1_awsubt
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 include Makefile.inc
 
@@ -13,7 +13,7 @@ LINK = g++
 LINKFLAGS =
 
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmopd1/VecWznm -I$(SRCROOT)/wznmopd1/IexWznm -I$(SRCROOT)/wznmopd1
-INCPATH += -I$(SRCROOT)/wznmopd1/WznmWrweb -I$(SRCROOT)/wznmopd1/WznmWrsrv -I$(SRCROOT)/wznmopd1/WznmWrjapi -I$(SRCROOT)/wznmopd1/WznmWrdbs -I$(SRCROOT)/wznmopd1/WznmWrapp -I$(SRCROOT)/wznmopd1/WznmWrapi -I$(SRCROOT)/wznmopd1/WznmPrctree -I$(SRCROOT)/wznmopd1/WznmPrcfile -I$(SRCROOT)/wznmopd1/WznmGen -I$(SRCROOT)/wznmopd1/WznmCompl
+INCPATH += -I$(SRCROOT)/wznmopd1/WznmCompl -I$(SRCROOT)/wznmopd1/WznmGen -I$(SRCROOT)/wznmopd1/WznmPrcfile -I$(SRCROOT)/wznmopd1/WznmPrctree -I$(SRCROOT)/wznmopd1/WznmWrapi -I$(SRCROOT)/wznmopd1/WznmWrapp -I$(SRCROOT)/wznmopd1/WznmWrdbs -I$(SRCROOT)/wznmopd1/WznmWrjapi -I$(SRCROOT)/wznmopd1/WznmWrsrv -I$(SRCROOT)/wznmopd1/WznmWrweb
 INCPATH += -I/usr/include -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
 
 PCHS = Wznmopd.h.gch
@@ -26,7 +26,7 @@ LIBPATH += -L$(LIBROOT)/wznmopd1
 LIBPATH += -L/usr/lib/x86_64-linux-gnu -L/usr/local/lib
 LIBPATH += -L/lib/x86_64-linux-gnu
 
-LIBS = -lwznmwrweb -lwznmwrsrv -lwznmwrjapi -lwznmwrdbs -lwznmwrapp -lwznmwrapi -lwznmprctree -lwznmprcfile -lwznmgen -lwznmcompl
+LIBS = -lwznmcompl -lwznmgen -lwznmprcfile -lwznmprctree -lwznmwrapi -lwznmwrapp -lwznmwrdbs -lwznmwrjapi -lwznmwrsrv -lwznmwrweb
 LIBS += -liexwznm -lvecwznm -ldbswznm
 LIBS += -lcurl -lmicrohttpd -lsbecore_mar
 LIBS += -lmariadbclient -lsbecore_plus

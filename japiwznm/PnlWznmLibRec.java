@@ -2,8 +2,8 @@
   * \file PnlWznmLibRec.java
   * Java API code for job PnlWznmLibRec
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -113,33 +113,33 @@ public class PnlWznmLibRec {
 	public class StatApp extends Block {
 
 		public static final int INITDONEDETAIL = 1;
-		public static final int INITDONEAPKGLIST = 2;
-		public static final int INITDONEAMAKEFILE = 3;
+		public static final int INITDONEAMAKEFILE = 2;
+		public static final int INITDONEAPKGLIST = 3;
 		public static final int INITDONEREF1NFILE = 4;
 		public static final int INITDONEMNOPPACK = 5;
 		public static final int INITDONEMNCOMPONENT = 6;
 
 		public StatApp(
 					boolean initdoneDetail
-					, boolean initdoneAPkglist
 					, boolean initdoneAMakefile
+					, boolean initdoneAPkglist
 					, boolean initdoneRef1NFile
 					, boolean initdoneMNOppack
 					, boolean initdoneMNComponent
 				) {
 			this.initdoneDetail = initdoneDetail;
-			this.initdoneAPkglist = initdoneAPkglist;
 			this.initdoneAMakefile = initdoneAMakefile;
+			this.initdoneAPkglist = initdoneAPkglist;
 			this.initdoneRef1NFile = initdoneRef1NFile;
 			this.initdoneMNOppack = initdoneMNOppack;
 			this.initdoneMNComponent = initdoneMNComponent;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAPKGLIST, INITDONEAMAKEFILE, INITDONEREF1NFILE, INITDONEMNOPPACK, INITDONEMNCOMPONENT));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAMAKEFILE, INITDONEAPKGLIST, INITDONEREF1NFILE, INITDONEMNOPPACK, INITDONEMNCOMPONENT));
 		};
 
 		public boolean initdoneDetail;
-		public boolean initdoneAPkglist;
 		public boolean initdoneAMakefile;
+		public boolean initdoneAPkglist;
 		public boolean initdoneRef1NFile;
 		public boolean initdoneMNOppack;
 		public boolean initdoneMNComponent;
@@ -158,8 +158,8 @@ public class PnlWznmLibRec {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
-				initdoneAPkglist = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAPkglist", mask, INITDONEAPKGLIST);
 				initdoneAMakefile = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAMakefile", mask, INITDONEAMAKEFILE);
+				initdoneAPkglist = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAPkglist", mask, INITDONEAPKGLIST);
 				initdoneRef1NFile = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NFile", mask, INITDONEREF1NFILE);
 				initdoneMNOppack = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNOppack", mask, INITDONEMNOPPACK);
 				initdoneMNComponent = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNComponent", mask, INITDONEMNCOMPONENT);
@@ -176,8 +176,8 @@ public class PnlWznmLibRec {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
-			if (initdoneAPkglist == comp.initdoneAPkglist) items.add(INITDONEAPKGLIST);
 			if (initdoneAMakefile == comp.initdoneAMakefile) items.add(INITDONEAMAKEFILE);
+			if (initdoneAPkglist == comp.initdoneAPkglist) items.add(INITDONEAPKGLIST);
 			if (initdoneRef1NFile == comp.initdoneRef1NFile) items.add(INITDONEREF1NFILE);
 			if (initdoneMNOppack == comp.initdoneMNOppack) items.add(INITDONEMNOPPACK);
 			if (initdoneMNComponent == comp.initdoneMNComponent) items.add(INITDONEMNCOMPONENT);
@@ -193,7 +193,7 @@ public class PnlWznmLibRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAPKGLIST, INITDONEAMAKEFILE, INITDONEREF1NFILE, INITDONEMNOPPACK, INITDONEMNCOMPONENT));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAMAKEFILE, INITDONEAPKGLIST, INITDONEREF1NFILE, INITDONEMNOPPACK, INITDONEMNCOMPONENT));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -208,8 +208,8 @@ public class PnlWznmLibRec {
 
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
-		public static final int SCRJREFAPKGLIST = 3;
-		public static final int SCRJREFAMAKEFILE = 4;
+		public static final int SCRJREFAMAKEFILE = 3;
+		public static final int SCRJREFAPKGLIST = 4;
 		public static final int SCRJREFREF1NFILE = 5;
 		public static final int SCRJREFMNOPPACK = 6;
 		public static final int SCRJREFMNCOMPONENT = 7;
@@ -218,8 +218,8 @@ public class PnlWznmLibRec {
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
-					, String scrJrefAPkglist
 					, String scrJrefAMakefile
+					, String scrJrefAPkglist
 					, String scrJrefRef1NFile
 					, String scrJrefMNOppack
 					, String scrJrefMNComponent
@@ -227,20 +227,20 @@ public class PnlWznmLibRec {
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
-			this.scrJrefAPkglist = scrJrefAPkglist;
 			this.scrJrefAMakefile = scrJrefAMakefile;
+			this.scrJrefAPkglist = scrJrefAPkglist;
 			this.scrJrefRef1NFile = scrJrefRef1NFile;
 			this.scrJrefMNOppack = scrJrefMNOppack;
 			this.scrJrefMNComponent = scrJrefMNComponent;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAPKGLIST, SCRJREFAMAKEFILE, SCRJREFREF1NFILE, SCRJREFMNOPPACK, SCRJREFMNCOMPONENT, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAMAKEFILE, SCRJREFAPKGLIST, SCRJREFREF1NFILE, SCRJREFMNOPPACK, SCRJREFMNCOMPONENT, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
-		public String scrJrefAPkglist;
 		public String scrJrefAMakefile;
+		public String scrJrefAPkglist;
 		public String scrJrefRef1NFile;
 		public String scrJrefMNOppack;
 		public String scrJrefMNComponent;
@@ -263,8 +263,8 @@ public class PnlWznmLibRec {
 				srefIxWznmVExpstate = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "srefIxWznmVExpstate", mask, IXWZNMVEXPSTATE);
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
-				scrJrefAPkglist = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAPkglist", mask, SCRJREFAPKGLIST);
 				scrJrefAMakefile = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAMakefile", mask, SCRJREFAMAKEFILE);
+				scrJrefAPkglist = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAPkglist", mask, SCRJREFAPKGLIST);
 				scrJrefRef1NFile = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NFile", mask, SCRJREFREF1NFILE);
 				scrJrefMNOppack = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNOppack", mask, SCRJREFMNOPPACK);
 				scrJrefMNComponent = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNComponent", mask, SCRJREFMNCOMPONENT);
@@ -283,8 +283,8 @@ public class PnlWznmLibRec {
 
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
-			if (scrJrefAPkglist.equals(comp.scrJrefAPkglist)) items.add(SCRJREFAPKGLIST);
 			if (scrJrefAMakefile.equals(comp.scrJrefAMakefile)) items.add(SCRJREFAMAKEFILE);
+			if (scrJrefAPkglist.equals(comp.scrJrefAPkglist)) items.add(SCRJREFAPKGLIST);
 			if (scrJrefRef1NFile.equals(comp.scrJrefRef1NFile)) items.add(SCRJREFREF1NFILE);
 			if (scrJrefMNOppack.equals(comp.scrJrefMNOppack)) items.add(SCRJREFMNOPPACK);
 			if (scrJrefMNComponent.equals(comp.scrJrefMNComponent)) items.add(SCRJREFMNCOMPONENT);
@@ -301,7 +301,7 @@ public class PnlWznmLibRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAPKGLIST, SCRJREFAMAKEFILE, SCRJREFREF1NFILE, SCRJREFMNOPPACK, SCRJREFMNCOMPONENT, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAMAKEFILE, SCRJREFAPKGLIST, SCRJREFREF1NFILE, SCRJREFMNOPPACK, SCRJREFMNCOMPONENT, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

@@ -2,8 +2,8 @@
 	* \file QryWznmTblRef1NDialog.h
 	* job handler for job QryWznmTblRef1NDialog (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMTBLREF1NDIALOG_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmDlgMod_retReuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmDlgMod_retReuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

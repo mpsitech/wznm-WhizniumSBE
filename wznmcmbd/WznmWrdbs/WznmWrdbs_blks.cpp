@@ -2,8 +2,8 @@
 	* \file WznmWrdbs_blks.cpp
 	* invocation / return data blocks for operation pack WznmWrdbs (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmWrdbs_blks.h"

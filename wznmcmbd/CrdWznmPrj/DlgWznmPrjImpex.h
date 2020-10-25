@@ -2,8 +2,8 @@
 	* \file DlgWznmPrjImpex.h
 	* job handler for job DlgWznmPrjImpex (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef DLGWZNMPRJIMPEX_H
@@ -13,8 +13,8 @@
 
 // IP include.cust --- INSERT
 
-#include "JobWznmLicense.h"
 #include "JobWznmIexPrj.h"
+#include "JobWznmLicense.h"
 
 #define VecVDlgWznmPrjImpexDit DlgWznmPrjImpex::VecVDit
 #define VecVDlgWznmPrjImpexDo DlgWznmPrjImpex::VecVDo
@@ -440,8 +440,8 @@ public:
 	Sbecore::Xmlio::Feed feedFDse;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	JobWznmLicense* license;
 	JobWznmIexPrj* iex;
+	JobWznmLicense* license;
 
 	Sbecore::uint ixVDit;
 

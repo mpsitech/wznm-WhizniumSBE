@@ -2,8 +2,8 @@
 	* \file PnlWznmStbMNSquawk.cpp
 	* job handler for job PnlWznmStbMNSquawk (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -278,20 +278,20 @@ void PnlWznmStbMNSquawk::handleDpchAppDoButViewClick(
 	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
 
 	if (statshr.ButViewAvail && statshr.ButViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPK, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-			sref = "CrdWznmOpk";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMOppack WHERE refWznmMSquawk = " + to_string(recSqk.ref), ref); return ref;}(), jrefNew);
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPX, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmOpx";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMOp WHERE refWznmMSquawk = " + to_string(recSqk.ref), ref); return ref;}(), jrefNew);
-			};
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPX, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+			sref = "CrdWznmOpx";
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMOp WHERE refWznmMSquawk = " + to_string(recSqk.ref), ref); return ref;}(), jrefNew);
 		};
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSGE, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmSge";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMStage WHERE refWznmMSquawk = " + to_string(recSqk.ref), ref); return ref;}(), jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPK, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmOpk";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMOppack WHERE refWznmMSquawk = " + to_string(recSqk.ref), ref); return ref;}(), jrefNew);
 			};
 		};
 

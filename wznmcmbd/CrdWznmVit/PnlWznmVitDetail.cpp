@@ -2,8 +2,8 @@
 	* \file PnlWznmVitDetail.cpp
 	* job handler for job PnlWznmVitDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -324,26 +324,13 @@ void PnlWznmVitDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMVITJMOD_VITEQ) {
-		call->abort = handleCallWznmVitJMod_vitEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVITUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMVITUPD_REFEQ) {
 		call->abort = handleCallWznmVitUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVIT_VECEQ) {
 		call->abort = handleCallWznmVit_vecEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVITJMOD_VITEQ) {
+		call->abort = handleCallWznmVitJMod_vitEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmVitDetail::handleCallWznmVitJMod_vitEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	set<uint> moditems;
-
-	refreshJ(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
-	return retval;
 };
 
 bool PnlWznmVitDetail::handleCallWznmVitUpd_refEq(
@@ -363,6 +350,19 @@ bool PnlWznmVitDetail::handleCallWznmVit_vecEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recVit.vecRefWznmMVector == refInv); // IP handleCallWznmVit_vecEq --- LINE
+	return retval;
+};
+
+bool PnlWznmVitDetail::handleCallWznmVitJMod_vitEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	refreshJ(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
 

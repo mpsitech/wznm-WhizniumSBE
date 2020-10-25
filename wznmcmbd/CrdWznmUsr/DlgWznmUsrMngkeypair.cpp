@@ -2,8 +2,8 @@
 	* \file DlgWznmUsrMngkeypair.cpp
 	* job handler for job DlgWznmUsrMngkeypair (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -88,8 +88,8 @@ void DlgWznmUsrMngkeypair::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- RBEGIN
 	// continf
@@ -103,8 +103,8 @@ void DlgWznmUsrMngkeypair::refresh(
 	statshr.DetDldActive = evalDetDldActive(dbswznm);
 
 	// IP refresh --- REND
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 };
 
 void DlgWznmUsrMngkeypair::handleRequest(

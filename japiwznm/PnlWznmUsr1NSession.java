@@ -2,8 +2,8 @@
   * \file PnlWznmUsr1NSession.java
   * Java API code for job PnlWznmUsr1NSession
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;

@@ -2,8 +2,8 @@
 	* \file WznmCtpWrstkit_blks.h
 	* invocation / return data blocks for operation pack WznmCtpWrstkit (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMCTPWRSTKIT_BLKS_H

@@ -2,8 +2,8 @@
 	* \file WznmComplJtr.cpp
 	* Wznm operation processor - complement job tree (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -45,6 +45,8 @@ DpchRetWznm* WznmComplJtr::run(
 	// add all Clisrv jobs with features below m2msess and fill statshr block
 	addM2msessJrjs(dbswznm, refWznmMVersion, Prjshort);
 
+	// identify global jobs
+	findGlobal(dbswznm, refWznmMVersion);
 	// IP run --- IEND
 
 	return(new DpchRetWznm(VecWznmVDpch::DPCHRETWZNM, "", "", ixOpVOpres, 100));
@@ -198,6 +200,94 @@ void WznmComplJtr::addM2msessJrjs(
 				};
 			};
 		};
+	};
+};
+
+void WznmComplJtr::findGlobal(
+			DbsWznm* dbswznm
+			, const ubigint refWznmMVersion
+		) {
+	ListWznmMJob jobs;
+	WznmMJob* job = NULL;
+
+	map<ubigint, unsigned int> icsJobs;
+
+	vector<unsigned int> lastcrdics;
+	vector<unsigned int> cntsViacrd;
+	vector<unsigned int> cntsNocrd;
+
+	bool found;
+
+	dbswznm->tblwznmmjob->loadRstByVer(refWznmMVersion, false, jobs);
+	for (unsigned int i = 0; i < jobs.nodes.size(); i++) icsJobs[jobs.nodes[i]->ref] = i;
+
+	lastcrdics.resize(jobs.nodes.size(), jobs.nodes.size()); // card job index of last reach
+	cntsViacrd.resize(jobs.nodes.size(), 0); // reachability count via distinct card job (note that cards are traversed one after the other)
+	cntsNocrd.resize(jobs.nodes.size(), 0); // reachability count not via card job
+
+	// start from root job
+	found = false;
+
+	for (unsigned int i = 0; i < jobs.nodes.size(); i++) {
+		job = jobs.nodes[i];
+
+		if (job->ixVBasetype == VecWznmVMJobBasetype::ROOT) {
+			found = true;
+			break;
+		};
+	};
+
+	if (found) {
+		findGlobal_traverse(dbswznm, jobs, icsJobs, job->ref, lastcrdics, cntsViacrd, cntsNocrd, jobs.nodes.size());
+
+		for (unsigned int i = 0; i < jobs.nodes.size(); i++) {
+			job = jobs.nodes[i];
+
+			if ((job->ixVBasetype == VecWznmVMJobBasetype::CUST) || (job->ixVBasetype == VecWznmVMJobBasetype::DLG) || (job->ixVBasetype == VecWznmVMJobBasetype::QRY)) {
+				if ((cntsNocrd[i] != 0) || (cntsViacrd[i] > 1)) {
+					job->Global = true;
+					dbswznm->tblwznmmjob->updateRec(job);
+				};
+			};
+		};
+	};
+};
+
+void WznmComplJtr::findGlobal_traverse(
+			DbsWznm* dbswznm
+			, ListWznmMJob& jobs
+			, map<ubigint, unsigned int>& icsJobs
+			, const ubigint refWznmMJob
+			, vector<unsigned int>& lastcrdics
+			, vector<unsigned int>& cntsViacrd
+			, vector<unsigned int>& cntsNocrd
+			, unsigned int crdix
+		) {
+	ListWznmRMJobMJob jrjs;
+	WznmRMJobMJob* jrj = NULL;
+
+	unsigned int ixJob;
+	WznmMJob* job = NULL;
+
+	ixJob = icsJobs[refWznmMJob];
+	job = jobs.nodes[ixJob];
+
+	if (crdix == jobs.nodes.size()) {
+		cntsNocrd[ixJob]++;
+	} else {
+		if (crdix != lastcrdics[ixJob]) {
+			cntsViacrd[ixJob]++;
+			lastcrdics[ixJob] = crdix;
+		};
+	};
+	
+	// traverse recursively
+	if (job->ixVBasetype == VecWznmVMJobBasetype::CRD) crdix = ixJob;
+
+	dbswznm->tblwznmrmjobmjob->loadRstBySup(refWznmMJob, false, jrjs);
+	for (unsigned int i = 0; i < jrjs.nodes.size(); i++) {
+		jrj = jrjs.nodes[i];
+		findGlobal_traverse(dbswznm, jobs, icsJobs, jrj->subRefWznmMJob, lastcrdics, cntsViacrd, cntsNocrd, crdix);
 	};
 };
 // IP cust --- IEND

@@ -2,8 +2,8 @@
 	* \file ApiWznm.cpp
 	* Wznm API library global functionality (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "ApiWznm.h"
@@ -1191,6 +1191,9 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMSTBSUPMNSTUBDATA) {
 			*dpcheng = new PnlWznmStbSupMNStub::DpchEngData();
 			((PnlWznmStbSupMNStub::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMSTEAACTIONDATA) {
+			*dpcheng = new PnlWznmSteAAction::DpchEngData();
+			((PnlWznmSteAAction::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMSTEATRIGDATA) {
 			*dpcheng = new PnlWznmSteATrig::DpchEngData();
 			((PnlWznmSteATrig::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);

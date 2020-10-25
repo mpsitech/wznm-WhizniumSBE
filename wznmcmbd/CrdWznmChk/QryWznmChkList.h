@@ -2,8 +2,8 @@
 	* \file QryWznmChkList.h
 	* job handler for job QryWznmChkList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMCHKLIST_H
@@ -31,8 +31,8 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint TCO = 1;
-		static const Sbecore::uint TBL = 2;
+		static const Sbecore::uint TBL = 1;
+		static const Sbecore::uint TCO = 2;
 		static const Sbecore::uint SRF = 3;
 		static const Sbecore::uint TYP = 4;
 

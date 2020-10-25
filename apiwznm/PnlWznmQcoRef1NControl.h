@@ -2,8 +2,8 @@
 	* \file PnlWznmQcoRef1NControl.h
 	* API code for job PnlWznmQcoRef1NControl (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMQCOREF1NCONTROL_H

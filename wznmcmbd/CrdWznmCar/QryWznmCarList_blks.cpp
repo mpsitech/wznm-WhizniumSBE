@@ -2,8 +2,8 @@
 	* \file QryWznmCarList_blks.cpp
 	* job handler for job QryWznmCarList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -21,8 +21,8 @@ uint QryWznmCarList::VecVOrd::getIx(
 
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
-	if (s == "mdl") return MDL;
 	if (s == "srf") return SRF;
+	if (s == "mdl") return MDL;
 
 	return(0);
 };
@@ -32,8 +32,8 @@ string QryWznmCarList::VecVOrd::getSref(
 		) {
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
-	if (ix == MDL) return("mdl");
 	if (ix == SRF) return("srf");
+	if (ix == MDL) return("mdl");
 
 	return("");
 };

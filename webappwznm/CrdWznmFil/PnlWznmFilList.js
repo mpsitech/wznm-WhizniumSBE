@@ -2,8 +2,8 @@
   * \file PnlWznmFilList.js
   * web client functionality for panel PnlWznmFilList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 // --- expand state management
@@ -122,13 +122,13 @@ function refreshB(chgcol) {
 			if (i == 1) {
 				doc.cols.push("TcoGrp"); doc.widths.push(TcoGrpWidth); doc.fs.push("grp"); doc.tos.push(5); wtot += TcoGrpWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoOwn"); doc.widths.push(TcoOwnWidth); doc.fs.push("own"); doc.tos.push(4); wtot += TcoOwnWidth;
+				doc.cols.push("TcoOwn"); doc.widths.push(TcoOwnWidth); doc.fs.push("own"); doc.tos.push(3); wtot += TcoOwnWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoFnm"); doc.widths.push(TcoFnmWidth); doc.fs.push("fnm"); doc.tos.push(3); wtot += TcoFnmWidth;
+				doc.cols.push("TcoFnm"); doc.widths.push(TcoFnmWidth); doc.fs.push("fnm"); doc.tos.push(4); wtot += TcoFnmWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoRet"); doc.widths.push(TcoRetWidth); doc.fs.push("ret2"); doc.tos.push(0); wtot += TcoRetWidth;
 			} else if (i == 5) {
-				doc.cols.push("TcoReu"); doc.widths.push(TcoReuWidth); doc.fs.push("reu"); doc.tos.push(1); wtot += TcoReuWidth;
+				doc.cols.push("TcoReu"); doc.widths.push(TcoReuWidth); doc.fs.push("reu"); doc.tos.push(2); wtot += TcoReuWidth;
 			} else if (i == 6) {
 				doc.cols.push("TcoCnt"); doc.widths.push(TcoCntWidth); doc.fs.push("cnt2"); doc.tos.push(0); wtot += TcoCntWidth;
 			} else if (i == 7) {

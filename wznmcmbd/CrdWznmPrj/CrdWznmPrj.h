@@ -2,8 +2,8 @@
 	* \file CrdWznmPrj.h
 	* job handler for job CrdWznmPrj (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef CRDWZNMPRJ_H
@@ -16,8 +16,8 @@
 #include "PnlWznmPrjList.h"
 #include "PnlWznmPrjHeadbar.h"
 #include "PnlWznmPrjRec.h"
-#include "DlgWznmPrjNew.h"
 #include "DlgWznmPrjImpex.h"
+#include "DlgWznmPrjNew.h"
 
 #define VecVWznmPrjDo CrdWznmPrj::VecVDo
 #define VecVWznmPrjSge CrdWznmPrj::VecVSge
@@ -210,8 +210,8 @@ public:
 	PnlWznmPrjList* pnllist;
 	PnlWznmPrjHeadbar* pnlheadbar;
 	PnlWznmPrjRec* pnlrec;
-	DlgWznmPrjNew* dlgnew;
 	DlgWznmPrjImpex* dlgimpex;
+	DlgWznmPrjNew* dlgnew;
 
 	// IP vars.cust --- INSERT
 

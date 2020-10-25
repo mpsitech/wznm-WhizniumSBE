@@ -2,8 +2,8 @@
 	* \file WznmQMch1NRelease.h
 	* API code for table TblWznmQMch1NRelease (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMQMCH1NRELEASE_H

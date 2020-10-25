@@ -2,8 +2,8 @@
 	* \file DlgWznmVerCustjtr.cpp
 	* API code for job DlgWznmVerCustjtr (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "DlgWznmVerCustjtr.h"

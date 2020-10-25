@@ -2,8 +2,8 @@
 	* \file QryWznmOpxList_blks.cpp
 	* job handler for job QryWznmOpxList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -19,8 +19,8 @@ uint QryWznmOpxList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "opk") return OPK;
 	if (s == "srf") return SRF;
+	if (s == "opk") return OPK;
 
 	return(0);
 };
@@ -28,8 +28,8 @@ uint QryWznmOpxList::VecVOrd::getIx(
 string QryWznmOpxList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == OPK) return("opk");
 	if (ix == SRF) return("srf");
+	if (ix == OPK) return("opk");
 
 	return("");
 };

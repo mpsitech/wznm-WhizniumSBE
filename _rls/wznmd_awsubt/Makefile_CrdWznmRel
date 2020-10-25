@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmRel card job handler, release wznmd_awsubt
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
 INCPATH += -I/home/ubuntu/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
 
-OBJS = CrdWznmRel.o PnlWznmRelList.o QryWznmRelList.o PnlWznmRelHeadbar.o PnlWznmRelRec.o PnlWznmRelRef1NDialog.o QryWznmRelRef1NDialog.o PnlWznmRelRef1NControl.o QryWznmRelRef1NControl.o PnlWznmRelRef1NPanel.o QryWznmRelRef1NPanel.o PnlWznmRelSup1NRelation.o QryWznmRelSup1NRelation.o PnlWznmRel1NTablecol.o QryWznmRel1NTablecol.o PnlWznmRelATitle.o QryWznmRelATitle.o PnlWznmRelDetail.o
+OBJS = CrdWznmRel.o PnlWznmRelRec.o PnlWznmRelDetail.o PnlWznmRelATitle.o QryWznmRelATitle.o PnlWznmRelSup1NRelation.o QryWznmRelSup1NRelation.o PnlWznmRel1NTablecol.o QryWznmRel1NTablecol.o PnlWznmRelRef1NControl.o QryWznmRelRef1NControl.o PnlWznmRelRef1NDialog.o QryWznmRelRef1NDialog.o PnlWznmRelRef1NPanel.o QryWznmRelRef1NPanel.o PnlWznmRelHeadbar.o PnlWznmRelList.o QryWznmRelList.o
 
 LIB = libcrdwznmrel
 

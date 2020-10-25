@@ -2,8 +2,8 @@
 	* \file WznmWrwebCrd.cpp
 	* Wznm operation processor - write web UI JS/HTML code for card (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -218,8 +218,8 @@ void WznmWrwebCrd::writeCrdJsfile(
 		for (unsigned int i = 0; i < con2s.nodes.size(); i++) {
 			con2 = con2s.nodes[i];
 
-			if (con2->Avail != "") outfile << "\t" << con2->sref << "Avail = (retrieveSi(srcdoc, \"StatShr" << car->sref.substr(3) << "\", \"" << con2->sref << "Avail\") == \"true\");" << endl;
-			if (con2->Active != "") outfile << "\t" << con2->sref << "Active = (retrieveSi(srcdoc, \"StatShr" << car->sref.substr(3) << "\", \"" << con2->sref << "Active\") == \"true\");" << endl;
+			if (con2->Avail != "") outfile << "\t" << con2->sref << "Avail = (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con2) << car->sref.substr(3) << "\", \"" << con2->sref << "Avail\") == \"true\");" << endl;
+			if (con2->Active != "") outfile << "\t" << con2->sref << "Active = (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con2) << car->sref.substr(3) << "\", \"" << con2->sref << "Active\") == \"true\");" << endl;
 		};
 		outfile << endl;
 

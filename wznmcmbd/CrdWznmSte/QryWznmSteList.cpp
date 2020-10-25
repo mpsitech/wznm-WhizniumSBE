@@ -2,8 +2,8 @@
 	* \file QryWznmSteList.cpp
 	* job handler for job QryWznmSteList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -211,8 +211,8 @@ void QryWznmSteList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SEQ) sqlstr += " ORDER BY TblWznmMState.seqRefWznmMSequence ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMState.sref ASC";
+	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMState.sref ASC";
+	else if (preIxOrd == VecVOrd::SEQ) sqlstr += " ORDER BY TblWznmMState.seqRefWznmMSequence ASC";
 };
 
 void QryWznmSteList::fetch(

@@ -2,8 +2,8 @@
 	* \file QryWznmJob1NMethod.h
 	* job handler for job QryWznmJob1NMethod (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMJOB1NMETHOD_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmMtdMod_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmMtdMod_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

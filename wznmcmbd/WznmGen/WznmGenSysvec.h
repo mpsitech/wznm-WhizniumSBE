@@ -2,8 +2,8 @@
 	* \file WznmGenSysvec.h
 	* Wznm operation processor - fill system vectors (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMGENSYSVEC_H
@@ -17,9 +17,6 @@ namespace WznmGenSysvec {
 
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmGenSysvec* dpchinv);
 	// IP cust --- IBEGIN
-
-	void findGlobal(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion);
-	void findGlobal_traverse(DbsWznm* dbswznm, ListWznmMJob& jobs, std::map<Sbecore::ubigint,unsigned int>& icsJobs, const Sbecore::ubigint refWznmMJob, std::vector<unsigned int>& lastcrdics, std::vector<unsigned int>& cntsViacrd, std::vector<unsigned int>& cntsNocrd, unsigned int crdix);
 
 	void fillVecSge(DbsWznm* dbswznm, WznmMVector* vec);
 	void fillVecOrd(DbsWznm* dbswznm, WznmMVector* vec);

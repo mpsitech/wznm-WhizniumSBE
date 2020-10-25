@@ -2,8 +2,8 @@
 	* \file Wznm.cpp
 	* Wznm global functionality (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "Wznm.h"
@@ -1388,6 +1388,33 @@ string Wznm::getConsref(
 		) {
 	if (ditshort.length() == 3) return con->sref.substr(3);
 	else return con->sref;
+};
+
+string Wznm::getConstatblk(
+			WznmMControl* con
+		) {
+	string retval = "StatShr";
+
+	if (con->ixVScope == VecWznmVMControlScope::APP) {
+		switch (con->ixVBasetype) {
+			case VecWznmVMControlBasetype::BUT:
+			case VecWznmVMControlBasetype::CHK:
+			case VecWznmVMControlBasetype::LST:
+			case VecWznmVMControlBasetype::PUP:
+			case VecWznmVMControlBasetype::RBU:
+			case VecWznmVMControlBasetype::SLD:
+			case VecWznmVMControlBasetype::TXF:
+			case VecWznmVMControlBasetype::TXT:
+			case VecWznmVMControlBasetype::UPD:
+				retval = "StatApp";
+				break;
+
+			default:
+				break;
+		};
+	};
+
+	return retval;
 };
 
 unsigned int Wznm::getConheight(
@@ -2995,7 +3022,7 @@ string StubWznm::getStubCpbStd(
 			if (stcch && !stit) stit = stcch->addStit(stref);
 			// IP getStubCpbStd --- IBEGIN
 			if (rec->refWznmMVersion != 0) {
-				stub = rec->Title;
+				stub = rec->sref;
 				if (rec->tplRefWznmMCapability != 0) stub += " (" + getStubCtpStd(dbswznm, rec->tplRefWznmMCapability, ixWznmVLocale, ixVNonetype, stcch, &stref) + ")";			
 			} else {
 				stub = getStubCtpStd(dbswznm, rec->ref, ixWznmVLocale, ixVNonetype, stcch, &stref);

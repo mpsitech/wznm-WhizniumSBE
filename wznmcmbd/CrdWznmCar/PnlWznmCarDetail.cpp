@@ -2,8 +2,8 @@
 	* \file PnlWznmCarDetail.cpp
 	* job handler for job PnlWznmCarDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -380,9 +380,7 @@ void PnlWznmCarDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMCARJTITMOD_CAREQ) {
-		call->abort = handleCallWznmCarJtitMod_carEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCARUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCARUPD_REFEQ) {
 		call->abort = handleCallWznmCarUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_REUEQ) {
 		call->abort = handleCallWznmCar_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
@@ -392,20 +390,9 @@ void PnlWznmCarDetail::handleCall(
 		call->abort = handleCallWznmCar_mdlEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_JOBEQ) {
 		call->abort = handleCallWznmCar_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCARJTITMOD_CAREQ) {
+		call->abort = handleCallWznmCarJtitMod_carEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmCarDetail::handleCallWznmCarJtitMod_carEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	set<uint> moditems;
-
-	refreshJti(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
-	return retval;
 };
 
 bool PnlWznmCarDetail::handleCallWznmCarUpd_refEq(
@@ -458,6 +445,19 @@ bool PnlWznmCarDetail::handleCallWznmCar_jobEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recCar.refWznmMJob == refInv); // IP handleCallWznmCar_jobEq --- LINE
+	return retval;
+};
+
+bool PnlWznmCarDetail::handleCallWznmCarJtitMod_carEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	refreshJti(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
 

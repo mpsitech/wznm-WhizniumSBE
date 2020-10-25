@@ -2,8 +2,8 @@
 	* \file PnlWznmSeqRec.h
 	* job handler for job PnlWznmSeqRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMSEQREC_H
@@ -13,8 +13,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSeqSeq1NState.h"
 #include "PnlWznmSeqDetail.h"
+#include "PnlWznmSeqSeq1NState.h"
 
 #define VecVWznmSeqRecDo PnlWznmSeqRec::VecVDo
 
@@ -167,8 +167,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSeqSeq1NState* pnlseq1nstate;
 	PnlWznmSeqDetail* pnldetail;
+	PnlWznmSeqSeq1NState* pnlseq1nstate;
 
 	WznmMSequence recSeq;
 

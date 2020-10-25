@@ -2,8 +2,8 @@
 	* \file QryWznmUsrAAccess.cpp
 	* job handler for job QryWznmUsrAAccess (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -315,11 +315,19 @@ void QryWznmUsrAAccess::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMUSRAACCMOD_USREQ) {
-		call->abort = handleCallWznmUsrAaccMod_usrEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSRAACCMOD_USREQ) {
+		call->abort = handleCallWznmUsrAaccMod_usrEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmUsrAAccess::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmUsrAAccess::handleCallWznmUsrAaccMod_usrEq(
@@ -333,14 +341,6 @@ bool QryWznmUsrAAccess::handleCallWznmUsrAaccMod_usrEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmUsrAAccess::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

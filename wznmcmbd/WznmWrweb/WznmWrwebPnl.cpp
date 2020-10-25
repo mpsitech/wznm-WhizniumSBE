@@ -2,8 +2,8 @@
 	* \file WznmWrwebPnl.cpp
 	* Wznm operation processor - write web UI JS/HTML code for panel (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -698,7 +698,7 @@ void WznmWrwebPnl::writePfJsfile(
 
 			if ((con->hkIxVSection == VecWznmVMControlHkSection::HDR) || (con->hkIxVSection == VecWznmVMControlHkSection::HDRDETD) || (con->hkIxVSection == VecWznmVMControlHkSection::HDRREGD)) {
 				if (con->ixVBasetype == VecWznmVMControlBasetype::BUT) {
-					if (con->Active.length() > 0) outfile << "\tvar " << con->sref << "Active = (retrieveSi(srcdoc, \"StatShr" << pnl->sref.substr(3) << "\", \"" << con->sref << "Active\") == \"true\");" << endl;
+					if (con->Active.length() > 0) outfile << "\tvar " << con->sref << "Active = (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con) << pnl->sref.substr(3) << "\", \"" << con->sref << "Active\") == \"true\");" << endl;
 				};
 			};
 		};
@@ -712,7 +712,7 @@ void WznmWrwebPnl::writePfJsfile(
 
 			if (con->hkIxVSection == VecWznmVMControlHkSection::FTR) {
 				if (con->ixVBasetype == VecWznmVMControlBasetype::BUT) {
-					if (con->Active.length() > 0) outfile << "\tvar " << con->sref << "Active = (retrieveSi(srcdoc, \"StatShr" << pnl->sref.substr(3) << "\", \"" << con->sref << "Active\") == \"true\");" << endl;
+					if (con->Active.length() > 0) outfile << "\tvar " << con->sref << "Active = (retrieveSi(srcdoc, \"" << Wznm::getConstatblk(con) << pnl->sref.substr(3) << "\", \"" << con->sref << "Active\") == \"true\");" << endl;
 				};
 			};
 		};
@@ -826,6 +826,18 @@ void WznmWrwebPnl::writePfJsfile(
 	// --- handleDpchAppDataDoReply.estshr*
 	if (!estapp) outfile << "// IP handleDpchAppDataDoReply.estshr --- AFFIRM" << endl;
 	else outfile << "// IP handleDpchAppDataDoReply.estshr --- REMOVE" << endl;
+
+	// --- handleDpchAppDataDoReply
+	outfile << "// IP handleDpchAppDataDoReply --- IBEGIN" << endl;
+	for (unsigned int i = 0; i < dpchs.nodes.size(); i++) {
+		dpch = dpchs.nodes[i];
+
+		if (dpch->sref.compare("DpchEng" + pnl->sref.substr(3) + "Data") != 0) {
+			outfile << "\t\t\t} else if (blk.nodeName == \"" << dpch->sref << "\") {" << endl;
+			outfile << "\t\t\t\thandle" << dpch->sref << "(dom);" << endl;
+		};
+	};
+	outfile << "// IP handleDpchAppDataDoReply --- IEND" << endl;
 
 	// --- handleDpchAppDoCrdopenReply*
 	if (hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "crdopen")) outfile << "// IP handleDpchAppDoCrdopenReply --- AFFIRM" << endl;

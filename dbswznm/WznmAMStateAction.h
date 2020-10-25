@@ -2,8 +2,8 @@
 	* \file WznmAMStateAction.h
 	* database access for table TblWznmAMStateAction (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMAMSTATEACTION_H
@@ -146,6 +146,7 @@ public:
 
 	virtual bool loadRecByRef(Sbecore::ubigint ref, WznmAMStateAction** rec);
 	virtual Sbecore::ubigint loadRefsBySte(Sbecore::ubigint steRefWznmMState, const bool append, std::vector<Sbecore::ubigint>& refs);
+	virtual Sbecore::ubigint loadRstBySte(Sbecore::ubigint steRefWznmMState, const bool append, ListWznmAMStateAction& rst);
 	Sbecore::ubigint loadRstByRefs(std::vector<Sbecore::ubigint>& refs, const bool append, ListWznmAMStateAction& rst);
 };
 
@@ -179,6 +180,7 @@ public:
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmAMStateAction** rec);
 	Sbecore::ubigint loadRefsBySte(Sbecore::ubigint steRefWznmMState, const bool append, std::vector<Sbecore::ubigint>& refs);
+	Sbecore::ubigint loadRstBySte(Sbecore::ubigint steRefWznmMState, const bool append, ListWznmAMStateAction& rst);
 };
 #endif
 
@@ -199,6 +201,7 @@ private:
 	bool loadRec(PGresult* res, WznmAMStateAction** rec);
 	Sbecore::ubigint loadRst(PGresult* res, const bool append, ListWznmAMStateAction& rst);
 	bool loadRecByStmt(const std::string& srefStmt, const unsigned int N, const char** vals, const int* l, const int* f, WznmAMStateAction** rec);
+	Sbecore::ubigint loadRstByStmt(const std::string& srefStmt, const unsigned int N, const char** vals, const int* l, const int* f, const bool append, ListWznmAMStateAction& rst);
 
 public:
 	bool loadRecBySQL(const std::string& sqlstr, WznmAMStateAction** rec);
@@ -212,6 +215,7 @@ public:
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmAMStateAction** rec);
 	Sbecore::ubigint loadRefsBySte(Sbecore::ubigint steRefWznmMState, const bool append, std::vector<Sbecore::ubigint>& refs);
+	Sbecore::ubigint loadRstBySte(Sbecore::ubigint steRefWznmMState, const bool append, ListWznmAMStateAction& rst);
 };
 #endif
 

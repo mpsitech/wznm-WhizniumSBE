@@ -2,8 +2,8 @@
 	* \file PnlWznmPnlDetail.cpp
 	* job handler for job PnlWznmPnlDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -286,8 +286,8 @@ void PnlWznmPnlDetail::handleDpchAppDoButReuViewClick(
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recPnl.refUref, jrefNew);
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::VEC) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmVec";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::TBL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmTbl";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recPnl.refUref, jrefNew);
 			};
 		};
@@ -298,8 +298,8 @@ void PnlWznmPnlDetail::handleDpchAppDoButReuViewClick(
 			};
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::TBL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmTbl";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::VEC) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmVec";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recPnl.refUref, jrefNew);
 			};
 		};

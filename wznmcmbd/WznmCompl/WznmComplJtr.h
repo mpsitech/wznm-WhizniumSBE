@@ -2,8 +2,8 @@
 	* \file WznmComplJtr.h
 	* Wznm operation processor - complement job tree (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMCOMPLJTR_H
@@ -24,9 +24,10 @@ namespace WznmComplJtr {
 
 	void addRootJrjs(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort);
 	void addM2msessJrjs(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort);
+
+	void findGlobal(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion);
+	void findGlobal_traverse(DbsWznm* dbswznm, ListWznmMJob& jobs, std::map<Sbecore::ubigint,unsigned int>& icsJobs, const Sbecore::ubigint refWznmMJob, std::vector<unsigned int>& lastcrdics, std::vector<unsigned int>& cntsViacrd, std::vector<unsigned int>& cntsNocrd, unsigned int crdix);
 	// IP cust --- IEND
 };
 
 #endif
-
-

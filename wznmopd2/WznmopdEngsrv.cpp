@@ -2,8 +2,8 @@
 	* \file WznmopdEngsrv.cpp
 	* engine server for Wznm operation daemon (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "Wznmopd.h"
@@ -301,21 +301,21 @@ uint WznmopdEngsrv::readDpchInv(
 	if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNM) {
 		req->dpchinv = new DpchInvWznm();
 		((DpchInvWznm*) (req->dpchinv))->readXML(docctx, "/", true);
-	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPWRWEB) {
-		req->dpchinv = new DpchInvWznmCtpWrweb();
-		((DpchInvWznmCtpWrweb*) (req->dpchinv))->readXML(docctx, "/", true);
-	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPWRSRV) {
-		req->dpchinv = new DpchInvWznmCtpWrsrv();
-		((DpchInvWznmCtpWrsrv*) (req->dpchinv))->readXML(docctx, "/", true);
-	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPWRSTKIT) {
-		req->dpchinv = new DpchInvWznmCtpWrstkit();
-		((DpchInvWznmCtpWrstkit*) (req->dpchinv))->readXML(docctx, "/", true);
-	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPGENUI) {
-		req->dpchinv = new DpchInvWznmCtpGenui();
-		((DpchInvWznmCtpGenui*) (req->dpchinv))->readXML(docctx, "/", true);
 	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPGENJTR) {
 		req->dpchinv = new DpchInvWznmCtpGenjtr();
 		((DpchInvWznmCtpGenjtr*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPGENUI) {
+		req->dpchinv = new DpchInvWznmCtpGenui();
+		((DpchInvWznmCtpGenui*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPWRSTKIT) {
+		req->dpchinv = new DpchInvWznmCtpWrstkit();
+		((DpchInvWznmCtpWrstkit*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPWRSRV) {
+		req->dpchinv = new DpchInvWznmCtpWrsrv();
+		((DpchInvWznmCtpWrsrv*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPWRWEB) {
+		req->dpchinv = new DpchInvWznmCtpWrweb();
+		((DpchInvWznmCtpWrweb*) (req->dpchinv))->readXML(docctx, "/", true);
 	};
 
 	if (docctx) xmlXPathFreeContext(docctx);

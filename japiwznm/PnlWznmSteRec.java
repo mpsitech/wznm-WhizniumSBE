@@ -2,8 +2,8 @@
   * \file PnlWznmSteRec.java
   * Java API code for job PnlWznmSteRec
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -114,19 +114,23 @@ public class PnlWznmSteRec {
 
 		public static final int INITDONEDETAIL = 1;
 		public static final int INITDONEATRIG = 2;
+		public static final int INITDONEAACTION = 3;
 
 		public StatApp(
 					boolean initdoneDetail
 					, boolean initdoneATrig
+					, boolean initdoneAAction
 				) {
 			this.initdoneDetail = initdoneDetail;
 			this.initdoneATrig = initdoneATrig;
+			this.initdoneAAction = initdoneAAction;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATRIG));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATRIG, INITDONEAACTION));
 		};
 
 		public boolean initdoneDetail;
 		public boolean initdoneATrig;
+		public boolean initdoneAAction;
 
 		public boolean readXML(
 					Document doc
@@ -143,6 +147,7 @@ public class PnlWznmSteRec {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
 				initdoneATrig = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneATrig", mask, INITDONEATRIG);
+				initdoneAAction = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAAction", mask, INITDONEAACTION);
 
 				return true;
 			};
@@ -157,6 +162,7 @@ public class PnlWznmSteRec {
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
 			if (initdoneATrig == comp.initdoneATrig) items.add(INITDONEATRIG);
+			if (initdoneAAction == comp.initdoneAAction) items.add(INITDONEAACTION);
 
 			return(items);
 		};
@@ -169,7 +175,7 @@ public class PnlWznmSteRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATRIG));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATRIG, INITDONEAACTION));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -185,25 +191,29 @@ public class PnlWznmSteRec {
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
 		public static final int SCRJREFATRIG = 3;
-		public static final int BUTREGULARIZEACTIVE = 4;
+		public static final int SCRJREFAACTION = 4;
+		public static final int BUTREGULARIZEACTIVE = 5;
 
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
 					, String scrJrefATrig
+					, String scrJrefAAction
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
 			this.scrJrefATrig = scrJrefATrig;
+			this.scrJrefAAction = scrJrefAAction;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, SCRJREFAACTION, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
 		public String scrJrefATrig;
+		public String scrJrefAAction;
 		public boolean ButRegularizeActive;
 
 		public boolean readXML(
@@ -224,6 +234,7 @@ public class PnlWznmSteRec {
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
 				scrJrefATrig = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefATrig", mask, SCRJREFATRIG);
+				scrJrefAAction = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAAction", mask, SCRJREFAACTION);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
 				return true;
@@ -240,6 +251,7 @@ public class PnlWznmSteRec {
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
 			if (scrJrefATrig.equals(comp.scrJrefATrig)) items.add(SCRJREFATRIG);
+			if (scrJrefAAction.equals(comp.scrJrefAAction)) items.add(SCRJREFAACTION);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
 			return(items);
@@ -253,7 +265,7 @@ public class PnlWznmSteRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, SCRJREFAACTION, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -395,8 +407,8 @@ public class PnlWznmSteRec {
 			super(VecWznmVDpch.DPCHENGWZNMSTERECDATA);
 
 			continf = new ContInf("");
-			statapp = new StatApp(false, false);
-			statshr = new StatShr(0, "", "", false);
+			statapp = new StatApp(false, false, false);
+			statshr = new StatShr(0, "", "", "", false);
 			tag = new Tag("");
 		};
 
@@ -436,8 +448,8 @@ public class PnlWznmSteRec {
 			} else {
 				scrJref = "";
 				continf = new ContInf("");
-				statapp = new StatApp(false, false);
-				statshr = new StatShr(0, "", "", false);
+				statapp = new StatApp(false, false, false);
+				statshr = new StatShr(0, "", "", "", false);
 				tag = new Tag("");
 			};
 		};

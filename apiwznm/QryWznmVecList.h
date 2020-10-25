@@ -2,8 +2,8 @@
 	* \file QryWznmVecList.h
 	* API code for job QryWznmVecList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMVECLIST_H
@@ -27,11 +27,11 @@ namespace QryWznmVecList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint TGR = 1;
-		static const Sbecore::uint HKT = 2;
-		static const Sbecore::uint HKU = 3;
-		static const Sbecore::uint VER = 4;
-		static const Sbecore::uint TYP = 5;
+		static const Sbecore::uint HKU = 1;
+		static const Sbecore::uint TGR = 2;
+		static const Sbecore::uint HKT = 3;
+		static const Sbecore::uint TYP = 4;
+		static const Sbecore::uint VER = 5;
 		static const Sbecore::uint SRF = 6;
 
 		static Sbecore::uint getIx(const std::string& sref);

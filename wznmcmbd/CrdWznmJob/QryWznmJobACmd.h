@@ -2,8 +2,8 @@
 	* \file QryWznmJobACmd.h
 	* job handler for job QryWznmJobACmd (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMJOBACMD_H
@@ -122,8 +122,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmJobAcmdMod_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmJobAcmdMod_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

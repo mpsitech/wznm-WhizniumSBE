@@ -2,8 +2,8 @@
 	* \file QryWznmCmpList_blks.cpp
 	* job handler for job QryWznmCmpList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -19,9 +19,9 @@ uint QryWznmCmpList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ver") return VER;
-	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
+	if (s == "typ") return TYP;
+	if (s == "ver") return VER;
 
 	return(0);
 };
@@ -29,9 +29,9 @@ uint QryWznmCmpList::VecVOrd::getIx(
 string QryWznmCmpList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == VER) return("ver");
-	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
+	if (ix == TYP) return("typ");
+	if (ix == VER) return("ver");
 
 	return("");
 };

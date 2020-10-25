@@ -2,8 +2,8 @@
 	* \file VecWznmVDpch.h
 	* vector VecWznmVDpch (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "VecWznmVDpch.h"
@@ -376,6 +376,7 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengwznmstbrecdata") return DPCHENGWZNMSTBRECDATA;
 	if (s == "dpchengwznmstbsubmnstubdata") return DPCHENGWZNMSTBSUBMNSTUBDATA;
 	if (s == "dpchengwznmstbsupmnstubdata") return DPCHENGWZNMSTBSUPMNSTUBDATA;
+	if (s == "dpchengwznmsteaactiondata") return DPCHENGWZNMSTEAACTIONDATA;
 	if (s == "dpchengwznmsteatrigdata") return DPCHENGWZNMSTEATRIGDATA;
 	if (s == "dpchengwznmstedata") return DPCHENGWZNMSTEDATA;
 	if (s == "dpchengwznmstedetaildata") return DPCHENGWZNMSTEDETAILDATA;
@@ -1023,6 +1024,8 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappwznmstbsubmnstubdo") return DPCHAPPWZNMSTBSUBMNSTUBDO;
 	if (s == "dpchappwznmstbsupmnstubdata") return DPCHAPPWZNMSTBSUPMNSTUBDATA;
 	if (s == "dpchappwznmstbsupmnstubdo") return DPCHAPPWZNMSTBSUPMNSTUBDO;
+	if (s == "dpchappwznmsteaactiondata") return DPCHAPPWZNMSTEAACTIONDATA;
+	if (s == "dpchappwznmsteaactiondo") return DPCHAPPWZNMSTEAACTIONDO;
 	if (s == "dpchappwznmsteatrigdata") return DPCHAPPWZNMSTEATRIGDATA;
 	if (s == "dpchappwznmsteatrigdo") return DPCHAPPWZNMSTEATRIGDO;
 	if (s == "dpchappwznmstedetaildata") return DPCHAPPWZNMSTEDETAILDATA;
@@ -1555,6 +1558,7 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGWZNMSTBRECDATA) return("DpchEngWznmStbRecData");
 	if (ix == DPCHENGWZNMSTBSUBMNSTUBDATA) return("DpchEngWznmStbSubMNStubData");
 	if (ix == DPCHENGWZNMSTBSUPMNSTUBDATA) return("DpchEngWznmStbSupMNStubData");
+	if (ix == DPCHENGWZNMSTEAACTIONDATA) return("DpchEngWznmSteAActionData");
 	if (ix == DPCHENGWZNMSTEATRIGDATA) return("DpchEngWznmSteATrigData");
 	if (ix == DPCHENGWZNMSTEDATA) return("DpchEngWznmSteData");
 	if (ix == DPCHENGWZNMSTEDETAILDATA) return("DpchEngWznmSteDetailData");
@@ -2202,6 +2206,8 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPWZNMSTBSUBMNSTUBDO) return("DpchAppWznmStbSubMNStubDo");
 	if (ix == DPCHAPPWZNMSTBSUPMNSTUBDATA) return("DpchAppWznmStbSupMNStubData");
 	if (ix == DPCHAPPWZNMSTBSUPMNSTUBDO) return("DpchAppWznmStbSupMNStubDo");
+	if (ix == DPCHAPPWZNMSTEAACTIONDATA) return("DpchAppWznmSteAActionData");
+	if (ix == DPCHAPPWZNMSTEAACTIONDO) return("DpchAppWznmSteAActionDo");
 	if (ix == DPCHAPPWZNMSTEATRIGDATA) return("DpchAppWznmSteATrigData");
 	if (ix == DPCHAPPWZNMSTEATRIGDO) return("DpchAppWznmSteATrigDo");
 	if (ix == DPCHAPPWZNMSTEDETAILDATA) return("DpchAppWznmSteDetailData");

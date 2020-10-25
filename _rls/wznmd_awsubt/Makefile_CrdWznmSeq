@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmSeq card job handler, release wznmd_awsubt
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmd/VecWznm -I$(SRCROOT)/wznmd/IexWznm -I$(SRCROOT)/wznmd
 INCPATH += -I/home/ubuntu/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
 
-OBJS = CrdWznmSeq.o PnlWznmSeqList.o QryWznmSeqList.o PnlWznmSeqHeadbar.o PnlWznmSeqRec.o PnlWznmSeqSeq1NState.o QryWznmSeqSeq1NState.o PnlWznmSeqDetail.o
+OBJS = CrdWznmSeq.o PnlWznmSeqRec.o PnlWznmSeqDetail.o PnlWznmSeqSeq1NState.o QryWznmSeqSeq1NState.o PnlWznmSeqHeadbar.o PnlWznmSeqList.o QryWznmSeqList.o
 
 LIB = libcrdwznmseq
 

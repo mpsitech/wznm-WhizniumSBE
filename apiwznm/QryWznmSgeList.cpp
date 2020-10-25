@@ -2,8 +2,8 @@
 	* \file QryWznmSgeList.cpp
 	* API code for job QryWznmSgeList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmSgeList.h"
@@ -21,9 +21,9 @@ uint QryWznmSgeList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "job") return JOB;
 	if (s == "srf") return SRF;
 	if (s == "typ") return TYP;
+	if (s == "job") return JOB;
 
 	return(0);
 };
@@ -31,9 +31,9 @@ uint QryWznmSgeList::VecVOrd::getIx(
 string QryWznmSgeList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == JOB) return("job");
 	if (ix == SRF) return("srf");
 	if (ix == TYP) return("typ");
+	if (ix == JOB) return("job");
 
 	return("");
 };

@@ -2,8 +2,8 @@
 	* \file PnlWznmMtdRec.h
 	* job handler for job PnlWznmMtdRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMMTDREC_H
@@ -13,9 +13,9 @@
 
 // IP include.cust --- INSERT
 
+#include "PnlWznmMtdDetail.h"
 #include "PnlWznmMtdAInvpar.h"
 #include "PnlWznmMtdARetpar.h"
-#include "PnlWznmMtdDetail.h"
 
 #define VecVWznmMtdRecDo PnlWznmMtdRec::VecVDo
 
@@ -72,7 +72,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneARetpar = false, const bool initdoneAInvpar = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAInvpar = false, const bool initdoneARetpar = false);
 	};
 
 	/**
@@ -83,18 +83,18 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFARETPAR = 3;
-		static const Sbecore::uint JREFAINVPAR = 4;
+		static const Sbecore::uint JREFAINVPAR = 3;
+		static const Sbecore::uint JREFARETPAR = 4;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 5;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefARetpar = 0, const Sbecore::ubigint jrefAInvpar = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAInvpar = 0, const Sbecore::ubigint jrefARetpar = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefARetpar;
 		Sbecore::ubigint jrefAInvpar;
+		Sbecore::ubigint jrefARetpar;
 		bool ButRegularizeActive;
 
 	public:
@@ -170,9 +170,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
+	PnlWznmMtdDetail* pnldetail;
 	PnlWznmMtdAInvpar* pnlainvpar;
 	PnlWznmMtdARetpar* pnlaretpar;
-	PnlWznmMtdDetail* pnldetail;
 
 	WznmMMethod recMtd;
 

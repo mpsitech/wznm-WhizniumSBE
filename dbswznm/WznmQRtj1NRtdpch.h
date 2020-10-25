@@ -2,8 +2,8 @@
 	* \file WznmQRtj1NRtdpch.h
 	* Dbs and XML wrapper for table TblWznmQRtj1NRtdpch (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMQRTJ1NRTDPCH_H

@@ -2,8 +2,8 @@
 	* \file PnlWznmDlgRec.cpp
 	* job handler for job PnlWznmDlgRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,10 +37,10 @@ PnlWznmDlgRec::PnlWznmDlgRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlmnquery = NULL;
-	pnlref1ncontrol = NULL;
-	pnlhk1ncontrol = NULL;
 	pnldetail = NULL;
+	pnlhk1ncontrol = NULL;
+	pnlref1ncontrol = NULL;
+	pnlmnquery = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

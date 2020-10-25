@@ -2,8 +2,8 @@
 	* \file PnlWznmTcoRec.cpp
 	* job handler for job PnlWznmTcoRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,13 +37,13 @@ PnlWznmTcoRec::PnlWznmTcoRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnl1ncheck = NULL;
+	pnldetail = NULL;
+	pnlatitle = NULL;
+	pnl1nimpexpcol = NULL;
+	pnl1nquerycol = NULL;
 	pnlref1ncontrol = NULL;
 	pnlref1nquerymod = NULL;
-	pnl1nquerycol = NULL;
-	pnl1nimpexpcol = NULL;
-	pnlatitle = NULL;
-	pnldetail = NULL;
+	pnl1ncheck = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -104,8 +104,8 @@ void PnlWznmTcoRec::refresh(
 	statshr.pnlatitleAvail = evalPnlatitleAvail(dbswznm);
 	statshr.pnl1nimpexpcolAvail = evalPnl1nimpexpcolAvail(dbswznm);
 	statshr.pnl1nquerycolAvail = evalPnl1nquerycolAvail(dbswznm);
-	statshr.pnlref1nquerymodAvail = evalPnlref1nquerymodAvail(dbswznm);
 	statshr.pnlref1ncontrolAvail = evalPnlref1ncontrolAvail(dbswznm);
+	statshr.pnlref1nquerymodAvail = evalPnlref1nquerymodAvail(dbswznm);
 	statshr.ButRegularizeActive = evalButRegularizeActive(dbswznm);
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
@@ -113,16 +113,16 @@ void PnlWznmTcoRec::refresh(
 		if (pnlatitle) {delete pnlatitle; pnlatitle = NULL;};
 		if (pnl1nimpexpcol) {delete pnl1nimpexpcol; pnl1nimpexpcol = NULL;};
 		if (pnl1nquerycol) {delete pnl1nquerycol; pnl1nquerycol = NULL;};
-		if (pnlref1nquerymod) {delete pnlref1nquerymod; pnlref1nquerymod = NULL;};
 		if (pnlref1ncontrol) {delete pnlref1ncontrol; pnlref1ncontrol = NULL;};
+		if (pnlref1nquerymod) {delete pnlref1nquerymod; pnlref1nquerymod = NULL;};
 		if (pnl1ncheck) {delete pnl1ncheck; pnl1ncheck = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmTcoDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlatitle) pnlatitle = new PnlWznmTcoATitle(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nimpexpcol) pnl1nimpexpcol = new PnlWznmTco1NImpexpcol(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nquerycol) pnl1nquerycol = new PnlWznmTco1NQuerycol(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlref1nquerymod) pnlref1nquerymod = new PnlWznmTcoRef1NQuerymod(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1ncontrol) pnlref1ncontrol = new PnlWznmTcoRef1NControl(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlref1nquerymod) pnlref1nquerymod = new PnlWznmTcoRef1NQuerymod(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1ncheck) pnl1ncheck = new PnlWznmTco1NCheck(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
@@ -130,8 +130,8 @@ void PnlWznmTcoRec::refresh(
 	statshr.jrefATitle = ((pnlatitle) ? pnlatitle->jref : 0);
 	statshr.jref1NImpexpcol = ((pnl1nimpexpcol) ? pnl1nimpexpcol->jref : 0);
 	statshr.jref1NQuerycol = ((pnl1nquerycol) ? pnl1nquerycol->jref : 0);
-	statshr.jrefRef1NQuerymod = ((pnlref1nquerymod) ? pnlref1nquerymod->jref : 0);
 	statshr.jrefRef1NControl = ((pnlref1ncontrol) ? pnlref1ncontrol->jref : 0);
+	statshr.jrefRef1NQuerymod = ((pnlref1nquerymod) ? pnlref1nquerymod->jref : 0);
 	statshr.jref1NCheck = ((pnl1ncheck) ? pnl1ncheck->jref : 0);
 
 	// IP refresh --- END
@@ -166,8 +166,8 @@ void PnlWznmTcoRec::updatePreset(
 			if (pnlatitle) pnlatitle->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nimpexpcol) pnl1nimpexpcol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nquerycol) pnl1nquerycol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlref1nquerymod) pnlref1nquerymod->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1ncontrol) pnlref1ncontrol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlref1nquerymod) pnlref1nquerymod->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1ncheck) pnl1ncheck->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 

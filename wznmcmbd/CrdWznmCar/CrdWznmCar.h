@@ -2,8 +2,8 @@
 	* \file CrdWznmCar.h
 	* job handler for job CrdWznmCar (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef CRDWZNMCAR_H
@@ -13,9 +13,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCarList.h"
-#include "PnlWznmCarHeadbar.h"
 #include "PnlWznmCarRec.h"
+#include "PnlWznmCarHeadbar.h"
+#include "PnlWznmCarList.h"
 
 #define VecVWznmCarDo CrdWznmCar::VecVDo
 #define VecVWznmCarSge CrdWznmCar::VecVSge
@@ -189,9 +189,9 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	PnlWznmCarList* pnllist;
-	PnlWznmCarHeadbar* pnlheadbar;
 	PnlWznmCarRec* pnlrec;
+	PnlWznmCarHeadbar* pnlheadbar;
+	PnlWznmCarList* pnllist;
 
 	// IP vars.cust --- INSERT
 

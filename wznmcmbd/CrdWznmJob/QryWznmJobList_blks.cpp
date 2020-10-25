@@ -2,8 +2,8 @@
 	* \file QryWznmJobList_blks.cpp
 	* job handler for job QryWznmJobList (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -19,12 +19,12 @@ uint QryWznmJobList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "gbl") return GBL;
-	if (s == "reu") return REU;
-	if (s == "ret") return RET;
-	if (s == "ver") return VER;
-	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
+	if (s == "typ") return TYP;
+	if (s == "ver") return VER;
+	if (s == "ret") return RET;
+	if (s == "reu") return REU;
+	if (s == "gbl") return GBL;
 
 	return(0);
 };
@@ -32,12 +32,12 @@ uint QryWznmJobList::VecVOrd::getIx(
 string QryWznmJobList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == GBL) return("gbl");
-	if (ix == REU) return("reu");
-	if (ix == RET) return("ret");
-	if (ix == VER) return("ver");
-	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
+	if (ix == TYP) return("typ");
+	if (ix == VER) return("ver");
+	if (ix == RET) return("ret");
+	if (ix == REU) return("reu");
+	if (ix == GBL) return("gbl");
 
 	return("");
 };

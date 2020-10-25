@@ -2,8 +2,8 @@
 	* \file WznmPrctreeExtract.h
 	* Wznm operation processor - extract from file tree into extract file tree (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMPRCTREEEXTRACT_H

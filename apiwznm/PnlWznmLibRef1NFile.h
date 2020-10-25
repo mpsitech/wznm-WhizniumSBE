@@ -2,8 +2,8 @@
 	* \file PnlWznmLibRef1NFile.h
 	* API code for job PnlWznmLibRef1NFile (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMLIBREF1NFILE_H

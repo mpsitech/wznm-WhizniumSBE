@@ -2,8 +2,8 @@
   * \file QryWznmPstList.java
   * Java API code for job QryWznmPstList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -21,8 +21,8 @@ public class QryWznmPstList {
 		public static final int ATY = 1;
 		public static final int RET = 2;
 		public static final int REU = 3;
-		public static final int SRF = 4;
-		public static final int VER = 5;
+		public static final int VER = 4;
+		public static final int SRF = 5;
 
 		public static int getIx(
 					String sref
@@ -32,8 +32,8 @@ public class QryWznmPstList {
 			if (s.equals("aty")) return ATY;
 			if (s.equals("ret")) return RET;
 			if (s.equals("reu")) return REU;
-			if (s.equals("srf")) return SRF;
 			if (s.equals("ver")) return VER;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -44,8 +44,8 @@ public class QryWznmPstList {
 			if (ix == ATY) return("aty");
 			if (ix == RET) return("ret");
 			if (ix == REU) return("reu");
-			if (ix == SRF) return("srf");
 			if (ix == VER) return("ver");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

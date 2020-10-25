@@ -2,8 +2,8 @@
 	* \file CrdWznmPrj.cpp
 	* job handler for job CrdWznmPrj (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -45,8 +45,8 @@ CrdWznmPrj::CrdWznmPrj(
 	pnllist = NULL;
 	pnlheadbar = NULL;
 	pnlrec = NULL;
-	dlgnew = NULL;
 	dlgimpex = NULL;
+	dlgnew = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

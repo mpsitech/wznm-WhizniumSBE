@@ -2,8 +2,8 @@
 	* \file QryWznmVerVer1NModule.h
 	* API code for job QryWznmVerVer1NModule (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMVERVER1NMODULE_H

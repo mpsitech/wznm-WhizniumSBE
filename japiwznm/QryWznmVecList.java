@@ -2,8 +2,8 @@
   * \file QryWznmVecList.java
   * Java API code for job QryWznmVecList
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 package apiwznm;
@@ -18,11 +18,11 @@ public class QryWznmVecList {
 		*/
 	public static class VecVOrd {
 
-		public static final int TGR = 1;
-		public static final int HKT = 2;
-		public static final int HKU = 3;
-		public static final int VER = 4;
-		public static final int TYP = 5;
+		public static final int HKU = 1;
+		public static final int TGR = 2;
+		public static final int HKT = 3;
+		public static final int TYP = 4;
+		public static final int VER = 5;
 		public static final int SRF = 6;
 
 		public static int getIx(
@@ -30,11 +30,11 @@ public class QryWznmVecList {
 				) {
 			String s = sref.toLowerCase();
 
+			if (s.equals("hku")) return HKU;
 			if (s.equals("tgr")) return TGR;
 			if (s.equals("hkt")) return HKT;
-			if (s.equals("hku")) return HKU;
-			if (s.equals("ver")) return VER;
 			if (s.equals("typ")) return TYP;
+			if (s.equals("ver")) return VER;
 			if (s.equals("srf")) return SRF;
 
 			return 0;
@@ -43,11 +43,11 @@ public class QryWznmVecList {
 		public static String getSref(
 					int ix
 				) {
+			if (ix == HKU) return("hku");
 			if (ix == TGR) return("tgr");
 			if (ix == HKT) return("hkt");
-			if (ix == HKU) return("hku");
-			if (ix == VER) return("ver");
 			if (ix == TYP) return("typ");
+			if (ix == VER) return("ver");
 			if (ix == SRF) return("srf");
 
 			return "";

@@ -2,8 +2,8 @@
 	* \file WznmGenJob.cpp
 	* Wznm operation processor - generate job tree (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -809,9 +809,9 @@ void WznmGenJob::addCon(
 		if (refsAlr.find(con->supRefWznmMControl) != refsAlr.end()) return;
 	};
 
-	// all: StatShr if avail/active rule present
-	if (con->Avail.length() > 0) addBit(dbswznm, job, blks, bitnums, "StatShr", ditshort, VecWznmVAMBlockItemBasetype::VAR, consref + "Avail", VecWznmVVartype::BOOLEAN, con->ref, 0, "true", 0);
-	if (con->Active.length() > 0) addBit(dbswznm, job, blks, bitnums, "StatShr", ditshort, VecWznmVAMBlockItemBasetype::VAR, consref + "Active", VecWznmVVartype::BOOLEAN, con->ref, 0, "true", 0);
+	// all: StatApp/StatShr if avail/active rule present
+	if (con->Avail.length() > 0) addBit(dbswznm, job, blks, bitnums, Wznm::getConstatblk(con), ditshort, VecWznmVAMBlockItemBasetype::VAR, consref + "Avail", VecWznmVVartype::BOOLEAN, con->ref, 0, "true", 0);
+	if (con->Active.length() > 0) addBit(dbswznm, job, blks, bitnums, Wznm::getConstatblk(con), ditshort, VecWznmVAMBlockItemBasetype::VAR, consref + "Active", VecWznmVVartype::BOOLEAN, con->ref, 0, "true", 0);
 
 	if (con->ixVBasetype == VecWznmVMControlBasetype::ALR) {
 		// -

@@ -2,8 +2,8 @@
 	* \file PnlWznmStbMNSquawk_evals.cpp
 	* job handler for job PnlWznmStbMNSquawk (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -13,7 +13,7 @@ using namespace Xmlio;
 bool PnlWznmStbMNSquawk::evalButViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// !sel()|((pre.ixCrdaccOpk()&pre.refVer())|(pre.ixCrdaccOpx()&pre.refVer())|(pre.ixCrdaccSge()&pre.refVer()))
+	// !sel()|((pre.ixCrdaccOpx()&pre.refVer())|(pre.ixCrdaccSge()&pre.refVer())|(pre.ixCrdaccOpk()&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
@@ -22,13 +22,6 @@ bool PnlWznmStbMNSquawk::evalButViewAvail(
 	args.push_back(a);
 	a = args.back(); args.pop_back();
 	args.push_back(!a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPK, jref) != 0);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPX, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
@@ -37,6 +30,13 @@ bool PnlWznmStbMNSquawk::evalButViewAvail(
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSGE, jref) != 0);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPK, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);

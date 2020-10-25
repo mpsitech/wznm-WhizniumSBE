@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmCmp card job handler, release wznmcmbd_awsubt
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmcmbd/VecWznm -I$(SRCROOT)/wznmcmbd/IexWznm -I$(SRCROOT)/wznmcmbd
 INCPATH += -I/home/ubuntu/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/local/include
 
-OBJS = CrdWznmCmp.o PnlWznmCmpList.o QryWznmCmpList.o PnlWznmCmpHeadbar.o PnlWznmCmpRec.o PnlWznmCmpMNLibrary.o QryWznmCmpMNLibrary.o PnlWznmCmpMNOppack.o QryWznmCmpMNOppack.o PnlWznmCmp1NRelease.o QryWznmCmp1NRelease.o PnlWznmCmpDetail.o
+OBJS = CrdWznmCmp.o PnlWznmCmpRec.o PnlWznmCmpDetail.o PnlWznmCmp1NRelease.o QryWznmCmp1NRelease.o PnlWznmCmpMNLibrary.o QryWznmCmpMNLibrary.o PnlWznmCmpMNOppack.o QryWznmCmpMNOppack.o PnlWznmCmpHeadbar.o PnlWznmCmpList.o QryWznmCmpList.o
 
 LIB = libcrdwznmcmp
 

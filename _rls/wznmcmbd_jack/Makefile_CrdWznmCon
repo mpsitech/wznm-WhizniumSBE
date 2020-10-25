@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmCon card job handler, release wznmcmbd_jack
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 include ../Makefile.inc
 
@@ -15,7 +15,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(SRCROOT)/dbswznm -I$(SRCROOT)/wznmcmbd/VecWznm -I$(SRCROOT)/wznmcmbd/IexWznm -I$(SRCROOT)/wznmcmbd
 INCPATH += -I/home/mpsitech/src/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mysql -I/usr/include/postgresql -I/usr/local/include
 
-OBJS = CrdWznmCon.o PnlWznmConList.o QryWznmConList.o PnlWznmConHeadbar.o PnlWznmConRec.o PnlWznmConFedRef1NRtblock.o QryWznmConFedRef1NRtblock.o PnlWznmConSup1NControl.o QryWznmConSup1NControl.o PnlWznmConAPar.o QryWznmConAPar.o PnlWznmConDetail.o
+OBJS = CrdWznmCon.o PnlWznmConRec.o PnlWznmConDetail.o PnlWznmConAPar.o QryWznmConAPar.o PnlWznmConSup1NControl.o QryWznmConSup1NControl.o PnlWznmConFedRef1NRtblock.o QryWznmConFedRef1NRtblock.o PnlWznmConHeadbar.o PnlWznmConList.o QryWznmConList.o
 
 LIB = libcrdwznmcon
 

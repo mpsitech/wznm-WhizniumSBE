@@ -2,8 +2,8 @@
 	* \file PnlWznmConRec.cpp
 	* job handler for job PnlWznmConRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,10 +37,10 @@ PnlWznmConRec::PnlWznmConRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlfedref1nrtblock = NULL;
-	pnlsup1ncontrol = NULL;
-	pnlapar = NULL;
 	pnldetail = NULL;
+	pnlapar = NULL;
+	pnlsup1ncontrol = NULL;
+	pnlfedref1nrtblock = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -271,10 +271,10 @@ void PnlWznmConRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMFEDUPD_REFEQ) {
-		call->abort = handleCallWznmFedUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCONUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCONUPD_REFEQ) {
 		call->abort = handleCallWznmConUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFEDUPD_REFEQ) {
+		call->abort = handleCallWznmFedUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFED_SRUEQ) {
 		call->abort = handleCallWznmFed_sruEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFED_SRTEQ) {
@@ -304,21 +304,21 @@ void PnlWznmConRec::handleCall(
 	};
 };
 
-bool PnlWznmConRec::handleCallWznmFedUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmFedUpd_refEq --- INSERT
-	return retval;
-};
-
 bool PnlWznmConRec::handleCallWznmConUpd_refEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 		) {
 	bool retval = false;
 	// IP handleCallWznmConUpd_refEq --- INSERT
+	return retval;
+};
+
+bool PnlWznmConRec::handleCallWznmFedUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmFedUpd_refEq --- INSERT
 	return retval;
 };
 

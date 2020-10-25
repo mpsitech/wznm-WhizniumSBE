@@ -2,8 +2,8 @@
 	* \file PnlWznmJobJob1NStage.cpp
 	* API code for job PnlWznmJobJob1NStage (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "PnlWznmJobJob1NStage.h"

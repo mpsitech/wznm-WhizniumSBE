@@ -2,8 +2,8 @@
 	* \file PnlWznmImeRec.cpp
 	* job handler for job PnlWznmImeRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,10 +37,10 @@ PnlWznmImeRec::PnlWznmImeRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlhk1nvector = NULL;
-	pnlsup1nimpexp = NULL;
-	pnlime1nimpexpcol = NULL;
 	pnldetail = NULL;
+	pnlime1nimpexpcol = NULL;
+	pnlsup1nimpexp = NULL;
+	pnlhk1nvector = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

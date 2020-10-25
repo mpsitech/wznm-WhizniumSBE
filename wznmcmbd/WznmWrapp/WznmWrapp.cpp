@@ -2,8 +2,8 @@
 	* \file WznmWrapp.cpp
 	* Wznm operation pack global code (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -240,8 +240,8 @@ void WznmWrapp::writeHandleTrigger(
 
 	unsigned int ixSeqsLast;
 
-	if (app->ixWznmVApptarget == VecWznmVApptarget::JAVA) indent = "\t\t\t\t";
-	else indent = "\t\t\t";
+	if (app->ixWznmVApptarget == VecWznmVApptarget::JAVA) indent = "\t\t\t";
+	else indent = "\t\t";
 
 	if (app->ixWznmVApptarget == VecWznmVApptarget::JAVA) dlm = ".";
 	else dlm = "::";
@@ -266,7 +266,7 @@ void WznmWrapp::writeHandleTrigger(
 		ste = stes.nodes[i];
 
 		if (ipAllNotSpec || (cntsLve[i] > 0)) {
-			outfile << indent << "\tcase Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": ";
+			outfile << indent << "\t\tcase Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": ";
 
 			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "[self leave" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
 			else outfile <<  "leave" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(); break;" << endl;
@@ -287,7 +287,7 @@ void WznmWrapp::writeHandleTrigger(
 			ixSeqsLast = icsSeqs[i];
 			seq = seqs.nodes[ixSeqsLast];
 
-			outfile << indent << "\tcase Vec" << Appshort << "VState" << dlm << "SUBSEQ_" << StrMod::uc(StrMod::dotToUsc(seq->sref)) << ": ";
+			outfile << indent << "\t\tcase Vec" << Appshort << "VState" << dlm << "SUBSEQ_" << StrMod::uc(StrMod::dotToUsc(seq->sref)) << ": ";
 
 			if (app->ixWznmVApptarget == VecWznmVApptarget::JAVA) outfile << "stkIcsVState.push";
 			else outfile << "stkIcsVState.push_back";
@@ -304,7 +304,7 @@ void WznmWrapp::writeHandleTrigger(
 		ste = stes.nodes[i];
 
 		if (ipAllNotSpec || (cntsEnt[i] > 0)) {
-			outfile << indent << "\tcase Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": _ixVState = ";
+			outfile << indent << "\t\tcase Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": _ixVState = ";
 
 			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "[self enter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
 			else outfile <<  "enter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(); break;" << endl;

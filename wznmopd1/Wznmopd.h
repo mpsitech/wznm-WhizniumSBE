@@ -2,8 +2,8 @@
 	* \file Wznmopd.h
 	* inter-thread exchange object for Wznm operation daemon wznmopd1 (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMOPD_H

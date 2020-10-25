@@ -2,8 +2,8 @@
 	* \file QryWznmTcoList.cpp
 	* API code for job QryWznmTcoList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmTcoList.h"
@@ -21,8 +21,8 @@ uint QryWznmTcoList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "fct") return FCT;
 	if (s == "tbl") return TBL;
+	if (s == "fct") return FCT;
 	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
 
@@ -32,8 +32,8 @@ uint QryWznmTcoList::VecVOrd::getIx(
 string QryWznmTcoList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == FCT) return("fct");
 	if (ix == TBL) return("tbl");
+	if (ix == FCT) return("fct");
 	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
 

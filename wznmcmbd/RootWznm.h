@@ -2,8 +2,8 @@
 	* \file RootWznm.h
 	* job handler for job RootWznm (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef ROOTWZNM_H
@@ -15,8 +15,8 @@
 #include <openssl/sha.h>
 // IP include.cust --- IEND
 
-#include "JobWznmLicense.h"
 #include "SessWznm.h"
+#include "JobWznmLicense.h"
 
 #define VecVRootWznmSge RootWznm::VecVSge
 
@@ -100,8 +100,8 @@ public:
 
 public:
 
-	JobWznmLicense* license;
 	std::list<SessWznm*> sesss;
+	JobWznmLicense* license;
 
 	// IP vars.spec --- INSERT
 

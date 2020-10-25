@@ -2,8 +2,8 @@
 	* \file QryWznmChkRef1NCall.cpp
 	* API code for job QryWznmChkRef1NCall (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmChkRef1NCall.h"

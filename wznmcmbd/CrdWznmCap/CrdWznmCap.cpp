@@ -2,8 +2,8 @@
 	* \file CrdWznmCap.cpp
 	* job handler for job CrdWznmCap (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -43,9 +43,9 @@ CrdWznmCap::CrdWznmCap(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnllist = NULL;
-	pnlheadbar = NULL;
 	pnlrec = NULL;
+	pnlheadbar = NULL;
+	pnllist = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -57,9 +57,9 @@ CrdWznmCap::CrdWznmCap(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnllist = new PnlWznmCapList(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlheadbar = new PnlWznmCapHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlrec = new PnlWznmCapRec(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmCapHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnllist = new PnlWznmCapList(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

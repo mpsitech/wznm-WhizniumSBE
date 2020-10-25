@@ -2,8 +2,8 @@
 	* \file WznmAMStateAction.cpp
 	* database access for table TblWznmAMStateAction (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmAMStateAction.h"
@@ -283,6 +283,14 @@ ubigint TblWznmAMStateAction::loadRefsBySte(
 			ubigint steRefWznmMState
 			, const bool append
 			, vector<ubigint>& refs
+		) {
+	return 0;
+};
+
+ubigint TblWznmAMStateAction::loadRstBySte(
+			ubigint steRefWznmMState
+			, const bool append
+			, ListWznmAMStateAction& rst
 		) {
 	return 0;
 };
@@ -593,6 +601,14 @@ ubigint MyTblWznmAMStateAction::loadRefsBySte(
 	return loadRefsBySQL("SELECT ref FROM TblWznmAMStateAction WHERE steRefWznmMState = " + to_string(steRefWznmMState) + "", append, refs);
 };
 
+ubigint MyTblWznmAMStateAction::loadRstBySte(
+			ubigint steRefWznmMState
+			, const bool append
+			, ListWznmAMStateAction& rst
+		) {
+	return loadRstBySQL("SELECT ref, steRefWznmMState, steNum, ixVSection, ixVType, refWznmMRtjob, refWznmMVector, refWznmMVectoritem, snxRefWznmMState, refWznmMSequence, tr1SrefATrig, Ip1, tr2SrefATrig, Ip2, tr3SrefATrig, Ip3, tr4SrefATrig, Ip4 FROM TblWznmAMStateAction WHERE steRefWznmMState = " + to_string(steRefWznmMState) + " ORDER BY steNum ASC", append, rst);
+};
+
 #endif
 
 #if defined(SBECORE_PG)
@@ -617,6 +633,7 @@ void PgTblWznmAMStateAction::initStatements() {
 
 	createStatement("TblWznmAMStateAction_loadRecByRef", "SELECT ref, steRefWznmMState, steNum, ixVSection, ixVType, refWznmMRtjob, refWznmMVector, refWznmMVectoritem, snxRefWznmMState, refWznmMSequence, tr1SrefATrig, Ip1, tr2SrefATrig, Ip2, tr3SrefATrig, Ip3, tr4SrefATrig, Ip4 FROM TblWznmAMStateAction WHERE ref = $1", 1);
 	createStatement("TblWznmAMStateAction_loadRefsBySte", "SELECT ref FROM TblWznmAMStateAction WHERE steRefWznmMState = $1", 1);
+	createStatement("TblWznmAMStateAction_loadRstBySte", "SELECT ref, steRefWznmMState, steNum, ixVSection, ixVType, refWznmMRtjob, refWznmMVector, refWznmMVectoritem, snxRefWznmMState, refWznmMSequence, tr1SrefATrig, Ip1, tr2SrefATrig, Ip2, tr3SrefATrig, Ip3, tr4SrefATrig, Ip4 FROM TblWznmAMStateAction WHERE steRefWznmMState = $1 ORDER BY steNum ASC", 1);
 };
 
 bool PgTblWznmAMStateAction::loadRec(
@@ -767,6 +784,27 @@ bool PgTblWznmAMStateAction::loadRecByStmt(
 	};
 
 	return loadRec(res, rec);
+};
+
+ubigint PgTblWznmAMStateAction::loadRstByStmt(
+			const string& srefStmt
+			, const unsigned int N
+			, const char** vals
+			, const int* l
+			, const int* f
+			, const bool append
+			, ListWznmAMStateAction& rst
+		) {
+	PGresult* res;
+
+	res = PQexecPrepared(dbs, srefStmt.c_str(), N, vals, l, f, 0);
+
+	if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+		string dbms = "PgTblWznmAMStateAction::loadRstByStmt(" + srefStmt + ") / " + string(PQerrorMessage(dbs));
+		throw SbeException(SbeException::DBS_STMTEXEC, {{"dbms",dbms}});
+	};
+
+	return loadRst(res, append, rst);
 };
 
 bool PgTblWznmAMStateAction::loadRecBySQL(
@@ -1021,6 +1059,24 @@ ubigint PgTblWznmAMStateAction::loadRefsBySte(
 	const int f[] = {1};
 
 	return loadRefsByStmt("TblWznmAMStateAction_loadRefsBySte", 1, vals, l, f, append, refs);
+};
+
+ubigint PgTblWznmAMStateAction::loadRstBySte(
+			ubigint steRefWznmMState
+			, const bool append
+			, ListWznmAMStateAction& rst
+		) {
+	ubigint _steRefWznmMState = htonl64(steRefWznmMState);
+
+	const char* vals[] = {
+		(char*) &_steRefWznmMState
+	};
+	const int l[] = {
+		sizeof(ubigint)
+	};
+	const int f[] = {1};
+
+	return loadRstByStmt("TblWznmAMStateAction_loadRstBySte", 1, vals, l, f, append, rst);
 };
 
 #endif

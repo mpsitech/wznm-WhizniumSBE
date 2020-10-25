@@ -2,8 +2,8 @@
 	* \file RootWznm.cpp
 	* job handler for job RootWznm (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -424,6 +424,7 @@ void RootWznm::clearQtb(
 	dbswznm->executeQuery("DELETE FROM TblWznmQStbMNSquawk");
 	dbswznm->executeQuery("DELETE FROM TblWznmQStbSubMNStub");
 	dbswznm->executeQuery("DELETE FROM TblWznmQStbSupMNStub");
+	dbswznm->executeQuery("DELETE FROM TblWznmQSteAAction");
 	dbswznm->executeQuery("DELETE FROM TblWznmQSteATrig");
 	dbswznm->executeQuery("DELETE FROM TblWznmQSteList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQTagList");

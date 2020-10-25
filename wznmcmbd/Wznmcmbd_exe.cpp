@@ -2,8 +2,8 @@
 	* \file Wznmcmbd_exe.cpp
 	* Wznm combined daemon main (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "Wznmcmbd.h"
@@ -491,7 +491,7 @@ int main(
 
 	try {
 		// welcome message
-		cout << "Welcome to WhizniumSBE v1.0.6!" << endl;
+		cout << "Welcome to WhizniumSBE v1.0.7!" << endl;
 
 		// calls wznmcmbd.init()
 		wznmcmbd = new Wznmcmbd(exedir, clearAll, startMon);

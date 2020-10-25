@@ -2,8 +2,8 @@
 	* \file QryWznmMdlMdl1NCard.cpp
 	* API code for job QryWznmMdlMdl1NCard (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmMdlMdl1NCard.h"

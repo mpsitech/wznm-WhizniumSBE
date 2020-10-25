@@ -2,8 +2,8 @@
 	* \file CrdWznmRls.cpp
 	* job handler for job CrdWznmRls (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -44,12 +44,12 @@ CrdWznmRls::CrdWznmRls(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnllist = NULL;
-	pnlheadbar = NULL;
-	pnlrec = NULL;
-	dlgwrite = NULL;
-	dlgstareptr = NULL;
 	dlgfinreptr = NULL;
+	dlgstareptr = NULL;
+	dlgwrite = NULL;
+	pnlrec = NULL;
+	pnlheadbar = NULL;
+	pnllist = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -61,9 +61,9 @@ CrdWznmRls::CrdWznmRls(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnllist = new PnlWznmRlsList(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlheadbar = new PnlWznmRlsHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlrec = new PnlWznmRlsRec(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmRlsHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnllist = new PnlWznmRlsList(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -76,11 +76,11 @@ CrdWznmRls::CrdWznmRls(
 
 	changeStage(dbswznm, VecVSge::IDLE);
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMREPTRSTOP, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMREPTRSTART, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMDLGCLOSE, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMREPTRSTART, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMREPTRSTOP, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -313,57 +313,17 @@ void CrdWznmRls::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMREPTRSTOP) {
-		call->abort = handleCallWznmReptrStop(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREPTRSTART) {
-		call->abort = handleCallWznmReptrStart(dbswznm, call->jref, call->argInv.ix, call->argInv.txtval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
 		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTATCHG) {
 		call->abort = handleCallWznmStatChg(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMDLGCLOSE) {
 		call->abort = handleCallWznmDlgClose(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREPTRSTART) {
+		call->abort = handleCallWznmReptrStart(dbswznm, call->jref, call->argInv.ix, call->argInv.txtval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREPTRSTOP) {
+		call->abort = handleCallWznmReptrStop(dbswznm, call->jref);
 	};
-};
-
-bool CrdWznmRls::handleCallWznmReptrStop(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmReptrStop --- IBEGIN
-
-	xchg->removePreset(VecWznmVPreset::PREWZNMIXBASEREPTYPE, jref);
-	xchg->removePreset(VecWznmVPreset::PREWZNMGITURL, jref);
-	xchg->removePreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
-	xchg->removePreset(VecWznmVPreset::PREWZNMEXTFOLDER, jref);
-
-	if (!muteRefresh) refreshWithDpchEng(dbswznm);
-
-	// IP handleCallWznmReptrStop --- IEND
-	return retval;
-};
-
-bool CrdWznmRls::handleCallWznmReptrStart(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, const string& txtvalInv
-		) {
-	bool retval = false;
-	// IP handleCallWznmReptrStart --- IBEGIN
-
-	xchg->addIxPreset(VecWznmVPreset::PREWZNMIXBASEREPTYPE, jref, ixInv);
-	if (txtvalInv != "") xchg->addTxtvalPreset(VecWznmVPreset::PREWZNMGITURL, jref, txtvalInv);
-
-	// generate source code base folders
-	xchg->addTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref, Tmp::newfolder(xchg->tmppath));
-	xchg->addTxtvalPreset(VecWznmVPreset::PREWZNMEXTFOLDER, jref, Tmp::newfolder(xchg->tmppath));
-
-	if (!muteRefresh) refreshWithDpchEng(dbswznm);
-
-	// IP handleCallWznmReptrStart --- IEND
-	return retval;
 };
 
 bool CrdWznmRls::handleCallWznmRefPreSet(
@@ -418,6 +378,46 @@ bool CrdWznmRls::handleCallWznmDlgClose(
 		xchg->submitDpch(getNewDpchEng({DpchEngData::STATSHR}));
 	};
 
+	return retval;
+};
+
+bool CrdWznmRls::handleCallWznmReptrStart(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, const string& txtvalInv
+		) {
+	bool retval = false;
+	// IP handleCallWznmReptrStart --- IBEGIN
+
+	xchg->addIxPreset(VecWznmVPreset::PREWZNMIXBASEREPTYPE, jref, ixInv);
+	if (txtvalInv != "") xchg->addTxtvalPreset(VecWznmVPreset::PREWZNMGITURL, jref, txtvalInv);
+
+	// generate source code base folders
+	xchg->addTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref, Tmp::newfolder(xchg->tmppath));
+	xchg->addTxtvalPreset(VecWznmVPreset::PREWZNMEXTFOLDER, jref, Tmp::newfolder(xchg->tmppath));
+
+	if (!muteRefresh) refreshWithDpchEng(dbswznm);
+
+	// IP handleCallWznmReptrStart --- IEND
+	return retval;
+};
+
+bool CrdWznmRls::handleCallWznmReptrStop(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmReptrStop --- IBEGIN
+
+	xchg->removePreset(VecWznmVPreset::PREWZNMIXBASEREPTYPE, jref);
+	xchg->removePreset(VecWznmVPreset::PREWZNMGITURL, jref);
+	xchg->removePreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
+	xchg->removePreset(VecWznmVPreset::PREWZNMEXTFOLDER, jref);
+
+	if (!muteRefresh) refreshWithDpchEng(dbswznm);
+
+	// IP handleCallWznmReptrStop --- IEND
 	return retval;
 };
 

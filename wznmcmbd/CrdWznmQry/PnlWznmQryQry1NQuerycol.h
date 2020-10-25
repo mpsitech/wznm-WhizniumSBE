@@ -2,8 +2,8 @@
 	* \file PnlWznmQryQry1NQuerycol.h
 	* job handler for job PnlWznmQryQry1NQuerycol (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMQRYQRY1NQUERYCOL_H

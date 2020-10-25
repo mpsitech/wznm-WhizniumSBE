@@ -2,8 +2,8 @@
 	* \file WznmQImeSup1NImpexp.h
 	* Dbs and XML wrapper for table TblWznmQImeSup1NImpexp (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef WZNMQIMESUP1NIMPEXP_H

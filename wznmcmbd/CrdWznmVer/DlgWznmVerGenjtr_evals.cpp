@@ -2,27 +2,13 @@
 	* \file DlgWznmVerGenjtr_evals.cpp
 	* job handler for job DlgWznmVerGenjtr (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
-
-bool DlgWznmVerGenjtr::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(fail)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::FAIL);
-	args.push_back(a);
-
-	return(args.back());
-};
 
 bool DlgWznmVerGenjtr::evalGjtButRunActive(
 			DbsWznm* dbswznm
@@ -87,6 +73,20 @@ bool DlgWznmVerGenjtr::evalButDneActive(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
+
+	return(args.back());
+};
+
+bool DlgWznmVerGenjtr::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(fail)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::FAIL);
+	args.push_back(a);
 
 	return(args.back());
 };

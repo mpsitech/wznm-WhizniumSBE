@@ -2,8 +2,8 @@
 	* \file WznmQJob1NMethod.cpp
 	* Dbs and XML wrapper for table TblWznmQJob1NMethod (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "WznmQJob1NMethod.h"

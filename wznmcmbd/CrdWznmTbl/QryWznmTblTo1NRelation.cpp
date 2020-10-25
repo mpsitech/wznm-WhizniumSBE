@@ -2,8 +2,8 @@
 	* \file QryWznmTblTo1NRelation.cpp
 	* job handler for job QryWznmTblTo1NRelation (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -268,11 +268,19 @@ void QryWznmTblTo1NRelation::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMRELMOD_TOTEQ) {
-		call->abort = handleCallWznmRelMod_totEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMRELMOD_TOTEQ) {
+		call->abort = handleCallWznmRelMod_totEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmTblTo1NRelation::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmTblTo1NRelation::handleCallWznmRelMod_totEq(
@@ -286,14 +294,6 @@ bool QryWznmTblTo1NRelation::handleCallWznmRelMod_totEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmTblTo1NRelation::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

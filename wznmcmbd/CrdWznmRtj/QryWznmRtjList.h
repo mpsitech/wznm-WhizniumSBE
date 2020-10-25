@@ -2,8 +2,8 @@
 	* \file QryWznmRtjList.h
 	* job handler for job QryWznmRtjList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMRTJLIST_H
@@ -31,10 +31,10 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint JOB = 1;
-		static const Sbecore::uint SUP = 2;
-		static const Sbecore::uint APP = 3;
-		static const Sbecore::uint SRF = 4;
+		static const Sbecore::uint SRF = 1;
+		static const Sbecore::uint APP = 2;
+		static const Sbecore::uint SUP = 3;
+		static const Sbecore::uint JOB = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

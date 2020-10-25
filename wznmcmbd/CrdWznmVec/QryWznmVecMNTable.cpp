@@ -2,8 +2,8 @@
 	* \file QryWznmVecMNTable.cpp
 	* job handler for job QryWznmVecMNTable (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -84,7 +84,7 @@ void QryWznmVecMNTable::rerun(
 	dbswznm->tblwznmqvecmntable->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMTableMVector.ref)";
-	sqlstr += " FROM TblWznmMTable, TblWznmRMTableMVector";
+	sqlstr += " FROM TblWznmRMTableMVector, TblWznmMTable";
 	sqlstr += " WHERE TblWznmRMTableMVector.refWznmMTable = TblWznmMTable.ref";
 	sqlstr += " AND TblWznmRMTableMVector.refWznmMVector = " + to_string(preRefVec) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -99,7 +99,7 @@ void QryWznmVecMNTable::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQVecMNTable(jref, jnum, mref, ref, refWznmMSubset)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMTable.ref, TblWznmRMTableMVector.ref, TblWznmRMTableMVector.refWznmMSubset";
-	sqlstr += " FROM TblWznmMTable, TblWznmRMTableMVector";
+	sqlstr += " FROM TblWznmRMTableMVector, TblWznmMTable";
 	sqlstr += " WHERE TblWznmRMTableMVector.refWznmMTable = TblWznmMTable.ref";
 	sqlstr += " AND TblWznmRMTableMVector.refWznmMVector = " + to_string(preRefVec) + "";
 	sqlstr += " ORDER BY TblWznmMTable.sref ASC";
@@ -278,11 +278,19 @@ void QryWznmVecMNTable::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMTBLRVECMOD_VECEQ) {
-		call->abort = handleCallWznmTblRvecMod_vecEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTBLRVECMOD_VECEQ) {
+		call->abort = handleCallWznmTblRvecMod_vecEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmVecMNTable::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmVecMNTable::handleCallWznmTblRvecMod_vecEq(
@@ -296,14 +304,6 @@ bool QryWznmVecMNTable::handleCallWznmTblRvecMod_vecEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmVecMNTable::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

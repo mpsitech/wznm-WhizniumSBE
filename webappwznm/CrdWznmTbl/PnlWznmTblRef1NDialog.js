@@ -2,8 +2,8 @@
   * \file PnlWznmTblRef1NDialog.js
   * web client functionality for panel PnlWznmTblRef1NDialog
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 // --- expand state management

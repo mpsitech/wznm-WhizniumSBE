@@ -2,8 +2,8 @@
 	* \file QryWznmConList.cpp
 	* job handler for job QryWznmConList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -156,7 +156,7 @@ void QryWznmConList::rerun(
 
 	} else if (preIxPre == VecWznmVPreset::PREWZNMREFVER) {
 		sqlstr = "SELECT COUNT(TblWznmMControl.ref)";
-		sqlstr += " FROM TblWznmMControl, TblWznmMModule, TblWznmMCard";
+		sqlstr += " FROM TblWznmMControl, TblWznmMCard, TblWznmMModule";
 		sqlstr += " WHERE TblWznmMControl.hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::CAR);
 		sqlstr += " AND TblWznmMControl.hkUref = TblWznmMCard.ref";
 		sqlstr += " AND TblWznmMCard.mdlRefWznmMModule = TblWznmMModule.ref";
@@ -167,7 +167,7 @@ void QryWznmConList::rerun(
 		cntsum += cnt;
 
 		sqlstr = "SELECT COUNT(TblWznmMControl.ref)";
-		sqlstr += " FROM TblWznmMControl, TblWznmMModule, TblWznmMCard, TblWznmMDialog";
+		sqlstr += " FROM TblWznmMControl, TblWznmMDialog, TblWznmMCard, TblWznmMModule";
 		sqlstr += " WHERE TblWznmMControl.hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::DLG);
 		sqlstr += " AND TblWznmMControl.hkUref = TblWznmMDialog.ref";
 		sqlstr += " AND TblWznmMDialog.refWznmMCard = TblWznmMCard.ref";
@@ -179,7 +179,7 @@ void QryWznmConList::rerun(
 		cntsum += cnt;
 
 		sqlstr = "SELECT COUNT(TblWznmMControl.ref)";
-		sqlstr += " FROM TblWznmMControl, TblWznmMModule, TblWznmMCard, TblWznmMPanel";
+		sqlstr += " FROM TblWznmMControl, TblWznmMPanel, TblWznmMCard, TblWznmMModule";
 		sqlstr += " WHERE TblWznmMControl.hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL);
 		sqlstr += " AND TblWznmMControl.hkUref = TblWznmMPanel.ref";
 		sqlstr += " AND TblWznmMPanel.carRefWznmMCard = TblWznmMCard.ref";
@@ -277,7 +277,7 @@ void QryWznmConList::rerun(
 
 	} else if (preIxPre == VecWznmVPreset::PREWZNMREFVER) {
 		rerun_baseSQL(sqlstr);
-		sqlstr += " FROM TblWznmMControl, TblWznmMModule, TblWznmMCard";
+		sqlstr += " FROM TblWznmMControl, TblWznmMCard, TblWznmMModule";
 		sqlstr += " WHERE TblWznmMControl.hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::CAR);
 		sqlstr += " AND TblWznmMControl.hkUref = TblWznmMCard.ref";
 		sqlstr += " AND TblWznmMCard.mdlRefWznmMModule = TblWznmMModule.ref";
@@ -288,7 +288,7 @@ void QryWznmConList::rerun(
 		dbswznm->executeQuery(sqlstr);
 
 		rerun_baseSQL(sqlstr);
-		sqlstr += " FROM TblWznmMControl, TblWznmMModule, TblWznmMCard, TblWznmMDialog";
+		sqlstr += " FROM TblWznmMControl, TblWznmMDialog, TblWznmMCard, TblWznmMModule";
 		sqlstr += " WHERE TblWznmMControl.hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::DLG);
 		sqlstr += " AND TblWznmMControl.hkUref = TblWznmMDialog.ref";
 		sqlstr += " AND TblWznmMDialog.refWznmMCard = TblWznmMCard.ref";
@@ -300,7 +300,7 @@ void QryWznmConList::rerun(
 		dbswznm->executeQuery(sqlstr);
 
 		rerun_baseSQL(sqlstr);
-		sqlstr += " FROM TblWznmMControl, TblWznmMModule, TblWznmMCard, TblWznmMPanel";
+		sqlstr += " FROM TblWznmMControl, TblWznmMPanel, TblWznmMCard, TblWznmMModule";
 		sqlstr += " WHERE TblWznmMControl.hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL);
 		sqlstr += " AND TblWznmMControl.hkUref = TblWznmMPanel.ref";
 		sqlstr += " AND TblWznmMPanel.carRefWznmMCard = TblWznmMCard.ref";
@@ -408,14 +408,14 @@ void QryWznmConList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMControl.supRefWznmMControl ASC";
-	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMControl.refUref ASC";
-	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMControl.refIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::SCT) sqlstr += " ORDER BY TblWznmMControl.hkIxVSection ASC";
-	else if (preIxOrd == VecVOrd::HKU) sqlstr += " ORDER BY TblWznmMControl.hkUref ASC";
-	else if (preIxOrd == VecVOrd::HKT) sqlstr += " ORDER BY TblWznmMControl.hkIxVTbl ASC";
+	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMControl.sref ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMControl.ixVBasetype ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMControl.sref ASC";
+	else if (preIxOrd == VecVOrd::HKT) sqlstr += " ORDER BY TblWznmMControl.hkIxVTbl ASC";
+	else if (preIxOrd == VecVOrd::HKU) sqlstr += " ORDER BY TblWznmMControl.hkUref ASC";
+	else if (preIxOrd == VecVOrd::SCT) sqlstr += " ORDER BY TblWznmMControl.hkIxVSection ASC";
+	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMControl.refIxVTbl ASC";
+	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMControl.refUref ASC";
+	else if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMControl.supRefWznmMControl ASC";
 };
 
 void QryWznmConList::fetch(
@@ -447,25 +447,25 @@ void QryWznmConList::fetch(
 			rec->titIxVBasetype = VecWznmVMControlBasetype::getTitle(rec->ixVBasetype, ixWznmVLocale);
 			rec->srefHkIxVTbl = VecWznmVMControlHkTbl::getSref(rec->hkIxVTbl);
 			rec->titHkIxVTbl = VecWznmVMControlHkTbl::getTitle(rec->hkIxVTbl, ixWznmVLocale);
-			if (rec->hkIxVTbl == VecWznmVMControlHkTbl::PNL) {
-				rec->stubHkUref = StubWznm::getStubPnlStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			if (rec->hkIxVTbl == VecWznmVMControlHkTbl::CAR) {
+				rec->stubHkUref = StubWznm::getStubCarStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->hkIxVTbl == VecWznmVMControlHkTbl::DLG) {
 				rec->stubHkUref = StubWznm::getStubDlgStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->hkIxVTbl == VecWznmVMControlHkTbl::CAR) {
-				rec->stubHkUref = StubWznm::getStubCarStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->hkIxVTbl == VecWznmVMControlHkTbl::PNL) {
+				rec->stubHkUref = StubWznm::getStubPnlStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubHkUref = "-";
 			rec->srefHkIxVSection = VecWznmVMControlHkSection::getSref(rec->hkIxVSection);
 			rec->titHkIxVSection = VecWznmVMControlHkSection::getTitle(rec->hkIxVSection, ixWznmVLocale);
 			rec->srefRefIxVTbl = VecWznmVMControlRefTbl::getSref(rec->refIxVTbl);
 			rec->titRefIxVTbl = VecWznmVMControlRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
-			if (rec->refIxVTbl == VecWznmVMControlRefTbl::DLG) {
-				rec->stubRefUref = StubWznm::getStubDlgStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMControlRefTbl::QCO) {
-				rec->stubRefUref = StubWznm::getStubQcoStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			if (rec->refIxVTbl == VecWznmVMControlRefTbl::REL) {
+				rec->stubRefUref = StubWznm::getStubRelStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMControlRefTbl::TCO) {
 				rec->stubRefUref = StubWznm::getStubTcoStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMControlRefTbl::REL) {
-				rec->stubRefUref = StubWznm::getStubRelStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMControlRefTbl::QCO) {
+				rec->stubRefUref = StubWznm::getStubQcoStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMControlRefTbl::DLG) {
+				rec->stubRefUref = StubWznm::getStubDlgStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";
 			rec->stubSupRefWznmMControl = StubWznm::getStubConStd(dbswznm, rec->supRefWznmMControl, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->srefIxVSubtype = VecWznmVMControlSubtype::getSref(rec->ixVSubtype);
@@ -640,27 +640,13 @@ void QryWznmConList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMCONUPD_REFEQ) {
-		call->abort = handleCallWznmConUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCONMOD) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCONMOD) {
 		call->abort = handleCallWznmConMod(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCONUPD_REFEQ) {
+		call->abort = handleCallWznmConUpd_refEq(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmConList::handleCallWznmConUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
-		ixWznmVQrystate = VecWznmVQrystate::OOD;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmConList::handleCallWznmConMod(
@@ -671,6 +657,20 @@ bool QryWznmConList::handleCallWznmConMod(
 
 	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
 		ixWznmVQrystate = VecWznmVQrystate::MNR;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWznmConList::handleCallWznmConUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
+		ixWznmVQrystate = VecWznmVQrystate::OOD;
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 

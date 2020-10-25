@@ -2,8 +2,8 @@
 	* \file WznmWrsrvCrd.cpp
 	* Wznm operation processor - write specific job C++ code for card (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -97,7 +97,7 @@ void WznmWrsrvCrd::writeCrdH(
 	outfile << "// IP spec --- IBEGIN" << endl;
 	outfile << "\tDpchEng" << Prjshort << "* getNewDpchEng(std::set<Sbecore::uint> items);" << endl;
 
-	outfile << "\tvoid refresh(Dbs" << Prjshort << "* dbs" << prjshort << ", std::set<Sbecore::uint>& moditems);" << endl;
+	outfile << "\tvoid refresh(Dbs" << Prjshort << "* dbs" << prjshort << ", std::set<Sbecore::uint>& moditems, const bool unmute = false);" << endl;
 
 	if ((car->refIxVTbl == VecWznmVMCardRefTbl::TBL) || (car->refIxVTbl == VecWznmVMCardRefTbl::SBS))
 				outfile << "\tvoid changeRef(Dbs" << Prjshort << "* dbs" << prjshort << ", const Sbecore::ubigint jrefTrig, const Sbecore::ubigint ref, const bool notif = false);" << endl;
@@ -301,7 +301,11 @@ void WznmWrsrvCrd::writeCrdCpp(
 	outfile << "void " << car->sref << "::refresh(" << endl;
 	outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
 	outfile << "\t\t\t, set<uint>& moditems" << endl;
+	outfile << "\t\t\t, const bool unmute" << endl;
 	outfile << "\t\t) {" << endl;
+	outfile << "\tif (muteRefresh && !unmute) return;" << endl;
+	outfile << "\tmuteRefresh = true;" << endl;
+	outfile << endl;
 
 	outfile << "\tContInf oldContinf(continf);" << endl;
 	if (bitsEval.size() > 0) outfile << "\tStatShr oldStatshr(statshr);" << endl;
@@ -356,6 +360,8 @@ void WznmWrsrvCrd::writeCrdCpp(
 	outfile << "\tif (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);" << endl;
 	if (bitsEval.size() > 0) outfile << "\tif (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);" << endl;
 
+	outfile << endl;
+	outfile << "\tmuteRefresh = false;" << endl;
 	outfile << "};" << endl;
 	outfile << endl;
 

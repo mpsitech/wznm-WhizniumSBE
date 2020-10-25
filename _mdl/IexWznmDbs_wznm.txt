@@ -3266,8 +3266,8 @@
 	- ImeIMVector2.end																
 	- ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous					
 	- idref			void		ref	ref	void	void		false	false					
-	- tblref		336	tbl	TblWznmMState	steRefWznmMState	ste	trefspec	void		true	false					
-	- enum		336	void		steNum	stn	enauto	void		true	false					
+	- tblref		391	tbl	TblWznmMState	steRefWznmMState	ste	trefspec	void		true	false					
+	- enum		391	void		steNum	stn	enauto	void		true	false					
 	- vecref			vec	VecWznmVAMStateActionSection	ixVSection	sct	vreflin	void	idx	true	false					
 	- vecref			vec	VecWznmVAMStateActionType	ixVType	typ	vreflin	void		true	false					
 	- tblref		329	tbl	TblWznmMRtjob	refWznmMRtjob	trj	trefmin	void		true	false					
@@ -4794,6 +4794,7 @@
 - 388	as1n	0	0	void	TblWznmAMStateTrig		TblWznmAMStateAction			tr3							
 - 389	as1n	0	0	void	TblWznmAMStateTrig		TblWznmAMStateAction			tr4							
 - 390	j	0	0	void	TblWznmAMStateTrig		TblWznmJAMStateTrigCond										
+- 391	aux	0	0	void	TblWznmMState		TblWznmAMStateAction										
 - ImeIMRelation.end																	
 - ImeIMStub.srefIxVBasetype	srefRefWznmMTable	srefRefWznmMSubset	sref	Hierarch	srefRefWznmMTablecol	Localized	Example										
 - cust	TblWznmMApp		StubWznmAppStd	false		false	WhizniumDBE Iterator (wdbe v0.1.1) variant 3										

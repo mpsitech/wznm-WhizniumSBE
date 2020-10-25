@@ -2,8 +2,8 @@
   * \file CrdWznmUsr.js
   * web client functionality for card CrdWznmUsr
   * \author Alexander Wirthmueller
-  * \date created: 25 Aug 2020
-  * \date modified: 25 Aug 2020
+  * \date created: 27 Aug 2020
+  * \date modified: 27 Aug 2020
   */
 
 function getInitdone(pnlshort) {
@@ -348,7 +348,7 @@ function refresh() {
 		if (scrJrefDlg != scrJrefDlgmngkeypair) showDlg("DlgWznmUsrMngkeypair", scrJrefDlgmngkeypair);
 	} else if (scrJrefDlg != "") hideDlg();
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmUsr", "MtxCrdUsr") + " - WhizniumSBE v1.0.6";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmUsr", "MtxCrdUsr") + " - WhizniumSBE v1.0.7";
 };
 
 // --- event handlers

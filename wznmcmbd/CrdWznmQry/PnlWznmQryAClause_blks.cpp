@@ -2,8 +2,8 @@
 	* \file PnlWznmQryAClause_blks.cpp
 	* job handler for job PnlWznmQryAClause (implementation of blocks)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;

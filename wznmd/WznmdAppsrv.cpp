@@ -2,8 +2,8 @@
 	* \file WznmdAppsrv.cpp
 	* application server for Wznm daemon (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "Wznmd.h"
@@ -2299,6 +2299,12 @@ uint WznmdAppsrv::readDpchApp(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTBSUPMNSTUBDO) {
 			req->dpchapp = new PnlWznmStbSupMNStub::DpchAppDo();
 			((PnlWznmStbSupMNStub::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTEAACTIONDATA) {
+			req->dpchapp = new PnlWznmSteAAction::DpchAppData();
+			((PnlWznmSteAAction::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTEAACTIONDO) {
+			req->dpchapp = new PnlWznmSteAAction::DpchAppDo();
+			((PnlWznmSteAAction::DpchAppDo*) (req->dpchapp))->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMSTEATRIGDATA) {
 			req->dpchapp = new PnlWznmSteATrig::DpchAppData();
 			((PnlWznmSteATrig::DpchAppData*) (req->dpchapp))->readXML(docctx, "/", true);

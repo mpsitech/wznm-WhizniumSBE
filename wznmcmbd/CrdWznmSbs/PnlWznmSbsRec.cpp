@@ -2,8 +2,8 @@
 	* \file PnlWznmSbsRec.cpp
 	* job handler for job PnlWznmSbsRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -37,15 +37,15 @@ PnlWznmSbsRec::PnlWznmSbsRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlbsbmnsubset = NULL;
-	pnlasbmnsubset = NULL;
-	pnlpst1nquerymod = NULL;
-	pnlfrs1nrelation = NULL;
-	pnl1ntablecol = NULL;
-	pnltos1nrelation = NULL;
-	pnl1nstub = NULL;
-	pnlatitle = NULL;
 	pnldetail = NULL;
+	pnlatitle = NULL;
+	pnlfrs1nrelation = NULL;
+	pnltos1nrelation = NULL;
+	pnl1ntablecol = NULL;
+	pnl1nstub = NULL;
+	pnlpst1nquerymod = NULL;
+	pnlasbmnsubset = NULL;
+	pnlbsbmnsubset = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -107,20 +107,20 @@ void PnlWznmSbsRec::refresh(
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnlatitle) {delete pnlatitle; pnlatitle = NULL;};
-		if (pnl1nstub) {delete pnl1nstub; pnl1nstub = NULL;};
-		if (pnltos1nrelation) {delete pnltos1nrelation; pnltos1nrelation = NULL;};
 		if (pnlfrs1nrelation) {delete pnlfrs1nrelation; pnlfrs1nrelation = NULL;};
+		if (pnltos1nrelation) {delete pnltos1nrelation; pnltos1nrelation = NULL;};
 		if (pnl1ntablecol) {delete pnl1ntablecol; pnl1ntablecol = NULL;};
+		if (pnl1nstub) {delete pnl1nstub; pnl1nstub = NULL;};
 		if (pnlpst1nquerymod) {delete pnlpst1nquerymod; pnlpst1nquerymod = NULL;};
 		if (pnlasbmnsubset) {delete pnlasbmnsubset; pnlasbmnsubset = NULL;};
 		if (pnlbsbmnsubset) {delete pnlbsbmnsubset; pnlbsbmnsubset = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmSbsDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlatitle) pnlatitle = new PnlWznmSbsATitle(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnl1nstub) pnl1nstub = new PnlWznmSbs1NStub(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnltos1nrelation) pnltos1nrelation = new PnlWznmSbsTos1NRelation(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlfrs1nrelation) pnlfrs1nrelation = new PnlWznmSbsFrs1NRelation(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnltos1nrelation) pnltos1nrelation = new PnlWznmSbsTos1NRelation(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1ntablecol) pnl1ntablecol = new PnlWznmSbs1NTablecol(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnl1nstub) pnl1nstub = new PnlWznmSbs1NStub(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlpst1nquerymod) pnlpst1nquerymod = new PnlWznmSbsPst1NQuerymod(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlasbmnsubset) pnlasbmnsubset = new PnlWznmSbsAsbMNSubset(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlbsbmnsubset) pnlbsbmnsubset = new PnlWznmSbsBsbMNSubset(xchg, dbswznm, jref, ixWznmVLocale);
@@ -128,10 +128,10 @@ void PnlWznmSbsRec::refresh(
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jrefATitle = ((pnlatitle) ? pnlatitle->jref : 0);
-	statshr.jref1NStub = ((pnl1nstub) ? pnl1nstub->jref : 0);
-	statshr.jrefTos1NRelation = ((pnltos1nrelation) ? pnltos1nrelation->jref : 0);
 	statshr.jrefFrs1NRelation = ((pnlfrs1nrelation) ? pnlfrs1nrelation->jref : 0);
+	statshr.jrefTos1NRelation = ((pnltos1nrelation) ? pnltos1nrelation->jref : 0);
 	statshr.jref1NTablecol = ((pnl1ntablecol) ? pnl1ntablecol->jref : 0);
+	statshr.jref1NStub = ((pnl1nstub) ? pnl1nstub->jref : 0);
 	statshr.jrefPst1NQuerymod = ((pnlpst1nquerymod) ? pnlpst1nquerymod->jref : 0);
 	statshr.jrefAsbMNSubset = ((pnlasbmnsubset) ? pnlasbmnsubset->jref : 0);
 	statshr.jrefBsbMNSubset = ((pnlbsbmnsubset) ? pnlbsbmnsubset->jref : 0);
@@ -168,10 +168,10 @@ void PnlWznmSbsRec::updatePreset(
 		if (recSbs.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlatitle) pnlatitle->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnl1nstub) pnl1nstub->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnltos1nrelation) pnltos1nrelation->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlfrs1nrelation) pnlfrs1nrelation->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnltos1nrelation) pnltos1nrelation->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1ntablecol) pnl1ntablecol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnl1nstub) pnl1nstub->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlpst1nquerymod) pnlpst1nquerymod->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlasbmnsubset) pnlasbmnsubset->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlbsbmnsubset) pnlbsbmnsubset->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);

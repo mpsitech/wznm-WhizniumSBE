@@ -2,8 +2,8 @@
 	* \file QryWznmTagList.h
 	* API code for job QryWznmTagList (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef QRYWZNMTAGLIST_H
@@ -27,8 +27,8 @@ namespace QryWznmTagList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint CPB = 1;
-		static const Sbecore::uint GRP = 2;
+		static const Sbecore::uint GRP = 1;
+		static const Sbecore::uint CPB = 2;
 		static const Sbecore::uint SRF = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);

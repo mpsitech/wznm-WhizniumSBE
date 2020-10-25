@@ -2,8 +2,8 @@
 	* \file DlgWznmVerWrstkit_evals.cpp
 	* job handler for job DlgWznmVerWrstkit (implementation of availability/activation evaluation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 using namespace std;
@@ -25,20 +25,6 @@ bool DlgWznmVerWrstkit::evalButDneActive(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
-
-	return(args.back());
-};
-
-bool DlgWznmVerWrstkit::evalFiaDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(done)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
 
 	return(args.back());
 };
@@ -66,6 +52,20 @@ bool DlgWznmVerWrstkit::evalWriButStoActive(
 	bool a;
 
 	a = false; a = (ixVSge == VecVSge::WRITE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmVerWrstkit::evalFiaDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(done)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::DONE);
 	args.push_back(a);
 
 	return(args.back());

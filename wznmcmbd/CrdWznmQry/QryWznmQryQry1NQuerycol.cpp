@@ -2,8 +2,8 @@
 	* \file QryWznmQryQry1NQuerycol.cpp
 	* job handler for job QryWznmQryQry1NQuerycol (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -271,11 +271,19 @@ void QryWznmQryQry1NQuerycol::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMQCOMOD_QRYEQ) {
-		call->abort = handleCallWznmQcoMod_qryEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMQCOMOD_QRYEQ) {
+		call->abort = handleCallWznmQcoMod_qryEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmQryQry1NQuerycol::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmQryQry1NQuerycol::handleCallWznmQcoMod_qryEq(
@@ -289,14 +297,6 @@ bool QryWznmQryQry1NQuerycol::handleCallWznmQcoMod_qryEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmQryQry1NQuerycol::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 

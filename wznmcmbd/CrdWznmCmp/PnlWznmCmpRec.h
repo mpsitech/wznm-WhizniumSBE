@@ -2,8 +2,8 @@
 	* \file PnlWznmCmpRec.h
 	* job handler for job PnlWznmCmpRec (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMCMPREC_H
@@ -13,10 +13,10 @@
 
 // IP include.cust --- INSERT
 
+#include "PnlWznmCmpDetail.h"
+#include "PnlWznmCmp1NRelease.h"
 #include "PnlWznmCmpMNLibrary.h"
 #include "PnlWznmCmpMNOppack.h"
-#include "PnlWznmCmp1NRelease.h"
-#include "PnlWznmCmpDetail.h"
 
 #define VecVWznmCmpRecDo PnlWznmCmpRec::VecVDo
 
@@ -73,7 +73,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NRelease = false, const bool initdoneMNOppack = false, const bool initdoneMNLibrary = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NRelease = false, const bool initdoneMNLibrary = false, const bool initdoneMNOppack = false);
 	};
 
 	/**
@@ -85,23 +85,23 @@ public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREF1NRELEASE = 3;
-		static const Sbecore::uint JREFMNOPPACK = 4;
-		static const Sbecore::uint PNLMNOPPACKAVAIL = 5;
-		static const Sbecore::uint JREFMNLIBRARY = 6;
-		static const Sbecore::uint PNLMNLIBRARYAVAIL = 7;
+		static const Sbecore::uint JREFMNLIBRARY = 4;
+		static const Sbecore::uint PNLMNLIBRARYAVAIL = 5;
+		static const Sbecore::uint JREFMNOPPACK = 6;
+		static const Sbecore::uint PNLMNOPPACKAVAIL = 7;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 8;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NRelease = 0, const Sbecore::ubigint jrefMNOppack = 0, const bool pnlmnoppackAvail = false, const Sbecore::ubigint jrefMNLibrary = 0, const bool pnlmnlibraryAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NRelease = 0, const Sbecore::ubigint jrefMNLibrary = 0, const bool pnlmnlibraryAvail = false, const Sbecore::ubigint jrefMNOppack = 0, const bool pnlmnoppackAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jref1NRelease;
-		Sbecore::ubigint jrefMNOppack;
-		bool pnlmnoppackAvail;
 		Sbecore::ubigint jrefMNLibrary;
 		bool pnlmnlibraryAvail;
+		Sbecore::ubigint jrefMNOppack;
+		bool pnlmnoppackAvail;
 		bool ButRegularizeActive;
 
 	public:
@@ -167,8 +167,8 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalPnlmnoppackAvail(DbsWznm* dbswznm);
 	bool evalPnlmnlibraryAvail(DbsWznm* dbswznm);
+	bool evalPnlmnoppackAvail(DbsWznm* dbswznm);
 	bool evalButRegularizeActive(DbsWznm* dbswznm);
 
 public:
@@ -179,10 +179,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
+	PnlWznmCmpDetail* pnldetail;
+	PnlWznmCmp1NRelease* pnl1nrelease;
 	PnlWznmCmpMNLibrary* pnlmnlibrary;
 	PnlWznmCmpMNOppack* pnlmnoppack;
-	PnlWznmCmp1NRelease* pnl1nrelease;
-	PnlWznmCmpDetail* pnldetail;
 
 	WznmMComponent recCmp;
 	Sbecore::uint ixWSubsetCmp;

@@ -2,8 +2,8 @@
 	* \file PnlWznmQryRec.cpp
 	* API code for job PnlWznmQryRec (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "PnlWznmQryRec.h"
@@ -103,11 +103,11 @@ set<uint> PnlWznmQryRec::ContInf::diff(
 
 PnlWznmQryRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdoneAClause
 			, const bool initdoneAOrder
+			, const bool initdoneAClause
+			, const bool initdoneSup1NQuery
 			, const bool initdoneQry1NQuerycol
 			, const bool initdone1NQuerymod
-			, const bool initdoneSup1NQuery
 			, const bool initdoneMNTable
 			, const bool initdoneMNDialog
 			, const bool initdoneMNPanel
@@ -115,16 +115,16 @@ PnlWznmQryRec::StatApp::StatApp(
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdoneAClause = initdoneAClause;
 	this->initdoneAOrder = initdoneAOrder;
+	this->initdoneAClause = initdoneAClause;
+	this->initdoneSup1NQuery = initdoneSup1NQuery;
 	this->initdoneQry1NQuerycol = initdoneQry1NQuerycol;
 	this->initdone1NQuerymod = initdone1NQuerymod;
-	this->initdoneSup1NQuery = initdoneSup1NQuery;
 	this->initdoneMNTable = initdoneMNTable;
 	this->initdoneMNDialog = initdoneMNDialog;
 	this->initdoneMNPanel = initdoneMNPanel;
 
-	mask = {INITDONEDETAIL, INITDONEACLAUSE, INITDONEAORDER, INITDONEQRY1NQUERYCOL, INITDONE1NQUERYMOD, INITDONESUP1NQUERY, INITDONEMNTABLE, INITDONEMNDIALOG, INITDONEMNPANEL};
+	mask = {INITDONEDETAIL, INITDONEAORDER, INITDONEACLAUSE, INITDONESUP1NQUERY, INITDONEQRY1NQUERYCOL, INITDONE1NQUERYMOD, INITDONEMNTABLE, INITDONEMNDIALOG, INITDONEMNPANEL};
 };
 
 bool PnlWznmQryRec::StatApp::readXML(
@@ -145,11 +145,11 @@ bool PnlWznmQryRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAClause", initdoneAClause)) add(INITDONEACLAUSE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAOrder", initdoneAOrder)) add(INITDONEAORDER);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAClause", initdoneAClause)) add(INITDONEACLAUSE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSup1NQuery", initdoneSup1NQuery)) add(INITDONESUP1NQUERY);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneQry1NQuerycol", initdoneQry1NQuerycol)) add(INITDONEQRY1NQUERYCOL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NQuerymod", initdone1NQuerymod)) add(INITDONE1NQUERYMOD);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSup1NQuery", initdoneSup1NQuery)) add(INITDONESUP1NQUERY);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNTable", initdoneMNTable)) add(INITDONEMNTABLE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNDialog", initdoneMNDialog)) add(INITDONEMNDIALOG);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNPanel", initdoneMNPanel)) add(INITDONEMNPANEL);
@@ -164,11 +164,11 @@ set<uint> PnlWznmQryRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdoneAClause == comp->initdoneAClause) insert(items, INITDONEACLAUSE);
 	if (initdoneAOrder == comp->initdoneAOrder) insert(items, INITDONEAORDER);
+	if (initdoneAClause == comp->initdoneAClause) insert(items, INITDONEACLAUSE);
+	if (initdoneSup1NQuery == comp->initdoneSup1NQuery) insert(items, INITDONESUP1NQUERY);
 	if (initdoneQry1NQuerycol == comp->initdoneQry1NQuerycol) insert(items, INITDONEQRY1NQUERYCOL);
 	if (initdone1NQuerymod == comp->initdone1NQuerymod) insert(items, INITDONE1NQUERYMOD);
-	if (initdoneSup1NQuery == comp->initdoneSup1NQuery) insert(items, INITDONESUP1NQUERY);
 	if (initdoneMNTable == comp->initdoneMNTable) insert(items, INITDONEMNTABLE);
 	if (initdoneMNDialog == comp->initdoneMNDialog) insert(items, INITDONEMNDIALOG);
 	if (initdoneMNPanel == comp->initdoneMNPanel) insert(items, INITDONEMNPANEL);
@@ -184,7 +184,7 @@ set<uint> PnlWznmQryRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEACLAUSE, INITDONEAORDER, INITDONEQRY1NQUERYCOL, INITDONE1NQUERYMOD, INITDONESUP1NQUERY, INITDONEMNTABLE, INITDONEMNDIALOG, INITDONEMNPANEL};
+	diffitems = {INITDONEDETAIL, INITDONEAORDER, INITDONEACLAUSE, INITDONESUP1NQUERY, INITDONEQRY1NQUERYCOL, INITDONE1NQUERYMOD, INITDONEMNTABLE, INITDONEMNDIALOG, INITDONEMNPANEL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -197,11 +197,11 @@ set<uint> PnlWznmQryRec::StatApp::diff(
 PnlWznmQryRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJrefAClause
 			, const string& scrJrefAOrder
+			, const string& scrJrefAClause
+			, const string& scrJrefSup1NQuery
 			, const string& scrJrefQry1NQuerycol
 			, const string& scrJref1NQuerymod
-			, const string& scrJrefSup1NQuery
 			, const string& scrJrefMNTable
 			, const string& scrJrefMNDialog
 			, const string& scrJrefMNPanel
@@ -211,17 +211,17 @@ PnlWznmQryRec::StatShr::StatShr(
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAClause = scrJrefAClause;
 	this->scrJrefAOrder = scrJrefAOrder;
+	this->scrJrefAClause = scrJrefAClause;
+	this->scrJrefSup1NQuery = scrJrefSup1NQuery;
 	this->scrJrefQry1NQuerycol = scrJrefQry1NQuerycol;
 	this->scrJref1NQuerymod = scrJref1NQuerymod;
-	this->scrJrefSup1NQuery = scrJrefSup1NQuery;
 	this->scrJrefMNTable = scrJrefMNTable;
 	this->scrJrefMNDialog = scrJrefMNDialog;
 	this->scrJrefMNPanel = scrJrefMNPanel;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFACLAUSE, SCRJREFAORDER, SCRJREFQRY1NQUERYCOL, SCRJREF1NQUERYMOD, SCRJREFSUP1NQUERY, SCRJREFMNTABLE, SCRJREFMNDIALOG, SCRJREFMNPANEL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAORDER, SCRJREFACLAUSE, SCRJREFSUP1NQUERY, SCRJREFQRY1NQUERYCOL, SCRJREF1NQUERYMOD, SCRJREFMNTABLE, SCRJREFMNDIALOG, SCRJREFMNPANEL, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmQryRec::StatShr::readXML(
@@ -248,11 +248,11 @@ bool PnlWznmQryRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAClause", scrJrefAClause)) add(SCRJREFACLAUSE);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAOrder", scrJrefAOrder)) add(SCRJREFAORDER);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAClause", scrJrefAClause)) add(SCRJREFACLAUSE);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSup1NQuery", scrJrefSup1NQuery)) add(SCRJREFSUP1NQUERY);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefQry1NQuerycol", scrJrefQry1NQuerycol)) add(SCRJREFQRY1NQUERYCOL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NQuerymod", scrJref1NQuerymod)) add(SCRJREF1NQUERYMOD);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSup1NQuery", scrJrefSup1NQuery)) add(SCRJREFSUP1NQUERY);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNTable", scrJrefMNTable)) add(SCRJREFMNTABLE);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNDialog", scrJrefMNDialog)) add(SCRJREFMNDIALOG);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNPanel", scrJrefMNPanel)) add(SCRJREFMNPANEL);
@@ -269,11 +269,11 @@ set<uint> PnlWznmQryRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJrefAClause == comp->scrJrefAClause) insert(items, SCRJREFACLAUSE);
 	if (scrJrefAOrder == comp->scrJrefAOrder) insert(items, SCRJREFAORDER);
+	if (scrJrefAClause == comp->scrJrefAClause) insert(items, SCRJREFACLAUSE);
+	if (scrJrefSup1NQuery == comp->scrJrefSup1NQuery) insert(items, SCRJREFSUP1NQUERY);
 	if (scrJrefQry1NQuerycol == comp->scrJrefQry1NQuerycol) insert(items, SCRJREFQRY1NQUERYCOL);
 	if (scrJref1NQuerymod == comp->scrJref1NQuerymod) insert(items, SCRJREF1NQUERYMOD);
-	if (scrJrefSup1NQuery == comp->scrJrefSup1NQuery) insert(items, SCRJREFSUP1NQUERY);
 	if (scrJrefMNTable == comp->scrJrefMNTable) insert(items, SCRJREFMNTABLE);
 	if (scrJrefMNDialog == comp->scrJrefMNDialog) insert(items, SCRJREFMNDIALOG);
 	if (scrJrefMNPanel == comp->scrJrefMNPanel) insert(items, SCRJREFMNPANEL);
@@ -290,7 +290,7 @@ set<uint> PnlWznmQryRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFACLAUSE, SCRJREFAORDER, SCRJREFQRY1NQUERYCOL, SCRJREF1NQUERYMOD, SCRJREFSUP1NQUERY, SCRJREFMNTABLE, SCRJREFMNDIALOG, SCRJREFMNPANEL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAORDER, SCRJREFACLAUSE, SCRJREFSUP1NQUERY, SCRJREFQRY1NQUERYCOL, SCRJREF1NQUERYMOD, SCRJREFMNTABLE, SCRJREFMNDIALOG, SCRJREFMNPANEL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

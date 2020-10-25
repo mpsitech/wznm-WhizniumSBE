@@ -2,8 +2,8 @@
 	* \file PnlWznmSbs1NStub.h
 	* job handler for job PnlWznmSbs1NStub (declarations)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifndef PNLWZNMSBS1NSTUB_H

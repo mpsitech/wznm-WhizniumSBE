@@ -2,8 +2,8 @@
 	* \file WznmPrcfileConcat.cpp
 	* Wznm operation processor - concatenate text from multiple input files into output file (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD

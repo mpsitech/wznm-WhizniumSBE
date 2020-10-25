@@ -2,8 +2,8 @@
 	* \file PnlWznmMtyDetail.cpp
 	* job handler for job PnlWznmMtyDetail (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #ifdef WZNMCMBD
@@ -50,8 +50,8 @@ PnlWznmMtyDetail::PnlWznmMtyDetail(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMMTY_CCHEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -400,31 +400,13 @@ void PnlWznmMtyDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ) {
-		call->abort = handleCallWznmKlsAkeyMod_klsEq(dbswznm, call->jref, call->argInv.ix);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMTYUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMMTYUPD_REFEQ) {
 		call->abort = handleCallWznmMtyUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMTY_CCHEQ) {
 		call->abort = handleCallWznmMty_cchEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ) {
+		call->abort = handleCallWznmKlsAkeyMod_klsEq(dbswznm, call->jref, call->argInv.ix);
 	};
-};
-
-bool PnlWznmMtyDetail::handleCallWznmKlsAkeyMod_klsEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-		) {
-	bool retval = false;
-	set<uint> moditems;
-
-	if (ixInv == VecWznmVKeylist::KLSTWZNMKMMACHTYPEOS) {
-		refreshOs(dbswznm, moditems);
-	} else if (ixInv == VecWznmVKeylist::KLSTWZNMKMMACHTYPEPKGMGR) {
-		refreshPkm(dbswznm, moditems);
-	};
-
-	xchg->submitDpch(getNewDpchEng(moditems));
-	return retval;
 };
 
 bool PnlWznmMtyDetail::handleCallWznmMtyUpd_refEq(
@@ -444,6 +426,24 @@ bool PnlWznmMtyDetail::handleCallWznmMty_cchEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recMty.cchRefWznmMMachine == refInv); // IP handleCallWznmMty_cchEq --- LINE
+	return retval;
+};
+
+bool PnlWznmMtyDetail::handleCallWznmKlsAkeyMod_klsEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	if (ixInv == VecWznmVKeylist::KLSTWZNMKMMACHTYPEOS) {
+		refreshOs(dbswznm, moditems);
+	} else if (ixInv == VecWznmVKeylist::KLSTWZNMKMMACHTYPEPKGMGR) {
+		refreshPkm(dbswznm, moditems);
+	};
+
+	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
 

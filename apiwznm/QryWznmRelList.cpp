@@ -2,8 +2,8 @@
 	* \file QryWznmRelList.cpp
 	* API code for job QryWznmRelList (implementation)
 	* \author Alexander Wirthmueller
-	* \date created: 25 Aug 2020
-	* \date modified: 25 Aug 2020
+	* \date created: 27 Aug 2020
+	* \date modified: 27 Aug 2020
 	*/
 
 #include "QryWznmRelList.h"
@@ -26,8 +26,8 @@ uint QryWznmRelList::VecVOrd::getIx(
 	if (s == "sup") return SUP;
 	if (s == "ver") return VER;
 	if (s == "typ") return TYP;
-	if (s == "tot") return TOT;
 	if (s == "tos") return TOS;
+	if (s == "tot") return TOT;
 	if (s == "frs") return FRS;
 	if (s == "frt") return FRT;
 
@@ -42,8 +42,8 @@ string QryWznmRelList::VecVOrd::getSref(
 	if (ix == SUP) return("sup");
 	if (ix == VER) return("ver");
 	if (ix == TYP) return("typ");
-	if (ix == TOT) return("tot");
 	if (ix == TOS) return("tos");
+	if (ix == TOT) return("tot");
 	if (ix == FRS) return("frs");
 	if (ix == FRT) return("frt");
 
