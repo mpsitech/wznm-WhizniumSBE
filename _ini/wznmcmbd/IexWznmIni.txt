@@ -1,4 +1,4 @@
-- IexWznmIni vv1.0.6
+- IexWznmIni vv1.0.7
 - ImeIAVKeylistKey1.srefKlsIxWznmVKeylist	sref	Avail	Implied	Title	Comment
 - KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrAcv			add stages to upload dialog	
 - KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgimp			add stages to data import dialog	

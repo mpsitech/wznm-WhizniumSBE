@@ -298,6 +298,7 @@ DROP TABLE IF EXISTS TblWznmQStbMNCall;
 DROP TABLE IF EXISTS TblWznmQStbMNSquawk;
 DROP TABLE IF EXISTS TblWznmQStbSubMNStub;
 DROP TABLE IF EXISTS TblWznmQStbSupMNStub;
+DROP TABLE IF EXISTS TblWznmQSteAAction;
 DROP TABLE IF EXISTS TblWznmQSteATrig;
 DROP TABLE IF EXISTS TblWznmQSteList;
 DROP TABLE IF EXISTS TblWznmQTagList;
@@ -4112,6 +4113,32 @@ CREATE TABLE TblWznmQStbSupMNStub(
 ALTER TABLE TblWznmQStbSupMNStub OWNER TO epsi;
 CREATE INDEX TblWznmQStbSupMNStub_jref ON TblWznmQStbSupMNStub (jref);
 CREATE INDEX TblWznmQStbSupMNStub_jnum ON TblWznmQStbSupMNStub (jnum);
+
+CREATE TABLE TblWznmQSteAAction(
+	qref BIGSERIAL PRIMARY KEY,
+	jref BIGINT,
+	jnum INT,
+	ref BIGINT,
+	steNum INT,
+	ixVSection INT,
+	ixVType INT,
+	refWznmMRtjob BIGINT,
+	refWznmMVector BIGINT,
+	refWznmMVectoritem BIGINT,
+	snxRefWznmMState BIGINT,
+	refWznmMSequence BIGINT,
+	tr1SrefATrig VARCHAR(50),
+	Ip1 VARCHAR(50),
+	tr2SrefATrig VARCHAR(50),
+	Ip2 VARCHAR(50),
+	tr3SrefATrig VARCHAR(50),
+	Ip3 VARCHAR(50),
+	tr4SrefATrig VARCHAR(50),
+	Ip4 VARCHAR(50)
+);
+ALTER TABLE TblWznmQSteAAction OWNER TO epsi;
+CREATE INDEX TblWznmQSteAAction_jref ON TblWznmQSteAAction (jref);
+CREATE INDEX TblWznmQSteAAction_jnum ON TblWznmQSteAAction (jnum);
 
 CREATE TABLE TblWznmQSteATrig(
 	qref BIGSERIAL PRIMARY KEY,

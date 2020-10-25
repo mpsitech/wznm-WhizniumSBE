@@ -2,8 +2,8 @@
 # file start.sh
 # start script for Wznm operation daemon(s), release wznmopd1_jack
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 num='^[0-9]+$'
 

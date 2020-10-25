@@ -2,8 +2,8 @@
 # file stopall.sh
 # stop script for Wznm operation daemon(s), release wznmopd2_awsubt
 # author Alexander Wirthmueller
-# date created: 25 Aug 2020
-# modified: 25 Aug 2020
+# date created: 27 Aug 2020
+# modified: 27 Aug 2020
 
 IFS=$'\n'
 pids=$(pgrep Wznmopd2)
