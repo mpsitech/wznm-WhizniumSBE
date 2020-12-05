@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmVerBvr1NVersion.js
-  * web client functionality for panel PnlWznmVerBvr1NVersion
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmVerBvr1NVersion", "srefIxWznmVExpstate") == "mind") return;

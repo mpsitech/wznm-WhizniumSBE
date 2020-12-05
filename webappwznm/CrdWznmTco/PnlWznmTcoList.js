@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmTcoList.js
-  * web client functionality for panel PnlWznmTcoList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights
@@ -143,7 +135,7 @@ function refreshB(chgcol) {
 			} else if (i == 3) {
 				doc.cols.push("TcoTyp"); doc.widths.push(TcoTypWidth); doc.fs.push("typ2"); doc.tos.push(0); wtot += TcoTypWidth;
 			} else if (i == 4) {
-				doc.cols.push("TcoTbl"); doc.widths.push(TcoTblWidth); doc.fs.push("tbl"); doc.tos.push(1); wtot += TcoTblWidth;
+				doc.cols.push("TcoTbl"); doc.widths.push(TcoTblWidth); doc.fs.push("tbl"); doc.tos.push(2); wtot += TcoTblWidth;
 			} else if (i == 5) {
 				doc.cols.push("TcoFct"); doc.widths.push(TcoFctWidth); doc.fs.push("fct2"); doc.tos.push(0); wtot += TcoFctWidth;
 			} else if (i == 6) {

@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmRtjList.cpp
 	* job handler for job QryWznmRtjList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -223,10 +224,10 @@ void QryWznmRtjList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMRtjob.sref ASC";
-	else if (preIxOrd == VecVOrd::APP) sqlstr += " ORDER BY TblWznmMRtjob.refWznmMApp ASC";
+	if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWznmMRtjob.refWznmMJob ASC";
 	else if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMRtjob.supRefWznmMRtjob ASC";
-	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWznmMRtjob.refWznmMJob ASC";
+	else if (preIxOrd == VecVOrd::APP) sqlstr += " ORDER BY TblWznmMRtjob.refWznmMApp ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMRtjob.sref ASC";
 };
 
 void QryWznmRtjList::fetch(
@@ -439,4 +440,6 @@ bool QryWznmRtjList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

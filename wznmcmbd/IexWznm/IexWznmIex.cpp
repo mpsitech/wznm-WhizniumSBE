@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmIex.cpp
 	* data blocks and readers/writers for import/export complex IexWznmIex (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #include "IexWznmIex.h"
 
@@ -1427,6 +1428,7 @@ void IexWznmIex::ImeIMImpexpcplx::writeXML(
 void IexWznmIex::parseFromFile(
 			const string& fullpath
 			, const bool xmlNotTxt
+			, const string& rectpath
 			, ImeIMImpexpcplx& imeimimpexpcplx
 		) {
 	if (xmlNotTxt) {
@@ -1444,7 +1446,7 @@ void IexWznmIex::parseFromFile(
 		};
 
 	} else {
-			Txtrd rd(fullpath, "IexWznmIex", Version("0.9.23"), VecVIme::getIx);
+			Txtrd rd(fullpath, rectpath, "IexWznmIex", Version("0.9.23"), VecVIme::getIx);
 			readTxt(rd, imeimimpexpcplx);
 	};
 };
@@ -1554,4 +1556,6 @@ uint IexWznmIex::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
+
+
 

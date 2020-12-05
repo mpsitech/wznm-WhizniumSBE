@@ -1,11 +1,3 @@
-/**
-  * \file CrdWznmMch.js
-  * web client functionality for card CrdWznmMch
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function getInitdone(pnlshort) {
 	return(retrieveSi(srcdoc, "StatAppWznmMch", "initdone" + pnlshort) == "true");
 };
@@ -136,9 +128,20 @@ function initMenApp() {
 function initMenCrd() {
 	var mendoc = doc.getElementById("Menu").contentDocument;
 
+	var height = parseInt(doc.getElementById("Menu").getAttribute("height"));
+
+	MitCrdWisAvail = (retrieveSi(srcdoc, "StatShrWznmMch", "MitCrdWisAvail") == "true");
+	MitCrdWisActive = (retrieveSi(srcdoc, "StatShrWznmMch", "MitCrdWisActive") == "true");
+
 	mendoc.getElementById("colCont").setAttribute("width", retrieveSi(srcdoc, "StatAppWznmMch", "widthMenu"));
 
 	setTextContent(mendoc, mendoc.getElementById("MtxCrdMch"), retrieveCi(srcdoc, "ContInfWznmMch", "MtxCrdMch"));
+	setTextContent(mendoc, mendoc.getElementById("MitCrdWis"), retrieveTi(srcdoc, "TagWznmMch", "MitCrdWis"));
+	setMitActive("MitCrdWis", MitCrdWisActive);
+
+	height -= setMitMspAvail("MitCrdWis", MitCrdWisAvail, 20);
+
+	doc.getElementById("Menu").setAttribute("height", "" + height);
 };
 
 function setMitMspAvail(short, avail, dh) {
@@ -233,7 +236,7 @@ function showDlg(sref, _scrJref)  {
 	myif.setAttribute("id", "Dlg");
 	myif.setAttribute("src", "./" + sref + ".html?scrJref=" + _scrJref);
 	myif.setAttribute("width", "691");
-	if (false) myif.setAttribute("height", "585");
+	if ((sref == "DlgWznmMchWriniscr")) myif.setAttribute("height", "585");
 	else myif.setAttribute("height", "555");
 	myif.setAttribute("frameborder", "0");
 	myif.setAttribute("scrolling", "no");
@@ -331,8 +334,13 @@ function changeHeight(pnlshort, height) {
 
 // --- view initialization and refresh
 function refresh() {
+	var scrJrefDlgwriniscr = retrieveSi(srcdoc, "StatShrWznmMch", "scrJrefDlgwriniscr");
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmMch", "MtxCrdMch") + " - WhizniumSBE v1.0.7";
+	if (scrJrefDlgwriniscr != "") {
+		if (scrJrefDlg != scrJrefDlgwriniscr) showDlg("DlgWznmMchWriniscr", scrJrefDlgwriniscr);
+	} else if (scrJrefDlg != "") hideDlg();
+
+	doc.title = retrieveCi(srcdoc, "ContInfWznmMch", "MtxCrdMch") + " - WhizniumSBE v1.1.0";
 };
 
 // --- event handlers

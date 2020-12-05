@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmJobRec_blks.cpp
 	* job handler for job PnlWznmJobRec (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -97,17 +98,17 @@ void PnlWznmJobRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdoneACmd
 			, const bool initdoneAVar
-			, const bool initdone1NSensitivity
+			, const bool initdoneACmd
+			, const bool initdone1NMethod
 			, const bool initdoneJob1NStage
 			, const bool initdone1NRtjob
-			, const bool initdone1NMethod
-			, const bool initdoneRef1NBlock
+			, const bool initdone1NSensitivity
 			, const bool initdoneHk1NVector
-			, const bool initdoneSupMNJob
-			, const bool initdoneMNOp
+			, const bool initdoneRef1NBlock
 			, const bool initdoneMNOppack
+			, const bool initdoneMNOp
+			, const bool initdoneSupMNJob
 			, const bool initdoneSubMNJob
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmJobRec";
@@ -118,17 +119,17 @@ void PnlWznmJobRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneACmd", initdoneACmd);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneAVar", initdoneAVar);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NSensitivity", initdone1NSensitivity);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneACmd", initdoneACmd);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NMethod", initdone1NMethod);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneJob1NStage", initdoneJob1NStage);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NRtjob", initdone1NRtjob);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NMethod", initdone1NMethod);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NBlock", initdoneRef1NBlock);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NSensitivity", initdone1NSensitivity);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneHk1NVector", initdoneHk1NVector);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneSupMNJob", initdoneSupMNJob);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneMNOp", initdoneMNOp);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NBlock", initdoneRef1NBlock);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNOppack", initdoneMNOppack);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneMNOp", initdoneMNOp);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneSupMNJob", initdoneSupMNJob);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneSubMNJob", initdoneSubMNJob);
 	xmlTextWriterEndElement(wr);
 };
@@ -140,41 +141,41 @@ void PnlWznmJobRec::StatApp::writeXML(
 PnlWznmJobRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jrefACmd
 			, const ubigint jrefAVar
-			, const ubigint jref1NSensitivity
+			, const ubigint jrefACmd
+			, const ubigint jref1NMethod
 			, const ubigint jrefJob1NStage
 			, const ubigint jref1NRtjob
-			, const ubigint jref1NMethod
-			, const ubigint jrefRef1NBlock
+			, const ubigint jref1NSensitivity
 			, const ubigint jrefHk1NVector
-			, const ubigint jrefSupMNJob
-			, const bool pnlsupmnjobAvail
-			, const ubigint jrefMNOp
+			, const ubigint jrefRef1NBlock
 			, const ubigint jrefMNOppack
+			, const ubigint jrefMNOp
+			, const ubigint jrefSupMNJob
 			, const ubigint jrefSubMNJob
+			, const bool pnlsubmnjobAvail
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
-	this->jrefACmd = jrefACmd;
 	this->jrefAVar = jrefAVar;
-	this->jref1NSensitivity = jref1NSensitivity;
+	this->jrefACmd = jrefACmd;
+	this->jref1NMethod = jref1NMethod;
 	this->jrefJob1NStage = jrefJob1NStage;
 	this->jref1NRtjob = jref1NRtjob;
-	this->jref1NMethod = jref1NMethod;
-	this->jrefRef1NBlock = jrefRef1NBlock;
+	this->jref1NSensitivity = jref1NSensitivity;
 	this->jrefHk1NVector = jrefHk1NVector;
-	this->jrefSupMNJob = jrefSupMNJob;
-	this->pnlsupmnjobAvail = pnlsupmnjobAvail;
-	this->jrefMNOp = jrefMNOp;
+	this->jrefRef1NBlock = jrefRef1NBlock;
 	this->jrefMNOppack = jrefMNOppack;
+	this->jrefMNOp = jrefMNOp;
+	this->jrefSupMNJob = jrefSupMNJob;
 	this->jrefSubMNJob = jrefSubMNJob;
+	this->pnlsubmnjobAvail = pnlsubmnjobAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFACMD, JREFAVAR, JREF1NSENSITIVITY, JREFJOB1NSTAGE, JREF1NRTJOB, JREF1NMETHOD, JREFREF1NBLOCK, JREFHK1NVECTOR, JREFSUPMNJOB, PNLSUPMNJOBAVAIL, JREFMNOP, JREFMNOPPACK, JREFSUBMNJOB, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAVAR, JREFACMD, JREF1NMETHOD, JREFJOB1NSTAGE, JREF1NRTJOB, JREF1NSENSITIVITY, JREFHK1NVECTOR, JREFREF1NBLOCK, JREFMNOPPACK, JREFMNOP, JREFSUPMNJOB, JREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmJobRec::StatShr::writeXML(
@@ -191,19 +192,19 @@ void PnlWznmJobRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefACmd", Scr::scramble(jrefACmd));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefAVar", Scr::scramble(jrefAVar));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NSensitivity", Scr::scramble(jref1NSensitivity));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefACmd", Scr::scramble(jrefACmd));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NMethod", Scr::scramble(jref1NMethod));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefJob1NStage", Scr::scramble(jrefJob1NStage));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NRtjob", Scr::scramble(jref1NRtjob));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NMethod", Scr::scramble(jref1NMethod));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NBlock", Scr::scramble(jrefRef1NBlock));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NSensitivity", Scr::scramble(jref1NSensitivity));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefHk1NVector", Scr::scramble(jrefHk1NVector));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefSupMNJob", Scr::scramble(jrefSupMNJob));
-		writeBoolAttr(wr, itemtag, "sref", "pnlsupmnjobAvail", pnlsupmnjobAvail);
-		writeStringAttr(wr, itemtag, "sref", "scrJrefMNOp", Scr::scramble(jrefMNOp));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NBlock", Scr::scramble(jrefRef1NBlock));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNOppack", Scr::scramble(jrefMNOppack));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefMNOp", Scr::scramble(jrefMNOp));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefSupMNJob", Scr::scramble(jrefSupMNJob));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefSubMNJob", Scr::scramble(jrefSubMNJob));
+		writeBoolAttr(wr, itemtag, "sref", "pnlsubmnjobAvail", pnlsubmnjobAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -215,19 +216,19 @@ set<uint> PnlWznmJobRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jrefACmd == comp->jrefACmd) insert(items, JREFACMD);
 	if (jrefAVar == comp->jrefAVar) insert(items, JREFAVAR);
-	if (jref1NSensitivity == comp->jref1NSensitivity) insert(items, JREF1NSENSITIVITY);
+	if (jrefACmd == comp->jrefACmd) insert(items, JREFACMD);
+	if (jref1NMethod == comp->jref1NMethod) insert(items, JREF1NMETHOD);
 	if (jrefJob1NStage == comp->jrefJob1NStage) insert(items, JREFJOB1NSTAGE);
 	if (jref1NRtjob == comp->jref1NRtjob) insert(items, JREF1NRTJOB);
-	if (jref1NMethod == comp->jref1NMethod) insert(items, JREF1NMETHOD);
-	if (jrefRef1NBlock == comp->jrefRef1NBlock) insert(items, JREFREF1NBLOCK);
+	if (jref1NSensitivity == comp->jref1NSensitivity) insert(items, JREF1NSENSITIVITY);
 	if (jrefHk1NVector == comp->jrefHk1NVector) insert(items, JREFHK1NVECTOR);
-	if (jrefSupMNJob == comp->jrefSupMNJob) insert(items, JREFSUPMNJOB);
-	if (pnlsupmnjobAvail == comp->pnlsupmnjobAvail) insert(items, PNLSUPMNJOBAVAIL);
-	if (jrefMNOp == comp->jrefMNOp) insert(items, JREFMNOP);
+	if (jrefRef1NBlock == comp->jrefRef1NBlock) insert(items, JREFREF1NBLOCK);
 	if (jrefMNOppack == comp->jrefMNOppack) insert(items, JREFMNOPPACK);
+	if (jrefMNOp == comp->jrefMNOp) insert(items, JREFMNOP);
+	if (jrefSupMNJob == comp->jrefSupMNJob) insert(items, JREFSUPMNJOB);
 	if (jrefSubMNJob == comp->jrefSubMNJob) insert(items, JREFSUBMNJOB);
+	if (pnlsubmnjobAvail == comp->pnlsubmnjobAvail) insert(items, PNLSUBMNJOBAVAIL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -241,7 +242,7 @@ set<uint> PnlWznmJobRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFACMD, JREFAVAR, JREF1NSENSITIVITY, JREFJOB1NSTAGE, JREF1NRTJOB, JREF1NMETHOD, JREFREF1NBLOCK, JREFHK1NVECTOR, JREFSUPMNJOB, PNLSUPMNJOBAVAIL, JREFMNOP, JREFMNOPPACK, JREFSUBMNJOB, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAVAR, JREFACMD, JREF1NMETHOD, JREFJOB1NSTAGE, JREF1NRTJOB, JREF1NSENSITIVITY, JREFHK1NVECTOR, JREFREF1NBLOCK, JREFMNOPPACK, JREFMNOP, JREFSUPMNJOB, JREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -381,4 +382,6 @@ void PnlWznmJobRec::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

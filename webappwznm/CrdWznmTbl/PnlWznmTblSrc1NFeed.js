@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmTblSrc1NFeed.js
-  * web client functionality for panel PnlWznmTblSrc1NFeed
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmTblSrc1NFeed", "srefIxWznmVExpstate") == "mind") return;

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmConRec.cpp
 	* job handler for job PnlWznmConRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -37,10 +38,10 @@ PnlWznmConRec::PnlWznmConRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
-	pnlapar = NULL;
-	pnlsup1ncontrol = NULL;
 	pnlfedref1nrtblock = NULL;
+	pnlsup1ncontrol = NULL;
+	pnlapar = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -93,7 +94,11 @@ DpchEngWznm* PnlWznmConRec::getNewDpchEng(
 void PnlWznmConRec::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -128,6 +133,7 @@ void PnlWznmConRec::refresh(
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWznmConRec::updatePreset(
@@ -271,10 +277,10 @@ void PnlWznmConRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMCONUPD_REFEQ) {
-		call->abort = handleCallWznmConUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFEDUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMFEDUPD_REFEQ) {
 		call->abort = handleCallWznmFedUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCONUPD_REFEQ) {
+		call->abort = handleCallWznmConUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFED_SRUEQ) {
 		call->abort = handleCallWznmFed_sruEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFED_SRTEQ) {
@@ -304,21 +310,21 @@ void PnlWznmConRec::handleCall(
 	};
 };
 
-bool PnlWznmConRec::handleCallWznmConUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmConUpd_refEq --- INSERT
-	return retval;
-};
-
 bool PnlWznmConRec::handleCallWznmFedUpd_refEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 		) {
 	bool retval = false;
 	// IP handleCallWznmFedUpd_refEq --- INSERT
+	return retval;
+};
+
+bool PnlWznmConRec::handleCallWznmConUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmConUpd_refEq --- INSERT
 	return retval;
 };
 
@@ -464,4 +470,6 @@ bool PnlWznmConRec::handleCallWznmCon_cluEq(
 	boolvalRet = (recCon.refWznmCControl == refInv); // IP handleCallWznmCon_cluEq --- LINE
 	return retval;
 };
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmJobList.cpp
 	* job handler for job QryWznmJobList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -237,12 +238,12 @@ void QryWznmJobList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMJob.sref ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMJob.ixVBasetype ASC";
-	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMJob.refWznmMVersion ASC";
+	if (preIxOrd == VecVOrd::GBL) sqlstr += " ORDER BY TblWznmMJob.Global ASC";
 	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMJob.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMJob.refUref ASC";
-	else if (preIxOrd == VecVOrd::GBL) sqlstr += " ORDER BY TblWznmMJob.Global ASC";
+	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMJob.refWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMJob.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMJob.sref ASC";
 };
 
 void QryWznmJobList::fetch(
@@ -437,27 +438,13 @@ void QryWznmJobList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMJOBMOD) {
-		call->abort = handleCallWznmJobMod(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOBUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMJOBUPD_REFEQ) {
 		call->abort = handleCallWznmJobUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOBMOD) {
+		call->abort = handleCallWznmJobMod(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmJobList::handleCallWznmJobMod(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
-		ixWznmVQrystate = VecWznmVQrystate::MNR;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmJobList::handleCallWznmJobUpd_refEq(
@@ -474,6 +461,20 @@ bool QryWznmJobList::handleCallWznmJobUpd_refEq(
 	return retval;
 };
 
+bool QryWznmJobList::handleCallWznmJobMod(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
+		ixWznmVQrystate = VecWznmVQrystate::MNR;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
 bool QryWznmJobList::handleCallWznmStubChgFromSelf(
 			DbsWznm* dbswznm
 		) {
@@ -481,4 +482,6 @@ bool QryWznmJobList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

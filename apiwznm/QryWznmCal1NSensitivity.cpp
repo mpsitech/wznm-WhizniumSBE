@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmCal1NSensitivity.cpp
 	* API code for job QryWznmCal1NSensitivity (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmCal1NSensitivity.h"
 

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmLibAMakefile.cpp
 	* API code for job PnlWznmLibAMakefile (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "PnlWznmLibAMakefile.h"
 
@@ -249,17 +250,17 @@ set<uint> PnlWznmLibAMakefile::StatShr::diff(
  ******************************************************************************/
 
 PnlWznmLibAMakefile::StgIac::StgIac(
-			const uint TcoReuWidth
+			const uint TcoMchWidth
 			, const uint TcoTagWidth
 			, const uint TcoValWidth
 		) :
 			Block()
 		{
-	this->TcoReuWidth = TcoReuWidth;
+	this->TcoMchWidth = TcoMchWidth;
 	this->TcoTagWidth = TcoTagWidth;
 	this->TcoValWidth = TcoValWidth;
 
-	mask = {TCOREUWIDTH, TCOTAGWIDTH, TCOVALWIDTH};
+	mask = {TCOMCHWIDTH, TCOTAGWIDTH, TCOVALWIDTH};
 };
 
 bool PnlWznmLibAMakefile::StgIac::readXML(
@@ -279,7 +280,7 @@ bool PnlWznmLibAMakefile::StgIac::readXML(
 	string itemtag = "StgitemIacWznmLibAMakefile";
 
 	if (basefound) {
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoReuWidth", TcoReuWidth)) add(TCOREUWIDTH);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoMchWidth", TcoMchWidth)) add(TCOMCHWIDTH);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoTagWidth", TcoTagWidth)) add(TCOTAGWIDTH);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoValWidth", TcoValWidth)) add(TCOVALWIDTH);
 	};
@@ -299,7 +300,7 @@ void PnlWznmLibAMakefile::StgIac::writeXML(
 	else itemtag = "StgitemIacWznmLibAMakefile";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeUintAttr(wr, itemtag, "sref", "TcoReuWidth", TcoReuWidth);
+		writeUintAttr(wr, itemtag, "sref", "TcoMchWidth", TcoMchWidth);
 		writeUintAttr(wr, itemtag, "sref", "TcoTagWidth", TcoTagWidth);
 		writeUintAttr(wr, itemtag, "sref", "TcoValWidth", TcoValWidth);
 	xmlTextWriterEndElement(wr);
@@ -310,7 +311,7 @@ set<uint> PnlWznmLibAMakefile::StgIac::comm(
 		) {
 	set<uint> items;
 
-	if (TcoReuWidth == comp->TcoReuWidth) insert(items, TCOREUWIDTH);
+	if (TcoMchWidth == comp->TcoMchWidth) insert(items, TCOMCHWIDTH);
 	if (TcoTagWidth == comp->TcoTagWidth) insert(items, TCOTAGWIDTH);
 	if (TcoValWidth == comp->TcoValWidth) insert(items, TCOVALWIDTH);
 
@@ -325,7 +326,7 @@ set<uint> PnlWznmLibAMakefile::StgIac::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TCOREUWIDTH, TCOTAGWIDTH, TCOVALWIDTH};
+	diffitems = {TCOMCHWIDTH, TCOTAGWIDTH, TCOVALWIDTH};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -342,7 +343,7 @@ PnlWznmLibAMakefile::Tag::Tag(
 			, const string& Trs
 			, const string& TxtShowing1
 			, const string& TxtShowing2
-			, const string& TcoReu
+			, const string& TcoMch
 			, const string& TcoTag
 			, const string& TcoVal
 		) :
@@ -354,11 +355,11 @@ PnlWznmLibAMakefile::Tag::Tag(
 	this->Trs = Trs;
 	this->TxtShowing1 = TxtShowing1;
 	this->TxtShowing2 = TxtShowing2;
-	this->TcoReu = TcoReu;
+	this->TcoMch = TcoMch;
 	this->TcoTag = TcoTag;
 	this->TcoVal = TcoVal;
 
-	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOREU, TCOTAG, TCOVAL};
+	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOMCH, TCOTAG, TCOVAL};
 };
 
 bool PnlWznmLibAMakefile::Tag::readXML(
@@ -384,7 +385,7 @@ bool PnlWznmLibAMakefile::Tag::readXML(
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "Trs", Trs)) add(TRS);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtShowing1", TxtShowing1)) add(TXTSHOWING1);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TxtShowing2", TxtShowing2)) add(TXTSHOWING2);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TcoReu", TcoReu)) add(TCOREU);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TcoMch", TcoMch)) add(TCOMCH);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TcoTag", TcoTag)) add(TCOTAG);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "TcoVal", TcoVal)) add(TCOVAL);
 	};

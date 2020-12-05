@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmSeqSeq1NState.js
-  * web client functionality for panel PnlWznmSeqSeq1NState
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmSeqSeq1NState", "srefIxWznmVExpstate") == "mind") return;

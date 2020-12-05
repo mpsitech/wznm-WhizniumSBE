@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmSbsFrs1NRelation.cpp
 	* job handler for job PnlWznmSbsFrs1NRelation (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -90,7 +91,11 @@ DpchEngWznm* PnlWznmSbsFrs1NRelation::getNewDpchEng(
 void PnlWznmSbsFrs1NRelation::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -105,6 +110,8 @@ void PnlWznmSbsFrs1NRelation::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmSbsFrs1NRelation::updatePreset(
@@ -214,9 +221,9 @@ void PnlWznmSbsFrs1NRelation::handleDpchAppDataStgiacqry(
 
 	WznmMRelation* _recRel = NULL;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
+		muteRefresh = true;
+
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWznmSbsFrs1NRelation::StgIac::JNUM)) recSelNew = qry->getRecByJnum(_stgiacqry->jnum);
@@ -242,10 +249,8 @@ void PnlWznmSbsFrs1NRelation::handleDpchAppDataStgiacqry(
 			qry->refreshJnum();
 		};
 
-		refresh(dbswznm, moditems);
+		refresh(dbswznm, moditems, true);
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -281,9 +286,8 @@ void PnlWznmSbsFrs1NRelation::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswznm, false);
-	refresh(dbswznm, moditems);
 
-	muteRefresh = false;
+	refresh(dbswznm, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);
@@ -318,4 +322,6 @@ bool PnlWznmSbsFrs1NRelation::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
+
+
 

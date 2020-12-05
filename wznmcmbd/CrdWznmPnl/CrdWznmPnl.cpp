@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmPnl.cpp
 	* job handler for job CrdWznmPnl (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -43,9 +44,9 @@ CrdWznmPnl::CrdWznmPnl(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnlrec = NULL;
-	pnlheadbar = NULL;
 	pnllist = NULL;
+	pnlheadbar = NULL;
+	pnlrec = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -57,9 +58,9 @@ CrdWznmPnl::CrdWznmPnl(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnlrec = new PnlWznmPnlRec(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlheadbar = new PnlWznmPnlHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnllist = new PnlWznmPnlList(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmPnlHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlrec = new PnlWznmPnlRec(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -109,7 +110,11 @@ DpchEngWznm* CrdWznmPnl::getNewDpchEng(
 void CrdWznmPnl::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
@@ -119,6 +124,8 @@ void CrdWznmPnl::refresh(
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+
+	muteRefresh = false;
 };
 
 void CrdWznmPnl::changeRef(
@@ -293,7 +300,7 @@ void CrdWznmPnl::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -349,4 +356,6 @@ void CrdWznmPnl::leaveSgeAlrwznmabt(
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
 };
+
+
 

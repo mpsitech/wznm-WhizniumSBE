@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmSteRec.h
 	* job handler for job PnlWznmSteRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMSTEREC_H
 #define PNLWZNMSTEREC_H
@@ -13,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSteDetail.h"
 #include "PnlWznmSteATrig.h"
 #include "PnlWznmSteAAction.h"
+#include "PnlWznmSteDetail.h"
 
 #define VecVWznmSteRecDo PnlWznmSteRec::VecVDo
 
@@ -72,7 +73,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATrig = false, const bool initdoneAAction = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAAction = false, const bool initdoneATrig = false);
 	};
 
 	/**
@@ -83,18 +84,18 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFATRIG = 3;
-		static const Sbecore::uint JREFAACTION = 4;
+		static const Sbecore::uint JREFAACTION = 3;
+		static const Sbecore::uint JREFATRIG = 4;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 5;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATrig = 0, const Sbecore::ubigint jrefAAction = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAAction = 0, const Sbecore::ubigint jrefATrig = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefATrig;
 		Sbecore::ubigint jrefAAction;
+		Sbecore::ubigint jrefATrig;
 		bool ButRegularizeActive;
 
 	public:
@@ -170,9 +171,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSteDetail* pnldetail;
 	PnlWznmSteATrig* pnlatrig;
 	PnlWznmSteAAction* pnlaaction;
+	PnlWznmSteDetail* pnldetail;
 
 	WznmMState recSte;
 
@@ -184,7 +185,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -212,4 +213,6 @@ private:
 };
 
 #endif
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmImeHeadbar.cpp
 	* job handler for job PnlWznmImeHeadbar (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -75,7 +76,12 @@ DpchEngWznm* PnlWznmImeHeadbar::getNewDpchEng(
 void PnlWznmImeHeadbar::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
+	muteRefresh = false;
 };
 
 void PnlWznmImeHeadbar::handleRequest(
@@ -108,4 +114,6 @@ void PnlWznmImeHeadbar::handleDpchAppWznmInit(
 		) {
 	*dpcheng = getNewDpchEng({DpchEngData::ALL});
 };
+
+
 

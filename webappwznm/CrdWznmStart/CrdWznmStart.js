@@ -1,11 +1,3 @@
-/**
-  * \file CrdWznmStart.js
-  * web client functionality for Wznm start page
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function initLogin() {
 	doc.getElementById("tdCont").setAttribute("height", "128");
 	doc.getElementById("Cont").setAttribute("height", "120");

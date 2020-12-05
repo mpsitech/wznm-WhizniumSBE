@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmCalList.cpp
 	* job handler for job PnlWznmCalList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -94,7 +95,11 @@ DpchEngWznm* PnlWznmCalList::getNewDpchEng(
 void PnlWznmCalList::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
 
@@ -118,6 +123,8 @@ void PnlWznmCalList::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+
+	muteRefresh = false;
 };
 
 void PnlWznmCalList::updatePreset(
@@ -249,19 +256,18 @@ void PnlWznmCalList::handleDpchAppDataContiac(
 
 	diffitems = _contiac->diff(&contiac);
 
-	muteRefresh = true;
-
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWznmCalList::VecVOrd::SRF) && (_contiac->numFTos <= QryWznmCalList::VecVOrd::RAT)) {
+		if ((_contiac->numFTos >= QryWznmCalList::VecVOrd::RAT) && (_contiac->numFTos <= QryWznmCalList::VecVOrd::SRF)) {
+			muteRefresh = true;
+
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);
 
 			qry->rerun(dbswznm);
-			refresh(dbswznm, moditems);
+
+			refresh(dbswznm, moditems, true);
 			insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 		};
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::CONTIAC);
 	*dpcheng = getNewDpchEng(moditems);
@@ -293,16 +299,17 @@ void PnlWznmCalList::handleDpchAppDataStgiacqry(
 
 	ubigint refSelNew = 0;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWznmCalList::StgIac::JNUM)) refSelNew = qry->getRefByJnum(_stgiacqry->jnum);
 
 		if (!has(diffitems, QryWznmCalList::StgIac::JNUM) || (diffitems.size() > 1)) {
+			muteRefresh = true;
+
 			qry->rerun(dbswznm);
-			refresh(dbswznm, moditems);
+
+			refresh(dbswznm, moditems, true);
 			insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::RST});
 		};
 
@@ -311,8 +318,6 @@ void PnlWznmCalList::handleDpchAppDataStgiacqry(
 			xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFCAL, refSelNew);
 		};
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -362,9 +367,8 @@ void PnlWznmCalList::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswznm, false);
-	refresh(dbswznm, moditems);
 
-	muteRefresh = false;
+	refresh(dbswznm, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);
@@ -399,4 +403,6 @@ bool PnlWznmCalList::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmRtjList.cpp
 	* API code for job QryWznmRtjList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmRtjList.h"
 
@@ -21,10 +22,10 @@ uint QryWznmRtjList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
-	if (s == "app") return APP;
-	if (s == "sup") return SUP;
 	if (s == "job") return JOB;
+	if (s == "sup") return SUP;
+	if (s == "app") return APP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -32,10 +33,10 @@ uint QryWznmRtjList::VecVOrd::getIx(
 string QryWznmRtjList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
-	if (ix == APP) return("app");
-	if (ix == SUP) return("sup");
 	if (ix == JOB) return("job");
+	if (ix == SUP) return("sup");
+	if (ix == APP) return("app");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

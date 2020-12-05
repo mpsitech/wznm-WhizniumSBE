@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmRlsList_blks.cpp
 	* job handler for job QryWznmRlsList (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -19,9 +20,9 @@ uint QryWznmRlsList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
-	if (s == "cmp") return CMP;
 	if (s == "mch") return MCH;
+	if (s == "cmp") return CMP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -29,9 +30,9 @@ uint QryWznmRlsList::VecVOrd::getIx(
 string QryWznmRlsList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
-	if (ix == CMP) return("cmp");
 	if (ix == MCH) return("mch");
+	if (ix == CMP) return("cmp");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -218,4 +219,6 @@ set<uint> QryWznmRlsList::StgIac::diff(
 
 	return(diffitems);
 };
+
+
 

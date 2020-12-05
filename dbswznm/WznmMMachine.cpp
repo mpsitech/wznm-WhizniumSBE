@@ -1,10 +1,11 @@
 /**
 	* \file WznmMMachine.cpp
 	* database access for table TblWznmMMachine (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #include "WznmMMachine.h"
 
@@ -17,16 +18,18 @@ using namespace Sbecore;
 
 WznmMMachine::WznmMMachine(
 			const ubigint ref
-			, const ubigint refWznmMMachtype
+			, const ubigint supRefWznmMMachine
 			, const string sref
-			, const uint ixWznmWCloudtype
+			, const ubigint cchRefWznmMMachine
+			, const string srefKPkgmgr
 			, const string Comment
 		) {
 
 	this->ref = ref;
-	this->refWznmMMachtype = refWznmMMachtype;
+	this->supRefWznmMMachine = supRefWznmMMachine;
 	this->sref = sref;
-	this->ixWznmWCloudtype = ixWznmWCloudtype;
+	this->cchRefWznmMMachine = cchRefWznmMMachine;
+	this->srefKPkgmgr = srefKPkgmgr;
 	this->Comment = Comment;
 };
 
@@ -158,15 +161,16 @@ ubigint TblWznmMMachine::insertRec(
 
 ubigint TblWznmMMachine::insertNewRec(
 			WznmMMachine** rec
-			, const ubigint refWznmMMachtype
+			, const ubigint supRefWznmMMachine
 			, const string sref
-			, const uint ixWznmWCloudtype
+			, const ubigint cchRefWznmMMachine
+			, const string srefKPkgmgr
 			, const string Comment
 		) {
 	ubigint retval = 0;
 	WznmMMachine* _rec = NULL;
 
-	_rec = new WznmMMachine(0, refWznmMMachtype, sref, ixWznmWCloudtype, Comment);
+	_rec = new WznmMMachine(0, supRefWznmMMachine, sref, cchRefWznmMMachine, srefKPkgmgr, Comment);
 	insertRec(_rec);
 
 	retval = _rec->ref;
@@ -180,15 +184,16 @@ ubigint TblWznmMMachine::insertNewRec(
 ubigint TblWznmMMachine::appendNewRecToRst(
 			ListWznmMMachine& rst
 			, WznmMMachine** rec
-			, const ubigint refWznmMMachtype
+			, const ubigint supRefWznmMMachine
 			, const string sref
-			, const uint ixWznmWCloudtype
+			, const ubigint cchRefWznmMMachine
+			, const string srefKPkgmgr
 			, const string Comment
 		) {
 	ubigint retval = 0;
 	WznmMMachine* _rec = NULL;
 
-	retval = insertNewRec(&_rec, refWznmMMachtype, sref, ixWznmWCloudtype, Comment);
+	retval = insertNewRec(&_rec, supRefWznmMMachine, sref, cchRefWznmMMachine, srefKPkgmgr, Comment);
 	rst.nodes.push_back(_rec);
 
 	if (rec != NULL) *rec = _rec;
@@ -225,19 +230,40 @@ bool TblWznmMMachine::loadRecByRef(
 	return false;
 };
 
-bool TblWznmMMachine::loadRefBySrf(
-			string sref
-			, ubigint& ref
+bool TblWznmMMachine::confirmByRef(
+			ubigint ref
 		) {
 	return false;
 };
 
-ubigint TblWznmMMachine::loadRefsByTbl(
-			ubigint refWznmMMachtype
+ubigint TblWznmMMachine::loadRefsBySup(
+			ubigint supRefWznmMMachine
 			, const bool append
 			, vector<ubigint>& refs
 		) {
 	return 0;
+};
+
+ubigint TblWznmMMachine::loadRstBySup(
+			ubigint supRefWznmMMachine
+			, const bool append
+			, ListWznmMMachine& rst
+		) {
+	return 0;
+};
+
+bool TblWznmMMachine::loadSrfByRef(
+			ubigint ref
+			, string& sref
+		) {
+	return false;
+};
+
+bool TblWznmMMachine::loadSupByRef(
+			ubigint ref
+			, ubigint& supRefWznmMMachine
+		) {
+	return false;
 };
 
 ubigint TblWznmMMachine::loadRstByRefs(
@@ -256,6 +282,122 @@ ubigint TblWznmMMachine::loadRstByRefs(
 	};
 
 	return numload;
+};
+
+ubigint TblWznmMMachine::loadHrefsup(
+			ubigint ref
+			, vector<ubigint>& refs
+		) {
+	ubigint sup;
+
+	refs.resize(0);
+	ubigint retval = 0;
+
+	while (loadSupByRef(ref, sup)) {
+		refs.push_back(ref);
+		retval++;
+
+		ref = sup;
+		if (ref == 0) break;
+	};
+
+	return retval;
+};
+
+ubigint TblWznmMMachine::loadHrefsdown(
+			ubigint ref
+			, const bool append
+			, vector<ubigint>& refs
+			, unsigned int firstix
+			, unsigned int lastix
+		) {
+	unsigned int newfirstix, newlastix;
+
+	ubigint retval = 0;
+
+	// initial call
+	if ((firstix == 0) && (lastix == 0)) {
+		if (!append) refs.resize(0);
+
+		if (confirmByRef(ref)) {
+			refs.push_back(ref);
+			retval = 1;
+
+		} else {
+			// ensure that no recursion takes place
+			firstix = 1;
+		};
+	};
+
+	for (unsigned int i = firstix; i <= lastix; i++) {
+		newfirstix = refs.size();
+		retval += loadRefsBySup(refs[i], true, refs);
+		newlastix = refs.size() - 1;
+
+		if (newlastix >= newfirstix) retval += loadHrefsdown(0, true, refs, newfirstix, newlastix);
+	};
+
+	return retval;
+};
+
+ubigint TblWznmMMachine::loadHrstup(
+			ubigint ref
+			, ListWznmMMachine& rst
+		) {
+	WznmMMachine* rec = NULL;
+
+	rst.clear();
+	ubigint retval = 0;
+
+	while (loadRecByRef(ref, &rec)) {
+		rst.nodes.push_back(rec);
+		retval++;
+
+		ref = rec->supRefWznmMMachine;
+		if (ref == 0) break;
+	};
+
+	return retval;
+};
+
+ubigint TblWznmMMachine::loadHrstdown(
+			ubigint ref
+			, const bool append
+			, ListWznmMMachine& rst
+			, unsigned int firstix
+			, unsigned int lastix
+		) {
+	WznmMMachine* rec = NULL;
+
+	unsigned int newfirstix, newlastix;
+
+	ubigint retval = 0;
+
+	// initial call
+	if ((firstix == 0) && (lastix == 0)) {
+		if (!append) rst.clear();
+
+		if (loadRecByRef(ref, &rec)) {
+			rst.nodes.push_back(rec);
+			retval = 1;
+
+		} else {
+			// ensure that no recursion takes place
+			firstix = 1;
+		};
+	};
+
+	for (unsigned int i = firstix; i <= lastix; i++) {
+		rec = rst.nodes[i];
+
+		newfirstix = rst.nodes.size();
+		retval += loadRstBySup(rec->ref, true, rst);
+		newlastix = rst.nodes.size() - 1;
+
+		if (newlastix >= newfirstix) retval += loadHrstdown(0, true, rst, newfirstix, newlastix);
+	};
+
+	return retval;
 };
 
 #if defined(SBECORE_MAR) || defined(SBECORE_MY)
@@ -279,8 +421,8 @@ MyTblWznmMMachine::~MyTblWznmMMachine() {
 };
 
 void MyTblWznmMMachine::initStatements() {
-	stmtInsertRec = createStatement("INSERT INTO TblWznmMMachine (refWznmMMachtype, sref, ixWznmWCloudtype, Comment) VALUES (?,?,?,?)", false);
-	stmtUpdateRec = createStatement("UPDATE TblWznmMMachine SET refWznmMMachtype = ?, sref = ?, ixWznmWCloudtype = ?, Comment = ? WHERE ref = ?", false);
+	stmtInsertRec = createStatement("INSERT INTO TblWznmMMachine (supRefWznmMMachine, sref, cchRefWznmMMachine, srefKPkgmgr, Comment) VALUES (?,?,?,?,?)", false);
+	stmtUpdateRec = createStatement("UPDATE TblWznmMMachine SET supRefWznmMMachine = ?, sref = ?, cchRefWznmMMachine = ?, srefKPkgmgr = ?, Comment = ? WHERE ref = ?", false);
 	stmtRemoveRecByRef = createStatement("DELETE FROM TblWznmMMachine WHERE ref = ?", false);
 };
 
@@ -311,10 +453,11 @@ bool MyTblWznmMMachine::loadRecBySQL(
 		_rec = new WznmMMachine();
 
 		if (dbrow[0]) _rec->ref = atoll((char*) dbrow[0]); else _rec->ref = 0;
-		if (dbrow[1]) _rec->refWznmMMachtype = atoll((char*) dbrow[1]); else _rec->refWznmMMachtype = 0;
+		if (dbrow[1]) _rec->supRefWznmMMachine = atoll((char*) dbrow[1]); else _rec->supRefWznmMMachine = 0;
 		if (dbrow[2]) _rec->sref.assign(dbrow[2], dblengths[2]); else _rec->sref = "";
-		if (dbrow[3]) _rec->ixWznmWCloudtype = atol((char*) dbrow[3]); else _rec->ixWznmWCloudtype = 0;
-		if (dbrow[4]) _rec->Comment.assign(dbrow[4], dblengths[4]); else _rec->Comment = "";
+		if (dbrow[3]) _rec->cchRefWznmMMachine = atoll((char*) dbrow[3]); else _rec->cchRefWznmMMachine = 0;
+		if (dbrow[4]) _rec->srefKPkgmgr.assign(dbrow[4], dblengths[4]); else _rec->srefKPkgmgr = "";
+		if (dbrow[5]) _rec->Comment.assign(dbrow[5], dblengths[5]); else _rec->Comment = "";
 
 		retval = true;
 	};
@@ -358,10 +501,11 @@ ubigint MyTblWznmMMachine::loadRstBySQL(
 			rec = new WznmMMachine();
 
 			if (dbrow[0]) rec->ref = atoll((char*) dbrow[0]); else rec->ref = 0;
-			if (dbrow[1]) rec->refWznmMMachtype = atoll((char*) dbrow[1]); else rec->refWznmMMachtype = 0;
+			if (dbrow[1]) rec->supRefWznmMMachine = atoll((char*) dbrow[1]); else rec->supRefWznmMMachine = 0;
 			if (dbrow[2]) rec->sref.assign(dbrow[2], dblengths[2]); else rec->sref = "";
-			if (dbrow[3]) rec->ixWznmWCloudtype = atol((char*) dbrow[3]); else rec->ixWznmWCloudtype = 0;
-			if (dbrow[4]) rec->Comment.assign(dbrow[4], dblengths[4]); else rec->Comment = "";
+			if (dbrow[3]) rec->cchRefWznmMMachine = atoll((char*) dbrow[3]); else rec->cchRefWznmMMachine = 0;
+			if (dbrow[4]) rec->srefKPkgmgr.assign(dbrow[4], dblengths[4]); else rec->srefKPkgmgr = "";
+			if (dbrow[5]) rec->Comment.assign(dbrow[5], dblengths[5]); else rec->Comment = "";
 			rst.nodes.push_back(rec);
 
 			numread++;
@@ -376,16 +520,18 @@ ubigint MyTblWznmMMachine::loadRstBySQL(
 ubigint MyTblWznmMMachine::insertRec(
 			WznmMMachine* rec
 		) {
-	unsigned long l[4]; my_bool n[4]; my_bool e[4];
+	unsigned long l[5]; my_bool n[5]; my_bool e[5];
 
 	l[1] = rec->sref.length();
-	l[3] = rec->Comment.length();
+	l[3] = rec->srefKPkgmgr.length();
+	l[4] = rec->Comment.length();
 
 	MYSQL_BIND bind[] = {
-		bindUbigint(&rec->refWznmMMachtype,&(l[0]),&(n[0]),&(e[0])),
+		bindUbigint(&rec->supRefWznmMMachine,&(l[0]),&(n[0]),&(e[0])),
 		bindCstring((char*) (rec->sref.c_str()),&(l[1]),&(n[1]),&(e[1])),
-		bindUint(&rec->ixWznmWCloudtype,&(l[2]),&(n[2]),&(e[2])),
-		bindCstring((char*) (rec->Comment.c_str()),&(l[3]),&(n[3]),&(e[3]))
+		bindUbigint(&rec->cchRefWznmMMachine,&(l[2]),&(n[2]),&(e[2])),
+		bindCstring((char*) (rec->srefKPkgmgr.c_str()),&(l[3]),&(n[3]),&(e[3])),
+		bindCstring((char*) (rec->Comment.c_str()),&(l[4]),&(n[4]),&(e[4]))
 	};
 
 	if (mysql_stmt_bind_param(stmtInsertRec, bind)) {
@@ -413,17 +559,19 @@ void MyTblWznmMMachine::insertRst(
 void MyTblWznmMMachine::updateRec(
 			WznmMMachine* rec
 		) {
-	unsigned long l[5]; my_bool n[5]; my_bool e[5];
+	unsigned long l[6]; my_bool n[6]; my_bool e[6];
 
 	l[1] = rec->sref.length();
-	l[3] = rec->Comment.length();
+	l[3] = rec->srefKPkgmgr.length();
+	l[4] = rec->Comment.length();
 
 	MYSQL_BIND bind[] = {
-		bindUbigint(&rec->refWznmMMachtype,&(l[0]),&(n[0]),&(e[0])),
+		bindUbigint(&rec->supRefWznmMMachine,&(l[0]),&(n[0]),&(e[0])),
 		bindCstring((char*) (rec->sref.c_str()),&(l[1]),&(n[1]),&(e[1])),
-		bindUint(&rec->ixWznmWCloudtype,&(l[2]),&(n[2]),&(e[2])),
-		bindCstring((char*) (rec->Comment.c_str()),&(l[3]),&(n[3]),&(e[3])),
-		bindUbigint(&rec->ref,&(l[4]),&(n[4]),&(e[4]))
+		bindUbigint(&rec->cchRefWznmMMachine,&(l[2]),&(n[2]),&(e[2])),
+		bindCstring((char*) (rec->srefKPkgmgr.c_str()),&(l[3]),&(n[3]),&(e[3])),
+		bindCstring((char*) (rec->Comment.c_str()),&(l[4]),&(n[4]),&(e[4])),
+		bindUbigint(&rec->ref,&(l[5]),&(n[5]),&(e[5]))
 	};
 
 	if (mysql_stmt_bind_param(stmtUpdateRec, bind)) {
@@ -474,19 +622,41 @@ bool MyTblWznmMMachine::loadRecByRef(
 	return loadRecBySQL("SELECT * FROM TblWznmMMachine WHERE ref = " + to_string(ref), rec);
 };
 
-bool MyTblWznmMMachine::loadRefBySrf(
-			string sref
-			, ubigint& ref
+bool MyTblWznmMMachine::confirmByRef(
+			ubigint ref
 		) {
-	return loadRefBySQL("SELECT ref FROM TblWznmMMachine WHERE sref = '" + sref + "'", ref);
+	ubigint val;
+	return loadRefBySQL("SELECT ref FROM TblWznmMMachine WHERE ref = " + to_string(ref) + "", val);
 };
 
-ubigint MyTblWznmMMachine::loadRefsByTbl(
-			ubigint refWznmMMachtype
+ubigint MyTblWznmMMachine::loadRefsBySup(
+			ubigint supRefWznmMMachine
 			, const bool append
 			, vector<ubigint>& refs
 		) {
-	return loadRefsBySQL("SELECT ref FROM TblWznmMMachine WHERE refWznmMMachtype = " + to_string(refWznmMMachtype) + "", append, refs);
+	return loadRefsBySQL("SELECT ref FROM TblWznmMMachine WHERE supRefWznmMMachine = " + to_string(supRefWznmMMachine) + " ORDER BY sref ASC", append, refs);
+};
+
+ubigint MyTblWznmMMachine::loadRstBySup(
+			ubigint supRefWznmMMachine
+			, const bool append
+			, ListWznmMMachine& rst
+		) {
+	return loadRstBySQL("SELECT ref, supRefWznmMMachine, sref, cchRefWznmMMachine, srefKPkgmgr, Comment FROM TblWznmMMachine WHERE supRefWznmMMachine = " + to_string(supRefWznmMMachine) + " ORDER BY sref ASC", append, rst);
+};
+
+bool MyTblWznmMMachine::loadSrfByRef(
+			ubigint ref
+			, string& sref
+		) {
+	return loadStringBySQL("SELECT sref FROM TblWznmMMachine WHERE ref = " + to_string(ref) + "", sref);
+};
+
+bool MyTblWznmMMachine::loadSupByRef(
+			ubigint ref
+			, ubigint& supRefWznmMMachine
+		) {
+	return loadRefBySQL("SELECT supRefWznmMMachine FROM TblWznmMMachine WHERE ref = " + to_string(ref) + "", supRefWznmMMachine);
 };
 
 #endif
@@ -507,13 +677,16 @@ PgTblWznmMMachine::~PgTblWznmMMachine() {
 };
 
 void PgTblWznmMMachine::initStatements() {
-	createStatement("TblWznmMMachine_insertRec", "INSERT INTO TblWznmMMachine (refWznmMMachtype, sref, ixWznmWCloudtype, Comment) VALUES ($1,$2,$3,$4) RETURNING ref", 4);
-	createStatement("TblWznmMMachine_updateRec", "UPDATE TblWznmMMachine SET refWznmMMachtype = $1, sref = $2, ixWznmWCloudtype = $3, Comment = $4 WHERE ref = $5", 5);
+	createStatement("TblWznmMMachine_insertRec", "INSERT INTO TblWznmMMachine (supRefWznmMMachine, sref, cchRefWznmMMachine, srefKPkgmgr, Comment) VALUES ($1,$2,$3,$4,$5) RETURNING ref", 5);
+	createStatement("TblWznmMMachine_updateRec", "UPDATE TblWznmMMachine SET supRefWznmMMachine = $1, sref = $2, cchRefWznmMMachine = $3, srefKPkgmgr = $4, Comment = $5 WHERE ref = $6", 6);
 	createStatement("TblWznmMMachine_removeRecByRef", "DELETE FROM TblWznmMMachine WHERE ref = $1", 1);
 
-	createStatement("TblWznmMMachine_loadRecByRef", "SELECT ref, refWznmMMachtype, sref, ixWznmWCloudtype, Comment FROM TblWznmMMachine WHERE ref = $1", 1);
-	createStatement("TblWznmMMachine_loadRefBySrf", "SELECT ref FROM TblWznmMMachine WHERE sref = $1", 1);
-	createStatement("TblWznmMMachine_loadRefsByTbl", "SELECT ref FROM TblWznmMMachine WHERE refWznmMMachtype = $1", 1);
+	createStatement("TblWznmMMachine_loadRecByRef", "SELECT ref, supRefWznmMMachine, sref, cchRefWznmMMachine, srefKPkgmgr, Comment FROM TblWznmMMachine WHERE ref = $1", 1);
+	createStatement("TblWznmMMachine_confirmByRef", "SELECT ref FROM TblWznmMMachine WHERE ref = $1", 1);
+	createStatement("TblWznmMMachine_loadRefsBySup", "SELECT ref FROM TblWznmMMachine WHERE supRefWznmMMachine = $1 ORDER BY sref ASC", 1);
+	createStatement("TblWznmMMachine_loadRstBySup", "SELECT ref, supRefWznmMMachine, sref, cchRefWznmMMachine, srefKPkgmgr, Comment FROM TblWznmMMachine WHERE supRefWznmMMachine = $1 ORDER BY sref ASC", 1);
+	createStatement("TblWznmMMachine_loadSrfByRef", "SELECT sref FROM TblWznmMMachine WHERE ref = $1", 1);
+	createStatement("TblWznmMMachine_loadSupByRef", "SELECT supRefWznmMMachine FROM TblWznmMMachine WHERE ref = $1", 1);
 };
 
 bool PgTblWznmMMachine::loadRec(
@@ -530,17 +703,19 @@ bool PgTblWznmMMachine::loadRec(
 
 		int fnum[] = {
 			PQfnumber(res, "ref"),
-			PQfnumber(res, "refwznmmmachtype"),
+			PQfnumber(res, "suprefwznmmmachine"),
 			PQfnumber(res, "sref"),
-			PQfnumber(res, "ixwznmwcloudtype"),
+			PQfnumber(res, "cchrefwznmmmachine"),
+			PQfnumber(res, "srefkpkgmgr"),
 			PQfnumber(res, "comment")
 		};
 
 		ptr = PQgetvalue(res, 0, fnum[0]); _rec->ref = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[1]); _rec->refWznmMMachtype = atoll(ptr);
+		ptr = PQgetvalue(res, 0, fnum[1]); _rec->supRefWznmMMachine = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[2]); _rec->sref.assign(ptr, PQgetlength(res, 0, fnum[2]));
-		ptr = PQgetvalue(res, 0, fnum[3]); _rec->ixWznmWCloudtype = atol(ptr);
-		ptr = PQgetvalue(res, 0, fnum[4]); _rec->Comment.assign(ptr, PQgetlength(res, 0, fnum[4]));
+		ptr = PQgetvalue(res, 0, fnum[3]); _rec->cchRefWznmMMachine = atoll(ptr);
+		ptr = PQgetvalue(res, 0, fnum[4]); _rec->srefKPkgmgr.assign(ptr, PQgetlength(res, 0, fnum[4]));
+		ptr = PQgetvalue(res, 0, fnum[5]); _rec->Comment.assign(ptr, PQgetlength(res, 0, fnum[5]));
 
 		retval = true;
 	};
@@ -568,9 +743,10 @@ ubigint PgTblWznmMMachine::loadRst(
 
 		int fnum[] = {
 			PQfnumber(res, "ref"),
-			PQfnumber(res, "refwznmmmachtype"),
+			PQfnumber(res, "suprefwznmmmachine"),
 			PQfnumber(res, "sref"),
-			PQfnumber(res, "ixwznmwcloudtype"),
+			PQfnumber(res, "cchrefwznmmmachine"),
+			PQfnumber(res, "srefkpkgmgr"),
 			PQfnumber(res, "comment")
 		};
 
@@ -578,10 +754,11 @@ ubigint PgTblWznmMMachine::loadRst(
 			rec = new WznmMMachine();
 
 			ptr = PQgetvalue(res, numread, fnum[0]); rec->ref = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[1]); rec->refWznmMMachtype = atoll(ptr);
+			ptr = PQgetvalue(res, numread, fnum[1]); rec->supRefWznmMMachine = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[2]); rec->sref.assign(ptr, PQgetlength(res, numread, fnum[2]));
-			ptr = PQgetvalue(res, numread, fnum[3]); rec->ixWznmWCloudtype = atol(ptr);
-			ptr = PQgetvalue(res, numread, fnum[4]); rec->Comment.assign(ptr, PQgetlength(res, numread, fnum[4]));
+			ptr = PQgetvalue(res, numread, fnum[3]); rec->cchRefWznmMMachine = atoll(ptr);
+			ptr = PQgetvalue(res, numread, fnum[4]); rec->srefKPkgmgr.assign(ptr, PQgetlength(res, numread, fnum[4]));
+			ptr = PQgetvalue(res, numread, fnum[5]); rec->Comment.assign(ptr, PQgetlength(res, numread, fnum[5]));
 
 			rst.nodes.push_back(rec);
 
@@ -612,6 +789,27 @@ bool PgTblWznmMMachine::loadRecByStmt(
 	};
 
 	return loadRec(res, rec);
+};
+
+ubigint PgTblWznmMMachine::loadRstByStmt(
+			const string& srefStmt
+			, const unsigned int N
+			, const char** vals
+			, const int* l
+			, const int* f
+			, const bool append
+			, ListWznmMMachine& rst
+		) {
+	PGresult* res;
+
+	res = PQexecPrepared(dbs, srefStmt.c_str(), N, vals, l, f, 0);
+
+	if (PQresultStatus(res) != PGRES_TUPLES_OK) {
+		string dbms = "PgTblWznmMMachine::loadRstByStmt(" + srefStmt + ") / " + string(PQerrorMessage(dbs));
+		throw SbeException(SbeException::DBS_STMTEXEC, {{"dbms",dbms}});
+	};
+
+	return loadRst(res, append, rst);
 };
 
 bool PgTblWznmMMachine::loadRecBySQL(
@@ -653,24 +851,26 @@ ubigint PgTblWznmMMachine::insertRec(
 	PGresult* res;
 	char* ptr;
 
-	ubigint _refWznmMMachtype = htonl64(rec->refWznmMMachtype);
-	uint _ixWznmWCloudtype = htonl(rec->ixWznmWCloudtype);
+	ubigint _supRefWznmMMachine = htonl64(rec->supRefWznmMMachine);
+	ubigint _cchRefWznmMMachine = htonl64(rec->cchRefWznmMMachine);
 
 	const char* vals[] = {
-		(char*) &_refWznmMMachtype,
+		(char*) &_supRefWznmMMachine,
 		rec->sref.c_str(),
-		(char*) &_ixWznmWCloudtype,
+		(char*) &_cchRefWznmMMachine,
+		rec->srefKPkgmgr.c_str(),
 		rec->Comment.c_str()
 	};
 	const int l[] = {
 		sizeof(ubigint),
 		0,
-		sizeof(uint),
+		sizeof(ubigint),
+		0,
 		0
 	};
-	const int f[] = {1, 0, 1, 0};
+	const int f[] = {1, 0, 1, 0, 0};
 
-	res = PQexecPrepared(dbs, "TblWznmMMachine_insertRec", 4, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmMMachine_insertRec", 5, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_TUPLES_OK) {
 		string dbms = "PgTblWznmMMachine::insertRec() / " + string(PQerrorMessage(dbs));
@@ -698,27 +898,29 @@ void PgTblWznmMMachine::updateRec(
 		) {
 	PGresult* res;
 
-	ubigint _refWznmMMachtype = htonl64(rec->refWznmMMachtype);
-	uint _ixWznmWCloudtype = htonl(rec->ixWznmWCloudtype);
+	ubigint _supRefWznmMMachine = htonl64(rec->supRefWznmMMachine);
+	ubigint _cchRefWznmMMachine = htonl64(rec->cchRefWznmMMachine);
 	ubigint _ref = htonl64(rec->ref);
 
 	const char* vals[] = {
-		(char*) &_refWznmMMachtype,
+		(char*) &_supRefWznmMMachine,
 		rec->sref.c_str(),
-		(char*) &_ixWznmWCloudtype,
+		(char*) &_cchRefWznmMMachine,
+		rec->srefKPkgmgr.c_str(),
 		rec->Comment.c_str(),
 		(char*) &_ref
 	};
 	const int l[] = {
 		sizeof(ubigint),
 		0,
-		sizeof(uint),
+		sizeof(ubigint),
+		0,
 		0,
 		sizeof(ubigint)
 	};
-	const int f[] = {1, 0, 1, 0, 1};
+	const int f[] = {1, 0, 1, 0, 0, 1};
 
-	res = PQexecPrepared(dbs, "TblWznmMMachine_updateRec", 5, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmMMachine_updateRec", 6, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_COMMAND_OK) {
 		string dbms = "PgTblWznmMMachine::updateRec() / " + string(PQerrorMessage(dbs));
@@ -784,38 +986,90 @@ bool PgTblWznmMMachine::loadRecByRef(
 	return loadRecByStmt("TblWznmMMachine_loadRecByRef", 1, vals, l, f, rec);
 };
 
-bool PgTblWznmMMachine::loadRefBySrf(
-			string sref
-			, ubigint& ref
+bool PgTblWznmMMachine::confirmByRef(
+			ubigint ref
 		) {
+	ubigint _ref = htonl64(ref);
 
 	const char* vals[] = {
-		sref.c_str()
-	};
-	const int l[] = {
-		0
-	};
-	const int f[] = {0};
-
-	return loadRefByStmt("TblWznmMMachine_loadRefBySrf", 1, vals, l, f, ref);
-};
-
-ubigint PgTblWznmMMachine::loadRefsByTbl(
-			ubigint refWznmMMachtype
-			, const bool append
-			, vector<ubigint>& refs
-		) {
-	ubigint _refWznmMMachtype = htonl64(refWznmMMachtype);
-
-	const char* vals[] = {
-		(char*) &_refWznmMMachtype
+		(char*) &_ref
 	};
 	const int l[] = {
 		sizeof(ubigint)
 	};
 	const int f[] = {1};
 
-	return loadRefsByStmt("TblWznmMMachine_loadRefsByTbl", 1, vals, l, f, append, refs);
+	return loadRefByStmt("TblWznmMMachine_confirmByRef", 1, vals, l, f, _ref);
+};
+
+ubigint PgTblWznmMMachine::loadRefsBySup(
+			ubigint supRefWznmMMachine
+			, const bool append
+			, vector<ubigint>& refs
+		) {
+	ubigint _supRefWznmMMachine = htonl64(supRefWznmMMachine);
+
+	const char* vals[] = {
+		(char*) &_supRefWznmMMachine
+	};
+	const int l[] = {
+		sizeof(ubigint)
+	};
+	const int f[] = {1};
+
+	return loadRefsByStmt("TblWznmMMachine_loadRefsBySup", 1, vals, l, f, append, refs);
+};
+
+ubigint PgTblWznmMMachine::loadRstBySup(
+			ubigint supRefWznmMMachine
+			, const bool append
+			, ListWznmMMachine& rst
+		) {
+	ubigint _supRefWznmMMachine = htonl64(supRefWznmMMachine);
+
+	const char* vals[] = {
+		(char*) &_supRefWznmMMachine
+	};
+	const int l[] = {
+		sizeof(ubigint)
+	};
+	const int f[] = {1};
+
+	return loadRstByStmt("TblWznmMMachine_loadRstBySup", 1, vals, l, f, append, rst);
+};
+
+bool PgTblWznmMMachine::loadSrfByRef(
+			ubigint ref
+			, string& sref
+		) {
+	ubigint _ref = htonl64(ref);
+
+	const char* vals[] = {
+		(char*) &_ref
+	};
+	const int l[] = {
+		sizeof(ubigint)
+	};
+	const int f[] = {1};
+
+	return loadStringByStmt("TblWznmMMachine_loadSrfByRef", 1, vals, l, f, sref);
+};
+
+bool PgTblWznmMMachine::loadSupByRef(
+			ubigint ref
+			, ubigint& supRefWznmMMachine
+		) {
+	ubigint _ref = htonl64(ref);
+
+	const char* vals[] = {
+		(char*) &_ref
+	};
+	const int l[] = {
+		sizeof(ubigint)
+	};
+	const int f[] = {1};
+
+	return loadRefByStmt("TblWznmMMachine_loadSupByRef", 1, vals, l, f, supRefWznmMMachine);
 };
 
 #endif

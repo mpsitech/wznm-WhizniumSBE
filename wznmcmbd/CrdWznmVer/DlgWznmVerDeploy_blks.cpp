@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerDeploy_blks.cpp
 	* job handler for job DlgWznmVerDeploy (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -21,6 +22,7 @@ uint DlgWznmVerDeploy::VecVDit::getIx(
 
 	if (s == "ifi") return IFI;
 	if (s == "imp") return IMP;
+	if (s == "ppr") return PPR;
 	if (s == "lfi") return LFI;
 
 	return(0);
@@ -31,6 +33,7 @@ string DlgWznmVerDeploy::VecVDit::getSref(
 		) {
 	if (ix == IFI) return("Ifi");
 	if (ix == IMP) return("Imp");
+	if (ix == PPR) return("Ppr");
 	if (ix == LFI) return("Lfi");
 
 	return("");
@@ -43,6 +46,7 @@ string DlgWznmVerDeploy::VecVDit::getTitle(
 	if (ixWznmVLocale == 1) {
 		if (ix == IFI) return("Input file");
 		if (ix == IMP) return("Import");
+		if (ix == PPR) return("Postprocessing");
 		if (ix == LFI) return("Log file");
 		return(getSref(ix));
 	};
@@ -56,7 +60,7 @@ void DlgWznmVerDeploy::VecVDit::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 3; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
+	for (unsigned int i = 1; i <= 4; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
 
 /******************************************************************************
@@ -106,6 +110,30 @@ string DlgWznmVerDeploy::VecVDoImp::getSref(
 };
 
 /******************************************************************************
+ class DlgWznmVerDeploy::VecVDoPpr
+ ******************************************************************************/
+
+uint DlgWznmVerDeploy::VecVDoPpr::getIx(
+			const string& sref
+		) {
+	string s = StrMod::lc(sref);
+
+	if (s == "butrunclick") return BUTRUNCLICK;
+	if (s == "butstoclick") return BUTSTOCLICK;
+
+	return(0);
+};
+
+string DlgWznmVerDeploy::VecVDoPpr::getSref(
+			const uint ix
+		) {
+	if (ix == BUTRUNCLICK) return("ButRunClick");
+	if (ix == BUTSTOCLICK) return("ButStoClick");
+
+	return("");
+};
+
+/******************************************************************************
  class DlgWznmVerDeploy::VecVSge
  ******************************************************************************/
 
@@ -122,6 +150,8 @@ uint DlgWznmVerDeploy::VecVSge::getIx(
 	if (s == "impidle") return IMPIDLE;
 	if (s == "import") return IMPORT;
 	if (s == "alrwznmier") return ALRWZNMIER;
+	if (s == "impdone") return IMPDONE;
+	if (s == "postprc") return POSTPRC;
 	if (s == "done") return DONE;
 
 	return(0);
@@ -138,6 +168,8 @@ string DlgWznmVerDeploy::VecVSge::getSref(
 	if (ix == IMPIDLE) return("impidle");
 	if (ix == IMPORT) return("import");
 	if (ix == ALRWZNMIER) return("alrwznmier");
+	if (ix == IMPDONE) return("impdone");
+	if (ix == POSTPRC) return("postprc");
 	if (ix == DONE) return("done");
 
 	return("");
@@ -148,7 +180,7 @@ void DlgWznmVerDeploy::VecVSge::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 9; i++) feed.appendIxSrefTitles(i, getSref(i), getSref(i));
+	for (unsigned int i = 1; i <= 11; i++) feed.appendIxSrefTitles(i, getSref(i), getSref(i));
 };
 
 /******************************************************************************
@@ -385,6 +417,60 @@ set<uint> DlgWznmVerDeploy::ContInfLfi::diff(
 	commitems = comm(comp);
 
 	diffitems = {DLD};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class DlgWznmVerDeploy::ContInfPpr
+ ******************************************************************************/
+
+DlgWznmVerDeploy::ContInfPpr::ContInfPpr(
+			const string& TxtPrg
+		) :
+			Block()
+		{
+	this->TxtPrg = TxtPrg;
+
+	mask = {TXTPRG};
+};
+
+void DlgWznmVerDeploy::ContInfPpr::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "ContInfDlgWznmVerDeployPpr";
+
+	string itemtag;
+	if (shorttags) itemtag = "Ci";
+	else itemtag = "ContitemInfDlgWznmVerDeployPpr";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeStringAttr(wr, itemtag, "sref", "TxtPrg", TxtPrg);
+	xmlTextWriterEndElement(wr);
+};
+
+set<uint> DlgWznmVerDeploy::ContInfPpr::comm(
+			const ContInfPpr* comp
+		) {
+	set<uint> items;
+
+	if (TxtPrg == comp->TxtPrg) insert(items, TXTPRG);
+
+	return(items);
+};
+
+set<uint> DlgWznmVerDeploy::ContInfPpr::diff(
+			const ContInfPpr* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {TXTPRG};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -634,6 +720,64 @@ set<uint> DlgWznmVerDeploy::StatShrLfi::diff(
 };
 
 /******************************************************************************
+ class DlgWznmVerDeploy::StatShrPpr
+ ******************************************************************************/
+
+DlgWznmVerDeploy::StatShrPpr::StatShrPpr(
+			const bool ButRunActive
+			, const bool ButStoActive
+		) :
+			Block()
+		{
+	this->ButRunActive = ButRunActive;
+	this->ButStoActive = ButStoActive;
+
+	mask = {BUTRUNACTIVE, BUTSTOACTIVE};
+};
+
+void DlgWznmVerDeploy::StatShrPpr::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "StatShrDlgWznmVerDeployPpr";
+
+	string itemtag;
+	if (shorttags) itemtag = "Si";
+	else itemtag = "StatitemShrDlgWznmVerDeployPpr";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeBoolAttr(wr, itemtag, "sref", "ButRunActive", ButRunActive);
+		writeBoolAttr(wr, itemtag, "sref", "ButStoActive", ButStoActive);
+	xmlTextWriterEndElement(wr);
+};
+
+set<uint> DlgWznmVerDeploy::StatShrPpr::comm(
+			const StatShrPpr* comp
+		) {
+	set<uint> items;
+
+	if (ButRunActive == comp->ButRunActive) insert(items, BUTRUNACTIVE);
+	if (ButStoActive == comp->ButStoActive) insert(items, BUTSTOACTIVE);
+
+	return(items);
+};
+
+set<uint> DlgWznmVerDeploy::StatShrPpr::diff(
+			const StatShrPpr* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {BUTRUNACTIVE, BUTSTOACTIVE};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
  class DlgWznmVerDeploy::Tag
  ******************************************************************************/
 
@@ -730,6 +874,31 @@ void DlgWznmVerDeploy::TagLfi::writeXML(
 };
 
 /******************************************************************************
+ class DlgWznmVerDeploy::TagPpr
+ ******************************************************************************/
+
+void DlgWznmVerDeploy::TagPpr::writeXML(
+			const uint ixWznmVLocale
+			, xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "TagDlgWznmVerDeployPpr";
+
+	string itemtag;
+	if (shorttags) itemtag = "Ti";
+	else itemtag = "TagitemDlgWznmVerDeployPpr";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		};
+		writeStringAttr(wr, itemtag, "sref", "CptPrg", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::PROGRESS, ixWznmVLocale)));
+		writeStringAttr(wr, itemtag, "sref", "ButRun", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::RUN, ixWznmVLocale)));
+		writeStringAttr(wr, itemtag, "sref", "ButSto", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::STOP, ixWznmVLocale)));
+	xmlTextWriterEndElement(wr);
+};
+
+/******************************************************************************
  class DlgWznmVerDeploy::DpchAppData
  ******************************************************************************/
 
@@ -786,6 +955,7 @@ DlgWznmVerDeploy::DpchAppDo::DpchAppDo() :
 		{
 	ixVDo = 0;
 	ixVDoImp = 0;
+	ixVDoPpr = 0;
 };
 
 string DlgWznmVerDeploy::DpchAppDo::getSrefsMask() {
@@ -795,6 +965,7 @@ string DlgWznmVerDeploy::DpchAppDo::getSrefsMask() {
 	if (has(JREF)) ss.push_back("jref");
 	if (has(IXVDO)) ss.push_back("ixVDo");
 	if (has(IXVDOIMP)) ss.push_back("ixVDoImp");
+	if (has(IXVDOPPR)) ss.push_back("ixVDoPpr");
 
 	StrMod::vectorToString(ss, srefs);
 
@@ -811,6 +982,7 @@ void DlgWznmVerDeploy::DpchAppDo::readXML(
 	string scrJref;
 	string srefIxVDo;
 	string srefIxVDoImp;
+	string srefIxVDoPpr;
 
 	bool basefound;
 
@@ -832,6 +1004,10 @@ void DlgWznmVerDeploy::DpchAppDo::readXML(
 			ixVDoImp = VecVDoImp::getIx(srefIxVDoImp);
 			add(IXVDOIMP);
 		};
+		if (extractStringUclc(docctx, basexpath, "srefIxVDoPpr", "", srefIxVDoPpr)) {
+			ixVDoPpr = VecVDoPpr::getIx(srefIxVDoPpr);
+			add(IXVDOPPR);
+		};
 	} else {
 	};
 };
@@ -846,29 +1022,33 @@ DlgWznmVerDeploy::DpchEngData::DpchEngData(
 			, ContInf* continf
 			, ContInfImp* continfimp
 			, ContInfLfi* continflfi
+			, ContInfPpr* continfppr
 			, Feed* feedFDse
 			, Feed* feedFSge
 			, StatShr* statshr
 			, StatShrIfi* statshrifi
 			, StatShrImp* statshrimp
 			, StatShrLfi* statshrlfi
+			, StatShrPpr* statshrppr
 			, const set<uint>& mask
 		) :
 			DpchEngWznm(VecWznmVDpch::DPCHENGDLGWZNMVERDEPLOYDATA, jref)
 		{
-	if (find(mask, ALL)) this->mask = {JREF, CONTIAC, CONTINF, CONTINFIMP, CONTINFLFI, FEEDFDSE, FEEDFSGE, STATAPP, STATSHR, STATSHRIFI, STATSHRIMP, STATSHRLFI, TAG, TAGIFI, TAGIMP, TAGLFI};
+	if (find(mask, ALL)) this->mask = {JREF, CONTIAC, CONTINF, CONTINFIMP, CONTINFLFI, CONTINFPPR, FEEDFDSE, FEEDFSGE, STATAPP, STATSHR, STATSHRIFI, STATSHRIMP, STATSHRLFI, STATSHRPPR, TAG, TAGIFI, TAGIMP, TAGLFI, TAGPPR};
 	else this->mask = mask;
 
 	if (find(this->mask, CONTIAC) && contiac) this->contiac = *contiac;
 	if (find(this->mask, CONTINF) && continf) this->continf = *continf;
 	if (find(this->mask, CONTINFIMP) && continfimp) this->continfimp = *continfimp;
 	if (find(this->mask, CONTINFLFI) && continflfi) this->continflfi = *continflfi;
+	if (find(this->mask, CONTINFPPR) && continfppr) this->continfppr = *continfppr;
 	if (find(this->mask, FEEDFDSE) && feedFDse) this->feedFDse = *feedFDse;
 	if (find(this->mask, FEEDFSGE) && feedFSge) this->feedFSge = *feedFSge;
 	if (find(this->mask, STATSHR) && statshr) this->statshr = *statshr;
 	if (find(this->mask, STATSHRIFI) && statshrifi) this->statshrifi = *statshrifi;
 	if (find(this->mask, STATSHRIMP) && statshrimp) this->statshrimp = *statshrimp;
 	if (find(this->mask, STATSHRLFI) && statshrlfi) this->statshrlfi = *statshrlfi;
+	if (find(this->mask, STATSHRPPR) && statshrppr) this->statshrppr = *statshrppr;
 };
 
 string DlgWznmVerDeploy::DpchEngData::getSrefsMask() {
@@ -880,6 +1060,7 @@ string DlgWznmVerDeploy::DpchEngData::getSrefsMask() {
 	if (has(CONTINF)) ss.push_back("continf");
 	if (has(CONTINFIMP)) ss.push_back("continfimp");
 	if (has(CONTINFLFI)) ss.push_back("continflfi");
+	if (has(CONTINFPPR)) ss.push_back("continfppr");
 	if (has(FEEDFDSE)) ss.push_back("feedFDse");
 	if (has(FEEDFSGE)) ss.push_back("feedFSge");
 	if (has(STATAPP)) ss.push_back("statapp");
@@ -887,10 +1068,12 @@ string DlgWznmVerDeploy::DpchEngData::getSrefsMask() {
 	if (has(STATSHRIFI)) ss.push_back("statshrifi");
 	if (has(STATSHRIMP)) ss.push_back("statshrimp");
 	if (has(STATSHRLFI)) ss.push_back("statshrlfi");
+	if (has(STATSHRPPR)) ss.push_back("statshrppr");
 	if (has(TAG)) ss.push_back("tag");
 	if (has(TAGIFI)) ss.push_back("tagifi");
 	if (has(TAGIMP)) ss.push_back("tagimp");
 	if (has(TAGLFI)) ss.push_back("taglfi");
+	if (has(TAGPPR)) ss.push_back("tagppr");
 
 	StrMod::vectorToString(ss, srefs);
 
@@ -907,6 +1090,7 @@ void DlgWznmVerDeploy::DpchEngData::merge(
 	if (src->has(CONTINF)) {continf = src->continf; add(CONTINF);};
 	if (src->has(CONTINFIMP)) {continfimp = src->continfimp; add(CONTINFIMP);};
 	if (src->has(CONTINFLFI)) {continflfi = src->continflfi; add(CONTINFLFI);};
+	if (src->has(CONTINFPPR)) {continfppr = src->continfppr; add(CONTINFPPR);};
 	if (src->has(FEEDFDSE)) {feedFDse = src->feedFDse; add(FEEDFDSE);};
 	if (src->has(FEEDFSGE)) {feedFSge = src->feedFSge; add(FEEDFSGE);};
 	if (src->has(STATAPP)) add(STATAPP);
@@ -914,10 +1098,12 @@ void DlgWznmVerDeploy::DpchEngData::merge(
 	if (src->has(STATSHRIFI)) {statshrifi = src->statshrifi; add(STATSHRIFI);};
 	if (src->has(STATSHRIMP)) {statshrimp = src->statshrimp; add(STATSHRIMP);};
 	if (src->has(STATSHRLFI)) {statshrlfi = src->statshrlfi; add(STATSHRLFI);};
+	if (src->has(STATSHRPPR)) {statshrppr = src->statshrppr; add(STATSHRPPR);};
 	if (src->has(TAG)) add(TAG);
 	if (src->has(TAGIFI)) add(TAGIFI);
 	if (src->has(TAGIMP)) add(TAGIMP);
 	if (src->has(TAGLFI)) add(TAGLFI);
+	if (src->has(TAGPPR)) add(TAGPPR);
 };
 
 void DlgWznmVerDeploy::DpchEngData::writeXML(
@@ -931,6 +1117,7 @@ void DlgWznmVerDeploy::DpchEngData::writeXML(
 		if (has(CONTINF)) continf.writeXML(wr);
 		if (has(CONTINFIMP)) continfimp.writeXML(wr);
 		if (has(CONTINFLFI)) continflfi.writeXML(wr);
+		if (has(CONTINFPPR)) continfppr.writeXML(wr);
 		if (has(FEEDFDSE)) feedFDse.writeXML(wr);
 		if (has(FEEDFSGE)) feedFSge.writeXML(wr);
 		if (has(STATAPP)) StatApp::writeXML(wr);
@@ -938,10 +1125,14 @@ void DlgWznmVerDeploy::DpchEngData::writeXML(
 		if (has(STATSHRIFI)) statshrifi.writeXML(wr);
 		if (has(STATSHRIMP)) statshrimp.writeXML(wr);
 		if (has(STATSHRLFI)) statshrlfi.writeXML(wr);
+		if (has(STATSHRPPR)) statshrppr.writeXML(wr);
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 		if (has(TAGIFI)) TagIfi::writeXML(ixWznmVLocale, wr);
 		if (has(TAGIMP)) TagImp::writeXML(ixWznmVLocale, wr);
 		if (has(TAGLFI)) TagLfi::writeXML(ixWznmVLocale, wr);
+		if (has(TAGPPR)) TagPpr::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

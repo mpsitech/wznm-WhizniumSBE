@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmChkList.cpp
 	* API code for job QryWznmChkList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmChkList.h"
 
@@ -21,10 +22,10 @@ uint QryWznmChkList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "tbl") return TBL;
 	if (s == "tco") return TCO;
-	if (s == "srf") return SRF;
+	if (s == "tbl") return TBL;
 	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -32,10 +33,10 @@ uint QryWznmChkList::VecVOrd::getIx(
 string QryWznmChkList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TBL) return("tbl");
 	if (ix == TCO) return("tco");
-	if (ix == SRF) return("srf");
+	if (ix == TBL) return("tbl");
 	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

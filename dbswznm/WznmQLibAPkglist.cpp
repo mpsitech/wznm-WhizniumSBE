@@ -1,10 +1,11 @@
 /**
 	* \file WznmQLibAPkglist.cpp
 	* Dbs and XML wrapper for table TblWznmQLibAPkglist (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #include "WznmQLibAPkglist.h"
 
@@ -21,22 +22,16 @@ WznmQLibAPkglist::WznmQLibAPkglist(
 			, const ubigint jref
 			, const uint jnum
 			, const ubigint ref
-			, const uint x1RefIxVTbl
-			, const string srefX1RefIxVTbl
-			, const string titX1RefIxVTbl
-			, const ubigint x1RefUref
-			, const string stubX1RefUref
+			, const ubigint x1RefWznmMMachine
+			, const string stubX1RefWznmMMachine
 			, const string Pkglist
 		) {
 	this->qref = qref;
 	this->jref = jref;
 	this->jnum = jnum;
 	this->ref = ref;
-	this->x1RefIxVTbl = x1RefIxVTbl;
-	this->srefX1RefIxVTbl = srefX1RefIxVTbl;
-	this->titX1RefIxVTbl = titX1RefIxVTbl;
-	this->x1RefUref = x1RefUref;
-	this->stubX1RefUref = stubX1RefUref;
+	this->x1RefWznmMMachine = x1RefWznmMMachine;
+	this->stubX1RefWznmMMachine = stubX1RefWznmMMachine;
 	this->Pkglist = Pkglist;
 };
 
@@ -51,14 +46,10 @@ void WznmQLibAPkglist::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 	if (jnumattr) xmlTextWriterWriteAttribute(wr, BAD_CAST "jnum", BAD_CAST to_string(jnum).c_str());
 	if (shorttags) {
-		writeString(wr, "ret", srefX1RefIxVTbl);
-		writeString(wr, "ret2", titX1RefIxVTbl);
-		writeString(wr, "reu", stubX1RefUref);
+		writeString(wr, "mch", stubX1RefWznmMMachine);
 		writeString(wr, "pkl", Pkglist);
 	} else {
-		writeString(wr, "srefX1RefIxVTbl", srefX1RefIxVTbl);
-		writeString(wr, "titX1RefIxVTbl", titX1RefIxVTbl);
-		writeString(wr, "stubX1RefUref", stubX1RefUref);
+		writeString(wr, "stubX1RefWznmMMachine", stubX1RefWznmMMachine);
 		writeString(wr, "Pkglist", Pkglist);
 	};
 	xmlTextWriterEndElement(wr);
@@ -162,17 +153,14 @@ ubigint TblWznmQLibAPkglist::insertNewRec(
 			, const ubigint jref
 			, const uint jnum
 			, const ubigint ref
-			, const uint x1RefIxVTbl
-			, const string srefX1RefIxVTbl
-			, const string titX1RefIxVTbl
-			, const ubigint x1RefUref
-			, const string stubX1RefUref
+			, const ubigint x1RefWznmMMachine
+			, const string stubX1RefWznmMMachine
 			, const string Pkglist
 		) {
 	ubigint retval = 0;
 	WznmQLibAPkglist* _rec = NULL;
 
-	_rec = new WznmQLibAPkglist(0, jref, jnum, ref, x1RefIxVTbl, srefX1RefIxVTbl, titX1RefIxVTbl, x1RefUref, stubX1RefUref, Pkglist);
+	_rec = new WznmQLibAPkglist(0, jref, jnum, ref, x1RefWznmMMachine, stubX1RefWznmMMachine, Pkglist);
 	insertRec(_rec);
 
 	retval = _rec->qref;
@@ -189,17 +177,14 @@ ubigint TblWznmQLibAPkglist::appendNewRecToRst(
 			, const ubigint jref
 			, const uint jnum
 			, const ubigint ref
-			, const uint x1RefIxVTbl
-			, const string srefX1RefIxVTbl
-			, const string titX1RefIxVTbl
-			, const ubigint x1RefUref
-			, const string stubX1RefUref
+			, const ubigint x1RefWznmMMachine
+			, const string stubX1RefWznmMMachine
 			, const string Pkglist
 		) {
 	ubigint retval = 0;
 	WznmQLibAPkglist* _rec = NULL;
 
-	retval = insertNewRec(&_rec, jref, jnum, ref, x1RefIxVTbl, srefX1RefIxVTbl, titX1RefIxVTbl, x1RefUref, stubX1RefUref, Pkglist);
+	retval = insertNewRec(&_rec, jref, jnum, ref, x1RefWznmMMachine, stubX1RefWznmMMachine, Pkglist);
 	rst.nodes.push_back(_rec);
 
 	if (rec != NULL) *rec = _rec;
@@ -270,8 +255,8 @@ MyTblWznmQLibAPkglist::~MyTblWznmQLibAPkglist() {
 };
 
 void MyTblWznmQLibAPkglist::initStatements() {
-	stmtInsertRec = createStatement("INSERT INTO TblWznmQLibAPkglist (jref, jnum, ref, x1RefIxVTbl, x1RefUref, Pkglist) VALUES (?,?,?,?,?,?)", false);
-	stmtUpdateRec = createStatement("UPDATE TblWznmQLibAPkglist SET jref = ?, jnum = ?, ref = ?, x1RefIxVTbl = ?, x1RefUref = ?, Pkglist = ? WHERE qref = ?", false);
+	stmtInsertRec = createStatement("INSERT INTO TblWznmQLibAPkglist (jref, jnum, ref, x1RefWznmMMachine, Pkglist) VALUES (?,?,?,?,?)", false);
+	stmtUpdateRec = createStatement("UPDATE TblWznmQLibAPkglist SET jref = ?, jnum = ?, ref = ?, x1RefWznmMMachine = ?, Pkglist = ? WHERE qref = ?", false);
 	stmtRemoveRecByQref = createStatement("DELETE FROM TblWznmQLibAPkglist WHERE qref = ?", false);
 	stmtRemoveRstByJref = createStatement("DELETE FROM TblWznmQLibAPkglist WHERE jref = ?", false);
 };
@@ -306,9 +291,8 @@ bool MyTblWznmQLibAPkglist::loadRecBySQL(
 		if (dbrow[1]) _rec->jref = atoll((char*) dbrow[1]); else _rec->jref = 0;
 		if (dbrow[2]) _rec->jnum = atol((char*) dbrow[2]); else _rec->jnum = 0;
 		if (dbrow[3]) _rec->ref = atoll((char*) dbrow[3]); else _rec->ref = 0;
-		if (dbrow[4]) _rec->x1RefIxVTbl = atol((char*) dbrow[4]); else _rec->x1RefIxVTbl = 0;
-		if (dbrow[5]) _rec->x1RefUref = atoll((char*) dbrow[5]); else _rec->x1RefUref = 0;
-		if (dbrow[6]) _rec->Pkglist.assign(dbrow[6], dblengths[6]); else _rec->Pkglist = "";
+		if (dbrow[4]) _rec->x1RefWznmMMachine = atoll((char*) dbrow[4]); else _rec->x1RefWznmMMachine = 0;
+		if (dbrow[5]) _rec->Pkglist.assign(dbrow[5], dblengths[5]); else _rec->Pkglist = "";
 
 		retval = true;
 	};
@@ -355,9 +339,8 @@ ubigint MyTblWznmQLibAPkglist::loadRstBySQL(
 			if (dbrow[1]) rec->jref = atoll((char*) dbrow[1]); else rec->jref = 0;
 			if (dbrow[2]) rec->jnum = atol((char*) dbrow[2]); else rec->jnum = 0;
 			if (dbrow[3]) rec->ref = atoll((char*) dbrow[3]); else rec->ref = 0;
-			if (dbrow[4]) rec->x1RefIxVTbl = atol((char*) dbrow[4]); else rec->x1RefIxVTbl = 0;
-			if (dbrow[5]) rec->x1RefUref = atoll((char*) dbrow[5]); else rec->x1RefUref = 0;
-			if (dbrow[6]) rec->Pkglist.assign(dbrow[6], dblengths[6]); else rec->Pkglist = "";
+			if (dbrow[4]) rec->x1RefWznmMMachine = atoll((char*) dbrow[4]); else rec->x1RefWznmMMachine = 0;
+			if (dbrow[5]) rec->Pkglist.assign(dbrow[5], dblengths[5]); else rec->Pkglist = "";
 			rst.nodes.push_back(rec);
 
 			numread++;
@@ -372,17 +355,16 @@ ubigint MyTblWznmQLibAPkglist::loadRstBySQL(
 ubigint MyTblWznmQLibAPkglist::insertRec(
 			WznmQLibAPkglist* rec
 		) {
-	unsigned long l[6]; my_bool n[6]; my_bool e[6];
+	unsigned long l[5]; my_bool n[5]; my_bool e[5];
 
-	l[5] = rec->Pkglist.length();
+	l[4] = rec->Pkglist.length();
 
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->jref,&(l[0]),&(n[0]),&(e[0])),
 		bindUint(&rec->jnum,&(l[1]),&(n[1]),&(e[1])),
 		bindUbigint(&rec->ref,&(l[2]),&(n[2]),&(e[2])),
-		bindUint(&rec->x1RefIxVTbl,&(l[3]),&(n[3]),&(e[3])),
-		bindUbigint(&rec->x1RefUref,&(l[4]),&(n[4]),&(e[4])),
-		bindCstring((char*) (rec->Pkglist.c_str()),&(l[5]),&(n[5]),&(e[5]))
+		bindUbigint(&rec->x1RefWznmMMachine,&(l[3]),&(n[3]),&(e[3])),
+		bindCstring((char*) (rec->Pkglist.c_str()),&(l[4]),&(n[4]),&(e[4]))
 	};
 
 	if (mysql_stmt_bind_param(stmtInsertRec, bind)) {
@@ -407,18 +389,17 @@ void MyTblWznmQLibAPkglist::insertRst(
 void MyTblWznmQLibAPkglist::updateRec(
 			WznmQLibAPkglist* rec
 		) {
-	unsigned long l[7]; my_bool n[7]; my_bool e[7];
+	unsigned long l[6]; my_bool n[6]; my_bool e[6];
 
-	l[5] = rec->Pkglist.length();
+	l[4] = rec->Pkglist.length();
 
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->jref,&(l[0]),&(n[0]),&(e[0])),
 		bindUint(&rec->jnum,&(l[1]),&(n[1]),&(e[1])),
 		bindUbigint(&rec->ref,&(l[2]),&(n[2]),&(e[2])),
-		bindUint(&rec->x1RefIxVTbl,&(l[3]),&(n[3]),&(e[3])),
-		bindUbigint(&rec->x1RefUref,&(l[4]),&(n[4]),&(e[4])),
-		bindCstring((char*) (rec->Pkglist.c_str()),&(l[5]),&(n[5]),&(e[5])),
-		bindUbigint(&rec->qref,&(l[6]),&(n[6]),&(e[6]))
+		bindUbigint(&rec->x1RefWznmMMachine,&(l[3]),&(n[3]),&(e[3])),
+		bindCstring((char*) (rec->Pkglist.c_str()),&(l[4]),&(n[4]),&(e[4])),
+		bindUbigint(&rec->qref,&(l[5]),&(n[5]),&(e[5]))
 	};
 
 	if (mysql_stmt_bind_param(stmtUpdateRec, bind)) {
@@ -507,13 +488,13 @@ PgTblWznmQLibAPkglist::~PgTblWznmQLibAPkglist() {
 };
 
 void PgTblWznmQLibAPkglist::initStatements() {
-	createStatement("TblWznmQLibAPkglist_insertRec", "INSERT INTO TblWznmQLibAPkglist (jref, jnum, ref, x1RefIxVTbl, x1RefUref, Pkglist) VALUES ($1,$2,$3,$4,$5,$6) RETURNING qref", 6);
-	createStatement("TblWznmQLibAPkglist_updateRec", "UPDATE TblWznmQLibAPkglist SET jref = $1, jnum = $2, ref = $3, x1RefIxVTbl = $4, x1RefUref = $5, Pkglist = $6 WHERE qref = $7", 7);
+	createStatement("TblWznmQLibAPkglist_insertRec", "INSERT INTO TblWznmQLibAPkglist (jref, jnum, ref, x1RefWznmMMachine, Pkglist) VALUES ($1,$2,$3,$4,$5) RETURNING qref", 5);
+	createStatement("TblWznmQLibAPkglist_updateRec", "UPDATE TblWznmQLibAPkglist SET jref = $1, jnum = $2, ref = $3, x1RefWznmMMachine = $4, Pkglist = $5 WHERE qref = $6", 6);
 	createStatement("TblWznmQLibAPkglist_removeRecByQref", "DELETE FROM TblWznmQLibAPkglist WHERE qref = $1", 1);
 	createStatement("TblWznmQLibAPkglist_removeRstByJref", "DELETE FROM TblWznmQLibAPkglist WHERE jref = $1", 1);
 
-	createStatement("TblWznmQLibAPkglist_loadRecByQref", "SELECT qref, jref, jnum, ref, x1RefIxVTbl, x1RefUref, Pkglist FROM TblWznmQLibAPkglist WHERE qref = $1", 1);
-	createStatement("TblWznmQLibAPkglist_loadRstByJref", "SELECT qref, jref, jnum, ref, x1RefIxVTbl, x1RefUref, Pkglist FROM TblWznmQLibAPkglist WHERE jref = $1 ORDER BY jnum ASC", 1);
+	createStatement("TblWznmQLibAPkglist_loadRecByQref", "SELECT qref, jref, jnum, ref, x1RefWznmMMachine, Pkglist FROM TblWznmQLibAPkglist WHERE qref = $1", 1);
+	createStatement("TblWznmQLibAPkglist_loadRstByJref", "SELECT qref, jref, jnum, ref, x1RefWznmMMachine, Pkglist FROM TblWznmQLibAPkglist WHERE jref = $1 ORDER BY jnum ASC", 1);
 };
 
 bool PgTblWznmQLibAPkglist::loadRec(
@@ -533,8 +514,7 @@ bool PgTblWznmQLibAPkglist::loadRec(
 			PQfnumber(res, "jref"),
 			PQfnumber(res, "jnum"),
 			PQfnumber(res, "ref"),
-			PQfnumber(res, "x1refixvtbl"),
-			PQfnumber(res, "x1refuref"),
+			PQfnumber(res, "x1refwznmmmachine"),
 			PQfnumber(res, "pkglist")
 		};
 
@@ -542,9 +522,8 @@ bool PgTblWznmQLibAPkglist::loadRec(
 		ptr = PQgetvalue(res, 0, fnum[1]); _rec->jref = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[2]); _rec->jnum = atol(ptr);
 		ptr = PQgetvalue(res, 0, fnum[3]); _rec->ref = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[4]); _rec->x1RefIxVTbl = atol(ptr);
-		ptr = PQgetvalue(res, 0, fnum[5]); _rec->x1RefUref = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[6]); _rec->Pkglist.assign(ptr, PQgetlength(res, 0, fnum[6]));
+		ptr = PQgetvalue(res, 0, fnum[4]); _rec->x1RefWznmMMachine = atoll(ptr);
+		ptr = PQgetvalue(res, 0, fnum[5]); _rec->Pkglist.assign(ptr, PQgetlength(res, 0, fnum[5]));
 
 		retval = true;
 	};
@@ -575,8 +554,7 @@ ubigint PgTblWznmQLibAPkglist::loadRst(
 			PQfnumber(res, "jref"),
 			PQfnumber(res, "jnum"),
 			PQfnumber(res, "ref"),
-			PQfnumber(res, "x1refixvtbl"),
-			PQfnumber(res, "x1refuref"),
+			PQfnumber(res, "x1refwznmmmachine"),
 			PQfnumber(res, "pkglist")
 		};
 
@@ -587,9 +565,8 @@ ubigint PgTblWznmQLibAPkglist::loadRst(
 			ptr = PQgetvalue(res, numread, fnum[1]); rec->jref = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[2]); rec->jnum = atol(ptr);
 			ptr = PQgetvalue(res, numread, fnum[3]); rec->ref = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[4]); rec->x1RefIxVTbl = atol(ptr);
-			ptr = PQgetvalue(res, numread, fnum[5]); rec->x1RefUref = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[6]); rec->Pkglist.assign(ptr, PQgetlength(res, numread, fnum[6]));
+			ptr = PQgetvalue(res, numread, fnum[4]); rec->x1RefWznmMMachine = atoll(ptr);
+			ptr = PQgetvalue(res, numread, fnum[5]); rec->Pkglist.assign(ptr, PQgetlength(res, numread, fnum[5]));
 
 			rst.nodes.push_back(rec);
 
@@ -685,28 +662,25 @@ ubigint PgTblWznmQLibAPkglist::insertRec(
 	ubigint _jref = htonl64(rec->jref);
 	uint _jnum = htonl(rec->jnum);
 	ubigint _ref = htonl64(rec->ref);
-	uint _x1RefIxVTbl = htonl(rec->x1RefIxVTbl);
-	ubigint _x1RefUref = htonl64(rec->x1RefUref);
+	ubigint _x1RefWznmMMachine = htonl64(rec->x1RefWznmMMachine);
 
 	const char* vals[] = {
 		(char*) &_jref,
 		(char*) &_jnum,
 		(char*) &_ref,
-		(char*) &_x1RefIxVTbl,
-		(char*) &_x1RefUref,
+		(char*) &_x1RefWznmMMachine,
 		rec->Pkglist.c_str()
 	};
 	const int l[] = {
 		sizeof(ubigint),
 		sizeof(uint),
 		sizeof(ubigint),
-		sizeof(uint),
 		sizeof(ubigint),
 		0
 	};
-	const int f[] = {1, 1, 1, 1, 1, 0};
+	const int f[] = {1, 1, 1, 1, 0};
 
-	res = PQexecPrepared(dbs, "TblWznmQLibAPkglist_insertRec", 6, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmQLibAPkglist_insertRec", 5, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_TUPLES_OK)	{
 		string dbms = "PgTblWznmQLibAPkglist::insertRec() / " + string(PQerrorMessage(dbs));
@@ -734,16 +708,14 @@ void PgTblWznmQLibAPkglist::updateRec(
 	ubigint _jref = htonl64(rec->jref);
 	uint _jnum = htonl(rec->jnum);
 	ubigint _ref = htonl64(rec->ref);
-	uint _x1RefIxVTbl = htonl(rec->x1RefIxVTbl);
-	ubigint _x1RefUref = htonl64(rec->x1RefUref);
+	ubigint _x1RefWznmMMachine = htonl64(rec->x1RefWznmMMachine);
 	ubigint _qref = htonl64(rec->qref);
 
 	const char* vals[] = {
 		(char*) &_jref,
 		(char*) &_jnum,
 		(char*) &_ref,
-		(char*) &_x1RefIxVTbl,
-		(char*) &_x1RefUref,
+		(char*) &_x1RefWznmMMachine,
 		rec->Pkglist.c_str(),
 		(char*) &_qref
 	};
@@ -751,14 +723,13 @@ void PgTblWznmQLibAPkglist::updateRec(
 		sizeof(ubigint),
 		sizeof(uint),
 		sizeof(ubigint),
-		sizeof(uint),
 		sizeof(ubigint),
 		0,
 		sizeof(ubigint)
 	};
-	const int f[] = {1, 1, 1, 1, 1, 0, 1};
+	const int f[] = {1, 1, 1, 1, 0, 1};
 
-	res = PQexecPrepared(dbs, "TblWznmQLibAPkglist_updateRec", 7, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmQLibAPkglist_updateRec", 6, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_COMMAND_OK) {
 		string dbms = "PgTblWznmQLibAPkglist::updateRec() / " + string(PQerrorMessage(dbs));

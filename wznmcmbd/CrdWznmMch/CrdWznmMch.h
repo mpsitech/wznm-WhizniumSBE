@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmMch.h
 	* job handler for job CrdWznmMch (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef CRDWZNMMCH_H
 #define CRDWZNMMCH_H
@@ -16,6 +17,7 @@
 #include "PnlWznmMchList.h"
 #include "PnlWznmMchHeadbar.h"
 #include "PnlWznmMchRec.h"
+#include "DlgWznmMchWriniscr.h"
 
 #define VecVWznmMchDo CrdWznmMch::VecVDo
 #define VecVWznmMchSge CrdWznmMch::VecVSge
@@ -42,6 +44,7 @@ public:
 	public:
 		static const Sbecore::uint CLOSE = 1;
 		static const Sbecore::uint MITAPPABTCLICK = 2;
+		static const Sbecore::uint MITCRDWISCLICK = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -101,17 +104,23 @@ public:
 	class StatShr : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint JREFHEADBAR = 1;
-		static const Sbecore::uint JREFLIST = 2;
-		static const Sbecore::uint JREFREC = 3;
+		static const Sbecore::uint JREFDLGWRINISCR = 1;
+		static const Sbecore::uint JREFHEADBAR = 2;
+		static const Sbecore::uint JREFLIST = 3;
+		static const Sbecore::uint JREFREC = 4;
+		static const Sbecore::uint MITCRDWISAVAIL = 5;
+		static const Sbecore::uint MITCRDWISACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefList = 0, const Sbecore::ubigint jrefRec = 0);
+		StatShr(const Sbecore::ubigint jrefDlgwriniscr = 0, const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefList = 0, const Sbecore::ubigint jrefRec = 0, const bool MitCrdWisAvail = true, const bool MitCrdWisActive = true);
 
 	public:
+		Sbecore::ubigint jrefDlgwriniscr;
 		Sbecore::ubigint jrefHeadbar;
 		Sbecore::ubigint jrefList;
 		Sbecore::ubigint jrefRec;
+		bool MitCrdWisAvail;
+		bool MitCrdWisActive;
 
 	public:
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
@@ -178,6 +187,9 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
+	bool evalMitCrdWisAvail(DbsWznm* dbswznm);
+	bool evalMitCrdWisActive(DbsWznm* dbswznm);
+
 public:
 	CrdWznmMch(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale, const Sbecore::ubigint ref = 0);
 	~CrdWznmMch();
@@ -192,6 +204,7 @@ public:
 	PnlWznmMchList* pnllist;
 	PnlWznmMchHeadbar* pnlheadbar;
 	PnlWznmMchRec* pnlrec;
+	DlgWznmMchWriniscr* dlgwriniscr;
 
 	// IP vars.cust --- INSERT
 
@@ -200,7 +213,7 @@ public:
 
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 	void changeRef(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint ref, const bool notif = false);
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 
@@ -215,6 +228,7 @@ private:
 
 	void handleDpchAppDoClose(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitAppAbtClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoMitCrdWisClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
 public:
@@ -240,4 +254,6 @@ private:
 };
 
 #endif
+
+
 

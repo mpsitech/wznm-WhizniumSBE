@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmEvtList.js
-  * web client functionality for panel PnlWznmEvtList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights
@@ -132,9 +124,9 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(1); wtot += TcoSrfWidth;
+				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(2); wtot += TcoSrfWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoApp"); doc.widths.push(TcoAppWidth); doc.fs.push("app"); doc.tos.push(2); wtot += TcoAppWidth;
+				doc.cols.push("TcoApp"); doc.widths.push(TcoAppWidth); doc.fs.push("app"); doc.tos.push(1); wtot += TcoAppWidth;
 			} else {
 				ix--;
 			};

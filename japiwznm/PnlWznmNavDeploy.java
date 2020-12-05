@@ -1,10 +1,11 @@
 /**
   * \file PnlWznmNavDeploy.java
   * Java API code for job PnlWznmNavDeploy
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -238,32 +239,28 @@ public class PnlWznmNavDeploy {
 
 		public static final int LSTCMPAVAIL = 1;
 		public static final int BUTCMPVIEWACTIVE = 2;
-		public static final int BUTCMPNEWCRDACTIVE = 3;
-		public static final int LSTRLSAVAIL = 4;
-		public static final int BUTRLSVIEWACTIVE = 5;
-		public static final int BUTRLSNEWCRDACTIVE = 6;
+		public static final int LSTRLSAVAIL = 3;
+		public static final int BUTRLSVIEWACTIVE = 4;
+		public static final int BUTRLSNEWCRDACTIVE = 5;
 
 		public StatShr(
 					boolean LstCmpAvail
 					, boolean ButCmpViewActive
-					, boolean ButCmpNewcrdActive
 					, boolean LstRlsAvail
 					, boolean ButRlsViewActive
 					, boolean ButRlsNewcrdActive
 				) {
 			this.LstCmpAvail = LstCmpAvail;
 			this.ButCmpViewActive = ButCmpViewActive;
-			this.ButCmpNewcrdActive = ButCmpNewcrdActive;
 			this.LstRlsAvail = LstRlsAvail;
 			this.ButRlsViewActive = ButRlsViewActive;
 			this.ButRlsNewcrdActive = ButRlsNewcrdActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(LSTCMPAVAIL, BUTCMPVIEWACTIVE, BUTCMPNEWCRDACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(LSTCMPAVAIL, BUTCMPVIEWACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE));
 		};
 
 		public boolean LstCmpAvail;
 		public boolean ButCmpViewActive;
-		public boolean ButCmpNewcrdActive;
 		public boolean LstRlsAvail;
 		public boolean ButRlsViewActive;
 		public boolean ButRlsNewcrdActive;
@@ -283,7 +280,6 @@ public class PnlWznmNavDeploy {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				LstCmpAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstCmpAvail", mask, LSTCMPAVAIL);
 				ButCmpViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButCmpViewActive", mask, BUTCMPVIEWACTIVE);
-				ButCmpNewcrdActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButCmpNewcrdActive", mask, BUTCMPNEWCRDACTIVE);
 				LstRlsAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstRlsAvail", mask, LSTRLSAVAIL);
 				ButRlsViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRlsViewActive", mask, BUTRLSVIEWACTIVE);
 				ButRlsNewcrdActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRlsNewcrdActive", mask, BUTRLSNEWCRDACTIVE);
@@ -301,7 +297,6 @@ public class PnlWznmNavDeploy {
 
 			if (LstCmpAvail == comp.LstCmpAvail) items.add(LSTCMPAVAIL);
 			if (ButCmpViewActive == comp.ButCmpViewActive) items.add(BUTCMPVIEWACTIVE);
-			if (ButCmpNewcrdActive == comp.ButCmpNewcrdActive) items.add(BUTCMPNEWCRDACTIVE);
 			if (LstRlsAvail == comp.LstRlsAvail) items.add(LSTRLSAVAIL);
 			if (ButRlsViewActive == comp.ButRlsViewActive) items.add(BUTRLSVIEWACTIVE);
 			if (ButRlsNewcrdActive == comp.ButRlsNewcrdActive) items.add(BUTRLSNEWCRDACTIVE);
@@ -317,7 +312,7 @@ public class PnlWznmNavDeploy {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(LSTCMPAVAIL, BUTCMPVIEWACTIVE, BUTCMPNEWCRDACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(LSTCMPAVAIL, BUTCMPVIEWACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -531,7 +526,7 @@ public class PnlWznmNavDeploy {
 			feedFLstCmp = new Feed("FeedFLstCmp");
 			feedFLstRls = new Feed("FeedFLstRls");
 			statapp = new StatApp(0, false, false, 0, 0);
-			statshr = new StatShr(false, false, false, false, false, false);
+			statshr = new StatShr(false, false, false, false, false);
 			tag = new Tag("", "", "");
 		};
 
@@ -580,7 +575,7 @@ public class PnlWznmNavDeploy {
 				feedFLstCmp = new Feed("FeedFLstCmp");
 				feedFLstRls = new Feed("FeedFLstRls");
 				statapp = new StatApp(0, false, false, 0, 0);
-				statshr = new StatShr(false, false, false, false, false, false);
+				statshr = new StatShr(false, false, false, false, false);
 				tag = new Tag("", "", "");
 			};
 		};

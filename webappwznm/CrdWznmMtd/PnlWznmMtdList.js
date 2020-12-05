@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmMtdList.js
-  * web client functionality for panel PnlWznmMtdList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights
@@ -133,9 +125,9 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(1); wtot += TcoSrfWidth;
+				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(2); wtot += TcoSrfWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(2); wtot += TcoJobWidth;
+				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(1); wtot += TcoJobWidth;
 			} else if (i == 3) {
 				doc.cols.push("TcoExs"); doc.widths.push(TcoExsWidth); doc.fs.push("exs"); doc.tos.push(0); wtot += TcoExsWidth;
 			} else {

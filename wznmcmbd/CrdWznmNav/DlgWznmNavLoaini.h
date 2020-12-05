@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmNavLoaini.h
 	* job handler for job DlgWznmNavLoaini (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMNAVLOAINI_H
 #define DLGWZNMNAVLOAINI_H
@@ -493,7 +494,7 @@ public:
 	void refreshAcv(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -511,8 +512,8 @@ private:
 	void handleDpchAppDoImpButStoClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
-	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 	void handleUploadInSgeImpdone(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
@@ -556,5 +557,6 @@ private:
 };
 
 #endif
+
 
 

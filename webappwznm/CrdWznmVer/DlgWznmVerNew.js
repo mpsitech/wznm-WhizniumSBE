@@ -1,11 +1,3 @@
-/**
-  * \file DlgWznmVerNew.js
-  * web client functionality for dialog DlgWznmVerNew
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // IP cust --- INSERT
 
 // --- view initialization and refresh
@@ -128,6 +120,8 @@ function handleButClick(ctlsref) {
 };
 
 function handleLstLoad(lstdoc, ctlsref, ncol, multsel) {
+	if (!srcdoc) return;
+
 	if (multsel) {
 		refreshLst(lstdoc, srcdoc, ncol, true, multsel, "FeedF" + ctlsref, parseInt(retrieveSi(srcdoc, "StatAppDlgWznmVerNew", ctlsref + "NumFirstdisp")),
 					parseUintvec(retrieveCi(srcdoc, "ContIacDlgWznmVerNew", "numsF" + ctlsref)));

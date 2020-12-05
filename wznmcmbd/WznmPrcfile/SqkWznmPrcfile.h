@@ -1,10 +1,11 @@
 /**
 	* \file SqkWznmPrcfile.h
 	* squawk generation for operation pack WznmPrcfile (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef SQKWZNMPRCFILE_H
 #define SQKWZNMPRCFILE_H
@@ -16,9 +17,10 @@
 	*/
 namespace SqkWznmPrcfile {
 	std::string getSquawkConcat(DbsWznm* dbswznm, DpchInvWznmPrcfileConcat* dpchinv);
-	std::string getSquawkIexconv(DbsWznm* dbswznm, DpchInvWznmPrcfileIexconv* dpchinv);
 	std::string getSquawkPlhrpl(DbsWznm* dbswznm, DpchInvWznmPrcfilePlhrpl* dpchinv);
 };
 
 #endif
+
+
 

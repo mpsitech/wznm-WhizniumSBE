@@ -1,10 +1,11 @@
 /**
 	* \file WznmGenBase.cpp
 	* Wznm operation processor - generate version basics (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -526,15 +527,6 @@ void WznmGenBase::genStdBlks(
 
 	unsigned int bitnum;
 
-	bool apimon, dbsmon;
-	bool ddspub, uasrv;
-
-	apimon = (ver->ixWOption & VecWznmWMVersionOption::APIMON);
-	dbsmon = (ver->ixWOption & VecWznmWMVersionOption::DBSMON);
-
-	ddspub = (ver->ixWOption & VecWznmWMVersionOption::DDSPUB);
-	uasrv = (ver->ixWOption & VecWznmWMVersionOption::UASRV);
-
 	// - blocks defined in Xxxx.h/.cpp
 	dbswznm->tblwznmmblock->insertNewRec(NULL, VecWznmVMBlockBasetype::CONT, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::APP + VecWznmWScope::CMBENG + VecWznmWScope::ENG,
 				VecWznmWScope::APP + VecWznmWScope::CMBENG + VecWznmWScope::ENG, "ContIac" + Prjshort + "Alert", "");
@@ -562,145 +554,8 @@ void WznmGenBase::genStdBlks(
 
 	dbswznm->tblwznmmblock->insertNewRec(NULL, VecWznmVMBlockBasetype::DPCH, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG, VecWznmWScope::OPENG, "Dpch" + Prjshort + "opdReg", "");
 	dbswznm->tblwznmmblock->insertNewRec(NULL, VecWznmVMBlockBasetype::DPCH, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG, VecWznmWScope::OPENG, "Dpch" + Prjshort + "opdUnreg", "");
-
-	// - settings blocks, all components
-
-	// StgXxxxDatabase
-	bitnum = 1;
-	dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG + VecWznmWScope::CMBENG + VecWznmWScope::OPENG,
-				VecWznmWScope::ENG + VecWznmWScope::CMBENG + VecWznmWScope::OPENG, "Stg" + Prjshort + "Database", "");
-
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "ixDbsVDbstype", VecWznmVVartype::VECSREF, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "dbspath", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "dbsname", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "username", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "password", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "ip", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "port", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-
-	delete blk;
-
-	// StgXxxxMonitor
-	if (apimon || dbsmon) {
-		bitnum = 1;
-		dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG + VecWznmWScope::CMBENG + VecWznmWScope::OPENG,
-					VecWznmWScope::ENG + VecWznmWScope::CMBENG + VecWznmWScope::OPENG, "Stg" + Prjshort + "Monitor", "");
-
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "username", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "password", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "ip", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "port", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-
-		if (dbsmon) {
-			dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "ixDbsVDbstype", VecWznmVVartype::VECSREF, 0, 0, 0, 0, 0, 0, "", 0, "");
-			dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "dbspath", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-			dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "dbsname", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-			dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "dbsusername", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-			dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "dbspassword", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-		};
-
-		delete blk;
-	};
-
-	// StgXxxxPath
-	bitnum = 1;
-	dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG + VecWznmWScope::CMBENG + VecWznmWScope::OPENG,
-				VecWznmWScope::ENG + VecWznmWScope::CMBENG + VecWznmWScope::OPENG, "Stg" + Prjshort + "Path", "");
-
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "acvpath", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "keypath", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "monpath", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "tmppath", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "webpath", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "helpurl", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-
-	delete blk;
-
-	// - settings blocks, d/cmbd only
-
-	// StgXxxxAppsrv
-	bitnum = 1;
-	dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG + VecWznmWScope::CMBENG, VecWznmWScope::ENG + VecWznmWScope::CMBENG, "Stg" + Prjshort + "Appsrv", "");
-
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "port", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "https", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "false", 0, "");
-
-	delete blk;
-
-	// StgXxxxAppearance
-	bitnum = 1;
-	dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG + VecWznmWScope::CMBENG, VecWznmWScope::ENG + VecWznmWScope::CMBENG, "Stg" + Prjshort + "Appearance", "");
-
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "histlength", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "20", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "suspsess", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "true", 0, "");
-
-	delete blk;
-
-	if (ddspub) {
-		// StgXxxxDdspub
-		bitnum = 1;
-		dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG + VecWznmWScope::CMBENG,
-					VecWznmWScope::ENG + VecWznmWScope::CMBENG, "Stg" + Prjshort + "Ddspub", "");
-
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "username", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "password", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-
-		delete blk;
-	};
-
-	if (uasrv) {
-		// StgXxxxUasrv
-		bitnum = 1;
-		dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG + VecWznmWScope::CMBENG,
-					VecWznmWScope::ENG + VecWznmWScope::CMBENG, "Stg" + Prjshort + "Uasrv", "");
-
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "profile", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "port", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "cycle", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "maxbrowse", VecWznmVVartype::UINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-		dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "maxmon", VecWznmVVartype::UINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-
-		delete blk;
-	};
-
-	// - component-specific settings blocks
-
-	// StgXxxxd
-	bitnum = 1;
-	dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG, VecWznmWScope::ENG, "Stg" + Prjshort + "d", "");
-
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "jobprcn", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "1", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "opengsrvport", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "appsrv", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "true", 0, "");
-	if (ddspub) dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "ddspub", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "true", 0, "");
-	if (uasrv) dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "uasrv", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "true", 0, "");
-
-	delete blk;
-
-	// StgXxxxcmbd
-	bitnum = 1;
-	dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::CMBENG, VecWznmWScope::CMBENG, "Stg" + Prjshort + "cmbd", "");
-
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "jobprcn", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "1", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "opprcn", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "1", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "appsrv", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "true", 0, "");
-	if (ddspub) dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "ddspub", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "true", 0, "");
-	if (uasrv) dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "uasrv", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "true", 0, "");
-
-	delete blk;
-
-	// StgXxxxopd
-	bitnum = 1;
-	dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::OPENG, VecWznmWScope::OPENG, "Stg" + Prjshort + "opd", "");
-
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "engip", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "engport", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "engsrvportbase", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "engsrvportofs", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "", 0, "");
-	dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "opprcn", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "1", 0, "");
-
-	delete blk;
 };
 // IP cust --- IEND
+
 
 

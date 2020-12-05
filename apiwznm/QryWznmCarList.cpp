@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmCarList.cpp
 	* API code for job QryWznmCarList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmCarList.h"
 
@@ -23,8 +24,8 @@ uint QryWznmCarList::VecVOrd::getIx(
 
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
-	if (s == "srf") return SRF;
 	if (s == "mdl") return MDL;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -34,8 +35,8 @@ string QryWznmCarList::VecVOrd::getSref(
 		) {
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
-	if (ix == SRF) return("srf");
 	if (ix == MDL) return("mdl");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

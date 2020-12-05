@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmStbRec.h
 	* job handler for job PnlWznmStbRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMSTBREC_H
 #define PNLWZNMSTBREC_H
@@ -13,11 +14,11 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmStbDetail.h"
-#include "PnlWznmStbSupMNStub.h"
 #include "PnlWznmStbMNCall.h"
 #include "PnlWznmStbMNSquawk.h"
 #include "PnlWznmStbSubMNStub.h"
+#include "PnlWznmStbSupMNStub.h"
+#include "PnlWznmStbDetail.h"
 
 #define VecVWznmStbRecDo PnlWznmStbRec::VecVDo
 
@@ -74,7 +75,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneSupMNStub = false, const bool initdoneMNCall = false, const bool initdoneMNSquawk = false, const bool initdoneSubMNStub = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneSupMNStub = false, const bool initdoneSubMNStub = false, const bool initdoneMNSquawk = false, const bool initdoneMNCall = false);
 	};
 
 	/**
@@ -86,21 +87,21 @@ public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREFSUPMNSTUB = 3;
-		static const Sbecore::uint JREFMNCALL = 4;
+		static const Sbecore::uint JREFSUBMNSTUB = 4;
 		static const Sbecore::uint JREFMNSQUAWK = 5;
-		static const Sbecore::uint JREFSUBMNSTUB = 6;
+		static const Sbecore::uint JREFMNCALL = 6;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 7;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefSupMNStub = 0, const Sbecore::ubigint jrefMNCall = 0, const Sbecore::ubigint jrefMNSquawk = 0, const Sbecore::ubigint jrefSubMNStub = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefSupMNStub = 0, const Sbecore::ubigint jrefSubMNStub = 0, const Sbecore::ubigint jrefMNSquawk = 0, const Sbecore::ubigint jrefMNCall = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jrefSupMNStub;
-		Sbecore::ubigint jrefMNCall;
-		Sbecore::ubigint jrefMNSquawk;
 		Sbecore::ubigint jrefSubMNStub;
+		Sbecore::ubigint jrefMNSquawk;
+		Sbecore::ubigint jrefMNCall;
 		bool ButRegularizeActive;
 
 	public:
@@ -176,11 +177,11 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmStbDetail* pnldetail;
-	PnlWznmStbSupMNStub* pnlsupmnstub;
 	PnlWznmStbMNCall* pnlmncall;
 	PnlWznmStbMNSquawk* pnlmnsquawk;
 	PnlWznmStbSubMNStub* pnlsubmnstub;
+	PnlWznmStbSupMNStub* pnlsupmnstub;
+	PnlWznmStbDetail* pnldetail;
 
 	WznmMStub recStb;
 
@@ -192,7 +193,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -221,4 +222,6 @@ private:
 };
 
 #endif
+
+
 

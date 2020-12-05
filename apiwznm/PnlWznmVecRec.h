@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmVecRec.h
 	* API code for job PnlWznmVecRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMVECREC_H
 #define PNLWZNMVECREC_H
@@ -67,22 +68,22 @@ namespace PnlWznmVecRec {
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONEATITLE = 2;
 		static const Sbecore::uint INITDONEVEC1NVECTORITEM = 3;
-		static const Sbecore::uint INITDONESRC1NFEED = 4;
-		static const Sbecore::uint INITDONEREF1NPANEL = 5;
-		static const Sbecore::uint INITDONEFCT1NTABLECOL = 6;
+		static const Sbecore::uint INITDONEFCT1NTABLECOL = 4;
+		static const Sbecore::uint INITDONESRC1NFEED = 5;
+		static const Sbecore::uint INITDONEREF1NPANEL = 6;
 		static const Sbecore::uint INITDONEPST1NQUERYMOD = 7;
 		static const Sbecore::uint INITDONEMNTABLE = 8;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneVec1NVectoritem = false, const bool initdoneSrc1NFeed = false, const bool initdoneRef1NPanel = false, const bool initdoneFct1NTablecol = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNTable = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneVec1NVectoritem = false, const bool initdoneFct1NTablecol = false, const bool initdoneSrc1NFeed = false, const bool initdoneRef1NPanel = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNTable = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneATitle;
 		bool initdoneVec1NVectoritem;
+		bool initdoneFct1NTablecol;
 		bool initdoneSrc1NFeed;
 		bool initdoneRef1NPanel;
-		bool initdoneFct1NTablecol;
 		bool initdonePst1NQuerymod;
 		bool initdoneMNTable;
 
@@ -102,10 +103,10 @@ namespace PnlWznmVecRec {
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREFATITLE = 3;
 		static const Sbecore::uint SCRJREFVEC1NVECTORITEM = 4;
-		static const Sbecore::uint SCRJREFSRC1NFEED = 5;
-		static const Sbecore::uint SCRJREFREF1NPANEL = 6;
-		static const Sbecore::uint SCRJREFFCT1NTABLECOL = 7;
-		static const Sbecore::uint PNLFCT1NTABLECOLAVAIL = 8;
+		static const Sbecore::uint SCRJREFFCT1NTABLECOL = 5;
+		static const Sbecore::uint PNLFCT1NTABLECOLAVAIL = 6;
+		static const Sbecore::uint SCRJREFSRC1NFEED = 7;
+		static const Sbecore::uint SCRJREFREF1NPANEL = 8;
 		static const Sbecore::uint SCRJREFPST1NQUERYMOD = 9;
 		static const Sbecore::uint PNLPST1NQUERYMODAVAIL = 10;
 		static const Sbecore::uint SCRJREFMNTABLE = 11;
@@ -113,17 +114,17 @@ namespace PnlWznmVecRec {
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 13;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJrefVec1NVectoritem = "", const std::string& scrJrefSrc1NFeed = "", const std::string& scrJrefRef1NPanel = "", const std::string& scrJrefFct1NTablecol = "", const bool pnlfct1ntablecolAvail = false, const std::string& scrJrefPst1NQuerymod = "", const bool pnlpst1nquerymodAvail = false, const std::string& scrJrefMNTable = "", const bool pnlmntableAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJrefVec1NVectoritem = "", const std::string& scrJrefFct1NTablecol = "", const bool pnlfct1ntablecolAvail = false, const std::string& scrJrefSrc1NFeed = "", const std::string& scrJrefRef1NPanel = "", const std::string& scrJrefPst1NQuerymod = "", const bool pnlpst1nquerymodAvail = false, const std::string& scrJrefMNTable = "", const bool pnlmntableAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJrefATitle;
 		std::string scrJrefVec1NVectoritem;
-		std::string scrJrefSrc1NFeed;
-		std::string scrJrefRef1NPanel;
 		std::string scrJrefFct1NTablecol;
 		bool pnlfct1ntablecolAvail;
+		std::string scrJrefSrc1NFeed;
+		std::string scrJrefRef1NPanel;
 		std::string scrJrefPst1NQuerymod;
 		bool pnlpst1nquerymodAvail;
 		std::string scrJrefMNTable;

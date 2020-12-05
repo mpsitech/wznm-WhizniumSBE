@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmQmdDetail_evals.cpp
 	* job handler for job PnlWznmQmdDetail (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -123,7 +124,7 @@ bool PnlWznmQmdDetail::evalTxtPstActive(
 bool PnlWznmQmdDetail::evalButPstViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// qmd.pstEq(0)|((pre.ixCrdaccPst()&pre.refVer())|(pre.ixCrdaccVec()&pre.refVer())|(pre.ixCrdaccTbl()&pre.refVer())|(pre.ixCrdaccSbs()&pre.refVer()))
+	// qmd.pstEq(0)|((pre.ixCrdaccPst()&pre.refVer())|(pre.ixCrdaccSbs()&pre.refVer())|(pre.ixCrdaccVec()&pre.refVer())|(pre.ixCrdaccTbl()&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
@@ -131,6 +132,13 @@ bool PnlWznmQmdDetail::evalButPstViewAvail(
 	a = false; a = (recQmd.refWznmMPreset == 0);
 	args.push_back(a);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPST, jref) != 0);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -145,13 +153,6 @@ bool PnlWznmQmdDetail::evalButPstViewAvail(
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref) != 0);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -262,4 +263,6 @@ bool PnlWznmQmdDetail::evalTxfAvlActive(
 
 	return(args.back());
 };
+
+
 

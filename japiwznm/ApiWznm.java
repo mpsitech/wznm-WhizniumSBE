@@ -1,10 +1,11 @@
 /**
-  * \file ApiWznm.java
-  * Wznm Java API package global functionality
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
+	* \file ApiWznm.java
+	* Wznm Java API package global functionality
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
   */
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -22,10 +23,10 @@ import sbecore.*;
 
 public class ApiWznm {
 
-	public static final String WZNM_VERSION = "1.0.7";
+	public static final String WZNM_VERSION = "1.1.0";
 	public static final int WZNM_VERSION_MAJOR = 1;
-	public static final int WZNM_VERSION_MINOR = 0;
-	public static final int WZNM_VERSION_SUB = 7;
+	public static final int WZNM_VERSION_MINOR = 1;
+	public static final int WZNM_VERSION_SUB = 0;
 
 	public static DpchEngWznm readDpchEng(
 				String s
@@ -45,6 +46,7 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMAPPWRITEDATA) dpcheng = (new DlgWznmAppWrite()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMFILDOWNLOADDATA) dpcheng = (new DlgWznmFilDownload()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMFILNEWDATA) dpcheng = (new DlgWznmFilNew()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMMCHWRINISCRDATA) dpcheng = (new DlgWznmMchWriniscr()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMNAVLOAINIDATA) dpcheng = (new DlgWznmNavLoaini()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMNAVMNGLICDATA) dpcheng = (new DlgWznmNavMnglic()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMPRJIMPEXDATA) dpcheng = (new DlgWznmPrjImpex()).new DpchEngData();
@@ -54,7 +56,6 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMRLSWRITEDATA) dpcheng = (new DlgWznmRlsWrite()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMUSRMNGKEYPAIRDATA) dpcheng = (new DlgWznmUsrMngkeypair()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMUTLEXTRIPDATA) dpcheng = (new DlgWznmUtlExtrip()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMUTLIEXCONVDATA) dpcheng = (new DlgWznmUtlIexconv()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMUTLMRGIPDATA) dpcheng = (new DlgWznmUtlMrgip()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMVERBSCUIDATA) dpcheng = (new DlgWznmVerBscui()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMVERCUSTJOBDATA) dpcheng = (new DlgWznmVerCustjob()).new DpchEngData();
@@ -69,7 +70,7 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMVERIMPEXPDATA) dpcheng = (new DlgWznmVerImpexp()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMVERNEWDATA) dpcheng = (new DlgWznmVerNew()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMVEROPPACKDATA) dpcheng = (new DlgWznmVerOppack()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMVERWRSTKITDATA) dpcheng = (new DlgWznmVerWrstkit()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGDLGWZNMVERWRINIMDLDATA) dpcheng = (new DlgWznmVerWrinimdl()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGROOTWZNMDATA) dpcheng = (new RootWznm()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGSESSWZNMDATA) dpcheng = (new SessWznm()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMACK) dpcheng = new DpchEngWznmAck();
@@ -223,12 +224,14 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMLOCMNVERSIONDATA) dpcheng = (new PnlWznmLocMNVersion()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMLOCRECDATA) dpcheng = (new PnlWznmLocRec()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMCH1NRELEASEDATA) dpcheng = (new PnlWznmMch1NRelease()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMCHAMAKEFILEDATA) dpcheng = (new PnlWznmMchAMakefile()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMCHAPARDATA) dpcheng = (new PnlWznmMchAPar()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMCHDATA) dpcheng = (new CrdWznmMch()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMCHDETAILDATA) dpcheng = (new PnlWznmMchDetail()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMCHHEADBARDATA) dpcheng = (new PnlWznmMchHeadbar()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMCHLISTDATA) dpcheng = (new PnlWznmMchList()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMCHRECDATA) dpcheng = (new PnlWznmMchRec()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMCHSUP1NMACHINEDATA) dpcheng = (new PnlWznmMchSup1NMachine()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMDLDATA) dpcheng = (new CrdWznmMdl()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMDLDETAILDATA) dpcheng = (new PnlWznmMdlDetail()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMDLHEADBARDATA) dpcheng = (new PnlWznmMdlHeadbar()).new DpchEngData();
@@ -243,13 +246,6 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTDHEADBARDATA) dpcheng = (new PnlWznmMtdHeadbar()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTDLISTDATA) dpcheng = (new PnlWznmMtdList()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTDRECDATA) dpcheng = (new PnlWznmMtdRec()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTY1NMACHINEDATA) dpcheng = (new PnlWznmMty1NMachine()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTYAMAKEFILEDATA) dpcheng = (new PnlWznmMtyAMakefile()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTYDATA) dpcheng = (new CrdWznmMty()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTYDETAILDATA) dpcheng = (new PnlWznmMtyDetail()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTYHEADBARDATA) dpcheng = (new PnlWznmMtyHeadbar()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTYLISTDATA) dpcheng = (new PnlWznmMtyList()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMMTYRECDATA) dpcheng = (new PnlWznmMtyRec()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMNAVADMINDATA) dpcheng = (new PnlWznmNavAdmin()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMNAVAPPDEVDATA) dpcheng = (new PnlWznmNavAppdev()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMNAVAUXFCTDATA) dpcheng = (new PnlWznmNavAuxfct()).new DpchEngData();

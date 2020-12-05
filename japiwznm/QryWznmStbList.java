@@ -1,10 +1,11 @@
 /**
   * \file QryWznmStbList.java
   * Java API code for job QryWznmStbList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -20,8 +21,8 @@ public class QryWznmStbList {
 
 		public static final int SBS = 1;
 		public static final int TBL = 2;
-		public static final int SRF = 3;
-		public static final int TYP = 4;
+		public static final int TYP = 3;
+		public static final int SRF = 4;
 
 		public static int getIx(
 					String sref
@@ -30,8 +31,8 @@ public class QryWznmStbList {
 
 			if (s.equals("sbs")) return SBS;
 			if (s.equals("tbl")) return TBL;
-			if (s.equals("srf")) return SRF;
 			if (s.equals("typ")) return TYP;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -41,8 +42,8 @@ public class QryWznmStbList {
 				) {
 			if (ix == SBS) return("sbs");
 			if (ix == TBL) return("tbl");
-			if (ix == SRF) return("srf");
 			if (ix == TYP) return("typ");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

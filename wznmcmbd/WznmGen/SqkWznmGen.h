@@ -1,10 +1,11 @@
 /**
 	* \file SqkWznmGen.h
 	* squawk generation for operation pack WznmGen (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef SQKWZNMGEN_H
 #define SQKWZNMGEN_H
@@ -25,4 +26,6 @@ namespace SqkWznmGen {
 };
 
 #endif
+
+
 

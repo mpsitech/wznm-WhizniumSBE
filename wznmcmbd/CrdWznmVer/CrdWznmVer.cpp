@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmVer.cpp
 	* job handler for job CrdWznmVer (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -47,20 +48,20 @@ CrdWznmVer::CrdWznmVer(
 	pnllist = NULL;
 	pnlheadbar = NULL;
 	pnlrec = NULL;
-	dlgwrstkit = NULL;
+	dlgbscui = NULL;
+	dlgcustjob = NULL;
+	dlgcustui = NULL;
+	dlgcustjtr = NULL;
+	dlgdbstr = NULL;
+	dlgdeploy = NULL;
+	dlgfinmod = NULL;
+	dlgwrinimdl = NULL;
 	dlgoppack = NULL;
 	dlgnew = NULL;
 	dlgimpexp = NULL;
 	dlgglobal = NULL;
 	dlggenui = NULL;
 	dlggenjtr = NULL;
-	dlgfinmod = NULL;
-	dlgdeploy = NULL;
-	dlgdbstr = NULL;
-	dlgcustui = NULL;
-	dlgcustjtr = NULL;
-	dlgcustjob = NULL;
-	dlgbscui = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -611,7 +612,11 @@ DpchEngWznm* CrdWznmVer::getNewDpchEng(
 void CrdWznmVer::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -631,8 +636,8 @@ void CrdWznmVer::refresh(
 	statshr.MitCrdIgbAvail = evalMitCrdIgbAvail(dbswznm);
 	statshr.MitCrdIgbActive = evalMitCrdIgbActive(dbswznm);
 	statshr.MspCrd4Avail = evalMspCrd4Avail(dbswznm);
-	statshr.MitCrdWskAvail = evalMitCrdWskAvail(dbswznm);
-	statshr.MitCrdWskActive = evalMitCrdWskActive(dbswznm);
+	statshr.MitCrdImdAvail = evalMitCrdImdAvail(dbswznm);
+	statshr.MitCrdImdActive = evalMitCrdImdActive(dbswznm);
 	statshr.MspCrd5Avail = evalMspCrd5Avail(dbswznm);
 	statshr.MitCrdIdbAvail = evalMitCrdIdbAvail(dbswznm);
 	statshr.MitCrdIdbActive = evalMitCrdIdbActive(dbswznm);
@@ -660,6 +665,8 @@ void CrdWznmVer::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void CrdWznmVer::changeRef(
@@ -752,8 +759,8 @@ void CrdWznmVer::handleRequest(
 					handleDpchAppDoMitCrdIdpClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDIGBCLICK) {
 					handleDpchAppDoMitCrdIgbClick(dbswznm, &(req->dpcheng));
-				} else if (dpchappdo->ixVDo == VecVDo::MITCRDWSKCLICK) {
-					handleDpchAppDoMitCrdWskClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::MITCRDIMDCLICK) {
+					handleDpchAppDoMitCrdImdClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDIDBCLICK) {
 					handleDpchAppDoMitCrdIdbClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDIBUCLICK) {
@@ -1118,13 +1125,13 @@ void CrdWznmVer::handleDpchAppDoMitCrdIgbClick(
 	};
 };
 
-void CrdWznmVer::handleDpchAppDoMitCrdWskClick(
+void CrdWznmVer::handleDpchAppDoMitCrdImdClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
 		) {
-	if (!dlgwrstkit) {
-		dlgwrstkit = new DlgWznmVerWrstkit(xchg, dbswznm, jref, ixWznmVLocale);
-		statshr.jrefDlgwrstkit = dlgwrstkit->jref;
+	if (!dlgwrinimdl) {
+		dlgwrinimdl = new DlgWznmVerWrinimdl(xchg, dbswznm, jref, ixWznmVLocale);
+		statshr.jrefDlgwrinimdl = dlgwrinimdl->jref;
 
 		*dpcheng = getNewDpchEng({DpchEngData::STATSHR});
 	};
@@ -1398,10 +1405,10 @@ bool CrdWznmVer::handleCallWznmDlgClose(
 		statshr.jrefDlgoppack = 0;
 
 		xchg->submitDpch(getNewDpchEng({DpchEngData::STATSHR}));
-	} else if (dlgwrstkit) {
-		delete dlgwrstkit;
-		dlgwrstkit = NULL;
-		statshr.jrefDlgwrstkit = 0;
+	} else if (dlgwrinimdl) {
+		delete dlgwrinimdl;
+		dlgwrinimdl = NULL;
+		statshr.jrefDlgwrinimdl = 0;
 
 		xchg->submitDpch(getNewDpchEng({DpchEngData::STATSHR}));
 	};
@@ -1427,7 +1434,7 @@ void CrdWznmVer::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -1551,5 +1558,6 @@ void CrdWznmVer::leaveSgeSetprjcvr(
 		) {
 	// IP leaveSgeSetprjcvr --- INSERT
 };
+
 
 

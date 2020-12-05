@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrapiBase.cpp
 	* Wznm operation processor - write API code basics (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -259,5 +260,6 @@ void WznmWrapiBase::writeVecdpchCpp(
 	outfile << "// IP getSref --- IEND" << endl;
 };
 // IP cust --- IEND
+
 
 

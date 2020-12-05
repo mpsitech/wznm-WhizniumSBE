@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmJobSubMNJob.cpp
 	* job handler for job PnlWznmJobSubMNJob (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -90,7 +91,11 @@ DpchEngWznm* PnlWznmJobSubMNJob::getNewDpchEng(
 void PnlWznmJobSubMNJob::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -108,6 +113,8 @@ void PnlWznmJobSubMNJob::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmJobSubMNJob::updatePreset(
@@ -224,9 +231,9 @@ void PnlWznmJobSubMNJob::handleDpchAppDataStgiacqry(
 	WznmRMJobMJob* _recJobRjob = NULL;
 	WznmMJob* _recJob = NULL;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
+		muteRefresh = true;
+
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWznmJobSubMNJob::StgIac::JNUM)) recSelNew = qry->getRecByJnum(_stgiacqry->jnum);
@@ -258,10 +265,8 @@ void PnlWznmJobSubMNJob::handleDpchAppDataStgiacqry(
 			qry->refreshJnum();
 		};
 
-		refresh(dbswznm, moditems);
+		refresh(dbswznm, moditems, true);
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -311,9 +316,8 @@ void PnlWznmJobSubMNJob::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswznm, false);
-	refresh(dbswznm, moditems);
 
-	muteRefresh = false;
+	refresh(dbswznm, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);
@@ -348,4 +352,6 @@ bool PnlWznmJobSubMNJob::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
+
+
 

@@ -1,11 +1,3 @@
-/**
-  * \file CrdWznmQmd.js
-  * web client functionality for card CrdWznmQmd
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function getInitdone(pnlshort) {
 	return(retrieveSi(srcdoc, "StatAppWznmQmd", "initdone" + pnlshort) == "true");
 };
@@ -332,7 +324,7 @@ function changeHeight(pnlshort, height) {
 // --- view initialization and refresh
 function refresh() {
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmQmd", "MtxCrdQmd") + " - WhizniumSBE v1.0.7";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmQmd", "MtxCrdQmd") + " - WhizniumSBE v1.1.0";
 };
 
 // --- event handlers

@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmJob.h
 	* data blocks and readers/writers for import/export complex IexWznmJob (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef IEXWZNMJOB_H
 #define IEXWZNMJOB_H
@@ -506,7 +507,7 @@ namespace IexWznmJob {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIMCapability& imeimcapability, ImeIMJob& imeimjob);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath, ImeIMCapability& imeimcapability, ImeIMJob& imeimjob);
 	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIMCapability& imeimcapability, ImeIMJob& imeimjob);
 
 	void readTxt(Sbecore::Txtrd& txtrd, ImeIMCapability& imeimcapability, ImeIMJob& imeimjob);
@@ -520,4 +521,6 @@ namespace IexWznmJob {
 };
 
 #endif
+
+
 

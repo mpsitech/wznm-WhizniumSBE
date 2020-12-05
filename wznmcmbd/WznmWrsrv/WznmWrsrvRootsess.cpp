@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrsrvRootsess.cpp
 	* Wznm operation processor - write specific job C++ code for root and session (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -1818,5 +1819,6 @@ void WznmWrsrvRootsess::writeM2msessCpp(
 	outfile << "// IP handleCall" << Prjshort << "Access --- IEND" << endl;
 };
 // IP cust --- IEND
+
 
 

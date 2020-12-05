@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmQryRec_blks.cpp
 	* job handler for job PnlWznmQryRec (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -97,14 +98,14 @@ void PnlWznmQryRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdoneAOrder
 			, const bool initdoneAClause
+			, const bool initdoneAOrder
 			, const bool initdoneSup1NQuery
-			, const bool initdoneQry1NQuerycol
 			, const bool initdone1NQuerymod
+			, const bool initdoneQry1NQuerycol
 			, const bool initdoneMNTable
-			, const bool initdoneMNDialog
 			, const bool initdoneMNPanel
+			, const bool initdoneMNDialog
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmQryRec";
 
@@ -114,14 +115,14 @@ void PnlWznmQryRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneAOrder", initdoneAOrder);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneAClause", initdoneAClause);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneAOrder", initdoneAOrder);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneSup1NQuery", initdoneSup1NQuery);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneQry1NQuerycol", initdoneQry1NQuerycol);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NQuerymod", initdone1NQuerymod);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneQry1NQuerycol", initdoneQry1NQuerycol);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNTable", initdoneMNTable);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneMNDialog", initdoneMNDialog);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNPanel", initdoneMNPanel);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneMNDialog", initdoneMNDialog);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -132,31 +133,31 @@ void PnlWznmQryRec::StatApp::writeXML(
 PnlWznmQryRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jrefAOrder
 			, const ubigint jrefAClause
+			, const ubigint jrefAOrder
 			, const ubigint jrefSup1NQuery
-			, const ubigint jrefQry1NQuerycol
 			, const ubigint jref1NQuerymod
+			, const ubigint jrefQry1NQuerycol
 			, const ubigint jrefMNTable
-			, const ubigint jrefMNDialog
 			, const ubigint jrefMNPanel
+			, const ubigint jrefMNDialog
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
-	this->jrefAOrder = jrefAOrder;
 	this->jrefAClause = jrefAClause;
+	this->jrefAOrder = jrefAOrder;
 	this->jrefSup1NQuery = jrefSup1NQuery;
-	this->jrefQry1NQuerycol = jrefQry1NQuerycol;
 	this->jref1NQuerymod = jref1NQuerymod;
+	this->jrefQry1NQuerycol = jrefQry1NQuerycol;
 	this->jrefMNTable = jrefMNTable;
-	this->jrefMNDialog = jrefMNDialog;
 	this->jrefMNPanel = jrefMNPanel;
+	this->jrefMNDialog = jrefMNDialog;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAORDER, JREFACLAUSE, JREFSUP1NQUERY, JREFQRY1NQUERYCOL, JREF1NQUERYMOD, JREFMNTABLE, JREFMNDIALOG, JREFMNPANEL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFACLAUSE, JREFAORDER, JREFSUP1NQUERY, JREF1NQUERYMOD, JREFQRY1NQUERYCOL, JREFMNTABLE, JREFMNPANEL, JREFMNDIALOG, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmQryRec::StatShr::writeXML(
@@ -173,14 +174,14 @@ void PnlWznmQryRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefAOrder", Scr::scramble(jrefAOrder));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefAClause", Scr::scramble(jrefAClause));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefAOrder", Scr::scramble(jrefAOrder));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefSup1NQuery", Scr::scramble(jrefSup1NQuery));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefQry1NQuerycol", Scr::scramble(jrefQry1NQuerycol));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NQuerymod", Scr::scramble(jref1NQuerymod));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefQry1NQuerycol", Scr::scramble(jrefQry1NQuerycol));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNTable", Scr::scramble(jrefMNTable));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefMNDialog", Scr::scramble(jrefMNDialog));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNPanel", Scr::scramble(jrefMNPanel));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefMNDialog", Scr::scramble(jrefMNDialog));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -192,14 +193,14 @@ set<uint> PnlWznmQryRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jrefAOrder == comp->jrefAOrder) insert(items, JREFAORDER);
 	if (jrefAClause == comp->jrefAClause) insert(items, JREFACLAUSE);
+	if (jrefAOrder == comp->jrefAOrder) insert(items, JREFAORDER);
 	if (jrefSup1NQuery == comp->jrefSup1NQuery) insert(items, JREFSUP1NQUERY);
-	if (jrefQry1NQuerycol == comp->jrefQry1NQuerycol) insert(items, JREFQRY1NQUERYCOL);
 	if (jref1NQuerymod == comp->jref1NQuerymod) insert(items, JREF1NQUERYMOD);
+	if (jrefQry1NQuerycol == comp->jrefQry1NQuerycol) insert(items, JREFQRY1NQUERYCOL);
 	if (jrefMNTable == comp->jrefMNTable) insert(items, JREFMNTABLE);
-	if (jrefMNDialog == comp->jrefMNDialog) insert(items, JREFMNDIALOG);
 	if (jrefMNPanel == comp->jrefMNPanel) insert(items, JREFMNPANEL);
+	if (jrefMNDialog == comp->jrefMNDialog) insert(items, JREFMNDIALOG);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -213,7 +214,7 @@ set<uint> PnlWznmQryRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAORDER, JREFACLAUSE, JREFSUP1NQUERY, JREFQRY1NQUERYCOL, JREF1NQUERYMOD, JREFMNTABLE, JREFMNDIALOG, JREFMNPANEL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFACLAUSE, JREFAORDER, JREFSUP1NQUERY, JREF1NQUERYMOD, JREFQRY1NQUERYCOL, JREFMNTABLE, JREFMNPANEL, JREFMNDIALOG, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -353,4 +354,6 @@ void PnlWznmQryRec::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

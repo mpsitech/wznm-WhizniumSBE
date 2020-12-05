@@ -1,10 +1,11 @@
 /**
 	* \file JobWznmIexJtr.cpp
 	* job handler for job JobWznmIexJtr (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -68,10 +69,12 @@ void JobWznmIexJtr::parseFromFile(
 			DbsWznm* dbswznm
 			, const string& _fullpath
 			, const bool _xmlNotTxt
+			, const string& _rectpath
 		) {
 	if (ixVSge == VecVSge::IDLE) {
 		fullpath = _fullpath;
 		xmlNotTxt = _xmlNotTxt;
+		rectpath = _rectpath;
 
 		changeStage(dbswznm, VecVSge::PARSE);
 	};
@@ -211,6 +214,7 @@ uint JobWznmIexJtr::enterSgeIdle(
 
 	fullpath = "";
 	xmlNotTxt = false;
+	rectpath = "";
 
 	lineno = 0;
 	impcnt = 0;
@@ -241,7 +245,7 @@ uint JobWznmIexJtr::enterSgeParse(
 	nextIxVSgeFailure = VecVSge::PRSERR;
 
 	try {
-		IexWznmJtr::parseFromFile(fullpath, xmlNotTxt, imeimblock2, imeimcall, imeimjob, imeirmcallmstub);
+		IexWznmJtr::parseFromFile(fullpath, xmlNotTxt, rectpath, imeimblock2, imeimcall, imeimjob, imeirmcallmstub);
 
 	} catch (SbeException& e) {
 		if (e.ix == SbeException::PATHNF) e.vals["path"] = "<hidden>";
@@ -1912,5 +1916,6 @@ void JobWznmIexJtr::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

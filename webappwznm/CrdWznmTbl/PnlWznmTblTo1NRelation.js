@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmTblTo1NRelation.js
-  * web client functionality for panel PnlWznmTblTo1NRelation
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmTblTo1NRelation", "srefIxWznmVExpstate") == "mind") return;

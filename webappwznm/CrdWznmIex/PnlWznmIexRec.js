@@ -1,30 +1,22 @@
-/**
-  * \file PnlWznmIexRec.js
-  * web client functionality for panel PnlWznmIexRec
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmIexRec", "scrJrefDetail");
 	scrJref1NImpexp = retrieveSi(srcdoc, "StatShrWznmIexRec", "scrJref1NImpexp");
-	scrJrefRef1NDialog = retrieveSi(srcdoc, "StatShrWznmIexRec", "scrJrefRef1NDialog");
 	scrJrefHk1NVector = retrieveSi(srcdoc, "StatShrWznmIexRec", "scrJrefHk1NVector");
+	scrJrefRef1NDialog = retrieveSi(srcdoc, "StatShrWznmIexRec", "scrJrefRef1NDialog");
 };
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmIexRec", "initdoneDetail", "false");
 	setSi(srcdoc, "StatAppWznmIexRec", "initdone1NImpexp", "false");
-	setSi(srcdoc, "StatAppWznmIexRec", "initdoneRef1NDialog", "false");
 	setSi(srcdoc, "StatAppWznmIexRec", "initdoneHk1NVector", "false");
+	setSi(srcdoc, "StatAppWznmIexRec", "initdoneRef1NDialog", "false");
 };
 
 function resetHeights() {
 	heightDetail = 30;
 	height1NImpexp = 30;
-	heightRef1NDialog = 30;
 	heightHk1NVector = 30;
+	heightRef1NDialog = 30;
 };
 
 function getInitdone(pnlshort) {
@@ -44,17 +36,17 @@ function checkInitdone() {
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmIexRec", "initdoneDetail") == "true");
 	var initdone1NImpexp = (retrieveSi(srcdoc, "StatAppWznmIexRec", "initdone1NImpexp") == "true");
-	var initdoneRef1NDialog = (retrieveSi(srcdoc, "StatAppWznmIexRec", "initdoneRef1NDialog") == "true");
 	var initdoneHk1NVector = (retrieveSi(srcdoc, "StatAppWznmIexRec", "initdoneHk1NVector") == "true");
+	var initdoneRef1NDialog = (retrieveSi(srcdoc, "StatAppWznmIexRec", "initdoneRef1NDialog") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmIexDetail.html?scrJref=" + scrJrefDetail;
 	} else if (!initdone1NImpexp) {
 		rhsdoc.getElementById("1NImpexp").src = "./PnlWznmIex1NImpexp.html?scrJref=" + scrJref1NImpexp;
-	} else if (!initdoneRef1NDialog) {
-		rhsdoc.getElementById("Ref1NDialog").src = "./PnlWznmIexRef1NDialog.html?scrJref=" + scrJrefRef1NDialog;
 	} else if (!initdoneHk1NVector) {
 		rhsdoc.getElementById("Hk1NVector").src = "./PnlWznmIexHk1NVector.html?scrJref=" + scrJrefHk1NVector;
+	} else if (!initdoneRef1NDialog) {
+		rhsdoc.getElementById("Ref1NDialog").src = "./PnlWznmIexRef1NDialog.html?scrJref=" + scrJrefRef1NDialog;
 
 	} else {
 		refreshB();
@@ -95,8 +87,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
 		else if (short == "1NImpexp") height1NImpexp = height;
-		else if (short == "Ref1NDialog") heightRef1NDialog = height;
 		else if (short == "Hk1NVector") heightHk1NVector = height;
+		else if (short == "Ref1NDialog") heightRef1NDialog = height;
 	};
 
 	return(avail != oldAvail);
@@ -141,8 +133,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
 	else if (pnlshort == "1NImpexp") height1NImpexp = height;
-	else if (pnlshort == "Ref1NDialog") heightRef1NDialog = height;
 	else if (pnlshort == "Hk1NVector") heightHk1NVector = height;
+	else if (pnlshort == "Ref1NDialog") heightRef1NDialog = height;
 
 	if (update) updateHeight();
 };
@@ -151,7 +143,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + 5;
-	heightRhs = height1NImpexp+13 + heightRef1NDialog+13 + heightHk1NVector+13 + 5;
+	heightRhs = height1NImpexp+13 + heightHk1NVector+13 + heightRef1NDialog+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -344,10 +336,10 @@ function handleDpchEng(dom, dpch) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NImpexp) {
 				if (getInitdone("1NImpexp")) rhsdoc.getElementById("1NImpexp").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefRef1NDialog) {
-				if (getInitdone("Ref1NDialog")) rhsdoc.getElementById("Ref1NDialog").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefHk1NVector) {
 				if (getInitdone("Hk1NVector")) rhsdoc.getElementById("Hk1NVector").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefRef1NDialog) {
+				if (getInitdone("Ref1NDialog")) rhsdoc.getElementById("Ref1NDialog").contentWindow.handleDpchEng(dom, dpch);
 			} else {
 				// alert("got a '" + dpch + "' from job with scrJref " + _scrJref);
 			};

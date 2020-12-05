@@ -1,10 +1,11 @@
 /**
 	* \file WznmCtpWrstkit.h
 	* Wznm operation pack global code (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMCTPWRSTKIT_H
 #define WZNMCTPWRSTKIT_H
@@ -31,5 +32,6 @@ namespace WznmCtpWrstkit {
 };
 
 #endif
+
 
 

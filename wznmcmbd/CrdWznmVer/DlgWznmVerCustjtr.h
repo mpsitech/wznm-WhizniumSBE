@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerCustjtr.h
 	* job handler for job DlgWznmVerCustjtr (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMVERCUSTJTR_H
 #define DLGWZNMVERCUSTJTR_H
@@ -437,6 +438,7 @@ public:
 
 	// IP vars.cust --- IBEGIN
 	std::string infilename;
+	std::string rectpath;
 
 	bool ifitxt;
 	bool ifixml;
@@ -452,7 +454,7 @@ public:
 	void refreshImp(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -474,8 +476,8 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
-	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 
 private:
@@ -507,5 +509,6 @@ private:
 };
 
 #endif
+
 
 

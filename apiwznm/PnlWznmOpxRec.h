@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmOpxRec.h
 	* API code for job PnlWznmOpxRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMOPXREC_H
 #define PNLWZNMOPXREC_H
@@ -65,19 +66,19 @@ namespace PnlWznmOpxRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEAINVARG = 2;
-		static const Sbecore::uint INITDONEARETVAL = 3;
+		static const Sbecore::uint INITDONEARETVAL = 2;
+		static const Sbecore::uint INITDONEAINVARG = 3;
 		static const Sbecore::uint INITDONEREF1NBLOCK = 4;
 		static const Sbecore::uint INITDONEMNJOB = 5;
 		static const Sbecore::uint INITDONESQKMNSTUB = 6;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdoneAInvarg;
 		bool initdoneARetval;
+		bool initdoneAInvarg;
 		bool initdoneRef1NBlock;
 		bool initdoneMNJob;
 		bool initdoneSqkMNStub;
@@ -96,8 +97,8 @@ namespace PnlWznmOpxRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFAINVARG = 3;
-		static const Sbecore::uint SCRJREFARETVAL = 4;
+		static const Sbecore::uint SCRJREFARETVAL = 3;
+		static const Sbecore::uint SCRJREFAINVARG = 4;
 		static const Sbecore::uint SCRJREFREF1NBLOCK = 5;
 		static const Sbecore::uint SCRJREFMNJOB = 6;
 		static const Sbecore::uint SCRJREFSQKMNSTUB = 7;
@@ -105,13 +106,13 @@ namespace PnlWznmOpxRec {
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 9;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAInvarg = "", const std::string& scrJrefARetval = "", const std::string& scrJrefRef1NBlock = "", const std::string& scrJrefMNJob = "", const std::string& scrJrefSqkMNStub = "", const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefARetval = "", const std::string& scrJrefAInvarg = "", const std::string& scrJrefRef1NBlock = "", const std::string& scrJrefMNJob = "", const std::string& scrJrefSqkMNStub = "", const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJrefAInvarg;
 		std::string scrJrefARetval;
+		std::string scrJrefAInvarg;
 		std::string scrJrefRef1NBlock;
 		std::string scrJrefMNJob;
 		std::string scrJrefSqkMNStub;

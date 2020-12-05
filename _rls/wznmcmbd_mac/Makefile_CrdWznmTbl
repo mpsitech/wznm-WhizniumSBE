@@ -1,0 +1,39 @@
+# file Makefile
+# make file for CrdWznmTbl card job handler, release wznmcmbd_mac
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 5 Dec 2020
+# IP header --- ABOVE
+
+include ../Makefile.inc
+
+CPP = g++
+CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -DWZNMCMBD
+
+STATLIB = ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
+INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
+
+OBJS = CrdWznmTbl.o PnlWznmTblList.o QryWznmTblList.o PnlWznmTblHeadbar.o PnlWznmTblRec.o PnlWznmTblMNQuery.o QryWznmTblMNQuery.o PnlWznmTblMNVector.o QryWznmTblMNVector.o PnlWznmTblPst1NQuerymod.o QryWznmTblPst1NQuerymod.o PnlWznmTblRef1NDialog.o QryWznmTblRef1NDialog.o PnlWznmTblRef1NCall.o QryWznmTblRef1NCall.o PnlWznmTblHk1NVector.o QryWznmTblHk1NVector.o PnlWznmTblRef1NQuerymod.o QryWznmTblRef1NQuerymod.o PnlWznmTblRef1NRtblock.o QryWznmTblRef1NRtblock.o PnlWznmTblRef1NPanel.o QryWznmTblRef1NPanel.o PnlWznmTblSrc1NFeed.o QryWznmTblSrc1NFeed.o PnlWznmTblFct1NTablecol.o QryWznmTblFct1NTablecol.o PnlWznmTbl1NCheck.o QryWznmTbl1NCheck.o PnlWznmTbl1NImpexp.o QryWznmTbl1NImpexp.o PnlWznmTblTo1NRelation.o QryWznmTblTo1NRelation.o PnlWznmTblFr1NRelation.o QryWznmTblFr1NRelation.o PnlWznmTbl1NSubset.o QryWznmTbl1NSubset.o PnlWznmTbl1NStub.o QryWznmTbl1NStub.o PnlWznmTblTbl1NTablecol.o QryWznmTblTbl1NTablecol.o PnlWznmTblALoadfct.o QryWznmTblALoadfct.o PnlWznmTblATitle.o QryWznmTblATitle.o PnlWznmTblDetail.o
+
+LIB = libcrdwznmtbl
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a $(LIBROOT)/wznmcmbd/
+
+clean:
+	rm -f *.o
+

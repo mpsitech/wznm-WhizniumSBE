@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmCapRec.cpp
 	* job handler for job PnlWznmCapRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -37,8 +38,8 @@ PnlWznmCapRec::PnlWznmCapRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
 	pnlapar = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -81,7 +82,11 @@ DpchEngWznm* PnlWznmCapRec::getNewDpchEng(
 void PnlWznmCapRec::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -109,6 +114,7 @@ void PnlWznmCapRec::refresh(
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWznmCapRec::updatePreset(
@@ -296,4 +302,6 @@ bool PnlWznmCapRec::handleCallWznmCpb_inSbs(
 	boolvalRet = ((ixWSubsetCpb & ixInv) != 0); // IP handleCallWznmCpb_inSbs --- LINE
 	return retval;
 };
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file WznmQLibAMakefile.h
 	* API code for table TblWznmQLibAMakefile (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQLIBAMAKEFILE_H
 #define WZNMQLIBAMAKEFILE_H
@@ -17,13 +18,11 @@
 class WznmQLibAMakefile {
 
 public:
-	WznmQLibAMakefile(const Sbecore::uint jnum = 0, const std::string srefX1RefIxVTbl = "", const std::string titX1RefIxVTbl = "", const std::string stubX1RefUref = "", const std::string x2SrefKTag = "", const std::string titX2SrefKTag = "", const std::string Val = "");
+	WznmQLibAMakefile(const Sbecore::uint jnum = 0, const std::string stubX1RefWznmMMachine = "", const std::string x2SrefKTag = "", const std::string titX2SrefKTag = "", const std::string Val = "");
 
 public:
 	Sbecore::uint jnum;
-	std::string srefX1RefIxVTbl;
-	std::string titX1RefIxVTbl;
-	std::string stubX1RefUref;
+	std::string stubX1RefWznmMMachine;
 	std::string x2SrefKTag;
 	std::string titX2SrefKTag;
 	std::string Val;

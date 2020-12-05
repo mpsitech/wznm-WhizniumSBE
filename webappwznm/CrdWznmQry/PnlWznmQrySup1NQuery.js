@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmQrySup1NQuery.js
-  * web client functionality for panel PnlWznmQrySup1NQuery
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmQrySup1NQuery", "srefIxWznmVExpstate") == "mind") return;

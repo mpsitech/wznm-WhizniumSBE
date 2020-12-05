@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmQcoRec.h
 	* job handler for job PnlWznmQcoRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMQCOREC_H
 #define PNLWZNMQCOREC_H
@@ -13,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmQcoDetail.h"
 #include "PnlWznmQcoRef1NControl.h"
+#include "PnlWznmQcoDetail.h"
 
 #define VecVWznmQcoRecDo PnlWznmQcoRec::VecVDo
 
@@ -167,8 +168,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmQcoDetail* pnldetail;
 	PnlWznmQcoRef1NControl* pnlref1ncontrol;
+	PnlWznmQcoDetail* pnldetail;
 
 	WznmMQuerycol recQco;
 
@@ -180,7 +181,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -209,4 +210,6 @@ private:
 };
 
 #endif
+
+
 

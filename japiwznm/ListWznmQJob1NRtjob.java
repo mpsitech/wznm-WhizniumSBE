@@ -1,10 +1,11 @@
 /**
-  * \file ListWznmQJob1NRtjob.java
-  * Java API code for record set of table TblWznmQJob1NRtjob
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \file ListWznmQJob1NRtjob.java
+	* Java API code for record set of table TblWznmQJob1NRtjob
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 

@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmVerList.h
 	* job handler for job QryWznmVerList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMVERLIST_H
 #define QRYWZNMVERLIST_H
@@ -34,8 +35,8 @@ public:
 		static const Sbecore::uint STE = 1;
 		static const Sbecore::uint LOC = 2;
 		static const Sbecore::uint BVR = 3;
-		static const Sbecore::uint PRJ = 4;
-		static const Sbecore::uint OWN = 5;
+		static const Sbecore::uint OWN = 4;
+		static const Sbecore::uint PRJ = 5;
 		static const Sbecore::uint GRP = 6;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -147,11 +148,13 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
+	bool handleCallWznmVerUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmVerMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
-	bool handleCallWznmVerUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
+
+
 

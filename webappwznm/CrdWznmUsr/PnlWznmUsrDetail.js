@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmUsrDetail.js
-  * web client functionality for panel PnlWznmUsrDetail
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // IP cust --- INSERT
 
 // --- expand state management

@@ -30,7 +30,7 @@
 			<tbody id="tbl">
 				<tr id="hdr">
 					<td height="20" class="col" id="rhcl"><img width="10" height="10" alt="rhcl" src="../icon/void.png"></img></td>
-				<td class="col" id="TcoReu">TcoReu</td>
+				<td class="col" id="TcoMch">TcoMch</td>
 				<td class="col" id="TcoTag">TcoTag</td>
 				<td class="col" id="TcoVal">TcoVal</td>
 					<td class="nonsel" rowspan="11" id="tdTsb">sb</td>

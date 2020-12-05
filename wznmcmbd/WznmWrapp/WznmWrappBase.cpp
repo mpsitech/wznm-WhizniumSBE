@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrappBase.cpp
 	* Wznm operation processor - write code for accessor app (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -62,8 +63,7 @@ DpchRetWznm* WznmWrappBase::run(
 
 		Appshort = StrMod::cap(app->Short);
 
-		dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(app->verRefWznmMVersion), Prjshort);
-		Prjshort = StrMod::cap(Prjshort);
+		Prjshort = Wznm::getPrjshort(dbswznm, app->verRefWznmMVersion);
 
 		// AppXxxx.h
 		s = xchg->tmppath + "/" + folder + "/App" + Appshort + ".h.ip";
@@ -479,5 +479,6 @@ void WznmWrappBase::writeVecSteCpp(
 	outfile << "// IP getSref --- IEND" << endl;
 };
 // IP cust --- IEND
+
 
 

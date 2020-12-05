@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmVerRec.h
 	* job handler for job PnlWznmVerRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMVERREC_H
 #define PNLWZNMVERREC_H
@@ -13,25 +14,25 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmVerDetail.h"
-#include "PnlWznmVer1NBlock.h"
-#include "PnlWznmVerBvr1NVersion.h"
+#include "PnlWznmVerMNLocale.h"
+#include "PnlWznmVerRef1NFile.h"
 #include "PnlWznmVer1NComponent.h"
-#include "PnlWznmVer1NCall.h"
-#include "PnlWznmVer1NImpexpcplx.h"
-#include "PnlWznmVer1NJob.h"
-#include "PnlWznmVer1NOppack.h"
 #include "PnlWznmVerVer1NModule.h"
-#include "PnlWznmVer1NPreset.h"
-#include "PnlWznmVer1NQuery.h"
-#include "PnlWznmVer1NRelation.h"
+#include "PnlWznmVer1NCall.h"
 #include "PnlWznmVer1NTable.h"
 #include "PnlWznmVer1NVector.h"
+#include "PnlWznmVer1NBlock.h"
 #include "PnlWznmVer1NCapability.h"
+#include "PnlWznmVerBvr1NVersion.h"
+#include "PnlWznmVer1NOppack.h"
+#include "PnlWznmVer1NJob.h"
+#include "PnlWznmVer1NImpexpcplx.h"
+#include "PnlWznmVer1NRelation.h"
 #include "PnlWznmVerVer1NApp.h"
 #include "PnlWznmVerVer1NError.h"
-#include "PnlWznmVerRef1NFile.h"
-#include "PnlWznmVerMNLocale.h"
+#include "PnlWznmVer1NQuery.h"
+#include "PnlWznmVer1NPreset.h"
+#include "PnlWznmVerDetail.h"
 
 #define VecVWznmVerRecDo PnlWznmVerRec::VecVDo
 
@@ -88,7 +89,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NBlock = false, const bool initdoneBvr1NVersion = false, const bool initdone1NComponent = false, const bool initdone1NCall = false, const bool initdone1NImpexpcplx = false, const bool initdone1NJob = false, const bool initdone1NOppack = false, const bool initdoneVer1NModule = false, const bool initdone1NPreset = false, const bool initdone1NQuery = false, const bool initdone1NRelation = false, const bool initdone1NTable = false, const bool initdone1NVector = false, const bool initdone1NCapability = false, const bool initdoneVer1NApp = false, const bool initdoneVer1NError = false, const bool initdoneRef1NFile = false, const bool initdoneMNLocale = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NPreset = false, const bool initdone1NQuery = false, const bool initdoneVer1NError = false, const bool initdoneVer1NApp = false, const bool initdone1NRelation = false, const bool initdone1NImpexpcplx = false, const bool initdone1NJob = false, const bool initdone1NOppack = false, const bool initdoneBvr1NVersion = false, const bool initdone1NCapability = false, const bool initdone1NBlock = false, const bool initdone1NVector = false, const bool initdone1NTable = false, const bool initdone1NCall = false, const bool initdoneVer1NModule = false, const bool initdone1NComponent = false, const bool initdoneRef1NFile = false, const bool initdoneMNLocale = false);
 	};
 
 	/**
@@ -99,48 +100,48 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREF1NBLOCK = 3;
-		static const Sbecore::uint JREFBVR1NVERSION = 4;
-		static const Sbecore::uint JREF1NCOMPONENT = 5;
-		static const Sbecore::uint JREF1NCALL = 6;
-		static const Sbecore::uint JREF1NIMPEXPCPLX = 7;
-		static const Sbecore::uint JREF1NJOB = 8;
-		static const Sbecore::uint JREF1NOPPACK = 9;
-		static const Sbecore::uint JREFVER1NMODULE = 10;
-		static const Sbecore::uint JREF1NPRESET = 11;
-		static const Sbecore::uint JREF1NQUERY = 12;
-		static const Sbecore::uint JREF1NRELATION = 13;
-		static const Sbecore::uint JREF1NTABLE = 14;
-		static const Sbecore::uint JREF1NVECTOR = 15;
-		static const Sbecore::uint JREF1NCAPABILITY = 16;
-		static const Sbecore::uint JREFVER1NAPP = 17;
-		static const Sbecore::uint JREFVER1NERROR = 18;
+		static const Sbecore::uint JREF1NPRESET = 3;
+		static const Sbecore::uint JREF1NQUERY = 4;
+		static const Sbecore::uint JREFVER1NERROR = 5;
+		static const Sbecore::uint JREFVER1NAPP = 6;
+		static const Sbecore::uint JREF1NRELATION = 7;
+		static const Sbecore::uint JREF1NIMPEXPCPLX = 8;
+		static const Sbecore::uint JREF1NJOB = 9;
+		static const Sbecore::uint JREF1NOPPACK = 10;
+		static const Sbecore::uint JREFBVR1NVERSION = 11;
+		static const Sbecore::uint JREF1NCAPABILITY = 12;
+		static const Sbecore::uint JREF1NBLOCK = 13;
+		static const Sbecore::uint JREF1NVECTOR = 14;
+		static const Sbecore::uint JREF1NTABLE = 15;
+		static const Sbecore::uint JREF1NCALL = 16;
+		static const Sbecore::uint JREFVER1NMODULE = 17;
+		static const Sbecore::uint JREF1NCOMPONENT = 18;
 		static const Sbecore::uint JREFREF1NFILE = 19;
 		static const Sbecore::uint JREFMNLOCALE = 20;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 21;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NBlock = 0, const Sbecore::ubigint jrefBvr1NVersion = 0, const Sbecore::ubigint jref1NComponent = 0, const Sbecore::ubigint jref1NCall = 0, const Sbecore::ubigint jref1NImpexpcplx = 0, const Sbecore::ubigint jref1NJob = 0, const Sbecore::ubigint jref1NOppack = 0, const Sbecore::ubigint jrefVer1NModule = 0, const Sbecore::ubigint jref1NPreset = 0, const Sbecore::ubigint jref1NQuery = 0, const Sbecore::ubigint jref1NRelation = 0, const Sbecore::ubigint jref1NTable = 0, const Sbecore::ubigint jref1NVector = 0, const Sbecore::ubigint jref1NCapability = 0, const Sbecore::ubigint jrefVer1NApp = 0, const Sbecore::ubigint jrefVer1NError = 0, const Sbecore::ubigint jrefRef1NFile = 0, const Sbecore::ubigint jrefMNLocale = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NPreset = 0, const Sbecore::ubigint jref1NQuery = 0, const Sbecore::ubigint jrefVer1NError = 0, const Sbecore::ubigint jrefVer1NApp = 0, const Sbecore::ubigint jref1NRelation = 0, const Sbecore::ubigint jref1NImpexpcplx = 0, const Sbecore::ubigint jref1NJob = 0, const Sbecore::ubigint jref1NOppack = 0, const Sbecore::ubigint jrefBvr1NVersion = 0, const Sbecore::ubigint jref1NCapability = 0, const Sbecore::ubigint jref1NBlock = 0, const Sbecore::ubigint jref1NVector = 0, const Sbecore::ubigint jref1NTable = 0, const Sbecore::ubigint jref1NCall = 0, const Sbecore::ubigint jrefVer1NModule = 0, const Sbecore::ubigint jref1NComponent = 0, const Sbecore::ubigint jrefRef1NFile = 0, const Sbecore::ubigint jrefMNLocale = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jref1NBlock;
-		Sbecore::ubigint jrefBvr1NVersion;
-		Sbecore::ubigint jref1NComponent;
-		Sbecore::ubigint jref1NCall;
+		Sbecore::ubigint jref1NPreset;
+		Sbecore::ubigint jref1NQuery;
+		Sbecore::ubigint jrefVer1NError;
+		Sbecore::ubigint jrefVer1NApp;
+		Sbecore::ubigint jref1NRelation;
 		Sbecore::ubigint jref1NImpexpcplx;
 		Sbecore::ubigint jref1NJob;
 		Sbecore::ubigint jref1NOppack;
-		Sbecore::ubigint jrefVer1NModule;
-		Sbecore::ubigint jref1NPreset;
-		Sbecore::ubigint jref1NQuery;
-		Sbecore::ubigint jref1NRelation;
-		Sbecore::ubigint jref1NTable;
-		Sbecore::ubigint jref1NVector;
+		Sbecore::ubigint jrefBvr1NVersion;
 		Sbecore::ubigint jref1NCapability;
-		Sbecore::ubigint jrefVer1NApp;
-		Sbecore::ubigint jrefVer1NError;
+		Sbecore::ubigint jref1NBlock;
+		Sbecore::ubigint jref1NVector;
+		Sbecore::ubigint jref1NTable;
+		Sbecore::ubigint jref1NCall;
+		Sbecore::ubigint jrefVer1NModule;
+		Sbecore::ubigint jref1NComponent;
 		Sbecore::ubigint jrefRef1NFile;
 		Sbecore::ubigint jrefMNLocale;
 		bool ButRegularizeActive;
@@ -218,25 +219,25 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmVerDetail* pnldetail;
-	PnlWznmVer1NBlock* pnl1nblock;
-	PnlWznmVerBvr1NVersion* pnlbvr1nversion;
+	PnlWznmVerMNLocale* pnlmnlocale;
+	PnlWznmVerRef1NFile* pnlref1nfile;
 	PnlWznmVer1NComponent* pnl1ncomponent;
-	PnlWznmVer1NCall* pnl1ncall;
-	PnlWznmVer1NImpexpcplx* pnl1nimpexpcplx;
-	PnlWznmVer1NJob* pnl1njob;
-	PnlWznmVer1NOppack* pnl1noppack;
 	PnlWznmVerVer1NModule* pnlver1nmodule;
-	PnlWznmVer1NPreset* pnl1npreset;
-	PnlWznmVer1NQuery* pnl1nquery;
-	PnlWznmVer1NRelation* pnl1nrelation;
+	PnlWznmVer1NCall* pnl1ncall;
 	PnlWznmVer1NTable* pnl1ntable;
 	PnlWznmVer1NVector* pnl1nvector;
+	PnlWznmVer1NBlock* pnl1nblock;
 	PnlWznmVer1NCapability* pnl1ncapability;
+	PnlWznmVerBvr1NVersion* pnlbvr1nversion;
+	PnlWznmVer1NOppack* pnl1noppack;
+	PnlWznmVer1NJob* pnl1njob;
+	PnlWznmVer1NImpexpcplx* pnl1nimpexpcplx;
+	PnlWznmVer1NRelation* pnl1nrelation;
 	PnlWznmVerVer1NApp* pnlver1napp;
 	PnlWznmVerVer1NError* pnlver1nerror;
-	PnlWznmVerRef1NFile* pnlref1nfile;
-	PnlWznmVerMNLocale* pnlmnlocale;
+	PnlWznmVer1NQuery* pnl1nquery;
+	PnlWznmVer1NPreset* pnl1npreset;
+	PnlWznmVerDetail* pnldetail;
 
 	WznmMVersion recVer;
 
@@ -248,7 +249,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -270,13 +271,15 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmVer_steEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmVer_prjEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVer_locEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVer_bvrEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmVerUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmVer_bvrEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVer_locEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVer_prjEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVer_steEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 
 };
 
 #endif
+
+
 

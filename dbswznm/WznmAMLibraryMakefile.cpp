@@ -1,14 +1,13 @@
 /**
 	* \file WznmAMLibraryMakefile.cpp
 	* database access for table TblWznmAMLibraryMakefile (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #include "WznmAMLibraryMakefile.h"
-
-#include "WznmAMLibraryMakefile_vecs.cpp"
 
 using namespace std;
 using namespace Sbecore;
@@ -20,16 +19,14 @@ using namespace Sbecore;
 WznmAMLibraryMakefile::WznmAMLibraryMakefile(
 			const ubigint ref
 			, const ubigint refWznmMLibrary
-			, const uint x1RefIxVTbl
-			, const ubigint x1RefUref
+			, const ubigint x1RefWznmMMachine
 			, const string x2SrefKTag
 			, const string Val
 		) {
 
 	this->ref = ref;
 	this->refWznmMLibrary = refWznmMLibrary;
-	this->x1RefIxVTbl = x1RefIxVTbl;
-	this->x1RefUref = x1RefUref;
+	this->x1RefWznmMMachine = x1RefWznmMMachine;
 	this->x2SrefKTag = x2SrefKTag;
 	this->Val = Val;
 };
@@ -163,15 +160,14 @@ ubigint TblWznmAMLibraryMakefile::insertRec(
 ubigint TblWznmAMLibraryMakefile::insertNewRec(
 			WznmAMLibraryMakefile** rec
 			, const ubigint refWznmMLibrary
-			, const uint x1RefIxVTbl
-			, const ubigint x1RefUref
+			, const ubigint x1RefWznmMMachine
 			, const string x2SrefKTag
 			, const string Val
 		) {
 	ubigint retval = 0;
 	WznmAMLibraryMakefile* _rec = NULL;
 
-	_rec = new WznmAMLibraryMakefile(0, refWznmMLibrary, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val);
+	_rec = new WznmAMLibraryMakefile(0, refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val);
 	insertRec(_rec);
 
 	retval = _rec->ref;
@@ -186,15 +182,14 @@ ubigint TblWznmAMLibraryMakefile::appendNewRecToRst(
 			ListWznmAMLibraryMakefile& rst
 			, WznmAMLibraryMakefile** rec
 			, const ubigint refWznmMLibrary
-			, const uint x1RefIxVTbl
-			, const ubigint x1RefUref
+			, const ubigint x1RefWznmMMachine
 			, const string x2SrefKTag
 			, const string Val
 		) {
 	ubigint retval = 0;
 	WznmAMLibraryMakefile* _rec = NULL;
 
-	retval = insertNewRec(&_rec, refWznmMLibrary, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val);
+	retval = insertNewRec(&_rec, refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val);
 	rst.nodes.push_back(_rec);
 
 	if (rec != NULL) *rec = _rec;
@@ -247,20 +242,18 @@ ubigint TblWznmAMLibraryMakefile::loadRstByLib(
 	return 0;
 };
 
-ubigint TblWznmAMLibraryMakefile::loadRstByLibRetReu(
+ubigint TblWznmAMLibraryMakefile::loadRstByLibMch(
 			ubigint refWznmMLibrary
-			, uint x1RefIxVTbl
-			, ubigint x1RefUref
+			, ubigint x1RefWznmMMachine
 			, const bool append
 			, ListWznmAMLibraryMakefile& rst
 		) {
 	return 0;
 };
 
-bool TblWznmAMLibraryMakefile::loadValByLibRetReuTag(
+bool TblWznmAMLibraryMakefile::loadValByLibMchTag(
 			ubigint refWznmMLibrary
-			, uint x1RefIxVTbl
-			, ubigint x1RefUref
+			, ubigint x1RefWznmMMachine
 			, string x2SrefKTag
 			, string& Val
 		) {
@@ -306,8 +299,8 @@ MyTblWznmAMLibraryMakefile::~MyTblWznmAMLibraryMakefile() {
 };
 
 void MyTblWznmAMLibraryMakefile::initStatements() {
-	stmtInsertRec = createStatement("INSERT INTO TblWznmAMLibraryMakefile (refWznmMLibrary, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val) VALUES (?,?,?,?,?)", false);
-	stmtUpdateRec = createStatement("UPDATE TblWznmAMLibraryMakefile SET refWznmMLibrary = ?, x1RefIxVTbl = ?, x1RefUref = ?, x2SrefKTag = ?, Val = ? WHERE ref = ?", false);
+	stmtInsertRec = createStatement("INSERT INTO TblWznmAMLibraryMakefile (refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val) VALUES (?,?,?,?)", false);
+	stmtUpdateRec = createStatement("UPDATE TblWznmAMLibraryMakefile SET refWznmMLibrary = ?, x1RefWznmMMachine = ?, x2SrefKTag = ?, Val = ? WHERE ref = ?", false);
 	stmtRemoveRecByRef = createStatement("DELETE FROM TblWznmAMLibraryMakefile WHERE ref = ?", false);
 };
 
@@ -339,10 +332,9 @@ bool MyTblWznmAMLibraryMakefile::loadRecBySQL(
 
 		if (dbrow[0]) _rec->ref = atoll((char*) dbrow[0]); else _rec->ref = 0;
 		if (dbrow[1]) _rec->refWznmMLibrary = atoll((char*) dbrow[1]); else _rec->refWznmMLibrary = 0;
-		if (dbrow[2]) _rec->x1RefIxVTbl = atol((char*) dbrow[2]); else _rec->x1RefIxVTbl = 0;
-		if (dbrow[3]) _rec->x1RefUref = atoll((char*) dbrow[3]); else _rec->x1RefUref = 0;
-		if (dbrow[4]) _rec->x2SrefKTag.assign(dbrow[4], dblengths[4]); else _rec->x2SrefKTag = "";
-		if (dbrow[5]) _rec->Val.assign(dbrow[5], dblengths[5]); else _rec->Val = "";
+		if (dbrow[2]) _rec->x1RefWznmMMachine = atoll((char*) dbrow[2]); else _rec->x1RefWznmMMachine = 0;
+		if (dbrow[3]) _rec->x2SrefKTag.assign(dbrow[3], dblengths[3]); else _rec->x2SrefKTag = "";
+		if (dbrow[4]) _rec->Val.assign(dbrow[4], dblengths[4]); else _rec->Val = "";
 
 		retval = true;
 	};
@@ -387,10 +379,9 @@ ubigint MyTblWznmAMLibraryMakefile::loadRstBySQL(
 
 			if (dbrow[0]) rec->ref = atoll((char*) dbrow[0]); else rec->ref = 0;
 			if (dbrow[1]) rec->refWznmMLibrary = atoll((char*) dbrow[1]); else rec->refWznmMLibrary = 0;
-			if (dbrow[2]) rec->x1RefIxVTbl = atol((char*) dbrow[2]); else rec->x1RefIxVTbl = 0;
-			if (dbrow[3]) rec->x1RefUref = atoll((char*) dbrow[3]); else rec->x1RefUref = 0;
-			if (dbrow[4]) rec->x2SrefKTag.assign(dbrow[4], dblengths[4]); else rec->x2SrefKTag = "";
-			if (dbrow[5]) rec->Val.assign(dbrow[5], dblengths[5]); else rec->Val = "";
+			if (dbrow[2]) rec->x1RefWznmMMachine = atoll((char*) dbrow[2]); else rec->x1RefWznmMMachine = 0;
+			if (dbrow[3]) rec->x2SrefKTag.assign(dbrow[3], dblengths[3]); else rec->x2SrefKTag = "";
+			if (dbrow[4]) rec->Val.assign(dbrow[4], dblengths[4]); else rec->Val = "";
 			rst.nodes.push_back(rec);
 
 			numread++;
@@ -405,17 +396,16 @@ ubigint MyTblWznmAMLibraryMakefile::loadRstBySQL(
 ubigint MyTblWznmAMLibraryMakefile::insertRec(
 			WznmAMLibraryMakefile* rec
 		) {
-	unsigned long l[5]; my_bool n[5]; my_bool e[5];
+	unsigned long l[4]; my_bool n[4]; my_bool e[4];
 
-	l[3] = rec->x2SrefKTag.length();
-	l[4] = rec->Val.length();
+	l[2] = rec->x2SrefKTag.length();
+	l[3] = rec->Val.length();
 
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->refWznmMLibrary,&(l[0]),&(n[0]),&(e[0])),
-		bindUint(&rec->x1RefIxVTbl,&(l[1]),&(n[1]),&(e[1])),
-		bindUbigint(&rec->x1RefUref,&(l[2]),&(n[2]),&(e[2])),
-		bindCstring((char*) (rec->x2SrefKTag.c_str()),&(l[3]),&(n[3]),&(e[3])),
-		bindCstring((char*) (rec->Val.c_str()),&(l[4]),&(n[4]),&(e[4]))
+		bindUbigint(&rec->x1RefWznmMMachine,&(l[1]),&(n[1]),&(e[1])),
+		bindCstring((char*) (rec->x2SrefKTag.c_str()),&(l[2]),&(n[2]),&(e[2])),
+		bindCstring((char*) (rec->Val.c_str()),&(l[3]),&(n[3]),&(e[3]))
 	};
 
 	if (mysql_stmt_bind_param(stmtInsertRec, bind)) {
@@ -443,18 +433,17 @@ void MyTblWznmAMLibraryMakefile::insertRst(
 void MyTblWznmAMLibraryMakefile::updateRec(
 			WznmAMLibraryMakefile* rec
 		) {
-	unsigned long l[6]; my_bool n[6]; my_bool e[6];
+	unsigned long l[5]; my_bool n[5]; my_bool e[5];
 
-	l[3] = rec->x2SrefKTag.length();
-	l[4] = rec->Val.length();
+	l[2] = rec->x2SrefKTag.length();
+	l[3] = rec->Val.length();
 
 	MYSQL_BIND bind[] = {
 		bindUbigint(&rec->refWznmMLibrary,&(l[0]),&(n[0]),&(e[0])),
-		bindUint(&rec->x1RefIxVTbl,&(l[1]),&(n[1]),&(e[1])),
-		bindUbigint(&rec->x1RefUref,&(l[2]),&(n[2]),&(e[2])),
-		bindCstring((char*) (rec->x2SrefKTag.c_str()),&(l[3]),&(n[3]),&(e[3])),
-		bindCstring((char*) (rec->Val.c_str()),&(l[4]),&(n[4]),&(e[4])),
-		bindUbigint(&rec->ref,&(l[5]),&(n[5]),&(e[5]))
+		bindUbigint(&rec->x1RefWznmMMachine,&(l[1]),&(n[1]),&(e[1])),
+		bindCstring((char*) (rec->x2SrefKTag.c_str()),&(l[2]),&(n[2]),&(e[2])),
+		bindCstring((char*) (rec->Val.c_str()),&(l[3]),&(n[3]),&(e[3])),
+		bindUbigint(&rec->ref,&(l[4]),&(n[4]),&(e[4]))
 	};
 
 	if (mysql_stmt_bind_param(stmtUpdateRec, bind)) {
@@ -518,27 +507,25 @@ ubigint MyTblWznmAMLibraryMakefile::loadRstByLib(
 			, const bool append
 			, ListWznmAMLibraryMakefile& rst
 		) {
-	return loadRstBySQL("SELECT ref, refWznmMLibrary, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = " + to_string(refWznmMLibrary) + " ORDER BY x2SrefKTag ASC", append, rst);
+	return loadRstBySQL("SELECT ref, refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = " + to_string(refWznmMLibrary) + " ORDER BY x1RefWznmMMachine ASC, x2SrefKTag ASC", append, rst);
 };
 
-ubigint MyTblWznmAMLibraryMakefile::loadRstByLibRetReu(
+ubigint MyTblWznmAMLibraryMakefile::loadRstByLibMch(
 			ubigint refWznmMLibrary
-			, uint x1RefIxVTbl
-			, ubigint x1RefUref
+			, ubigint x1RefWznmMMachine
 			, const bool append
 			, ListWznmAMLibraryMakefile& rst
 		) {
-	return loadRstBySQL("SELECT ref, refWznmMLibrary, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = " + to_string(refWznmMLibrary) + " AND x1RefIxVTbl = " + to_string(x1RefIxVTbl) + " AND x1RefUref = " + to_string(x1RefUref) + " ORDER BY x2SrefKTag ASC", append, rst);
+	return loadRstBySQL("SELECT ref, refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = " + to_string(refWznmMLibrary) + " AND x1RefWznmMMachine = " + to_string(x1RefWznmMMachine) + " ORDER BY x2SrefKTag ASC", append, rst);
 };
 
-bool MyTblWznmAMLibraryMakefile::loadValByLibRetReuTag(
+bool MyTblWznmAMLibraryMakefile::loadValByLibMchTag(
 			ubigint refWznmMLibrary
-			, uint x1RefIxVTbl
-			, ubigint x1RefUref
+			, ubigint x1RefWznmMMachine
 			, string x2SrefKTag
 			, string& Val
 		) {
-	return loadStringBySQL("SELECT Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = " + to_string(refWznmMLibrary) + " AND x1RefIxVTbl = " + to_string(x1RefIxVTbl) + " AND x1RefUref = " + to_string(x1RefUref) + " AND x2SrefKTag = '" + x2SrefKTag + "'", Val);
+	return loadStringBySQL("SELECT Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = " + to_string(refWznmMLibrary) + " AND x1RefWznmMMachine = " + to_string(x1RefWznmMMachine) + " AND x2SrefKTag = '" + x2SrefKTag + "'", Val);
 };
 
 #endif
@@ -559,15 +546,15 @@ PgTblWznmAMLibraryMakefile::~PgTblWznmAMLibraryMakefile() {
 };
 
 void PgTblWznmAMLibraryMakefile::initStatements() {
-	createStatement("TblWznmAMLibraryMakefile_insertRec", "INSERT INTO TblWznmAMLibraryMakefile (refWznmMLibrary, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val) VALUES ($1,$2,$3,$4,$5) RETURNING ref", 5);
-	createStatement("TblWznmAMLibraryMakefile_updateRec", "UPDATE TblWznmAMLibraryMakefile SET refWznmMLibrary = $1, x1RefIxVTbl = $2, x1RefUref = $3, x2SrefKTag = $4, Val = $5 WHERE ref = $6", 6);
+	createStatement("TblWznmAMLibraryMakefile_insertRec", "INSERT INTO TblWznmAMLibraryMakefile (refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val) VALUES ($1,$2,$3,$4) RETURNING ref", 4);
+	createStatement("TblWznmAMLibraryMakefile_updateRec", "UPDATE TblWznmAMLibraryMakefile SET refWznmMLibrary = $1, x1RefWznmMMachine = $2, x2SrefKTag = $3, Val = $4 WHERE ref = $5", 5);
 	createStatement("TblWznmAMLibraryMakefile_removeRecByRef", "DELETE FROM TblWznmAMLibraryMakefile WHERE ref = $1", 1);
 
-	createStatement("TblWznmAMLibraryMakefile_loadRecByRef", "SELECT ref, refWznmMLibrary, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE ref = $1", 1);
+	createStatement("TblWznmAMLibraryMakefile_loadRecByRef", "SELECT ref, refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE ref = $1", 1);
 	createStatement("TblWznmAMLibraryMakefile_loadRefsByLib", "SELECT ref FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = $1", 1);
-	createStatement("TblWznmAMLibraryMakefile_loadRstByLib", "SELECT ref, refWznmMLibrary, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = $1 ORDER BY x2SrefKTag ASC", 1);
-	createStatement("TblWznmAMLibraryMakefile_loadRstByLibRetReu", "SELECT ref, refWznmMLibrary, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = $1 AND x1RefIxVTbl = $2 AND x1RefUref = $3 ORDER BY x2SrefKTag ASC", 3);
-	createStatement("TblWznmAMLibraryMakefile_loadValByLibRetReuTag", "SELECT Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = $1 AND x1RefIxVTbl = $2 AND x1RefUref = $3 AND x2SrefKTag = $4", 4);
+	createStatement("TblWznmAMLibraryMakefile_loadRstByLib", "SELECT ref, refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = $1 ORDER BY x1RefWznmMMachine ASC, x2SrefKTag ASC", 1);
+	createStatement("TblWznmAMLibraryMakefile_loadRstByLibMch", "SELECT ref, refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = $1 AND x1RefWznmMMachine = $2 ORDER BY x2SrefKTag ASC", 2);
+	createStatement("TblWznmAMLibraryMakefile_loadValByLibMchTag", "SELECT Val FROM TblWznmAMLibraryMakefile WHERE refWznmMLibrary = $1 AND x1RefWznmMMachine = $2 AND x2SrefKTag = $3", 3);
 };
 
 bool PgTblWznmAMLibraryMakefile::loadRec(
@@ -585,18 +572,16 @@ bool PgTblWznmAMLibraryMakefile::loadRec(
 		int fnum[] = {
 			PQfnumber(res, "ref"),
 			PQfnumber(res, "refwznmmlibrary"),
-			PQfnumber(res, "x1refixvtbl"),
-			PQfnumber(res, "x1refuref"),
+			PQfnumber(res, "x1refwznmmmachine"),
 			PQfnumber(res, "x2srefktag"),
 			PQfnumber(res, "val")
 		};
 
 		ptr = PQgetvalue(res, 0, fnum[0]); _rec->ref = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[1]); _rec->refWznmMLibrary = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[2]); _rec->x1RefIxVTbl = atol(ptr);
-		ptr = PQgetvalue(res, 0, fnum[3]); _rec->x1RefUref = atoll(ptr);
-		ptr = PQgetvalue(res, 0, fnum[4]); _rec->x2SrefKTag.assign(ptr, PQgetlength(res, 0, fnum[4]));
-		ptr = PQgetvalue(res, 0, fnum[5]); _rec->Val.assign(ptr, PQgetlength(res, 0, fnum[5]));
+		ptr = PQgetvalue(res, 0, fnum[2]); _rec->x1RefWznmMMachine = atoll(ptr);
+		ptr = PQgetvalue(res, 0, fnum[3]); _rec->x2SrefKTag.assign(ptr, PQgetlength(res, 0, fnum[3]));
+		ptr = PQgetvalue(res, 0, fnum[4]); _rec->Val.assign(ptr, PQgetlength(res, 0, fnum[4]));
 
 		retval = true;
 	};
@@ -625,8 +610,7 @@ ubigint PgTblWznmAMLibraryMakefile::loadRst(
 		int fnum[] = {
 			PQfnumber(res, "ref"),
 			PQfnumber(res, "refwznmmlibrary"),
-			PQfnumber(res, "x1refixvtbl"),
-			PQfnumber(res, "x1refuref"),
+			PQfnumber(res, "x1refwznmmmachine"),
 			PQfnumber(res, "x2srefktag"),
 			PQfnumber(res, "val")
 		};
@@ -636,10 +620,9 @@ ubigint PgTblWznmAMLibraryMakefile::loadRst(
 
 			ptr = PQgetvalue(res, numread, fnum[0]); rec->ref = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[1]); rec->refWznmMLibrary = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[2]); rec->x1RefIxVTbl = atol(ptr);
-			ptr = PQgetvalue(res, numread, fnum[3]); rec->x1RefUref = atoll(ptr);
-			ptr = PQgetvalue(res, numread, fnum[4]); rec->x2SrefKTag.assign(ptr, PQgetlength(res, numread, fnum[4]));
-			ptr = PQgetvalue(res, numread, fnum[5]); rec->Val.assign(ptr, PQgetlength(res, numread, fnum[5]));
+			ptr = PQgetvalue(res, numread, fnum[2]); rec->x1RefWznmMMachine = atoll(ptr);
+			ptr = PQgetvalue(res, numread, fnum[3]); rec->x2SrefKTag.assign(ptr, PQgetlength(res, numread, fnum[3]));
+			ptr = PQgetvalue(res, numread, fnum[4]); rec->Val.assign(ptr, PQgetlength(res, numread, fnum[4]));
 
 			rst.nodes.push_back(rec);
 
@@ -733,26 +716,23 @@ ubigint PgTblWznmAMLibraryMakefile::insertRec(
 	char* ptr;
 
 	ubigint _refWznmMLibrary = htonl64(rec->refWznmMLibrary);
-	uint _x1RefIxVTbl = htonl(rec->x1RefIxVTbl);
-	ubigint _x1RefUref = htonl64(rec->x1RefUref);
+	ubigint _x1RefWznmMMachine = htonl64(rec->x1RefWznmMMachine);
 
 	const char* vals[] = {
 		(char*) &_refWznmMLibrary,
-		(char*) &_x1RefIxVTbl,
-		(char*) &_x1RefUref,
+		(char*) &_x1RefWznmMMachine,
 		rec->x2SrefKTag.c_str(),
 		rec->Val.c_str()
 	};
 	const int l[] = {
 		sizeof(ubigint),
-		sizeof(uint),
 		sizeof(ubigint),
 		0,
 		0
 	};
-	const int f[] = {1, 1, 1, 0, 0};
+	const int f[] = {1, 1, 0, 0};
 
-	res = PQexecPrepared(dbs, "TblWznmAMLibraryMakefile_insertRec", 5, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmAMLibraryMakefile_insertRec", 4, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_TUPLES_OK) {
 		string dbms = "PgTblWznmAMLibraryMakefile::insertRec() / " + string(PQerrorMessage(dbs));
@@ -781,29 +761,26 @@ void PgTblWznmAMLibraryMakefile::updateRec(
 	PGresult* res;
 
 	ubigint _refWznmMLibrary = htonl64(rec->refWznmMLibrary);
-	uint _x1RefIxVTbl = htonl(rec->x1RefIxVTbl);
-	ubigint _x1RefUref = htonl64(rec->x1RefUref);
+	ubigint _x1RefWznmMMachine = htonl64(rec->x1RefWznmMMachine);
 	ubigint _ref = htonl64(rec->ref);
 
 	const char* vals[] = {
 		(char*) &_refWznmMLibrary,
-		(char*) &_x1RefIxVTbl,
-		(char*) &_x1RefUref,
+		(char*) &_x1RefWznmMMachine,
 		rec->x2SrefKTag.c_str(),
 		rec->Val.c_str(),
 		(char*) &_ref
 	};
 	const int l[] = {
 		sizeof(ubigint),
-		sizeof(uint),
 		sizeof(ubigint),
 		0,
 		0,
 		sizeof(ubigint)
 	};
-	const int f[] = {1, 1, 1, 0, 0, 1};
+	const int f[] = {1, 1, 0, 0, 1};
 
-	res = PQexecPrepared(dbs, "TblWznmAMLibraryMakefile_updateRec", 6, vals, l, f, 0);
+	res = PQexecPrepared(dbs, "TblWznmAMLibraryMakefile_updateRec", 5, vals, l, f, 0);
 
 	if (PQresultStatus(res) != PGRES_COMMAND_OK) {
 		string dbms = "PgTblWznmAMLibraryMakefile::updateRec() / " + string(PQerrorMessage(dbs));
@@ -905,58 +882,50 @@ ubigint PgTblWznmAMLibraryMakefile::loadRstByLib(
 	return loadRstByStmt("TblWznmAMLibraryMakefile_loadRstByLib", 1, vals, l, f, append, rst);
 };
 
-ubigint PgTblWznmAMLibraryMakefile::loadRstByLibRetReu(
+ubigint PgTblWznmAMLibraryMakefile::loadRstByLibMch(
 			ubigint refWznmMLibrary
-			, uint x1RefIxVTbl
-			, ubigint x1RefUref
+			, ubigint x1RefWznmMMachine
 			, const bool append
 			, ListWznmAMLibraryMakefile& rst
 		) {
 	ubigint _refWznmMLibrary = htonl64(refWznmMLibrary);
-	uint _x1RefIxVTbl = htonl(x1RefIxVTbl);
-	ubigint _x1RefUref = htonl64(x1RefUref);
+	ubigint _x1RefWznmMMachine = htonl64(x1RefWznmMMachine);
 
 	const char* vals[] = {
 		(char*) &_refWznmMLibrary,
-		(char*) &_x1RefIxVTbl,
-		(char*) &_x1RefUref
+		(char*) &_x1RefWznmMMachine
 	};
 	const int l[] = {
 		sizeof(ubigint),
-		sizeof(uint),
 		sizeof(ubigint)
 	};
-	const int f[] = {1,1,1};
+	const int f[] = {1,1};
 
-	return loadRstByStmt("TblWznmAMLibraryMakefile_loadRstByLibRetReu", 3, vals, l, f, append, rst);
+	return loadRstByStmt("TblWznmAMLibraryMakefile_loadRstByLibMch", 2, vals, l, f, append, rst);
 };
 
-bool PgTblWznmAMLibraryMakefile::loadValByLibRetReuTag(
+bool PgTblWznmAMLibraryMakefile::loadValByLibMchTag(
 			ubigint refWznmMLibrary
-			, uint x1RefIxVTbl
-			, ubigint x1RefUref
+			, ubigint x1RefWznmMMachine
 			, string x2SrefKTag
 			, string& Val
 		) {
 	ubigint _refWznmMLibrary = htonl64(refWznmMLibrary);
-	uint _x1RefIxVTbl = htonl(x1RefIxVTbl);
-	ubigint _x1RefUref = htonl64(x1RefUref);
+	ubigint _x1RefWznmMMachine = htonl64(x1RefWznmMMachine);
 
 	const char* vals[] = {
 		(char*) &_refWznmMLibrary,
-		(char*) &_x1RefIxVTbl,
-		(char*) &_x1RefUref,
+		(char*) &_x1RefWznmMMachine,
 		x2SrefKTag.c_str()
 	};
 	const int l[] = {
 		sizeof(ubigint),
-		sizeof(uint),
 		sizeof(ubigint),
 		0
 	};
-	const int f[] = {1,1,1,0};
+	const int f[] = {1,1,0};
 
-	return loadStringByStmt("TblWznmAMLibraryMakefile_loadValByLibRetReuTag", 4, vals, l, f, Val);
+	return loadStringByStmt("TblWznmAMLibraryMakefile_loadValByLibMchTag", 3, vals, l, f, Val);
 };
 
 #endif

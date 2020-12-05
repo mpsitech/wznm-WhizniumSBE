@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmUtlExtrip.h
 	* job handler for job DlgWznmUtlExtrip (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMUTLEXTRIP_H
 #define DLGWZNMUTLEXTRIP_H
@@ -518,7 +519,7 @@ public:
 	void refreshLfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshRes(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -538,8 +539,8 @@ private:
 
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeExtract(DbsWznm* dbswznm, DpchRetWznmPrctreeExtract* dpchret);
@@ -583,5 +584,6 @@ private:
 };
 
 #endif
+
 
 

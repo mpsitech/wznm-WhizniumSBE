@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmIexRec.cpp
 	* job handler for job PnlWznmIexRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -37,10 +38,10 @@ PnlWznmIexRec::PnlWznmIexRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
-	pnl1nimpexp = NULL;
 	pnlref1ndialog = NULL;
 	pnlhk1nvector = NULL;
+	pnl1nimpexp = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -82,7 +83,11 @@ DpchEngWznm* PnlWznmIexRec::getNewDpchEng(
 void PnlWznmIexRec::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -98,24 +103,25 @@ void PnlWznmIexRec::refresh(
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnl1nimpexp) {delete pnl1nimpexp; pnl1nimpexp = NULL;};
-		if (pnlref1ndialog) {delete pnlref1ndialog; pnlref1ndialog = NULL;};
 		if (pnlhk1nvector) {delete pnlhk1nvector; pnlhk1nvector = NULL;};
+		if (pnlref1ndialog) {delete pnlref1ndialog; pnlref1ndialog = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmIexDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nimpexp) pnl1nimpexp = new PnlWznmIex1NImpexp(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlref1ndialog) pnlref1ndialog = new PnlWznmIexRef1NDialog(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlhk1nvector) pnlhk1nvector = new PnlWznmIexHk1NVector(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlref1ndialog) pnlref1ndialog = new PnlWznmIexRef1NDialog(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jref1NImpexp = ((pnl1nimpexp) ? pnl1nimpexp->jref : 0);
-	statshr.jrefRef1NDialog = ((pnlref1ndialog) ? pnlref1ndialog->jref : 0);
 	statshr.jrefHk1NVector = ((pnlhk1nvector) ? pnlhk1nvector->jref : 0);
+	statshr.jrefRef1NDialog = ((pnlref1ndialog) ? pnlref1ndialog->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWznmIexRec::updatePreset(
@@ -138,8 +144,8 @@ void PnlWznmIexRec::updatePreset(
 		if (recIex.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nimpexp) pnl1nimpexp->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlref1ndialog) pnlref1ndialog->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlhk1nvector) pnlhk1nvector->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlref1ndialog) pnlref1ndialog->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswznm, moditems);
@@ -288,4 +294,6 @@ bool PnlWznmIexRec::handleCallWznmIex_jobEq(
 	boolvalRet = (recIex.refWznmMJob == refInv); // IP handleCallWznmIex_jobEq --- LINE
 	return retval;
 };
+
+
 

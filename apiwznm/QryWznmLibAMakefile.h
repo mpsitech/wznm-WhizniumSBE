@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmLibAMakefile.h
 	* API code for job QryWznmLibAMakefile (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMLIBAMAKEFILE_H
 #define QRYWZNMLIBAMAKEFILE_H
@@ -31,7 +32,7 @@ namespace QryWznmLibAMakefile {
 		static const Sbecore::uint NDISP = 4;
 
 	public:
-		StatApp(const Sbecore::uint firstcol = 1, const Sbecore::uint jnumFirstdisp = 1, const Sbecore::uint ncol = 6, const Sbecore::uint ndisp = 10);
+		StatApp(const Sbecore::uint firstcol = 1, const Sbecore::uint jnumFirstdisp = 1, const Sbecore::uint ncol = 4, const Sbecore::uint ndisp = 10);
 
 	public:
 		Sbecore::uint firstcol;

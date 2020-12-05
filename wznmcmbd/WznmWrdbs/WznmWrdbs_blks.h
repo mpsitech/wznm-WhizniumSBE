@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrdbs_blks.h
 	* invocation / return data blocks for operation pack WznmWrdbs (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMWRDBS_BLKS_H
 #define WZNMWRDBS_BLKS_H
@@ -102,15 +103,15 @@ public:
 	static const Sbecore::uint OREF = 1;
 	static const Sbecore::uint SCRJREF = 2;
 	static const Sbecore::uint JREF = 2;
-	static const Sbecore::uint REFWZNMMVERSION = 3;
+	static const Sbecore::uint REFWZNMMRELEASE = 3;
 	static const Sbecore::uint PRJSHORT = 4;
 	static const Sbecore::uint FOLDER = 5;
 
 public:
-	DpchInvWznmWrdbsSql(const Sbecore::ubigint oref = 0, const Sbecore::ubigint jref = 0, const Sbecore::ubigint refWznmMVersion = 0, const std::string& Prjshort = "", const std::string& folder = "");
+	DpchInvWznmWrdbsSql(const Sbecore::ubigint oref = 0, const Sbecore::ubigint jref = 0, const Sbecore::ubigint refWznmMRelease = 0, const std::string& Prjshort = "", const std::string& folder = "");
 
 public:
-	Sbecore::ubigint refWznmMVersion;
+	Sbecore::ubigint refWznmMRelease;
 	std::string Prjshort;
 	std::string folder;
 
@@ -155,4 +156,6 @@ public:
 // IP cust --- INSERT
 
 #endif
+
+
 

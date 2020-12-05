@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmPrjNew.cpp
 	* API code for job DlgWznmPrjNew (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "DlgWznmPrjNew.h"
 
@@ -79,13 +80,23 @@ string DlgWznmPrjNew::VecVSge::getSref(
 DlgWznmPrjNew::ContIac::ContIac(
 			const string& DetTxfSho
 			, const string& DetTxfTit
+			, const string& DetTxfAbt
+			, const vector<uint>& numsFDetLstDty
+			, const vector<uint>& numsFDetLstLoc
+			, const uint numFDetPupPlc
+			, const uint numFDetPupPmc
 		) :
 			Block()
 		{
 	this->DetTxfSho = DetTxfSho;
 	this->DetTxfTit = DetTxfTit;
+	this->DetTxfAbt = DetTxfAbt;
+	this->numsFDetLstDty = numsFDetLstDty;
+	this->numsFDetLstLoc = numsFDetLstLoc;
+	this->numFDetPupPlc = numFDetPupPlc;
+	this->numFDetPupPmc = numFDetPupPmc;
 
-	mask = {DETTXFSHO, DETTXFTIT};
+	mask = {DETTXFSHO, DETTXFTIT, DETTXFABT, NUMSFDETLSTDTY, NUMSFDETLSTLOC, NUMFDETPUPPLC, NUMFDETPUPPMC};
 };
 
 bool DlgWznmPrjNew::ContIac::readXML(
@@ -107,6 +118,11 @@ bool DlgWznmPrjNew::ContIac::readXML(
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "DetTxfSho", DetTxfSho)) add(DETTXFSHO);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "DetTxfTit", DetTxfTit)) add(DETTXFTIT);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "DetTxfAbt", DetTxfAbt)) add(DETTXFABT);
+		if (extractUintvecAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numsFDetLstDty", numsFDetLstDty)) add(NUMSFDETLSTDTY);
+		if (extractUintvecAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numsFDetLstLoc", numsFDetLstLoc)) add(NUMSFDETLSTLOC);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFDetPupPlc", numFDetPupPlc)) add(NUMFDETPUPPLC);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFDetPupPmc", numFDetPupPmc)) add(NUMFDETPUPPMC);
 	};
 
 	return basefound;
@@ -126,6 +142,11 @@ void DlgWznmPrjNew::ContIac::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "DetTxfSho", DetTxfSho);
 		writeStringAttr(wr, itemtag, "sref", "DetTxfTit", DetTxfTit);
+		writeStringAttr(wr, itemtag, "sref", "DetTxfAbt", DetTxfAbt);
+		writeUintvecAttr(wr, itemtag, "sref", "numsFDetLstDty", numsFDetLstDty);
+		writeUintvecAttr(wr, itemtag, "sref", "numsFDetLstLoc", numsFDetLstLoc);
+		writeUintAttr(wr, itemtag, "sref", "numFDetPupPlc", numFDetPupPlc);
+		writeUintAttr(wr, itemtag, "sref", "numFDetPupPmc", numFDetPupPmc);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -136,6 +157,11 @@ set<uint> DlgWznmPrjNew::ContIac::comm(
 
 	if (DetTxfSho == comp->DetTxfSho) insert(items, DETTXFSHO);
 	if (DetTxfTit == comp->DetTxfTit) insert(items, DETTXFTIT);
+	if (DetTxfAbt == comp->DetTxfAbt) insert(items, DETTXFABT);
+	if (compareUintvec(numsFDetLstDty, comp->numsFDetLstDty)) insert(items, NUMSFDETLSTDTY);
+	if (compareUintvec(numsFDetLstLoc, comp->numsFDetLstLoc)) insert(items, NUMSFDETLSTLOC);
+	if (numFDetPupPlc == comp->numFDetPupPlc) insert(items, NUMFDETPUPPLC);
+	if (numFDetPupPmc == comp->numFDetPupPmc) insert(items, NUMFDETPUPPMC);
 
 	return(items);
 };
@@ -148,7 +174,7 @@ set<uint> DlgWznmPrjNew::ContIac::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {DETTXFSHO, DETTXFTIT};
+	diffitems = {DETTXFSHO, DETTXFTIT, DETTXFABT, NUMSFDETLSTDTY, NUMSFDETLSTLOC, NUMFDETPUPPLC, NUMFDETPUPPMC};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -221,12 +247,16 @@ set<uint> DlgWznmPrjNew::ContInf::diff(
 
 DlgWznmPrjNew::StatApp::StatApp(
 			const string& shortMenu
+			, const uint DetLstDtyNumFirstdisp
+			, const uint DetLstLocNumFirstdisp
 		) :
 			Block()
 		{
 	this->shortMenu = shortMenu;
+	this->DetLstDtyNumFirstdisp = DetLstDtyNumFirstdisp;
+	this->DetLstLocNumFirstdisp = DetLstLocNumFirstdisp;
 
-	mask = {SHORTMENU};
+	mask = {SHORTMENU, DETLSTDTYNUMFIRSTDISP, DETLSTLOCNUMFIRSTDISP};
 };
 
 bool DlgWznmPrjNew::StatApp::readXML(
@@ -247,6 +277,8 @@ bool DlgWznmPrjNew::StatApp::readXML(
 
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "shortMenu", shortMenu)) add(SHORTMENU);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "DetLstDtyNumFirstdisp", DetLstDtyNumFirstdisp)) add(DETLSTDTYNUMFIRSTDISP);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "DetLstLocNumFirstdisp", DetLstLocNumFirstdisp)) add(DETLSTLOCNUMFIRSTDISP);
 	};
 
 	return basefound;
@@ -258,6 +290,8 @@ set<uint> DlgWznmPrjNew::StatApp::comm(
 	set<uint> items;
 
 	if (shortMenu == comp->shortMenu) insert(items, SHORTMENU);
+	if (DetLstDtyNumFirstdisp == comp->DetLstDtyNumFirstdisp) insert(items, DETLSTDTYNUMFIRSTDISP);
+	if (DetLstLocNumFirstdisp == comp->DetLstLocNumFirstdisp) insert(items, DETLSTLOCNUMFIRSTDISP);
 
 	return(items);
 };
@@ -270,7 +304,7 @@ set<uint> DlgWznmPrjNew::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {SHORTMENU};
+	diffitems = {SHORTMENU, DETLSTDTYNUMFIRSTDISP, DETLSTLOCNUMFIRSTDISP};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -353,6 +387,11 @@ DlgWznmPrjNew::Tag::Tag(
 			const string& Cpt
 			, const string& DetCptSho
 			, const string& DetCptTit
+			, const string& DetCptAbt
+			, const string& DetCptDty
+			, const string& DetCptLoc
+			, const string& DetCptPlc
+			, const string& DetCptTmc
 			, const string& DetButAut
 			, const string& ButCnc
 			, const string& ButCre
@@ -362,11 +401,16 @@ DlgWznmPrjNew::Tag::Tag(
 	this->Cpt = Cpt;
 	this->DetCptSho = DetCptSho;
 	this->DetCptTit = DetCptTit;
+	this->DetCptAbt = DetCptAbt;
+	this->DetCptDty = DetCptDty;
+	this->DetCptLoc = DetCptLoc;
+	this->DetCptPlc = DetCptPlc;
+	this->DetCptTmc = DetCptTmc;
 	this->DetButAut = DetButAut;
 	this->ButCnc = ButCnc;
 	this->ButCre = ButCre;
 
-	mask = {CPT, DETCPTSHO, DETCPTTIT, DETBUTAUT, BUTCNC, BUTCRE};
+	mask = {CPT, DETCPTSHO, DETCPTTIT, DETCPTABT, DETCPTDTY, DETCPTLOC, DETCPTPLC, DETCPTTMC, DETBUTAUT, BUTCNC, BUTCRE};
 };
 
 bool DlgWznmPrjNew::Tag::readXML(
@@ -389,6 +433,11 @@ bool DlgWznmPrjNew::Tag::readXML(
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "Cpt", Cpt)) add(CPT);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "DetCptSho", DetCptSho)) add(DETCPTSHO);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "DetCptTit", DetCptTit)) add(DETCPTTIT);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "DetCptAbt", DetCptAbt)) add(DETCPTABT);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "DetCptDty", DetCptDty)) add(DETCPTDTY);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "DetCptLoc", DetCptLoc)) add(DETCPTLOC);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "DetCptPlc", DetCptPlc)) add(DETCPTPLC);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "DetCptTmc", DetCptTmc)) add(DETCPTTMC);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "DetButAut", DetButAut)) add(DETBUTAUT);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "ButCnc", ButCnc)) add(BUTCNC);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "ButCre", ButCre)) add(BUTCRE);
@@ -482,6 +531,10 @@ void DlgWznmPrjNew::DpchAppDo::writeXML(
 DlgWznmPrjNew::DpchEngData::DpchEngData() :
 			DpchEngWznm(VecWznmVDpch::DPCHENGDLGWZNMPRJNEWDATA)
 		{
+	feedFDetLstDty.tag = "FeedFDetLstDty";
+	feedFDetLstLoc.tag = "FeedFDetLstLoc";
+	feedFDetPupPlc.tag = "FeedFDetPupPlc";
+	feedFDetPupPmc.tag = "FeedFDetPupPmc";
 	feedFSge.tag = "FeedFSge";
 };
 
@@ -492,6 +545,10 @@ string DlgWznmPrjNew::DpchEngData::getSrefsMask() {
 	if (has(SCRJREF)) ss.push_back("scrJref");
 	if (has(CONTIAC)) ss.push_back("contiac");
 	if (has(CONTINF)) ss.push_back("continf");
+	if (has(FEEDFDETLSTDTY)) ss.push_back("feedFDetLstDty");
+	if (has(FEEDFDETLSTLOC)) ss.push_back("feedFDetLstLoc");
+	if (has(FEEDFDETPUPPLC)) ss.push_back("feedFDetPupPlc");
+	if (has(FEEDFDETPUPPMC)) ss.push_back("feedFDetPupPmc");
 	if (has(FEEDFSGE)) ss.push_back("feedFSge");
 	if (has(STATAPP)) ss.push_back("statapp");
 	if (has(STATSHR)) ss.push_back("statshr");
@@ -520,6 +577,10 @@ void DlgWznmPrjNew::DpchEngData::readXML(
 		if (extractStringUclc(docctx, basexpath, "scrJref", "", scrJref)) add(SCRJREF);
 		if (contiac.readXML(docctx, basexpath, true)) add(CONTIAC);
 		if (continf.readXML(docctx, basexpath, true)) add(CONTINF);
+		if (feedFDetLstDty.readXML(docctx, basexpath, true)) add(FEEDFDETLSTDTY);
+		if (feedFDetLstLoc.readXML(docctx, basexpath, true)) add(FEEDFDETLSTLOC);
+		if (feedFDetPupPlc.readXML(docctx, basexpath, true)) add(FEEDFDETPUPPLC);
+		if (feedFDetPupPmc.readXML(docctx, basexpath, true)) add(FEEDFDETPUPPMC);
 		if (feedFSge.readXML(docctx, basexpath, true)) add(FEEDFSGE);
 		if (statapp.readXML(docctx, basexpath, true)) add(STATAPP);
 		if (statshr.readXML(docctx, basexpath, true)) add(STATSHR);
@@ -527,6 +588,10 @@ void DlgWznmPrjNew::DpchEngData::readXML(
 	} else {
 		contiac = ContIac();
 		continf = ContInf();
+		feedFDetLstDty.clear();
+		feedFDetLstLoc.clear();
+		feedFDetPupPlc.clear();
+		feedFDetPupPmc.clear();
 		feedFSge.clear();
 		statapp = StatApp();
 		statshr = StatShr();

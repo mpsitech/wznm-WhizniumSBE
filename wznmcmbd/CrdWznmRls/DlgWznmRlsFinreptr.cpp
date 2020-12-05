@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmRlsFinreptr.cpp
 	* job handler for job DlgWznmRlsFinreptr (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -191,8 +192,7 @@ void DlgWznmRlsFinreptr::refreshRes(
 
 	// IP refreshRes --- RBEGIN
 	string Prjshort;
-
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref)), Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref));
 
 	// statshrres
 	statshrres.DldAvail = evalResDldAvail(dbswznm);
@@ -214,7 +214,11 @@ void DlgWznmRlsFinreptr::refreshRes(
 void DlgWznmRlsFinreptr::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
@@ -236,6 +240,8 @@ void DlgWznmRlsFinreptr::refresh(
 
 	refreshFin(dbswznm, moditems);
 	refreshRes(dbswznm, moditems);
+
+	muteRefresh = false;
 };
 
 void DlgWznmRlsFinreptr::handleRequest(
@@ -295,9 +301,9 @@ void DlgWznmRlsFinreptr::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::FINIDLE) handleTimerInSgeFinidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::PSGIDLE) handleTimerInSgePsgidle(dbswznm, req->sref);
+		if (ixVSge == VecVSge::PSGIDLE) handleTimerInSgePsgidle(dbswznm, req->sref);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::PUSHGIT)) handleTimerWithSrefMonInSgePushgit(dbswznm);
+		else if (ixVSge == VecVSge::FINIDLE) handleTimerInSgeFinidle(dbswznm, req->sref);
 	};
 };
 
@@ -387,13 +393,6 @@ string DlgWznmRlsFinreptr::handleDownloadInSgeDone(
 	return(xchg->tmppath + "/" + tgzfile); // IP handleDownloadInSgeDone --- RLINE
 };
 
-void DlgWznmRlsFinreptr::handleTimerInSgeFinidle(
-			DbsWznm* dbswznm
-			, const string& sref
-		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
-};
-
 void DlgWznmRlsFinreptr::handleTimerInSgePsgidle(
 			DbsWznm* dbswznm
 			, const string& sref
@@ -406,6 +405,13 @@ void DlgWznmRlsFinreptr::handleTimerWithSrefMonInSgePushgit(
 		) {
 	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgePushgit --- ILINE
+};
+
+void DlgWznmRlsFinreptr::handleTimerInSgeFinidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsFinreptr::changeStage(
@@ -432,7 +438,7 @@ void DlgWznmRlsFinreptr::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -956,5 +962,6 @@ void DlgWznmRlsFinreptr::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

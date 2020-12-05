@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmStbRec_blks.cpp
 	* job handler for job PnlWznmStbRec (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -98,9 +99,9 @@ void PnlWznmStbRec::StatApp::writeXML(
 			, bool shorttags
 			, const bool initdoneDetail
 			, const bool initdoneSupMNStub
-			, const bool initdoneMNCall
-			, const bool initdoneMNSquawk
 			, const bool initdoneSubMNStub
+			, const bool initdoneMNSquawk
+			, const bool initdoneMNCall
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmStbRec";
 
@@ -111,9 +112,9 @@ void PnlWznmStbRec::StatApp::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneSupMNStub", initdoneSupMNStub);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneMNCall", initdoneMNCall);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneMNSquawk", initdoneMNSquawk);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneSubMNStub", initdoneSubMNStub);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneMNSquawk", initdoneMNSquawk);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneMNCall", initdoneMNCall);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -125,9 +126,9 @@ PnlWznmStbRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
 			, const ubigint jrefSupMNStub
-			, const ubigint jrefMNCall
-			, const ubigint jrefMNSquawk
 			, const ubigint jrefSubMNStub
+			, const ubigint jrefMNSquawk
+			, const ubigint jrefMNCall
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -135,12 +136,12 @@ PnlWznmStbRec::StatShr::StatShr(
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
 	this->jrefSupMNStub = jrefSupMNStub;
-	this->jrefMNCall = jrefMNCall;
-	this->jrefMNSquawk = jrefMNSquawk;
 	this->jrefSubMNStub = jrefSubMNStub;
+	this->jrefMNSquawk = jrefMNSquawk;
+	this->jrefMNCall = jrefMNCall;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFSUPMNSTUB, JREFMNCALL, JREFMNSQUAWK, JREFSUBMNSTUB, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFSUPMNSTUB, JREFSUBMNSTUB, JREFMNSQUAWK, JREFMNCALL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmStbRec::StatShr::writeXML(
@@ -158,9 +159,9 @@ void PnlWznmStbRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefSupMNStub", Scr::scramble(jrefSupMNStub));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefMNCall", Scr::scramble(jrefMNCall));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefMNSquawk", Scr::scramble(jrefMNSquawk));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefSubMNStub", Scr::scramble(jrefSubMNStub));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefMNSquawk", Scr::scramble(jrefMNSquawk));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefMNCall", Scr::scramble(jrefMNCall));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -173,9 +174,9 @@ set<uint> PnlWznmStbRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
 	if (jrefSupMNStub == comp->jrefSupMNStub) insert(items, JREFSUPMNSTUB);
-	if (jrefMNCall == comp->jrefMNCall) insert(items, JREFMNCALL);
-	if (jrefMNSquawk == comp->jrefMNSquawk) insert(items, JREFMNSQUAWK);
 	if (jrefSubMNStub == comp->jrefSubMNStub) insert(items, JREFSUBMNSTUB);
+	if (jrefMNSquawk == comp->jrefMNSquawk) insert(items, JREFMNSQUAWK);
+	if (jrefMNCall == comp->jrefMNCall) insert(items, JREFMNCALL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -189,7 +190,7 @@ set<uint> PnlWznmStbRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFSUPMNSTUB, JREFMNCALL, JREFMNSQUAWK, JREFSUBMNSTUB, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFSUPMNSTUB, JREFSUBMNSTUB, JREFMNSQUAWK, JREFMNCALL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -329,4 +330,6 @@ void PnlWznmStbRec::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

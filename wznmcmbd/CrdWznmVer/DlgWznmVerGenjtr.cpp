@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerGenjtr.cpp
 	* job handler for job DlgWznmVerGenjtr (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -112,10 +113,14 @@ void DlgWznmVerGenjtr::refreshLfi(
 void DlgWznmVerGenjtr::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- RBEGIN
 	// statshr
@@ -129,11 +134,13 @@ void DlgWznmVerGenjtr::refresh(
 
 	// IP refresh --- REND
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshGjt(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);
+
+	muteRefresh = false;
 };
 
 void DlgWznmVerGenjtr::handleRequest(
@@ -333,7 +340,7 @@ void DlgWznmVerGenjtr::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -437,9 +444,7 @@ uint DlgWznmVerGenjtr::enterSgeGenqtb(
 
 	ubigint refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
 
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = "
-				+ to_string(refWznmMVersion), Prjshort);
-	Prjshort = StrMod::cap(Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, refWznmMVersion);
 
 	addInv(new DpchInvWznmGenQtb(0, 0, refWznmMVersion, Prjshort));
 	addInv(new DpchInvWznmGenChk(0, 0, refWznmMVersion, Prjshort));
@@ -471,9 +476,7 @@ uint DlgWznmVerGenjtr::enterSgeGenjob(
 
 	ubigint refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
 
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = "
-				+ to_string(refWznmMVersion), Prjshort);
-	Prjshort = StrMod::cap(Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, refWznmMVersion);
 
 	addInv(new DpchInvWznmGenJob(0, 0, refWznmMVersion, Prjshort));
 	// IP enterSgeGenjob --- IEND
@@ -503,9 +506,7 @@ uint DlgWznmVerGenjtr::enterSgeGencall(
 
 	ubigint refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
 
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = "
-				+ to_string(refWznmMVersion), Prjshort);
-	Prjshort = StrMod::cap(Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, refWznmMVersion);
 
 	addInv(new DpchInvWznmGenCal(0, 0, refWznmMVersion, Prjshort));
 	// IP enterSgeGencall --- IEND
@@ -543,8 +544,7 @@ uint DlgWznmVerGenjtr::enterSgeGenctp(
 
 	map<ubigint,string> srefsCtpCustops;
 
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(refWznmMVersion), Prjshort);
-	Prjshort = StrMod::cap(Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, refWznmMVersion);
 
 	orefsToRefs.clear();
 
@@ -642,5 +642,6 @@ void DlgWznmVerGenjtr::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

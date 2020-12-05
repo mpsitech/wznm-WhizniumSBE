@@ -1,86 +1,85 @@
-- IexWznmBui v0.9.23						
-- ImeIMModule.sref	Title	Comment				
-- MdlWznmAdmin	administration module					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- tbl	TblWznmMUsergroup	CrdWznmUsg			
-	- tbl	TblWznmMUser	CrdWznmUsr			
-	- tbl	TblWznmMPerson	CrdWznmPrs			
-	- tbl	TblWznmMFile	CrdWznmFil			
-	- ImeIMCard.end					
-- MdlWznmGlobal	global data module					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- tbl	TblWznmMLocale	CrdWznmLoc			
-	- tbl	TblWznmMTag	CrdWznmTag			
-	- sbs	SbsWznmBMCapabilityCtp	CrdWznmCtp			
-	- tbl	TblWznmMMachtype	CrdWznmMty			
-	- tbl	TblWznmMMachine	CrdWznmMch			
-	- tbl	TblWznmMLibrary	CrdWznmLib			
-	- ImeIMCard.end					
-- MdlWznmProject	project management module					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- tbl	TblWznmMProject	CrdWznmPrj			
-	- tbl	TblWznmMVersion	CrdWznmVer			pre.refPrj() > pre.void()
-	- sbs	SbsWznmBMCapabilityCap	CrdWznmCap			pre.refVer()
-	- tbl	TblWznmMError	CrdWznmErr			pre.refVer()
-	- ImeIMCard.end					
-- MdlWznmDbstr	database structure module					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- tbl	TblWznmMTable	CrdWznmTbl			pre.refVer()
-	- tbl	TblWznmMTablecol	CrdWznmTco			pre.refTbl() > pre.refVer()
-	- tbl	TblWznmMSubset	CrdWznmSbs			pre.refTbl() > pre.refVer()
-	- tbl	TblWznmMRelation	CrdWznmRel			pre.refVer()
-	- tbl	TblWznmMVector	CrdWznmVec			pre.refVer()
-	- tbl	TblWznmMVectoritem	CrdWznmVit			pre.refVec() > pre.refVer()
-	- tbl	TblWznmMCheck	CrdWznmChk			pre.refTbl() > pre.refVer()
-	- tbl	TblWznmMStub	CrdWznmStb			pre.refVer()
-	- tbl	TblWznmMImpexpcplx	CrdWznmIex			pre.refVer()
-	- tbl	TblWznmMImpexp	CrdWznmIme			pre.refIex() > pre.refVer()
-	- tbl	TblWznmMImpexpcol	CrdWznmIel			pre.refIex() > pre.refIme()
-	- ImeIMCard.end					
-- MdlWznmUix	user interface module					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- tbl	TblWznmMPreset	CrdWznmPst			pre.refVer()
-	- tbl	TblWznmMModule	CrdWznmMdl			pre.refVer()
-	- tbl	TblWznmMCard	CrdWznmCar			pre.refVer()
-	- tbl	TblWznmMDialog	CrdWznmDlg			pre.refCar() > pre.refVer()
-	- tbl	TblWznmMPanel	CrdWznmPnl			pre.refCar() > pre.refVer()
-	- tbl	TblWznmMQuery	CrdWznmQry			pre.refVer()
-	- tbl	TblWznmMQuerycol	CrdWznmQco			pre.refQry() > pre.refVer()
-	- tbl	TblWznmMQuerymod	CrdWznmQmd			pre.refQry() > pre.refVer()
-	- tbl	TblWznmMControl	CrdWznmCon			pre.refPnl() > pre.refDlg() > pre.refCar() > pre.refVer()
-	- ImeIMCard.end					
-- MdlWznmComp	computing module					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- tbl	TblWznmMOppack	CrdWznmOpk			pre.refVer()
-	- tbl	TblWznmMOp	CrdWznmOpx			pre.refOpk() > pre.refVer()
-	- ImeIMCard.end					
-- MdlWznmJob	job tree module					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- tbl	TblWznmMJob	CrdWznmJob			pre.refVer()
-	- tbl	TblWznmMStage	CrdWznmSge			pre.refJob() > pre.refVer()
-	- tbl	TblWznmMMethod	CrdWznmMtd			pre.refJob() > pre.refVer()
-	- tbl	TblWznmMBlock	CrdWznmBlk			pre.refJob() > pre.refOpx() > pre.refOpk() > pre.refVer()
-	- tbl	TblWznmMCall	CrdWznmCal			pre.refVer()
-	- ImeIMCard.end					
-- MdlWznmDeploy	deployment module					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- tbl	TblWznmMComponent	CrdWznmCmp			pre.refVer() > pre.void()
-	- tbl	TblWznmMRelease	CrdWznmRls			pre.refVer()
-	- ImeIMCard.end					
-- MdlWznmAppdev	app development module					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- tbl	TblWznmMApp	CrdWznmApp			
-	- tbl	TblWznmMRtjob	CrdWznmRtj			pre.refApp()
-	- tbl	TblWznmMEvent	CrdWznmEvt			pre.refApp()
-	- tbl	TblWznmMSequence	CrdWznmSeq			pre.refApp()
-	- tbl	TblWznmMState	CrdWznmSte			pre.refApp()
-	- ImeIMCard.end					
-- MdlWznmAuxfct	auxiliary functionality					
-	- ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
-	- void		CrdWznmUtl	utilities		
-	- ImeIMCard.end					
-- ImeIMModule.end						
-- ImeIMPreset.srefIxVIop	srefRefIxVTbl	srefRefUref	srefIxVScope	sref	srefIxWznmWArgtype	
-- retrupd			sess	PreWznmRefApp		
-- retrupd			sess	PreWznmRefVer		
-- ImeIMPreset.end						
+IexWznmBui v0.9.23
+ImeIMModule.sref	Title	Comment
+MdlWznmAdmin	administration module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMUsergroup	CrdWznmUsg
+	tbl	TblWznmMUser	CrdWznmUsr
+	tbl	TblWznmMPerson	CrdWznmPrs
+	tbl	TblWznmMFile	CrdWznmFil
+	ImeIMCard.end
+MdlWznmGlobal	global data module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMLocale	CrdWznmLoc
+	tbl	TblWznmMTag	CrdWznmTag
+	sbs	SbsWznmBMCapabilityCtp	CrdWznmCtp
+	tbl	TblWznmMMachine	CrdWznmMch
+	tbl	TblWznmMLibrary	CrdWznmLib
+	ImeIMCard.end
+MdlWznmProject	project management module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMProject	CrdWznmPrj
+	tbl	TblWznmMVersion	CrdWznmVer			pre.refPrj() > pre.void()
+	sbs	SbsWznmBMCapabilityCap	CrdWznmCap			pre.refVer()
+	tbl	TblWznmMError	CrdWznmErr			pre.refVer()
+	ImeIMCard.end
+MdlWznmDbstr	database structure module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMTable	CrdWznmTbl			pre.refVer()
+	tbl	TblWznmMTablecol	CrdWznmTco			pre.refTbl() > pre.refVer()
+	tbl	TblWznmMSubset	CrdWznmSbs			pre.refTbl() > pre.refVer()
+	tbl	TblWznmMRelation	CrdWznmRel			pre.refVer()
+	tbl	TblWznmMVector	CrdWznmVec			pre.refVer()
+	tbl	TblWznmMVectoritem	CrdWznmVit			pre.refVec() > pre.refVer()
+	tbl	TblWznmMCheck	CrdWznmChk			pre.refTbl() > pre.refVer()
+	tbl	TblWznmMStub	CrdWznmStb			pre.refVer()
+	tbl	TblWznmMImpexpcplx	CrdWznmIex			pre.refVer()
+	tbl	TblWznmMImpexp	CrdWznmIme			pre.refIex() > pre.refVer()
+	tbl	TblWznmMImpexpcol	CrdWznmIel			pre.refIex() > pre.refIme()
+	ImeIMCard.end
+MdlWznmUix	user interface module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMPreset	CrdWznmPst			pre.refVer()
+	tbl	TblWznmMModule	CrdWznmMdl			pre.refVer()
+	tbl	TblWznmMCard	CrdWznmCar			pre.refVer()
+	tbl	TblWznmMDialog	CrdWznmDlg			pre.refCar() > pre.refVer()
+	tbl	TblWznmMPanel	CrdWznmPnl			pre.refCar() > pre.refVer()
+	tbl	TblWznmMQuery	CrdWznmQry			pre.refVer()
+	tbl	TblWznmMQuerycol	CrdWznmQco			pre.refQry() > pre.refVer()
+	tbl	TblWznmMQuerymod	CrdWznmQmd			pre.refQry() > pre.refVer()
+	tbl	TblWznmMControl	CrdWznmCon			pre.refPnl() > pre.refDlg() > pre.refCar() > pre.refVer()
+	ImeIMCard.end
+MdlWznmComp	computing module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMOppack	CrdWznmOpk			pre.refVer()
+	tbl	TblWznmMOp	CrdWznmOpx			pre.refOpk() > pre.refVer()
+	ImeIMCard.end
+MdlWznmJob	job tree module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMJob	CrdWznmJob			pre.refVer()
+	tbl	TblWznmMStage	CrdWznmSge			pre.refJob() > pre.refVer()
+	tbl	TblWznmMMethod	CrdWznmMtd			pre.refJob() > pre.refVer()
+	tbl	TblWznmMBlock	CrdWznmBlk			pre.refJob() > pre.refOpx() > pre.refOpk() > pre.refVer()
+	tbl	TblWznmMCall	CrdWznmCal			pre.refVer()
+	ImeIMCard.end
+MdlWznmDeploy	deployment module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMComponent	CrdWznmCmp			pre.refVer() > pre.void()
+	tbl	TblWznmMRelease	CrdWznmRls			pre.refVer()
+	ImeIMCard.end
+MdlWznmAppdev	app development module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMApp	CrdWznmApp
+	tbl	TblWznmMRtjob	CrdWznmRtj			pre.refApp()
+	tbl	TblWznmMEvent	CrdWznmEvt			pre.refApp()
+	tbl	TblWznmMSequence	CrdWznmSeq			pre.refApp()
+	tbl	TblWznmMState	CrdWznmSte			pre.refApp()
+	ImeIMCard.end
+MdlWznmAuxfct	auxiliary functionality
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	void		CrdWznmUtl	utilities
+	ImeIMCard.end
+ImeIMModule.end
+ImeIMPreset.srefIxVIop	srefRefIxVTbl	srefRefUref	srefIxVScope	sref	srefIxWznmWArgtype
+retrupd			sess	PreWznmRefApp
+retrupd			sess	PreWznmRefVer
+ImeIMPreset.end

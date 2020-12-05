@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmJobJob1NStage.js
-  * web client functionality for panel PnlWznmJobJob1NStage
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmJobJob1NStage", "srefIxWznmVExpstate") == "mind") return;

@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmVecDetail.js
-  * web client functionality for panel PnlWznmVecDetail
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // IP cust --- INSERT
 
 // --- expand state management
@@ -478,6 +470,8 @@ function handleButDlgopenClick(ctlsref) {
 };
 
 function handleLstLoad(lstdoc, ctlsref, ncol, multsel) {
+	if (!srcdoc) return;
+
 	if (multsel) {
 		refreshLst(lstdoc, srcdoc, ncol, false, multsel, "FeedF" + ctlsref, parseInt(retrieveSi(srcdoc, "StatAppWznmVecDetail", ctlsref + "NumFirstdisp")),
 					parseUintvec(retrieveCi(srcdoc, "ContIacWznmVecDetail", "numsF" + ctlsref)));

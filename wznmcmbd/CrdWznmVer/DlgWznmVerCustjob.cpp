@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerCustjob.cpp
 	* job handler for job DlgWznmVerCustjob (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -124,8 +125,8 @@ void DlgWznmVerCustjob::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrLfi oldStatshrlfi(statshrlfi);
 	ContInfLfi oldContinflfi(continflfi);
+	StatShrLfi oldStatshrlfi(statshrlfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -135,14 +136,18 @@ void DlgWznmVerCustjob::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
+	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 };
 
 void DlgWznmVerCustjob::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
@@ -165,6 +170,8 @@ void DlgWznmVerCustjob::refresh(
 	refreshIfi(dbswznm, moditems);
 	refreshImp(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);
+
+	muteRefresh = false;
 };
 
 void DlgWznmVerCustjob::handleRequest(
@@ -223,8 +230,8 @@ void DlgWznmVerCustjob::handleRequest(
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
 		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
+		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
 	};
 };
 
@@ -321,18 +328,18 @@ void DlgWznmVerCustjob::handleTimerInSgePrsidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmVerCustjob::handleTimerInSgeImpidle(
-			DbsWznm* dbswznm
-			, const string& sref
-		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
-};
-
 void DlgWznmVerCustjob::handleTimerWithSrefMonInSgeImport(
 			DbsWznm* dbswznm
 		) {
 	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
+};
+
+void DlgWznmVerCustjob::handleTimerInSgeImpidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmVerCustjob::changeStage(
@@ -358,7 +365,7 @@ void DlgWznmVerCustjob::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -447,6 +454,8 @@ uint DlgWznmVerCustjob::enterSgeParse(
 	// IP enterSgeParse --- IBEGIN
 	ifstream ififile;
 
+	string rectfile;
+
 	char* buf;
 	string s;
 
@@ -459,15 +468,19 @@ uint DlgWznmVerCustjob::enterSgeParse(
 	ififile.get(buf, 16);
 	s = string(buf);
 
-	ifitxt = (s.find("- ") == 0);
+	ifitxt = (s.find("IexWznmJob") == 0);
 	ifixml = (s.find("<?xml") == 0);		
 
 	delete[] buf;
 	ififile.close();
 
 	// parse file accordingly
-	if (ifitxt) iex->parseFromFile(dbswznm, infilename, false);
-	else if (ifixml) iex->parseFromFile(dbswznm, infilename, true);
+	if (ifitxt) {
+		rectfile = Tmp::newfile(xchg->tmppath, "txt");
+		iex->parseFromFile(dbswznm, infilename, false, xchg->tmppath + "/" + rectfile);
+		infilename = xchg->tmppath + "/" + rectfile;
+
+	} else if (ifixml) iex->parseFromFile(dbswznm, infilename, true);
 
 	if (iex->ixVSge != JobWznmIexJob::VecVSge::PRSDONE) {
 		if (reqCmd) {
@@ -634,8 +647,7 @@ uint DlgWznmVerCustjob::enterSgeDone(
 
 	refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
 
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(refWznmMVersion), Prjshort);
-	Prjshort = StrMod::cap(Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, refWznmMVersion);
 
 	if (ifitxt) {
 		Filename = "IexWznmJob_" + StrMod::lc(Prjshort) + ".txt";
@@ -657,5 +669,6 @@ void DlgWznmVerCustjob::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmCalList.h
 	* job handler for job QryWznmCalList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMCALLIST_H
 #define QRYWZNMCALLIST_H
@@ -31,13 +32,13 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint SRF = 1;
-		static const Sbecore::uint TYP = 2;
-		static const Sbecore::uint VER = 3;
+		static const Sbecore::uint RAT = 1;
+		static const Sbecore::uint IAT = 2;
+		static const Sbecore::uint REU = 3;
 		static const Sbecore::uint RET = 4;
-		static const Sbecore::uint REU = 5;
-		static const Sbecore::uint IAT = 6;
-		static const Sbecore::uint RAT = 7;
+		static const Sbecore::uint VER = 5;
+		static const Sbecore::uint TYP = 6;
+		static const Sbecore::uint SRF = 7;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -148,11 +149,13 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmCalUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmCalMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmCalUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };
 
 #endif
+
+
 

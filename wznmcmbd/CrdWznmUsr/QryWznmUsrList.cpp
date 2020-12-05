@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmUsrList.cpp
 	* job handler for job QryWznmUsrList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -184,8 +185,8 @@ void QryWznmUsrList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::USG) sqlstr += " ORDER BY TblWznmMUser.refWznmMUsergroup ASC";
-	else if (preIxOrd == VecVOrd::PRS) sqlstr += " ORDER BY TblWznmMUser.refWznmMPerson ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMUser.sref ASC";
+	else if (preIxOrd == VecVOrd::PRS) sqlstr += " ORDER BY TblWznmMUser.refWznmMPerson ASC";
 	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMUser.own ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMUser.grp ASC";
 };
@@ -429,4 +430,6 @@ bool QryWznmUsrList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

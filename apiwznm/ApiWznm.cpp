@@ -1,10 +1,11 @@
 /**
 	* \file ApiWznm.cpp
 	* Wznm API library global functionality (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #include "ApiWznm.h"
 
@@ -138,6 +139,9 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGDLGWZNMFILNEWDATA) {
 			*dpcheng = new DlgWznmFilNew::DpchEngData();
 			((DlgWznmFilNew::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGDLGWZNMMCHWRINISCRDATA) {
+			*dpcheng = new DlgWznmMchWriniscr::DpchEngData();
+			((DlgWznmMchWriniscr::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGDLGWZNMNAVLOAINIDATA) {
 			*dpcheng = new DlgWznmNavLoaini::DpchEngData();
 			((DlgWznmNavLoaini::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
@@ -165,9 +169,6 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGDLGWZNMUTLEXTRIPDATA) {
 			*dpcheng = new DlgWznmUtlExtrip::DpchEngData();
 			((DlgWznmUtlExtrip::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGDLGWZNMUTLIEXCONVDATA) {
-			*dpcheng = new DlgWznmUtlIexconv::DpchEngData();
-			((DlgWznmUtlIexconv::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGDLGWZNMUTLMRGIPDATA) {
 			*dpcheng = new DlgWznmUtlMrgip::DpchEngData();
 			((DlgWznmUtlMrgip::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
@@ -210,9 +211,9 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGDLGWZNMVEROPPACKDATA) {
 			*dpcheng = new DlgWznmVerOppack::DpchEngData();
 			((DlgWznmVerOppack::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGDLGWZNMVERWRSTKITDATA) {
-			*dpcheng = new DlgWznmVerWrstkit::DpchEngData();
-			((DlgWznmVerWrstkit::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGDLGWZNMVERWRINIMDLDATA) {
+			*dpcheng = new DlgWznmVerWrinimdl::DpchEngData();
+			((DlgWznmVerWrinimdl::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGROOTWZNMDATA) {
 			*dpcheng = new RootWznm::DpchEngData();
 			((RootWznm::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
@@ -672,6 +673,9 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMCH1NRELEASEDATA) {
 			*dpcheng = new PnlWznmMch1NRelease::DpchEngData();
 			((PnlWznmMch1NRelease::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMCHAMAKEFILEDATA) {
+			*dpcheng = new PnlWznmMchAMakefile::DpchEngData();
+			((PnlWznmMchAMakefile::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMCHAPARDATA) {
 			*dpcheng = new PnlWznmMchAPar::DpchEngData();
 			((PnlWznmMchAPar::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
@@ -690,6 +694,9 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMCHRECDATA) {
 			*dpcheng = new PnlWznmMchRec::DpchEngData();
 			((PnlWznmMchRec::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
+		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMCHSUP1NMACHINEDATA) {
+			*dpcheng = new PnlWznmMchSup1NMachine::DpchEngData();
+			((PnlWznmMchSup1NMachine::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMDLDATA) {
 			*dpcheng = new CrdWznmMdl::DpchEngData();
 			((CrdWznmMdl::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
@@ -732,27 +739,6 @@ uint ApiWznm::readDpchEng(
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMTDRECDATA) {
 			*dpcheng = new PnlWznmMtdRec::DpchEngData();
 			((PnlWznmMtdRec::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMTY1NMACHINEDATA) {
-			*dpcheng = new PnlWznmMty1NMachine::DpchEngData();
-			((PnlWznmMty1NMachine::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMTYAMAKEFILEDATA) {
-			*dpcheng = new PnlWznmMtyAMakefile::DpchEngData();
-			((PnlWznmMtyAMakefile::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMTYDATA) {
-			*dpcheng = new CrdWznmMty::DpchEngData();
-			((CrdWznmMty::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMTYDETAILDATA) {
-			*dpcheng = new PnlWznmMtyDetail::DpchEngData();
-			((PnlWznmMtyDetail::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMTYHEADBARDATA) {
-			*dpcheng = new PnlWznmMtyHeadbar::DpchEngData();
-			((PnlWznmMtyHeadbar::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMTYLISTDATA) {
-			*dpcheng = new PnlWznmMtyList::DpchEngData();
-			((PnlWznmMtyList::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
-		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMMTYRECDATA) {
-			*dpcheng = new PnlWznmMtyRec::DpchEngData();
-			((PnlWznmMtyRec::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);
 		} else if (ixWznmVDpch == VecWznmVDpch::DPCHENGWZNMNAVADMINDATA) {
 			*dpcheng = new PnlWznmNavAdmin::DpchEngData();
 			((PnlWznmNavAdmin::DpchEngData*) *dpcheng)->readXML(docctx, "/", true);

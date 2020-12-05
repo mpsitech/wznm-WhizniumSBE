@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavDeploy.cpp
 	* API code for job PnlWznmNavDeploy (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "PnlWznmNavDeploy.h"
 
@@ -211,7 +212,6 @@ set<uint> PnlWznmNavDeploy::StatApp::diff(
 PnlWznmNavDeploy::StatShr::StatShr(
 			const bool LstCmpAvail
 			, const bool ButCmpViewActive
-			, const bool ButCmpNewcrdActive
 			, const bool LstRlsAvail
 			, const bool ButRlsViewActive
 			, const bool ButRlsNewcrdActive
@@ -220,12 +220,11 @@ PnlWznmNavDeploy::StatShr::StatShr(
 		{
 	this->LstCmpAvail = LstCmpAvail;
 	this->ButCmpViewActive = ButCmpViewActive;
-	this->ButCmpNewcrdActive = ButCmpNewcrdActive;
 	this->LstRlsAvail = LstRlsAvail;
 	this->ButRlsViewActive = ButRlsViewActive;
 	this->ButRlsNewcrdActive = ButRlsNewcrdActive;
 
-	mask = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, BUTCMPNEWCRDACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
+	mask = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
 };
 
 bool PnlWznmNavDeploy::StatShr::readXML(
@@ -247,7 +246,6 @@ bool PnlWznmNavDeploy::StatShr::readXML(
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstCmpAvail", LstCmpAvail)) add(LSTCMPAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButCmpViewActive", ButCmpViewActive)) add(BUTCMPVIEWACTIVE);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButCmpNewcrdActive", ButCmpNewcrdActive)) add(BUTCMPNEWCRDACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstRlsAvail", LstRlsAvail)) add(LSTRLSAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRlsViewActive", ButRlsViewActive)) add(BUTRLSVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRlsNewcrdActive", ButRlsNewcrdActive)) add(BUTRLSNEWCRDACTIVE);
@@ -263,7 +261,6 @@ set<uint> PnlWznmNavDeploy::StatShr::comm(
 
 	if (LstCmpAvail == comp->LstCmpAvail) insert(items, LSTCMPAVAIL);
 	if (ButCmpViewActive == comp->ButCmpViewActive) insert(items, BUTCMPVIEWACTIVE);
-	if (ButCmpNewcrdActive == comp->ButCmpNewcrdActive) insert(items, BUTCMPNEWCRDACTIVE);
 	if (LstRlsAvail == comp->LstRlsAvail) insert(items, LSTRLSAVAIL);
 	if (ButRlsViewActive == comp->ButRlsViewActive) insert(items, BUTRLSVIEWACTIVE);
 	if (ButRlsNewcrdActive == comp->ButRlsNewcrdActive) insert(items, BUTRLSNEWCRDACTIVE);
@@ -279,7 +276,7 @@ set<uint> PnlWznmNavDeploy::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, BUTCMPNEWCRDACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
+	diffitems = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

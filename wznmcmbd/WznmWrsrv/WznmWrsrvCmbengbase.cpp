@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrsrvCmbengbase.cpp
 	* Wznm operation processor - write combined engine C++ code basics (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -774,5 +775,6 @@ void WznmWrsrvCmbengbase::writeCmbdCpp(
 	else outfile << "// IP triggerCall.uasrv --- REMOVE" << endl;
 };
 // IP cust --- IEND
+
 
 

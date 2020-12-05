@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmJob.h
 	* job handler for job CrdWznmJob (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef CRDWZNMJOB_H
 #define CRDWZNMJOB_H
@@ -13,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmJobRec.h"
-#include "PnlWznmJobHeadbar.h"
 #include "PnlWznmJobList.h"
+#include "PnlWznmJobHeadbar.h"
+#include "PnlWznmJobRec.h"
 
 #define VecVWznmJobDo CrdWznmJob::VecVDo
 #define VecVWznmJobSge CrdWznmJob::VecVSge
@@ -189,9 +190,9 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	PnlWznmJobRec* pnlrec;
-	PnlWznmJobHeadbar* pnlheadbar;
 	PnlWznmJobList* pnllist;
+	PnlWznmJobHeadbar* pnlheadbar;
+	PnlWznmJobRec* pnlrec;
 
 	// IP vars.cust --- INSERT
 
@@ -200,7 +201,7 @@ public:
 
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 	void changeRef(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint ref, const bool notif = false);
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 
@@ -240,4 +241,6 @@ private:
 };
 
 #endif
+
+
 

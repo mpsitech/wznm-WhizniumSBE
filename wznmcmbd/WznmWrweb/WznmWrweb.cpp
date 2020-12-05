@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrweb.cpp
 	* Wznm operation pack global code (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -2754,6 +2755,8 @@ void WznmWrweb::wrEvthdlsJs( // ALL cons
 			outfile << "\t};" << endl;
 		} else {
 			outfile << "function handleLstLoad(lstdoc, ctlsref, ncol, multsel) {" << endl;
+			outfile << "\tif (!srcdoc) return;" << endl;
+			outfile << endl;
 			outfile << "\tif (multsel) {" << endl;
 			outfile << "\t\trefreshLst(lstdoc, srcdoc, ncol, " << large << ", multsel, \"FeedF\" + ctlsref, parseInt(retrieveSi(srcdoc, \"StatApp" << hkroot << "\", ctlsref + \"NumFirstdisp\"))," << endl;
 			outfile << "\t\t\t\t\tparseUintvec(retrieveCi(srcdoc, \"ContIac" << hkroot << "\", \"numsF\" + ctlsref)));" << endl;
@@ -3762,5 +3765,6 @@ bool WznmWrweb::hasStfeed(
 	return retval;
 };
 // IP cust --- IEND
+
 
 

@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmAppWrite.h
 	* job handler for job DlgWznmAppWrite (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMAPPWRITE_H
 #define DLGWZNMAPPWRITE_H
@@ -505,9 +506,9 @@ public:
 
 	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalFiaDldActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalWrcButRunActive(DbsWznm* dbswznm);
 	bool evalWrcButStoActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalCucUldActive(DbsWznm* dbswznm);
 
 public:
@@ -568,7 +569,7 @@ public:
 	void refreshLfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshFia(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -589,8 +590,8 @@ private:
 
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
@@ -630,5 +631,6 @@ private:
 };
 
 #endif
+
 
 

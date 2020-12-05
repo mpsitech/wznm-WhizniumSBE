@@ -1,10 +1,11 @@
 /**
-  * \file ListWznmQLibAMakefile.java
-  * Java API code for record set of table TblWznmQLibAMakefile
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \file ListWznmQLibAMakefile.java
+	* Java API code for record set of table TblWznmQLibAMakefile
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -44,7 +45,7 @@ public class ListWznmQLibAMakefile {
 			clear();
 			
 			for (int i = 0; i < ics.size(); i++) {
-				rec = new WznmQLibAMakefile(i+1, "", "", "", "", "", "");
+				rec = new WznmQLibAMakefile(i+1, "", "", "", "");
 
 				if (shorttags.get(i)) s = basexpath + "/row[@jnum='" + ics.get(i).toString() + "']";
 				else s = basexpath + "/WznmQLibAMakefile[@jnum='" + ics.get(i).toString() + "']";

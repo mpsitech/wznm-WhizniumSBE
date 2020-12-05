@@ -1,22 +1,21 @@
 /**
 	* \file RootWznm.h
 	* job handler for job RootWznm (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef ROOTWZNM_H
 #define ROOTWZNM_H
 
 // IP include.spec --- INSERT
 
-// IP include.cust --- IBEGIN
-#include <openssl/sha.h>
-// IP include.cust --- IEND
+// IP include.cust --- INSERT
 
-#include "SessWznm.h"
 #include "JobWznmLicense.h"
+#include "SessWznm.h"
 
 #define VecVRootWznmSge RootWznm::VecVSge
 
@@ -100,8 +99,8 @@ public:
 
 public:
 
-	std::list<SessWznm*> sesss;
 	JobWznmLicense* license;
+	std::list<SessWznm*> sesss;
 
 	// IP vars.spec --- INSERT
 
@@ -125,6 +124,7 @@ private:
 	bool handleClearAll(DbsWznm* dbswznm);
 	bool handleCreateSess(DbsWznm* dbswznm);
 	bool handleEraseSess(DbsWznm* dbswznm);
+	bool handleExportIni(DbsWznm* dbswznm);
 	bool handleTest(DbsWznm* dbswznm);
 
 	void handleDpchAppLogin(DbsWznm* dbswznm, DpchAppLogin* dpchapplogin, const std::string ip, DpchEngWznm** dpcheng);
@@ -153,5 +153,6 @@ private:
 };
 
 #endif
+
 
 

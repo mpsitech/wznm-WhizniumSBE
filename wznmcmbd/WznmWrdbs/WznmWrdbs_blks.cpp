@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrdbs_blks.cpp
 	* invocation / return data blocks for operation pack WznmWrdbs (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "WznmWrdbs_blks.h"
 
@@ -181,13 +182,13 @@ void DpchInvWznmWrdbsDiffsql::writeXML(
 DpchInvWznmWrdbsSql::DpchInvWznmWrdbsSql(
 			const ubigint oref
 			, const ubigint jref
-			, const ubigint refWznmMVersion
+			, const ubigint refWznmMRelease
 			, const string& Prjshort
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRDBSSQL, oref, jref)
 		{
-	this->refWznmMVersion = refWznmMVersion;
+	this->refWznmMRelease = refWznmMRelease;
 	this->Prjshort = Prjshort;
 	this->folder = folder;
 };
@@ -209,7 +210,7 @@ void DpchInvWznmWrdbsSql::readXML(
 	if (basefound) {
 		if (extractStringUclc(docctx, basexpath, "scrOref", "", scrOref)) add(SCROREF);
 		if (extractStringUclc(docctx, basexpath, "scrJref", "", scrJref)) add(SCRJREF);
-		if (extractUbigintUclc(docctx, basexpath, "refWznmMVersion", "", refWznmMVersion)) add(REFWZNMMVERSION);
+		if (extractUbigintUclc(docctx, basexpath, "refWznmMRelease", "", refWznmMRelease)) add(REFWZNMMRELEASE);
 		if (extractStringUclc(docctx, basexpath, "Prjshort", "", Prjshort)) add(PRJSHORT);
 		if (extractStringUclc(docctx, basexpath, "folder", "", folder)) add(FOLDER);
 	};
@@ -222,7 +223,7 @@ void DpchInvWznmWrdbsSql::writeXML(
 	xmlTextWriterWriteAttribute(wr, BAD_CAST "xmlns", BAD_CAST "http://www.mpsitech.com/wznm");
 		writeString(wr, "scrOref", Scr::scramble(oref));
 		writeString(wr, "scrJref", Scr::scramble(jref));
-		writeUbigint(wr, "refWznmMVersion", refWznmMVersion);
+		writeUbigint(wr, "refWznmMRelease", refWznmMRelease);
 		writeString(wr, "Prjshort", Prjshort);
 		writeString(wr, "folder", folder);
 	xmlTextWriterEndElement(wr);
@@ -295,4 +296,6 @@ void DpchInvWznmWrdbsTbl::writeXML(
 };
 
 // IP cust --- INSERT
+
+
 

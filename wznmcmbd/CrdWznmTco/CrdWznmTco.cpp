@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmTco.cpp
 	* job handler for job CrdWznmTco (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -43,9 +44,9 @@ CrdWznmTco::CrdWznmTco(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
+	pnllist = NULL;
 	pnlrec = NULL;
 	pnlheadbar = NULL;
-	pnllist = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -57,9 +58,9 @@ CrdWznmTco::CrdWznmTco(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
+	pnllist = new PnlWznmTcoList(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlrec = new PnlWznmTcoRec(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmTcoHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
-	pnllist = new PnlWznmTcoList(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -109,7 +110,11 @@ DpchEngWznm* CrdWznmTco::getNewDpchEng(
 void CrdWznmTco::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
@@ -119,6 +124,8 @@ void CrdWznmTco::refresh(
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+
+	muteRefresh = false;
 };
 
 void CrdWznmTco::changeRef(
@@ -293,7 +300,7 @@ void CrdWznmTco::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -349,4 +356,6 @@ void CrdWznmTco::leaveSgeAlrwznmabt(
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
 };
+
+
 

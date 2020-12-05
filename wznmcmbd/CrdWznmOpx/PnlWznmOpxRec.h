@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmOpxRec.h
 	* job handler for job PnlWznmOpxRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMOPXREC_H
 #define PNLWZNMOPXREC_H
@@ -13,12 +14,12 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmOpxDetail.h"
+#include "PnlWznmOpxSqkMNStub.h"
+#include "PnlWznmOpxMNJob.h"
+#include "PnlWznmOpxRef1NBlock.h"
 #include "PnlWznmOpxAInvarg.h"
 #include "PnlWznmOpxARetval.h"
-#include "PnlWznmOpxRef1NBlock.h"
-#include "PnlWznmOpxMNJob.h"
-#include "PnlWznmOpxSqkMNStub.h"
+#include "PnlWznmOpxDetail.h"
 
 #define VecVWznmOpxRecDo PnlWznmOpxRec::VecVDo
 
@@ -75,7 +76,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
 	};
 
 	/**
@@ -86,8 +87,8 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFAINVARG = 3;
-		static const Sbecore::uint JREFARETVAL = 4;
+		static const Sbecore::uint JREFARETVAL = 3;
+		static const Sbecore::uint JREFAINVARG = 4;
 		static const Sbecore::uint JREFREF1NBLOCK = 5;
 		static const Sbecore::uint JREFMNJOB = 6;
 		static const Sbecore::uint JREFSQKMNSTUB = 7;
@@ -95,13 +96,13 @@ public:
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 9;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAInvarg = 0, const Sbecore::ubigint jrefARetval = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefMNJob = 0, const Sbecore::ubigint jrefSqkMNStub = 0, const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefARetval = 0, const Sbecore::ubigint jrefAInvarg = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefMNJob = 0, const Sbecore::ubigint jrefSqkMNStub = 0, const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefAInvarg;
 		Sbecore::ubigint jrefARetval;
+		Sbecore::ubigint jrefAInvarg;
 		Sbecore::ubigint jrefRef1NBlock;
 		Sbecore::ubigint jrefMNJob;
 		Sbecore::ubigint jrefSqkMNStub;
@@ -182,12 +183,12 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmOpxDetail* pnldetail;
+	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
+	PnlWznmOpxMNJob* pnlmnjob;
+	PnlWznmOpxRef1NBlock* pnlref1nblock;
 	PnlWznmOpxAInvarg* pnlainvarg;
 	PnlWznmOpxARetval* pnlaretval;
-	PnlWznmOpxRef1NBlock* pnlref1nblock;
-	PnlWznmOpxMNJob* pnlmnjob;
-	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
+	PnlWznmOpxDetail* pnldetail;
 
 	WznmMOp recOpx;
 
@@ -201,7 +202,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -231,4 +232,6 @@ private:
 };
 
 #endif
+
+
 

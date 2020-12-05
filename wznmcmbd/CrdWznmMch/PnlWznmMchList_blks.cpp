@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmMchList_blks.cpp
 	* job handler for job PnlWznmMchList (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -241,13 +242,13 @@ set<uint> PnlWznmMchList::StatShr::diff(
 
 PnlWznmMchList::StgIac::StgIac(
 			const uint TcoSrfWidth
-			, const uint TcoTblWidth
+			, const uint TcoSupWidth
 		) :
 			Block()
 		{
 	this->TcoSrfWidth = TcoSrfWidth;
-	this->TcoTblWidth = TcoTblWidth;
-	mask = {TCOSRFWIDTH, TCOTBLWIDTH};
+	this->TcoSupWidth = TcoSupWidth;
+	mask = {TCOSRFWIDTH, TCOSUPWIDTH};
 };
 
 bool PnlWznmMchList::StgIac::readXML(
@@ -268,7 +269,7 @@ bool PnlWznmMchList::StgIac::readXML(
 
 	if (basefound) {
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoSrfWidth", TcoSrfWidth)) add(TCOSRFWIDTH);
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoTblWidth", TcoTblWidth)) add(TCOTBLWIDTH);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoSupWidth", TcoSupWidth)) add(TCOSUPWIDTH);
 	};
 
 	return basefound;
@@ -287,7 +288,7 @@ void PnlWznmMchList::StgIac::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUintAttr(wr, itemtag, "sref", "TcoSrfWidth", TcoSrfWidth);
-		writeUintAttr(wr, itemtag, "sref", "TcoTblWidth", TcoTblWidth);
+		writeUintAttr(wr, itemtag, "sref", "TcoSupWidth", TcoSupWidth);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -297,7 +298,7 @@ set<uint> PnlWznmMchList::StgIac::comm(
 	set<uint> items;
 
 	if (TcoSrfWidth == comp->TcoSrfWidth) insert(items, TCOSRFWIDTH);
-	if (TcoTblWidth == comp->TcoTblWidth) insert(items, TCOTBLWIDTH);
+	if (TcoSupWidth == comp->TcoSupWidth) insert(items, TCOSUPWIDTH);
 
 	return(items);
 };
@@ -310,7 +311,7 @@ set<uint> PnlWznmMchList::StgIac::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TCOSRFWIDTH, TCOTBLWIDTH};
+	diffitems = {TCOSRFWIDTH, TCOSUPWIDTH};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -336,7 +337,7 @@ void PnlWznmMchList::Tag::writeXML(
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			writeStringAttr(wr, itemtag, "sref", "Cpt", "Machines");
 			writeStringAttr(wr, itemtag, "sref", "TcoSrf", "Identifier");
-			writeStringAttr(wr, itemtag, "sref", "TcoTbl", "Machine type");
+			writeStringAttr(wr, itemtag, "sref", "TcoSup", "Base machine");
 		};
 		writeStringAttr(wr, itemtag, "sref", "TxtRecord1", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::REC, ixWznmVLocale)));
 		writeStringAttr(wr, itemtag, "sref", "TxtRecord2", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::EMPLONG, ixWznmVLocale)));
@@ -546,4 +547,6 @@ void PnlWznmMchList::DpchEngData::writeXML(
 		if (has(STGIACQRY)) stgiacqry.writeXML(wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

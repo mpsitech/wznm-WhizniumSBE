@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmJobDetail_evals.cpp
 	* job handler for job PnlWznmJobDetail (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -132,25 +133,13 @@ bool PnlWznmJobDetail::evalTxtReuActive(
 bool PnlWznmJobDetail::evalButReuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// job.reuEq(0)|((pre.ixCrdaccCar()&job.retEq(car)&pre.refVer())|(pre.ixCrdaccDlg()&job.retEq(dlg)&pre.refVer())|(pre.ixCrdaccPnl()&job.retEq(pnl)&pre.refVer())|(pre.ixCrdaccQry()&job.retEq(qry)&pre.refVer())|(pre.ixCrdaccIex()&job.retEq(iex)&pre.refVer()))
+	// job.reuEq(0)|((pre.ixCrdaccDlg()&job.retEq(dlg)&pre.refVer())|(pre.ixCrdaccPnl()&job.retEq(pnl)&pre.refVer())|(pre.ixCrdaccQry()&job.retEq(qry)&pre.refVer())|(pre.ixCrdaccIex()&job.retEq(iex)&pre.refVer())|(pre.ixCrdaccCar()&job.retEq(car)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recJob.refUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref) != 0);
-	args.push_back(a);
-	a = false; a = (recJob.refIxVTbl == VecWznmVMJobRefTbl::CAR);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref) != 0);
 	args.push_back(a);
 	a = false; a = (recJob.refIxVTbl == VecWznmVMJobRefTbl::DLG);
@@ -190,6 +179,18 @@ bool PnlWznmJobDetail::evalButReuViewAvail(
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref) != 0);
 	args.push_back(a);
 	a = false; a = (recJob.refIxVTbl == VecWznmVMJobRefTbl::IEX);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recJob.refIxVTbl == VecWznmVMJobRefTbl::CAR);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -289,4 +290,6 @@ bool PnlWznmJobDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
+
+
 

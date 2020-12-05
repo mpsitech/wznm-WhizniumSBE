@@ -1,27 +1,25 @@
-/**
-  * \file PnlWznmMchRec.js
-  * web client functionality for panel PnlWznmMchRec
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmMchRec", "scrJrefDetail");
+	scrJrefAMakefile = retrieveSi(srcdoc, "StatShrWznmMchRec", "scrJrefAMakefile");
 	scrJrefAPar = retrieveSi(srcdoc, "StatShrWznmMchRec", "scrJrefAPar");
 	scrJref1NRelease = retrieveSi(srcdoc, "StatShrWznmMchRec", "scrJref1NRelease");
+	scrJrefSup1NMachine = retrieveSi(srcdoc, "StatShrWznmMchRec", "scrJrefSup1NMachine");
 };
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmMchRec", "initdoneDetail", "false");
+	setSi(srcdoc, "StatAppWznmMchRec", "initdoneAMakefile", "false");
 	setSi(srcdoc, "StatAppWznmMchRec", "initdoneAPar", "false");
 	setSi(srcdoc, "StatAppWznmMchRec", "initdone1NRelease", "false");
+	setSi(srcdoc, "StatAppWznmMchRec", "initdoneSup1NMachine", "false");
 };
 
 function resetHeights() {
 	heightDetail = 30;
+	heightAMakefile = 30;
 	heightAPar = 30;
 	height1NRelease = 30;
+	heightSup1NMachine = 30;
 };
 
 function getInitdone(pnlshort) {
@@ -40,15 +38,21 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmMchRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmMchRec", "initdoneDetail") == "true");
+	var initdoneAMakefile = (retrieveSi(srcdoc, "StatAppWznmMchRec", "initdoneAMakefile") == "true");
 	var initdoneAPar = (retrieveSi(srcdoc, "StatAppWznmMchRec", "initdoneAPar") == "true");
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmMchRec", "initdone1NRelease") == "true");
+	var initdoneSup1NMachine = (retrieveSi(srcdoc, "StatAppWznmMchRec", "initdoneSup1NMachine") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmMchDetail.html?scrJref=" + scrJrefDetail;
+	} else if (!initdoneAMakefile) {
+		lhsdoc.getElementById("AMakefile").src = "./PnlWznmMchAMakefile.html?scrJref=" + scrJrefAMakefile;
 	} else if (!initdoneAPar) {
 		lhsdoc.getElementById("APar").src = "./PnlWznmMchAPar.html?scrJref=" + scrJrefAPar;
 	} else if (!initdone1NRelease) {
 		rhsdoc.getElementById("1NRelease").src = "./PnlWznmMch1NRelease.html?scrJref=" + scrJref1NRelease;
+	} else if (!initdoneSup1NMachine) {
+		rhsdoc.getElementById("Sup1NMachine").src = "./PnlWznmMchSup1NMachine.html?scrJref=" + scrJrefSup1NMachine;
 
 	} else {
 		refreshB();
@@ -61,7 +65,7 @@ function reinitPnl(scrJrefPnl) {
 function setPnlAvail(short, avail) {
 	var lhsrhsdoc;
 
-	if ((short == "Detail") || (short == "APar")) lhsrhsdoc = lhsdoc;
+	if ((short == "Detail") || (short == "AMakefile") || (short == "APar")) lhsrhsdoc = lhsdoc;
 	else lhsrhsdoc = rhsdoc;
 
 	var oldAvail = (lhsrhsdoc.getElementById("tr" + short).getAttribute("class") == "show");
@@ -88,8 +92,10 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
+		else if (short == "AMakefile") heightAMakefile = height;
 		else if (short == "APar") heightAPar = height;
 		else if (short == "1NRelease") height1NRelease = height;
+		else if (short == "Sup1NMachine") heightSup1NMachine = height;
 	};
 
 	return(avail != oldAvail);
@@ -111,10 +117,10 @@ function minimize() {
 function regularize() {
 	resetHeights();
 
-	getCrdwnd().changeHeight("Rec", 137);
-	doc.getElementById("tdSide").setAttribute("height", "137");
-	doc.getElementById("Rec_side").setAttribute("height", "137");
-	doc.getElementById("Rec_cont").setAttribute("height", "137");
+	getCrdwnd().changeHeight("Rec", 180);
+	doc.getElementById("tdSide").setAttribute("height", "180");
+	doc.getElementById("Rec_side").setAttribute("height", "180");
+	doc.getElementById("Rec_cont").setAttribute("height", "180");
 
 	doc.getElementById("Rec_side").src = "./PnlWznmMchRec_bside.html";
 	doc.getElementById("Rec_cont").src = "./PnlWznmMchRec_b.html";
@@ -123,7 +129,7 @@ function regularize() {
 function changeHeight(pnlshort, height, update) {
 	var lhsrhsdoc;
 
-	if ((pnlshort == "Detail") || (pnlshort == "APar")) lhsrhsdoc = lhsdoc;
+	if ((pnlshort == "Detail") || (pnlshort == "AMakefile") || (pnlshort == "APar")) lhsrhsdoc = lhsdoc;
 	else lhsrhsdoc = rhsdoc;
 
 	lhsrhsdoc.getElementById("td" + pnlshort).setAttribute("height", "" + height);
@@ -133,8 +139,10 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
+	else if (pnlshort == "AMakefile") heightAMakefile = height;
 	else if (pnlshort == "APar") heightAPar = height;
 	else if (pnlshort == "1NRelease") height1NRelease = height;
+	else if (pnlshort == "Sup1NMachine") heightSup1NMachine = height;
 
 	if (update) updateHeight();
 };
@@ -142,8 +150,8 @@ function changeHeight(pnlshort, height, update) {
 function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
-	heightLhs = heightDetail+13 + heightAPar+13 + 5;
-	heightRhs = height1NRelease+13 + 5;
+	heightLhs = heightDetail+13 + heightAMakefile+13 + heightAPar+13 + 5;
+	heightRhs = height1NRelease+13 + heightSup1NMachine+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -334,10 +342,14 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefAMakefile) {
+				if (getInitdone("AMakefile")) lhsdoc.getElementById("AMakefile").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefAPar) {
 				if (getInitdone("APar")) lhsdoc.getElementById("APar").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NRelease) {
 				if (getInitdone("1NRelease")) rhsdoc.getElementById("1NRelease").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefSup1NMachine) {
+				if (getInitdone("Sup1NMachine")) rhsdoc.getElementById("Sup1NMachine").contentWindow.handleDpchEng(dom, dpch);
 			} else {
 				// alert("got a '" + dpch + "' from job with scrJref " + _scrJref);
 			};

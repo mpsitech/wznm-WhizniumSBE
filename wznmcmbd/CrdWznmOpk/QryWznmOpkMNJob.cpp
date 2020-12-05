@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmOpkMNJob.cpp
 	* job handler for job QryWznmOpkMNJob (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -84,7 +85,7 @@ void QryWznmOpkMNJob::rerun(
 	dbswznm->tblwznmqopkmnjob->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMJobMOppack.ref)";
-	sqlstr += " FROM TblWznmRMJobMOppack, TblWznmMJob";
+	sqlstr += " FROM TblWznmMJob, TblWznmRMJobMOppack";
 	sqlstr += " WHERE TblWznmRMJobMOppack.refWznmMJob = TblWznmMJob.ref";
 	sqlstr += " AND TblWznmRMJobMOppack.refWznmMOppack = " + to_string(preRefOpk) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -99,7 +100,7 @@ void QryWznmOpkMNJob::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQOpkMNJob(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMJob.ref, TblWznmRMJobMOppack.ref";
-	sqlstr += " FROM TblWznmRMJobMOppack, TblWznmMJob";
+	sqlstr += " FROM TblWznmMJob, TblWznmRMJobMOppack";
 	sqlstr += " WHERE TblWznmRMJobMOppack.refWznmMJob = TblWznmMJob.ref";
 	sqlstr += " AND TblWznmRMJobMOppack.refWznmMOppack = " + to_string(preRefOpk) + "";
 	sqlstr += " ORDER BY TblWznmMJob.sref ASC";
@@ -273,19 +274,11 @@ void QryWznmOpkMNJob::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOBROPKMOD_OPKEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMJOBROPKMOD_OPKEQ) {
 		call->abort = handleCallWznmJobRopkMod_opkEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmOpkMNJob::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmOpkMNJob::handleCallWznmJobRopkMod_opkEq(
@@ -301,4 +294,14 @@ bool QryWznmOpkMNJob::handleCallWznmJobRopkMod_opkEq(
 
 	return retval;
 };
+
+bool QryWznmOpkMNJob::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
+};
+
+
 

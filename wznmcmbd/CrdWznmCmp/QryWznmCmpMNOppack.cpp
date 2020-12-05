@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmCmpMNOppack.cpp
 	* job handler for job QryWznmCmpMNOppack (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -84,7 +85,7 @@ void QryWznmCmpMNOppack::rerun(
 	dbswznm->tblwznmqcmpmnoppack->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMComponentMOppack.ref)";
-	sqlstr += " FROM TblWznmRMComponentMOppack, TblWznmMOppack";
+	sqlstr += " FROM TblWznmMOppack, TblWznmRMComponentMOppack";
 	sqlstr += " WHERE TblWznmRMComponentMOppack.refWznmMOppack = TblWznmMOppack.ref";
 	sqlstr += " AND TblWznmRMComponentMOppack.refWznmMComponent = " + to_string(preRefCmp) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -99,7 +100,7 @@ void QryWznmCmpMNOppack::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQCmpMNOppack(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMOppack.ref, TblWznmRMComponentMOppack.ref";
-	sqlstr += " FROM TblWznmRMComponentMOppack, TblWznmMOppack";
+	sqlstr += " FROM TblWznmMOppack, TblWznmRMComponentMOppack";
 	sqlstr += " WHERE TblWznmRMComponentMOppack.refWznmMOppack = TblWznmMOppack.ref";
 	sqlstr += " AND TblWznmRMComponentMOppack.refWznmMComponent = " + to_string(preRefCmp) + "";
 	sqlstr += " ORDER BY TblWznmMOppack.sref ASC";
@@ -273,19 +274,11 @@ void QryWznmCmpMNOppack::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCMPROPKMOD_CMPEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCMPROPKMOD_CMPEQ) {
 		call->abort = handleCallWznmCmpRopkMod_cmpEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmCmpMNOppack::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmCmpMNOppack::handleCallWznmCmpRopkMod_cmpEq(
@@ -301,4 +294,14 @@ bool QryWznmCmpMNOppack::handleCallWznmCmpRopkMod_cmpEq(
 
 	return retval;
 };
+
+bool QryWznmCmpMNOppack::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
+};
+
+
 

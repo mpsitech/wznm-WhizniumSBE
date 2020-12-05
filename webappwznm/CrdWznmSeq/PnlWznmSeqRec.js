@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmSeqRec.js
-  * web client functionality for panel PnlWznmSeqRec
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmSeqRec", "scrJrefDetail");
 	scrJrefSeq1NState = retrieveSi(srcdoc, "StatShrWznmSeqRec", "scrJrefSeq1NState");

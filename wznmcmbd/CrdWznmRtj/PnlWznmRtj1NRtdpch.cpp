@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmRtj1NRtdpch.cpp
 	* job handler for job PnlWznmRtj1NRtdpch (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -90,7 +91,11 @@ DpchEngWznm* PnlWznmRtj1NRtdpch::getNewDpchEng(
 void PnlWznmRtj1NRtdpch::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -105,6 +110,8 @@ void PnlWznmRtj1NRtdpch::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmRtj1NRtdpch::updatePreset(
@@ -214,9 +221,9 @@ void PnlWznmRtj1NRtdpch::handleDpchAppDataStgiacqry(
 
 	WznmMRtdpch* _recRtd = NULL;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
+		muteRefresh = true;
+
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWznmRtj1NRtdpch::StgIac::JNUM)) recSelNew = qry->getRecByJnum(_stgiacqry->jnum);
@@ -242,10 +249,8 @@ void PnlWznmRtj1NRtdpch::handleDpchAppDataStgiacqry(
 			qry->refreshJnum();
 		};
 
-		refresh(dbswznm, moditems);
+		refresh(dbswznm, moditems, true);
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -267,9 +272,8 @@ void PnlWznmRtj1NRtdpch::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswznm, false);
-	refresh(dbswznm, moditems);
 
-	muteRefresh = false;
+	refresh(dbswznm, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);
@@ -304,4 +308,6 @@ bool PnlWznmRtj1NRtdpch::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
+
+
 

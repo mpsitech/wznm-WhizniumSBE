@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmMchDetail.js
-  * web client functionality for panel PnlWznmMchDetail
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // IP cust --- INSERT
 
 // --- expand state management
@@ -60,9 +52,9 @@ function initBD(bNotD) {
 
 	// IP initBD --- BEGIN
 	initCpt(contcontdoc, "CptSrf", retrieveTi(srcdoc, "TagWznmMchDetail", "CptSrf"));
-	initCpt(contcontdoc, "CptTbl", retrieveTi(srcdoc, "TagWznmMchDetail", "CptTbl"));
-	initCpt(contcontdoc, "CptCty", retrieveTi(srcdoc, "TagWznmMchDetail", "CptCty"));
-	refreshPup(contcontdoc, srcdoc, "PupCty", "", "FeedFPupCty", retrieveCi(srcdoc, "ContIacWznmMchDetail", "numFPupCty"), retrieveSi(srcdoc, "StatShrWznmMchDetail", "PupCtyActive"), false);
+	initCpt(contcontdoc, "CptSup", retrieveTi(srcdoc, "TagWznmMchDetail", "CptSup"));
+	initCpt(contcontdoc, "CptCch", retrieveTi(srcdoc, "TagWznmMchDetail", "CptCch"));
+	initCpt(contcontdoc, "CptPkm", retrieveTi(srcdoc, "TagWznmMchDetail", "CptPkm"));
 	initCpt(contcontdoc, "CptCmt", retrieveTi(srcdoc, "TagWznmMchDetail", "CptCmt"));
 	// IP initBD --- END
 
@@ -87,16 +79,23 @@ function refreshA() {
 function refreshBD(bNotD) {
 	if (!contcontdoc) return;
 
-	var height = 167; // full cont height
+	var height = 192; // full cont height
 
 	// IP refreshBD.vars --- BEGIN
 	var TxtSrfActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "TxtSrfActive") == "true");
 
-	var TxtTblActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "TxtTblActive") == "true");
-	var ButTblViewAvail = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "ButTblViewAvail") == "true");
-	var ButTblViewActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "ButTblViewActive") == "true");
+	var TxtSupActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "TxtSupActive") == "true");
+	var ButSupViewAvail = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "ButSupViewAvail") == "true");
+	var ButSupViewActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "ButSupViewActive") == "true");
 
-	var PupCtyActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "PupCtyActive") == "true");
+	var TxtCchActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "TxtCchActive") == "true");
+	var ButCchViewAvail = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "ButCchViewAvail") == "true");
+	var ButCchViewActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "ButCchViewActive") == "true");
+
+	var PupPkmAlt = (retrieveSi(srcdoc, "StatAppWznmMchDetail", "PupPkmAlt") == "true");
+	var TxfPkmValid = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "TxfPkmValid") == "true");
+	var PupPkmActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "PupPkmActive") == "true");
+	var ButPkmEditAvail = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "ButPkmEditAvail") == "true");
 
 	var TxfCmtActive = (retrieveSi(srcdoc, "StatShrWznmMchDetail", "TxfCmtActive") == "true");
 
@@ -107,24 +106,63 @@ function refreshBD(bNotD) {
 	// IP refreshBD --- BEGIN
 	refreshTxt(contcontdoc, "TxtSrf", retrieveCi(srcdoc, "ContInfWznmMchDetail", "TxtSrf"));
 
-	if ((ButTblViewAvail == !contcontdoc.getElementById("ButTblView"))) {
-		mytd = contcontdoc.getElementById("rdynTbl");
+	if ((ButSupViewAvail == !contcontdoc.getElementById("ButSupView"))) {
+		mytd = contcontdoc.getElementById("rdynSup");
 		clearElem(mytd);
 
 		first = true;
 
-		if (ButTblViewAvail) {
+		if (ButSupViewAvail) {
 			if (first) first = false;
 			else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
-			mytd.appendChild(makeImgBut(contcontdoc, "ButTblView", "icon/view"));
+			mytd.appendChild(makeImgBut(contcontdoc, "ButSupView", "icon/view"));
 		};
 	};
 
-	refreshTxt(contcontdoc, "TxtTbl", retrieveCi(srcdoc, "ContInfWznmMchDetail", "TxtTbl"));
+	refreshTxt(contcontdoc, "TxtSup", retrieveCi(srcdoc, "ContInfWznmMchDetail", "TxtSup"));
 
-	if (ButTblViewAvail) refreshButicon(contcontdoc, "ButTblView", "icon/view", ButTblViewActive, false);
+	if (ButSupViewAvail) refreshButicon(contcontdoc, "ButSupView", "icon/view", ButSupViewActive, false);
 
-	contcontdoc.getElementById("PupCty").value = retrieveCi(srcdoc, "ContIacWznmMchDetail", "numFPupCty");
+	if ((ButCchViewAvail == !contcontdoc.getElementById("ButCchView"))) {
+		mytd = contcontdoc.getElementById("rdynCch");
+		clearElem(mytd);
+
+		first = true;
+
+		if (ButCchViewAvail) {
+			if (first) first = false;
+			else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
+			mytd.appendChild(makeImgBut(contcontdoc, "ButCchView", "icon/view"));
+		};
+	};
+
+	refreshTxt(contcontdoc, "TxtCch", retrieveCi(srcdoc, "ContInfWznmMchDetail", "TxtCch"));
+
+	if (ButCchViewAvail) refreshButicon(contcontdoc, "ButCchView", "icon/view", ButCchViewActive, false);
+
+	if ( (PupPkmAlt == !contcontdoc.getElementById("TxfPkm")) || (!PupPkmAlt == !contcontdoc.getElementById("PupPkm")) ) {
+		mytd = contcontdoc.getElementById("dynPkm");
+		clearElem(mytd);
+
+		if (PupPkmAlt) mytd.appendChild(makeInputTxf(contcontdoc, "TxfPkm", ""));
+		else mytd.appendChild(makeSelectPup(contcontdoc, "PupPkm", ""));
+	};
+
+	if (PupPkmAlt) refreshTxf(contcontdoc, "TxfPkm", "", retrieveCi(srcdoc, "ContIacWznmMchDetail", "TxfPkm"), PupPkmActive, false, TxfPkmValid);
+	else refreshPup(contcontdoc, srcdoc, "PupPkm", "", "FeedFPupPkm", retrieveCi(srcdoc, "ContIacWznmMchDetail", "numFPupPkm"), true, false);
+
+	if ((ButPkmEditAvail == !contcontdoc.getElementById("ButPkmEdit"))) {
+		mytd = contcontdoc.getElementById("rdynPkm");
+		clearElem(mytd);
+
+		first = true;
+
+		if (ButPkmEditAvail) {
+			if (first) first = false;
+			else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
+			mytd.appendChild(makeImgBut(contcontdoc, "ButPkmEdit", "icon/edit"));
+		};
+	};
 
 	refreshTxft(contcontdoc, "TxfCmt", retrieveCi(srcdoc, "ContIacWznmMchDetail", "TxfCmt"), TxfCmtActive, false, true);
 
@@ -175,6 +213,15 @@ function handleButRegularizeClick() {
 
 // --- generalized event handlers for app controls
 
+function handleButToggleClick(basectlsref) {
+	var alt;
+
+	if (retrieveSi(srcdoc, "StatAppWznmMchDetail", basectlsref + "Alt") == "true") alt = "false"; else alt = "true";
+	setSi(srcdoc, "StatAppWznmMchDetail", basectlsref + "Alt", alt);
+
+	refresh();
+};
+
 // --- generalized event handlers for shared controls
 
 function handleButClick(ctlsref) {
@@ -187,11 +234,44 @@ function handleButCrdopenClick(ctlsref) {
 	sendReq(str, doc, handleDpchAppDoCrdopenReply);
 };
 
+function handleButDlgopenClick(ctlsref) {
+	var str = serializeDpchAppDo(srcdoc, "DpchAppWznmMchDetailDo", scrJref, ctlsref + "Click");
+	sendReq(str, doc, handleDpchAppDoDlgopenReply);
+};
+
 function handlePupChange(_doc, ctlsref, size) {
 	var elem = _doc.getElementById(ctlsref);
 
 	elem.setAttribute("class", "pup" + size + "mod");
 	setCi(srcdoc, "ContIacWznmMchDetail", "numF" + ctlsref, elem.value);
+
+	var str = serializeDpchAppData(srcdoc, "DpchAppWznmMchDetailData", scrJref, "ContIacWznmMchDetail");
+	sendReq(str, doc, handleDpchAppDataDoReply);
+};
+
+function handleTxfKey(_doc, ctlsref, size, evt) {
+	var elem = _doc.getElementById(ctlsref);
+
+	elem.setAttribute("class", "txf" + size + "mod");
+
+	if (evt.keyCode == 13) {
+		setCi(srcdoc, "ContIacWznmMchDetail", ctlsref, elem.value);
+
+		var str = serializeDpchAppData(srcdoc, "DpchAppWznmMchDetailData", scrJref, "ContIacWznmMchDetail");
+		sendReq(str, doc, handleDpchAppDataDoReply);
+
+		return false;
+	};
+
+	return true;
+};
+
+function handleTxfChange(_doc, ctlsref, size) {
+	var elem = _doc.getElementById(ctlsref);
+
+	elem.setAttribute("class", "txf" + size + "mod");
+
+	setCi(srcdoc, "ContIacWznmMchDetail", ctlsref, elem.value);
 
 	var str = serializeDpchAppData(srcdoc, "DpchAppWznmMchDetailData", scrJref, "ContIacWznmMchDetail");
 	sendReq(str, doc, handleDpchAppDataDoReply);
@@ -222,7 +302,7 @@ function mergeDpchEngData(dom) {
 
 	if (updateSrcblock(dom, "DpchEngWznmMchDetailData", "ContIacWznmMchDetail", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmMchDetailData", "ContInfWznmMchDetail", srcdoc)) mask.push("continf");
-	if (updateSrcblock(dom, "DpchEngWznmMchDetailData", "FeedFPupCty", srcdoc)) mask.push("feedFPupCty");
+	if (updateSrcblock(dom, "DpchEngWznmMchDetailData", "FeedFPupPkm", srcdoc)) mask.push("feedFPupPkm");
 	if (updateSrcblock(dom, "DpchEngWznmMchDetailData", "StatAppWznmMchDetail", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmMchDetailData", "StatShrWznmMchDetail", srcdoc)) mask.push("statshr");
 	if (updateSrcblock(dom, "DpchEngWznmMchDetailData", "TagWznmMchDetail", srcdoc)) mask.push("tag");
@@ -298,6 +378,28 @@ function handleDpchAppDoCrdopenReply() {
 				getCrdwnd().showAlr(retrieveValue(dom, "//wznm:DpchEngWznmAlert/wznm:scrJref"),
 						retrieveBlock(dom, "//wznm:DpchEngWznmAlert/wznm:ContInfWznmAlert"),
 						retrieveBlock(dom, "//wznm:DpchEngWznmAlert/wznm:FeedFMcbAlert"));
+			};
+		};
+	};
+};
+
+function handleDpchAppDoDlgopenReply() {
+	var dom, blk;
+
+	var accepted, _scrJref, sref;
+
+	if (doc.req.readyState == 4) {
+		dom = doc.req.responseXML;
+
+		blk = retrieveBlock(dom, "//wznm:*");
+
+		if (blk) {
+			if (blk.nodeName == "DpchEngWznmConfirm") {
+				accepted = retrieveValue(dom, "//wznm:DpchEngWznmConfirm/wznm:accepted");
+				_scrJref = retrieveValue(dom, "//wznm:DpchEngWznmConfirm/wznm:scrJref");
+				sref = retrieveValue(dom, "//wznm:DpchEngWznmConfirm/wznm:sref");
+
+				if ((accepted == "true") && (sref != "")) getCrdwnd().showDlg(sref, _scrJref);
 			};
 		};
 	};

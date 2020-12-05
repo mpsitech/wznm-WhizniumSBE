@@ -1,10 +1,11 @@
 /**
 	* \file WznmQBlkRef1NRtblock.h
 	* API code for table TblWznmQBlkRef1NRtblock (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQBLKREF1NRTBLOCK_H
 #define WZNMQBLKREF1NRTBLOCK_H

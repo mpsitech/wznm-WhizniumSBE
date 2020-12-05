@@ -1,10 +1,11 @@
 /**
   * \file QryWznmAppList.java
   * Java API code for job QryWznmAppList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -18,22 +19,22 @@ public class QryWznmAppList {
 		*/
 	public static class VecVOrd {
 
-		public static final int GRP = 1;
-		public static final int OWN = 2;
+		public static final int VER = 1;
+		public static final int TRG = 2;
 		public static final int TIT = 3;
-		public static final int TRG = 4;
-		public static final int VER = 5;
+		public static final int OWN = 4;
+		public static final int GRP = 5;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("grp")) return GRP;
-			if (s.equals("own")) return OWN;
-			if (s.equals("tit")) return TIT;
-			if (s.equals("trg")) return TRG;
 			if (s.equals("ver")) return VER;
+			if (s.equals("trg")) return TRG;
+			if (s.equals("tit")) return TIT;
+			if (s.equals("own")) return OWN;
+			if (s.equals("grp")) return GRP;
 
 			return 0;
 		};
@@ -41,11 +42,11 @@ public class QryWznmAppList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == GRP) return("grp");
-			if (ix == OWN) return("own");
-			if (ix == TIT) return("tit");
-			if (ix == TRG) return("trg");
 			if (ix == VER) return("ver");
+			if (ix == TRG) return("trg");
+			if (ix == TIT) return("tit");
+			if (ix == OWN) return("own");
+			if (ix == GRP) return("grp");
 
 			return "";
 		};

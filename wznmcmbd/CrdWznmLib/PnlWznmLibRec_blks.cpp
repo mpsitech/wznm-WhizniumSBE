@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmLibRec_blks.cpp
 	* job handler for job PnlWznmLibRec (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -97,8 +98,8 @@ void PnlWznmLibRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdoneAMakefile
 			, const bool initdoneAPkglist
+			, const bool initdoneAMakefile
 			, const bool initdoneRef1NFile
 			, const bool initdoneMNOppack
 			, const bool initdoneMNComponent
@@ -111,8 +112,8 @@ void PnlWznmLibRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneAMakefile", initdoneAMakefile);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneAPkglist", initdoneAPkglist);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneAMakefile", initdoneAMakefile);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NFile", initdoneRef1NFile);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNOppack", initdoneMNOppack);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNComponent", initdoneMNComponent);
@@ -126,8 +127,8 @@ void PnlWznmLibRec::StatApp::writeXML(
 PnlWznmLibRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jrefAMakefile
 			, const ubigint jrefAPkglist
+			, const ubigint jrefAMakefile
 			, const ubigint jrefRef1NFile
 			, const ubigint jrefMNOppack
 			, const ubigint jrefMNComponent
@@ -137,14 +138,14 @@ PnlWznmLibRec::StatShr::StatShr(
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
-	this->jrefAMakefile = jrefAMakefile;
 	this->jrefAPkglist = jrefAPkglist;
+	this->jrefAMakefile = jrefAMakefile;
 	this->jrefRef1NFile = jrefRef1NFile;
 	this->jrefMNOppack = jrefMNOppack;
 	this->jrefMNComponent = jrefMNComponent;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAMAKEFILE, JREFAPKGLIST, JREFREF1NFILE, JREFMNOPPACK, JREFMNCOMPONENT, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAPKGLIST, JREFAMAKEFILE, JREFREF1NFILE, JREFMNOPPACK, JREFMNCOMPONENT, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmLibRec::StatShr::writeXML(
@@ -161,8 +162,8 @@ void PnlWznmLibRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefAMakefile", Scr::scramble(jrefAMakefile));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefAPkglist", Scr::scramble(jrefAPkglist));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefAMakefile", Scr::scramble(jrefAMakefile));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NFile", Scr::scramble(jrefRef1NFile));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNOppack", Scr::scramble(jrefMNOppack));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNComponent", Scr::scramble(jrefMNComponent));
@@ -177,8 +178,8 @@ set<uint> PnlWznmLibRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jrefAMakefile == comp->jrefAMakefile) insert(items, JREFAMAKEFILE);
 	if (jrefAPkglist == comp->jrefAPkglist) insert(items, JREFAPKGLIST);
+	if (jrefAMakefile == comp->jrefAMakefile) insert(items, JREFAMAKEFILE);
 	if (jrefRef1NFile == comp->jrefRef1NFile) insert(items, JREFREF1NFILE);
 	if (jrefMNOppack == comp->jrefMNOppack) insert(items, JREFMNOPPACK);
 	if (jrefMNComponent == comp->jrefMNComponent) insert(items, JREFMNCOMPONENT);
@@ -195,7 +196,7 @@ set<uint> PnlWznmLibRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAMAKEFILE, JREFAPKGLIST, JREFREF1NFILE, JREFMNOPPACK, JREFMNCOMPONENT, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAPKGLIST, JREFAMAKEFILE, JREFREF1NFILE, JREFMNOPPACK, JREFMNCOMPONENT, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -335,4 +336,6 @@ void PnlWznmLibRec::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

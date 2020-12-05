@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmRlsList.js
-  * web client functionality for panel PnlWznmRlsList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights
@@ -133,11 +125,11 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(1); wtot += TcoSrfWidth;
+				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(3); wtot += TcoSrfWidth;
 			} else if (i == 2) {
 				doc.cols.push("TcoCmp"); doc.widths.push(TcoCmpWidth); doc.fs.push("cmp"); doc.tos.push(2); wtot += TcoCmpWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoMch"); doc.widths.push(TcoMchWidth); doc.fs.push("mch"); doc.tos.push(3); wtot += TcoMchWidth;
+				doc.cols.push("TcoMch"); doc.widths.push(TcoMchWidth); doc.fs.push("mch"); doc.tos.push(1); wtot += TcoMchWidth;
 			} else {
 				ix--;
 			};

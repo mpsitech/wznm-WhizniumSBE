@@ -1,10 +1,11 @@
 /**
   * \file CrdWznmMch.java
   * Java API code for job CrdWznmMch
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -20,6 +21,7 @@ public class CrdWznmMch {
 
 		public static final int CLOSE = 1;
 		public static final int MITAPPABTCLICK = 2;
+		public static final int MITCRDWISCLICK = 3;
 
 		public static int getIx(
 					String sref
@@ -28,6 +30,7 @@ public class CrdWznmMch {
 
 			if (s.equals("close")) return CLOSE;
 			if (s.equals("mitappabtclick")) return MITAPPABTCLICK;
+			if (s.equals("mitcrdwisclick")) return MITCRDWISCLICK;
 
 			return 0;
 		};
@@ -37,6 +40,7 @@ public class CrdWznmMch {
 				) {
 			if (ix == CLOSE) return("close");
 			if (ix == MITAPPABTCLICK) return("MitAppAbtClick");
+			if (ix == MITCRDWISCLICK) return("MitCrdWisClick");
 
 			return "";
 		};
@@ -256,25 +260,37 @@ public class CrdWznmMch {
 	  */
 	public class StatShr extends Block {
 
-		public static final int SCRJREFHEADBAR = 1;
-		public static final int SCRJREFLIST = 2;
-		public static final int SCRJREFREC = 3;
+		public static final int SCRJREFDLGWRINISCR = 1;
+		public static final int SCRJREFHEADBAR = 2;
+		public static final int SCRJREFLIST = 3;
+		public static final int SCRJREFREC = 4;
+		public static final int MITCRDWISAVAIL = 5;
+		public static final int MITCRDWISACTIVE = 6;
 
 		public StatShr(
-					String scrJrefHeadbar
+					String scrJrefDlgwriniscr
+					, String scrJrefHeadbar
 					, String scrJrefList
 					, String scrJrefRec
+					, boolean MitCrdWisAvail
+					, boolean MitCrdWisActive
 				) {
+			this.scrJrefDlgwriniscr = scrJrefDlgwriniscr;
 			this.scrJrefHeadbar = scrJrefHeadbar;
 			this.scrJrefList = scrJrefList;
 			this.scrJrefRec = scrJrefRec;
+			this.MitCrdWisAvail = MitCrdWisAvail;
+			this.MitCrdWisActive = MitCrdWisActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC));
+			mask = new HashSet<Integer>(Arrays.asList(SCRJREFDLGWRINISCR, SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC, MITCRDWISAVAIL, MITCRDWISACTIVE));
 		};
 
+		public String scrJrefDlgwriniscr;
 		public String scrJrefHeadbar;
 		public String scrJrefList;
 		public String scrJrefRec;
+		public boolean MitCrdWisAvail;
+		public boolean MitCrdWisActive;
 
 		public boolean readXML(
 					Document doc
@@ -289,9 +305,12 @@ public class CrdWznmMch {
 			String itemtag = "StatitemShrWznmMch";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
+				scrJrefDlgwriniscr = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDlgwriniscr", mask, SCRJREFDLGWRINISCR);
 				scrJrefHeadbar = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefHeadbar", mask, SCRJREFHEADBAR);
 				scrJrefList = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefList", mask, SCRJREFLIST);
 				scrJrefRec = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRec", mask, SCRJREFREC);
+				MitCrdWisAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "MitCrdWisAvail", mask, MITCRDWISAVAIL);
+				MitCrdWisActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "MitCrdWisActive", mask, MITCRDWISACTIVE);
 
 				return true;
 			};
@@ -304,9 +323,12 @@ public class CrdWznmMch {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
+			if (scrJrefDlgwriniscr.equals(comp.scrJrefDlgwriniscr)) items.add(SCRJREFDLGWRINISCR);
 			if (scrJrefHeadbar.equals(comp.scrJrefHeadbar)) items.add(SCRJREFHEADBAR);
 			if (scrJrefList.equals(comp.scrJrefList)) items.add(SCRJREFLIST);
 			if (scrJrefRec.equals(comp.scrJrefRec)) items.add(SCRJREFREC);
+			if (MitCrdWisAvail == comp.MitCrdWisAvail) items.add(MITCRDWISAVAIL);
+			if (MitCrdWisActive == comp.MitCrdWisActive) items.add(MITCRDWISACTIVE);
 
 			return(items);
 		};
@@ -319,7 +341,7 @@ public class CrdWznmMch {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC));
+			diffitems = new HashSet<Integer>(Arrays.asList(SCRJREFDLGWRINISCR, SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC, MITCRDWISAVAIL, MITCRDWISACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -334,19 +356,23 @@ public class CrdWznmMch {
 
 		public static final int MITAPPABT = 1;
 		public static final int MRLAPPHLP = 2;
+		public static final int MITCRDWIS = 3;
 
 		public Tag(
 					String MitAppAbt
 					, String MrlAppHlp
+					, String MitCrdWis
 				) {
 			this.MitAppAbt = MitAppAbt;
 			this.MrlAppHlp = MrlAppHlp;
+			this.MitCrdWis = MitCrdWis;
 
-			mask = new HashSet<Integer>(Arrays.asList(MITAPPABT, MRLAPPHLP));
+			mask = new HashSet<Integer>(Arrays.asList(MITAPPABT, MRLAPPHLP, MITCRDWIS));
 		};
 
 		public String MitAppAbt;
 		public String MrlAppHlp;
+		public String MitCrdWis;
 
 		public boolean readXML(
 					Document doc
@@ -363,6 +389,7 @@ public class CrdWznmMch {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				MitAppAbt = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MitAppAbt", mask, MITAPPABT);
 				MrlAppHlp = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MrlAppHlp", mask, MRLAPPHLP);
+				MitCrdWis = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MitCrdWis", mask, MITCRDWIS);
 
 				return true;
 			};
@@ -377,6 +404,7 @@ public class CrdWznmMch {
 
 			if (MitAppAbt.equals(comp.MitAppAbt)) items.add(MITAPPABT);
 			if (MrlAppHlp.equals(comp.MrlAppHlp)) items.add(MRLAPPHLP);
+			if (MitCrdWis.equals(comp.MitCrdWis)) items.add(MITCRDWIS);
 
 			return(items);
 		};
@@ -389,7 +417,7 @@ public class CrdWznmMch {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(MITAPPABT, MRLAPPHLP));
+			diffitems = new HashSet<Integer>(Arrays.asList(MITAPPABT, MRLAPPHLP, MITCRDWIS));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -470,8 +498,8 @@ public class CrdWznmMch {
 			continf = new ContInf(0, "", "");
 			feedFSge = new Feed("FeedFSge");
 			statapp = new StatApp(0, 0, "", 0, false, false, false);
-			statshr = new StatShr("", "", "");
-			tag = new Tag("", "");
+			statshr = new StatShr("", "", "", "", false, false);
+			tag = new Tag("", "", "");
 		};
 
 		public ContInf continf;
@@ -515,8 +543,8 @@ public class CrdWznmMch {
 				continf = new ContInf(0, "", "");
 				feedFSge = new Feed("FeedFSge");
 				statapp = new StatApp(0, 0, "", 0, false, false, false);
-				statshr = new StatShr("", "", "");
-				tag = new Tag("", "");
+				statshr = new StatShr("", "", "", "", false, false);
+				tag = new Tag("", "", "");
 			};
 		};
 

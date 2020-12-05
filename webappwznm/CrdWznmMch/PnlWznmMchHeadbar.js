@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmMchHeadbar.js
-  * web client functionality for panel PnlWznmMchHeadbar
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- view initialization
 function getMenAvail(short) {
 	return(retrieveSi(srcdoc, "StatShrWznmMchHeadbar", "Men" + short + "Avail") == "true");
@@ -57,7 +49,7 @@ function handleMenAppClick() {
 };
 
 function handleMenCrdClick() {
-	getCrdwnd().toggleMenu("Crd", getMenLeft("Crd"), parseInt(retrieveSi(srcdoc, "StgInfWznmMchHeadbar", "MenCrdWidth")), 22);
+	getCrdwnd().toggleMenu("Crd", getMenLeft("Crd"), parseInt(retrieveSi(srcdoc, "StgInfWznmMchHeadbar", "MenCrdWidth")), 42);
 };
 
 // --- server interaction

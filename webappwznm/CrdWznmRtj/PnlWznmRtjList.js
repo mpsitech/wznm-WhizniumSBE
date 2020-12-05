@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmRtjList.js
-  * web client functionality for panel PnlWznmRtjList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights
@@ -134,13 +126,13 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(1); wtot += TcoSrfWidth;
+				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(4); wtot += TcoSrfWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoApp"); doc.widths.push(TcoAppWidth); doc.fs.push("app"); doc.tos.push(2); wtot += TcoAppWidth;
+				doc.cols.push("TcoApp"); doc.widths.push(TcoAppWidth); doc.fs.push("app"); doc.tos.push(3); wtot += TcoAppWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoSup"); doc.widths.push(TcoSupWidth); doc.fs.push("sup"); doc.tos.push(3); wtot += TcoSupWidth;
+				doc.cols.push("TcoSup"); doc.widths.push(TcoSupWidth); doc.fs.push("sup"); doc.tos.push(2); wtot += TcoSupWidth;
 			} else if (i == 4) {
-				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(4); wtot += TcoJobWidth;
+				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(1); wtot += TcoJobWidth;
 			} else {
 				ix--;
 			};

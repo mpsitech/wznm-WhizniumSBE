@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmPrsList.h
 	* job handler for job QryWznmPrsList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMPRSLIST_H
 #define QRYWZNMPRSLIST_H
@@ -31,8 +32,8 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint OWN = 1;
-		static const Sbecore::uint LNM = 2;
+		static const Sbecore::uint LNM = 1;
+		static const Sbecore::uint OWN = 2;
 		static const Sbecore::uint GRP = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -143,11 +144,13 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmPrsMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPrsUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmPrsMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };
 
 #endif
+
+
 

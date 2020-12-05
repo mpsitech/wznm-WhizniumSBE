@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmIni.h
 	* data blocks and readers/writers for import/export complex IexWznmIni (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef IEXWZNMINI_H
 #define IEXWZNMINI_H
@@ -85,9 +86,9 @@
 #define ImeIWznmIniMLocale IexWznmIni::ImeIMLocale
 #define VecWImeIWznmIniMLocaleIel IexWznmIni::ImeIMLocale::VecWIel
 
-#define ImeitemIWznmIniAMMachtypeMakefile IexWznmIni::ImeitemIAMMachtypeMakefile
-#define ImeIWznmIniAMMachtypeMakefile IexWznmIni::ImeIAMMachtypeMakefile
-#define VecWImeIWznmIniAMMachtypeMakefileIel IexWznmIni::ImeIAMMachtypeMakefile::VecWIel
+#define ImeitemIWznmIniAMMachineMakefile IexWznmIni::ImeitemIAMMachineMakefile
+#define ImeIWznmIniAMMachineMakefile IexWznmIni::ImeIAMMachineMakefile
+#define VecWImeIWznmIniAMMachineMakefileIel IexWznmIni::ImeIAMMachineMakefile::VecWIel
 
 #define ImeitemIWznmIniAMMachinePar IexWznmIni::ImeitemIAMMachinePar
 #define ImeIWznmIniAMMachinePar IexWznmIni::ImeIAMMachinePar
@@ -96,10 +97,6 @@
 #define ImeitemIWznmIniMMachine IexWznmIni::ImeitemIMMachine
 #define ImeIWznmIniMMachine IexWznmIni::ImeIMMachine
 #define VecWImeIWznmIniMMachineIel IexWznmIni::ImeIMMachine::VecWIel
-
-#define ImeitemIWznmIniMMachtype IexWznmIni::ImeitemIMMachtype
-#define ImeIWznmIniMMachtype IexWznmIni::ImeIMMachtype
-#define VecWImeIWznmIniMMachtypeIel IexWznmIni::ImeIMMachtype::VecWIel
 
 #define ImeitemIWznmIniJMTagTitle1 IexWznmIni::ImeitemIJMTagTitle1
 #define ImeIWznmIniJMTagTitle1 IexWznmIni::ImeIJMTagTitle1
@@ -150,8 +147,8 @@ namespace IexWznmIni {
 		static const Sbecore::uint IMEIAMCAPABILITYPAR = 1;
 		static const Sbecore::uint IMEIAMLIBRARYMAKEFILE = 2;
 		static const Sbecore::uint IMEIAMLIBRARYPKGLIST = 3;
-		static const Sbecore::uint IMEIAMMACHINEPAR = 4;
-		static const Sbecore::uint IMEIAMMACHTYPEMAKEFILE = 5;
+		static const Sbecore::uint IMEIAMMACHINEMAKEFILE = 4;
+		static const Sbecore::uint IMEIAMMACHINEPAR = 5;
 		static const Sbecore::uint IMEIAMUSERACCESS = 6;
 		static const Sbecore::uint IMEIAMUSERGROUPACCESS = 7;
 		static const Sbecore::uint IMEIAVCONTROLPAR = 8;
@@ -170,13 +167,12 @@ namespace IexWznmIni {
 		static const Sbecore::uint IMEIMLIBRARY = 21;
 		static const Sbecore::uint IMEIMLOCALE = 22;
 		static const Sbecore::uint IMEIMMACHINE = 23;
-		static const Sbecore::uint IMEIMMACHTYPE = 24;
-		static const Sbecore::uint IMEIMPERSON = 25;
-		static const Sbecore::uint IMEIMTAG1 = 26;
-		static const Sbecore::uint IMEIMTAG2 = 27;
-		static const Sbecore::uint IMEIMUSER = 28;
-		static const Sbecore::uint IMEIMUSERGROUP = 29;
-		static const Sbecore::uint IMEIRMCAPABILITYUNIVERSAL = 30;
+		static const Sbecore::uint IMEIMPERSON = 24;
+		static const Sbecore::uint IMEIMTAG1 = 25;
+		static const Sbecore::uint IMEIMTAG2 = 26;
+		static const Sbecore::uint IMEIMUSER = 27;
+		static const Sbecore::uint IMEIMUSERGROUP = 28;
+		static const Sbecore::uint IMEIRMCAPABILITYUNIVERSAL = 29;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -801,7 +797,7 @@ namespace IexWznmIni {
 	class ImeitemIMCapability : public WznmMCapability {
 
 	public:
-		ImeitemIMCapability(const std::string& sref = "", const std::string& Title = "", const Sbecore::uint ixWArtefact = 0);
+		ImeitemIMCapability(const std::string& sref = "", const Sbecore::uint ixWArtefact = 0, const std::string& Title = "");
 		ImeitemIMCapability(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
@@ -836,8 +832,8 @@ namespace IexWznmIni {
 
 		public:
 			static const Sbecore::uint SREF = 1;
-			static const Sbecore::uint TITLE = 2;
-			static const Sbecore::uint SREFSIXWARTEFACT = 4;
+			static const Sbecore::uint SREFSIXWARTEFACT = 2;
+			static const Sbecore::uint TITLE = 4;
 
 			static Sbecore::uint getIx(const std::string& srefs);
 			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
@@ -927,15 +923,14 @@ namespace IexWznmIni {
 	class ImeitemIAMLibraryMakefile : public WznmAMLibraryMakefile {
 
 	public:
-		ImeitemIAMLibraryMakefile(const Sbecore::uint x1RefIxVTbl = 0, const std::string& srefX1RefUref = "", const std::string& x2SrefKTag = "", const std::string& Val = "");
+		ImeitemIAMLibraryMakefile(const std::string& hsrefX1RefWznmMMachine = "", const std::string& x2SrefKTag = "", const std::string& Val = "");
 		ImeitemIAMLibraryMakefile(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
 		Sbecore::uint lineno;
 		Sbecore::uint ixWIelValid;
 
-		std::string srefX1RefIxVTbl;
-		std::string srefX1RefUref;
+		std::string hsrefX1RefWznmMMachine;
 
 	public:
 		void readTxt(Sbecore::Txtrd& txtrd);
@@ -957,10 +952,9 @@ namespace IexWznmIni {
 		class VecWIel {
 
 		public:
-			static const Sbecore::uint SREFX1REFIXVTBL = 1;
-			static const Sbecore::uint SREFX1REFUREF = 2;
-			static const Sbecore::uint X2SREFKTAG = 4;
-			static const Sbecore::uint VAL = 8;
+			static const Sbecore::uint HSREFX1REFWZNMMMACHINE = 1;
+			static const Sbecore::uint X2SREFKTAG = 2;
+			static const Sbecore::uint VAL = 4;
 
 			static Sbecore::uint getIx(const std::string& srefs);
 			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
@@ -990,15 +984,14 @@ namespace IexWznmIni {
 	class ImeitemIAMLibraryPkglist : public WznmAMLibraryPkglist {
 
 	public:
-		ImeitemIAMLibraryPkglist(const Sbecore::uint x1RefIxVTbl = 0, const std::string& srefX1RefUref = "", const std::string& Pkglist = "");
+		ImeitemIAMLibraryPkglist(const std::string& hsrefX1RefWznmMMachine = "", const std::string& Pkglist = "");
 		ImeitemIAMLibraryPkglist(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
 		Sbecore::uint lineno;
 		Sbecore::uint ixWIelValid;
 
-		std::string srefX1RefIxVTbl;
-		std::string srefX1RefUref;
+		std::string hsrefX1RefWznmMMachine;
 
 	public:
 		void readTxt(Sbecore::Txtrd& txtrd);
@@ -1020,9 +1013,8 @@ namespace IexWznmIni {
 		class VecWIel {
 
 		public:
-			static const Sbecore::uint SREFX1REFIXVTBL = 1;
-			static const Sbecore::uint SREFX1REFUREF = 2;
-			static const Sbecore::uint PKGLIST = 4;
+			static const Sbecore::uint HSREFX1REFWZNMMMACHINE = 1;
+			static const Sbecore::uint PKGLIST = 2;
 
 			static Sbecore::uint getIx(const std::string& srefs);
 			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
@@ -1232,13 +1224,13 @@ namespace IexWznmIni {
 	};
 
 	/**
-		* ImeitemIAMMachtypeMakefile (full: ImeitemIWznmIniAMMachtypeMakefile)
+		* ImeitemIAMMachineMakefile (full: ImeitemIWznmIniAMMachineMakefile)
 		*/
-	class ImeitemIAMMachtypeMakefile : public WznmAMMachtypeMakefile {
+	class ImeitemIAMMachineMakefile : public WznmAMMachineMakefile {
 
 	public:
-		ImeitemIAMMachtypeMakefile(const std::string& x1SrefKTag = "", const std::string& Val = "");
-		ImeitemIAMMachtypeMakefile(DbsWznm* dbswznm, const Sbecore::ubigint ref);
+		ImeitemIAMMachineMakefile(const std::string& x1SrefKTag = "", const std::string& Val = "");
+		ImeitemIAMMachineMakefile(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
 		Sbecore::uint lineno;
@@ -1253,13 +1245,13 @@ namespace IexWznmIni {
 	};
 
 	/**
-		* ImeIAMMachtypeMakefile (full: ImeIWznmIniAMMachtypeMakefile)
+		* ImeIAMMachineMakefile (full: ImeIWznmIniAMMachineMakefile)
 		*/
-	class ImeIAMMachtypeMakefile {
+	class ImeIAMMachineMakefile {
 
 	public:
 		/**
-			* VecWIel (full: VecWImeIWznmIniAMMachtypeMakefileIel)
+			* VecWIel (full: VecWImeIWznmIniAMMachineMakefileIel)
 			*/
 		class VecWIel {
 
@@ -1273,11 +1265,11 @@ namespace IexWznmIni {
 		};
 
 	public:
-		ImeIAMMachtypeMakefile();
-		~ImeIAMMachtypeMakefile();
+		ImeIAMMachineMakefile();
+		~ImeIAMMachineMakefile();
 
 	public:
-		std::vector<ImeitemIAMMachtypeMakefile*> nodes;
+		std::vector<ImeitemIAMMachineMakefile*> nodes;
 
 	public:
 		void clear();
@@ -1353,15 +1345,17 @@ namespace IexWznmIni {
 	class ImeitemIMMachine : public WznmMMachine {
 
 	public:
-		ImeitemIMMachine(const std::string& sref = "", const Sbecore::uint ixWznmWCloudtype = 0, const std::string& Comment = "");
+		ImeitemIMMachine(const std::string& hsrefSupRefWznmMMachine = "", const std::string& sref = "", const std::string& hsrefCchRefWznmMMachine = "", const std::string& srefKPkgmgr = "", const std::string& Comment = "");
 		ImeitemIMMachine(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
 		Sbecore::uint lineno;
 		Sbecore::uint ixWIelValid;
 
-		std::string srefIxWznmWCloudtype;
+		std::string hsrefSupRefWznmMMachine;
+		std::string hsrefCchRefWznmMMachine;
 
+		ImeIAMMachineMakefile imeiammachinemakefile;
 		ImeIAMMachinePar imeiammachinepar;
 
 	public:
@@ -1384,9 +1378,11 @@ namespace IexWznmIni {
 		class VecWIel {
 
 		public:
-			static const Sbecore::uint SREF = 1;
-			static const Sbecore::uint SREFIXWZNMWCLOUDTYPE = 2;
-			static const Sbecore::uint COMMENT = 4;
+			static const Sbecore::uint HSREFSUPREFWZNMMMACHINE = 1;
+			static const Sbecore::uint SREF = 2;
+			static const Sbecore::uint HSREFCCHREFWZNMMMACHINE = 4;
+			static const Sbecore::uint SREFKPKGMGR = 8;
+			static const Sbecore::uint COMMENT = 16;
 
 			static Sbecore::uint getIx(const std::string& srefs);
 			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
@@ -1399,74 +1395,6 @@ namespace IexWznmIni {
 
 	public:
 		std::vector<ImeitemIMMachine*> nodes;
-
-	public:
-		void clear();
-
-		void readTxt(Sbecore::Txtrd& txtrd);
-		void readXML(xmlXPathContext* docctx, std::string basexpath);
-
-		void writeTxt(std::fstream& outfile);
-		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
-	};
-
-	/**
-		* ImeitemIMMachtype (full: ImeitemIWznmIniMMachtype)
-		*/
-	class ImeitemIMMachtype : public WznmMMachtype {
-
-	public:
-		ImeitemIMMachtype(const std::string& sref = "", const Sbecore::uint ixVArch = 0, const std::string& srefKOs = "", const std::string& srefCchRefWznmMMachine = "", const std::string& srefKPkgmgr = "", const std::string& Comment = "");
-		ImeitemIMMachtype(DbsWznm* dbswznm, const Sbecore::ubigint ref);
-
-	public:
-		Sbecore::uint lineno;
-		Sbecore::uint ixWIelValid;
-
-		std::string srefIxVArch;
-		std::string srefCchRefWznmMMachine;
-
-		ImeIAMMachtypeMakefile imeiammachtypemakefile;
-		ImeIMMachine imeimmachine;
-
-	public:
-		void readTxt(Sbecore::Txtrd& txtrd);
-		void readXML(xmlXPathContext* docctx, const std::string& basexpath);
-
-		void writeTxt(std::fstream& outfile);
-		void writeXML(xmlTextWriter* wr, const Sbecore::uint num, const bool shorttags = true);
-	};
-
-	/**
-		* ImeIMMachtype (full: ImeIWznmIniMMachtype)
-		*/
-	class ImeIMMachtype {
-
-	public:
-		/**
-			* VecWIel (full: VecWImeIWznmIniMMachtypeIel)
-			*/
-		class VecWIel {
-
-		public:
-			static const Sbecore::uint SREF = 1;
-			static const Sbecore::uint SREFIXVARCH = 2;
-			static const Sbecore::uint SREFKOS = 4;
-			static const Sbecore::uint SREFCCHREFWZNMMMACHINE = 8;
-			static const Sbecore::uint SREFKPKGMGR = 16;
-			static const Sbecore::uint COMMENT = 32;
-
-			static Sbecore::uint getIx(const std::string& srefs);
-			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
-			static std::string getSrefs(const Sbecore::uint ix);
-		};
-
-	public:
-		ImeIMMachtype();
-		~ImeIMMachtype();
-
-	public:
-		std::vector<ImeitemIMMachtype*> nodes;
 
 	public:
 		void clear();
@@ -2035,18 +1963,20 @@ namespace IexWznmIni {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachtype& imeimmachtype, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
-	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachtype& imeimmachtype, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachine& imeimmachine, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
+	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachine& imeimmachine, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
 
-	void readTxt(Sbecore::Txtrd& txtrd, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachtype& imeimmachtype, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
-	void readXML(xmlXPathContext* docctx, std::string basexpath, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachtype& imeimmachtype, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
+	void readTxt(Sbecore::Txtrd& txtrd, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachine& imeimmachine, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
+	void readXML(xmlXPathContext* docctx, std::string basexpath, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachine& imeimmachine, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
 
-	void writeTxt(std::fstream& outfile, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachtype& imeimmachtype, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
-	void writeXML(xmlTextWriter* wr, const bool shorttags, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachtype& imeimmachtype, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
+	void writeTxt(std::fstream& outfile, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachine& imeimmachine, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
+	void writeXML(xmlTextWriter* wr, const bool shorttags, ImeIAVControlPar& imeiavcontrolpar, ImeIAVKeylistKey1& imeiavkeylistkey1, ImeIAVValuelistVal& imeiavvaluelistval, ImeIMCapability& imeimcapability, ImeIMFile& imeimfile, ImeIMLibrary& imeimlibrary, ImeIMLocale& imeimlocale, ImeIMMachine& imeimmachine, ImeIMTag1& imeimtag1, ImeIMUsergroup& imeimusergroup);
 
 	std::map<Sbecore::uint,Sbecore::uint> icsWznmVIopInsAll();
 	Sbecore::uint getIxWznmVIop(const std::map<Sbecore::uint,Sbecore::uint>& icsWznmVIop, const Sbecore::uint ixVIme, Sbecore::uint& ixWznmVIop);
 };
 
 #endif
+
+
 

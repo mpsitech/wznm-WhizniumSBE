@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmTagList.h
 	* job handler for job QryWznmTagList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMTAGLIST_H
 #define QRYWZNMTAGLIST_H
@@ -31,8 +32,8 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint GRP = 1;
-		static const Sbecore::uint CPB = 2;
+		static const Sbecore::uint CPB = 1;
+		static const Sbecore::uint GRP = 2;
 		static const Sbecore::uint SRF = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -150,4 +151,6 @@ private:
 };
 
 #endif
+
+
 

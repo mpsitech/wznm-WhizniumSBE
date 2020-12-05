@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrsrv.cpp
 	* Wznm operation pack global code (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -3841,5 +3842,6 @@ bool WznmWrsrv::isStatic(
 	return((blk->sref.substr(0, 4+3) == "StatApp") || (blk->sref.substr(0, 3+3) == "StgInf") || (blk->ixVBasetype == VecWznmVMBlockBasetype::TAG));
 };
 // IP cust --- IEND
+
 
 

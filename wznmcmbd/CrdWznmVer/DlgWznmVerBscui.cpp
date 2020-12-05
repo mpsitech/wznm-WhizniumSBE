@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerBscui.cpp
 	* job handler for job DlgWznmVerBscui (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -144,8 +145,8 @@ void DlgWznmVerBscui::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrLfi oldStatshrlfi(statshrlfi);
 	ContInfLfi oldContinflfi(continflfi);
+	StatShrLfi oldStatshrlfi(statshrlfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -155,37 +156,43 @@ void DlgWznmVerBscui::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
+	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 };
 
 void DlgWznmVerBscui::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshIfi(dbswznm, moditems);
 	refreshImp(dbswznm, moditems);
 	refreshPpr(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);
+
+	muteRefresh = false;
 };
 
 void DlgWznmVerBscui::handleRequest(
@@ -437,7 +444,7 @@ void DlgWznmVerBscui::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -530,6 +537,8 @@ uint DlgWznmVerBscui::enterSgeParse(
 	// IP enterSgeParse --- IBEGIN
 	ifstream ififile;
 
+	string rectfile;
+
 	char* buf;
 	string s;
 
@@ -542,15 +551,19 @@ uint DlgWznmVerBscui::enterSgeParse(
 	ififile.get(buf, 16);
 	s = string(buf);
 
-	ifitxt = (s.find("- ") == 0);
+	ifitxt = (s.find("IexWznmBui") == 0);
 	ifixml = (s.find("<?xml") == 0);		
 
 	delete[] buf;
 	ififile.close();
 
 	// parse file accordingly
-	if (ifitxt) iex->parseFromFile(dbswznm, infilename, false);
-	else if (ifixml) iex->parseFromFile(dbswznm, infilename, true);
+	if (ifitxt) {
+		rectfile = Tmp::newfile(xchg->tmppath, "txt");
+		iex->parseFromFile(dbswznm, infilename, false, xchg->tmppath + "/" + rectfile);
+		infilename = xchg->tmppath + "/" + rectfile;
+
+	} else if (ifixml) iex->parseFromFile(dbswznm, infilename, true, "");
 
 	if (iex->ixVSge != JobWznmIexBui::VecVSge::PRSDONE) {
 		if (reqCmd) {
@@ -713,8 +726,7 @@ uint DlgWznmVerBscui::enterSgeImpdone(
 
 	refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
 
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(refWznmMVersion), Prjshort);
-	Prjshort = StrMod::cap(Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, refWznmMVersion);
 
 	if (ifitxt) {
 		Filename = "IexWznmBui_" + StrMod::lc(Prjshort) + ".txt";
@@ -751,9 +763,7 @@ uint DlgWznmVerBscui::enterSgePostprc(
 
 	ubigint refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
 
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = "
-				+ to_string(refWznmMVersion), Prjshort);
-	Prjshort = StrMod::cap(Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, refWznmMVersion);
 
 	addInv(new DpchInvWznmComplBscui(0, 0, refWznmMVersion, Prjshort));
 	// IP enterSgePostprc --- IEND
@@ -788,5 +798,6 @@ void DlgWznmVerBscui::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

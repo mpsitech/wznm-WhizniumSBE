@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmSgeRec.cpp
 	* job handler for job PnlWznmSgeRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -37,9 +38,9 @@ PnlWznmSgeRec::PnlWznmSgeRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
-	pnl1nsensitivity = NULL;
 	pnlsqkmnstub = NULL;
+	pnl1nsensitivity = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -83,7 +84,11 @@ DpchEngWznm* PnlWznmSgeRec::getNewDpchEng(
 void PnlWznmSgeRec::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -115,6 +120,7 @@ void PnlWznmSgeRec::refresh(
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWznmSgeRec::updatePreset(
@@ -329,4 +335,6 @@ bool PnlWznmSgeRec::handleCallWznmSge_fnxEq(
 	boolvalRet = (recSge.fnxRefWznmMStage == refInv); // IP handleCallWznmSge_fnxEq --- LINE
 	return retval;
 };
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmIexRec.h
 	* job handler for job PnlWznmIexRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMIEXREC_H
 #define PNLWZNMIEXREC_H
@@ -13,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmIexDetail.h"
-#include "PnlWznmIex1NImpexp.h"
 #include "PnlWznmIexRef1NDialog.h"
 #include "PnlWznmIexHk1NVector.h"
+#include "PnlWznmIex1NImpexp.h"
+#include "PnlWznmIexDetail.h"
 
 #define VecVWznmIexRecDo PnlWznmIexRec::VecVDo
 
@@ -73,7 +74,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneRef1NDialog = false, const bool initdoneHk1NVector = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NDialog = false);
 	};
 
 	/**
@@ -85,19 +86,19 @@ public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREF1NIMPEXP = 3;
-		static const Sbecore::uint JREFREF1NDIALOG = 4;
-		static const Sbecore::uint JREFHK1NVECTOR = 5;
+		static const Sbecore::uint JREFHK1NVECTOR = 4;
+		static const Sbecore::uint JREFREF1NDIALOG = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NImpexp = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const Sbecore::ubigint jrefHk1NVector = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NImpexp = 0, const Sbecore::ubigint jrefHk1NVector = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jref1NImpexp;
-		Sbecore::ubigint jrefRef1NDialog;
 		Sbecore::ubigint jrefHk1NVector;
+		Sbecore::ubigint jrefRef1NDialog;
 		bool ButRegularizeActive;
 
 	public:
@@ -173,10 +174,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmIexDetail* pnldetail;
-	PnlWznmIex1NImpexp* pnl1nimpexp;
 	PnlWznmIexRef1NDialog* pnlref1ndialog;
 	PnlWznmIexHk1NVector* pnlhk1nvector;
+	PnlWznmIex1NImpexp* pnl1nimpexp;
+	PnlWznmIexDetail* pnldetail;
 
 	WznmMImpexpcplx recIex;
 
@@ -188,7 +189,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -217,4 +218,6 @@ private:
 };
 
 #endif
+
+
 

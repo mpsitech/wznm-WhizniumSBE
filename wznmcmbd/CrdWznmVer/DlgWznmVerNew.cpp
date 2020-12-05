@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerNew.cpp
 	* job handler for job DlgWznmVerNew (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -218,7 +219,11 @@ DpchEngWznm* DlgWznmVerNew::getNewDpchEng(
 void DlgWznmVerNew::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
@@ -236,6 +241,8 @@ void DlgWznmVerNew::refresh(
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+
+	muteRefresh = false;
 };
 
 void DlgWznmVerNew::handleRequest(
@@ -383,7 +390,7 @@ void DlgWznmVerNew::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -532,7 +539,7 @@ uint DlgWznmVerNew::enterSgeCreate(
 
 	dbswznm->tblwznmmversion->updateRec(&ver);
 
-	// generate and archive project model file as source for WhizniumSBEBootstrap
+	// generate and archive project model file as source for WhizniumSBE Bootstrap
 	iexprj->reset(dbswznm);
 
 	iexprj->imeimproject.nodes.push_back(new ImeitemIWznmPrjMProject(dbswznm, ver.prjRefWznmMProject));
@@ -582,5 +589,6 @@ void DlgWznmVerNew::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

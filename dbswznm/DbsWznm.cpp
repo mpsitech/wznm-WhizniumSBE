@@ -1,10 +1,11 @@
 /**
 	* \file DbsWznm.cpp
 	* C++ wrapper for database DbsWznm (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #include "DbsWznm.h"
 
@@ -107,10 +108,10 @@ void DbsWznm::initMy() {
 	((MyTblWznmAMLibraryMakefile*) tblwznmamlibrarymakefile)->init(dbsMy);
 	tblwznmamlibrarypkglist = new MyTblWznmAMLibraryPkglist();
 	((MyTblWznmAMLibraryPkglist*) tblwznmamlibrarypkglist)->init(dbsMy);
+	tblwznmammachinemakefile = new MyTblWznmAMMachineMakefile();
+	((MyTblWznmAMMachineMakefile*) tblwznmammachinemakefile)->init(dbsMy);
 	tblwznmammachinepar = new MyTblWznmAMMachinePar();
 	((MyTblWznmAMMachinePar*) tblwznmammachinepar)->init(dbsMy);
-	tblwznmammachtypemakefile = new MyTblWznmAMMachtypeMakefile();
-	((MyTblWznmAMMachtypeMakefile*) tblwznmammachtypemakefile)->init(dbsMy);
 	tblwznmammethodinvpar = new MyTblWznmAMMethodInvpar();
 	((MyTblWznmAMMethodInvpar*) tblwznmammethodinvpar)->init(dbsMy);
 	tblwznmammethodretpar = new MyTblWznmAMMethodRetpar();
@@ -255,8 +256,6 @@ void DbsWznm::initMy() {
 	((MyTblWznmMLocale*) tblwznmmlocale)->init(dbsMy);
 	tblwznmmmachine = new MyTblWznmMMachine();
 	((MyTblWznmMMachine*) tblwznmmmachine)->init(dbsMy);
-	tblwznmmmachtype = new MyTblWznmMMachtype();
-	((MyTblWznmMMachtype*) tblwznmmmachtype)->init(dbsMy);
 	tblwznmmmethod = new MyTblWznmMMethod();
 	((MyTblWznmMMethod*) tblwznmmmethod)->init(dbsMy);
 	tblwznmmmodule = new MyTblWznmMModule();
@@ -506,10 +505,14 @@ void DbsWznm::initMy() {
 	((MyTblWznmQLocMNVersion*) tblwznmqlocmnversion)->init(dbsMy);
 	tblwznmqmch1nrelease = new MyTblWznmQMch1NRelease();
 	((MyTblWznmQMch1NRelease*) tblwznmqmch1nrelease)->init(dbsMy);
+	tblwznmqmchamakefile = new MyTblWznmQMchAMakefile();
+	((MyTblWznmQMchAMakefile*) tblwznmqmchamakefile)->init(dbsMy);
 	tblwznmqmchapar = new MyTblWznmQMchAPar();
 	((MyTblWznmQMchAPar*) tblwznmqmchapar)->init(dbsMy);
 	tblwznmqmchlist = new MyTblWznmQMchList();
 	((MyTblWznmQMchList*) tblwznmqmchlist)->init(dbsMy);
+	tblwznmqmchsup1nmachine = new MyTblWznmQMchSup1NMachine();
+	((MyTblWznmQMchSup1NMachine*) tblwznmqmchsup1nmachine)->init(dbsMy);
 	tblwznmqmdllist = new MyTblWznmQMdlList();
 	((MyTblWznmQMdlList*) tblwznmqmdllist)->init(dbsMy);
 	tblwznmqmdlmdl1ncard = new MyTblWznmQMdlMdl1NCard();
@@ -522,12 +525,6 @@ void DbsWznm::initMy() {
 	((MyTblWznmQMtdARetpar*) tblwznmqmtdaretpar)->init(dbsMy);
 	tblwznmqmtdlist = new MyTblWznmQMtdList();
 	((MyTblWznmQMtdList*) tblwznmqmtdlist)->init(dbsMy);
-	tblwznmqmty1nmachine = new MyTblWznmQMty1NMachine();
-	((MyTblWznmQMty1NMachine*) tblwznmqmty1nmachine)->init(dbsMy);
-	tblwznmqmtyamakefile = new MyTblWznmQMtyAMakefile();
-	((MyTblWznmQMtyAMakefile*) tblwznmqmtyamakefile)->init(dbsMy);
-	tblwznmqmtylist = new MyTblWznmQMtyList();
-	((MyTblWznmQMtyList*) tblwznmqmtylist)->init(dbsMy);
 	tblwznmqopk1nop = new MyTblWznmQOpk1NOp();
 	((MyTblWznmQOpk1NOp*) tblwznmqopk1nop)->init(dbsMy);
 	tblwznmqopkainvarg = new MyTblWznmQOpkAInvarg();
@@ -838,10 +835,10 @@ void DbsWznm::initPg() {
 	((PgTblWznmAMLibraryMakefile*) tblwznmamlibrarymakefile)->init(dbsPg);
 	tblwznmamlibrarypkglist = new PgTblWznmAMLibraryPkglist();
 	((PgTblWznmAMLibraryPkglist*) tblwznmamlibrarypkglist)->init(dbsPg);
+	tblwznmammachinemakefile = new PgTblWznmAMMachineMakefile();
+	((PgTblWznmAMMachineMakefile*) tblwznmammachinemakefile)->init(dbsPg);
 	tblwznmammachinepar = new PgTblWznmAMMachinePar();
 	((PgTblWznmAMMachinePar*) tblwznmammachinepar)->init(dbsPg);
-	tblwznmammachtypemakefile = new PgTblWznmAMMachtypeMakefile();
-	((PgTblWznmAMMachtypeMakefile*) tblwznmammachtypemakefile)->init(dbsPg);
 	tblwznmammethodinvpar = new PgTblWznmAMMethodInvpar();
 	((PgTblWznmAMMethodInvpar*) tblwznmammethodinvpar)->init(dbsPg);
 	tblwznmammethodretpar = new PgTblWznmAMMethodRetpar();
@@ -986,8 +983,6 @@ void DbsWznm::initPg() {
 	((PgTblWznmMLocale*) tblwznmmlocale)->init(dbsPg);
 	tblwznmmmachine = new PgTblWznmMMachine();
 	((PgTblWznmMMachine*) tblwznmmmachine)->init(dbsPg);
-	tblwznmmmachtype = new PgTblWznmMMachtype();
-	((PgTblWznmMMachtype*) tblwznmmmachtype)->init(dbsPg);
 	tblwznmmmethod = new PgTblWznmMMethod();
 	((PgTblWznmMMethod*) tblwznmmmethod)->init(dbsPg);
 	tblwznmmmodule = new PgTblWznmMModule();
@@ -1237,10 +1232,14 @@ void DbsWznm::initPg() {
 	((PgTblWznmQLocMNVersion*) tblwznmqlocmnversion)->init(dbsPg);
 	tblwznmqmch1nrelease = new PgTblWznmQMch1NRelease();
 	((PgTblWznmQMch1NRelease*) tblwznmqmch1nrelease)->init(dbsPg);
+	tblwznmqmchamakefile = new PgTblWznmQMchAMakefile();
+	((PgTblWznmQMchAMakefile*) tblwznmqmchamakefile)->init(dbsPg);
 	tblwznmqmchapar = new PgTblWznmQMchAPar();
 	((PgTblWznmQMchAPar*) tblwznmqmchapar)->init(dbsPg);
 	tblwznmqmchlist = new PgTblWznmQMchList();
 	((PgTblWznmQMchList*) tblwznmqmchlist)->init(dbsPg);
+	tblwznmqmchsup1nmachine = new PgTblWznmQMchSup1NMachine();
+	((PgTblWznmQMchSup1NMachine*) tblwznmqmchsup1nmachine)->init(dbsPg);
 	tblwznmqmdllist = new PgTblWznmQMdlList();
 	((PgTblWznmQMdlList*) tblwznmqmdllist)->init(dbsPg);
 	tblwznmqmdlmdl1ncard = new PgTblWznmQMdlMdl1NCard();
@@ -1253,12 +1252,6 @@ void DbsWznm::initPg() {
 	((PgTblWznmQMtdARetpar*) tblwznmqmtdaretpar)->init(dbsPg);
 	tblwznmqmtdlist = new PgTblWznmQMtdList();
 	((PgTblWznmQMtdList*) tblwznmqmtdlist)->init(dbsPg);
-	tblwznmqmty1nmachine = new PgTblWznmQMty1NMachine();
-	((PgTblWznmQMty1NMachine*) tblwznmqmty1nmachine)->init(dbsPg);
-	tblwznmqmtyamakefile = new PgTblWznmQMtyAMakefile();
-	((PgTblWznmQMtyAMakefile*) tblwznmqmtyamakefile)->init(dbsPg);
-	tblwznmqmtylist = new PgTblWznmQMtyList();
-	((PgTblWznmQMtyList*) tblwznmqmtylist)->init(dbsPg);
 	tblwznmqopk1nop = new PgTblWznmQOpk1NOp();
 	((PgTblWznmQOpk1NOp*) tblwznmqopk1nop)->init(dbsPg);
 	tblwznmqopkainvarg = new PgTblWznmQOpkAInvarg();

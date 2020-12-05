@@ -1,10 +1,11 @@
 /**
   * \file QryWznmCarList.java
   * Java API code for job QryWznmCarList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -20,8 +21,8 @@ public class QryWznmCarList {
 
 		public static final int REU = 1;
 		public static final int RET = 2;
-		public static final int SRF = 3;
-		public static final int MDL = 4;
+		public static final int MDL = 3;
+		public static final int SRF = 4;
 
 		public static int getIx(
 					String sref
@@ -30,8 +31,8 @@ public class QryWznmCarList {
 
 			if (s.equals("reu")) return REU;
 			if (s.equals("ret")) return RET;
-			if (s.equals("srf")) return SRF;
 			if (s.equals("mdl")) return MDL;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -41,8 +42,8 @@ public class QryWznmCarList {
 				) {
 			if (ix == REU) return("reu");
 			if (ix == RET) return("ret");
-			if (ix == SRF) return("srf");
 			if (ix == MDL) return("mdl");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

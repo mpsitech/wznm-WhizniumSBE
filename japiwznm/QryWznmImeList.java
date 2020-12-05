@@ -1,10 +1,11 @@
 /**
   * \file QryWznmImeList.java
   * Java API code for job QryWznmImeList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -19,8 +20,8 @@ public class QryWznmImeList {
 	public static class VecVOrd {
 
 		public static final int TBL = 1;
-		public static final int IEX = 2;
-		public static final int SUP = 3;
+		public static final int SUP = 2;
+		public static final int IEX = 3;
 		public static final int SRF = 4;
 
 		public static int getIx(
@@ -29,8 +30,8 @@ public class QryWznmImeList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("tbl")) return TBL;
-			if (s.equals("iex")) return IEX;
 			if (s.equals("sup")) return SUP;
+			if (s.equals("iex")) return IEX;
 			if (s.equals("srf")) return SRF;
 
 			return 0;
@@ -40,8 +41,8 @@ public class QryWznmImeList {
 					int ix
 				) {
 			if (ix == TBL) return("tbl");
-			if (ix == IEX) return("iex");
 			if (ix == SUP) return("sup");
+			if (ix == IEX) return("iex");
 			if (ix == SRF) return("srf");
 
 			return "";

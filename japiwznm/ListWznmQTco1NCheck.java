@@ -1,10 +1,11 @@
 /**
-  * \file ListWznmQTco1NCheck.java
-  * Java API code for record set of table TblWznmQTco1NCheck
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \file ListWznmQTco1NCheck.java
+	* Java API code for record set of table TblWznmQTco1NCheck
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 

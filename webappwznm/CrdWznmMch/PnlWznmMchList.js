@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmMchList.js
-  * web client functionality for panel PnlWznmMchList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights
@@ -96,7 +88,7 @@ function refreshB(chgcol) {
 		var ncol = parseInt(retrieveSi(srcdoc, "StatAppQryWznmMchList", "ncol"));
 
 		var TcoSrfWidth = parseInt(retrieveSi(srcdoc, "StgIacWznmMchList", "TcoSrfWidth"));
-		var TcoTblWidth = parseInt(retrieveSi(srcdoc, "StgIacWznmMchList", "TcoTblWidth"));
+		var TcoSupWidth = parseInt(retrieveSi(srcdoc, "StgIacWznmMchList", "TcoSupWidth"));
 
 		var numFTos = parseInt(retrieveCi(srcdoc, "ContIacWznmMchList", "numFTos"));
 
@@ -116,7 +108,7 @@ function refreshB(chgcol) {
 			if (i == 1) {
 				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(2); wtot += TcoSrfWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoTbl"); doc.widths.push(TcoTblWidth); doc.fs.push("tbl"); doc.tos.push(1); wtot += TcoTblWidth;
+				doc.cols.push("TcoSup"); doc.widths.push(TcoSupWidth); doc.fs.push("sup"); doc.tos.push(1); wtot += TcoSupWidth;
 			} else {
 				ix--;
 			};
@@ -426,8 +418,8 @@ function handleLoad() {
 
 function handleButClipboardClick() {
 	copyToClipboard(document, srcdoc, "WznmMchList", "ListWznmQMchList", retrieveTi(srcdoc, "TagWznmMchList", "TxtRecord1"), retrieveTi(srcdoc, "TagWznmMchList", "TxtRecord2"),
-				["Srf","Tbl"],
-				["srf","tbl"]);
+				["Srf","Sup"],
+				["srf","sup"]);
 };
 
 // --- generalized event handlers for app controls

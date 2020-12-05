@@ -1,10 +1,11 @@
 /**
 	* \file Wznm.cpp
 	* Wznm global functionality (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "Wznm.h"
 
@@ -493,6 +494,18 @@ Trg::Trg(
  ******************************************************************************/
 
 // IP gbl --- IBEGIN
+string Wznm::getPrjshort(
+			DbsWznm* dbswznm
+			, const ubigint refWznmMVersion
+		) {
+	string Prjshort;
+
+	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = "
+				+ to_string(refWznmMVersion), Prjshort);
+
+	return(StrMod::cap(Prjshort));
+};
+
 void Wznm::getVerlclref(
 			DbsWznm* dbswznm
 			, const ubigint refWznmMVersion
@@ -753,6 +766,103 @@ void Wznm::getSesspsts(
 
 	// PreXxxxRefYyy -> refYyy
 	for (unsigned int i = 0; i < psts.nodes.size(); i++) sesspsts.push_back(StrMod::uncap(psts.nodes[i]->sref.substr(3+4)));
+};
+
+ubigint Wznm::getRefCtp(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	ubigint retval = 0;
+
+	dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMCapability WHERE tplRefWznmMCapability = 0 AND sref = '" + sref + "'", retval);
+
+	return retval;
+};
+
+void Wznm::getSrefsCtpCustops(
+			DbsWznm* dbswznm
+			, map<ubigint,string>& srefsCtpCustops
+			, const uint ixWznmVKeylist
+		) {
+	ListWznmMCapability ctps;
+	WznmMCapability* ctp = NULL;
+
+	Feed feed;
+
+	string Opksref;
+
+	srefsCtpCustops.clear();
+
+	dbswznm->tblwznmmcapability->loadRstBySQL("SELECT * FROM TblWznmMCapability WHERE tplRefWznmMCapability = 0", false, ctps);
+
+	dbswznm->fillFeedFromKlst(ixWznmVKeylist, 1, feed);
+
+	// keylist sref ex. KlstKWznmCtpWrstkitCustop
+	// keylist key ex.       WznmCtpWrstkitArm
+
+	Opksref = VecWznmVKeylist::getSref(ixWznmVKeylist);
+	Opksref = Opksref.substr(4+1);
+	if (Opksref.length() > 6) Opksref = Opksref.substr(0, Opksref.length()-6);
+
+	for (unsigned int i = 0; i < ctps.nodes.size(); i++) {
+		ctp = ctps.nodes[i];
+		if (feed.getNumBySref(Opksref + StrMod::cap(ctp->sref)) != 0) srefsCtpCustops[ctp->ref] = Opksref + StrMod::cap(ctp->sref);
+	};
+};
+
+bool Wznm::getCpa(
+			DbsWznm* dbswznm
+			, const ubigint refWznmMCapability
+			, const string& x1SrefKKey
+			, string& Val
+		) {
+	return(dbswznm->loadStringBySQL("SELECT Val FROM TblWznmAMCapabilityPar WHERE cpbRefWznmMCapability = " + to_string(refWznmMCapability) + " AND x1SrefKKey = '" + x1SrefKKey + "'", Val));
+};
+
+bool Wznm::getLibmkf(
+			DbsWznm* dbswznm
+			, const ubigint refWznmMLibrary
+			, const ubigint x1RefWznmMMachine
+			, vector<ubigint>& hrefsMch
+			, const string& x2SrefKTag
+			, string& Val
+		) {
+	Val = "";
+
+	if (dbswznm->tblwznmamlibrarymakefile->loadValByLibMchTag(refWznmMLibrary, x1RefWznmMMachine, x2SrefKTag, Val)) return true;
+	for (unsigned int i = 0; i < hrefsMch.size(); i++) if (dbswznm->tblwznmamlibrarymakefile->loadValByLibMchTag(refWznmMLibrary, hrefsMch[i], x2SrefKTag, Val)) return true;
+
+	return false;
+};
+
+bool Wznm::getMchmkf(
+			DbsWznm* dbswznm
+			, const ubigint refWznmMMachine
+			, vector<ubigint>& hrefsMch
+			, const string& x1SrefKTag
+			, string& Val
+		) {
+	Val = "";
+
+	if (dbswznm->tblwznmammachinemakefile->loadValByMchTag(refWznmMMachine, x1SrefKTag, Val)) return true;
+	for (unsigned int i = 0; i < hrefsMch.size(); i++) if (dbswznm->tblwznmammachinemakefile->loadValByMchTag(hrefsMch[i], x1SrefKTag, Val)) return true;
+
+	return false;
+};
+
+bool Wznm::getMchpar(
+			DbsWznm* dbswznm
+			, const ubigint refWznmMMachine
+			, vector<ubigint>& hrefsMch
+			, const string& x1SrefKKey
+			, string& Val
+		) {
+	Val = "";
+
+	if (dbswznm->tblwznmammachinepar->loadValByMchKey(refWznmMMachine, x1SrefKKey, Val)) return true;
+	for (unsigned int i = 0; i < hrefsMch.size(); i++) if (dbswznm->tblwznmammachinepar->loadValByMchKey(hrefsMch[i], x1SrefKKey, Val)) return true;
+
+	return false;
 };
 
 void Wznm::getCarincs(
@@ -1962,57 +2072,6 @@ void Wznm::showBasecons(
 	};
 };
 
-ubigint Wznm::getRefCtp(
-			DbsWznm* dbswznm
-			, const string& sref
-		) {
-	ubigint retval = 0;
-
-	dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMCapability WHERE tplRefWznmMCapability = 0 AND sref = '" + sref + "'", retval);
-
-	return retval;
-};
-
-void Wznm::getSrefsCtpCustops(
-			DbsWznm* dbswznm
-			, map<ubigint,string>& srefsCtpCustops
-			, const uint ixWznmVKeylist
-		) {
-	ListWznmMCapability ctps;
-	WznmMCapability* ctp = NULL;
-
-	Feed feed;
-
-	string Opksref;
-
-	srefsCtpCustops.clear();
-
-	dbswznm->tblwznmmcapability->loadRstBySQL("SELECT * FROM TblWznmMCapability WHERE tplRefWznmMCapability = 0", false, ctps);
-
-	dbswznm->fillFeedFromKlst(ixWznmVKeylist, 1, feed);
-
-	// keylist sref ex. KlstKWznmCtpWrstkitCustop
-	// keylist key ex.       WznmCtpWrstkitArm
-
-	Opksref = VecWznmVKeylist::getSref(ixWznmVKeylist);
-	Opksref = Opksref.substr(4+1);
-	if (Opksref.length() > 6) Opksref = Opksref.substr(0, Opksref.length()-6);
-
-	for (unsigned int i = 0; i < ctps.nodes.size(); i++) {
-		ctp = ctps.nodes[i];
-		if (feed.getNumBySref(Opksref + StrMod::cap(ctp->sref)) != 0) srefsCtpCustops[ctp->ref] = Opksref + StrMod::cap(ctp->sref);
-	};
-};
-
-bool Wznm::getCpa(
-			DbsWznm* dbswznm
-			, const ubigint refWznmMCapability
-			, const string& x1SrefKKey
-			, string& Val
-		) {
-	return(dbswznm->loadStringBySQL("SELECT Val FROM TblWznmAMCapabilityPar WHERE cpbRefWznmMCapability = " + to_string(refWznmMCapability) + " AND x1SrefKKey = '" + x1SrefKKey + "'", Val));
-};
-
 void Wznm::getJobvars(
 			DbsWznm* dbswznm
 			, const ubigint refWznmMJob
@@ -2432,6 +2491,7 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 	if (ixWznmVOppack == VecWznmVOppack::WZNMCOMPL) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLBSCUI);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLDBS);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLDEPLOY);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLIEX);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLJTR);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMCTPGENJTR) {
@@ -2454,7 +2514,6 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMGENSYSVEC);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMPRCFILE) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMPRCFILECONCAT);
-		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMPRCFILEIEXCONV);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMPRCFILEPLHRPL);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMPRCTREE) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMPRCTREEEXTRACT);
@@ -2547,10 +2606,10 @@ string StubWznm::getStub(
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMLIBSTD) return getStubLibStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMLOCSREF) return getStubLocSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMLOCSTD) return getStubLocStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	else if (ixWznmVStub == VecWznmVStub::STUBWZNMMCHSREF) return getStubMchSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMMCHSTD) return getStubMchStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMMDLSTD) return getStubMdlStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMMTDSTD) return getStubMtdStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMMTYSTD) return getStubMtyStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMOPKSTD) return getStubOpkStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMOPXSTD) return getStubOpxStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMOWNER) return getStubOwner(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
@@ -3685,6 +3744,48 @@ string StubWznm::getStubLocStd(
 	return stub;
 };
 
+string StubWznm::getStubMchSref(
+			DbsWznm* dbswznm
+			, const ubigint ref
+			, const uint ixWznmVLocale
+			, const uint ixVNonetype
+			, Stcch* stcch
+			, stcchitemref_t* strefSub
+			, const bool refresh
+		) {
+	// example: "jack"
+	string stub;
+
+	stcchitemref_t stref(VecWznmVStub::STUBWZNMMCHSREF, ref, ixWznmVLocale);
+	Stcchitem* stit = NULL;
+
+	if (stcch) {
+		stit = stcch->getStitByStref(stref);
+		if (stit && !refresh) {
+			if (strefSub) stcch->link(stref, *strefSub);
+			return stit->stub;
+		};
+	};
+
+	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
+	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
+	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no machine)";
+	};
+
+	if (ref != 0) {
+		if (dbswznm->tblwznmmmachine->loadSrfByRef(ref, stub)) {
+			if (stcch) {
+				if (!stit) stit = stcch->addStit(stref);
+				stit->stub = stub;
+			};
+		};
+	};
+
+	return stub;
+};
+
 string StubWznm::getStubMchStd(
 			DbsWznm* dbswznm
 			, const ubigint ref
@@ -3694,7 +3795,7 @@ string StubWznm::getStubMchStd(
 			, stcchitemref_t* strefSub
 			, const bool refresh
 		) {
-	// example: "genio (x86ubt)"
+	// example: "any;ubuntu;mpsitech;jack"
 	string stub;
 
 	WznmMMachine* rec = NULL;
@@ -3720,9 +3821,8 @@ string StubWznm::getStubMchStd(
 	if (ref != 0) {
 		if (dbswznm->tblwznmmmachine->loadRecByRef(ref, &rec)) {
 			if (stcch && !stit) stit = stcch->addStit(stref);
-			// IP getStubMchStd --- IBEGIN
-			stub = rec->sref + " (" + getStubMtyStd(dbswznm, rec->refWznmMMachtype, ixWznmVLocale, ixVNonetype, stcch, &stref) + ")";
-			// IP getStubMchStd --- IEND
+			stub = rec->sref;
+			if (rec->supRefWznmMMachine != 0) stub = getStubMchStd(dbswznm, rec->supRefWznmMMachine, ixWznmVLocale, ixVNonetype, stcch, &stref) + ";" + stub;
 			if (stit) stit->stub = stub;
 			delete rec;
 		};
@@ -3811,48 +3911,6 @@ string StubWznm::getStubMtdStd(
 			// IP getStubMtdStd --- INSERT
 			if (stit) stit->stub = stub;
 			delete rec;
-		};
-	};
-
-	return stub;
-};
-
-string StubWznm::getStubMtyStd(
-			DbsWznm* dbswznm
-			, const ubigint ref
-			, const uint ixWznmVLocale
-			, const uint ixVNonetype
-			, Stcch* stcch
-			, stcchitemref_t* strefSub
-			, const bool refresh
-		) {
-	// example: "mac"
-	string stub;
-
-	stcchitemref_t stref(VecWznmVStub::STUBWZNMMTYSTD, ref, ixWznmVLocale);
-	Stcchitem* stit = NULL;
-
-	if (stcch) {
-		stit = stcch->getStitByStref(stref);
-		if (stit && !refresh) {
-			if (strefSub) stcch->link(stref, *strefSub);
-			return stit->stub;
-		};
-	};
-
-	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
-	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
-		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
-	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
-		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no machine type)";
-	};
-
-	if (ref != 0) {
-		if (dbswznm->tblwznmmmachtype->loadSrfByRef(ref, stub)) {
-			if (stcch) {
-				if (!stit) stit = stcch->addStit(stref);
-				stit->stub = stub;
-			};
 		};
 	};
 
@@ -5709,5 +5767,6 @@ void DpchRetWznm::writeXML(
 		writeUtinyint(wr, "pdone", pdone);
 	xmlTextWriterEndElement(wr);
 };
+
 
 

@@ -1,15 +1,7 @@
-/**
-  * \file PnlWznmOpxRec.js
-  * web client functionality for panel PnlWznmOpxRec
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmOpxRec", "scrJrefDetail");
-	scrJrefAInvarg = retrieveSi(srcdoc, "StatShrWznmOpxRec", "scrJrefAInvarg");
 	scrJrefARetval = retrieveSi(srcdoc, "StatShrWznmOpxRec", "scrJrefARetval");
+	scrJrefAInvarg = retrieveSi(srcdoc, "StatShrWznmOpxRec", "scrJrefAInvarg");
 	scrJrefRef1NBlock = retrieveSi(srcdoc, "StatShrWznmOpxRec", "scrJrefRef1NBlock");
 	scrJrefMNJob = retrieveSi(srcdoc, "StatShrWznmOpxRec", "scrJrefMNJob");
 	scrJrefSqkMNStub = retrieveSi(srcdoc, "StatShrWznmOpxRec", "scrJrefSqkMNStub");
@@ -17,8 +9,8 @@ function updateScrJrefs() {
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmOpxRec", "initdoneDetail", "false");
-	setSi(srcdoc, "StatAppWznmOpxRec", "initdoneAInvarg", "false");
 	setSi(srcdoc, "StatAppWznmOpxRec", "initdoneARetval", "false");
+	setSi(srcdoc, "StatAppWznmOpxRec", "initdoneAInvarg", "false");
 	setSi(srcdoc, "StatAppWznmOpxRec", "initdoneRef1NBlock", "false");
 	setSi(srcdoc, "StatAppWznmOpxRec", "initdoneMNJob", "false");
 	setSi(srcdoc, "StatAppWznmOpxRec", "initdoneSqkMNStub", "false");
@@ -26,8 +18,8 @@ function resetInitdones() {
 
 function resetHeights() {
 	heightDetail = 30;
-	heightAInvarg = 30;
 	heightARetval = 30;
+	heightAInvarg = 30;
 	heightRef1NBlock = 30;
 	heightMNJob = 30;
 	heightSqkMNStub = 30;
@@ -49,18 +41,18 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmOpxRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmOpxRec", "initdoneDetail") == "true");
-	var initdoneAInvarg = (retrieveSi(srcdoc, "StatAppWznmOpxRec", "initdoneAInvarg") == "true");
 	var initdoneARetval = (retrieveSi(srcdoc, "StatAppWznmOpxRec", "initdoneARetval") == "true");
+	var initdoneAInvarg = (retrieveSi(srcdoc, "StatAppWznmOpxRec", "initdoneAInvarg") == "true");
 	var initdoneRef1NBlock = (retrieveSi(srcdoc, "StatAppWznmOpxRec", "initdoneRef1NBlock") == "true");
 	var initdoneMNJob = (retrieveSi(srcdoc, "StatAppWznmOpxRec", "initdoneMNJob") == "true");
 	var initdoneSqkMNStub = (retrieveSi(srcdoc, "StatAppWznmOpxRec", "initdoneSqkMNStub") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmOpxDetail.html?scrJref=" + scrJrefDetail;
-	} else if (!initdoneAInvarg) {
-		lhsdoc.getElementById("AInvarg").src = "./PnlWznmOpxAInvarg.html?scrJref=" + scrJrefAInvarg;
 	} else if (!initdoneARetval) {
 		lhsdoc.getElementById("ARetval").src = "./PnlWznmOpxARetval.html?scrJref=" + scrJrefARetval;
+	} else if (!initdoneAInvarg) {
+		lhsdoc.getElementById("AInvarg").src = "./PnlWznmOpxAInvarg.html?scrJref=" + scrJrefAInvarg;
 	} else if (!initdoneRef1NBlock) {
 		rhsdoc.getElementById("Ref1NBlock").src = "./PnlWznmOpxRef1NBlock.html?scrJref=" + scrJrefRef1NBlock;
 	} else if (!initdoneMNJob) {
@@ -79,7 +71,7 @@ function reinitPnl(scrJrefPnl) {
 function setPnlAvail(short, avail) {
 	var lhsrhsdoc;
 
-	if ((short == "Detail") || (short == "AInvarg") || (short == "ARetval")) lhsrhsdoc = lhsdoc;
+	if ((short == "Detail") || (short == "ARetval") || (short == "AInvarg")) lhsrhsdoc = lhsdoc;
 	else lhsrhsdoc = rhsdoc;
 
 	var oldAvail = (lhsrhsdoc.getElementById("tr" + short).getAttribute("class") == "show");
@@ -106,8 +98,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
-		else if (short == "AInvarg") heightAInvarg = height;
 		else if (short == "ARetval") heightARetval = height;
+		else if (short == "AInvarg") heightAInvarg = height;
 		else if (short == "Ref1NBlock") heightRef1NBlock = height;
 		else if (short == "MNJob") heightMNJob = height;
 		else if (short == "SqkMNStub") heightSqkMNStub = height;
@@ -144,7 +136,7 @@ function regularize() {
 function changeHeight(pnlshort, height, update) {
 	var lhsrhsdoc;
 
-	if ((pnlshort == "Detail") || (pnlshort == "AInvarg") || (pnlshort == "ARetval")) lhsrhsdoc = lhsdoc;
+	if ((pnlshort == "Detail") || (pnlshort == "ARetval") || (pnlshort == "AInvarg")) lhsrhsdoc = lhsdoc;
 	else lhsrhsdoc = rhsdoc;
 
 	lhsrhsdoc.getElementById("td" + pnlshort).setAttribute("height", "" + height);
@@ -154,8 +146,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
-	else if (pnlshort == "AInvarg") heightAInvarg = height;
 	else if (pnlshort == "ARetval") heightARetval = height;
+	else if (pnlshort == "AInvarg") heightAInvarg = height;
 	else if (pnlshort == "Ref1NBlock") heightRef1NBlock = height;
 	else if (pnlshort == "MNJob") heightMNJob = height;
 	else if (pnlshort == "SqkMNStub") heightSqkMNStub = height;
@@ -166,7 +158,7 @@ function changeHeight(pnlshort, height, update) {
 function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
-	heightLhs = heightDetail+13 + heightAInvarg+13 + heightARetval+13 + 5;
+	heightLhs = heightDetail+13 + heightARetval+13 + heightAInvarg+13 + 5;
 	heightRhs = heightRef1NBlock+13 + heightMNJob+13 + heightSqkMNStub+13 + 5;
 
 	if (heightLhs > heightRhs) {
@@ -364,10 +356,10 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefAInvarg) {
-				if (getInitdone("AInvarg")) lhsdoc.getElementById("AInvarg").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefARetval) {
 				if (getInitdone("ARetval")) lhsdoc.getElementById("ARetval").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefAInvarg) {
+				if (getInitdone("AInvarg")) lhsdoc.getElementById("AInvarg").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefRef1NBlock) {
 				if (getInitdone("Ref1NBlock")) rhsdoc.getElementById("Ref1NBlock").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNJob) {

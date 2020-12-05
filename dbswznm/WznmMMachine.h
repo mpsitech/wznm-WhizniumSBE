@@ -1,10 +1,11 @@
 /**
 	* \file WznmMMachine.h
 	* database access for table TblWznmMMachine (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMMMACHINE_H
 #define WZNMMMACHINE_H
@@ -24,13 +25,14 @@
 class WznmMMachine {
 
 public:
-	WznmMMachine(const Sbecore::ubigint ref = 0, const Sbecore::ubigint refWznmMMachtype = 0, const std::string sref = "", const Sbecore::uint ixWznmWCloudtype = 0, const std::string Comment = "");
+	WznmMMachine(const Sbecore::ubigint ref = 0, const Sbecore::ubigint supRefWznmMMachine = 0, const std::string sref = "", const Sbecore::ubigint cchRefWznmMMachine = 0, const std::string srefKPkgmgr = "", const std::string Comment = "");
 
 public:
 	Sbecore::ubigint ref;
-	Sbecore::ubigint refWznmMMachtype;
+	Sbecore::ubigint supRefWznmMMachine;
 	std::string sref;
-	Sbecore::uint ixWznmWCloudtype;
+	Sbecore::ubigint cchRefWznmMMachine;
+	std::string srefKPkgmgr;
 	std::string Comment;
 
 public:
@@ -77,17 +79,24 @@ public:
 	virtual Sbecore::ubigint loadRstBySQL(const std::string& sqlstr, const bool append, ListWznmMMachine& rst);
 
 	virtual Sbecore::ubigint insertRec(WznmMMachine* rec);
-	Sbecore::ubigint insertNewRec(WznmMMachine** rec = NULL, const Sbecore::ubigint refWznmMMachtype = 0, const std::string sref = "", const Sbecore::uint ixWznmWCloudtype = 0, const std::string Comment = "");
-	Sbecore::ubigint appendNewRecToRst(ListWznmMMachine& rst, WznmMMachine** rec = NULL, const Sbecore::ubigint refWznmMMachtype = 0, const std::string sref = "", const Sbecore::uint ixWznmWCloudtype = 0, const std::string Comment = "");
+	Sbecore::ubigint insertNewRec(WznmMMachine** rec = NULL, const Sbecore::ubigint supRefWznmMMachine = 0, const std::string sref = "", const Sbecore::ubigint cchRefWznmMMachine = 0, const std::string srefKPkgmgr = "", const std::string Comment = "");
+	Sbecore::ubigint appendNewRecToRst(ListWznmMMachine& rst, WznmMMachine** rec = NULL, const Sbecore::ubigint supRefWznmMMachine = 0, const std::string sref = "", const Sbecore::ubigint cchRefWznmMMachine = 0, const std::string srefKPkgmgr = "", const std::string Comment = "");
 	virtual void insertRst(ListWznmMMachine& rst, bool transact = false);
 	virtual void updateRec(WznmMMachine* rec);
 	virtual void updateRst(ListWznmMMachine& rst, bool transact = false);
 	virtual void removeRecByRef(Sbecore::ubigint ref);
 
 	virtual bool loadRecByRef(Sbecore::ubigint ref, WznmMMachine** rec);
-	virtual bool loadRefBySrf(std::string sref, Sbecore::ubigint& ref);
-	virtual Sbecore::ubigint loadRefsByTbl(Sbecore::ubigint refWznmMMachtype, const bool append, std::vector<Sbecore::ubigint>& refs);
+	virtual bool confirmByRef(Sbecore::ubigint ref);
+	virtual Sbecore::ubigint loadRefsBySup(Sbecore::ubigint supRefWznmMMachine, const bool append, std::vector<Sbecore::ubigint>& refs);
+	virtual Sbecore::ubigint loadRstBySup(Sbecore::ubigint supRefWznmMMachine, const bool append, ListWznmMMachine& rst);
+	virtual bool loadSrfByRef(Sbecore::ubigint ref, std::string& sref);
+	virtual bool loadSupByRef(Sbecore::ubigint ref, Sbecore::ubigint& supRefWznmMMachine);
 	Sbecore::ubigint loadRstByRefs(std::vector<Sbecore::ubigint>& refs, const bool append, ListWznmMMachine& rst);
+	Sbecore::ubigint loadHrefsup(Sbecore::ubigint ref, std::vector<Sbecore::ubigint>& refs);
+	Sbecore::ubigint loadHrefsdown(Sbecore::ubigint ref, const bool append, std::vector<Sbecore::ubigint>& refs, unsigned int firstix = 0, unsigned int lastix = 0);
+	Sbecore::ubigint loadHrstup(Sbecore::ubigint ref, ListWznmMMachine& rst);
+	Sbecore::ubigint loadHrstdown(Sbecore::ubigint ref, const bool append, ListWznmMMachine& rst, unsigned int firstix = 0, unsigned int lastix = 0);
 };
 
 #if defined(SBECORE_MAR) || defined(SBECORE_MY)
@@ -119,8 +128,11 @@ public:
 	void removeRecByRef(Sbecore::ubigint ref);
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmMMachine** rec);
-	bool loadRefBySrf(std::string sref, Sbecore::ubigint& ref);
-	Sbecore::ubigint loadRefsByTbl(Sbecore::ubigint refWznmMMachtype, const bool append, std::vector<Sbecore::ubigint>& refs);
+	bool confirmByRef(Sbecore::ubigint ref);
+	Sbecore::ubigint loadRefsBySup(Sbecore::ubigint supRefWznmMMachine, const bool append, std::vector<Sbecore::ubigint>& refs);
+	Sbecore::ubigint loadRstBySup(Sbecore::ubigint supRefWznmMMachine, const bool append, ListWznmMMachine& rst);
+	bool loadSrfByRef(Sbecore::ubigint ref, std::string& sref);
+	bool loadSupByRef(Sbecore::ubigint ref, Sbecore::ubigint& supRefWznmMMachine);
 };
 #endif
 
@@ -141,6 +153,7 @@ private:
 	bool loadRec(PGresult* res, WznmMMachine** rec);
 	Sbecore::ubigint loadRst(PGresult* res, const bool append, ListWznmMMachine& rst);
 	bool loadRecByStmt(const std::string& srefStmt, const unsigned int N, const char** vals, const int* l, const int* f, WznmMMachine** rec);
+	Sbecore::ubigint loadRstByStmt(const std::string& srefStmt, const unsigned int N, const char** vals, const int* l, const int* f, const bool append, ListWznmMMachine& rst);
 
 public:
 	bool loadRecBySQL(const std::string& sqlstr, WznmMMachine** rec);
@@ -153,8 +166,11 @@ public:
 	void removeRecByRef(Sbecore::ubigint ref);
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmMMachine** rec);
-	bool loadRefBySrf(std::string sref, Sbecore::ubigint& ref);
-	Sbecore::ubigint loadRefsByTbl(Sbecore::ubigint refWznmMMachtype, const bool append, std::vector<Sbecore::ubigint>& refs);
+	bool confirmByRef(Sbecore::ubigint ref);
+	Sbecore::ubigint loadRefsBySup(Sbecore::ubigint supRefWznmMMachine, const bool append, std::vector<Sbecore::ubigint>& refs);
+	Sbecore::ubigint loadRstBySup(Sbecore::ubigint supRefWznmMMachine, const bool append, ListWznmMMachine& rst);
+	bool loadSrfByRef(Sbecore::ubigint ref, std::string& sref);
+	bool loadSupByRef(Sbecore::ubigint ref, Sbecore::ubigint& supRefWznmMMachine);
 };
 #endif
 

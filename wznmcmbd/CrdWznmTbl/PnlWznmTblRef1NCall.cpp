@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmTblRef1NCall.cpp
 	* job handler for job PnlWznmTblRef1NCall (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -89,7 +90,11 @@ DpchEngWznm* PnlWznmTblRef1NCall::getNewDpchEng(
 void PnlWznmTblRef1NCall::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
@@ -98,6 +103,8 @@ void PnlWznmTblRef1NCall::refresh(
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+
+	muteRefresh = false;
 };
 
 void PnlWznmTblRef1NCall::updatePreset(
@@ -206,9 +213,9 @@ void PnlWznmTblRef1NCall::handleDpchAppDataStgiacqry(
 
 	WznmMCall* _recCal = NULL;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
+		muteRefresh = true;
+
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWznmTblRef1NCall::StgIac::JNUM)) recSelNew = qry->getRecByJnum(_stgiacqry->jnum);
@@ -235,10 +242,8 @@ void PnlWznmTblRef1NCall::handleDpchAppDataStgiacqry(
 			qry->refreshJnum();
 		};
 
-		refresh(dbswznm, moditems);
+		refresh(dbswznm, moditems, true);
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -253,9 +258,8 @@ void PnlWznmTblRef1NCall::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswznm, false);
-	refresh(dbswznm, moditems);
 
-	muteRefresh = false;
+	refresh(dbswznm, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);
@@ -290,4 +294,6 @@ bool PnlWznmTblRef1NCall::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
+
+
 

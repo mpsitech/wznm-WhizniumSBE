@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmMchDetail.h
 	* API code for job PnlWznmMchDetail (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMMCHDETAIL_H
 #define PNLWZNMMCHDETAIL_H
@@ -34,7 +35,9 @@ namespace PnlWznmMchDetail {
 
 	public:
 		static const Sbecore::uint BUTSAVECLICK = 1;
-		static const Sbecore::uint BUTTBLVIEWCLICK = 2;
+		static const Sbecore::uint BUTSUPVIEWCLICK = 2;
+		static const Sbecore::uint BUTCCHVIEWCLICK = 3;
+		static const Sbecore::uint BUTPKMEDITCLICK = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -46,14 +49,16 @@ namespace PnlWznmMchDetail {
 	class ContIac : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint NUMFPUPCTY = 1;
-		static const Sbecore::uint TXFCMT = 2;
+		static const Sbecore::uint NUMFPUPPKM = 1;
+		static const Sbecore::uint TXFPKM = 2;
+		static const Sbecore::uint TXFCMT = 3;
 
 	public:
-		ContIac(const Sbecore::uint numFPupCty = 1, const std::string& TxfCmt = "");
+		ContIac(const Sbecore::uint numFPupPkm = 1, const std::string& TxfPkm = "", const std::string& TxfCmt = "");
 
 	public:
-		Sbecore::uint numFPupCty;
+		Sbecore::uint numFPupPkm;
+		std::string TxfPkm;
 		std::string TxfCmt;
 
 	public:
@@ -70,14 +75,16 @@ namespace PnlWznmMchDetail {
 
 	public:
 		static const Sbecore::uint TXTSRF = 1;
-		static const Sbecore::uint TXTTBL = 2;
+		static const Sbecore::uint TXTSUP = 2;
+		static const Sbecore::uint TXTCCH = 3;
 
 	public:
-		ContInf(const std::string& TxtSrf = "", const std::string& TxtTbl = "");
+		ContInf(const std::string& TxtSrf = "", const std::string& TxtSup = "", const std::string& TxtCch = "");
 
 	public:
 		std::string TxtSrf;
-		std::string TxtTbl;
+		std::string TxtSup;
+		std::string TxtCch;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -92,12 +99,14 @@ namespace PnlWznmMchDetail {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
+		static const Sbecore::uint PUPPKMALT = 2;
 
 	public:
-		StatApp(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND);
+		StatApp(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND, const bool PupPkmAlt = false);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
+		bool PupPkmAlt;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -111,26 +120,36 @@ namespace PnlWznmMchDetail {
 	class StatShr : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint BUTSAVEAVAIL = 1;
-		static const Sbecore::uint BUTSAVEACTIVE = 2;
-		static const Sbecore::uint TXTSRFACTIVE = 3;
-		static const Sbecore::uint TXTTBLACTIVE = 4;
-		static const Sbecore::uint BUTTBLVIEWAVAIL = 5;
-		static const Sbecore::uint BUTTBLVIEWACTIVE = 6;
-		static const Sbecore::uint PUPCTYACTIVE = 7;
-		static const Sbecore::uint TXFCMTACTIVE = 8;
+		static const Sbecore::uint TXFPKMVALID = 1;
+		static const Sbecore::uint BUTSAVEAVAIL = 2;
+		static const Sbecore::uint BUTSAVEACTIVE = 3;
+		static const Sbecore::uint TXTSRFACTIVE = 4;
+		static const Sbecore::uint TXTSUPACTIVE = 5;
+		static const Sbecore::uint BUTSUPVIEWAVAIL = 6;
+		static const Sbecore::uint BUTSUPVIEWACTIVE = 7;
+		static const Sbecore::uint TXTCCHACTIVE = 8;
+		static const Sbecore::uint BUTCCHVIEWAVAIL = 9;
+		static const Sbecore::uint BUTCCHVIEWACTIVE = 10;
+		static const Sbecore::uint PUPPKMACTIVE = 11;
+		static const Sbecore::uint BUTPKMEDITAVAIL = 12;
+		static const Sbecore::uint TXFCMTACTIVE = 13;
 
 	public:
-		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxtTblActive = true, const bool ButTblViewAvail = true, const bool ButTblViewActive = true, const bool PupCtyActive = true, const bool TxfCmtActive = true);
+		StatShr(const bool TxfPkmValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtCchActive = true, const bool ButCchViewAvail = true, const bool ButCchViewActive = true, const bool PupPkmActive = true, const bool ButPkmEditAvail = true, const bool TxfCmtActive = true);
 
 	public:
+		bool TxfPkmValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtSrfActive;
-		bool TxtTblActive;
-		bool ButTblViewAvail;
-		bool ButTblViewActive;
-		bool PupCtyActive;
+		bool TxtSupActive;
+		bool ButSupViewAvail;
+		bool ButSupViewActive;
+		bool TxtCchActive;
+		bool ButCchViewAvail;
+		bool ButCchViewActive;
+		bool PupPkmActive;
+		bool ButPkmEditAvail;
 		bool TxfCmtActive;
 
 	public:
@@ -147,18 +166,20 @@ namespace PnlWznmMchDetail {
 	public:
 		static const Sbecore::uint CPT = 1;
 		static const Sbecore::uint CPTSRF = 2;
-		static const Sbecore::uint CPTTBL = 3;
-		static const Sbecore::uint CPTCTY = 4;
-		static const Sbecore::uint CPTCMT = 5;
+		static const Sbecore::uint CPTSUP = 3;
+		static const Sbecore::uint CPTCCH = 4;
+		static const Sbecore::uint CPTPKM = 5;
+		static const Sbecore::uint CPTCMT = 6;
 
 	public:
-		Tag(const std::string& Cpt = "", const std::string& CptSrf = "", const std::string& CptTbl = "", const std::string& CptCty = "", const std::string& CptCmt = "");
+		Tag(const std::string& Cpt = "", const std::string& CptSrf = "", const std::string& CptSup = "", const std::string& CptCch = "", const std::string& CptPkm = "", const std::string& CptCmt = "");
 
 	public:
 		std::string Cpt;
 		std::string CptSrf;
-		std::string CptTbl;
-		std::string CptCty;
+		std::string CptSup;
+		std::string CptCch;
+		std::string CptPkm;
 		std::string CptCmt;
 
 	public:
@@ -218,7 +239,7 @@ namespace PnlWznmMchDetail {
 		static const Sbecore::uint SCRJREF = 1;
 		static const Sbecore::uint CONTIAC = 2;
 		static const Sbecore::uint CONTINF = 3;
-		static const Sbecore::uint FEEDFPUPCTY = 4;
+		static const Sbecore::uint FEEDFPUPPKM = 4;
 		static const Sbecore::uint STATAPP = 5;
 		static const Sbecore::uint STATSHR = 6;
 		static const Sbecore::uint TAG = 7;
@@ -229,7 +250,7 @@ namespace PnlWznmMchDetail {
 	public:
 		ContIac contiac;
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFPupCty;
+		Sbecore::Xmlio::Feed feedFPupPkm;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

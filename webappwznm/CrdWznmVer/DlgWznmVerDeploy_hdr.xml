@@ -15,11 +15,12 @@
 				<col width="108"/>
 				<col width="116"/>
 				<col width="116"/>
-				<col width="345"/>
+				<col width="116"/>
+				<col width="229"/>
 			</colgroup>
 			<tr>
 				<td height="26"></td>
-				<td colspan="4" align="left" valign="bottom">
+				<td colspan="5" align="left" valign="bottom">
 					<span class="hdr_cpt" id="Cpt">Cpt</span>
 				</td>
 			</tr>
@@ -27,18 +28,21 @@
 				<td height="20"></td>
 				<td align="center" valign="center"><span id="CptIfi" class="hdr_ditsel">CptIfi</span></td>
 				<td align="center" valign="center"><span id="CptImp" class="hdr_dit" onclick="handleDseSelect(2)">CptImp</span></td>
-				<td align="center" valign="center"><span id="CptLfi" class="hdr_dit" onclick="handleDseSelect(3)">CptLfi</span></td>
+				<td align="center" valign="center"><span id="CptPpr" class="hdr_dit" onclick="handleDseSelect(3)">CptPpr</span></td>
+				<td align="center" valign="center"><span id="CptLfi" class="hdr_dit" onclick="handleDseSelect(4)">CptLfi</span></td>
 				<td></td>
 			</tr>
 			<tr id="trDse">
 				<td height="13"></td>
-				<td colspan="4" id="tdDse">
+				<td colspan="5" id="tdDse">
 					<svg style="display:block" width="685" height="13" version="1.1" xmlns="http://www.w3.org/2000/svg">
 						<line x1="51" y1="7.5" x2="163" y2="7.5" stroke="black"/>
 						<line x1="167" y1="7.5" x2="279" y2="7.5" stroke="black"/>
+						<line x1="283" y1="7.5" x2="395" y2="7.5" stroke="black"/>
 						<rect id="DitIfi" class="hdr_ditsels" x="47" y="4" width="6" height="6"/>
 						<rect id="DitImp" class="hdr_dits" onclick="handleDseSelect(2)" x="163" y="4" width="6" height="6"/>
-						<rect id="DitLfi" class="hdr_dits" onclick="handleDseSelect(3)" x="279" y="4" width="6" height="6"/>
+						<rect id="DitPpr" class="hdr_dits" onclick="handleDseSelect(3)" x="279" y="4" width="6" height="6"/>
+						<rect id="DitLfi" class="hdr_dits" onclick="handleDseSelect(4)" x="395" y="4" width="6" height="6"/>
 					</svg>
 				</td>
 			</tr>

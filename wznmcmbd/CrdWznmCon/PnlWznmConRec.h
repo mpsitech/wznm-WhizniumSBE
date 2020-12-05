@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmConRec.h
 	* job handler for job PnlWznmConRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMCONREC_H
 #define PNLWZNMCONREC_H
@@ -13,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmConDetail.h"
-#include "PnlWznmConAPar.h"
-#include "PnlWznmConSup1NControl.h"
 #include "PnlWznmConFedRef1NRtblock.h"
+#include "PnlWznmConSup1NControl.h"
+#include "PnlWznmConAPar.h"
+#include "PnlWznmConDetail.h"
 
 #define VecVWznmConRecDo PnlWznmConRec::VecVDo
 
@@ -176,10 +177,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmConDetail* pnldetail;
-	PnlWznmConAPar* pnlapar;
-	PnlWznmConSup1NControl* pnlsup1ncontrol;
 	PnlWznmConFedRef1NRtblock* pnlfedref1nrtblock;
+	PnlWznmConSup1NControl* pnlsup1ncontrol;
+	PnlWznmConAPar* pnlapar;
+	PnlWznmConDetail* pnldetail;
 
 	WznmMControl recCon;
 	Sbecore::uint ixWSubsetCon;
@@ -194,7 +195,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -216,8 +217,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmConUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmFedUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmConUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmFed_sruEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmFed_srtEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmCon_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
@@ -235,4 +236,6 @@ private:
 };
 
 #endif
+
+
 

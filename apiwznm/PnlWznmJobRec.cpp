@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmJobRec.cpp
 	* API code for job PnlWznmJobRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "PnlWznmJobRec.h"
 
@@ -103,36 +104,36 @@ set<uint> PnlWznmJobRec::ContInf::diff(
 
 PnlWznmJobRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdoneACmd
 			, const bool initdoneAVar
-			, const bool initdone1NSensitivity
+			, const bool initdoneACmd
+			, const bool initdone1NMethod
 			, const bool initdoneJob1NStage
 			, const bool initdone1NRtjob
-			, const bool initdone1NMethod
-			, const bool initdoneRef1NBlock
+			, const bool initdone1NSensitivity
 			, const bool initdoneHk1NVector
-			, const bool initdoneSupMNJob
-			, const bool initdoneMNOp
+			, const bool initdoneRef1NBlock
 			, const bool initdoneMNOppack
+			, const bool initdoneMNOp
+			, const bool initdoneSupMNJob
 			, const bool initdoneSubMNJob
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdoneACmd = initdoneACmd;
 	this->initdoneAVar = initdoneAVar;
-	this->initdone1NSensitivity = initdone1NSensitivity;
+	this->initdoneACmd = initdoneACmd;
+	this->initdone1NMethod = initdone1NMethod;
 	this->initdoneJob1NStage = initdoneJob1NStage;
 	this->initdone1NRtjob = initdone1NRtjob;
-	this->initdone1NMethod = initdone1NMethod;
-	this->initdoneRef1NBlock = initdoneRef1NBlock;
+	this->initdone1NSensitivity = initdone1NSensitivity;
 	this->initdoneHk1NVector = initdoneHk1NVector;
-	this->initdoneSupMNJob = initdoneSupMNJob;
-	this->initdoneMNOp = initdoneMNOp;
+	this->initdoneRef1NBlock = initdoneRef1NBlock;
 	this->initdoneMNOppack = initdoneMNOppack;
+	this->initdoneMNOp = initdoneMNOp;
+	this->initdoneSupMNJob = initdoneSupMNJob;
 	this->initdoneSubMNJob = initdoneSubMNJob;
 
-	mask = {INITDONEDETAIL, INITDONEACMD, INITDONEAVAR, INITDONE1NSENSITIVITY, INITDONEJOB1NSTAGE, INITDONE1NRTJOB, INITDONE1NMETHOD, INITDONEREF1NBLOCK, INITDONEHK1NVECTOR, INITDONESUPMNJOB, INITDONEMNOP, INITDONEMNOPPACK, INITDONESUBMNJOB};
+	mask = {INITDONEDETAIL, INITDONEAVAR, INITDONEACMD, INITDONE1NMETHOD, INITDONEJOB1NSTAGE, INITDONE1NRTJOB, INITDONE1NSENSITIVITY, INITDONEHK1NVECTOR, INITDONEREF1NBLOCK, INITDONEMNOPPACK, INITDONEMNOP, INITDONESUPMNJOB, INITDONESUBMNJOB};
 };
 
 bool PnlWznmJobRec::StatApp::readXML(
@@ -153,17 +154,17 @@ bool PnlWznmJobRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneACmd", initdoneACmd)) add(INITDONEACMD);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAVar", initdoneAVar)) add(INITDONEAVAR);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NSensitivity", initdone1NSensitivity)) add(INITDONE1NSENSITIVITY);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneACmd", initdoneACmd)) add(INITDONEACMD);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NMethod", initdone1NMethod)) add(INITDONE1NMETHOD);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneJob1NStage", initdoneJob1NStage)) add(INITDONEJOB1NSTAGE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NRtjob", initdone1NRtjob)) add(INITDONE1NRTJOB);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NMethod", initdone1NMethod)) add(INITDONE1NMETHOD);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NBlock", initdoneRef1NBlock)) add(INITDONEREF1NBLOCK);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NSensitivity", initdone1NSensitivity)) add(INITDONE1NSENSITIVITY);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneHk1NVector", initdoneHk1NVector)) add(INITDONEHK1NVECTOR);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSupMNJob", initdoneSupMNJob)) add(INITDONESUPMNJOB);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNOp", initdoneMNOp)) add(INITDONEMNOP);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NBlock", initdoneRef1NBlock)) add(INITDONEREF1NBLOCK);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNOppack", initdoneMNOppack)) add(INITDONEMNOPPACK);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNOp", initdoneMNOp)) add(INITDONEMNOP);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSupMNJob", initdoneSupMNJob)) add(INITDONESUPMNJOB);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSubMNJob", initdoneSubMNJob)) add(INITDONESUBMNJOB);
 	};
 
@@ -176,17 +177,17 @@ set<uint> PnlWznmJobRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdoneACmd == comp->initdoneACmd) insert(items, INITDONEACMD);
 	if (initdoneAVar == comp->initdoneAVar) insert(items, INITDONEAVAR);
-	if (initdone1NSensitivity == comp->initdone1NSensitivity) insert(items, INITDONE1NSENSITIVITY);
+	if (initdoneACmd == comp->initdoneACmd) insert(items, INITDONEACMD);
+	if (initdone1NMethod == comp->initdone1NMethod) insert(items, INITDONE1NMETHOD);
 	if (initdoneJob1NStage == comp->initdoneJob1NStage) insert(items, INITDONEJOB1NSTAGE);
 	if (initdone1NRtjob == comp->initdone1NRtjob) insert(items, INITDONE1NRTJOB);
-	if (initdone1NMethod == comp->initdone1NMethod) insert(items, INITDONE1NMETHOD);
-	if (initdoneRef1NBlock == comp->initdoneRef1NBlock) insert(items, INITDONEREF1NBLOCK);
+	if (initdone1NSensitivity == comp->initdone1NSensitivity) insert(items, INITDONE1NSENSITIVITY);
 	if (initdoneHk1NVector == comp->initdoneHk1NVector) insert(items, INITDONEHK1NVECTOR);
-	if (initdoneSupMNJob == comp->initdoneSupMNJob) insert(items, INITDONESUPMNJOB);
-	if (initdoneMNOp == comp->initdoneMNOp) insert(items, INITDONEMNOP);
+	if (initdoneRef1NBlock == comp->initdoneRef1NBlock) insert(items, INITDONEREF1NBLOCK);
 	if (initdoneMNOppack == comp->initdoneMNOppack) insert(items, INITDONEMNOPPACK);
+	if (initdoneMNOp == comp->initdoneMNOp) insert(items, INITDONEMNOP);
+	if (initdoneSupMNJob == comp->initdoneSupMNJob) insert(items, INITDONESUPMNJOB);
 	if (initdoneSubMNJob == comp->initdoneSubMNJob) insert(items, INITDONESUBMNJOB);
 
 	return(items);
@@ -200,7 +201,7 @@ set<uint> PnlWznmJobRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEACMD, INITDONEAVAR, INITDONE1NSENSITIVITY, INITDONEJOB1NSTAGE, INITDONE1NRTJOB, INITDONE1NMETHOD, INITDONEREF1NBLOCK, INITDONEHK1NVECTOR, INITDONESUPMNJOB, INITDONEMNOP, INITDONEMNOPPACK, INITDONESUBMNJOB};
+	diffitems = {INITDONEDETAIL, INITDONEAVAR, INITDONEACMD, INITDONE1NMETHOD, INITDONEJOB1NSTAGE, INITDONE1NRTJOB, INITDONE1NSENSITIVITY, INITDONEHK1NVECTOR, INITDONEREF1NBLOCK, INITDONEMNOPPACK, INITDONEMNOP, INITDONESUPMNJOB, INITDONESUBMNJOB};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -213,41 +214,41 @@ set<uint> PnlWznmJobRec::StatApp::diff(
 PnlWznmJobRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJrefACmd
 			, const string& scrJrefAVar
-			, const string& scrJref1NSensitivity
+			, const string& scrJrefACmd
+			, const string& scrJref1NMethod
 			, const string& scrJrefJob1NStage
 			, const string& scrJref1NRtjob
-			, const string& scrJref1NMethod
-			, const string& scrJrefRef1NBlock
+			, const string& scrJref1NSensitivity
 			, const string& scrJrefHk1NVector
-			, const string& scrJrefSupMNJob
-			, const bool pnlsupmnjobAvail
-			, const string& scrJrefMNOp
+			, const string& scrJrefRef1NBlock
 			, const string& scrJrefMNOppack
+			, const string& scrJrefMNOp
+			, const string& scrJrefSupMNJob
 			, const string& scrJrefSubMNJob
+			, const bool pnlsubmnjobAvail
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefACmd = scrJrefACmd;
 	this->scrJrefAVar = scrJrefAVar;
-	this->scrJref1NSensitivity = scrJref1NSensitivity;
+	this->scrJrefACmd = scrJrefACmd;
+	this->scrJref1NMethod = scrJref1NMethod;
 	this->scrJrefJob1NStage = scrJrefJob1NStage;
 	this->scrJref1NRtjob = scrJref1NRtjob;
-	this->scrJref1NMethod = scrJref1NMethod;
-	this->scrJrefRef1NBlock = scrJrefRef1NBlock;
+	this->scrJref1NSensitivity = scrJref1NSensitivity;
 	this->scrJrefHk1NVector = scrJrefHk1NVector;
-	this->scrJrefSupMNJob = scrJrefSupMNJob;
-	this->pnlsupmnjobAvail = pnlsupmnjobAvail;
-	this->scrJrefMNOp = scrJrefMNOp;
+	this->scrJrefRef1NBlock = scrJrefRef1NBlock;
 	this->scrJrefMNOppack = scrJrefMNOppack;
+	this->scrJrefMNOp = scrJrefMNOp;
+	this->scrJrefSupMNJob = scrJrefSupMNJob;
 	this->scrJrefSubMNJob = scrJrefSubMNJob;
+	this->pnlsubmnjobAvail = pnlsubmnjobAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFACMD, SCRJREFAVAR, SCRJREF1NSENSITIVITY, SCRJREFJOB1NSTAGE, SCRJREF1NRTJOB, SCRJREF1NMETHOD, SCRJREFREF1NBLOCK, SCRJREFHK1NVECTOR, SCRJREFSUPMNJOB, PNLSUPMNJOBAVAIL, SCRJREFMNOP, SCRJREFMNOPPACK, SCRJREFSUBMNJOB, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAVAR, SCRJREFACMD, SCRJREF1NMETHOD, SCRJREFJOB1NSTAGE, SCRJREF1NRTJOB, SCRJREF1NSENSITIVITY, SCRJREFHK1NVECTOR, SCRJREFREF1NBLOCK, SCRJREFMNOPPACK, SCRJREFMNOP, SCRJREFSUPMNJOB, SCRJREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmJobRec::StatShr::readXML(
@@ -274,19 +275,19 @@ bool PnlWznmJobRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefACmd", scrJrefACmd)) add(SCRJREFACMD);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAVar", scrJrefAVar)) add(SCRJREFAVAR);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NSensitivity", scrJref1NSensitivity)) add(SCRJREF1NSENSITIVITY);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefACmd", scrJrefACmd)) add(SCRJREFACMD);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NMethod", scrJref1NMethod)) add(SCRJREF1NMETHOD);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefJob1NStage", scrJrefJob1NStage)) add(SCRJREFJOB1NSTAGE);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NRtjob", scrJref1NRtjob)) add(SCRJREF1NRTJOB);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NMethod", scrJref1NMethod)) add(SCRJREF1NMETHOD);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NBlock", scrJrefRef1NBlock)) add(SCRJREFREF1NBLOCK);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NSensitivity", scrJref1NSensitivity)) add(SCRJREF1NSENSITIVITY);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefHk1NVector", scrJrefHk1NVector)) add(SCRJREFHK1NVECTOR);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSupMNJob", scrJrefSupMNJob)) add(SCRJREFSUPMNJOB);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "pnlsupmnjobAvail", pnlsupmnjobAvail)) add(PNLSUPMNJOBAVAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNOp", scrJrefMNOp)) add(SCRJREFMNOP);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NBlock", scrJrefRef1NBlock)) add(SCRJREFREF1NBLOCK);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNOppack", scrJrefMNOppack)) add(SCRJREFMNOPPACK);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNOp", scrJrefMNOp)) add(SCRJREFMNOP);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSupMNJob", scrJrefSupMNJob)) add(SCRJREFSUPMNJOB);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSubMNJob", scrJrefSubMNJob)) add(SCRJREFSUBMNJOB);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "pnlsubmnjobAvail", pnlsubmnjobAvail)) add(PNLSUBMNJOBAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
 
@@ -300,19 +301,19 @@ set<uint> PnlWznmJobRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJrefACmd == comp->scrJrefACmd) insert(items, SCRJREFACMD);
 	if (scrJrefAVar == comp->scrJrefAVar) insert(items, SCRJREFAVAR);
-	if (scrJref1NSensitivity == comp->scrJref1NSensitivity) insert(items, SCRJREF1NSENSITIVITY);
+	if (scrJrefACmd == comp->scrJrefACmd) insert(items, SCRJREFACMD);
+	if (scrJref1NMethod == comp->scrJref1NMethod) insert(items, SCRJREF1NMETHOD);
 	if (scrJrefJob1NStage == comp->scrJrefJob1NStage) insert(items, SCRJREFJOB1NSTAGE);
 	if (scrJref1NRtjob == comp->scrJref1NRtjob) insert(items, SCRJREF1NRTJOB);
-	if (scrJref1NMethod == comp->scrJref1NMethod) insert(items, SCRJREF1NMETHOD);
-	if (scrJrefRef1NBlock == comp->scrJrefRef1NBlock) insert(items, SCRJREFREF1NBLOCK);
+	if (scrJref1NSensitivity == comp->scrJref1NSensitivity) insert(items, SCRJREF1NSENSITIVITY);
 	if (scrJrefHk1NVector == comp->scrJrefHk1NVector) insert(items, SCRJREFHK1NVECTOR);
-	if (scrJrefSupMNJob == comp->scrJrefSupMNJob) insert(items, SCRJREFSUPMNJOB);
-	if (pnlsupmnjobAvail == comp->pnlsupmnjobAvail) insert(items, PNLSUPMNJOBAVAIL);
-	if (scrJrefMNOp == comp->scrJrefMNOp) insert(items, SCRJREFMNOP);
+	if (scrJrefRef1NBlock == comp->scrJrefRef1NBlock) insert(items, SCRJREFREF1NBLOCK);
 	if (scrJrefMNOppack == comp->scrJrefMNOppack) insert(items, SCRJREFMNOPPACK);
+	if (scrJrefMNOp == comp->scrJrefMNOp) insert(items, SCRJREFMNOP);
+	if (scrJrefSupMNJob == comp->scrJrefSupMNJob) insert(items, SCRJREFSUPMNJOB);
 	if (scrJrefSubMNJob == comp->scrJrefSubMNJob) insert(items, SCRJREFSUBMNJOB);
+	if (pnlsubmnjobAvail == comp->pnlsubmnjobAvail) insert(items, PNLSUBMNJOBAVAIL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -326,7 +327,7 @@ set<uint> PnlWznmJobRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFACMD, SCRJREFAVAR, SCRJREF1NSENSITIVITY, SCRJREFJOB1NSTAGE, SCRJREF1NRTJOB, SCRJREF1NMETHOD, SCRJREFREF1NBLOCK, SCRJREFHK1NVECTOR, SCRJREFSUPMNJOB, PNLSUPMNJOBAVAIL, SCRJREFMNOP, SCRJREFMNOPPACK, SCRJREFSUBMNJOB, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAVAR, SCRJREFACMD, SCRJREF1NMETHOD, SCRJREFJOB1NSTAGE, SCRJREF1NRTJOB, SCRJREF1NSENSITIVITY, SCRJREFHK1NVECTOR, SCRJREFREF1NBLOCK, SCRJREFMNOPPACK, SCRJREFMNOP, SCRJREFSUPMNJOB, SCRJREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

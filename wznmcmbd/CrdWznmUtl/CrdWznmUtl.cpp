@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmUtl.cpp
 	* job handler for job CrdWznmUtl (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -40,10 +41,9 @@ CrdWznmUtl::CrdWznmUtl(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	dlgextrip = NULL;
-	dlgiexconv = NULL;
-	dlgmrgip = NULL;
 	pnlheadbar = NULL;
+	dlgextrip = NULL;
+	dlgmrgip = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -93,7 +93,11 @@ DpchEngWznm* CrdWznmUtl::getNewDpchEng(
 void CrdWznmUtl::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
@@ -102,6 +106,8 @@ void CrdWznmUtl::refresh(
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+
+	muteRefresh = false;
 };
 
 void CrdWznmUtl::updatePreset(
@@ -140,8 +146,6 @@ void CrdWznmUtl::handleRequest(
 					handleDpchAppDoClose(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITAPPABTCLICK) {
 					handleDpchAppDoMitAppAbtClick(dbswznm, &(req->dpcheng));
-				} else if (dpchappdo->ixVDo == VecVDo::MITCRDCIFCLICK) {
-					handleDpchAppDoMitCrdCifClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDXIPCLICK) {
 					handleDpchAppDoMitCrdXipClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDMIPCLICK) {
@@ -182,18 +186,6 @@ void CrdWznmUtl::handleDpchAppDoMitAppAbtClick(
 	// IP handleDpchAppDoMitAppAbtClick --- BEGIN
 	changeStage(dbswznm, VecVSge::ALRWZNMABT, dpcheng);
 	// IP handleDpchAppDoMitAppAbtClick --- END
-};
-
-void CrdWznmUtl::handleDpchAppDoMitCrdCifClick(
-			DbsWznm* dbswznm
-			, DpchEngWznm** dpcheng
-		) {
-	if (!dlgiexconv) {
-		dlgiexconv = new DlgWznmUtlIexconv(xchg, dbswznm, jref, ixWznmVLocale);
-		statshr.jrefDlgiexconv = dlgiexconv->jref;
-
-		*dpcheng = getNewDpchEng({DpchEngData::STATSHR});
-	};
 };
 
 void CrdWznmUtl::handleDpchAppDoMitCrdXipClick(
@@ -255,12 +247,6 @@ bool CrdWznmUtl::handleCallWznmDlgClose(
 		statshr.jrefDlgextrip = 0;
 
 		xchg->submitDpch(getNewDpchEng({DpchEngData::STATSHR}));
-	} else if (dlgiexconv) {
-		delete dlgiexconv;
-		dlgiexconv = NULL;
-		statshr.jrefDlgiexconv = 0;
-
-		xchg->submitDpch(getNewDpchEng({DpchEngData::STATSHR}));
 	} else if (dlgmrgip) {
 		delete dlgmrgip;
 		dlgmrgip = NULL;
@@ -288,7 +274,7 @@ void CrdWznmUtl::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -344,4 +330,6 @@ void CrdWznmUtl::leaveSgeAlrwznmabt(
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
 };
+
+
 

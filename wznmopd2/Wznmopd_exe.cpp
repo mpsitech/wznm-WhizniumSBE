@@ -1,10 +1,11 @@
 /**
-	* \file Wznmopd_exe.cpp
-	* Wznm operation daemon wznmopd2 main (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \file Wznmcmbd_exe.cpp
+	* Wznm combined daemon main (implementation)
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "Wznmopd.h"
 
@@ -423,4 +424,7 @@ int main(
 
 	return(0);
 };
+
+
+
 

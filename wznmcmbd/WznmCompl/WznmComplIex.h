@@ -1,10 +1,11 @@
 /**
 	* \file WznmComplIex.h
 	* Wznm operation processor - complement import/export structure (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMCOMPLIEX_H
 #define WZNMCOMPLIEX_H
@@ -20,4 +21,6 @@ namespace WznmComplIex {
 };
 
 #endif
+
+
 

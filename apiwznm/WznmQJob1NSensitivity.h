@@ -1,10 +1,11 @@
 /**
 	* \file WznmQJob1NSensitivity.h
 	* API code for table TblWznmQJob1NSensitivity (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQJOB1NSENSITIVITY_H
 #define WZNMQJOB1NSENSITIVITY_H

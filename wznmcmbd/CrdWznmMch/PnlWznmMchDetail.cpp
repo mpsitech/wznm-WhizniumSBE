@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmMchDetail.cpp
 	* job handler for job PnlWznmMchDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -37,8 +38,8 @@ PnlWznmMchDetail::PnlWznmMchDetail(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	feedFPupCty.tag = "FeedFPupCty";
-	VecWznmWCloudtype::fillFeed(feedFPupCty);
+	feedFPupPkm.tag = "FeedFPupPkm";
+	dbswznm->fillFeedFromKlst(VecWznmVKeylist::KLSTWZNMKMMACHINEPKGMGR, ixWznmVLocale, feedFPupPkm);
 
 	// IP constructor.cust1 --- INSERT
 
@@ -46,9 +47,13 @@ PnlWznmMchDetail::PnlWznmMchDetail(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMMCH_TBLEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMMCH_SUPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMMCH_CCHEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
+
+	xchg->addIxClstn(VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ, jref, Clstn::VecVJobmask::ALL, 0, false, VecWznmVKeylist::KLSTWZNMKMMACHINEPKGMGR);
 
 	updatePreset(dbswznm, VecWznmVPreset::PREWZNMREFMCH, jref);
 };
@@ -72,10 +77,65 @@ DpchEngWznm* PnlWznmMchDetail::getNewDpchEng(
 		dpcheng = new DpchEngWznmConfirm(true, jref, "");
 	} else {
 		insert(items, DpchEngData::JREF);
-		dpcheng = new DpchEngData(jref, &contiac, &continf, &feedFPupCty, &statshr, items);
+		dpcheng = new DpchEngData(jref, &contiac, &continf, &feedFPupPkm, &statshr, items);
 	};
 
 	return dpcheng;
+};
+
+void PnlWznmMchDetail::refreshPupPkm(
+			DbsWznm* dbswznm
+			, set<uint>& moditems
+		) {
+	ContIac oldContiac(contiac);
+	StatShr oldStatshr(statshr);
+
+	// contiac
+	contiac.numFPupPkm = 0;
+
+	for (unsigned int i = 0; i < feedFPupPkm.size(); i++) {
+		if (feedFPupPkm.getSrefByNum(i+1) == contiac.TxfPkm) {
+			contiac.numFPupPkm = i+1;
+			break;
+		};
+	};
+
+	// statshr
+	statshr.TxfPkmValid = (contiac.numFPupPkm != 0);
+	statshr.PupPkmActive = evalPupPkmActive(dbswznm);
+	statshr.ButPkmEditAvail = evalButPkmEditAvail(dbswznm);
+
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+};
+
+void PnlWznmMchDetail::refreshTxfPkm(
+			DbsWznm* dbswznm
+			, set<uint>& moditems
+		) {
+	ContIac oldContiac(contiac);
+	StatShr oldStatshr(statshr);
+
+	// contiac
+	contiac.TxfPkm = feedFPupPkm.getSrefByNum(contiac.numFPupPkm);
+
+	// statshr
+	statshr.TxfPkmValid = true;
+
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+};
+
+void PnlWznmMchDetail::refreshPkm(
+			DbsWznm* dbswznm
+			, set<uint>& moditems
+		) {
+	// feedFPupPkm
+	dbswznm->fillFeedFromKlst(VecWznmVKeylist::KLSTWZNMKMMACHINEPKGMGR, ixWznmVLocale, feedFPupPkm);
+
+	insert(moditems, DpchEngData::FEEDFPUPPKM);
+
+	refreshPupPkm(dbswznm, moditems);
 };
 
 void PnlWznmMchDetail::refreshRecMch(
@@ -96,26 +156,35 @@ void PnlWznmMchDetail::refreshRecMch(
 	dirty = false;
 
 	continf.TxtSrf = recMch.sref;
-	continf.TxtTbl = StubWznm::getStubMtyStd(dbswznm, recMch.refWznmMMachtype, ixWznmVLocale, Stub::VecVNonetype::FULL);
-	contiac.numFPupCty = feedFPupCty.getNumByIx(recMch.ixWznmWCloudtype);
+	continf.TxtSup = StubWznm::getStubMchStd(dbswznm, recMch.supRefWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::FULL);
+	continf.TxtCch = StubWznm::getStubMchStd(dbswznm, recMch.cchRefWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::FULL);
+	contiac.TxfPkm = recMch.srefKPkgmgr;
 	contiac.TxfCmt = recMch.Comment;
 
 	statshr.TxtSrfActive = evalTxtSrfActive(dbswznm);
-	statshr.TxtTblActive = evalTxtTblActive(dbswznm);
-	statshr.ButTblViewAvail = evalButTblViewAvail(dbswznm);
-	statshr.ButTblViewActive = evalButTblViewActive(dbswznm);
-	statshr.PupCtyActive = evalPupCtyActive(dbswznm);
+	statshr.TxtSupActive = evalTxtSupActive(dbswznm);
+	statshr.ButSupViewAvail = evalButSupViewAvail(dbswznm);
+	statshr.ButSupViewActive = evalButSupViewActive(dbswznm);
+	statshr.TxtCchActive = evalTxtCchActive(dbswznm);
+	statshr.ButCchViewAvail = evalButCchViewAvail(dbswznm);
+	statshr.ButCchViewActive = evalButCchViewActive(dbswznm);
 	statshr.TxfCmtActive = evalTxfCmtActive(dbswznm);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	refreshPupPkm(dbswznm, moditems);
 
 };
 
 void PnlWznmMchDetail::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -125,6 +194,8 @@ void PnlWznmMchDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmMchDetail::updatePreset(
@@ -177,8 +248,12 @@ void PnlWznmMchDetail::handleRequest(
 			if (dpchappdo->ixVDo != 0) {
 				if (dpchappdo->ixVDo == VecVDo::BUTSAVECLICK) {
 					handleDpchAppDoButSaveClick(dbswznm, &(req->dpcheng));
-				} else if (dpchappdo->ixVDo == VecVDo::BUTTBLVIEWCLICK) {
-					handleDpchAppDoButTblViewClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::BUTSUPVIEWCLICK) {
+					handleDpchAppDoButSupViewClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::BUTCCHVIEWCLICK) {
+					handleDpchAppDoButCchViewClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::BUTPKMEDITCLICK) {
+					handleDpchAppDoButPkmEditClick(dbswznm, &(req->dpcheng));
 				};
 
 			};
@@ -205,9 +280,16 @@ void PnlWznmMchDetail::handleDpchAppDataContiac(
 
 	diffitems = _contiac->diff(&contiac);
 
-	if (hasAny(diffitems, {ContIac::NUMFPUPCTY, ContIac::TXFCMT})) {
-		if (has(diffitems, ContIac::NUMFPUPCTY)) contiac.numFPupCty = _contiac->numFPupCty;
+	if (hasAny(diffitems, {ContIac::TXFCMT})) {
 		if (has(diffitems, ContIac::TXFCMT)) contiac.TxfCmt = _contiac->TxfCmt;
+	};
+
+	if (has(diffitems, ContIac::TXFPKM)) {
+		contiac.TxfPkm = _contiac->TxfPkm;
+		refreshPupPkm(dbswznm, moditems);
+	} else if (has(diffitems, ContIac::NUMFPUPPKM)) {
+		contiac.numFPupPkm = _contiac->numFPupPkm;
+		refreshTxfPkm(dbswznm, moditems);
 	};
 
 	insert(moditems, DpchEngData::CONTIAC);
@@ -221,17 +303,17 @@ void PnlWznmMchDetail::handleDpchAppDoButSaveClick(
 	// IP handleDpchAppDoButSaveClick --- INSERT
 };
 
-void PnlWznmMchDetail::handleDpchAppDoButTblViewClick(
+void PnlWznmMchDetail::handleDpchAppDoButSupViewClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
 		) {
 	ubigint jrefNew = 0;
 	string sref;
 
-	if (statshr.ButTblViewAvail && statshr.ButTblViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMTY, jref)) {
-			sref = "CrdWznmMty";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recMch.refWznmMMachtype, jrefNew);
+	if (statshr.ButSupViewAvail && statshr.ButSupViewActive) {
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMCH, jref)) {
+			sref = "CrdWznmMch";
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recMch.supRefWznmMMachine, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
@@ -239,15 +321,60 @@ void PnlWznmMchDetail::handleDpchAppDoButTblViewClick(
 	};
 };
 
+void PnlWznmMchDetail::handleDpchAppDoButCchViewClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	ubigint jrefNew = 0;
+	string sref;
+
+	if (statshr.ButCchViewAvail && statshr.ButCchViewActive) {
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMCH, jref)) {
+			sref = "CrdWznmMch";
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recMch.cchRefWznmMMachine, jrefNew);
+		};
+
+		if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
+		else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, sref);
+	};
+};
+
+void PnlWznmMchDetail::handleDpchAppDoButPkmEditClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	// IP handleDpchAppDoButPkmEditClick --- INSERT
+};
+
 void PnlWznmMchDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMMCHUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ) {
+		call->abort = handleCallWznmKlsAkeyMod_klsEq(dbswznm, call->jref, call->argInv.ix);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCHUPD_REFEQ) {
 		call->abort = handleCallWznmMchUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCH_TBLEQ) {
-		call->abort = handleCallWznmMch_tblEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCH_SUPEQ) {
+		call->abort = handleCallWznmMch_supEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCH_CCHEQ) {
+		call->abort = handleCallWznmMch_cchEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
+};
+
+bool PnlWznmMchDetail::handleCallWznmKlsAkeyMod_klsEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	if (ixInv == VecWznmVKeylist::KLSTWZNMKMMACHINEPKGMGR) {
+		refreshPkm(dbswznm, moditems);
+	};
+
+	xchg->submitDpch(getNewDpchEng(moditems));
+	return retval;
 };
 
 bool PnlWznmMchDetail::handleCallWznmMchUpd_refEq(
@@ -259,14 +386,27 @@ bool PnlWznmMchDetail::handleCallWznmMchUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmMchDetail::handleCallWznmMch_tblEq(
+bool PnlWznmMchDetail::handleCallWznmMch_supEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 			, const ubigint refInv
 			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recMch.refWznmMMachtype == refInv); // IP handleCallWznmMch_tblEq --- LINE
+	boolvalRet = (recMch.supRefWznmMMachine == refInv); // IP handleCallWznmMch_supEq --- LINE
 	return retval;
 };
+
+bool PnlWznmMchDetail::handleCallWznmMch_cchEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recMch.cchRefWznmMMachine == refInv); // IP handleCallWznmMch_cchEq --- LINE
+	return retval;
+};
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmLibRec.cpp
 	* job handler for job PnlWznmLibRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -40,8 +41,8 @@ PnlWznmLibRec::PnlWznmLibRec(
 	pnlmncomponent = NULL;
 	pnlmnoppack = NULL;
 	pnlref1nfile = NULL;
-	pnlapkglist = NULL;
 	pnlamakefile = NULL;
+	pnlapkglist = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -81,7 +82,11 @@ DpchEngWznm* PnlWznmLibRec::getNewDpchEng(
 void PnlWznmLibRec::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -96,23 +101,23 @@ void PnlWznmLibRec::refresh(
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
-		if (pnlamakefile) {delete pnlamakefile; pnlamakefile = NULL;};
 		if (pnlapkglist) {delete pnlapkglist; pnlapkglist = NULL;};
+		if (pnlamakefile) {delete pnlamakefile; pnlamakefile = NULL;};
 		if (pnlref1nfile) {delete pnlref1nfile; pnlref1nfile = NULL;};
 		if (pnlmnoppack) {delete pnlmnoppack; pnlmnoppack = NULL;};
 		if (pnlmncomponent) {delete pnlmncomponent; pnlmncomponent = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmLibDetail(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlamakefile) pnlamakefile = new PnlWznmLibAMakefile(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlapkglist) pnlapkglist = new PnlWznmLibAPkglist(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlamakefile) pnlamakefile = new PnlWznmLibAMakefile(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1nfile) pnlref1nfile = new PnlWznmLibRef1NFile(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmnoppack) pnlmnoppack = new PnlWznmLibMNOppack(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmncomponent) pnlmncomponent = new PnlWznmLibMNComponent(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
-	statshr.jrefAMakefile = ((pnlamakefile) ? pnlamakefile->jref : 0);
 	statshr.jrefAPkglist = ((pnlapkglist) ? pnlapkglist->jref : 0);
+	statshr.jrefAMakefile = ((pnlamakefile) ? pnlamakefile->jref : 0);
 	statshr.jrefRef1NFile = ((pnlref1nfile) ? pnlref1nfile->jref : 0);
 	statshr.jrefMNOppack = ((pnlmnoppack) ? pnlmnoppack->jref : 0);
 	statshr.jrefMNComponent = ((pnlmncomponent) ? pnlmncomponent->jref : 0);
@@ -121,6 +126,7 @@ void PnlWznmLibRec::refresh(
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWznmLibRec::updatePreset(
@@ -142,8 +148,8 @@ void PnlWznmLibRec::updatePreset(
 
 		if (recLib.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlamakefile) pnlamakefile->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlapkglist) pnlapkglist->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlamakefile) pnlamakefile->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1nfile) pnlref1nfile->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmnoppack) pnlmnoppack->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmncomponent) pnlmncomponent->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
@@ -269,4 +275,6 @@ bool PnlWznmLibRec::handleCallWznmLibUpd_refEq(
 	// IP handleCallWznmLibUpd_refEq --- INSERT
 	return retval;
 };
+
+
 

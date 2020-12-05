@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmPnlRec.cpp
 	* job handler for job PnlWznmPnlRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -37,9 +38,9 @@ PnlWznmPnlRec::PnlWznmPnlRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
-	pnlhk1ncontrol = NULL;
 	pnlmnquery = NULL;
+	pnlhk1ncontrol = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -83,7 +84,11 @@ DpchEngWznm* PnlWznmPnlRec::getNewDpchEng(
 void PnlWznmPnlRec::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -114,6 +119,7 @@ void PnlWznmPnlRec::refresh(
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWznmPnlRec::updatePreset(
@@ -311,4 +317,6 @@ bool PnlWznmPnlRec::handleCallWznmPnl_carEq(
 	boolvalRet = (recPnl.carRefWznmMCard == refInv); // IP handleCallWznmPnl_carEq --- LINE
 	return retval;
 };
+
+
 

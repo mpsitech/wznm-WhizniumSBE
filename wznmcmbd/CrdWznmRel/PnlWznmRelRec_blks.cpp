@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmRelRec_blks.cpp
 	* job handler for job PnlWznmRelRec (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -98,11 +99,11 @@ void PnlWznmRelRec::StatApp::writeXML(
 			, bool shorttags
 			, const bool initdoneDetail
 			, const bool initdoneATitle
-			, const bool initdoneSup1NRelation
 			, const bool initdone1NTablecol
+			, const bool initdoneSup1NRelation
 			, const bool initdoneRef1NControl
-			, const bool initdoneRef1NDialog
 			, const bool initdoneRef1NPanel
+			, const bool initdoneRef1NDialog
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmRelRec";
 
@@ -113,11 +114,11 @@ void PnlWznmRelRec::StatApp::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneATitle", initdoneATitle);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneSup1NRelation", initdoneSup1NRelation);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NTablecol", initdone1NTablecol);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneSup1NRelation", initdoneSup1NRelation);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NControl", initdoneRef1NControl);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NDialog", initdoneRef1NDialog);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NPanel", initdoneRef1NPanel);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NDialog", initdoneRef1NDialog);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -129,11 +130,11 @@ PnlWznmRelRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
 			, const ubigint jrefATitle
-			, const ubigint jrefSup1NRelation
 			, const ubigint jref1NTablecol
+			, const ubigint jrefSup1NRelation
 			, const ubigint jrefRef1NControl
-			, const ubigint jrefRef1NDialog
 			, const ubigint jrefRef1NPanel
+			, const ubigint jrefRef1NDialog
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -141,14 +142,14 @@ PnlWznmRelRec::StatShr::StatShr(
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
 	this->jrefATitle = jrefATitle;
-	this->jrefSup1NRelation = jrefSup1NRelation;
 	this->jref1NTablecol = jref1NTablecol;
+	this->jrefSup1NRelation = jrefSup1NRelation;
 	this->jrefRef1NControl = jrefRef1NControl;
-	this->jrefRef1NDialog = jrefRef1NDialog;
 	this->jrefRef1NPanel = jrefRef1NPanel;
+	this->jrefRef1NDialog = jrefRef1NDialog;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NCONTROL, JREFREF1NDIALOG, JREFREF1NPANEL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREF1NTABLECOL, JREFSUP1NRELATION, JREFREF1NCONTROL, JREFREF1NPANEL, JREFREF1NDIALOG, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmRelRec::StatShr::writeXML(
@@ -166,11 +167,11 @@ void PnlWznmRelRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefATitle", Scr::scramble(jrefATitle));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefSup1NRelation", Scr::scramble(jrefSup1NRelation));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NTablecol", Scr::scramble(jref1NTablecol));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefSup1NRelation", Scr::scramble(jrefSup1NRelation));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NControl", Scr::scramble(jrefRef1NControl));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NDialog", Scr::scramble(jrefRef1NDialog));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NPanel", Scr::scramble(jrefRef1NPanel));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NDialog", Scr::scramble(jrefRef1NDialog));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -183,11 +184,11 @@ set<uint> PnlWznmRelRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
 	if (jrefATitle == comp->jrefATitle) insert(items, JREFATITLE);
-	if (jrefSup1NRelation == comp->jrefSup1NRelation) insert(items, JREFSUP1NRELATION);
 	if (jref1NTablecol == comp->jref1NTablecol) insert(items, JREF1NTABLECOL);
+	if (jrefSup1NRelation == comp->jrefSup1NRelation) insert(items, JREFSUP1NRELATION);
 	if (jrefRef1NControl == comp->jrefRef1NControl) insert(items, JREFREF1NCONTROL);
-	if (jrefRef1NDialog == comp->jrefRef1NDialog) insert(items, JREFREF1NDIALOG);
 	if (jrefRef1NPanel == comp->jrefRef1NPanel) insert(items, JREFREF1NPANEL);
+	if (jrefRef1NDialog == comp->jrefRef1NDialog) insert(items, JREFREF1NDIALOG);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -201,7 +202,7 @@ set<uint> PnlWznmRelRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NCONTROL, JREFREF1NDIALOG, JREFREF1NPANEL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREF1NTABLECOL, JREFSUP1NRELATION, JREFREF1NCONTROL, JREFREF1NPANEL, JREFREF1NDIALOG, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -341,4 +342,6 @@ void PnlWznmRelRec::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

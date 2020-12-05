@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavDeploy_blks.cpp
 	* job handler for job PnlWznmNavDeploy (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -156,7 +157,6 @@ void PnlWznmNavDeploy::StatApp::writeXML(
 PnlWznmNavDeploy::StatShr::StatShr(
 			const bool LstCmpAvail
 			, const bool ButCmpViewActive
-			, const bool ButCmpNewcrdActive
 			, const bool LstRlsAvail
 			, const bool ButRlsViewActive
 			, const bool ButRlsNewcrdActive
@@ -165,12 +165,11 @@ PnlWznmNavDeploy::StatShr::StatShr(
 		{
 	this->LstCmpAvail = LstCmpAvail;
 	this->ButCmpViewActive = ButCmpViewActive;
-	this->ButCmpNewcrdActive = ButCmpNewcrdActive;
 	this->LstRlsAvail = LstRlsAvail;
 	this->ButRlsViewActive = ButRlsViewActive;
 	this->ButRlsNewcrdActive = ButRlsNewcrdActive;
 
-	mask = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, BUTCMPNEWCRDACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
+	mask = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
 };
 
 void PnlWznmNavDeploy::StatShr::writeXML(
@@ -187,7 +186,6 @@ void PnlWznmNavDeploy::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "LstCmpAvail", LstCmpAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButCmpViewActive", ButCmpViewActive);
-		writeBoolAttr(wr, itemtag, "sref", "ButCmpNewcrdActive", ButCmpNewcrdActive);
 		writeBoolAttr(wr, itemtag, "sref", "LstRlsAvail", LstRlsAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButRlsViewActive", ButRlsViewActive);
 		writeBoolAttr(wr, itemtag, "sref", "ButRlsNewcrdActive", ButRlsNewcrdActive);
@@ -201,7 +199,6 @@ set<uint> PnlWznmNavDeploy::StatShr::comm(
 
 	if (LstCmpAvail == comp->LstCmpAvail) insert(items, LSTCMPAVAIL);
 	if (ButCmpViewActive == comp->ButCmpViewActive) insert(items, BUTCMPVIEWACTIVE);
-	if (ButCmpNewcrdActive == comp->ButCmpNewcrdActive) insert(items, BUTCMPNEWCRDACTIVE);
 	if (LstRlsAvail == comp->LstRlsAvail) insert(items, LSTRLSAVAIL);
 	if (ButRlsViewActive == comp->ButRlsViewActive) insert(items, BUTRLSVIEWACTIVE);
 	if (ButRlsNewcrdActive == comp->ButRlsNewcrdActive) insert(items, BUTRLSNEWCRDACTIVE);
@@ -217,7 +214,7 @@ set<uint> PnlWznmNavDeploy::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, BUTCMPNEWCRDACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
+	diffitems = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -417,4 +414,6 @@ void PnlWznmNavDeploy::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file SessWznm.cpp
 	* job handler for job SessWznm (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -116,7 +117,6 @@ SessWznm::SessWznm(
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMLOC, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLOC, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMTAG, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTAG, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMCTP, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCTP, jref, ixWznmWAccess);
-	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMMTY, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMTY, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMMCH, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMCH, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMLIB, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMPRJ, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPRJ, jref, ixWznmWAccess);
@@ -169,8 +169,8 @@ SessWznm::SessWznm(
 	xchg->addClstn(VecWznmVCall::CALLWZNMRECACCESS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMLOG, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMCRDOPEN, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMCRDACTIVE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMCRDCLOSE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMCRDACTIVE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -740,7 +740,6 @@ uint SessWznm::checkCrdaccess(
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLOC, jref);
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTAG, jref);
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCTP) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCTP, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMTY) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMTY, jref);
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMCH) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMCH, jref);
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMLIB) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref);
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRJ) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPRJ, jref);
@@ -961,7 +960,6 @@ uint SessWznm::crdToMtb(
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) return VecWznmVMaintable::TBLWZNMMLOCALE;
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) return VecWznmVMaintable::TBLWZNMMTAG;
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCTP) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMTY) return VecWznmVMaintable::TBLWZNMMMACHTYPE;
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMCH) return VecWznmVMaintable::TBLWZNMMMACHINE;
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMLIB) return VecWznmVMaintable::TBLWZNMMLIBRARY;
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRJ) return VecWznmVMaintable::TBLWZNMMPROJECT;
@@ -1039,7 +1037,6 @@ uint SessWznm::preToMtb(
 	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMDL) return VecWznmVMaintable::TBLWZNMMMODULE;
 	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMTB) return VecWznmVMaintable::TBLWZNMMTABLE;
 	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMTD) return VecWznmVMaintable::TBLWZNMMMETHOD;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMTY) return VecWznmVMaintable::TBLWZNMMMACHTYPE;
 	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFOEN) return VecWznmVMaintable::TBLWZNMMCOMPONENT;
 	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFOPK) return VecWznmVMaintable::TBLWZNMMOPPACK;
 	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFOPX) return VecWznmVMaintable::TBLWZNMMOP;
@@ -1121,7 +1118,6 @@ void SessWznm::handleRequest(
 			cout << "\tcreateCrdmch" << endl;
 			cout << "\tcreateCrdmdl" << endl;
 			cout << "\tcreateCrdmtd" << endl;
-			cout << "\tcreateCrdmty" << endl;
 			cout << "\tcreateCrdopk" << endl;
 			cout << "\tcreateCrdopx" << endl;
 			cout << "\tcreateCrdpnl" << endl;
@@ -1170,7 +1166,6 @@ void SessWznm::handleRequest(
 			cout << "\teraseCrdmch" << endl;
 			cout << "\teraseCrdmdl" << endl;
 			cout << "\teraseCrdmtd" << endl;
-			cout << "\teraseCrdmty" << endl;
 			cout << "\teraseCrdopk" << endl;
 			cout << "\teraseCrdopx" << endl;
 			cout << "\teraseCrdpnl" << endl;
@@ -1262,9 +1257,6 @@ void SessWznm::handleRequest(
 
 		} else if (req->cmd == "createCrdmtd") {
 			req->retain = handleCreateCrdmtd(dbswznm);
-
-		} else if (req->cmd == "createCrdmty") {
-			req->retain = handleCreateCrdmty(dbswznm);
 
 		} else if (req->cmd == "createCrdopk") {
 			req->retain = handleCreateCrdopk(dbswznm);
@@ -1409,9 +1401,6 @@ void SessWznm::handleRequest(
 
 		} else if (req->cmd == "eraseCrdmtd") {
 			req->retain = handleEraseCrdmtd(dbswznm);
-
-		} else if (req->cmd == "eraseCrdmty") {
-			req->retain = handleEraseCrdmty(dbswznm);
 
 		} else if (req->cmd == "eraseCrdopk") {
 			req->retain = handleEraseCrdopk(dbswznm);
@@ -1926,21 +1915,6 @@ bool SessWznm::handleCreateCrdmtd(
 		cout << "\tjob reference: " << crdmtd->jref << endl;
 		xchg->jrefCmd = crdmtd->jref;
 	};
-
-	return false;
-	return retval;
-};
-
-bool SessWznm::handleCreateCrdmty(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	CrdWznmMty* crdmty = NULL;
-
-	crdmty = new CrdWznmMty(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdmtys.push_back(crdmty);
-	cout << "\tjob reference: " << crdmty->jref << endl;
-	xchg->jrefCmd = crdmty->jref;
 
 	return false;
 	return retval;
@@ -3006,31 +2980,6 @@ bool SessWznm::handleEraseCrdmtd(
 	return retval;
 };
 
-bool SessWznm::handleEraseCrdmty(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmMty* crdmty = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdmtys.begin(); it != crdmtys.end();) {
-		crdmty = *it;
-		if (crdmty->jref == iinput) {
-			it = crdmtys.erase(it);
-			delete crdmty;
-			break;
-		} else it++;
-	};
-
-	return retval;
-};
-
 bool SessWznm::handleEraseCrdopk(
 			DbsWznm* dbswznm
 		) {
@@ -3698,7 +3647,6 @@ void SessWznm::handleDpchAppWznmInit(
 	for (auto it = crdlocs.begin(); it != crdlocs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmLoc");
 	for (auto it = crdtags.begin(); it != crdtags.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmTag");
 	for (auto it = crdctps.begin(); it != crdctps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmCtp");
-	for (auto it = crdmtys.begin(); it != crdmtys.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmMty");
 	for (auto it = crdmchs.begin(); it != crdmchs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmMch");
 	for (auto it = crdlibs.begin(); it != crdlibs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmLib");
 	for (auto it = crdprjs.begin(); it != crdprjs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmPrj");
@@ -3756,10 +3704,10 @@ void SessWznm::handleCall(
 		call->abort = handleCallWznmLog(dbswznm, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCRDOPEN) {
 		call->abort = handleCallWznmCrdOpen(dbswznm, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval, call->argRet.ref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCRDACTIVE) {
-		call->abort = handleCallWznmCrdActive(dbswznm, call->jref, call->argInv.ix, call->argRet.ix);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCRDCLOSE) {
 		call->abort = handleCallWznmCrdClose(dbswznm, call->jref, call->argInv.ix);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCRDACTIVE) {
+		call->abort = handleCallWznmCrdActive(dbswznm, call->jref, call->argInv.ix, call->argRet.ix);
 	};
 };
 
@@ -3873,8 +3821,7 @@ bool SessWznm::handleCallWznmCrdOpen(
 		refRet = 0;
 
 	} else {
-		if (ixWznmVCard == VecWznmVCard::CRDWZNMNAV) {
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMUSG) {
+		if (ixWznmVCard == VecWznmVCard::CRDWZNMUSG) {
 			CrdWznmUsg* crdusg = NULL;
 
 			crdusg = new CrdWznmUsg(xchg, dbswznm, jref, ixWznmVLocale, ref);
@@ -3906,6 +3853,7 @@ bool SessWznm::handleCallWznmCrdOpen(
 
 			refRet = crdfil->jref;
 
+		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMNAV) {
 		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) {
 			CrdWznmLoc* crdloc = NULL;
 
@@ -3929,14 +3877,6 @@ bool SessWznm::handleCallWznmCrdOpen(
 			crdctps.push_back(crdctp);
 
 			refRet = crdctp->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMMTY) {
-			CrdWznmMty* crdmty = NULL;
-
-			crdmty = new CrdWznmMty(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdmtys.push_back(crdmty);
-
-			refRet = crdmty->jref;
 
 		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMMCH) {
 			CrdWznmMch* crdmch = NULL;
@@ -4272,17 +4212,6 @@ bool SessWznm::handleCallWznmCrdOpen(
 	return retval;
 };
 
-bool SessWznm::handleCallWznmCrdActive(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, uint& ixRet
-		) {
-	bool retval = false;
-	ixRet = checkCrdActive(ixInv);
-	return retval;
-};
-
 bool SessWznm::handleCallWznmCrdClose(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -4295,13 +4224,7 @@ bool SessWznm::handleCallWznmCrdClose(
 	ubigint jrefNotif = xchg->getRefPreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
 	if (jrefNotif == jrefTrig) xchg->removePreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
 
-	if (ixInv == VecWznmVCard::CRDWZNMNAV) {
-		if (crdnav) {
-			delete crdnav;
-			crdnav = NULL;
-		};
-
-	} else if (ixInv == VecWznmVCard::CRDWZNMUSG) {
+	if (ixInv == VecWznmVCard::CRDWZNMUSG) {
 		CrdWznmUsg* crdusg = NULL;
 
 		for (auto it = crdusgs.begin(); it != crdusgs.end();) {
@@ -4345,6 +4268,12 @@ bool SessWznm::handleCallWznmCrdClose(
 				break;
 			} else it++;
 		};
+	} else if (ixInv == VecWznmVCard::CRDWZNMNAV) {
+		if (crdnav) {
+			delete crdnav;
+			crdnav = NULL;
+		};
+
 	} else if (ixInv == VecWznmVCard::CRDWZNMLOC) {
 		CrdWznmLoc* crdloc = NULL;
 
@@ -4375,17 +4304,6 @@ bool SessWznm::handleCallWznmCrdClose(
 			if (crdctp->jref == jrefTrig) {
 				it = crdctps.erase(it);
 				delete crdctp;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMMTY) {
-		CrdWznmMty* crdmty = NULL;
-
-		for (auto it = crdmtys.begin(); it != crdmtys.end();) {
-			crdmty = *it;
-			if (crdmty->jref == jrefTrig) {
-				it = crdmtys.erase(it);
-				delete crdmty;
 				break;
 			} else it++;
 		};
@@ -4843,4 +4761,17 @@ bool SessWznm::handleCallWznmCrdClose(
 	};
 	return retval;
 };
+
+bool SessWznm::handleCallWznmCrdActive(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, uint& ixRet
+		) {
+	bool retval = false;
+	ixRet = checkCrdActive(ixInv);
+	return retval;
+};
+
+
 

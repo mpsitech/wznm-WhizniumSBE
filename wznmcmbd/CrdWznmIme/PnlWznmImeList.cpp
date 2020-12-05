@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmImeList.cpp
 	* job handler for job PnlWznmImeList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -94,7 +95,11 @@ DpchEngWznm* PnlWznmImeList::getNewDpchEng(
 void PnlWznmImeList::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
 
@@ -106,8 +111,8 @@ void PnlWznmImeList::refresh(
 	if ((ixPre != 0) && (ixPre != VecWznmVPreset::VOID)) {
 		continf.TxtFor = VecWznmVPreset::getTitle(ixPre, ixWznmVLocale);
 
-		if (ixPre == VecWznmVPreset::PREWZNMREFIEX) continf.TxtPre = StubWznm::getStubIexStd(dbswznm, xchg->getRefPreset(ixPre, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
-		else if (ixPre == VecWznmVPreset::PREWZNMREFVER) continf.TxtPre = StubWznm::getStubVerStd(dbswznm, xchg->getRefPreset(ixPre, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
+		if (ixPre == VecWznmVPreset::PREWZNMREFVER) continf.TxtPre = StubWznm::getStubVerStd(dbswznm, xchg->getRefPreset(ixPre, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
+		else if (ixPre == VecWznmVPreset::PREWZNMREFIEX) continf.TxtPre = StubWznm::getStubIexStd(dbswznm, xchg->getRefPreset(ixPre, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
 
 	} else {
 		continf.TxtFor = "";
@@ -119,6 +124,8 @@ void PnlWznmImeList::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+
+	muteRefresh = false;
 };
 
 void PnlWznmImeList::updatePreset(
@@ -250,19 +257,18 @@ void PnlWznmImeList::handleDpchAppDataContiac(
 
 	diffitems = _contiac->diff(&contiac);
 
-	muteRefresh = true;
-
 	if (has(diffitems, ContIac::NUMFTOS)) {
 		if ((_contiac->numFTos >= QryWznmImeList::VecVOrd::TBL) && (_contiac->numFTos <= QryWznmImeList::VecVOrd::SRF)) {
+			muteRefresh = true;
+
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);
 
 			qry->rerun(dbswznm);
-			refresh(dbswznm, moditems);
+
+			refresh(dbswznm, moditems, true);
 			insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 		};
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::CONTIAC);
 	*dpcheng = getNewDpchEng(moditems);
@@ -294,16 +300,17 @@ void PnlWznmImeList::handleDpchAppDataStgiacqry(
 
 	ubigint refSelNew = 0;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWznmImeList::StgIac::JNUM)) refSelNew = qry->getRefByJnum(_stgiacqry->jnum);
 
 		if (!has(diffitems, QryWznmImeList::StgIac::JNUM) || (diffitems.size() > 1)) {
+			muteRefresh = true;
+
 			qry->rerun(dbswznm);
-			refresh(dbswznm, moditems);
+
+			refresh(dbswznm, moditems, true);
 			insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::RST});
 		};
 
@@ -312,8 +319,6 @@ void PnlWznmImeList::handleDpchAppDataStgiacqry(
 			xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFIME, refSelNew);
 		};
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -363,9 +368,8 @@ void PnlWznmImeList::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswznm, false);
-	refresh(dbswznm, moditems);
 
-	muteRefresh = false;
+	refresh(dbswznm, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);
@@ -400,4 +404,6 @@ bool PnlWznmImeList::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
+
+
 

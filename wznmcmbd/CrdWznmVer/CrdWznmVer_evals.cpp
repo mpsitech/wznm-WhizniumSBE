@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmVer_evals.cpp
 	* job handler for job CrdWznmVer (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -175,7 +176,7 @@ bool CrdWznmVer::evalMspCrd4Avail(
 	return(args.back());
 };
 
-bool CrdWznmVer::evalMitCrdWskAvail(
+bool CrdWznmVer::evalMitCrdImdAvail(
 			DbsWznm* dbswznm
 		) {
 	// pre.ixCrdaccVerIncl(exec)
@@ -189,7 +190,7 @@ bool CrdWznmVer::evalMitCrdWskAvail(
 	return(args.back());
 };
 
-bool CrdWznmVer::evalMitCrdWskActive(
+bool CrdWznmVer::evalMitCrdImdActive(
 			DbsWznm* dbswznm
 		) {
 	// pre.refVer()
@@ -624,4 +625,6 @@ bool CrdWznmVer::evalMitCrdFnmActive(
 
 	return(args.back());
 };
+
+
 

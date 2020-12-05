@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmFilNew.cpp
 	* job handler for job DlgWznmFilNew (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -192,7 +193,11 @@ void DlgWznmFilNew::refreshFil(
 void DlgWznmFilNew::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
@@ -214,6 +219,8 @@ void DlgWznmFilNew::refresh(
 
 	refreshDet(dbswznm, moditems);
 	refreshFil(dbswznm, moditems);
+
+	muteRefresh = false;
 };
 
 void DlgWznmFilNew::handleRequest(
@@ -406,7 +413,7 @@ void DlgWznmFilNew::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -529,5 +536,6 @@ void DlgWznmFilNew::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

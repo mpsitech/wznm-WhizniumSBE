@@ -1,10 +1,11 @@
 /**
 	* \file JobWznmIexBui.cpp
 	* job handler for job JobWznmIexBui (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -68,10 +69,12 @@ void JobWznmIexBui::parseFromFile(
 			DbsWznm* dbswznm
 			, const string& _fullpath
 			, const bool _xmlNotTxt
+			, const string& _rectpath
 		) {
 	if (ixVSge == VecVSge::IDLE) {
 		fullpath = _fullpath;
 		xmlNotTxt = _xmlNotTxt;
+		rectpath = _rectpath;
 
 		changeStage(dbswznm, VecVSge::PARSE);
 	};
@@ -211,6 +214,7 @@ uint JobWznmIexBui::enterSgeIdle(
 
 	fullpath = "";
 	xmlNotTxt = false;
+	rectpath = "";
 
 	lineno = 0;
 	impcnt = 0;
@@ -239,7 +243,7 @@ uint JobWznmIexBui::enterSgeParse(
 	nextIxVSgeFailure = VecVSge::PRSERR;
 
 	try {
-		IexWznmBui::parseFromFile(fullpath, xmlNotTxt, imeimmodule, imeimpreset);
+		IexWznmBui::parseFromFile(fullpath, xmlNotTxt, rectpath, imeimmodule, imeimpreset);
 
 	} catch (SbeException& e) {
 		if (e.ix == SbeException::PATHNF) e.vals["path"] = "<hidden>";
@@ -723,5 +727,6 @@ void JobWznmIexBui::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

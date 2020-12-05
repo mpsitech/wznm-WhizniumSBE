@@ -1,10 +1,11 @@
 /**
   * \file QryWznmPrsList.java
   * Java API code for job QryWznmPrsList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -18,8 +19,8 @@ public class QryWznmPrsList {
 		*/
 	public static class VecVOrd {
 
-		public static final int OWN = 1;
-		public static final int LNM = 2;
+		public static final int LNM = 1;
+		public static final int OWN = 2;
 		public static final int GRP = 3;
 
 		public static int getIx(
@@ -27,8 +28,8 @@ public class QryWznmPrsList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("own")) return OWN;
 			if (s.equals("lnm")) return LNM;
+			if (s.equals("own")) return OWN;
 			if (s.equals("grp")) return GRP;
 
 			return 0;
@@ -37,8 +38,8 @@ public class QryWznmPrsList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == OWN) return("own");
 			if (ix == LNM) return("lnm");
+			if (ix == OWN) return("own");
 			if (ix == GRP) return("grp");
 
 			return "";

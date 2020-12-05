@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmPrj.cpp
 	* job handler for job CrdWznmPrj (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -44,9 +45,9 @@ CrdWznmPrj::CrdWznmPrj(
 
 	pnllist = NULL;
 	pnlheadbar = NULL;
+	dlgnew = NULL;
 	pnlrec = NULL;
 	dlgimpex = NULL;
-	dlgnew = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -112,7 +113,11 @@ DpchEngWznm* CrdWznmPrj::getNewDpchEng(
 void CrdWznmPrj::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -129,6 +134,8 @@ void CrdWznmPrj::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void CrdWznmPrj::changeRef(
@@ -355,7 +362,7 @@ void CrdWznmPrj::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -411,4 +418,6 @@ void CrdWznmPrj::leaveSgeAlrwznmabt(
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
 };
+
+
 

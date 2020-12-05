@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmImeList_blks.cpp
 	* job handler for job QryWznmImeList (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -20,8 +21,8 @@ uint QryWznmImeList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "tbl") return TBL;
-	if (s == "iex") return IEX;
 	if (s == "sup") return SUP;
+	if (s == "iex") return IEX;
 	if (s == "srf") return SRF;
 
 	return(0);
@@ -31,8 +32,8 @@ string QryWznmImeList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == TBL) return("tbl");
-	if (ix == IEX) return("iex");
 	if (ix == SUP) return("sup");
+	if (ix == IEX) return("iex");
 	if (ix == SRF) return("srf");
 
 	return("");
@@ -220,4 +221,6 @@ set<uint> QryWznmImeList::StgIac::diff(
 
 	return(diffitems);
 };
+
+
 

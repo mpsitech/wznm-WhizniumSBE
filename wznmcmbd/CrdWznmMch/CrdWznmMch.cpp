@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmMch.cpp
 	* job handler for job CrdWznmMch (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -15,6 +16,7 @@
 #include "CrdWznmMch.h"
 
 #include "CrdWznmMch_blks.cpp"
+#include "CrdWznmMch_evals.cpp"
 
 using namespace std;
 using namespace Sbecore;
@@ -44,6 +46,7 @@ CrdWznmMch::CrdWznmMch(
 	pnllist = NULL;
 	pnlheadbar = NULL;
 	pnlrec = NULL;
+	dlgwriniscr = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -104,16 +107,28 @@ DpchEngWznm* CrdWznmMch::getNewDpchEng(
 void CrdWznmMch::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
+	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
 	// continf
 	continf.MrlAppHlp = xchg->helpurl + "/CrdWznmMch/" + VecWznmVLocale::getSref(ixWznmVLocale);
 	continf.MtxCrdMch = StubWznm::getStubMchStd(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFMCH, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
 
+	// statshr
+	statshr.MitCrdWisAvail = evalMitCrdWisAvail(dbswznm);
+	statshr.MitCrdWisActive = evalMitCrdWisActive(dbswznm);
+
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void CrdWznmMch::changeRef(
@@ -170,6 +185,8 @@ void CrdWznmMch::handleRequest(
 					handleDpchAppDoClose(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITAPPABTCLICK) {
 					handleDpchAppDoMitAppAbtClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::MITCRDWISCLICK) {
+					handleDpchAppDoMitCrdWisClick(dbswznm, &(req->dpcheng));
 				};
 
 			};
@@ -206,6 +223,18 @@ void CrdWznmMch::handleDpchAppDoMitAppAbtClick(
 	// IP handleDpchAppDoMitAppAbtClick --- BEGIN
 	changeStage(dbswznm, VecVSge::ALRWZNMABT, dpcheng);
 	// IP handleDpchAppDoMitAppAbtClick --- END
+};
+
+void CrdWznmMch::handleDpchAppDoMitCrdWisClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	if (!dlgwriniscr) {
+		dlgwriniscr = new DlgWznmMchWriniscr(xchg, dbswznm, jref, ixWznmVLocale);
+		statshr.jrefDlgwriniscr = dlgwriniscr->jref;
+
+		*dpcheng = getNewDpchEng({DpchEngData::STATSHR});
+	};
 };
 
 void CrdWznmMch::handleDpchAppWznmAlert(
@@ -266,7 +295,15 @@ bool CrdWznmMch::handleCallWznmDlgClose(
 			, const ubigint jrefTrig
 		) {
 	bool retval = false;
-	// IP handleCallWznmDlgClose --- INSERT
+
+	if (dlgwriniscr) {
+		delete dlgwriniscr;
+		dlgwriniscr = NULL;
+		statshr.jrefDlgwriniscr = 0;
+
+		xchg->submitDpch(getNewDpchEng({DpchEngData::STATSHR}));
+	};
+
 	return retval;
 };
 
@@ -286,7 +323,7 @@ void CrdWznmMch::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -342,4 +379,6 @@ void CrdWznmMch::leaveSgeAlrwznmabt(
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
 };
+
+
 

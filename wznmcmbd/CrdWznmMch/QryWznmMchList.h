@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmMchList.h
 	* job handler for job QryWznmMchList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMMCHLIST_H
 #define QRYWZNMMCHLIST_H
@@ -31,7 +32,7 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint TBL = 1;
+		static const Sbecore::uint SUP = 1;
 		static const Sbecore::uint SRF = 2;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -119,7 +120,7 @@ public:
 	void refreshJnum();
 
 	void rerun(DbsWznm* dbswznm, const bool call = false);
-	void rerun_filtSQL(std::string& sqlstr, const std::string& preSrf, const Sbecore::ubigint preTbl, const bool addwhere);
+	void rerun_filtSQL(std::string& sqlstr, const std::string& preSrf, const Sbecore::ubigint preSup, const bool addwhere);
 	void rerun_filtSQL_append(std::string& sqlstr, bool& first);
 	void rerun_orderSQL(std::string& sqlstr, const Sbecore::uint preIxOrd);
 
@@ -142,11 +143,13 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmMchMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmMchUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmMchMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };
 
 #endif
+
+
 

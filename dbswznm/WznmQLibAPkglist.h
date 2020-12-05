@@ -1,10 +1,11 @@
 /**
 	* \file WznmQLibAPkglist.h
 	* Dbs and XML wrapper for table TblWznmQLibAPkglist (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQLIBAPKGLIST_H
 #define WZNMQLIBAPKGLIST_H
@@ -24,18 +25,15 @@
 class WznmQLibAPkglist {
 
 public:
-	WznmQLibAPkglist(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::uint x1RefIxVTbl = 0, const std::string srefX1RefIxVTbl = "", const std::string titX1RefIxVTbl = "", const Sbecore::ubigint x1RefUref = 0, const std::string stubX1RefUref = "", const std::string Pkglist = "");
+	WznmQLibAPkglist(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string stubX1RefWznmMMachine = "", const std::string Pkglist = "");
 
 public:
 	Sbecore::ubigint qref;
 	Sbecore::ubigint jref;
 	Sbecore::uint jnum;
 	Sbecore::ubigint ref;
-	Sbecore::uint x1RefIxVTbl;
-	std::string srefX1RefIxVTbl;
-	std::string titX1RefIxVTbl;
-	Sbecore::ubigint x1RefUref;
-	std::string stubX1RefUref;
+	Sbecore::ubigint x1RefWznmMMachine;
+	std::string stubX1RefWznmMMachine;
 	std::string Pkglist;
 
 public:
@@ -79,8 +77,8 @@ public:
 	virtual Sbecore::ubigint loadRstBySQL(const std::string& sqlstr, const bool append, ListWznmQLibAPkglist& rst);
 
 	virtual Sbecore::ubigint insertRec(WznmQLibAPkglist* rec);
-	Sbecore::ubigint insertNewRec(WznmQLibAPkglist** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::uint x1RefIxVTbl = 0, const std::string srefX1RefIxVTbl = "", const std::string titX1RefIxVTbl = "", const Sbecore::ubigint x1RefUref = 0, const std::string stubX1RefUref = "", const std::string Pkglist = "");
-	Sbecore::ubigint appendNewRecToRst(ListWznmQLibAPkglist& rst, WznmQLibAPkglist** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::uint x1RefIxVTbl = 0, const std::string srefX1RefIxVTbl = "", const std::string titX1RefIxVTbl = "", const Sbecore::ubigint x1RefUref = 0, const std::string stubX1RefUref = "", const std::string Pkglist = "");
+	Sbecore::ubigint insertNewRec(WznmQLibAPkglist** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string stubX1RefWznmMMachine = "", const std::string Pkglist = "");
+	Sbecore::ubigint appendNewRecToRst(ListWznmQLibAPkglist& rst, WznmQLibAPkglist** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string stubX1RefWznmMMachine = "", const std::string Pkglist = "");
 	virtual void insertRst(ListWznmQLibAPkglist& rst);
 	virtual void updateRec(WznmQLibAPkglist* rec);
 	virtual void updateRst(ListWznmQLibAPkglist& rst);

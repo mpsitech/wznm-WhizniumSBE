@@ -1,10 +1,11 @@
 /**
 	* \file WznmQTblFr1NRelation.h
 	* Dbs and XML wrapper for table TblWznmQTblFr1NRelation (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQTBLFR1NRELATION_H
 #define WZNMQTBLFR1NRELATION_H

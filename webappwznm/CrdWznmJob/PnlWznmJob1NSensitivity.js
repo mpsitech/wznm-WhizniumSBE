@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmJob1NSensitivity.js
-  * web client functionality for panel PnlWznmJob1NSensitivity
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmJob1NSensitivity", "srefIxWznmVExpstate") == "mind") return;

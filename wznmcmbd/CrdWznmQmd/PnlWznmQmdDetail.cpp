@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmQmdDetail.cpp
 	* job handler for job PnlWznmQmdDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -129,7 +130,11 @@ void PnlWznmQmdDetail::refreshRecQmd(
 void PnlWznmQmdDetail::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -139,6 +144,8 @@ void PnlWznmQmdDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmQmdDetail::updatePreset(
@@ -276,6 +283,12 @@ void PnlWznmQmdDetail::handleDpchAppDoButPstViewClick(
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recQmd.refWznmMPreset, jrefNew);
 		};
 		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmSbs";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMSubset WHERE refWznmMPreset = " + to_string(recQmd.refWznmMPreset), ref); return ref;}(), jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmVec";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMPreset = " + to_string(recQmd.refWznmMPreset), ref); return ref;}(), jrefNew);
@@ -285,12 +298,6 @@ void PnlWznmQmdDetail::handleDpchAppDoButPstViewClick(
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmTbl";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMTable WHERE refWznmMPreset = " + to_string(recQmd.refWznmMPreset), ref); return ref;}(), jrefNew);
-			};
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmSbs";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMSubset WHERE refWznmMPreset = " + to_string(recQmd.refWznmMPreset), ref); return ref;}(), jrefNew);
 			};
 		};
 
@@ -389,4 +396,6 @@ bool PnlWznmQmdDetail::handleCallWznmQmd_pstEq(
 	boolvalRet = (recQmd.refWznmMPreset == refInv); // IP handleCallWznmQmd_pstEq --- LINE
 	return retval;
 };
+
+
 

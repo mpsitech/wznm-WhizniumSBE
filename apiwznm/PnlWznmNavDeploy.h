@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavDeploy.h
 	* API code for job PnlWznmNavDeploy (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMNAVDEPLOY_H
 #define PNLWZNMNAVDEPLOY_H
@@ -100,18 +101,16 @@ namespace PnlWznmNavDeploy {
 	public:
 		static const Sbecore::uint LSTCMPAVAIL = 1;
 		static const Sbecore::uint BUTCMPVIEWACTIVE = 2;
-		static const Sbecore::uint BUTCMPNEWCRDACTIVE = 3;
-		static const Sbecore::uint LSTRLSAVAIL = 4;
-		static const Sbecore::uint BUTRLSVIEWACTIVE = 5;
-		static const Sbecore::uint BUTRLSNEWCRDACTIVE = 6;
+		static const Sbecore::uint LSTRLSAVAIL = 3;
+		static const Sbecore::uint BUTRLSVIEWACTIVE = 4;
+		static const Sbecore::uint BUTRLSNEWCRDACTIVE = 5;
 
 	public:
-		StatShr(const bool LstCmpAvail = true, const bool ButCmpViewActive = true, const bool ButCmpNewcrdActive = true, const bool LstRlsAvail = true, const bool ButRlsViewActive = true, const bool ButRlsNewcrdActive = true);
+		StatShr(const bool LstCmpAvail = true, const bool ButCmpViewActive = true, const bool LstRlsAvail = true, const bool ButRlsViewActive = true, const bool ButRlsNewcrdActive = true);
 
 	public:
 		bool LstCmpAvail;
 		bool ButCmpViewActive;
-		bool ButCmpNewcrdActive;
 		bool LstRlsAvail;
 		bool ButRlsViewActive;
 		bool ButRlsNewcrdActive;

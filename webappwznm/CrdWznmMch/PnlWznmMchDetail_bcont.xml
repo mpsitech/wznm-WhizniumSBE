@@ -4,8 +4,13 @@
 	<head>
 		<title>Detail_bcont</title>
 		<script>
-			function handleButTblViewClick() {parent.parent.window.handleButCrdopenClick("ButTblView");};
-			function handlePupCtyChange() {parent.parent.window.handlePupChange(document,"PupCty","");};
+			function handleButSupViewClick() {parent.parent.window.handleButCrdopenClick("ButSupView");};
+			function handleButCchViewClick() {parent.parent.window.handleButCrdopenClick("ButCchView");};
+			function handlePupPkmChange() {parent.parent.window.handlePupChange(document,"PupPkm","");};
+			function handleButPkmToggleClick() {parent.parent.window.handleButToggleClick("PupPkm");};
+			function handleTxfPkmKey(evt) {return parent.parent.window.handleTxfKey(document,"TxfPkm","",evt);};
+			function handleTxfPkmChange() {parent.parent.window.handleTxfChange(document,"TxfPkm","");};
+			function handleButPkmEditClick() {parent.parent.window.handleButDlgopenClick("ButPkmEdit");};
 			function handleTxfCmtKey(evt) {return parent.parent.window.handleTxftKey(document,"TxfCmt",evt);};
 			function handleTxfCmtChange() {parent.parent.window.handleTxftChange(document,"TxfCmt");};
 			<!-- IP custScript - INSERT -->
@@ -48,30 +53,44 @@
 					<td colspan="10" bgcolor="#7f7f7f"></td>
 				</tr>
 				<tr id="trA3" class="show"><td colspan="11" height="3"></td></tr>
-				<tr id="trTbl" class="show">
+				<tr id="trSup" class="show">
 					<td height="25"></td>
 					<td align="right">
-						<span id="CptTbl" class="cpt">CptTbl</span>
+						<span id="CptSup" class="cpt">CptSup</span>
 					</td>
 					<td></td>
 					<td colspan="5" align="left">
-						<input id="TxtTbl" class="txfnoed" type="text" readonly="readonly" value="TxtTbl"/>
+						<input id="TxtSup" class="txfnoed" type="text" readonly="readonly" value="TxtSup"/>
 					</td>
 					<td></td>
-					<td id="rdynTbl" colspan="2" align="left">
+					<td id="rdynSup" colspan="2" align="left">
 					</td>
 				</tr>
-				<tr id="trCty" class="show">
+				<tr id="trCch" class="show">
 					<td height="25"></td>
 					<td align="right">
-						<span id="CptCty" class="cpt">CptCty</span>
+						<span id="CptCch" class="cpt">CptCch</span>
 					</td>
 					<td></td>
 					<td colspan="5" align="left">
-						<select id="PupCty" class="pup" size="1" onchange="handlePupCtyChange()"/>
+						<input id="TxtCch" class="txfnoed" type="text" readonly="readonly" value="TxtCch"/>
 					</td>
 					<td></td>
-					<td colspan="2"></td>
+					<td id="rdynCch" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trPkm" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptPkm" class="cpt">CptPkm</span>
+						&#160;<img id="ButPkmToggle" class="but" src="../icon/toggle.png" width="16" height="16" valign="bottom" alt="ButPkmToggle" onmouseover="src='../icon/toggle_hlt.png'" onmouseout="src='../icon/toggle.png'" onclick="handleButPkmToggleClick()"/>
+					</td>
+					<td></td>
+					<td id="dynPkm" colspan="5" align="left">
+					</td>
+					<td></td>
+					<td id="rdynPkm" colspan="2" align="left">
+					</td>
 				</tr>
 				<tr id="trCmt" class="show">
 					<td height="75"></td>

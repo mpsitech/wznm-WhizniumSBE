@@ -1,10 +1,11 @@
 /**
 	* \file JobWznmIexDpl.cpp
 	* job handler for job JobWznmIexDpl (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -68,10 +69,12 @@ void JobWznmIexDpl::parseFromFile(
 			DbsWznm* dbswznm
 			, const string& _fullpath
 			, const bool _xmlNotTxt
+			, const string& _rectpath
 		) {
 	if (ixVSge == VecVSge::IDLE) {
 		fullpath = _fullpath;
 		xmlNotTxt = _xmlNotTxt;
+		rectpath = _rectpath;
 
 		changeStage(dbswznm, VecVSge::PARSE);
 	};
@@ -211,6 +214,7 @@ uint JobWznmIexDpl::enterSgeIdle(
 
 	fullpath = "";
 	xmlNotTxt = false;
+	rectpath = "";
 
 	lineno = 0;
 	impcnt = 0;
@@ -238,7 +242,7 @@ uint JobWznmIexDpl::enterSgeParse(
 	nextIxVSgeFailure = VecVSge::PRSERR;
 
 	try {
-		IexWznmDpl::parseFromFile(fullpath, xmlNotTxt, imeimcomponent);
+		IexWznmDpl::parseFromFile(fullpath, xmlNotTxt, rectpath, imeimcomponent);
 
 	} catch (SbeException& e) {
 		if (e.ix == SbeException::PATHNF) e.vals["path"] = "<hidden>";
@@ -306,6 +310,12 @@ uint JobWznmIexDpl::enterSgeImport(
 	// IP enterSgeImport.prep --- IBEGIN
 	ubigint refWznmMVersion;
 	refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
+
+	vector<ubigint> refs;
+	map<string,ubigint> refsMchs; // by hsref
+
+	dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMMachine", false, refs);
+	for (unsigned int i = 0; i < refs.size(); i++) refsMchs[StubWznm::getStubMchStd(dbswznm, refs[i])] = refs[i];
 	// IP enterSgeImport.prep --- IEND
 
 	try {
@@ -330,9 +340,12 @@ uint JobWznmIexDpl::enterSgeImport(
 				rls = cmp->imeimrelease.nodes[ix1];
 
 				rls->refWznmMComponent = cmp->ref;
-				//rls->refWznmMMachine: CUSTSQL
-				dbswznm->tblwznmmmachine->loadRefBySrf(rls->srefRefWznmMMachine, rls->refWznmMMachine);
-				if (rls->refWznmMMachine == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",rls->srefRefWznmMMachine}, {"iel","srefRefWznmMMachine"}, {"lineno",to_string(rls->lineno)}});
+				//rls->refWznmMMachine: CUST
+				if (rls->hsrefRefWznmMMachine != "") {
+					auto it = refsMchs.find(rls->hsrefRefWznmMMachine);
+					if (it != refsMchs.end()) rls->refWznmMMachine = it->second;
+					else throw SbeException(SbeException::IEX_TSREF, {{"tsref",rls->hsrefRefWznmMMachine}, {"iel","hsrefRefWznmMMachine"}, {"lineno",to_string(rls->lineno)}});
+				};
 				//rls->sref: TBL
 				//rls->srefsKOption: TBL
 				//rls->Comment: TBL
@@ -460,7 +473,7 @@ uint JobWznmIexDpl::enterSgeCollect(
 			rls = cmp->imeimrelease.nodes[ix1];
 
 			if (rls->ref != 0) {
-				rls->srefRefWznmMMachine = StubWznm::getStubMchStd(dbswznm, rls->refWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+				rls->hsrefRefWznmMMachine = StubWznm::getStubMchStd(dbswznm, rls->refWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
 			};
 		};
 
@@ -543,5 +556,6 @@ void JobWznmIexDpl::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

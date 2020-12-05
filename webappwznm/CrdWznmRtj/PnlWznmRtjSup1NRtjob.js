@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmRtjSup1NRtjob.js
-  * web client functionality for panel PnlWznmRtjSup1NRtjob
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmRtjSup1NRtjob", "srefIxWznmVExpstate") == "mind") return;

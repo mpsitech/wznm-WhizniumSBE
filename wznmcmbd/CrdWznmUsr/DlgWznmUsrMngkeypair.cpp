@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmUsrMngkeypair.cpp
 	* job handler for job DlgWznmUsrMngkeypair (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -87,7 +88,11 @@ DpchEngWznm* DlgWznmUsrMngkeypair::getNewDpchEng(
 void DlgWznmUsrMngkeypair::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 	ContInf oldContinf(continf);
 
@@ -105,6 +110,8 @@ void DlgWznmUsrMngkeypair::refresh(
 	// IP refresh --- REND
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+
+	muteRefresh = false;
 };
 
 void DlgWznmUsrMngkeypair::handleRequest(
@@ -220,7 +227,7 @@ void DlgWznmUsrMngkeypair::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -283,5 +290,6 @@ void DlgWznmUsrMngkeypair::leaveSgeFound(
 		) {
 	// IP leaveSgeFound --- INSERT
 };
+
 
 

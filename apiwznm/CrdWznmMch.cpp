@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmMch.cpp
 	* API code for job CrdWznmMch (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "CrdWznmMch.h"
 
@@ -23,6 +24,7 @@ uint CrdWznmMch::VecVDo::getIx(
 
 	if (s == "close") return CLOSE;
 	if (s == "mitappabtclick") return MITAPPABTCLICK;
+	if (s == "mitcrdwisclick") return MITCRDWISCLICK;
 
 	return(0);
 };
@@ -32,6 +34,7 @@ string CrdWznmMch::VecVDo::getSref(
 		) {
 	if (ix == CLOSE) return("close");
 	if (ix == MITAPPABTCLICK) return("MitAppAbtClick");
+	if (ix == MITCRDWISCLICK) return("MitCrdWisClick");
 
 	return("");
 };
@@ -224,17 +227,23 @@ set<uint> CrdWznmMch::StatApp::diff(
  ******************************************************************************/
 
 CrdWznmMch::StatShr::StatShr(
-			const string& scrJrefHeadbar
+			const string& scrJrefDlgwriniscr
+			, const string& scrJrefHeadbar
 			, const string& scrJrefList
 			, const string& scrJrefRec
+			, const bool MitCrdWisAvail
+			, const bool MitCrdWisActive
 		) :
 			Block()
 		{
+	this->scrJrefDlgwriniscr = scrJrefDlgwriniscr;
 	this->scrJrefHeadbar = scrJrefHeadbar;
 	this->scrJrefList = scrJrefList;
 	this->scrJrefRec = scrJrefRec;
+	this->MitCrdWisAvail = MitCrdWisAvail;
+	this->MitCrdWisActive = MitCrdWisActive;
 
-	mask = {SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC};
+	mask = {SCRJREFDLGWRINISCR, SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC, MITCRDWISAVAIL, MITCRDWISACTIVE};
 };
 
 bool CrdWznmMch::StatShr::readXML(
@@ -254,9 +263,12 @@ bool CrdWznmMch::StatShr::readXML(
 	string itemtag = "StatitemShrWznmMch";
 
 	if (basefound) {
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDlgwriniscr", scrJrefDlgwriniscr)) add(SCRJREFDLGWRINISCR);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefHeadbar", scrJrefHeadbar)) add(SCRJREFHEADBAR);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefList", scrJrefList)) add(SCRJREFLIST);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRec", scrJrefRec)) add(SCRJREFREC);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdWisAvail", MitCrdWisAvail)) add(MITCRDWISAVAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "MitCrdWisActive", MitCrdWisActive)) add(MITCRDWISACTIVE);
 	};
 
 	return basefound;
@@ -267,9 +279,12 @@ set<uint> CrdWznmMch::StatShr::comm(
 		) {
 	set<uint> items;
 
+	if (scrJrefDlgwriniscr == comp->scrJrefDlgwriniscr) insert(items, SCRJREFDLGWRINISCR);
 	if (scrJrefHeadbar == comp->scrJrefHeadbar) insert(items, SCRJREFHEADBAR);
 	if (scrJrefList == comp->scrJrefList) insert(items, SCRJREFLIST);
 	if (scrJrefRec == comp->scrJrefRec) insert(items, SCRJREFREC);
+	if (MitCrdWisAvail == comp->MitCrdWisAvail) insert(items, MITCRDWISAVAIL);
+	if (MitCrdWisActive == comp->MitCrdWisActive) insert(items, MITCRDWISACTIVE);
 
 	return(items);
 };
@@ -282,7 +297,7 @@ set<uint> CrdWznmMch::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC};
+	diffitems = {SCRJREFDLGWRINISCR, SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC, MITCRDWISAVAIL, MITCRDWISACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -295,13 +310,15 @@ set<uint> CrdWznmMch::StatShr::diff(
 CrdWznmMch::Tag::Tag(
 			const string& MitAppAbt
 			, const string& MrlAppHlp
+			, const string& MitCrdWis
 		) :
 			Block()
 		{
 	this->MitAppAbt = MitAppAbt;
 	this->MrlAppHlp = MrlAppHlp;
+	this->MitCrdWis = MitCrdWis;
 
-	mask = {MITAPPABT, MRLAPPHLP};
+	mask = {MITAPPABT, MRLAPPHLP, MITCRDWIS};
 };
 
 bool CrdWznmMch::Tag::readXML(
@@ -323,6 +340,7 @@ bool CrdWznmMch::Tag::readXML(
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "MitAppAbt", MitAppAbt)) add(MITAPPABT);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "MrlAppHlp", MrlAppHlp)) add(MRLAPPHLP);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "MitCrdWis", MitCrdWis)) add(MITCRDWIS);
 	};
 
 	return basefound;

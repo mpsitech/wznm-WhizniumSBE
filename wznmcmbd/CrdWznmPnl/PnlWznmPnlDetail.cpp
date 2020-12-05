@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmPnlDetail.cpp
 	* job handler for job PnlWznmPnlDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -137,7 +138,11 @@ void PnlWznmPnlDetail::refreshRecPnl(
 void PnlWznmPnlDetail::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -147,6 +152,8 @@ void PnlWznmPnlDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmPnlDetail::updatePreset(
@@ -292,14 +299,14 @@ void PnlWznmPnlDetail::handleDpchAppDoButReuViewClick(
 			};
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::REL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmRel";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::VEC) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmVec";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recPnl.refUref, jrefNew);
 			};
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::VEC) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmVec";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::REL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmRel";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recPnl.refUref, jrefNew);
 			};
 		};
@@ -399,4 +406,6 @@ bool PnlWznmPnlDetail::handleCallWznmPnl_carEq(
 	boolvalRet = (recPnl.carRefWznmMCard == refInv); // IP handleCallWznmPnl_carEq --- LINE
 	return retval;
 };
+
+
 

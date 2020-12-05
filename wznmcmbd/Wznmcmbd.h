@@ -1,10 +1,11 @@
 /**
 	* \file Wznmcmbd.h
 	* inter-thread exchange object for Wznm combined daemon (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMCMBD_H
 #define WZNMCMBD_H
@@ -242,7 +243,7 @@ public:
 	static const Sbecore::uint HTTPS = 2;
 
 public:
-	StgWznmAppsrv(const Sbecore::usmallint port = 0, const bool https = false);
+	StgWznmAppsrv(const Sbecore::usmallint port = 13100, const bool https = false);
 
 public:
 	Sbecore::usmallint port;
@@ -266,7 +267,7 @@ public:
 	static const Sbecore::uint APPSRV = 3;
 
 public:
-	StgWznmcmbd(const Sbecore::usmallint jobprcn = 1, const Sbecore::usmallint opprcn = 1, const bool appsrv = true);
+	StgWznmcmbd(const Sbecore::usmallint jobprcn = 4, const Sbecore::usmallint opprcn = 1, const bool appsrv = true);
 
 public:
 	Sbecore::usmallint jobprcn;
@@ -295,7 +296,7 @@ public:
 	static const Sbecore::uint PORT = 7;
 
 public:
-	StgWznmDatabase(const Sbecore::uint ixDbsVDbstype = 0, const std::string& dbspath = "", const std::string& dbsname = "", const std::string& username = "mpsitech", const std::string& password = "f9w8feeh", const std::string& ip = "", const Sbecore::usmallint port = 0);
+	StgWznmDatabase(const Sbecore::uint ixDbsVDbstype = 0, const std::string& dbspath = "./DbsWznm.sql", const std::string& dbsname = "DbsWznm", const std::string& username = "default", const std::string& password = "asdf1234", const std::string& ip = "127.0.0.1", const Sbecore::usmallint port = 3306);
 
 public:
 	Sbecore::uint ixDbsVDbstype;
@@ -327,7 +328,7 @@ public:
 	static const Sbecore::uint HELPURL = 6;
 
 public:
-	StgWznmPath(const std::string& acvpath = "", const std::string& keypath = "", const std::string& monpath = "", const std::string& tmppath = "", const std::string& webpath = "", const std::string& helpurl = "");
+	StgWznmPath(const std::string& acvpath = "${WHIZROOT}/acv/wznm", const std::string& keypath = "", const std::string& monpath = "${WHIZROOT}/mon/wznm", const std::string& tmppath = "${WHIZROOT}/tmp/wznm", const std::string& webpath = "${WHIZROOT}/web/appwznm", const std::string& helpurl = "http://www.mpsitech.com/wznm");
 
 public:
 	std::string acvpath;
@@ -352,17 +353,13 @@ class StgWznmTenant : public Sbecore::Xmlio::Block {
 public:
 	static const Sbecore::uint ORGNAME = 1;
 	static const Sbecore::uint ORGWEB = 2;
-	static const Sbecore::uint DBSUSERNAME = 3;
-	static const Sbecore::uint DBSPASSWORD = 4;
 
 public:
-	StgWznmTenant(const std::string& orgname = "", const std::string& orgweb = "", const std::string& dbsusername = "", const std::string& dbspassword = "");
+	StgWznmTenant(const std::string& orgname = "", const std::string& orgweb = "");
 
 public:
 	std::string orgname;
 	std::string orgweb;
-	std::string dbsusername;
-	std::string dbspassword;
 
 public:
 	bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -559,8 +556,8 @@ public:
 public:
 	virtual DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	virtual void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
-	void refreshWithDpchEng(DbsWznm* dbswznm, DpchEngWznm** dpcheng = NULL);
+	virtual void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
+	void refreshWithDpchEng(DbsWznm* dbswznm, DpchEngWznm** dpcheng = NULL, const bool unmute = false);
 
 	virtual std::string getSquawk(DbsWznm* dbswznm);
 
@@ -950,8 +947,8 @@ public:
 	// client/server job methods
 	void addCsjobClaim(DbsWznm* dbswznm, CsjobWznm* csjob, Sbecore::Claim* claim);
 
-	void getCsjobClaim(CsjobWznm* csjob, bool& takenNotAvailable, bool& fulfilled, bool& run);
-	void getCsjobClaim(CsjobWznm* csjob, bool& takenNotAvailable, bool& fulfilled);
+	bool getCsjobClaim(CsjobWznm* csjob, bool& takenNotAvailable, bool& fulfilled, bool& run);
+	bool getCsjobClaim(CsjobWznm* csjob, bool& takenNotAvailable, bool& fulfilled);
 
 	void clearCsjobRun(DbsWznm* dbswznm, const Sbecore::uint ixWznmVJob);
 
@@ -968,4 +965,6 @@ public:
 	static void runExtcall(void* arg);
 };
 #endif
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmDbs.cpp
 	* data blocks and readers/writers for import/export complex IexWznmDbs (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #include "IexWznmDbs.h"
 
@@ -6454,6 +6455,7 @@ void IexWznmDbs::ImeIRMStubMStub::writeXML(
 void IexWznmDbs::parseFromFile(
 			const string& fullpath
 			, const bool xmlNotTxt
+			, const string& rectpath
 			, ImeICRelation& imeicrelation
 			, ImeIMRelation& imeimrelation
 			, ImeIMStub& imeimstub
@@ -6476,7 +6478,7 @@ void IexWznmDbs::parseFromFile(
 		};
 
 	} else {
-			Txtrd rd(fullpath, "IexWznmDbs", Version("0.9.23"), VecVIme::getIx);
+			Txtrd rd(fullpath, rectpath, "IexWznmDbs", Version("0.9.23"), VecVIme::getIx);
 			readTxt(rd, imeicrelation, imeimrelation, imeimstub, imeimtable, imeimvector1, imeirmstubmstub);
 	};
 };
@@ -6636,4 +6638,6 @@ uint IexWznmDbs::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
+
+
 

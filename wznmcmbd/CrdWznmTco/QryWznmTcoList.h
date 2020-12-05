@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmTcoList.h
 	* job handler for job QryWznmTcoList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMTCOLIST_H
 #define QRYWZNMTCOLIST_H
@@ -31,8 +32,8 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint TBL = 1;
-		static const Sbecore::uint FCT = 2;
+		static const Sbecore::uint FCT = 1;
+		static const Sbecore::uint TBL = 2;
 		static const Sbecore::uint TYP = 3;
 		static const Sbecore::uint SRF = 4;
 
@@ -152,4 +153,6 @@ private:
 };
 
 #endif
+
+
 

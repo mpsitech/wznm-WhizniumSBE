@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerFinmod.cpp
 	* job handler for job DlgWznmVerFinmod (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -84,9 +85,13 @@ DpchEngWznm* DlgWznmVerFinmod::getNewDpchEng(
 void DlgWznmVerFinmod::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
-	ContInf oldContinf(continf);
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- RBEGIN
 	// statshr
@@ -99,8 +104,10 @@ void DlgWznmVerFinmod::refresh(
 	continf.FnmTxtPrg = getSquawk(dbswznm);
 
 	// IP refresh --- REND
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+
+	muteRefresh = false;
 };
 
 void DlgWznmVerFinmod::handleRequest(
@@ -227,7 +234,7 @@ void DlgWznmVerFinmod::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -292,9 +299,7 @@ uint DlgWznmVerFinmod::enterSgeFinmod(
 
 	ubigint refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
 
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = "
-				+ to_string(refWznmMVersion), Prjshort);
-	Prjshort = StrMod::cap(Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, refWznmMVersion);
 
 	addInv(new DpchInvWznmComplJtr(0, 0, refWznmMVersion, Prjshort));
 	addInv(new DpchInvWznmGenSysvec(0, 0, refWznmMVersion, Prjshort));
@@ -364,5 +369,6 @@ void DlgWznmVerFinmod::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

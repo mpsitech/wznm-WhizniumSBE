@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmDlgRec.h
 	* job handler for job PnlWznmDlgRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMDLGREC_H
 #define PNLWZNMDLGREC_H
@@ -13,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmDlgDetail.h"
-#include "PnlWznmDlgHk1NControl.h"
-#include "PnlWznmDlgRef1NControl.h"
 #include "PnlWznmDlgMNQuery.h"
+#include "PnlWznmDlgRef1NControl.h"
+#include "PnlWznmDlgHk1NControl.h"
+#include "PnlWznmDlgDetail.h"
 
 #define VecVWznmDlgRecDo PnlWznmDlgRec::VecVDo
 
@@ -173,10 +174,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmDlgDetail* pnldetail;
-	PnlWznmDlgHk1NControl* pnlhk1ncontrol;
-	PnlWznmDlgRef1NControl* pnlref1ncontrol;
 	PnlWznmDlgMNQuery* pnlmnquery;
+	PnlWznmDlgRef1NControl* pnlref1ncontrol;
+	PnlWznmDlgHk1NControl* pnlhk1ncontrol;
+	PnlWznmDlgDetail* pnldetail;
 
 	WznmMDialog recDlg;
 
@@ -188,7 +189,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -219,4 +220,6 @@ private:
 };
 
 #endif
+
+
 

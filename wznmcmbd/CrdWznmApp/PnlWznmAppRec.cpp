@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmAppRec.cpp
 	* job handler for job PnlWznmAppRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -37,11 +38,11 @@ PnlWznmAppRec::PnlWznmAppRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
+	pnlref1nfile = NULL;
 	pnl1nrtjob = NULL;
 	pnlapp1nsequence = NULL;
 	pnl1nevent = NULL;
-	pnlref1nfile = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -82,7 +83,11 @@ DpchEngWznm* PnlWznmAppRec::getNewDpchEng(
 void PnlWznmAppRec::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -97,28 +102,29 @@ void PnlWznmAppRec::refresh(
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
-		if (pnl1nrtjob) {delete pnl1nrtjob; pnl1nrtjob = NULL;};
-		if (pnlapp1nsequence) {delete pnlapp1nsequence; pnlapp1nsequence = NULL;};
 		if (pnl1nevent) {delete pnl1nevent; pnl1nevent = NULL;};
+		if (pnlapp1nsequence) {delete pnlapp1nsequence; pnlapp1nsequence = NULL;};
+		if (pnl1nrtjob) {delete pnl1nrtjob; pnl1nrtjob = NULL;};
 		if (pnlref1nfile) {delete pnlref1nfile; pnlref1nfile = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmAppDetail(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnl1nrtjob) pnl1nrtjob = new PnlWznmApp1NRtjob(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlapp1nsequence) pnlapp1nsequence = new PnlWznmAppApp1NSequence(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nevent) pnl1nevent = new PnlWznmApp1NEvent(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlapp1nsequence) pnlapp1nsequence = new PnlWznmAppApp1NSequence(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnl1nrtjob) pnl1nrtjob = new PnlWznmApp1NRtjob(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1nfile) pnlref1nfile = new PnlWznmAppRef1NFile(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
-	statshr.jref1NRtjob = ((pnl1nrtjob) ? pnl1nrtjob->jref : 0);
-	statshr.jrefApp1NSequence = ((pnlapp1nsequence) ? pnlapp1nsequence->jref : 0);
 	statshr.jref1NEvent = ((pnl1nevent) ? pnl1nevent->jref : 0);
+	statshr.jrefApp1NSequence = ((pnlapp1nsequence) ? pnlapp1nsequence->jref : 0);
+	statshr.jref1NRtjob = ((pnl1nrtjob) ? pnl1nrtjob->jref : 0);
 	statshr.jrefRef1NFile = ((pnlref1nfile) ? pnlref1nfile->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWznmAppRec::updatePreset(
@@ -140,9 +146,9 @@ void PnlWznmAppRec::updatePreset(
 
 		if (recApp.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnl1nrtjob) pnl1nrtjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlapp1nsequence) pnlapp1nsequence->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nevent) pnl1nevent->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlapp1nsequence) pnlapp1nsequence->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnl1nrtjob) pnl1nrtjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1nfile) pnlref1nfile->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
@@ -279,4 +285,6 @@ bool PnlWznmAppRec::handleCallWznmApp_verEq(
 	boolvalRet = (recApp.verRefWznmMVersion == refInv); // IP handleCallWznmApp_verEq --- LINE
 	return retval;
 };
+
+
 

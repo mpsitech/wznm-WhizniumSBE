@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmNavLoaini.cpp
 	* job handler for job DlgWznmNavLoaini (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -138,8 +139,8 @@ void DlgWznmNavLoaini::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrLfi oldStatshrlfi(statshrlfi);
 	ContInfLfi oldContinflfi(continflfi);
+	StatShrLfi oldStatshrlfi(statshrlfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -149,37 +150,43 @@ void DlgWznmNavLoaini::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
+	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 };
 
 void DlgWznmNavLoaini::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshIfi(dbswznm, moditems);
 	refreshImp(dbswznm, moditems);
 	refreshAcv(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);
+
+	muteRefresh = false;
 };
 
 void DlgWznmNavLoaini::handleRequest(
@@ -231,8 +238,8 @@ void DlgWznmNavLoaini::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::UPLOAD) {
-		if (ixVSge == VecVSge::IDLE) handleUploadInSgeIdle(dbswznm, req->filename);
-		else if (ixVSge == VecVSge::IMPDONE) handleUploadInSgeImpdone(dbswznm, req->filename);
+		if (ixVSge == VecVSge::IMPDONE) handleUploadInSgeImpdone(dbswznm, req->filename);
+		else if (ixVSge == VecVSge::IDLE) handleUploadInSgeIdle(dbswznm, req->filename);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DOWNLOAD) {
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
@@ -317,20 +324,20 @@ void DlgWznmNavLoaini::handleDpchAppWznmAlert(
 	// IP handleDpchAppWznmAlert --- IEND
 };
 
-void DlgWznmNavLoaini::handleUploadInSgeIdle(
-			DbsWznm* dbswznm
-			, const string& filename
-		) {
-	infilename = filename; // IP handleUploadInSgeIdle --- ILINE
-	changeStage(dbswznm, VecVSge::PRSIDLE);
-};
-
 void DlgWznmNavLoaini::handleUploadInSgeImpdone(
 			DbsWznm* dbswznm
 			, const string& filename
 		) {
 	infilename = filename; // IP handleUploadInSgeImpdone --- ILINE
 	changeStage(dbswznm, VecVSge::UPKIDLE);
+};
+
+void DlgWznmNavLoaini::handleUploadInSgeIdle(
+			DbsWznm* dbswznm
+			, const string& filename
+		) {
+	infilename = filename; // IP handleUploadInSgeIdle --- ILINE
+	changeStage(dbswznm, VecVSge::PRSIDLE);
 };
 
 string DlgWznmNavLoaini::handleDownloadInSgeDone(
@@ -393,7 +400,7 @@ void DlgWznmNavLoaini::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -502,15 +509,15 @@ uint DlgWznmNavLoaini::enterSgeParse(
 	ififile.get(buf, 16);
 	s = string(buf);
 
-	ifitxt = (s.find("- ") == 0);
+	ifitxt = (s.find("IexWznmIni") == 0);
 	ifixml = (s.find("<?xml") == 0);		
 
 	delete[] buf;
 	ififile.close();
 
 	// parse file accordingly
-	if (ifitxt) iex->parseFromFile(dbswznm, infilename, false);
-	else if (ifixml) iex->parseFromFile(dbswznm, infilename, true);
+	if (ifitxt) iex->parseFromFile(dbswznm, infilename, false, "");
+	else if (ifixml) iex->parseFromFile(dbswznm, infilename, true, "");
 
 	if (iex->ixVSge != JobWznmIexIni::VecVSge::PRSDONE) {
 		if (reqCmd) {
@@ -777,5 +784,6 @@ void DlgWznmNavLoaini::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

@@ -1,10 +1,11 @@
 /**
-  * \file ListWznmQQryQry1NQuerycol.java
-  * Java API code for record set of table TblWznmQQryQry1NQuerycol
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \file ListWznmQQryQry1NQuerycol.java
+	* Java API code for record set of table TblWznmQQryQry1NQuerycol
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 

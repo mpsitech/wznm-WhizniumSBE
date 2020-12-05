@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmRlsWrite.cpp
 	* job handler for job DlgWznmRlsWrite (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -52,11 +53,11 @@ DlgWznmRlsWrite::DlgWznmRlsWrite(
 	license = new JobWznmLicense(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- IBEGIN
+	vector<ubigint> refs;
 	ubigint ref;
 
 	WznmMRelease* rls = NULL;
 	WznmMComponent* cmp = NULL;
-	WznmMMachine* mch = NULL;
 	WznmMProject* prj = NULL;
 
 	refWznmMRelease = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref);
@@ -93,23 +94,29 @@ DlgWznmRlsWrite::DlgWznmRlsWrite(
 		if ((ixCmptype == VecWznmVMComponentBasetype::ENG) || (ixCmptype == VecWznmVMComponentBasetype::OPENG) || (ixCmptype == VecWznmVMComponentBasetype::CMBENG) || (ixCmptype == VecWznmVMComponentBasetype::DBS)
 					|| (ixCmptype == VecWznmVMComponentBasetype::API)) {
 
-			ncore = "1";
+			dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, refs);
 
-			if (dbswznm->tblwznmmmachine->loadRecByRef(rls->refWznmMMachine, &mch)) {
-				dbswznm->loadRefBySQL("SELECT cchRefWznmMMachine FROM TblWznmMMachtype WHERE ref = " + to_string(mch->refWznmMMachtype), ref);
+			dbswznm->loadRefBySQL("SELECT cchRefWznmMMachine FROM TblWznmMMachine WHERE ref = " + to_string(rls->refWznmMMachine), ref);
 
-				if (ref == 0) {
-					dbswznm->tblwznmammachinepar->loadValByMchKey(mch->ref, "ncore", ncore);
-
-				} else {
-					// cross-compilation
-					cchost = " (" + StubWznm::getStubMchStd(dbswznm, ref) + " cross-compilation)";
-					dbswznm->tblwznmammachinepar->loadValByMchKey(ref, "ncore", ncore);
-					dbswznm->tblwznmammachinepar->loadValByMchKey(mch->ref, "rootfs", rootfs);
-					inclibeq = "=";
+			if (ref == 0) {
+				for (unsigned int i = 0; i < refs.size(); i++) {
+					dbswznm->loadRefBySQL("SELECT cchRefWznmMMachine FROM TblWznmMMachine WHERE ref = " + to_string(refs[i]), ref);
+					if (ref != 0) break;
 				};
+			};
 
-				delete mch;
+			if (ref == 0) {
+				Wznm::getMchpar(dbswznm, rls->refWznmMMachine, refs, "ncore", ncore);
+
+			} else {
+				// cross-compilation
+				Wznm::getMchpar(dbswznm, rls->refWznmMMachine, refs, "sysroot", sysroot);
+
+				cchost = " (" + StubWznm::getStubMchSref(dbswznm, ref) + " cross-compilation)";
+				inclibeq = "=";
+
+				dbswznm->tblwznmmmachine->loadHrefsup(ref, refs);
+				Wznm::getMchpar(dbswznm, ref, refs, "ncore", ncore);
 			};
 		};
 
@@ -174,10 +181,12 @@ void DlgWznmRlsWrite::createEng(
 	WznmMComponent* cmp = NULL;
 	WznmMVersion* ver = NULL;
 
-	string created, modified, version;
+	vector<ubigint> hrefsMch;
+
+	string created, version;
 	string PREFLCL;
 	string objddspub, objuasrv;
-	string srcroot, libroot, binroot, reproot, nddshome, uasdkroot;
+	string buildroot, libroot, binroot, reproot, nddshome, uasdkroot;
 
 	vector<string> keys;
 	vector<string> vals;
@@ -191,6 +200,8 @@ void DlgWznmRlsWrite::createEng(
 	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
 
 	dbswznm->tblwznmmmodule->loadRefsByVer(ver->ref, false, refs);
 	for (unsigned int i = 0; i < refs.size(); i++) dbswznm->tblwznmmcard->loadRstByMdl(refs[i], true, crds);
@@ -259,7 +270,6 @@ void DlgWznmRlsWrite::createEng(
 	time(&rawtime);
 
 	created = StrMod::timetToString(rawtime);
-	modified = StrMod::timetToString(rawtime);
 
 	// -- version
 	version = StubWznm::getStubVerStd(dbswznm, ver->ref);
@@ -270,18 +280,17 @@ void DlgWznmRlsWrite::createEng(
 	PREFLCL = StrMod::uc(PREFLCL);
 
 	// -- directories
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "srcroot", srcroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "libroot", libroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "binroot", binroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "reproot", reproot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "nddshome", nddshome);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "uasdkroot", uasdkroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "buildroot", buildroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "libroot", libroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "binroot", binroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "reproot", reproot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "nddshome", nddshome);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "uasdkroot", uasdkroot);
 
 	// --- deployment scripts (WznmWrsrvDeploy)
 	keys.resize(0); vals.resize(0);
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("modified"); vals.push_back(modified);
 	keys.push_back("Prjshort"); vals.push_back(Prjshort);
 	keys.push_back("prjshort"); vals.push_back(prjshort);
 	keys.push_back("CMPSREF"); vals.push_back(CMPSREF);
@@ -289,10 +298,10 @@ void DlgWznmRlsWrite::createEng(
 	keys.push_back("rlssref"); vals.push_back(rlssref);
 	keys.push_back("cchost"); vals.push_back(cchost);
 
-	keys.push_back("rootfs"); vals.push_back(rootfs);
+	keys.push_back("sysroot"); vals.push_back(sysroot);
 	keys.push_back("inclibeq"); vals.push_back(inclibeq);
 
-	keys.push_back("srcroot"); vals.push_back(srcroot);
+	keys.push_back("buildroot"); vals.push_back(buildroot);
 	keys.push_back("libroot"); vals.push_back(libroot);
 	keys.push_back("binroot"); vals.push_back(binroot);
 	keys.push_back("nddshome"); vals.push_back(nddshome);
@@ -334,7 +343,6 @@ void DlgWznmRlsWrite::createEng(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("orgweb"); vals.push_back(xchg->stgwznmtenant.orgweb);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
@@ -408,9 +416,11 @@ void DlgWznmRlsWrite::createOpeng(
 	WznmMComponent* cmp = NULL;
 	WznmMVersion* ver = NULL;
 
-	string created, modified;
+	vector<ubigint> hrefsMch;
+
+	string created;
 	string PREFLCL;
-	string srcroot, libroot, binroot, reproot;
+	string buildroot, libroot, binroot, reproot;
 
 	vector<string> keys;
 	vector<string> vals;
@@ -422,6 +432,8 @@ void DlgWznmRlsWrite::createOpeng(
 	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
 
 	dbswznm->tblwznmrmcomponentmoppack->loadOpksByCmp(cmp->ref, false, refs);
 	dbswznm->tblwznmmoppack->loadRstByRefs(refs, false, opks);
@@ -474,7 +486,6 @@ void DlgWznmRlsWrite::createOpeng(
 	time(&rawtime);
 
 	created = StrMod::timetToString(rawtime);
-	modified = StrMod::timetToString(rawtime);
 
 	// -- preferred locale
 	dbswznm->loadStringBySQL("SELECT sref FROM TblWznmMLocale WHERE ref = " + to_string(ver->refWznmMLocale), PREFLCL);
@@ -482,16 +493,15 @@ void DlgWznmRlsWrite::createOpeng(
 	PREFLCL = StrMod::uc(PREFLCL);
 
 	// -- directories
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "srcroot", srcroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "libroot", libroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "binroot", binroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "reproot", reproot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "buildroot", buildroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "libroot", libroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "binroot", binroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "reproot", reproot);
 
 	// --- deployment scripts (WznmWrsrvDeploy)
 	keys.resize(0); vals.resize(0);
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("modified"); vals.push_back(modified);
 	keys.push_back("Prjshort"); vals.push_back(Prjshort);
 	keys.push_back("prjshort"); vals.push_back(prjshort);
 	keys.push_back("CMPSREF"); vals.push_back(CMPSREF);
@@ -500,10 +510,10 @@ void DlgWznmRlsWrite::createOpeng(
 	keys.push_back("rlssref"); vals.push_back(rlssref);
 	keys.push_back("cchost"); vals.push_back(cchost);
 
-	keys.push_back("rootfs"); vals.push_back(rootfs);
+	keys.push_back("sysroot"); vals.push_back(sysroot);
 	keys.push_back("inclibeq"); vals.push_back(inclibeq);
 
-	keys.push_back("srcroot"); vals.push_back(srcroot);
+	keys.push_back("buildroot"); vals.push_back(buildroot);
 	keys.push_back("libroot"); vals.push_back(libroot);
 	keys.push_back("binroot"); vals.push_back(binroot);
 	keys.push_back("reproot"); vals.push_back(reproot);
@@ -543,7 +553,6 @@ void DlgWznmRlsWrite::createOpeng(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("orgweb"); vals.push_back(xchg->stgwznmtenant.orgweb);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
@@ -587,10 +596,12 @@ void DlgWznmRlsWrite::createCmbeng(
 	WznmMComponent* cmp = NULL;
 	WznmMVersion* ver = NULL;
 
-	string created, modified;
+	vector<ubigint> hrefsMch;
+
+	string created;
 	string version, vermajor, verminor, versub;
 	string PREFLCL;
-	string srcroot, libroot, reproot, binroot, nddshome, uasdkroot;
+	string buildroot, libroot, reproot, binroot, nddshome, uasdkroot;
 
 	vector<string> keys;
 	vector<string> vals;
@@ -628,6 +639,8 @@ void DlgWznmRlsWrite::createCmbeng(
 	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
 
 	dbswznm->tblwznmmmodule->loadRefsByVer(ver->ref, false, refs);
 	for (unsigned int i = 0; i < refs.size(); i++) dbswznm->tblwznmmcard->loadRstByMdl(refs[i], true, crds);
@@ -741,7 +754,6 @@ void DlgWznmRlsWrite::createCmbeng(
 	time(&rawtime);
 
 	created = StrMod::timetToString(rawtime);
-	modified = StrMod::timetToString(rawtime);
 
 	// -- version
 	version = StubWznm::getStubVerStd(dbswznm, ver->ref);
@@ -756,18 +768,17 @@ void DlgWznmRlsWrite::createCmbeng(
 	PREFLCL = StrMod::uc(PREFLCL);
 
 	// -- directories
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "srcroot", srcroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "libroot", libroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "binroot", binroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "reproot", reproot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "nddshome", nddshome);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "uasdkroot", uasdkroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "buildroot", buildroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "libroot", libroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "binroot", binroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "reproot", reproot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "nddshome", nddshome);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "uasdkroot", uasdkroot);
 
 	// --- deployment scripts (WznmWrsrvDeploy)
 	keys.resize(0); vals.resize(0);
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("modified"); vals.push_back(modified);
 	keys.push_back("Prjshort"); vals.push_back(Prjshort);
 	keys.push_back("prjshort"); vals.push_back(prjshort);
 	keys.push_back("CMPSREF"); vals.push_back(CMPSREF);
@@ -775,10 +786,10 @@ void DlgWznmRlsWrite::createCmbeng(
 	keys.push_back("rlssref"); vals.push_back(rlssref);
 	keys.push_back("cchost"); vals.push_back(cchost);
 
-	keys.push_back("rootfs"); vals.push_back(rootfs);
+	keys.push_back("sysroot"); vals.push_back(sysroot);
 	keys.push_back("inclibeq"); vals.push_back(inclibeq);
 
-	keys.push_back("srcroot"); vals.push_back(srcroot);
+	keys.push_back("buildroot"); vals.push_back(buildroot);
 	keys.push_back("libroot"); vals.push_back(libroot);
 	keys.push_back("binroot"); vals.push_back(binroot);
 	keys.push_back("reproot"); vals.push_back(reproot);
@@ -836,7 +847,6 @@ void DlgWznmRlsWrite::createCmbeng(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("orgweb"); vals.push_back(xchg->stgwznmtenant.orgweb);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
@@ -888,7 +898,6 @@ void DlgWznmRlsWrite::createCmbeng(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("orgweb"); vals.push_back(xchg->stgwznmtenant.orgweb);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
@@ -925,7 +934,6 @@ void DlgWznmRlsWrite::createCmbeng(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 		keys.push_back("prjshort"); vals.push_back(prjshort);
@@ -1073,7 +1081,6 @@ void DlgWznmRlsWrite::createCmbeng(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 		keys.push_back("prjshort"); vals.push_back(prjshort);
@@ -1101,7 +1108,6 @@ void DlgWznmRlsWrite::createCmbeng(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 
@@ -1146,11 +1152,16 @@ void DlgWznmRlsWrite::createDbs(
 	WznmMComponent* cmp = NULL;
 	WznmMVersion* ver = NULL;
 
+	vector<ubigint> hrefsMch;
+
+	string sbeconfig;
+
 	bool mar, my, pg, lite;
 
-	string version, created, modified;
+	string version, created;
 	string vermajor, verminor, versub;
-	string srcroot, libroot;
+	string buildroot, libroot;
+	string dbsusername, dbspassword;
 
 	vector<string> keys;
 	vector<string> vals;
@@ -1169,6 +1180,10 @@ void DlgWznmRlsWrite::createDbs(
 	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
+
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "sbeconfig", sbeconfig);
 
 	lite = ((ver->ixWDbmstype & VecWznmWMVersionDbmstype::LITE) != 0);
 	mar = ((ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO)) != 0);
@@ -1209,6 +1224,7 @@ void DlgWznmRlsWrite::createDbs(
 
 	createIpoutSubfolder(false, "_ini");
 	createIpoutSubfolder(false, "_ini", cmp->sref);
+	if (StrMod::srefInSrefs(sbeconfig, "my") || StrMod::srefInSrefs(sbeconfig, "mar") || StrMod::srefInSrefs(sbeconfig, "pg")) createIpoutSubfolder(false, "_ini", rls->sref);
 
 	createIpoutSubfolder(false, cmp->sref);
 
@@ -1219,30 +1235,31 @@ void DlgWznmRlsWrite::createDbs(
 	time(&rawtime);
 
 	created = StrMod::timetToString(rawtime);
-	modified = StrMod::timetToString(rawtime);
 
 	// -- version
 	vermajor = to_string(ver->Major);
 	verminor = to_string(ver->Minor);
 	versub = to_string(ver->Sub);
 
-	// -- directories and number of cores
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "srcroot", srcroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "libroot", libroot);
+	// -- directories, number of cores and database credentials
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "buildroot", buildroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "libroot", libroot);
+
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "dbsusername", dbsusername);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "dbspassword", dbspassword);
 
 	// --- deployment scripts
 	keys.resize(0); vals.resize(0);
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("modified"); vals.push_back(modified);
 	keys.push_back("Prjshort"); vals.push_back(Prjshort);
 	keys.push_back("prjshort"); vals.push_back(prjshort);
 	keys.push_back("rlssref"); vals.push_back(rlssref);
 	keys.push_back("cchost"); vals.push_back(cchost);
 
-	keys.push_back("rootfs"); vals.push_back(rootfs);
+	keys.push_back("sysroot"); vals.push_back(sysroot);
 	keys.push_back("inclibeq"); vals.push_back(inclibeq);
-	keys.push_back("srcroot"); vals.push_back(srcroot);
+	keys.push_back("buildroot"); vals.push_back(buildroot);
 	keys.push_back("libroot"); vals.push_back(libroot);
 	keys.push_back("ncore"); vals.push_back(ncore);
 
@@ -1252,12 +1269,28 @@ void DlgWznmRlsWrite::createDbs(
 	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rls->sref + "/Makefile", keys, vals));
 	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkallfile, "", outfolder + "/_rls/" + rls->sref + "/makeall.sh", keys, vals));
 
+	// --- release-specific SQL scripts
+	keys.resize(0); vals.resize(0);
+	keys.push_back("author"); vals.push_back(author);
+	keys.push_back("created"); vals.push_back(created);
+	keys.push_back("Prjshort"); vals.push_back(Prjshort);
+	keys.push_back("orgname"); vals.push_back(xchg->stgwznmtenant.orgname);
+	keys.push_back("dbsusername"); vals.push_back(dbsusername);
+	keys.push_back("dbspassword"); vals.push_back(dbspassword);
+
+	// -- CreateDbsXxxx.sql
+	addInv(new DpchInvWznmWrdbsSql(0, 0, rls->ref, Prjshort, ipfolder + "/_ini"));
+
+	if (mar && StrMod::srefInSrefs(sbeconfig, "mar")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMysqlfile, "", outfolder + "/_ini/" + rls->sref + "/CreateDbs" + Prjshort + "Mar.sql", keys, vals));
+	if (my && StrMod::srefInSrefs(sbeconfig, "my")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMysqlfile, "", outfolder + "/_ini/" + rls->sref + "/CreateDbs" + Prjshort + "My.sql", keys, vals));
+	if (pg && StrMod::srefInSrefs(sbeconfig, "pg")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPgsqlfile, "", outfolder + "/_ini/" + rls->sref + "/CreateDbs" + Prjshort + "Pg.sql", keys, vals));
+	if (lite && StrMod::srefInSrefs(sbeconfig, "lite")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLitesqlfile, "", outfolder + "/_ini/" + cmp->sref + "/CreateDbs" + Prjshort + "Lite.sql", keys, vals));
+
 	if (!dplonly) {
-		// --- database globals (DbsXxxx, CreateDbsXxxx.sql)
+		// --- database globals (DbsXxxx)
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 		keys.push_back("prjshort"); vals.push_back(prjshort);
@@ -1277,28 +1310,10 @@ void DlgWznmRlsWrite::createDbs(
 		if (hasvecs) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDbsvecfile, "", outfolder + "/" + cmp->sref + "/Dbs" + Prjshort + "_vecs.cpp", keys, vals));
 		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDbscppfile, "", outfolder + "/" + cmp->sref + "/Dbs" + Prjshort + ".cpp", keys, vals));
 
-		// -- CreateDbsXxxx.sql
-		keys.push_back("orgname"); vals.push_back(xchg->stgwznmtenant.orgname);
-		keys.push_back("dbsusername"); vals.push_back(xchg->stgwznmtenant.dbsusername);
-		keys.push_back("dbspassword"); vals.push_back(xchg->stgwznmtenant.dbspassword);
-
-		addInv(new DpchInvWznmWrdbsSql(0, 0, ver->ref, Prjshort, ipfolder + "/_ini/" + cmp->sref));
-
-		if (lite) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLitesqlfile, "", outfolder + "/_ini/" + cmp->sref + "/CreateDbs" + Prjshort + "Lite.sql", keys, vals));
-		if (mar) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMysqlfile, "", outfolder + "/_ini/" + cmp->sref + "/CreateDbs" + Prjshort + "Mar.sql", keys, vals));
-		if (my) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMysqlfile, "", outfolder + "/_ini/" + cmp->sref + "/CreateDbs" + Prjshort + "My.sql", keys, vals));
-		if (pg) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPgsqlfile, "", outfolder + "/_ini/" + cmp->sref + "/CreateDbs" + Prjshort + "Pg.sql", keys, vals));
-
-		keys.pop_back(); vals.pop_back();
-		keys.pop_back(); vals.pop_back();
-		keys.pop_back(); vals.pop_back();
-		// -
-
 		// --- cluster tables
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 
@@ -1389,7 +1404,9 @@ void DlgWznmRlsWrite::createWebapp(
 	WznmMComponent* cmp = NULL;
 	WznmMVersion* ver = NULL;
 
-	string created, modified;
+	vector<ubigint> hrefsMch;
+
+	string created;
 	string version, vermajor, verminor, versub;
 	string webroot, reproot;
 
@@ -1421,6 +1438,8 @@ void DlgWznmRlsWrite::createWebapp(
 	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
 
 	dbswznm->tblwznmmmodule->loadRefsByVer(ver->ref, false, refs);
 	for (unsigned int i = 0; i < refs.size(); i++) dbswznm->tblwznmmcard->loadRstByMdl(refs[i], true, crds);
@@ -1560,7 +1579,6 @@ void DlgWznmRlsWrite::createWebapp(
 	time(&rawtime);
 
 	created = StrMod::timetToString(rawtime);
-	modified = StrMod::timetToString(rawtime);
 
 	// -- version
 	version = StubWznm::getStubVerStd(dbswznm, ver->ref);
@@ -1570,20 +1588,19 @@ void DlgWznmRlsWrite::createWebapp(
 	versub = to_string(ver->Sub);
 
 	// -- directories
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "rootfs", rootfs);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "webroot", webroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "reproot", reproot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "sysroot", sysroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "webroot", webroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "reproot", reproot);
 
 	// --- deployment scripts (WznmWrwebDeploy)
 	keys.resize(0); vals.resize(0);
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("modified"); vals.push_back(modified);
 	keys.push_back("Prjshort"); vals.push_back(Prjshort);
 	keys.push_back("prjshort"); vals.push_back(prjshort);
 	keys.push_back("rlssref"); vals.push_back(rlssref);
 
-	keys.push_back("rootfs"); vals.push_back(rootfs);
+	keys.push_back("sysroot"); vals.push_back(sysroot);
 	keys.push_back("webroot"); vals.push_back(webroot);
 	keys.push_back("reproot"); vals.push_back(reproot);
 
@@ -1597,7 +1614,6 @@ void DlgWznmRlsWrite::createWebapp(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("orgweb"); vals.push_back(xchg->stgwznmtenant.orgweb);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
@@ -1652,7 +1668,6 @@ void DlgWznmRlsWrite::createWebapp(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 		keys.push_back("prjshort"); vals.push_back(prjshort);
 		keys.push_back("version"); vals.push_back(version);
@@ -1835,7 +1850,6 @@ void DlgWznmRlsWrite::createWebapp(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 		keys.push_back("prjshort"); vals.push_back(prjshort);
 
@@ -2100,9 +2114,11 @@ void DlgWznmRlsWrite::createApi(
 	WznmMComponent* cmp = NULL;
 	WznmMVersion* ver = NULL;
 
-	string created, modified;
+	vector<ubigint> hrefsMch;
+
+	string created;
 	string vermajor, verminor, versub;
-	string srcroot, libroot;
+	string buildroot, libroot;
 
 	vector<string> keys;
 	vector<string> vals;
@@ -2124,6 +2140,8 @@ void DlgWznmRlsWrite::createApi(
 	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
 
 	// --- find template files in archive
 	ubigint refGblhfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'ApiXxxx_blks.h'", refGblhfile);
@@ -2169,7 +2187,6 @@ void DlgWznmRlsWrite::createApi(
 	time(&rawtime);
 
 	created = StrMod::timetToString(rawtime);
-	modified = StrMod::timetToString(rawtime);
 
 	// -- version
 	vermajor = to_string(ver->Major);
@@ -2177,23 +2194,22 @@ void DlgWznmRlsWrite::createApi(
 	versub = to_string(ver->Sub);
 
 	// -- directories
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "srcroot", srcroot);
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "libroot", libroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "buildroot", buildroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "libroot", libroot);
 
 	// --- deployment scripts (WznmWrapiDeploy)
 	keys.resize(0); vals.resize(0);
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("modified"); vals.push_back(modified);
 	keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 	keys.push_back("Prjshort"); vals.push_back(Prjshort);
 	keys.push_back("prjshort"); vals.push_back(prjshort);
 	keys.push_back("rlssref"); vals.push_back(rlssref);
 	keys.push_back("cchost"); vals.push_back(cchost);
 
-	keys.push_back("rootfs"); vals.push_back(rootfs);
+	keys.push_back("sysroot"); vals.push_back(sysroot);
 	keys.push_back("inclibeq"); vals.push_back(inclibeq);
-	keys.push_back("srcroot"); vals.push_back(srcroot);
+	keys.push_back("buildroot"); vals.push_back(buildroot);
 	keys.push_back("libroot"); vals.push_back(libroot);
 
 	keys.push_back("ncore"); vals.push_back(ncore);
@@ -2209,7 +2225,6 @@ void DlgWznmRlsWrite::createApi(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("orgweb"); vals.push_back(xchg->stgwznmtenant.orgweb);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
@@ -2252,7 +2267,6 @@ void DlgWznmRlsWrite::createApi(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 
 		keys.push_back("JOBSREF"); vals.push_back("JOBSREF");
@@ -2282,7 +2296,6 @@ void DlgWznmRlsWrite::createApi(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 
@@ -2323,9 +2336,10 @@ void DlgWznmRlsWrite::createJapi(
 	WznmMComponent* cmp = NULL;
 	WznmMVersion* ver = NULL;
 
-	string created, modified;
+	vector<ubigint> hrefsMch;
+
+	string created;
 	string vermajor, verminor, versub;
-	string javaroot;
 
 	vector<string> keys;
 	vector<string> vals;
@@ -2347,6 +2361,8 @@ void DlgWznmRlsWrite::createJapi(
 	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
 
 	// --- find template files in archive
 	ubigint refApijfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'ApiXxxx.java'", refApijfile);
@@ -2393,7 +2409,6 @@ void DlgWznmRlsWrite::createJapi(
 	time(&rawtime);
 
 	created = StrMod::timetToString(rawtime);
-	modified = StrMod::timetToString(rawtime);
 
 	// -- version
 	vermajor = to_string(ver->Major);
@@ -2401,16 +2416,14 @@ void DlgWznmRlsWrite::createJapi(
 	versub = to_string(ver->Sub);
 
 	// -- directories
-	dbswznm->tblwznmammachinepar->loadValByMchKey(rls->refWznmMMachine, "javaroot", javaroot);
 
 	// --- deployment scripts (WznmWrjapiDeploy)
 	keys.resize(0); vals.resize(0);
+	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("modified"); vals.push_back(modified);
 	keys.push_back("Prjshort"); vals.push_back(Prjshort);
 	keys.push_back("prjshort"); vals.push_back(prjshort);
-
-	keys.push_back("javaroot"); vals.push_back(javaroot);
+	keys.push_back("rlssref"); vals.push_back(rlssref);
 
 	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rls->sref + "/checkout.sh", keys, vals));
 
@@ -2419,7 +2432,6 @@ void DlgWznmRlsWrite::createJapi(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("orgweb"); vals.push_back(xchg->stgwznmtenant.orgweb);
 		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
@@ -2469,7 +2481,6 @@ void DlgWznmRlsWrite::createJapi(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("prjshort"); vals.push_back(prjshort);
 
 		keys.push_back("Jobsref"); vals.push_back("Jobsref");
@@ -2495,7 +2506,6 @@ void DlgWznmRlsWrite::createJapi(
 		keys.resize(0); vals.resize(0);
 		keys.push_back("author"); vals.push_back(author);
 		keys.push_back("created"); vals.push_back(created);
-		keys.push_back("modified"); vals.push_back(modified);
 		keys.push_back("Prjshort"); vals.push_back(Prjshort);
 		keys.push_back("prjshort"); vals.push_back(prjshort);
 
@@ -2613,8 +2623,8 @@ void DlgWznmRlsWrite::refreshFia(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrFia oldStatshrfia(statshrfia);
 	ContInfFia oldContinffia(continffia);
+	StatShrFia oldStatshrfia(statshrfia);
 
 	// IP refreshFia --- RBEGIN
 	// statshrfia
@@ -2625,38 +2635,44 @@ void DlgWznmRlsWrite::refreshFia(
 	continffia.Dld = StubWznm::getStubRlsStd(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref)) + ".tgz";
 
 	// IP refreshFia --- REND
-	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
 	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
+	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
 };
 
 void DlgWznmRlsWrite::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
-	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
+	ContIac oldContiac(contiac);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// contiac
-	contiac.numFDse = ixVDit;
-
 	// continf
 	continf.numFSge = ixVSge;
 
+	// contiac
+	contiac.numFDse = ixVDit;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 
 	refreshDet(dbswznm, moditems);
 	refreshCuc(dbswznm, moditems);
 	refreshWrc(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);
 	refreshFia(dbswznm, moditems);
+
+	muteRefresh = false;
 };
 
 void DlgWznmRlsWrite::handleRequest(
@@ -2715,8 +2731,8 @@ void DlgWznmRlsWrite::handleRequest(
 		if (ixVSge == VecVSge::IDLE) handleUploadInSgeIdle(dbswznm, req->filename);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DOWNLOAD) {
-		if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
-		else if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
+		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
+		else if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DPCHRET) {
 		if (req->dpchret->ixOpVOpres == VecOpVOpres::PROGRESS) {
@@ -2745,10 +2761,10 @@ void DlgWznmRlsWrite::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
+		if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
 		else if (ixVSge == VecVSge::CREIDLE) handleTimerInSgeCreidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
 	};
 };
 
@@ -2875,30 +2891,23 @@ void DlgWznmRlsWrite::handleUploadInSgeIdle(
 	changeStage(dbswznm, VecVSge::UPKIDLE);
 };
 
-string DlgWznmRlsWrite::handleDownloadInSgeFail(
-			DbsWznm* dbswznm
-		) {
-	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
-};
-
 string DlgWznmRlsWrite::handleDownloadInSgeDone(
 			DbsWznm* dbswznm
 		) {
 	return(xchg->tmppath + "/" + outfolder + ".tgz"); // IP handleDownloadInSgeDone --- RLINE
 };
 
-void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
+string DlgWznmRlsWrite::handleDownloadInSgeFail(
 			DbsWznm* dbswznm
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
+	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
-void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
+void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeCreate --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsWrite::handleTimerInSgeCreidle(
@@ -2908,11 +2917,18 @@ void DlgWznmRlsWrite::handleTimerInSgeCreidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
+void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeCreate --- ILINE
+};
+
+void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
+			DbsWznm* dbswznm
+		) {
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
 };
 
 void DlgWznmRlsWrite::changeStage(
@@ -2947,7 +2963,7 @@ void DlgWznmRlsWrite::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -3511,5 +3527,6 @@ void DlgWznmRlsWrite::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

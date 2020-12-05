@@ -1,10 +1,11 @@
 /**
 	* \file WznmCtpGenjtr_blks.h
 	* invocation / return data blocks for operation pack WznmCtpGenjtr (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMCTPGENJTR_BLKS_H
 #define WZNMCTPGENJTR_BLKS_H
@@ -67,4 +68,6 @@ public:
 // IP cust --- INSERT
 
 #endif
+
+
 

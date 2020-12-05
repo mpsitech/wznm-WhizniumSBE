@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavGlobal.cpp
 	* job handler for job PnlWznmNavGlobal (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -41,7 +42,6 @@ PnlWznmNavGlobal::PnlWznmNavGlobal(
 	feedFLstLib.tag = "FeedFLstLib";
 	feedFLstLoc.tag = "FeedFLstLoc";
 	feedFLstMch.tag = "FeedFLstMch";
-	feedFLstMty.tag = "FeedFLstMty";
 	feedFLstTag.tag = "FeedFLstTag";
 
 	// IP constructor.cust1 --- INSERT
@@ -52,7 +52,6 @@ PnlWznmNavGlobal::PnlWznmNavGlobal(
 	refreshLoc(dbswznm, moditems);
 	refreshTag(dbswznm, moditems);
 	refreshCtp(dbswznm, moditems);
-	refreshMty(dbswznm, moditems);
 	refreshMch(dbswznm, moditems);
 	refreshLib(dbswznm, moditems);
 	refresh(dbswznm, moditems);
@@ -64,7 +63,6 @@ PnlWznmNavGlobal::PnlWznmNavGlobal(
 	xchg->addIxRefClstn(VecWznmVCall::CALLWZNMHUSRRUNVMOD_CRDUSREQ, jref, Clstn::VecVJobmask::ALL, 0, false, VecWznmVCard::CRDWZNMLOC, xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref));
 	xchg->addIxRefClstn(VecWznmVCall::CALLWZNMHUSRRUNVMOD_CRDUSREQ, jref, Clstn::VecVJobmask::ALL, 0, false, VecWznmVCard::CRDWZNMTAG, xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref));
 	xchg->addIxRefClstn(VecWznmVCall::CALLWZNMHUSRRUNVMOD_CRDUSREQ, jref, Clstn::VecVJobmask::ALL, 0, false, VecWznmVCard::CRDWZNMCTP, xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref));
-	xchg->addIxRefClstn(VecWznmVCall::CALLWZNMHUSRRUNVMOD_CRDUSREQ, jref, Clstn::VecVJobmask::ALL, 0, false, VecWznmVCard::CRDWZNMMTY, xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref));
 	xchg->addIxRefClstn(VecWznmVCall::CALLWZNMHUSRRUNVMOD_CRDUSREQ, jref, Clstn::VecVJobmask::ALL, 0, false, VecWznmVCard::CRDWZNMMCH, xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref));
 	xchg->addIxRefClstn(VecWznmVCall::CALLWZNMHUSRRUNVMOD_CRDUSREQ, jref, Clstn::VecVJobmask::ALL, 0, false, VecWznmVCard::CRDWZNMLIB, xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref));
 };
@@ -88,7 +86,7 @@ DpchEngWznm* PnlWznmNavGlobal::getNewDpchEng(
 		dpcheng = new DpchEngWznmConfirm(true, jref, "");
 	} else {
 		insert(items, DpchEngData::JREF);
-		dpcheng = new DpchEngData(jref, &contiac, &feedFLstCtp, &feedFLstLib, &feedFLstLoc, &feedFLstMch, &feedFLstMty, &feedFLstTag, &statshr, items);
+		dpcheng = new DpchEngData(jref, &contiac, &feedFLstCtp, &feedFLstLib, &feedFLstLoc, &feedFLstMch, &feedFLstTag, &statshr, items);
 	};
 
 	return dpcheng;
@@ -214,46 +212,6 @@ void PnlWznmNavGlobal::refreshCtp(
 	refreshLstCtp(dbswznm, moditems);
 };
 
-void PnlWznmNavGlobal::refreshLstMty(
-			DbsWznm* dbswznm
-			, set<uint>& moditems
-		) {
-	StatShr oldStatshr(statshr);
-
-	statshr.LstMtyAvail = evalLstMtyAvail(dbswznm);
-	statshr.ButMtyViewActive = evalButMtyViewActive(dbswznm);
-
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-};
-
-void PnlWznmNavGlobal::refreshMty(
-			DbsWznm* dbswznm
-			, set<uint>& moditems
-		) {
-	ContIac oldContiac(contiac);
-
-	ListWznmHistRMUserUniversal rst;
-	WznmHistRMUserUniversal* rec = NULL;
-
-	// contiac
-	contiac.numFLstMty = 0;
-
-	// feedFLstMty
-	feedFLstMty.clear();
-
-	dbswznm->tblwznmhistrmuseruniversal->loadRstByUsrCrd(xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref), VecWznmVCard::CRDWZNMMTY, false, rst);
-
-	for (unsigned int i = 0; i < rst.nodes.size(); i++) {
-		rec = rst.nodes[i];
-		feedFLstMty.appendRefTitles(rec->ref, StubWznm::getStubMtyStd(dbswznm, rec->unvUref, ixWznmVLocale));
-	};
-
-	insert(moditems, DpchEngData::FEEDFLSTMTY);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
-
-	refreshLstMty(dbswznm, moditems);
-};
-
 void PnlWznmNavGlobal::refreshLstMch(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
@@ -337,8 +295,14 @@ void PnlWznmNavGlobal::refreshLib(
 void PnlWznmNavGlobal::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	// IP refresh --- INSERT
+
+	muteRefresh = false;
 };
 
 void PnlWznmNavGlobal::updatePreset(
@@ -355,7 +319,6 @@ void PnlWznmNavGlobal::updatePreset(
 	refreshLstLoc(dbswznm, moditems);
 	refreshLstTag(dbswznm, moditems);
 	refreshLstCtp(dbswznm, moditems);
-	refreshLstMty(dbswznm, moditems);
 	refreshLstMch(dbswznm, moditems);
 	refreshLstLib(dbswznm, moditems);
 	if (notif && !moditems.empty()) xchg->submitDpch(getNewDpchEng(moditems));
@@ -404,10 +367,6 @@ void PnlWznmNavGlobal::handleRequest(
 					handleDpchAppDoButCtpViewClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::BUTCTPNEWCRDCLICK) {
 					handleDpchAppDoButCtpNewcrdClick(dbswznm, &(req->dpcheng));
-				} else if (dpchappdo->ixVDo == VecVDo::BUTMTYVIEWCLICK) {
-					handleDpchAppDoButMtyViewClick(dbswznm, &(req->dpcheng));
-				} else if (dpchappdo->ixVDo == VecVDo::BUTMTYNEWCRDCLICK) {
-					handleDpchAppDoButMtyNewcrdClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::BUTMCHVIEWCLICK) {
 					handleDpchAppDoButMchViewClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::BUTMCHNEWCRDCLICK) {
@@ -455,11 +414,6 @@ void PnlWznmNavGlobal::handleDpchAppDataContiac(
 	if (has(diffitems, ContIac::NUMFLSTCTP)) {
 		contiac.numFLstCtp = _contiac->numFLstCtp;
 		refreshLstCtp(dbswznm, moditems);
-	};
-
-	if (has(diffitems, ContIac::NUMFLSTMTY)) {
-		contiac.numFLstMty = _contiac->numFLstMty;
-		refreshLstMty(dbswznm, moditems);
 	};
 
 	if (has(diffitems, ContIac::NUMFLSTMCH)) {
@@ -566,36 +520,6 @@ void PnlWznmNavGlobal::handleDpchAppDoButCtpNewcrdClick(
 	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmCtp");
 };
 
-void PnlWznmNavGlobal::handleDpchAppDoButMtyViewClick(
-			DbsWznm* dbswznm
-			, DpchEngWznm** dpcheng
-		) {
-	WznmHistRMUserUniversal* husrRunv = NULL;
-	ubigint jrefNew = 0;
-
-	if (statshr.LstMtyAvail && statshr.ButMtyViewActive) {
-		if (dbswznm->tblwznmhistrmuseruniversal->loadRecByRef(feedFLstMty.getRefByNum(contiac.numFLstMty), &husrRunv)) {
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, husrRunv->ixWznmVPreset, husrRunv->preUref, "CrdWznmMty", husrRunv->unvUref, jrefNew);
-			delete husrRunv;
-		};
-
-		if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
-		else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmMty");
-	};
-};
-
-void PnlWznmNavGlobal::handleDpchAppDoButMtyNewcrdClick(
-			DbsWznm* dbswznm
-			, DpchEngWznm** dpcheng
-		) {
-	ubigint jrefNew = 0;
-
-	xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, "CrdWznmMty", 0, jrefNew);
-
-	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
-	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmMty");
-};
-
 void PnlWznmNavGlobal::handleDpchAppDoButMchViewClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
@@ -680,8 +604,6 @@ bool PnlWznmNavGlobal::handleCallWznmHusrRunvMod_crdUsrEq(
 		refreshTag(dbswznm, moditems);
 	} else if (ixInv == VecWznmVCard::CRDWZNMCTP) {
 		refreshCtp(dbswznm, moditems);
-	} else if (ixInv == VecWznmVCard::CRDWZNMMTY) {
-		refreshMty(dbswznm, moditems);
 	} else if (ixInv == VecWznmVCard::CRDWZNMMCH) {
 		refreshMch(dbswznm, moditems);
 	} else if (ixInv == VecWznmVCard::CRDWZNMLIB) {
@@ -691,4 +613,6 @@ bool PnlWznmNavGlobal::handleCallWznmHusrRunvMod_crdUsrEq(
 	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
+
+
 

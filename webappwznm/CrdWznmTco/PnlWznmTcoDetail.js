@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmTcoDetail.js
-  * web client functionality for panel PnlWznmTcoDetail
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // IP cust --- INSERT
 
 // --- expand state management
@@ -421,6 +413,8 @@ function handleChkChange(_doc, ctlsref) {
 };
 
 function handleLstLoad(lstdoc, ctlsref, ncol, multsel) {
+	if (!srcdoc) return;
+
 	if (multsel) {
 		refreshLst(lstdoc, srcdoc, ncol, false, multsel, "FeedF" + ctlsref, parseInt(retrieveSi(srcdoc, "StatAppWznmTcoDetail", ctlsref + "NumFirstdisp")),
 					parseUintvec(retrieveCi(srcdoc, "ContIacWznmTcoDetail", "numsF" + ctlsref)));

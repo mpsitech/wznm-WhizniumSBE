@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmDlgRef1NControl.cpp
 	* API code for job QryWznmDlgRef1NControl (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmDlgRef1NControl.h"
 

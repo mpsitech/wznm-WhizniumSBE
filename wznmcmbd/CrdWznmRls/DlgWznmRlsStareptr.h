@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmRlsStareptr.h
 	* job handler for job DlgWznmRlsStareptr (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMRLSSTAREPTR_H
 #define DLGWZNMRLSSTAREPTR_H
@@ -611,7 +612,7 @@ public:
 	void refreshExt(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -636,14 +637,14 @@ private:
 
 	void handleUploadInSgeStadone(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 
 	void handleDpchRetWznmPrctreeExtract(DbsWznm* dbswznm, DpchRetWznmPrctreeExtract* dpchret);
 
-	void handleTimerWithSrefMonInSgeClonegit(DbsWznm* dbswznm);
 	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeClgidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerWithSrefMonInSgeClonegit(DbsWznm* dbswznm);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);
@@ -688,5 +689,6 @@ private:
 };
 
 #endif
+
 
 

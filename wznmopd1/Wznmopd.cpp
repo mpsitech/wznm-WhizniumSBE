@@ -1,10 +1,11 @@
 /**
-	* \file Wznmopd.cpp
-	* inter-thread exchange object for Wznm operation daemon wznmopd1 (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \file Wznmcmbd.cpp
+	* inter-thread exchange object for Wznm combined daemon (implementation)
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "Wznmopd.h"
 
@@ -655,4 +656,7 @@ void XchgWznmopd::setPdone(
 		req->cReady.unlockMutex("XchgWznmopd", "setPdone", "scrOref=" + scrOref);
 	};
 };
+
+
+
 

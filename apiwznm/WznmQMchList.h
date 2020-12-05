@@ -1,10 +1,11 @@
 /**
 	* \file WznmQMchList.h
 	* API code for table TblWznmQMchList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQMCHLIST_H
 #define WZNMQMCHLIST_H
@@ -17,12 +18,12 @@
 class WznmQMchList {
 
 public:
-	WznmQMchList(const Sbecore::uint jnum = 0, const std::string sref = "", const std::string stubRefWznmMMachtype = "");
+	WznmQMchList(const Sbecore::uint jnum = 0, const std::string sref = "", const std::string stubSupRefWznmMMachine = "");
 
 public:
 	Sbecore::uint jnum;
 	std::string sref;
-	std::string stubRefWznmMMachtype;
+	std::string stubSupRefWznmMMachine;
 
 public:
 	bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);

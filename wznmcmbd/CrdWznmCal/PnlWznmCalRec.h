@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmCalRec.h
 	* job handler for job PnlWznmCalRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMCALREC_H
 #define PNLWZNMCALREC_H
@@ -13,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCalDetail.h"
-#include "PnlWznmCal1NSensitivity.h"
 #include "PnlWznmCalMNStub.h"
+#include "PnlWznmCal1NSensitivity.h"
+#include "PnlWznmCalDetail.h"
 
 #define VecVWznmCalRecDo PnlWznmCalRec::VecVDo
 
@@ -170,9 +171,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCalDetail* pnldetail;
-	PnlWznmCal1NSensitivity* pnl1nsensitivity;
 	PnlWznmCalMNStub* pnlmnstub;
+	PnlWznmCal1NSensitivity* pnl1nsensitivity;
+	PnlWznmCalDetail* pnldetail;
 
 	WznmMCall recCal;
 	Sbecore::uint ixWSubsetCal;
@@ -185,7 +186,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -216,4 +217,6 @@ private:
 };
 
 #endif
+
+
 

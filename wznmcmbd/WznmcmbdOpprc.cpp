@@ -1,10 +1,11 @@
 /**
 	* \file WznmcmbdOpprc.cpp
 	* operation processor for Wznm combined daemon (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "Wznmcmbd.h"
 
@@ -84,6 +85,8 @@ void* WznmcmbdOpprc::run(
 				req->dpchret = WznmComplBscui::run(xchg, &dbswznm, (DpchInvWznmComplBscui*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLDBS) {
 				req->dpchret = WznmComplDbs::run(xchg, &dbswznm, (DpchInvWznmComplDbs*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLDEPLOY) {
+				req->dpchret = WznmComplDeploy::run(xchg, &dbswznm, (DpchInvWznmComplDeploy*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLIEX) {
 				req->dpchret = WznmComplIex::run(xchg, &dbswznm, (DpchInvWznmComplIex*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLJTR) {
@@ -127,8 +130,6 @@ void* WznmcmbdOpprc::run(
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMPRCFILECONCAT) {
 				req->dpchret = WznmPrcfileConcat::run(xchg, &dbswznm, (DpchInvWznmPrcfileConcat*) req->dpchinv);
-			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMPRCFILEIEXCONV) {
-				req->dpchret = WznmPrcfileIexconv::run(xchg, &dbswznm, (DpchInvWznmPrcfileIexconv*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMPRCFILEPLHRPL) {
 				req->dpchret = WznmPrcfilePlhrpl::run(xchg, &dbswznm, (DpchInvWznmPrcfilePlhrpl*) req->dpchinv);
 			};
@@ -256,4 +257,6 @@ void WznmcmbdOpprc::cleanup(
 
 	xchg->cOpprcs.unlockMutex("WznmcmbdOpprc", "cleanup");
 };
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmStbRec.h
 	* API code for job PnlWznmStbRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMSTBREC_H
 #define PNLWZNMSTBREC_H
@@ -66,19 +67,19 @@ namespace PnlWznmStbRec {
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONESUPMNSTUB = 2;
-		static const Sbecore::uint INITDONEMNCALL = 3;
+		static const Sbecore::uint INITDONESUBMNSTUB = 3;
 		static const Sbecore::uint INITDONEMNSQUAWK = 4;
-		static const Sbecore::uint INITDONESUBMNSTUB = 5;
+		static const Sbecore::uint INITDONEMNCALL = 5;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneSupMNStub = false, const bool initdoneMNCall = false, const bool initdoneMNSquawk = false, const bool initdoneSubMNStub = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneSupMNStub = false, const bool initdoneSubMNStub = false, const bool initdoneMNSquawk = false, const bool initdoneMNCall = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneSupMNStub;
-		bool initdoneMNCall;
-		bool initdoneMNSquawk;
 		bool initdoneSubMNStub;
+		bool initdoneMNSquawk;
+		bool initdoneMNCall;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -95,21 +96,21 @@ namespace PnlWznmStbRec {
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREFSUPMNSTUB = 3;
-		static const Sbecore::uint SCRJREFMNCALL = 4;
+		static const Sbecore::uint SCRJREFSUBMNSTUB = 4;
 		static const Sbecore::uint SCRJREFMNSQUAWK = 5;
-		static const Sbecore::uint SCRJREFSUBMNSTUB = 6;
+		static const Sbecore::uint SCRJREFMNCALL = 6;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 7;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefSupMNStub = "", const std::string& scrJrefMNCall = "", const std::string& scrJrefMNSquawk = "", const std::string& scrJrefSubMNStub = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefSupMNStub = "", const std::string& scrJrefSubMNStub = "", const std::string& scrJrefMNSquawk = "", const std::string& scrJrefMNCall = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJrefSupMNStub;
-		std::string scrJrefMNCall;
-		std::string scrJrefMNSquawk;
 		std::string scrJrefSubMNStub;
+		std::string scrJrefMNSquawk;
+		std::string scrJrefMNCall;
 		bool ButRegularizeActive;
 
 	public:

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmMchDetail_blks.cpp
 	* job handler for job PnlWznmMchDetail (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -20,7 +21,9 @@ uint PnlWznmMchDetail::VecVDo::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "butsaveclick") return BUTSAVECLICK;
-	if (s == "buttblviewclick") return BUTTBLVIEWCLICK;
+	if (s == "butsupviewclick") return BUTSUPVIEWCLICK;
+	if (s == "butcchviewclick") return BUTCCHVIEWCLICK;
+	if (s == "butpkmeditclick") return BUTPKMEDITCLICK;
 
 	return(0);
 };
@@ -29,7 +32,9 @@ string PnlWznmMchDetail::VecVDo::getSref(
 			const uint ix
 		) {
 	if (ix == BUTSAVECLICK) return("ButSaveClick");
-	if (ix == BUTTBLVIEWCLICK) return("ButTblViewClick");
+	if (ix == BUTSUPVIEWCLICK) return("ButSupViewClick");
+	if (ix == BUTCCHVIEWCLICK) return("ButCchViewClick");
+	if (ix == BUTPKMEDITCLICK) return("ButPkmEditClick");
 
 	return("");
 };
@@ -39,15 +44,17 @@ string PnlWznmMchDetail::VecVDo::getSref(
  ******************************************************************************/
 
 PnlWznmMchDetail::ContIac::ContIac(
-			const uint numFPupCty
+			const uint numFPupPkm
+			, const string& TxfPkm
 			, const string& TxfCmt
 		) :
 			Block()
 		{
-	this->numFPupCty = numFPupCty;
+	this->numFPupPkm = numFPupPkm;
+	this->TxfPkm = TxfPkm;
 	this->TxfCmt = TxfCmt;
 
-	mask = {NUMFPUPCTY, TXFCMT};
+	mask = {NUMFPUPPKM, TXFPKM, TXFCMT};
 };
 
 bool PnlWznmMchDetail::ContIac::readXML(
@@ -67,7 +74,8 @@ bool PnlWznmMchDetail::ContIac::readXML(
 	string itemtag = "ContitemIacWznmMchDetail";
 
 	if (basefound) {
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFPupCty", numFPupCty)) add(NUMFPUPCTY);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFPupPkm", numFPupPkm)) add(NUMFPUPPKM);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "TxfPkm", TxfPkm)) add(TXFPKM);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "TxfCmt", TxfCmt)) add(TXFCMT);
 	};
 
@@ -86,7 +94,8 @@ void PnlWznmMchDetail::ContIac::writeXML(
 	else itemtag = "ContitemIacWznmMchDetail";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeUintAttr(wr, itemtag, "sref", "numFPupCty", numFPupCty);
+		writeUintAttr(wr, itemtag, "sref", "numFPupPkm", numFPupPkm);
+		writeStringAttr(wr, itemtag, "sref", "TxfPkm", TxfPkm);
 		writeStringAttr(wr, itemtag, "sref", "TxfCmt", TxfCmt);
 	xmlTextWriterEndElement(wr);
 };
@@ -96,7 +105,8 @@ set<uint> PnlWznmMchDetail::ContIac::comm(
 		) {
 	set<uint> items;
 
-	if (numFPupCty == comp->numFPupCty) insert(items, NUMFPUPCTY);
+	if (numFPupPkm == comp->numFPupPkm) insert(items, NUMFPUPPKM);
+	if (TxfPkm == comp->TxfPkm) insert(items, TXFPKM);
 	if (TxfCmt == comp->TxfCmt) insert(items, TXFCMT);
 
 	return(items);
@@ -110,7 +120,7 @@ set<uint> PnlWznmMchDetail::ContIac::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {NUMFPUPCTY, TXFCMT};
+	diffitems = {NUMFPUPPKM, TXFPKM, TXFCMT};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -122,14 +132,16 @@ set<uint> PnlWznmMchDetail::ContIac::diff(
 
 PnlWznmMchDetail::ContInf::ContInf(
 			const string& TxtSrf
-			, const string& TxtTbl
+			, const string& TxtSup
+			, const string& TxtCch
 		) :
 			Block()
 		{
 	this->TxtSrf = TxtSrf;
-	this->TxtTbl = TxtTbl;
+	this->TxtSup = TxtSup;
+	this->TxtCch = TxtCch;
 
-	mask = {TXTSRF, TXTTBL};
+	mask = {TXTSRF, TXTSUP, TXTCCH};
 };
 
 void PnlWznmMchDetail::ContInf::writeXML(
@@ -145,7 +157,8 @@ void PnlWznmMchDetail::ContInf::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "TxtSrf", TxtSrf);
-		writeStringAttr(wr, itemtag, "sref", "TxtTbl", TxtTbl);
+		writeStringAttr(wr, itemtag, "sref", "TxtSup", TxtSup);
+		writeStringAttr(wr, itemtag, "sref", "TxtCch", TxtCch);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -155,7 +168,8 @@ set<uint> PnlWznmMchDetail::ContInf::comm(
 	set<uint> items;
 
 	if (TxtSrf == comp->TxtSrf) insert(items, TXTSRF);
-	if (TxtTbl == comp->TxtTbl) insert(items, TXTTBL);
+	if (TxtSup == comp->TxtSup) insert(items, TXTSUP);
+	if (TxtCch == comp->TxtCch) insert(items, TXTCCH);
 
 	return(items);
 };
@@ -168,7 +182,7 @@ set<uint> PnlWznmMchDetail::ContInf::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXTSRF, TXTTBL};
+	diffitems = {TXTSRF, TXTSUP, TXTCCH};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -183,6 +197,7 @@ void PnlWznmMchDetail::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const uint ixWznmVExpstate
+			, const bool PupPkmAlt
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmMchDetail";
 
@@ -192,6 +207,7 @@ void PnlWznmMchDetail::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
+		writeBoolAttr(wr, itemtag, "sref", "PupPkmAlt", PupPkmAlt);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -200,27 +216,37 @@ void PnlWznmMchDetail::StatApp::writeXML(
  ******************************************************************************/
 
 PnlWznmMchDetail::StatShr::StatShr(
-			const bool ButSaveAvail
+			const bool TxfPkmValid
+			, const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
-			, const bool TxtTblActive
-			, const bool ButTblViewAvail
-			, const bool ButTblViewActive
-			, const bool PupCtyActive
+			, const bool TxtSupActive
+			, const bool ButSupViewAvail
+			, const bool ButSupViewActive
+			, const bool TxtCchActive
+			, const bool ButCchViewAvail
+			, const bool ButCchViewActive
+			, const bool PupPkmActive
+			, const bool ButPkmEditAvail
 			, const bool TxfCmtActive
 		) :
 			Block()
 		{
+	this->TxfPkmValid = TxfPkmValid;
 	this->ButSaveAvail = ButSaveAvail;
 	this->ButSaveActive = ButSaveActive;
 	this->TxtSrfActive = TxtSrfActive;
-	this->TxtTblActive = TxtTblActive;
-	this->ButTblViewAvail = ButTblViewAvail;
-	this->ButTblViewActive = ButTblViewActive;
-	this->PupCtyActive = PupCtyActive;
+	this->TxtSupActive = TxtSupActive;
+	this->ButSupViewAvail = ButSupViewAvail;
+	this->ButSupViewActive = ButSupViewActive;
+	this->TxtCchActive = TxtCchActive;
+	this->ButCchViewAvail = ButCchViewAvail;
+	this->ButCchViewActive = ButCchViewActive;
+	this->PupPkmActive = PupPkmActive;
+	this->ButPkmEditAvail = ButPkmEditAvail;
 	this->TxfCmtActive = TxfCmtActive;
 
-	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTTBLACTIVE, BUTTBLVIEWAVAIL, BUTTBLVIEWACTIVE, PUPCTYACTIVE, TXFCMTACTIVE};
+	mask = {TXFPKMVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, BUTPKMEDITAVAIL, TXFCMTACTIVE};
 };
 
 void PnlWznmMchDetail::StatShr::writeXML(
@@ -235,13 +261,18 @@ void PnlWznmMchDetail::StatShr::writeXML(
 	else itemtag = "StatitemShrWznmMchDetail";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeBoolAttr(wr, itemtag, "sref", "TxfPkmValid", TxfPkmValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveAvail", ButSaveAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveActive", ButSaveActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxtSrfActive", TxtSrfActive);
-		writeBoolAttr(wr, itemtag, "sref", "TxtTblActive", TxtTblActive);
-		writeBoolAttr(wr, itemtag, "sref", "ButTblViewAvail", ButTblViewAvail);
-		writeBoolAttr(wr, itemtag, "sref", "ButTblViewActive", ButTblViewActive);
-		writeBoolAttr(wr, itemtag, "sref", "PupCtyActive", PupCtyActive);
+		writeBoolAttr(wr, itemtag, "sref", "TxtSupActive", TxtSupActive);
+		writeBoolAttr(wr, itemtag, "sref", "ButSupViewAvail", ButSupViewAvail);
+		writeBoolAttr(wr, itemtag, "sref", "ButSupViewActive", ButSupViewActive);
+		writeBoolAttr(wr, itemtag, "sref", "TxtCchActive", TxtCchActive);
+		writeBoolAttr(wr, itemtag, "sref", "ButCchViewAvail", ButCchViewAvail);
+		writeBoolAttr(wr, itemtag, "sref", "ButCchViewActive", ButCchViewActive);
+		writeBoolAttr(wr, itemtag, "sref", "PupPkmActive", PupPkmActive);
+		writeBoolAttr(wr, itemtag, "sref", "ButPkmEditAvail", ButPkmEditAvail);
 		writeBoolAttr(wr, itemtag, "sref", "TxfCmtActive", TxfCmtActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -251,13 +282,18 @@ set<uint> PnlWznmMchDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
+	if (TxfPkmValid == comp->TxfPkmValid) insert(items, TXFPKMVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
-	if (TxtTblActive == comp->TxtTblActive) insert(items, TXTTBLACTIVE);
-	if (ButTblViewAvail == comp->ButTblViewAvail) insert(items, BUTTBLVIEWAVAIL);
-	if (ButTblViewActive == comp->ButTblViewActive) insert(items, BUTTBLVIEWACTIVE);
-	if (PupCtyActive == comp->PupCtyActive) insert(items, PUPCTYACTIVE);
+	if (TxtSupActive == comp->TxtSupActive) insert(items, TXTSUPACTIVE);
+	if (ButSupViewAvail == comp->ButSupViewAvail) insert(items, BUTSUPVIEWAVAIL);
+	if (ButSupViewActive == comp->ButSupViewActive) insert(items, BUTSUPVIEWACTIVE);
+	if (TxtCchActive == comp->TxtCchActive) insert(items, TXTCCHACTIVE);
+	if (ButCchViewAvail == comp->ButCchViewAvail) insert(items, BUTCCHVIEWAVAIL);
+	if (ButCchViewActive == comp->ButCchViewActive) insert(items, BUTCCHVIEWACTIVE);
+	if (PupPkmActive == comp->PupPkmActive) insert(items, PUPPKMACTIVE);
+	if (ButPkmEditAvail == comp->ButPkmEditAvail) insert(items, BUTPKMEDITAVAIL);
 	if (TxfCmtActive == comp->TxfCmtActive) insert(items, TXFCMTACTIVE);
 
 	return(items);
@@ -271,7 +307,7 @@ set<uint> PnlWznmMchDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTTBLACTIVE, BUTTBLVIEWAVAIL, BUTTBLVIEWACTIVE, PUPCTYACTIVE, TXFCMTACTIVE};
+	diffitems = {TXFPKMVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, BUTPKMEDITAVAIL, TXFCMTACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -296,8 +332,9 @@ void PnlWznmMchDetail::Tag::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			writeStringAttr(wr, itemtag, "sref", "CptSrf", "identifier");
-			writeStringAttr(wr, itemtag, "sref", "CptTbl", "machine type");
-			writeStringAttr(wr, itemtag, "sref", "CptCty", "cloud type");
+			writeStringAttr(wr, itemtag, "sref", "CptSup", "base machine");
+			writeStringAttr(wr, itemtag, "sref", "CptCch", "cross-compile host");
+			writeStringAttr(wr, itemtag, "sref", "CptPkm", "package manager");
 			writeStringAttr(wr, itemtag, "sref", "CptCmt", "comment");
 		};
 		writeStringAttr(wr, itemtag, "sref", "Cpt", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::DETAIL, ixWznmVLocale)));
@@ -412,18 +449,18 @@ PnlWznmMchDetail::DpchEngData::DpchEngData(
 			const ubigint jref
 			, ContIac* contiac
 			, ContInf* continf
-			, Feed* feedFPupCty
+			, Feed* feedFPupPkm
 			, StatShr* statshr
 			, const set<uint>& mask
 		) :
 			DpchEngWznm(VecWznmVDpch::DPCHENGWZNMMCHDETAILDATA, jref)
 		{
-	if (find(mask, ALL)) this->mask = {JREF, CONTIAC, CONTINF, FEEDFPUPCTY, STATAPP, STATSHR, TAG};
+	if (find(mask, ALL)) this->mask = {JREF, CONTIAC, CONTINF, FEEDFPUPPKM, STATAPP, STATSHR, TAG};
 	else this->mask = mask;
 
 	if (find(this->mask, CONTIAC) && contiac) this->contiac = *contiac;
 	if (find(this->mask, CONTINF) && continf) this->continf = *continf;
-	if (find(this->mask, FEEDFPUPCTY) && feedFPupCty) this->feedFPupCty = *feedFPupCty;
+	if (find(this->mask, FEEDFPUPPKM) && feedFPupPkm) this->feedFPupPkm = *feedFPupPkm;
 	if (find(this->mask, STATSHR) && statshr) this->statshr = *statshr;
 };
 
@@ -434,7 +471,7 @@ string PnlWznmMchDetail::DpchEngData::getSrefsMask() {
 	if (has(JREF)) ss.push_back("jref");
 	if (has(CONTIAC)) ss.push_back("contiac");
 	if (has(CONTINF)) ss.push_back("continf");
-	if (has(FEEDFPUPCTY)) ss.push_back("feedFPupCty");
+	if (has(FEEDFPUPPKM)) ss.push_back("feedFPupPkm");
 	if (has(STATAPP)) ss.push_back("statapp");
 	if (has(STATSHR)) ss.push_back("statshr");
 	if (has(TAG)) ss.push_back("tag");
@@ -452,7 +489,7 @@ void PnlWznmMchDetail::DpchEngData::merge(
 	if (src->has(JREF)) {jref = src->jref; add(JREF);};
 	if (src->has(CONTIAC)) {contiac = src->contiac; add(CONTIAC);};
 	if (src->has(CONTINF)) {continf = src->continf; add(CONTINF);};
-	if (src->has(FEEDFPUPCTY)) {feedFPupCty = src->feedFPupCty; add(FEEDFPUPCTY);};
+	if (src->has(FEEDFPUPPKM)) {feedFPupPkm = src->feedFPupPkm; add(FEEDFPUPPKM);};
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
@@ -467,10 +504,12 @@ void PnlWznmMchDetail::DpchEngData::writeXML(
 		if (has(JREF)) writeString(wr, "scrJref", Scr::scramble(jref));
 		if (has(CONTIAC)) contiac.writeXML(wr);
 		if (has(CONTINF)) continf.writeXML(wr);
-		if (has(FEEDFPUPCTY)) feedFPupCty.writeXML(wr);
+		if (has(FEEDFPUPPKM)) feedFPupPkm.writeXML(wr);
 		if (has(STATAPP)) StatApp::writeXML(wr);
 		if (has(STATSHR)) statshr.writeXML(wr);
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

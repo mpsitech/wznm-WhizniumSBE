@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmLibAMakefile_blks.cpp
 	* job handler for job PnlWznmLibAMakefile (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -188,16 +189,16 @@ set<uint> PnlWznmLibAMakefile::StatShr::diff(
  ******************************************************************************/
 
 PnlWznmLibAMakefile::StgIac::StgIac(
-			const uint TcoReuWidth
+			const uint TcoMchWidth
 			, const uint TcoTagWidth
 			, const uint TcoValWidth
 		) :
 			Block()
 		{
-	this->TcoReuWidth = TcoReuWidth;
+	this->TcoMchWidth = TcoMchWidth;
 	this->TcoTagWidth = TcoTagWidth;
 	this->TcoValWidth = TcoValWidth;
-	mask = {TCOREUWIDTH, TCOTAGWIDTH, TCOVALWIDTH};
+	mask = {TCOMCHWIDTH, TCOTAGWIDTH, TCOVALWIDTH};
 };
 
 bool PnlWznmLibAMakefile::StgIac::readXML(
@@ -217,7 +218,7 @@ bool PnlWznmLibAMakefile::StgIac::readXML(
 	string itemtag = "StgitemIacWznmLibAMakefile";
 
 	if (basefound) {
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoReuWidth", TcoReuWidth)) add(TCOREUWIDTH);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoMchWidth", TcoMchWidth)) add(TCOMCHWIDTH);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoTagWidth", TcoTagWidth)) add(TCOTAGWIDTH);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoValWidth", TcoValWidth)) add(TCOVALWIDTH);
 	};
@@ -237,7 +238,7 @@ void PnlWznmLibAMakefile::StgIac::writeXML(
 	else itemtag = "StgitemIacWznmLibAMakefile";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeUintAttr(wr, itemtag, "sref", "TcoReuWidth", TcoReuWidth);
+		writeUintAttr(wr, itemtag, "sref", "TcoMchWidth", TcoMchWidth);
 		writeUintAttr(wr, itemtag, "sref", "TcoTagWidth", TcoTagWidth);
 		writeUintAttr(wr, itemtag, "sref", "TcoValWidth", TcoValWidth);
 	xmlTextWriterEndElement(wr);
@@ -248,7 +249,7 @@ set<uint> PnlWznmLibAMakefile::StgIac::comm(
 		) {
 	set<uint> items;
 
-	if (TcoReuWidth == comp->TcoReuWidth) insert(items, TCOREUWIDTH);
+	if (TcoMchWidth == comp->TcoMchWidth) insert(items, TCOMCHWIDTH);
 	if (TcoTagWidth == comp->TcoTagWidth) insert(items, TCOTAGWIDTH);
 	if (TcoValWidth == comp->TcoValWidth) insert(items, TCOVALWIDTH);
 
@@ -263,7 +264,7 @@ set<uint> PnlWznmLibAMakefile::StgIac::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TCOREUWIDTH, TCOTAGWIDTH, TCOVALWIDTH};
+	diffitems = {TCOMCHWIDTH, TCOTAGWIDTH, TCOVALWIDTH};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -288,7 +289,7 @@ void PnlWznmLibAMakefile::Tag::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			writeStringAttr(wr, itemtag, "sref", "Cpt", "Makefile entries");
-			writeStringAttr(wr, itemtag, "sref", "TcoReu", "Reference");
+			writeStringAttr(wr, itemtag, "sref", "TcoMch", "Machine");
 			writeStringAttr(wr, itemtag, "sref", "TcoTag", "Tag");
 			writeStringAttr(wr, itemtag, "sref", "TcoVal", "Value");
 		};
@@ -490,4 +491,6 @@ void PnlWznmLibAMakefile::DpchEngData::writeXML(
 		if (has(STGIACQRY)) stgiacqry.writeXML(wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

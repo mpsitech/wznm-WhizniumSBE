@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmLibAMakefile.h
 	* API code for job PnlWznmLibAMakefile (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMLIBAMAKEFILE_H
 #define PNLWZNMLIBAMAKEFILE_H
@@ -120,15 +121,15 @@ namespace PnlWznmLibAMakefile {
 	class StgIac : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint TCOREUWIDTH = 1;
+		static const Sbecore::uint TCOMCHWIDTH = 1;
 		static const Sbecore::uint TCOTAGWIDTH = 2;
 		static const Sbecore::uint TCOVALWIDTH = 3;
 
 	public:
-		StgIac(const Sbecore::uint TcoReuWidth = 100, const Sbecore::uint TcoTagWidth = 100, const Sbecore::uint TcoValWidth = 100);
+		StgIac(const Sbecore::uint TcoMchWidth = 100, const Sbecore::uint TcoTagWidth = 100, const Sbecore::uint TcoValWidth = 100);
 
 	public:
-		Sbecore::uint TcoReuWidth;
+		Sbecore::uint TcoMchWidth;
 		Sbecore::uint TcoTagWidth;
 		Sbecore::uint TcoValWidth;
 
@@ -151,12 +152,12 @@ namespace PnlWznmLibAMakefile {
 		static const Sbecore::uint TRS = 4;
 		static const Sbecore::uint TXTSHOWING1 = 5;
 		static const Sbecore::uint TXTSHOWING2 = 6;
-		static const Sbecore::uint TCOREU = 7;
+		static const Sbecore::uint TCOMCH = 7;
 		static const Sbecore::uint TCOTAG = 8;
 		static const Sbecore::uint TCOVAL = 9;
 
 	public:
-		Tag(const std::string& Cpt = "", const std::string& TxtRecord1 = "", const std::string& TxtRecord2 = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoReu = "", const std::string& TcoTag = "", const std::string& TcoVal = "");
+		Tag(const std::string& Cpt = "", const std::string& TxtRecord1 = "", const std::string& TxtRecord2 = "", const std::string& Trs = "", const std::string& TxtShowing1 = "", const std::string& TxtShowing2 = "", const std::string& TcoMch = "", const std::string& TcoTag = "", const std::string& TcoVal = "");
 
 	public:
 		std::string Cpt;
@@ -165,7 +166,7 @@ namespace PnlWznmLibAMakefile {
 		std::string Trs;
 		std::string TxtShowing1;
 		std::string TxtShowing2;
-		std::string TcoReu;
+		std::string TcoMch;
 		std::string TcoTag;
 		std::string TcoVal;
 

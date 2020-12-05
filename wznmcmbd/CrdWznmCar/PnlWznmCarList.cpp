@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmCarList.cpp
 	* job handler for job PnlWznmCarList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -94,7 +95,11 @@ DpchEngWznm* PnlWznmCarList::getNewDpchEng(
 void PnlWznmCarList::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
 
@@ -118,6 +123,8 @@ void PnlWznmCarList::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+
+	muteRefresh = false;
 };
 
 void PnlWznmCarList::updatePreset(
@@ -249,19 +256,18 @@ void PnlWznmCarList::handleDpchAppDataContiac(
 
 	diffitems = _contiac->diff(&contiac);
 
-	muteRefresh = true;
-
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWznmCarList::VecVOrd::REU) && (_contiac->numFTos <= QryWznmCarList::VecVOrd::MDL)) {
+		if ((_contiac->numFTos >= QryWznmCarList::VecVOrd::REU) && (_contiac->numFTos <= QryWznmCarList::VecVOrd::SRF)) {
+			muteRefresh = true;
+
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);
 
 			qry->rerun(dbswznm);
-			refresh(dbswznm, moditems);
+
+			refresh(dbswznm, moditems, true);
 			insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 		};
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::CONTIAC);
 	*dpcheng = getNewDpchEng(moditems);
@@ -293,16 +299,17 @@ void PnlWznmCarList::handleDpchAppDataStgiacqry(
 
 	ubigint refSelNew = 0;
 
-	muteRefresh = true;
-
 	if (!diffitems.empty()) {
 		qry->stgiac = *_stgiacqry;
 
 		if (has(diffitems, QryWznmCarList::StgIac::JNUM)) refSelNew = qry->getRefByJnum(_stgiacqry->jnum);
 
 		if (!has(diffitems, QryWznmCarList::StgIac::JNUM) || (diffitems.size() > 1)) {
+			muteRefresh = true;
+
 			qry->rerun(dbswznm);
-			refresh(dbswznm, moditems);
+
+			refresh(dbswznm, moditems, true);
 			insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::RST});
 		};
 
@@ -311,8 +318,6 @@ void PnlWznmCarList::handleDpchAppDataStgiacqry(
 			xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFCAR, refSelNew);
 		};
 	};
-
-	muteRefresh = false;
 
 	insert(moditems, DpchEngData::STGIACQRY);
 	*dpcheng = getNewDpchEng(moditems);
@@ -362,9 +367,8 @@ void PnlWznmCarList::handleDpchAppDoButRefreshClick(
 	muteRefresh = true;
 
 	qry->rerun(dbswznm, false);
-	refresh(dbswznm, moditems);
 
-	muteRefresh = false;
+	refresh(dbswznm, moditems, true);
 
 	insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::STGIACQRY, DpchEngData::RST});
 	*dpcheng = getNewDpchEng(moditems);
@@ -399,4 +403,6 @@ bool PnlWznmCarList::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
+
+
 

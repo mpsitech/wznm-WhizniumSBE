@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrsrvIex.cpp
 	* Wznm operation processor - write C++ code for import/export complex (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -141,7 +142,7 @@ void WznmWrsrvIex::writeIexH(
 		s += ", " + ime->sref + "& " + StrMod::lc(ime->sref);
 	};
 
-	outfile << "\tvoid parseFromFile(const std::string& fullpath, const bool xmlNotTxt" << s << ");" << endl;
+	outfile << "\tvoid parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath" << s << ");" << endl;
 	outfile << "\tvoid exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags" << s << ");" << endl;
 	outfile << endl;
 
@@ -444,7 +445,7 @@ void WznmWrsrvIex::writeIexCpp(
 
 	// --- parseFromFile.readTxt
 	outfile << "// IP parseFromFile.readTxt --- IBEGIN" << endl;
-	outfile << "\t\t\tTxtrd rd(fullpath, \"" << iex->sref << "\", Version(\"" << iex->Minversion << "\"), VecVIme::getIx);" << endl;
+	outfile << "\t\t\tTxtrd rd(fullpath, rectpath, \"" << iex->sref << "\", Version(\"" << iex->Minversion << "\"), VecVIme::getIx);" << endl;
 	outfile << "\t\t\treadTxt(rd" << s << ");" << endl;
 	outfile << "// IP parseFromFile.readTxt --- IEND" << endl;
 
@@ -1225,6 +1226,7 @@ void WznmWrsrvIex::writeIexjobH(
 	outfile << "// IP vars.spec --- IBEGIN" << endl;
 	outfile << "\tstd::string fullpath;" << endl;
 	outfile << "\tbool xmlNotTxt;" << endl;
+	outfile << "\tstd::string rectpath;" << endl;
 	outfile << endl;
 
 	outfile << "\tSbecore::uint lineno;" << endl;
@@ -1248,7 +1250,7 @@ void WznmWrsrvIex::writeIexjobH(
 	outfile << "\tvoid reset(Dbs" << Prjshort << "* dbs" << prjshort << ");" << endl;
 	outfile << endl;
 
-	outfile << "\tvoid parseFromFile(Dbs" << Prjshort << "* dbs" << prjshort << ", const std::string& _fullpath, const bool _xmlNotTxt);" << endl;
+	outfile << "\tvoid parseFromFile(Dbs" << Prjshort << "* dbs" << prjshort << ", const std::string& _fullpath, const bool _xmlNotTxt, const std::string& _rectpath = \"\");" << endl;
 	outfile << "\tvoid import(Dbs" << Prjshort << "* dbs" << prjshort << ");" << endl;
 	outfile << "\tvoid reverse(Dbs" << Prjshort << "* dbs" << prjshort << ");" << endl;
 	outfile << "\tvoid collect(Dbs" << Prjshort << "* dbs" << prjshort << ", const std::map<Sbecore::uint,Sbecore::uint>& _ics" << Prjshort << "VIop = " << iex->sref << "::ics" << Prjshort << "VIopInsAll());" << endl;
@@ -1318,10 +1320,12 @@ void WznmWrsrvIex::writeIexjobCpp(
 	outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
 	outfile << "\t\t\t, const string& _fullpath" << endl;
 	outfile << "\t\t\t, const bool _xmlNotTxt" << endl;
+	outfile << "\t\t\t, const string& _rectpath" << endl;
 	outfile << "\t\t) {" << endl;
 	outfile << "\tif (ixVSge == VecVSge::IDLE) {" << endl;
 	outfile << "\t\tfullpath = _fullpath;" << endl;
 	outfile << "\t\txmlNotTxt = _xmlNotTxt;" << endl;
+	outfile << "\t\trectpath = _rectpath;" << endl;
 	outfile << endl;
 
 	outfile << "\t\tchangeStage(dbs" << prjshort << ", VecVSge::PARSE);" << endl;
@@ -1381,6 +1385,7 @@ void WznmWrsrvIex::writeIexjobCpp(
 	outfile << "// IP enterSgeIdle --- IBEGIN" << endl;
 	outfile << "\tfullpath = \"\";" << endl;
 	outfile << "\txmlNotTxt = false;" << endl;
+	outfile << "\trectpath = \"\";" << endl;
 	outfile << endl;
 
 	outfile << "\tlineno = 0;" << endl;
@@ -1400,7 +1405,7 @@ void WznmWrsrvIex::writeIexjobCpp(
 	outfile << "// IP enterSgeParse --- IBEGIN" << endl;
 
 	outfile << "\ttry {" << endl;
-	outfile << "\t\t" << iex->sref << "::parseFromFile(fullpath, xmlNotTxt";
+	outfile << "\t\t" << iex->sref << "::parseFromFile(fullpath, xmlNotTxt, rectpath";
 	for (unsigned int i = 0; i < topimes.nodes.size(); i++) {
 		ime = topimes.nodes[i];
 		outfile << ", " << StrMod::lc(ime->sref);
@@ -2251,5 +2256,6 @@ void WznmWrsrvIex::wrIelEmpty(
 	if (tcolocal && tco) delete tco;
 };
 // IP cust --- IEND
+
 
 

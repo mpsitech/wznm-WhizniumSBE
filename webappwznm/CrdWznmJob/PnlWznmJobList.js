@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmJobList.js
-  * web client functionality for panel PnlWznmJobList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights
@@ -138,17 +130,17 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(1); wtot += TcoSrfWidth;
+				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(6); wtot += TcoSrfWidth;
 			} else if (i == 2) {
 				doc.cols.push("TcoTyp"); doc.widths.push(TcoTypWidth); doc.fs.push("typ2"); doc.tos.push(0); wtot += TcoTypWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoVer"); doc.widths.push(TcoVerWidth); doc.fs.push("ver"); doc.tos.push(3); wtot += TcoVerWidth;
+				doc.cols.push("TcoVer"); doc.widths.push(TcoVerWidth); doc.fs.push("ver"); doc.tos.push(4); wtot += TcoVerWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoRet"); doc.widths.push(TcoRetWidth); doc.fs.push("ret2"); doc.tos.push(0); wtot += TcoRetWidth;
 			} else if (i == 5) {
-				doc.cols.push("TcoReu"); doc.widths.push(TcoReuWidth); doc.fs.push("reu"); doc.tos.push(5); wtot += TcoReuWidth;
+				doc.cols.push("TcoReu"); doc.widths.push(TcoReuWidth); doc.fs.push("reu"); doc.tos.push(3); wtot += TcoReuWidth;
 			} else if (i == 6) {
-				doc.cols.push("TcoGbl"); doc.widths.push(TcoGblWidth); doc.fs.push("gbl"); doc.tos.push(6); wtot += TcoGblWidth;
+				doc.cols.push("TcoGbl"); doc.widths.push(TcoGblWidth); doc.fs.push("gbl"); doc.tos.push(1); wtot += TcoGblWidth;
 			} else if (i == 7) {
 				doc.cols.push("TcoCls"); doc.widths.push(TcoClsWidth); doc.fs.push("cls"); doc.tos.push(0); wtot += TcoClsWidth;
 			} else if (i == 8) {

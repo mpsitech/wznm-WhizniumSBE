@@ -1,0 +1,4182 @@
+-- file CreateDbsWznmMy.sql
+-- MySQL / MariaDB database create script
+-- copyright: (C) 2016-2020 MPSI Technologies GmbH
+-- author: Alexander Wirthmueller (auto-generation)
+-- date created: 5 Dec 2020
+-- IP header --- ABOVE
+
+DROP DATABASE IF EXISTS DbsWznm;
+CREATE DATABASE DbsWznm;
+USE DbsWznm;
+
+CREATE USER IF NOT EXISTS 'default'@'%' IDENTIFIED BY 'asdf1234';
+GRANT ALL PRIVILEGES ON DbsWznm.* TO 'default'@'%';
+
+CREATE USER IF NOT EXISTS 'default'@'localhost' IDENTIFIED BY 'asdf1234';
+GRANT ALL PRIVILEGES ON DbsWznm.* TO 'default'@'localhost';
+
+CREATE TABLE TblWznmAccRMUserUniversal(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMUser BIGINT UNSIGNED,
+	unvIxWznmVMaintable INT UNSIGNED,
+	unvUref BIGINT UNSIGNED,
+	ixWznmVRecaccess INT UNSIGNED,
+	INDEX (refWznmMUser),
+	INDEX (unvIxWznmVMaintable),
+	INDEX (unvUref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMBlockItem(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmCAMBlockItem BIGINT UNSIGNED,
+	blkRefWznmMBlock BIGINT UNSIGNED,
+	blkNum INT UNSIGNED,
+	ixVBasetype INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMControl BIGINT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	refWznmMFeed BIGINT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	refWznmMBlock BIGINT UNSIGNED,
+	refJ BIGINT UNSIGNED,
+	Defval VARCHAR(192),
+	refWznmMVectoritem BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (refWznmCAMBlockItem),
+	INDEX (blkRefWznmMBlock),
+	INDEX (blkNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMCapabilityPar(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	cpbRefWznmMCapability BIGINT UNSIGNED,
+	cpbNum INT UNSIGNED,
+	x1SrefKKey VARCHAR(50),
+	Val TEXT,
+	INDEX (cpbRefWznmMCapability),
+	INDEX (cpbNum),
+	INDEX (x1SrefKKey)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMControlPar(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMControl BIGINT UNSIGNED,
+	x1SrefKKey VARCHAR(50),
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	osrefKVal VARCHAR(50),
+	INDEX (refWznmMControl),
+	INDEX (x1SrefKKey),
+	INDEX (x2RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMJobCmd(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMJob BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (refWznmMJob),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMJobVar(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmCAMJobVar BIGINT UNSIGNED,
+	jobRefWznmMJob BIGINT UNSIGNED,
+	jobNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Length INT UNSIGNED,
+	Shr TINYINT,
+	Comment TEXT,
+	INDEX (refWznmCAMJobVar),
+	INDEX (jobRefWznmMJob),
+	INDEX (jobNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMLibraryMakefile(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMLibrary BIGINT UNSIGNED,
+	x1RefWznmMMachine BIGINT UNSIGNED,
+	x2SrefKTag VARCHAR(50),
+	Val TEXT,
+	INDEX (refWznmMLibrary),
+	INDEX (x1RefWznmMMachine),
+	INDEX (x2SrefKTag)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMLibraryPkglist(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMLibrary BIGINT UNSIGNED,
+	x1RefWznmMMachine BIGINT UNSIGNED,
+	Pkglist TEXT,
+	INDEX (refWznmMLibrary),
+	INDEX (x1RefWznmMMachine)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMMachineMakefile(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMMachine BIGINT UNSIGNED,
+	x1SrefKTag VARCHAR(50),
+	Val TEXT,
+	INDEX (refWznmMMachine),
+	INDEX (x1SrefKTag)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMMachinePar(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMMachine BIGINT UNSIGNED,
+	x1SrefKKey VARCHAR(50),
+	Val VARCHAR(192),
+	INDEX (refWznmMMachine),
+	INDEX (x1SrefKKey)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMMethodInvpar(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	mtdRefWznmMMethod BIGINT UNSIGNED,
+	mtdNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Length INT UNSIGNED,
+	Comment TEXT,
+	INDEX (mtdRefWznmMMethod),
+	INDEX (mtdNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMMethodRetpar(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	mtdRefWznmMMethod BIGINT UNSIGNED,
+	mtdNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Length INT UNSIGNED,
+	Comment TEXT,
+	INDEX (mtdRefWznmMMethod),
+	INDEX (mtdNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMOpInvarg(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmCAMOpInvarg BIGINT UNSIGNED,
+	opxRefWznmMOp BIGINT UNSIGNED,
+	opxNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Defval VARCHAR(192),
+	refWznmMVectoritem BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (refWznmCAMOpInvarg),
+	INDEX (opxRefWznmMOp),
+	INDEX (opxNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMOppackInvarg(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmCAMOppackInvarg BIGINT UNSIGNED,
+	opkRefWznmMOppack BIGINT UNSIGNED,
+	opkNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Defval VARCHAR(192),
+	refWznmMVectoritem BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (refWznmCAMOppackInvarg),
+	INDEX (opkRefWznmMOppack),
+	INDEX (opkNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMOppackRetval(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmCAMOppackRetval BIGINT UNSIGNED,
+	opkRefWznmMOppack BIGINT UNSIGNED,
+	opkNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (refWznmCAMOppackRetval),
+	INDEX (opkRefWznmMOppack),
+	INDEX (opkNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMOpRetval(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmCAMOpRetval BIGINT UNSIGNED,
+	opxRefWznmMOp BIGINT UNSIGNED,
+	opxNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (refWznmCAMOpRetval),
+	INDEX (opxRefWznmMOp),
+	INDEX (opxNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMPersonDetail(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMPerson BIGINT UNSIGNED,
+	x1SrefKType VARCHAR(50),
+	Val VARCHAR(192),
+	INDEX (refWznmMPerson),
+	INDEX (x1SrefKType)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMQueryClause(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	qryRefWznmMQuery BIGINT UNSIGNED,
+	qryNum INT UNSIGNED,
+	x1RefWznmMQuerymod BIGINT UNSIGNED,
+	ixVBasetype INT UNSIGNED,
+	Clause VARCHAR(1024),
+	refWznmMPreset BIGINT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	refWznmMVectoritem BIGINT UNSIGNED,
+	INDEX (qryRefWznmMQuery),
+	INDEX (qryNum),
+	INDEX (x1RefWznmMQuerymod)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMQueryOrder(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMQuery BIGINT UNSIGNED,
+	Short VARCHAR(30),
+	srefsWznmMTablecol VARCHAR(192),
+	INDEX (refWznmMQuery)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMRelationTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMRelation BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMRelation),
+	INDEX (x1IxVType),
+	INDEX (x2RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMStateAction(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	steRefWznmMState BIGINT UNSIGNED,
+	steNum INT UNSIGNED,
+	ixVSection INT UNSIGNED,
+	ixVType INT UNSIGNED,
+	refWznmMRtjob BIGINT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	refWznmMVectoritem BIGINT UNSIGNED,
+	snxRefWznmMState BIGINT UNSIGNED,
+	refWznmMSequence BIGINT UNSIGNED,
+	tr1SrefATrig VARCHAR(50),
+	Ip1 VARCHAR(50),
+	tr2SrefATrig VARCHAR(50),
+	Ip2 VARCHAR(50),
+	tr3SrefATrig VARCHAR(50),
+	Ip3 VARCHAR(50),
+	tr4SrefATrig VARCHAR(50),
+	Ip4 VARCHAR(50),
+	INDEX (steRefWznmMState),
+	INDEX (steNum),
+	INDEX (ixVSection)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMStateTrig(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMState BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVType INT UNSIGNED,
+	refWznmMEvent BIGINT UNSIGNED,
+	refWznmMRtjob BIGINT UNSIGNED,
+	refWznmMVectoritem BIGINT UNSIGNED,
+	xsref VARCHAR(50),
+	refWznmMRtdpch BIGINT UNSIGNED,
+	srefsMask VARCHAR(192),
+	Cond TEXT,
+	INDEX (refWznmMState),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMSubsetTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMSubset BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	ixWznmVGender INT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMSubset),
+	INDEX (x1IxVType),
+	INDEX (x2RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMTablecolTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMTablecol BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMTablecol),
+	INDEX (x1IxVType),
+	INDEX (x2RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMTableLoadfct(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMTable BIGINT UNSIGNED,
+	ixVLoadtype INT UNSIGNED,
+	Fctname VARCHAR(50),
+	ldSrefWznmMTablecol VARCHAR(50),
+	lbySrefsWznmMTablecol VARCHAR(192),
+	ordSrefsWznmMTablecol VARCHAR(192),
+	ixVLimtype INT UNSIGNED,
+	INDEX (refWznmMTable),
+	INDEX (Fctname)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMTableTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMTable BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	ixWznmVGender INT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMTable),
+	INDEX (x1IxVType),
+	INDEX (x2RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMUserAccess(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMUser BIGINT UNSIGNED,
+	x1IxWznmVFeatgroup INT UNSIGNED,
+	x2FeaSrefUix VARCHAR(50),
+	ixWznmWAccess INT UNSIGNED,
+	INDEX (refWznmMUser),
+	INDEX (x1IxWznmVFeatgroup),
+	INDEX (x2FeaSrefUix)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMUsergroupAccess(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMUsergroup BIGINT UNSIGNED,
+	x1IxWznmVFeatgroup INT UNSIGNED,
+	x2FeaSrefUix VARCHAR(50),
+	ixWznmWAccess INT UNSIGNED,
+	INDEX (refWznmMUsergroup),
+	INDEX (x1IxWznmVFeatgroup),
+	INDEX (x2FeaSrefUix)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAMVectorTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMVector BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMVector),
+	INDEX (x1IxVType),
+	INDEX (x2RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAVControlPar(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixWznmVControl INT UNSIGNED,
+	x1RefWznmMUser BIGINT UNSIGNED,
+	x2IxWznmVLocale INT UNSIGNED,
+	Par VARCHAR(192),
+	Val VARCHAR(192),
+	INDEX (ixWznmVControl),
+	INDEX (x1RefWznmMUser),
+	INDEX (x2IxWznmVLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAVKeylistKey(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	klsIxWznmVKeylist INT UNSIGNED,
+	klsNum INT UNSIGNED,
+	x1IxWznmVMaintable INT UNSIGNED,
+	x1Uref BIGINT UNSIGNED,
+	Fixed TINYINT,
+	sref VARCHAR(50),
+	Avail VARCHAR(1024),
+	Implied VARCHAR(1024),
+	refJ BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	Comment TEXT,
+	INDEX (klsNum),
+	INDEX (x1IxWznmVMaintable),
+	INDEX (x1Uref),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmAVValuelistVal(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	vlsIxWznmVValuelist INT UNSIGNED,
+	vlsNum INT UNSIGNED,
+	x1IxWznmVLocale INT UNSIGNED,
+	Val VARCHAR(192),
+	INDEX (vlsIxWznmVValuelist),
+	INDEX (vlsNum),
+	INDEX (x1IxWznmVLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmCAMBlockItem(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmCAMJobVar(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmCAMOpInvarg(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmCAMOppackInvarg(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmCAMOppackRetval(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmCAMOpRetval(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmCControl(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmCFile(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmCRelation(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmHistRMUserUniversal(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMUser BIGINT UNSIGNED,
+	unvIxWznmVMaintable INT UNSIGNED,
+	unvUref BIGINT UNSIGNED,
+	ixWznmVCard INT UNSIGNED,
+	ixWznmVPreset INT UNSIGNED,
+	preIxWznmVMaintable INT UNSIGNED,
+	preUref BIGINT UNSIGNED,
+	start INT UNSIGNED,
+	INDEX (refWznmMUser),
+	INDEX (unvIxWznmVMaintable),
+	INDEX (unvUref),
+	INDEX (ixWznmVCard),
+	INDEX (ixWznmVPreset),
+	INDEX (preIxWznmVMaintable),
+	INDEX (preUref),
+	INDEX (start)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJAMBlockItem(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmAMBlockItem BIGINT UNSIGNED,
+	x1RefWznmMRelease BIGINT UNSIGNED,
+	Defval VARCHAR(192),
+	refWznmMVectoritem BIGINT UNSIGNED,
+	INDEX (refWznmAMBlockItem),
+	INDEX (x1RefWznmMRelease)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJAMStateTrigCond(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmAMStateTrig BIGINT UNSIGNED,
+	x1IxWznmVApptarget INT UNSIGNED,
+	Cond TEXT,
+	INDEX (refWznmAMStateTrig),
+	INDEX (x1IxWznmVApptarget)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJAVKeylistKey(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmAVKeylistKey BIGINT UNSIGNED,
+	x1IxWznmVLocale INT UNSIGNED,
+	Title VARCHAR(192),
+	Comment TEXT,
+	INDEX (refWznmAVKeylistKey),
+	INDEX (x1IxWznmVLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMCardTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMCard BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMCard),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMControl(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMControl BIGINT UNSIGNED,
+	x1RefWznmMVectoritem BIGINT UNSIGNED,
+	x2RefWznmMPreset BIGINT UNSIGNED,
+	stdRefWznmMStub BIGINT UNSIGNED,
+	shoRefWznmMStub BIGINT UNSIGNED,
+	INDEX (refWznmMControl),
+	INDEX (x1RefWznmMVectoritem),
+	INDEX (x2RefWznmMPreset)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMControlTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMControl BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	INDEX (refWznmMControl),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMErrorTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMError BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	INDEX (refWznmMError),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMImpexpcolStub(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMImpexpcol BIGINT UNSIGNED,
+	x1RefWznmMVectoritem BIGINT UNSIGNED,
+	refWznmMStub BIGINT UNSIGNED,
+	INDEX (refWznmMImpexpcol),
+	INDEX (x1RefWznmMVectoritem)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMImpexpcplxTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMImpexpcplx BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMImpexpcplx),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMLocaleTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMLocale BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMLocale),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMModule(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMModule BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	Comment TEXT,
+	INDEX (refWznmMModule),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMPersonLastname(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMPerson BIGINT UNSIGNED,
+	x1Startd INT UNSIGNED,
+	Lastname VARCHAR(50),
+	INDEX (refWznmMPerson),
+	INDEX (x1Startd),
+	INDEX (Lastname)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMPresetTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMPreset BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMPreset),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMQuerycolStub(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMQuerycol BIGINT UNSIGNED,
+	x1RefWznmMVectoritem BIGINT UNSIGNED,
+	x2RefWznmMPreset BIGINT UNSIGNED,
+	refWznmMStub BIGINT UNSIGNED,
+	INDEX (refWznmMQuerycol),
+	INDEX (x1RefWznmMVectoritem),
+	INDEX (x2RefWznmMPreset)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMSquawkTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMSquawk BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	INDEX (refWznmMSquawk),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMTagTitle(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMTag BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	INDEX (refWznmMTag),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMUserState(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMUser BIGINT UNSIGNED,
+	x1Start INT UNSIGNED,
+	ixVState INT UNSIGNED,
+	INDEX (refWznmMUser),
+	INDEX (x1Start)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMVectoritem(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMVectoritem BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	Comment TEXT,
+	INDEX (refWznmMVectoritem),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMVersion(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMVersion BIGINT UNSIGNED,
+	x1RefWznmMLocale BIGINT UNSIGNED,
+	About1 TEXT,
+	About2 TEXT,
+	About3 TEXT,
+	INDEX (refWznmMVersion),
+	INDEX (x1RefWznmMLocale)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmJMVersionState(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMVersion BIGINT UNSIGNED,
+	x1Start INT UNSIGNED,
+	ixVState INT UNSIGNED,
+	INDEX (refWznmMVersion),
+	INDEX (x1Start)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMApp(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	ixWznmVApptarget INT UNSIGNED,
+	verRefWznmMVersion BIGINT UNSIGNED,
+	verNum INT UNSIGNED,
+	Short VARCHAR(10),
+	Title VARCHAR(50),
+	Comment TEXT,
+	INDEX (grp),
+	INDEX (own),
+	INDEX (ixWznmVApptarget),
+	INDEX (verRefWznmMVersion),
+	INDEX (verNum),
+	INDEX (Title)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMBlock(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	reaIxWznmWScope INT UNSIGNED,
+	wriIxWznmWScope INT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMVersion),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (reaIxWznmWScope),
+	INDEX (wriIxWznmWScope),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMCall(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	invIxWznmWArgtype INT UNSIGNED,
+	retIxWznmWArgtype INT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMVersion),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (invIxWznmWArgtype),
+	INDEX (retIxWznmWArgtype),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMCapability(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMVersion BIGINT UNSIGNED,
+	tplRefWznmMCapability BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixWArtefact INT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMVersion),
+	INDEX (tplRefWznmMCapability),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMCard(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	mdlRefWznmMModule BIGINT UNSIGNED,
+	mdlNum INT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	refWznmMJob BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	refJTitle BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	Avail VARCHAR(1024),
+	Active VARCHAR(1024),
+	INDEX (mdlRefWznmMModule),
+	INDEX (mdlNum),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (refWznmMJob),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMCheck(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	refWznmMTablecol BIGINT UNSIGNED,
+	refWznmMCall BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMTable),
+	INDEX (refWznmMTablecol),
+	INDEX (refWznmMCall),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMComponent(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(100),
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMVersion),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMControl(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmCControl BIGINT UNSIGNED,
+	hkIxVTbl INT UNSIGNED,
+	hkUref BIGINT UNSIGNED,
+	hkNum INT UNSIGNED,
+	hkIxVSection INT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	supRefWznmMControl BIGINT UNSIGNED,
+	supLvl SMALLINT UNSIGNED,
+	supNum INT UNSIGNED,
+	ixVScope INT UNSIGNED,
+	refWznmMFeed BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVSubtype INT UNSIGNED,
+	srefsWznmMTag VARCHAR(192),
+	refJTitle BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	refJ BIGINT UNSIGNED,
+	stdRefWznmMStub BIGINT UNSIGNED,
+	shoRefWznmMStub BIGINT UNSIGNED,
+	Avail VARCHAR(1024),
+	Active VARCHAR(1024),
+	srefsKOption VARCHAR(192),
+	INDEX (ixVBasetype),
+	INDEX (refWznmCControl),
+	INDEX (hkIxVTbl),
+	INDEX (hkUref),
+	INDEX (hkNum),
+	INDEX (hkIxVSection),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (supRefWznmMControl),
+	INDEX (supLvl),
+	INDEX (supNum),
+	INDEX (ixVScope),
+	INDEX (refWznmMFeed),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMDialog(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMCard BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	refWznmMJob BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMCard),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (refWznmMJob),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMError(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	verRefWznmMVersion BIGINT UNSIGNED,
+	verNum INT UNSIGNED,
+	sref VARCHAR(50),
+	refJTitle BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	INDEX (verRefWznmMVersion),
+	INDEX (verNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMEvent(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMApp BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (refWznmMApp),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMFeed(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMControl BIGINT UNSIGNED,
+	srcIxVTbl INT UNSIGNED,
+	srcUref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	srefsWznmMVectoritem VARCHAR(192),
+	srefsWznmMTag VARCHAR(192),
+	Comment TEXT,
+	INDEX (refWznmMControl),
+	INDEX (srcIxVTbl),
+	INDEX (srcUref),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMFile(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	refWznmCFile BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	osrefKContent VARCHAR(50),
+	Archived INT UNSIGNED,
+	Filename VARCHAR(50),
+	Archivename VARCHAR(30),
+	srefKMimetype VARCHAR(50),
+	Size INT UNSIGNED,
+	Comment TEXT,
+	INDEX (grp),
+	INDEX (own),
+	INDEX (refWznmCFile),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (Filename)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMImpexp(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMImpexpcplx BIGINT UNSIGNED,
+	supRefWznmMImpexp BIGINT UNSIGNED,
+	supLvl SMALLINT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixWIop INT UNSIGNED,
+	rtrSrefsWznmMImpexpcol VARCHAR(192),
+	Comment TEXT,
+	INDEX (refWznmMImpexpcplx),
+	INDEX (supRefWznmMImpexp),
+	INDEX (supLvl),
+	INDEX (refWznmMTable),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMImpexpcol(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	ixWOccurrence INT UNSIGNED,
+	imeRefWznmMImpexp BIGINT UNSIGNED,
+	imeNum INT UNSIGNED,
+	refWznmMTablecol BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	refWznmMImpexp BIGINT UNSIGNED,
+	ixVConvtype INT UNSIGNED,
+	Defval VARCHAR(192),
+	refWznmMPreset BIGINT UNSIGNED,
+	refJStub BIGINT UNSIGNED,
+	refWznmMStub BIGINT UNSIGNED,
+	refWznmMVectoritem BIGINT UNSIGNED,
+	INDEX (ixVBasetype),
+	INDEX (ixWOccurrence),
+	INDEX (imeRefWznmMImpexp),
+	INDEX (imeNum),
+	INDEX (refWznmMTablecol),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMImpexpcplx(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMVersion BIGINT UNSIGNED,
+	refWznmMJob BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(5),
+	refJTitle BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	Minversion VARCHAR(10),
+	Comment TEXT,
+	INDEX (refWznmMVersion),
+	INDEX (refWznmMJob),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMJob(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Global TINYINT,
+	Clisrv TINYINT,
+	Shrdat TINYINT,
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMVersion),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (sref),
+	INDEX (Global)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMLibrary(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	Version VARCHAR(30),
+	srefKLictype VARCHAR(50),
+	depSrefsWznmMLibrary VARCHAR(192),
+	Comment TEXT,
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMLocale(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	sref VARCHAR(50),
+	refJTitle BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMMachine(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	supRefWznmMMachine BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	cchRefWznmMMachine BIGINT UNSIGNED,
+	srefKPkgmgr VARCHAR(50),
+	Comment TEXT,
+	INDEX (supRefWznmMMachine),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMMethod(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMJob BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Execsrv TINYINT,
+	Comment TEXT,
+	INDEX (refWznmMJob),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMModule(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	verRefWznmMVersion BIGINT UNSIGNED,
+	verNum INT UNSIGNED,
+	sref VARCHAR(50),
+	refJ BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	Comment TEXT,
+	INDEX (verRefWznmMVersion),
+	INDEX (verNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMOp(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMOppack BIGINT UNSIGNED,
+	refWznmMSquawk BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Shrdat TINYINT,
+	Comment TEXT,
+	INDEX (refWznmMOppack),
+	INDEX (refWznmMSquawk),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMOppack(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	refWznmMSquawk BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(192),
+	Shrdat TINYINT,
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMVersion),
+	INDEX (refWznmMSquawk),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMPanel(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	carRefWznmMCard BIGINT UNSIGNED,
+	carNum INT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	refWznmMJob BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Detach TINYINT,
+	Avail VARCHAR(1024),
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (carRefWznmMCard),
+	INDEX (carNum),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (refWznmMJob),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMPerson(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	ixWDerivate INT UNSIGNED,
+	ixVSex INT UNSIGNED,
+	Title VARCHAR(30),
+	Firstname VARCHAR(30),
+	refJLastname BIGINT UNSIGNED,
+	Lastname VARCHAR(50),
+	telRefADetail BIGINT UNSIGNED,
+	telVal VARCHAR(192),
+	emlRefADetail BIGINT UNSIGNED,
+	emlVal VARCHAR(192),
+	Salutation VARCHAR(100),
+	INDEX (grp),
+	INDEX (own),
+	INDEX (ixWDerivate),
+	INDEX (Lastname)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMPreset(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	ixVScope INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmWArgtype INT UNSIGNED,
+	refJTitle BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (refWznmMVersion),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (ixVScope),
+	INDEX (sref),
+	INDEX (ixWznmWArgtype)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMProject(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	Short VARCHAR(5),
+	Title VARCHAR(50),
+	Giturl VARCHAR(192),
+	Comment TEXT,
+	INDEX (grp),
+	INDEX (own),
+	INDEX (refWznmMVersion),
+	INDEX (Short),
+	INDEX (Title)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMQuery(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	supRefWznmMQuery BIGINT UNSIGNED,
+	supIxVSubrole INT UNSIGNED,
+	refRTable BIGINT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	qtbRefWznmMTable BIGINT UNSIGNED,
+	refWznmMJob BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Limofs TINYINT,
+	inoRefAOrder BIGINT UNSIGNED,
+	inoSrefsWznmMTablecol VARCHAR(192),
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMVersion),
+	INDEX (supRefWznmMQuery),
+	INDEX (supIxVSubrole),
+	INDEX (refWznmMTable),
+	INDEX (qtbRefWznmMTable),
+	INDEX (refWznmMJob),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMQuerycol(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	ixWOccurrence INT UNSIGNED,
+	qryRefWznmMQuery BIGINT UNSIGNED,
+	qryNum INT UNSIGNED,
+	refWznmMTablecol BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	refWznmMStub BIGINT UNSIGNED,
+	INDEX (ixVBasetype),
+	INDEX (ixWOccurrence),
+	INDEX (qryRefWznmMQuery),
+	INDEX (qryNum),
+	INDEX (refWznmMTablecol),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMQuerymod(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	qryRefWznmMQuery BIGINT UNSIGNED,
+	qryNum INT UNSIGNED,
+	refWznmMPreset BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	Avail VARCHAR(1024),
+	INDEX (ixVBasetype),
+	INDEX (qryRefWznmMQuery),
+	INDEX (qryNum),
+	INDEX (refWznmMPreset),
+	INDEX (refIxVTbl),
+	INDEX (refUref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMRelation(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmCRelation BIGINT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	supRefWznmMRelation BIGINT UNSIGNED,
+	supIxVSubrole INT UNSIGNED,
+	frRefWznmMTable BIGINT UNSIGNED,
+	frsRefWznmMSubset BIGINT UNSIGNED,
+	toRefWznmMTable BIGINT UNSIGNED,
+	tosRefWznmMSubset BIGINT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	Prefix VARCHAR(10),
+	srefsKOption VARCHAR(192),
+	INDEX (ixVBasetype),
+	INDEX (refWznmCRelation),
+	INDEX (refWznmMVersion),
+	INDEX (supRefWznmMRelation),
+	INDEX (supIxVSubrole),
+	INDEX (frRefWznmMTable),
+	INDEX (frsRefWznmMSubset),
+	INDEX (toRefWznmMTable),
+	INDEX (tosRefWznmMSubset),
+	INDEX (refWznmMTable)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMRelease(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMComponent BIGINT UNSIGNED,
+	refWznmMMachine BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	srefsKOption VARCHAR(192),
+	Comment TEXT,
+	INDEX (refWznmMComponent),
+	INDEX (refWznmMMachine),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMRtblock(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMRtjob BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	srcSrefsWznmAMBlockItem VARCHAR(192),
+	INDEX (refWznmMRtjob),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMRtdpch(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMRtjob BIGINT UNSIGNED,
+	refWznmMBlock BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Merge TINYINT,
+	INDEX (refWznmMRtjob),
+	INDEX (refWznmMBlock),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMRtjob(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMApp BIGINT UNSIGNED,
+	supRefWznmMRtjob BIGINT UNSIGNED,
+	supLvl SMALLINT UNSIGNED,
+	refWznmMJob BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (refWznmMApp),
+	INDEX (supRefWznmMRtjob),
+	INDEX (supLvl),
+	INDEX (refWznmMJob),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMSensitivity(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMJob BIGINT UNSIGNED,
+	refWznmMStage BIGINT UNSIGNED,
+	refWznmMCall BIGINT UNSIGNED,
+	ixVJactype INT UNSIGNED,
+	ixVJobmask INT UNSIGNED,
+	Jobshort VARCHAR(30),
+	Argpatt VARCHAR(192),
+	refWznmMControl BIGINT UNSIGNED,
+	Srefmask VARCHAR(192),
+	ixVAction INT UNSIGNED,
+	csgRefWznmMStage BIGINT UNSIGNED,
+	Custcode TINYINT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMJob),
+	INDEX (refWznmMStage),
+	INDEX (refWznmMCall)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMSequence(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	appRefWznmMApp BIGINT UNSIGNED,
+	appNum INT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	Comment TEXT,
+	INDEX (appRefWznmMApp),
+	INDEX (appNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMSession(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMUser BIGINT UNSIGNED,
+	start INT UNSIGNED,
+	stop INT UNSIGNED,
+	Ip VARCHAR(30),
+	INDEX (refWznmMUser),
+	INDEX (start)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMSquawk(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	refJTitle BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	Example VARCHAR(192),
+	INDEX (refIxVTbl),
+	INDEX (refUref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMStage(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	jobRefWznmMJob BIGINT UNSIGNED,
+	jobNum INT UNSIGNED,
+	refWznmMSquawk BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Monitvl INT UNSIGNED,
+	snxRefWznmMStage BIGINT UNSIGNED,
+	fnxRefWznmMStage BIGINT UNSIGNED,
+	enxRefWznmMStage BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (jobRefWznmMJob),
+	INDEX (jobNum),
+	INDEX (refWznmMSquawk),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMState(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	seqRefWznmMSequence BIGINT UNSIGNED,
+	seqNum INT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (seqRefWznmMSequence),
+	INDEX (seqNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMStub(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	refWznmMSubset BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Hierarch TINYINT,
+	refWznmMTablecol BIGINT UNSIGNED,
+	Localized TINYINT,
+	Example VARCHAR(192),
+	INDEX (ixVBasetype),
+	INDEX (refWznmMTable),
+	INDEX (refWznmMSubset),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMSubset(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMTable BIGINT UNSIGNED,
+	refWznmMPreset BIGINT UNSIGNED,
+	refWznmMCard BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	Cond VARCHAR(1024),
+	Comment TEXT,
+	INDEX (refWznmMTable),
+	INDEX (refWznmMPreset),
+	INDEX (refWznmMCard),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMTable(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	refWznmMPreset BIGINT UNSIGNED,
+	refWznmMCard BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	unqSrefsWznmMTablecol VARCHAR(192),
+	Comment TEXT,
+	INDEX (ixVBasetype),
+	INDEX (refWznmMVersion),
+	INDEX (refIxVTbl),
+	INDEX (refUref),
+	INDEX (refWznmMPreset),
+	INDEX (refWznmMCard),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMTablecol(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	tblRefWznmMTable BIGINT UNSIGNED,
+	tblNum INT UNSIGNED,
+	refWznmMSubset BIGINT UNSIGNED,
+	refWznmMRelation BIGINT UNSIGNED,
+	fctIxVTbl INT UNSIGNED,
+	fctUref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	ixVSubtype INT UNSIGNED,
+	ixVAxisfct INT UNSIGNED,
+	srefsKOption VARCHAR(192),
+	Principal TINYINT,
+	Eponymous TINYINT,
+	INDEX (ixVBasetype),
+	INDEX (tblRefWznmMTable),
+	INDEX (tblNum),
+	INDEX (refWznmMSubset),
+	INDEX (refWznmMRelation),
+	INDEX (fctIxVTbl),
+	INDEX (fctUref),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMTag(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMCapability BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	osrefWznmKTaggrp VARCHAR(50),
+	refJTitle BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	INDEX (refWznmMCapability),
+	INDEX (sref),
+	INDEX (osrefWznmKTaggrp)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMUser(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	refRUsergroup BIGINT UNSIGNED,
+	refWznmMUsergroup BIGINT UNSIGNED,
+	refWznmMPerson BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	refJState BIGINT UNSIGNED,
+	ixVState INT UNSIGNED,
+	ixWznmVLocale INT UNSIGNED,
+	ixWznmVUserlevel INT UNSIGNED,
+	Password VARCHAR(30),
+	Fullkey TEXT,
+	Comment TEXT,
+	INDEX (grp),
+	INDEX (own),
+	INDEX (refWznmMUsergroup),
+	INDEX (refWznmMPerson),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMUsergroup(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (grp),
+	INDEX (own),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMVector(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	hkIxVTbl INT UNSIGNED,
+	hkUref BIGINT UNSIGNED,
+	refWznmMPreset BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	osrefWznmKTaggrp VARCHAR(50),
+	srefsKOption VARCHAR(192),
+	INDEX (ixVBasetype),
+	INDEX (refWznmMVersion),
+	INDEX (hkIxVTbl),
+	INDEX (hkUref),
+	INDEX (refWznmMPreset),
+	INDEX (sref),
+	INDEX (osrefWznmKTaggrp)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMVectoritem(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	vecRefWznmMVector BIGINT UNSIGNED,
+	vecNum INT UNSIGNED,
+	sref VARCHAR(50),
+	Avail VARCHAR(1024),
+	Implied VARCHAR(1024),
+	refJ BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	Comment TEXT,
+	INDEX (vecRefWznmMVector),
+	INDEX (vecNum),
+	INDEX (sref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmMVersion(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	prjRefWznmMProject BIGINT UNSIGNED,
+	prjNum INT UNSIGNED,
+	bvrRefWznmMVersion BIGINT UNSIGNED,
+	refRLocale BIGINT UNSIGNED,
+	refWznmMLocale BIGINT UNSIGNED,
+	Major SMALLINT UNSIGNED,
+	Minor SMALLINT UNSIGNED,
+	Sub SMALLINT UNSIGNED,
+	refJState BIGINT UNSIGNED,
+	ixVState INT UNSIGNED,
+	ixWDbmstype INT UNSIGNED,
+	ixWOption INT UNSIGNED,
+	refJ BIGINT UNSIGNED,
+	About1 TEXT,
+	About2 TEXT,
+	About3 TEXT,
+	Comment TEXT,
+	INDEX (grp),
+	INDEX (own),
+	INDEX (prjRefWznmMProject),
+	INDEX (prjNum),
+	INDEX (bvrRefWznmMVersion),
+	INDEX (refWznmMLocale),
+	INDEX (ixVState)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMCallMStub(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMCall BIGINT UNSIGNED,
+	refWznmMStub BIGINT UNSIGNED,
+	INDEX (refWznmMCall),
+	INDEX (refWznmMStub)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMCapabilityUniversal(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMCapability BIGINT UNSIGNED,
+	unvIxWznmVMaintable INT UNSIGNED,
+	unvUref BIGINT UNSIGNED,
+	srefKKey VARCHAR(50),
+	INDEX (refWznmMCapability),
+	INDEX (unvIxWznmVMaintable),
+	INDEX (unvUref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMComponentMLibrary(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMComponent BIGINT UNSIGNED,
+	refWznmMLibrary BIGINT UNSIGNED,
+	INDEX (refWznmMComponent),
+	INDEX (refWznmMLibrary)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMComponentMOppack(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMComponent BIGINT UNSIGNED,
+	refWznmMOppack BIGINT UNSIGNED,
+	INDEX (refWznmMComponent),
+	INDEX (refWznmMOppack)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMDialogMQuery(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMDialog BIGINT UNSIGNED,
+	refWznmMQuery BIGINT UNSIGNED,
+	INDEX (refWznmMDialog),
+	INDEX (refWznmMQuery)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMJobMJob(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	supRefWznmMJob BIGINT UNSIGNED,
+	subRefWznmMJob BIGINT UNSIGNED,
+	Short VARCHAR(30),
+	Multi TINYINT,
+	ixVConstract INT UNSIGNED,
+	INDEX (supRefWznmMJob),
+	INDEX (subRefWznmMJob)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMJobMOp(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMJob BIGINT UNSIGNED,
+	refWznmMOp BIGINT UNSIGNED,
+	INDEX (refWznmMJob),
+	INDEX (refWznmMOp)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMJobMOppack(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMJob BIGINT UNSIGNED,
+	refWznmMOppack BIGINT UNSIGNED,
+	INDEX (refWznmMJob),
+	INDEX (refWznmMOppack)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMLibraryMOppack(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMLibrary BIGINT UNSIGNED,
+	refWznmMOppack BIGINT UNSIGNED,
+	INDEX (refWznmMLibrary),
+	INDEX (refWznmMOppack)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMLocaleMVersion(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMLocale BIGINT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	INDEX (refWznmMLocale),
+	INDEX (refWznmMVersion)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMPanelMQuery(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMPanel BIGINT UNSIGNED,
+	refWznmMQuery BIGINT UNSIGNED,
+	INDEX (refWznmMPanel),
+	INDEX (refWznmMQuery)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMPersonMProject(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	x1Startd INT UNSIGNED,
+	x1Stopd INT UNSIGNED,
+	refWznmMPerson BIGINT UNSIGNED,
+	refWznmMProject BIGINT UNSIGNED,
+	srefKFunction VARCHAR(50),
+	INDEX (x1Startd),
+	INDEX (x1Stopd),
+	INDEX (refWznmMPerson),
+	INDEX (refWznmMProject)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMQueryMTable(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMQuery BIGINT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	Source TINYINT,
+	Prefix VARCHAR(5),
+	INDEX (refWznmMQuery),
+	INDEX (refWznmMTable)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMSquawkMStub(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMSquawk BIGINT UNSIGNED,
+	refWznmMStub BIGINT UNSIGNED,
+	INDEX (refWznmMSquawk),
+	INDEX (refWznmMStub)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMStubMStub(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	supRefWznmMStub BIGINT UNSIGNED,
+	subRefWznmMStub BIGINT UNSIGNED,
+	INDEX (supRefWznmMStub),
+	INDEX (subRefWznmMStub)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMSubsetMSubset(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	asbRefWznmMSubset BIGINT UNSIGNED,
+	bsbRefWznmMSubset BIGINT UNSIGNED,
+	ixVReltype INT UNSIGNED,
+	INDEX (asbRefWznmMSubset),
+	INDEX (bsbRefWznmMSubset)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMTableMVector(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMTable BIGINT UNSIGNED,
+	refWznmMSubset BIGINT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	INDEX (refWznmMTable),
+	INDEX (refWznmMSubset),
+	INDEX (refWznmMVector)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMUsergroupUniversal(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMUsergroup BIGINT UNSIGNED,
+	unvIxWznmVMaintable INT UNSIGNED,
+	unvUref BIGINT UNSIGNED,
+	ixWznmVRecaccess INT UNSIGNED,
+	INDEX (refWznmMUsergroup),
+	INDEX (unvIxWznmVMaintable),
+	INDEX (unvUref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmRMUserMUsergroup(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMUser BIGINT UNSIGNED,
+	refWznmMUsergroup BIGINT UNSIGNED,
+	ixWznmVUserlevel INT UNSIGNED,
+	INDEX (refWznmMUser),
+	INDEX (refWznmMUsergroup)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmTMQuerymodMQuery(
+	ref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	refWznmMQuerymod BIGINT UNSIGNED,
+	refR BIGINT UNSIGNED,
+	INDEX (refWznmMQuerymod),
+	INDEX (refR)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQApp1NEvent(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQApp1NRtjob(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQAppApp1NSequence(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	appNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQAppList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	Short VARCHAR(10),
+	Title VARCHAR(50),
+	ixWznmVApptarget INT UNSIGNED,
+	verRefWznmMVersion BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQAppRef1NFile(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQBlk1NRtdpch(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQBlkAItem(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	blkNum INT UNSIGNED,
+	ixVBasetype INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMControl BIGINT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	refWznmMFeed BIGINT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	refWznmMBlock BIGINT UNSIGNED,
+	refJ BIGINT UNSIGNED,
+	Defval VARCHAR(192),
+	refWznmMVectoritem BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQBlkList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQBlkRef1NRtblock(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCal1NSensitivity(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCalList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	invIxWznmWArgtype INT UNSIGNED,
+	retIxWznmWArgtype INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCalMNStub(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCapAPar(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	cpbNum INT UNSIGNED,
+	x1SrefKKey VARCHAR(50),
+	Val TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCapList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	refWznmMVersion BIGINT UNSIGNED,
+	tplRefWznmMCapability BIGINT UNSIGNED,
+	ixWArtefact INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCar1NDialog(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCarCar1NPanel(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	carNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCarHk1NControl(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	hkNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCarList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	mdlRefWznmMModule BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQChkList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	refWznmMTablecol BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQChkRef1NCall(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCmp1NRelease(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCmpList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(100),
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCmpMNLibrary(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCmpMNOppack(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQConAPar(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1SrefKKey VARCHAR(50),
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	osrefKVal VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQConFedRef1NRtblock(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQConList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(192),
+	ixVBasetype INT UNSIGNED,
+	hkIxVTbl INT UNSIGNED,
+	hkUref BIGINT UNSIGNED,
+	hkIxVSection INT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	supRefWznmMControl BIGINT UNSIGNED,
+	ixVSubtype INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQConSup1NControl(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	supNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCtp1NTag(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCtpAPar(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	cpbNum INT UNSIGNED,
+	x1SrefKKey VARCHAR(50),
+	Val TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCtpKKey(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	klsNum INT UNSIGNED,
+	Fixed TINYINT,
+	sref VARCHAR(50),
+	Avail VARCHAR(1024),
+	Implied VARCHAR(1024),
+	refJ BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCtpKParKey(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	klsNum INT UNSIGNED,
+	Fixed TINYINT,
+	sref VARCHAR(50),
+	Avail VARCHAR(1024),
+	Implied VARCHAR(1024),
+	refJ BIGINT UNSIGNED,
+	Title VARCHAR(192),
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCtpList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	refWznmMVersion BIGINT UNSIGNED,
+	ixWArtefact INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQCtpTpl1NCapability(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQDlgHk1NControl(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	hkNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQDlgList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	refWznmMCard BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQDlgMNQuery(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQDlgRef1NControl(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQErrList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(192),
+	verRefWznmMVersion BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQEvtList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	refWznmMApp BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQFilList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	Filename VARCHAR(50),
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	osrefKContent VARCHAR(50),
+	srefKMimetype VARCHAR(50),
+	Size INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQIelList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	ixVBasetype INT UNSIGNED,
+	imeRefWznmMImpexp BIGINT UNSIGNED,
+	refWznmMTablecol BIGINT UNSIGNED,
+	ixVConvtype INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQIex1NImpexp(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQIexHk1NVector(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQIexList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(5),
+	Title VARCHAR(50),
+	refWznmMVersion BIGINT UNSIGNED,
+	Minversion VARCHAR(10),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQIexRef1NDialog(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQImeHk1NVector(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQImeIme1NImpexpcol(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	imeNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQImeList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	refWznmMImpexpcplx BIGINT UNSIGNED,
+	supRefWznmMImpexp BIGINT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQImeSup1NImpexp(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJob1NMethod(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJob1NRtjob(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJob1NSensitivity(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobACmd(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobAVar(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	jobNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Length INT UNSIGNED,
+	Shr TINYINT,
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobHk1NVector(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobJob1NStage(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	jobNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	Global TINYINT,
+	Clisrv TINYINT,
+	Shrdat TINYINT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobMNOp(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobMNOppack(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobRef1NBlock(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobSubMNJob(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	Short VARCHAR(30),
+	Multi TINYINT,
+	ixVConstract INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQJobSupMNJob(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	Short VARCHAR(30),
+	Multi TINYINT,
+	ixVConstract INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQLibAMakefile(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1RefWznmMMachine BIGINT UNSIGNED,
+	x2SrefKTag VARCHAR(50),
+	Val TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQLibAPkglist(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1RefWznmMMachine BIGINT UNSIGNED,
+	Pkglist TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQLibList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	Version VARCHAR(30),
+	srefKLictype VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQLibMNComponent(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQLibMNOppack(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQLibRef1NFile(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQLocList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQLocMNVersion(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMch1NRelease(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMchAMakefile(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1SrefKTag VARCHAR(50),
+	Val TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMchAPar(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1SrefKKey VARCHAR(50),
+	Val VARCHAR(192),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMchList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	supRefWznmMMachine BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMchSup1NMachine(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMdlList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	verRefWznmMVersion BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMdlMdl1NCard(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	mdlNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMdlRef1NPanel(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMtdAInvpar(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	mtdNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Length INT UNSIGNED,
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMtdARetpar(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	mtdNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Length INT UNSIGNED,
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQMtdList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	refWznmMJob BIGINT UNSIGNED,
+	Execsrv TINYINT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpk1NOp(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpkAInvarg(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	opkNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Defval VARCHAR(192),
+	refWznmMVectoritem BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpkARetval(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	opkNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpkList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(192),
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	Shrdat TINYINT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpkMNComponent(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpkMNJob(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpkMNLibrary(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpkRef1NBlock(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpkSqkMNStub(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpxAInvarg(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	opxNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Defval VARCHAR(192),
+	refWznmMVectoritem BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpxARetval(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	opxNum INT UNSIGNED,
+	sref VARCHAR(50),
+	ixWznmVVartype INT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	Comment TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpxList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	refWznmMOppack BIGINT UNSIGNED,
+	Shrdat TINYINT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpxMNJob(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpxRef1NBlock(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQOpxSqkMNStub(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPnlHk1NControl(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	hkNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPnlList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	carRefWznmMCard BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPnlMNQuery(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPreselect(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPrj1NVersion(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	prjNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPrjList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	Short VARCHAR(5),
+	Title VARCHAR(50),
+	refWznmMVersion BIGINT UNSIGNED,
+	Giturl VARCHAR(192),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPrjMNPerson(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1Startd INT UNSIGNED,
+	x1Stopd INT UNSIGNED,
+	srefKFunction VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPrsADetail(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1SrefKType VARCHAR(50),
+	Val VARCHAR(192),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPrsList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	Title VARCHAR(30),
+	Firstname VARCHAR(30),
+	Lastname VARCHAR(50),
+	ixVSex INT UNSIGNED,
+	telVal VARCHAR(192),
+	emlVal VARCHAR(192),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPrsMNProject(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1Startd INT UNSIGNED,
+	x1Stopd INT UNSIGNED,
+	srefKFunction VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPst1NQuerymod(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQPstList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	ixWznmWArgtype INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQcoList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	ixVBasetype INT UNSIGNED,
+	qryRefWznmMQuery BIGINT UNSIGNED,
+	refWznmMTablecol BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQcoRef1NControl(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQmdList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	ixVBasetype INT UNSIGNED,
+	qryRefWznmMQuery BIGINT UNSIGNED,
+	refWznmMPreset BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQry1NQuerymod(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	qryNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQryAClause(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	qryNum INT UNSIGNED,
+	x1RefWznmMQuerymod BIGINT UNSIGNED,
+	ixVBasetype INT UNSIGNED,
+	Clause VARCHAR(1024),
+	refWznmMPreset BIGINT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	refWznmMVectoritem BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQryAOrder(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	Short VARCHAR(30),
+	srefsWznmMTablecol VARCHAR(192),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQryList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	supRefWznmMQuery BIGINT UNSIGNED,
+	supIxVSubrole INT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	qtbRefWznmMTable BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQryMNDialog(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQryMNPanel(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQryMNTable(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	Source TINYINT,
+	Prefix VARCHAR(5),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQryQry1NQuerycol(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	qryNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQQrySup1NQuery(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRel1NTablecol(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRelATitle(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRelList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	frRefWznmMTable BIGINT UNSIGNED,
+	frsRefWznmMSubset BIGINT UNSIGNED,
+	toRefWznmMTable BIGINT UNSIGNED,
+	tosRefWznmMSubset BIGINT UNSIGNED,
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	supRefWznmMRelation BIGINT UNSIGNED,
+	supIxVSubrole INT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	Prefix VARCHAR(10),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRelRef1NControl(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRelRef1NDialog(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRelRef1NPanel(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRelSup1NRelation(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRlsList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	refWznmMComponent BIGINT UNSIGNED,
+	refWznmMMachine BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRtj1NRtblock(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRtj1NRtdpch(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRtjList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	refWznmMApp BIGINT UNSIGNED,
+	supRefWznmMRtjob BIGINT UNSIGNED,
+	refWznmMJob BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQRtjSup1NRtjob(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSbs1NStub(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSbs1NTablecol(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSbsAsbMNSubset(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	ixVReltype INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSbsATitle(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	ixWznmVGender INT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSbsBsbMNSubset(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	ixVReltype INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSbsFrs1NRelation(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSbsList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	refWznmMTable BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSbsPst1NQuerymod(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSbsTos1NRelation(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSelect(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ix INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (ix)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSeqList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(50),
+	appRefWznmMApp BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSeqSeq1NState(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	seqNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSge1NSensitivity(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSgeList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	jobRefWznmMJob BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSgeSqkMNStub(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQStbList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	refWznmMTable BIGINT UNSIGNED,
+	refWznmMSubset BIGINT UNSIGNED,
+	Example VARCHAR(192),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQStbMNCall(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQStbMNSquawk(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQStbSubMNStub(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQStbSupMNStub(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSteAAction(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	steNum INT UNSIGNED,
+	ixVSection INT UNSIGNED,
+	ixVType INT UNSIGNED,
+	refWznmMRtjob BIGINT UNSIGNED,
+	refWznmMVector BIGINT UNSIGNED,
+	refWznmMVectoritem BIGINT UNSIGNED,
+	snxRefWznmMState BIGINT UNSIGNED,
+	refWznmMSequence BIGINT UNSIGNED,
+	tr1SrefATrig VARCHAR(50),
+	Ip1 VARCHAR(50),
+	tr2SrefATrig VARCHAR(50),
+	Ip2 VARCHAR(50),
+	tr3SrefATrig VARCHAR(50),
+	Ip3 VARCHAR(50),
+	tr4SrefATrig VARCHAR(50),
+	Ip4 VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSteATrig(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVType INT UNSIGNED,
+	refWznmMEvent BIGINT UNSIGNED,
+	refWznmMRtjob BIGINT UNSIGNED,
+	refWznmMVectoritem BIGINT UNSIGNED,
+	xsref VARCHAR(50),
+	refWznmMRtdpch BIGINT UNSIGNED,
+	srefsMask VARCHAR(192),
+	Cond TEXT,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQSteList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	seqRefWznmMSequence BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTagList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(192),
+	refWznmMCapability BIGINT UNSIGNED,
+	osrefWznmKTaggrp VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTbl1NCheck(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTbl1NImpexp(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTbl1NStub(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTbl1NSubset(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblALoadfct(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	ixVLoadtype INT UNSIGNED,
+	Fctname VARCHAR(50),
+	ldSrefWznmMTablecol VARCHAR(50),
+	lbySrefsWznmMTablecol VARCHAR(192),
+	ordSrefsWznmMTablecol VARCHAR(192),
+	ixVLimtype INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblATitle(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	ixWznmVGender INT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblFct1NTablecol(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblFr1NRelation(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblHk1NVector(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	refIxVTbl INT UNSIGNED,
+	refUref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblMNQuery(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	Source TINYINT,
+	Prefix VARCHAR(5),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblMNVector(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	refWznmMSubset BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblPst1NQuerymod(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblRef1NCall(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblRef1NDialog(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblRef1NPanel(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblRef1NQuerymod(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblRef1NRtblock(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblSrc1NFeed(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblTbl1NTablecol(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	tblNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTblTo1NRelation(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTco1NCheck(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTco1NImpexpcol(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTco1NQuerycol(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTcoATitle(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTcoList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Short VARCHAR(10),
+	ixVBasetype INT UNSIGNED,
+	tblRefWznmMTable BIGINT UNSIGNED,
+	fctIxVTbl INT UNSIGNED,
+	ixVSubtype INT UNSIGNED,
+	ixVAxisfct INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTcoRef1NControl(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQTcoRef1NQuerymod(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQUsgAAccess(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1IxWznmVFeatgroup INT UNSIGNED,
+	x2FeaSrefUix VARCHAR(50),
+	ixWznmWAccess INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQUsgList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQUsgMNUser(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	ixWznmVUserlevel INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQUsr1NSession(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQUsrAAccess(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1IxWznmVFeatgroup INT UNSIGNED,
+	x2FeaSrefUix VARCHAR(50),
+	ixWznmWAccess INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQUsrList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	refWznmMPerson BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	refWznmMUsergroup BIGINT UNSIGNED,
+	ixVState INT UNSIGNED,
+	ixWznmVLocale INT UNSIGNED,
+	ixWznmVUserlevel INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQUsrMNUsergroup(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	ixWznmVUserlevel INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVecATitle(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	x1IxVType INT UNSIGNED,
+	x2RefWznmMLocale BIGINT UNSIGNED,
+	Title VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVecFct1NTablecol(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVecList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	ixVBasetype INT UNSIGNED,
+	refWznmMVersion BIGINT UNSIGNED,
+	hkIxVTbl INT UNSIGNED,
+	hkUref BIGINT UNSIGNED,
+	osrefWznmKTaggrp VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVecMNTable(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	refWznmMSubset BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVecPst1NQuerymod(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVecRef1NPanel(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVecSrc1NFeed(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVecVec1NVectoritem(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	vecNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NBlock(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NCall(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NCapability(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NComponent(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NImpexpcplx(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NJob(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NOppack(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NPreset(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NQuery(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NRelation(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NTable(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVer1NVector(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVerBvr1NVersion(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVerList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	grp BIGINT UNSIGNED,
+	own BIGINT UNSIGNED,
+	prjRefWznmMProject BIGINT UNSIGNED,
+	Major SMALLINT UNSIGNED,
+	Minor SMALLINT UNSIGNED,
+	Sub SMALLINT UNSIGNED,
+	bvrRefWznmMVersion BIGINT UNSIGNED,
+	refWznmMLocale BIGINT UNSIGNED,
+	ixVState INT UNSIGNED,
+	ixWDbmstype INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVerMNLocale(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	mref BIGINT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVerRef1NFile(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVerVer1NApp(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	verNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVerVer1NError(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	verNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVerVer1NModule(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	verNum INT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+
+CREATE TABLE TblWznmQVitList(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	sref VARCHAR(50),
+	Title VARCHAR(192),
+	vecRefWznmMVector BIGINT UNSIGNED,
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = ARIA;
+

@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmOpk.h
 	* data blocks and readers/writers for import/export complex IexWznmOpk (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef IEXWZNMOPK_H
 #define IEXWZNMOPK_H
@@ -1787,7 +1788,7 @@ namespace IexWznmOpk {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIMOppack& imeimoppack);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath, ImeIMOppack& imeimoppack);
 	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIMOppack& imeimoppack);
 
 	void readTxt(Sbecore::Txtrd& txtrd, ImeIMOppack& imeimoppack);
@@ -1801,4 +1802,6 @@ namespace IexWznmOpk {
 };
 
 #endif
+
+
 

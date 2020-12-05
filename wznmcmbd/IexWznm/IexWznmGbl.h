@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmGbl.h
 	* data blocks and readers/writers for import/export complex IexWznmGbl (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef IEXWZNMGBL_H
 #define IEXWZNMGBL_H
@@ -838,7 +839,7 @@ namespace IexWznmGbl {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIMBlock& imeimblock, ImeIMCapability& imeimcapability, ImeIMError& imeimerror, ImeIMVector& imeimvector);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath, ImeIMBlock& imeimblock, ImeIMCapability& imeimcapability, ImeIMError& imeimerror, ImeIMVector& imeimvector);
 	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIMBlock& imeimblock, ImeIMCapability& imeimcapability, ImeIMError& imeimerror, ImeIMVector& imeimvector);
 
 	void readTxt(Sbecore::Txtrd& txtrd, ImeIMBlock& imeimblock, ImeIMCapability& imeimcapability, ImeIMError& imeimerror, ImeIMVector& imeimvector);
@@ -852,4 +853,6 @@ namespace IexWznmGbl {
 };
 
 #endif
+
+
 

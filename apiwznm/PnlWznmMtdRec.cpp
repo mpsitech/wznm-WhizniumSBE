@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmMtdRec.cpp
 	* API code for job PnlWznmMtdRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "PnlWznmMtdRec.h"
 
@@ -103,16 +104,16 @@ set<uint> PnlWznmMtdRec::ContInf::diff(
 
 PnlWznmMtdRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdoneAInvpar
 			, const bool initdoneARetpar
+			, const bool initdoneAInvpar
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdoneAInvpar = initdoneAInvpar;
 	this->initdoneARetpar = initdoneARetpar;
+	this->initdoneAInvpar = initdoneAInvpar;
 
-	mask = {INITDONEDETAIL, INITDONEAINVPAR, INITDONEARETPAR};
+	mask = {INITDONEDETAIL, INITDONEARETPAR, INITDONEAINVPAR};
 };
 
 bool PnlWznmMtdRec::StatApp::readXML(
@@ -133,8 +134,8 @@ bool PnlWznmMtdRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAInvpar", initdoneAInvpar)) add(INITDONEAINVPAR);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneARetpar", initdoneARetpar)) add(INITDONEARETPAR);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAInvpar", initdoneAInvpar)) add(INITDONEAINVPAR);
 	};
 
 	return basefound;
@@ -146,8 +147,8 @@ set<uint> PnlWznmMtdRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdoneAInvpar == comp->initdoneAInvpar) insert(items, INITDONEAINVPAR);
 	if (initdoneARetpar == comp->initdoneARetpar) insert(items, INITDONEARETPAR);
+	if (initdoneAInvpar == comp->initdoneAInvpar) insert(items, INITDONEAINVPAR);
 
 	return(items);
 };
@@ -160,7 +161,7 @@ set<uint> PnlWznmMtdRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEAINVPAR, INITDONEARETPAR};
+	diffitems = {INITDONEDETAIL, INITDONEARETPAR, INITDONEAINVPAR};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -173,19 +174,19 @@ set<uint> PnlWznmMtdRec::StatApp::diff(
 PnlWznmMtdRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJrefAInvpar
 			, const string& scrJrefARetpar
+			, const string& scrJrefAInvpar
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAInvpar = scrJrefAInvpar;
 	this->scrJrefARetpar = scrJrefARetpar;
+	this->scrJrefAInvpar = scrJrefAInvpar;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAINVPAR, SCRJREFARETPAR, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFARETPAR, SCRJREFAINVPAR, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmMtdRec::StatShr::readXML(
@@ -212,8 +213,8 @@ bool PnlWznmMtdRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAInvpar", scrJrefAInvpar)) add(SCRJREFAINVPAR);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefARetpar", scrJrefARetpar)) add(SCRJREFARETPAR);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAInvpar", scrJrefAInvpar)) add(SCRJREFAINVPAR);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
 
@@ -227,8 +228,8 @@ set<uint> PnlWznmMtdRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJrefAInvpar == comp->scrJrefAInvpar) insert(items, SCRJREFAINVPAR);
 	if (scrJrefARetpar == comp->scrJrefARetpar) insert(items, SCRJREFARETPAR);
+	if (scrJrefAInvpar == comp->scrJrefAInvpar) insert(items, SCRJREFAINVPAR);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -242,7 +243,7 @@ set<uint> PnlWznmMtdRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAINVPAR, SCRJREFARETPAR, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFARETPAR, SCRJREFAINVPAR, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

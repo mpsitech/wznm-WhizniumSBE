@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmErrDetail.cpp
 	* job handler for job PnlWznmErrDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -172,7 +173,11 @@ void PnlWznmErrDetail::refreshRecErrJtit(
 void PnlWznmErrDetail::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -182,6 +187,8 @@ void PnlWznmErrDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmErrDetail::updatePreset(
@@ -309,13 +316,26 @@ void PnlWznmErrDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMERRUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMERRJTITMOD_ERREQ) {
+		call->abort = handleCallWznmErrJtitMod_errEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMERRUPD_REFEQ) {
 		call->abort = handleCallWznmErrUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMERR_VEREQ) {
 		call->abort = handleCallWznmErr_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMERRJTITMOD_ERREQ) {
-		call->abort = handleCallWznmErrJtitMod_errEq(dbswznm, call->jref);
 	};
+};
+
+bool PnlWznmErrDetail::handleCallWznmErrJtitMod_errEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	refreshJti(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
+	return retval;
 };
 
 bool PnlWznmErrDetail::handleCallWznmErrUpd_refEq(
@@ -338,16 +358,5 @@ bool PnlWznmErrDetail::handleCallWznmErr_verEq(
 	return retval;
 };
 
-bool PnlWznmErrDetail::handleCallWznmErrJtitMod_errEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	set<uint> moditems;
 
-	refreshJti(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
-	return retval;
-};
 

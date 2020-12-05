@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmCarList.h
 	* API code for job QryWznmCarList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMCARLIST_H
 #define QRYWZNMCARLIST_H
@@ -29,8 +30,8 @@ namespace QryWznmCarList {
 	public:
 		static const Sbecore::uint REU = 1;
 		static const Sbecore::uint RET = 2;
-		static const Sbecore::uint SRF = 3;
-		static const Sbecore::uint MDL = 4;
+		static const Sbecore::uint MDL = 3;
+		static const Sbecore::uint SRF = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

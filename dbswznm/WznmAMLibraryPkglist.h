@@ -1,10 +1,11 @@
 /**
 	* \file WznmAMLibraryPkglist.h
 	* database access for table TblWznmAMLibraryPkglist (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMAMLIBRARYPKGLIST_H
 #define WZNMAMLIBRARYPKGLIST_H
@@ -18,23 +19,18 @@
 	#include <sbecore/PgDbs.h>
 #endif
 
-#include <sbecore/Xmlio.h>
-
-#define VecWznmVAMLibraryPkglistRefTbl TblWznmAMLibraryPkglist::VecVRefTbl
-
 /**
 	* WznmAMLibraryPkglist: record of TblWznmAMLibraryPkglist
 	*/
 class WznmAMLibraryPkglist {
 
 public:
-	WznmAMLibraryPkglist(const Sbecore::ubigint ref = 0, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::uint x1RefIxVTbl = 0, const Sbecore::ubigint x1RefUref = 0, const std::string Pkglist = "");
+	WznmAMLibraryPkglist(const Sbecore::ubigint ref = 0, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string Pkglist = "");
 
 public:
 	Sbecore::ubigint ref;
 	Sbecore::ubigint refWznmMLibrary;
-	Sbecore::uint x1RefIxVTbl;
-	Sbecore::ubigint x1RefUref;
+	Sbecore::ubigint x1RefWznmMMachine;
 	std::string Pkglist;
 
 public:
@@ -71,22 +67,6 @@ public:
 class TblWznmAMLibraryPkglist {
 
 public:
-	/**
-		* VecVRefTbl (full: VecWznmVAMLibraryPkglistRefTbl)
-		*/
-	class VecVRefTbl {
-
-	public:
-		static const Sbecore::uint MCH = 1;
-		static const Sbecore::uint MTY = 2;
-
-		static Sbecore::uint getIx(const std::string& sref);
-		static std::string getSref(const Sbecore::uint ix);
-
-		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWznmVLocale);
-
-		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Xmlio::Feed& feed);
-	};
 
 public:
 	TblWznmAMLibraryPkglist();
@@ -97,15 +77,15 @@ public:
 	virtual Sbecore::ubigint loadRstBySQL(const std::string& sqlstr, const bool append, ListWznmAMLibraryPkglist& rst);
 
 	virtual Sbecore::ubigint insertRec(WznmAMLibraryPkglist* rec);
-	Sbecore::ubigint insertNewRec(WznmAMLibraryPkglist** rec = NULL, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::uint x1RefIxVTbl = 0, const Sbecore::ubigint x1RefUref = 0, const std::string Pkglist = "");
-	Sbecore::ubigint appendNewRecToRst(ListWznmAMLibraryPkglist& rst, WznmAMLibraryPkglist** rec = NULL, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::uint x1RefIxVTbl = 0, const Sbecore::ubigint x1RefUref = 0, const std::string Pkglist = "");
+	Sbecore::ubigint insertNewRec(WznmAMLibraryPkglist** rec = NULL, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string Pkglist = "");
+	Sbecore::ubigint appendNewRecToRst(ListWznmAMLibraryPkglist& rst, WznmAMLibraryPkglist** rec = NULL, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string Pkglist = "");
 	virtual void insertRst(ListWznmAMLibraryPkglist& rst, bool transact = false);
 	virtual void updateRec(WznmAMLibraryPkglist* rec);
 	virtual void updateRst(ListWznmAMLibraryPkglist& rst, bool transact = false);
 	virtual void removeRecByRef(Sbecore::ubigint ref);
 
 	virtual bool loadRecByRef(Sbecore::ubigint ref, WznmAMLibraryPkglist** rec);
-	virtual bool loadPklByLibRetReu(Sbecore::ubigint refWznmMLibrary, Sbecore::uint x1RefIxVTbl, Sbecore::ubigint x1RefUref, std::string& Pkglist);
+	virtual bool loadPklByLibMch(Sbecore::ubigint refWznmMLibrary, Sbecore::ubigint x1RefWznmMMachine, std::string& Pkglist);
 	virtual Sbecore::ubigint loadRefsByLib(Sbecore::ubigint refWznmMLibrary, const bool append, std::vector<Sbecore::ubigint>& refs);
 	virtual Sbecore::ubigint loadRstByLib(Sbecore::ubigint refWznmMLibrary, const bool append, ListWznmAMLibraryPkglist& rst);
 	Sbecore::ubigint loadRstByRefs(std::vector<Sbecore::ubigint>& refs, const bool append, ListWznmAMLibraryPkglist& rst);
@@ -140,7 +120,7 @@ public:
 	void removeRecByRef(Sbecore::ubigint ref);
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmAMLibraryPkglist** rec);
-	bool loadPklByLibRetReu(Sbecore::ubigint refWznmMLibrary, Sbecore::uint x1RefIxVTbl, Sbecore::ubigint x1RefUref, std::string& Pkglist);
+	bool loadPklByLibMch(Sbecore::ubigint refWznmMLibrary, Sbecore::ubigint x1RefWznmMMachine, std::string& Pkglist);
 	Sbecore::ubigint loadRefsByLib(Sbecore::ubigint refWznmMLibrary, const bool append, std::vector<Sbecore::ubigint>& refs);
 	Sbecore::ubigint loadRstByLib(Sbecore::ubigint refWznmMLibrary, const bool append, ListWznmAMLibraryPkglist& rst);
 };
@@ -176,7 +156,7 @@ public:
 	void removeRecByRef(Sbecore::ubigint ref);
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmAMLibraryPkglist** rec);
-	bool loadPklByLibRetReu(Sbecore::ubigint refWznmMLibrary, Sbecore::uint x1RefIxVTbl, Sbecore::ubigint x1RefUref, std::string& Pkglist);
+	bool loadPklByLibMch(Sbecore::ubigint refWznmMLibrary, Sbecore::ubigint x1RefWznmMMachine, std::string& Pkglist);
 	Sbecore::ubigint loadRefsByLib(Sbecore::ubigint refWznmMLibrary, const bool append, std::vector<Sbecore::ubigint>& refs);
 	Sbecore::ubigint loadRstByLib(Sbecore::ubigint refWznmMLibrary, const bool append, ListWznmAMLibraryPkglist& rst);
 };

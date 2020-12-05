@@ -1,10 +1,11 @@
 /**
 	* \file SqkWznmWrjapi.cpp
 	* squawk generation for operation pack WznmWrjapi (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "SqkWznmWrjapi.h"
 
@@ -47,4 +48,6 @@ string SqkWznmWrjapi::getSquawkVec(
 	// example: "write Java code for vector 'VecBrlyVMLocationBasetype'"
 	return(""); // IP getSquawkVec --- LINE
 };
+
+
 

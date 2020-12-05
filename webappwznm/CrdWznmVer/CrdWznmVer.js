@@ -1,11 +1,3 @@
-/**
-  * \file CrdWznmVer.js
-  * web client functionality for card CrdWznmVer
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function getInitdone(pnlshort) {
 	return(retrieveSi(srcdoc, "StatAppWznmVer", "initdone" + pnlshort) == "true");
 };
@@ -148,8 +140,8 @@ function initMenCrd() {
 	MitCrdIgbAvail = (retrieveSi(srcdoc, "StatShrWznmVer", "MitCrdIgbAvail") == "true");
 	MitCrdIgbActive = (retrieveSi(srcdoc, "StatShrWznmVer", "MitCrdIgbActive") == "true");
 	MspCrd4Avail = (retrieveSi(srcdoc, "StatShrWznmVer", "MspCrd4Avail") == "true");
-	MitCrdWskAvail = (retrieveSi(srcdoc, "StatShrWznmVer", "MitCrdWskAvail") == "true");
-	MitCrdWskActive = (retrieveSi(srcdoc, "StatShrWznmVer", "MitCrdWskActive") == "true");
+	MitCrdImdAvail = (retrieveSi(srcdoc, "StatShrWznmVer", "MitCrdImdAvail") == "true");
+	MitCrdImdActive = (retrieveSi(srcdoc, "StatShrWznmVer", "MitCrdImdActive") == "true");
 	MspCrd5Avail = (retrieveSi(srcdoc, "StatShrWznmVer", "MspCrd5Avail") == "true");
 	MitCrdIdbAvail = (retrieveSi(srcdoc, "StatShrWznmVer", "MitCrdIdbAvail") == "true");
 	MitCrdIdbActive = (retrieveSi(srcdoc, "StatShrWznmVer", "MitCrdIdbActive") == "true");
@@ -184,8 +176,8 @@ function initMenCrd() {
 	setMitActive("MitCrdIdp", MitCrdIdpActive);
 	setTextContent(mendoc, mendoc.getElementById("MitCrdIgb"), retrieveTi(srcdoc, "TagWznmVer", "MitCrdIgb"));
 	setMitActive("MitCrdIgb", MitCrdIgbActive);
-	setTextContent(mendoc, mendoc.getElementById("MitCrdWsk"), retrieveTi(srcdoc, "TagWznmVer", "MitCrdWsk"));
-	setMitActive("MitCrdWsk", MitCrdWskActive);
+	setTextContent(mendoc, mendoc.getElementById("MitCrdImd"), retrieveTi(srcdoc, "TagWznmVer", "MitCrdImd"));
+	setMitActive("MitCrdImd", MitCrdImdActive);
 	setTextContent(mendoc, mendoc.getElementById("MitCrdIdb"), retrieveTi(srcdoc, "TagWznmVer", "MitCrdIdb"));
 	setMitActive("MitCrdIdb", MitCrdIdbActive);
 	setTextContent(mendoc, mendoc.getElementById("MitCrdIbu"), retrieveTi(srcdoc, "TagWznmVer", "MitCrdIbu"));
@@ -214,7 +206,7 @@ function initMenCrd() {
 	height -= setMitMspAvail("MitCrdIdp", MitCrdIdpAvail, 20);
 	height -= setMitMspAvail("MitCrdIgb", MitCrdIgbAvail, 20);
 	height -= setMitMspAvail("MspCrd4", MspCrd4Avail, 1);
-	height -= setMitMspAvail("MitCrdWsk", MitCrdWskAvail, 20);
+	height -= setMitMspAvail("MitCrdImd", MitCrdImdAvail, 20);
 	height -= setMitMspAvail("MspCrd5", MspCrd5Avail, 1);
 	height -= setMitMspAvail("MitCrdIdb", MitCrdIdbAvail, 20);
 	height -= setMitMspAvail("MitCrdIbu", MitCrdIbuAvail, 20);
@@ -324,7 +316,7 @@ function showDlg(sref, _scrJref)  {
 	myif.setAttribute("id", "Dlg");
 	myif.setAttribute("src", "./" + sref + ".html?scrJref=" + _scrJref);
 	myif.setAttribute("width", "691");
-	if ((sref == "DlgWznmVerDeploy") || (sref == "DlgWznmVerGlobal") || (sref == "DlgWznmVerWrstkit") || (sref == "DlgWznmVerDbstr") || (sref == "DlgWznmVerBscui") || (sref == "DlgWznmVerImpexp") || (sref == "DlgWznmVerOppack") || (sref == "DlgWznmVerCustjob") || (sref == "DlgWznmVerGenui") || (sref == "DlgWznmVerCustui") || (sref == "DlgWznmVerGenjtr") || (sref == "DlgWznmVerCustjtr")) myif.setAttribute("height", "585");
+	if ((sref == "DlgWznmVerDeploy") || (sref == "DlgWznmVerGlobal") || (sref == "DlgWznmVerWrinimdl") || (sref == "DlgWznmVerDbstr") || (sref == "DlgWznmVerBscui") || (sref == "DlgWznmVerImpexp") || (sref == "DlgWznmVerOppack") || (sref == "DlgWznmVerCustjob") || (sref == "DlgWznmVerGenui") || (sref == "DlgWznmVerCustui") || (sref == "DlgWznmVerGenjtr") || (sref == "DlgWznmVerCustjtr")) myif.setAttribute("height", "585");
 	else myif.setAttribute("height", "555");
 	myif.setAttribute("frameborder", "0");
 	myif.setAttribute("scrolling", "no");
@@ -435,7 +427,7 @@ function refresh() {
 	var scrJrefDlgimpexp = retrieveSi(srcdoc, "StatShrWznmVer", "scrJrefDlgimpexp");
 	var scrJrefDlgnew = retrieveSi(srcdoc, "StatShrWznmVer", "scrJrefDlgnew");
 	var scrJrefDlgoppack = retrieveSi(srcdoc, "StatShrWznmVer", "scrJrefDlgoppack");
-	var scrJrefDlgwrstkit = retrieveSi(srcdoc, "StatShrWznmVer", "scrJrefDlgwrstkit");
+	var scrJrefDlgwrinimdl = retrieveSi(srcdoc, "StatShrWznmVer", "scrJrefDlgwrinimdl");
 
 	if (scrJrefDlgbscui != "") {
 		if (scrJrefDlg != scrJrefDlgbscui) showDlg("DlgWznmVerBscui", scrJrefDlgbscui);
@@ -463,11 +455,11 @@ function refresh() {
 		if (scrJrefDlg != scrJrefDlgnew) showDlg("DlgWznmVerNew", scrJrefDlgnew);
 	} else if (scrJrefDlgoppack != "") {
 		if (scrJrefDlg != scrJrefDlgoppack) showDlg("DlgWznmVerOppack", scrJrefDlgoppack);
-	} else if (scrJrefDlgwrstkit != "") {
-		if (scrJrefDlg != scrJrefDlgwrstkit) showDlg("DlgWznmVerWrstkit", scrJrefDlgwrstkit);
+	} else if (scrJrefDlgwrinimdl != "") {
+		if (scrJrefDlg != scrJrefDlgwrinimdl) showDlg("DlgWznmVerWrinimdl", scrJrefDlgwrinimdl);
 	} else if (scrJrefDlg != "") hideDlg();
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmVer", "MtxCrdVer") + " - WhizniumSBE v1.0.7";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmVer", "MtxCrdVer") + " - WhizniumSBE v1.1.0";
 };
 
 // --- event handlers

@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerDeploy.h
 	* job handler for job DlgWznmVerDeploy (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMVERDEPLOY_H
 #define DLGWZNMVERDEPLOY_H
@@ -18,21 +19,25 @@
 #define VecVDlgWznmVerDeployDit DlgWznmVerDeploy::VecVDit
 #define VecVDlgWznmVerDeployDo DlgWznmVerDeploy::VecVDo
 #define VecVDlgWznmVerDeployDoImp DlgWznmVerDeploy::VecVDoImp
+#define VecVDlgWznmVerDeployDoPpr DlgWznmVerDeploy::VecVDoPpr
 #define VecVDlgWznmVerDeploySge DlgWznmVerDeploy::VecVSge
 
 #define ContIacDlgWznmVerDeploy DlgWznmVerDeploy::ContIac
 #define ContInfDlgWznmVerDeploy DlgWznmVerDeploy::ContInf
 #define ContInfDlgWznmVerDeployImp DlgWznmVerDeploy::ContInfImp
 #define ContInfDlgWznmVerDeployLfi DlgWznmVerDeploy::ContInfLfi
+#define ContInfDlgWznmVerDeployPpr DlgWznmVerDeploy::ContInfPpr
 #define StatAppDlgWznmVerDeploy DlgWznmVerDeploy::StatApp
 #define StatShrDlgWznmVerDeploy DlgWznmVerDeploy::StatShr
 #define StatShrDlgWznmVerDeployIfi DlgWznmVerDeploy::StatShrIfi
 #define StatShrDlgWznmVerDeployImp DlgWznmVerDeploy::StatShrImp
 #define StatShrDlgWznmVerDeployLfi DlgWznmVerDeploy::StatShrLfi
+#define StatShrDlgWznmVerDeployPpr DlgWznmVerDeploy::StatShrPpr
 #define TagDlgWznmVerDeploy DlgWznmVerDeploy::Tag
 #define TagDlgWznmVerDeployIfi DlgWznmVerDeploy::TagIfi
 #define TagDlgWznmVerDeployImp DlgWznmVerDeploy::TagImp
 #define TagDlgWznmVerDeployLfi DlgWznmVerDeploy::TagLfi
+#define TagDlgWznmVerDeployPpr DlgWznmVerDeploy::TagPpr
 
 #define DpchAppDlgWznmVerDeployData DlgWznmVerDeploy::DpchAppData
 #define DpchAppDlgWznmVerDeployDo DlgWznmVerDeploy::DpchAppDo
@@ -52,7 +57,8 @@ public:
 	public:
 		static const Sbecore::uint IFI = 1;
 		static const Sbecore::uint IMP = 2;
-		static const Sbecore::uint LFI = 3;
+		static const Sbecore::uint PPR = 3;
+		static const Sbecore::uint LFI = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -88,6 +94,19 @@ public:
 	};
 
 	/**
+		* VecVDoPpr (full: VecVDlgWznmVerDeployDoPpr)
+		*/
+	class VecVDoPpr {
+
+	public:
+		static const Sbecore::uint BUTRUNCLICK = 1;
+		static const Sbecore::uint BUTSTOCLICK = 2;
+
+		static Sbecore::uint getIx(const std::string& sref);
+		static std::string getSref(const Sbecore::uint ix);
+	};
+
+	/**
 		* VecVSge (full: VecVDlgWznmVerDeploySge)
 		*/
 	class VecVSge {
@@ -101,7 +120,9 @@ public:
 		static const Sbecore::uint IMPIDLE = 6;
 		static const Sbecore::uint IMPORT = 7;
 		static const Sbecore::uint ALRWZNMIER = 8;
-		static const Sbecore::uint DONE = 9;
+		static const Sbecore::uint IMPDONE = 9;
+		static const Sbecore::uint POSTPRC = 10;
+		static const Sbecore::uint DONE = 11;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -188,6 +209,26 @@ public:
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInfLfi* comp);
 		std::set<Sbecore::uint> diff(const ContInfLfi* comp);
+	};
+
+	/**
+	  * ContInfPpr (full: ContInfDlgWznmVerDeployPpr)
+	  */
+	class ContInfPpr : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint TXTPRG = 1;
+
+	public:
+		ContInfPpr(const std::string& TxtPrg = "");
+
+	public:
+		std::string TxtPrg;
+
+	public:
+		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
+		std::set<Sbecore::uint> comm(const ContInfPpr* comp);
+		std::set<Sbecore::uint> diff(const ContInfPpr* comp);
 	};
 
 	/**
@@ -282,6 +323,28 @@ public:
 	};
 
 	/**
+		* StatShrPpr (full: StatShrDlgWznmVerDeployPpr)
+		*/
+	class StatShrPpr : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint BUTRUNACTIVE = 1;
+		static const Sbecore::uint BUTSTOACTIVE = 2;
+
+	public:
+		StatShrPpr(const bool ButRunActive = true, const bool ButStoActive = true);
+
+	public:
+		bool ButRunActive;
+		bool ButStoActive;
+
+	public:
+		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
+		std::set<Sbecore::uint> comm(const StatShrPpr* comp);
+		std::set<Sbecore::uint> diff(const StatShrPpr* comp);
+	};
+
+	/**
 		* Tag (full: TagDlgWznmVerDeploy)
 		*/
 	class Tag {
@@ -318,6 +381,15 @@ public:
 	};
 
 	/**
+		* TagPpr (full: TagDlgWznmVerDeployPpr)
+		*/
+	class TagPpr {
+
+	public:
+		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
+	};
+
+	/**
 		* DpchAppData (full: DpchAppDlgWznmVerDeployData)
 		*/
 	class DpchAppData : public DpchAppWznm {
@@ -347,6 +419,7 @@ public:
 		static const Sbecore::uint JREF = 1;
 		static const Sbecore::uint IXVDO = 2;
 		static const Sbecore::uint IXVDOIMP = 3;
+		static const Sbecore::uint IXVDOPPR = 4;
 
 	public:
 		DpchAppDo();
@@ -354,6 +427,7 @@ public:
 	public:
 		Sbecore::uint ixVDo;
 		Sbecore::uint ixVDoImp;
+		Sbecore::uint ixVDoPpr;
 
 	public:
 		std::string getSrefsMask();
@@ -372,33 +446,38 @@ public:
 		static const Sbecore::uint CONTINF = 3;
 		static const Sbecore::uint CONTINFIMP = 4;
 		static const Sbecore::uint CONTINFLFI = 5;
-		static const Sbecore::uint FEEDFDSE = 6;
-		static const Sbecore::uint FEEDFSGE = 7;
-		static const Sbecore::uint STATAPP = 8;
-		static const Sbecore::uint STATSHR = 9;
-		static const Sbecore::uint STATSHRIFI = 10;
-		static const Sbecore::uint STATSHRIMP = 11;
-		static const Sbecore::uint STATSHRLFI = 12;
-		static const Sbecore::uint TAG = 13;
-		static const Sbecore::uint TAGIFI = 14;
-		static const Sbecore::uint TAGIMP = 15;
-		static const Sbecore::uint TAGLFI = 16;
-		static const Sbecore::uint ALL = 17;
+		static const Sbecore::uint CONTINFPPR = 6;
+		static const Sbecore::uint FEEDFDSE = 7;
+		static const Sbecore::uint FEEDFSGE = 8;
+		static const Sbecore::uint STATAPP = 9;
+		static const Sbecore::uint STATSHR = 10;
+		static const Sbecore::uint STATSHRIFI = 11;
+		static const Sbecore::uint STATSHRIMP = 12;
+		static const Sbecore::uint STATSHRLFI = 13;
+		static const Sbecore::uint STATSHRPPR = 14;
+		static const Sbecore::uint TAG = 15;
+		static const Sbecore::uint TAGIFI = 16;
+		static const Sbecore::uint TAGIMP = 17;
+		static const Sbecore::uint TAGLFI = 18;
+		static const Sbecore::uint TAGPPR = 19;
+		static const Sbecore::uint ALL = 20;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContInf* continf = NULL, ContInfImp* continfimp = NULL, ContInfLfi* continflfi = NULL, Sbecore::Xmlio::Feed* feedFDse = NULL, Sbecore::Xmlio::Feed* feedFSge = NULL, StatShr* statshr = NULL, StatShrIfi* statshrifi = NULL, StatShrImp* statshrimp = NULL, StatShrLfi* statshrlfi = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContInf* continf = NULL, ContInfImp* continfimp = NULL, ContInfLfi* continflfi = NULL, ContInfPpr* continfppr = NULL, Sbecore::Xmlio::Feed* feedFDse = NULL, Sbecore::Xmlio::Feed* feedFSge = NULL, StatShr* statshr = NULL, StatShrIfi* statshrifi = NULL, StatShrImp* statshrimp = NULL, StatShrLfi* statshrlfi = NULL, StatShrPpr* statshrppr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContIac contiac;
 		ContInf continf;
 		ContInfImp continfimp;
 		ContInfLfi continflfi;
+		ContInfPpr continfppr;
 		Sbecore::Xmlio::Feed feedFDse;
 		Sbecore::Xmlio::Feed feedFSge;
 		StatShr statshr;
 		StatShrIfi statshrifi;
 		StatShrImp statshrimp;
 		StatShrLfi statshrlfi;
+		StatShrPpr statshrppr;
 
 	public:
 		std::string getSrefsMask();
@@ -409,6 +488,8 @@ public:
 
 	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalPprButRunActive(DbsWznm* dbswznm);
+	bool evalPprButStoActive(DbsWznm* dbswznm);
 	bool evalImpButRunActive(DbsWznm* dbswznm);
 	bool evalImpButStoActive(DbsWznm* dbswznm);
 	bool evalIfiUldActive(DbsWznm* dbswznm);
@@ -422,10 +503,12 @@ public:
 	ContInf continf;
 	ContInfImp continfimp;
 	ContInfLfi continflfi;
+	ContInfPpr continfppr;
 	StatShr statshr;
 	StatShrIfi statshrifi;
 	StatShrImp statshrimp;
 	StatShrLfi statshrlfi;
+	StatShrPpr statshrppr;
 
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFDse;
@@ -437,6 +520,7 @@ public:
 
 	// IP vars.cust --- IBEGIN
 	std::string infilename;
+	std::string rectpath;
 
 	bool ifitxt;
 	bool ifixml;
@@ -450,9 +534,10 @@ public:
 
 	void refreshIfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshImp(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refreshPpr(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -468,15 +553,18 @@ private:
 
 	void handleDpchAppDoImpButRunClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoImpButStoClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+
+	void handleDpchAppDoPprButRunClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoPprButStoClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
-	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
+	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);
@@ -501,11 +589,16 @@ private:
 	void leaveSgeImport(DbsWznm* dbswznm);
 	Sbecore::uint enterSgeAlrwznmier(DbsWznm* dbswznm, const bool reenter);
 	void leaveSgeAlrwznmier(DbsWznm* dbswznm);
+	Sbecore::uint enterSgeImpdone(DbsWznm* dbswznm, const bool reenter);
+	void leaveSgeImpdone(DbsWznm* dbswznm);
+	Sbecore::uint enterSgePostprc(DbsWznm* dbswznm, const bool reenter);
+	void leaveSgePostprc(DbsWznm* dbswznm);
 	Sbecore::uint enterSgeDone(DbsWznm* dbswznm, const bool reenter);
 	void leaveSgeDone(DbsWznm* dbswznm);
 
 };
 
 #endif
+
 
 

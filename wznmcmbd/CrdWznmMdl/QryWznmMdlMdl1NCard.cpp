@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmMdlMdl1NCard.cpp
 	* job handler for job QryWznmMdlMdl1NCard (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -271,19 +272,11 @@ void QryWznmMdlMdl1NCard::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCARMOD_MDLEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCARMOD_MDLEQ) {
 		call->abort = handleCallWznmCarMod_mdlEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmMdlMdl1NCard::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmMdlMdl1NCard::handleCallWznmCarMod_mdlEq(
@@ -299,4 +292,14 @@ bool QryWznmMdlMdl1NCard::handleCallWznmCarMod_mdlEq(
 
 	return retval;
 };
+
+bool QryWznmMdlMdl1NCard::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
+};
+
+
 

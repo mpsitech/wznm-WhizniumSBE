@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmIelDetail.cpp
 	* job handler for job PnlWznmIelDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -193,7 +194,11 @@ void PnlWznmIelDetail::refreshRecIelJstb(
 void PnlWznmIelDetail::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -203,6 +208,8 @@ void PnlWznmIelDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmIelDetail::updatePreset(
@@ -388,6 +395,12 @@ void PnlWznmIelDetail::handleDpchAppDoButPstViewClick(
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, recIel.refWznmMPreset, jrefNew);
 		};
 		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref)) if (refVer != 0) {
+				sref = "CrdWznmSbs";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMSubset WHERE refWznmMPreset = " + to_string(recIel.refWznmMPreset), ref); return ref;}(), jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (refVer != 0) {
 				sref = "CrdWznmVec";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMPreset = " + to_string(recIel.refWznmMPreset), ref); return ref;}(), jrefNew);
@@ -397,12 +410,6 @@ void PnlWznmIelDetail::handleDpchAppDoButPstViewClick(
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref)) if (refVer != 0) {
 				sref = "CrdWznmTbl";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMTable WHERE refWznmMPreset = " + to_string(recIel.refWznmMPreset), ref); return ref;}(), jrefNew);
-			};
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref)) if (refVer != 0) {
-				sref = "CrdWznmSbs";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMSubset WHERE refWznmMPreset = " + to_string(recIel.refWznmMPreset), ref); return ref;}(), jrefNew);
 			};
 		};
 
@@ -455,7 +462,9 @@ void PnlWznmIelDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMIELUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMIELJSTBMOD_IELEQ) {
+		call->abort = handleCallWznmIelJstbMod_ielEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIELUPD_REFEQ) {
 		call->abort = handleCallWznmIelUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEL_VITEQ) {
 		call->abort = handleCallWznmIel_vitEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
@@ -467,9 +476,16 @@ void PnlWznmIelDetail::handleCall(
 		call->abort = handleCallWznmIel_imeEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEL_IM2EQ) {
 		call->abort = handleCallWznmIel_im2Eq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIELJSTBMOD_IELEQ) {
-		call->abort = handleCallWznmIelJstbMod_ielEq(dbswznm, call->jref);
 	};
+};
+
+bool PnlWznmIelDetail::handleCallWznmIelJstbMod_ielEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmIelJstbMod_ielEq --- INSERT
+	return retval;
 };
 
 bool PnlWznmIelDetail::handleCallWznmIelUpd_refEq(
@@ -536,12 +552,5 @@ bool PnlWznmIelDetail::handleCallWznmIel_im2Eq(
 	return retval;
 };
 
-bool PnlWznmIelDetail::handleCallWznmIelJstbMod_ielEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmIelJstbMod_ielEq --- INSERT
-	return retval;
-};
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmCarRec.cpp
 	* API code for job PnlWznmCarRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "PnlWznmCarRec.h"
 
@@ -103,18 +104,18 @@ set<uint> PnlWznmCarRec::ContInf::diff(
 
 PnlWznmCarRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdone1NDialog
 			, const bool initdoneCar1NPanel
+			, const bool initdone1NDialog
 			, const bool initdoneHk1NControl
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdone1NDialog = initdone1NDialog;
 	this->initdoneCar1NPanel = initdoneCar1NPanel;
+	this->initdone1NDialog = initdone1NDialog;
 	this->initdoneHk1NControl = initdoneHk1NControl;
 
-	mask = {INITDONEDETAIL, INITDONE1NDIALOG, INITDONECAR1NPANEL, INITDONEHK1NCONTROL};
+	mask = {INITDONEDETAIL, INITDONECAR1NPANEL, INITDONE1NDIALOG, INITDONEHK1NCONTROL};
 };
 
 bool PnlWznmCarRec::StatApp::readXML(
@@ -135,8 +136,8 @@ bool PnlWznmCarRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NDialog", initdone1NDialog)) add(INITDONE1NDIALOG);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneCar1NPanel", initdoneCar1NPanel)) add(INITDONECAR1NPANEL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NDialog", initdone1NDialog)) add(INITDONE1NDIALOG);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneHk1NControl", initdoneHk1NControl)) add(INITDONEHK1NCONTROL);
 	};
 
@@ -149,8 +150,8 @@ set<uint> PnlWznmCarRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdone1NDialog == comp->initdone1NDialog) insert(items, INITDONE1NDIALOG);
 	if (initdoneCar1NPanel == comp->initdoneCar1NPanel) insert(items, INITDONECAR1NPANEL);
+	if (initdone1NDialog == comp->initdone1NDialog) insert(items, INITDONE1NDIALOG);
 	if (initdoneHk1NControl == comp->initdoneHk1NControl) insert(items, INITDONEHK1NCONTROL);
 
 	return(items);
@@ -164,7 +165,7 @@ set<uint> PnlWznmCarRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONE1NDIALOG, INITDONECAR1NPANEL, INITDONEHK1NCONTROL};
+	diffitems = {INITDONEDETAIL, INITDONECAR1NPANEL, INITDONE1NDIALOG, INITDONEHK1NCONTROL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -177,8 +178,8 @@ set<uint> PnlWznmCarRec::StatApp::diff(
 PnlWznmCarRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJref1NDialog
 			, const string& scrJrefCar1NPanel
+			, const string& scrJref1NDialog
 			, const string& scrJrefHk1NControl
 			, const bool ButRegularizeActive
 		) :
@@ -186,12 +187,12 @@ PnlWznmCarRec::StatShr::StatShr(
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJref1NDialog = scrJref1NDialog;
 	this->scrJrefCar1NPanel = scrJrefCar1NPanel;
+	this->scrJref1NDialog = scrJref1NDialog;
 	this->scrJrefHk1NControl = scrJrefHk1NControl;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NDIALOG, SCRJREFCAR1NPANEL, SCRJREFHK1NCONTROL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFCAR1NPANEL, SCRJREF1NDIALOG, SCRJREFHK1NCONTROL, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmCarRec::StatShr::readXML(
@@ -218,8 +219,8 @@ bool PnlWznmCarRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NDialog", scrJref1NDialog)) add(SCRJREF1NDIALOG);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefCar1NPanel", scrJrefCar1NPanel)) add(SCRJREFCAR1NPANEL);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NDialog", scrJref1NDialog)) add(SCRJREF1NDIALOG);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefHk1NControl", scrJrefHk1NControl)) add(SCRJREFHK1NCONTROL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
@@ -234,8 +235,8 @@ set<uint> PnlWznmCarRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJref1NDialog == comp->scrJref1NDialog) insert(items, SCRJREF1NDIALOG);
 	if (scrJrefCar1NPanel == comp->scrJrefCar1NPanel) insert(items, SCRJREFCAR1NPANEL);
+	if (scrJref1NDialog == comp->scrJref1NDialog) insert(items, SCRJREF1NDIALOG);
 	if (scrJrefHk1NControl == comp->scrJrefHk1NControl) insert(items, SCRJREFHK1NCONTROL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -250,7 +251,7 @@ set<uint> PnlWznmCarRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NDIALOG, SCRJREFCAR1NPANEL, SCRJREFHK1NCONTROL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFCAR1NPANEL, SCRJREF1NDIALOG, SCRJREFHK1NCONTROL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

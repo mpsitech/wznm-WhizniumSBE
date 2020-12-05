@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrwebCrd.cpp
 	* Wznm operation processor - write web UI JS/HTML code for card (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -550,5 +551,6 @@ void WznmWrwebCrd::writeMenHtfile(
 	outfile << "<!-- IP mits - IEND -->" << endl;
 };
 // IP cust --- IEND
+
 
 

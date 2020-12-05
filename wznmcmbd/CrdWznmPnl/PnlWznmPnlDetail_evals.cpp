@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmPnlDetail_evals.cpp
 	* job handler for job PnlWznmPnlDetail (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -137,7 +138,7 @@ bool PnlWznmPnlDetail::evalTxtReuActive(
 bool PnlWznmPnlDetail::evalButReuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// pnl.reuEq(0)|((pre.ixCrdaccMdl()&pnl.retEq(mdl)&pre.refVer())|(pre.ixCrdaccTbl()&pnl.retEq(tbl)&pre.refVer())|(pre.ixCrdaccRel()&pnl.retEq(rel)&pre.refVer())|(pre.ixCrdaccVec()&pnl.retEq(vec)&pre.refVer()))
+	// pnl.reuEq(0)|((pre.ixCrdaccMdl()&pnl.retEq(mdl)&pre.refVer())|(pre.ixCrdaccTbl()&pnl.retEq(tbl)&pre.refVer())|(pre.ixCrdaccVec()&pnl.retEq(vec)&pre.refVer())|(pre.ixCrdaccRel()&pnl.retEq(rel)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
@@ -168,9 +169,9 @@ bool PnlWznmPnlDetail::evalButReuViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::REL);
+	a = false; a = (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::VEC);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -180,9 +181,9 @@ bool PnlWznmPnlDetail::evalButReuViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::VEC);
+	a = false; a = (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::REL);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -319,4 +320,6 @@ bool PnlWznmPnlDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
+
+
 

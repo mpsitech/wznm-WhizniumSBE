@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmQmdList.cpp
 	* job handler for job QryWznmQmdList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -119,10 +120,9 @@ void QryWznmQmdList::rerun(
 		cntsum += cnt;
 
 		sqlstr = "SELECT COUNT(TblWznmMQuerymod.ref)";
-		sqlstr += " FROM TblWznmMQuerymod, TblWznmMTablecol, TblWznmMTable";
-		sqlstr += " WHERE TblWznmMQuerymod.refIxVTbl = " + to_string(VecWznmVMQuerymodRefTbl::TCO);
-		sqlstr += " AND TblWznmMQuerymod.refUref = TblWznmMTablecol.ref";
-		sqlstr += " AND TblWznmMTablecol.tblRefWznmMTable = TblWznmMTable.ref";
+		sqlstr += " FROM TblWznmMQuerymod, TblWznmMTable";
+		sqlstr += " WHERE TblWznmMQuerymod.refIxVTbl = " + to_string(VecWznmVMQuerymodRefTbl::TBL);
+		sqlstr += " AND TblWznmMQuerymod.refUref = TblWznmMTable.ref";
 		sqlstr += " AND TblWznmMTable.refWznmMVersion = " + to_string(preRefVer) + "";
 		rerun_filtSQL(sqlstr, preTyp, preQry, prePst, preRet, preReu, false);
 		dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -130,9 +130,10 @@ void QryWznmQmdList::rerun(
 		cntsum += cnt;
 
 		sqlstr = "SELECT COUNT(TblWznmMQuerymod.ref)";
-		sqlstr += " FROM TblWznmMQuerymod, TblWznmMTable";
-		sqlstr += " WHERE TblWznmMQuerymod.refIxVTbl = " + to_string(VecWznmVMQuerymodRefTbl::TBL);
-		sqlstr += " AND TblWznmMQuerymod.refUref = TblWznmMTable.ref";
+		sqlstr += " FROM TblWznmMQuerymod, TblWznmMTable, TblWznmMTablecol";
+		sqlstr += " WHERE TblWznmMQuerymod.refIxVTbl = " + to_string(VecWznmVMQuerymodRefTbl::TCO);
+		sqlstr += " AND TblWznmMQuerymod.refUref = TblWznmMTablecol.ref";
+		sqlstr += " AND TblWznmMTablecol.tblRefWznmMTable = TblWznmMTable.ref";
 		sqlstr += " AND TblWznmMTable.refWznmMVersion = " + to_string(preRefVer) + "";
 		rerun_filtSQL(sqlstr, preTyp, preQry, prePst, preRet, preReu, false);
 		dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -194,10 +195,9 @@ void QryWznmQmdList::rerun(
 		dbswznm->executeQuery(sqlstr);
 
 		rerun_baseSQL(sqlstr);
-		sqlstr += " FROM TblWznmMQuerymod, TblWznmMTablecol, TblWznmMTable";
-		sqlstr += " WHERE TblWznmMQuerymod.refIxVTbl = " + to_string(VecWznmVMQuerymodRefTbl::TCO);
-		sqlstr += " AND TblWznmMQuerymod.refUref = TblWznmMTablecol.ref";
-		sqlstr += " AND TblWznmMTablecol.tblRefWznmMTable = TblWznmMTable.ref";
+		sqlstr += " FROM TblWznmMQuerymod, TblWznmMTable";
+		sqlstr += " WHERE TblWznmMQuerymod.refIxVTbl = " + to_string(VecWznmVMQuerymodRefTbl::TBL);
+		sqlstr += " AND TblWznmMQuerymod.refUref = TblWznmMTable.ref";
 		sqlstr += " AND TblWznmMTable.refWznmMVersion = " + to_string(preRefVer) + "";
 		rerun_filtSQL(sqlstr, preTyp, preQry, prePst, preRet, preReu, false);
 		rerun_orderSQL(sqlstr, preIxOrd);
@@ -205,9 +205,10 @@ void QryWznmQmdList::rerun(
 		dbswznm->executeQuery(sqlstr);
 
 		rerun_baseSQL(sqlstr);
-		sqlstr += " FROM TblWznmMQuerymod, TblWznmMTable";
-		sqlstr += " WHERE TblWznmMQuerymod.refIxVTbl = " + to_string(VecWznmVMQuerymodRefTbl::TBL);
-		sqlstr += " AND TblWznmMQuerymod.refUref = TblWznmMTable.ref";
+		sqlstr += " FROM TblWznmMQuerymod, TblWznmMTable, TblWznmMTablecol";
+		sqlstr += " WHERE TblWznmMQuerymod.refIxVTbl = " + to_string(VecWznmVMQuerymodRefTbl::TCO);
+		sqlstr += " AND TblWznmMQuerymod.refUref = TblWznmMTablecol.ref";
+		sqlstr += " AND TblWznmMTablecol.tblRefWznmMTable = TblWznmMTable.ref";
 		sqlstr += " AND TblWznmMTable.refWznmMVersion = " + to_string(preRefVer) + "";
 		rerun_filtSQL(sqlstr, preTyp, preQry, prePst, preRet, preReu, false);
 		rerun_orderSQL(sqlstr, preIxOrd);
@@ -293,11 +294,11 @@ void QryWznmQmdList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMQuerymod.ixVBasetype ASC";
-	else if (preIxOrd == VecVOrd::QRY) sqlstr += " ORDER BY TblWznmMQuerymod.qryRefWznmMQuery ASC";
-	else if (preIxOrd == VecVOrd::PST) sqlstr += " ORDER BY TblWznmMQuerymod.refWznmMPreset ASC";
-	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMQuerymod.refIxVTbl ASC";
+	if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMQuerymod.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMQuerymod.refUref ASC";
+	else if (preIxOrd == VecVOrd::PST) sqlstr += " ORDER BY TblWznmMQuerymod.refWznmMPreset ASC";
+	else if (preIxOrd == VecVOrd::QRY) sqlstr += " ORDER BY TblWznmMQuerymod.qryRefWznmMQuery ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMQuerymod.ixVBasetype ASC";
 };
 
 void QryWznmQmdList::fetch(
@@ -528,4 +529,6 @@ bool QryWznmQmdList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file JobWznmIexIni.cpp
 	* job handler for job JobWznmIexIni (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -68,10 +69,12 @@ void JobWznmIexIni::parseFromFile(
 			DbsWznm* dbswznm
 			, const string& _fullpath
 			, const bool _xmlNotTxt
+			, const string& _rectpath
 		) {
 	if (ixVSge == VecVSge::IDLE) {
 		fullpath = _fullpath;
 		xmlNotTxt = _xmlNotTxt;
+		rectpath = _rectpath;
 
 		changeStage(dbswznm, VecVSge::PARSE);
 	};
@@ -211,6 +214,7 @@ uint JobWznmIexIni::enterSgeIdle(
 
 	fullpath = "";
 	xmlNotTxt = false;
+	rectpath = "";
 
 	lineno = 0;
 	impcnt = 0;
@@ -224,7 +228,7 @@ uint JobWznmIexIni::enterSgeIdle(
 	imeimfile.clear();
 	imeimlibrary.clear();
 	imeimlocale.clear();
-	imeimmachtype.clear();
+	imeimmachine.clear();
 	imeimtag1.clear();
 	imeimusergroup.clear();
 
@@ -247,7 +251,7 @@ uint JobWznmIexIni::enterSgeParse(
 	nextIxVSgeFailure = VecVSge::PRSERR;
 
 	try {
-		IexWznmIni::parseFromFile(fullpath, xmlNotTxt, imeiavcontrolpar, imeiavkeylistkey1, imeiavvaluelistval, imeimcapability, imeimfile, imeimlibrary, imeimlocale, imeimmachtype, imeimtag1, imeimusergroup);
+		IexWznmIni::parseFromFile(fullpath, xmlNotTxt, rectpath, imeiavcontrolpar, imeiavkeylistkey1, imeiavvaluelistval, imeimcapability, imeimfile, imeimlibrary, imeimlocale, imeimmachine, imeimtag1, imeimusergroup);
 
 	} catch (SbeException& e) {
 		if (e.ix == SbeException::PATHNF) e.vals["path"] = "<hidden>";
@@ -315,23 +319,22 @@ uint JobWznmIexIni::enterSgeImport(
 	ImeitemIMFile* fil = NULL;
 	ImeitemIMLibrary* lib = NULL;
 	ImeitemIMLocale* loc = NULL;
-	ImeitemIMMachtype* mty = NULL;
+	ImeitemIMMachine* mch = NULL;
 	ImeitemIMTag1* tag1 = NULL;
 	ImeitemIMUsergroup* usg = NULL;
 	ImeitemIAMCapabilityPar* cpbApar = NULL;
 	ImeitemIAMLibraryMakefile* libAmkf = NULL;
 	ImeitemIAMLibraryPkglist* libApkl = NULL;
-	ImeitemIAMMachtypeMakefile* mtyAmkf = NULL;
+	ImeitemIAMMachineMakefile* mchAmkf = NULL;
+	ImeitemIAMMachinePar* mchApar = NULL;
 	ImeitemIAMUsergroupAccess* usgAacc = NULL;
 	ImeitemIAVKeylistKey2* klsAkey2 = NULL;
 	ImeitemIJAVKeylistKey1* klkJkey1 = NULL;
 	ImeitemIJMLocaleTitle* locJtit = NULL;
 	ImeitemIJMTagTitle1* tagJtit1 = NULL;
-	ImeitemIMMachine* mch = NULL;
 	ImeitemIMTag2* tag2 = NULL;
 	ImeitemIMUser* usr = NULL;
 	ImeitemIRMCapabilityUniversal* cpbRunv = NULL;
-	ImeitemIAMMachinePar* mchApar = NULL;
 	ImeitemIAMUserAccess* usrAacc = NULL;
 	ImeitemIJAVKeylistKey2* klkJkey2 = NULL;
 	ImeitemIJMTagTitle2* tagJtit2 = NULL;
@@ -343,6 +346,8 @@ uint JobWznmIexIni::enterSgeImport(
 
 	// IP enterSgeImport.prep --- IBEGIN
 	WznmRMUserMUsergroup uru;
+
+	map<string,ubigint> refsMchs; // by hsref
 
 	vector<string> ss;
 	// IP enterSgeImport.prep --- IEND
@@ -443,53 +448,42 @@ uint JobWznmIexIni::enterSgeImport(
 			impcnt++;
 		};
 
-		// -- ImeIMMachtype
-		for (unsigned int ix0 = 0; ix0 < imeimmachtype.nodes.size(); ix0++) {
-			mty = imeimmachtype.nodes[ix0];
+		// -- ImeIMMachine
+		for (unsigned int ix0 = 0; ix0 < imeimmachine.nodes.size(); ix0++) {
+			mch = imeimmachine.nodes[ix0];
 
-			//mty->sref: TBL
-			mty->ixVArch = VecWznmVMMachtypeArch::getIx(mty->srefIxVArch);
-			if (mty->ixVArch == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",mty->srefIxVArch}, {"iel","srefIxVArch"}, {"lineno",to_string(mty->lineno)}});
-			//mty->srefKOs: TBL
-			//mty->cchRefWznmMMachine: IMPPP
-			//mty->srefKPkgmgr: TBL
-			//mty->Comment: TBL
+			//mch->supRefWznmMMachine: IMPPP
+			//mch->sref: TBL
+			//mch->cchRefWznmMMachine: IMPPP
+			//mch->srefKPkgmgr: TBL
+			//mch->Comment: TBL
 
-			dbswznm->tblwznmmmachtype->insertRec(mty);
+			dbswznm->tblwznmmmachine->insertRec(mch);
 			impcnt++;
 
-			for (unsigned int ix1 = 0; ix1 < mty->imeiammachtypemakefile.nodes.size(); ix1++) {
-				mtyAmkf = mty->imeiammachtypemakefile.nodes[ix1];
+			if (mch->hsrefSupRefWznmMMachine == "") refsMchs[mch->sref] = mch->ref;
+			else refsMchs[mch->hsrefSupRefWznmMMachine + ";" + mch->sref] = mch->ref;
 
-				mtyAmkf->refWznmMMachtype = mty->ref;
-				//mtyAmkf->x1SrefKTag: TBL
-				//mtyAmkf->Val: TBL
+			for (unsigned int ix1 = 0; ix1 < mch->imeiammachinemakefile.nodes.size(); ix1++) {
+				mchAmkf = mch->imeiammachinemakefile.nodes[ix1];
 
-				dbswznm->tblwznmammachtypemakefile->insertRec(mtyAmkf);
+				mchAmkf->refWznmMMachine = mch->ref;
+				//mchAmkf->x1SrefKTag: TBL
+				//mchAmkf->Val: TBL
+
+				dbswznm->tblwznmammachinemakefile->insertRec(mchAmkf);
 				impcnt++;
 			};
 
-			for (unsigned int ix1 = 0; ix1 < mty->imeimmachine.nodes.size(); ix1++) {
-				mch = mty->imeimmachine.nodes[ix1];
+			for (unsigned int ix1 = 0; ix1 < mch->imeiammachinepar.nodes.size(); ix1++) {
+				mchApar = mch->imeiammachinepar.nodes[ix1];
 
-				mch->refWznmMMachtype = mty->ref;
-				//mch->sref: TBL
-				mch->ixWznmWCloudtype = VecWznmWCloudtype::getIx(mch->srefIxWznmWCloudtype);
-				//mch->Comment: TBL
+				mchApar->refWznmMMachine = mch->ref;
+				//mchApar->x1SrefKKey: TBL
+				//mchApar->Val: TBL
 
-				dbswznm->tblwznmmmachine->insertRec(mch);
+				dbswznm->tblwznmammachinepar->insertRec(mchApar);
 				impcnt++;
-
-				for (unsigned int ix2 = 0; ix2 < mch->imeiammachinepar.nodes.size(); ix2++) {
-					mchApar = mch->imeiammachinepar.nodes[ix2];
-
-					mchApar->refWznmMMachine = mch->ref;
-					//mchApar->x1SrefKKey: TBL
-					//mchApar->Val: TBL
-
-					dbswznm->tblwznmammachinepar->insertRec(mchApar);
-					impcnt++;
-				};
 			};
 		};
 
@@ -511,36 +505,11 @@ uint JobWznmIexIni::enterSgeImport(
 				libAmkf = lib->imeiamlibrarymakefile.nodes[ix1];
 
 				libAmkf->refWznmMLibrary = lib->ref;
-				libAmkf->x1RefIxVTbl = VecWznmVAMLibraryMakefileRefTbl::getIx(libAmkf->srefX1RefIxVTbl);
-				if (libAmkf->x1RefIxVTbl == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",libAmkf->srefX1RefIxVTbl}, {"iel","srefX1RefIxVTbl"}, {"lineno",to_string(libAmkf->lineno)}});
-				if (libAmkf->srefX1RefUref != "") {
-					//libAmkf->x1RefUref: PREVIMP
-					if (libAmkf->x1RefIxVTbl == VecWznmVAMLibraryMakefileRefTbl::MCH) {
-						for (unsigned int i = 0; i < imeimmachtype.nodes.size(); i++) {
-							mty = imeimmachtype.nodes[i];
-
-							for (unsigned int j = 0; j < mty->imeimmachine.nodes.size(); j++) {
-								mch = mty->imeimmachine.nodes[j];
-
-								if (mch->sref == libAmkf->srefX1RefUref) {
-									libAmkf->x1RefUref = mch->ref;
-									break;
-								};
-							};
-							
-							if (libAmkf->x1RefUref != 0) break;
-						};
-					} else if (libAmkf->x1RefIxVTbl == VecWznmVAMLibraryMakefileRefTbl::MTY) {
-						for (unsigned int i = 0; i < imeimmachtype.nodes.size(); i++) {
-							mty = imeimmachtype.nodes[i];
-							
-							if (mty->sref == libAmkf->srefX1RefUref) {
-								libAmkf->x1RefUref = mty->ref;
-								break;
-							};
-						};
-					};
-					if (libAmkf->x1RefUref == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",libAmkf->srefX1RefUref}, {"iel","srefX1RefUref"}, {"lineno",to_string(libAmkf->lineno)}});
+				//libAmkf->x1RefWznmMMachine: PREVIMP
+				if (libAmkf->hsrefX1RefWznmMMachine != "") {
+					auto it = refsMchs.find(libAmkf->hsrefX1RefWznmMMachine);
+					if (it != refsMchs.end()) libAmkf->x1RefWznmMMachine = it->second;
+					else throw SbeException(SbeException::IEX_TSREF, {{"tsref",libAmkf->hsrefX1RefWznmMMachine}, {"iel","hsrefX1RefWznmMMachine"}, {"lineno",to_string(libAmkf->lineno)}});
 				};
 				//libAmkf->x2SrefKTag: TBL
 				//libAmkf->Val: TBL
@@ -553,36 +522,11 @@ uint JobWznmIexIni::enterSgeImport(
 				libApkl = lib->imeiamlibrarypkglist.nodes[ix1];
 
 				libApkl->refWznmMLibrary = lib->ref;
-				libApkl->x1RefIxVTbl = VecWznmVAMLibraryPkglistRefTbl::getIx(libApkl->srefX1RefIxVTbl);
-				if (libApkl->x1RefIxVTbl == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",libApkl->srefX1RefIxVTbl}, {"iel","srefX1RefIxVTbl"}, {"lineno",to_string(libApkl->lineno)}});
-				if (libApkl->srefX1RefUref != "") {
-					//libApkl->x1RefUref: PREVIMP
-					if (libApkl->x1RefIxVTbl == VecWznmVAMLibraryPkglistRefTbl::MCH) {
-						for (unsigned int i = 0; i < imeimmachtype.nodes.size(); i++) {
-							mty = imeimmachtype.nodes[i];
-
-							for (unsigned int j = 0; j < mty->imeimmachine.nodes.size(); j++) {
-								mch = mty->imeimmachine.nodes[j];
-
-								if (mch->sref == libApkl->srefX1RefUref) {
-									libApkl->x1RefUref = mch->ref;
-									break;
-								};
-							};
-							
-							if (libApkl->x1RefUref != 0) break;
-						};
-					} else if (libApkl->x1RefIxVTbl == VecWznmVAMLibraryPkglistRefTbl::MTY) {
-						for (unsigned int i = 0; i < imeimmachtype.nodes.size(); i++) {
-							mty = imeimmachtype.nodes[i];
-							
-							if (mty->sref == libApkl->srefX1RefUref) {
-								libApkl->x1RefUref = mty->ref;
-								break;
-							};
-						};
-					};
-					if (libApkl->x1RefUref == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",libApkl->srefX1RefUref}, {"iel","srefX1RefUref"}, {"lineno",to_string(libApkl->lineno)}});
+				//libApkl->x1RefWznmMMachine: PREVIMP
+				if (libApkl->hsrefX1RefWznmMMachine != "") {
+					auto it = refsMchs.find(libApkl->hsrefX1RefWznmMMachine);
+					if (it != refsMchs.end()) libApkl->x1RefWznmMMachine = it->second;
+					else throw SbeException(SbeException::IEX_TSREF, {{"tsref",libApkl->hsrefX1RefWznmMMachine}, {"iel","hsrefX1RefWznmMMachine"}, {"lineno",to_string(libApkl->lineno)}});
 				};
 				//libApkl->Pkglist: TBL
 
@@ -964,11 +908,24 @@ uint JobWznmIexIni::enterSgeImport(
 			};
 		};
 
-		// -- ImeIMMachtype
-		for (unsigned int ix0 = 0; ix0 < imeimmachtype.nodes.size(); ix0++) {
-			mty = imeimmachtype.nodes[ix0];
-			if (mty->srefCchRefWznmMMachine != "") if (dbswznm->tblwznmmmachine->loadRefBySrf(mty->srefCchRefWznmMMachine, mty->cchRefWznmMMachine)) dbswznm->tblwznmmmachtype->updateRec(mty);
+		// -- ImeIMMachine
+		for (unsigned int ix0 = 0; ix0 < imeimmachine.nodes.size(); ix0++) {
+			mch = imeimmachine.nodes[ix0];
+
+			if (mch->hsrefSupRefWznmMMachine != "") {
+				auto it = refsMchs.find(mch->hsrefSupRefWznmMMachine);
+				if (it != refsMchs.end()) mch->supRefWznmMMachine = it->second;
+				else throw SbeException(SbeException::IEX_TSREF, {{"tsref",mch->hsrefSupRefWznmMMachine}, {"iel","hsrefSupRefWznmMMachine"}, {"lineno",to_string(mch->lineno)}});
+			};
+			if (mch->hsrefCchRefWznmMMachine != "") {
+				auto it = refsMchs.find(mch->hsrefCchRefWznmMMachine);
+				if (it != refsMchs.end()) mch->cchRefWznmMMachine = it->second;
+				else throw SbeException(SbeException::IEX_TSREF, {{"tsref",mch->hsrefCchRefWznmMMachine}, {"iel","hsrefCchRefWznmMMachine"}, {"lineno",to_string(mch->lineno)}});
+			};
+
+			if ((mch->supRefWznmMMachine != 0) || (mch->cchRefWznmMMachine != 0)) dbswznm->tblwznmmmachine->updateRec(mch);
 		};
+
 		// IP enterSgeImport.ppr --- IEND
 	} catch (SbeException& e) {
 		lasterror = e.getSquawk(VecWznmVError::getIx, VecWznmVError::getTitle, ixWznmVLocale);
@@ -1016,23 +973,22 @@ uint JobWznmIexIni::enterSgeReverse(
 	ImeitemIMFile* fil = NULL;
 	ImeitemIMLibrary* lib = NULL;
 	ImeitemIMLocale* loc = NULL;
-	ImeitemIMMachtype* mty = NULL;
+	ImeitemIMMachine* mch = NULL;
 	ImeitemIMTag1* tag1 = NULL;
 	ImeitemIMUsergroup* usg = NULL;
 	ImeitemIAMCapabilityPar* cpbApar = NULL;
 	ImeitemIAMLibraryMakefile* libAmkf = NULL;
 	ImeitemIAMLibraryPkglist* libApkl = NULL;
-	ImeitemIAMMachtypeMakefile* mtyAmkf = NULL;
+	ImeitemIAMMachineMakefile* mchAmkf = NULL;
+	ImeitemIAMMachinePar* mchApar = NULL;
 	ImeitemIAMUsergroupAccess* usgAacc = NULL;
 	ImeitemIAVKeylistKey2* klsAkey2 = NULL;
 	ImeitemIJAVKeylistKey1* klkJkey1 = NULL;
 	ImeitemIJMLocaleTitle* locJtit = NULL;
 	ImeitemIJMTagTitle1* tagJtit1 = NULL;
-	ImeitemIMMachine* mch = NULL;
 	ImeitemIMTag2* tag2 = NULL;
 	ImeitemIMUser* usr = NULL;
 	ImeitemIRMCapabilityUniversal* cpbRunv = NULL;
-	ImeitemIAMMachinePar* mchApar = NULL;
 	ImeitemIAMUserAccess* usrAacc = NULL;
 	ImeitemIJAVKeylistKey2* klkJkey2 = NULL;
 	ImeitemIJMTagTitle2* tagJtit2 = NULL;
@@ -1132,24 +1088,19 @@ uint JobWznmIexIni::enterSgeReverse(
 		};
 	};
 
-	// -- ImeIMMachtype
-	for (unsigned int ix0 = 0; ix0 < imeimmachtype.nodes.size(); ix0++) {
-		mty = imeimmachtype.nodes[ix0];
-		if (mty->ref != 0) dbswznm->tblwznmmmachtype->removeRecByRef(mty->ref);
+	// -- ImeIMMachine
+	for (unsigned int ix0 = 0; ix0 < imeimmachine.nodes.size(); ix0++) {
+		mch = imeimmachine.nodes[ix0];
+		if (mch->ref != 0) dbswznm->tblwznmmmachine->removeRecByRef(mch->ref);
 
-		for (unsigned int ix1 = 0; ix1 < mty->imeiammachtypemakefile.nodes.size(); ix1++) {
-			mtyAmkf = mty->imeiammachtypemakefile.nodes[ix1];
-			if (mtyAmkf->ref != 0) dbswznm->tblwznmammachtypemakefile->removeRecByRef(mtyAmkf->ref);
+		for (unsigned int ix1 = 0; ix1 < mch->imeiammachinemakefile.nodes.size(); ix1++) {
+			mchAmkf = mch->imeiammachinemakefile.nodes[ix1];
+			if (mchAmkf->ref != 0) dbswznm->tblwznmammachinemakefile->removeRecByRef(mchAmkf->ref);
 		};
 
-		for (unsigned int ix1 = 0; ix1 < mty->imeimmachine.nodes.size(); ix1++) {
-			mch = mty->imeimmachine.nodes[ix1];
-			if (mch->ref != 0) dbswznm->tblwznmmmachine->removeRecByRef(mch->ref);
-
-			for (unsigned int ix2 = 0; ix2 < mch->imeiammachinepar.nodes.size(); ix2++) {
-				mchApar = mch->imeiammachinepar.nodes[ix2];
-				if (mchApar->ref != 0) dbswznm->tblwznmammachinepar->removeRecByRef(mchApar->ref);
-			};
+		for (unsigned int ix1 = 0; ix1 < mch->imeiammachinepar.nodes.size(); ix1++) {
+			mchApar = mch->imeiammachinepar.nodes[ix1];
+			if (mchApar->ref != 0) dbswznm->tblwznmammachinepar->removeRecByRef(mchApar->ref);
 		};
 	};
 
@@ -1224,23 +1175,22 @@ uint JobWznmIexIni::enterSgeCollect(
 	ImeitemIMFile* fil = NULL;
 	ImeitemIMLibrary* lib = NULL;
 	ImeitemIMLocale* loc = NULL;
-	ImeitemIMMachtype* mty = NULL;
+	ImeitemIMMachine* mch = NULL;
 	ImeitemIMTag1* tag1 = NULL;
 	ImeitemIMUsergroup* usg = NULL;
 	ImeitemIAMCapabilityPar* cpbApar = NULL;
 	ImeitemIAMLibraryMakefile* libAmkf = NULL;
 	ImeitemIAMLibraryPkglist* libApkl = NULL;
-	ImeitemIAMMachtypeMakefile* mtyAmkf = NULL;
+	ImeitemIAMMachineMakefile* mchAmkf = NULL;
+	ImeitemIAMMachinePar* mchApar = NULL;
 	ImeitemIAMUsergroupAccess* usgAacc = NULL;
 	ImeitemIAVKeylistKey2* klsAkey2 = NULL;
 	ImeitemIJAVKeylistKey1* klkJkey1 = NULL;
 	ImeitemIJMLocaleTitle* locJtit = NULL;
 	ImeitemIJMTagTitle1* tagJtit1 = NULL;
-	ImeitemIMMachine* mch = NULL;
 	ImeitemIMTag2* tag2 = NULL;
 	ImeitemIMUser* usr = NULL;
 	ImeitemIRMCapabilityUniversal* cpbRunv = NULL;
-	ImeitemIAMMachinePar* mchApar = NULL;
 	ImeitemIAMUserAccess* usrAacc = NULL;
 	ImeitemIJAVKeylistKey2* klkJkey2 = NULL;
 	ImeitemIJMTagTitle2* tagJtit2 = NULL;
@@ -1400,7 +1350,7 @@ uint JobWznmIexIni::enterSgeCollect(
 			libAmkf = lib->imeiamlibrarymakefile.nodes[ix1];
 
 			if (libAmkf->ref != 0) {
-				//libAmkf->srefX1RefUref: STUB
+				libAmkf->hsrefX1RefWznmMMachine = StubWznm::getStubMchStd(dbswznm, libAmkf->x1RefWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
 			};
 		};
 
@@ -1413,7 +1363,7 @@ uint JobWznmIexIni::enterSgeCollect(
 			libApkl = lib->imeiamlibrarypkglist.nodes[ix1];
 
 			if (libApkl->ref != 0) {
-				//libApkl->srefX1RefUref: STUB
+				libApkl->hsrefX1RefWznmMMachine = StubWznm::getStubMchStd(dbswznm, libApkl->x1RefWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
 			};
 		};
 	};
@@ -1440,47 +1390,36 @@ uint JobWznmIexIni::enterSgeCollect(
 		};
 	};
 
-	// -- ImeIMMachtype
-	for (unsigned int ix0 = 0; ix0 < imeimmachtype.nodes.size(); ix0++) {
-		mty = imeimmachtype.nodes[ix0];
+	// -- ImeIMMachine
+	for (unsigned int ix0 = 0; ix0 < imeimmachine.nodes.size(); ix0++) {
+		mch = imeimmachine.nodes[ix0];
 
-		if (mty->ref != 0) {
-			//mty->srefCchRefWznmMMachine: STUB
+		if (mch->ref != 0) {
+			mch->hsrefSupRefWznmMMachine = StubWznm::getStubMchStd(dbswznm, mch->supRefWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+			//mch->hsrefCchRefWznmMMachine: STUB
 		};
 
-		if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIAMMACHTYPEMAKEFILE, ixWznmVIop)) {
-			dbswznm->tblwznmammachtypemakefile->loadRefsByMty(mty->ref, false, refs);
-			for (unsigned int i = 0; i < refs.size(); i++) mty->imeiammachtypemakefile.nodes.push_back(new ImeitemIAMMachtypeMakefile(dbswznm, refs[i]));
+		if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIAMMACHINEMAKEFILE, ixWznmVIop)) {
+			dbswznm->tblwznmammachinemakefile->loadRefsByMch(mch->ref, false, refs);
+			for (unsigned int i = 0; i < refs.size(); i++) mch->imeiammachinemakefile.nodes.push_back(new ImeitemIAMMachineMakefile(dbswznm, refs[i]));
 		};
 
-		for (unsigned int ix1 = 0; ix1 < mty->imeiammachtypemakefile.nodes.size(); ix1++) {
-			mtyAmkf = mty->imeiammachtypemakefile.nodes[ix1];
+		for (unsigned int ix1 = 0; ix1 < mch->imeiammachinemakefile.nodes.size(); ix1++) {
+			mchAmkf = mch->imeiammachinemakefile.nodes[ix1];
 
-			if (mtyAmkf->ref != 0) {
+			if (mchAmkf->ref != 0) {
 			};
 		};
 
-		if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIMMACHINE, ixWznmVIop)) {
-			dbswznm->tblwznmmmachine->loadRefsByTbl(mty->ref, false, refs);
-			for (unsigned int i = 0; i < refs.size(); i++) mty->imeimmachine.nodes.push_back(new ImeitemIMMachine(dbswznm, refs[i]));
+		if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIAMMACHINEPAR, ixWznmVIop)) {
+			dbswznm->tblwznmammachinepar->loadRefsByMch(mch->ref, false, refs);
+			for (unsigned int i = 0; i < refs.size(); i++) mch->imeiammachinepar.nodes.push_back(new ImeitemIAMMachinePar(dbswznm, refs[i]));
 		};
 
-		for (unsigned int ix1 = 0; ix1 < mty->imeimmachine.nodes.size(); ix1++) {
-			mch = mty->imeimmachine.nodes[ix1];
+		for (unsigned int ix1 = 0; ix1 < mch->imeiammachinepar.nodes.size(); ix1++) {
+			mchApar = mch->imeiammachinepar.nodes[ix1];
 
-			if (mch->ref != 0) {
-			};
-
-			if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIAMMACHINEPAR, ixWznmVIop)) {
-				dbswznm->tblwznmammachinepar->loadRefsByMch(mch->ref, false, refs);
-				for (unsigned int i = 0; i < refs.size(); i++) mch->imeiammachinepar.nodes.push_back(new ImeitemIAMMachinePar(dbswznm, refs[i]));
-			};
-
-			for (unsigned int ix2 = 0; ix2 < mch->imeiammachinepar.nodes.size(); ix2++) {
-				mchApar = mch->imeiammachinepar.nodes[ix2];
-
-				if (mchApar->ref != 0) {
-				};
+			if (mchApar->ref != 0) {
 			};
 		};
 	};
@@ -1622,7 +1561,7 @@ uint JobWznmIexIni::enterSgeExport(
 	nextIxVSgeSuccess = VecVSge::DONE;
 	retval = nextIxVSgeSuccess;
 
-	IexWznmIni::exportToFile(fullpath, xmlNotTxt, shorttags, imeiavcontrolpar, imeiavkeylistkey1, imeiavvaluelistval, imeimcapability, imeimfile, imeimlibrary, imeimlocale, imeimmachtype, imeimtag1, imeimusergroup);
+	IexWznmIni::exportToFile(fullpath, xmlNotTxt, shorttags, imeiavcontrolpar, imeiavkeylistkey1, imeiavvaluelistval, imeimcapability, imeimfile, imeimlibrary, imeimlocale, imeimmachine, imeimtag1, imeimusergroup);
 
 	return retval;
 };
@@ -1649,5 +1588,6 @@ void JobWznmIexIni::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

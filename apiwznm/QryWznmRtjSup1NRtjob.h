@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmRtjSup1NRtjob.h
 	* API code for job QryWznmRtjSup1NRtjob (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMRTJSUP1NRTJOB_H
 #define QRYWZNMRTJSUP1NRTJOB_H

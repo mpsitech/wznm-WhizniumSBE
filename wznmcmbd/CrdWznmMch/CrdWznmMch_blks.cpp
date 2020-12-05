@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmMch_blks.cpp
 	* job handler for job CrdWznmMch (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -21,6 +22,7 @@ uint CrdWznmMch::VecVDo::getIx(
 
 	if (s == "close") return CLOSE;
 	if (s == "mitappabtclick") return MITAPPABTCLICK;
+	if (s == "mitcrdwisclick") return MITCRDWISCLICK;
 
 	return(0);
 };
@@ -30,6 +32,7 @@ string CrdWznmMch::VecVDo::getSref(
 		) {
 	if (ix == CLOSE) return("close");
 	if (ix == MITAPPABTCLICK) return("MitAppAbtClick");
+	if (ix == MITCRDWISCLICK) return("MitCrdWisClick");
 
 	return("");
 };
@@ -166,17 +169,23 @@ void CrdWznmMch::StatApp::writeXML(
  ******************************************************************************/
 
 CrdWznmMch::StatShr::StatShr(
-			const ubigint jrefHeadbar
+			const ubigint jrefDlgwriniscr
+			, const ubigint jrefHeadbar
 			, const ubigint jrefList
 			, const ubigint jrefRec
+			, const bool MitCrdWisAvail
+			, const bool MitCrdWisActive
 		) :
 			Block()
 		{
+	this->jrefDlgwriniscr = jrefDlgwriniscr;
 	this->jrefHeadbar = jrefHeadbar;
 	this->jrefList = jrefList;
 	this->jrefRec = jrefRec;
+	this->MitCrdWisAvail = MitCrdWisAvail;
+	this->MitCrdWisActive = MitCrdWisActive;
 
-	mask = {JREFHEADBAR, JREFLIST, JREFREC};
+	mask = {JREFDLGWRINISCR, JREFHEADBAR, JREFLIST, JREFREC, MITCRDWISAVAIL, MITCRDWISACTIVE};
 };
 
 void CrdWznmMch::StatShr::writeXML(
@@ -191,9 +200,12 @@ void CrdWznmMch::StatShr::writeXML(
 	else itemtag = "StatitemShrWznmMch";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeStringAttr(wr, itemtag, "sref", "scrJrefDlgwriniscr", Scr::scramble(jrefDlgwriniscr));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefHeadbar", Scr::scramble(jrefHeadbar));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefList", Scr::scramble(jrefList));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRec", Scr::scramble(jrefRec));
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdWisAvail", MitCrdWisAvail);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdWisActive", MitCrdWisActive);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -202,9 +214,12 @@ set<uint> CrdWznmMch::StatShr::comm(
 		) {
 	set<uint> items;
 
+	if (jrefDlgwriniscr == comp->jrefDlgwriniscr) insert(items, JREFDLGWRINISCR);
 	if (jrefHeadbar == comp->jrefHeadbar) insert(items, JREFHEADBAR);
 	if (jrefList == comp->jrefList) insert(items, JREFLIST);
 	if (jrefRec == comp->jrefRec) insert(items, JREFREC);
+	if (MitCrdWisAvail == comp->MitCrdWisAvail) insert(items, MITCRDWISAVAIL);
+	if (MitCrdWisActive == comp->MitCrdWisActive) insert(items, MITCRDWISACTIVE);
 
 	return(items);
 };
@@ -217,7 +232,7 @@ set<uint> CrdWznmMch::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {JREFHEADBAR, JREFLIST, JREFREC};
+	diffitems = {JREFDLGWRINISCR, JREFHEADBAR, JREFLIST, JREFREC, MITCRDWISAVAIL, MITCRDWISACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -241,6 +256,7 @@ void CrdWznmMch::Tag::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+			writeStringAttr(wr, itemtag, "sref", "MitCrdWis", "Write initialization scripts ...");
 		};
 		writeStringAttr(wr, itemtag, "sref", "MitAppAbt", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::ABOUT, ixWznmVLocale)) + " ...");
 		writeStringAttr(wr, itemtag, "sref", "MrlAppHlp", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::HELP, ixWznmVLocale)) + " ...");
@@ -363,4 +379,6 @@ void CrdWznmMch::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmVecList.cpp
 	* job handler for job QryWznmVecList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -237,11 +238,11 @@ void QryWznmVecList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::HKU) sqlstr += " ORDER BY TblWznmMVector.hkUref ASC";
-	else if (preIxOrd == VecVOrd::TGR) sqlstr += " ORDER BY TblWznmMVector.osrefWznmKTaggrp ASC";
+	if (preIxOrd == VecVOrd::TGR) sqlstr += " ORDER BY TblWznmMVector.osrefWznmKTaggrp ASC";
+	else if (preIxOrd == VecVOrd::HKU) sqlstr += " ORDER BY TblWznmMVector.hkUref ASC";
 	else if (preIxOrd == VecVOrd::HKT) sqlstr += " ORDER BY TblWznmMVector.hkIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMVector.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMVector.refWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMVector.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMVector.sref ASC";
 };
 
@@ -279,10 +280,10 @@ void QryWznmVecList::fetch(
 				rec->stubHkUref = StubWznm::getStubJobStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::TBL) {
 				rec->stubHkUref = StubWznm::getStubTblStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::IEX) {
-				rec->stubHkUref = StubWznm::getStubIexStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::IME) {
 				rec->stubHkUref = StubWznm::getStubImeStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::IEX) {
+				rec->stubHkUref = StubWznm::getStubIexStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubHkUref = "-";
 			rec->titOsrefWznmKTaggrp = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKTAGGRP, rec->osrefWznmKTaggrp, ixWznmVLocale);
 		};
@@ -479,4 +480,6 @@ bool QryWznmVecList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

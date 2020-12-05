@@ -1,10 +1,11 @@
 /**
 	* \file JobWznmIexIex.cpp
 	* job handler for job JobWznmIexIex (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -68,10 +69,12 @@ void JobWznmIexIex::parseFromFile(
 			DbsWznm* dbswznm
 			, const string& _fullpath
 			, const bool _xmlNotTxt
+			, const string& _rectpath
 		) {
 	if (ixVSge == VecVSge::IDLE) {
 		fullpath = _fullpath;
 		xmlNotTxt = _xmlNotTxt;
+		rectpath = _rectpath;
 
 		changeStage(dbswznm, VecVSge::PARSE);
 	};
@@ -211,6 +214,7 @@ uint JobWznmIexIex::enterSgeIdle(
 
 	fullpath = "";
 	xmlNotTxt = false;
+	rectpath = "";
 
 	lineno = 0;
 	impcnt = 0;
@@ -238,7 +242,7 @@ uint JobWznmIexIex::enterSgeParse(
 	nextIxVSgeFailure = VecVSge::PRSERR;
 
 	try {
-		IexWznmIex::parseFromFile(fullpath, xmlNotTxt, imeimimpexpcplx);
+		IexWznmIex::parseFromFile(fullpath, xmlNotTxt, rectpath, imeimimpexpcplx);
 
 	} catch (SbeException& e) {
 		if (e.ix == SbeException::PATHNF) e.vals["path"] = "<hidden>";
@@ -325,8 +329,7 @@ uint JobWznmIexIex::enterSgeImport(
 	ubigint refWznmMVector;
 
 	string Prjshort;
-	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(refWznmMVersion), Prjshort);
-	Prjshort = StrMod::cap(Prjshort);
+	Prjshort = Wznm::getPrjshort(dbswznm, refWznmMVersion);
 	// IP enterSgeImport.prep --- IEND
 
 	try {
@@ -759,5 +762,6 @@ void JobWznmIexIex::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

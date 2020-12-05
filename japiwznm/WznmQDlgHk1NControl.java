@@ -1,10 +1,11 @@
 /**
-  * \file WznmQDlgHk1NControl.h
-  * Java API code for record of table TblWznmQDlgHk1NControl
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
+	* \file WznmQDlgHk1NControl.h
+	* Java API code for record of table TblWznmQDlgHk1NControl
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
   */
+// IP header --- ABOVE
 
 package apiwznm;
 

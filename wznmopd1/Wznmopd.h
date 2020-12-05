@@ -1,10 +1,11 @@
 /**
-	* \file Wznmopd.h
-	* inter-thread exchange object for Wznm operation daemon wznmopd1 (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \file Wznmcmbd.h
+	* inter-thread exchange object for Wznm combined daemon (declarations)
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMOPD_H
 #define WZNMOPD_H
@@ -95,7 +96,7 @@ public:
 	static const Sbecore::uint PORT = 7;
 
 public:
-	StgWznmDatabase(const Sbecore::uint ixDbsVDbstype = 0, const std::string& dbspath = "", const std::string& dbsname = "", const std::string& username = "mpsitech", const std::string& password = "f9w8feeh", const std::string& ip = "", const Sbecore::usmallint port = 0);
+	StgWznmDatabase(const Sbecore::uint ixDbsVDbstype = 0, const std::string& dbspath = "./DbsWznm.sql", const std::string& dbsname = "DbsWznm", const std::string& username = "default", const std::string& password = "asdf1234", const std::string& ip = "127.0.0.1", const Sbecore::usmallint port = 3306);
 
 public:
 	Sbecore::uint ixDbsVDbstype;
@@ -126,7 +127,7 @@ public:
 	static const Sbecore::uint OPPRCN = 5;
 
 public:
-	StgWznmopd(const std::string& engip = "", const Sbecore::usmallint engport = 0, const Sbecore::usmallint engsrvportbase = 0, const Sbecore::usmallint engsrvportofs = 0, const Sbecore::usmallint opprcn = 1);
+	StgWznmopd(const std::string& engip = "127.0.0.1", const Sbecore::usmallint engport = 0, const Sbecore::usmallint engsrvportbase = 13140, const Sbecore::usmallint engsrvportofs = 0, const Sbecore::usmallint opprcn = 4);
 
 public:
 	std::string engip;
@@ -156,7 +157,7 @@ public:
 	static const Sbecore::uint HELPURL = 6;
 
 public:
-	StgWznmPath(const std::string& acvpath = "", const std::string& keypath = "", const std::string& monpath = "", const std::string& tmppath = "", const std::string& webpath = "", const std::string& helpurl = "");
+	StgWznmPath(const std::string& acvpath = "${WHIZROOT}/acv/wznm", const std::string& keypath = "", const std::string& monpath = "${WHIZROOT}/mon/wznm", const std::string& tmppath = "${WHIZROOT}/tmp/wznm", const std::string& webpath = "${WHIZROOT}/web/appwznm", const std::string& helpurl = "http://www.mpsitech.com/wznm");
 
 public:
 	std::string acvpath;
@@ -336,4 +337,7 @@ public:
 };
 
 #endif
+
+
+
 

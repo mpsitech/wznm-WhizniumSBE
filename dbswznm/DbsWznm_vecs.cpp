@@ -1,10 +1,11 @@
 /**
 	* \file DbsWznm_vecs.cpp
 	* C++ wrapper for database DbsWznm (implementation of vectors)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -73,15 +74,14 @@ uint DbsWznm::VecVCard::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "crdwznmnav") return CRDWZNMNAV;
 	if (s == "crdwznmusg") return CRDWZNMUSG;
 	if (s == "crdwznmusr") return CRDWZNMUSR;
 	if (s == "crdwznmprs") return CRDWZNMPRS;
 	if (s == "crdwznmfil") return CRDWZNMFIL;
+	if (s == "crdwznmnav") return CRDWZNMNAV;
 	if (s == "crdwznmloc") return CRDWZNMLOC;
 	if (s == "crdwznmtag") return CRDWZNMTAG;
 	if (s == "crdwznmctp") return CRDWZNMCTP;
-	if (s == "crdwznmmty") return CRDWZNMMTY;
 	if (s == "crdwznmmch") return CRDWZNMMCH;
 	if (s == "crdwznmlib") return CRDWZNMLIB;
 	if (s == "crdwznmprj") return CRDWZNMPRJ;
@@ -130,15 +130,14 @@ uint DbsWznm::VecVCard::getIx(
 string DbsWznm::VecVCard::getSref(
 			const uint ix
 		) {
-	if (ix == CRDWZNMNAV) return("CrdWznmNav");
 	if (ix == CRDWZNMUSG) return("CrdWznmUsg");
 	if (ix == CRDWZNMUSR) return("CrdWznmUsr");
 	if (ix == CRDWZNMPRS) return("CrdWznmPrs");
 	if (ix == CRDWZNMFIL) return("CrdWznmFil");
+	if (ix == CRDWZNMNAV) return("CrdWznmNav");
 	if (ix == CRDWZNMLOC) return("CrdWznmLoc");
 	if (ix == CRDWZNMTAG) return("CrdWznmTag");
 	if (ix == CRDWZNMCTP) return("CrdWznmCtp");
-	if (ix == CRDWZNMMTY) return("CrdWznmMty");
 	if (ix == CRDWZNMMCH) return("CrdWznmMch");
 	if (ix == CRDWZNMLIB) return("CrdWznmLib");
 	if (ix == CRDWZNMPRJ) return("CrdWznmPrj");
@@ -196,7 +195,6 @@ string DbsWznm::VecVCard::getTitle(
 		if (ix == CRDWZNMLOC) return("locales");
 		if (ix == CRDWZNMTAG) return("tags");
 		if (ix == CRDWZNMCTP) return("capability templates");
-		if (ix == CRDWZNMMTY) return("machine types");
 		if (ix == CRDWZNMMCH) return("machines");
 		if (ix == CRDWZNMLIB) return("libraries");
 		if (ix == CRDWZNMPRJ) return("projects");
@@ -250,7 +248,7 @@ void DbsWznm::VecVCard::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 50; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
+	for (unsigned int i = 1; i <= 49; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
 
 /******************************************************************************
@@ -333,26 +331,23 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmctpapar.tcoval") return PNLWZNMCTPAPAR_TCOVAL;
 	if (s == "pnlwznmctp1ntag.tcoref") return PNLWZNMCTP1NTAG_TCOREF;
 	if (s == "pnlwznmctptpl1ncapability.tcoref") return PNLWZNMCTPTPL1NCAPABILITY_TCOREF;
-	if (s == "pnlwznmmtylist.tcosrf") return PNLWZNMMTYLIST_TCOSRF;
-	if (s == "pnlwznmmtylist.tcoach") return PNLWZNMMTYLIST_TCOACH;
-	if (s == "pnlwznmmtylist.tcoos") return PNLWZNMMTYLIST_TCOOS;
-	if (s == "pnlwznmmtyamakefile.tcotag") return PNLWZNMMTYAMAKEFILE_TCOTAG;
-	if (s == "pnlwznmmtyamakefile.tcoval") return PNLWZNMMTYAMAKEFILE_TCOVAL;
-	if (s == "pnlwznmmty1nmachine.tcoref") return PNLWZNMMTY1NMACHINE_TCOREF;
 	if (s == "pnlwznmmchlist.tcosrf") return PNLWZNMMCHLIST_TCOSRF;
-	if (s == "pnlwznmmchlist.tcotbl") return PNLWZNMMCHLIST_TCOTBL;
+	if (s == "pnlwznmmchlist.tcosup") return PNLWZNMMCHLIST_TCOSUP;
+	if (s == "pnlwznmmchamakefile.tcotag") return PNLWZNMMCHAMAKEFILE_TCOTAG;
+	if (s == "pnlwznmmchamakefile.tcoval") return PNLWZNMMCHAMAKEFILE_TCOVAL;
 	if (s == "pnlwznmmchapar.tcokey") return PNLWZNMMCHAPAR_TCOKEY;
 	if (s == "pnlwznmmchapar.tcoval") return PNLWZNMMCHAPAR_TCOVAL;
 	if (s == "pnlwznmmch1nrelease.tcoref") return PNLWZNMMCH1NRELEASE_TCOREF;
+	if (s == "pnlwznmmchsup1nmachine.tcoref") return PNLWZNMMCHSUP1NMACHINE_TCOREF;
 	if (s == "pnlwznmliblist.tcosrf") return PNLWZNMLIBLIST_TCOSRF;
 	if (s == "pnlwznmliblist.tcotit") return PNLWZNMLIBLIST_TCOTIT;
 	if (s == "pnlwznmliblist.tcover") return PNLWZNMLIBLIST_TCOVER;
 	if (s == "pnlwznmliblist.tcolty") return PNLWZNMLIBLIST_TCOLTY;
-	if (s == "pnlwznmlibamakefile.tcoreu") return PNLWZNMLIBAMAKEFILE_TCOREU;
+	if (s == "pnlwznmlibapkglist.tcomch") return PNLWZNMLIBAPKGLIST_TCOMCH;
+	if (s == "pnlwznmlibapkglist.tcopkl") return PNLWZNMLIBAPKGLIST_TCOPKL;
+	if (s == "pnlwznmlibamakefile.tcomch") return PNLWZNMLIBAMAKEFILE_TCOMCH;
 	if (s == "pnlwznmlibamakefile.tcotag") return PNLWZNMLIBAMAKEFILE_TCOTAG;
 	if (s == "pnlwznmlibamakefile.tcoval") return PNLWZNMLIBAMAKEFILE_TCOVAL;
-	if (s == "pnlwznmlibapkglist.tcoreu") return PNLWZNMLIBAPKGLIST_TCOREU;
-	if (s == "pnlwznmlibapkglist.tcopkl") return PNLWZNMLIBAPKGLIST_TCOPKL;
 	if (s == "pnlwznmlibref1nfile.tcoref") return PNLWZNMLIBREF1NFILE_TCOREF;
 	if (s == "pnlwznmlibmnoppack.tcomref") return PNLWZNMLIBMNOPPACK_TCOMREF;
 	if (s == "pnlwznmlibmncomponent.tcomref") return PNLWZNMLIBMNCOMPONENT_TCOMREF;
@@ -377,22 +372,22 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmverlist.tcoloc") return PNLWZNMVERLIST_TCOLOC;
 	if (s == "pnlwznmverlist.tcoste") return PNLWZNMVERLIST_TCOSTE;
 	if (s == "pnlwznmverlist.tcodty") return PNLWZNMVERLIST_TCODTY;
-	if (s == "pnlwznmver1nblock.tcoref") return PNLWZNMVER1NBLOCK_TCOREF;
-	if (s == "pnlwznmverbvr1nversion.tcoref") return PNLWZNMVERBVR1NVERSION_TCOREF;
-	if (s == "pnlwznmver1ncomponent.tcoref") return PNLWZNMVER1NCOMPONENT_TCOREF;
-	if (s == "pnlwznmver1ncall.tcoref") return PNLWZNMVER1NCALL_TCOREF;
+	if (s == "pnlwznmver1npreset.tcoref") return PNLWZNMVER1NPRESET_TCOREF;
+	if (s == "pnlwznmver1nquery.tcoref") return PNLWZNMVER1NQUERY_TCOREF;
+	if (s == "pnlwznmverver1nerror.tcoref") return PNLWZNMVERVER1NERROR_TCOREF;
+	if (s == "pnlwznmverver1napp.tcoref") return PNLWZNMVERVER1NAPP_TCOREF;
+	if (s == "pnlwznmver1nrelation.tcoref") return PNLWZNMVER1NRELATION_TCOREF;
 	if (s == "pnlwznmver1nimpexpcplx.tcoref") return PNLWZNMVER1NIMPEXPCPLX_TCOREF;
 	if (s == "pnlwznmver1njob.tcoref") return PNLWZNMVER1NJOB_TCOREF;
 	if (s == "pnlwznmver1noppack.tcoref") return PNLWZNMVER1NOPPACK_TCOREF;
-	if (s == "pnlwznmverver1nmodule.tcoref") return PNLWZNMVERVER1NMODULE_TCOREF;
-	if (s == "pnlwznmver1npreset.tcoref") return PNLWZNMVER1NPRESET_TCOREF;
-	if (s == "pnlwznmver1nquery.tcoref") return PNLWZNMVER1NQUERY_TCOREF;
-	if (s == "pnlwznmver1nrelation.tcoref") return PNLWZNMVER1NRELATION_TCOREF;
-	if (s == "pnlwznmver1ntable.tcoref") return PNLWZNMVER1NTABLE_TCOREF;
-	if (s == "pnlwznmver1nvector.tcoref") return PNLWZNMVER1NVECTOR_TCOREF;
+	if (s == "pnlwznmverbvr1nversion.tcoref") return PNLWZNMVERBVR1NVERSION_TCOREF;
 	if (s == "pnlwznmver1ncapability.tcoref") return PNLWZNMVER1NCAPABILITY_TCOREF;
-	if (s == "pnlwznmverver1napp.tcoref") return PNLWZNMVERVER1NAPP_TCOREF;
-	if (s == "pnlwznmverver1nerror.tcoref") return PNLWZNMVERVER1NERROR_TCOREF;
+	if (s == "pnlwznmver1nblock.tcoref") return PNLWZNMVER1NBLOCK_TCOREF;
+	if (s == "pnlwznmver1nvector.tcoref") return PNLWZNMVER1NVECTOR_TCOREF;
+	if (s == "pnlwznmver1ntable.tcoref") return PNLWZNMVER1NTABLE_TCOREF;
+	if (s == "pnlwznmver1ncall.tcoref") return PNLWZNMVER1NCALL_TCOREF;
+	if (s == "pnlwznmverver1nmodule.tcoref") return PNLWZNMVERVER1NMODULE_TCOREF;
+	if (s == "pnlwznmver1ncomponent.tcoref") return PNLWZNMVER1NCOMPONENT_TCOREF;
 	if (s == "pnlwznmverref1nfile.tcoref") return PNLWZNMVERREF1NFILE_TCOREF;
 	if (s == "pnlwznmvermnlocale.tcomref") return PNLWZNMVERMNLOCALE_TCOMREF;
 	if (s == "pnlwznmcaplist.tcosrf") return PNLWZNMCAPLIST_TCOSRF;
@@ -411,31 +406,31 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmtbllist.tcover") return PNLWZNMTBLLIST_TCOVER;
 	if (s == "pnlwznmtbllist.tcoret") return PNLWZNMTBLLIST_TCORET;
 	if (s == "pnlwznmtbllist.tcoreu") return PNLWZNMTBLLIST_TCOREU;
+	if (s == "pnlwznmtblatitle.tcotyp") return PNLWZNMTBLATITLE_TCOTYP;
+	if (s == "pnlwznmtblatitle.tcoloc") return PNLWZNMTBLATITLE_TCOLOC;
+	if (s == "pnlwznmtblatitle.tcognd") return PNLWZNMTBLATITLE_TCOGND;
+	if (s == "pnlwznmtblatitle.tcotit") return PNLWZNMTBLATITLE_TCOTIT;
 	if (s == "pnlwznmtblaloadfct.tcolot") return PNLWZNMTBLALOADFCT_TCOLOT;
 	if (s == "pnlwznmtblaloadfct.tcofna") return PNLWZNMTBLALOADFCT_TCOFNA;
 	if (s == "pnlwznmtblaloadfct.tcoldx") return PNLWZNMTBLALOADFCT_TCOLDX;
 	if (s == "pnlwznmtblaloadfct.tcolby") return PNLWZNMTBLALOADFCT_TCOLBY;
 	if (s == "pnlwznmtblaloadfct.tcoord") return PNLWZNMTBLALOADFCT_TCOORD;
 	if (s == "pnlwznmtblaloadfct.tcolit") return PNLWZNMTBLALOADFCT_TCOLIT;
-	if (s == "pnlwznmtblatitle.tcotyp") return PNLWZNMTBLATITLE_TCOTYP;
-	if (s == "pnlwznmtblatitle.tcoloc") return PNLWZNMTBLATITLE_TCOLOC;
-	if (s == "pnlwznmtblatitle.tcognd") return PNLWZNMTBLATITLE_TCOGND;
-	if (s == "pnlwznmtblatitle.tcotit") return PNLWZNMTBLATITLE_TCOTIT;
-	if (s == "pnlwznmtbl1nimpexp.tcoref") return PNLWZNMTBL1NIMPEXP_TCOREF;
-	if (s == "pnlwznmtbl1ncheck.tcoref") return PNLWZNMTBL1NCHECK_TCOREF;
-	if (s == "pnlwznmtblfr1nrelation.tcoref") return PNLWZNMTBLFR1NRELATION_TCOREF;
-	if (s == "pnlwznmtblto1nrelation.tcoref") return PNLWZNMTBLTO1NRELATION_TCOREF;
+	if (s == "pnlwznmtbltbl1ntablecol.tcoref") return PNLWZNMTBLTBL1NTABLECOL_TCOREF;
 	if (s == "pnlwznmtbl1nstub.tcoref") return PNLWZNMTBL1NSTUB_TCOREF;
 	if (s == "pnlwznmtbl1nsubset.tcoref") return PNLWZNMTBL1NSUBSET_TCOREF;
-	if (s == "pnlwznmtbltbl1ntablecol.tcoref") return PNLWZNMTBLTBL1NTABLECOL_TCOREF;
-	if (s == "pnlwznmtblref1ndialog.tcoref") return PNLWZNMTBLREF1NDIALOG_TCOREF;
-	if (s == "pnlwznmtblref1ncall.tcoref") return PNLWZNMTBLREF1NCALL_TCOREF;
+	if (s == "pnlwznmtblfr1nrelation.tcoref") return PNLWZNMTBLFR1NRELATION_TCOREF;
+	if (s == "pnlwznmtblto1nrelation.tcoref") return PNLWZNMTBLTO1NRELATION_TCOREF;
+	if (s == "pnlwznmtbl1nimpexp.tcoref") return PNLWZNMTBL1NIMPEXP_TCOREF;
+	if (s == "pnlwznmtbl1ncheck.tcoref") return PNLWZNMTBL1NCHECK_TCOREF;
+	if (s == "pnlwznmtblfct1ntablecol.tcoref") return PNLWZNMTBLFCT1NTABLECOL_TCOREF;
 	if (s == "pnlwznmtblsrc1nfeed.tcoref") return PNLWZNMTBLSRC1NFEED_TCOREF;
 	if (s == "pnlwznmtblref1npanel.tcoref") return PNLWZNMTBLREF1NPANEL_TCOREF;
-	if (s == "pnlwznmtblfct1ntablecol.tcoref") return PNLWZNMTBLFCT1NTABLECOL_TCOREF;
-	if (s == "pnlwznmtblhk1nvector.tcoref") return PNLWZNMTBLHK1NVECTOR_TCOREF;
-	if (s == "pnlwznmtblref1nquerymod.tcoref") return PNLWZNMTBLREF1NQUERYMOD_TCOREF;
 	if (s == "pnlwznmtblref1nrtblock.tcoref") return PNLWZNMTBLREF1NRTBLOCK_TCOREF;
+	if (s == "pnlwznmtblref1nquerymod.tcoref") return PNLWZNMTBLREF1NQUERYMOD_TCOREF;
+	if (s == "pnlwznmtblhk1nvector.tcoref") return PNLWZNMTBLHK1NVECTOR_TCOREF;
+	if (s == "pnlwznmtblref1ncall.tcoref") return PNLWZNMTBLREF1NCALL_TCOREF;
+	if (s == "pnlwznmtblref1ndialog.tcoref") return PNLWZNMTBLREF1NDIALOG_TCOREF;
 	if (s == "pnlwznmtblpst1nquerymod.tcoref") return PNLWZNMTBLPST1NQUERYMOD_TCOREF;
 	if (s == "pnlwznmtblmnvector.tcomref") return PNLWZNMTBLMNVECTOR_TCOMREF;
 	if (s == "pnlwznmtblmnvector.tcosbs") return PNLWZNMTBLMNVECTOR_TCOSBS;
@@ -453,8 +448,8 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmtcoatitle.tcotyp") return PNLWZNMTCOATITLE_TCOTYP;
 	if (s == "pnlwznmtcoatitle.tcoloc") return PNLWZNMTCOATITLE_TCOLOC;
 	if (s == "pnlwznmtcoatitle.tcotit") return PNLWZNMTCOATITLE_TCOTIT;
-	if (s == "pnlwznmtco1nimpexpcol.tcoref") return PNLWZNMTCO1NIMPEXPCOL_TCOREF;
 	if (s == "pnlwznmtco1nquerycol.tcoref") return PNLWZNMTCO1NQUERYCOL_TCOREF;
+	if (s == "pnlwznmtco1nimpexpcol.tcoref") return PNLWZNMTCO1NIMPEXPCOL_TCOREF;
 	if (s == "pnlwznmtcoref1ncontrol.tcoref") return PNLWZNMTCOREF1NCONTROL_TCOREF;
 	if (s == "pnlwznmtcoref1nquerymod.tcoref") return PNLWZNMTCOREF1NQUERYMOD_TCOREF;
 	if (s == "pnlwznmtco1ncheck.tcoref") return PNLWZNMTCO1NCHECK_TCOREF;
@@ -465,10 +460,10 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmsbsatitle.tcoloc") return PNLWZNMSBSATITLE_TCOLOC;
 	if (s == "pnlwznmsbsatitle.tcognd") return PNLWZNMSBSATITLE_TCOGND;
 	if (s == "pnlwznmsbsatitle.tcotit") return PNLWZNMSBSATITLE_TCOTIT;
+	if (s == "pnlwznmsbs1nstub.tcoref") return PNLWZNMSBS1NSTUB_TCOREF;
+	if (s == "pnlwznmsbs1ntablecol.tcoref") return PNLWZNMSBS1NTABLECOL_TCOREF;
 	if (s == "pnlwznmsbsfrs1nrelation.tcoref") return PNLWZNMSBSFRS1NRELATION_TCOREF;
 	if (s == "pnlwznmsbstos1nrelation.tcoref") return PNLWZNMSBSTOS1NRELATION_TCOREF;
-	if (s == "pnlwznmsbs1ntablecol.tcoref") return PNLWZNMSBS1NTABLECOL_TCOREF;
-	if (s == "pnlwznmsbs1nstub.tcoref") return PNLWZNMSBS1NSTUB_TCOREF;
 	if (s == "pnlwznmsbspst1nquerymod.tcoref") return PNLWZNMSBSPST1NQUERYMOD_TCOREF;
 	if (s == "pnlwznmsbsasbmnsubset.tcomref") return PNLWZNMSBSASBMNSUBSET_TCOMREF;
 	if (s == "pnlwznmsbsasbmnsubset.tcorty") return PNLWZNMSBSASBMNSUBSET_TCORTY;
@@ -487,11 +482,11 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmrelatitle.tcotyp") return PNLWZNMRELATITLE_TCOTYP;
 	if (s == "pnlwznmrelatitle.tcoloc") return PNLWZNMRELATITLE_TCOLOC;
 	if (s == "pnlwznmrelatitle.tcotit") return PNLWZNMRELATITLE_TCOTIT;
-	if (s == "pnlwznmrelsup1nrelation.tcoref") return PNLWZNMRELSUP1NRELATION_TCOREF;
 	if (s == "pnlwznmrel1ntablecol.tcoref") return PNLWZNMREL1NTABLECOL_TCOREF;
+	if (s == "pnlwznmrelsup1nrelation.tcoref") return PNLWZNMRELSUP1NRELATION_TCOREF;
 	if (s == "pnlwznmrelref1ncontrol.tcoref") return PNLWZNMRELREF1NCONTROL_TCOREF;
-	if (s == "pnlwznmrelref1ndialog.tcoref") return PNLWZNMRELREF1NDIALOG_TCOREF;
 	if (s == "pnlwznmrelref1npanel.tcoref") return PNLWZNMRELREF1NPANEL_TCOREF;
+	if (s == "pnlwznmrelref1ndialog.tcoref") return PNLWZNMRELREF1NDIALOG_TCOREF;
 	if (s == "pnlwznmveclist.tcosrf") return PNLWZNMVECLIST_TCOSRF;
 	if (s == "pnlwznmveclist.tcotyp") return PNLWZNMVECLIST_TCOTYP;
 	if (s == "pnlwznmveclist.tcover") return PNLWZNMVECLIST_TCOVER;
@@ -502,9 +497,9 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmvecatitle.tcoloc") return PNLWZNMVECATITLE_TCOLOC;
 	if (s == "pnlwznmvecatitle.tcotit") return PNLWZNMVECATITLE_TCOTIT;
 	if (s == "pnlwznmvecvec1nvectoritem.tcoref") return PNLWZNMVECVEC1NVECTORITEM_TCOREF;
+	if (s == "pnlwznmvecfct1ntablecol.tcoref") return PNLWZNMVECFCT1NTABLECOL_TCOREF;
 	if (s == "pnlwznmvecsrc1nfeed.tcoref") return PNLWZNMVECSRC1NFEED_TCOREF;
 	if (s == "pnlwznmvecref1npanel.tcoref") return PNLWZNMVECREF1NPANEL_TCOREF;
-	if (s == "pnlwznmvecfct1ntablecol.tcoref") return PNLWZNMVECFCT1NTABLECOL_TCOREF;
 	if (s == "pnlwznmvecpst1nquerymod.tcoref") return PNLWZNMVECPST1NQUERYMOD_TCOREF;
 	if (s == "pnlwznmvecmntable.tcomref") return PNLWZNMVECMNTABLE_TCOMREF;
 	if (s == "pnlwznmvecmntable.tcosbs") return PNLWZNMVECMNTABLE_TCOSBS;
@@ -522,17 +517,17 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmstblist.tcosbs") return PNLWZNMSTBLIST_TCOSBS;
 	if (s == "pnlwznmstblist.tcoexa") return PNLWZNMSTBLIST_TCOEXA;
 	if (s == "pnlwznmstbsupmnstub.tcomref") return PNLWZNMSTBSUPMNSTUB_TCOMREF;
-	if (s == "pnlwznmstbmncall.tcomref") return PNLWZNMSTBMNCALL_TCOMREF;
-	if (s == "pnlwznmstbmnsquawk.tcomref") return PNLWZNMSTBMNSQUAWK_TCOMREF;
 	if (s == "pnlwznmstbsubmnstub.tcomref") return PNLWZNMSTBSUBMNSTUB_TCOMREF;
+	if (s == "pnlwznmstbmnsquawk.tcomref") return PNLWZNMSTBMNSQUAWK_TCOMREF;
+	if (s == "pnlwznmstbmncall.tcomref") return PNLWZNMSTBMNCALL_TCOMREF;
 	if (s == "pnlwznmiexlist.tcosrf") return PNLWZNMIEXLIST_TCOSRF;
 	if (s == "pnlwznmiexlist.tcosho") return PNLWZNMIEXLIST_TCOSHO;
 	if (s == "pnlwznmiexlist.tcotit") return PNLWZNMIEXLIST_TCOTIT;
 	if (s == "pnlwznmiexlist.tcover") return PNLWZNMIEXLIST_TCOVER;
 	if (s == "pnlwznmiexlist.tcomiv") return PNLWZNMIEXLIST_TCOMIV;
 	if (s == "pnlwznmiex1nimpexp.tcoref") return PNLWZNMIEX1NIMPEXP_TCOREF;
-	if (s == "pnlwznmiexref1ndialog.tcoref") return PNLWZNMIEXREF1NDIALOG_TCOREF;
 	if (s == "pnlwznmiexhk1nvector.tcoref") return PNLWZNMIEXHK1NVECTOR_TCOREF;
+	if (s == "pnlwznmiexref1ndialog.tcoref") return PNLWZNMIEXREF1NDIALOG_TCOREF;
 	if (s == "pnlwznmimelist.tcosrf") return PNLWZNMIMELIST_TCOSRF;
 	if (s == "pnlwznmimelist.tcoiex") return PNLWZNMIMELIST_TCOIEX;
 	if (s == "pnlwznmimelist.tcosup") return PNLWZNMIMELIST_TCOSUP;
@@ -563,8 +558,8 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmcarlist.tcomdl") return PNLWZNMCARLIST_TCOMDL;
 	if (s == "pnlwznmcarlist.tcoret") return PNLWZNMCARLIST_TCORET;
 	if (s == "pnlwznmcarlist.tcoreu") return PNLWZNMCARLIST_TCOREU;
-	if (s == "pnlwznmcar1ndialog.tcoref") return PNLWZNMCAR1NDIALOG_TCOREF;
 	if (s == "pnlwznmcarcar1npanel.tcoref") return PNLWZNMCARCAR1NPANEL_TCOREF;
+	if (s == "pnlwznmcar1ndialog.tcoref") return PNLWZNMCAR1NDIALOG_TCOREF;
 	if (s == "pnlwznmcarhk1ncontrol.tcoref") return PNLWZNMCARHK1NCONTROL_TCOREF;
 	if (s == "pnlwznmdlglist.tcosrf") return PNLWZNMDLGLIST_TCOSRF;
 	if (s == "pnlwznmdlglist.tcotyp") return PNLWZNMDLGLIST_TCOTYP;
@@ -588,23 +583,23 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmqrylist.tcosrl") return PNLWZNMQRYLIST_TCOSRL;
 	if (s == "pnlwznmqrylist.tcotbl") return PNLWZNMQRYLIST_TCOTBL;
 	if (s == "pnlwznmqrylist.tcoqtb") return PNLWZNMQRYLIST_TCOQTB;
-	if (s == "pnlwznmqryaorder.tcosho") return PNLWZNMQRYAORDER_TCOSHO;
-	if (s == "pnlwznmqryaorder.tcotco") return PNLWZNMQRYAORDER_TCOTCO;
 	if (s == "pnlwznmqryaclause.tcoqmd") return PNLWZNMQRYACLAUSE_TCOQMD;
 	if (s == "pnlwznmqryaclause.tcotyp") return PNLWZNMQRYACLAUSE_TCOTYP;
 	if (s == "pnlwznmqryaclause.tcocse") return PNLWZNMQRYACLAUSE_TCOCSE;
 	if (s == "pnlwznmqryaclause.tcopst") return PNLWZNMQRYACLAUSE_TCOPST;
 	if (s == "pnlwznmqryaclause.tcovec") return PNLWZNMQRYACLAUSE_TCOVEC;
 	if (s == "pnlwznmqryaclause.tcovit") return PNLWZNMQRYACLAUSE_TCOVIT;
+	if (s == "pnlwznmqryaorder.tcosho") return PNLWZNMQRYAORDER_TCOSHO;
+	if (s == "pnlwznmqryaorder.tcotco") return PNLWZNMQRYAORDER_TCOTCO;
 	if (s == "pnlwznmqrysup1nquery.tcoref") return PNLWZNMQRYSUP1NQUERY_TCOREF;
-	if (s == "pnlwznmqryqry1nquerycol.tcoref") return PNLWZNMQRYQRY1NQUERYCOL_TCOREF;
 	if (s == "pnlwznmqry1nquerymod.tcoref") return PNLWZNMQRY1NQUERYMOD_TCOREF;
+	if (s == "pnlwznmqryqry1nquerycol.tcoref") return PNLWZNMQRYQRY1NQUERYCOL_TCOREF;
 	if (s == "pnlwznmqrymntable.tcomref") return PNLWZNMQRYMNTABLE_TCOMREF;
 	if (s == "pnlwznmqrymntable.tcotqmd") return PNLWZNMQRYMNTABLE_TCOTQMD;
 	if (s == "pnlwznmqrymntable.tcosrc") return PNLWZNMQRYMNTABLE_TCOSRC;
 	if (s == "pnlwznmqrymntable.tcopfx") return PNLWZNMQRYMNTABLE_TCOPFX;
-	if (s == "pnlwznmqrymndialog.tcomref") return PNLWZNMQRYMNDIALOG_TCOMREF;
 	if (s == "pnlwznmqrymnpanel.tcomref") return PNLWZNMQRYMNPANEL_TCOMREF;
+	if (s == "pnlwznmqrymndialog.tcomref") return PNLWZNMQRYMNDIALOG_TCOMREF;
 	if (s == "pnlwznmqcolist.tcosrf") return PNLWZNMQCOLIST_TCOSRF;
 	if (s == "pnlwznmqcolist.tcosho") return PNLWZNMQCOLIST_TCOSHO;
 	if (s == "pnlwznmqcolist.tcotyp") return PNLWZNMQCOLIST_TCOTYP;
@@ -636,35 +631,35 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmopklist.tcotyp") return PNLWZNMOPKLIST_TCOTYP;
 	if (s == "pnlwznmopklist.tcover") return PNLWZNMOPKLIST_TCOVER;
 	if (s == "pnlwznmopklist.tcoshd") return PNLWZNMOPKLIST_TCOSHD;
+	if (s == "pnlwznmopkaretval.tcosrf") return PNLWZNMOPKARETVAL_TCOSRF;
+	if (s == "pnlwznmopkaretval.tcovty") return PNLWZNMOPKARETVAL_TCOVTY;
+	if (s == "pnlwznmopkaretval.tcovec") return PNLWZNMOPKARETVAL_TCOVEC;
+	if (s == "pnlwznmopkaretval.tcocmt") return PNLWZNMOPKARETVAL_TCOCMT;
 	if (s == "pnlwznmopkainvarg.tcosrf") return PNLWZNMOPKAINVARG_TCOSRF;
 	if (s == "pnlwznmopkainvarg.tcovty") return PNLWZNMOPKAINVARG_TCOVTY;
 	if (s == "pnlwznmopkainvarg.tcovec") return PNLWZNMOPKAINVARG_TCOVEC;
 	if (s == "pnlwznmopkainvarg.tcodvl") return PNLWZNMOPKAINVARG_TCODVL;
 	if (s == "pnlwznmopkainvarg.tcovit") return PNLWZNMOPKAINVARG_TCOVIT;
 	if (s == "pnlwznmopkainvarg.tcocmt") return PNLWZNMOPKAINVARG_TCOCMT;
-	if (s == "pnlwznmopkaretval.tcosrf") return PNLWZNMOPKARETVAL_TCOSRF;
-	if (s == "pnlwznmopkaretval.tcovty") return PNLWZNMOPKARETVAL_TCOVTY;
-	if (s == "pnlwznmopkaretval.tcovec") return PNLWZNMOPKARETVAL_TCOVEC;
-	if (s == "pnlwznmopkaretval.tcocmt") return PNLWZNMOPKARETVAL_TCOCMT;
 	if (s == "pnlwznmopk1nop.tcoref") return PNLWZNMOPK1NOP_TCOREF;
 	if (s == "pnlwznmopkref1nblock.tcoref") return PNLWZNMOPKREF1NBLOCK_TCOREF;
-	if (s == "pnlwznmopkmncomponent.tcomref") return PNLWZNMOPKMNCOMPONENT_TCOMREF;
-	if (s == "pnlwznmopkmnlibrary.tcomref") return PNLWZNMOPKMNLIBRARY_TCOMREF;
 	if (s == "pnlwznmopkmnjob.tcomref") return PNLWZNMOPKMNJOB_TCOMREF;
+	if (s == "pnlwznmopkmnlibrary.tcomref") return PNLWZNMOPKMNLIBRARY_TCOMREF;
+	if (s == "pnlwznmopkmncomponent.tcomref") return PNLWZNMOPKMNCOMPONENT_TCOMREF;
 	if (s == "pnlwznmopksqkmnstub.tcomref") return PNLWZNMOPKSQKMNSTUB_TCOMREF;
 	if (s == "pnlwznmopxlist.tcosrf") return PNLWZNMOPXLIST_TCOSRF;
 	if (s == "pnlwznmopxlist.tcoopk") return PNLWZNMOPXLIST_TCOOPK;
 	if (s == "pnlwznmopxlist.tcoshd") return PNLWZNMOPXLIST_TCOSHD;
+	if (s == "pnlwznmopxaretval.tcosrf") return PNLWZNMOPXARETVAL_TCOSRF;
+	if (s == "pnlwznmopxaretval.tcovty") return PNLWZNMOPXARETVAL_TCOVTY;
+	if (s == "pnlwznmopxaretval.tcovec") return PNLWZNMOPXARETVAL_TCOVEC;
+	if (s == "pnlwznmopxaretval.tcocmt") return PNLWZNMOPXARETVAL_TCOCMT;
 	if (s == "pnlwznmopxainvarg.tcosrf") return PNLWZNMOPXAINVARG_TCOSRF;
 	if (s == "pnlwznmopxainvarg.tcovty") return PNLWZNMOPXAINVARG_TCOVTY;
 	if (s == "pnlwznmopxainvarg.tcovec") return PNLWZNMOPXAINVARG_TCOVEC;
 	if (s == "pnlwznmopxainvarg.tcodvl") return PNLWZNMOPXAINVARG_TCODVL;
 	if (s == "pnlwznmopxainvarg.tcovit") return PNLWZNMOPXAINVARG_TCOVIT;
 	if (s == "pnlwznmopxainvarg.tcocmt") return PNLWZNMOPXAINVARG_TCOCMT;
-	if (s == "pnlwznmopxaretval.tcosrf") return PNLWZNMOPXARETVAL_TCOSRF;
-	if (s == "pnlwznmopxaretval.tcovty") return PNLWZNMOPXARETVAL_TCOVTY;
-	if (s == "pnlwznmopxaretval.tcovec") return PNLWZNMOPXARETVAL_TCOVEC;
-	if (s == "pnlwznmopxaretval.tcocmt") return PNLWZNMOPXARETVAL_TCOCMT;
 	if (s == "pnlwznmopxref1nblock.tcoref") return PNLWZNMOPXREF1NBLOCK_TCOREF;
 	if (s == "pnlwznmopxmnjob.tcomref") return PNLWZNMOPXMNJOB_TCOMREF;
 	if (s == "pnlwznmopxsqkmnstub.tcomref") return PNLWZNMOPXSQKMNSTUB_TCOMREF;
@@ -676,26 +671,26 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmjoblist.tcogbl") return PNLWZNMJOBLIST_TCOGBL;
 	if (s == "pnlwznmjoblist.tcocls") return PNLWZNMJOBLIST_TCOCLS;
 	if (s == "pnlwznmjoblist.tcoshd") return PNLWZNMJOBLIST_TCOSHD;
-	if (s == "pnlwznmjobacmd.tcosrf") return PNLWZNMJOBACMD_TCOSRF;
-	if (s == "pnlwznmjobacmd.tcocmt") return PNLWZNMJOBACMD_TCOCMT;
 	if (s == "pnlwznmjobavar.tcosrf") return PNLWZNMJOBAVAR_TCOSRF;
 	if (s == "pnlwznmjobavar.tcovty") return PNLWZNMJOBAVAR_TCOVTY;
 	if (s == "pnlwznmjobavar.tcovec") return PNLWZNMJOBAVAR_TCOVEC;
 	if (s == "pnlwznmjobavar.tcolen") return PNLWZNMJOBAVAR_TCOLEN;
 	if (s == "pnlwznmjobavar.tcoshr") return PNLWZNMJOBAVAR_TCOSHR;
 	if (s == "pnlwznmjobavar.tcocmt") return PNLWZNMJOBAVAR_TCOCMT;
-	if (s == "pnlwznmjob1nsensitivity.tcoref") return PNLWZNMJOB1NSENSITIVITY_TCOREF;
+	if (s == "pnlwznmjobacmd.tcosrf") return PNLWZNMJOBACMD_TCOSRF;
+	if (s == "pnlwznmjobacmd.tcocmt") return PNLWZNMJOBACMD_TCOCMT;
+	if (s == "pnlwznmjob1nmethod.tcoref") return PNLWZNMJOB1NMETHOD_TCOREF;
 	if (s == "pnlwznmjobjob1nstage.tcoref") return PNLWZNMJOBJOB1NSTAGE_TCOREF;
 	if (s == "pnlwznmjob1nrtjob.tcoref") return PNLWZNMJOB1NRTJOB_TCOREF;
-	if (s == "pnlwznmjob1nmethod.tcoref") return PNLWZNMJOB1NMETHOD_TCOREF;
-	if (s == "pnlwznmjobref1nblock.tcoref") return PNLWZNMJOBREF1NBLOCK_TCOREF;
+	if (s == "pnlwznmjob1nsensitivity.tcoref") return PNLWZNMJOB1NSENSITIVITY_TCOREF;
 	if (s == "pnlwznmjobhk1nvector.tcoref") return PNLWZNMJOBHK1NVECTOR_TCOREF;
+	if (s == "pnlwznmjobref1nblock.tcoref") return PNLWZNMJOBREF1NBLOCK_TCOREF;
+	if (s == "pnlwznmjobmnoppack.tcomref") return PNLWZNMJOBMNOPPACK_TCOMREF;
+	if (s == "pnlwznmjobmnop.tcomref") return PNLWZNMJOBMNOP_TCOMREF;
 	if (s == "pnlwznmjobsupmnjob.tcomref") return PNLWZNMJOBSUPMNJOB_TCOMREF;
 	if (s == "pnlwznmjobsupmnjob.tcosho") return PNLWZNMJOBSUPMNJOB_TCOSHO;
 	if (s == "pnlwznmjobsupmnjob.tcomlt") return PNLWZNMJOBSUPMNJOB_TCOMLT;
 	if (s == "pnlwznmjobsupmnjob.tcocsa") return PNLWZNMJOBSUPMNJOB_TCOCSA;
-	if (s == "pnlwznmjobmnop.tcomref") return PNLWZNMJOBMNOP_TCOMREF;
-	if (s == "pnlwznmjobmnoppack.tcomref") return PNLWZNMJOBMNOPPACK_TCOMREF;
 	if (s == "pnlwznmjobsubmnjob.tcomref") return PNLWZNMJOBSUBMNJOB_TCOMREF;
 	if (s == "pnlwznmjobsubmnjob.tcosho") return PNLWZNMJOBSUBMNJOB_TCOSHO;
 	if (s == "pnlwznmjobsubmnjob.tcomlt") return PNLWZNMJOBSUBMNJOB_TCOMLT;
@@ -708,16 +703,16 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmmtdlist.tcosrf") return PNLWZNMMTDLIST_TCOSRF;
 	if (s == "pnlwznmmtdlist.tcojob") return PNLWZNMMTDLIST_TCOJOB;
 	if (s == "pnlwznmmtdlist.tcoexs") return PNLWZNMMTDLIST_TCOEXS;
-	if (s == "pnlwznmmtdainvpar.tcosrf") return PNLWZNMMTDAINVPAR_TCOSRF;
-	if (s == "pnlwznmmtdainvpar.tcovty") return PNLWZNMMTDAINVPAR_TCOVTY;
-	if (s == "pnlwznmmtdainvpar.tcovec") return PNLWZNMMTDAINVPAR_TCOVEC;
-	if (s == "pnlwznmmtdainvpar.tcolen") return PNLWZNMMTDAINVPAR_TCOLEN;
-	if (s == "pnlwznmmtdainvpar.tcocmt") return PNLWZNMMTDAINVPAR_TCOCMT;
 	if (s == "pnlwznmmtdaretpar.tcosrf") return PNLWZNMMTDARETPAR_TCOSRF;
 	if (s == "pnlwznmmtdaretpar.tcovty") return PNLWZNMMTDARETPAR_TCOVTY;
 	if (s == "pnlwznmmtdaretpar.tcovec") return PNLWZNMMTDARETPAR_TCOVEC;
 	if (s == "pnlwznmmtdaretpar.tcolen") return PNLWZNMMTDARETPAR_TCOLEN;
 	if (s == "pnlwznmmtdaretpar.tcocmt") return PNLWZNMMTDARETPAR_TCOCMT;
+	if (s == "pnlwznmmtdainvpar.tcosrf") return PNLWZNMMTDAINVPAR_TCOSRF;
+	if (s == "pnlwznmmtdainvpar.tcovty") return PNLWZNMMTDAINVPAR_TCOVTY;
+	if (s == "pnlwznmmtdainvpar.tcovec") return PNLWZNMMTDAINVPAR_TCOVEC;
+	if (s == "pnlwznmmtdainvpar.tcolen") return PNLWZNMMTDAINVPAR_TCOLEN;
+	if (s == "pnlwznmmtdainvpar.tcocmt") return PNLWZNMMTDAINVPAR_TCOCMT;
 	if (s == "pnlwznmblklist.tcosrf") return PNLWZNMBLKLIST_TCOSRF;
 	if (s == "pnlwznmblklist.tcotyp") return PNLWZNMBLKLIST_TCOTYP;
 	if (s == "pnlwznmblklist.tcover") return PNLWZNMBLKLIST_TCOVER;
@@ -761,16 +756,16 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmapplist.tcotit") return PNLWZNMAPPLIST_TCOTIT;
 	if (s == "pnlwznmapplist.tcotrg") return PNLWZNMAPPLIST_TCOTRG;
 	if (s == "pnlwznmapplist.tcover") return PNLWZNMAPPLIST_TCOVER;
-	if (s == "pnlwznmapp1nrtjob.tcoref") return PNLWZNMAPP1NRTJOB_TCOREF;
-	if (s == "pnlwznmappapp1nsequence.tcoref") return PNLWZNMAPPAPP1NSEQUENCE_TCOREF;
 	if (s == "pnlwznmapp1nevent.tcoref") return PNLWZNMAPP1NEVENT_TCOREF;
+	if (s == "pnlwznmappapp1nsequence.tcoref") return PNLWZNMAPPAPP1NSEQUENCE_TCOREF;
+	if (s == "pnlwznmapp1nrtjob.tcoref") return PNLWZNMAPP1NRTJOB_TCOREF;
 	if (s == "pnlwznmappref1nfile.tcoref") return PNLWZNMAPPREF1NFILE_TCOREF;
 	if (s == "pnlwznmrtjlist.tcosrf") return PNLWZNMRTJLIST_TCOSRF;
 	if (s == "pnlwznmrtjlist.tcoapp") return PNLWZNMRTJLIST_TCOAPP;
 	if (s == "pnlwznmrtjlist.tcosup") return PNLWZNMRTJLIST_TCOSUP;
 	if (s == "pnlwznmrtjlist.tcojob") return PNLWZNMRTJLIST_TCOJOB;
-	if (s == "pnlwznmrtj1nrtblock.tcoref") return PNLWZNMRTJ1NRTBLOCK_TCOREF;
 	if (s == "pnlwznmrtj1nrtdpch.tcoref") return PNLWZNMRTJ1NRTDPCH_TCOREF;
+	if (s == "pnlwznmrtj1nrtblock.tcoref") return PNLWZNMRTJ1NRTBLOCK_TCOREF;
 	if (s == "pnlwznmrtjsup1nrtjob.tcoref") return PNLWZNMRTJSUP1NRTJOB_TCOREF;
 	if (s == "pnlwznmevtlist.tcosrf") return PNLWZNMEVTLIST_TCOSRF;
 	if (s == "pnlwznmevtlist.tcoapp") return PNLWZNMEVTLIST_TCOAPP;
@@ -780,15 +775,6 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmseqseq1nstate.tcoref") return PNLWZNMSEQSEQ1NSTATE_TCOREF;
 	if (s == "pnlwznmstelist.tcosrf") return PNLWZNMSTELIST_TCOSRF;
 	if (s == "pnlwznmstelist.tcoseq") return PNLWZNMSTELIST_TCOSEQ;
-	if (s == "pnlwznmsteatrig.tcosrf") return PNLWZNMSTEATRIG_TCOSRF;
-	if (s == "pnlwznmsteatrig.tcotyp") return PNLWZNMSTEATRIG_TCOTYP;
-	if (s == "pnlwznmsteatrig.tcoevt") return PNLWZNMSTEATRIG_TCOEVT;
-	if (s == "pnlwznmsteatrig.tcortj") return PNLWZNMSTEATRIG_TCORTJ;
-	if (s == "pnlwznmsteatrig.tcovit") return PNLWZNMSTEATRIG_TCOVIT;
-	if (s == "pnlwznmsteatrig.tcoxsr") return PNLWZNMSTEATRIG_TCOXSR;
-	if (s == "pnlwznmsteatrig.tcortd") return PNLWZNMSTEATRIG_TCORTD;
-	if (s == "pnlwznmsteatrig.tcomsk") return PNLWZNMSTEATRIG_TCOMSK;
-	if (s == "pnlwznmsteatrig.tcocnd") return PNLWZNMSTEATRIG_TCOCND;
 	if (s == "pnlwznmsteaaction.tcosct") return PNLWZNMSTEAACTION_TCOSCT;
 	if (s == "pnlwznmsteaaction.tcotyp") return PNLWZNMSTEAACTION_TCOTYP;
 	if (s == "pnlwznmsteaaction.tcotrj") return PNLWZNMSTEAACTION_TCOTRJ;
@@ -804,6 +790,15 @@ uint DbsWznm::VecVControl::getIx(
 	if (s == "pnlwznmsteaaction.tcoip3") return PNLWZNMSTEAACTION_TCOIP3;
 	if (s == "pnlwznmsteaaction.tcotr4") return PNLWZNMSTEAACTION_TCOTR4;
 	if (s == "pnlwznmsteaaction.tcoip4") return PNLWZNMSTEAACTION_TCOIP4;
+	if (s == "pnlwznmsteatrig.tcosrf") return PNLWZNMSTEATRIG_TCOSRF;
+	if (s == "pnlwznmsteatrig.tcotyp") return PNLWZNMSTEATRIG_TCOTYP;
+	if (s == "pnlwznmsteatrig.tcoevt") return PNLWZNMSTEATRIG_TCOEVT;
+	if (s == "pnlwznmsteatrig.tcortj") return PNLWZNMSTEATRIG_TCORTJ;
+	if (s == "pnlwznmsteatrig.tcovit") return PNLWZNMSTEATRIG_TCOVIT;
+	if (s == "pnlwznmsteatrig.tcoxsr") return PNLWZNMSTEATRIG_TCOXSR;
+	if (s == "pnlwznmsteatrig.tcortd") return PNLWZNMSTEATRIG_TCORTD;
+	if (s == "pnlwznmsteatrig.tcomsk") return PNLWZNMSTEATRIG_TCOMSK;
+	if (s == "pnlwznmsteatrig.tcocnd") return PNLWZNMSTEATRIG_TCOCND;
 
 	return(0);
 };
@@ -882,26 +877,23 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMCTPAPAR_TCOVAL) return("PnlWznmCtpAPar.TcoVal");
 	if (ix == PNLWZNMCTP1NTAG_TCOREF) return("PnlWznmCtp1NTag.TcoRef");
 	if (ix == PNLWZNMCTPTPL1NCAPABILITY_TCOREF) return("PnlWznmCtpTpl1NCapability.TcoRef");
-	if (ix == PNLWZNMMTYLIST_TCOSRF) return("PnlWznmMtyList.TcoSrf");
-	if (ix == PNLWZNMMTYLIST_TCOACH) return("PnlWznmMtyList.TcoAch");
-	if (ix == PNLWZNMMTYLIST_TCOOS) return("PnlWznmMtyList.TcoOs");
-	if (ix == PNLWZNMMTYAMAKEFILE_TCOTAG) return("PnlWznmMtyAMakefile.TcoTag");
-	if (ix == PNLWZNMMTYAMAKEFILE_TCOVAL) return("PnlWznmMtyAMakefile.TcoVal");
-	if (ix == PNLWZNMMTY1NMACHINE_TCOREF) return("PnlWznmMty1NMachine.TcoRef");
 	if (ix == PNLWZNMMCHLIST_TCOSRF) return("PnlWznmMchList.TcoSrf");
-	if (ix == PNLWZNMMCHLIST_TCOTBL) return("PnlWznmMchList.TcoTbl");
+	if (ix == PNLWZNMMCHLIST_TCOSUP) return("PnlWznmMchList.TcoSup");
+	if (ix == PNLWZNMMCHAMAKEFILE_TCOTAG) return("PnlWznmMchAMakefile.TcoTag");
+	if (ix == PNLWZNMMCHAMAKEFILE_TCOVAL) return("PnlWznmMchAMakefile.TcoVal");
 	if (ix == PNLWZNMMCHAPAR_TCOKEY) return("PnlWznmMchAPar.TcoKey");
 	if (ix == PNLWZNMMCHAPAR_TCOVAL) return("PnlWznmMchAPar.TcoVal");
 	if (ix == PNLWZNMMCH1NRELEASE_TCOREF) return("PnlWznmMch1NRelease.TcoRef");
+	if (ix == PNLWZNMMCHSUP1NMACHINE_TCOREF) return("PnlWznmMchSup1NMachine.TcoRef");
 	if (ix == PNLWZNMLIBLIST_TCOSRF) return("PnlWznmLibList.TcoSrf");
 	if (ix == PNLWZNMLIBLIST_TCOTIT) return("PnlWznmLibList.TcoTit");
 	if (ix == PNLWZNMLIBLIST_TCOVER) return("PnlWznmLibList.TcoVer");
 	if (ix == PNLWZNMLIBLIST_TCOLTY) return("PnlWznmLibList.TcoLty");
-	if (ix == PNLWZNMLIBAMAKEFILE_TCOREU) return("PnlWznmLibAMakefile.TcoReu");
+	if (ix == PNLWZNMLIBAPKGLIST_TCOMCH) return("PnlWznmLibAPkglist.TcoMch");
+	if (ix == PNLWZNMLIBAPKGLIST_TCOPKL) return("PnlWznmLibAPkglist.TcoPkl");
+	if (ix == PNLWZNMLIBAMAKEFILE_TCOMCH) return("PnlWznmLibAMakefile.TcoMch");
 	if (ix == PNLWZNMLIBAMAKEFILE_TCOTAG) return("PnlWznmLibAMakefile.TcoTag");
 	if (ix == PNLWZNMLIBAMAKEFILE_TCOVAL) return("PnlWznmLibAMakefile.TcoVal");
-	if (ix == PNLWZNMLIBAPKGLIST_TCOREU) return("PnlWznmLibAPkglist.TcoReu");
-	if (ix == PNLWZNMLIBAPKGLIST_TCOPKL) return("PnlWznmLibAPkglist.TcoPkl");
 	if (ix == PNLWZNMLIBREF1NFILE_TCOREF) return("PnlWznmLibRef1NFile.TcoRef");
 	if (ix == PNLWZNMLIBMNOPPACK_TCOMREF) return("PnlWznmLibMNOppack.TcoMref");
 	if (ix == PNLWZNMLIBMNCOMPONENT_TCOMREF) return("PnlWznmLibMNComponent.TcoMref");
@@ -926,22 +918,22 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMVERLIST_TCOLOC) return("PnlWznmVerList.TcoLoc");
 	if (ix == PNLWZNMVERLIST_TCOSTE) return("PnlWznmVerList.TcoSte");
 	if (ix == PNLWZNMVERLIST_TCODTY) return("PnlWznmVerList.TcoDty");
-	if (ix == PNLWZNMVER1NBLOCK_TCOREF) return("PnlWznmVer1NBlock.TcoRef");
-	if (ix == PNLWZNMVERBVR1NVERSION_TCOREF) return("PnlWznmVerBvr1NVersion.TcoRef");
-	if (ix == PNLWZNMVER1NCOMPONENT_TCOREF) return("PnlWznmVer1NComponent.TcoRef");
-	if (ix == PNLWZNMVER1NCALL_TCOREF) return("PnlWznmVer1NCall.TcoRef");
+	if (ix == PNLWZNMVER1NPRESET_TCOREF) return("PnlWznmVer1NPreset.TcoRef");
+	if (ix == PNLWZNMVER1NQUERY_TCOREF) return("PnlWznmVer1NQuery.TcoRef");
+	if (ix == PNLWZNMVERVER1NERROR_TCOREF) return("PnlWznmVerVer1NError.TcoRef");
+	if (ix == PNLWZNMVERVER1NAPP_TCOREF) return("PnlWznmVerVer1NApp.TcoRef");
+	if (ix == PNLWZNMVER1NRELATION_TCOREF) return("PnlWznmVer1NRelation.TcoRef");
 	if (ix == PNLWZNMVER1NIMPEXPCPLX_TCOREF) return("PnlWznmVer1NImpexpcplx.TcoRef");
 	if (ix == PNLWZNMVER1NJOB_TCOREF) return("PnlWznmVer1NJob.TcoRef");
 	if (ix == PNLWZNMVER1NOPPACK_TCOREF) return("PnlWznmVer1NOppack.TcoRef");
-	if (ix == PNLWZNMVERVER1NMODULE_TCOREF) return("PnlWznmVerVer1NModule.TcoRef");
-	if (ix == PNLWZNMVER1NPRESET_TCOREF) return("PnlWznmVer1NPreset.TcoRef");
-	if (ix == PNLWZNMVER1NQUERY_TCOREF) return("PnlWznmVer1NQuery.TcoRef");
-	if (ix == PNLWZNMVER1NRELATION_TCOREF) return("PnlWznmVer1NRelation.TcoRef");
-	if (ix == PNLWZNMVER1NTABLE_TCOREF) return("PnlWznmVer1NTable.TcoRef");
-	if (ix == PNLWZNMVER1NVECTOR_TCOREF) return("PnlWznmVer1NVector.TcoRef");
+	if (ix == PNLWZNMVERBVR1NVERSION_TCOREF) return("PnlWznmVerBvr1NVersion.TcoRef");
 	if (ix == PNLWZNMVER1NCAPABILITY_TCOREF) return("PnlWznmVer1NCapability.TcoRef");
-	if (ix == PNLWZNMVERVER1NAPP_TCOREF) return("PnlWznmVerVer1NApp.TcoRef");
-	if (ix == PNLWZNMVERVER1NERROR_TCOREF) return("PnlWznmVerVer1NError.TcoRef");
+	if (ix == PNLWZNMVER1NBLOCK_TCOREF) return("PnlWznmVer1NBlock.TcoRef");
+	if (ix == PNLWZNMVER1NVECTOR_TCOREF) return("PnlWznmVer1NVector.TcoRef");
+	if (ix == PNLWZNMVER1NTABLE_TCOREF) return("PnlWznmVer1NTable.TcoRef");
+	if (ix == PNLWZNMVER1NCALL_TCOREF) return("PnlWznmVer1NCall.TcoRef");
+	if (ix == PNLWZNMVERVER1NMODULE_TCOREF) return("PnlWznmVerVer1NModule.TcoRef");
+	if (ix == PNLWZNMVER1NCOMPONENT_TCOREF) return("PnlWznmVer1NComponent.TcoRef");
 	if (ix == PNLWZNMVERREF1NFILE_TCOREF) return("PnlWznmVerRef1NFile.TcoRef");
 	if (ix == PNLWZNMVERMNLOCALE_TCOMREF) return("PnlWznmVerMNLocale.TcoMref");
 	if (ix == PNLWZNMCAPLIST_TCOSRF) return("PnlWznmCapList.TcoSrf");
@@ -960,31 +952,31 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMTBLLIST_TCOVER) return("PnlWznmTblList.TcoVer");
 	if (ix == PNLWZNMTBLLIST_TCORET) return("PnlWznmTblList.TcoRet");
 	if (ix == PNLWZNMTBLLIST_TCOREU) return("PnlWznmTblList.TcoReu");
+	if (ix == PNLWZNMTBLATITLE_TCOTYP) return("PnlWznmTblATitle.TcoTyp");
+	if (ix == PNLWZNMTBLATITLE_TCOLOC) return("PnlWznmTblATitle.TcoLoc");
+	if (ix == PNLWZNMTBLATITLE_TCOGND) return("PnlWznmTblATitle.TcoGnd");
+	if (ix == PNLWZNMTBLATITLE_TCOTIT) return("PnlWznmTblATitle.TcoTit");
 	if (ix == PNLWZNMTBLALOADFCT_TCOLOT) return("PnlWznmTblALoadfct.TcoLot");
 	if (ix == PNLWZNMTBLALOADFCT_TCOFNA) return("PnlWznmTblALoadfct.TcoFna");
 	if (ix == PNLWZNMTBLALOADFCT_TCOLDX) return("PnlWznmTblALoadfct.TcoLdx");
 	if (ix == PNLWZNMTBLALOADFCT_TCOLBY) return("PnlWznmTblALoadfct.TcoLby");
 	if (ix == PNLWZNMTBLALOADFCT_TCOORD) return("PnlWznmTblALoadfct.TcoOrd");
 	if (ix == PNLWZNMTBLALOADFCT_TCOLIT) return("PnlWznmTblALoadfct.TcoLit");
-	if (ix == PNLWZNMTBLATITLE_TCOTYP) return("PnlWznmTblATitle.TcoTyp");
-	if (ix == PNLWZNMTBLATITLE_TCOLOC) return("PnlWznmTblATitle.TcoLoc");
-	if (ix == PNLWZNMTBLATITLE_TCOGND) return("PnlWznmTblATitle.TcoGnd");
-	if (ix == PNLWZNMTBLATITLE_TCOTIT) return("PnlWznmTblATitle.TcoTit");
-	if (ix == PNLWZNMTBL1NIMPEXP_TCOREF) return("PnlWznmTbl1NImpexp.TcoRef");
-	if (ix == PNLWZNMTBL1NCHECK_TCOREF) return("PnlWznmTbl1NCheck.TcoRef");
-	if (ix == PNLWZNMTBLFR1NRELATION_TCOREF) return("PnlWznmTblFr1NRelation.TcoRef");
-	if (ix == PNLWZNMTBLTO1NRELATION_TCOREF) return("PnlWznmTblTo1NRelation.TcoRef");
+	if (ix == PNLWZNMTBLTBL1NTABLECOL_TCOREF) return("PnlWznmTblTbl1NTablecol.TcoRef");
 	if (ix == PNLWZNMTBL1NSTUB_TCOREF) return("PnlWznmTbl1NStub.TcoRef");
 	if (ix == PNLWZNMTBL1NSUBSET_TCOREF) return("PnlWznmTbl1NSubset.TcoRef");
-	if (ix == PNLWZNMTBLTBL1NTABLECOL_TCOREF) return("PnlWznmTblTbl1NTablecol.TcoRef");
-	if (ix == PNLWZNMTBLREF1NDIALOG_TCOREF) return("PnlWznmTblRef1NDialog.TcoRef");
-	if (ix == PNLWZNMTBLREF1NCALL_TCOREF) return("PnlWznmTblRef1NCall.TcoRef");
+	if (ix == PNLWZNMTBLFR1NRELATION_TCOREF) return("PnlWznmTblFr1NRelation.TcoRef");
+	if (ix == PNLWZNMTBLTO1NRELATION_TCOREF) return("PnlWznmTblTo1NRelation.TcoRef");
+	if (ix == PNLWZNMTBL1NIMPEXP_TCOREF) return("PnlWznmTbl1NImpexp.TcoRef");
+	if (ix == PNLWZNMTBL1NCHECK_TCOREF) return("PnlWznmTbl1NCheck.TcoRef");
+	if (ix == PNLWZNMTBLFCT1NTABLECOL_TCOREF) return("PnlWznmTblFct1NTablecol.TcoRef");
 	if (ix == PNLWZNMTBLSRC1NFEED_TCOREF) return("PnlWznmTblSrc1NFeed.TcoRef");
 	if (ix == PNLWZNMTBLREF1NPANEL_TCOREF) return("PnlWznmTblRef1NPanel.TcoRef");
-	if (ix == PNLWZNMTBLFCT1NTABLECOL_TCOREF) return("PnlWznmTblFct1NTablecol.TcoRef");
-	if (ix == PNLWZNMTBLHK1NVECTOR_TCOREF) return("PnlWznmTblHk1NVector.TcoRef");
-	if (ix == PNLWZNMTBLREF1NQUERYMOD_TCOREF) return("PnlWznmTblRef1NQuerymod.TcoRef");
 	if (ix == PNLWZNMTBLREF1NRTBLOCK_TCOREF) return("PnlWznmTblRef1NRtblock.TcoRef");
+	if (ix == PNLWZNMTBLREF1NQUERYMOD_TCOREF) return("PnlWznmTblRef1NQuerymod.TcoRef");
+	if (ix == PNLWZNMTBLHK1NVECTOR_TCOREF) return("PnlWznmTblHk1NVector.TcoRef");
+	if (ix == PNLWZNMTBLREF1NCALL_TCOREF) return("PnlWznmTblRef1NCall.TcoRef");
+	if (ix == PNLWZNMTBLREF1NDIALOG_TCOREF) return("PnlWznmTblRef1NDialog.TcoRef");
 	if (ix == PNLWZNMTBLPST1NQUERYMOD_TCOREF) return("PnlWznmTblPst1NQuerymod.TcoRef");
 	if (ix == PNLWZNMTBLMNVECTOR_TCOMREF) return("PnlWznmTblMNVector.TcoMref");
 	if (ix == PNLWZNMTBLMNVECTOR_TCOSBS) return("PnlWznmTblMNVector.TcoSbs");
@@ -1002,8 +994,8 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMTCOATITLE_TCOTYP) return("PnlWznmTcoATitle.TcoTyp");
 	if (ix == PNLWZNMTCOATITLE_TCOLOC) return("PnlWznmTcoATitle.TcoLoc");
 	if (ix == PNLWZNMTCOATITLE_TCOTIT) return("PnlWznmTcoATitle.TcoTit");
-	if (ix == PNLWZNMTCO1NIMPEXPCOL_TCOREF) return("PnlWznmTco1NImpexpcol.TcoRef");
 	if (ix == PNLWZNMTCO1NQUERYCOL_TCOREF) return("PnlWznmTco1NQuerycol.TcoRef");
+	if (ix == PNLWZNMTCO1NIMPEXPCOL_TCOREF) return("PnlWznmTco1NImpexpcol.TcoRef");
 	if (ix == PNLWZNMTCOREF1NCONTROL_TCOREF) return("PnlWznmTcoRef1NControl.TcoRef");
 	if (ix == PNLWZNMTCOREF1NQUERYMOD_TCOREF) return("PnlWznmTcoRef1NQuerymod.TcoRef");
 	if (ix == PNLWZNMTCO1NCHECK_TCOREF) return("PnlWznmTco1NCheck.TcoRef");
@@ -1014,10 +1006,10 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMSBSATITLE_TCOLOC) return("PnlWznmSbsATitle.TcoLoc");
 	if (ix == PNLWZNMSBSATITLE_TCOGND) return("PnlWznmSbsATitle.TcoGnd");
 	if (ix == PNLWZNMSBSATITLE_TCOTIT) return("PnlWznmSbsATitle.TcoTit");
+	if (ix == PNLWZNMSBS1NSTUB_TCOREF) return("PnlWznmSbs1NStub.TcoRef");
+	if (ix == PNLWZNMSBS1NTABLECOL_TCOREF) return("PnlWznmSbs1NTablecol.TcoRef");
 	if (ix == PNLWZNMSBSFRS1NRELATION_TCOREF) return("PnlWznmSbsFrs1NRelation.TcoRef");
 	if (ix == PNLWZNMSBSTOS1NRELATION_TCOREF) return("PnlWznmSbsTos1NRelation.TcoRef");
-	if (ix == PNLWZNMSBS1NTABLECOL_TCOREF) return("PnlWznmSbs1NTablecol.TcoRef");
-	if (ix == PNLWZNMSBS1NSTUB_TCOREF) return("PnlWznmSbs1NStub.TcoRef");
 	if (ix == PNLWZNMSBSPST1NQUERYMOD_TCOREF) return("PnlWznmSbsPst1NQuerymod.TcoRef");
 	if (ix == PNLWZNMSBSASBMNSUBSET_TCOMREF) return("PnlWznmSbsAsbMNSubset.TcoMref");
 	if (ix == PNLWZNMSBSASBMNSUBSET_TCORTY) return("PnlWznmSbsAsbMNSubset.TcoRty");
@@ -1036,11 +1028,11 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMRELATITLE_TCOTYP) return("PnlWznmRelATitle.TcoTyp");
 	if (ix == PNLWZNMRELATITLE_TCOLOC) return("PnlWznmRelATitle.TcoLoc");
 	if (ix == PNLWZNMRELATITLE_TCOTIT) return("PnlWznmRelATitle.TcoTit");
-	if (ix == PNLWZNMRELSUP1NRELATION_TCOREF) return("PnlWznmRelSup1NRelation.TcoRef");
 	if (ix == PNLWZNMREL1NTABLECOL_TCOREF) return("PnlWznmRel1NTablecol.TcoRef");
+	if (ix == PNLWZNMRELSUP1NRELATION_TCOREF) return("PnlWznmRelSup1NRelation.TcoRef");
 	if (ix == PNLWZNMRELREF1NCONTROL_TCOREF) return("PnlWznmRelRef1NControl.TcoRef");
-	if (ix == PNLWZNMRELREF1NDIALOG_TCOREF) return("PnlWznmRelRef1NDialog.TcoRef");
 	if (ix == PNLWZNMRELREF1NPANEL_TCOREF) return("PnlWznmRelRef1NPanel.TcoRef");
+	if (ix == PNLWZNMRELREF1NDIALOG_TCOREF) return("PnlWznmRelRef1NDialog.TcoRef");
 	if (ix == PNLWZNMVECLIST_TCOSRF) return("PnlWznmVecList.TcoSrf");
 	if (ix == PNLWZNMVECLIST_TCOTYP) return("PnlWznmVecList.TcoTyp");
 	if (ix == PNLWZNMVECLIST_TCOVER) return("PnlWznmVecList.TcoVer");
@@ -1051,9 +1043,9 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMVECATITLE_TCOLOC) return("PnlWznmVecATitle.TcoLoc");
 	if (ix == PNLWZNMVECATITLE_TCOTIT) return("PnlWznmVecATitle.TcoTit");
 	if (ix == PNLWZNMVECVEC1NVECTORITEM_TCOREF) return("PnlWznmVecVec1NVectoritem.TcoRef");
+	if (ix == PNLWZNMVECFCT1NTABLECOL_TCOREF) return("PnlWznmVecFct1NTablecol.TcoRef");
 	if (ix == PNLWZNMVECSRC1NFEED_TCOREF) return("PnlWznmVecSrc1NFeed.TcoRef");
 	if (ix == PNLWZNMVECREF1NPANEL_TCOREF) return("PnlWznmVecRef1NPanel.TcoRef");
-	if (ix == PNLWZNMVECFCT1NTABLECOL_TCOREF) return("PnlWznmVecFct1NTablecol.TcoRef");
 	if (ix == PNLWZNMVECPST1NQUERYMOD_TCOREF) return("PnlWznmVecPst1NQuerymod.TcoRef");
 	if (ix == PNLWZNMVECMNTABLE_TCOMREF) return("PnlWznmVecMNTable.TcoMref");
 	if (ix == PNLWZNMVECMNTABLE_TCOSBS) return("PnlWznmVecMNTable.TcoSbs");
@@ -1071,17 +1063,17 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMSTBLIST_TCOSBS) return("PnlWznmStbList.TcoSbs");
 	if (ix == PNLWZNMSTBLIST_TCOEXA) return("PnlWznmStbList.TcoExa");
 	if (ix == PNLWZNMSTBSUPMNSTUB_TCOMREF) return("PnlWznmStbSupMNStub.TcoMref");
-	if (ix == PNLWZNMSTBMNCALL_TCOMREF) return("PnlWznmStbMNCall.TcoMref");
-	if (ix == PNLWZNMSTBMNSQUAWK_TCOMREF) return("PnlWznmStbMNSquawk.TcoMref");
 	if (ix == PNLWZNMSTBSUBMNSTUB_TCOMREF) return("PnlWznmStbSubMNStub.TcoMref");
+	if (ix == PNLWZNMSTBMNSQUAWK_TCOMREF) return("PnlWznmStbMNSquawk.TcoMref");
+	if (ix == PNLWZNMSTBMNCALL_TCOMREF) return("PnlWznmStbMNCall.TcoMref");
 	if (ix == PNLWZNMIEXLIST_TCOSRF) return("PnlWznmIexList.TcoSrf");
 	if (ix == PNLWZNMIEXLIST_TCOSHO) return("PnlWznmIexList.TcoSho");
 	if (ix == PNLWZNMIEXLIST_TCOTIT) return("PnlWznmIexList.TcoTit");
 	if (ix == PNLWZNMIEXLIST_TCOVER) return("PnlWznmIexList.TcoVer");
 	if (ix == PNLWZNMIEXLIST_TCOMIV) return("PnlWznmIexList.TcoMiv");
 	if (ix == PNLWZNMIEX1NIMPEXP_TCOREF) return("PnlWznmIex1NImpexp.TcoRef");
-	if (ix == PNLWZNMIEXREF1NDIALOG_TCOREF) return("PnlWznmIexRef1NDialog.TcoRef");
 	if (ix == PNLWZNMIEXHK1NVECTOR_TCOREF) return("PnlWznmIexHk1NVector.TcoRef");
+	if (ix == PNLWZNMIEXREF1NDIALOG_TCOREF) return("PnlWznmIexRef1NDialog.TcoRef");
 	if (ix == PNLWZNMIMELIST_TCOSRF) return("PnlWznmImeList.TcoSrf");
 	if (ix == PNLWZNMIMELIST_TCOIEX) return("PnlWznmImeList.TcoIex");
 	if (ix == PNLWZNMIMELIST_TCOSUP) return("PnlWznmImeList.TcoSup");
@@ -1112,8 +1104,8 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMCARLIST_TCOMDL) return("PnlWznmCarList.TcoMdl");
 	if (ix == PNLWZNMCARLIST_TCORET) return("PnlWznmCarList.TcoRet");
 	if (ix == PNLWZNMCARLIST_TCOREU) return("PnlWznmCarList.TcoReu");
-	if (ix == PNLWZNMCAR1NDIALOG_TCOREF) return("PnlWznmCar1NDialog.TcoRef");
 	if (ix == PNLWZNMCARCAR1NPANEL_TCOREF) return("PnlWznmCarCar1NPanel.TcoRef");
+	if (ix == PNLWZNMCAR1NDIALOG_TCOREF) return("PnlWznmCar1NDialog.TcoRef");
 	if (ix == PNLWZNMCARHK1NCONTROL_TCOREF) return("PnlWznmCarHk1NControl.TcoRef");
 	if (ix == PNLWZNMDLGLIST_TCOSRF) return("PnlWznmDlgList.TcoSrf");
 	if (ix == PNLWZNMDLGLIST_TCOTYP) return("PnlWznmDlgList.TcoTyp");
@@ -1137,23 +1129,23 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMQRYLIST_TCOSRL) return("PnlWznmQryList.TcoSrl");
 	if (ix == PNLWZNMQRYLIST_TCOTBL) return("PnlWznmQryList.TcoTbl");
 	if (ix == PNLWZNMQRYLIST_TCOQTB) return("PnlWznmQryList.TcoQtb");
-	if (ix == PNLWZNMQRYAORDER_TCOSHO) return("PnlWznmQryAOrder.TcoSho");
-	if (ix == PNLWZNMQRYAORDER_TCOTCO) return("PnlWznmQryAOrder.TcoTco");
 	if (ix == PNLWZNMQRYACLAUSE_TCOQMD) return("PnlWznmQryAClause.TcoQmd");
 	if (ix == PNLWZNMQRYACLAUSE_TCOTYP) return("PnlWznmQryAClause.TcoTyp");
 	if (ix == PNLWZNMQRYACLAUSE_TCOCSE) return("PnlWznmQryAClause.TcoCse");
 	if (ix == PNLWZNMQRYACLAUSE_TCOPST) return("PnlWznmQryAClause.TcoPst");
 	if (ix == PNLWZNMQRYACLAUSE_TCOVEC) return("PnlWznmQryAClause.TcoVec");
 	if (ix == PNLWZNMQRYACLAUSE_TCOVIT) return("PnlWznmQryAClause.TcoVit");
+	if (ix == PNLWZNMQRYAORDER_TCOSHO) return("PnlWznmQryAOrder.TcoSho");
+	if (ix == PNLWZNMQRYAORDER_TCOTCO) return("PnlWznmQryAOrder.TcoTco");
 	if (ix == PNLWZNMQRYSUP1NQUERY_TCOREF) return("PnlWznmQrySup1NQuery.TcoRef");
-	if (ix == PNLWZNMQRYQRY1NQUERYCOL_TCOREF) return("PnlWznmQryQry1NQuerycol.TcoRef");
 	if (ix == PNLWZNMQRY1NQUERYMOD_TCOREF) return("PnlWznmQry1NQuerymod.TcoRef");
+	if (ix == PNLWZNMQRYQRY1NQUERYCOL_TCOREF) return("PnlWznmQryQry1NQuerycol.TcoRef");
 	if (ix == PNLWZNMQRYMNTABLE_TCOMREF) return("PnlWznmQryMNTable.TcoMref");
 	if (ix == PNLWZNMQRYMNTABLE_TCOTQMD) return("PnlWznmQryMNTable.TcoTqmd");
 	if (ix == PNLWZNMQRYMNTABLE_TCOSRC) return("PnlWznmQryMNTable.TcoSrc");
 	if (ix == PNLWZNMQRYMNTABLE_TCOPFX) return("PnlWznmQryMNTable.TcoPfx");
-	if (ix == PNLWZNMQRYMNDIALOG_TCOMREF) return("PnlWznmQryMNDialog.TcoMref");
 	if (ix == PNLWZNMQRYMNPANEL_TCOMREF) return("PnlWznmQryMNPanel.TcoMref");
+	if (ix == PNLWZNMQRYMNDIALOG_TCOMREF) return("PnlWznmQryMNDialog.TcoMref");
 	if (ix == PNLWZNMQCOLIST_TCOSRF) return("PnlWznmQcoList.TcoSrf");
 	if (ix == PNLWZNMQCOLIST_TCOSHO) return("PnlWznmQcoList.TcoSho");
 	if (ix == PNLWZNMQCOLIST_TCOTYP) return("PnlWznmQcoList.TcoTyp");
@@ -1185,35 +1177,35 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMOPKLIST_TCOTYP) return("PnlWznmOpkList.TcoTyp");
 	if (ix == PNLWZNMOPKLIST_TCOVER) return("PnlWznmOpkList.TcoVer");
 	if (ix == PNLWZNMOPKLIST_TCOSHD) return("PnlWznmOpkList.TcoShd");
+	if (ix == PNLWZNMOPKARETVAL_TCOSRF) return("PnlWznmOpkARetval.TcoSrf");
+	if (ix == PNLWZNMOPKARETVAL_TCOVTY) return("PnlWznmOpkARetval.TcoVty");
+	if (ix == PNLWZNMOPKARETVAL_TCOVEC) return("PnlWznmOpkARetval.TcoVec");
+	if (ix == PNLWZNMOPKARETVAL_TCOCMT) return("PnlWznmOpkARetval.TcoCmt");
 	if (ix == PNLWZNMOPKAINVARG_TCOSRF) return("PnlWznmOpkAInvarg.TcoSrf");
 	if (ix == PNLWZNMOPKAINVARG_TCOVTY) return("PnlWznmOpkAInvarg.TcoVty");
 	if (ix == PNLWZNMOPKAINVARG_TCOVEC) return("PnlWznmOpkAInvarg.TcoVec");
 	if (ix == PNLWZNMOPKAINVARG_TCODVL) return("PnlWznmOpkAInvarg.TcoDvl");
 	if (ix == PNLWZNMOPKAINVARG_TCOVIT) return("PnlWznmOpkAInvarg.TcoVit");
 	if (ix == PNLWZNMOPKAINVARG_TCOCMT) return("PnlWznmOpkAInvarg.TcoCmt");
-	if (ix == PNLWZNMOPKARETVAL_TCOSRF) return("PnlWznmOpkARetval.TcoSrf");
-	if (ix == PNLWZNMOPKARETVAL_TCOVTY) return("PnlWznmOpkARetval.TcoVty");
-	if (ix == PNLWZNMOPKARETVAL_TCOVEC) return("PnlWznmOpkARetval.TcoVec");
-	if (ix == PNLWZNMOPKARETVAL_TCOCMT) return("PnlWznmOpkARetval.TcoCmt");
 	if (ix == PNLWZNMOPK1NOP_TCOREF) return("PnlWznmOpk1NOp.TcoRef");
 	if (ix == PNLWZNMOPKREF1NBLOCK_TCOREF) return("PnlWznmOpkRef1NBlock.TcoRef");
-	if (ix == PNLWZNMOPKMNCOMPONENT_TCOMREF) return("PnlWznmOpkMNComponent.TcoMref");
-	if (ix == PNLWZNMOPKMNLIBRARY_TCOMREF) return("PnlWznmOpkMNLibrary.TcoMref");
 	if (ix == PNLWZNMOPKMNJOB_TCOMREF) return("PnlWznmOpkMNJob.TcoMref");
+	if (ix == PNLWZNMOPKMNLIBRARY_TCOMREF) return("PnlWznmOpkMNLibrary.TcoMref");
+	if (ix == PNLWZNMOPKMNCOMPONENT_TCOMREF) return("PnlWznmOpkMNComponent.TcoMref");
 	if (ix == PNLWZNMOPKSQKMNSTUB_TCOMREF) return("PnlWznmOpkSqkMNStub.TcoMref");
 	if (ix == PNLWZNMOPXLIST_TCOSRF) return("PnlWznmOpxList.TcoSrf");
 	if (ix == PNLWZNMOPXLIST_TCOOPK) return("PnlWznmOpxList.TcoOpk");
 	if (ix == PNLWZNMOPXLIST_TCOSHD) return("PnlWznmOpxList.TcoShd");
+	if (ix == PNLWZNMOPXARETVAL_TCOSRF) return("PnlWznmOpxARetval.TcoSrf");
+	if (ix == PNLWZNMOPXARETVAL_TCOVTY) return("PnlWznmOpxARetval.TcoVty");
+	if (ix == PNLWZNMOPXARETVAL_TCOVEC) return("PnlWznmOpxARetval.TcoVec");
+	if (ix == PNLWZNMOPXARETVAL_TCOCMT) return("PnlWznmOpxARetval.TcoCmt");
 	if (ix == PNLWZNMOPXAINVARG_TCOSRF) return("PnlWznmOpxAInvarg.TcoSrf");
 	if (ix == PNLWZNMOPXAINVARG_TCOVTY) return("PnlWznmOpxAInvarg.TcoVty");
 	if (ix == PNLWZNMOPXAINVARG_TCOVEC) return("PnlWznmOpxAInvarg.TcoVec");
 	if (ix == PNLWZNMOPXAINVARG_TCODVL) return("PnlWznmOpxAInvarg.TcoDvl");
 	if (ix == PNLWZNMOPXAINVARG_TCOVIT) return("PnlWznmOpxAInvarg.TcoVit");
 	if (ix == PNLWZNMOPXAINVARG_TCOCMT) return("PnlWznmOpxAInvarg.TcoCmt");
-	if (ix == PNLWZNMOPXARETVAL_TCOSRF) return("PnlWznmOpxARetval.TcoSrf");
-	if (ix == PNLWZNMOPXARETVAL_TCOVTY) return("PnlWznmOpxARetval.TcoVty");
-	if (ix == PNLWZNMOPXARETVAL_TCOVEC) return("PnlWznmOpxARetval.TcoVec");
-	if (ix == PNLWZNMOPXARETVAL_TCOCMT) return("PnlWznmOpxARetval.TcoCmt");
 	if (ix == PNLWZNMOPXREF1NBLOCK_TCOREF) return("PnlWznmOpxRef1NBlock.TcoRef");
 	if (ix == PNLWZNMOPXMNJOB_TCOMREF) return("PnlWznmOpxMNJob.TcoMref");
 	if (ix == PNLWZNMOPXSQKMNSTUB_TCOMREF) return("PnlWznmOpxSqkMNStub.TcoMref");
@@ -1225,26 +1217,26 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMJOBLIST_TCOGBL) return("PnlWznmJobList.TcoGbl");
 	if (ix == PNLWZNMJOBLIST_TCOCLS) return("PnlWznmJobList.TcoCls");
 	if (ix == PNLWZNMJOBLIST_TCOSHD) return("PnlWznmJobList.TcoShd");
-	if (ix == PNLWZNMJOBACMD_TCOSRF) return("PnlWznmJobACmd.TcoSrf");
-	if (ix == PNLWZNMJOBACMD_TCOCMT) return("PnlWznmJobACmd.TcoCmt");
 	if (ix == PNLWZNMJOBAVAR_TCOSRF) return("PnlWznmJobAVar.TcoSrf");
 	if (ix == PNLWZNMJOBAVAR_TCOVTY) return("PnlWznmJobAVar.TcoVty");
 	if (ix == PNLWZNMJOBAVAR_TCOVEC) return("PnlWznmJobAVar.TcoVec");
 	if (ix == PNLWZNMJOBAVAR_TCOLEN) return("PnlWznmJobAVar.TcoLen");
 	if (ix == PNLWZNMJOBAVAR_TCOSHR) return("PnlWznmJobAVar.TcoShr");
 	if (ix == PNLWZNMJOBAVAR_TCOCMT) return("PnlWznmJobAVar.TcoCmt");
-	if (ix == PNLWZNMJOB1NSENSITIVITY_TCOREF) return("PnlWznmJob1NSensitivity.TcoRef");
+	if (ix == PNLWZNMJOBACMD_TCOSRF) return("PnlWznmJobACmd.TcoSrf");
+	if (ix == PNLWZNMJOBACMD_TCOCMT) return("PnlWznmJobACmd.TcoCmt");
+	if (ix == PNLWZNMJOB1NMETHOD_TCOREF) return("PnlWznmJob1NMethod.TcoRef");
 	if (ix == PNLWZNMJOBJOB1NSTAGE_TCOREF) return("PnlWznmJobJob1NStage.TcoRef");
 	if (ix == PNLWZNMJOB1NRTJOB_TCOREF) return("PnlWznmJob1NRtjob.TcoRef");
-	if (ix == PNLWZNMJOB1NMETHOD_TCOREF) return("PnlWznmJob1NMethod.TcoRef");
-	if (ix == PNLWZNMJOBREF1NBLOCK_TCOREF) return("PnlWznmJobRef1NBlock.TcoRef");
+	if (ix == PNLWZNMJOB1NSENSITIVITY_TCOREF) return("PnlWznmJob1NSensitivity.TcoRef");
 	if (ix == PNLWZNMJOBHK1NVECTOR_TCOREF) return("PnlWznmJobHk1NVector.TcoRef");
+	if (ix == PNLWZNMJOBREF1NBLOCK_TCOREF) return("PnlWznmJobRef1NBlock.TcoRef");
+	if (ix == PNLWZNMJOBMNOPPACK_TCOMREF) return("PnlWznmJobMNOppack.TcoMref");
+	if (ix == PNLWZNMJOBMNOP_TCOMREF) return("PnlWznmJobMNOp.TcoMref");
 	if (ix == PNLWZNMJOBSUPMNJOB_TCOMREF) return("PnlWznmJobSupMNJob.TcoMref");
 	if (ix == PNLWZNMJOBSUPMNJOB_TCOSHO) return("PnlWznmJobSupMNJob.TcoSho");
 	if (ix == PNLWZNMJOBSUPMNJOB_TCOMLT) return("PnlWznmJobSupMNJob.TcoMlt");
 	if (ix == PNLWZNMJOBSUPMNJOB_TCOCSA) return("PnlWznmJobSupMNJob.TcoCsa");
-	if (ix == PNLWZNMJOBMNOP_TCOMREF) return("PnlWznmJobMNOp.TcoMref");
-	if (ix == PNLWZNMJOBMNOPPACK_TCOMREF) return("PnlWznmJobMNOppack.TcoMref");
 	if (ix == PNLWZNMJOBSUBMNJOB_TCOMREF) return("PnlWznmJobSubMNJob.TcoMref");
 	if (ix == PNLWZNMJOBSUBMNJOB_TCOSHO) return("PnlWznmJobSubMNJob.TcoSho");
 	if (ix == PNLWZNMJOBSUBMNJOB_TCOMLT) return("PnlWznmJobSubMNJob.TcoMlt");
@@ -1257,16 +1249,16 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMMTDLIST_TCOSRF) return("PnlWznmMtdList.TcoSrf");
 	if (ix == PNLWZNMMTDLIST_TCOJOB) return("PnlWznmMtdList.TcoJob");
 	if (ix == PNLWZNMMTDLIST_TCOEXS) return("PnlWznmMtdList.TcoExs");
-	if (ix == PNLWZNMMTDAINVPAR_TCOSRF) return("PnlWznmMtdAInvpar.TcoSrf");
-	if (ix == PNLWZNMMTDAINVPAR_TCOVTY) return("PnlWznmMtdAInvpar.TcoVty");
-	if (ix == PNLWZNMMTDAINVPAR_TCOVEC) return("PnlWznmMtdAInvpar.TcoVec");
-	if (ix == PNLWZNMMTDAINVPAR_TCOLEN) return("PnlWznmMtdAInvpar.TcoLen");
-	if (ix == PNLWZNMMTDAINVPAR_TCOCMT) return("PnlWznmMtdAInvpar.TcoCmt");
 	if (ix == PNLWZNMMTDARETPAR_TCOSRF) return("PnlWznmMtdARetpar.TcoSrf");
 	if (ix == PNLWZNMMTDARETPAR_TCOVTY) return("PnlWznmMtdARetpar.TcoVty");
 	if (ix == PNLWZNMMTDARETPAR_TCOVEC) return("PnlWznmMtdARetpar.TcoVec");
 	if (ix == PNLWZNMMTDARETPAR_TCOLEN) return("PnlWznmMtdARetpar.TcoLen");
 	if (ix == PNLWZNMMTDARETPAR_TCOCMT) return("PnlWznmMtdARetpar.TcoCmt");
+	if (ix == PNLWZNMMTDAINVPAR_TCOSRF) return("PnlWznmMtdAInvpar.TcoSrf");
+	if (ix == PNLWZNMMTDAINVPAR_TCOVTY) return("PnlWznmMtdAInvpar.TcoVty");
+	if (ix == PNLWZNMMTDAINVPAR_TCOVEC) return("PnlWznmMtdAInvpar.TcoVec");
+	if (ix == PNLWZNMMTDAINVPAR_TCOLEN) return("PnlWznmMtdAInvpar.TcoLen");
+	if (ix == PNLWZNMMTDAINVPAR_TCOCMT) return("PnlWznmMtdAInvpar.TcoCmt");
 	if (ix == PNLWZNMBLKLIST_TCOSRF) return("PnlWznmBlkList.TcoSrf");
 	if (ix == PNLWZNMBLKLIST_TCOTYP) return("PnlWznmBlkList.TcoTyp");
 	if (ix == PNLWZNMBLKLIST_TCOVER) return("PnlWznmBlkList.TcoVer");
@@ -1310,16 +1302,16 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMAPPLIST_TCOTIT) return("PnlWznmAppList.TcoTit");
 	if (ix == PNLWZNMAPPLIST_TCOTRG) return("PnlWznmAppList.TcoTrg");
 	if (ix == PNLWZNMAPPLIST_TCOVER) return("PnlWznmAppList.TcoVer");
-	if (ix == PNLWZNMAPP1NRTJOB_TCOREF) return("PnlWznmApp1NRtjob.TcoRef");
-	if (ix == PNLWZNMAPPAPP1NSEQUENCE_TCOREF) return("PnlWznmAppApp1NSequence.TcoRef");
 	if (ix == PNLWZNMAPP1NEVENT_TCOREF) return("PnlWznmApp1NEvent.TcoRef");
+	if (ix == PNLWZNMAPPAPP1NSEQUENCE_TCOREF) return("PnlWznmAppApp1NSequence.TcoRef");
+	if (ix == PNLWZNMAPP1NRTJOB_TCOREF) return("PnlWznmApp1NRtjob.TcoRef");
 	if (ix == PNLWZNMAPPREF1NFILE_TCOREF) return("PnlWznmAppRef1NFile.TcoRef");
 	if (ix == PNLWZNMRTJLIST_TCOSRF) return("PnlWznmRtjList.TcoSrf");
 	if (ix == PNLWZNMRTJLIST_TCOAPP) return("PnlWznmRtjList.TcoApp");
 	if (ix == PNLWZNMRTJLIST_TCOSUP) return("PnlWznmRtjList.TcoSup");
 	if (ix == PNLWZNMRTJLIST_TCOJOB) return("PnlWznmRtjList.TcoJob");
-	if (ix == PNLWZNMRTJ1NRTBLOCK_TCOREF) return("PnlWznmRtj1NRtblock.TcoRef");
 	if (ix == PNLWZNMRTJ1NRTDPCH_TCOREF) return("PnlWznmRtj1NRtdpch.TcoRef");
+	if (ix == PNLWZNMRTJ1NRTBLOCK_TCOREF) return("PnlWznmRtj1NRtblock.TcoRef");
 	if (ix == PNLWZNMRTJSUP1NRTJOB_TCOREF) return("PnlWznmRtjSup1NRtjob.TcoRef");
 	if (ix == PNLWZNMEVTLIST_TCOSRF) return("PnlWznmEvtList.TcoSrf");
 	if (ix == PNLWZNMEVTLIST_TCOAPP) return("PnlWznmEvtList.TcoApp");
@@ -1329,15 +1321,6 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMSEQSEQ1NSTATE_TCOREF) return("PnlWznmSeqSeq1NState.TcoRef");
 	if (ix == PNLWZNMSTELIST_TCOSRF) return("PnlWznmSteList.TcoSrf");
 	if (ix == PNLWZNMSTELIST_TCOSEQ) return("PnlWznmSteList.TcoSeq");
-	if (ix == PNLWZNMSTEATRIG_TCOSRF) return("PnlWznmSteATrig.TcoSrf");
-	if (ix == PNLWZNMSTEATRIG_TCOTYP) return("PnlWznmSteATrig.TcoTyp");
-	if (ix == PNLWZNMSTEATRIG_TCOEVT) return("PnlWznmSteATrig.TcoEvt");
-	if (ix == PNLWZNMSTEATRIG_TCORTJ) return("PnlWznmSteATrig.TcoRtj");
-	if (ix == PNLWZNMSTEATRIG_TCOVIT) return("PnlWznmSteATrig.TcoVit");
-	if (ix == PNLWZNMSTEATRIG_TCOXSR) return("PnlWznmSteATrig.TcoXsr");
-	if (ix == PNLWZNMSTEATRIG_TCORTD) return("PnlWznmSteATrig.TcoRtd");
-	if (ix == PNLWZNMSTEATRIG_TCOMSK) return("PnlWznmSteATrig.TcoMsk");
-	if (ix == PNLWZNMSTEATRIG_TCOCND) return("PnlWznmSteATrig.TcoCnd");
 	if (ix == PNLWZNMSTEAACTION_TCOSCT) return("PnlWznmSteAAction.TcoSct");
 	if (ix == PNLWZNMSTEAACTION_TCOTYP) return("PnlWznmSteAAction.TcoTyp");
 	if (ix == PNLWZNMSTEAACTION_TCOTRJ) return("PnlWznmSteAAction.TcoTrj");
@@ -1353,6 +1336,15 @@ string DbsWznm::VecVControl::getSref(
 	if (ix == PNLWZNMSTEAACTION_TCOIP3) return("PnlWznmSteAAction.TcoIp3");
 	if (ix == PNLWZNMSTEAACTION_TCOTR4) return("PnlWznmSteAAction.TcoTr4");
 	if (ix == PNLWZNMSTEAACTION_TCOIP4) return("PnlWznmSteAAction.TcoIp4");
+	if (ix == PNLWZNMSTEATRIG_TCOSRF) return("PnlWznmSteATrig.TcoSrf");
+	if (ix == PNLWZNMSTEATRIG_TCOTYP) return("PnlWznmSteATrig.TcoTyp");
+	if (ix == PNLWZNMSTEATRIG_TCOEVT) return("PnlWznmSteATrig.TcoEvt");
+	if (ix == PNLWZNMSTEATRIG_TCORTJ) return("PnlWznmSteATrig.TcoRtj");
+	if (ix == PNLWZNMSTEATRIG_TCOVIT) return("PnlWznmSteATrig.TcoVit");
+	if (ix == PNLWZNMSTEATRIG_TCOXSR) return("PnlWznmSteATrig.TcoXsr");
+	if (ix == PNLWZNMSTEATRIG_TCORTD) return("PnlWznmSteATrig.TcoRtd");
+	if (ix == PNLWZNMSTEATRIG_TCOMSK) return("PnlWznmSteATrig.TcoMsk");
+	if (ix == PNLWZNMSTEATRIG_TCOCND) return("PnlWznmSteATrig.TcoCnd");
 
 	return("");
 };
@@ -1458,15 +1450,14 @@ uint DbsWznm::VecVKeylist::getIx(
 	if (s == "klstwznmkamcontrolparkey") return KLSTWZNMKAMCONTROLPARKEY;
 	if (s == "klstwznmkamcontrolparval") return KLSTWZNMKAMCONTROLPARVAL;
 	if (s == "klstwznmkamlibrarymakefiletag") return KLSTWZNMKAMLIBRARYMAKEFILETAG;
+	if (s == "klstwznmkammachinemakefiletag") return KLSTWZNMKAMMACHINEMAKEFILETAG;
 	if (s == "klstwznmkammachineparkey") return KLSTWZNMKAMMACHINEPARKEY;
-	if (s == "klstwznmkammachtypemakefiletag") return KLSTWZNMKAMMACHTYPEMAKEFILETAG;
 	if (s == "klstwznmkampersondetailtype") return KLSTWZNMKAMPERSONDETAILTYPE;
 	if (s == "klstwznmkmcontroloption") return KLSTWZNMKMCONTROLOPTION;
 	if (s == "klstwznmkmfilecontent") return KLSTWZNMKMFILECONTENT;
 	if (s == "klstwznmkmfilemimetype") return KLSTWZNMKMFILEMIMETYPE;
 	if (s == "klstwznmkmlibrarylictype") return KLSTWZNMKMLIBRARYLICTYPE;
-	if (s == "klstwznmkmmachtypeos") return KLSTWZNMKMMACHTYPEOS;
-	if (s == "klstwznmkmmachtypepkgmgr") return KLSTWZNMKMMACHTYPEPKGMGR;
+	if (s == "klstwznmkmmachinepkgmgr") return KLSTWZNMKMMACHINEPKGMGR;
 	if (s == "klstwznmkmrelationoption") return KLSTWZNMKMRELATIONOPTION;
 	if (s == "klstwznmkmreleaseoption") return KLSTWZNMKMRELEASEOPTION;
 	if (s == "klstwznmkmtablecoloption") return KLSTWZNMKMTABLECOLOPTION;
@@ -1490,15 +1481,14 @@ string DbsWznm::VecVKeylist::getSref(
 	if (ix == KLSTWZNMKAMCONTROLPARKEY) return("KlstWznmKAMControlParKey");
 	if (ix == KLSTWZNMKAMCONTROLPARVAL) return("KlstWznmKAMControlParVal");
 	if (ix == KLSTWZNMKAMLIBRARYMAKEFILETAG) return("KlstWznmKAMLibraryMakefileTag");
+	if (ix == KLSTWZNMKAMMACHINEMAKEFILETAG) return("KlstWznmKAMMachineMakefileTag");
 	if (ix == KLSTWZNMKAMMACHINEPARKEY) return("KlstWznmKAMMachineParKey");
-	if (ix == KLSTWZNMKAMMACHTYPEMAKEFILETAG) return("KlstWznmKAMMachtypeMakefileTag");
 	if (ix == KLSTWZNMKAMPERSONDETAILTYPE) return("KlstWznmKAMPersonDetailType");
 	if (ix == KLSTWZNMKMCONTROLOPTION) return("KlstWznmKMControlOption");
 	if (ix == KLSTWZNMKMFILECONTENT) return("KlstWznmKMFileContent");
 	if (ix == KLSTWZNMKMFILEMIMETYPE) return("KlstWznmKMFileMimetype");
 	if (ix == KLSTWZNMKMLIBRARYLICTYPE) return("KlstWznmKMLibraryLictype");
-	if (ix == KLSTWZNMKMMACHTYPEOS) return("KlstWznmKMMachtypeOs");
-	if (ix == KLSTWZNMKMMACHTYPEPKGMGR) return("KlstWznmKMMachtypePkgmgr");
+	if (ix == KLSTWZNMKMMACHINEPKGMGR) return("KlstWznmKMMachinePkgmgr");
 	if (ix == KLSTWZNMKMRELATIONOPTION) return("KlstWznmKMRelationOption");
 	if (ix == KLSTWZNMKMRELEASEOPTION) return("KlstWznmKMReleaseOption");
 	if (ix == KLSTWZNMKMTABLECOLOPTION) return("KlstWznmKMTablecolOption");
@@ -1524,15 +1514,14 @@ string DbsWznm::VecVKeylist::getTitle(
 		if (ix == KLSTWZNMKAMCONTROLPARKEY) return("key");
 		if (ix == KLSTWZNMKAMCONTROLPARVAL) return("value");
 		if (ix == KLSTWZNMKAMLIBRARYMAKEFILETAG) return("tag");
+		if (ix == KLSTWZNMKAMMACHINEMAKEFILETAG) return("tag");
 		if (ix == KLSTWZNMKAMMACHINEPARKEY) return("key");
-		if (ix == KLSTWZNMKAMMACHTYPEMAKEFILETAG) return("tag");
 		if (ix == KLSTWZNMKAMPERSONDETAILTYPE) return("type");
 		if (ix == KLSTWZNMKMCONTROLOPTION) return("options");
 		if (ix == KLSTWZNMKMFILECONTENT) return("content");
 		if (ix == KLSTWZNMKMFILEMIMETYPE) return("MIME type");
 		if (ix == KLSTWZNMKMLIBRARYLICTYPE) return("license type");
-		if (ix == KLSTWZNMKMMACHTYPEOS) return("operating system");
-		if (ix == KLSTWZNMKMMACHTYPEPKGMGR) return("package manager");
+		if (ix == KLSTWZNMKMMACHINEPKGMGR) return("package manager");
 		if (ix == KLSTWZNMKMRELATIONOPTION) return("options");
 		if (ix == KLSTWZNMKMRELEASEOPTION) return("options");
 		if (ix == KLSTWZNMKMTABLECOLOPTION) return("options");
@@ -1672,7 +1661,6 @@ uint DbsWznm::VecVMaintable::getIx(
 	if (s == "tblwznmmlibrary") return TBLWZNMMLIBRARY;
 	if (s == "tblwznmmlocale") return TBLWZNMMLOCALE;
 	if (s == "tblwznmmmachine") return TBLWZNMMMACHINE;
-	if (s == "tblwznmmmachtype") return TBLWZNMMMACHTYPE;
 	if (s == "tblwznmmmethod") return TBLWZNMMMETHOD;
 	if (s == "tblwznmmmodule") return TBLWZNMMMODULE;
 	if (s == "tblwznmmop") return TBLWZNMMOP;
@@ -1733,7 +1721,6 @@ string DbsWznm::VecVMaintable::getSref(
 	if (ix == TBLWZNMMLIBRARY) return("TblWznmMLibrary");
 	if (ix == TBLWZNMMLOCALE) return("TblWznmMLocale");
 	if (ix == TBLWZNMMMACHINE) return("TblWznmMMachine");
-	if (ix == TBLWZNMMMACHTYPE) return("TblWznmMMachtype");
 	if (ix == TBLWZNMMMETHOD) return("TblWznmMMethod");
 	if (ix == TBLWZNMMMODULE) return("TblWznmMModule");
 	if (ix == TBLWZNMMOP) return("TblWznmMOp");
@@ -1796,7 +1783,6 @@ string DbsWznm::VecVMaintable::getTitle(
 		if (ix == TBLWZNMMLIBRARY) return("library");
 		if (ix == TBLWZNMMLOCALE) return("locale");
 		if (ix == TBLWZNMMMACHINE) return("machine");
-		if (ix == TBLWZNMMMACHTYPE) return("machine type");
 		if (ix == TBLWZNMMMETHOD) return("method");
 		if (ix == TBLWZNMMMODULE) return("module");
 		if (ix == TBLWZNMMOP) return("operation");
@@ -1841,7 +1827,7 @@ void DbsWznm::VecVMaintable::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 54; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
+	for (unsigned int i = 1; i <= 53; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
 
 /******************************************************************************
@@ -1983,7 +1969,6 @@ uint DbsWznm::VecVPreset::getIx(
 	if (s == "prewznmixcrdaccmch") return PREWZNMIXCRDACCMCH;
 	if (s == "prewznmixcrdaccmdl") return PREWZNMIXCRDACCMDL;
 	if (s == "prewznmixcrdaccmtd") return PREWZNMIXCRDACCMTD;
-	if (s == "prewznmixcrdaccmty") return PREWZNMIXCRDACCMTY;
 	if (s == "prewznmixcrdaccopk") return PREWZNMIXCRDACCOPK;
 	if (s == "prewznmixcrdaccopx") return PREWZNMIXCRDACCOPX;
 	if (s == "prewznmixcrdaccpnl") return PREWZNMIXCRDACCPNL;
@@ -2022,18 +2007,19 @@ uint DbsWznm::VecVPreset::getIx(
 	if (s == "prewznmjoblist.ver") return PREWZNMJOBLIST_VER;
 	if (s == "prewznmjrefnotify") return PREWZNMJREFNOTIFY;
 	if (s == "prewznmjrefsess") return PREWZNMJREFSESS;
+	if (s == "prewznmlibamakefile.x1") return PREWZNMLIBAMAKEFILE_X1;
 	if (s == "prewznmlibamakefile.x2") return PREWZNMLIBAMAKEFILE_X2;
+	if (s == "prewznmlibapkglist.x1") return PREWZNMLIBAPKGLIST_X1;
 	if (s == "prewznmliblist.srf") return PREWZNMLIBLIST_SRF;
 	if (s == "prewznmloclist.srf") return PREWZNMLOCLIST_SRF;
+	if (s == "prewznmmchamakefile.x1") return PREWZNMMCHAMAKEFILE_X1;
 	if (s == "prewznmmchapar.x1") return PREWZNMMCHAPAR_X1;
 	if (s == "prewznmmchlist.srf") return PREWZNMMCHLIST_SRF;
-	if (s == "prewznmmchlist.tbl") return PREWZNMMCHLIST_TBL;
+	if (s == "prewznmmchlist.sup") return PREWZNMMCHLIST_SUP;
 	if (s == "prewznmmdllist.srf") return PREWZNMMDLLIST_SRF;
 	if (s == "prewznmmdllist.ver") return PREWZNMMDLLIST_VER;
 	if (s == "prewznmmtdlist.job") return PREWZNMMTDLIST_JOB;
 	if (s == "prewznmmtdlist.srf") return PREWZNMMTDLIST_SRF;
-	if (s == "prewznmmtyamakefile.x1") return PREWZNMMTYAMAKEFILE_X1;
-	if (s == "prewznmmtylist.srf") return PREWZNMMTYLIST_SRF;
 	if (s == "prewznmnoadm") return PREWZNMNOADM;
 	if (s == "prewznmopklist.srf") return PREWZNMOPKLIST_SRF;
 	if (s == "prewznmopklist.typ") return PREWZNMOPKLIST_TYP;
@@ -2109,7 +2095,6 @@ uint DbsWznm::VecVPreset::getIx(
 	if (s == "prewznmrefmdl") return PREWZNMREFMDL;
 	if (s == "prewznmrefmtb") return PREWZNMREFMTB;
 	if (s == "prewznmrefmtd") return PREWZNMREFMTD;
-	if (s == "prewznmrefmty") return PREWZNMREFMTY;
 	if (s == "prewznmrefoen") return PREWZNMREFOEN;
 	if (s == "prewznmrefopk") return PREWZNMREFOPK;
 	if (s == "prewznmrefopx") return PREWZNMREFOPX;
@@ -2334,7 +2319,6 @@ string DbsWznm::VecVPreset::getSref(
 	if (ix == PREWZNMIXCRDACCMCH) return("PreWznmIxCrdaccMch");
 	if (ix == PREWZNMIXCRDACCMDL) return("PreWznmIxCrdaccMdl");
 	if (ix == PREWZNMIXCRDACCMTD) return("PreWznmIxCrdaccMtd");
-	if (ix == PREWZNMIXCRDACCMTY) return("PreWznmIxCrdaccMty");
 	if (ix == PREWZNMIXCRDACCOPK) return("PreWznmIxCrdaccOpk");
 	if (ix == PREWZNMIXCRDACCOPX) return("PreWznmIxCrdaccOpx");
 	if (ix == PREWZNMIXCRDACCPNL) return("PreWznmIxCrdaccPnl");
@@ -2373,18 +2357,19 @@ string DbsWznm::VecVPreset::getSref(
 	if (ix == PREWZNMJOBLIST_VER) return("PreWznmJobList.ver");
 	if (ix == PREWZNMJREFNOTIFY) return("PreWznmJrefNotify");
 	if (ix == PREWZNMJREFSESS) return("PreWznmJrefSess");
+	if (ix == PREWZNMLIBAMAKEFILE_X1) return("PreWznmLibAMakefile.x1");
 	if (ix == PREWZNMLIBAMAKEFILE_X2) return("PreWznmLibAMakefile.x2");
+	if (ix == PREWZNMLIBAPKGLIST_X1) return("PreWznmLibAPkglist.x1");
 	if (ix == PREWZNMLIBLIST_SRF) return("PreWznmLibList.srf");
 	if (ix == PREWZNMLOCLIST_SRF) return("PreWznmLocList.srf");
+	if (ix == PREWZNMMCHAMAKEFILE_X1) return("PreWznmMchAMakefile.x1");
 	if (ix == PREWZNMMCHAPAR_X1) return("PreWznmMchAPar.x1");
 	if (ix == PREWZNMMCHLIST_SRF) return("PreWznmMchList.srf");
-	if (ix == PREWZNMMCHLIST_TBL) return("PreWznmMchList.tbl");
+	if (ix == PREWZNMMCHLIST_SUP) return("PreWznmMchList.sup");
 	if (ix == PREWZNMMDLLIST_SRF) return("PreWznmMdlList.srf");
 	if (ix == PREWZNMMDLLIST_VER) return("PreWznmMdlList.ver");
 	if (ix == PREWZNMMTDLIST_JOB) return("PreWznmMtdList.job");
 	if (ix == PREWZNMMTDLIST_SRF) return("PreWznmMtdList.srf");
-	if (ix == PREWZNMMTYAMAKEFILE_X1) return("PreWznmMtyAMakefile.x1");
-	if (ix == PREWZNMMTYLIST_SRF) return("PreWznmMtyList.srf");
 	if (ix == PREWZNMNOADM) return("PreWznmNoadm");
 	if (ix == PREWZNMOPKLIST_SRF) return("PreWznmOpkList.srf");
 	if (ix == PREWZNMOPKLIST_TYP) return("PreWznmOpkList.typ");
@@ -2460,7 +2445,6 @@ string DbsWznm::VecVPreset::getSref(
 	if (ix == PREWZNMREFMDL) return("PreWznmRefMdl");
 	if (ix == PREWZNMREFMTB) return("PreWznmRefMtb");
 	if (ix == PREWZNMREFMTD) return("PreWznmRefMtd");
-	if (ix == PREWZNMREFMTY) return("PreWznmRefMty");
 	if (ix == PREWZNMREFOEN) return("PreWznmRefOen");
 	if (ix == PREWZNMREFOPK) return("PreWznmRefOpk");
 	if (ix == PREWZNMREFOPX) return("PreWznmRefOpx");
@@ -2623,7 +2607,6 @@ string DbsWznm::VecVPreset::getTitle(
 		if (ix == PREWZNMREFMDL) return("module");
 		if (ix == PREWZNMREFMTB) return("main table");
 		if (ix == PREWZNMREFMTD) return("method");
-		if (ix == PREWZNMREFMTY) return("machine type");
 		if (ix == PREWZNMREFOEN) return("operation engine");
 		if (ix == PREWZNMREFOPK) return("operation pack");
 		if (ix == PREWZNMREFOPX) return("operation");
@@ -3058,66 +3041,6 @@ void DbsWznm::VecWArgtype::fillFeed(
 	feed.clear();
 
 	for (unsigned int i = 1; i <= TXTVAL; i *= 2) feed.appendIxSrefTitles(i, getSrefs(i), getTitle(i));
-};
-
-/******************************************************************************
- class DbsWznm::VecWCloudtype
- ******************************************************************************/
-
-uint DbsWznm::VecWCloudtype::getIx(
-			const string& srefs
-		) {
-	uint ix = 0;
-
-	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
-
-	for (unsigned int i = 0; i < ss.size(); i++) {
-		if (ss[i] == "aws") ix |= AWS;
-		else if (ss[i] == "azure") ix |= AZURE;
-	};
-
-	return(ix);
-};
-
-void DbsWznm::VecWCloudtype::getIcs(
-			const uint ix
-			, set<uint>& ics
-		) {
-	ics.clear();
-	for (unsigned int i = 1; i < (2*AZURE); i *= 2) if (ix & i) ics.insert(i);
-};
-
-string DbsWznm::VecWCloudtype::getSrefs(
-			const uint ix
-		) {
-	vector<string> ss;
-	string srefs;
-
-	if (ix & AWS) ss.push_back("aws");
-	if (ix & AZURE) ss.push_back("azure");
-
-	StrMod::vectorToString(ss, srefs);
-
-	return(srefs);
-};
-
-string DbsWznm::VecWCloudtype::getTitle(
-			const uint ix
-		) {
-	if (ix == AWS) return("amazon aws");
-	if (ix == AZURE) return("Microsoft Azure");
-	return(getSrefs(ix));
-
-	return("");
-};
-
-void DbsWznm::VecWCloudtype::fillFeed(
-			Feed& feed
-		) {
-	feed.clear();
-
-	for (unsigned int i = 1; i <= AZURE; i *= 2) feed.appendIxSrefTitles(i, getSrefs(i), getTitle(i));
 };
 
 /******************************************************************************

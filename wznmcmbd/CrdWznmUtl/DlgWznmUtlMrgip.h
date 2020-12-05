@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmUtlMrgip.h
 	* job handler for job DlgWznmUtlMrgip (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMUTLMRGIP_H
 #define DLGWZNMUTLMRGIP_H
@@ -505,9 +506,9 @@ public:
 
 	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalResDldActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalMrgButRunActive(DbsWznm* dbswznm);
 	bool evalMrgButStoActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalTrgUldActive(DbsWznm* dbswznm);
 	bool evalSrcUldActive(DbsWznm* dbswznm);
 
@@ -558,7 +559,7 @@ public:
 	void refreshLfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshRes(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -576,18 +577,18 @@ private:
 	void handleDpchAppDoMrgButStoClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
-	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
-	void handleUploadInSgeSupdone(DbsWznm* dbswznm, const std::string& filename);
 	void handleUploadInSgeSuldone(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeSupdone(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerInSgeSupidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeTupidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeSupidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);
@@ -628,5 +629,6 @@ private:
 };
 
 #endif
+
 
 

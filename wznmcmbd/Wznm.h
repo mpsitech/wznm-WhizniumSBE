@@ -1,18 +1,19 @@
 /**
 	* \file Wznm.h
 	* Wznm global functionality (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNM_H
 #define WZNM_H
 
-#define WZNM_VERSION "1.0.7"
+#define WZNM_VERSION "1.1.0"
 #define WZNM_VERSION_MAJOR 1
-#define WZNM_VERSION_MINOR 0
-#define WZNM_VERSION_SUB 7
+#define WZNM_VERSION_MINOR 1
+#define WZNM_VERSION_SUB 0
 
 // IP include.cust --- IBEGIN
 #include <sys/wait.h>
@@ -148,6 +149,8 @@ public:
 	*/
 namespace Wznm {
 	// IP gbl --- IBEGIN
+	std::string getPrjshort(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion);
+
 	void getVerlclref(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, Sbecore::ubigint& refLcl);
 	void getVerlclsref(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, std::string& srefLcl);
 	void getVerlclrefs(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, Sbecore::ubigint& refLcl, std::vector<Sbecore::ubigint>& refsLcl);
@@ -161,6 +164,16 @@ namespace Wznm {
 	bool getPnlconAvail(DbsWznm* dbswznm, const Sbecore::ubigint refSbs, std::set<Sbecore::ubigint>& refsSbsainb, std::set<Sbecore::ubigint>& refsSbsbina, std::set<Sbecore::ubigint>& refsSbsxsec, WznmMTable* basetbl, const Sbecore::ubigint refSbsTest, std::string& Avail); // used for pnlavail/conavail @ WznmGenDetui
 
 	void getSesspsts(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, std::vector<std::string>& sesspsts);
+
+	Sbecore::ubigint getRefCtp(DbsWznm* dbswznm, const std::string& sref);
+	void getSrefsCtpCustops(DbsWznm* dbswznm, std::map<Sbecore::ubigint,std::string>& srefsCtpCustops, const Sbecore::uint ixWznmVKeylist);
+
+	bool getCpa(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMCapability, const std::string& x1SrefKKey, std::string& Val);
+
+	bool getLibmkf(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMLibrary, const Sbecore::ubigint x1RefWznmMMachine, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& x2SrefKTag, std::string& Val);
+
+	bool getMchmkf(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMMachine, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& x1SrefKTag, std::string& Val);
+	bool getMchpar(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMMachine, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& x1SrefKKey, std::string& Val);
 
 	void getCarincs(DbsWznm* dbswznm, WznmMCard* car, ListWznmMTable& inctbls, std::map<Sbecore::ubigint,std::string>& incconds, std::map<Sbecore::ubigint,std::string>& incsbsconds);
 	void getCarrecpsts(DbsWznm* dbswznm, WznmMCard* car, std::vector<std::string>& carrecpsts);
@@ -186,11 +199,6 @@ namespace Wznm {
 	void getBasecons(DbsWznm* dbswznm, ListWznmMControl& cons, const std::set<Sbecore::uint>& hkIcsVSection, const Sbecore::ubigint refDit, std::vector<unsigned int>& icsBasecons);
 	void analyzeBasecon(DbsWznm* dbswznm, ListWznmMControl& cons, std::vector<unsigned int>& icsBasecons, const unsigned int ixIcsBasecons, const std::string& ditshort, unsigned int& cplxtype, std::string& baseconsref, std::string& baseconshort, bool& ldyn, bool& dyn, bool& rdyn, bool& vbar, unsigned int& ix0, unsigned int& ix1, unsigned int& ixBut, unsigned int& ixButCollapse, unsigned int& ixButEdit, unsigned int& ixButExpand, unsigned int& ixButToggle, unsigned int& ixButView, std::vector<unsigned int>& icsButs, unsigned int& ixChk, unsigned int& ixCpt, unsigned int& ixHdg, unsigned int& ixLsb, unsigned int& ixPup, unsigned int& ixTxf, unsigned int& ixTxt, std::vector<unsigned int>& icsVbarcons);
 	void showBasecons(DbsWznm* dbswznm, ListWznmMControl& cons, std::vector<unsigned int>& icsBasecons, const std::string& ditshort);
-
-	Sbecore::ubigint getRefCtp(DbsWznm* dbswznm, const std::string& sref);
-	void getSrefsCtpCustops(DbsWznm* dbswznm, std::map<Sbecore::ubigint,std::string>& srefsCtpCustops, const Sbecore::uint ixWznmVKeylist);
-
-	bool getCpa(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMCapability, const std::string& x1SrefKKey, std::string& Val);
 
 	void getJobvars(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMJob, ListWznmAMJobVar& vars, std::vector<std::string>& varsrefs, std::vector<bool>& Shrs, std::vector<unsigned int>& Ns);
 	void getJobevals(DbsWznm* dbswznm, WznmMJob* job, std::vector<std::string>& bitsEval, std::vector<std::string>& rulesEval, std::vector<std::string>& exprsEval);
@@ -244,10 +252,10 @@ namespace StubWznm {
 	std::string getStubLibStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubLocSref(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubLocStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
+	std::string getStubMchSref(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubMchStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubMdlStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubMtdStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
-	std::string getStubMtyStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubOpkStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubOpxStd(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
 	std::string getStubOwner(DbsWznm* dbswznm, const Sbecore::ubigint ref, const Sbecore::uint ixWznmVLocale = VecWznmVLocale::ENUS, const Sbecore::uint ixVNonetype = Sbecore::Stub::VecVNonetype::DASH, Sbecore::Stcch* stcch = NULL, Sbecore::stcchitemref_t* strefSub = NULL, const bool refresh = false);
@@ -420,5 +428,6 @@ public:
 };
 
 #endif
+
 
 

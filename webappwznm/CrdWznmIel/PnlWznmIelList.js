@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmIelList.js
-  * web client functionality for panel PnlWznmIelList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights

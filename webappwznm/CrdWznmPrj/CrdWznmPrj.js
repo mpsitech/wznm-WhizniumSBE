@@ -1,11 +1,3 @@
-/**
-  * \file CrdWznmPrj.js
-  * web client functionality for card CrdWznmPrj
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function getInitdone(pnlshort) {
 	return(retrieveSi(srcdoc, "StatAppWznmPrj", "initdone" + pnlshort) == "true");
 };
@@ -354,7 +346,7 @@ function refresh() {
 		if (scrJrefDlg != scrJrefDlgnew) showDlg("DlgWznmPrjNew", scrJrefDlgnew);
 	} else if (scrJrefDlg != "") hideDlg();
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmPrj", "MtxCrdPrj") + " - WhizniumSBE v1.0.7";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmPrj", "MtxCrdPrj") + " - WhizniumSBE v1.1.0";
 };
 
 // --- event handlers

@@ -1,10 +1,11 @@
 /**
 	* \file SqkWznmWrdbs.cpp
 	* squawk generation for operation pack WznmWrdbs (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "SqkWznmWrdbs.h"
 
@@ -28,7 +29,7 @@ string SqkWznmWrdbs::getSquawkDeploy(
 			DbsWznm* dbswznm
 			, DpchInvWznmWrdbsDeploy* dpchinv
 		) {
-	// example: "write database access library deployment scripts for release 'DbsBrly_genio'"
+	// example: "write database access library deployment scripts for release 'dbsbrly_genio'"
 	return("write database access library deployment scripts for release '" + StubWznm::getStubRlsStd(dbswznm, dpchinv->refWznmMRelease) + "'"); // IP getSquawkDeploy --- RLINE
 };
 
@@ -44,8 +45,8 @@ string SqkWznmWrdbs::getSquawkSql(
 			DbsWznm* dbswznm
 			, DpchInvWznmWrdbsSql* dpchinv
 		) {
-	// example: "write database create SQL code for version 'BeamRelay 0.1'"
-	return("write database create SQL code for version '" + StubWznm::getStubVerStd(dbswznm, dpchinv->refWznmMVersion) + "'"); // IP getSquawkSql --- RLINE
+	// example: "write database create SQL code for release 'dbsbrly_genio'"
+	return("write database create SQL code for release '" + StubWznm::getStubRlsStd(dbswznm, dpchinv->refWznmMRelease) + "'"); // IP getSquawkSql --- RLINE
 };
 
 string SqkWznmWrdbs::getSquawkTbl(
@@ -55,5 +56,6 @@ string SqkWznmWrdbs::getSquawkTbl(
 	// example: "write database access library C++ code for table 'TblBrlyMLocation'"
 	return("write database access library C++ code for table '" + StubWznm::getStubTblStd(dbswznm, dpchinv->refWznmMTable) + "'"); // IP getSquawkTbl --- RLINE
 };
+
 
 

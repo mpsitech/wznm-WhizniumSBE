@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmCmpRec.h
 	* job handler for job PnlWznmCmpRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMCMPREC_H
 #define PNLWZNMCMPREC_H
@@ -13,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCmpDetail.h"
-#include "PnlWznmCmp1NRelease.h"
-#include "PnlWznmCmpMNLibrary.h"
 #include "PnlWznmCmpMNOppack.h"
+#include "PnlWznmCmpMNLibrary.h"
+#include "PnlWznmCmp1NRelease.h"
+#include "PnlWznmCmpDetail.h"
 
 #define VecVWznmCmpRecDo PnlWznmCmpRec::VecVDo
 
@@ -179,10 +180,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCmpDetail* pnldetail;
-	PnlWznmCmp1NRelease* pnl1nrelease;
-	PnlWznmCmpMNLibrary* pnlmnlibrary;
 	PnlWznmCmpMNOppack* pnlmnoppack;
+	PnlWznmCmpMNLibrary* pnlmnlibrary;
+	PnlWznmCmp1NRelease* pnl1nrelease;
+	PnlWznmCmpDetail* pnldetail;
 
 	WznmMComponent recCmp;
 	Sbecore::uint ixWSubsetCmp;
@@ -195,7 +196,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -225,4 +226,6 @@ private:
 };
 
 #endif
+
+
 

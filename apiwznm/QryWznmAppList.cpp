@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmAppList.cpp
 	* API code for job QryWznmAppList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmAppList.h"
 
@@ -21,11 +22,11 @@ uint QryWznmAppList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "grp") return GRP;
-	if (s == "own") return OWN;
-	if (s == "tit") return TIT;
-	if (s == "trg") return TRG;
 	if (s == "ver") return VER;
+	if (s == "trg") return TRG;
+	if (s == "tit") return TIT;
+	if (s == "own") return OWN;
+	if (s == "grp") return GRP;
 
 	return(0);
 };
@@ -33,11 +34,11 @@ uint QryWznmAppList::VecVOrd::getIx(
 string QryWznmAppList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == GRP) return("grp");
-	if (ix == OWN) return("own");
-	if (ix == TIT) return("tit");
-	if (ix == TRG) return("trg");
 	if (ix == VER) return("ver");
+	if (ix == TRG) return("trg");
+	if (ix == TIT) return("tit");
+	if (ix == OWN) return("own");
+	if (ix == GRP) return("grp");
 
 	return("");
 };

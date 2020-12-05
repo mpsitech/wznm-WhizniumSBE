@@ -1,10 +1,11 @@
 /**
   * \file QryWznmRtjList.java
   * Java API code for job QryWznmRtjList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -18,20 +19,20 @@ public class QryWznmRtjList {
 		*/
 	public static class VecVOrd {
 
-		public static final int SRF = 1;
-		public static final int APP = 2;
-		public static final int SUP = 3;
-		public static final int JOB = 4;
+		public static final int JOB = 1;
+		public static final int SUP = 2;
+		public static final int APP = 3;
+		public static final int SRF = 4;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("srf")) return SRF;
-			if (s.equals("app")) return APP;
-			if (s.equals("sup")) return SUP;
 			if (s.equals("job")) return JOB;
+			if (s.equals("sup")) return SUP;
+			if (s.equals("app")) return APP;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -39,10 +40,10 @@ public class QryWznmRtjList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == SRF) return("srf");
-			if (ix == APP) return("app");
-			if (ix == SUP) return("sup");
 			if (ix == JOB) return("job");
+			if (ix == SUP) return("sup");
+			if (ix == APP) return("app");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

@@ -1,10 +1,11 @@
 /**
 	* \file JobWznmIexIni.h
 	* job handler for job JobWznmIexIni (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef JOBWZNMIEXINI_H
 #define JOBWZNMIEXINI_H
@@ -53,6 +54,7 @@ public:
 
 	std::string fullpath;
 	bool xmlNotTxt;
+	std::string rectpath;
 
 	Sbecore::uint lineno;
 	Sbecore::uint impcnt;
@@ -68,7 +70,7 @@ public:
 	IexWznmIni::ImeIMFile imeimfile;
 	IexWznmIni::ImeIMLibrary imeimlibrary;
 	IexWznmIni::ImeIMLocale imeimlocale;
-	IexWznmIni::ImeIMMachtype imeimmachtype;
+	IexWznmIni::ImeIMMachine imeimmachine;
 	IexWznmIni::ImeIMTag1 imeimtag1;
 	IexWznmIni::ImeIMUsergroup imeimusergroup;
 
@@ -80,7 +82,7 @@ public:
 public:
 	void reset(DbsWznm* dbswznm);
 
-	void parseFromFile(DbsWznm* dbswznm, const std::string& _fullpath, const bool _xmlNotTxt);
+	void parseFromFile(DbsWznm* dbswznm, const std::string& _fullpath, const bool _xmlNotTxt, const std::string& _rectpath = "");
 	void import(DbsWznm* dbswznm);
 	void reverse(DbsWznm* dbswznm);
 	void collect(DbsWznm* dbswznm, const std::map<Sbecore::uint,Sbecore::uint>& _icsWznmVIop = IexWznmIni::icsWznmVIopInsAll());
@@ -126,4 +128,6 @@ private:
 };
 
 #endif
+
+
 

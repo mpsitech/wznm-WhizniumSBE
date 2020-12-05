@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmNavGlobal.js
-  * web client functionality for panel PnlWznmNavGlobal
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // IP cust --- INSERT
 
 // --- expand state management
@@ -83,7 +75,7 @@ function refreshA() {
 function refreshBD(bNotD) {
 	if (!contcontdoc) return;
 
-	var height = 586; // full cont height
+	var height = 490; // full cont height
 
 	// IP refreshBD.vars --- BEGIN
 	var LstLocAlt = (retrieveSi(srcdoc, "StatAppWznmNavGlobal", "LstLocAlt") == "true");
@@ -100,11 +92,6 @@ function refreshBD(bNotD) {
 	var LstCtpAvail = (retrieveSi(srcdoc, "StatShrWznmNavGlobal", "LstCtpAvail") == "true");
 	var ButCtpViewAvail = !LstCtpAlt;
 	var ButCtpViewActive = (retrieveSi(srcdoc, "StatShrWznmNavGlobal", "ButCtpViewActive") == "true");
-
-	var LstMtyAlt = (retrieveSi(srcdoc, "StatAppWznmNavGlobal", "LstMtyAlt") == "true");
-	var LstMtyAvail = (retrieveSi(srcdoc, "StatShrWznmNavGlobal", "LstMtyAvail") == "true");
-	var ButMtyViewAvail = !LstMtyAlt;
-	var ButMtyViewActive = (retrieveSi(srcdoc, "StatShrWznmNavGlobal", "ButMtyViewActive") == "true");
 
 	var LstMchAlt = (retrieveSi(srcdoc, "StatAppWznmNavGlobal", "LstMchAlt") == "true");
 	var LstMchAvail = (retrieveSi(srcdoc, "StatShrWznmNavGlobal", "LstMchAvail") == "true");
@@ -281,60 +268,6 @@ function refreshBD(bNotD) {
 		if (ButCtpViewAvail) refreshButicon(contcontdoc, "ButCtpView", "icon/view", ButCtpViewActive, false);
 
 	} else setCtlAvail(contcontdoc, "Ctp2", false, 0);
-
-	height -= setCtlAvail(contcontdoc, "Mty", LstMtyAvail, 96);
-	height -= setCtlAvail(contcontdoc, "Mty2", LstMtyAvail && !LstMtyAlt, (LstMtyAvail) ? 71 : 0);
-	if (LstMtyAvail) {
-		if ( (LstMtyAlt == !contcontdoc.getElementById("ButMtyExpand")) || (!LstMtyAlt == !contcontdoc.getElementById("ButMtyCollapse")) ) {
-			mytd = contcontdoc.getElementById("ldynMty");
-			clearElem(mytd);
-
-			mytd.appendChild(makeSpanCpt(contcontdoc, "CptMty", retrieveTi(srcdoc, "TagWznmNavGlobal", "CptMty")));
-
-			mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
-			if (LstMtyAlt) mytd.appendChild(makeImgBut(contcontdoc, "ButMtyExpand", "icon/expand"));
-			else mytd.appendChild(makeImgBut(contcontdoc, "ButMtyCollapse", "icon/collapse"));
-		};
-
-		if (!LstMtyAlt == !contcontdoc.getElementById("LstMty")) {
-			mytd = contcontdoc.getElementById("rdynMty");
-			clearElem(mytd);
-			mytd = contcontdoc.getElementById("dynMty");
-			clearElem(mytd);
-
-			if (LstMtyAlt) {
-				mytd.setAttribute("rowspan", "1");
-			} else {
-				mytd.setAttribute("rowspan", "2");
-				mytd.appendChild(makeIframeLst(contcontdoc, "LstMty", "./PnlWznmNavGlobal_LstMty.xml", true));
-			};
-
-		} else {
-			if (!LstMtyAlt) refreshLst(contcontdoc.getElementById("LstMty").contentWindow.document, srcdoc, 1, true, false, "FeedFLstMty",
-						parseInt(retrieveSi(srcdoc, "StatAppWznmNavGlobal", "LstMtyNumFirstdisp")), [parseInt(retrieveCi(srcdoc, "ContIacWznmNavGlobal", "numFLstMty"))]);
-		};
-
-		if ((ButMtyViewAvail == !contcontdoc.getElementById("ButMtyView")) || !contcontdoc.getElementById("ButMtyNewcrd")) {
-			if (LstMtyAlt) mytd = contcontdoc.getElementById("dynMty");
-			else mytd = contcontdoc.getElementById("rdynMty");
-			clearElem(mytd);
-
-			first = true;
-
-			if (ButMtyViewAvail) {
-				if (first) first = false;
-				else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
-				mytd.appendChild(makeImgBut(contcontdoc, "ButMtyView", "icon/view"));
-			};
-
-			if (first) first = false;
-			else mytd.appendChild(contcontdoc.createTextNode("\u00a0"));
-			mytd.appendChild(makeImgBut(contcontdoc, "ButMtyNewcrd", "icon/newcrd"));
-		};
-
-		if (ButMtyViewAvail) refreshButicon(contcontdoc, "ButMtyView", "icon/view", ButMtyViewActive, false);
-
-	} else setCtlAvail(contcontdoc, "Mty2", false, 0);
 
 	height -= setCtlAvail(contcontdoc, "Mch", LstMchAvail, 96);
 	height -= setCtlAvail(contcontdoc, "Mch2", LstMchAvail && !LstMchAlt, (LstMchAvail) ? 71 : 0);
@@ -564,6 +497,8 @@ function handleButCrdopenClick(ctlsref) {
 };
 
 function handleLstLoad(lstdoc, ctlsref, ncol, multsel) {
+	if (!srcdoc) return;
+
 	if (multsel) {
 		refreshLst(lstdoc, srcdoc, ncol, true, multsel, "FeedF" + ctlsref, parseInt(retrieveSi(srcdoc, "StatAppWznmNavGlobal", ctlsref + "NumFirstdisp")),
 					parseUintvec(retrieveCi(srcdoc, "ContIacWznmNavGlobal", "numsF" + ctlsref)));
@@ -640,7 +575,6 @@ function mergeDpchEngData(dom) {
 	if (updateSrcblock(dom, "DpchEngWznmNavGlobalData", "FeedFLstLib", srcdoc)) mask.push("feedFLstLib");
 	if (updateSrcblock(dom, "DpchEngWznmNavGlobalData", "FeedFLstLoc", srcdoc)) mask.push("feedFLstLoc");
 	if (updateSrcblock(dom, "DpchEngWznmNavGlobalData", "FeedFLstMch", srcdoc)) mask.push("feedFLstMch");
-	if (updateSrcblock(dom, "DpchEngWznmNavGlobalData", "FeedFLstMty", srcdoc)) mask.push("feedFLstMty");
 	if (updateSrcblock(dom, "DpchEngWznmNavGlobalData", "FeedFLstTag", srcdoc)) mask.push("feedFLstTag");
 	if (updateSrcblock(dom, "DpchEngWznmNavGlobalData", "StatAppWznmNavGlobal", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmNavGlobalData", "StatShrWznmNavGlobal", srcdoc)) mask.push("statshr");

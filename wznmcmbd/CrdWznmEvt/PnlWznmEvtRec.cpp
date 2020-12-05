@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmEvtRec.cpp
 	* job handler for job PnlWznmEvtRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -78,7 +79,11 @@ DpchEngWznm* PnlWznmEvtRec::getNewDpchEng(
 void PnlWznmEvtRec::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -103,6 +108,7 @@ void PnlWznmEvtRec::refresh(
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
+	muteRefresh = false;
 };
 
 void PnlWznmEvtRec::updatePreset(
@@ -259,4 +265,6 @@ bool PnlWznmEvtRec::handleCallWznmEvt_appEq(
 	boolvalRet = (recEvt.refWznmMApp == refInv); // IP handleCallWznmEvt_appEq --- LINE
 	return retval;
 };
+
+
 

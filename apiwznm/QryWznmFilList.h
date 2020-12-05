@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmFilList.h
 	* API code for job QryWznmFilList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMFILLIST_H
 #define QRYWZNMFILLIST_H
@@ -27,11 +28,11 @@ namespace QryWznmFilList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint RET = 1;
-		static const Sbecore::uint REU = 2;
-		static const Sbecore::uint OWN = 3;
-		static const Sbecore::uint FNM = 4;
-		static const Sbecore::uint GRP = 5;
+		static const Sbecore::uint REU = 1;
+		static const Sbecore::uint FNM = 2;
+		static const Sbecore::uint RET = 3;
+		static const Sbecore::uint GRP = 4;
+		static const Sbecore::uint OWN = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

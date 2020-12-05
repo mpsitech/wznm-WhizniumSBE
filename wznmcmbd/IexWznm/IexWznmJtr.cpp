@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmJtr.cpp
 	* data blocks and readers/writers for import/export complex IexWznmJtr (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #include "IexWznmJtr.h"
 
@@ -7728,6 +7729,7 @@ void IexWznmJtr::ImeIRMCallMStub::writeXML(
 void IexWznmJtr::parseFromFile(
 			const string& fullpath
 			, const bool xmlNotTxt
+			, const string& rectpath
 			, ImeIMBlock2& imeimblock2
 			, ImeIMCall& imeimcall
 			, ImeIMJob& imeimjob
@@ -7748,7 +7750,7 @@ void IexWznmJtr::parseFromFile(
 		};
 
 	} else {
-			Txtrd rd(fullpath, "IexWznmJtr", Version("0.9.29"), VecVIme::getIx);
+			Txtrd rd(fullpath, rectpath, "IexWznmJtr", Version("0.9.29"), VecVIme::getIx);
 			readTxt(rd, imeimblock2, imeimcall, imeimjob, imeirmcallmstub);
 	};
 };
@@ -7888,4 +7890,6 @@ uint IexWznmJtr::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
+
+
 

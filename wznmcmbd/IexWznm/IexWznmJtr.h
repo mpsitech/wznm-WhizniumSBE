@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmJtr.h
 	* data blocks and readers/writers for import/export complex IexWznmJtr (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef IEXWZNMJTR_H
 #define IEXWZNMJTR_H
@@ -2047,7 +2048,7 @@ namespace IexWznmJtr {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIMBlock2& imeimblock2, ImeIMCall& imeimcall, ImeIMJob& imeimjob, ImeIRMCallMStub& imeirmcallmstub);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath, ImeIMBlock2& imeimblock2, ImeIMCall& imeimcall, ImeIMJob& imeimjob, ImeIRMCallMStub& imeirmcallmstub);
 	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIMBlock2& imeimblock2, ImeIMCall& imeimcall, ImeIMJob& imeimjob, ImeIRMCallMStub& imeirmcallmstub);
 
 	void readTxt(Sbecore::Txtrd& txtrd, ImeIMBlock2& imeimblock2, ImeIMCall& imeimcall, ImeIMJob& imeimjob, ImeIRMCallMStub& imeirmcallmstub);
@@ -2061,4 +2062,6 @@ namespace IexWznmJtr {
 };
 
 #endif
+
+
 

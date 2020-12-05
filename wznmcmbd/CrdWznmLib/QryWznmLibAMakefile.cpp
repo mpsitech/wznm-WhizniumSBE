@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmLibAMakefile.cpp
 	* job handler for job QryWznmLibAMakefile (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -77,6 +78,7 @@ void QryWznmLibAMakefile::rerun(
 	uint cnt;
 
 	ubigint preRefLib = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFLIB, jref);
+	ubigint preX1 = xchg->getRefPreset(VecWznmVPreset::PREWZNMLIBAMAKEFILE_X1, jref);
 	string preX2 = xchg->getSrefPreset(VecWznmVPreset::PREWZNMLIBAMAKEFILE_X2, jref);
 
 	xchg->removeClstns(VecWznmVCall::CALLWZNMLIBAMKFMOD_LIBEQ, jref);
@@ -87,7 +89,7 @@ void QryWznmLibAMakefile::rerun(
 	sqlstr = "SELECT COUNT(TblWznmAMLibraryMakefile.ref)";
 	sqlstr += " FROM TblWznmAMLibraryMakefile";
 	sqlstr += " WHERE TblWznmAMLibraryMakefile.refWznmMLibrary = " + to_string(preRefLib) + "";
-	rerun_filtSQL(sqlstr, preX2, false);
+	rerun_filtSQL(sqlstr, preX1, preX2, false);
 	dbswznm->loadUintBySQL(sqlstr, cnt);
 
 	statshr.ntot = cnt;
@@ -98,11 +100,11 @@ void QryWznmLibAMakefile::rerun(
 		else stgiac.jnumFirstload = 1;
 	};
 
-	sqlstr = "INSERT INTO TblWznmQLibAMakefile(jref, jnum, ref, x1RefIxVTbl, x1RefUref, x2SrefKTag, Val)";
-	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmAMLibraryMakefile.ref, TblWznmAMLibraryMakefile.x1RefIxVTbl, TblWznmAMLibraryMakefile.x1RefUref, TblWznmAMLibraryMakefile.x2SrefKTag, TblWznmAMLibraryMakefile.Val";
+	sqlstr = "INSERT INTO TblWznmQLibAMakefile(jref, jnum, ref, x1RefWznmMMachine, x2SrefKTag, Val)";
+	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmAMLibraryMakefile.ref, TblWznmAMLibraryMakefile.x1RefWznmMMachine, TblWznmAMLibraryMakefile.x2SrefKTag, TblWznmAMLibraryMakefile.Val";
 	sqlstr += " FROM TblWznmAMLibraryMakefile";
 	sqlstr += " WHERE TblWznmAMLibraryMakefile.refWznmMLibrary = " + to_string(preRefLib) + "";
-	rerun_filtSQL(sqlstr, preX2, false);
+	rerun_filtSQL(sqlstr, preX1, preX2, false);
 	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
 	dbswznm->executeQuery(sqlstr);
 
@@ -121,10 +123,16 @@ void QryWznmLibAMakefile::rerun(
 
 void QryWznmLibAMakefile::rerun_filtSQL(
 			string& sqlstr
+			, const ubigint preX1
 			, const string& preX2
 			, const bool addwhere
 		) {
 	bool first = addwhere;
+
+	if (preX1 != 0) {
+		rerun_filtSQL_append(sqlstr, first);
+		sqlstr += "TblWznmAMLibraryMakefile.x1RefWznmMMachine = " + to_string(preX1) + "";
+	};
 
 	if (preX2.length() > 0) {
 		rerun_filtSQL_append(sqlstr, first);
@@ -167,13 +175,7 @@ void QryWznmLibAMakefile::fetch(
 			rec = rst.nodes[i];
 
 			rec->jnum = statshr.jnumFirstload + i;
-			rec->srefX1RefIxVTbl = VecWznmVAMLibraryMakefileRefTbl::getSref(rec->x1RefIxVTbl);
-			rec->titX1RefIxVTbl = VecWznmVAMLibraryMakefileRefTbl::getTitle(rec->x1RefIxVTbl, ixWznmVLocale);
-			if (rec->x1RefIxVTbl == VecWznmVAMLibraryMakefileRefTbl::MCH) {
-				rec->stubX1RefUref = StubWznm::getStubMchStd(dbswznm, rec->x1RefUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->x1RefIxVTbl == VecWznmVAMLibraryMakefileRefTbl::MTY) {
-				rec->stubX1RefUref = StubWznm::getStubMtyStd(dbswznm, rec->x1RefUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else rec->stubX1RefUref = "-";
+			rec->stubX1RefWznmMMachine = StubWznm::getStubMchStd(dbswznm, rec->x1RefWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->titX2SrefKTag = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKAMLIBRARYMAKEFILETAG, rec->x2SrefKTag, ixWznmVLocale);
 		};
 
@@ -280,11 +282,8 @@ bool QryWznmLibAMakefile::handleShow(
 	cout << "\tjref";
 	cout << "\tjnum";
 	cout << "\tref";
-	cout << "\tx1RefIxVTbl";
-	cout << "\tsrefX1RefIxVTbl";
-	cout << "\ttitX1RefIxVTbl";
-	cout << "\tx1RefUref";
-	cout << "\tstubX1RefUref";
+	cout << "\tx1RefWznmMMachine";
+	cout << "\tstubX1RefWznmMMachine";
 	cout << "\tx2SrefKTag";
 	cout << "\ttitX2SrefKTag";
 	cout << "\tVal";
@@ -298,11 +297,8 @@ bool QryWznmLibAMakefile::handleShow(
 		cout << "\t" << rec->jref;
 		cout << "\t" << rec->jnum;
 		cout << "\t" << rec->ref;
-		cout << "\t" << rec->x1RefIxVTbl;
-		cout << "\t" << rec->srefX1RefIxVTbl;
-		cout << "\t" << rec->titX1RefIxVTbl;
-		cout << "\t" << rec->x1RefUref;
-		cout << "\t" << rec->stubX1RefUref;
+		cout << "\t" << rec->x1RefWznmMMachine;
+		cout << "\t" << rec->stubX1RefWznmMMachine;
 		cout << "\t" << rec->x2SrefKTag;
 		cout << "\t" << rec->titX2SrefKTag;
 		cout << "\t" << rec->Val;
@@ -315,19 +311,11 @@ void QryWznmLibAMakefile::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBAMKFMOD_LIBEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMLIBAMKFMOD_LIBEQ) {
 		call->abort = handleCallWznmLibAmkfMod_libEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmLibAMakefile::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmLibAMakefile::handleCallWznmLibAmkfMod_libEq(
@@ -343,4 +331,14 @@ bool QryWznmLibAMakefile::handleCallWznmLibAmkfMod_libEq(
 
 	return retval;
 };
+
+bool QryWznmLibAMakefile::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
+};
+
+
 

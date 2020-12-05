@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavGlobal_evals.cpp
 	* job handler for job PnlWznmNavGlobal (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -94,34 +95,6 @@ bool PnlWznmNavGlobal::evalButCtpViewActive(
 	return(args.back());
 };
 
-bool PnlWznmNavGlobal::evalLstMtyAvail(
-			DbsWznm* dbswznm
-		) {
-	// pre.ixCrdaccMty()
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMTY, jref) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmNavGlobal::evalButMtyViewActive(
-			DbsWznm* dbswznm
-		) {
-	// LstMty.sel()
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (contiac.numFLstMty != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool PnlWznmNavGlobal::evalLstMchAvail(
 			DbsWznm* dbswznm
 		) {
@@ -177,4 +150,6 @@ bool PnlWznmNavGlobal::evalButLibViewActive(
 
 	return(args.back());
 };
+
+
 

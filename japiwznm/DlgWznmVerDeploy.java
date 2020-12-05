@@ -1,10 +1,11 @@
 /**
   * \file DlgWznmVerDeploy.java
   * Java API code for job DlgWznmVerDeploy
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -20,7 +21,8 @@ public class DlgWznmVerDeploy {
 
 		public static final int IFI = 1;
 		public static final int IMP = 2;
-		public static final int LFI = 3;
+		public static final int PPR = 3;
+		public static final int LFI = 4;
 
 		public static int getIx(
 					String sref
@@ -29,6 +31,7 @@ public class DlgWznmVerDeploy {
 
 			if (s.equals("ifi")) return IFI;
 			if (s.equals("imp")) return IMP;
+			if (s.equals("ppr")) return PPR;
 			if (s.equals("lfi")) return LFI;
 
 			return 0;
@@ -39,6 +42,7 @@ public class DlgWznmVerDeploy {
 				) {
 			if (ix == IFI) return("Ifi");
 			if (ix == IMP) return("Imp");
+			if (ix == PPR) return("Ppr");
 			if (ix == LFI) return("Lfi");
 
 			return "";
@@ -104,6 +108,36 @@ public class DlgWznmVerDeploy {
 	};
 
 	/**
+		* VecVDoPpr (full: VecVDlgWznmVerDeployDoPpr)
+		*/
+	public static class VecVDoPpr {
+
+		public static final int BUTRUNCLICK = 1;
+		public static final int BUTSTOCLICK = 2;
+
+		public static int getIx(
+					String sref
+				) {
+			String s = sref.toLowerCase();
+
+			if (s.equals("butrunclick")) return BUTRUNCLICK;
+			if (s.equals("butstoclick")) return BUTSTOCLICK;
+
+			return 0;
+		};
+
+		public static String getSref(
+					int ix
+				) {
+			if (ix == BUTRUNCLICK) return("ButRunClick");
+			if (ix == BUTSTOCLICK) return("ButStoClick");
+
+			return "";
+		};
+
+	};
+
+	/**
 		* VecVSge (full: VecVDlgWznmVerDeploySge)
 		*/
 	public static class VecVSge {
@@ -116,7 +150,9 @@ public class DlgWznmVerDeploy {
 		public static final int IMPIDLE = 6;
 		public static final int IMPORT = 7;
 		public static final int ALRWZNMIER = 8;
-		public static final int DONE = 9;
+		public static final int IMPDONE = 9;
+		public static final int POSTPRC = 10;
+		public static final int DONE = 11;
 
 		public static int getIx(
 					String sref
@@ -131,6 +167,8 @@ public class DlgWznmVerDeploy {
 			if (s.equals("impidle")) return IMPIDLE;
 			if (s.equals("import")) return IMPORT;
 			if (s.equals("alrwznmier")) return ALRWZNMIER;
+			if (s.equals("impdone")) return IMPDONE;
+			if (s.equals("postprc")) return POSTPRC;
 			if (s.equals("done")) return DONE;
 
 			return 0;
@@ -147,6 +185,8 @@ public class DlgWznmVerDeploy {
 			if (ix == IMPIDLE) return("impidle");
 			if (ix == IMPORT) return("import");
 			if (ix == ALRWZNMIER) return("alrwznmier");
+			if (ix == IMPDONE) return("impdone");
+			if (ix == POSTPRC) return("postprc");
 			if (ix == DONE) return("done");
 
 			return "";
@@ -424,6 +464,70 @@ public class DlgWznmVerDeploy {
 			commitems = comm(comp);
 
 			diffitems = new HashSet<Integer>(Arrays.asList(DLD));
+			for (Integer ci: commitems) diffitems.remove(ci);
+
+			return(diffitems);
+		};
+
+	};
+
+	/**
+	  * ContInfPpr (full: ContInfDlgWznmVerDeployPpr)
+	  */
+	public class ContInfPpr extends Block {
+
+		public static final int TXTPRG = 1;
+
+		public ContInfPpr(
+					String TxtPrg
+				) {
+			this.TxtPrg = TxtPrg;
+
+			mask = new HashSet<Integer>(Arrays.asList(TXTPRG));
+		};
+
+		public String TxtPrg;
+
+		public boolean readXML(
+					Document doc
+					, String basexpath
+					, boolean addbasetag
+				) {
+
+			clear();
+
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "ContInfDlgWznmVerDeployPpr");
+
+			String itemtag = "ContitemInfDlgWznmVerDeployPpr";
+
+			if (Xmlio.checkXPath(doc, basexpath)) {
+				TxtPrg = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "TxtPrg", mask, TXTPRG);
+
+				return true;
+			};
+
+			return false;
+		};
+
+		public HashSet<Integer> comm(
+					ContInfPpr comp
+				) {
+			HashSet<Integer> items = new HashSet<Integer>();
+
+			if (TxtPrg.equals(comp.TxtPrg)) items.add(TXTPRG);
+
+			return(items);
+		};
+
+		public HashSet<Integer> diff(
+					ContInfPpr comp
+				) {
+			HashSet<Integer> commitems;
+			HashSet<Integer> diffitems;
+
+			commitems = comm(comp);
+
+			diffitems = new HashSet<Integer>(Arrays.asList(TXTPRG));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -764,6 +868,76 @@ public class DlgWznmVerDeploy {
 	};
 
 	/**
+	  * StatShrPpr (full: StatShrDlgWznmVerDeployPpr)
+	  */
+	public class StatShrPpr extends Block {
+
+		public static final int BUTRUNACTIVE = 1;
+		public static final int BUTSTOACTIVE = 2;
+
+		public StatShrPpr(
+					boolean ButRunActive
+					, boolean ButStoActive
+				) {
+			this.ButRunActive = ButRunActive;
+			this.ButStoActive = ButStoActive;
+
+			mask = new HashSet<Integer>(Arrays.asList(BUTRUNACTIVE, BUTSTOACTIVE));
+		};
+
+		public boolean ButRunActive;
+		public boolean ButStoActive;
+
+		public boolean readXML(
+					Document doc
+					, String basexpath
+					, boolean addbasetag
+				) {
+
+			clear();
+
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "StatShrDlgWznmVerDeployPpr");
+
+			String itemtag = "StatitemShrDlgWznmVerDeployPpr";
+
+			if (Xmlio.checkXPath(doc, basexpath)) {
+				ButRunActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRunActive", mask, BUTRUNACTIVE);
+				ButStoActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButStoActive", mask, BUTSTOACTIVE);
+
+				return true;
+			};
+
+			return false;
+		};
+
+		public HashSet<Integer> comm(
+					StatShrPpr comp
+				) {
+			HashSet<Integer> items = new HashSet<Integer>();
+
+			if (ButRunActive == comp.ButRunActive) items.add(BUTRUNACTIVE);
+			if (ButStoActive == comp.ButStoActive) items.add(BUTSTOACTIVE);
+
+			return(items);
+		};
+
+		public HashSet<Integer> diff(
+					StatShrPpr comp
+				) {
+			HashSet<Integer> commitems;
+			HashSet<Integer> diffitems;
+
+			commitems = comm(comp);
+
+			diffitems = new HashSet<Integer>(Arrays.asList(BUTRUNACTIVE, BUTSTOACTIVE));
+			for (Integer ci: commitems) diffitems.remove(ci);
+
+			return(diffitems);
+		};
+
+	};
+
+	/**
 	  * Tag (full: TagDlgWznmVerDeploy)
 	  */
 	public class Tag extends Block {
@@ -1044,6 +1218,82 @@ public class DlgWznmVerDeploy {
 	};
 
 	/**
+	  * TagPpr (full: TagDlgWznmVerDeployPpr)
+	  */
+	public class TagPpr extends Block {
+
+		public static final int CPTPRG = 1;
+		public static final int BUTRUN = 2;
+		public static final int BUTSTO = 3;
+
+		public TagPpr(
+					String CptPrg
+					, String ButRun
+					, String ButSto
+				) {
+			this.CptPrg = CptPrg;
+			this.ButRun = ButRun;
+			this.ButSto = ButSto;
+
+			mask = new HashSet<Integer>(Arrays.asList(CPTPRG, BUTRUN, BUTSTO));
+		};
+
+		public String CptPrg;
+		public String ButRun;
+		public String ButSto;
+
+		public boolean readXML(
+					Document doc
+					, String basexpath
+					, boolean addbasetag
+				) {
+
+			clear();
+
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "TagDlgWznmVerDeployPpr");
+
+			String itemtag = "TagitemDlgWznmVerDeployPpr";
+
+			if (Xmlio.checkXPath(doc, basexpath)) {
+				CptPrg = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptPrg", mask, CPTPRG);
+				ButRun = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "ButRun", mask, BUTRUN);
+				ButSto = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "ButSto", mask, BUTSTO);
+
+				return true;
+			};
+
+			return false;
+		};
+
+		public HashSet<Integer> comm(
+					TagPpr comp
+				) {
+			HashSet<Integer> items = new HashSet<Integer>();
+
+			if (CptPrg.equals(comp.CptPrg)) items.add(CPTPRG);
+			if (ButRun.equals(comp.ButRun)) items.add(BUTRUN);
+			if (ButSto.equals(comp.ButSto)) items.add(BUTSTO);
+
+			return(items);
+		};
+
+		public HashSet<Integer> diff(
+					TagPpr comp
+				) {
+			HashSet<Integer> commitems;
+			HashSet<Integer> diffitems;
+
+			commitems = comm(comp);
+
+			diffitems = new HashSet<Integer>(Arrays.asList(CPTPRG, BUTRUN, BUTSTO));
+			for (Integer ci: commitems) diffitems.remove(ci);
+
+			return(diffitems);
+		};
+
+	};
+
+	/**
 		* DpchAppData (full: DpchAppDlgWznmVerDeployData)
 		*/
 	public class DpchAppData extends DpchAppWznm {
@@ -1106,12 +1356,14 @@ public class DlgWznmVerDeploy {
 		public static final int SCRJREF = 1;
 		public static final int IXVDO = 2;
 		public static final int IXVDOIMP = 3;
-		public static final int ALL = 4;
+		public static final int IXVDOPPR = 4;
+		public static final int ALL = 5;
 
 		public DpchAppDo(
 					String scrJref
 					, int ixVDo
 					, int ixVDoImp
+					, int ixVDoPpr
 					, Integer[] mask
 				) {
 			super(VecWznmVDpch.DPCHAPPDLGWZNMVERDEPLOYDO, scrJref);
@@ -1120,16 +1372,18 @@ public class DlgWznmVerDeploy {
 
 			for (Integer i: mask)
 				if (i == ALL) {
-					this.mask = new HashSet<Integer>(Arrays.asList(SCRJREF, IXVDO, IXVDOIMP));
+					this.mask = new HashSet<Integer>(Arrays.asList(SCRJREF, IXVDO, IXVDOIMP, IXVDOPPR));
 					break;
 				};
 
 			this.ixVDo = ixVDo;
 			this.ixVDoImp = ixVDoImp;
+			this.ixVDoPpr = ixVDoPpr;
 		};
 
 		public int ixVDo;
 		public int ixVDoImp;
+		public int ixVDoPpr;
 
 		public String getSrefsMask() {
 			ArrayList<String> ss = new ArrayList<String>();
@@ -1137,6 +1391,7 @@ public class DlgWznmVerDeploy {
 			if (has(SCRJREF)) ss.add("scrJref");
 			if (has(IXVDO)) ss.add("ixVDo");
 			if (has(IXVDOIMP)) ss.add("ixVDoImp");
+			if (has(IXVDOPPR)) ss.add("ixVDoPpr");
 
 			return StrMod.vectorToString(ss, ';');
 		};
@@ -1155,6 +1410,7 @@ public class DlgWznmVerDeploy {
 			if (has(SCRJREF)) Xmlio.writeString(doc, el, "scrJref", scrJref);
 			if (has(IXVDO)) Xmlio.writeString(doc, el, "srefIxVDo", VecVDo.getSref(ixVDo));
 			if (has(IXVDOIMP)) Xmlio.writeString(doc, el, "srefIxVDoImp", VecVDoImp.getSref(ixVDoImp));
+			if (has(IXVDOPPR)) Xmlio.writeString(doc, el, "srefIxVDoPpr", VecVDoPpr.getSref(ixVDoPpr));
 		};
 
 	};
@@ -1169,17 +1425,20 @@ public class DlgWznmVerDeploy {
 		public static final int CONTINF = 3;
 		public static final int CONTINFIMP = 4;
 		public static final int CONTINFLFI = 5;
-		public static final int FEEDFDSE = 6;
-		public static final int FEEDFSGE = 7;
-		public static final int STATAPP = 8;
-		public static final int STATSHR = 9;
-		public static final int STATSHRIFI = 10;
-		public static final int STATSHRIMP = 11;
-		public static final int STATSHRLFI = 12;
-		public static final int TAG = 13;
-		public static final int TAGIFI = 14;
-		public static final int TAGIMP = 15;
-		public static final int TAGLFI = 16;
+		public static final int CONTINFPPR = 6;
+		public static final int FEEDFDSE = 7;
+		public static final int FEEDFSGE = 8;
+		public static final int STATAPP = 9;
+		public static final int STATSHR = 10;
+		public static final int STATSHRIFI = 11;
+		public static final int STATSHRIMP = 12;
+		public static final int STATSHRLFI = 13;
+		public static final int STATSHRPPR = 14;
+		public static final int TAG = 15;
+		public static final int TAGIFI = 16;
+		public static final int TAGIMP = 17;
+		public static final int TAGLFI = 18;
+		public static final int TAGPPR = 19;
 
 		public DpchEngData() {
 			super(VecWznmVDpch.DPCHENGDLGWZNMVERDEPLOYDATA);
@@ -1188,6 +1447,7 @@ public class DlgWznmVerDeploy {
 			continf = new ContInf(0);
 			continfimp = new ContInfImp("");
 			continflfi = new ContInfLfi("");
+			continfppr = new ContInfPpr("");
 			feedFDse = new Feed("FeedFDse");
 			feedFSge = new Feed("FeedFSge");
 			statapp = new StatApp(false, "");
@@ -1195,16 +1455,19 @@ public class DlgWznmVerDeploy {
 			statshrifi = new StatShrIfi(false);
 			statshrimp = new StatShrImp(false, false);
 			statshrlfi = new StatShrLfi(false);
+			statshrppr = new StatShrPpr(false, false);
 			tag = new Tag("", "");
 			tagifi = new TagIfi("", "");
 			tagimp = new TagImp("", "", "");
 			taglfi = new TagLfi("");
+			tagppr = new TagPpr("", "", "");
 		};
 
 		public ContIac contiac;
 		public ContInf continf;
 		public ContInfImp continfimp;
 		public ContInfLfi continflfi;
+		public ContInfPpr continfppr;
 		public Feed feedFDse;
 		public Feed feedFSge;
 		public StatApp statapp;
@@ -1212,10 +1475,12 @@ public class DlgWznmVerDeploy {
 		public StatShrIfi statshrifi;
 		public StatShrImp statshrimp;
 		public StatShrLfi statshrlfi;
+		public StatShrPpr statshrppr;
 		public Tag tag;
 		public TagIfi tagifi;
 		public TagImp tagimp;
 		public TagLfi taglfi;
+		public TagPpr tagppr;
 
 		public String getSrefsMask() {
 			ArrayList<String> ss = new ArrayList<String>();
@@ -1225,6 +1490,7 @@ public class DlgWznmVerDeploy {
 			if (has(CONTINF)) ss.add("continf");
 			if (has(CONTINFIMP)) ss.add("continfimp");
 			if (has(CONTINFLFI)) ss.add("continflfi");
+			if (has(CONTINFPPR)) ss.add("continfppr");
 			if (has(FEEDFDSE)) ss.add("feedFDse");
 			if (has(FEEDFSGE)) ss.add("feedFSge");
 			if (has(STATAPP)) ss.add("statapp");
@@ -1232,10 +1498,12 @@ public class DlgWznmVerDeploy {
 			if (has(STATSHRIFI)) ss.add("statshrifi");
 			if (has(STATSHRIMP)) ss.add("statshrimp");
 			if (has(STATSHRLFI)) ss.add("statshrlfi");
+			if (has(STATSHRPPR)) ss.add("statshrppr");
 			if (has(TAG)) ss.add("tag");
 			if (has(TAGIFI)) ss.add("tagifi");
 			if (has(TAGIMP)) ss.add("tagimp");
 			if (has(TAGLFI)) ss.add("taglfi");
+			if (has(TAGPPR)) ss.add("tagppr");
 
 			return StrMod.vectorToString(ss, ';');
 		};
@@ -1256,6 +1524,7 @@ public class DlgWznmVerDeploy {
 				if (continf.readXML(doc, basexpath, true)) add(CONTINF);
 				if (continfimp.readXML(doc, basexpath, true)) add(CONTINFIMP);
 				if (continflfi.readXML(doc, basexpath, true)) add(CONTINFLFI);
+				if (continfppr.readXML(doc, basexpath, true)) add(CONTINFPPR);
 				if (feedFDse.readXML(doc, basexpath, true)) add(FEEDFDSE);
 				if (feedFSge.readXML(doc, basexpath, true)) add(FEEDFSGE);
 				if (statapp.readXML(doc, basexpath, true)) add(STATAPP);
@@ -1263,16 +1532,19 @@ public class DlgWznmVerDeploy {
 				if (statshrifi.readXML(doc, basexpath, true)) add(STATSHRIFI);
 				if (statshrimp.readXML(doc, basexpath, true)) add(STATSHRIMP);
 				if (statshrlfi.readXML(doc, basexpath, true)) add(STATSHRLFI);
+				if (statshrppr.readXML(doc, basexpath, true)) add(STATSHRPPR);
 				if (tag.readXML(doc, basexpath, true)) add(TAG);
 				if (tagifi.readXML(doc, basexpath, true)) add(TAGIFI);
 				if (tagimp.readXML(doc, basexpath, true)) add(TAGIMP);
 				if (taglfi.readXML(doc, basexpath, true)) add(TAGLFI);
+				if (tagppr.readXML(doc, basexpath, true)) add(TAGPPR);
 			} else {
 				scrJref = "";
 				contiac = new ContIac(0);
 				continf = new ContInf(0);
 				continfimp = new ContInfImp("");
 				continflfi = new ContInfLfi("");
+				continfppr = new ContInfPpr("");
 				feedFDse = new Feed("FeedFDse");
 				feedFSge = new Feed("FeedFSge");
 				statapp = new StatApp(false, "");
@@ -1280,10 +1552,12 @@ public class DlgWznmVerDeploy {
 				statshrifi = new StatShrIfi(false);
 				statshrimp = new StatShrImp(false, false);
 				statshrlfi = new StatShrLfi(false);
+				statshrppr = new StatShrPpr(false, false);
 				tag = new Tag("", "");
 				tagifi = new TagIfi("", "");
 				tagimp = new TagImp("", "", "");
 				taglfi = new TagLfi("");
+				tagppr = new TagPpr("", "", "");
 			};
 		};
 

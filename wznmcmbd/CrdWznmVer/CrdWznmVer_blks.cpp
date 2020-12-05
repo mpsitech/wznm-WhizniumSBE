@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmVer_blks.cpp
 	* job handler for job CrdWznmVer (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -25,7 +26,7 @@ uint CrdWznmVer::VecVDo::getIx(
 	if (s == "mitcrdpcvclick") return MITCRDPCVCLICK;
 	if (s == "mitcrdidpclick") return MITCRDIDPCLICK;
 	if (s == "mitcrdigbclick") return MITCRDIGBCLICK;
-	if (s == "mitcrdwskclick") return MITCRDWSKCLICK;
+	if (s == "mitcrdimdclick") return MITCRDIMDCLICK;
 	if (s == "mitcrdidbclick") return MITCRDIDBCLICK;
 	if (s == "mitcrdibuclick") return MITCRDIBUCLICK;
 	if (s == "mitcrdiieclick") return MITCRDIIECLICK;
@@ -49,7 +50,7 @@ string CrdWznmVer::VecVDo::getSref(
 	if (ix == MITCRDPCVCLICK) return("MitCrdPcvClick");
 	if (ix == MITCRDIDPCLICK) return("MitCrdIdpClick");
 	if (ix == MITCRDIGBCLICK) return("MitCrdIgbClick");
-	if (ix == MITCRDWSKCLICK) return("MitCrdWskClick");
+	if (ix == MITCRDIMDCLICK) return("MitCrdImdClick");
 	if (ix == MITCRDIDBCLICK) return("MitCrdIdbClick");
 	if (ix == MITCRDIBUCLICK) return("MitCrdIbuClick");
 	if (ix == MITCRDIIECLICK) return("MitCrdIieClick");
@@ -213,7 +214,7 @@ CrdWznmVer::StatShr::StatShr(
 			, const ubigint jrefDlgimpexp
 			, const ubigint jrefDlgnew
 			, const ubigint jrefDlgoppack
-			, const ubigint jrefDlgwrstkit
+			, const ubigint jrefDlgwrinimdl
 			, const ubigint jrefHeadbar
 			, const ubigint jrefList
 			, const ubigint jrefRec
@@ -227,8 +228,8 @@ CrdWznmVer::StatShr::StatShr(
 			, const bool MitCrdIgbAvail
 			, const bool MitCrdIgbActive
 			, const bool MspCrd4Avail
-			, const bool MitCrdWskAvail
-			, const bool MitCrdWskActive
+			, const bool MitCrdImdAvail
+			, const bool MitCrdImdActive
 			, const bool MspCrd5Avail
 			, const bool MitCrdIdbAvail
 			, const bool MitCrdIdbActive
@@ -268,7 +269,7 @@ CrdWznmVer::StatShr::StatShr(
 	this->jrefDlgimpexp = jrefDlgimpexp;
 	this->jrefDlgnew = jrefDlgnew;
 	this->jrefDlgoppack = jrefDlgoppack;
-	this->jrefDlgwrstkit = jrefDlgwrstkit;
+	this->jrefDlgwrinimdl = jrefDlgwrinimdl;
 	this->jrefHeadbar = jrefHeadbar;
 	this->jrefList = jrefList;
 	this->jrefRec = jrefRec;
@@ -282,8 +283,8 @@ CrdWznmVer::StatShr::StatShr(
 	this->MitCrdIgbAvail = MitCrdIgbAvail;
 	this->MitCrdIgbActive = MitCrdIgbActive;
 	this->MspCrd4Avail = MspCrd4Avail;
-	this->MitCrdWskAvail = MitCrdWskAvail;
-	this->MitCrdWskActive = MitCrdWskActive;
+	this->MitCrdImdAvail = MitCrdImdAvail;
+	this->MitCrdImdActive = MitCrdImdActive;
 	this->MspCrd5Avail = MspCrd5Avail;
 	this->MitCrdIdbAvail = MitCrdIdbAvail;
 	this->MitCrdIdbActive = MitCrdIdbActive;
@@ -308,7 +309,7 @@ CrdWznmVer::StatShr::StatShr(
 	this->MitCrdFnmAvail = MitCrdFnmAvail;
 	this->MitCrdFnmActive = MitCrdFnmActive;
 
-	mask = {JREFDLGBSCUI, JREFDLGCUSTJOB, JREFDLGCUSTJTR, JREFDLGCUSTUI, JREFDLGDBSTR, JREFDLGDEPLOY, JREFDLGFINMOD, JREFDLGGENJTR, JREFDLGGENUI, JREFDLGGLOBAL, JREFDLGIMPEXP, JREFDLGNEW, JREFDLGOPPACK, JREFDLGWRSTKIT, JREFHEADBAR, JREFLIST, JREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDPCVAVAIL, MITCRDPCVACTIVE, MSPCRD3AVAIL, MITCRDIDPAVAIL, MITCRDIDPACTIVE, MITCRDIGBAVAIL, MITCRDIGBACTIVE, MSPCRD4AVAIL, MITCRDWSKAVAIL, MITCRDWSKACTIVE, MSPCRD5AVAIL, MITCRDIDBAVAIL, MITCRDIDBACTIVE, MITCRDIBUAVAIL, MITCRDIBUACTIVE, MITCRDIIEAVAIL, MITCRDIIEACTIVE, MITCRDIOPAVAIL, MITCRDIOPACTIVE, MITCRDICJAVAIL, MITCRDICJACTIVE, MSPCRD6AVAIL, MITCRDGUIAVAIL, MITCRDGUIACTIVE, MITCRDAUIAVAIL, MITCRDAUIACTIVE, MITCRDGJTAVAIL, MITCRDGJTACTIVE, MITCRDAJTAVAIL, MITCRDAJTACTIVE, MSPCRD7AVAIL, MITCRDFNMAVAIL, MITCRDFNMACTIVE};
+	mask = {JREFDLGBSCUI, JREFDLGCUSTJOB, JREFDLGCUSTJTR, JREFDLGCUSTUI, JREFDLGDBSTR, JREFDLGDEPLOY, JREFDLGFINMOD, JREFDLGGENJTR, JREFDLGGENUI, JREFDLGGLOBAL, JREFDLGIMPEXP, JREFDLGNEW, JREFDLGOPPACK, JREFDLGWRINIMDL, JREFHEADBAR, JREFLIST, JREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDPCVAVAIL, MITCRDPCVACTIVE, MSPCRD3AVAIL, MITCRDIDPAVAIL, MITCRDIDPACTIVE, MITCRDIGBAVAIL, MITCRDIGBACTIVE, MSPCRD4AVAIL, MITCRDIMDAVAIL, MITCRDIMDACTIVE, MSPCRD5AVAIL, MITCRDIDBAVAIL, MITCRDIDBACTIVE, MITCRDIBUAVAIL, MITCRDIBUACTIVE, MITCRDIIEAVAIL, MITCRDIIEACTIVE, MITCRDIOPAVAIL, MITCRDIOPACTIVE, MITCRDICJAVAIL, MITCRDICJACTIVE, MSPCRD6AVAIL, MITCRDGUIAVAIL, MITCRDGUIACTIVE, MITCRDAUIAVAIL, MITCRDAUIACTIVE, MITCRDGJTAVAIL, MITCRDGJTACTIVE, MITCRDAJTAVAIL, MITCRDAJTACTIVE, MSPCRD7AVAIL, MITCRDFNMAVAIL, MITCRDFNMACTIVE};
 };
 
 void CrdWznmVer::StatShr::writeXML(
@@ -336,7 +337,7 @@ void CrdWznmVer::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDlgimpexp", Scr::scramble(jrefDlgimpexp));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDlgnew", Scr::scramble(jrefDlgnew));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDlgoppack", Scr::scramble(jrefDlgoppack));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefDlgwrstkit", Scr::scramble(jrefDlgwrstkit));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefDlgwrinimdl", Scr::scramble(jrefDlgwrinimdl));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefHeadbar", Scr::scramble(jrefHeadbar));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefList", Scr::scramble(jrefList));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRec", Scr::scramble(jrefRec));
@@ -350,8 +351,8 @@ void CrdWznmVer::StatShr::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdIgbAvail", MitCrdIgbAvail);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdIgbActive", MitCrdIgbActive);
 		writeBoolAttr(wr, itemtag, "sref", "MspCrd4Avail", MspCrd4Avail);
-		writeBoolAttr(wr, itemtag, "sref", "MitCrdWskAvail", MitCrdWskAvail);
-		writeBoolAttr(wr, itemtag, "sref", "MitCrdWskActive", MitCrdWskActive);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdImdAvail", MitCrdImdAvail);
+		writeBoolAttr(wr, itemtag, "sref", "MitCrdImdActive", MitCrdImdActive);
 		writeBoolAttr(wr, itemtag, "sref", "MspCrd5Avail", MspCrd5Avail);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdIdbAvail", MitCrdIdbAvail);
 		writeBoolAttr(wr, itemtag, "sref", "MitCrdIdbActive", MitCrdIdbActive);
@@ -396,7 +397,7 @@ set<uint> CrdWznmVer::StatShr::comm(
 	if (jrefDlgimpexp == comp->jrefDlgimpexp) insert(items, JREFDLGIMPEXP);
 	if (jrefDlgnew == comp->jrefDlgnew) insert(items, JREFDLGNEW);
 	if (jrefDlgoppack == comp->jrefDlgoppack) insert(items, JREFDLGOPPACK);
-	if (jrefDlgwrstkit == comp->jrefDlgwrstkit) insert(items, JREFDLGWRSTKIT);
+	if (jrefDlgwrinimdl == comp->jrefDlgwrinimdl) insert(items, JREFDLGWRINIMDL);
 	if (jrefHeadbar == comp->jrefHeadbar) insert(items, JREFHEADBAR);
 	if (jrefList == comp->jrefList) insert(items, JREFLIST);
 	if (jrefRec == comp->jrefRec) insert(items, JREFREC);
@@ -410,8 +411,8 @@ set<uint> CrdWznmVer::StatShr::comm(
 	if (MitCrdIgbAvail == comp->MitCrdIgbAvail) insert(items, MITCRDIGBAVAIL);
 	if (MitCrdIgbActive == comp->MitCrdIgbActive) insert(items, MITCRDIGBACTIVE);
 	if (MspCrd4Avail == comp->MspCrd4Avail) insert(items, MSPCRD4AVAIL);
-	if (MitCrdWskAvail == comp->MitCrdWskAvail) insert(items, MITCRDWSKAVAIL);
-	if (MitCrdWskActive == comp->MitCrdWskActive) insert(items, MITCRDWSKACTIVE);
+	if (MitCrdImdAvail == comp->MitCrdImdAvail) insert(items, MITCRDIMDAVAIL);
+	if (MitCrdImdActive == comp->MitCrdImdActive) insert(items, MITCRDIMDACTIVE);
 	if (MspCrd5Avail == comp->MspCrd5Avail) insert(items, MSPCRD5AVAIL);
 	if (MitCrdIdbAvail == comp->MitCrdIdbAvail) insert(items, MITCRDIDBAVAIL);
 	if (MitCrdIdbActive == comp->MitCrdIdbActive) insert(items, MITCRDIDBACTIVE);
@@ -447,7 +448,7 @@ set<uint> CrdWznmVer::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {JREFDLGBSCUI, JREFDLGCUSTJOB, JREFDLGCUSTJTR, JREFDLGCUSTUI, JREFDLGDBSTR, JREFDLGDEPLOY, JREFDLGFINMOD, JREFDLGGENJTR, JREFDLGGENUI, JREFDLGGLOBAL, JREFDLGIMPEXP, JREFDLGNEW, JREFDLGOPPACK, JREFDLGWRSTKIT, JREFHEADBAR, JREFLIST, JREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDPCVAVAIL, MITCRDPCVACTIVE, MSPCRD3AVAIL, MITCRDIDPAVAIL, MITCRDIDPACTIVE, MITCRDIGBAVAIL, MITCRDIGBACTIVE, MSPCRD4AVAIL, MITCRDWSKAVAIL, MITCRDWSKACTIVE, MSPCRD5AVAIL, MITCRDIDBAVAIL, MITCRDIDBACTIVE, MITCRDIBUAVAIL, MITCRDIBUACTIVE, MITCRDIIEAVAIL, MITCRDIIEACTIVE, MITCRDIOPAVAIL, MITCRDIOPACTIVE, MITCRDICJAVAIL, MITCRDICJACTIVE, MSPCRD6AVAIL, MITCRDGUIAVAIL, MITCRDGUIACTIVE, MITCRDAUIAVAIL, MITCRDAUIACTIVE, MITCRDGJTAVAIL, MITCRDGJTACTIVE, MITCRDAJTAVAIL, MITCRDAJTACTIVE, MSPCRD7AVAIL, MITCRDFNMAVAIL, MITCRDFNMACTIVE};
+	diffitems = {JREFDLGBSCUI, JREFDLGCUSTJOB, JREFDLGCUSTJTR, JREFDLGCUSTUI, JREFDLGDBSTR, JREFDLGDEPLOY, JREFDLGFINMOD, JREFDLGGENJTR, JREFDLGGENUI, JREFDLGGLOBAL, JREFDLGIMPEXP, JREFDLGNEW, JREFDLGOPPACK, JREFDLGWRINIMDL, JREFHEADBAR, JREFLIST, JREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDPCVAVAIL, MITCRDPCVACTIVE, MSPCRD3AVAIL, MITCRDIDPAVAIL, MITCRDIDPACTIVE, MITCRDIGBAVAIL, MITCRDIGBACTIVE, MSPCRD4AVAIL, MITCRDIMDAVAIL, MITCRDIMDACTIVE, MSPCRD5AVAIL, MITCRDIDBAVAIL, MITCRDIDBACTIVE, MITCRDIBUAVAIL, MITCRDIBUACTIVE, MITCRDIIEAVAIL, MITCRDIIEACTIVE, MITCRDIOPAVAIL, MITCRDIOPACTIVE, MITCRDICJAVAIL, MITCRDICJACTIVE, MSPCRD6AVAIL, MITCRDGUIAVAIL, MITCRDGUIACTIVE, MITCRDAUIAVAIL, MITCRDAUIACTIVE, MITCRDGJTAVAIL, MITCRDGJTACTIVE, MITCRDAJTAVAIL, MITCRDAJTACTIVE, MSPCRD7AVAIL, MITCRDFNMAVAIL, MITCRDFNMACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -474,7 +475,7 @@ void CrdWznmVer::Tag::writeXML(
 			writeStringAttr(wr, itemtag, "sref", "MitCrdPcv", "Make project's current version");
 			writeStringAttr(wr, itemtag, "sref", "MitCrdIdp", "Import deployment information ...");
 			writeStringAttr(wr, itemtag, "sref", "MitCrdIgb", "Import global features ...");
-			writeStringAttr(wr, itemtag, "sref", "MitCrdWsk", "Write starter kit ...");
+			writeStringAttr(wr, itemtag, "sref", "MitCrdImd", "Write initial model file set ...");
 			writeStringAttr(wr, itemtag, "sref", "MitCrdIdb", "Import database structure ...");
 			writeStringAttr(wr, itemtag, "sref", "MitCrdIbu", "Import basic user interface structure ...");
 			writeStringAttr(wr, itemtag, "sref", "MitCrdIie", "Import import/export structure ...");
@@ -608,4 +609,6 @@ void CrdWznmVer::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

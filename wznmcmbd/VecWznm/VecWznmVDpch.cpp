@@ -1,10 +1,11 @@
 /**
 	* \file VecWznmVDpch.cpp
 	* vector VecWznmVDpch (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "VecWznmVDpch.h"
 
@@ -30,6 +31,8 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappdlgwznmfildownloaddo") return DPCHAPPDLGWZNMFILDOWNLOADDO;
 	if (s == "dpchappdlgwznmfilnewdata") return DPCHAPPDLGWZNMFILNEWDATA;
 	if (s == "dpchappdlgwznmfilnewdo") return DPCHAPPDLGWZNMFILNEWDO;
+	if (s == "dpchappdlgwznmmchwriniscrdata") return DPCHAPPDLGWZNMMCHWRINISCRDATA;
+	if (s == "dpchappdlgwznmmchwriniscrdo") return DPCHAPPDLGWZNMMCHWRINISCRDO;
 	if (s == "dpchappdlgwznmnavloainidata") return DPCHAPPDLGWZNMNAVLOAINIDATA;
 	if (s == "dpchappdlgwznmnavloainido") return DPCHAPPDLGWZNMNAVLOAINIDO;
 	if (s == "dpchappdlgwznmnavmnglicdata") return DPCHAPPDLGWZNMNAVMNGLICDATA;
@@ -47,8 +50,6 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappdlgwznmusrmngkeypairdo") return DPCHAPPDLGWZNMUSRMNGKEYPAIRDO;
 	if (s == "dpchappdlgwznmutlextripdata") return DPCHAPPDLGWZNMUTLEXTRIPDATA;
 	if (s == "dpchappdlgwznmutlextripdo") return DPCHAPPDLGWZNMUTLEXTRIPDO;
-	if (s == "dpchappdlgwznmutliexconvdata") return DPCHAPPDLGWZNMUTLIEXCONVDATA;
-	if (s == "dpchappdlgwznmutliexconvdo") return DPCHAPPDLGWZNMUTLIEXCONVDO;
 	if (s == "dpchappdlgwznmutlmrgipdata") return DPCHAPPDLGWZNMUTLMRGIPDATA;
 	if (s == "dpchappdlgwznmutlmrgipdo") return DPCHAPPDLGWZNMUTLMRGIPDO;
 	if (s == "dpchappdlgwznmverbscuidata") return DPCHAPPDLGWZNMVERBSCUIDATA;
@@ -76,8 +77,8 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappdlgwznmvernewdo") return DPCHAPPDLGWZNMVERNEWDO;
 	if (s == "dpchappdlgwznmveroppackdata") return DPCHAPPDLGWZNMVEROPPACKDATA;
 	if (s == "dpchappdlgwznmveroppackdo") return DPCHAPPDLGWZNMVEROPPACKDO;
-	if (s == "dpchappdlgwznmverwrstkitdata") return DPCHAPPDLGWZNMVERWRSTKITDATA;
-	if (s == "dpchappdlgwznmverwrstkitdo") return DPCHAPPDLGWZNMVERWRSTKITDO;
+	if (s == "dpchappdlgwznmverwrinimdldata") return DPCHAPPDLGWZNMVERWRINIMDLDATA;
+	if (s == "dpchappdlgwznmverwrinimdldo") return DPCHAPPDLGWZNMVERWRINIMDLDO;
 	if (s == "dpchapprootwznmlogin") return DPCHAPPROOTWZNMLOGIN;
 	if (s == "dpchappwznmalert") return DPCHAPPWZNMALERT;
 	if (s == "dpchappwznmapp1neventdata") return DPCHAPPWZNMAPP1NEVENTDATA;
@@ -301,6 +302,8 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappwznmlocrecdo") return DPCHAPPWZNMLOCRECDO;
 	if (s == "dpchappwznmmch1nreleasedata") return DPCHAPPWZNMMCH1NRELEASEDATA;
 	if (s == "dpchappwznmmch1nreleasedo") return DPCHAPPWZNMMCH1NRELEASEDO;
+	if (s == "dpchappwznmmchamakefiledata") return DPCHAPPWZNMMCHAMAKEFILEDATA;
+	if (s == "dpchappwznmmchamakefiledo") return DPCHAPPWZNMMCHAMAKEFILEDO;
 	if (s == "dpchappwznmmchapardata") return DPCHAPPWZNMMCHAPARDATA;
 	if (s == "dpchappwznmmchapardo") return DPCHAPPWZNMMCHAPARDO;
 	if (s == "dpchappwznmmchdetaildata") return DPCHAPPWZNMMCHDETAILDATA;
@@ -309,6 +312,8 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappwznmmchlistdata") return DPCHAPPWZNMMCHLISTDATA;
 	if (s == "dpchappwznmmchlistdo") return DPCHAPPWZNMMCHLISTDO;
 	if (s == "dpchappwznmmchrecdo") return DPCHAPPWZNMMCHRECDO;
+	if (s == "dpchappwznmmchsup1nmachinedata") return DPCHAPPWZNMMCHSUP1NMACHINEDATA;
+	if (s == "dpchappwznmmchsup1nmachinedo") return DPCHAPPWZNMMCHSUP1NMACHINEDO;
 	if (s == "dpchappwznmmdldetaildata") return DPCHAPPWZNMMDLDETAILDATA;
 	if (s == "dpchappwznmmdldetaildo") return DPCHAPPWZNMMDLDETAILDO;
 	if (s == "dpchappwznmmdldo") return DPCHAPPWZNMMDLDO;
@@ -329,16 +334,6 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappwznmmtdlistdata") return DPCHAPPWZNMMTDLISTDATA;
 	if (s == "dpchappwznmmtdlistdo") return DPCHAPPWZNMMTDLISTDO;
 	if (s == "dpchappwznmmtdrecdo") return DPCHAPPWZNMMTDRECDO;
-	if (s == "dpchappwznmmty1nmachinedata") return DPCHAPPWZNMMTY1NMACHINEDATA;
-	if (s == "dpchappwznmmty1nmachinedo") return DPCHAPPWZNMMTY1NMACHINEDO;
-	if (s == "dpchappwznmmtyamakefiledata") return DPCHAPPWZNMMTYAMAKEFILEDATA;
-	if (s == "dpchappwznmmtyamakefiledo") return DPCHAPPWZNMMTYAMAKEFILEDO;
-	if (s == "dpchappwznmmtydetaildata") return DPCHAPPWZNMMTYDETAILDATA;
-	if (s == "dpchappwznmmtydetaildo") return DPCHAPPWZNMMTYDETAILDO;
-	if (s == "dpchappwznmmtydo") return DPCHAPPWZNMMTYDO;
-	if (s == "dpchappwznmmtylistdata") return DPCHAPPWZNMMTYLISTDATA;
-	if (s == "dpchappwznmmtylistdo") return DPCHAPPWZNMMTYLISTDO;
-	if (s == "dpchappwznmmtyrecdo") return DPCHAPPWZNMMTYRECDO;
 	if (s == "dpchappwznmnavadmindata") return DPCHAPPWZNMNAVADMINDATA;
 	if (s == "dpchappwznmnavadmindo") return DPCHAPPWZNMNAVADMINDO;
 	if (s == "dpchappwznmnavappdevdata") return DPCHAPPWZNMNAVAPPDEVDATA;
@@ -739,6 +734,7 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengdlgwznmappwritedata") return DPCHENGDLGWZNMAPPWRITEDATA;
 	if (s == "dpchengdlgwznmfildownloaddata") return DPCHENGDLGWZNMFILDOWNLOADDATA;
 	if (s == "dpchengdlgwznmfilnewdata") return DPCHENGDLGWZNMFILNEWDATA;
+	if (s == "dpchengdlgwznmmchwriniscrdata") return DPCHENGDLGWZNMMCHWRINISCRDATA;
 	if (s == "dpchengdlgwznmnavloainidata") return DPCHENGDLGWZNMNAVLOAINIDATA;
 	if (s == "dpchengdlgwznmnavmnglicdata") return DPCHENGDLGWZNMNAVMNGLICDATA;
 	if (s == "dpchengdlgwznmprjimpexdata") return DPCHENGDLGWZNMPRJIMPEXDATA;
@@ -748,7 +744,6 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengdlgwznmrlswritedata") return DPCHENGDLGWZNMRLSWRITEDATA;
 	if (s == "dpchengdlgwznmusrmngkeypairdata") return DPCHENGDLGWZNMUSRMNGKEYPAIRDATA;
 	if (s == "dpchengdlgwznmutlextripdata") return DPCHENGDLGWZNMUTLEXTRIPDATA;
-	if (s == "dpchengdlgwznmutliexconvdata") return DPCHENGDLGWZNMUTLIEXCONVDATA;
 	if (s == "dpchengdlgwznmutlmrgipdata") return DPCHENGDLGWZNMUTLMRGIPDATA;
 	if (s == "dpchengdlgwznmverbscuidata") return DPCHENGDLGWZNMVERBSCUIDATA;
 	if (s == "dpchengdlgwznmvercustjobdata") return DPCHENGDLGWZNMVERCUSTJOBDATA;
@@ -763,7 +758,7 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengdlgwznmverimpexpdata") return DPCHENGDLGWZNMVERIMPEXPDATA;
 	if (s == "dpchengdlgwznmvernewdata") return DPCHENGDLGWZNMVERNEWDATA;
 	if (s == "dpchengdlgwznmveroppackdata") return DPCHENGDLGWZNMVEROPPACKDATA;
-	if (s == "dpchengdlgwznmverwrstkitdata") return DPCHENGDLGWZNMVERWRSTKITDATA;
+	if (s == "dpchengdlgwznmverwrinimdldata") return DPCHENGDLGWZNMVERWRINIMDLDATA;
 	if (s == "dpchengrootwznmdata") return DPCHENGROOTWZNMDATA;
 	if (s == "dpchengsesswznmdata") return DPCHENGSESSWZNMDATA;
 	if (s == "dpchengwznmack") return DPCHENGWZNMACK;
@@ -917,12 +912,14 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengwznmlocmnversiondata") return DPCHENGWZNMLOCMNVERSIONDATA;
 	if (s == "dpchengwznmlocrecdata") return DPCHENGWZNMLOCRECDATA;
 	if (s == "dpchengwznmmch1nreleasedata") return DPCHENGWZNMMCH1NRELEASEDATA;
+	if (s == "dpchengwznmmchamakefiledata") return DPCHENGWZNMMCHAMAKEFILEDATA;
 	if (s == "dpchengwznmmchapardata") return DPCHENGWZNMMCHAPARDATA;
 	if (s == "dpchengwznmmchdata") return DPCHENGWZNMMCHDATA;
 	if (s == "dpchengwznmmchdetaildata") return DPCHENGWZNMMCHDETAILDATA;
 	if (s == "dpchengwznmmchheadbardata") return DPCHENGWZNMMCHHEADBARDATA;
 	if (s == "dpchengwznmmchlistdata") return DPCHENGWZNMMCHLISTDATA;
 	if (s == "dpchengwznmmchrecdata") return DPCHENGWZNMMCHRECDATA;
+	if (s == "dpchengwznmmchsup1nmachinedata") return DPCHENGWZNMMCHSUP1NMACHINEDATA;
 	if (s == "dpchengwznmmdldata") return DPCHENGWZNMMDLDATA;
 	if (s == "dpchengwznmmdldetaildata") return DPCHENGWZNMMDLDETAILDATA;
 	if (s == "dpchengwznmmdlheadbardata") return DPCHENGWZNMMDLHEADBARDATA;
@@ -937,13 +934,6 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengwznmmtdheadbardata") return DPCHENGWZNMMTDHEADBARDATA;
 	if (s == "dpchengwznmmtdlistdata") return DPCHENGWZNMMTDLISTDATA;
 	if (s == "dpchengwznmmtdrecdata") return DPCHENGWZNMMTDRECDATA;
-	if (s == "dpchengwznmmty1nmachinedata") return DPCHENGWZNMMTY1NMACHINEDATA;
-	if (s == "dpchengwznmmtyamakefiledata") return DPCHENGWZNMMTYAMAKEFILEDATA;
-	if (s == "dpchengwznmmtydata") return DPCHENGWZNMMTYDATA;
-	if (s == "dpchengwznmmtydetaildata") return DPCHENGWZNMMTYDETAILDATA;
-	if (s == "dpchengwznmmtyheadbardata") return DPCHENGWZNMMTYHEADBARDATA;
-	if (s == "dpchengwznmmtylistdata") return DPCHENGWZNMMTYLISTDATA;
-	if (s == "dpchengwznmmtyrecdata") return DPCHENGWZNMMTYRECDATA;
 	if (s == "dpchengwznmnavadmindata") return DPCHENGWZNMNAVADMINDATA;
 	if (s == "dpchengwznmnavappdevdata") return DPCHENGWZNMNAVAPPDEVDATA;
 	if (s == "dpchengwznmnavauxfctdata") return DPCHENGWZNMNAVAUXFCTDATA;
@@ -1199,6 +1189,7 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchinvwznm") return DPCHINVWZNM;
 	if (s == "dpchinvwznmcomplbscui") return DPCHINVWZNMCOMPLBSCUI;
 	if (s == "dpchinvwznmcompldbs") return DPCHINVWZNMCOMPLDBS;
+	if (s == "dpchinvwznmcompldeploy") return DPCHINVWZNMCOMPLDEPLOY;
 	if (s == "dpchinvwznmcompliex") return DPCHINVWZNMCOMPLIEX;
 	if (s == "dpchinvwznmcompljtr") return DPCHINVWZNMCOMPLJTR;
 	if (s == "dpchinvwznmctpgenjtr") return DPCHINVWZNMCTPGENJTR;
@@ -1214,7 +1205,6 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchinvwznmgenqtb") return DPCHINVWZNMGENQTB;
 	if (s == "dpchinvwznmgensysvec") return DPCHINVWZNMGENSYSVEC;
 	if (s == "dpchinvwznmprcfileconcat") return DPCHINVWZNMPRCFILECONCAT;
-	if (s == "dpchinvwznmprcfileiexconv") return DPCHINVWZNMPRCFILEIEXCONV;
 	if (s == "dpchinvwznmprcfileplhrpl") return DPCHINVWZNMPRCFILEPLHRPL;
 	if (s == "dpchinvwznmprctreeextract") return DPCHINVWZNMPRCTREEEXTRACT;
 	if (s == "dpchinvwznmprctreemerge") return DPCHINVWZNMPRCTREEMERGE;
@@ -1284,6 +1274,8 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPDLGWZNMFILDOWNLOADDO) return("DpchAppDlgWznmFilDownloadDo");
 	if (ix == DPCHAPPDLGWZNMFILNEWDATA) return("DpchAppDlgWznmFilNewData");
 	if (ix == DPCHAPPDLGWZNMFILNEWDO) return("DpchAppDlgWznmFilNewDo");
+	if (ix == DPCHAPPDLGWZNMMCHWRINISCRDATA) return("DpchAppDlgWznmMchWriniscrData");
+	if (ix == DPCHAPPDLGWZNMMCHWRINISCRDO) return("DpchAppDlgWznmMchWriniscrDo");
 	if (ix == DPCHAPPDLGWZNMNAVLOAINIDATA) return("DpchAppDlgWznmNavLoainiData");
 	if (ix == DPCHAPPDLGWZNMNAVLOAINIDO) return("DpchAppDlgWznmNavLoainiDo");
 	if (ix == DPCHAPPDLGWZNMNAVMNGLICDATA) return("DpchAppDlgWznmNavMnglicData");
@@ -1301,8 +1293,6 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPDLGWZNMUSRMNGKEYPAIRDO) return("DpchAppDlgWznmUsrMngkeypairDo");
 	if (ix == DPCHAPPDLGWZNMUTLEXTRIPDATA) return("DpchAppDlgWznmUtlExtripData");
 	if (ix == DPCHAPPDLGWZNMUTLEXTRIPDO) return("DpchAppDlgWznmUtlExtripDo");
-	if (ix == DPCHAPPDLGWZNMUTLIEXCONVDATA) return("DpchAppDlgWznmUtlIexconvData");
-	if (ix == DPCHAPPDLGWZNMUTLIEXCONVDO) return("DpchAppDlgWznmUtlIexconvDo");
 	if (ix == DPCHAPPDLGWZNMUTLMRGIPDATA) return("DpchAppDlgWznmUtlMrgipData");
 	if (ix == DPCHAPPDLGWZNMUTLMRGIPDO) return("DpchAppDlgWznmUtlMrgipDo");
 	if (ix == DPCHAPPDLGWZNMVERBSCUIDATA) return("DpchAppDlgWznmVerBscuiData");
@@ -1330,8 +1320,8 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPDLGWZNMVERNEWDO) return("DpchAppDlgWznmVerNewDo");
 	if (ix == DPCHAPPDLGWZNMVEROPPACKDATA) return("DpchAppDlgWznmVerOppackData");
 	if (ix == DPCHAPPDLGWZNMVEROPPACKDO) return("DpchAppDlgWznmVerOppackDo");
-	if (ix == DPCHAPPDLGWZNMVERWRSTKITDATA) return("DpchAppDlgWznmVerWrstkitData");
-	if (ix == DPCHAPPDLGWZNMVERWRSTKITDO) return("DpchAppDlgWznmVerWrstkitDo");
+	if (ix == DPCHAPPDLGWZNMVERWRINIMDLDATA) return("DpchAppDlgWznmVerWrinimdlData");
+	if (ix == DPCHAPPDLGWZNMVERWRINIMDLDO) return("DpchAppDlgWznmVerWrinimdlDo");
 	if (ix == DPCHAPPROOTWZNMLOGIN) return("DpchAppRootWznmLogin");
 	if (ix == DPCHAPPWZNMALERT) return("DpchAppWznmAlert");
 	if (ix == DPCHAPPWZNMAPP1NEVENTDATA) return("DpchAppWznmApp1NEventData");
@@ -1555,6 +1545,8 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPWZNMLOCRECDO) return("DpchAppWznmLocRecDo");
 	if (ix == DPCHAPPWZNMMCH1NRELEASEDATA) return("DpchAppWznmMch1NReleaseData");
 	if (ix == DPCHAPPWZNMMCH1NRELEASEDO) return("DpchAppWznmMch1NReleaseDo");
+	if (ix == DPCHAPPWZNMMCHAMAKEFILEDATA) return("DpchAppWznmMchAMakefileData");
+	if (ix == DPCHAPPWZNMMCHAMAKEFILEDO) return("DpchAppWznmMchAMakefileDo");
 	if (ix == DPCHAPPWZNMMCHAPARDATA) return("DpchAppWznmMchAParData");
 	if (ix == DPCHAPPWZNMMCHAPARDO) return("DpchAppWznmMchAParDo");
 	if (ix == DPCHAPPWZNMMCHDETAILDATA) return("DpchAppWznmMchDetailData");
@@ -1563,6 +1555,8 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPWZNMMCHLISTDATA) return("DpchAppWznmMchListData");
 	if (ix == DPCHAPPWZNMMCHLISTDO) return("DpchAppWznmMchListDo");
 	if (ix == DPCHAPPWZNMMCHRECDO) return("DpchAppWznmMchRecDo");
+	if (ix == DPCHAPPWZNMMCHSUP1NMACHINEDATA) return("DpchAppWznmMchSup1NMachineData");
+	if (ix == DPCHAPPWZNMMCHSUP1NMACHINEDO) return("DpchAppWznmMchSup1NMachineDo");
 	if (ix == DPCHAPPWZNMMDLDETAILDATA) return("DpchAppWznmMdlDetailData");
 	if (ix == DPCHAPPWZNMMDLDETAILDO) return("DpchAppWznmMdlDetailDo");
 	if (ix == DPCHAPPWZNMMDLDO) return("DpchAppWznmMdlDo");
@@ -1583,16 +1577,6 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPWZNMMTDLISTDATA) return("DpchAppWznmMtdListData");
 	if (ix == DPCHAPPWZNMMTDLISTDO) return("DpchAppWznmMtdListDo");
 	if (ix == DPCHAPPWZNMMTDRECDO) return("DpchAppWznmMtdRecDo");
-	if (ix == DPCHAPPWZNMMTY1NMACHINEDATA) return("DpchAppWznmMty1NMachineData");
-	if (ix == DPCHAPPWZNMMTY1NMACHINEDO) return("DpchAppWznmMty1NMachineDo");
-	if (ix == DPCHAPPWZNMMTYAMAKEFILEDATA) return("DpchAppWznmMtyAMakefileData");
-	if (ix == DPCHAPPWZNMMTYAMAKEFILEDO) return("DpchAppWznmMtyAMakefileDo");
-	if (ix == DPCHAPPWZNMMTYDETAILDATA) return("DpchAppWznmMtyDetailData");
-	if (ix == DPCHAPPWZNMMTYDETAILDO) return("DpchAppWznmMtyDetailDo");
-	if (ix == DPCHAPPWZNMMTYDO) return("DpchAppWznmMtyDo");
-	if (ix == DPCHAPPWZNMMTYLISTDATA) return("DpchAppWznmMtyListData");
-	if (ix == DPCHAPPWZNMMTYLISTDO) return("DpchAppWznmMtyListDo");
-	if (ix == DPCHAPPWZNMMTYRECDO) return("DpchAppWznmMtyRecDo");
 	if (ix == DPCHAPPWZNMNAVADMINDATA) return("DpchAppWznmNavAdminData");
 	if (ix == DPCHAPPWZNMNAVADMINDO) return("DpchAppWznmNavAdminDo");
 	if (ix == DPCHAPPWZNMNAVAPPDEVDATA) return("DpchAppWznmNavAppdevData");
@@ -1993,6 +1977,7 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGDLGWZNMAPPWRITEDATA) return("DpchEngDlgWznmAppWriteData");
 	if (ix == DPCHENGDLGWZNMFILDOWNLOADDATA) return("DpchEngDlgWznmFilDownloadData");
 	if (ix == DPCHENGDLGWZNMFILNEWDATA) return("DpchEngDlgWznmFilNewData");
+	if (ix == DPCHENGDLGWZNMMCHWRINISCRDATA) return("DpchEngDlgWznmMchWriniscrData");
 	if (ix == DPCHENGDLGWZNMNAVLOAINIDATA) return("DpchEngDlgWznmNavLoainiData");
 	if (ix == DPCHENGDLGWZNMNAVMNGLICDATA) return("DpchEngDlgWznmNavMnglicData");
 	if (ix == DPCHENGDLGWZNMPRJIMPEXDATA) return("DpchEngDlgWznmPrjImpexData");
@@ -2002,7 +1987,6 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGDLGWZNMRLSWRITEDATA) return("DpchEngDlgWznmRlsWriteData");
 	if (ix == DPCHENGDLGWZNMUSRMNGKEYPAIRDATA) return("DpchEngDlgWznmUsrMngkeypairData");
 	if (ix == DPCHENGDLGWZNMUTLEXTRIPDATA) return("DpchEngDlgWznmUtlExtripData");
-	if (ix == DPCHENGDLGWZNMUTLIEXCONVDATA) return("DpchEngDlgWznmUtlIexconvData");
 	if (ix == DPCHENGDLGWZNMUTLMRGIPDATA) return("DpchEngDlgWznmUtlMrgipData");
 	if (ix == DPCHENGDLGWZNMVERBSCUIDATA) return("DpchEngDlgWznmVerBscuiData");
 	if (ix == DPCHENGDLGWZNMVERCUSTJOBDATA) return("DpchEngDlgWznmVerCustjobData");
@@ -2017,7 +2001,7 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGDLGWZNMVERIMPEXPDATA) return("DpchEngDlgWznmVerImpexpData");
 	if (ix == DPCHENGDLGWZNMVERNEWDATA) return("DpchEngDlgWznmVerNewData");
 	if (ix == DPCHENGDLGWZNMVEROPPACKDATA) return("DpchEngDlgWznmVerOppackData");
-	if (ix == DPCHENGDLGWZNMVERWRSTKITDATA) return("DpchEngDlgWznmVerWrstkitData");
+	if (ix == DPCHENGDLGWZNMVERWRINIMDLDATA) return("DpchEngDlgWznmVerWrinimdlData");
 	if (ix == DPCHENGROOTWZNMDATA) return("DpchEngRootWznmData");
 	if (ix == DPCHENGSESSWZNMDATA) return("DpchEngSessWznmData");
 	if (ix == DPCHENGWZNMACK) return("DpchEngWznmAck");
@@ -2171,12 +2155,14 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGWZNMLOCMNVERSIONDATA) return("DpchEngWznmLocMNVersionData");
 	if (ix == DPCHENGWZNMLOCRECDATA) return("DpchEngWznmLocRecData");
 	if (ix == DPCHENGWZNMMCH1NRELEASEDATA) return("DpchEngWznmMch1NReleaseData");
+	if (ix == DPCHENGWZNMMCHAMAKEFILEDATA) return("DpchEngWznmMchAMakefileData");
 	if (ix == DPCHENGWZNMMCHAPARDATA) return("DpchEngWznmMchAParData");
 	if (ix == DPCHENGWZNMMCHDATA) return("DpchEngWznmMchData");
 	if (ix == DPCHENGWZNMMCHDETAILDATA) return("DpchEngWznmMchDetailData");
 	if (ix == DPCHENGWZNMMCHHEADBARDATA) return("DpchEngWznmMchHeadbarData");
 	if (ix == DPCHENGWZNMMCHLISTDATA) return("DpchEngWznmMchListData");
 	if (ix == DPCHENGWZNMMCHRECDATA) return("DpchEngWznmMchRecData");
+	if (ix == DPCHENGWZNMMCHSUP1NMACHINEDATA) return("DpchEngWznmMchSup1NMachineData");
 	if (ix == DPCHENGWZNMMDLDATA) return("DpchEngWznmMdlData");
 	if (ix == DPCHENGWZNMMDLDETAILDATA) return("DpchEngWznmMdlDetailData");
 	if (ix == DPCHENGWZNMMDLHEADBARDATA) return("DpchEngWznmMdlHeadbarData");
@@ -2191,13 +2177,6 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGWZNMMTDHEADBARDATA) return("DpchEngWznmMtdHeadbarData");
 	if (ix == DPCHENGWZNMMTDLISTDATA) return("DpchEngWznmMtdListData");
 	if (ix == DPCHENGWZNMMTDRECDATA) return("DpchEngWznmMtdRecData");
-	if (ix == DPCHENGWZNMMTY1NMACHINEDATA) return("DpchEngWznmMty1NMachineData");
-	if (ix == DPCHENGWZNMMTYAMAKEFILEDATA) return("DpchEngWznmMtyAMakefileData");
-	if (ix == DPCHENGWZNMMTYDATA) return("DpchEngWznmMtyData");
-	if (ix == DPCHENGWZNMMTYDETAILDATA) return("DpchEngWznmMtyDetailData");
-	if (ix == DPCHENGWZNMMTYHEADBARDATA) return("DpchEngWznmMtyHeadbarData");
-	if (ix == DPCHENGWZNMMTYLISTDATA) return("DpchEngWznmMtyListData");
-	if (ix == DPCHENGWZNMMTYRECDATA) return("DpchEngWznmMtyRecData");
 	if (ix == DPCHENGWZNMNAVADMINDATA) return("DpchEngWznmNavAdminData");
 	if (ix == DPCHENGWZNMNAVAPPDEVDATA) return("DpchEngWznmNavAppdevData");
 	if (ix == DPCHENGWZNMNAVAUXFCTDATA) return("DpchEngWznmNavAuxfctData");
@@ -2453,6 +2432,7 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHINVWZNM) return("DpchInvWznm");
 	if (ix == DPCHINVWZNMCOMPLBSCUI) return("DpchInvWznmComplBscui");
 	if (ix == DPCHINVWZNMCOMPLDBS) return("DpchInvWznmComplDbs");
+	if (ix == DPCHINVWZNMCOMPLDEPLOY) return("DpchInvWznmComplDeploy");
 	if (ix == DPCHINVWZNMCOMPLIEX) return("DpchInvWznmComplIex");
 	if (ix == DPCHINVWZNMCOMPLJTR) return("DpchInvWznmComplJtr");
 	if (ix == DPCHINVWZNMCTPGENJTR) return("DpchInvWznmCtpGenjtr");
@@ -2468,7 +2448,6 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHINVWZNMGENQTB) return("DpchInvWznmGenQtb");
 	if (ix == DPCHINVWZNMGENSYSVEC) return("DpchInvWznmGenSysvec");
 	if (ix == DPCHINVWZNMPRCFILECONCAT) return("DpchInvWznmPrcfileConcat");
-	if (ix == DPCHINVWZNMPRCFILEIEXCONV) return("DpchInvWznmPrcfileIexconv");
 	if (ix == DPCHINVWZNMPRCFILEPLHRPL) return("DpchInvWznmPrcfilePlhrpl");
 	if (ix == DPCHINVWZNMPRCTREEEXTRACT) return("DpchInvWznmPrctreeExtract");
 	if (ix == DPCHINVWZNMPRCTREEMERGE) return("DpchInvWznmPrctreeMerge");
@@ -2525,4 +2504,6 @@ string VecWznmVDpch::getSref(
 
 	return("");
 };
+
+
 

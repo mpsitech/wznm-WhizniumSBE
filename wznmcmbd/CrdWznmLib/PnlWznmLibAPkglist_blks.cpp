@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmLibAPkglist_blks.cpp
 	* job handler for job PnlWznmLibAPkglist (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -188,14 +189,14 @@ set<uint> PnlWznmLibAPkglist::StatShr::diff(
  ******************************************************************************/
 
 PnlWznmLibAPkglist::StgIac::StgIac(
-			const uint TcoReuWidth
+			const uint TcoMchWidth
 			, const uint TcoPklWidth
 		) :
 			Block()
 		{
-	this->TcoReuWidth = TcoReuWidth;
+	this->TcoMchWidth = TcoMchWidth;
 	this->TcoPklWidth = TcoPklWidth;
-	mask = {TCOREUWIDTH, TCOPKLWIDTH};
+	mask = {TCOMCHWIDTH, TCOPKLWIDTH};
 };
 
 bool PnlWznmLibAPkglist::StgIac::readXML(
@@ -215,7 +216,7 @@ bool PnlWznmLibAPkglist::StgIac::readXML(
 	string itemtag = "StgitemIacWznmLibAPkglist";
 
 	if (basefound) {
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoReuWidth", TcoReuWidth)) add(TCOREUWIDTH);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoMchWidth", TcoMchWidth)) add(TCOMCHWIDTH);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoPklWidth", TcoPklWidth)) add(TCOPKLWIDTH);
 	};
 
@@ -234,7 +235,7 @@ void PnlWznmLibAPkglist::StgIac::writeXML(
 	else itemtag = "StgitemIacWznmLibAPkglist";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeUintAttr(wr, itemtag, "sref", "TcoReuWidth", TcoReuWidth);
+		writeUintAttr(wr, itemtag, "sref", "TcoMchWidth", TcoMchWidth);
 		writeUintAttr(wr, itemtag, "sref", "TcoPklWidth", TcoPklWidth);
 	xmlTextWriterEndElement(wr);
 };
@@ -244,7 +245,7 @@ set<uint> PnlWznmLibAPkglist::StgIac::comm(
 		) {
 	set<uint> items;
 
-	if (TcoReuWidth == comp->TcoReuWidth) insert(items, TCOREUWIDTH);
+	if (TcoMchWidth == comp->TcoMchWidth) insert(items, TCOMCHWIDTH);
 	if (TcoPklWidth == comp->TcoPklWidth) insert(items, TCOPKLWIDTH);
 
 	return(items);
@@ -258,7 +259,7 @@ set<uint> PnlWznmLibAPkglist::StgIac::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TCOREUWIDTH, TCOPKLWIDTH};
+	diffitems = {TCOMCHWIDTH, TCOPKLWIDTH};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -283,7 +284,7 @@ void PnlWznmLibAPkglist::Tag::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			writeStringAttr(wr, itemtag, "sref", "Cpt", "Package lists");
-			writeStringAttr(wr, itemtag, "sref", "TcoReu", "Reference");
+			writeStringAttr(wr, itemtag, "sref", "TcoMch", "Machine");
 			writeStringAttr(wr, itemtag, "sref", "TcoPkl", "Package list");
 		};
 		writeStringAttr(wr, itemtag, "sref", "TxtRecord1", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::REC, ixWznmVLocale)));
@@ -484,4 +485,6 @@ void PnlWznmLibAPkglist::DpchEngData::writeXML(
 		if (has(STGIACQRY)) stgiacqry.writeXML(wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmOpxList.js
-  * web client functionality for panel PnlWznmOpxList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize() {
 	// change container heights
@@ -133,9 +125,9 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(1); wtot += TcoSrfWidth;
+				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(2); wtot += TcoSrfWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoOpk"); doc.widths.push(TcoOpkWidth); doc.fs.push("opk"); doc.tos.push(2); wtot += TcoOpkWidth;
+				doc.cols.push("TcoOpk"); doc.widths.push(TcoOpkWidth); doc.fs.push("opk"); doc.tos.push(1); wtot += TcoOpkWidth;
 			} else if (i == 3) {
 				doc.cols.push("TcoShd"); doc.widths.push(TcoShdWidth); doc.fs.push("shd"); doc.tos.push(0); wtot += TcoShdWidth;
 			} else {

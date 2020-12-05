@@ -1,10 +1,11 @@
 /**
   * \file PnlWznmLibAMakefile.java
   * Java API code for job PnlWznmLibAMakefile
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -272,23 +273,23 @@ public class PnlWznmLibAMakefile {
 	  */
 	public class StgIac extends Block {
 
-		public static final int TCOREUWIDTH = 1;
+		public static final int TCOMCHWIDTH = 1;
 		public static final int TCOTAGWIDTH = 2;
 		public static final int TCOVALWIDTH = 3;
 
 		public StgIac(
-					int TcoReuWidth
+					int TcoMchWidth
 					, int TcoTagWidth
 					, int TcoValWidth
 				) {
-			this.TcoReuWidth = TcoReuWidth;
+			this.TcoMchWidth = TcoMchWidth;
 			this.TcoTagWidth = TcoTagWidth;
 			this.TcoValWidth = TcoValWidth;
 
-			mask = new HashSet<Integer>(Arrays.asList(TCOREUWIDTH, TCOTAGWIDTH, TCOVALWIDTH));
+			mask = new HashSet<Integer>(Arrays.asList(TCOMCHWIDTH, TCOTAGWIDTH, TCOVALWIDTH));
 		};
 
-		public int TcoReuWidth;
+		public int TcoMchWidth;
 		public int TcoTagWidth;
 		public int TcoValWidth;
 
@@ -305,7 +306,7 @@ public class PnlWznmLibAMakefile {
 			String itemtag = "StgitemIacWznmLibAMakefile";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
-				TcoReuWidth = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TcoReuWidth", mask, TCOREUWIDTH);
+				TcoMchWidth = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TcoMchWidth", mask, TCOMCHWIDTH);
 				TcoTagWidth = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TcoTagWidth", mask, TCOTAGWIDTH);
 				TcoValWidth = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TcoValWidth", mask, TCOVALWIDTH);
 
@@ -333,7 +334,7 @@ public class PnlWznmLibAMakefile {
 			if (sup == null) doc.appendChild(el);
 			else sup.appendChild(el);
 
-			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "TcoReuWidth", TcoReuWidth);
+			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "TcoMchWidth", TcoMchWidth);
 			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "TcoTagWidth", TcoTagWidth);
 			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "TcoValWidth", TcoValWidth);
 		};
@@ -343,7 +344,7 @@ public class PnlWznmLibAMakefile {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
-			if (TcoReuWidth == comp.TcoReuWidth) items.add(TCOREUWIDTH);
+			if (TcoMchWidth == comp.TcoMchWidth) items.add(TCOMCHWIDTH);
 			if (TcoTagWidth == comp.TcoTagWidth) items.add(TCOTAGWIDTH);
 			if (TcoValWidth == comp.TcoValWidth) items.add(TCOVALWIDTH);
 
@@ -358,7 +359,7 @@ public class PnlWznmLibAMakefile {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(TCOREUWIDTH, TCOTAGWIDTH, TCOVALWIDTH));
+			diffitems = new HashSet<Integer>(Arrays.asList(TCOMCHWIDTH, TCOTAGWIDTH, TCOVALWIDTH));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -377,7 +378,7 @@ public class PnlWznmLibAMakefile {
 		public static final int TRS = 4;
 		public static final int TXTSHOWING1 = 5;
 		public static final int TXTSHOWING2 = 6;
-		public static final int TCOREU = 7;
+		public static final int TCOMCH = 7;
 		public static final int TCOTAG = 8;
 		public static final int TCOVAL = 9;
 
@@ -388,7 +389,7 @@ public class PnlWznmLibAMakefile {
 					, String Trs
 					, String TxtShowing1
 					, String TxtShowing2
-					, String TcoReu
+					, String TcoMch
 					, String TcoTag
 					, String TcoVal
 				) {
@@ -398,11 +399,11 @@ public class PnlWznmLibAMakefile {
 			this.Trs = Trs;
 			this.TxtShowing1 = TxtShowing1;
 			this.TxtShowing2 = TxtShowing2;
-			this.TcoReu = TcoReu;
+			this.TcoMch = TcoMch;
 			this.TcoTag = TcoTag;
 			this.TcoVal = TcoVal;
 
-			mask = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOREU, TCOTAG, TCOVAL));
+			mask = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOMCH, TCOTAG, TCOVAL));
 		};
 
 		public String Cpt;
@@ -411,7 +412,7 @@ public class PnlWznmLibAMakefile {
 		public String Trs;
 		public String TxtShowing1;
 		public String TxtShowing2;
-		public String TcoReu;
+		public String TcoMch;
 		public String TcoTag;
 		public String TcoVal;
 
@@ -434,7 +435,7 @@ public class PnlWznmLibAMakefile {
 				Trs = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "Trs", mask, TRS);
 				TxtShowing1 = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TxtShowing1", mask, TXTSHOWING1);
 				TxtShowing2 = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TxtShowing2", mask, TXTSHOWING2);
-				TcoReu = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TcoReu", mask, TCOREU);
+				TcoMch = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TcoMch", mask, TCOMCH);
 				TcoTag = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TcoTag", mask, TCOTAG);
 				TcoVal = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TcoVal", mask, TCOVAL);
 
@@ -455,7 +456,7 @@ public class PnlWznmLibAMakefile {
 			if (Trs.equals(comp.Trs)) items.add(TRS);
 			if (TxtShowing1.equals(comp.TxtShowing1)) items.add(TXTSHOWING1);
 			if (TxtShowing2.equals(comp.TxtShowing2)) items.add(TXTSHOWING2);
-			if (TcoReu.equals(comp.TcoReu)) items.add(TCOREU);
+			if (TcoMch.equals(comp.TcoMch)) items.add(TCOMCH);
 			if (TcoTag.equals(comp.TcoTag)) items.add(TCOTAG);
 			if (TcoVal.equals(comp.TcoVal)) items.add(TCOVAL);
 
@@ -470,7 +471,7 @@ public class PnlWznmLibAMakefile {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOREU, TCOTAG, TCOVAL));
+			diffitems = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOMCH, TCOTAG, TCOVAL));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

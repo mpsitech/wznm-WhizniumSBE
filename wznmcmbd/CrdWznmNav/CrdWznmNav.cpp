@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmNav.cpp
 	* job handler for job CrdWznmNav (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -53,8 +54,8 @@ CrdWznmNav::CrdWznmNav(
 	pnladmin = NULL;
 	pnlpre = NULL;
 	pnlheadbar = NULL;
-	dlgmnglic = NULL;
 	dlgloaini = NULL;
+	dlgmnglic = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -126,7 +127,11 @@ DpchEngWznm* CrdWznmNav::getNewDpchEng(
 void CrdWznmNav::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -168,7 +173,6 @@ void CrdWznmNav::refresh(
 	statshr.MitCrdLocAvail = evalMitCrdLocAvail(dbswznm);
 	statshr.MitCrdTagAvail = evalMitCrdTagAvail(dbswznm);
 	statshr.MitCrdCtpAvail = evalMitCrdCtpAvail(dbswznm);
-	statshr.MitCrdMtyAvail = evalMitCrdMtyAvail(dbswznm);
 	statshr.MitCrdMchAvail = evalMitCrdMchAvail(dbswznm);
 	statshr.MitCrdLibAvail = evalMitCrdLibAvail(dbswznm);
 	statshr.MspCrd3Avail = evalMspCrd3Avail(dbswznm);
@@ -257,6 +261,8 @@ void CrdWznmNav::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void CrdWznmNav::updatePreset(
@@ -330,8 +336,6 @@ void CrdWznmNav::handleRequest(
 					handleDpchAppDoMitCrdTagClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDCTPCLICK) {
 					handleDpchAppDoMitCrdCtpClick(dbswznm, &(req->dpcheng));
-				} else if (dpchappdo->ixVDo == VecVDo::MITCRDMTYCLICK) {
-					handleDpchAppDoMitCrdMtyClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDMCHCLICK) {
 					handleDpchAppDoMitCrdMchClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDLIBCLICK) {
@@ -560,18 +564,6 @@ void CrdWznmNav::handleDpchAppDoMitCrdCtpClick(
 
 	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
 	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmCtp");
-};
-
-void CrdWznmNav::handleDpchAppDoMitCrdMtyClick(
-			DbsWznm* dbswznm
-			, DpchEngWznm** dpcheng
-		) {
-	ubigint jrefNew = 0;
-
-	xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, "CrdWznmMty", 0, jrefNew);
-
-	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
-	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmMty");
 };
 
 void CrdWznmNav::handleDpchAppDoMitCrdMchClick(
@@ -1135,7 +1127,7 @@ void CrdWznmNav::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -1191,4 +1183,6 @@ void CrdWznmNav::leaveSgeAlrwznmabt(
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
 };
+
+
 

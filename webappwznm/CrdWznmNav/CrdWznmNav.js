@@ -1,11 +1,3 @@
-/**
-  * \file CrdWznmNav.js
-  * web client functionality for card CrdWznmNav
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 function getInitdone(pnlshort) {
 	return(retrieveSi(srcdoc, "StatAppWznmNav", "initdone" + pnlshort) == "true");
 };
@@ -217,7 +209,6 @@ function initMenCrd() {
 	MitCrdLocAvail = (retrieveSi(srcdoc, "StatShrWznmNav", "MitCrdLocAvail") == "true");
 	MitCrdTagAvail = (retrieveSi(srcdoc, "StatShrWznmNav", "MitCrdTagAvail") == "true");
 	MitCrdCtpAvail = (retrieveSi(srcdoc, "StatShrWznmNav", "MitCrdCtpAvail") == "true");
-	MitCrdMtyAvail = (retrieveSi(srcdoc, "StatShrWznmNav", "MitCrdMtyAvail") == "true");
 	MitCrdMchAvail = (retrieveSi(srcdoc, "StatShrWznmNav", "MitCrdMchAvail") == "true");
 	MitCrdLibAvail = (retrieveSi(srcdoc, "StatShrWznmNav", "MitCrdLibAvail") == "true");
 	MspCrd3Avail = (retrieveSi(srcdoc, "StatShrWznmNav", "MspCrd3Avail") == "true");
@@ -309,7 +300,6 @@ function initMenCrd() {
 	setTextContent(mendoc, mendoc.getElementById("MitCrdLoc"), retrieveTi(srcdoc, "TagWznmNav", "MitCrdLoc"));
 	setTextContent(mendoc, mendoc.getElementById("MitCrdTag"), retrieveTi(srcdoc, "TagWznmNav", "MitCrdTag"));
 	setTextContent(mendoc, mendoc.getElementById("MitCrdCtp"), retrieveTi(srcdoc, "TagWznmNav", "MitCrdCtp"));
-	setTextContent(mendoc, mendoc.getElementById("MitCrdMty"), retrieveTi(srcdoc, "TagWznmNav", "MitCrdMty"));
 	setTextContent(mendoc, mendoc.getElementById("MitCrdMch"), retrieveTi(srcdoc, "TagWznmNav", "MitCrdMch"));
 	setTextContent(mendoc, mendoc.getElementById("MitCrdLib"), retrieveTi(srcdoc, "TagWznmNav", "MitCrdLib"));
 	setTextContent(mendoc, mendoc.getElementById("MitCrdPrj"), retrieveTi(srcdoc, "TagWznmNav", "MitCrdPrj"));
@@ -393,7 +383,6 @@ function initMenCrd() {
 	height -= setMitMspAvail("MitCrdLoc", MitCrdLocAvail, 20);
 	height -= setMitMspAvail("MitCrdTag", MitCrdTagAvail, 20);
 	height -= setMitMspAvail("MitCrdCtp", MitCrdCtpAvail, 20);
-	height -= setMitMspAvail("MitCrdMty", MitCrdMtyAvail, 20);
 	height -= setMitMspAvail("MitCrdMch", MitCrdMchAvail, 20);
 	height -= setMitMspAvail("MitCrdLib", MitCrdLibAvail, 20);
 	height -= setMitMspAvail("MspCrd3", MspCrd3Avail, 1);

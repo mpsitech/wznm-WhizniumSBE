@@ -1,10 +1,11 @@
 /**
 	* \file WznmQLibAPkglist.cpp
 	* API code for table TblWznmQLibAPkglist (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #include "WznmQLibAPkglist.h"
 
@@ -18,15 +19,11 @@ using namespace Xmlio;
 
 WznmQLibAPkglist::WznmQLibAPkglist(
 			const uint jnum
-			, const string srefX1RefIxVTbl
-			, const string titX1RefIxVTbl
-			, const string stubX1RefUref
+			, const string stubX1RefWznmMMachine
 			, const string Pkglist
 		) {
 	this->jnum = jnum;
-	this->srefX1RefIxVTbl = srefX1RefIxVTbl;
-	this->titX1RefIxVTbl = titX1RefIxVTbl;
-	this->stubX1RefUref = stubX1RefUref;
+	this->stubX1RefWznmMMachine = stubX1RefWznmMMachine;
 	this->Pkglist = Pkglist;
 };
 
@@ -43,9 +40,7 @@ bool WznmQLibAPkglist::readXML(
 		basefound = checkXPath(docctx, basexpath);
 
 	if (basefound) {
-		extractStringUclc(docctx, basexpath, "srefX1RefIxVTbl", "ret", srefX1RefIxVTbl);
-		extractStringUclc(docctx, basexpath, "titX1RefIxVTbl", "ret2", titX1RefIxVTbl);
-		extractStringUclc(docctx, basexpath, "stubX1RefUref", "reu", stubX1RefUref);
+		extractStringUclc(docctx, basexpath, "stubX1RefWznmMMachine", "mch", stubX1RefWznmMMachine);
 		extractStringUclc(docctx, basexpath, "Pkglist", "pkl", Pkglist);
 	};
 

@@ -1,10 +1,11 @@
 /**
 	* \file WznmCtpWrstkitAcv.cpp
 	* Wznm operation processor - database and basic UI (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -208,6 +209,11 @@ void WznmCtpWrstkitAcv::writeIexIex(
 	IexWznmIex::ImeitemIMImpexpcplx* iex = NULL;
 	IexWznmIex::ImeitemIMImpexp* ime = NULL;
 
+	iex = new IexWznmIex::ImeitemIMImpexpcplx("Iex" + Prjshort + "Ini", "ini", "", "", "tool initialization");
+	addIJMImpexpcplxTitles(dbswznm, iex, "ini", refLcl, refsLcl, lcls);
+
+	imeimimpexpcplx.nodes.push_back(iex);
+
 	ime = new IexWznmIex::ImeitemIMImpexp(5, 0, "Tbl" + Prjshort + "MFile", "ImeIMFile", "", VecWznmWMImpexpIop::INS, "");
 	iex->imeimimpexp.nodes.push_back(ime);
 
@@ -221,5 +227,6 @@ void WznmCtpWrstkitAcv::writeIexIex(
 	IexWznmIex::exportToFile(outfolder + "/IexWznmIex_" + StrMod::lc(Prjshort) + ".xml", true, true, imeimimpexpcplx);
 };
 // IP cust --- IEND
+
 
 

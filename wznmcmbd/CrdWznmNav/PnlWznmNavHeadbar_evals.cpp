@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavHeadbar_evals.cpp
 	* job handler for job PnlWznmNavHeadbar (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -157,7 +158,7 @@ bool PnlWznmNavHeadbar::evalMitCrdFilAvail(
 bool PnlWznmNavHeadbar::evalMspCrd2Avail(
 			DbsWznm* dbswznm
 		) {
-	// MitCrdLocAvail()|MitCrdTagAvail()|MitCrdCtpAvail()|MitCrdMtyAvail()|MitCrdMchAvail()|MitCrdLibAvail()
+	// MitCrdLocAvail()|MitCrdTagAvail()|MitCrdCtpAvail()|MitCrdMchAvail()|MitCrdLibAvail()
 
 	vector<bool> args;
 	bool a, b;
@@ -168,15 +169,10 @@ bool PnlWznmNavHeadbar::evalMspCrd2Avail(
 	args.push_back(a);
 	a = false; a = evalMitCrdCtpAvail(dbswznm);
 	args.push_back(a);
-	a = false; a = evalMitCrdMtyAvail(dbswznm);
-	args.push_back(a);
 	a = false; a = evalMitCrdMchAvail(dbswznm);
 	args.push_back(a);
 	a = false; a = evalMitCrdLibAvail(dbswznm);
 	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a || b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -230,20 +226,6 @@ bool PnlWznmNavHeadbar::evalMitCrdCtpAvail(
 	bool a;
 
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCTP, jref) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmNavHeadbar::evalMitCrdMtyAvail(
-			DbsWznm* dbswznm
-		) {
-	// pre.ixCrdaccMty()
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMTY, jref) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -1070,4 +1052,6 @@ bool PnlWznmNavHeadbar::evalMitCrdUtlAvail(
 
 	return(args.back());
 };
+
+
 

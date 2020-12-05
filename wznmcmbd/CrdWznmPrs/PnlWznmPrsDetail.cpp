@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmPrsDetail.cpp
 	* job handler for job PnlWznmPrsDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -204,7 +205,11 @@ void PnlWznmPrsDetail::refreshRecPrsJlnm(
 void PnlWznmPrsDetail::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -214,6 +219,8 @@ void PnlWznmPrsDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmPrsDetail::updatePreset(
@@ -336,20 +343,11 @@ void PnlWznmPrsDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMPRSUPD_REFEQ) {
-		call->abort = handleCallWznmPrsUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRSJLNMMOD_PRSEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMPRSJLNMMOD_PRSEQ) {
 		call->abort = handleCallWznmPrsJlnmMod_prsEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRSUPD_REFEQ) {
+		call->abort = handleCallWznmPrsUpd_refEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmPrsDetail::handleCallWznmPrsUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmPrsUpd_refEq --- INSERT
-	return retval;
 };
 
 bool PnlWznmPrsDetail::handleCallWznmPrsJlnmMod_prsEq(
@@ -364,4 +362,15 @@ bool PnlWznmPrsDetail::handleCallWznmPrsJlnmMod_prsEq(
 	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
+
+bool PnlWznmPrsDetail::handleCallWznmPrsUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmPrsUpd_refEq --- INSERT
+	return retval;
+};
+
+
 

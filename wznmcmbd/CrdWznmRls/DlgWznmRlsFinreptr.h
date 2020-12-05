@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmRlsFinreptr.h
 	* job handler for job DlgWznmRlsFinreptr (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMRLSFINREPTR_H
 #define DLGWZNMRLSFINREPTR_H
@@ -401,14 +402,14 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalFinButRunActive(DbsWznm* dbswznm);
-	bool evalFinButStoActive(DbsWznm* dbswznm);
 	bool evalResDldAvail(DbsWznm* dbswznm);
 	bool evalResDldActive(DbsWznm* dbswznm);
 	bool evalResTxtPrgAvail(DbsWznm* dbswznm);
 	bool evalResSep1Avail(DbsWznm* dbswznm);
 	bool evalResButPsgAvail(DbsWznm* dbswznm);
 	bool evalResButPsgActive(DbsWznm* dbswznm);
+	bool evalFinButRunActive(DbsWznm* dbswznm);
+	bool evalFinButStoActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmRlsFinreptr(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -457,7 +458,7 @@ public:
 	void refreshFin(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshRes(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -479,9 +480,9 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
-	void handleTimerInSgeFinidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgePsgidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgePushgit(DbsWznm* dbswznm);
+	void handleTimerInSgeFinidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);
@@ -514,5 +515,6 @@ private:
 };
 
 #endif
+
 
 

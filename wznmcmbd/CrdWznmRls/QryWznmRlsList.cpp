@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmRlsList.cpp
 	* job handler for job QryWznmRlsList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -218,9 +219,9 @@ void QryWznmRlsList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMRelease.sref ASC";
+	if (preIxOrd == VecVOrd::MCH) sqlstr += " ORDER BY TblWznmMRelease.refWznmMMachine ASC";
 	else if (preIxOrd == VecVOrd::CMP) sqlstr += " ORDER BY TblWznmMRelease.refWznmMComponent ASC";
-	else if (preIxOrd == VecVOrd::MCH) sqlstr += " ORDER BY TblWznmMRelease.refWznmMMachine ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMRelease.sref ASC";
 };
 
 void QryWznmRlsList::fetch(
@@ -428,4 +429,6 @@ bool QryWznmRlsList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

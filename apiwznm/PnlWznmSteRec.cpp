@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmSteRec.cpp
 	* API code for job PnlWznmSteRec (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "PnlWznmSteRec.h"
 
@@ -103,16 +104,16 @@ set<uint> PnlWznmSteRec::ContInf::diff(
 
 PnlWznmSteRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdoneATrig
 			, const bool initdoneAAction
+			, const bool initdoneATrig
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdoneATrig = initdoneATrig;
 	this->initdoneAAction = initdoneAAction;
+	this->initdoneATrig = initdoneATrig;
 
-	mask = {INITDONEDETAIL, INITDONEATRIG, INITDONEAACTION};
+	mask = {INITDONEDETAIL, INITDONEAACTION, INITDONEATRIG};
 };
 
 bool PnlWznmSteRec::StatApp::readXML(
@@ -133,8 +134,8 @@ bool PnlWznmSteRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneATrig", initdoneATrig)) add(INITDONEATRIG);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAAction", initdoneAAction)) add(INITDONEAACTION);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneATrig", initdoneATrig)) add(INITDONEATRIG);
 	};
 
 	return basefound;
@@ -146,8 +147,8 @@ set<uint> PnlWznmSteRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdoneATrig == comp->initdoneATrig) insert(items, INITDONEATRIG);
 	if (initdoneAAction == comp->initdoneAAction) insert(items, INITDONEAACTION);
+	if (initdoneATrig == comp->initdoneATrig) insert(items, INITDONEATRIG);
 
 	return(items);
 };
@@ -160,7 +161,7 @@ set<uint> PnlWznmSteRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEATRIG, INITDONEAACTION};
+	diffitems = {INITDONEDETAIL, INITDONEAACTION, INITDONEATRIG};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -173,19 +174,19 @@ set<uint> PnlWznmSteRec::StatApp::diff(
 PnlWznmSteRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJrefATrig
 			, const string& scrJrefAAction
+			, const string& scrJrefATrig
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefATrig = scrJrefATrig;
 	this->scrJrefAAction = scrJrefAAction;
+	this->scrJrefATrig = scrJrefATrig;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, SCRJREFAACTION, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAACTION, SCRJREFATRIG, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmSteRec::StatShr::readXML(
@@ -212,8 +213,8 @@ bool PnlWznmSteRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefATrig", scrJrefATrig)) add(SCRJREFATRIG);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAAction", scrJrefAAction)) add(SCRJREFAACTION);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefATrig", scrJrefATrig)) add(SCRJREFATRIG);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
 
@@ -227,8 +228,8 @@ set<uint> PnlWznmSteRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJrefATrig == comp->scrJrefATrig) insert(items, SCRJREFATRIG);
 	if (scrJrefAAction == comp->scrJrefAAction) insert(items, SCRJREFAACTION);
+	if (scrJrefATrig == comp->scrJrefATrig) insert(items, SCRJREFATRIG);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -242,7 +243,7 @@ set<uint> PnlWznmSteRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, SCRJREFAACTION, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAACTION, SCRJREFATRIG, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

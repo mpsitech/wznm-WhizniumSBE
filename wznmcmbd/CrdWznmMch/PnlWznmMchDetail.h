@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmMchDetail.h
 	* job handler for job PnlWznmMchDetail (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMMCHDETAIL_H
 #define PNLWZNMMCHDETAIL_H
@@ -38,7 +39,9 @@ public:
 
 	public:
 		static const Sbecore::uint BUTSAVECLICK = 1;
-		static const Sbecore::uint BUTTBLVIEWCLICK = 2;
+		static const Sbecore::uint BUTSUPVIEWCLICK = 2;
+		static const Sbecore::uint BUTCCHVIEWCLICK = 3;
+		static const Sbecore::uint BUTPKMEDITCLICK = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -50,14 +53,16 @@ public:
 	class ContIac : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint NUMFPUPCTY = 1;
-		static const Sbecore::uint TXFCMT = 2;
+		static const Sbecore::uint NUMFPUPPKM = 1;
+		static const Sbecore::uint TXFPKM = 2;
+		static const Sbecore::uint TXFCMT = 3;
 
 	public:
-		ContIac(const Sbecore::uint numFPupCty = 1, const std::string& TxfCmt = "");
+		ContIac(const Sbecore::uint numFPupPkm = 1, const std::string& TxfPkm = "", const std::string& TxfCmt = "");
 
 	public:
-		Sbecore::uint numFPupCty;
+		Sbecore::uint numFPupPkm;
+		std::string TxfPkm;
 		std::string TxfCmt;
 
 	public:
@@ -74,14 +79,16 @@ public:
 
 	public:
 		static const Sbecore::uint TXTSRF = 1;
-		static const Sbecore::uint TXTTBL = 2;
+		static const Sbecore::uint TXTSUP = 2;
+		static const Sbecore::uint TXTCCH = 3;
 
 	public:
-		ContInf(const std::string& TxtSrf = "", const std::string& TxtTbl = "");
+		ContInf(const std::string& TxtSrf = "", const std::string& TxtSup = "", const std::string& TxtCch = "");
 
 	public:
 		std::string TxtSrf;
-		std::string TxtTbl;
+		std::string TxtSup;
+		std::string TxtCch;
 
 	public:
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
@@ -95,7 +102,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND, const bool PupPkmAlt = false);
 	};
 
 	/**
@@ -104,26 +111,36 @@ public:
 	class StatShr : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint BUTSAVEAVAIL = 1;
-		static const Sbecore::uint BUTSAVEACTIVE = 2;
-		static const Sbecore::uint TXTSRFACTIVE = 3;
-		static const Sbecore::uint TXTTBLACTIVE = 4;
-		static const Sbecore::uint BUTTBLVIEWAVAIL = 5;
-		static const Sbecore::uint BUTTBLVIEWACTIVE = 6;
-		static const Sbecore::uint PUPCTYACTIVE = 7;
-		static const Sbecore::uint TXFCMTACTIVE = 8;
+		static const Sbecore::uint TXFPKMVALID = 1;
+		static const Sbecore::uint BUTSAVEAVAIL = 2;
+		static const Sbecore::uint BUTSAVEACTIVE = 3;
+		static const Sbecore::uint TXTSRFACTIVE = 4;
+		static const Sbecore::uint TXTSUPACTIVE = 5;
+		static const Sbecore::uint BUTSUPVIEWAVAIL = 6;
+		static const Sbecore::uint BUTSUPVIEWACTIVE = 7;
+		static const Sbecore::uint TXTCCHACTIVE = 8;
+		static const Sbecore::uint BUTCCHVIEWAVAIL = 9;
+		static const Sbecore::uint BUTCCHVIEWACTIVE = 10;
+		static const Sbecore::uint PUPPKMACTIVE = 11;
+		static const Sbecore::uint BUTPKMEDITAVAIL = 12;
+		static const Sbecore::uint TXFCMTACTIVE = 13;
 
 	public:
-		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxtTblActive = true, const bool ButTblViewAvail = true, const bool ButTblViewActive = true, const bool PupCtyActive = true, const bool TxfCmtActive = true);
+		StatShr(const bool TxfPkmValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtCchActive = true, const bool ButCchViewAvail = true, const bool ButCchViewActive = true, const bool PupPkmActive = true, const bool ButPkmEditAvail = true, const bool TxfCmtActive = true);
 
 	public:
+		bool TxfPkmValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtSrfActive;
-		bool TxtTblActive;
-		bool ButTblViewAvail;
-		bool ButTblViewActive;
-		bool PupCtyActive;
+		bool TxtSupActive;
+		bool ButSupViewAvail;
+		bool ButSupViewActive;
+		bool TxtCchActive;
+		bool ButCchViewAvail;
+		bool ButCchViewActive;
+		bool PupPkmActive;
+		bool ButPkmEditAvail;
 		bool TxfCmtActive;
 
 	public:
@@ -192,19 +209,19 @@ public:
 		static const Sbecore::uint JREF = 1;
 		static const Sbecore::uint CONTIAC = 2;
 		static const Sbecore::uint CONTINF = 3;
-		static const Sbecore::uint FEEDFPUPCTY = 4;
+		static const Sbecore::uint FEEDFPUPPKM = 4;
 		static const Sbecore::uint STATAPP = 5;
 		static const Sbecore::uint STATSHR = 6;
 		static const Sbecore::uint TAG = 7;
 		static const Sbecore::uint ALL = 8;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContInf* continf = NULL, Sbecore::Xmlio::Feed* feedFPupCty = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContInf* continf = NULL, Sbecore::Xmlio::Feed* feedFPupPkm = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContIac contiac;
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFPupCty;
+		Sbecore::Xmlio::Feed feedFPupPkm;
 		StatShr statshr;
 
 	public:
@@ -217,10 +234,14 @@ public:
 	bool evalButSaveAvail(DbsWznm* dbswznm);
 	bool evalButSaveActive(DbsWznm* dbswznm);
 	bool evalTxtSrfActive(DbsWznm* dbswznm);
-	bool evalTxtTblActive(DbsWznm* dbswznm);
-	bool evalButTblViewAvail(DbsWznm* dbswznm);
-	bool evalButTblViewActive(DbsWznm* dbswznm);
-	bool evalPupCtyActive(DbsWznm* dbswznm);
+	bool evalTxtSupActive(DbsWznm* dbswznm);
+	bool evalButSupViewAvail(DbsWznm* dbswznm);
+	bool evalButSupViewActive(DbsWznm* dbswznm);
+	bool evalTxtCchActive(DbsWznm* dbswznm);
+	bool evalButCchViewAvail(DbsWznm* dbswznm);
+	bool evalButCchViewActive(DbsWznm* dbswznm);
+	bool evalPupPkmActive(DbsWznm* dbswznm);
+	bool evalButPkmEditAvail(DbsWznm* dbswznm);
 	bool evalTxfCmtActive(DbsWznm* dbswznm);
 
 public:
@@ -232,7 +253,7 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	Sbecore::Xmlio::Feed feedFPupCty;
+	Sbecore::Xmlio::Feed feedFPupPkm;
 
 	WznmMMachine recMch;
 
@@ -246,9 +267,13 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
+	void refreshPupPkm(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refreshTxfPkm(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refreshPkm(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+
 	void refreshRecMch(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 
@@ -263,16 +288,22 @@ private:
 	void handleDpchAppDataContiac(DbsWznm* dbswznm, ContIac* _contiac, DpchEngWznm** dpcheng);
 
 	void handleDpchAppDoButSaveClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
-	void handleDpchAppDoButTblViewClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoButSupViewClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoButCchViewClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoButPkmEditClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 
 public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
+	bool handleCallWznmKlsAkeyMod_klsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv);
 	bool handleCallWznmMchUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmMch_tblEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmMch_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmMch_cchEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 
 #endif
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmAppNew.cpp
 	* job handler for job DlgWznmAppNew (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -94,25 +95,31 @@ DpchEngWznm* DlgWznmAppNew::getNewDpchEng(
 void DlgWznmAppNew::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButCncActive = evalButCncActive(dbswznm);
 	statshr.ButCreActive = evalButCreActive(dbswznm);
 
+	// contiac
+
 	// continf
 	continf.numFSge = ixVSge;
 
-	// contiac
-
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+
+	muteRefresh = false;
 };
 
 void DlgWznmAppNew::handleRequest(
@@ -253,7 +260,7 @@ void DlgWznmAppNew::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -311,8 +318,8 @@ uint DlgWznmAppNew::enterSgeCreate(
 	app.ixWznmVApptarget = feedFDetPupTrg.getByNum(contiac.numFDetPupTrg)->ix;
 	app.verRefWznmMVersion = feedFDetPupVer.getByNum(contiac.numFDetPupVer)->ref;
 	app.verNum = 1;
-	if (dbswznm->loadUintBySQL("SELECT verNum FROM TblWznmMApp WHERE verRefWznmMVersion = " + to_string(app.verRefWznmMVersion) + " AND Short = '" + contiac.DetTxfSho + "' ORDER BY verNum DESC LIMIT 1", app.verNum)) app.verNum++;
-	app.Short = contiac.DetTxfSho;
+	if (dbswznm->loadUintBySQL("SELECT verNum FROM TblWznmMApp WHERE verRefWznmMVersion = " + to_string(app.verRefWznmMVersion) + " AND Short = '" + StrMod::lc(contiac.DetTxfSho) + "' ORDER BY verNum DESC LIMIT 1", app.verNum)) app.verNum++;
+	app.Short = StrMod::lc(contiac.DetTxfSho);
 	app.Title = contiac.DetTxfTit;
 
 	dbswznm->tblwznmmapp->insertRec(&app);
@@ -347,5 +354,6 @@ void DlgWznmAppNew::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

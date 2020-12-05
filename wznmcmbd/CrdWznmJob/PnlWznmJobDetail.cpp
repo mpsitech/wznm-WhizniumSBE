@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmJobDetail.cpp
 	* job handler for job PnlWznmJobDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -130,7 +131,11 @@ void PnlWznmJobDetail::refreshRecJob(
 void PnlWznmJobDetail::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -140,6 +145,8 @@ void PnlWznmJobDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmJobDetail::updatePreset(
@@ -270,15 +277,9 @@ void PnlWznmJobDetail::handleDpchAppDoButReuViewClick(
 	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
 
 	if (statshr.ButReuViewAvail && statshr.ButReuViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::CAR) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-			sref = "CrdWznmCar";
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::DLG) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+			sref = "CrdWznmDlg";
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::DLG) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmDlg";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
-			};
 		};
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::PNL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
@@ -295,6 +296,12 @@ void PnlWznmJobDetail::handleDpchAppDoButReuViewClick(
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::IEX) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmIex";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::CAR) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmCar";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
 			};
 		};
@@ -373,4 +380,6 @@ bool PnlWznmJobDetail::handleCallWznmJob_retEq(
 	boolvalRet = (recJob.refIxVTbl == ixInv); // IP handleCallWznmJob_retEq --- LINE
 	return retval;
 };
+
+
 

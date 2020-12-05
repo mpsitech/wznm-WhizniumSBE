@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmPrjNew.h
 	* API code for job DlgWznmPrjNew (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMPRJNEW_H
 #define DLGWZNMPRJNEW_H
@@ -68,13 +69,23 @@ namespace DlgWznmPrjNew {
 	public:
 		static const Sbecore::uint DETTXFSHO = 1;
 		static const Sbecore::uint DETTXFTIT = 2;
+		static const Sbecore::uint DETTXFABT = 3;
+		static const Sbecore::uint NUMSFDETLSTDTY = 4;
+		static const Sbecore::uint NUMSFDETLSTLOC = 5;
+		static const Sbecore::uint NUMFDETPUPPLC = 6;
+		static const Sbecore::uint NUMFDETPUPPMC = 7;
 
 	public:
-		ContIac(const std::string& DetTxfSho = "", const std::string& DetTxfTit = "");
+		ContIac(const std::string& DetTxfSho = "", const std::string& DetTxfTit = "", const std::string& DetTxfAbt = "", const std::vector<Sbecore::uint>& numsFDetLstDty = {}, const std::vector<Sbecore::uint>& numsFDetLstLoc = {}, const Sbecore::uint numFDetPupPlc = 1, const Sbecore::uint numFDetPupPmc = 1);
 
 	public:
 		std::string DetTxfSho;
 		std::string DetTxfTit;
+		std::string DetTxfAbt;
+		std::vector<Sbecore::uint> numsFDetLstDty;
+		std::vector<Sbecore::uint> numsFDetLstLoc;
+		Sbecore::uint numFDetPupPlc;
+		Sbecore::uint numFDetPupPmc;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -110,12 +121,16 @@ namespace DlgWznmPrjNew {
 
 	public:
 		static const Sbecore::uint SHORTMENU = 1;
+		static const Sbecore::uint DETLSTDTYNUMFIRSTDISP = 2;
+		static const Sbecore::uint DETLSTLOCNUMFIRSTDISP = 3;
 
 	public:
-		StatApp(const std::string& shortMenu = "");
+		StatApp(const std::string& shortMenu = "", const Sbecore::uint DetLstDtyNumFirstdisp = 1, const Sbecore::uint DetLstLocNumFirstdisp = 1);
 
 	public:
 		std::string shortMenu;
+		Sbecore::uint DetLstDtyNumFirstdisp;
+		Sbecore::uint DetLstLocNumFirstdisp;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -156,17 +171,27 @@ namespace DlgWznmPrjNew {
 		static const Sbecore::uint CPT = 1;
 		static const Sbecore::uint DETCPTSHO = 2;
 		static const Sbecore::uint DETCPTTIT = 3;
-		static const Sbecore::uint DETBUTAUT = 4;
-		static const Sbecore::uint BUTCNC = 5;
-		static const Sbecore::uint BUTCRE = 6;
+		static const Sbecore::uint DETCPTABT = 4;
+		static const Sbecore::uint DETCPTDTY = 5;
+		static const Sbecore::uint DETCPTLOC = 6;
+		static const Sbecore::uint DETCPTPLC = 7;
+		static const Sbecore::uint DETCPTTMC = 8;
+		static const Sbecore::uint DETBUTAUT = 9;
+		static const Sbecore::uint BUTCNC = 10;
+		static const Sbecore::uint BUTCRE = 11;
 
 	public:
-		Tag(const std::string& Cpt = "", const std::string& DetCptSho = "", const std::string& DetCptTit = "", const std::string& DetButAut = "", const std::string& ButCnc = "", const std::string& ButCre = "");
+		Tag(const std::string& Cpt = "", const std::string& DetCptSho = "", const std::string& DetCptTit = "", const std::string& DetCptAbt = "", const std::string& DetCptDty = "", const std::string& DetCptLoc = "", const std::string& DetCptPlc = "", const std::string& DetCptTmc = "", const std::string& DetButAut = "", const std::string& ButCnc = "", const std::string& ButCre = "");
 
 	public:
 		std::string Cpt;
 		std::string DetCptSho;
 		std::string DetCptTit;
+		std::string DetCptAbt;
+		std::string DetCptDty;
+		std::string DetCptLoc;
+		std::string DetCptPlc;
+		std::string DetCptTmc;
 		std::string DetButAut;
 		std::string ButCnc;
 		std::string ButCre;
@@ -228,10 +253,14 @@ namespace DlgWznmPrjNew {
 		static const Sbecore::uint SCRJREF = 1;
 		static const Sbecore::uint CONTIAC = 2;
 		static const Sbecore::uint CONTINF = 3;
-		static const Sbecore::uint FEEDFSGE = 4;
-		static const Sbecore::uint STATAPP = 5;
-		static const Sbecore::uint STATSHR = 6;
-		static const Sbecore::uint TAG = 7;
+		static const Sbecore::uint FEEDFDETLSTDTY = 4;
+		static const Sbecore::uint FEEDFDETLSTLOC = 5;
+		static const Sbecore::uint FEEDFDETPUPPLC = 6;
+		static const Sbecore::uint FEEDFDETPUPPMC = 7;
+		static const Sbecore::uint FEEDFSGE = 8;
+		static const Sbecore::uint STATAPP = 9;
+		static const Sbecore::uint STATSHR = 10;
+		static const Sbecore::uint TAG = 11;
 
 	public:
 		DpchEngData();
@@ -239,6 +268,10 @@ namespace DlgWznmPrjNew {
 	public:
 		ContIac contiac;
 		ContInf continf;
+		Sbecore::Xmlio::Feed feedFDetLstDty;
+		Sbecore::Xmlio::Feed feedFDetLstLoc;
+		Sbecore::Xmlio::Feed feedFDetPupPlc;
+		Sbecore::Xmlio::Feed feedFDetPupPmc;
 		Sbecore::Xmlio::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;

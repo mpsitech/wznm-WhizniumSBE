@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmRelList.cpp
 	* job handler for job QryWznmRelList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -263,8 +264,8 @@ void QryWznmRelList::rerun_orderSQL(
 	else if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMRelation.supRefWznmMRelation ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMRelation.refWznmMVersion ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMRelation.ixVBasetype ASC";
-	else if (preIxOrd == VecVOrd::TOS) sqlstr += " ORDER BY TblWznmMRelation.tosRefWznmMSubset ASC";
 	else if (preIxOrd == VecVOrd::TOT) sqlstr += " ORDER BY TblWznmMRelation.toRefWznmMTable ASC";
+	else if (preIxOrd == VecVOrd::TOS) sqlstr += " ORDER BY TblWznmMRelation.tosRefWznmMSubset ASC";
 	else if (preIxOrd == VecVOrd::FRS) sqlstr += " ORDER BY TblWznmMRelation.frsRefWznmMSubset ASC";
 	else if (preIxOrd == VecVOrd::FRT) sqlstr += " ORDER BY TblWznmMRelation.frRefWznmMTable ASC";
 };
@@ -515,4 +516,6 @@ bool QryWznmRelList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

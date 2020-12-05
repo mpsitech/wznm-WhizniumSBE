@@ -1,16 +1,18 @@
 /**
 	* \file WznmcmbdOpprc.h
 	* operation processor for Wznm combined daemon (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMCMBDOPPRC_H
 #define WZNMCMBDOPPRC_H
 
 #include "WznmComplBscui.h"
 #include "WznmComplDbs.h"
+#include "WznmComplDeploy.h"
 #include "WznmComplIex.h"
 #include "WznmComplJtr.h"
 #include "WznmCtpGenjtrAcv.h"
@@ -32,7 +34,6 @@
 #include "WznmGenQtb.h"
 #include "WznmGenSysvec.h"
 #include "WznmPrcfileConcat.h"
-#include "WznmPrcfileIexconv.h"
 #include "WznmPrcfilePlhrpl.h"
 #include "WznmPrctreeExtract.h"
 #include "WznmPrctreeMerge.h"
@@ -86,4 +87,6 @@ namespace WznmcmbdOpprc {
 };
 
 #endif
+
+
 

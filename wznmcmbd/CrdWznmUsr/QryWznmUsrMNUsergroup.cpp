@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmUsrMNUsergroup.cpp
 	* job handler for job QryWznmUsrMNUsergroup (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -84,7 +85,7 @@ void QryWznmUsrMNUsergroup::rerun(
 	dbswznm->tblwznmqusrmnusergroup->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMUserMUsergroup.ref)";
-	sqlstr += " FROM TblWznmRMUserMUsergroup, TblWznmMUsergroup";
+	sqlstr += " FROM TblWznmMUsergroup, TblWznmRMUserMUsergroup";
 	sqlstr += " WHERE TblWznmRMUserMUsergroup.refWznmMUsergroup = TblWznmMUsergroup.ref";
 	sqlstr += " AND TblWznmRMUserMUsergroup.refWznmMUser = " + to_string(preRefUsr) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -99,7 +100,7 @@ void QryWznmUsrMNUsergroup::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQUsrMNUsergroup(jref, jnum, mref, ref, ixWznmVUserlevel)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMUsergroup.ref, TblWznmRMUserMUsergroup.ref, TblWznmRMUserMUsergroup.ixWznmVUserlevel";
-	sqlstr += " FROM TblWznmRMUserMUsergroup, TblWznmMUsergroup";
+	sqlstr += " FROM TblWznmMUsergroup, TblWznmRMUserMUsergroup";
 	sqlstr += " WHERE TblWznmRMUserMUsergroup.refWznmMUsergroup = TblWznmMUsergroup.ref";
 	sqlstr += " AND TblWznmRMUserMUsergroup.refWznmMUser = " + to_string(preRefUsr) + "";
 	sqlstr += " ORDER BY TblWznmMUsergroup.sref ASC";
@@ -281,19 +282,11 @@ void QryWznmUsrMNUsergroup::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSRRUSGMOD_USREQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMUSRRUSGMOD_USREQ) {
 		call->abort = handleCallWznmUsrRusgMod_usrEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmUsrMNUsergroup::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmUsrMNUsergroup::handleCallWznmUsrRusgMod_usrEq(
@@ -309,4 +302,14 @@ bool QryWznmUsrMNUsergroup::handleCallWznmUsrRusgMod_usrEq(
 
 	return retval;
 };
+
+bool QryWznmUsrMNUsergroup::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
+};
+
+
 

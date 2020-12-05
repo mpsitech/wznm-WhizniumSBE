@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmSgeList.cpp
 	* job handler for job QryWznmSgeList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -237,9 +238,9 @@ void QryWznmSgeList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMStage.sref ASC";
+	if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWznmMStage.jobRefWznmMJob ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMStage.ixVBasetype ASC";
-	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWznmMStage.jobRefWznmMJob ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMStage.sref ASC";
 };
 
 void QryWznmSgeList::fetch(
@@ -450,4 +451,6 @@ bool QryWznmSgeList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

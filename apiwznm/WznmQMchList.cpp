@@ -1,10 +1,11 @@
 /**
 	* \file WznmQMchList.cpp
 	* API code for table TblWznmQMchList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #include "WznmQMchList.h"
 
@@ -19,11 +20,11 @@ using namespace Xmlio;
 WznmQMchList::WznmQMchList(
 			const uint jnum
 			, const string sref
-			, const string stubRefWznmMMachtype
+			, const string stubSupRefWznmMMachine
 		) {
 	this->jnum = jnum;
 	this->sref = sref;
-	this->stubRefWznmMMachtype = stubRefWznmMMachtype;
+	this->stubSupRefWznmMMachine = stubSupRefWznmMMachine;
 };
 
 bool WznmQMchList::readXML(
@@ -40,7 +41,7 @@ bool WznmQMchList::readXML(
 
 	if (basefound) {
 		extractStringUclc(docctx, basexpath, "sref", "srf", sref);
-		extractStringUclc(docctx, basexpath, "stubRefWznmMMachtype", "tbl", stubRefWznmMMachtype);
+		extractStringUclc(docctx, basexpath, "stubSupRefWznmMMachine", "sup", stubSupRefWznmMMachine);
 	};
 
 	return basefound;

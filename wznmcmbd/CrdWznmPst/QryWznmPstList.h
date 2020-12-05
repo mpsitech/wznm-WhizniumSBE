@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmPstList.h
 	* job handler for job QryWznmPstList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMPSTLIST_H
 #define QRYWZNMPSTLIST_H
@@ -32,9 +33,9 @@ public:
 
 	public:
 		static const Sbecore::uint ATY = 1;
-		static const Sbecore::uint RET = 2;
-		static const Sbecore::uint REU = 3;
-		static const Sbecore::uint VER = 4;
+		static const Sbecore::uint REU = 2;
+		static const Sbecore::uint VER = 3;
+		static const Sbecore::uint RET = 4;
 		static const Sbecore::uint SRF = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -146,11 +147,13 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmPstMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPstUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmPstMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };
 
 #endif
+
+
 

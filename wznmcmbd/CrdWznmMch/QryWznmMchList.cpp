@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmMchList.cpp
 	* job handler for job QryWznmMchList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -82,14 +83,14 @@ void QryWznmMchList::rerun(
 
 	uint preIxOrd = xchg->getIxPreset(VecWznmVPreset::PREWZNMIXORD, jref);
 	string preSrf = xchg->getSrefPreset(VecWznmVPreset::PREWZNMMCHLIST_SRF, jref);
-	ubigint preTbl = xchg->getRefPreset(VecWznmVPreset::PREWZNMMCHLIST_TBL, jref);
+	ubigint preSup = xchg->getRefPreset(VecWznmVPreset::PREWZNMMCHLIST_SUP, jref);
 
 	dbswznm->tblwznmqselect->removeRstByJref(jref);
 	dbswznm->tblwznmqmchlist->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmMMachine.ref)";
 	sqlstr += " FROM TblWznmMMachine";
-	rerun_filtSQL(sqlstr, preSrf, preTbl, true);
+	rerun_filtSQL(sqlstr, preSrf, preSup, true);
 	dbswznm->loadUintBySQL(sqlstr, cnt);
 
 	statshr.ntot = cnt;
@@ -100,10 +101,10 @@ void QryWznmMchList::rerun(
 		else stgiac.jnumFirstload = 1;
 	};
 
-	sqlstr = "INSERT INTO TblWznmQMchList(jref, jnum, ref, sref, refWznmMMachtype)";
-	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMMachine.ref, TblWznmMMachine.sref, TblWznmMMachine.refWznmMMachtype";
+	sqlstr = "INSERT INTO TblWznmQMchList(jref, jnum, ref, sref, supRefWznmMMachine)";
+	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMMachine.ref, TblWznmMMachine.sref, TblWznmMMachine.supRefWznmMMachine";
 	sqlstr += " FROM TblWznmMMachine";
-	rerun_filtSQL(sqlstr, preSrf, preTbl, true);
+	rerun_filtSQL(sqlstr, preSrf, preSup, true);
 	rerun_orderSQL(sqlstr, preIxOrd);
 	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
 	dbswznm->executeQuery(sqlstr);
@@ -123,7 +124,7 @@ void QryWznmMchList::rerun(
 void QryWznmMchList::rerun_filtSQL(
 			string& sqlstr
 			, const string& preSrf
-			, const ubigint preTbl
+			, const ubigint preSup
 			, const bool addwhere
 		) {
 	bool first = addwhere;
@@ -133,9 +134,9 @@ void QryWznmMchList::rerun_filtSQL(
 		sqlstr += "TblWznmMMachine.sref = '" + preSrf + "'";
 	};
 
-	if (preTbl != 0) {
+	if (preSup != 0) {
 		rerun_filtSQL_append(sqlstr, first);
-		sqlstr += "TblWznmMMachine.refWznmMMachtype = " + to_string(preTbl) + "";
+		sqlstr += "TblWznmMMachine.supRefWznmMMachine = " + to_string(preSup) + "";
 	};
 };
 
@@ -153,7 +154,7 @@ void QryWznmMchList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMMachine.refWznmMMachtype ASC";
+	if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMMachine.supRefWznmMMachine ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMMachine.sref ASC";
 };
 
@@ -182,7 +183,7 @@ void QryWznmMchList::fetch(
 			rec = rst.nodes[i];
 
 			rec->jnum = statshr.jnumFirstload + i;
-			rec->stubRefWznmMMachtype = StubWznm::getStubMtyStd(dbswznm, rec->refWznmMMachtype, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			rec->stubSupRefWznmMMachine = StubWznm::getStubMchStd(dbswznm, rec->supRefWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 		};
 
 		stmgr->commit();
@@ -289,8 +290,8 @@ bool QryWznmMchList::handleShow(
 	cout << "\tjnum";
 	cout << "\tref";
 	cout << "\tsref";
-	cout << "\trefWznmMMachtype";
-	cout << "\tstubRefWznmMMachtype";
+	cout << "\tsupRefWznmMMachine";
+	cout << "\tstubSupRefWznmMMachine";
 	cout << endl;
 
 	// record rows
@@ -302,8 +303,8 @@ bool QryWznmMchList::handleShow(
 		cout << "\t" << rec->jnum;
 		cout << "\t" << rec->ref;
 		cout << "\t" << rec->sref;
-		cout << "\t" << rec->refWznmMMachtype;
-		cout << "\t" << rec->stubRefWznmMMachtype;
+		cout << "\t" << rec->supRefWznmMMachine;
+		cout << "\t" << rec->stubSupRefWznmMMachine;
 		cout << endl;
 	};
 	return retval;
@@ -313,27 +314,13 @@ void QryWznmMchList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMMCHMOD) {
-		call->abort = handleCallWznmMchMod(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCHUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMMCHUPD_REFEQ) {
 		call->abort = handleCallWznmMchUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCHMOD) {
+		call->abort = handleCallWznmMchMod(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmMchList::handleCallWznmMchMod(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
-		ixWznmVQrystate = VecWznmVQrystate::MNR;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmMchList::handleCallWznmMchUpd_refEq(
@@ -350,6 +337,20 @@ bool QryWznmMchList::handleCallWznmMchUpd_refEq(
 	return retval;
 };
 
+bool QryWznmMchList::handleCallWznmMchMod(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
+		ixWznmVQrystate = VecWznmVQrystate::MNR;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
 bool QryWznmMchList::handleCallWznmStubChgFromSelf(
 			DbsWznm* dbswznm
 		) {
@@ -357,4 +358,6 @@ bool QryWznmMchList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

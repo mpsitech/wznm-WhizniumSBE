@@ -8,6 +8,10 @@
 			function handleDetTxfShoChange() {parent.window.handleTxfChange(document,"DetTxfSho","s");};
 			function handleDetTxfTitKey(evt) {return parent.window.handleTxfKey(document,"DetTxfTit","",evt);};
 			function handleDetTxfTitChange() {parent.window.handleTxfChange(document,"DetTxfTit","");};
+			function handleDetTxfAbtKey(evt) {return parent.window.handleTxftKey(document,"DetTxfAbt",evt);};
+			function handleDetTxfAbtChange() {parent.window.handleTxftChange(document,"DetTxfAbt");};
+			function handleDetPupPlcChange() {parent.window.handlePupChange(document,"DetPupPlc","");};
+			function handleDetPupPmcChange() {parent.window.handlePupChange(document,"DetPupPmc","");};
 			function handleDetButAutClick() {parent.window.handleButClick("DetButAut");};
 			<!-- IP custScript - INSERT -->
 		</script>
@@ -55,12 +59,98 @@
 					<td></td>
 					<td colspan="2"></td>
 				</tr>
+				<tr id="trDetAbt" class="show">
+					<td height="75"></td>
+					<td align="right" valign="top">
+						<span id="DetCptAbt" class="cpt">DetCptAbt</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<textarea id="DetTxfAbt" class="txf" rows="4" cols="20" type="text" value="DetTxfAbt" onchange="handleDetTxfAbtChange()" onkeypress="return handleDetTxfAbtKey(event)"/>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
 				<tr id="trDet11" class="show"><td colspan="11" height="3"></td></tr>
 				<tr id="trDet12" class="show">
 					<td height="1"></td>
 					<td colspan="10" bgcolor="#7f7f7f"></td>
 				</tr>
 				<tr id="trDet13" class="show"><td colspan="11" height="3"></td></tr>
+				<tr id="trDetDty" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="DetCptDty" class="cpt">DetCptDty</span>
+					</td>
+					<td></td>
+					<td rowspan="2" colspan="5">
+						<iframe id="DetLstDty" name="DetLstDty" src="./DlgWznmPrjNew_DetLstDty.xml" width="340" height="92" frameborder="0" scrolling="no">This page needs a web-browser capable of displaying inline frames!</iframe>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr id="trDetDty2" class="show">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trDet21" class="show"><td colspan="11" height="3"></td></tr>
+				<tr id="trDet22" class="show">
+					<td height="1"></td>
+					<td colspan="10" bgcolor="#7f7f7f"></td>
+				</tr>
+				<tr id="trDet23" class="show"><td colspan="11" height="3"></td></tr>
+				<tr id="trDetLoc" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="DetCptLoc" class="cpt">DetCptLoc</span>
+					</td>
+					<td></td>
+					<td rowspan="2" colspan="5">
+						<iframe id="DetLstLoc" name="DetLstLoc" src="./DlgWznmPrjNew_DetLstLoc.xml" width="340" height="92" frameborder="0" scrolling="no">This page needs a web-browser capable of displaying inline frames!</iframe>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr id="trDetLoc2" class="show">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trDetPlc" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="DetCptPlc" class="cpt">DetCptPlc</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<select id="DetPupPlc" class="pup" size="1" onchange="handleDetPupPlcChange()"/>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr id="trDet31" class="show"><td colspan="11" height="3"></td></tr>
+				<tr id="trDet32" class="show">
+					<td height="1"></td>
+					<td colspan="10" bgcolor="#7f7f7f"></td>
+				</tr>
+				<tr id="trDet33" class="show"><td colspan="11" height="3"></td></tr>
+				<tr id="trDetPmc" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="DetCptTmc" class="cpt">DetCptTmc</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<select id="DetPupPmc" class="pup" size="1" onchange="handleDetPupPmcChange()"/>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr id="trDet41" class="show"><td colspan="11" height="3"></td></tr>
+				<tr id="trDet42" class="show">
+					<td height="1"></td>
+					<td colspan="10" bgcolor="#7f7f7f"></td>
+				</tr>
+				<tr id="trDet43" class="show"><td colspan="11" height="3"></td></tr>
 				<tr id="trButaut" class="show">
 					<td height="25"></td>
 					<td colspan="2"></td>

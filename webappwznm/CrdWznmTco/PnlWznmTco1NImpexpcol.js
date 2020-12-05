@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmTco1NImpexpcol.js
-  * web client functionality for panel PnlWznmTco1NImpexpcol
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmTco1NImpexpcol", "srefIxWznmVExpstate") == "mind") return;

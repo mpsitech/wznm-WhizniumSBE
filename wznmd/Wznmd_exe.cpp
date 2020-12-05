@@ -1,10 +1,11 @@
 /**
-	* \file Wznmd_exe.cpp
-	* Wznm daemon main (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \file Wznmcmbd_exe.cpp
+	* Wznm combined daemon main (implementation)
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "Wznmd.h"
 
@@ -491,7 +492,7 @@ int main(
 
 	try {
 		// welcome message
-		cout << "Welcome to WhizniumSBE v1.0.7!" << endl;
+		cout << "Welcome to WhizniumSBE v1.1.0!" << endl;
 
 		// calls wznmd.init()
 		wznmd = new Wznmd(exedir, clearAll, startMon);
@@ -662,4 +663,7 @@ int main(
 
 	return(0);
 };
+
+
+
 

@@ -1,10 +1,11 @@
 /**
   * \file QryWznmCalList.java
   * Java API code for job QryWznmCalList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -18,26 +19,26 @@ public class QryWznmCalList {
 		*/
 	public static class VecVOrd {
 
-		public static final int SRF = 1;
-		public static final int TYP = 2;
-		public static final int VER = 3;
+		public static final int RAT = 1;
+		public static final int IAT = 2;
+		public static final int REU = 3;
 		public static final int RET = 4;
-		public static final int REU = 5;
-		public static final int IAT = 6;
-		public static final int RAT = 7;
+		public static final int VER = 5;
+		public static final int TYP = 6;
+		public static final int SRF = 7;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("srf")) return SRF;
-			if (s.equals("typ")) return TYP;
-			if (s.equals("ver")) return VER;
-			if (s.equals("ret")) return RET;
-			if (s.equals("reu")) return REU;
-			if (s.equals("iat")) return IAT;
 			if (s.equals("rat")) return RAT;
+			if (s.equals("iat")) return IAT;
+			if (s.equals("reu")) return REU;
+			if (s.equals("ret")) return RET;
+			if (s.equals("ver")) return VER;
+			if (s.equals("typ")) return TYP;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -45,13 +46,13 @@ public class QryWznmCalList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == SRF) return("srf");
-			if (ix == TYP) return("typ");
-			if (ix == VER) return("ver");
-			if (ix == RET) return("ret");
-			if (ix == REU) return("reu");
-			if (ix == IAT) return("iat");
 			if (ix == RAT) return("rat");
+			if (ix == IAT) return("iat");
+			if (ix == REU) return("reu");
+			if (ix == RET) return("ret");
+			if (ix == VER) return("ver");
+			if (ix == TYP) return("typ");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

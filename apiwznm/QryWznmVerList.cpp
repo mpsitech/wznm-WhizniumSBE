@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmVerList.cpp
 	* API code for job QryWznmVerList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmVerList.h"
 
@@ -24,8 +25,8 @@ uint QryWznmVerList::VecVOrd::getIx(
 	if (s == "ste") return STE;
 	if (s == "loc") return LOC;
 	if (s == "bvr") return BVR;
-	if (s == "prj") return PRJ;
 	if (s == "own") return OWN;
+	if (s == "prj") return PRJ;
 	if (s == "grp") return GRP;
 
 	return(0);
@@ -37,8 +38,8 @@ string QryWznmVerList::VecVOrd::getSref(
 	if (ix == STE) return("ste");
 	if (ix == LOC) return("loc");
 	if (ix == BVR) return("bvr");
-	if (ix == PRJ) return("prj");
 	if (ix == OWN) return("own");
+	if (ix == PRJ) return("prj");
 	if (ix == GRP) return("grp");
 
 	return("");

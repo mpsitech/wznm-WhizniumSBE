@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmAppWrite_evals.cpp
 	* job handler for job DlgWznmAppWrite (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -43,20 +44,6 @@ bool DlgWznmAppWrite::evalFiaDldActive(
 	bool a;
 
 	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool DlgWznmAppWrite::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(fail)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::FAIL);
 	args.push_back(a);
 
 	return(args.back());
@@ -104,6 +91,20 @@ bool DlgWznmAppWrite::evalWrcButStoActive(
 	return(args.back());
 };
 
+bool DlgWznmAppWrite::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(fail)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::FAIL);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool DlgWznmAppWrite::evalCucUldActive(
 			DbsWznm* dbswznm
 		) {
@@ -117,4 +118,6 @@ bool DlgWznmAppWrite::evalCucUldActive(
 
 	return(args.back());
 };
+
+
 

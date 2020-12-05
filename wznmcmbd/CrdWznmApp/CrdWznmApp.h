@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmApp.h
 	* job handler for job CrdWznmApp (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef CRDWZNMAPP_H
 #define CRDWZNMAPP_H
@@ -13,12 +14,12 @@
 
 // IP include.cust --- INSERT
 
-#include "DlgWznmAppNew.h"
-#include "DlgWznmAppWrite.h"
-#include "DlgWznmAppImpstr.h"
-#include "PnlWznmAppRec.h"
-#include "PnlWznmAppHeadbar.h"
 #include "PnlWznmAppList.h"
+#include "PnlWznmAppHeadbar.h"
+#include "PnlWznmAppRec.h"
+#include "DlgWznmAppImpstr.h"
+#include "DlgWznmAppWrite.h"
+#include "DlgWznmAppNew.h"
 
 #define VecVWznmAppDo CrdWznmApp::VecVDo
 #define VecVWznmAppSge CrdWznmApp::VecVSge
@@ -220,12 +221,12 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	DlgWznmAppNew* dlgnew;
-	DlgWznmAppWrite* dlgwrite;
-	DlgWznmAppImpstr* dlgimpstr;
-	PnlWznmAppRec* pnlrec;
-	PnlWznmAppHeadbar* pnlheadbar;
 	PnlWznmAppList* pnllist;
+	PnlWznmAppHeadbar* pnlheadbar;
+	PnlWznmAppRec* pnlrec;
+	DlgWznmAppImpstr* dlgimpstr;
+	DlgWznmAppWrite* dlgwrite;
+	DlgWznmAppNew* dlgnew;
 
 	// IP vars.cust --- INSERT
 
@@ -234,7 +235,7 @@ public:
 
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 	void changeRef(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint ref, const bool notif = false);
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 
@@ -277,4 +278,6 @@ private:
 };
 
 #endif
+
+
 

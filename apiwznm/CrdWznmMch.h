@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmMch.h
 	* API code for job CrdWznmMch (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef CRDWZNMMCH_H
 #define CRDWZNMMCH_H
@@ -34,6 +35,7 @@ namespace CrdWznmMch {
 	public:
 		static const Sbecore::uint CLOSE = 1;
 		static const Sbecore::uint MITAPPABTCLICK = 2;
+		static const Sbecore::uint MITCRDWISCLICK = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -114,17 +116,23 @@ namespace CrdWznmMch {
 	class StatShr : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint SCRJREFHEADBAR = 1;
-		static const Sbecore::uint SCRJREFLIST = 2;
-		static const Sbecore::uint SCRJREFREC = 3;
+		static const Sbecore::uint SCRJREFDLGWRINISCR = 1;
+		static const Sbecore::uint SCRJREFHEADBAR = 2;
+		static const Sbecore::uint SCRJREFLIST = 3;
+		static const Sbecore::uint SCRJREFREC = 4;
+		static const Sbecore::uint MITCRDWISAVAIL = 5;
+		static const Sbecore::uint MITCRDWISACTIVE = 6;
 
 	public:
-		StatShr(const std::string& scrJrefHeadbar = "", const std::string& scrJrefList = "", const std::string& scrJrefRec = "");
+		StatShr(const std::string& scrJrefDlgwriniscr = "", const std::string& scrJrefHeadbar = "", const std::string& scrJrefList = "", const std::string& scrJrefRec = "", const bool MitCrdWisAvail = true, const bool MitCrdWisActive = true);
 
 	public:
+		std::string scrJrefDlgwriniscr;
 		std::string scrJrefHeadbar;
 		std::string scrJrefList;
 		std::string scrJrefRec;
+		bool MitCrdWisAvail;
+		bool MitCrdWisActive;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -140,13 +148,15 @@ namespace CrdWznmMch {
 	public:
 		static const Sbecore::uint MITAPPABT = 1;
 		static const Sbecore::uint MRLAPPHLP = 2;
+		static const Sbecore::uint MITCRDWIS = 3;
 
 	public:
-		Tag(const std::string& MitAppAbt = "", const std::string& MrlAppHlp = "");
+		Tag(const std::string& MitAppAbt = "", const std::string& MrlAppHlp = "", const std::string& MitCrdWis = "");
 
 	public:
 		std::string MitAppAbt;
 		std::string MrlAppHlp;
+		std::string MitCrdWis;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);

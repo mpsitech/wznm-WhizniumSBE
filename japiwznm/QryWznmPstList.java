@@ -1,10 +1,11 @@
 /**
   * \file QryWznmPstList.java
   * Java API code for job QryWznmPstList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -19,9 +20,9 @@ public class QryWznmPstList {
 	public static class VecVOrd {
 
 		public static final int ATY = 1;
-		public static final int RET = 2;
-		public static final int REU = 3;
-		public static final int VER = 4;
+		public static final int REU = 2;
+		public static final int VER = 3;
+		public static final int RET = 4;
 		public static final int SRF = 5;
 
 		public static int getIx(
@@ -30,9 +31,9 @@ public class QryWznmPstList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("aty")) return ATY;
-			if (s.equals("ret")) return RET;
 			if (s.equals("reu")) return REU;
 			if (s.equals("ver")) return VER;
+			if (s.equals("ret")) return RET;
 			if (s.equals("srf")) return SRF;
 
 			return 0;
@@ -42,9 +43,9 @@ public class QryWznmPstList {
 					int ix
 				) {
 			if (ix == ATY) return("aty");
-			if (ix == RET) return("ret");
 			if (ix == REU) return("reu");
 			if (ix == VER) return("ver");
+			if (ix == RET) return("ret");
 			if (ix == SRF) return("srf");
 
 			return "";

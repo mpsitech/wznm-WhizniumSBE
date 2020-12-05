@@ -1,10 +1,11 @@
 /**
 	* \file WznmQSbs1NTablecol.h
 	* Dbs and XML wrapper for table TblWznmQSbs1NTablecol (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQSBS1NTABLECOL_H
 #define WZNMQSBS1NTABLECOL_H

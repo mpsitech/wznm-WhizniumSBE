@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmLibAMakefile.h
 	* job handler for job PnlWznmLibAMakefile (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMLIBAMAKEFILE_H
 #define PNLWZNMLIBAMAKEFILE_H
@@ -111,15 +112,15 @@ public:
 	class StgIac : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint TCOREUWIDTH = 1;
+		static const Sbecore::uint TCOMCHWIDTH = 1;
 		static const Sbecore::uint TCOTAGWIDTH = 2;
 		static const Sbecore::uint TCOVALWIDTH = 3;
 
 	public:
-		StgIac(const Sbecore::uint TcoReuWidth = 100, const Sbecore::uint TcoTagWidth = 100, const Sbecore::uint TcoValWidth = 100);
+		StgIac(const Sbecore::uint TcoMchWidth = 100, const Sbecore::uint TcoTagWidth = 100, const Sbecore::uint TcoValWidth = 100);
 
 	public:
-		Sbecore::uint TcoReuWidth;
+		Sbecore::uint TcoMchWidth;
 		Sbecore::uint TcoTagWidth;
 		Sbecore::uint TcoValWidth;
 
@@ -250,7 +251,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 
@@ -279,4 +280,6 @@ private:
 };
 
 #endif
+
+
 

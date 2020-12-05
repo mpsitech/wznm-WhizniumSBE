@@ -16,10 +16,6 @@
 			function handleButCtpCollapseClick() {parent.parent.window.handleButCollapseClick("LstCtp");};
 			function handleButCtpViewClick() {parent.parent.window.handleButCrdopenClick("ButCtpView");};
 			function handleButCtpNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButCtpNewcrd");};
-			function handleButMtyExpandClick() {parent.parent.window.handleButExpandClick("LstMty");};
-			function handleButMtyCollapseClick() {parent.parent.window.handleButCollapseClick("LstMty");};
-			function handleButMtyViewClick() {parent.parent.window.handleButCrdopenClick("ButMtyView");};
-			function handleButMtyNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButMtyNewcrd");};
 			function handleButMchExpandClick() {parent.parent.window.handleButExpandClick("LstMch");};
 			function handleButMchCollapseClick() {parent.parent.window.handleButCollapseClick("LstMch");};
 			function handleButMchViewClick() {parent.parent.window.handleButCrdopenClick("ButMchView");};
@@ -92,21 +88,6 @@
 					</td>
 				</tr>
 				<tr id="trCtp2" class="hide">
-					<td colspan="3" height="67"></td>
-					<td colspan="3"></td>
-				</tr>
-				<tr id="trMty" class="show">
-					<td height="25"></td>
-					<td id="ldynMty" align="right">
-					</td>
-					<td></td>
-					<td id="dynMty" rowspan="1" colspan="5">
-					</td>
-					<td></td>
-					<td id="rdynMty" colspan="2" align="left">
-					</td>
-				</tr>
-				<tr id="trMty2" class="hide">
 					<td colspan="3" height="67"></td>
 					<td colspan="3"></td>
 				</tr>

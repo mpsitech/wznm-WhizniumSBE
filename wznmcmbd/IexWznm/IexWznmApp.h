@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmApp.h
 	* data blocks and readers/writers for import/export complex IexWznmApp (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef IEXWZNMAPP_H
 #define IEXWZNMAPP_H
@@ -661,7 +662,7 @@ namespace IexWznmApp {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
 	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
 
 	void readTxt(Sbecore::Txtrd& txtrd, ImeIMEvent& imeimevent, ImeIMRtjob& imeimrtjob, ImeIMSequence& imeimsequence);
@@ -675,4 +676,6 @@ namespace IexWznmApp {
 };
 
 #endif
+
+
 

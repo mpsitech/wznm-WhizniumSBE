@@ -1,10 +1,11 @@
 /**
 	* \file WznmQQry1NQuerymod.h
 	* API code for table TblWznmQQry1NQuerymod (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQQRY1NQUERYMOD_H
 #define WZNMQQRY1NQUERYMOD_H

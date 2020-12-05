@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmUtl.h
 	* job handler for job CrdWznmUtl (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef CRDWZNMUTL_H
 #define CRDWZNMUTL_H
@@ -13,10 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "DlgWznmUtlExtrip.h"
-#include "DlgWznmUtlIexconv.h"
-#include "DlgWznmUtlMrgip.h"
 #include "PnlWznmUtlHeadbar.h"
+#include "DlgWznmUtlExtrip.h"
+#include "DlgWznmUtlMrgip.h"
 
 #define VecVWznmUtlDo CrdWznmUtl::VecVDo
 #define VecVWznmUtlSge CrdWznmUtl::VecVSge
@@ -43,9 +43,8 @@ public:
 	public:
 		static const Sbecore::uint CLOSE = 1;
 		static const Sbecore::uint MITAPPABTCLICK = 2;
-		static const Sbecore::uint MITCRDCIFCLICK = 3;
-		static const Sbecore::uint MITCRDXIPCLICK = 4;
-		static const Sbecore::uint MITCRDMIPCLICK = 5;
+		static const Sbecore::uint MITCRDXIPCLICK = 3;
+		static const Sbecore::uint MITCRDMIPCLICK = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -104,16 +103,14 @@ public:
 
 	public:
 		static const Sbecore::uint JREFDLGEXTRIP = 1;
-		static const Sbecore::uint JREFDLGIEXCONV = 2;
-		static const Sbecore::uint JREFDLGMRGIP = 3;
-		static const Sbecore::uint JREFHEADBAR = 4;
+		static const Sbecore::uint JREFDLGMRGIP = 2;
+		static const Sbecore::uint JREFHEADBAR = 3;
 
 	public:
-		StatShr(const Sbecore::ubigint jrefDlgextrip = 0, const Sbecore::ubigint jrefDlgiexconv = 0, const Sbecore::ubigint jrefDlgmrgip = 0, const Sbecore::ubigint jrefHeadbar = 0);
+		StatShr(const Sbecore::ubigint jrefDlgextrip = 0, const Sbecore::ubigint jrefDlgmrgip = 0, const Sbecore::ubigint jrefHeadbar = 0);
 
 	public:
 		Sbecore::ubigint jrefDlgextrip;
-		Sbecore::ubigint jrefDlgiexconv;
 		Sbecore::ubigint jrefDlgmrgip;
 		Sbecore::ubigint jrefHeadbar;
 
@@ -193,10 +190,9 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	DlgWznmUtlExtrip* dlgextrip;
-	DlgWznmUtlIexconv* dlgiexconv;
-	DlgWznmUtlMrgip* dlgmrgip;
 	PnlWznmUtlHeadbar* pnlheadbar;
+	DlgWznmUtlExtrip* dlgextrip;
+	DlgWznmUtlMrgip* dlgmrgip;
 
 	// IP vars.cust --- INSERT
 
@@ -205,7 +201,7 @@ public:
 
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 
 public:
@@ -219,7 +215,6 @@ private:
 
 	void handleDpchAppDoClose(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitAppAbtClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
-	void handleDpchAppDoMitCrdCifClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdXipClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdMipClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
@@ -245,4 +240,6 @@ private:
 };
 
 #endif
+
+
 

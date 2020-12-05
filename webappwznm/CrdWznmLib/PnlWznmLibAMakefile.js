@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmLibAMakefile.js
-  * web client functionality for panel PnlWznmLibAMakefile
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmLibAMakefile", "srefIxWznmVExpstate") == "mind") return;
@@ -104,7 +96,7 @@ function refreshBD(bNotD, chgcol) {
 		var firstcol = parseInt(retrieveSi(srcdoc, "StatAppQryWznmLibAMakefile", "firstcol"));
 		var ncol = parseInt(retrieveSi(srcdoc, "StatAppQryWznmLibAMakefile", "ncol"));
 
-		var TcoReuWidth = parseInt(retrieveSi(srcdoc, "StgIacWznmLibAMakefile", "TcoReuWidth"));
+		var TcoMchWidth = parseInt(retrieveSi(srcdoc, "StgIacWznmLibAMakefile", "TcoMchWidth"));
 		var TcoTagWidth = parseInt(retrieveSi(srcdoc, "StgIacWznmLibAMakefile", "TcoTagWidth"));
 		var TcoValWidth = parseInt(retrieveSi(srcdoc, "StgIacWznmLibAMakefile", "TcoValWidth"));
 
@@ -121,7 +113,7 @@ function refreshBD(bNotD, chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoReu"); doc.widths.push(TcoReuWidth); doc.fs.push("reu"); wtot += TcoReuWidth;
+				doc.cols.push("TcoMch"); doc.widths.push(TcoMchWidth); doc.fs.push("mch"); wtot += TcoMchWidth;
 			} else if (i == 2) {
 				doc.cols.push("TcoTag"); doc.widths.push(TcoTagWidth); doc.fs.push("tag"); wtot += TcoTagWidth;
 			} else if (i == 3) {
@@ -419,8 +411,8 @@ function handleButRegularizeClick() {
 
 function handleButClipboardClick() {
 	copyToClipboard(document, srcdoc, "WznmLibAMakefile", "ListWznmQLibAMakefile", retrieveTi(srcdoc, "TagWznmLibAMakefile", "TxtRecord1"), retrieveTi(srcdoc, "TagWznmLibAMakefile", "TxtRecord2"),
-				["","","Reu","Tag","","Val"],
-				["ret","ret2","reu","tag","tag2","val"]);
+				["Mch","Tag","","Val"],
+				["mch","tag","tag2","val"]);
 };
 
 // --- generalized event handlers for app controls

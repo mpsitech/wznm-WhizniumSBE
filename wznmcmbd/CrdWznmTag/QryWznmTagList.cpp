@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmTagList.cpp
 	* job handler for job QryWznmTagList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -160,8 +161,8 @@ void QryWznmTagList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMTag.osrefWznmKTaggrp ASC";
-	else if (preIxOrd == VecVOrd::CPB) sqlstr += " ORDER BY TblWznmMTag.refWznmMCapability ASC";
+	if (preIxOrd == VecVOrd::CPB) sqlstr += " ORDER BY TblWznmMTag.refWznmMCapability ASC";
+	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMTag.osrefWznmKTaggrp ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMTag.sref ASC";
 };
 
@@ -372,4 +373,6 @@ bool QryWznmTagList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

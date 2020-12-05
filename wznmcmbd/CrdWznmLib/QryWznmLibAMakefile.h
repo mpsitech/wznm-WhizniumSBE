@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmLibAMakefile.h
 	* job handler for job QryWznmLibAMakefile (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMLIBAMAKEFILE_H
 #define QRYWZNMLIBAMAKEFILE_H
@@ -29,7 +30,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint firstcol = 1, const Sbecore::uint jnumFirstdisp = 1, const Sbecore::uint ncol = 6, const Sbecore::uint ndisp = 10);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint firstcol = 1, const Sbecore::uint jnumFirstdisp = 1, const Sbecore::uint ncol = 4, const Sbecore::uint ndisp = 10);
 	};
 
 	/**
@@ -102,7 +103,7 @@ public:
 	void refreshJnum();
 
 	void rerun(DbsWznm* dbswznm, const bool call = false);
-	void rerun_filtSQL(std::string& sqlstr, const std::string& preX2, const bool addwhere);
+	void rerun_filtSQL(std::string& sqlstr, const Sbecore::ubigint preX1, const std::string& preX2, const bool addwhere);
 	void rerun_filtSQL_append(std::string& sqlstr, bool& first);
 
 	void fetch(DbsWznm* dbswznm);
@@ -124,10 +125,12 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 	bool handleCallWznmLibAmkfMod_libEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };
 
 #endif
+
+
 

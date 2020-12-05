@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmQmdList.cpp
 	* API code for job QryWznmQmdList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmQmdList.h"
 
@@ -21,11 +22,11 @@ uint QryWznmQmdList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "typ") return TYP;
-	if (s == "qry") return QRY;
-	if (s == "pst") return PST;
 	if (s == "ret") return RET;
 	if (s == "reu") return REU;
+	if (s == "pst") return PST;
+	if (s == "qry") return QRY;
+	if (s == "typ") return TYP;
 
 	return(0);
 };
@@ -33,11 +34,11 @@ uint QryWznmQmdList::VecVOrd::getIx(
 string QryWznmQmdList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TYP) return("typ");
-	if (ix == QRY) return("qry");
-	if (ix == PST) return("pst");
 	if (ix == RET) return("ret");
 	if (ix == REU) return("reu");
+	if (ix == PST) return("pst");
+	if (ix == QRY) return("qry");
+	if (ix == TYP) return("typ");
 
 	return("");
 };

@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmUix.h
 	* data blocks and readers/writers for import/export complex IexWznmUix (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef IEXWZNMUIX_H
 #define IEXWZNMUIX_H
@@ -2257,7 +2258,7 @@ namespace IexWznmUix {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIMCard& imeimcard, ImeIMPreset& imeimpreset, ImeIMQuery& imeimquery, ImeIRMPanelMQuery& imeirmpanelmquery);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath, ImeIMCard& imeimcard, ImeIMPreset& imeimpreset, ImeIMQuery& imeimquery, ImeIRMPanelMQuery& imeirmpanelmquery);
 	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIMCard& imeimcard, ImeIMPreset& imeimpreset, ImeIMQuery& imeimquery, ImeIRMPanelMQuery& imeirmpanelmquery);
 
 	void readTxt(Sbecore::Txtrd& txtrd, ImeIMCard& imeimcard, ImeIMPreset& imeimpreset, ImeIMQuery& imeimquery, ImeIRMPanelMQuery& imeirmpanelmquery);
@@ -2271,4 +2272,6 @@ namespace IexWznmUix {
 };
 
 #endif
+
+
 

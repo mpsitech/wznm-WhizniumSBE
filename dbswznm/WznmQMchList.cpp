@@ -1,10 +1,11 @@
 /**
 	* \file WznmQMchList.cpp
 	* Dbs and XML wrapper for table TblWznmQMchList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #include "WznmQMchList.h"
 
@@ -22,16 +23,16 @@ WznmQMchList::WznmQMchList(
 			, const uint jnum
 			, const ubigint ref
 			, const string sref
-			, const ubigint refWznmMMachtype
-			, const string stubRefWznmMMachtype
+			, const ubigint supRefWznmMMachine
+			, const string stubSupRefWznmMMachine
 		) {
 	this->qref = qref;
 	this->jref = jref;
 	this->jnum = jnum;
 	this->ref = ref;
 	this->sref = sref;
-	this->refWznmMMachtype = refWznmMMachtype;
-	this->stubRefWznmMMachtype = stubRefWznmMMachtype;
+	this->supRefWznmMMachine = supRefWznmMMachine;
+	this->stubSupRefWznmMMachine = stubSupRefWznmMMachine;
 };
 
 void WznmQMchList::writeXML(
@@ -46,10 +47,10 @@ void WznmQMchList::writeXML(
 	if (jnumattr) xmlTextWriterWriteAttribute(wr, BAD_CAST "jnum", BAD_CAST to_string(jnum).c_str());
 	if (shorttags) {
 		writeString(wr, "srf", sref);
-		writeString(wr, "tbl", stubRefWznmMMachtype);
+		writeString(wr, "sup", stubSupRefWznmMMachine);
 	} else {
 		writeString(wr, "sref", sref);
-		writeString(wr, "stubRefWznmMMachtype", stubRefWznmMMachtype);
+		writeString(wr, "stubSupRefWznmMMachine", stubSupRefWznmMMachine);
 	};
 	xmlTextWriterEndElement(wr);
 };
@@ -153,13 +154,13 @@ ubigint TblWznmQMchList::insertNewRec(
 			, const uint jnum
 			, const ubigint ref
 			, const string sref
-			, const ubigint refWznmMMachtype
-			, const string stubRefWznmMMachtype
+			, const ubigint supRefWznmMMachine
+			, const string stubSupRefWznmMMachine
 		) {
 	ubigint retval = 0;
 	WznmQMchList* _rec = NULL;
 
-	_rec = new WznmQMchList(0, jref, jnum, ref, sref, refWznmMMachtype, stubRefWznmMMachtype);
+	_rec = new WznmQMchList(0, jref, jnum, ref, sref, supRefWznmMMachine, stubSupRefWznmMMachine);
 	insertRec(_rec);
 
 	retval = _rec->qref;
@@ -177,13 +178,13 @@ ubigint TblWznmQMchList::appendNewRecToRst(
 			, const uint jnum
 			, const ubigint ref
 			, const string sref
-			, const ubigint refWznmMMachtype
-			, const string stubRefWznmMMachtype
+			, const ubigint supRefWznmMMachine
+			, const string stubSupRefWznmMMachine
 		) {
 	ubigint retval = 0;
 	WznmQMchList* _rec = NULL;
 
-	retval = insertNewRec(&_rec, jref, jnum, ref, sref, refWznmMMachtype, stubRefWznmMMachtype);
+	retval = insertNewRec(&_rec, jref, jnum, ref, sref, supRefWznmMMachine, stubSupRefWznmMMachine);
 	rst.nodes.push_back(_rec);
 
 	if (rec != NULL) *rec = _rec;
@@ -254,8 +255,8 @@ MyTblWznmQMchList::~MyTblWznmQMchList() {
 };
 
 void MyTblWznmQMchList::initStatements() {
-	stmtInsertRec = createStatement("INSERT INTO TblWznmQMchList (jref, jnum, ref, sref, refWznmMMachtype) VALUES (?,?,?,?,?)", false);
-	stmtUpdateRec = createStatement("UPDATE TblWznmQMchList SET jref = ?, jnum = ?, ref = ?, sref = ?, refWznmMMachtype = ? WHERE qref = ?", false);
+	stmtInsertRec = createStatement("INSERT INTO TblWznmQMchList (jref, jnum, ref, sref, supRefWznmMMachine) VALUES (?,?,?,?,?)", false);
+	stmtUpdateRec = createStatement("UPDATE TblWznmQMchList SET jref = ?, jnum = ?, ref = ?, sref = ?, supRefWznmMMachine = ? WHERE qref = ?", false);
 	stmtRemoveRecByQref = createStatement("DELETE FROM TblWznmQMchList WHERE qref = ?", false);
 	stmtRemoveRstByJref = createStatement("DELETE FROM TblWznmQMchList WHERE jref = ?", false);
 };
@@ -291,7 +292,7 @@ bool MyTblWznmQMchList::loadRecBySQL(
 		if (dbrow[2]) _rec->jnum = atol((char*) dbrow[2]); else _rec->jnum = 0;
 		if (dbrow[3]) _rec->ref = atoll((char*) dbrow[3]); else _rec->ref = 0;
 		if (dbrow[4]) _rec->sref.assign(dbrow[4], dblengths[4]); else _rec->sref = "";
-		if (dbrow[5]) _rec->refWznmMMachtype = atoll((char*) dbrow[5]); else _rec->refWznmMMachtype = 0;
+		if (dbrow[5]) _rec->supRefWznmMMachine = atoll((char*) dbrow[5]); else _rec->supRefWznmMMachine = 0;
 
 		retval = true;
 	};
@@ -339,7 +340,7 @@ ubigint MyTblWznmQMchList::loadRstBySQL(
 			if (dbrow[2]) rec->jnum = atol((char*) dbrow[2]); else rec->jnum = 0;
 			if (dbrow[3]) rec->ref = atoll((char*) dbrow[3]); else rec->ref = 0;
 			if (dbrow[4]) rec->sref.assign(dbrow[4], dblengths[4]); else rec->sref = "";
-			if (dbrow[5]) rec->refWznmMMachtype = atoll((char*) dbrow[5]); else rec->refWznmMMachtype = 0;
+			if (dbrow[5]) rec->supRefWznmMMachine = atoll((char*) dbrow[5]); else rec->supRefWznmMMachine = 0;
 			rst.nodes.push_back(rec);
 
 			numread++;
@@ -363,7 +364,7 @@ ubigint MyTblWznmQMchList::insertRec(
 		bindUint(&rec->jnum,&(l[1]),&(n[1]),&(e[1])),
 		bindUbigint(&rec->ref,&(l[2]),&(n[2]),&(e[2])),
 		bindCstring((char*) (rec->sref.c_str()),&(l[3]),&(n[3]),&(e[3])),
-		bindUbigint(&rec->refWznmMMachtype,&(l[4]),&(n[4]),&(e[4]))
+		bindUbigint(&rec->supRefWznmMMachine,&(l[4]),&(n[4]),&(e[4]))
 	};
 
 	if (mysql_stmt_bind_param(stmtInsertRec, bind)) {
@@ -397,7 +398,7 @@ void MyTblWznmQMchList::updateRec(
 		bindUint(&rec->jnum,&(l[1]),&(n[1]),&(e[1])),
 		bindUbigint(&rec->ref,&(l[2]),&(n[2]),&(e[2])),
 		bindCstring((char*) (rec->sref.c_str()),&(l[3]),&(n[3]),&(e[3])),
-		bindUbigint(&rec->refWznmMMachtype,&(l[4]),&(n[4]),&(e[4])),
+		bindUbigint(&rec->supRefWznmMMachine,&(l[4]),&(n[4]),&(e[4])),
 		bindUbigint(&rec->qref,&(l[5]),&(n[5]),&(e[5]))
 	};
 
@@ -487,13 +488,13 @@ PgTblWznmQMchList::~PgTblWznmQMchList() {
 };
 
 void PgTblWznmQMchList::initStatements() {
-	createStatement("TblWznmQMchList_insertRec", "INSERT INTO TblWznmQMchList (jref, jnum, ref, sref, refWznmMMachtype) VALUES ($1,$2,$3,$4,$5) RETURNING qref", 5);
-	createStatement("TblWznmQMchList_updateRec", "UPDATE TblWznmQMchList SET jref = $1, jnum = $2, ref = $3, sref = $4, refWznmMMachtype = $5 WHERE qref = $6", 6);
+	createStatement("TblWznmQMchList_insertRec", "INSERT INTO TblWznmQMchList (jref, jnum, ref, sref, supRefWznmMMachine) VALUES ($1,$2,$3,$4,$5) RETURNING qref", 5);
+	createStatement("TblWznmQMchList_updateRec", "UPDATE TblWznmQMchList SET jref = $1, jnum = $2, ref = $3, sref = $4, supRefWznmMMachine = $5 WHERE qref = $6", 6);
 	createStatement("TblWznmQMchList_removeRecByQref", "DELETE FROM TblWznmQMchList WHERE qref = $1", 1);
 	createStatement("TblWznmQMchList_removeRstByJref", "DELETE FROM TblWznmQMchList WHERE jref = $1", 1);
 
-	createStatement("TblWznmQMchList_loadRecByQref", "SELECT qref, jref, jnum, ref, sref, refWznmMMachtype FROM TblWznmQMchList WHERE qref = $1", 1);
-	createStatement("TblWznmQMchList_loadRstByJref", "SELECT qref, jref, jnum, ref, sref, refWznmMMachtype FROM TblWznmQMchList WHERE jref = $1 ORDER BY jnum ASC", 1);
+	createStatement("TblWznmQMchList_loadRecByQref", "SELECT qref, jref, jnum, ref, sref, supRefWznmMMachine FROM TblWznmQMchList WHERE qref = $1", 1);
+	createStatement("TblWznmQMchList_loadRstByJref", "SELECT qref, jref, jnum, ref, sref, supRefWznmMMachine FROM TblWznmQMchList WHERE jref = $1 ORDER BY jnum ASC", 1);
 };
 
 bool PgTblWznmQMchList::loadRec(
@@ -514,7 +515,7 @@ bool PgTblWznmQMchList::loadRec(
 			PQfnumber(res, "jnum"),
 			PQfnumber(res, "ref"),
 			PQfnumber(res, "sref"),
-			PQfnumber(res, "refwznmmmachtype")
+			PQfnumber(res, "suprefwznmmmachine")
 		};
 
 		ptr = PQgetvalue(res, 0, fnum[0]); _rec->qref = atoll(ptr);
@@ -522,7 +523,7 @@ bool PgTblWznmQMchList::loadRec(
 		ptr = PQgetvalue(res, 0, fnum[2]); _rec->jnum = atol(ptr);
 		ptr = PQgetvalue(res, 0, fnum[3]); _rec->ref = atoll(ptr);
 		ptr = PQgetvalue(res, 0, fnum[4]); _rec->sref.assign(ptr, PQgetlength(res, 0, fnum[4]));
-		ptr = PQgetvalue(res, 0, fnum[5]); _rec->refWznmMMachtype = atoll(ptr);
+		ptr = PQgetvalue(res, 0, fnum[5]); _rec->supRefWznmMMachine = atoll(ptr);
 
 		retval = true;
 	};
@@ -554,7 +555,7 @@ ubigint PgTblWznmQMchList::loadRst(
 			PQfnumber(res, "jnum"),
 			PQfnumber(res, "ref"),
 			PQfnumber(res, "sref"),
-			PQfnumber(res, "refwznmmmachtype")
+			PQfnumber(res, "suprefwznmmmachine")
 		};
 
 		while (numread < numrow) {
@@ -565,7 +566,7 @@ ubigint PgTblWznmQMchList::loadRst(
 			ptr = PQgetvalue(res, numread, fnum[2]); rec->jnum = atol(ptr);
 			ptr = PQgetvalue(res, numread, fnum[3]); rec->ref = atoll(ptr);
 			ptr = PQgetvalue(res, numread, fnum[4]); rec->sref.assign(ptr, PQgetlength(res, numread, fnum[4]));
-			ptr = PQgetvalue(res, numread, fnum[5]); rec->refWznmMMachtype = atoll(ptr);
+			ptr = PQgetvalue(res, numread, fnum[5]); rec->supRefWznmMMachine = atoll(ptr);
 
 			rst.nodes.push_back(rec);
 
@@ -661,14 +662,14 @@ ubigint PgTblWznmQMchList::insertRec(
 	ubigint _jref = htonl64(rec->jref);
 	uint _jnum = htonl(rec->jnum);
 	ubigint _ref = htonl64(rec->ref);
-	ubigint _refWznmMMachtype = htonl64(rec->refWznmMMachtype);
+	ubigint _supRefWznmMMachine = htonl64(rec->supRefWznmMMachine);
 
 	const char* vals[] = {
 		(char*) &_jref,
 		(char*) &_jnum,
 		(char*) &_ref,
 		rec->sref.c_str(),
-		(char*) &_refWznmMMachtype
+		(char*) &_supRefWznmMMachine
 	};
 	const int l[] = {
 		sizeof(ubigint),
@@ -707,7 +708,7 @@ void PgTblWznmQMchList::updateRec(
 	ubigint _jref = htonl64(rec->jref);
 	uint _jnum = htonl(rec->jnum);
 	ubigint _ref = htonl64(rec->ref);
-	ubigint _refWznmMMachtype = htonl64(rec->refWznmMMachtype);
+	ubigint _supRefWznmMMachine = htonl64(rec->supRefWznmMMachine);
 	ubigint _qref = htonl64(rec->qref);
 
 	const char* vals[] = {
@@ -715,7 +716,7 @@ void PgTblWznmQMchList::updateRec(
 		(char*) &_jnum,
 		(char*) &_ref,
 		rec->sref.c_str(),
-		(char*) &_refWznmMMachtype,
+		(char*) &_supRefWznmMMachine,
 		(char*) &_qref
 	};
 	const int l[] = {

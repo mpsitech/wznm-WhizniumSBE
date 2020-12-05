@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmAppWrite.cpp
 	* job handler for job DlgWznmAppWrite (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -59,10 +60,9 @@ DlgWznmAppWrite::DlgWznmAppWrite(
 		appshort = StrMod::lc(app->Short);
 
 		// find project short
-		dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(app->verRefWznmMVersion), Prjshort);
+		Prjshort = Wznm::getPrjshort(dbswznm, app->verRefWznmMVersion);
 
 		PRJSHORT = StrMod::uc(Prjshort);
-		Prjshort = StrMod::cap(Prjshort);
 		prjshort = StrMod::lc(Prjshort);
 
 		delete app;
@@ -94,7 +94,7 @@ void DlgWznmAppWrite::createCxx(
 
 	WznmMApp* app = NULL;
 
-	string author, created, modified;
+	string author, created;
 
 	vector<string> keys;
 	vector<string> vals;
@@ -122,14 +122,12 @@ void DlgWznmAppWrite::createCxx(
 	time(&rawtime);
 
 	created = StrMod::timetToString(rawtime);
-	modified = StrMod::timetToString(rawtime);
 
 	// --- all files
 	addInv(new DpchInvWznmWrappBase(0, 0, app->ref, ipfolder, contiacdet.ChkUsf));
 
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("modified"); vals.push_back(modified);
 	keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 	keys.push_back("Prjshort"); vals.push_back(Prjshort);
 	keys.push_back("prjshort"); vals.push_back(prjshort);
@@ -167,7 +165,7 @@ void DlgWznmAppWrite::createJava(
 
 	WznmMApp* app = NULL;
 
-	string author, created, modified;
+	string author, created;
 
 	vector<string> keys;
 	vector<string> vals;
@@ -195,14 +193,12 @@ void DlgWznmAppWrite::createJava(
 	time(&rawtime);
 
 	created = StrMod::timetToString(rawtime);
-	modified = StrMod::timetToString(rawtime);
 
 	// --- all files
 	addInv(new DpchInvWznmWrappJbase(0, 0, app->ref, ipfolder, contiacdet.ChkUsf));
 
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("modified"); vals.push_back(modified);
 	keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
 	keys.push_back("Prjshort"); vals.push_back(Prjshort);
 	keys.push_back("prjshort"); vals.push_back(prjshort);
@@ -320,11 +316,11 @@ void DlgWznmAppWrite::refreshFia(
 
 	dbswznm->loadStringBySQL("SELECT Short FROM TblWznmMApp WHERE ref = " + to_string(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFAPP, jref)), Appshort);
 
-	// statshrfia
-	statshrfia.DldActive = evalFiaDldActive(dbswznm);
-
 	// continffia
 	continffia.Dld = StrMod::lc(Appshort) + ".tgz";
+
+	// statshrfia
+	statshrfia.DldActive = evalFiaDldActive(dbswznm);
 
 	// IP refreshFia --- REND
 	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
@@ -334,7 +330,11 @@ void DlgWznmAppWrite::refreshFia(
 void DlgWznmAppWrite::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
@@ -359,6 +359,8 @@ void DlgWznmAppWrite::refresh(
 	refreshWrc(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);
 	refreshFia(dbswznm, moditems);
+
+	muteRefresh = false;
 };
 
 void DlgWznmAppWrite::handleRequest(
@@ -415,8 +417,8 @@ void DlgWznmAppWrite::handleRequest(
 		if (ixVSge == VecVSge::IDLE) handleUploadInSgeIdle(dbswznm, req->filename);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DOWNLOAD) {
-		if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
-		else if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
+		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
+		else if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DPCHRET) {
 		if (req->dpchret->ixOpVOpres == VecOpVOpres::PROGRESS) {
@@ -553,16 +555,16 @@ void DlgWznmAppWrite::handleUploadInSgeIdle(
 	changeStage(dbswznm, VecVSge::UPKIDLE);
 };
 
-string DlgWznmAppWrite::handleDownloadInSgeFail(
-			DbsWznm* dbswznm
-		) {
-	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
-};
-
 string DlgWznmAppWrite::handleDownloadInSgeDone(
 			DbsWznm* dbswznm
 		) {
 	return(xchg->tmppath + "/" + outfolder + ".tgz"); // IP handleDownloadInSgeDone --- RLINE
+};
+
+string DlgWznmAppWrite::handleDownloadInSgeFail(
+			DbsWznm* dbswznm
+		) {
+	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
 void DlgWznmAppWrite::handleTimerInSgeUpkidle(
@@ -604,7 +606,7 @@ void DlgWznmAppWrite::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -922,5 +924,6 @@ void DlgWznmAppWrite::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
+
 
 

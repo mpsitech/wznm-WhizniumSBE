@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerDeploy_evals.cpp
 	* job handler for job DlgWznmVerDeploy (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -38,6 +39,34 @@ bool DlgWznmVerDeploy::evalLfiDldActive(
 	bool a;
 
 	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmVerDeploy::evalPprButRunActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(impdone)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::IMPDONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmVerDeploy::evalPprButStoActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(postprc)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::POSTPRC);
 	args.push_back(a);
 
 	return(args.back());
@@ -89,4 +118,6 @@ bool DlgWznmVerDeploy::evalIfiUldActive(
 
 	return(args.back());
 };
+
+
 

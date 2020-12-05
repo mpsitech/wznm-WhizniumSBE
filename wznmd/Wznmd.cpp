@@ -1,10 +1,11 @@
 /**
-	* \file Wznmd.cpp
-	* inter-thread exchange object for Wznm daemon (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \file Wznmcmbd.cpp
+	* inter-thread exchange object for Wznm combined daemon (implementation)
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "Wznmd.h"
 
@@ -931,16 +932,12 @@ set<uint> StgWznmPath::diff(
 StgWznmTenant::StgWznmTenant(
 			const string& orgname
 			, const string& orgweb
-			, const string& dbsusername
-			, const string& dbspassword
 		) :
 			Block()
 		{
 	this->orgname = orgname;
 	this->orgweb = orgweb;
-	this->dbsusername = dbsusername;
-	this->dbspassword = dbspassword;
-	mask = {ORGNAME, ORGWEB, DBSUSERNAME, DBSPASSWORD};
+	mask = {ORGNAME, ORGWEB};
 };
 
 bool StgWznmTenant::readXML(
@@ -962,8 +959,6 @@ bool StgWznmTenant::readXML(
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "orgname", orgname)) add(ORGNAME);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "orgweb", orgweb)) add(ORGWEB);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "dbsusername", dbsusername)) add(DBSUSERNAME);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "dbspassword", dbspassword)) add(DBSPASSWORD);
 	};
 
 	return basefound;
@@ -983,8 +978,6 @@ void StgWznmTenant::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "orgname", orgname);
 		writeStringAttr(wr, itemtag, "sref", "orgweb", orgweb);
-		writeStringAttr(wr, itemtag, "sref", "dbsusername", dbsusername);
-		writeStringAttr(wr, itemtag, "sref", "dbspassword", dbspassword);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -995,8 +988,6 @@ set<uint> StgWznmTenant::comm(
 
 	if (orgname == comp->orgname) insert(items, ORGNAME);
 	if (orgweb == comp->orgweb) insert(items, ORGWEB);
-	if (dbsusername == comp->dbsusername) insert(items, DBSUSERNAME);
-	if (dbspassword == comp->dbspassword) insert(items, DBSPASSWORD);
 
 	return(items);
 };
@@ -1009,7 +1000,7 @@ set<uint> StgWznmTenant::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {ORGNAME, ORGWEB, DBSUSERNAME, DBSPASSWORD};
+	diffitems = {ORGNAME, ORGWEB};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -1030,10 +1021,10 @@ DpchEngWznmAlert* AlrWznm::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE version v1.0.7 released on 27-8-2020";
+		continf.TxtMsg1 = "WhizniumSBE version v1.1.0 released on 5-12-2020";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
-		continf.TxtMsg6 = "libraries: curl 7.24, jsoncpp 1.8, git2 0.24.0 and apiwzlm 0.9.27";
+		continf.TxtMsg6 = "libraries: apiwzlm 1.0.0, curl 7.65, git2 0.24.0, openssl 1.1.1 and jsoncpp 1.8";
 		continf.TxtMsg8 = "WhizniumSBE implements all functionality of the Whiznium Service Builder's Edition framework for automated code generation and iteration.";
 	};
 
@@ -1322,18 +1313,21 @@ DpchEngWznm* JobWznm::getNewDpchEng(
 void JobWznm::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
 };
 
 void JobWznm::refreshWithDpchEng(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
+			, const bool unmute
 		) {
 	set<uint> moditems;
 
 	DpchEngWznm* _dpcheng = NULL;
 
-	refresh(dbswznm, moditems);
+	refresh(dbswznm, moditems, unmute);
+	if (muteRefresh) return;
 
 	if (dpcheng) {
 		_dpcheng = getNewDpchEng(moditems);
@@ -1475,6 +1469,8 @@ void JobWznm::addOp(
 		squawk = SqkWznmCompl::getSquawkBscui(dbswznm, (DpchInvWznmComplBscui*) inv);
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLDBS) {
 		squawk = SqkWznmCompl::getSquawkDbs(dbswznm, (DpchInvWznmComplDbs*) inv);
+	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLDEPLOY) {
+		squawk = SqkWznmCompl::getSquawkDeploy(dbswznm, (DpchInvWznmComplDeploy*) inv);
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLIEX) {
 		squawk = SqkWznmCompl::getSquawkIex(dbswznm, (DpchInvWznmComplIex*) inv);
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLJTR) {
@@ -1512,8 +1508,6 @@ void JobWznm::addOp(
 	};
 	if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMPRCFILECONCAT) {
 		squawk = SqkWznmPrcfile::getSquawkConcat(dbswznm, (DpchInvWznmPrcfileConcat*) inv);
-	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMPRCFILEIEXCONV) {
-		squawk = SqkWznmPrcfile::getSquawkIexconv(dbswznm, (DpchInvWznmPrcfileIexconv*) inv);
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMPRCFILEPLHRPL) {
 		squawk = SqkWznmPrcfile::getSquawkPlhrpl(dbswznm, (DpchInvWznmPrcfilePlhrpl*) inv);
 	};
@@ -1827,8 +1821,8 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCMPUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCMPSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCONUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPBUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSTD);
@@ -1855,21 +1849,20 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMJOBSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSREF);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOCUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSREF);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCHUPD_REFEQ) {
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMDLUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMDLSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMTDUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMTDSTD);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMTYUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMTYSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPKUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMOPKSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPXUPD_REFEQ) {
@@ -1878,8 +1871,8 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPNLSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRJUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSHORT);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRSUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRSSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRSSTD);
@@ -1916,8 +1909,8 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSESUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESMENU);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESMENU);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESMENU);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGEUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSGESTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSGESTD);
@@ -1933,22 +1926,22 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTBLUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTBLSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTCOUPD_REFEQ) {
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSGUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMGROUP);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSGSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMGROUP);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSRUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMOWNER);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMOWNER);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVECUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVECSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVERUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERNO);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVITUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSTD);
@@ -2048,6 +2041,8 @@ void StmgrWznm::commit() {
 		} else if (*it == VecWznmVStub::STUBWZNMLOCSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMLOCUPD_REFEQ, jref);
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMLOCUPD_REFEQ, jref);
+		} else if (*it == VecWznmVStub::STUBWZNMMCHSREF) {
+			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMMCHUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMMCHSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMMCHUPD_REFEQ, jref);
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMMCHUPD_REFEQ, jref);
@@ -2055,8 +2050,6 @@ void StmgrWznm::commit() {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMMDLUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMMTDSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMMTDUPD_REFEQ, jref);
-		} else if (*it == VecWznmVStub::STUBWZNMMTYSTD) {
-			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMMTYUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMOPKSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMOPKUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMOPXSTD) {
@@ -2318,7 +2311,7 @@ void XchgWznmd::startMon() {
 	Preset* preset = NULL;
 	NodeWznm* node = NULL;
 
-	mon.start("WhizniumSBE v1.0.7", stgwznmpath.monpath);
+	mon.start("WhizniumSBE v1.1.0", stgwznmpath.monpath);
 
 	rwmJobs.rlock("XchgWznmd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {
@@ -2392,6 +2385,8 @@ void XchgWznmd::appendToLogfile(
 void XchgWznmd::addReq(
 			ReqWznm* req
 		) {
+	if (jrefRoot == 0) return;
+
 	mReqs.lock("XchgWznmd", "addReq", "jref=" + to_string(req->jref));
 
 	req->ixVState = ReqWznm::VecVState::WAITPRC;
@@ -4150,12 +4145,14 @@ void XchgWznmd::addCsjobClaim(
 	};
 };
 
-void XchgWznmd::getCsjobClaim(
+bool XchgWznmd::getCsjobClaim(
 			CsjobWznm* csjob
 			, bool& takenNotAvailable
 			, bool& fulfilled
 			, bool& run
 		) {
+	bool retval = false;
+
 	Csjobinfo* csjobinfo = NULL;;
 
 	takenNotAvailable = false;
@@ -4170,7 +4167,9 @@ void XchgWznmd::getCsjobClaim(
 		csjobinfo->mClaims.rlock("XchgWznmd", "getCsjobClaim", "jref=" + to_string(csjob->jref));
 
 		auto it = csjobinfo->claims.find(csjob->jref);
-		if (it != csjobinfo->claims.end()) {
+		retval = (it != csjobinfo->claims.end());
+
+		if (retval) {
 			takenNotAvailable = it->second->takenNotAvailable;
 			fulfilled = it->second->fulfilled;
 			run = it->second->run;
@@ -4180,16 +4179,18 @@ void XchgWznmd::getCsjobClaim(
 
 		rwmCsjobinfos.runlock("XchgWznmd", "getCsjobClaim", "jref=" + to_string(csjob->jref));
 	};
+
+	return retval;
 };
 
-void XchgWznmd::getCsjobClaim(
+bool XchgWznmd::getCsjobClaim(
 			CsjobWznm* csjob
 			, bool& takenNotAvailable
 			, bool& fulfilled
 		) {
 	bool run;
 
-	getCsjobClaim(csjob, takenNotAvailable, fulfilled, run);
+	return getCsjobClaim(csjob, takenNotAvailable, fulfilled, run);
 };
 
 void XchgWznmd::clearCsjobRun(
@@ -4232,7 +4233,7 @@ void XchgWznmd::removeCsjobClaim(
 		) {
 	Csjobinfo* csjobinfo = NULL;;
 
-	bool mod;
+	bool mod = false;
 
 	if (!csjob->srvNotCli && csjob->srv) {
 		rwmCsjobinfos.rlock("XchgWznmd", "removeCsjobClaim", "jref=" + to_string(csjob->jref));
@@ -4249,9 +4250,9 @@ void XchgWznmd::removeCsjobClaim(
 		if (it != csjobinfo->claims.end()) {
 			delete it->second;
 			csjobinfo->claims.erase(it);
-		};
 
-		mod = csjob->srv->handleClaim(dbswznm, csjobinfo->claims, 0);
+			mod = csjob->srv->handleClaim(dbswznm, csjobinfo->claims, 0);
+		};
 
 		csjobinfo->mClaims.wunlock("XchgWznmd", "removeCsjobClaim", "jref=" + to_string(csjob->jref));
 
@@ -4319,10 +4320,15 @@ ubigint XchgWznmd::addWakeup(
 		// delayed callback: generate dedicated wait thread
 		WakeupWznm* wakeup = new WakeupWznm(this, wref, jref, sref, deltat, weak);
 
-		res = pthread_create(&timer, NULL, &runWakeup, (void*) wakeup);
+		for (unsigned int i = 0; i < 3; i++) {
+			res = pthread_create(&timer, NULL, &runWakeup, (void*) wakeup);
+			if ((res == 0) || (res != EAGAIN)) break;
+		};
 		if (res != 0) cout << "XchgWznmd::addWakeup() error creating timer thread (" << res << ")" << endl;
-		res = pthread_detach(timer);
-		if (res != 0) cout << "XchgWznmd::addWakeup() error detaching timer thread (" << res << ")" << endl;
+		else {
+			res = pthread_detach(timer);
+			if (res != 0) cout << "XchgWznmd::addWakeup() error detaching timer thread (" << res << ")" << endl;
+		};
 	};
 
 	return(wref);
@@ -4443,4 +4449,7 @@ void XchgWznmd::setNodeState(
 
 	cOpengcli.signal("XchgWznmd", "setNodeState", "nref=" + to_string(node->nref));
 };
+
+
+
 

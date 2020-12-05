@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrsrvInixml.cpp
 	* Wznm operation processor - write initialization XML file (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -87,8 +88,8 @@ DpchRetWznm* WznmWrsrvInixml::run(
 	txtfile.open(s.c_str(), ios::out);
 
 	version = StubWznm::getStubVerStd(dbswznm, refWznmMVersion);
-	ptr = version.rfind(' ');
-	if (ptr != string::npos) version = version.substr(ptr+1);
+	ptr = version.rfind(" v");
+	if (ptr != string::npos) version = version.substr(ptr+2);
 
 	Wznm::getVerlclrefs(dbswznm, refWznmMVersion, refLcl, refsLcl);
 
@@ -103,7 +104,7 @@ DpchRetWznm* WznmWrsrvInixml::run(
 	xmlfile << "<?xml version=\"1.0\" encoding=\"ISO-8859-1\"?>" << endl;
 	xmlfile << "<Iex" << Prjshort << "Ini version=\"" << version << "\">" << endl;
 
-	txtfile << "- Iex" << Prjshort << "Ini v" << version << endl;
+	txtfile << "Iex" << Prjshort << "Ini v" << version << endl;
 
 	// --- ImeIAVKeylistKey
 	srefKlsAkey = "ImeIAVKeylistKey";
@@ -127,7 +128,7 @@ DpchRetWznm* WznmWrsrvInixml::run(
 
 	if (vits.nodes.size() > 0) {
 		xmlfile << "\t<" << srefKlsAkey << ">" << endl;
-		txtfile << "- " << srefKlsAkey << ".srefKlsIx" << Prjshort << "VKeylist\tsref\tAvail\tImplied\tTitle\tComment" << endl;
+		txtfile << srefKlsAkey << ".srefKlsIx" << Prjshort << "VKeylist\tsref\tAvail\tImplied\tTitle\tComment" << endl;
 
 		for (unsigned int i = 0; i < vits.nodes.size(); i++) {
 			vit = vits.nodes[i];
@@ -158,7 +159,7 @@ DpchRetWznm* WznmWrsrvInixml::run(
 				if (vit->Comment != "") xmlfile << "\t\t\t<cmt>" << vit->Comment << "</cmt>" << endl;
 			};
 
-			txtfile << "- " << vecsrefs[vit->vecRefWznmMVector] << "\t" << vit->sref << "\t" << vit->Avail << "\t" << vit->Implied;
+			txtfile << vecsrefs[vit->vecRefWznmMVector] << "\t" << vit->sref << "\t" << vit->Avail << "\t" << vit->Implied;
 			if (preflclonly) txtfile << "\t" << vit->Title << "\t" << vit->Comment;
 			else txtfile << "\t\t";
 			txtfile << endl;
@@ -176,18 +177,18 @@ DpchRetWznm* WznmWrsrvInixml::run(
 					if (vitJ->Comment != "") xmlfile << "\t\t\t\t\t<cmt>" << vitJ->Comment << "</cmt>" << endl;
 					xmlfile << "\t\t\t\t</Ii>" << endl;
 
-					txtfile << "\t- " << locsrefs[vitJ->x1RefWznmMLocale] << "\t" << vitJ->Title << "\t" << vitJ->Comment << endl;
+					txtfile << "\t" << locsrefs[vitJ->x1RefWznmMLocale] << "\t" << vitJ->Title << "\t" << vitJ->Comment << endl;
 				};
 
 				xmlfile << "\t\t\t</" << srefKakJkey << ">" << endl;
-				txtfile << "\t- " << srefKakJkey << ".end" << endl;
+				txtfile << "\t" << srefKakJkey << ".end" << endl;
 			};
 
 			xmlfile << "\t\t</Ii>" << endl;
 		};
 
 		xmlfile << "\t</" << srefKlsAkey << ">" << endl;
-		txtfile << "- " << srefKlsAkey << ".end" << endl;
+		txtfile << srefKlsAkey << ".end" << endl;
 	};
 
 	// --- ImeIAVValuelistVal
@@ -211,12 +212,12 @@ DpchRetWznm* WznmWrsrvInixml::run(
 	xmlfile << "\t\t<Ii num=\"1\">" << endl;
 	xmlfile << "\t\t\t<srf>" << prjshort << "users</srf>" << endl;
 
-	txtfile << "- ImeIMUsergroup.sref\tComment" << endl;
-	txtfile << "- " << prjshort << "users" << endl;
+	txtfile << "ImeIMUsergroup.sref\tComment" << endl;
+	txtfile << prjshort << "users" << endl;
 
 	xmlfile << "\t\t\t<ImeIAMUsergroupAccess>" << endl;
 
-	txtfile << "\t- ImeIAMUsergroupAccess.srefX1Ix" << Prjshort << "VFeatgroup\tx2FeaSrefUix\tsrefsIx" << Prjshort << "WAccess" << endl;
+	txtfile << "\tImeIAMUsergroupAccess.srefX1Ix" << Prjshort << "VFeatgroup\tx2FeaSrefUix\tsrefsIx" << Prjshort << "WAccess" << endl;
 
 	num = 1;
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
@@ -229,18 +230,18 @@ DpchRetWznm* WznmWrsrvInixml::run(
 			xmlfile << "\t\t\t\t\t<acc>edit;exec;view</acc>" << endl;
 			xmlfile << "\t\t\t\t</Ii>" << endl;
 
-			txtfile << "\t- Vec" << Prjshort << "VCard\t" << car->sref << "\tedit;exec;view" << endl;
+			txtfile << "\tVec" << Prjshort << "VCard\t" << car->sref << "\tedit;exec;view" << endl;
 
 			num++;
 		};
 	};
 
 	xmlfile << "\t\t\t</ImeIAMUsergroupAccess>" << endl;
-	txtfile << "\t- ImeIAMUsergroupAccess.end" << endl;
+	txtfile << "\tImeIAMUsergroupAccess.end" << endl;
 
 	xmlfile << "\t\t\t<ImeIMUser>" << endl;
 
-	txtfile << "\t- ImeIMUser.sref\tsrefIxVState\tsrefIx" << Prjshort << "VLocale\tsrefIx" << Prjshort << "VUserlevel\tPassword\tComment" << endl;
+	txtfile << "\tImeIMUser.sref\tsrefIxVState\tsrefIx" << Prjshort << "VLocale\tsrefIx" << Prjshort << "VUserlevel\tPassword\tComment" << endl;
 
 	for (unsigned int i = 0; i < refsLcl.size(); i++) {
 		xmlfile << "\t\t\t\t<Ii num=\"" << (i+1) << "\">" << endl;
@@ -253,20 +254,8 @@ DpchRetWznm* WznmWrsrvInixml::run(
 		xmlfile << "\t\t\t\t\t<ulv>adm</ulv>" << endl;
 		xmlfile << "\t\t\t\t\t<pwd>asdf1234</pwd>" << endl;
 
-		if (refsLcl[i] == refLcl) txtfile << "\t- " << prjshort << "user\tact\t" << locsrefs[refsLcl[i]] << "\tadm\tasdf1234" << endl;
-		else txtfile << "\t- " << prjshort << "user" << locsrefs[refsLcl[i]] << "\tact\t" << locsrefs[refsLcl[i]] << "\tadm\tasdf1234" << endl;
-
-/*
-		xmlfile << "\t\t\t\t\t<ImeIJMUserState>" << endl;
-		xmlfile << "\t\t\t\t\t\t<Ii num=\"1\">" << endl;
-		xmlfile << "\t\t\t\t\t\t\t<ste>act</ste>" << endl;
-		xmlfile << "\t\t\t\t\t\t</Ii>" << endl;
-		xmlfile << "\t\t\t\t\t</ImeIJMUserState>" << endl;
-
-		txtfile << "\t\t- ImeIJMUserState.srefIxVState" << endl;
-		txtfile << "\t\t- act" << endl;
-		txtfile << "\t\t- ImeIJMUserState.end" << endl;
-*/
+		if (refsLcl[i] == refLcl) txtfile << "\t" << prjshort << "user\tact\t" << locsrefs[refsLcl[i]] << "\tadm\tasdf1234" << endl;
+		else txtfile << "\t" << prjshort << "user" << locsrefs[refsLcl[i]] << "\tact\t" << locsrefs[refsLcl[i]] << "\tadm\tasdf1234" << endl;
 
 		xmlfile << "\t\t\t\t\t<ImeIMPerson>" << endl;
 		xmlfile << "\t\t\t\t\t\t<Ii num=\"1\">" << endl;
@@ -275,36 +264,24 @@ DpchRetWznm* WznmWrsrvInixml::run(
 		xmlfile << "\t\t\t\t\t\t\t<fnm>" << fnmTits[refsLcl[i]] << "</fnm>" << endl;
 		xmlfile << "\t\t\t\t\t\t\t<lnm>" << lnmTits[refsLcl[i]] << "</lnm>" << endl;
 
-		txtfile << "\t\t- ImeIMPerson.srefIxVSex\tTitle\tFirstname\tLastname" << endl;
-		txtfile << "\t\t- f\t" << mrsTits[refsLcl[i]] << "\t" << fnmTits[refsLcl[i]] << "\t" << lnmTits[refsLcl[i]] << endl;
-
-/*
-		xmlfile << "\t\t\t\t\t\t\t<ImeIJMPersonLastname>" << endl;
-		xmlfile << "\t\t\t\t\t\t\t\t<Ii num=\"1\">" << endl;
-		xmlfile << "\t\t\t\t\t\t\t\t\t<lnm>" << lnmTits[refsLcl[i]] << "</lnm>" << endl;
-		xmlfile << "\t\t\t\t\t\t\t\t</Ii>" << endl;
-		xmlfile << "\t\t\t\t\t\t\t</ImeIJMPersonLastname>" << endl;
-
-		txtfile << "\t\t\t- ImeIJMPersonLastname.Lastname" << endl;
-		txtfile << "\t\t\t- " << lnmTits[refsLcl[i]] << endl;
-		txtfile << "\t\t\t- ImeIJMPersonLastname.end" << endl;
-*/
+		txtfile << "\t\tImeIMPerson.srefIxVSex\tTitle\tFirstname\tLastname" << endl;
+		txtfile << "\t\tf\t" << mrsTits[refsLcl[i]] << "\t" << fnmTits[refsLcl[i]] << "\t" << lnmTits[refsLcl[i]] << endl;
 
 		xmlfile << "\t\t\t\t\t\t</Ii>" << endl;
 
 		xmlfile << "\t\t\t\t\t</ImeIMPerson>" << endl;
-		txtfile << "\t\t- ImeIMPerson.end" << endl;
+		txtfile << "\t\tImeIMPerson.end" << endl;
 
 		xmlfile << "\t\t\t\t</Ii>" << endl;
 	};
 
 	xmlfile << "\t\t\t</ImeIMUser>" << endl;
-	txtfile << "\t- ImeIMUser.end" << endl;
+	txtfile << "\tImeIMUser.end" << endl;
 
 	xmlfile << "\t\t</Ii>" << endl;
 
 	xmlfile << "\t</ImeIMUsergroup>" << endl;
-	txtfile << "- ImeIMUsergroup.end" << endl;
+	txtfile << "ImeIMUsergroup.end" << endl;
 
 	xmlfile << "</Iex" << Prjshort << "Ini>" << endl;
 
@@ -316,5 +293,6 @@ DpchRetWznm* WznmWrsrvInixml::run(
 };
 
 // IP cust --- INSERT
+
 
 

@@ -1,11 +1,3 @@
-/**
-  * \file DlgWznmVerDeploy.js
-  * web client functionality for dialog DlgWznmVerDeploy
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // IP cust --- INSERT
 
 // --- view initialization and refresh
@@ -35,6 +27,20 @@ function initImp() {
 	setSi(srcdoc, "StatAppDlgWznmVerDeploy", "initdone", "true");
 
 	refreshImp();
+};
+
+function initPpr() {
+	contdoc = doc.getElementById("_cont").contentDocument;
+
+	// IP initPpr --- BEGIN
+	initCpt(contdoc, "CptPrg", retrieveTi(srcdoc, "TagDlgWznmVerDeployPpr", "CptPrg"));
+	initBut(contdoc, "ButRun", retrieveTi(srcdoc, "TagDlgWznmVerDeployPpr", "ButRun"));
+	initBut(contdoc, "ButSto", retrieveTi(srcdoc, "TagDlgWznmVerDeployPpr", "ButSto"));
+	// IP initPpr --- END
+
+	setSi(srcdoc, "StatAppDlgWznmVerDeploy", "initdone", "true");
+
+	refreshPpr();
 };
 
 function initLfi() {
@@ -69,7 +75,7 @@ function refreshHdr() {
 
 	var myspan, myrect;
 
-	for (var num = 1; num <= 3; num++) {
+	for (var num = 1; num <= 4; num++) {
 		sref = retrieveValue(srcdoc, "//wznm:FeedFDse/wznm:Fi[@num='" + num + "']/wznm:sref");
 		Title = retrieveValue(srcdoc, "//wznm:FeedFDse/wznm:Fi[@num='" + num + "']/wznm:tit1");
 
@@ -126,6 +132,23 @@ function refreshImp() {
 	// IP refreshImp --- END
 };
 
+function refreshPpr() {
+	// IP refreshPpr.vars --- BEGIN
+
+	var ButRunActive = (retrieveSi(srcdoc, "StatShrDlgWznmVerDeployPpr", "ButRunActive") == "true");
+	var ButStoActive = (retrieveSi(srcdoc, "StatShrDlgWznmVerDeployPpr", "ButStoActive") == "true");
+
+	// IP refreshPpr.vars --- END
+
+	// IP refreshPpr --- BEGIN
+	refreshTxtt(contdoc, "TxtPrg", retrieveCi(srcdoc, "ContInfDlgWznmVerDeployPpr", "TxtPrg"));
+
+	refreshBut(contdoc, "ButRun", ButRunActive, false);
+	refreshBut(contdoc, "ButSto", ButStoActive, false);
+
+	// IP refreshPpr --- END
+};
+
 function refreshLfi() {
 	// IP refreshLfi.vars --- BEGIN
 	var DldActive = (retrieveSi(srcdoc, "StatShrDlgWznmVerDeployLfi", "DldActive") == "true");
@@ -159,6 +182,8 @@ function refresh(updDit, updHdr) {
 			refreshIfi();
 		} else if (shortDit == "Imp") {
 			refreshImp();
+		} else if (shortDit == "Ppr") {
+			refreshPpr();
 		} else if (shortDit == "Lfi") {
 			refreshLfi();
 		};
@@ -185,6 +210,8 @@ function handleLoad() {
 // --- specific event handlers for app controls of dialog item Ifi
 
 // --- specific event handlers for app controls of dialog item Imp
+
+// --- specific event handlers for app controls of dialog item Ppr
 
 // --- specific event handlers for app controls of dialog item Lfi
 
@@ -218,6 +245,7 @@ function mergeDpchEngData(dom) {
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "ContInfDlgWznmVerDeploy", srcdoc)) mask.push("continf");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "ContInfDlgWznmVerDeployImp", srcdoc)) mask.push("continfimp");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "ContInfDlgWznmVerDeployLfi", srcdoc)) mask.push("continflfi");
+	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "ContInfDlgWznmVerDeployPpr", srcdoc)) mask.push("continfppr");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "FeedFDse", srcdoc)) mask.push("feedFDse");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "FeedFSge", srcdoc)) mask.push("feedFSge");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "StatAppDlgWznmVerDeploy", srcdoc)) mask.push("statapp");
@@ -225,10 +253,12 @@ function mergeDpchEngData(dom) {
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "StatShrDlgWznmVerDeployIfi", srcdoc)) mask.push("statshrifi");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "StatShrDlgWznmVerDeployImp", srcdoc)) mask.push("statshrimp");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "StatShrDlgWznmVerDeployLfi", srcdoc)) mask.push("statshrlfi");
+	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "StatShrDlgWznmVerDeployPpr", srcdoc)) mask.push("statshrppr");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "TagDlgWznmVerDeploy", srcdoc)) mask.push("tag");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "TagDlgWznmVerDeployIfi", srcdoc)) mask.push("tagifi");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "TagDlgWznmVerDeployImp", srcdoc)) mask.push("tagimp");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "TagDlgWznmVerDeployLfi", srcdoc)) mask.push("taglfi");
+	if (updateSrcblock(dom, "DpchEngDlgWznmVerDeployData", "TagDlgWznmVerDeployPpr", srcdoc)) mask.push("tagppr");
 
 	return mask;
 };

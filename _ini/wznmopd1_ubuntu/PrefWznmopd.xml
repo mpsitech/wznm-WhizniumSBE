@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PrefWznmopd>
+	<StgWznmDatabase>
+		<Si sref="srefIxDbsVDbstype">mar</Si>
+		<Si sref="dbspath">./DbsWznm.sql</Si>
+		<Si sref="dbsname">DbsWznm</Si>
+		<Si sref="username">default</Si>
+		<Si sref="password">asdf1234</Si>
+		<Si sref="ip">127.0.0.1</Si>
+		<Si sref="port">3306</Si>
+	</StgWznmDatabase>
+	<StgWznmopd>
+		<Si sref="engip">127.0.0.1</Si>
+		<Si sref="engport"></Si>
+		<Si sref="engsrvportbase">13140</Si>
+		<Si sref="engsrvportofs">0</Si>
+		<Si sref="opprcn">4</Si>
+	</StgWznmopd>
+	<StgWznmPath>
+		<Si sref="acvpath">${WHIZROOT}/acv/wznm</Si>
+		<Si sref="keypath"></Si>
+		<Si sref="monpath">${WHIZROOT}/mon/wznm</Si>
+		<Si sref="tmppath">${WHIZROOT}/tmp/wznm</Si>
+		<Si sref="webpath">${WHIZROOT}/web/appwznm</Si>
+		<Si sref="helpurl">http://www.mpsitech.com/wznm</Si>
+	</StgWznmPath>
+</PrefWznmopd>

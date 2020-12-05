@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmMtdRec.h
 	* API code for job PnlWznmMtdRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMMTDREC_H
 #define PNLWZNMMTDREC_H
@@ -65,16 +66,16 @@ namespace PnlWznmMtdRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEAINVPAR = 2;
-		static const Sbecore::uint INITDONEARETPAR = 3;
+		static const Sbecore::uint INITDONEARETPAR = 2;
+		static const Sbecore::uint INITDONEAINVPAR = 3;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneAInvpar = false, const bool initdoneARetpar = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneARetpar = false, const bool initdoneAInvpar = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdoneAInvpar;
 		bool initdoneARetpar;
+		bool initdoneAInvpar;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -90,18 +91,18 @@ namespace PnlWznmMtdRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFAINVPAR = 3;
-		static const Sbecore::uint SCRJREFARETPAR = 4;
+		static const Sbecore::uint SCRJREFARETPAR = 3;
+		static const Sbecore::uint SCRJREFAINVPAR = 4;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 5;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAInvpar = "", const std::string& scrJrefARetpar = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefARetpar = "", const std::string& scrJrefAInvpar = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJrefAInvpar;
 		std::string scrJrefARetpar;
+		std::string scrJrefAInvpar;
 		bool ButRegularizeActive;
 
 	public:

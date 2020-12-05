@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmQryQry1NQuerycol.cpp
 	* job handler for job QryWznmQryQry1NQuerycol (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -271,19 +272,11 @@ void QryWznmQryQry1NQuerycol::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMQCOMOD_QRYEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMQCOMOD_QRYEQ) {
 		call->abort = handleCallWznmQcoMod_qryEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmQryQry1NQuerycol::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmQryQry1NQuerycol::handleCallWznmQcoMod_qryEq(
@@ -299,4 +292,14 @@ bool QryWznmQryQry1NQuerycol::handleCallWznmQcoMod_qryEq(
 
 	return retval;
 };
+
+bool QryWznmQryQry1NQuerycol::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
+};
+
+
 

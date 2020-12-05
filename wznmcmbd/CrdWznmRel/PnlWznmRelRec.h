@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmRelRec.h
 	* job handler for job PnlWznmRelRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMRELREC_H
 #define PNLWZNMRELREC_H
@@ -13,13 +14,13 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmRelDetail.h"
-#include "PnlWznmRelATitle.h"
-#include "PnlWznmRelSup1NRelation.h"
-#include "PnlWznmRel1NTablecol.h"
-#include "PnlWznmRelRef1NControl.h"
 #include "PnlWznmRelRef1NDialog.h"
 #include "PnlWznmRelRef1NPanel.h"
+#include "PnlWznmRelRef1NControl.h"
+#include "PnlWznmRelSup1NRelation.h"
+#include "PnlWznmRel1NTablecol.h"
+#include "PnlWznmRelATitle.h"
+#include "PnlWznmRelDetail.h"
 
 #define VecVWznmRelRecDo PnlWznmRelRec::VecVDo
 
@@ -76,7 +77,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneSup1NRelation = false, const bool initdone1NTablecol = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NDialog = false, const bool initdoneRef1NPanel = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NTablecol = false, const bool initdoneSup1NRelation = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NPanel = false, const bool initdoneRef1NDialog = false);
 	};
 
 	/**
@@ -88,25 +89,25 @@ public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREFATITLE = 3;
-		static const Sbecore::uint JREFSUP1NRELATION = 4;
-		static const Sbecore::uint JREF1NTABLECOL = 5;
+		static const Sbecore::uint JREF1NTABLECOL = 4;
+		static const Sbecore::uint JREFSUP1NRELATION = 5;
 		static const Sbecore::uint JREFREF1NCONTROL = 6;
-		static const Sbecore::uint JREFREF1NDIALOG = 7;
-		static const Sbecore::uint JREFREF1NPANEL = 8;
+		static const Sbecore::uint JREFREF1NPANEL = 7;
+		static const Sbecore::uint JREFREF1NDIALOG = 8;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 9;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const Sbecore::ubigint jrefSup1NRelation = 0, const Sbecore::ubigint jref1NTablecol = 0, const Sbecore::ubigint jrefRef1NControl = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const Sbecore::ubigint jrefRef1NPanel = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const Sbecore::ubigint jref1NTablecol = 0, const Sbecore::ubigint jrefSup1NRelation = 0, const Sbecore::ubigint jrefRef1NControl = 0, const Sbecore::ubigint jrefRef1NPanel = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jrefATitle;
-		Sbecore::ubigint jrefSup1NRelation;
 		Sbecore::ubigint jref1NTablecol;
+		Sbecore::ubigint jrefSup1NRelation;
 		Sbecore::ubigint jrefRef1NControl;
-		Sbecore::ubigint jrefRef1NDialog;
 		Sbecore::ubigint jrefRef1NPanel;
+		Sbecore::ubigint jrefRef1NDialog;
 		bool ButRegularizeActive;
 
 	public:
@@ -182,13 +183,13 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmRelDetail* pnldetail;
-	PnlWznmRelATitle* pnlatitle;
-	PnlWznmRelSup1NRelation* pnlsup1nrelation;
-	PnlWznmRel1NTablecol* pnl1ntablecol;
-	PnlWznmRelRef1NControl* pnlref1ncontrol;
 	PnlWznmRelRef1NDialog* pnlref1ndialog;
 	PnlWznmRelRef1NPanel* pnlref1npanel;
+	PnlWznmRelRef1NControl* pnlref1ncontrol;
+	PnlWznmRelSup1NRelation* pnlsup1nrelation;
+	PnlWznmRel1NTablecol* pnl1ntablecol;
+	PnlWznmRelATitle* pnlatitle;
+	PnlWznmRelDetail* pnldetail;
 
 	WznmMRelation recRel;
 
@@ -200,7 +201,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -232,4 +233,6 @@ private:
 };
 
 #endif
+
+
 

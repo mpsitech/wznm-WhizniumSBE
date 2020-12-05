@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmMchRec.h
 	* API code for job PnlWznmMchRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMMCHREC_H
 #define PNLWZNMMCHREC_H
@@ -65,16 +66,20 @@ namespace PnlWznmMchRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEAPAR = 2;
-		static const Sbecore::uint INITDONE1NRELEASE = 3;
+		static const Sbecore::uint INITDONEAMAKEFILE = 2;
+		static const Sbecore::uint INITDONEAPAR = 3;
+		static const Sbecore::uint INITDONE1NRELEASE = 4;
+		static const Sbecore::uint INITDONESUP1NMACHINE = 5;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneAPar = false, const bool initdone1NRelease = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneAMakefile = false, const bool initdoneAPar = false, const bool initdone1NRelease = false, const bool initdoneSup1NMachine = false);
 
 	public:
 		bool initdoneDetail;
+		bool initdoneAMakefile;
 		bool initdoneAPar;
 		bool initdone1NRelease;
+		bool initdoneSup1NMachine;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -90,18 +95,22 @@ namespace PnlWznmMchRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFAPAR = 3;
-		static const Sbecore::uint SCRJREF1NRELEASE = 4;
-		static const Sbecore::uint BUTREGULARIZEACTIVE = 5;
+		static const Sbecore::uint SCRJREFAMAKEFILE = 3;
+		static const Sbecore::uint SCRJREFAPAR = 4;
+		static const Sbecore::uint SCRJREF1NRELEASE = 5;
+		static const Sbecore::uint SCRJREFSUP1NMACHINE = 6;
+		static const Sbecore::uint BUTREGULARIZEACTIVE = 7;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAPar = "", const std::string& scrJref1NRelease = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAMakefile = "", const std::string& scrJrefAPar = "", const std::string& scrJref1NRelease = "", const std::string& scrJrefSup1NMachine = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
+		std::string scrJrefAMakefile;
 		std::string scrJrefAPar;
 		std::string scrJref1NRelease;
+		std::string scrJrefSup1NMachine;
 		bool ButRegularizeActive;
 
 	public:

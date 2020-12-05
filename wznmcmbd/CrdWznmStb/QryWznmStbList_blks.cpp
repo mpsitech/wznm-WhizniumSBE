@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmStbList_blks.cpp
 	* job handler for job QryWznmStbList (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -21,8 +22,8 @@ uint QryWznmStbList::VecVOrd::getIx(
 
 	if (s == "sbs") return SBS;
 	if (s == "tbl") return TBL;
-	if (s == "srf") return SRF;
 	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -32,8 +33,8 @@ string QryWznmStbList::VecVOrd::getSref(
 		) {
 	if (ix == SBS) return("sbs");
 	if (ix == TBL) return("tbl");
-	if (ix == SRF) return("srf");
 	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -220,4 +221,6 @@ set<uint> QryWznmStbList::StgIac::diff(
 
 	return(diffitems);
 };
+
+
 

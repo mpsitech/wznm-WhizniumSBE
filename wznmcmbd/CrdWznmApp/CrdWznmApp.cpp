@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmApp.cpp
 	* job handler for job CrdWznmApp (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -42,12 +43,12 @@ CrdWznmApp::CrdWznmApp(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	dlgnew = NULL;
-	dlgwrite = NULL;
-	dlgimpstr = NULL;
-	pnlrec = NULL;
-	pnlheadbar = NULL;
 	pnllist = NULL;
+	pnlheadbar = NULL;
+	pnlrec = NULL;
+	dlgimpstr = NULL;
+	dlgwrite = NULL;
+	dlgnew = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -56,9 +57,9 @@ CrdWznmApp::CrdWznmApp(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnlrec = new PnlWznmAppRec(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlheadbar = new PnlWznmAppHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnllist = new PnlWznmAppList(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmAppHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlrec = new PnlWznmAppRec(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -113,7 +114,11 @@ DpchEngWznm* CrdWznmApp::getNewDpchEng(
 void CrdWznmApp::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
 
@@ -133,6 +138,8 @@ void CrdWznmApp::refresh(
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void CrdWznmApp::changeRef(
@@ -379,7 +386,7 @@ void CrdWznmApp::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -435,4 +442,6 @@ void CrdWznmApp::leaveSgeAlrwznmabt(
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
 };
+
+
 

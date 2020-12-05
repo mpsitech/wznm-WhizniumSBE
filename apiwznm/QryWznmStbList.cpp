@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmStbList.cpp
 	* API code for job QryWznmStbList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmStbList.h"
 
@@ -23,8 +24,8 @@ uint QryWznmStbList::VecVOrd::getIx(
 
 	if (s == "sbs") return SBS;
 	if (s == "tbl") return TBL;
-	if (s == "srf") return SRF;
 	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -34,8 +35,8 @@ string QryWznmStbList::VecVOrd::getSref(
 		) {
 	if (ix == SBS) return("sbs");
 	if (ix == TBL) return("tbl");
-	if (ix == SRF) return("srf");
 	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmStbMNSquawk.js
-  * web client functionality for panel PnlWznmStbMNSquawk
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmStbMNSquawk", "srefIxWznmVExpstate") == "mind") return;

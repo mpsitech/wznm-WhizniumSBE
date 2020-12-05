@@ -1,0 +1,39 @@
+# file Makefile
+# make file for CrdWznmCal card job handler, release wznmcmbd_ubuntu
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 5 Dec 2020
+# IP header --- ABOVE
+
+include ../Makefile.inc
+
+CPP = g++
+CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -DWZNMCMBD
+
+STATLIB = ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
+INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
+
+OBJS = CrdWznmCal.o PnlWznmCalList.o QryWznmCalList.o PnlWznmCalHeadbar.o PnlWznmCalRec.o PnlWznmCalMNStub.o QryWznmCalMNStub.o PnlWznmCal1NSensitivity.o QryWznmCal1NSensitivity.o PnlWznmCalDetail.o
+
+LIB = libcrdwznmcal
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+	rm -f *.o
+
+install:
+	mv $(LIB).a $(LIBROOT)/wznmcmbd/
+
+clean:
+	rm -f *.o
+

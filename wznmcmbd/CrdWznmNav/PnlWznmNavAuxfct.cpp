@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavAuxfct.cpp
 	* job handler for job PnlWznmNavAuxfct (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -76,7 +77,11 @@ DpchEngWznm* PnlWznmNavAuxfct::getNewDpchEng(
 void PnlWznmNavAuxfct::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -85,6 +90,8 @@ void PnlWznmNavAuxfct::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmNavAuxfct::updatePreset(
@@ -154,4 +161,6 @@ void PnlWznmNavAuxfct::handleDpchAppDoButUtlNewcrdClick(
 	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
 	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmUtl");
 };
+
+
 

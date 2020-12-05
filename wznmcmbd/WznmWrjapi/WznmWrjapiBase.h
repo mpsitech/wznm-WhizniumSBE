@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrjapiBase.h
 	* Wznm operation processor - write Java API code basics (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMWRJAPIBASE_H
 #define WZNMWRJAPIBASE_H
@@ -24,5 +25,6 @@ namespace WznmWrjapiBase {
 };
 
 #endif
+
 
 

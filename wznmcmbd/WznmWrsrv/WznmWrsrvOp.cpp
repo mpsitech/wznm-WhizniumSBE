@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrsrvOp.cpp
 	* Wznm operation processor - write C++ code for operation (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -264,5 +265,6 @@ void WznmWrsrvOp::writeOpCpp(
 	outfile << "// IP run --- IEND" << endl;
 };
 // IP cust --- IEND
+
 
 

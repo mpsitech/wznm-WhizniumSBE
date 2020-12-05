@@ -1,10 +1,11 @@
 /**
 	* \file RootWznm.cpp
 	* job handler for job RootWznm (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -94,8 +95,8 @@ void RootWznm::clearAll(
 	dbswznm->executeQuery("DELETE FROM TblWznmAMJobVar");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMLibraryMakefile");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMLibraryPkglist");
+	dbswznm->executeQuery("DELETE FROM TblWznmAMMachineMakefile");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMMachinePar");
-	dbswznm->executeQuery("DELETE FROM TblWznmAMMachtypeMakefile");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMMethodInvpar");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMMethodRetpar");
 	dbswznm->executeQuery("DELETE FROM TblWznmAMOpInvarg");
@@ -177,7 +178,6 @@ void RootWznm::clearAll(
 	dbswznm->executeQuery("DELETE FROM TblWznmMLibrary");
 	dbswznm->executeQuery("DELETE FROM TblWznmMLocale");
 	dbswznm->executeQuery("DELETE FROM TblWznmMMachine");
-	dbswznm->executeQuery("DELETE FROM TblWznmMMachtype");
 	dbswznm->executeQuery("DELETE FROM TblWznmMMethod");
 	dbswznm->executeQuery("DELETE FROM TblWznmMModule");
 	dbswznm->executeQuery("DELETE FROM TblWznmMOp");
@@ -342,17 +342,16 @@ void RootWznm::clearQtb(
 	dbswznm->executeQuery("DELETE FROM TblWznmQLocList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQLocMNVersion");
 	dbswznm->executeQuery("DELETE FROM TblWznmQMch1NRelease");
+	dbswznm->executeQuery("DELETE FROM TblWznmQMchAMakefile");
 	dbswznm->executeQuery("DELETE FROM TblWznmQMchAPar");
 	dbswznm->executeQuery("DELETE FROM TblWznmQMchList");
+	dbswznm->executeQuery("DELETE FROM TblWznmQMchSup1NMachine");
 	dbswznm->executeQuery("DELETE FROM TblWznmQMdlList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQMdlMdl1NCard");
 	dbswznm->executeQuery("DELETE FROM TblWznmQMdlRef1NPanel");
 	dbswznm->executeQuery("DELETE FROM TblWznmQMtdAInvpar");
 	dbswznm->executeQuery("DELETE FROM TblWznmQMtdARetpar");
 	dbswznm->executeQuery("DELETE FROM TblWznmQMtdList");
-	dbswznm->executeQuery("DELETE FROM TblWznmQMty1NMachine");
-	dbswznm->executeQuery("DELETE FROM TblWznmQMtyAMakefile");
-	dbswznm->executeQuery("DELETE FROM TblWznmQMtyList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQOpk1NOp");
 	dbswznm->executeQuery("DELETE FROM TblWznmQOpkAInvarg");
 	dbswznm->executeQuery("DELETE FROM TblWznmQOpkARetval");
@@ -542,6 +541,7 @@ void RootWznm::handleRequest(
 			cout << "\tclearAll" << endl;
 			cout << "\tcreateSess" << endl;
 			cout << "\teraseSess" << endl;
+			cout << "\texportIni" << endl;
 			cout << "\ttest" << endl;
 		} else if (req->cmd == "clearAll") {
 			req->retain = handleClearAll(dbswznm);
@@ -551,6 +551,9 @@ void RootWznm::handleRequest(
 
 		} else if (req->cmd == "eraseSess") {
 			req->retain = handleEraseSess(dbswznm);
+
+		} else if (req->cmd == "exportIni") {
+			req->retain = handleExportIni(dbswznm);
 
 		} else if (req->cmd == "test") {
 			req->retain = handleTest(dbswznm);
@@ -641,141 +644,67 @@ bool RootWznm::handleEraseSess(
 	return retval;
 };
 
+bool RootWznm::handleExportIni(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleExportIni --- IBEGIN
+
+	// (re-)export initialization data
+	vector<ubigint> refs;
+
+	map<uint,uint> icsWznmVIop;
+
+	JobWznmIexIni* iexini = NULL;
+	iexini = new JobWznmIexIni(xchg, dbswznm, jref, ixWznmVLocale);
+
+	iexini->reset(dbswznm);
+
+	// ImeIMFile
+	dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMFile WHERE refIxVTbl = " + to_string(VecWznmVMFileRefTbl::VOID) + " ORDER BY Filename ASC", false, refs);
+	for (unsigned int i = 0; i < refs.size(); i++) iexini->imeimfile.nodes.push_back(new ImeitemIWznmIniMFile(dbswznm, refs[i]));
+
+	// ImeIMUsergroup
+	dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMUsergroup ORDER BY sref ASC", false, refs);
+	for (unsigned int i = 0; i < refs.size(); i++) iexini->imeimusergroup.nodes.push_back(new ImeitemIWznmIniMUsergroup(dbswznm, refs[i]));
+
+	// ImeIMLocale
+	dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMLocale ORDER BY sref ASC", false, refs);
+	for (unsigned int i = 0; i < refs.size(); i++) iexini->imeimlocale.nodes.push_back(new ImeitemIWznmIniMLocale(dbswznm, refs[i]));
+
+	// ImeIMTag1
+	dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMTag ORDER BY osrefWznmKTaggrp ASC, sref ASC", false, refs);
+	for (unsigned int i = 0; i < refs.size(); i++) iexini->imeimtag1.nodes.push_back(new ImeitemIWznmIniMTag1(dbswznm, refs[i]));
+
+	// ImeIMMachine
+	dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMMachine ORDER BY supRefWznmMMachine ASC, sref ASC", false, refs);
+	for (unsigned int i = 0; i < refs.size(); i++) iexini->imeimmachine.nodes.push_back(new ImeitemIWznmIniMMachine(dbswznm, refs[i]));
+
+	// ImeIMLibrary
+	dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMLibrary ORDER BY sref ASC", false, refs);
+	for (unsigned int i = 0; i < refs.size(); i++) iexini->imeimlibrary.nodes.push_back(new ImeitemIWznmIniMLibrary(dbswznm, refs[i]));
+
+	// ImeIMCapability
+	dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMCapability WHERE tplRefWznmMCapability = 0 ORDER BY sref ASC", false, refs);
+	for (unsigned int i = 0; i < refs.size(); i++) iexini->imeimcapability.nodes.push_back(new ImeitemIWznmIniMCapability(dbswznm, refs[i]));
+
+	icsWznmVIop = IexWznmIni::icsWznmVIopInsAll();
+
+	iexini->collect(dbswznm, icsWznmVIop);
+
+	iexini->exportToFile(dbswznm, "./IexWznmIni_exported.txt", false);
+
+	delete iexini;
+
+	// IP handleExportIni --- IEND
+	return retval;
+};
+
 bool RootWznm::handleTest(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	// IP handleTest --- IBEGIN
-
-	// derive hash from list of projects
-	string hash;
-
-	ListWznmMProject prjs;
-	WznmMProject* prj = NULL;
-
-	dbswznm->tblwznmmproject->loadRstBySQL("SELECT * FROM TblWznmMProject ORDER BY Short ASC", false, prjs);
-
-	for (unsigned int i = 0; i < prjs.nodes.size(); i++) {
-		prj = prjs.nodes[i];
-		hash += prj->Short + prj->Title;
-	};
-
-	cout << "project list hash: '" << hash << "'" << endl;
-
-	// derive hash for (build-ready) versions
-	//string hash;
-	ubigint refWznmMProject;
-
-	ListWznmMVersion vers;
-	WznmMVersion* ver = NULL;
-
-//	ListWznmJMVersionState verJstes;
-//	WznmJMVersionState* verJste = NULL;
-
-	ListWznmMTable tbls;
-	WznmMTable* tbl = NULL;
-
-	ListWznmMVector vecs;
-	WznmMVector* vec = NULL;
-
-	ListWznmMImpexp imes;
-	WznmMImpexp* ime = NULL;
-
-	ListWznmMPreset psts;
-	WznmMPreset* pst = NULL;
-
-	ListWznmMOp ops;
-	WznmMOp* op = NULL;
-
-	ListWznmMBlock blks;
-	WznmMBlock* blk = NULL;
-
-	ListWznmMRelease rlss;
-	WznmMRelease* rls = NULL;
-
-	for (unsigned int k = 0; k < prjs.nodes.size(); k++) {
-		prj = prjs.nodes[k];
-
-		refWznmMProject = prj->ref;
-
-		dbswznm->tblwznmmversion->loadRstBySQL("SELECT * FROM TblWznmMVersion WHERE prjRefWznmMProject = " + to_string(refWznmMProject) + " AND ixVState = " + to_string(VecWznmVMVersionState::READY)
-					+ " ORDER BY Major ASC, Minor ASC, Sub ASC", false, vers);
-		for (unsigned int i = 0; i < vers.nodes.size(); i++) {
-			ver = vers.nodes[i];
-
-			hash = to_string(ver->Major) + to_string(ver->Minor) + to_string(ver->Sub);
-
-/*
-			dbswznm->tblwznmjmversionstate->loadRstByVer(ver->ref, false, verJstes);
-			for (unsigned int j = 0; j < verJstes.nodes.size(); j++) {
-				verJste = verJstes.nodes[j];
-				hash += to_string(verJste->x1Start) + VecWznmVMVersionState::getSref(verJste->ixVState);
-			};
-*/
-
-			dbswznm->tblwznmmtable->loadRstByVer(ver->ref, false, tbls);
-			for (unsigned int j = 0; j < tbls.nodes.size(); j++) {
-				tbl = tbls.nodes[j];
-				hash += tbl->sref;
-			};
-
-			dbswznm->tblwznmmvector->loadRstByVer(ver->ref, false, vecs);
-			for (unsigned int j = 0; j < vecs.nodes.size(); j++) {
-				vec = vecs.nodes[j];
-				hash += vec->sref;
-			};
-
-			dbswznm->tblwznmmimpexp->loadRstBySQL("SELECT TblWznmMImpexp.* FROM TblWznmMImpexpcplx, TblWznmMImpexp WHERE TblWznmMImpexp.refWznmMImpexpcplx = TblWznmMImpexpcplx.ref AND TblWznmMImpexpcplx.refWznmMVersion = "
-						+ to_string(ver->ref) + " ORDER BY TblWznmMImpexp.sref ASC", false, imes);
-			for (unsigned int j = 0; j < imes.nodes.size(); j++) {
-				ime = imes.nodes[j];
-				hash += ime->sref;
-			};
-
-			dbswznm->tblwznmmpreset->loadRstByVer(ver->ref, false, psts);
-			for (unsigned int j = 0; j < psts.nodes.size(); j++) {
-				pst = psts.nodes[j];
-				hash += pst->sref;
-			};
-
-			dbswznm->tblwznmmop->loadRstBySQL("SELECT TblWznmMOp.* FROM TblWznmMOppack, TblWznmMOp WHERE TblWznmMOp.refWznmMOppack = TblWznmMOppack.ref AND TblWznmMOppack.refWznmMVersion = " + to_string(ver->ref)
-						+ " ORDER BY TblWznmMOp.sref ASC", false, ops);
-			for (unsigned int j = 0; j < ops.nodes.size(); j++) {
-				op = ops.nodes[j];
-				hash += op->sref;
-			};
-
-			dbswznm->tblwznmmblock->loadRstByVer(ver->ref, false, blks);
-			for (unsigned int j = 0; j < blks.nodes.size(); j++) {
-				blk = blks.nodes[j];
-				hash += blk->sref;
-			};
-
-			dbswznm->tblwznmmrelease->loadRstBySQL("SELECT TblWznmMRelease.* FROM TblWznmMComponent, TblWznmMRelease WHERE TblWznmMRelease.refWznmMComponent = TblWznmMComponent.ref AND TblWznmMComponent.refWznmMVersion = "
-						+ to_string(ver->ref) + " ORDER BY TblWznmMRelease.sref ASC", false, rlss);
-			for (unsigned int j = 0; j < rlss.nodes.size(); j++) {
-				rls = rlss.nodes[j];
-				hash += rls->sref;
-			};
-
-			cout << "hash for build-ready version " << prj->Short << " " << to_string(ver->Major) << "." << to_string(ver->Minor) << "." << to_string(ver->Sub) << " is '" << hash << "'" << endl;
-		};
-	};
-
-	unsigned char md[SHA256_DIGEST_LENGTH];
-	SHA256_CTX context;
-
-	bool success;
-
-	success = SHA256_Init(&context);
-
-	if (success) success = SHA256_Update(&context, (const unsigned char*) hash.c_str(), hash.length());
-
-	if (success) success = SHA256_Final(md, &context);
-
-	if (success) cout << "hellyeah!" << endl;
-
-	// IP handleTest --- IEND
+	// IP handleTest --- INSERT
 	return retval;
 };
 
@@ -902,7 +831,7 @@ void RootWznm::changeStage(
 
 			setStage(dbswznm, _ixVSge);
 			reenter = false;
-			if (!muteRefresh) refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
+			refreshWithDpchEng(dbswznm, dpcheng); // IP changeStage.refresh1 --- LINE
 		};
 
 		switch (_ixVSge) {
@@ -977,5 +906,6 @@ void RootWznm::leaveSgeSync(
 		) {
 	// IP leaveSgeSync --- INSERT
 };
+
 
 

@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmUtl.cpp
 	* API code for job CrdWznmUtl (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "CrdWznmUtl.h"
 
@@ -23,7 +24,6 @@ uint CrdWznmUtl::VecVDo::getIx(
 
 	if (s == "close") return CLOSE;
 	if (s == "mitappabtclick") return MITAPPABTCLICK;
-	if (s == "mitcrdcifclick") return MITCRDCIFCLICK;
 	if (s == "mitcrdxipclick") return MITCRDXIPCLICK;
 	if (s == "mitcrdmipclick") return MITCRDMIPCLICK;
 
@@ -35,7 +35,6 @@ string CrdWznmUtl::VecVDo::getSref(
 		) {
 	if (ix == CLOSE) return("close");
 	if (ix == MITAPPABTCLICK) return("MitAppAbtClick");
-	if (ix == MITCRDCIFCLICK) return("MitCrdCifClick");
 	if (ix == MITCRDXIPCLICK) return("MitCrdXipClick");
 	if (ix == MITCRDMIPCLICK) return("MitCrdMipClick");
 
@@ -219,18 +218,16 @@ set<uint> CrdWznmUtl::StatApp::diff(
 
 CrdWznmUtl::StatShr::StatShr(
 			const string& scrJrefDlgextrip
-			, const string& scrJrefDlgiexconv
 			, const string& scrJrefDlgmrgip
 			, const string& scrJrefHeadbar
 		) :
 			Block()
 		{
 	this->scrJrefDlgextrip = scrJrefDlgextrip;
-	this->scrJrefDlgiexconv = scrJrefDlgiexconv;
 	this->scrJrefDlgmrgip = scrJrefDlgmrgip;
 	this->scrJrefHeadbar = scrJrefHeadbar;
 
-	mask = {SCRJREFDLGEXTRIP, SCRJREFDLGIEXCONV, SCRJREFDLGMRGIP, SCRJREFHEADBAR};
+	mask = {SCRJREFDLGEXTRIP, SCRJREFDLGMRGIP, SCRJREFHEADBAR};
 };
 
 bool CrdWznmUtl::StatShr::readXML(
@@ -251,7 +248,6 @@ bool CrdWznmUtl::StatShr::readXML(
 
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDlgextrip", scrJrefDlgextrip)) add(SCRJREFDLGEXTRIP);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDlgiexconv", scrJrefDlgiexconv)) add(SCRJREFDLGIEXCONV);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDlgmrgip", scrJrefDlgmrgip)) add(SCRJREFDLGMRGIP);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefHeadbar", scrJrefHeadbar)) add(SCRJREFHEADBAR);
 	};
@@ -265,7 +261,6 @@ set<uint> CrdWznmUtl::StatShr::comm(
 	set<uint> items;
 
 	if (scrJrefDlgextrip == comp->scrJrefDlgextrip) insert(items, SCRJREFDLGEXTRIP);
-	if (scrJrefDlgiexconv == comp->scrJrefDlgiexconv) insert(items, SCRJREFDLGIEXCONV);
 	if (scrJrefDlgmrgip == comp->scrJrefDlgmrgip) insert(items, SCRJREFDLGMRGIP);
 	if (scrJrefHeadbar == comp->scrJrefHeadbar) insert(items, SCRJREFHEADBAR);
 
@@ -280,7 +275,7 @@ set<uint> CrdWznmUtl::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {SCRJREFDLGEXTRIP, SCRJREFDLGIEXCONV, SCRJREFDLGMRGIP, SCRJREFHEADBAR};
+	diffitems = {SCRJREFDLGEXTRIP, SCRJREFDLGMRGIP, SCRJREFHEADBAR};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -293,7 +288,6 @@ set<uint> CrdWznmUtl::StatShr::diff(
 CrdWznmUtl::Tag::Tag(
 			const string& MitAppAbt
 			, const string& MrlAppHlp
-			, const string& MitCrdCif
 			, const string& MitCrdXip
 			, const string& MitCrdMip
 		) :
@@ -301,11 +295,10 @@ CrdWznmUtl::Tag::Tag(
 		{
 	this->MitAppAbt = MitAppAbt;
 	this->MrlAppHlp = MrlAppHlp;
-	this->MitCrdCif = MitCrdCif;
 	this->MitCrdXip = MitCrdXip;
 	this->MitCrdMip = MitCrdMip;
 
-	mask = {MITAPPABT, MRLAPPHLP, MITCRDCIF, MITCRDXIP, MITCRDMIP};
+	mask = {MITAPPABT, MRLAPPHLP, MITCRDXIP, MITCRDMIP};
 };
 
 bool CrdWznmUtl::Tag::readXML(
@@ -327,7 +320,6 @@ bool CrdWznmUtl::Tag::readXML(
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "MitAppAbt", MitAppAbt)) add(MITAPPABT);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "MrlAppHlp", MrlAppHlp)) add(MRLAPPHLP);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "MitCrdCif", MitCrdCif)) add(MITCRDCIF);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "MitCrdXip", MitCrdXip)) add(MITCRDXIP);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "MitCrdMip", MitCrdMip)) add(MITCRDMIP);
 	};

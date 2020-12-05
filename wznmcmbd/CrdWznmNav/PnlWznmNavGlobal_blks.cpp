@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavGlobal_blks.cpp
 	* job handler for job PnlWznmNavGlobal (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -25,8 +26,6 @@ uint PnlWznmNavGlobal::VecVDo::getIx(
 	if (s == "buttagnewcrdclick") return BUTTAGNEWCRDCLICK;
 	if (s == "butctpviewclick") return BUTCTPVIEWCLICK;
 	if (s == "butctpnewcrdclick") return BUTCTPNEWCRDCLICK;
-	if (s == "butmtyviewclick") return BUTMTYVIEWCLICK;
-	if (s == "butmtynewcrdclick") return BUTMTYNEWCRDCLICK;
 	if (s == "butmchviewclick") return BUTMCHVIEWCLICK;
 	if (s == "butmchnewcrdclick") return BUTMCHNEWCRDCLICK;
 	if (s == "butlibviewclick") return BUTLIBVIEWCLICK;
@@ -44,8 +43,6 @@ string PnlWznmNavGlobal::VecVDo::getSref(
 	if (ix == BUTTAGNEWCRDCLICK) return("ButTagNewcrdClick");
 	if (ix == BUTCTPVIEWCLICK) return("ButCtpViewClick");
 	if (ix == BUTCTPNEWCRDCLICK) return("ButCtpNewcrdClick");
-	if (ix == BUTMTYVIEWCLICK) return("ButMtyViewClick");
-	if (ix == BUTMTYNEWCRDCLICK) return("ButMtyNewcrdClick");
 	if (ix == BUTMCHVIEWCLICK) return("ButMchViewClick");
 	if (ix == BUTMCHNEWCRDCLICK) return("ButMchNewcrdClick");
 	if (ix == BUTLIBVIEWCLICK) return("ButLibViewClick");
@@ -62,7 +59,6 @@ PnlWznmNavGlobal::ContIac::ContIac(
 			const uint numFLstLoc
 			, const uint numFLstTag
 			, const uint numFLstCtp
-			, const uint numFLstMty
 			, const uint numFLstMch
 			, const uint numFLstLib
 		) :
@@ -71,11 +67,10 @@ PnlWznmNavGlobal::ContIac::ContIac(
 	this->numFLstLoc = numFLstLoc;
 	this->numFLstTag = numFLstTag;
 	this->numFLstCtp = numFLstCtp;
-	this->numFLstMty = numFLstMty;
 	this->numFLstMch = numFLstMch;
 	this->numFLstLib = numFLstLib;
 
-	mask = {NUMFLSTLOC, NUMFLSTTAG, NUMFLSTCTP, NUMFLSTMTY, NUMFLSTMCH, NUMFLSTLIB};
+	mask = {NUMFLSTLOC, NUMFLSTTAG, NUMFLSTCTP, NUMFLSTMCH, NUMFLSTLIB};
 };
 
 bool PnlWznmNavGlobal::ContIac::readXML(
@@ -98,7 +93,6 @@ bool PnlWznmNavGlobal::ContIac::readXML(
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFLstLoc", numFLstLoc)) add(NUMFLSTLOC);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFLstTag", numFLstTag)) add(NUMFLSTTAG);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFLstCtp", numFLstCtp)) add(NUMFLSTCTP);
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFLstMty", numFLstMty)) add(NUMFLSTMTY);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFLstMch", numFLstMch)) add(NUMFLSTMCH);
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFLstLib", numFLstLib)) add(NUMFLSTLIB);
 	};
@@ -121,7 +115,6 @@ void PnlWznmNavGlobal::ContIac::writeXML(
 		writeUintAttr(wr, itemtag, "sref", "numFLstLoc", numFLstLoc);
 		writeUintAttr(wr, itemtag, "sref", "numFLstTag", numFLstTag);
 		writeUintAttr(wr, itemtag, "sref", "numFLstCtp", numFLstCtp);
-		writeUintAttr(wr, itemtag, "sref", "numFLstMty", numFLstMty);
 		writeUintAttr(wr, itemtag, "sref", "numFLstMch", numFLstMch);
 		writeUintAttr(wr, itemtag, "sref", "numFLstLib", numFLstLib);
 	xmlTextWriterEndElement(wr);
@@ -135,7 +128,6 @@ set<uint> PnlWznmNavGlobal::ContIac::comm(
 	if (numFLstLoc == comp->numFLstLoc) insert(items, NUMFLSTLOC);
 	if (numFLstTag == comp->numFLstTag) insert(items, NUMFLSTTAG);
 	if (numFLstCtp == comp->numFLstCtp) insert(items, NUMFLSTCTP);
-	if (numFLstMty == comp->numFLstMty) insert(items, NUMFLSTMTY);
 	if (numFLstMch == comp->numFLstMch) insert(items, NUMFLSTMCH);
 	if (numFLstLib == comp->numFLstLib) insert(items, NUMFLSTLIB);
 
@@ -150,7 +142,7 @@ set<uint> PnlWznmNavGlobal::ContIac::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {NUMFLSTLOC, NUMFLSTTAG, NUMFLSTCTP, NUMFLSTMTY, NUMFLSTMCH, NUMFLSTLIB};
+	diffitems = {NUMFLSTLOC, NUMFLSTTAG, NUMFLSTCTP, NUMFLSTMCH, NUMFLSTLIB};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -168,13 +160,11 @@ void PnlWznmNavGlobal::StatApp::writeXML(
 			, const bool LstLocAlt
 			, const bool LstTagAlt
 			, const bool LstCtpAlt
-			, const bool LstMtyAlt
 			, const bool LstMchAlt
 			, const bool LstLibAlt
 			, const uint LstLocNumFirstdisp
 			, const uint LstTagNumFirstdisp
 			, const uint LstCtpNumFirstdisp
-			, const uint LstMtyNumFirstdisp
 			, const uint LstMchNumFirstdisp
 			, const uint LstLibNumFirstdisp
 		) {
@@ -189,13 +179,11 @@ void PnlWznmNavGlobal::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "LstLocAlt", LstLocAlt);
 		writeBoolAttr(wr, itemtag, "sref", "LstTagAlt", LstTagAlt);
 		writeBoolAttr(wr, itemtag, "sref", "LstCtpAlt", LstCtpAlt);
-		writeBoolAttr(wr, itemtag, "sref", "LstMtyAlt", LstMtyAlt);
 		writeBoolAttr(wr, itemtag, "sref", "LstMchAlt", LstMchAlt);
 		writeBoolAttr(wr, itemtag, "sref", "LstLibAlt", LstLibAlt);
 		writeUintAttr(wr, itemtag, "sref", "LstLocNumFirstdisp", LstLocNumFirstdisp);
 		writeUintAttr(wr, itemtag, "sref", "LstTagNumFirstdisp", LstTagNumFirstdisp);
 		writeUintAttr(wr, itemtag, "sref", "LstCtpNumFirstdisp", LstCtpNumFirstdisp);
-		writeUintAttr(wr, itemtag, "sref", "LstMtyNumFirstdisp", LstMtyNumFirstdisp);
 		writeUintAttr(wr, itemtag, "sref", "LstMchNumFirstdisp", LstMchNumFirstdisp);
 		writeUintAttr(wr, itemtag, "sref", "LstLibNumFirstdisp", LstLibNumFirstdisp);
 	xmlTextWriterEndElement(wr);
@@ -212,8 +200,6 @@ PnlWznmNavGlobal::StatShr::StatShr(
 			, const bool ButTagViewActive
 			, const bool LstCtpAvail
 			, const bool ButCtpViewActive
-			, const bool LstMtyAvail
-			, const bool ButMtyViewActive
 			, const bool LstMchAvail
 			, const bool ButMchViewActive
 			, const bool LstLibAvail
@@ -227,14 +213,12 @@ PnlWznmNavGlobal::StatShr::StatShr(
 	this->ButTagViewActive = ButTagViewActive;
 	this->LstCtpAvail = LstCtpAvail;
 	this->ButCtpViewActive = ButCtpViewActive;
-	this->LstMtyAvail = LstMtyAvail;
-	this->ButMtyViewActive = ButMtyViewActive;
 	this->LstMchAvail = LstMchAvail;
 	this->ButMchViewActive = ButMchViewActive;
 	this->LstLibAvail = LstLibAvail;
 	this->ButLibViewActive = ButLibViewActive;
 
-	mask = {LSTLOCAVAIL, BUTLOCVIEWACTIVE, LSTTAGAVAIL, BUTTAGVIEWACTIVE, LSTCTPAVAIL, BUTCTPVIEWACTIVE, LSTMTYAVAIL, BUTMTYVIEWACTIVE, LSTMCHAVAIL, BUTMCHVIEWACTIVE, LSTLIBAVAIL, BUTLIBVIEWACTIVE};
+	mask = {LSTLOCAVAIL, BUTLOCVIEWACTIVE, LSTTAGAVAIL, BUTTAGVIEWACTIVE, LSTCTPAVAIL, BUTCTPVIEWACTIVE, LSTMCHAVAIL, BUTMCHVIEWACTIVE, LSTLIBAVAIL, BUTLIBVIEWACTIVE};
 };
 
 void PnlWznmNavGlobal::StatShr::writeXML(
@@ -255,8 +239,6 @@ void PnlWznmNavGlobal::StatShr::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "ButTagViewActive", ButTagViewActive);
 		writeBoolAttr(wr, itemtag, "sref", "LstCtpAvail", LstCtpAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButCtpViewActive", ButCtpViewActive);
-		writeBoolAttr(wr, itemtag, "sref", "LstMtyAvail", LstMtyAvail);
-		writeBoolAttr(wr, itemtag, "sref", "ButMtyViewActive", ButMtyViewActive);
 		writeBoolAttr(wr, itemtag, "sref", "LstMchAvail", LstMchAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButMchViewActive", ButMchViewActive);
 		writeBoolAttr(wr, itemtag, "sref", "LstLibAvail", LstLibAvail);
@@ -275,8 +257,6 @@ set<uint> PnlWznmNavGlobal::StatShr::comm(
 	if (ButTagViewActive == comp->ButTagViewActive) insert(items, BUTTAGVIEWACTIVE);
 	if (LstCtpAvail == comp->LstCtpAvail) insert(items, LSTCTPAVAIL);
 	if (ButCtpViewActive == comp->ButCtpViewActive) insert(items, BUTCTPVIEWACTIVE);
-	if (LstMtyAvail == comp->LstMtyAvail) insert(items, LSTMTYAVAIL);
-	if (ButMtyViewActive == comp->ButMtyViewActive) insert(items, BUTMTYVIEWACTIVE);
 	if (LstMchAvail == comp->LstMchAvail) insert(items, LSTMCHAVAIL);
 	if (ButMchViewActive == comp->ButMchViewActive) insert(items, BUTMCHVIEWACTIVE);
 	if (LstLibAvail == comp->LstLibAvail) insert(items, LSTLIBAVAIL);
@@ -293,7 +273,7 @@ set<uint> PnlWznmNavGlobal::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {LSTLOCAVAIL, BUTLOCVIEWACTIVE, LSTTAGAVAIL, BUTTAGVIEWACTIVE, LSTCTPAVAIL, BUTCTPVIEWACTIVE, LSTMTYAVAIL, BUTMTYVIEWACTIVE, LSTMCHAVAIL, BUTMCHVIEWACTIVE, LSTLIBAVAIL, BUTLIBVIEWACTIVE};
+	diffitems = {LSTLOCAVAIL, BUTLOCVIEWACTIVE, LSTTAGAVAIL, BUTTAGVIEWACTIVE, LSTCTPAVAIL, BUTCTPVIEWACTIVE, LSTMCHAVAIL, BUTMCHVIEWACTIVE, LSTLIBAVAIL, BUTLIBVIEWACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -321,7 +301,6 @@ void PnlWznmNavGlobal::Tag::writeXML(
 			writeStringAttr(wr, itemtag, "sref", "CptLoc", "locales");
 			writeStringAttr(wr, itemtag, "sref", "CptTag", "tags");
 			writeStringAttr(wr, itemtag, "sref", "CptCtp", "capability templates");
-			writeStringAttr(wr, itemtag, "sref", "CptMty", "machine types");
 			writeStringAttr(wr, itemtag, "sref", "CptMch", "machines");
 			writeStringAttr(wr, itemtag, "sref", "CptLib", "libraries");
 		};
@@ -439,14 +418,13 @@ PnlWznmNavGlobal::DpchEngData::DpchEngData(
 			, Feed* feedFLstLib
 			, Feed* feedFLstLoc
 			, Feed* feedFLstMch
-			, Feed* feedFLstMty
 			, Feed* feedFLstTag
 			, StatShr* statshr
 			, const set<uint>& mask
 		) :
 			DpchEngWznm(VecWznmVDpch::DPCHENGWZNMNAVGLOBALDATA, jref)
 		{
-	if (find(mask, ALL)) this->mask = {JREF, CONTIAC, FEEDFLSTCTP, FEEDFLSTLIB, FEEDFLSTLOC, FEEDFLSTMCH, FEEDFLSTMTY, FEEDFLSTTAG, STATAPP, STATSHR, TAG};
+	if (find(mask, ALL)) this->mask = {JREF, CONTIAC, FEEDFLSTCTP, FEEDFLSTLIB, FEEDFLSTLOC, FEEDFLSTMCH, FEEDFLSTTAG, STATAPP, STATSHR, TAG};
 	else this->mask = mask;
 
 	if (find(this->mask, CONTIAC) && contiac) this->contiac = *contiac;
@@ -454,7 +432,6 @@ PnlWznmNavGlobal::DpchEngData::DpchEngData(
 	if (find(this->mask, FEEDFLSTLIB) && feedFLstLib) this->feedFLstLib = *feedFLstLib;
 	if (find(this->mask, FEEDFLSTLOC) && feedFLstLoc) this->feedFLstLoc = *feedFLstLoc;
 	if (find(this->mask, FEEDFLSTMCH) && feedFLstMch) this->feedFLstMch = *feedFLstMch;
-	if (find(this->mask, FEEDFLSTMTY) && feedFLstMty) this->feedFLstMty = *feedFLstMty;
 	if (find(this->mask, FEEDFLSTTAG) && feedFLstTag) this->feedFLstTag = *feedFLstTag;
 	if (find(this->mask, STATSHR) && statshr) this->statshr = *statshr;
 };
@@ -469,7 +446,6 @@ string PnlWznmNavGlobal::DpchEngData::getSrefsMask() {
 	if (has(FEEDFLSTLIB)) ss.push_back("feedFLstLib");
 	if (has(FEEDFLSTLOC)) ss.push_back("feedFLstLoc");
 	if (has(FEEDFLSTMCH)) ss.push_back("feedFLstMch");
-	if (has(FEEDFLSTMTY)) ss.push_back("feedFLstMty");
 	if (has(FEEDFLSTTAG)) ss.push_back("feedFLstTag");
 	if (has(STATAPP)) ss.push_back("statapp");
 	if (has(STATSHR)) ss.push_back("statshr");
@@ -491,7 +467,6 @@ void PnlWznmNavGlobal::DpchEngData::merge(
 	if (src->has(FEEDFLSTLIB)) {feedFLstLib = src->feedFLstLib; add(FEEDFLSTLIB);};
 	if (src->has(FEEDFLSTLOC)) {feedFLstLoc = src->feedFLstLoc; add(FEEDFLSTLOC);};
 	if (src->has(FEEDFLSTMCH)) {feedFLstMch = src->feedFLstMch; add(FEEDFLSTMCH);};
-	if (src->has(FEEDFLSTMTY)) {feedFLstMty = src->feedFLstMty; add(FEEDFLSTMTY);};
 	if (src->has(FEEDFLSTTAG)) {feedFLstTag = src->feedFLstTag; add(FEEDFLSTTAG);};
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
@@ -510,11 +485,12 @@ void PnlWznmNavGlobal::DpchEngData::writeXML(
 		if (has(FEEDFLSTLIB)) feedFLstLib.writeXML(wr);
 		if (has(FEEDFLSTLOC)) feedFLstLoc.writeXML(wr);
 		if (has(FEEDFLSTMCH)) feedFLstMch.writeXML(wr);
-		if (has(FEEDFLSTMTY)) feedFLstMty.writeXML(wr);
 		if (has(FEEDFLSTTAG)) feedFLstTag.writeXML(wr);
 		if (has(STATAPP)) StatApp::writeXML(wr);
 		if (has(STATSHR)) statshr.writeXML(wr);
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

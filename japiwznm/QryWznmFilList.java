@@ -1,10 +1,11 @@
 /**
   * \file QryWznmFilList.java
   * Java API code for job QryWznmFilList
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -18,22 +19,22 @@ public class QryWznmFilList {
 		*/
 	public static class VecVOrd {
 
-		public static final int RET = 1;
-		public static final int REU = 2;
-		public static final int OWN = 3;
-		public static final int FNM = 4;
-		public static final int GRP = 5;
+		public static final int REU = 1;
+		public static final int FNM = 2;
+		public static final int RET = 3;
+		public static final int GRP = 4;
+		public static final int OWN = 5;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("ret")) return RET;
 			if (s.equals("reu")) return REU;
-			if (s.equals("own")) return OWN;
 			if (s.equals("fnm")) return FNM;
+			if (s.equals("ret")) return RET;
 			if (s.equals("grp")) return GRP;
+			if (s.equals("own")) return OWN;
 
 			return 0;
 		};
@@ -41,11 +42,11 @@ public class QryWznmFilList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == RET) return("ret");
 			if (ix == REU) return("reu");
-			if (ix == OWN) return("own");
 			if (ix == FNM) return("fnm");
+			if (ix == RET) return("ret");
 			if (ix == GRP) return("grp");
+			if (ix == OWN) return("own");
 
 			return "";
 		};

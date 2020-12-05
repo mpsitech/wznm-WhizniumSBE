@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmPrsList.cpp
 	* job handler for job QryWznmPrsList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -169,8 +170,8 @@ void QryWznmPrsList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMPerson.own ASC";
-	else if (preIxOrd == VecVOrd::LNM) sqlstr += " ORDER BY TblWznmMPerson.Lastname ASC";
+	if (preIxOrd == VecVOrd::LNM) sqlstr += " ORDER BY TblWznmMPerson.Lastname ASC";
+	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMPerson.own ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMPerson.grp ASC";
 };
 
@@ -351,27 +352,13 @@ void QryWznmPrsList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMPRSMOD) {
-		call->abort = handleCallWznmPrsMod(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRSUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMPRSUPD_REFEQ) {
 		call->abort = handleCallWznmPrsUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRSMOD) {
+		call->abort = handleCallWznmPrsMod(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmPrsList::handleCallWznmPrsMod(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
-		ixWznmVQrystate = VecWznmVQrystate::MNR;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmPrsList::handleCallWznmPrsUpd_refEq(
@@ -388,6 +375,20 @@ bool QryWznmPrsList::handleCallWznmPrsUpd_refEq(
 	return retval;
 };
 
+bool QryWznmPrsList::handleCallWznmPrsMod(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
+		ixWznmVQrystate = VecWznmVQrystate::MNR;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
 bool QryWznmPrsList::handleCallWznmStubChgFromSelf(
 			DbsWznm* dbswznm
 		) {
@@ -395,4 +396,6 @@ bool QryWznmPrsList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
+
+
 

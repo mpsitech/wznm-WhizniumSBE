@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmDpl.cpp
 	* data blocks and readers/writers for import/export complex IexWznmDpl (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #include "IexWznmDpl.h"
 
@@ -43,7 +44,7 @@ string IexWznmDpl::VecVIme::getSref(
  ******************************************************************************/
 
 IexWznmDpl::ImeitemIMRelease::ImeitemIMRelease(
-			const string& srefRefWznmMMachine
+			const string& hsrefRefWznmMMachine
 			, const string& sref
 			, const string& srefsKOption
 			, const string& Comment
@@ -51,7 +52,7 @@ IexWznmDpl::ImeitemIMRelease::ImeitemIMRelease(
 	lineno = 0;
 	ixWIelValid = 0;
 
-	this->srefRefWznmMMachine = srefRefWznmMMachine;
+	this->hsrefRefWznmMMachine = hsrefRefWznmMMachine;
 	this->sref = sref;
 	this->srefsKOption = srefsKOption;
 	this->Comment = Comment;
@@ -83,7 +84,7 @@ void IexWznmDpl::ImeitemIMRelease::readTxt(
 		) {
 	lineno = txtrd.linecnt;
 
-	if (txtrd.fields.size() > 0) {srefRefWznmMMachine = txtrd.fields[0]; ixWIelValid += ImeIMRelease::VecWIel::SREFREFWZNMMMACHINE;};
+	if (txtrd.fields.size() > 0) {hsrefRefWznmMMachine = txtrd.fields[0]; ixWIelValid += ImeIMRelease::VecWIel::HSREFREFWZNMMMACHINE;};
 	if (txtrd.fields.size() > 1) {sref = txtrd.fields[1]; ixWIelValid += ImeIMRelease::VecWIel::SREF;};
 	if (txtrd.fields.size() > 2) {srefsKOption = txtrd.fields[2]; ixWIelValid += ImeIMRelease::VecWIel::SREFSKOPTION;};
 	if (txtrd.fields.size() > 3) {Comment = txtrd.fields[3]; ixWIelValid += ImeIMRelease::VecWIel::COMMENT;};
@@ -110,7 +111,7 @@ void IexWznmDpl::ImeitemIMRelease::readXML(
 			, const string& basexpath
 		) {
 	if (checkXPath(docctx, basexpath, lineno)) {
-		if (extractStringUclc(docctx, basexpath, "srefRefWznmMMachine", "mch", srefRefWznmMMachine)) ixWIelValid += ImeIMRelease::VecWIel::SREFREFWZNMMMACHINE;
+		if (extractStringUclc(docctx, basexpath, "hsrefRefWznmMMachine", "mch", hsrefRefWznmMMachine)) ixWIelValid += ImeIMRelease::VecWIel::HSREFREFWZNMMMACHINE;
 		if (extractStringUclc(docctx, basexpath, "sref", "srf", sref)) ixWIelValid += ImeIMRelease::VecWIel::SREF;
 		if (extractStringUclc(docctx, basexpath, "srefsKOption", "opt", srefsKOption)) ixWIelValid += ImeIMRelease::VecWIel::SREFSKOPTION;
 		if (extractStringUclc(docctx, basexpath, "Comment", "cmt", Comment)) ixWIelValid += ImeIMRelease::VecWIel::COMMENT;
@@ -120,7 +121,7 @@ void IexWznmDpl::ImeitemIMRelease::readXML(
 void IexWznmDpl::ImeitemIMRelease::writeTxt(
 			fstream& outfile
 		) {
-	outfile << "\t" << srefRefWznmMMachine << "\t" << sref << "\t" << srefsKOption << "\t" << Comment << endl;
+	outfile << "\t" << hsrefRefWznmMMachine << "\t" << sref << "\t" << srefsKOption << "\t" << Comment << endl;
 };
 
 void IexWznmDpl::ImeitemIMRelease::writeXML(
@@ -130,11 +131,11 @@ void IexWznmDpl::ImeitemIMRelease::writeXML(
 		) {
 	vector<string> tags;
 	if (shorttags) tags = {"Ii","mch","srf","opt","cmt"};
-	else tags = {"ImeitemIMRelease","srefRefWznmMMachine","sref","srefsKOption","Comment"};
+	else tags = {"ImeitemIMRelease","hsrefRefWznmMMachine","sref","srefsKOption","Comment"};
 
 	xmlTextWriterStartElement(wr, BAD_CAST tags[0].c_str());
 		xmlTextWriterWriteAttribute(wr, BAD_CAST "num", BAD_CAST to_string(num).c_str());
-		writeString(wr, tags[1], srefRefWznmMMachine);
+		writeString(wr, tags[1], hsrefRefWznmMMachine);
 		writeString(wr, tags[2], sref);
 		writeString(wr, tags[3], srefsKOption);
 		writeString(wr, tags[4], Comment);
@@ -154,7 +155,7 @@ uint IexWznmDpl::ImeIMRelease::VecWIel::getIx(
 	StrMod::stringToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
-		if (ss[i] == "srefrefwznmmmachine") ix |= SREFREFWZNMMMACHINE;
+		if (ss[i] == "hsrefrefwznmmmachine") ix |= HSREFREFWZNMMMACHINE;
 		else if (ss[i] == "sref") ix |= SREF;
 		else if (ss[i] == "srefskoption") ix |= SREFSKOPTION;
 		else if (ss[i] == "comment") ix |= COMMENT;
@@ -177,7 +178,7 @@ string IexWznmDpl::ImeIMRelease::VecWIel::getSrefs(
 	vector<string> ss;
 	string srefs;
 
-	if (ix & SREFREFWZNMMMACHINE) ss.push_back("srefRefWznmMMachine");
+	if (ix & HSREFREFWZNMMMACHINE) ss.push_back("hsrefRefWznmMMachine");
 	if (ix & SREF) ss.push_back("sref");
 	if (ix & SREFSKOPTION) ss.push_back("srefsKOption");
 	if (ix & COMMENT) ss.push_back("Comment");
@@ -805,6 +806,7 @@ void IexWznmDpl::ImeIMComponent::writeXML(
 void IexWznmDpl::parseFromFile(
 			const string& fullpath
 			, const bool xmlNotTxt
+			, const string& rectpath
 			, ImeIMComponent& imeimcomponent
 		) {
 	if (xmlNotTxt) {
@@ -822,7 +824,7 @@ void IexWznmDpl::parseFromFile(
 		};
 
 	} else {
-			Txtrd rd(fullpath, "IexWznmDpl", Version(""), VecVIme::getIx);
+			Txtrd rd(fullpath, rectpath, "IexWznmDpl", Version("1.0.9"), VecVIme::getIx);
 			readTxt(rd, imeimcomponent);
 	};
 };
@@ -879,6 +881,11 @@ void IexWznmDpl::readXML(
 	string version;
 
 	if (checkUclcXPaths(docctx, basexpath, basexpath, "IexWznmDpl")) {
+		// validate version
+		if (checkUclcXPaths(docctx, goodxpath, basexpath, "@Version")) {
+			extractString(docctx, goodxpath, version);
+			if (Version(version) < Version("1.0.9")) throw SbeException(SbeException::IEX_VERSION, {{"version",version},{"minversion","1.0.9"}});
+		};
 
 		// look for XML sub-blocks
 		imeimcomponent.readXML(docctx, basexpath);
@@ -927,4 +934,6 @@ uint IexWznmDpl::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
+
+
 

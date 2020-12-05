@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavDeploy.cpp
 	* job handler for job PnlWznmNavDeploy (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -90,7 +91,6 @@ void PnlWznmNavDeploy::refreshLstCmp(
 
 	statshr.LstCmpAvail = evalLstCmpAvail(dbswznm);
 	statshr.ButCmpViewActive = evalButCmpViewActive(dbswznm);
-	statshr.ButCmpNewcrdActive = evalButCmpNewcrdActive(dbswznm);
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 };
@@ -167,8 +167,14 @@ void PnlWznmNavDeploy::refreshRls(
 void PnlWznmNavDeploy::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	// IP refresh --- INSERT
+
+	muteRefresh = false;
 };
 
 void PnlWznmNavDeploy::updatePreset(
@@ -290,12 +296,10 @@ void PnlWznmNavDeploy::handleDpchAppDoButCmpNewcrdClick(
 		) {
 	ubigint jrefNew = 0;
 
-	if (statshr.ButCmpNewcrdActive) {
-		xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, "CrdWznmCmp", 0, jrefNew);
+	xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, "CrdWznmCmp", 0, jrefNew);
 
-		if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
-		else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmCmp");
-	};
+	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
+	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmCmp");
 };
 
 void PnlWznmNavDeploy::handleDpchAppDoButRlsViewClick(
@@ -357,4 +361,6 @@ bool PnlWznmNavDeploy::handleCallWznmHusrRunvMod_crdUsrEq(
 	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
+
+
 

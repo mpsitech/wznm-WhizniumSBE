@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmPrjImpex.h
 	* job handler for job DlgWznmPrjImpex (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMPRJIMPEX_H
 #define DLGWZNMPRJIMPEX_H
@@ -13,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "JobWznmIexPrj.h"
 #include "JobWznmLicense.h"
+#include "JobWznmIexPrj.h"
 
 #define VecVDlgWznmPrjImpexDit DlgWznmPrjImpex::VecVDit
 #define VecVDlgWznmPrjImpexDo DlgWznmPrjImpex::VecVDo
@@ -440,8 +441,8 @@ public:
 	Sbecore::Xmlio::Feed feedFDse;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	JobWznmIexPrj* iex;
 	JobWznmLicense* license;
+	JobWznmIexPrj* iex;
 
 	Sbecore::uint ixVDit;
 
@@ -462,7 +463,7 @@ public:
 	void refreshImp(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLfi(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -526,5 +527,6 @@ private:
 };
 
 #endif
+
 
 

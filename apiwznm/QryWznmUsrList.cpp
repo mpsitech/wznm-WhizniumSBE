@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmUsrList.cpp
 	* API code for job QryWznmUsrList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmUsrList.h"
 
@@ -22,8 +23,8 @@ uint QryWznmUsrList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "usg") return USG;
-	if (s == "prs") return PRS;
 	if (s == "srf") return SRF;
+	if (s == "prs") return PRS;
 	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
 
@@ -34,8 +35,8 @@ string QryWznmUsrList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == USG) return("usg");
-	if (ix == PRS) return("prs");
 	if (ix == SRF) return("srf");
+	if (ix == PRS) return("prs");
 	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
 

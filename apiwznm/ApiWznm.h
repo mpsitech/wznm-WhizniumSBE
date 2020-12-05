@@ -1,18 +1,19 @@
 /**
 	* \file ApiWznm.h
 	* Wznm API library global functionality (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef APIWZNM_H
 #define APIWZNM_H
 
-#define WZNM_VERSION "1.0.7"
+#define WZNM_VERSION "1.1.0"
 #define WZNM_VERSION_MAJOR 1
-#define WZNM_VERSION_MINOR 0
-#define WZNM_VERSION_SUB 7
+#define WZNM_VERSION_MINOR 1
+#define WZNM_VERSION_SUB 0
 
 #include "ApiWznm_blks.h"
 
@@ -88,17 +89,16 @@
 #include "WznmQLocList.h"
 #include "WznmQLocMNVersion.h"
 #include "WznmQMch1NRelease.h"
+#include "WznmQMchAMakefile.h"
 #include "WznmQMchAPar.h"
 #include "WznmQMchList.h"
+#include "WznmQMchSup1NMachine.h"
 #include "WznmQMdlList.h"
 #include "WznmQMdlMdl1NCard.h"
 #include "WznmQMdlRef1NPanel.h"
 #include "WznmQMtdAInvpar.h"
 #include "WznmQMtdARetpar.h"
 #include "WznmQMtdList.h"
-#include "WznmQMty1NMachine.h"
-#include "WznmQMtyAMakefile.h"
-#include "WznmQMtyList.h"
 #include "WznmQOpk1NOp.h"
 #include "WznmQOpkAInvarg.h"
 #include "WznmQOpkARetval.h"
@@ -258,7 +258,6 @@
 #include "CrdWznmMch.h"
 #include "CrdWznmMdl.h"
 #include "CrdWznmMtd.h"
-#include "CrdWznmMty.h"
 #include "CrdWznmNav.h"
 #include "CrdWznmOpk.h"
 #include "CrdWznmOpx.h"
@@ -291,6 +290,7 @@
 #include "DlgWznmAppWrite.h"
 #include "DlgWznmFilDownload.h"
 #include "DlgWznmFilNew.h"
+#include "DlgWznmMchWriniscr.h"
 #include "DlgWznmNavLoaini.h"
 #include "DlgWznmNavMnglic.h"
 #include "DlgWznmPrjImpex.h"
@@ -300,7 +300,6 @@
 #include "DlgWznmRlsWrite.h"
 #include "DlgWznmUsrMngkeypair.h"
 #include "DlgWznmUtlExtrip.h"
-#include "DlgWznmUtlIexconv.h"
 #include "DlgWznmUtlMrgip.h"
 #include "DlgWznmVerBscui.h"
 #include "DlgWznmVerCustjob.h"
@@ -315,7 +314,7 @@
 #include "DlgWznmVerImpexp.h"
 #include "DlgWznmVerNew.h"
 #include "DlgWznmVerOppack.h"
-#include "DlgWznmVerWrstkit.h"
+#include "DlgWznmVerWrinimdl.h"
 #include "PnlWznmApp1NEvent.h"
 #include "PnlWznmApp1NRtjob.h"
 #include "PnlWznmAppApp1NSequence.h"
@@ -445,11 +444,13 @@
 #include "PnlWznmLocMNVersion.h"
 #include "PnlWznmLocRec.h"
 #include "PnlWznmMch1NRelease.h"
+#include "PnlWznmMchAMakefile.h"
 #include "PnlWznmMchAPar.h"
 #include "PnlWznmMchDetail.h"
 #include "PnlWznmMchHeadbar.h"
 #include "PnlWznmMchList.h"
 #include "PnlWznmMchRec.h"
+#include "PnlWznmMchSup1NMachine.h"
 #include "PnlWznmMdlDetail.h"
 #include "PnlWznmMdlHeadbar.h"
 #include "PnlWznmMdlList.h"
@@ -462,12 +463,6 @@
 #include "PnlWznmMtdHeadbar.h"
 #include "PnlWznmMtdList.h"
 #include "PnlWznmMtdRec.h"
-#include "PnlWznmMty1NMachine.h"
-#include "PnlWznmMtyAMakefile.h"
-#include "PnlWznmMtyDetail.h"
-#include "PnlWznmMtyHeadbar.h"
-#include "PnlWznmMtyList.h"
-#include "PnlWznmMtyRec.h"
 #include "PnlWznmNavAdmin.h"
 #include "PnlWznmNavAppdev.h"
 #include "PnlWznmNavAuxfct.h"
@@ -764,17 +759,16 @@
 #include "QryWznmLocList.h"
 #include "QryWznmLocMNVersion.h"
 #include "QryWznmMch1NRelease.h"
+#include "QryWznmMchAMakefile.h"
 #include "QryWznmMchAPar.h"
 #include "QryWznmMchList.h"
+#include "QryWznmMchSup1NMachine.h"
 #include "QryWznmMdlList.h"
 #include "QryWznmMdlMdl1NCard.h"
 #include "QryWznmMdlRef1NPanel.h"
 #include "QryWznmMtdAInvpar.h"
 #include "QryWznmMtdARetpar.h"
 #include "QryWznmMtdList.h"
-#include "QryWznmMty1NMachine.h"
-#include "QryWznmMtyAMakefile.h"
-#include "QryWznmMtyList.h"
 #include "QryWznmOpk1NOp.h"
 #include "QryWznmOpkAInvarg.h"
 #include "QryWznmOpkARetval.h"

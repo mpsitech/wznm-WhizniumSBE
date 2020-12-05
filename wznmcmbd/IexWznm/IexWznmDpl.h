@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmDpl.h
 	* data blocks and readers/writers for import/export complex IexWznmDpl (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef IEXWZNMDPL_H
 #define IEXWZNMDPL_H
@@ -53,14 +54,14 @@ namespace IexWznmDpl {
 	class ImeitemIMRelease : public WznmMRelease {
 
 	public:
-		ImeitemIMRelease(const std::string& srefRefWznmMMachine = "", const std::string& sref = "", const std::string& srefsKOption = "", const std::string& Comment = "");
+		ImeitemIMRelease(const std::string& hsrefRefWznmMMachine = "", const std::string& sref = "", const std::string& srefsKOption = "", const std::string& Comment = "");
 		ImeitemIMRelease(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
 		Sbecore::uint lineno;
 		Sbecore::uint ixWIelValid;
 
-		std::string srefRefWznmMMachine;
+		std::string hsrefRefWznmMMachine;
 
 	public:
 		void readTxt(Sbecore::Txtrd& txtrd);
@@ -82,7 +83,7 @@ namespace IexWznmDpl {
 		class VecWIel {
 
 		public:
-			static const Sbecore::uint SREFREFWZNMMMACHINE = 1;
+			static const Sbecore::uint HSREFREFWZNMMMACHINE = 1;
 			static const Sbecore::uint SREF = 2;
 			static const Sbecore::uint SREFSKOPTION = 4;
 			static const Sbecore::uint COMMENT = 8;
@@ -233,7 +234,7 @@ namespace IexWznmDpl {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeIMComponent& imeimcomponent);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath, ImeIMComponent& imeimcomponent);
 	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeIMComponent& imeimcomponent);
 
 	void readTxt(Sbecore::Txtrd& txtrd, ImeIMComponent& imeimcomponent);
@@ -247,4 +248,6 @@ namespace IexWznmDpl {
 };
 
 #endif
+
+
 

@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrjapiVec.h
 	* Wznm operation processor - write Java code for vector (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMWRJAPIVEC_H
 #define WZNMWRJAPIVEC_H
@@ -23,5 +24,6 @@ namespace WznmWrjapiVec {
 };
 
 #endif
+
 
 

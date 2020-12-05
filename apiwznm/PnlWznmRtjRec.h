@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmRtjRec.h
 	* API code for job PnlWznmRtjRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMRTJREC_H
 #define PNLWZNMRTJREC_H
@@ -65,17 +66,17 @@ namespace PnlWznmRtjRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONE1NRTBLOCK = 2;
-		static const Sbecore::uint INITDONE1NRTDPCH = 3;
+		static const Sbecore::uint INITDONE1NRTDPCH = 2;
+		static const Sbecore::uint INITDONE1NRTBLOCK = 3;
 		static const Sbecore::uint INITDONESUP1NRTJOB = 4;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdone1NRtblock = false, const bool initdone1NRtdpch = false, const bool initdoneSup1NRtjob = false);
+		StatApp(const bool initdoneDetail = false, const bool initdone1NRtdpch = false, const bool initdone1NRtblock = false, const bool initdoneSup1NRtjob = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdone1NRtblock;
 		bool initdone1NRtdpch;
+		bool initdone1NRtblock;
 		bool initdoneSup1NRtjob;
 
 	public:
@@ -92,19 +93,19 @@ namespace PnlWznmRtjRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREF1NRTBLOCK = 3;
-		static const Sbecore::uint SCRJREF1NRTDPCH = 4;
+		static const Sbecore::uint SCRJREF1NRTDPCH = 3;
+		static const Sbecore::uint SCRJREF1NRTBLOCK = 4;
 		static const Sbecore::uint SCRJREFSUP1NRTJOB = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NRtblock = "", const std::string& scrJref1NRtdpch = "", const std::string& scrJrefSup1NRtjob = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NRtdpch = "", const std::string& scrJref1NRtblock = "", const std::string& scrJrefSup1NRtjob = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJref1NRtblock;
 		std::string scrJref1NRtdpch;
+		std::string scrJref1NRtblock;
 		std::string scrJrefSup1NRtjob;
 		bool ButRegularizeActive;
 

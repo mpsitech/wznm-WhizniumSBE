@@ -1,853 +1,854 @@
-- IexWznmOpk v0.9.23										
-- ImeIMOppack.srefIxVBasetype	sref	Title	Shrdat	Comment						
-- stat	WznmCompl	complement	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmComplBscui	false	complement basic user interface							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- complement basic user interface for version '&StubWznmVerStd'	complement basic user interface for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmComplDbs	false	complement database structure							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- complement database structure for version '&StubWznmVerStd'	complement database structure for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmComplIex	false	complement import/export structure							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- complement import/export structure for version '&StubWznmVerStd'	complement import/export structure for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmComplJtr	false	complement job tree							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- complement job tree for version '&StubWznmVerStd'	complement job tree for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- cust	WznmCtpGenjtr	generate capability template-specific job tree	false							
-	- ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment			
-	- 0	refWznmMCapability	ubigint							
-	- 0	Prjshort	string							
-	- ImeIAMOppackInvarg.end									
-	- ImeIAMOppackRetval.irefRefWznmCAMOppackRetval	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment			
-	- 0	logfile	string							
-	- ImeIAMOppackRetval.end									
-	- ImeIMSquawk1.Title	Example								
-	- 	generate capability template-specific job tree for capability 'DlgBrlyNavLoaini (dlgloaini)' / add stages to initialization load dialog								
-		- ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title							
-		- enus	generate capability template-specific job tree for capability '&StubWznmCpbStd;' / &optit;							
-		- ImeIJMSquawkTitle1.end								
-		- ImeIRMSquawkMStub1.srefRefWznmMStub								
-		- StubWznmCpbStd								
-		- ImeIRMSquawkMStub1.end								
-	- ImeIMSquawk1.end									
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd2									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmCtpGenjtrAcv	false	add stages to upload dialog							
-	- WznmCtpGenjtrDlgloaini	false	add stages to initialization load dialog							
-	- WznmCtpGenjtrDlgimp	false	add stages to data import dialog							
-	- ImeIMOp.end									
-- cust	WznmCtpGenui	generate capability template-specific user interface	false							
-	- ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment			
-	- 0	refWznmMCapability	ubigint							
-	- 0	Prjshort	string							
-	- ImeIAMOppackInvarg.end									
-	- ImeIAMOppackRetval.irefRefWznmCAMOppackRetval	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment			
-	- 0	logfile	string							
-	- ImeIAMOppackRetval.end									
-	- ImeIMSquawk1.Title	Example								
-	- 	generate capability template-specific user interface for capability 'DlgBrlyNavLoaini (dlgloaini)' / prettify file card and add upload/download dialogs								
-		- ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title							
-		- enus	generate capability template-specific user interface for capability '&StubWznmCpbStd;' / &optit;							
-		- ImeIJMSquawkTitle1.end								
-		- ImeIRMSquawkMStub1.srefRefWznmMStub								
-		- StubWznmCpbStd								
-		- ImeIRMSquawkMStub1.end								
-	- ImeIMSquawk1.end									
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd2									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmCtpGenuiAcv	false	prettify file card and add upload/download dialogs							
-	- WznmCtpGenuiDlgloaini	false	generate initialization load dialog							
-	- WznmCtpGenuiDlgimp	false	generate data import dialog							
-	- ImeIMOp.end									
-- cust	WznmCtpWrstkit	write capability template-specific starter kit	false							
-	- ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment			
-	- 0	refWznmMCapability	ubigint							
-	- 0	Prjshort	string							
-	- 0	folder	string							
-	- ImeIAMOppackInvarg.end									
-	- ImeIMSquawk1.Title	Example								
-	- 	write capability template-specific starter kit for capability 'Acv (acv)' / database and basic UI								
-		- ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title							
-		- enus	write capability template-specific starter kit for capability '&StubWznmCpbStd;' / &optit;							
-		- ImeIJMSquawkTitle1.end								
-		- ImeIRMSquawkMStub1.srefRefWznmMStub								
-		- StubWznmCpbStd								
-		- ImeIRMSquawkMStub1.end								
-	- ImeIMSquawk1.end									
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd2									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmCtpWrstkitAcv	false	database and basic UI							
-	- WznmCtpWrstkitArm	false	database, basic UI and import/export 							
-	- ImeIMOp.end									
-- cust	WznmCtpWrsrv	write capability template-specific server code	false							
-	- ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment			
-	- 0	refWznmMCapability	ubigint							
-	- 0	Prjshort	string							
-	- 0	folder	string							
-	- ImeIAMOppackInvarg.end									
-	- ImeIMSquawk1.Title	Example								
-	- 	write capability template-specific server code for capability 'Acv (acv)' / implement upload/download dialogs								
-		- ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title							
-		- enus	write capability template-specific server code for capability '&StubWznmCpbStd;' / &optit;							
-		- ImeIJMSquawkTitle1.end								
-		- ImeIRMSquawkMStub1.srefRefWznmMStub								
-		- StubWznmCpbStd								
-		- ImeIRMSquawkMStub1.end								
-	- ImeIMSquawk1.end									
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd2									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmCtpWrsrvAcv	false	implement upload/download dialogs							
-	- WznmCtpWrsrvDlgloaini	false	implement initialization load dialog							
-	- WznmCtpWrsrvDlgimp	false	implement data import dialog							
-	- ImeIMOp.end									
-- cust	WznmCtpWrweb	write capability template-specific web UI code	false							
-	- ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment			
-	- 0	refWznmMCapability	ubigint							
-	- 0	Prjshort	string							
-	- 0	folder	string							
-	- ImeIAMOppackInvarg.end									
-	- ImeIMSquawk1.Title	Example								
-	- 	write capability template-specific web UI code for capability 'PnlSfbcLivView (2dplot)' / implement chart view								
-		- ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title							
-		- enus	write capability template-specific web UI code for capability '&StubWznmCpbStd;' / &optit;							
-		- ImeIJMSquawkTitle1.end								
-		- ImeIRMSquawkMStub1.srefRefWznmMStub								
-		- StubWznmCpbStd								
-		- ImeIRMSquawkMStub1.end								
-	- ImeIMSquawk1.end									
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd2									
-	- ImeIRMComponentMOppack.end									
-- stat	WznmGen	generate	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmGenBase	false	generate version basics							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- generate version basics for version '&StubWznmVerStd'	generate version basics for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmGenChk	false	generate feature checks							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- generate feature checks for version '&StubWznmVerStd'	generate feature checks for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmGenDetui	false	generate detailed user interface							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- generate detailed user interface for version '&StubWznmVerStd'	generate detailed user interface for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmGenCal	false	generate calls							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- generate calls for version '&StubWznmVerStd'	generate calls for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmGenJob	false	generate job tree							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- generate job tree for version '&StubWznmVerStd'	generate job tree for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmGenQtb	false	generate query tables							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- generate query tables for version '&StubWznmVerStd'	generate query tables for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmGenSysvec	false	fill system vectors							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- fill system vectors for version '&StubWznmVerStd'	fill system vectors for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- stat	WznmPrcfile	process file	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmPrcfileConcat	false	concatenate text from multiple input files into output file							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	infiles	stringvec						
-		- 0	headers	stringvec						
-		- 0	outfile	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- 	concatenate text from mutliple input files into output file 'test/abcd/test.txt'							
-			- ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title						
-			- enus	concatenate text from mutliple input files into output file '&outfile;'						
-			- ImeIJMSquawkTitle2.end							
-		- ImeIMSquawk2.end								
-	- WznmPrcfileIexconv	false	convert text import input file into output file							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	infile	string						
-		- 0	outfile	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- 	convert text import input file 'test/abcd/testin.txt' into output file 'test/abcd/testout.txt'							
-			- ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title						
-			- enus	convert text import input file '&infile;' into output file '&outfile;'						
-			- ImeIJMSquawkTitle2.end							
-		- ImeIMSquawk2.end								
-	- WznmPrcfilePlhrpl	false	replace placeholders in template file and write into output file							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	inRefWznmMFile	ubigint						
-		- 0	infile	string						
-		- 0	outfile	string						
-		- 0	keys	stringvec						
-		- 0	vals	stringvec						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- 	replace placeholders by text into file 'test/abcd/test.txt'							
-			- ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title						
-			- enus	replace placeholders by text into file '&outfile;'						
-			- ImeIJMSquawkTitle2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- stat	WznmPrctree	process file tree	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmPrctreeExtract	false	extract from file tree into extract file tree							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	infile	string						
-		- 0	infolder	string						
-		- 0	extfile	string						
-		- 0	extfolder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIAMOpRetval.irefRefWznmCAMOpRetval	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	logfile	string						
-		- ImeIAMOpRetval.end								
-		- ImeIMSquawk2.Title	Example							
-		- 	extract from file tree 'test/abcd' into extract file tree 'test/efgh'							
-			- ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title						
-			- enus	extract from file tree '&infolder;' into extract file tree '&extfolder;'						
-			- ImeIJMSquawkTitle2.end							
-		- ImeIMSquawk2.end								
-	- WznmPrctreeMerge	false	merge extract file tree into template file tree							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	extfile	string						
-		- 0	extfolder	string						
-		- 0	tplfile	string						
-		- 0	tplfolder	string						
-		- 0	notrace	boolean						
-		- 0	skipmultvoid	boolean						
-		- ImeIAMOpInvarg.end								
-		- ImeIAMOpRetval.irefRefWznmCAMOpRetval	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	logfile	string						
-		- ImeIAMOpRetval.end								
-		- ImeIMSquawk2.Title	Example							
-		- 	merge extract file tree 'test/abcd' into template file tree 'test/efgh'							
-			- ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title						
-			- enus	merge extract file tree '&extfolder;' into template file tree '&tplfolder;'						
-			- ImeIJMSquawkTitle2.end							
-		- ImeIMSquawk2.end								
-	- WznmPrctreeValidate	false	validate file tree							
-		- ImeIMSquawk2.Title	Example							
-		- 	validate file tree							
-			- ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title						
-			- enus	validate file tree						
-			- ImeIJMSquawkTitle2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- stat	WznmWrapi	write API code	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmWrapiBase	false	write API code basics							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write API code basics for version '&StubWznmVerStd;'	write API code basics for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrapiDeploy	false	write API code deployment scripts							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMRelease	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write API code deployment scripts for release '&StubWznmRlsStd;'	write API code deployment scripts for release 'AppBrly_genio'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmRlsStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrapiJob	false	write API code for job							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMComponent	ubigint						
-		- 0	refWznmMJob	ubigint						
-		- 0	orgweb	string						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write API code for job '&StubWznmJobStd;'	write API code for job 'JobBrlyLocCalc'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmJobStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrapiQtb	false	write API code for query table							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMTable	ubigint						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write API code for query table '&StubWznmTblStd;'	write API code for query table 'TblBrlyQLocList'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmTblStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- stat	WznmWrapp	write accessor app code	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmWrappBase	false	write code for accessor app							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMApp	ubigint						
-		- 0	folder	string						
-		- 0	ipAllNotSpec	boolean						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write code for accessor app '&StubWznmAppStd;'	write code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmAppStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrappJbase	false	write code for Java accessor app							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMApp	ubigint						
-		- 0	folder	string						
-		- 0	ipAllNotSpec	boolean						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write code for Java accessor app '&StubWznmAppStd;'	write code for Java accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmAppStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- stat	WznmWrdbs	write database access code	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmWrdbsDbs	false	write database access library C++ code							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write database access library C++ code for version '&StubWznmVerStd;'	write database access library C++ code for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrdbsDeploy	false	write database access library deployment scripts							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMRelease	ubigint						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write database access library deployment scripts for release '&StubWznmRlsStd;'	write database access library deployment scripts for release 'DbsBrly_genio'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmRlsStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrdbsDiffsql	false	write database SQL code for version migration							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	frRefWznmMVersion	ubigint						
-		- 0	toRefWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write database SQL code for migration from version '&StubWznmVerStd;' to version '&StubWznmVerStd;'	write database SQL code for migration from version 'BeamRelay 0.1' to version 'BeamRelay 0.2'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrdbsSql	false	write database create SQL code							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write database create SQL code for version '&StubWznmVerStd;'	write database create SQL code for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrdbsTbl	false	write database access library C++ code for table							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMTable	ubigint						
-		- 0	Prjshort	string						
-		- 0	dbsmy	boolean						
-		- 0	dbspg	boolean						
-		- 0	dbslite	boolean						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write database access library C++ code for table '&StubWznmTblStd;'	write database access library C++ code for table 'TblBrlyMLocation'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmTblStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- stat	WznmWrjapi	write Java API code	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmWrjapiBase	false	write Java API code basics							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write Java API code basics for version '&StubWznmVerStd;'	write Java API code basics for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrjapiJob	false	write Java API code for job							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMComponent	ubigint						
-		- 0	refWznmMJob	ubigint						
-		- 0	orgweb	string						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write Java API code for job '&StubWznmJobStd;'	write Java API code for job 'JobBrlyLocCalc'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmJobStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrjapiQtb	false	write Java API code for query table							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMTable	ubigint						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write Java API code for query table '&StubWznmTblStd;'	write Java API code for query table 'TblBrlyQLocList'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmTblStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrjapiVec	false	write Java code for vector							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVector	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write Java code for vector '&StubWznmVecStd;'	write Java code for vector 'VecBrlyVMLocationBasetype'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVecStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- stat	WznmWrsrv	write server code	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmWrsrvBase	false	write server C++ code basics							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write server C++ code basics for version '&StubWznmVerStd;'	write server C++ code basics for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvCmbengbase	false	write combined engine C++ code basics							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	orgname	string						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write combined engine C++ code basics for version '&StubWznmVerStd;'	write combined engine C++ code basics for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvCrd	false	write specific job C++ code for card							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMJob	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write specific job C++ code for card '&StubWznmJobStd;'	write specific job C++ code for card 'CrdBrlyLoc'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmJobStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvDds	false	write C++ code for DDS publisher							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMComponent	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- 0	inifolder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write C++ code for DDS publisher for component '&StubWznmCmpStd;'	write C++ code for DDS publisher for component 'BeamRelay 0.1 combined engine'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmCmpStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvDeploy	false	write server deployment scripts							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMRelease	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write server deployment scripts for release '&StubWznmRlsStd;'	write server deployment scripts for release 'Brlyopd_genio'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmRlsStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvDlg	false	write specific job C++ code for dialog							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMJob	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write specific job C++ code for dialog '&StubWznmJobStd;'	write specific job C++ code for dialog 'DlgBrlyNavLoaini'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmJobStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvEngbase	false	write main engine C++ code basics							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	orgname	string						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write main engine C++ code basics for version '&StubWznmVerStd;'	write main engine C++ code basics for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvIex	false	write C++ code for import/export complex							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMJob	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write C++ code for import/export complex '&StubWznmJobStd;'	write C++ code for import/export complex 'IexBrlyIni'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmJobStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvInixml	false	write initialization XML file							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write initialization XML file for version '&StubWznmVerStd;'	write initialization XML file for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvJob	false	write C++ code for job							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMJob	ubigint						
-		- 0	orgweb	string						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write C++ code for job '&StubWznmJobStd;'	write C++ code for job 'JobBrlyLocCalc'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmJobStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvOp	false	write C++ code for operation							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMOp	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write C++ code for operation '&StubWznmOpxStd;'	write C++ code for operation 'BrlyBaseLocloc'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmOpxStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvOpengbase	false	write operation engine C++ code basics							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMComponent	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write operation engine C++ code basics for component '&StubWznmCmpStd;'	write operation engine C++ code basics for component 'Brlyopd2'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmCmpStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvOpk	false	write C++ code for operation pack							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMOppack	ubigint						
-		- 0	orgweb	string						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write C++ code for operation pack '&StubWznmOpkStd;' basics	write C++ code for operation pack 'BrlyBase' basics							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmOpkStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvPnl	false	write specific job C++ code for panel							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMJob	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write specific job C++ code for panel '&StubWznmJobStd;'	write specific job C++ code for panel 'PnlBrlyLocMap'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmJobStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvPref	false	write/update preferences file							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMRelease	ubigint						
-		- 0	infile	string						
-		- 0	outfile	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write/update preferences file for release '&StubWznmRlsStd;'	write/update preferences file for release 'Brlyopd_genio'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmRlsStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvQry	false	write specific job C++ code for query							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMJob	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write specific job C++ code for query '&StubWznmJobStd;'	write specific job C++ code for query 'QryBrlyLocRec'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmJobStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvRootsess	false	write specific job C++ code for root and session							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write specific job C++ code for root and session for version '&StubWznmVerStd;'	write specific job C++ code for root and session for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvUa	false	write C++ code for OPC UA server							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	Cmpsref	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write C++ code for OPC UA server for version '&StubWznmVerStd;'	write C++ code for OPC UA server for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrsrvVec	false	write C++ code for vector							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVector	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write C++ code for vector '&StubWznmVecStd;'	write C++ code for vector 'VecBrlyVMLocationBasetype'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVecStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- stat	WznmWrweb	write web UI code	false							
-	- ImeIRMComponentMOppack.srefRefWznmMComponent									
-	- wznmopd1									
-	- ImeIRMComponentMOppack.end									
-	- ImeIMOp.sref	Shrdat	Comment							
-	- WznmWrwebBase	false	write web UI JS/HTML code basics							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write web UI JS/HTML code basics for version '&StubWznmVerStd;'	write web UI JS/HTML code basics for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrwebCrd	false	write web UI JS/HTML code for card							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMCard	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write web UI JS/HTML code for card '&StubWznmCarStd;'	write web UI JS/HTML code for card 'CrdBrlyLoc'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmCarStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrwebDeploy	false	write web UI deployment scripts							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMVersion	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write web UI deployment scripts for version '&StubWznmVerStd;'	write web UI deployment scripts for version 'BeamRelay 0.1'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmVerStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrwebDlg	false	write web UI JS/HTML code for dialog							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMDialog	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write web UI JS/HTML code for dialog '&StubWznmDlgStd;'	write web UI JS/HTML code for dialog 'DlgBrlyNavLoaini'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmDlgStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- WznmWrwebPnl	false	write web UI JS/HTML code for panel							
-		- ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment		
-		- 0	refWznmMPanel	ubigint						
-		- 0	Prjshort	string						
-		- 0	folder	string						
-		- ImeIAMOpInvarg.end								
-		- ImeIMSquawk2.Title	Example							
-		- write web UI JS/HTML code for panel '&StubWznmPnlStd;'	write web UI JS/HTML code for panel 'PnlBrlyLocMap'							
-			- ImeIRMSquawkMStub2.srefRefWznmMStub							
-			- StubWznmPnlStd							
-			- ImeIRMSquawkMStub2.end							
-		- ImeIMSquawk2.end								
-	- ImeIMOp.end									
-- ImeIMOppack.end										
+IexWznmOpk v0.9.23
+ImeIMOppack.srefIxVBasetype	sref	Title	Shrdat	Comment
+stat	WznmCompl	complement	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmComplBscui	false	complement basic user interface
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		complement basic user interface for version '&StubWznmVerStd'	complement basic user interface for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmComplDbs	false	complement database structure
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		complement database structure for version '&StubWznmVerStd'	complement database structure for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmComplDeploy	false	complement deployment information
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	orgweb	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		complement deployment information for version '&StubWznmVerStd'	complement deployment information for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmComplIex	false	complement import/export structure
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		complement import/export structure for version '&StubWznmVerStd'	complement import/export structure for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmComplJtr	false	complement job tree
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		complement job tree for version '&StubWznmVerStd'	complement job tree for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+cust	WznmCtpGenjtr	generate capability template-specific job tree	false
+	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+	0	refWznmMCapability	ubigint
+	0	Prjshort	string
+	ImeIAMOppackInvarg.end
+	ImeIAMOppackRetval.irefRefWznmCAMOppackRetval	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+	0	logfile	string
+	ImeIAMOppackRetval.end
+	ImeIMSquawk1.Title	Example
+		generate capability template-specific job tree for capability 'DlgBrlyNavLoaini (dlgloaini)' / add stages to initialization load dialog
+		ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title
+		enus	generate capability template-specific job tree for capability '&StubWznmCpbStd;' / &optit;
+		ImeIJMSquawkTitle1.end
+		ImeIRMSquawkMStub1.srefRefWznmMStub
+		StubWznmCpbStd
+		ImeIRMSquawkMStub1.end
+	ImeIMSquawk1.end
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd2
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmCtpGenjtrAcv	false	add stages to upload dialog
+	WznmCtpGenjtrDlgloaini	false	add stages to initialization load dialog
+	WznmCtpGenjtrDlgimp	false	add stages to data import dialog
+	ImeIMOp.end
+cust	WznmCtpGenui	generate capability template-specific user interface	false
+	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+	0	refWznmMCapability	ubigint
+	0	Prjshort	string
+	ImeIAMOppackInvarg.end
+	ImeIAMOppackRetval.irefRefWznmCAMOppackRetval	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+	0	logfile	string
+	ImeIAMOppackRetval.end
+	ImeIMSquawk1.Title	Example
+		generate capability template-specific user interface for capability 'DlgBrlyNavLoaini (dlgloaini)' / prettify file card and add upload/download dialogs
+		ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title
+		enus	generate capability template-specific user interface for capability '&StubWznmCpbStd;' / &optit;
+		ImeIJMSquawkTitle1.end
+		ImeIRMSquawkMStub1.srefRefWznmMStub
+		StubWznmCpbStd
+		ImeIRMSquawkMStub1.end
+	ImeIMSquawk1.end
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd2
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmCtpGenuiAcv	false	prettify file card and add upload/download dialogs
+	WznmCtpGenuiDlgloaini	false	generate initialization load dialog
+	WznmCtpGenuiDlgimp	false	generate data import dialog
+	ImeIMOp.end
+cust	WznmCtpWrstkit	write capability template-specific starter kit	false
+	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+	0	refWznmMCapability	ubigint
+	0	Prjshort	string
+	0	folder	string
+	ImeIAMOppackInvarg.end
+	ImeIMSquawk1.Title	Example
+		write capability template-specific starter kit for capability 'Acv (acv)' / database and basic UI
+		ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title
+		enus	write capability template-specific starter kit for capability '&StubWznmCpbStd;' / &optit;
+		ImeIJMSquawkTitle1.end
+		ImeIRMSquawkMStub1.srefRefWznmMStub
+		StubWznmCpbStd
+		ImeIRMSquawkMStub1.end
+	ImeIMSquawk1.end
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd2
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmCtpWrstkitAcv	false	database and basic UI
+	WznmCtpWrstkitArm	false	database, basic UI and import/export
+	ImeIMOp.end
+cust	WznmCtpWrsrv	write capability template-specific server code	false
+	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+	0	refWznmMCapability	ubigint
+	0	Prjshort	string
+	0	folder	string
+	ImeIAMOppackInvarg.end
+	ImeIMSquawk1.Title	Example
+		write capability template-specific server code for capability 'Acv (acv)' / implement upload/download dialogs
+		ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title
+		enus	write capability template-specific server code for capability '&StubWznmCpbStd;' / &optit;
+		ImeIJMSquawkTitle1.end
+		ImeIRMSquawkMStub1.srefRefWznmMStub
+		StubWznmCpbStd
+		ImeIRMSquawkMStub1.end
+	ImeIMSquawk1.end
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd2
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmCtpWrsrvAcv	false	implement upload/download dialogs
+	WznmCtpWrsrvDlgloaini	false	implement initialization load dialog
+	WznmCtpWrsrvDlgimp	false	implement data import dialog
+	ImeIMOp.end
+cust	WznmCtpWrweb	write capability template-specific web UI code	false
+	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+	0	refWznmMCapability	ubigint
+	0	Prjshort	string
+	0	folder	string
+	ImeIAMOppackInvarg.end
+	ImeIMSquawk1.Title	Example
+		write capability template-specific web UI code for capability 'PnlSfbcLivView (2dplot)' / implement chart view
+		ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title
+		enus	write capability template-specific web UI code for capability '&StubWznmCpbStd;' / &optit;
+		ImeIJMSquawkTitle1.end
+		ImeIRMSquawkMStub1.srefRefWznmMStub
+		StubWznmCpbStd
+		ImeIRMSquawkMStub1.end
+	ImeIMSquawk1.end
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd2
+	ImeIRMComponentMOppack.end
+stat	WznmGen	generate	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmGenBase	false	generate version basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		generate version basics for version '&StubWznmVerStd'	generate version basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmGenChk	false	generate feature checks
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		generate feature checks for version '&StubWznmVerStd'	generate feature checks for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmGenDetui	false	generate detailed user interface
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		generate detailed user interface for version '&StubWznmVerStd'	generate detailed user interface for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmGenCal	false	generate calls
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		generate calls for version '&StubWznmVerStd'	generate calls for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmGenJob	false	generate job tree
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		generate job tree for version '&StubWznmVerStd'	generate job tree for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmGenQtb	false	generate query tables
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		generate query tables for version '&StubWznmVerStd'	generate query tables for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmGenSysvec	false	fill system vectors
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		fill system vectors for version '&StubWznmVerStd'	fill system vectors for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmPrcfile	process file	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmPrcfileConcat	false	concatenate text from multiple input files into output file
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	infiles	stringvec
+		0	headers	stringvec
+		0	outfile	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+			concatenate text from mutliple input files into output file 'test/abcd/test.txt'
+			ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title
+			enus	concatenate text from mutliple input files into output file '&outfile;'
+			ImeIJMSquawkTitle2.end
+		ImeIMSquawk2.end
+	WznmPrcfilePlhrpl	false	replace placeholders in template file and write into output file
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	inRefWznmMFile	ubigint
+		0	infile	string
+		0	outfile	string
+		0	keys	stringvec
+		0	vals	stringvec
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+			replace placeholders by text into file 'test/abcd/test.txt'
+			ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title
+			enus	replace placeholders by text into file '&outfile;'
+			ImeIJMSquawkTitle2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmPrctree	process file tree	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmPrctreeExtract	false	extract from file tree into extract file tree
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	infile	string
+		0	infolder	string
+		0	extfile	string
+		0	extfolder	string
+		ImeIAMOpInvarg.end
+		ImeIAMOpRetval.irefRefWznmCAMOpRetval	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	logfile	string
+		ImeIAMOpRetval.end
+		ImeIMSquawk2.Title	Example
+			extract from file tree 'test/abcd' into extract file tree 'test/efgh'
+			ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title
+			enus	extract from file tree '&infolder;' into extract file tree '&extfolder;'
+			ImeIJMSquawkTitle2.end
+		ImeIMSquawk2.end
+	WznmPrctreeMerge	false	merge extract file tree into template file tree
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	extfile	string
+		0	extfolder	string
+		0	tplfile	string
+		0	tplfolder	string
+		0	notrace	boolean
+		0	skipmultvoid	boolean
+		ImeIAMOpInvarg.end
+		ImeIAMOpRetval.irefRefWznmCAMOpRetval	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	logfile	string
+		ImeIAMOpRetval.end
+		ImeIMSquawk2.Title	Example
+			merge extract file tree 'test/abcd' into template file tree 'test/efgh'
+			ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title
+			enus	merge extract file tree '&extfolder;' into template file tree '&tplfolder;'
+			ImeIJMSquawkTitle2.end
+		ImeIMSquawk2.end
+	WznmPrctreeValidate	false	validate file tree
+		ImeIMSquawk2.Title	Example
+			validate file tree
+			ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title
+			enus	validate file tree
+			ImeIJMSquawkTitle2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrapi	write API code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrapiBase	false	write API code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write API code basics for version '&StubWznmVerStd;'	write API code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrapiDeploy	false	write API code deployment scripts
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMRelease	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write API code deployment scripts for release '&StubWznmRlsStd;'	write API code deployment scripts for release 'AppBrly_genio'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmRlsStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrapiJob	false	write API code for job
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMComponent	ubigint
+		0	refWznmMJob	ubigint
+		0	orgweb	string
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write API code for job '&StubWznmJobStd;'	write API code for job 'JobBrlyLocCalc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrapiQtb	false	write API code for query table
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMTable	ubigint
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write API code for query table '&StubWznmTblStd;'	write API code for query table 'TblBrlyQLocList'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmTblStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrapp	write accessor app code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrappBase	false	write code for accessor app
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMApp	ubigint
+		0	folder	string
+		0	ipAllNotSpec	boolean
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write code for accessor app '&StubWznmAppStd;'	write code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmAppStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrappJbase	false	write code for Java accessor app
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMApp	ubigint
+		0	folder	string
+		0	ipAllNotSpec	boolean
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write code for Java accessor app '&StubWznmAppStd;'	write code for Java accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmAppStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrdbs	write database access code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrdbsDbs	false	write database access library C++ code
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write database access library C++ code for version '&StubWznmVerStd;'	write database access library C++ code for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrdbsDeploy	false	write database access library deployment scripts
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMRelease	ubigint
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write database access library deployment scripts for release '&StubWznmRlsStd;'	write database access library deployment scripts for release 'dbsbrly_genio'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmRlsStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrdbsDiffsql	false	write database SQL code for version migration
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	frRefWznmMVersion	ubigint
+		0	toRefWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write database SQL code for migration from version '&StubWznmVerStd;' to version '&StubWznmVerStd;'	write database SQL code for migration from version 'BeamRelay 0.1' to version 'BeamRelay 0.2'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrdbsSql	false	write database create SQL code
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMRelease	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write database create SQL code for release '&StubWznmRlsStd;'	write database create SQL code for release 'dbsbrly_genio'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmRlsStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrdbsTbl	false	write database access library C++ code for table
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMTable	ubigint
+		0	Prjshort	string
+		0	dbsmy	boolean
+		0	dbspg	boolean
+		0	dbslite	boolean
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write database access library C++ code for table '&StubWznmTblStd;'	write database access library C++ code for table 'TblBrlyMLocation'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmTblStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrjapi	write Java API code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrjapiBase	false	write Java API code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Java API code basics for version '&StubWznmVerStd;'	write Java API code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrjapiJob	false	write Java API code for job
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMComponent	ubigint
+		0	refWznmMJob	ubigint
+		0	orgweb	string
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Java API code for job '&StubWznmJobStd;'	write Java API code for job 'JobBrlyLocCalc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrjapiQtb	false	write Java API code for query table
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMTable	ubigint
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Java API code for query table '&StubWznmTblStd;'	write Java API code for query table 'TblBrlyQLocList'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmTblStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrjapiVec	false	write Java code for vector
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVector	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Java code for vector '&StubWznmVecStd;'	write Java code for vector 'VecBrlyVMLocationBasetype'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVecStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrsrv	write server code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrsrvBase	false	write server C++ code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write server C++ code basics for version '&StubWznmVerStd;'	write server C++ code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvCmbengbase	false	write combined engine C++ code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	orgname	string
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write combined engine C++ code basics for version '&StubWznmVerStd;'	write combined engine C++ code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvCrd	false	write specific job C++ code for card
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMJob	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write specific job C++ code for card '&StubWznmJobStd;'	write specific job C++ code for card 'CrdBrlyLoc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvDds	false	write C++ code for DDS publisher
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMComponent	ubigint
+		0	Prjshort	string
+		0	folder	string
+		0	inifolder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C++ code for DDS publisher for component '&StubWznmCmpStd;'	write C++ code for DDS publisher for component 'BeamRelay 0.1 combined engine'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmCmpStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvDeploy	false	write server deployment scripts
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMRelease	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write server deployment scripts for release '&StubWznmRlsStd;'	write server deployment scripts for release 'Brlyopd_genio'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmRlsStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvDlg	false	write specific job C++ code for dialog
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMJob	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write specific job C++ code for dialog '&StubWznmJobStd;'	write specific job C++ code for dialog 'DlgBrlyNavLoaini'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvEngbase	false	write main engine C++ code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	orgname	string
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write main engine C++ code basics for version '&StubWznmVerStd;'	write main engine C++ code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvIex	false	write C++ code for import/export complex
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMJob	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C++ code for import/export complex '&StubWznmJobStd;'	write C++ code for import/export complex 'IexBrlyIni'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvInixml	false	write initialization XML file
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write initialization XML file for version '&StubWznmVerStd;'	write initialization XML file for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvJob	false	write C++ code for job
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMJob	ubigint
+		0	orgweb	string
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C++ code for job '&StubWznmJobStd;'	write C++ code for job 'JobBrlyLocCalc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvOp	false	write C++ code for operation
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMOp	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C++ code for operation '&StubWznmOpxStd;'	write C++ code for operation 'BrlyBaseLocloc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmOpxStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvOpengbase	false	write operation engine C++ code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMComponent	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write operation engine C++ code basics for component '&StubWznmCmpStd;'	write operation engine C++ code basics for component 'Brlyopd2'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmCmpStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvOpk	false	write C++ code for operation pack
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMOppack	ubigint
+		0	orgweb	string
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C++ code for operation pack '&StubWznmOpkStd;' basics	write C++ code for operation pack 'BrlyBase' basics
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmOpkStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvPnl	false	write specific job C++ code for panel
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMJob	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write specific job C++ code for panel '&StubWznmJobStd;'	write specific job C++ code for panel 'PnlBrlyLocMap'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvPref	false	write/update preferences file
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMRelease	ubigint
+		0	infile	string
+		0	outfile	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write/update preferences file for release '&StubWznmRlsStd;'	write/update preferences file for release 'Brlyopd_genio'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmRlsStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvQry	false	write specific job C++ code for query
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMJob	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write specific job C++ code for query '&StubWznmJobStd;'	write specific job C++ code for query 'QryBrlyLocRec'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvRootsess	false	write specific job C++ code for root and session
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write specific job C++ code for root and session for version '&StubWznmVerStd;'	write specific job C++ code for root and session for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvUa	false	write C++ code for OPC UA server
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	Cmpsref	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C++ code for OPC UA server for version '&StubWznmVerStd;'	write C++ code for OPC UA server for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsrvVec	false	write C++ code for vector
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVector	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C++ code for vector '&StubWznmVecStd;'	write C++ code for vector 'VecBrlyVMLocationBasetype'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVecStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrweb	write web UI code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrwebBase	false	write web UI JS/HTML code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write web UI JS/HTML code basics for version '&StubWznmVerStd;'	write web UI JS/HTML code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrwebCrd	false	write web UI JS/HTML code for card
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMCard	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write web UI JS/HTML code for card '&StubWznmCarStd;'	write web UI JS/HTML code for card 'CrdBrlyLoc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmCarStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrwebDeploy	false	write web UI deployment scripts
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write web UI deployment scripts for version '&StubWznmVerStd;'	write web UI deployment scripts for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrwebDlg	false	write web UI JS/HTML code for dialog
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMDialog	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write web UI JS/HTML code for dialog '&StubWznmDlgStd;'	write web UI JS/HTML code for dialog 'DlgBrlyNavLoaini'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmDlgStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrwebPnl	false	write web UI JS/HTML code for panel
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMPanel	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write web UI JS/HTML code for panel '&StubWznmPnlStd;'	write web UI JS/HTML code for panel 'PnlBrlyLocMap'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmPnlStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+ImeIMOppack.end

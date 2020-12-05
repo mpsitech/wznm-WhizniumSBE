@@ -1,10 +1,11 @@
 /**
 	* \file WznmQMchList.h
 	* Dbs and XML wrapper for table TblWznmQMchList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQMCHLIST_H
 #define WZNMQMCHLIST_H
@@ -24,7 +25,7 @@
 class WznmQMchList {
 
 public:
-	WznmQMchList(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint refWznmMMachtype = 0, const std::string stubRefWznmMMachtype = "");
+	WznmQMchList(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint supRefWznmMMachine = 0, const std::string stubSupRefWznmMMachine = "");
 
 public:
 	Sbecore::ubigint qref;
@@ -32,8 +33,8 @@ public:
 	Sbecore::uint jnum;
 	Sbecore::ubigint ref;
 	std::string sref;
-	Sbecore::ubigint refWznmMMachtype;
-	std::string stubRefWznmMMachtype;
+	Sbecore::ubigint supRefWznmMMachine;
+	std::string stubSupRefWznmMMachine;
 
 public:
 	void writeXML(xmlTextWriter* wr, std::string difftag = "", bool jnumattr = false, bool shorttags = false);
@@ -76,8 +77,8 @@ public:
 	virtual Sbecore::ubigint loadRstBySQL(const std::string& sqlstr, const bool append, ListWznmQMchList& rst);
 
 	virtual Sbecore::ubigint insertRec(WznmQMchList* rec);
-	Sbecore::ubigint insertNewRec(WznmQMchList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint refWznmMMachtype = 0, const std::string stubRefWznmMMachtype = "");
-	Sbecore::ubigint appendNewRecToRst(ListWznmQMchList& rst, WznmQMchList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint refWznmMMachtype = 0, const std::string stubRefWznmMMachtype = "");
+	Sbecore::ubigint insertNewRec(WznmQMchList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint supRefWznmMMachine = 0, const std::string stubSupRefWznmMMachine = "");
+	Sbecore::ubigint appendNewRecToRst(ListWznmQMchList& rst, WznmQMchList** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const std::string sref = "", const Sbecore::ubigint supRefWznmMMachine = 0, const std::string stubSupRefWznmMMachine = "");
 	virtual void insertRst(ListWznmQMchList& rst);
 	virtual void updateRec(WznmQMchList* rec);
 	virtual void updateRst(ListWznmQMchList& rst);

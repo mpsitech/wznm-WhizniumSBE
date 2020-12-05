@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmTagList_blks.cpp
 	* job handler for job QryWznmTagList (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -19,8 +20,8 @@ uint QryWznmTagList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "grp") return GRP;
 	if (s == "cpb") return CPB;
+	if (s == "grp") return GRP;
 	if (s == "srf") return SRF;
 
 	return(0);
@@ -29,8 +30,8 @@ uint QryWznmTagList::VecVOrd::getIx(
 string QryWznmTagList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == GRP) return("grp");
 	if (ix == CPB) return("cpb");
+	if (ix == GRP) return("grp");
 	if (ix == SRF) return("srf");
 
 	return("");
@@ -218,4 +219,6 @@ set<uint> QryWznmTagList::StgIac::diff(
 
 	return(diffitems);
 };
+
+
 

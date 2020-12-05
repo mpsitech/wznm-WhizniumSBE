@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmSbsBsbMNSubset.js
-  * web client functionality for panel PnlWznmSbsBsbMNSubset
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmSbsBsbMNSubset", "srefIxWznmVExpstate") == "mind") return;

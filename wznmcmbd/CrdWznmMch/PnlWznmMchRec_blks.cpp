@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmMchRec_blks.cpp
 	* job handler for job PnlWznmMchRec (implementation of blocks)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -97,8 +98,10 @@ void PnlWznmMchRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
+			, const bool initdoneAMakefile
 			, const bool initdoneAPar
 			, const bool initdone1NRelease
+			, const bool initdoneSup1NMachine
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmMchRec";
 
@@ -108,8 +111,10 @@ void PnlWznmMchRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneAMakefile", initdoneAMakefile);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneAPar", initdoneAPar);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NRelease", initdone1NRelease);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneSup1NMachine", initdoneSup1NMachine);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -120,19 +125,23 @@ void PnlWznmMchRec::StatApp::writeXML(
 PnlWznmMchRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
+			, const ubigint jrefAMakefile
 			, const ubigint jrefAPar
 			, const ubigint jref1NRelease
+			, const ubigint jrefSup1NMachine
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
+	this->jrefAMakefile = jrefAMakefile;
 	this->jrefAPar = jrefAPar;
 	this->jref1NRelease = jref1NRelease;
+	this->jrefSup1NMachine = jrefSup1NMachine;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAPAR, JREF1NRELEASE, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAMAKEFILE, JREFAPAR, JREF1NRELEASE, JREFSUP1NMACHINE, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmMchRec::StatShr::writeXML(
@@ -149,8 +158,10 @@ void PnlWznmMchRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefAMakefile", Scr::scramble(jrefAMakefile));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefAPar", Scr::scramble(jrefAPar));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NRelease", Scr::scramble(jref1NRelease));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefSup1NMachine", Scr::scramble(jrefSup1NMachine));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -162,8 +173,10 @@ set<uint> PnlWznmMchRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
+	if (jrefAMakefile == comp->jrefAMakefile) insert(items, JREFAMAKEFILE);
 	if (jrefAPar == comp->jrefAPar) insert(items, JREFAPAR);
 	if (jref1NRelease == comp->jref1NRelease) insert(items, JREF1NRELEASE);
+	if (jrefSup1NMachine == comp->jrefSup1NMachine) insert(items, JREFSUP1NMACHINE);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -177,7 +190,7 @@ set<uint> PnlWznmMchRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAPAR, JREF1NRELEASE, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAMAKEFILE, JREFAPAR, JREF1NRELEASE, JREFSUP1NMACHINE, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -317,4 +330,6 @@ void PnlWznmMchRec::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
+
+
 

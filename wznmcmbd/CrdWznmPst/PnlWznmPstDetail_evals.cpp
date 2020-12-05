@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmPstDetail_evals.cpp
 	* job handler for job PnlWznmPstDetail (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -160,16 +161,16 @@ bool PnlWznmPstDetail::evalTxtReuActive(
 bool PnlWznmPstDetail::evalButReuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// pst.reuEq(0)|((pre.ixCrdaccVec()&pst.retEq(vec)&pre.refVer())|(pre.ixCrdaccSbs()&pst.retEq(sbs)&pre.refVer()))
+	// pst.reuEq(0)|((pre.ixCrdaccSbs()&pst.retEq(sbs)&pre.refVer())|(pre.ixCrdaccVec()&pst.retEq(vec)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recPst.refUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recPst.refIxVTbl == VecWznmVMPresetRefTbl::VEC);
+	a = false; a = (recPst.refIxVTbl == VecWznmVMPresetRefTbl::SBS);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -179,9 +180,9 @@ bool PnlWznmPstDetail::evalButReuViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recPst.refIxVTbl == VecWznmVMPresetRefTbl::SBS);
+	a = false; a = (recPst.refIxVTbl == VecWznmVMPresetRefTbl::VEC);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -244,4 +245,6 @@ bool PnlWznmPstDetail::evalPupAtyActive(
 
 	return(args.back());
 };
+
+
 

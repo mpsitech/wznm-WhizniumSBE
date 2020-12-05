@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmImeRec.h
 	* job handler for job PnlWznmImeRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMIMEREC_H
 #define PNLWZNMIMEREC_H
@@ -13,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmImeDetail.h"
-#include "PnlWznmImeIme1NImpexpcol.h"
-#include "PnlWznmImeSup1NImpexp.h"
 #include "PnlWznmImeHk1NVector.h"
+#include "PnlWznmImeSup1NImpexp.h"
+#include "PnlWznmImeIme1NImpexpcol.h"
+#include "PnlWznmImeDetail.h"
 
 #define VecVWznmImeRecDo PnlWznmImeRec::VecVDo
 
@@ -173,10 +174,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmImeDetail* pnldetail;
-	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
-	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
 	PnlWznmImeHk1NVector* pnlhk1nvector;
+	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
+	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
+	PnlWznmImeDetail* pnldetail;
 
 	WznmMImpexp recIme;
 
@@ -188,7 +189,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -217,4 +218,6 @@ private:
 };
 
 #endif
+
+
 

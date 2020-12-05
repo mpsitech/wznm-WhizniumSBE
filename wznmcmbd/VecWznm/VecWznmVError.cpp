@@ -1,10 +1,11 @@
 /**
 	* \file VecWznmVError.cpp
 	* vector VecWznmVError (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #include "VecWznmVError.h"
 
@@ -132,4 +133,6 @@ void VecWznmVError::fillFeed(
 
 	for (unsigned int i = 1; i <= 27; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
+
+
 

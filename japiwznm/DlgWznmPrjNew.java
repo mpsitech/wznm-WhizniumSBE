@@ -1,10 +1,11 @@
 /**
   * \file DlgWznmPrjNew.java
   * Java API code for job DlgWznmPrjNew
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -98,19 +99,39 @@ public class DlgWznmPrjNew {
 
 		public static final int DETTXFSHO = 1;
 		public static final int DETTXFTIT = 2;
+		public static final int DETTXFABT = 3;
+		public static final int NUMSFDETLSTDTY = 4;
+		public static final int NUMSFDETLSTLOC = 5;
+		public static final int NUMFDETPUPPLC = 6;
+		public static final int NUMFDETPUPPMC = 7;
 
 		public ContIac(
 					String DetTxfSho
 					, String DetTxfTit
+					, String DetTxfAbt
+					, ArrayList<Integer> numsFDetLstDty
+					, ArrayList<Integer> numsFDetLstLoc
+					, int numFDetPupPlc
+					, int numFDetPupPmc
 				) {
 			this.DetTxfSho = DetTxfSho;
 			this.DetTxfTit = DetTxfTit;
+			this.DetTxfAbt = DetTxfAbt;
+			this.numsFDetLstDty = numsFDetLstDty;
+			this.numsFDetLstLoc = numsFDetLstLoc;
+			this.numFDetPupPlc = numFDetPupPlc;
+			this.numFDetPupPmc = numFDetPupPmc;
 
-			mask = new HashSet<Integer>(Arrays.asList(DETTXFSHO, DETTXFTIT));
+			mask = new HashSet<Integer>(Arrays.asList(DETTXFSHO, DETTXFTIT, DETTXFABT, NUMSFDETLSTDTY, NUMSFDETLSTLOC, NUMFDETPUPPLC, NUMFDETPUPPMC));
 		};
 
 		public String DetTxfSho;
 		public String DetTxfTit;
+		public String DetTxfAbt;
+		public ArrayList<Integer> numsFDetLstDty;
+		public ArrayList<Integer> numsFDetLstLoc;
+		public int numFDetPupPlc;
+		public int numFDetPupPmc;
 
 		public boolean readXML(
 					Document doc
@@ -127,6 +148,11 @@ public class DlgWznmPrjNew {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				DetTxfSho = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "DetTxfSho", mask, DETTXFSHO);
 				DetTxfTit = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "DetTxfTit", mask, DETTXFTIT);
+				DetTxfAbt = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "DetTxfAbt", mask, DETTXFABT);
+				numsFDetLstDty = Xmlio.extractUintvecAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numsFDetLstDty", mask, NUMSFDETLSTDTY);
+				numsFDetLstLoc = Xmlio.extractUintvecAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numsFDetLstLoc", mask, NUMSFDETLSTLOC);
+				numFDetPupPlc = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFDetPupPlc", mask, NUMFDETPUPPLC);
+				numFDetPupPmc = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFDetPupPmc", mask, NUMFDETPUPPMC);
 
 				return true;
 			};
@@ -154,6 +180,11 @@ public class DlgWznmPrjNew {
 
 			Xmlio.writeStringAttr(doc, el, itemtag, "sref", "DetTxfSho", DetTxfSho);
 			Xmlio.writeStringAttr(doc, el, itemtag, "sref", "DetTxfTit", DetTxfTit);
+			Xmlio.writeStringAttr(doc, el, itemtag, "sref", "DetTxfAbt", DetTxfAbt);
+			Xmlio.writeUintvecAttr(doc, el, itemtag, "sref", "numsFDetLstDty", numsFDetLstDty);
+			Xmlio.writeUintvecAttr(doc, el, itemtag, "sref", "numsFDetLstLoc", numsFDetLstLoc);
+			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "numFDetPupPlc", numFDetPupPlc);
+			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "numFDetPupPmc", numFDetPupPmc);
 		};
 
 		public HashSet<Integer> comm(
@@ -163,6 +194,11 @@ public class DlgWznmPrjNew {
 
 			if (DetTxfSho.equals(comp.DetTxfSho)) items.add(DETTXFSHO);
 			if (DetTxfTit.equals(comp.DetTxfTit)) items.add(DETTXFTIT);
+			if (DetTxfAbt.equals(comp.DetTxfAbt)) items.add(DETTXFABT);
+			if (Xmlio.compareIntegervec(numsFDetLstDty, comp.numsFDetLstDty)) items.add(NUMSFDETLSTDTY);
+			if (Xmlio.compareIntegervec(numsFDetLstLoc, comp.numsFDetLstLoc)) items.add(NUMSFDETLSTLOC);
+			if (numFDetPupPlc == comp.numFDetPupPlc) items.add(NUMFDETPUPPLC);
+			if (numFDetPupPmc == comp.numFDetPupPmc) items.add(NUMFDETPUPPMC);
 
 			return(items);
 		};
@@ -175,7 +211,7 @@ public class DlgWznmPrjNew {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(DETTXFSHO, DETTXFTIT));
+			diffitems = new HashSet<Integer>(Arrays.asList(DETTXFSHO, DETTXFTIT, DETTXFABT, NUMSFDETLSTDTY, NUMSFDETLSTLOC, NUMFDETPUPPLC, NUMFDETPUPPMC));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -253,16 +289,24 @@ public class DlgWznmPrjNew {
 	public class StatApp extends Block {
 
 		public static final int SHORTMENU = 1;
+		public static final int DETLSTDTYNUMFIRSTDISP = 2;
+		public static final int DETLSTLOCNUMFIRSTDISP = 3;
 
 		public StatApp(
 					String shortMenu
+					, int DetLstDtyNumFirstdisp
+					, int DetLstLocNumFirstdisp
 				) {
 			this.shortMenu = shortMenu;
+			this.DetLstDtyNumFirstdisp = DetLstDtyNumFirstdisp;
+			this.DetLstLocNumFirstdisp = DetLstLocNumFirstdisp;
 
-			mask = new HashSet<Integer>(Arrays.asList(SHORTMENU));
+			mask = new HashSet<Integer>(Arrays.asList(SHORTMENU, DETLSTDTYNUMFIRSTDISP, DETLSTLOCNUMFIRSTDISP));
 		};
 
 		public String shortMenu;
+		public int DetLstDtyNumFirstdisp;
+		public int DetLstLocNumFirstdisp;
 
 		public boolean readXML(
 					Document doc
@@ -278,6 +322,8 @@ public class DlgWznmPrjNew {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				shortMenu = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "shortMenu", mask, SHORTMENU);
+				DetLstDtyNumFirstdisp = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "DetLstDtyNumFirstdisp", mask, DETLSTDTYNUMFIRSTDISP);
+				DetLstLocNumFirstdisp = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "DetLstLocNumFirstdisp", mask, DETLSTLOCNUMFIRSTDISP);
 
 				return true;
 			};
@@ -291,6 +337,8 @@ public class DlgWznmPrjNew {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (shortMenu.equals(comp.shortMenu)) items.add(SHORTMENU);
+			if (DetLstDtyNumFirstdisp == comp.DetLstDtyNumFirstdisp) items.add(DETLSTDTYNUMFIRSTDISP);
+			if (DetLstLocNumFirstdisp == comp.DetLstLocNumFirstdisp) items.add(DETLSTLOCNUMFIRSTDISP);
 
 			return(items);
 		};
@@ -303,7 +351,7 @@ public class DlgWznmPrjNew {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(SHORTMENU));
+			diffitems = new HashSet<Integer>(Arrays.asList(SHORTMENU, DETLSTDTYNUMFIRSTDISP, DETLSTLOCNUMFIRSTDISP));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -395,14 +443,24 @@ public class DlgWznmPrjNew {
 		public static final int CPT = 1;
 		public static final int DETCPTSHO = 2;
 		public static final int DETCPTTIT = 3;
-		public static final int DETBUTAUT = 4;
-		public static final int BUTCNC = 5;
-		public static final int BUTCRE = 6;
+		public static final int DETCPTABT = 4;
+		public static final int DETCPTDTY = 5;
+		public static final int DETCPTLOC = 6;
+		public static final int DETCPTPLC = 7;
+		public static final int DETCPTTMC = 8;
+		public static final int DETBUTAUT = 9;
+		public static final int BUTCNC = 10;
+		public static final int BUTCRE = 11;
 
 		public Tag(
 					String Cpt
 					, String DetCptSho
 					, String DetCptTit
+					, String DetCptAbt
+					, String DetCptDty
+					, String DetCptLoc
+					, String DetCptPlc
+					, String DetCptTmc
 					, String DetButAut
 					, String ButCnc
 					, String ButCre
@@ -410,16 +468,26 @@ public class DlgWznmPrjNew {
 			this.Cpt = Cpt;
 			this.DetCptSho = DetCptSho;
 			this.DetCptTit = DetCptTit;
+			this.DetCptAbt = DetCptAbt;
+			this.DetCptDty = DetCptDty;
+			this.DetCptLoc = DetCptLoc;
+			this.DetCptPlc = DetCptPlc;
+			this.DetCptTmc = DetCptTmc;
 			this.DetButAut = DetButAut;
 			this.ButCnc = ButCnc;
 			this.ButCre = ButCre;
 
-			mask = new HashSet<Integer>(Arrays.asList(CPT, DETCPTSHO, DETCPTTIT, DETBUTAUT, BUTCNC, BUTCRE));
+			mask = new HashSet<Integer>(Arrays.asList(CPT, DETCPTSHO, DETCPTTIT, DETCPTABT, DETCPTDTY, DETCPTLOC, DETCPTPLC, DETCPTTMC, DETBUTAUT, BUTCNC, BUTCRE));
 		};
 
 		public String Cpt;
 		public String DetCptSho;
 		public String DetCptTit;
+		public String DetCptAbt;
+		public String DetCptDty;
+		public String DetCptLoc;
+		public String DetCptPlc;
+		public String DetCptTmc;
 		public String DetButAut;
 		public String ButCnc;
 		public String ButCre;
@@ -440,6 +508,11 @@ public class DlgWznmPrjNew {
 				Cpt = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "Cpt", mask, CPT);
 				DetCptSho = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "DetCptSho", mask, DETCPTSHO);
 				DetCptTit = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "DetCptTit", mask, DETCPTTIT);
+				DetCptAbt = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "DetCptAbt", mask, DETCPTABT);
+				DetCptDty = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "DetCptDty", mask, DETCPTDTY);
+				DetCptLoc = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "DetCptLoc", mask, DETCPTLOC);
+				DetCptPlc = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "DetCptPlc", mask, DETCPTPLC);
+				DetCptTmc = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "DetCptTmc", mask, DETCPTTMC);
 				DetButAut = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "DetButAut", mask, DETBUTAUT);
 				ButCnc = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "ButCnc", mask, BUTCNC);
 				ButCre = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "ButCre", mask, BUTCRE);
@@ -458,6 +531,11 @@ public class DlgWznmPrjNew {
 			if (Cpt.equals(comp.Cpt)) items.add(CPT);
 			if (DetCptSho.equals(comp.DetCptSho)) items.add(DETCPTSHO);
 			if (DetCptTit.equals(comp.DetCptTit)) items.add(DETCPTTIT);
+			if (DetCptAbt.equals(comp.DetCptAbt)) items.add(DETCPTABT);
+			if (DetCptDty.equals(comp.DetCptDty)) items.add(DETCPTDTY);
+			if (DetCptLoc.equals(comp.DetCptLoc)) items.add(DETCPTLOC);
+			if (DetCptPlc.equals(comp.DetCptPlc)) items.add(DETCPTPLC);
+			if (DetCptTmc.equals(comp.DetCptTmc)) items.add(DETCPTTMC);
 			if (DetButAut.equals(comp.DetButAut)) items.add(DETBUTAUT);
 			if (ButCnc.equals(comp.ButCnc)) items.add(BUTCNC);
 			if (ButCre.equals(comp.ButCre)) items.add(BUTCRE);
@@ -473,7 +551,7 @@ public class DlgWznmPrjNew {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(CPT, DETCPTSHO, DETCPTTIT, DETBUTAUT, BUTCNC, BUTCRE));
+			diffitems = new HashSet<Integer>(Arrays.asList(CPT, DETCPTSHO, DETCPTTIT, DETCPTABT, DETCPTDTY, DETCPTLOC, DETCPTPLC, DETCPTTMC, DETBUTAUT, BUTCNC, BUTCRE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -599,24 +677,36 @@ public class DlgWznmPrjNew {
 		public static final int SCRJREF = 1;
 		public static final int CONTIAC = 2;
 		public static final int CONTINF = 3;
-		public static final int FEEDFSGE = 4;
-		public static final int STATAPP = 5;
-		public static final int STATSHR = 6;
-		public static final int TAG = 7;
+		public static final int FEEDFDETLSTDTY = 4;
+		public static final int FEEDFDETLSTLOC = 5;
+		public static final int FEEDFDETPUPPLC = 6;
+		public static final int FEEDFDETPUPPMC = 7;
+		public static final int FEEDFSGE = 8;
+		public static final int STATAPP = 9;
+		public static final int STATSHR = 10;
+		public static final int TAG = 11;
 
 		public DpchEngData() {
 			super(VecWznmVDpch.DPCHENGDLGWZNMPRJNEWDATA);
 
-			contiac = new ContIac("", "");
+			contiac = new ContIac("", "", "", new ArrayList<Integer>(), new ArrayList<Integer>(), 0, 0);
 			continf = new ContInf(0);
+			feedFDetLstDty = new Feed("FeedFDetLstDty");
+			feedFDetLstLoc = new Feed("FeedFDetLstLoc");
+			feedFDetPupPlc = new Feed("FeedFDetPupPlc");
+			feedFDetPupPmc = new Feed("FeedFDetPupPmc");
 			feedFSge = new Feed("FeedFSge");
-			statapp = new StatApp("");
+			statapp = new StatApp("", 0, 0);
 			statshr = new StatShr(false, false, false);
-			tag = new Tag("", "", "", "", "", "");
+			tag = new Tag("", "", "", "", "", "", "", "", "", "", "");
 		};
 
 		public ContIac contiac;
 		public ContInf continf;
+		public Feed feedFDetLstDty;
+		public Feed feedFDetLstLoc;
+		public Feed feedFDetPupPlc;
+		public Feed feedFDetPupPmc;
 		public Feed feedFSge;
 		public StatApp statapp;
 		public StatShr statshr;
@@ -628,6 +718,10 @@ public class DlgWznmPrjNew {
 			if (has(SCRJREF)) ss.add("scrJref");
 			if (has(CONTIAC)) ss.add("contiac");
 			if (has(CONTINF)) ss.add("continf");
+			if (has(FEEDFDETLSTDTY)) ss.add("feedFDetLstDty");
+			if (has(FEEDFDETLSTLOC)) ss.add("feedFDetLstLoc");
+			if (has(FEEDFDETPUPPLC)) ss.add("feedFDetPupPlc");
+			if (has(FEEDFDETPUPPMC)) ss.add("feedFDetPupPmc");
 			if (has(FEEDFSGE)) ss.add("feedFSge");
 			if (has(STATAPP)) ss.add("statapp");
 			if (has(STATSHR)) ss.add("statshr");
@@ -650,18 +744,26 @@ public class DlgWznmPrjNew {
 				scrJref = Xmlio.extractStringUclc(doc, basexpath, "scrJref", "", mask, SCRJREF);
 				if (contiac.readXML(doc, basexpath, true)) add(CONTIAC);
 				if (continf.readXML(doc, basexpath, true)) add(CONTINF);
+				if (feedFDetLstDty.readXML(doc, basexpath, true)) add(FEEDFDETLSTDTY);
+				if (feedFDetLstLoc.readXML(doc, basexpath, true)) add(FEEDFDETLSTLOC);
+				if (feedFDetPupPlc.readXML(doc, basexpath, true)) add(FEEDFDETPUPPLC);
+				if (feedFDetPupPmc.readXML(doc, basexpath, true)) add(FEEDFDETPUPPMC);
 				if (feedFSge.readXML(doc, basexpath, true)) add(FEEDFSGE);
 				if (statapp.readXML(doc, basexpath, true)) add(STATAPP);
 				if (statshr.readXML(doc, basexpath, true)) add(STATSHR);
 				if (tag.readXML(doc, basexpath, true)) add(TAG);
 			} else {
 				scrJref = "";
-				contiac = new ContIac("", "");
+				contiac = new ContIac("", "", "", new ArrayList<Integer>(), new ArrayList<Integer>(), 0, 0);
 				continf = new ContInf(0);
+				feedFDetLstDty = new Feed("FeedFDetLstDty");
+				feedFDetLstLoc = new Feed("FeedFDetLstLoc");
+				feedFDetPupPlc = new Feed("FeedFDetPupPlc");
+				feedFDetPupPmc = new Feed("FeedFDetPupPmc");
 				feedFSge = new Feed("FeedFSge");
-				statapp = new StatApp("");
+				statapp = new StatApp("", 0, 0);
 				statshr = new StatShr(false, false, false);
-				tag = new Tag("", "", "", "", "", "");
+				tag = new Tag("", "", "", "", "", "", "", "", "", "", "");
 			};
 		};
 

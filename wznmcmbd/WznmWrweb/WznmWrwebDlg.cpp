@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrwebDlg.cpp
 	* Wznm operation processor - write web UI JS/HTML code for dialog (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -115,10 +116,9 @@ DpchRetWznm* WznmWrwebDlg::run(
 		for (unsigned int i = 0; i < cons.nodes.size(); i++) {
 			con = cons.nodes[i];
 
-
 			s = xchg->tmppath + "/" + folder + "/" + dlg->sref;
 			if (dits.nodes.size() > 0) s += con->sref.substr(0, 3) + "_" + con->sref.substr(3);
-			else s += con->sref;
+			else s += "_" + con->sref;
 			s += ".xml.ip";
 
 			outfile.open(s.c_str(), ios::out);
@@ -593,5 +593,6 @@ void WznmWrwebDlg::writeDlgndJsfile(
 	outfile << "// IP dpchhdls --- IEND" << endl;
 };
 // IP cust --- IEND
+
 
 

@@ -1,10 +1,11 @@
 /**
 	* \file WznmAMLibraryMakefile.h
 	* database access for table TblWznmAMLibraryMakefile (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMAMLIBRARYMAKEFILE_H
 #define WZNMAMLIBRARYMAKEFILE_H
@@ -18,23 +19,18 @@
 	#include <sbecore/PgDbs.h>
 #endif
 
-#include <sbecore/Xmlio.h>
-
-#define VecWznmVAMLibraryMakefileRefTbl TblWznmAMLibraryMakefile::VecVRefTbl
-
 /**
 	* WznmAMLibraryMakefile: record of TblWznmAMLibraryMakefile
 	*/
 class WznmAMLibraryMakefile {
 
 public:
-	WznmAMLibraryMakefile(const Sbecore::ubigint ref = 0, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::uint x1RefIxVTbl = 0, const Sbecore::ubigint x1RefUref = 0, const std::string x2SrefKTag = "", const std::string Val = "");
+	WznmAMLibraryMakefile(const Sbecore::ubigint ref = 0, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string x2SrefKTag = "", const std::string Val = "");
 
 public:
 	Sbecore::ubigint ref;
 	Sbecore::ubigint refWznmMLibrary;
-	Sbecore::uint x1RefIxVTbl;
-	Sbecore::ubigint x1RefUref;
+	Sbecore::ubigint x1RefWznmMMachine;
 	std::string x2SrefKTag;
 	std::string Val;
 
@@ -72,23 +68,6 @@ public:
 class TblWznmAMLibraryMakefile {
 
 public:
-	/**
-		* VecVRefTbl (full: VecWznmVAMLibraryMakefileRefTbl)
-		*/
-	class VecVRefTbl {
-
-	public:
-		static const Sbecore::uint VOID = 1;
-		static const Sbecore::uint MCH = 2;
-		static const Sbecore::uint MTY = 3;
-
-		static Sbecore::uint getIx(const std::string& sref);
-		static std::string getSref(const Sbecore::uint ix);
-
-		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWznmVLocale);
-
-		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Xmlio::Feed& feed);
-	};
 
 public:
 	TblWznmAMLibraryMakefile();
@@ -99,8 +78,8 @@ public:
 	virtual Sbecore::ubigint loadRstBySQL(const std::string& sqlstr, const bool append, ListWznmAMLibraryMakefile& rst);
 
 	virtual Sbecore::ubigint insertRec(WznmAMLibraryMakefile* rec);
-	Sbecore::ubigint insertNewRec(WznmAMLibraryMakefile** rec = NULL, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::uint x1RefIxVTbl = 0, const Sbecore::ubigint x1RefUref = 0, const std::string x2SrefKTag = "", const std::string Val = "");
-	Sbecore::ubigint appendNewRecToRst(ListWznmAMLibraryMakefile& rst, WznmAMLibraryMakefile** rec = NULL, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::uint x1RefIxVTbl = 0, const Sbecore::ubigint x1RefUref = 0, const std::string x2SrefKTag = "", const std::string Val = "");
+	Sbecore::ubigint insertNewRec(WznmAMLibraryMakefile** rec = NULL, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string x2SrefKTag = "", const std::string Val = "");
+	Sbecore::ubigint appendNewRecToRst(ListWznmAMLibraryMakefile& rst, WznmAMLibraryMakefile** rec = NULL, const Sbecore::ubigint refWznmMLibrary = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string x2SrefKTag = "", const std::string Val = "");
 	virtual void insertRst(ListWznmAMLibraryMakefile& rst, bool transact = false);
 	virtual void updateRec(WznmAMLibraryMakefile* rec);
 	virtual void updateRst(ListWznmAMLibraryMakefile& rst, bool transact = false);
@@ -109,8 +88,8 @@ public:
 	virtual bool loadRecByRef(Sbecore::ubigint ref, WznmAMLibraryMakefile** rec);
 	virtual Sbecore::ubigint loadRefsByLib(Sbecore::ubigint refWznmMLibrary, const bool append, std::vector<Sbecore::ubigint>& refs);
 	virtual Sbecore::ubigint loadRstByLib(Sbecore::ubigint refWznmMLibrary, const bool append, ListWznmAMLibraryMakefile& rst);
-	virtual Sbecore::ubigint loadRstByLibRetReu(Sbecore::ubigint refWznmMLibrary, Sbecore::uint x1RefIxVTbl, Sbecore::ubigint x1RefUref, const bool append, ListWznmAMLibraryMakefile& rst);
-	virtual bool loadValByLibRetReuTag(Sbecore::ubigint refWznmMLibrary, Sbecore::uint x1RefIxVTbl, Sbecore::ubigint x1RefUref, std::string x2SrefKTag, std::string& Val);
+	virtual Sbecore::ubigint loadRstByLibMch(Sbecore::ubigint refWznmMLibrary, Sbecore::ubigint x1RefWznmMMachine, const bool append, ListWznmAMLibraryMakefile& rst);
+	virtual bool loadValByLibMchTag(Sbecore::ubigint refWznmMLibrary, Sbecore::ubigint x1RefWznmMMachine, std::string x2SrefKTag, std::string& Val);
 	Sbecore::ubigint loadRstByRefs(std::vector<Sbecore::ubigint>& refs, const bool append, ListWznmAMLibraryMakefile& rst);
 };
 
@@ -145,8 +124,8 @@ public:
 	bool loadRecByRef(Sbecore::ubigint ref, WznmAMLibraryMakefile** rec);
 	Sbecore::ubigint loadRefsByLib(Sbecore::ubigint refWznmMLibrary, const bool append, std::vector<Sbecore::ubigint>& refs);
 	Sbecore::ubigint loadRstByLib(Sbecore::ubigint refWznmMLibrary, const bool append, ListWznmAMLibraryMakefile& rst);
-	Sbecore::ubigint loadRstByLibRetReu(Sbecore::ubigint refWznmMLibrary, Sbecore::uint x1RefIxVTbl, Sbecore::ubigint x1RefUref, const bool append, ListWznmAMLibraryMakefile& rst);
-	bool loadValByLibRetReuTag(Sbecore::ubigint refWznmMLibrary, Sbecore::uint x1RefIxVTbl, Sbecore::ubigint x1RefUref, std::string x2SrefKTag, std::string& Val);
+	Sbecore::ubigint loadRstByLibMch(Sbecore::ubigint refWznmMLibrary, Sbecore::ubigint x1RefWznmMMachine, const bool append, ListWznmAMLibraryMakefile& rst);
+	bool loadValByLibMchTag(Sbecore::ubigint refWznmMLibrary, Sbecore::ubigint x1RefWznmMMachine, std::string x2SrefKTag, std::string& Val);
 };
 #endif
 
@@ -182,8 +161,8 @@ public:
 	bool loadRecByRef(Sbecore::ubigint ref, WznmAMLibraryMakefile** rec);
 	Sbecore::ubigint loadRefsByLib(Sbecore::ubigint refWznmMLibrary, const bool append, std::vector<Sbecore::ubigint>& refs);
 	Sbecore::ubigint loadRstByLib(Sbecore::ubigint refWznmMLibrary, const bool append, ListWznmAMLibraryMakefile& rst);
-	Sbecore::ubigint loadRstByLibRetReu(Sbecore::ubigint refWznmMLibrary, Sbecore::uint x1RefIxVTbl, Sbecore::ubigint x1RefUref, const bool append, ListWznmAMLibraryMakefile& rst);
-	bool loadValByLibRetReuTag(Sbecore::ubigint refWznmMLibrary, Sbecore::uint x1RefIxVTbl, Sbecore::ubigint x1RefUref, std::string x2SrefKTag, std::string& Val);
+	Sbecore::ubigint loadRstByLibMch(Sbecore::ubigint refWznmMLibrary, Sbecore::ubigint x1RefWznmMMachine, const bool append, ListWznmAMLibraryMakefile& rst);
+	bool loadValByLibMchTag(Sbecore::ubigint refWznmMLibrary, Sbecore::ubigint x1RefWznmMMachine, std::string x2SrefKTag, std::string& Val);
 };
 #endif
 

@@ -1,10 +1,11 @@
 /**
   * \file PnlWznmLibAPkglist.java
   * Java API code for job PnlWznmLibAPkglist
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -272,20 +273,20 @@ public class PnlWznmLibAPkglist {
 	  */
 	public class StgIac extends Block {
 
-		public static final int TCOREUWIDTH = 1;
+		public static final int TCOMCHWIDTH = 1;
 		public static final int TCOPKLWIDTH = 2;
 
 		public StgIac(
-					int TcoReuWidth
+					int TcoMchWidth
 					, int TcoPklWidth
 				) {
-			this.TcoReuWidth = TcoReuWidth;
+			this.TcoMchWidth = TcoMchWidth;
 			this.TcoPklWidth = TcoPklWidth;
 
-			mask = new HashSet<Integer>(Arrays.asList(TCOREUWIDTH, TCOPKLWIDTH));
+			mask = new HashSet<Integer>(Arrays.asList(TCOMCHWIDTH, TCOPKLWIDTH));
 		};
 
-		public int TcoReuWidth;
+		public int TcoMchWidth;
 		public int TcoPklWidth;
 
 		public boolean readXML(
@@ -301,7 +302,7 @@ public class PnlWznmLibAPkglist {
 			String itemtag = "StgitemIacWznmLibAPkglist";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
-				TcoReuWidth = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TcoReuWidth", mask, TCOREUWIDTH);
+				TcoMchWidth = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TcoMchWidth", mask, TCOMCHWIDTH);
 				TcoPklWidth = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TcoPklWidth", mask, TCOPKLWIDTH);
 
 				return true;
@@ -328,7 +329,7 @@ public class PnlWznmLibAPkglist {
 			if (sup == null) doc.appendChild(el);
 			else sup.appendChild(el);
 
-			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "TcoReuWidth", TcoReuWidth);
+			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "TcoMchWidth", TcoMchWidth);
 			Xmlio.writeIntegerAttr(doc, el, itemtag, "sref", "TcoPklWidth", TcoPklWidth);
 		};
 
@@ -337,7 +338,7 @@ public class PnlWznmLibAPkglist {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
-			if (TcoReuWidth == comp.TcoReuWidth) items.add(TCOREUWIDTH);
+			if (TcoMchWidth == comp.TcoMchWidth) items.add(TCOMCHWIDTH);
 			if (TcoPklWidth == comp.TcoPklWidth) items.add(TCOPKLWIDTH);
 
 			return(items);
@@ -351,7 +352,7 @@ public class PnlWznmLibAPkglist {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(TCOREUWIDTH, TCOPKLWIDTH));
+			diffitems = new HashSet<Integer>(Arrays.asList(TCOMCHWIDTH, TCOPKLWIDTH));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -370,7 +371,7 @@ public class PnlWznmLibAPkglist {
 		public static final int TRS = 4;
 		public static final int TXTSHOWING1 = 5;
 		public static final int TXTSHOWING2 = 6;
-		public static final int TCOREU = 7;
+		public static final int TCOMCH = 7;
 		public static final int TCOPKL = 8;
 
 		public Tag(
@@ -380,7 +381,7 @@ public class PnlWznmLibAPkglist {
 					, String Trs
 					, String TxtShowing1
 					, String TxtShowing2
-					, String TcoReu
+					, String TcoMch
 					, String TcoPkl
 				) {
 			this.Cpt = Cpt;
@@ -389,10 +390,10 @@ public class PnlWznmLibAPkglist {
 			this.Trs = Trs;
 			this.TxtShowing1 = TxtShowing1;
 			this.TxtShowing2 = TxtShowing2;
-			this.TcoReu = TcoReu;
+			this.TcoMch = TcoMch;
 			this.TcoPkl = TcoPkl;
 
-			mask = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOREU, TCOPKL));
+			mask = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOMCH, TCOPKL));
 		};
 
 		public String Cpt;
@@ -401,7 +402,7 @@ public class PnlWznmLibAPkglist {
 		public String Trs;
 		public String TxtShowing1;
 		public String TxtShowing2;
-		public String TcoReu;
+		public String TcoMch;
 		public String TcoPkl;
 
 		public boolean readXML(
@@ -423,7 +424,7 @@ public class PnlWznmLibAPkglist {
 				Trs = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "Trs", mask, TRS);
 				TxtShowing1 = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TxtShowing1", mask, TXTSHOWING1);
 				TxtShowing2 = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TxtShowing2", mask, TXTSHOWING2);
-				TcoReu = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TcoReu", mask, TCOREU);
+				TcoMch = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TcoMch", mask, TCOMCH);
 				TcoPkl = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TcoPkl", mask, TCOPKL);
 
 				return true;
@@ -443,7 +444,7 @@ public class PnlWznmLibAPkglist {
 			if (Trs.equals(comp.Trs)) items.add(TRS);
 			if (TxtShowing1.equals(comp.TxtShowing1)) items.add(TXTSHOWING1);
 			if (TxtShowing2.equals(comp.TxtShowing2)) items.add(TXTSHOWING2);
-			if (TcoReu.equals(comp.TcoReu)) items.add(TCOREU);
+			if (TcoMch.equals(comp.TcoMch)) items.add(TCOMCH);
 			if (TcoPkl.equals(comp.TcoPkl)) items.add(TCOPKL);
 
 			return(items);
@@ -457,7 +458,7 @@ public class PnlWznmLibAPkglist {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOREU, TCOPKL));
+			diffitems = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOMCH, TCOPKL));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

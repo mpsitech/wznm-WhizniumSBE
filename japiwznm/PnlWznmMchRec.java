@@ -1,10 +1,11 @@
 /**
   * \file PnlWznmMchRec.java
   * Java API code for job PnlWznmMchRec
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -113,24 +114,32 @@ public class PnlWznmMchRec {
 	public class StatApp extends Block {
 
 		public static final int INITDONEDETAIL = 1;
-		public static final int INITDONEAPAR = 2;
-		public static final int INITDONE1NRELEASE = 3;
+		public static final int INITDONEAMAKEFILE = 2;
+		public static final int INITDONEAPAR = 3;
+		public static final int INITDONE1NRELEASE = 4;
+		public static final int INITDONESUP1NMACHINE = 5;
 
 		public StatApp(
 					boolean initdoneDetail
+					, boolean initdoneAMakefile
 					, boolean initdoneAPar
 					, boolean initdone1NRelease
+					, boolean initdoneSup1NMachine
 				) {
 			this.initdoneDetail = initdoneDetail;
+			this.initdoneAMakefile = initdoneAMakefile;
 			this.initdoneAPar = initdoneAPar;
 			this.initdone1NRelease = initdone1NRelease;
+			this.initdoneSup1NMachine = initdoneSup1NMachine;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAPAR, INITDONE1NRELEASE));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAMAKEFILE, INITDONEAPAR, INITDONE1NRELEASE, INITDONESUP1NMACHINE));
 		};
 
 		public boolean initdoneDetail;
+		public boolean initdoneAMakefile;
 		public boolean initdoneAPar;
 		public boolean initdone1NRelease;
+		public boolean initdoneSup1NMachine;
 
 		public boolean readXML(
 					Document doc
@@ -146,8 +155,10 @@ public class PnlWznmMchRec {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
+				initdoneAMakefile = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAMakefile", mask, INITDONEAMAKEFILE);
 				initdoneAPar = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAPar", mask, INITDONEAPAR);
 				initdone1NRelease = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NRelease", mask, INITDONE1NRELEASE);
+				initdoneSup1NMachine = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneSup1NMachine", mask, INITDONESUP1NMACHINE);
 
 				return true;
 			};
@@ -161,8 +172,10 @@ public class PnlWznmMchRec {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
+			if (initdoneAMakefile == comp.initdoneAMakefile) items.add(INITDONEAMAKEFILE);
 			if (initdoneAPar == comp.initdoneAPar) items.add(INITDONEAPAR);
 			if (initdone1NRelease == comp.initdone1NRelease) items.add(INITDONE1NRELEASE);
+			if (initdoneSup1NMachine == comp.initdoneSup1NMachine) items.add(INITDONESUP1NMACHINE);
 
 			return(items);
 		};
@@ -175,7 +188,7 @@ public class PnlWznmMchRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAPAR, INITDONE1NRELEASE));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAMAKEFILE, INITDONEAPAR, INITDONE1NRELEASE, INITDONESUP1NMACHINE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -190,30 +203,38 @@ public class PnlWznmMchRec {
 
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
-		public static final int SCRJREFAPAR = 3;
-		public static final int SCRJREF1NRELEASE = 4;
-		public static final int BUTREGULARIZEACTIVE = 5;
+		public static final int SCRJREFAMAKEFILE = 3;
+		public static final int SCRJREFAPAR = 4;
+		public static final int SCRJREF1NRELEASE = 5;
+		public static final int SCRJREFSUP1NMACHINE = 6;
+		public static final int BUTREGULARIZEACTIVE = 7;
 
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
+					, String scrJrefAMakefile
 					, String scrJrefAPar
 					, String scrJref1NRelease
+					, String scrJrefSup1NMachine
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
+			this.scrJrefAMakefile = scrJrefAMakefile;
 			this.scrJrefAPar = scrJrefAPar;
 			this.scrJref1NRelease = scrJref1NRelease;
+			this.scrJrefSup1NMachine = scrJrefSup1NMachine;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAPAR, SCRJREF1NRELEASE, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAMAKEFILE, SCRJREFAPAR, SCRJREF1NRELEASE, SCRJREFSUP1NMACHINE, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
+		public String scrJrefAMakefile;
 		public String scrJrefAPar;
 		public String scrJref1NRelease;
+		public String scrJrefSup1NMachine;
 		public boolean ButRegularizeActive;
 
 		public boolean readXML(
@@ -233,8 +254,10 @@ public class PnlWznmMchRec {
 				srefIxWznmVExpstate = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "srefIxWznmVExpstate", mask, IXWZNMVEXPSTATE);
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
+				scrJrefAMakefile = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAMakefile", mask, SCRJREFAMAKEFILE);
 				scrJrefAPar = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAPar", mask, SCRJREFAPAR);
 				scrJref1NRelease = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NRelease", mask, SCRJREF1NRELEASE);
+				scrJrefSup1NMachine = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefSup1NMachine", mask, SCRJREFSUP1NMACHINE);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
 				return true;
@@ -250,8 +273,10 @@ public class PnlWznmMchRec {
 
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
+			if (scrJrefAMakefile.equals(comp.scrJrefAMakefile)) items.add(SCRJREFAMAKEFILE);
 			if (scrJrefAPar.equals(comp.scrJrefAPar)) items.add(SCRJREFAPAR);
 			if (scrJref1NRelease.equals(comp.scrJref1NRelease)) items.add(SCRJREF1NRELEASE);
+			if (scrJrefSup1NMachine.equals(comp.scrJrefSup1NMachine)) items.add(SCRJREFSUP1NMACHINE);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
 			return(items);
@@ -265,7 +290,7 @@ public class PnlWznmMchRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAPAR, SCRJREF1NRELEASE, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAMAKEFILE, SCRJREFAPAR, SCRJREF1NRELEASE, SCRJREFSUP1NMACHINE, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -407,8 +432,8 @@ public class PnlWznmMchRec {
 			super(VecWznmVDpch.DPCHENGWZNMMCHRECDATA);
 
 			continf = new ContInf("");
-			statapp = new StatApp(false, false, false);
-			statshr = new StatShr(0, "", "", "", false);
+			statapp = new StatApp(false, false, false, false, false);
+			statshr = new StatShr(0, "", "", "", "", "", false);
 			tag = new Tag("");
 		};
 
@@ -448,8 +473,8 @@ public class PnlWznmMchRec {
 			} else {
 				scrJref = "";
 				continf = new ContInf("");
-				statapp = new StatApp(false, false, false);
-				statshr = new StatShr(0, "", "", "", false);
+				statapp = new StatApp(false, false, false, false, false);
+				statshr = new StatShr(0, "", "", "", "", "", false);
 				tag = new Tag("");
 			};
 		};

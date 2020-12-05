@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmLibAPkglist.cpp
 	* job handler for job QryWznmLibAPkglist (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -77,6 +78,7 @@ void QryWznmLibAPkglist::rerun(
 	uint cnt;
 
 	ubigint preRefLib = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFLIB, jref);
+	ubigint preX1 = xchg->getRefPreset(VecWznmVPreset::PREWZNMLIBAPKGLIST_X1, jref);
 
 	xchg->removeClstns(VecWznmVCall::CALLWZNMLIBAPKLMOD_LIBEQ, jref);
 
@@ -86,6 +88,7 @@ void QryWznmLibAPkglist::rerun(
 	sqlstr = "SELECT COUNT(TblWznmAMLibraryPkglist.ref)";
 	sqlstr += " FROM TblWznmAMLibraryPkglist";
 	sqlstr += " WHERE TblWznmAMLibraryPkglist.refWznmMLibrary = " + to_string(preRefLib) + "";
+	rerun_filtSQL(sqlstr, preX1, false);
 	dbswznm->loadUintBySQL(sqlstr, cnt);
 
 	statshr.ntot = cnt;
@@ -96,10 +99,11 @@ void QryWznmLibAPkglist::rerun(
 		else stgiac.jnumFirstload = 1;
 	};
 
-	sqlstr = "INSERT INTO TblWznmQLibAPkglist(jref, jnum, ref, x1RefIxVTbl, x1RefUref, Pkglist)";
-	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmAMLibraryPkglist.ref, TblWznmAMLibraryPkglist.x1RefIxVTbl, TblWznmAMLibraryPkglist.x1RefUref, TblWznmAMLibraryPkglist.Pkglist";
+	sqlstr = "INSERT INTO TblWznmQLibAPkglist(jref, jnum, ref, x1RefWznmMMachine, Pkglist)";
+	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmAMLibraryPkglist.ref, TblWznmAMLibraryPkglist.x1RefWznmMMachine, TblWznmAMLibraryPkglist.Pkglist";
 	sqlstr += " FROM TblWznmAMLibraryPkglist";
 	sqlstr += " WHERE TblWznmAMLibraryPkglist.refWznmMLibrary = " + to_string(preRefLib) + "";
+	rerun_filtSQL(sqlstr, preX1, false);
 	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
 	dbswznm->executeQuery(sqlstr);
 
@@ -114,6 +118,29 @@ void QryWznmLibAPkglist::rerun(
 	if (call) xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 
 	xchg->addRefClstn(VecWznmVCall::CALLWZNMLIBAPKLMOD_LIBEQ, jref, Clstn::VecVJobmask::ALL, 0, false, preRefLib);
+};
+
+void QryWznmLibAPkglist::rerun_filtSQL(
+			string& sqlstr
+			, const ubigint preX1
+			, const bool addwhere
+		) {
+	bool first = addwhere;
+
+	if (preX1 != 0) {
+		rerun_filtSQL_append(sqlstr, first);
+		sqlstr += "TblWznmAMLibraryPkglist.x1RefWznmMMachine = " + to_string(preX1) + "";
+	};
+};
+
+void QryWznmLibAPkglist::rerun_filtSQL_append(
+			string& sqlstr
+			, bool& first
+		) {
+	if (first) {
+		sqlstr += " WHERE ";
+		first = false;
+	} else sqlstr += " AND ";
 };
 
 void QryWznmLibAPkglist::fetch(
@@ -141,13 +168,7 @@ void QryWznmLibAPkglist::fetch(
 			rec = rst.nodes[i];
 
 			rec->jnum = statshr.jnumFirstload + i;
-			rec->srefX1RefIxVTbl = VecWznmVAMLibraryPkglistRefTbl::getSref(rec->x1RefIxVTbl);
-			rec->titX1RefIxVTbl = VecWznmVAMLibraryPkglistRefTbl::getTitle(rec->x1RefIxVTbl, ixWznmVLocale);
-			if (rec->x1RefIxVTbl == VecWznmVAMLibraryPkglistRefTbl::MCH) {
-				rec->stubX1RefUref = StubWznm::getStubMchStd(dbswznm, rec->x1RefUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->x1RefIxVTbl == VecWznmVAMLibraryPkglistRefTbl::MTY) {
-				rec->stubX1RefUref = StubWznm::getStubMtyStd(dbswznm, rec->x1RefUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else rec->stubX1RefUref = "-";
+			rec->stubX1RefWznmMMachine = StubWznm::getStubMchStd(dbswznm, rec->x1RefWznmMMachine, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 		};
 
 		stmgr->commit();
@@ -253,11 +274,8 @@ bool QryWznmLibAPkglist::handleShow(
 	cout << "\tjref";
 	cout << "\tjnum";
 	cout << "\tref";
-	cout << "\tx1RefIxVTbl";
-	cout << "\tsrefX1RefIxVTbl";
-	cout << "\ttitX1RefIxVTbl";
-	cout << "\tx1RefUref";
-	cout << "\tstubX1RefUref";
+	cout << "\tx1RefWznmMMachine";
+	cout << "\tstubX1RefWznmMMachine";
 	cout << "\tPkglist";
 	cout << endl;
 
@@ -269,11 +287,8 @@ bool QryWznmLibAPkglist::handleShow(
 		cout << "\t" << rec->jref;
 		cout << "\t" << rec->jnum;
 		cout << "\t" << rec->ref;
-		cout << "\t" << rec->x1RefIxVTbl;
-		cout << "\t" << rec->srefX1RefIxVTbl;
-		cout << "\t" << rec->titX1RefIxVTbl;
-		cout << "\t" << rec->x1RefUref;
-		cout << "\t" << rec->stubX1RefUref;
+		cout << "\t" << rec->x1RefWznmMMachine;
+		cout << "\t" << rec->stubX1RefWznmMMachine;
 		cout << "\t" << rec->Pkglist;
 		cout << endl;
 	};
@@ -284,19 +299,11 @@ void QryWznmLibAPkglist::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBAPKLMOD_LIBEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMLIBAPKLMOD_LIBEQ) {
 		call->abort = handleCallWznmLibApklMod_libEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmLibAPkglist::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmLibAPkglist::handleCallWznmLibApklMod_libEq(
@@ -312,4 +319,14 @@ bool QryWznmLibAPkglist::handleCallWznmLibApklMod_libEq(
 
 	return retval;
 };
+
+bool QryWznmLibAPkglist::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
+};
+
+
 

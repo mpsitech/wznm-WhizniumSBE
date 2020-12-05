@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmApp1NRtjob.cpp
 	* API code for job PnlWznmApp1NRtjob (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "PnlWznmApp1NRtjob.h"
 

@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmNavDeploy.js
-  * web client functionality for panel PnlWznmNavDeploy
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // IP cust --- INSERT
 
 // --- expand state management
@@ -90,7 +82,6 @@ function refreshBD(bNotD) {
 	var LstCmpAvail = (retrieveSi(srcdoc, "StatShrWznmNavDeploy", "LstCmpAvail") == "true");
 	var ButCmpViewAvail = !LstCmpAlt;
 	var ButCmpViewActive = (retrieveSi(srcdoc, "StatShrWznmNavDeploy", "ButCmpViewActive") == "true");
-	var ButCmpNewcrdActive = (retrieveSi(srcdoc, "StatShrWznmNavDeploy", "ButCmpNewcrdActive") == "true");
 
 	var LstRlsAlt = (retrieveSi(srcdoc, "StatAppWznmNavDeploy", "LstRlsAlt") == "true");
 	var LstRlsAvail = (retrieveSi(srcdoc, "StatShrWznmNavDeploy", "LstRlsAvail") == "true");
@@ -153,7 +144,6 @@ function refreshBD(bNotD) {
 		};
 
 		if (ButCmpViewAvail) refreshButicon(contcontdoc, "ButCmpView", "icon/view", ButCmpViewActive, false);
-		refreshButicon(contcontdoc, "ButCmpNewcrd", "icon/newcrd", ButCmpNewcrdActive, false);
 
 	} else setCtlAvail(contcontdoc, "Cmp2", false, 0);
 
@@ -332,6 +322,8 @@ function handleButCrdopenClick(ctlsref) {
 };
 
 function handleLstLoad(lstdoc, ctlsref, ncol, multsel) {
+	if (!srcdoc) return;
+
 	if (multsel) {
 		refreshLst(lstdoc, srcdoc, ncol, true, multsel, "FeedF" + ctlsref, parseInt(retrieveSi(srcdoc, "StatAppWznmNavDeploy", ctlsref + "NumFirstdisp")),
 					parseUintvec(retrieveCi(srcdoc, "ContIacWznmNavDeploy", "numsF" + ctlsref)));

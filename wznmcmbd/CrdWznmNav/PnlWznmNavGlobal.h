@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmNavGlobal.h
 	* job handler for job PnlWznmNavGlobal (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMNAVGLOBAL_H
 #define PNLWZNMNAVGLOBAL_H
@@ -42,12 +43,10 @@ public:
 		static const Sbecore::uint BUTTAGNEWCRDCLICK = 4;
 		static const Sbecore::uint BUTCTPVIEWCLICK = 5;
 		static const Sbecore::uint BUTCTPNEWCRDCLICK = 6;
-		static const Sbecore::uint BUTMTYVIEWCLICK = 7;
-		static const Sbecore::uint BUTMTYNEWCRDCLICK = 8;
-		static const Sbecore::uint BUTMCHVIEWCLICK = 9;
-		static const Sbecore::uint BUTMCHNEWCRDCLICK = 10;
-		static const Sbecore::uint BUTLIBVIEWCLICK = 11;
-		static const Sbecore::uint BUTLIBNEWCRDCLICK = 12;
+		static const Sbecore::uint BUTMCHVIEWCLICK = 7;
+		static const Sbecore::uint BUTMCHNEWCRDCLICK = 8;
+		static const Sbecore::uint BUTLIBVIEWCLICK = 9;
+		static const Sbecore::uint BUTLIBNEWCRDCLICK = 10;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -62,18 +61,16 @@ public:
 		static const Sbecore::uint NUMFLSTLOC = 1;
 		static const Sbecore::uint NUMFLSTTAG = 2;
 		static const Sbecore::uint NUMFLSTCTP = 3;
-		static const Sbecore::uint NUMFLSTMTY = 4;
-		static const Sbecore::uint NUMFLSTMCH = 5;
-		static const Sbecore::uint NUMFLSTLIB = 6;
+		static const Sbecore::uint NUMFLSTMCH = 4;
+		static const Sbecore::uint NUMFLSTLIB = 5;
 
 	public:
-		ContIac(const Sbecore::uint numFLstLoc = 1, const Sbecore::uint numFLstTag = 1, const Sbecore::uint numFLstCtp = 1, const Sbecore::uint numFLstMty = 1, const Sbecore::uint numFLstMch = 1, const Sbecore::uint numFLstLib = 1);
+		ContIac(const Sbecore::uint numFLstLoc = 1, const Sbecore::uint numFLstTag = 1, const Sbecore::uint numFLstCtp = 1, const Sbecore::uint numFLstMch = 1, const Sbecore::uint numFLstLib = 1);
 
 	public:
 		Sbecore::uint numFLstLoc;
 		Sbecore::uint numFLstTag;
 		Sbecore::uint numFLstCtp;
-		Sbecore::uint numFLstMty;
 		Sbecore::uint numFLstMch;
 		Sbecore::uint numFLstLib;
 
@@ -90,7 +87,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND, const bool LstLocAlt = true, const bool LstTagAlt = true, const bool LstCtpAlt = true, const bool LstMtyAlt = true, const bool LstMchAlt = true, const bool LstLibAlt = true, const Sbecore::uint LstLocNumFirstdisp = 1, const Sbecore::uint LstTagNumFirstdisp = 1, const Sbecore::uint LstCtpNumFirstdisp = 1, const Sbecore::uint LstMtyNumFirstdisp = 1, const Sbecore::uint LstMchNumFirstdisp = 1, const Sbecore::uint LstLibNumFirstdisp = 1);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND, const bool LstLocAlt = true, const bool LstTagAlt = true, const bool LstCtpAlt = true, const bool LstMchAlt = true, const bool LstLibAlt = true, const Sbecore::uint LstLocNumFirstdisp = 1, const Sbecore::uint LstTagNumFirstdisp = 1, const Sbecore::uint LstCtpNumFirstdisp = 1, const Sbecore::uint LstMchNumFirstdisp = 1, const Sbecore::uint LstLibNumFirstdisp = 1);
 	};
 
 	/**
@@ -105,15 +102,13 @@ public:
 		static const Sbecore::uint BUTTAGVIEWACTIVE = 4;
 		static const Sbecore::uint LSTCTPAVAIL = 5;
 		static const Sbecore::uint BUTCTPVIEWACTIVE = 6;
-		static const Sbecore::uint LSTMTYAVAIL = 7;
-		static const Sbecore::uint BUTMTYVIEWACTIVE = 8;
-		static const Sbecore::uint LSTMCHAVAIL = 9;
-		static const Sbecore::uint BUTMCHVIEWACTIVE = 10;
-		static const Sbecore::uint LSTLIBAVAIL = 11;
-		static const Sbecore::uint BUTLIBVIEWACTIVE = 12;
+		static const Sbecore::uint LSTMCHAVAIL = 7;
+		static const Sbecore::uint BUTMCHVIEWACTIVE = 8;
+		static const Sbecore::uint LSTLIBAVAIL = 9;
+		static const Sbecore::uint BUTLIBVIEWACTIVE = 10;
 
 	public:
-		StatShr(const bool LstLocAvail = true, const bool ButLocViewActive = true, const bool LstTagAvail = true, const bool ButTagViewActive = true, const bool LstCtpAvail = true, const bool ButCtpViewActive = true, const bool LstMtyAvail = true, const bool ButMtyViewActive = true, const bool LstMchAvail = true, const bool ButMchViewActive = true, const bool LstLibAvail = true, const bool ButLibViewActive = true);
+		StatShr(const bool LstLocAvail = true, const bool ButLocViewActive = true, const bool LstTagAvail = true, const bool ButTagViewActive = true, const bool LstCtpAvail = true, const bool ButCtpViewActive = true, const bool LstMchAvail = true, const bool ButMchViewActive = true, const bool LstLibAvail = true, const bool ButLibViewActive = true);
 
 	public:
 		bool LstLocAvail;
@@ -122,8 +117,6 @@ public:
 		bool ButTagViewActive;
 		bool LstCtpAvail;
 		bool ButCtpViewActive;
-		bool LstMtyAvail;
-		bool ButMtyViewActive;
 		bool LstMchAvail;
 		bool ButMchViewActive;
 		bool LstLibAvail;
@@ -198,15 +191,14 @@ public:
 		static const Sbecore::uint FEEDFLSTLIB = 4;
 		static const Sbecore::uint FEEDFLSTLOC = 5;
 		static const Sbecore::uint FEEDFLSTMCH = 6;
-		static const Sbecore::uint FEEDFLSTMTY = 7;
-		static const Sbecore::uint FEEDFLSTTAG = 8;
-		static const Sbecore::uint STATAPP = 9;
-		static const Sbecore::uint STATSHR = 10;
-		static const Sbecore::uint TAG = 11;
-		static const Sbecore::uint ALL = 12;
+		static const Sbecore::uint FEEDFLSTTAG = 7;
+		static const Sbecore::uint STATAPP = 8;
+		static const Sbecore::uint STATSHR = 9;
+		static const Sbecore::uint TAG = 10;
+		static const Sbecore::uint ALL = 11;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, Sbecore::Xmlio::Feed* feedFLstCtp = NULL, Sbecore::Xmlio::Feed* feedFLstLib = NULL, Sbecore::Xmlio::Feed* feedFLstLoc = NULL, Sbecore::Xmlio::Feed* feedFLstMch = NULL, Sbecore::Xmlio::Feed* feedFLstMty = NULL, Sbecore::Xmlio::Feed* feedFLstTag = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, Sbecore::Xmlio::Feed* feedFLstCtp = NULL, Sbecore::Xmlio::Feed* feedFLstLib = NULL, Sbecore::Xmlio::Feed* feedFLstLoc = NULL, Sbecore::Xmlio::Feed* feedFLstMch = NULL, Sbecore::Xmlio::Feed* feedFLstTag = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContIac contiac;
@@ -214,7 +206,6 @@ public:
 		Sbecore::Xmlio::Feed feedFLstLib;
 		Sbecore::Xmlio::Feed feedFLstLoc;
 		Sbecore::Xmlio::Feed feedFLstMch;
-		Sbecore::Xmlio::Feed feedFLstMty;
 		Sbecore::Xmlio::Feed feedFLstTag;
 		StatShr statshr;
 
@@ -231,8 +222,6 @@ public:
 	bool evalButTagViewActive(DbsWznm* dbswznm);
 	bool evalLstCtpAvail(DbsWznm* dbswznm);
 	bool evalButCtpViewActive(DbsWznm* dbswznm);
-	bool evalLstMtyAvail(DbsWznm* dbswznm);
-	bool evalButMtyViewActive(DbsWznm* dbswznm);
 	bool evalLstMchAvail(DbsWznm* dbswznm);
 	bool evalButMchViewActive(DbsWznm* dbswznm);
 	bool evalLstLibAvail(DbsWznm* dbswznm);
@@ -250,7 +239,6 @@ public:
 	Sbecore::Xmlio::Feed feedFLstLib;
 	Sbecore::Xmlio::Feed feedFLstLoc;
 	Sbecore::Xmlio::Feed feedFLstMch;
-	Sbecore::Xmlio::Feed feedFLstMty;
 	Sbecore::Xmlio::Feed feedFLstTag;
 
 	// IP vars.cust --- INSERT
@@ -267,13 +255,11 @@ public:
 	void refreshTag(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLstCtp(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshCtp(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
-	void refreshLstMty(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
-	void refreshMty(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLstMch(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshMch(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLstLib(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshLib(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 
@@ -293,8 +279,6 @@ private:
 	void handleDpchAppDoButTagNewcrdClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoButCtpViewClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoButCtpNewcrdClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
-	void handleDpchAppDoButMtyViewClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
-	void handleDpchAppDoButMtyNewcrdClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoButMchViewClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoButMchNewcrdClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoButLibViewClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
@@ -309,4 +293,6 @@ private:
 };
 
 #endif
+
+
 

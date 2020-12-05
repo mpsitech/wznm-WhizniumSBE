@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmJob.cpp
 	* data blocks and readers/writers for import/export complex IexWznmJob (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #include "IexWznmJob.h"
 
@@ -1842,6 +1843,7 @@ void IexWznmJob::ImeIMJob::writeXML(
 void IexWznmJob::parseFromFile(
 			const string& fullpath
 			, const bool xmlNotTxt
+			, const string& rectpath
 			, ImeIMCapability& imeimcapability
 			, ImeIMJob& imeimjob
 		) {
@@ -1860,7 +1862,7 @@ void IexWznmJob::parseFromFile(
 		};
 
 	} else {
-			Txtrd rd(fullpath, "IexWznmJob", Version("0.9.29"), VecVIme::getIx);
+			Txtrd rd(fullpath, rectpath, "IexWznmJob", Version("0.9.29"), VecVIme::getIx);
 			readTxt(rd, imeimcapability, imeimjob);
 	};
 };
@@ -1980,4 +1982,6 @@ uint IexWznmJob::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
+
+
 

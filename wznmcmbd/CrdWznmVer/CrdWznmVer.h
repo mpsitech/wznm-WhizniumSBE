@@ -1,10 +1,11 @@
 /**
 	* \file CrdWznmVer.h
 	* job handler for job CrdWznmVer (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef CRDWZNMVER_H
 #define CRDWZNMVER_H
@@ -16,20 +17,20 @@
 #include "PnlWznmVerList.h"
 #include "PnlWznmVerHeadbar.h"
 #include "PnlWznmVerRec.h"
-#include "DlgWznmVerWrstkit.h"
+#include "DlgWznmVerBscui.h"
+#include "DlgWznmVerCustjob.h"
+#include "DlgWznmVerCustui.h"
+#include "DlgWznmVerCustjtr.h"
+#include "DlgWznmVerDbstr.h"
+#include "DlgWznmVerDeploy.h"
+#include "DlgWznmVerFinmod.h"
+#include "DlgWznmVerWrinimdl.h"
 #include "DlgWznmVerOppack.h"
 #include "DlgWznmVerNew.h"
 #include "DlgWznmVerImpexp.h"
 #include "DlgWznmVerGlobal.h"
 #include "DlgWznmVerGenui.h"
 #include "DlgWznmVerGenjtr.h"
-#include "DlgWznmVerFinmod.h"
-#include "DlgWznmVerDeploy.h"
-#include "DlgWznmVerDbstr.h"
-#include "DlgWznmVerCustui.h"
-#include "DlgWznmVerCustjtr.h"
-#include "DlgWznmVerCustjob.h"
-#include "DlgWznmVerBscui.h"
 
 #define VecVWznmVerDo CrdWznmVer::VecVDo
 #define VecVWznmVerSge CrdWznmVer::VecVSge
@@ -60,7 +61,7 @@ public:
 		static const Sbecore::uint MITCRDPCVCLICK = 4;
 		static const Sbecore::uint MITCRDIDPCLICK = 5;
 		static const Sbecore::uint MITCRDIGBCLICK = 6;
-		static const Sbecore::uint MITCRDWSKCLICK = 7;
+		static const Sbecore::uint MITCRDIMDCLICK = 7;
 		static const Sbecore::uint MITCRDIDBCLICK = 8;
 		static const Sbecore::uint MITCRDIBUCLICK = 9;
 		static const Sbecore::uint MITCRDIIECLICK = 10;
@@ -145,7 +146,7 @@ public:
 		static const Sbecore::uint JREFDLGIMPEXP = 11;
 		static const Sbecore::uint JREFDLGNEW = 12;
 		static const Sbecore::uint JREFDLGOPPACK = 13;
-		static const Sbecore::uint JREFDLGWRSTKIT = 14;
+		static const Sbecore::uint JREFDLGWRINIMDL = 14;
 		static const Sbecore::uint JREFHEADBAR = 15;
 		static const Sbecore::uint JREFLIST = 16;
 		static const Sbecore::uint JREFREC = 17;
@@ -159,8 +160,8 @@ public:
 		static const Sbecore::uint MITCRDIGBAVAIL = 25;
 		static const Sbecore::uint MITCRDIGBACTIVE = 26;
 		static const Sbecore::uint MSPCRD4AVAIL = 27;
-		static const Sbecore::uint MITCRDWSKAVAIL = 28;
-		static const Sbecore::uint MITCRDWSKACTIVE = 29;
+		static const Sbecore::uint MITCRDIMDAVAIL = 28;
+		static const Sbecore::uint MITCRDIMDACTIVE = 29;
 		static const Sbecore::uint MSPCRD5AVAIL = 30;
 		static const Sbecore::uint MITCRDIDBAVAIL = 31;
 		static const Sbecore::uint MITCRDIDBACTIVE = 32;
@@ -186,7 +187,7 @@ public:
 		static const Sbecore::uint MITCRDFNMACTIVE = 52;
 
 	public:
-		StatShr(const Sbecore::ubigint jrefDlgbscui = 0, const Sbecore::ubigint jrefDlgcustjob = 0, const Sbecore::ubigint jrefDlgcustjtr = 0, const Sbecore::ubigint jrefDlgcustui = 0, const Sbecore::ubigint jrefDlgdbstr = 0, const Sbecore::ubigint jrefDlgdeploy = 0, const Sbecore::ubigint jrefDlgfinmod = 0, const Sbecore::ubigint jrefDlggenjtr = 0, const Sbecore::ubigint jrefDlggenui = 0, const Sbecore::ubigint jrefDlgglobal = 0, const Sbecore::ubigint jrefDlgimpexp = 0, const Sbecore::ubigint jrefDlgnew = 0, const Sbecore::ubigint jrefDlgoppack = 0, const Sbecore::ubigint jrefDlgwrstkit = 0, const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefList = 0, const Sbecore::ubigint jrefRec = 0, const bool MspCrd1Avail = true, const bool MitCrdNewAvail = true, const bool MitCrdPcvAvail = true, const bool MitCrdPcvActive = true, const bool MspCrd3Avail = true, const bool MitCrdIdpAvail = true, const bool MitCrdIdpActive = true, const bool MitCrdIgbAvail = true, const bool MitCrdIgbActive = true, const bool MspCrd4Avail = true, const bool MitCrdWskAvail = true, const bool MitCrdWskActive = true, const bool MspCrd5Avail = true, const bool MitCrdIdbAvail = true, const bool MitCrdIdbActive = true, const bool MitCrdIbuAvail = true, const bool MitCrdIbuActive = true, const bool MitCrdIieAvail = true, const bool MitCrdIieActive = true, const bool MitCrdIopAvail = true, const bool MitCrdIopActive = true, const bool MitCrdIcjAvail = true, const bool MitCrdIcjActive = true, const bool MspCrd6Avail = true, const bool MitCrdGuiAvail = true, const bool MitCrdGuiActive = true, const bool MitCrdAuiAvail = true, const bool MitCrdAuiActive = true, const bool MitCrdGjtAvail = true, const bool MitCrdGjtActive = true, const bool MitCrdAjtAvail = true, const bool MitCrdAjtActive = true, const bool MspCrd7Avail = true, const bool MitCrdFnmAvail = true, const bool MitCrdFnmActive = true);
+		StatShr(const Sbecore::ubigint jrefDlgbscui = 0, const Sbecore::ubigint jrefDlgcustjob = 0, const Sbecore::ubigint jrefDlgcustjtr = 0, const Sbecore::ubigint jrefDlgcustui = 0, const Sbecore::ubigint jrefDlgdbstr = 0, const Sbecore::ubigint jrefDlgdeploy = 0, const Sbecore::ubigint jrefDlgfinmod = 0, const Sbecore::ubigint jrefDlggenjtr = 0, const Sbecore::ubigint jrefDlggenui = 0, const Sbecore::ubigint jrefDlgglobal = 0, const Sbecore::ubigint jrefDlgimpexp = 0, const Sbecore::ubigint jrefDlgnew = 0, const Sbecore::ubigint jrefDlgoppack = 0, const Sbecore::ubigint jrefDlgwrinimdl = 0, const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefList = 0, const Sbecore::ubigint jrefRec = 0, const bool MspCrd1Avail = true, const bool MitCrdNewAvail = true, const bool MitCrdPcvAvail = true, const bool MitCrdPcvActive = true, const bool MspCrd3Avail = true, const bool MitCrdIdpAvail = true, const bool MitCrdIdpActive = true, const bool MitCrdIgbAvail = true, const bool MitCrdIgbActive = true, const bool MspCrd4Avail = true, const bool MitCrdImdAvail = true, const bool MitCrdImdActive = true, const bool MspCrd5Avail = true, const bool MitCrdIdbAvail = true, const bool MitCrdIdbActive = true, const bool MitCrdIbuAvail = true, const bool MitCrdIbuActive = true, const bool MitCrdIieAvail = true, const bool MitCrdIieActive = true, const bool MitCrdIopAvail = true, const bool MitCrdIopActive = true, const bool MitCrdIcjAvail = true, const bool MitCrdIcjActive = true, const bool MspCrd6Avail = true, const bool MitCrdGuiAvail = true, const bool MitCrdGuiActive = true, const bool MitCrdAuiAvail = true, const bool MitCrdAuiActive = true, const bool MitCrdGjtAvail = true, const bool MitCrdGjtActive = true, const bool MitCrdAjtAvail = true, const bool MitCrdAjtActive = true, const bool MspCrd7Avail = true, const bool MitCrdFnmAvail = true, const bool MitCrdFnmActive = true);
 
 	public:
 		Sbecore::ubigint jrefDlgbscui;
@@ -202,7 +203,7 @@ public:
 		Sbecore::ubigint jrefDlgimpexp;
 		Sbecore::ubigint jrefDlgnew;
 		Sbecore::ubigint jrefDlgoppack;
-		Sbecore::ubigint jrefDlgwrstkit;
+		Sbecore::ubigint jrefDlgwrinimdl;
 		Sbecore::ubigint jrefHeadbar;
 		Sbecore::ubigint jrefList;
 		Sbecore::ubigint jrefRec;
@@ -216,8 +217,8 @@ public:
 		bool MitCrdIgbAvail;
 		bool MitCrdIgbActive;
 		bool MspCrd4Avail;
-		bool MitCrdWskAvail;
-		bool MitCrdWskActive;
+		bool MitCrdImdAvail;
+		bool MitCrdImdActive;
 		bool MspCrd5Avail;
 		bool MitCrdIdbAvail;
 		bool MitCrdIdbActive;
@@ -317,8 +318,8 @@ public:
 	bool evalMitCrdIgbAvail(DbsWznm* dbswznm);
 	bool evalMitCrdIgbActive(DbsWznm* dbswznm);
 	bool evalMspCrd4Avail(DbsWznm* dbswznm);
-	bool evalMitCrdWskAvail(DbsWznm* dbswznm);
-	bool evalMitCrdWskActive(DbsWznm* dbswznm);
+	bool evalMitCrdImdAvail(DbsWznm* dbswznm);
+	bool evalMitCrdImdActive(DbsWznm* dbswznm);
 	bool evalMspCrd5Avail(DbsWznm* dbswznm);
 	bool evalMitCrdIdbAvail(DbsWznm* dbswznm);
 	bool evalMitCrdIdbActive(DbsWznm* dbswznm);
@@ -357,20 +358,20 @@ public:
 	PnlWznmVerList* pnllist;
 	PnlWznmVerHeadbar* pnlheadbar;
 	PnlWznmVerRec* pnlrec;
-	DlgWznmVerWrstkit* dlgwrstkit;
+	DlgWznmVerBscui* dlgbscui;
+	DlgWznmVerCustjob* dlgcustjob;
+	DlgWznmVerCustui* dlgcustui;
+	DlgWznmVerCustjtr* dlgcustjtr;
+	DlgWznmVerDbstr* dlgdbstr;
+	DlgWznmVerDeploy* dlgdeploy;
+	DlgWznmVerFinmod* dlgfinmod;
+	DlgWznmVerWrinimdl* dlgwrinimdl;
 	DlgWznmVerOppack* dlgoppack;
 	DlgWznmVerNew* dlgnew;
 	DlgWznmVerImpexp* dlgimpexp;
 	DlgWznmVerGlobal* dlgglobal;
 	DlgWznmVerGenui* dlggenui;
 	DlgWznmVerGenjtr* dlggenjtr;
-	DlgWznmVerFinmod* dlgfinmod;
-	DlgWznmVerDeploy* dlgdeploy;
-	DlgWznmVerDbstr* dlgdbstr;
-	DlgWznmVerCustui* dlgcustui;
-	DlgWznmVerCustjtr* dlgcustjtr;
-	DlgWznmVerCustjob* dlgcustjob;
-	DlgWznmVerBscui* dlgbscui;
 
 	// IP vars.cust --- INSERT
 
@@ -393,7 +394,7 @@ public:
 
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 	void changeRef(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint ref, const bool notif = false);
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 
@@ -417,7 +418,7 @@ private:
 	void handleDpchAppDoMitCrdPcvClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdIdpClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdIgbClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
-	void handleDpchAppDoMitCrdWskClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoMitCrdImdClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdIdbClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdIbuClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdIieClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
@@ -457,5 +458,6 @@ private:
 };
 
 #endif
+
 
 

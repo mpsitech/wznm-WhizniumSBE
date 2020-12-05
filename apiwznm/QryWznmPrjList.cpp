@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmPrjList.cpp
 	* API code for job QryWznmPrjList (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "QryWznmPrjList.h"
 
@@ -21,11 +22,11 @@ uint QryWznmPrjList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "tit") return TIT;
 	if (s == "ver") return VER;
+	if (s == "tit") return TIT;
 	if (s == "sho") return SHO;
-	if (s == "grp") return GRP;
 	if (s == "own") return OWN;
+	if (s == "grp") return GRP;
 
 	return(0);
 };
@@ -33,11 +34,11 @@ uint QryWznmPrjList::VecVOrd::getIx(
 string QryWznmPrjList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TIT) return("tit");
 	if (ix == VER) return("ver");
+	if (ix == TIT) return("tit");
 	if (ix == SHO) return("sho");
-	if (ix == GRP) return("grp");
 	if (ix == OWN) return("own");
+	if (ix == GRP) return("grp");
 
 	return("");
 };

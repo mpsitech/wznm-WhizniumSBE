@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmVerVer1NApp.h
 	* API code for job PnlWznmVerVer1NApp (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMVERVER1NAPP_H
 #define PNLWZNMVERVER1NAPP_H

@@ -1,10 +1,11 @@
 /**
 	* \file IexWznmDbs.h
 	* data blocks and readers/writers for import/export complex IexWznmDbs (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef IEXWZNMDBS_H
 #define IEXWZNMDBS_H
@@ -1705,7 +1706,7 @@ namespace IexWznmDbs {
 		void writeXML(xmlTextWriter* wr, const bool shorttags = true);
 	};
 
-	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, ImeICRelation& imeicrelation, ImeIMRelation& imeimrelation, ImeIMStub& imeimstub, ImeIMTable& imeimtable, ImeIMVector1& imeimvector1, ImeIRMStubMStub& imeirmstubmstub);
+	void parseFromFile(const std::string& fullpath, const bool xmlNotTxt, const std::string& rectpath, ImeICRelation& imeicrelation, ImeIMRelation& imeimrelation, ImeIMStub& imeimstub, ImeIMTable& imeimtable, ImeIMVector1& imeimvector1, ImeIRMStubMStub& imeirmstubmstub);
 	void exportToFile(const std::string& fullpath, const bool xmlNotTxt, const bool shorttags, ImeICRelation& imeicrelation, ImeIMRelation& imeimrelation, ImeIMStub& imeimstub, ImeIMTable& imeimtable, ImeIMVector1& imeimvector1, ImeIRMStubMStub& imeirmstubmstub);
 
 	void readTxt(Sbecore::Txtrd& txtrd, ImeICRelation& imeicrelation, ImeIMRelation& imeimrelation, ImeIMStub& imeimstub, ImeIMTable& imeimtable, ImeIMVector1& imeimvector1, ImeIRMStubMStub& imeirmstubmstub);
@@ -1719,4 +1720,6 @@ namespace IexWznmDbs {
 };
 
 #endif
+
+
 

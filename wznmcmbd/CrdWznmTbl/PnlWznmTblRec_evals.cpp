@@ -1,28 +1,15 @@
 /**
 	* \file PnlWznmTblRec_evals.cpp
 	* job handler for job PnlWznmTblRec (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
-
-bool PnlWznmTblRec::evalPnlaloadfctAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
 
 bool PnlWznmTblRec::evalPnlatitleAvail(
 			DbsWznm* dbswznm
@@ -38,49 +25,7 @@ bool PnlWznmTblRec::evalPnlatitleAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nimpexpAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmTblRec::evalPnl1ncheckAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmTblRec::evalPnlfr1nrelationAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmTblRec::evalPnlto1nrelationAvail(
+bool PnlWznmTblRec::evalPnlaloadfctAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -122,21 +67,49 @@ bool PnlWznmTblRec::evalPnl1nsubsetAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnlref1ndialogAvail(
+bool PnlWznmTblRec::evalPnlfr1nrelationAvail(
 			DbsWznm* dbswznm
 		) {
-	// tbl.inSbs(mtb)
+	// tbl.inSbs(stt)
 
 	vector<bool> args;
 	bool a;
 
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
 	args.push_back(a);
 
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnlref1ncallAvail(
+bool PnlWznmTblRec::evalPnlto1nrelationAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(stt)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnl1nimpexpAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(stt)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnl1ncheckAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -159,6 +132,34 @@ bool PnlWznmTblRec::evalPnlfct1ntablecolAvail(
 	bool a;
 
 	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnlref1ncallAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(stt)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnlref1ndialogAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(mtb)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -221,4 +222,6 @@ bool PnlWznmTblRec::evalButRegularizeActive(
 
 	return(args.back());
 };
+
+
 

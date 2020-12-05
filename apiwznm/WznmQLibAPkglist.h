@@ -1,10 +1,11 @@
 /**
 	* \file WznmQLibAPkglist.h
 	* API code for table TblWznmQLibAPkglist (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQLIBAPKGLIST_H
 #define WZNMQLIBAPKGLIST_H
@@ -17,13 +18,11 @@
 class WznmQLibAPkglist {
 
 public:
-	WznmQLibAPkglist(const Sbecore::uint jnum = 0, const std::string srefX1RefIxVTbl = "", const std::string titX1RefIxVTbl = "", const std::string stubX1RefUref = "", const std::string Pkglist = "");
+	WznmQLibAPkglist(const Sbecore::uint jnum = 0, const std::string stubX1RefWznmMMachine = "", const std::string Pkglist = "");
 
 public:
 	Sbecore::uint jnum;
-	std::string srefX1RefIxVTbl;
-	std::string titX1RefIxVTbl;
-	std::string stubX1RefUref;
+	std::string stubX1RefWznmMMachine;
 	std::string Pkglist;
 
 public:

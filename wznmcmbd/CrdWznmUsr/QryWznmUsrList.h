@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmUsrList.h
 	* job handler for job QryWznmUsrList (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef QRYWZNMUSRLIST_H
 #define QRYWZNMUSRLIST_H
@@ -32,8 +33,8 @@ public:
 
 	public:
 		static const Sbecore::uint USG = 1;
-		static const Sbecore::uint PRS = 2;
-		static const Sbecore::uint SRF = 3;
+		static const Sbecore::uint SRF = 2;
+		static const Sbecore::uint PRS = 3;
 		static const Sbecore::uint OWN = 4;
 		static const Sbecore::uint GRP = 5;
 
@@ -152,4 +153,6 @@ private:
 };
 
 #endif
+
+
 

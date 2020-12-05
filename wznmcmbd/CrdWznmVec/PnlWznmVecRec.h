@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmVecRec.h
 	* job handler for job PnlWznmVecRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMVECREC_H
 #define PNLWZNMVECREC_H
@@ -13,14 +14,14 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmVecDetail.h"
-#include "PnlWznmVecATitle.h"
-#include "PnlWznmVecVec1NVectoritem.h"
-#include "PnlWznmVecSrc1NFeed.h"
-#include "PnlWznmVecRef1NPanel.h"
-#include "PnlWznmVecFct1NTablecol.h"
-#include "PnlWznmVecPst1NQuerymod.h"
 #include "PnlWznmVecMNTable.h"
+#include "PnlWznmVecPst1NQuerymod.h"
+#include "PnlWznmVecRef1NPanel.h"
+#include "PnlWznmVecSrc1NFeed.h"
+#include "PnlWznmVecFct1NTablecol.h"
+#include "PnlWznmVecVec1NVectoritem.h"
+#include "PnlWznmVecATitle.h"
+#include "PnlWznmVecDetail.h"
 
 #define VecVWznmVecRecDo PnlWznmVecRec::VecVDo
 
@@ -77,7 +78,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneVec1NVectoritem = false, const bool initdoneSrc1NFeed = false, const bool initdoneRef1NPanel = false, const bool initdoneFct1NTablecol = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNTable = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneVec1NVectoritem = false, const bool initdoneFct1NTablecol = false, const bool initdoneSrc1NFeed = false, const bool initdoneRef1NPanel = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNTable = false);
 	};
 
 	/**
@@ -90,10 +91,10 @@ public:
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREFATITLE = 3;
 		static const Sbecore::uint JREFVEC1NVECTORITEM = 4;
-		static const Sbecore::uint JREFSRC1NFEED = 5;
-		static const Sbecore::uint JREFREF1NPANEL = 6;
-		static const Sbecore::uint JREFFCT1NTABLECOL = 7;
-		static const Sbecore::uint PNLFCT1NTABLECOLAVAIL = 8;
+		static const Sbecore::uint JREFFCT1NTABLECOL = 5;
+		static const Sbecore::uint PNLFCT1NTABLECOLAVAIL = 6;
+		static const Sbecore::uint JREFSRC1NFEED = 7;
+		static const Sbecore::uint JREFREF1NPANEL = 8;
 		static const Sbecore::uint JREFPST1NQUERYMOD = 9;
 		static const Sbecore::uint PNLPST1NQUERYMODAVAIL = 10;
 		static const Sbecore::uint JREFMNTABLE = 11;
@@ -101,17 +102,17 @@ public:
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 13;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const Sbecore::ubigint jrefVec1NVectoritem = 0, const Sbecore::ubigint jrefSrc1NFeed = 0, const Sbecore::ubigint jrefRef1NPanel = 0, const Sbecore::ubigint jrefFct1NTablecol = 0, const bool pnlfct1ntablecolAvail = false, const Sbecore::ubigint jrefPst1NQuerymod = 0, const bool pnlpst1nquerymodAvail = false, const Sbecore::ubigint jrefMNTable = 0, const bool pnlmntableAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const Sbecore::ubigint jrefVec1NVectoritem = 0, const Sbecore::ubigint jrefFct1NTablecol = 0, const bool pnlfct1ntablecolAvail = false, const Sbecore::ubigint jrefSrc1NFeed = 0, const Sbecore::ubigint jrefRef1NPanel = 0, const Sbecore::ubigint jrefPst1NQuerymod = 0, const bool pnlpst1nquerymodAvail = false, const Sbecore::ubigint jrefMNTable = 0, const bool pnlmntableAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jrefATitle;
 		Sbecore::ubigint jrefVec1NVectoritem;
-		Sbecore::ubigint jrefSrc1NFeed;
-		Sbecore::ubigint jrefRef1NPanel;
 		Sbecore::ubigint jrefFct1NTablecol;
 		bool pnlfct1ntablecolAvail;
+		Sbecore::ubigint jrefSrc1NFeed;
+		Sbecore::ubigint jrefRef1NPanel;
 		Sbecore::ubigint jrefPst1NQuerymod;
 		bool pnlpst1nquerymodAvail;
 		Sbecore::ubigint jrefMNTable;
@@ -194,14 +195,14 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmVecDetail* pnldetail;
-	PnlWznmVecATitle* pnlatitle;
-	PnlWznmVecVec1NVectoritem* pnlvec1nvectoritem;
-	PnlWznmVecSrc1NFeed* pnlsrc1nfeed;
-	PnlWznmVecRef1NPanel* pnlref1npanel;
-	PnlWznmVecFct1NTablecol* pnlfct1ntablecol;
-	PnlWznmVecPst1NQuerymod* pnlpst1nquerymod;
 	PnlWznmVecMNTable* pnlmntable;
+	PnlWznmVecPst1NQuerymod* pnlpst1nquerymod;
+	PnlWznmVecRef1NPanel* pnlref1npanel;
+	PnlWznmVecSrc1NFeed* pnlsrc1nfeed;
+	PnlWznmVecFct1NTablecol* pnlfct1ntablecol;
+	PnlWznmVecVec1NVectoritem* pnlvec1nvectoritem;
+	PnlWznmVecATitle* pnlatitle;
+	PnlWznmVecDetail* pnldetail;
 
 	WznmMVector recVec;
 	Sbecore::uint ixWSubsetVec;
@@ -216,7 +217,7 @@ public:
 public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
 	void minimize(DbsWznm* dbswznm, const bool notif = false, DpchEngWznm** dpcheng = NULL);
@@ -240,12 +241,12 @@ public:
 private:
 	bool handleCallWznmVecUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPstUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmVec_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVec_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmVec_pstEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVec_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmVec_hkuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmVec_hktEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmVec_hkuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVec_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmVec_pstEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVec_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmVec_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
@@ -253,4 +254,6 @@ private:
 };
 
 #endif
+
+
 

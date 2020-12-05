@@ -1,10 +1,11 @@
 /**
 	* \file WznmWrdbsSql.cpp
 	* Wznm operation processor - write database create SQL code (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
+  */
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -28,65 +29,82 @@ DpchRetWznm* WznmWrdbsSql::run(
 			, DbsWznm* dbswznm
 			, DpchInvWznmWrdbsSql* dpchinv
 		) {
-	ubigint refWznmMVersion = dpchinv->refWznmMVersion;
+	ubigint refWznmMRelease = dpchinv->refWznmMRelease;
 	string Prjshort = dpchinv->Prjshort;
 	string folder = dpchinv->folder;
 
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
 	// IP run --- IBEGIN
+	WznmMRelease* rls = NULL;
+	WznmMComponent* cmp = NULL;
+	WznmMVersion* ver = NULL;
+
+	vector<ubigint> hrefsMch;
+	string sbeconfig;
+
+	bool lite, mar, my, pg;
+
 	ListWznmMTable tbls;
 	ListWznmMTable qtbs;
 
-	fstream litefile;
-	fstream marfile;
-	fstream myfile;
-	fstream pgfile;
+	fstream sqlfile;
 
 	string s;
 
-	WznmMVersion* ver = NULL;
-	dbswznm->tblwznmmversion->loadRecByRef(refWznmMVersion, &ver);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
+	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
+	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "sbeconfig", sbeconfig);
+
+	lite = ((ver->ixWDbmstype & VecWznmWMVersionDbmstype::LITE) != 0) && StrMod::srefInSrefs(sbeconfig, "lite");
+	mar = ((ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO)) != 0) && StrMod::srefInSrefs(sbeconfig, "mar");
+	my = ((ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MYINNO + VecWznmWMVersionDbmstype::MYISAM)) != 0) && StrMod::srefInSrefs(sbeconfig, "my");
+	pg = ((ver->ixWDbmstype & VecWznmWMVersionDbmstype::PG) != 0) && StrMod::srefInSrefs(sbeconfig, "pg");
 
 	// load non-query tables
-	dbswznm->tblwznmmtable->loadRstBySQL("SELECT * FROM TblWznmMTable WHERE ixVBasetype <> " + to_string(VecWznmVMTableBasetype::QRY) + " AND refWznmMVersion = " + to_string(refWznmMVersion) + " ORDER BY sref ASC", false, tbls);
+	dbswznm->tblwznmmtable->loadRstBySQL("SELECT * FROM TblWznmMTable WHERE ixVBasetype <> " + to_string(VecWznmVMTableBasetype::QRY) + " AND refWznmMVersion = " + to_string(ver->ref) + " ORDER BY sref ASC", false, tbls);
 
 	// load query tables
-	dbswznm->tblwznmmtable->loadRstBySQL("SELECT * FROM TblWznmMTable WHERE ixVBasetype = " + to_string(VecWznmVMTableBasetype::QRY) + " AND refWznmMVersion = " + to_string(refWznmMVersion) + " ORDER BY sref ASC", false, qtbs);
+	dbswznm->tblwznmmtable->loadRstBySQL("SELECT * FROM TblWznmMTable WHERE ixVBasetype = " + to_string(VecWznmVMTableBasetype::QRY) + " AND refWznmMVersion = " + to_string(ver->ref) + " ORDER BY sref ASC", false, qtbs);
 
 	// create files
-	if ((ver->ixWDbmstype & VecWznmWMVersionDbmstype::LITE) != 0) {
-		s = xchg->tmppath + "/" + folder + "/CreateDbs" + Prjshort + "Lite.sql.ip";
-		litefile.open(s.c_str(), ios::out);
-		writeSqlLite(dbswznm, litefile, tbls, qtbs);
-		litefile.close();
+	if (lite) {
+		s = xchg->tmppath + "/" + folder + "/" + cmp->sref + "/CreateDbs" + Prjshort + "Lite.sql.ip";
+		sqlfile.open(s.c_str(), ios::out);
+		writeSqlLite(dbswznm, sqlfile, tbls, qtbs);
+		sqlfile.close();
 	};
 
-	if ((ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO)) != 0) {
-		s = xchg->tmppath + "/" + folder + "/CreateDbs" + Prjshort + "Mar.sql.ip";
-		marfile.open(s.c_str(), ios::out);
-		writeSqlMy(dbswznm, marfile, tbls, qtbs,
+	if (mar) {
+		s = xchg->tmppath + "/" + folder + "/" + rls->sref + "/CreateDbs" + Prjshort + "Mar.sql.ip";
+		sqlfile.open(s.c_str(), ios::out);
+		writeSqlMy(dbswznm, sqlfile, tbls, qtbs,
 					(ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO)) == (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO),
 					(ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO)) == VecWznmWMVersionDbmstype::MARARIA, false);
-		marfile.close();
+		sqlfile.close();
 	};
 
-	if ((ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MYINNO + VecWznmWMVersionDbmstype::MYISAM)) != 0) {
-		s = xchg->tmppath + "/" + folder + "/CreateDbs" + Prjshort + "My.sql.ip";
-		myfile.open(s.c_str(), ios::out);
-		writeSqlMy(dbswznm, myfile, tbls, qtbs,
+	if (my) {
+		s = xchg->tmppath + "/" + folder + "/" + rls->sref + "/CreateDbs" + Prjshort + "My.sql.ip";
+		sqlfile.open(s.c_str(), ios::out);
+		writeSqlMy(dbswznm, sqlfile, tbls, qtbs,
 					(ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MYINNO + VecWznmWMVersionDbmstype::MYISAM)) == (VecWznmWMVersionDbmstype::MYINNO + VecWznmWMVersionDbmstype::MYISAM),
 					(ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MYINNO + VecWznmWMVersionDbmstype::MYISAM)) == VecWznmWMVersionDbmstype::MYISAM, true);
-		myfile.close();
+		sqlfile.close();
 	};
 
-	if ((ver->ixWDbmstype & VecWznmWMVersionDbmstype::PG) != 0) {
-		s = xchg->tmppath + "/" + folder + "/CreateDbs" + Prjshort + "Pg.sql.ip";
-		pgfile.open(s.c_str(), ios::out);
-		writeSqlPg(dbswznm, pgfile, tbls, qtbs);
-		pgfile.close();
+	if (pg) {
+		s = xchg->tmppath + "/" + folder + "/" + rls->sref + "/CreateDbs" + Prjshort + "Pg.sql.ip";
+		sqlfile.open(s.c_str(), ios::out);
+		writeSqlPg(dbswznm, sqlfile, tbls, qtbs);
+		sqlfile.close();
 	};
 
+	delete rls;
+	delete cmp;
 	delete ver;
 	// IP run --- IEND
 
@@ -109,24 +127,6 @@ void WznmWrdbsSql::writeSqlMy(
 	WznmMTablecol* tco = NULL;
 
 	vector<string> ss;
-
-	// --- sttsDrop
-	outfile << "-- IP sttsDrop --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < tbls.nodes.size(); i++) {
-		tbl = tbls.nodes[i];
-
-		outfile << "DROP TABLE IF EXISTS " << tbl->sref << ";" << endl;
-	};
-	outfile << "-- IP sttsDrop --- IEND" << endl;
-
-	// --- qtbsDrop
-	outfile << "-- IP qtbsDrop --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < qtbs.nodes.size(); i++) {
-		tbl = qtbs.nodes[i];
-
-		outfile << "DROP TABLE IF EXISTS " << tbl->sref << ";" << endl;
-	};
-	outfile << "-- IP qtbsDrop --- IEND" << endl;
 
 	// --- tblsCreate
 	outfile << "-- IP tblsCreate --- IBEGIN" << endl;
@@ -218,30 +218,6 @@ void WznmWrdbsSql::writeSqlPg(
 	WznmMTablecol* tco = NULL;
 
 	vector<string> ss;
-
-	// --- sttsDrop
-	outfile << "-- IP sttsDrop --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < tbls.nodes.size(); i++) {
-		tbl = tbls.nodes[i];
-
-		if (tbl->ixVBasetype == VecWznmVMTableBasetype::CLUST)
-			outfile << "DROP SEQUENCE IF EXISTS " << tbl->sref << ";" << endl;
-		else
-			outfile << "DROP TABLE IF EXISTS " << tbl->sref << ";" << endl;
-	};
-	outfile << "-- IP sttsDrop --- IEND" << endl;
-
-	// --- qtbsDrop
-	outfile << "-- IP qtbsDrop --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < qtbs.nodes.size(); i++) {
-		tbl = qtbs.nodes[i];
-
-		if (tbl->ixVBasetype == VecWznmVMTableBasetype::CLUST)
-			outfile << "DROP SEQUENCE IF EXISTS " << tbl->sref << ";" << endl;
-		else
-			outfile << "DROP TABLE IF EXISTS " << tbl->sref << ";" << endl;
-	};
-	outfile << "-- IP qtbsDrop --- IEND" << endl;
 
 	// --- tblsCreate
 	outfile << "-- IP tblsCreate --- IBEGIN" << endl;
@@ -720,5 +696,6 @@ string WznmWrdbsSql::getTcoSqlLiteType(
 	return retval;
 };
 // IP cust --- IEND
+
 
 

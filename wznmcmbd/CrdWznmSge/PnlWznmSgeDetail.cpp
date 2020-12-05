@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmSgeDetail.cpp
 	* job handler for job PnlWznmSgeDetail (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -224,7 +225,11 @@ void PnlWznmSgeDetail::refreshRecSqkJtit(
 void PnlWznmSgeDetail::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
+			, const bool unmute
 		) {
+	if (muteRefresh && !unmute) return;
+	muteRefresh = true;
+
 	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
@@ -234,6 +239,8 @@ void PnlWznmSgeDetail::refresh(
 	// IP refresh --- END
 
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+	muteRefresh = false;
 };
 
 void PnlWznmSgeDetail::updatePreset(
@@ -447,7 +454,9 @@ void PnlWznmSgeDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMSGEUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMSQKJTITMOD_SQKEQ) {
+		call->abort = handleCallWznmSqkJtitMod_sqkEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGEUPD_REFEQ) {
 		call->abort = handleCallWznmSgeUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSQKUPD_REFEQ) {
 		call->abort = handleCallWznmSqkUpd_refEq(dbswznm, call->jref);
@@ -459,9 +468,20 @@ void PnlWznmSgeDetail::handleCall(
 		call->abort = handleCallWznmSge_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGE_FNXEQ) {
 		call->abort = handleCallWznmSge_fnxEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSQKJTITMOD_SQKEQ) {
-		call->abort = handleCallWznmSqkJtitMod_sqkEq(dbswznm, call->jref);
 	};
+};
+
+bool PnlWznmSgeDetail::handleCallWznmSqkJtitMod_sqkEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	refreshSqkJti(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
+	return retval;
 };
 
 bool PnlWznmSgeDetail::handleCallWznmSgeUpd_refEq(
@@ -526,16 +546,5 @@ bool PnlWznmSgeDetail::handleCallWznmSge_fnxEq(
 	return retval;
 };
 
-bool PnlWznmSgeDetail::handleCallWznmSqkJtitMod_sqkEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	set<uint> moditems;
 
-	refreshSqkJti(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
-	return retval;
-};
 

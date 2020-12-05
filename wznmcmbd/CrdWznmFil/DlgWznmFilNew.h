@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmFilNew.h
 	* job handler for job DlgWznmFilNew (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef DLGWZNMFILNEW_H
 #define DLGWZNMFILNEW_H
@@ -400,7 +401,7 @@ public:
 	void refreshDet(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshFil(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
-	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
 public:
 
@@ -438,5 +439,6 @@ private:
 };
 
 #endif
+
 
 

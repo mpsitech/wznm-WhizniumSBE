@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmSbsPst1NQuerymod.js
-  * web client functionality for panel PnlWznmSbsPst1NQuerymod
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmSbsPst1NQuerymod", "srefIxWznmVExpstate") == "mind") return;

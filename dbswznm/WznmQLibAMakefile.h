@@ -1,10 +1,11 @@
 /**
 	* \file WznmQLibAMakefile.h
 	* Dbs and XML wrapper for table TblWznmQLibAMakefile (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
-	*/
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+  */
+// IP header --- ABOVE
 
 #ifndef WZNMQLIBAMAKEFILE_H
 #define WZNMQLIBAMAKEFILE_H
@@ -24,18 +25,15 @@
 class WznmQLibAMakefile {
 
 public:
-	WznmQLibAMakefile(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::uint x1RefIxVTbl = 0, const std::string srefX1RefIxVTbl = "", const std::string titX1RefIxVTbl = "", const Sbecore::ubigint x1RefUref = 0, const std::string stubX1RefUref = "", const std::string x2SrefKTag = "", const std::string titX2SrefKTag = "", const std::string Val = "");
+	WznmQLibAMakefile(const Sbecore::ubigint qref = 0, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string stubX1RefWznmMMachine = "", const std::string x2SrefKTag = "", const std::string titX2SrefKTag = "", const std::string Val = "");
 
 public:
 	Sbecore::ubigint qref;
 	Sbecore::ubigint jref;
 	Sbecore::uint jnum;
 	Sbecore::ubigint ref;
-	Sbecore::uint x1RefIxVTbl;
-	std::string srefX1RefIxVTbl;
-	std::string titX1RefIxVTbl;
-	Sbecore::ubigint x1RefUref;
-	std::string stubX1RefUref;
+	Sbecore::ubigint x1RefWznmMMachine;
+	std::string stubX1RefWznmMMachine;
 	std::string x2SrefKTag;
 	std::string titX2SrefKTag;
 	std::string Val;
@@ -81,8 +79,8 @@ public:
 	virtual Sbecore::ubigint loadRstBySQL(const std::string& sqlstr, const bool append, ListWznmQLibAMakefile& rst);
 
 	virtual Sbecore::ubigint insertRec(WznmQLibAMakefile* rec);
-	Sbecore::ubigint insertNewRec(WznmQLibAMakefile** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::uint x1RefIxVTbl = 0, const std::string srefX1RefIxVTbl = "", const std::string titX1RefIxVTbl = "", const Sbecore::ubigint x1RefUref = 0, const std::string stubX1RefUref = "", const std::string x2SrefKTag = "", const std::string titX2SrefKTag = "", const std::string Val = "");
-	Sbecore::ubigint appendNewRecToRst(ListWznmQLibAMakefile& rst, WznmQLibAMakefile** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::uint x1RefIxVTbl = 0, const std::string srefX1RefIxVTbl = "", const std::string titX1RefIxVTbl = "", const Sbecore::ubigint x1RefUref = 0, const std::string stubX1RefUref = "", const std::string x2SrefKTag = "", const std::string titX2SrefKTag = "", const std::string Val = "");
+	Sbecore::ubigint insertNewRec(WznmQLibAMakefile** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string stubX1RefWznmMMachine = "", const std::string x2SrefKTag = "", const std::string titX2SrefKTag = "", const std::string Val = "");
+	Sbecore::ubigint appendNewRecToRst(ListWznmQLibAMakefile& rst, WznmQLibAMakefile** rec = NULL, const Sbecore::ubigint jref = 0, const Sbecore::uint jnum = 0, const Sbecore::ubigint ref = 0, const Sbecore::ubigint x1RefWznmMMachine = 0, const std::string stubX1RefWznmMMachine = "", const std::string x2SrefKTag = "", const std::string titX2SrefKTag = "", const std::string Val = "");
 	virtual void insertRst(ListWznmQLibAMakefile& rst);
 	virtual void updateRec(WznmQLibAMakefile* rec);
 	virtual void updateRst(ListWznmQLibAMakefile& rst);

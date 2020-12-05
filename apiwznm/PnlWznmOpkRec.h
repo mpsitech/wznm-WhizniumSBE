@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmOpkRec.h
 	* API code for job PnlWznmOpkRec (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMOPKREC_H
 #define PNLWZNMOPKREC_H
@@ -65,27 +66,27 @@ namespace PnlWznmOpkRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEAINVARG = 2;
-		static const Sbecore::uint INITDONEARETVAL = 3;
+		static const Sbecore::uint INITDONEARETVAL = 2;
+		static const Sbecore::uint INITDONEAINVARG = 3;
 		static const Sbecore::uint INITDONE1NOP = 4;
 		static const Sbecore::uint INITDONEREF1NBLOCK = 5;
-		static const Sbecore::uint INITDONEMNCOMPONENT = 6;
+		static const Sbecore::uint INITDONEMNJOB = 6;
 		static const Sbecore::uint INITDONEMNLIBRARY = 7;
-		static const Sbecore::uint INITDONEMNJOB = 8;
+		static const Sbecore::uint INITDONEMNCOMPONENT = 8;
 		static const Sbecore::uint INITDONESQKMNSTUB = 9;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdone1NOp = false, const bool initdoneRef1NBlock = false, const bool initdoneMNComponent = false, const bool initdoneMNLibrary = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdone1NOp = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneMNLibrary = false, const bool initdoneMNComponent = false, const bool initdoneSqkMNStub = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdoneAInvarg;
 		bool initdoneARetval;
+		bool initdoneAInvarg;
 		bool initdone1NOp;
 		bool initdoneRef1NBlock;
-		bool initdoneMNComponent;
-		bool initdoneMNLibrary;
 		bool initdoneMNJob;
+		bool initdoneMNLibrary;
+		bool initdoneMNComponent;
 		bool initdoneSqkMNStub;
 
 	public:
@@ -102,30 +103,30 @@ namespace PnlWznmOpkRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFAINVARG = 3;
-		static const Sbecore::uint SCRJREFARETVAL = 4;
+		static const Sbecore::uint SCRJREFARETVAL = 3;
+		static const Sbecore::uint SCRJREFAINVARG = 4;
 		static const Sbecore::uint SCRJREF1NOP = 5;
 		static const Sbecore::uint SCRJREFREF1NBLOCK = 6;
-		static const Sbecore::uint SCRJREFMNCOMPONENT = 7;
+		static const Sbecore::uint SCRJREFMNJOB = 7;
 		static const Sbecore::uint SCRJREFMNLIBRARY = 8;
-		static const Sbecore::uint SCRJREFMNJOB = 9;
+		static const Sbecore::uint SCRJREFMNCOMPONENT = 9;
 		static const Sbecore::uint SCRJREFSQKMNSTUB = 10;
 		static const Sbecore::uint PNLSQKMNSTUBAVAIL = 11;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 12;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAInvarg = "", const std::string& scrJrefARetval = "", const std::string& scrJref1NOp = "", const std::string& scrJrefRef1NBlock = "", const std::string& scrJrefMNComponent = "", const std::string& scrJrefMNLibrary = "", const std::string& scrJrefMNJob = "", const std::string& scrJrefSqkMNStub = "", const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefARetval = "", const std::string& scrJrefAInvarg = "", const std::string& scrJref1NOp = "", const std::string& scrJrefRef1NBlock = "", const std::string& scrJrefMNJob = "", const std::string& scrJrefMNLibrary = "", const std::string& scrJrefMNComponent = "", const std::string& scrJrefSqkMNStub = "", const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJrefAInvarg;
 		std::string scrJrefARetval;
+		std::string scrJrefAInvarg;
 		std::string scrJref1NOp;
 		std::string scrJrefRef1NBlock;
-		std::string scrJrefMNComponent;
-		std::string scrJrefMNLibrary;
 		std::string scrJrefMNJob;
+		std::string scrJrefMNLibrary;
+		std::string scrJrefMNComponent;
 		std::string scrJrefSqkMNStub;
 		bool pnlsqkmnstubAvail;
 		bool ButRegularizeActive;

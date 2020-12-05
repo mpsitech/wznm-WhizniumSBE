@@ -1,10 +1,11 @@
 /**
 	* \file QryWznmLibMNComponent.cpp
 	* job handler for job QryWznmLibMNComponent (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 #ifdef WZNMCMBD
 	#include <Wznmcmbd.h>
@@ -84,7 +85,7 @@ void QryWznmLibMNComponent::rerun(
 	dbswznm->tblwznmqlibmncomponent->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMComponentMLibrary.ref)";
-	sqlstr += " FROM TblWznmRMComponentMLibrary, TblWznmMComponent";
+	sqlstr += " FROM TblWznmMComponent, TblWznmRMComponentMLibrary";
 	sqlstr += " WHERE TblWznmRMComponentMLibrary.refWznmMComponent = TblWznmMComponent.ref";
 	sqlstr += " AND TblWznmRMComponentMLibrary.refWznmMLibrary = " + to_string(preRefLib) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -99,7 +100,7 @@ void QryWznmLibMNComponent::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQLibMNComponent(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMComponent.ref, TblWznmRMComponentMLibrary.ref";
-	sqlstr += " FROM TblWznmRMComponentMLibrary, TblWznmMComponent";
+	sqlstr += " FROM TblWznmMComponent, TblWznmRMComponentMLibrary";
 	sqlstr += " WHERE TblWznmRMComponentMLibrary.refWznmMComponent = TblWznmMComponent.ref";
 	sqlstr += " AND TblWznmRMComponentMLibrary.refWznmMLibrary = " + to_string(preRefLib) + "";
 	sqlstr += " ORDER BY TblWznmMComponent.sref ASC";
@@ -273,19 +274,11 @@ void QryWznmLibMNComponent::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCMPRLIBMOD_LIBEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCMPRLIBMOD_LIBEQ) {
 		call->abort = handleCallWznmCmpRlibMod_libEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmLibMNComponent::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmLibMNComponent::handleCallWznmCmpRlibMod_libEq(
@@ -301,4 +294,14 @@ bool QryWznmLibMNComponent::handleCallWznmCmpRlibMod_libEq(
 
 	return retval;
 };
+
+bool QryWznmLibMNComponent::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
+};
+
+
 

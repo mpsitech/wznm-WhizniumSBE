@@ -1,11 +1,3 @@
-/**
-  * \file PnlWznmTblTbl1NTablecol.js
-  * web client functionality for panel PnlWznmTblTbl1NTablecol
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
-
 // --- expand state management
 function minimize(updh) {
 	if (retrieveSi(srcdoc, "StatAppWznmTblTbl1NTablecol", "srefIxWznmVExpstate") == "mind") return;

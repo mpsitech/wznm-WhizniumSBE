@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmOpxRef1NBlock.h
 	* API code for job PnlWznmOpxRef1NBlock (declarations)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #ifndef PNLWZNMOPXREF1NBLOCK_H
 #define PNLWZNMOPXREF1NBLOCK_H

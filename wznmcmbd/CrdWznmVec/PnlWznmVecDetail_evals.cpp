@@ -1,10 +1,11 @@
 /**
 	* \file PnlWznmVecDetail_evals.cpp
 	* job handler for job PnlWznmVecDetail (implementation of availability/activation evaluation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 28 Nov 2020
 	*/
+// IP header --- ABOVE
 
 using namespace std;
 using namespace Sbecore;
@@ -132,16 +133,28 @@ bool PnlWznmVecDetail::evalTxtHkuActive(
 bool PnlWznmVecDetail::evalButHkuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// vec.hkuEq(0)|((pre.ixCrdaccJob()&vec.hktEq(job)&pre.refVer())|(pre.ixCrdaccTbl()&vec.hktEq(tbl)&pre.refVer())|(pre.ixCrdaccIex()&vec.hktEq(iex)&pre.refVer())|(pre.ixCrdaccIme()&vec.hktEq(ime)&pre.refVer()))
+	// vec.hkuEq(0)|((pre.ixCrdaccIex()&vec.hktEq(iex)&pre.refVer())|(pre.ixCrdaccIme()&vec.hktEq(ime)&pre.refVer())|(pre.ixCrdaccTbl()&vec.hktEq(tbl)&pre.refVer())|(pre.ixCrdaccJob()&vec.hktEq(job)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recVec.hkUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::JOB);
+	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IEX);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIME, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IME);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -163,21 +176,9 @@ bool PnlWznmVecDetail::evalButHkuViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IEX);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIME, jref) != 0);
-	args.push_back(a);
-	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IME);
+	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::JOB);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -543,4 +544,6 @@ bool PnlWznmVecDetail::evalPupPstAtyActive(
 
 	return(args.back());
 };
+
+
 

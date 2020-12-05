@@ -1,10 +1,11 @@
 /**
   * \file CrdWznmNav.java
   * Java API code for job CrdWznmNav
-  * \author Alexander Wirthmueller
-  * \date created: 27 Aug 2020
-  * \date modified: 27 Aug 2020
-  */
+	* \copyright (C) 2018-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
+	*/
+// IP header --- ABOVE
 
 package apiwznm;
 
@@ -29,49 +30,48 @@ public class CrdWznmNav {
 		public static final int MITCRDLOCCLICK = 9;
 		public static final int MITCRDTAGCLICK = 10;
 		public static final int MITCRDCTPCLICK = 11;
-		public static final int MITCRDMTYCLICK = 12;
-		public static final int MITCRDMCHCLICK = 13;
-		public static final int MITCRDLIBCLICK = 14;
-		public static final int MITCRDPRJCLICK = 15;
-		public static final int MITCRDVERCLICK = 16;
-		public static final int MITCRDCAPCLICK = 17;
-		public static final int MITCRDERRCLICK = 18;
-		public static final int MITCRDTBLCLICK = 19;
-		public static final int MITCRDTCOCLICK = 20;
-		public static final int MITCRDSBSCLICK = 21;
-		public static final int MITCRDRELCLICK = 22;
-		public static final int MITCRDVECCLICK = 23;
-		public static final int MITCRDVITCLICK = 24;
-		public static final int MITCRDCHKCLICK = 25;
-		public static final int MITCRDSTBCLICK = 26;
-		public static final int MITCRDIEXCLICK = 27;
-		public static final int MITCRDIMECLICK = 28;
-		public static final int MITCRDPSTCLICK = 29;
-		public static final int MITCRDMDLCLICK = 30;
-		public static final int MITCRDCARCLICK = 31;
-		public static final int MITCRDDLGCLICK = 32;
-		public static final int MITCRDPNLCLICK = 33;
-		public static final int MITCRDQRYCLICK = 34;
-		public static final int MITCRDQCOCLICK = 35;
-		public static final int MITCRDQMDCLICK = 36;
-		public static final int MITCRDCONCLICK = 37;
-		public static final int MITCRDOPKCLICK = 38;
-		public static final int MITCRDOPXCLICK = 39;
-		public static final int MITCRDJOBCLICK = 40;
-		public static final int MITCRDSGECLICK = 41;
-		public static final int MITCRDMTDCLICK = 42;
-		public static final int MITCRDBLKCLICK = 43;
-		public static final int MITCRDCALCLICK = 44;
-		public static final int MITCRDCMPCLICK = 45;
-		public static final int MITCRDRLSCLICK = 46;
-		public static final int MITCRDAPPCLICK = 47;
-		public static final int MITCRDRTJCLICK = 48;
-		public static final int MITCRDEVTCLICK = 49;
-		public static final int MITCRDSEQCLICK = 50;
-		public static final int MITCRDSTECLICK = 51;
-		public static final int MITCRDUTLCLICK = 52;
-		public static final int MITAPPMLCCLICK = 53;
-		public static final int MITAPPLOICLICK = 54;
+		public static final int MITCRDMCHCLICK = 12;
+		public static final int MITCRDLIBCLICK = 13;
+		public static final int MITCRDPRJCLICK = 14;
+		public static final int MITCRDVERCLICK = 15;
+		public static final int MITCRDCAPCLICK = 16;
+		public static final int MITCRDERRCLICK = 17;
+		public static final int MITCRDTBLCLICK = 18;
+		public static final int MITCRDTCOCLICK = 19;
+		public static final int MITCRDSBSCLICK = 20;
+		public static final int MITCRDRELCLICK = 21;
+		public static final int MITCRDVECCLICK = 22;
+		public static final int MITCRDVITCLICK = 23;
+		public static final int MITCRDCHKCLICK = 24;
+		public static final int MITCRDSTBCLICK = 25;
+		public static final int MITCRDIEXCLICK = 26;
+		public static final int MITCRDIMECLICK = 27;
+		public static final int MITCRDPSTCLICK = 28;
+		public static final int MITCRDMDLCLICK = 29;
+		public static final int MITCRDCARCLICK = 30;
+		public static final int MITCRDDLGCLICK = 31;
+		public static final int MITCRDPNLCLICK = 32;
+		public static final int MITCRDQRYCLICK = 33;
+		public static final int MITCRDQCOCLICK = 34;
+		public static final int MITCRDQMDCLICK = 35;
+		public static final int MITCRDCONCLICK = 36;
+		public static final int MITCRDOPKCLICK = 37;
+		public static final int MITCRDOPXCLICK = 38;
+		public static final int MITCRDJOBCLICK = 39;
+		public static final int MITCRDSGECLICK = 40;
+		public static final int MITCRDMTDCLICK = 41;
+		public static final int MITCRDBLKCLICK = 42;
+		public static final int MITCRDCALCLICK = 43;
+		public static final int MITCRDCMPCLICK = 44;
+		public static final int MITCRDRLSCLICK = 45;
+		public static final int MITCRDAPPCLICK = 46;
+		public static final int MITCRDRTJCLICK = 47;
+		public static final int MITCRDEVTCLICK = 48;
+		public static final int MITCRDSEQCLICK = 49;
+		public static final int MITCRDSTECLICK = 50;
+		public static final int MITCRDUTLCLICK = 51;
+		public static final int MITAPPMLCCLICK = 52;
+		public static final int MITAPPLOICLICK = 53;
 
 		public static int getIx(
 					String sref
@@ -89,7 +89,6 @@ public class CrdWznmNav {
 			if (s.equals("mitcrdlocclick")) return MITCRDLOCCLICK;
 			if (s.equals("mitcrdtagclick")) return MITCRDTAGCLICK;
 			if (s.equals("mitcrdctpclick")) return MITCRDCTPCLICK;
-			if (s.equals("mitcrdmtyclick")) return MITCRDMTYCLICK;
 			if (s.equals("mitcrdmchclick")) return MITCRDMCHCLICK;
 			if (s.equals("mitcrdlibclick")) return MITCRDLIBCLICK;
 			if (s.equals("mitcrdprjclick")) return MITCRDPRJCLICK;
@@ -150,7 +149,6 @@ public class CrdWznmNav {
 			if (ix == MITCRDLOCCLICK) return("MitCrdLocClick");
 			if (ix == MITCRDTAGCLICK) return("MitCrdTagClick");
 			if (ix == MITCRDCTPCLICK) return("MitCrdCtpClick");
-			if (ix == MITCRDMTYCLICK) return("MitCrdMtyClick");
 			if (ix == MITCRDMCHCLICK) return("MitCrdMchClick");
 			if (ix == MITCRDLIBCLICK) return("MitCrdLibClick");
 			if (ix == MITCRDPRJCLICK) return("MitCrdPrjClick");
@@ -513,91 +511,90 @@ public class CrdWznmNav {
 		public static final int MITCRDLOCAVAIL = 33;
 		public static final int MITCRDTAGAVAIL = 34;
 		public static final int MITCRDCTPAVAIL = 35;
-		public static final int MITCRDMTYAVAIL = 36;
-		public static final int MITCRDMCHAVAIL = 37;
-		public static final int MITCRDLIBAVAIL = 38;
-		public static final int MSPCRD3AVAIL = 39;
-		public static final int MITCRDPRJAVAIL = 40;
-		public static final int MITCRDVERAVAIL = 41;
-		public static final int MITCRDCAPAVAIL = 42;
-		public static final int MITCRDCAPACTIVE = 43;
-		public static final int MITCRDERRAVAIL = 44;
-		public static final int MITCRDERRACTIVE = 45;
-		public static final int MSPCRD4AVAIL = 46;
-		public static final int MITCRDTBLAVAIL = 47;
-		public static final int MITCRDTBLACTIVE = 48;
-		public static final int MITCRDTCOAVAIL = 49;
-		public static final int MITCRDTCOACTIVE = 50;
-		public static final int MITCRDSBSAVAIL = 51;
-		public static final int MITCRDSBSACTIVE = 52;
-		public static final int MITCRDRELAVAIL = 53;
-		public static final int MITCRDRELACTIVE = 54;
-		public static final int MITCRDVECAVAIL = 55;
-		public static final int MITCRDVECACTIVE = 56;
-		public static final int MITCRDVITAVAIL = 57;
-		public static final int MITCRDVITACTIVE = 58;
-		public static final int MITCRDCHKAVAIL = 59;
-		public static final int MITCRDCHKACTIVE = 60;
-		public static final int MITCRDSTBAVAIL = 61;
-		public static final int MITCRDSTBACTIVE = 62;
-		public static final int MITCRDIEXAVAIL = 63;
-		public static final int MITCRDIEXACTIVE = 64;
-		public static final int MITCRDIMEAVAIL = 65;
-		public static final int MITCRDIMEACTIVE = 66;
-		public static final int MSPCRD5AVAIL = 67;
-		public static final int MITCRDPSTAVAIL = 68;
-		public static final int MITCRDPSTACTIVE = 69;
-		public static final int MITCRDMDLAVAIL = 70;
-		public static final int MITCRDMDLACTIVE = 71;
-		public static final int MITCRDCARAVAIL = 72;
-		public static final int MITCRDCARACTIVE = 73;
-		public static final int MITCRDDLGAVAIL = 74;
-		public static final int MITCRDDLGACTIVE = 75;
-		public static final int MITCRDPNLAVAIL = 76;
-		public static final int MITCRDPNLACTIVE = 77;
-		public static final int MITCRDQRYAVAIL = 78;
-		public static final int MITCRDQRYACTIVE = 79;
-		public static final int MITCRDQCOAVAIL = 80;
-		public static final int MITCRDQCOACTIVE = 81;
-		public static final int MITCRDQMDAVAIL = 82;
-		public static final int MITCRDQMDACTIVE = 83;
-		public static final int MITCRDCONAVAIL = 84;
-		public static final int MITCRDCONACTIVE = 85;
-		public static final int MSPCRD6AVAIL = 86;
-		public static final int MITCRDOPKAVAIL = 87;
-		public static final int MITCRDOPKACTIVE = 88;
-		public static final int MITCRDOPXAVAIL = 89;
-		public static final int MITCRDOPXACTIVE = 90;
-		public static final int MSPCRD7AVAIL = 91;
-		public static final int MITCRDJOBAVAIL = 92;
-		public static final int MITCRDJOBACTIVE = 93;
-		public static final int MITCRDSGEAVAIL = 94;
-		public static final int MITCRDSGEACTIVE = 95;
-		public static final int MITCRDMTDAVAIL = 96;
-		public static final int MITCRDMTDACTIVE = 97;
-		public static final int MITCRDBLKAVAIL = 98;
-		public static final int MITCRDBLKACTIVE = 99;
-		public static final int MITCRDCALAVAIL = 100;
-		public static final int MITCRDCALACTIVE = 101;
-		public static final int MSPCRD8AVAIL = 102;
-		public static final int MITCRDCMPAVAIL = 103;
-		public static final int MITCRDRLSAVAIL = 104;
-		public static final int MITCRDRLSACTIVE = 105;
-		public static final int MSPCRD9AVAIL = 106;
-		public static final int MITCRDAPPAVAIL = 107;
-		public static final int MITCRDRTJAVAIL = 108;
-		public static final int MITCRDRTJACTIVE = 109;
-		public static final int MITCRDEVTAVAIL = 110;
-		public static final int MITCRDEVTACTIVE = 111;
-		public static final int MITCRDSEQAVAIL = 112;
-		public static final int MITCRDSEQACTIVE = 113;
-		public static final int MITCRDSTEAVAIL = 114;
-		public static final int MITCRDSTEACTIVE = 115;
-		public static final int MSPCRD10AVAIL = 116;
-		public static final int MITCRDUTLAVAIL = 117;
-		public static final int MSPAPP2AVAIL = 118;
-		public static final int MITAPPMLCAVAIL = 119;
-		public static final int MITAPPLOIAVAIL = 120;
+		public static final int MITCRDMCHAVAIL = 36;
+		public static final int MITCRDLIBAVAIL = 37;
+		public static final int MSPCRD3AVAIL = 38;
+		public static final int MITCRDPRJAVAIL = 39;
+		public static final int MITCRDVERAVAIL = 40;
+		public static final int MITCRDCAPAVAIL = 41;
+		public static final int MITCRDCAPACTIVE = 42;
+		public static final int MITCRDERRAVAIL = 43;
+		public static final int MITCRDERRACTIVE = 44;
+		public static final int MSPCRD4AVAIL = 45;
+		public static final int MITCRDTBLAVAIL = 46;
+		public static final int MITCRDTBLACTIVE = 47;
+		public static final int MITCRDTCOAVAIL = 48;
+		public static final int MITCRDTCOACTIVE = 49;
+		public static final int MITCRDSBSAVAIL = 50;
+		public static final int MITCRDSBSACTIVE = 51;
+		public static final int MITCRDRELAVAIL = 52;
+		public static final int MITCRDRELACTIVE = 53;
+		public static final int MITCRDVECAVAIL = 54;
+		public static final int MITCRDVECACTIVE = 55;
+		public static final int MITCRDVITAVAIL = 56;
+		public static final int MITCRDVITACTIVE = 57;
+		public static final int MITCRDCHKAVAIL = 58;
+		public static final int MITCRDCHKACTIVE = 59;
+		public static final int MITCRDSTBAVAIL = 60;
+		public static final int MITCRDSTBACTIVE = 61;
+		public static final int MITCRDIEXAVAIL = 62;
+		public static final int MITCRDIEXACTIVE = 63;
+		public static final int MITCRDIMEAVAIL = 64;
+		public static final int MITCRDIMEACTIVE = 65;
+		public static final int MSPCRD5AVAIL = 66;
+		public static final int MITCRDPSTAVAIL = 67;
+		public static final int MITCRDPSTACTIVE = 68;
+		public static final int MITCRDMDLAVAIL = 69;
+		public static final int MITCRDMDLACTIVE = 70;
+		public static final int MITCRDCARAVAIL = 71;
+		public static final int MITCRDCARACTIVE = 72;
+		public static final int MITCRDDLGAVAIL = 73;
+		public static final int MITCRDDLGACTIVE = 74;
+		public static final int MITCRDPNLAVAIL = 75;
+		public static final int MITCRDPNLACTIVE = 76;
+		public static final int MITCRDQRYAVAIL = 77;
+		public static final int MITCRDQRYACTIVE = 78;
+		public static final int MITCRDQCOAVAIL = 79;
+		public static final int MITCRDQCOACTIVE = 80;
+		public static final int MITCRDQMDAVAIL = 81;
+		public static final int MITCRDQMDACTIVE = 82;
+		public static final int MITCRDCONAVAIL = 83;
+		public static final int MITCRDCONACTIVE = 84;
+		public static final int MSPCRD6AVAIL = 85;
+		public static final int MITCRDOPKAVAIL = 86;
+		public static final int MITCRDOPKACTIVE = 87;
+		public static final int MITCRDOPXAVAIL = 88;
+		public static final int MITCRDOPXACTIVE = 89;
+		public static final int MSPCRD7AVAIL = 90;
+		public static final int MITCRDJOBAVAIL = 91;
+		public static final int MITCRDJOBACTIVE = 92;
+		public static final int MITCRDSGEAVAIL = 93;
+		public static final int MITCRDSGEACTIVE = 94;
+		public static final int MITCRDMTDAVAIL = 95;
+		public static final int MITCRDMTDACTIVE = 96;
+		public static final int MITCRDBLKAVAIL = 97;
+		public static final int MITCRDBLKACTIVE = 98;
+		public static final int MITCRDCALAVAIL = 99;
+		public static final int MITCRDCALACTIVE = 100;
+		public static final int MSPCRD8AVAIL = 101;
+		public static final int MITCRDCMPAVAIL = 102;
+		public static final int MITCRDRLSAVAIL = 103;
+		public static final int MITCRDRLSACTIVE = 104;
+		public static final int MSPCRD9AVAIL = 105;
+		public static final int MITCRDAPPAVAIL = 106;
+		public static final int MITCRDRTJAVAIL = 107;
+		public static final int MITCRDRTJACTIVE = 108;
+		public static final int MITCRDEVTAVAIL = 109;
+		public static final int MITCRDEVTACTIVE = 110;
+		public static final int MITCRDSEQAVAIL = 111;
+		public static final int MITCRDSEQACTIVE = 112;
+		public static final int MITCRDSTEAVAIL = 113;
+		public static final int MITCRDSTEACTIVE = 114;
+		public static final int MSPCRD10AVAIL = 115;
+		public static final int MITCRDUTLAVAIL = 116;
+		public static final int MSPAPP2AVAIL = 117;
+		public static final int MITAPPMLCAVAIL = 118;
+		public static final int MITAPPLOIAVAIL = 119;
 
 		public StatShr(
 					String scrJrefDlgloaini
@@ -635,7 +632,6 @@ public class CrdWznmNav {
 					, boolean MitCrdLocAvail
 					, boolean MitCrdTagAvail
 					, boolean MitCrdCtpAvail
-					, boolean MitCrdMtyAvail
 					, boolean MitCrdMchAvail
 					, boolean MitCrdLibAvail
 					, boolean MspCrd3Avail
@@ -756,7 +752,6 @@ public class CrdWznmNav {
 			this.MitCrdLocAvail = MitCrdLocAvail;
 			this.MitCrdTagAvail = MitCrdTagAvail;
 			this.MitCrdCtpAvail = MitCrdCtpAvail;
-			this.MitCrdMtyAvail = MitCrdMtyAvail;
 			this.MitCrdMchAvail = MitCrdMchAvail;
 			this.MitCrdLibAvail = MitCrdLibAvail;
 			this.MspCrd3Avail = MspCrd3Avail;
@@ -842,7 +837,7 @@ public class CrdWznmNav {
 			this.MitAppMlcAvail = MitAppMlcAvail;
 			this.MitAppLoiAvail = MitAppLoiAvail;
 
-			mask = new HashSet<Integer>(Arrays.asList(SCRJREFDLGLOAINI, SCRJREFDLGMNGLIC, SCRJREFHEADBAR, SCRJREFPRE, PNLPREAVAIL, SCRJREFADMIN, PNLADMINAVAIL, SCRJREFGLOBAL, PNLGLOBALAVAIL, SCRJREFPROJECT, PNLPROJECTAVAIL, SCRJREFDBSTR, PNLDBSTRAVAIL, SCRJREFUIX, PNLUIXAVAIL, SCRJREFCOMP, PNLCOMPAVAIL, SCRJREFJOB, PNLJOBAVAIL, SCRJREFDEPLOY, PNLDEPLOYAVAIL, SCRJREFAPPDEV, PNLAPPDEVAVAIL, SCRJREFAUXFCT, PNLAUXFCTAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MITCRDFILAVAIL, MSPCRD2AVAIL, MITCRDLOCAVAIL, MITCRDTAGAVAIL, MITCRDCTPAVAIL, MITCRDMTYAVAIL, MITCRDMCHAVAIL, MITCRDLIBAVAIL, MSPCRD3AVAIL, MITCRDPRJAVAIL, MITCRDVERAVAIL, MITCRDCAPAVAIL, MITCRDCAPACTIVE, MITCRDERRAVAIL, MITCRDERRACTIVE, MSPCRD4AVAIL, MITCRDTBLAVAIL, MITCRDTBLACTIVE, MITCRDTCOAVAIL, MITCRDTCOACTIVE, MITCRDSBSAVAIL, MITCRDSBSACTIVE, MITCRDRELAVAIL, MITCRDRELACTIVE, MITCRDVECAVAIL, MITCRDVECACTIVE, MITCRDVITAVAIL, MITCRDVITACTIVE, MITCRDCHKAVAIL, MITCRDCHKACTIVE, MITCRDSTBAVAIL, MITCRDSTBACTIVE, MITCRDIEXAVAIL, MITCRDIEXACTIVE, MITCRDIMEAVAIL, MITCRDIMEACTIVE, MSPCRD5AVAIL, MITCRDPSTAVAIL, MITCRDPSTACTIVE, MITCRDMDLAVAIL, MITCRDMDLACTIVE, MITCRDCARAVAIL, MITCRDCARACTIVE, MITCRDDLGAVAIL, MITCRDDLGACTIVE, MITCRDPNLAVAIL, MITCRDPNLACTIVE, MITCRDQRYAVAIL, MITCRDQRYACTIVE, MITCRDQCOAVAIL, MITCRDQCOACTIVE, MITCRDQMDAVAIL, MITCRDQMDACTIVE, MITCRDCONAVAIL, MITCRDCONACTIVE, MSPCRD6AVAIL, MITCRDOPKAVAIL, MITCRDOPKACTIVE, MITCRDOPXAVAIL, MITCRDOPXACTIVE, MSPCRD7AVAIL, MITCRDJOBAVAIL, MITCRDJOBACTIVE, MITCRDSGEAVAIL, MITCRDSGEACTIVE, MITCRDMTDAVAIL, MITCRDMTDACTIVE, MITCRDBLKAVAIL, MITCRDBLKACTIVE, MITCRDCALAVAIL, MITCRDCALACTIVE, MSPCRD8AVAIL, MITCRDCMPAVAIL, MITCRDRLSAVAIL, MITCRDRLSACTIVE, MSPCRD9AVAIL, MITCRDAPPAVAIL, MITCRDRTJAVAIL, MITCRDRTJACTIVE, MITCRDEVTAVAIL, MITCRDEVTACTIVE, MITCRDSEQAVAIL, MITCRDSEQACTIVE, MITCRDSTEAVAIL, MITCRDSTEACTIVE, MSPCRD10AVAIL, MITCRDUTLAVAIL, MSPAPP2AVAIL, MITAPPMLCAVAIL, MITAPPLOIAVAIL));
+			mask = new HashSet<Integer>(Arrays.asList(SCRJREFDLGLOAINI, SCRJREFDLGMNGLIC, SCRJREFHEADBAR, SCRJREFPRE, PNLPREAVAIL, SCRJREFADMIN, PNLADMINAVAIL, SCRJREFGLOBAL, PNLGLOBALAVAIL, SCRJREFPROJECT, PNLPROJECTAVAIL, SCRJREFDBSTR, PNLDBSTRAVAIL, SCRJREFUIX, PNLUIXAVAIL, SCRJREFCOMP, PNLCOMPAVAIL, SCRJREFJOB, PNLJOBAVAIL, SCRJREFDEPLOY, PNLDEPLOYAVAIL, SCRJREFAPPDEV, PNLAPPDEVAVAIL, SCRJREFAUXFCT, PNLAUXFCTAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MITCRDFILAVAIL, MSPCRD2AVAIL, MITCRDLOCAVAIL, MITCRDTAGAVAIL, MITCRDCTPAVAIL, MITCRDMCHAVAIL, MITCRDLIBAVAIL, MSPCRD3AVAIL, MITCRDPRJAVAIL, MITCRDVERAVAIL, MITCRDCAPAVAIL, MITCRDCAPACTIVE, MITCRDERRAVAIL, MITCRDERRACTIVE, MSPCRD4AVAIL, MITCRDTBLAVAIL, MITCRDTBLACTIVE, MITCRDTCOAVAIL, MITCRDTCOACTIVE, MITCRDSBSAVAIL, MITCRDSBSACTIVE, MITCRDRELAVAIL, MITCRDRELACTIVE, MITCRDVECAVAIL, MITCRDVECACTIVE, MITCRDVITAVAIL, MITCRDVITACTIVE, MITCRDCHKAVAIL, MITCRDCHKACTIVE, MITCRDSTBAVAIL, MITCRDSTBACTIVE, MITCRDIEXAVAIL, MITCRDIEXACTIVE, MITCRDIMEAVAIL, MITCRDIMEACTIVE, MSPCRD5AVAIL, MITCRDPSTAVAIL, MITCRDPSTACTIVE, MITCRDMDLAVAIL, MITCRDMDLACTIVE, MITCRDCARAVAIL, MITCRDCARACTIVE, MITCRDDLGAVAIL, MITCRDDLGACTIVE, MITCRDPNLAVAIL, MITCRDPNLACTIVE, MITCRDQRYAVAIL, MITCRDQRYACTIVE, MITCRDQCOAVAIL, MITCRDQCOACTIVE, MITCRDQMDAVAIL, MITCRDQMDACTIVE, MITCRDCONAVAIL, MITCRDCONACTIVE, MSPCRD6AVAIL, MITCRDOPKAVAIL, MITCRDOPKACTIVE, MITCRDOPXAVAIL, MITCRDOPXACTIVE, MSPCRD7AVAIL, MITCRDJOBAVAIL, MITCRDJOBACTIVE, MITCRDSGEAVAIL, MITCRDSGEACTIVE, MITCRDMTDAVAIL, MITCRDMTDACTIVE, MITCRDBLKAVAIL, MITCRDBLKACTIVE, MITCRDCALAVAIL, MITCRDCALACTIVE, MSPCRD8AVAIL, MITCRDCMPAVAIL, MITCRDRLSAVAIL, MITCRDRLSACTIVE, MSPCRD9AVAIL, MITCRDAPPAVAIL, MITCRDRTJAVAIL, MITCRDRTJACTIVE, MITCRDEVTAVAIL, MITCRDEVTACTIVE, MITCRDSEQAVAIL, MITCRDSEQACTIVE, MITCRDSTEAVAIL, MITCRDSTEACTIVE, MSPCRD10AVAIL, MITCRDUTLAVAIL, MSPAPP2AVAIL, MITAPPMLCAVAIL, MITAPPLOIAVAIL));
 		};
 
 		public String scrJrefDlgloaini;
@@ -880,7 +875,6 @@ public class CrdWznmNav {
 		public boolean MitCrdLocAvail;
 		public boolean MitCrdTagAvail;
 		public boolean MitCrdCtpAvail;
-		public boolean MitCrdMtyAvail;
 		public boolean MitCrdMchAvail;
 		public boolean MitCrdLibAvail;
 		public boolean MspCrd3Avail;
@@ -1014,7 +1008,6 @@ public class CrdWznmNav {
 				MitCrdLocAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "MitCrdLocAvail", mask, MITCRDLOCAVAIL);
 				MitCrdTagAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "MitCrdTagAvail", mask, MITCRDTAGAVAIL);
 				MitCrdCtpAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "MitCrdCtpAvail", mask, MITCRDCTPAVAIL);
-				MitCrdMtyAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "MitCrdMtyAvail", mask, MITCRDMTYAVAIL);
 				MitCrdMchAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "MitCrdMchAvail", mask, MITCRDMCHAVAIL);
 				MitCrdLibAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "MitCrdLibAvail", mask, MITCRDLIBAVAIL);
 				MspCrd3Avail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "MspCrd3Avail", mask, MSPCRD3AVAIL);
@@ -1146,7 +1139,6 @@ public class CrdWznmNav {
 			if (MitCrdLocAvail == comp.MitCrdLocAvail) items.add(MITCRDLOCAVAIL);
 			if (MitCrdTagAvail == comp.MitCrdTagAvail) items.add(MITCRDTAGAVAIL);
 			if (MitCrdCtpAvail == comp.MitCrdCtpAvail) items.add(MITCRDCTPAVAIL);
-			if (MitCrdMtyAvail == comp.MitCrdMtyAvail) items.add(MITCRDMTYAVAIL);
 			if (MitCrdMchAvail == comp.MitCrdMchAvail) items.add(MITCRDMCHAVAIL);
 			if (MitCrdLibAvail == comp.MitCrdLibAvail) items.add(MITCRDLIBAVAIL);
 			if (MspCrd3Avail == comp.MspCrd3Avail) items.add(MSPCRD3AVAIL);
@@ -1243,7 +1235,7 @@ public class CrdWznmNav {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(SCRJREFDLGLOAINI, SCRJREFDLGMNGLIC, SCRJREFHEADBAR, SCRJREFPRE, PNLPREAVAIL, SCRJREFADMIN, PNLADMINAVAIL, SCRJREFGLOBAL, PNLGLOBALAVAIL, SCRJREFPROJECT, PNLPROJECTAVAIL, SCRJREFDBSTR, PNLDBSTRAVAIL, SCRJREFUIX, PNLUIXAVAIL, SCRJREFCOMP, PNLCOMPAVAIL, SCRJREFJOB, PNLJOBAVAIL, SCRJREFDEPLOY, PNLDEPLOYAVAIL, SCRJREFAPPDEV, PNLAPPDEVAVAIL, SCRJREFAUXFCT, PNLAUXFCTAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MITCRDFILAVAIL, MSPCRD2AVAIL, MITCRDLOCAVAIL, MITCRDTAGAVAIL, MITCRDCTPAVAIL, MITCRDMTYAVAIL, MITCRDMCHAVAIL, MITCRDLIBAVAIL, MSPCRD3AVAIL, MITCRDPRJAVAIL, MITCRDVERAVAIL, MITCRDCAPAVAIL, MITCRDCAPACTIVE, MITCRDERRAVAIL, MITCRDERRACTIVE, MSPCRD4AVAIL, MITCRDTBLAVAIL, MITCRDTBLACTIVE, MITCRDTCOAVAIL, MITCRDTCOACTIVE, MITCRDSBSAVAIL, MITCRDSBSACTIVE, MITCRDRELAVAIL, MITCRDRELACTIVE, MITCRDVECAVAIL, MITCRDVECACTIVE, MITCRDVITAVAIL, MITCRDVITACTIVE, MITCRDCHKAVAIL, MITCRDCHKACTIVE, MITCRDSTBAVAIL, MITCRDSTBACTIVE, MITCRDIEXAVAIL, MITCRDIEXACTIVE, MITCRDIMEAVAIL, MITCRDIMEACTIVE, MSPCRD5AVAIL, MITCRDPSTAVAIL, MITCRDPSTACTIVE, MITCRDMDLAVAIL, MITCRDMDLACTIVE, MITCRDCARAVAIL, MITCRDCARACTIVE, MITCRDDLGAVAIL, MITCRDDLGACTIVE, MITCRDPNLAVAIL, MITCRDPNLACTIVE, MITCRDQRYAVAIL, MITCRDQRYACTIVE, MITCRDQCOAVAIL, MITCRDQCOACTIVE, MITCRDQMDAVAIL, MITCRDQMDACTIVE, MITCRDCONAVAIL, MITCRDCONACTIVE, MSPCRD6AVAIL, MITCRDOPKAVAIL, MITCRDOPKACTIVE, MITCRDOPXAVAIL, MITCRDOPXACTIVE, MSPCRD7AVAIL, MITCRDJOBAVAIL, MITCRDJOBACTIVE, MITCRDSGEAVAIL, MITCRDSGEACTIVE, MITCRDMTDAVAIL, MITCRDMTDACTIVE, MITCRDBLKAVAIL, MITCRDBLKACTIVE, MITCRDCALAVAIL, MITCRDCALACTIVE, MSPCRD8AVAIL, MITCRDCMPAVAIL, MITCRDRLSAVAIL, MITCRDRLSACTIVE, MSPCRD9AVAIL, MITCRDAPPAVAIL, MITCRDRTJAVAIL, MITCRDRTJACTIVE, MITCRDEVTAVAIL, MITCRDEVTACTIVE, MITCRDSEQAVAIL, MITCRDSEQACTIVE, MITCRDSTEAVAIL, MITCRDSTEACTIVE, MSPCRD10AVAIL, MITCRDUTLAVAIL, MSPAPP2AVAIL, MITAPPMLCAVAIL, MITAPPLOIAVAIL));
+			diffitems = new HashSet<Integer>(Arrays.asList(SCRJREFDLGLOAINI, SCRJREFDLGMNGLIC, SCRJREFHEADBAR, SCRJREFPRE, PNLPREAVAIL, SCRJREFADMIN, PNLADMINAVAIL, SCRJREFGLOBAL, PNLGLOBALAVAIL, SCRJREFPROJECT, PNLPROJECTAVAIL, SCRJREFDBSTR, PNLDBSTRAVAIL, SCRJREFUIX, PNLUIXAVAIL, SCRJREFCOMP, PNLCOMPAVAIL, SCRJREFJOB, PNLJOBAVAIL, SCRJREFDEPLOY, PNLDEPLOYAVAIL, SCRJREFAPPDEV, PNLAPPDEVAVAIL, SCRJREFAUXFCT, PNLAUXFCTAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MITCRDFILAVAIL, MSPCRD2AVAIL, MITCRDLOCAVAIL, MITCRDTAGAVAIL, MITCRDCTPAVAIL, MITCRDMCHAVAIL, MITCRDLIBAVAIL, MSPCRD3AVAIL, MITCRDPRJAVAIL, MITCRDVERAVAIL, MITCRDCAPAVAIL, MITCRDCAPACTIVE, MITCRDERRAVAIL, MITCRDERRACTIVE, MSPCRD4AVAIL, MITCRDTBLAVAIL, MITCRDTBLACTIVE, MITCRDTCOAVAIL, MITCRDTCOACTIVE, MITCRDSBSAVAIL, MITCRDSBSACTIVE, MITCRDRELAVAIL, MITCRDRELACTIVE, MITCRDVECAVAIL, MITCRDVECACTIVE, MITCRDVITAVAIL, MITCRDVITACTIVE, MITCRDCHKAVAIL, MITCRDCHKACTIVE, MITCRDSTBAVAIL, MITCRDSTBACTIVE, MITCRDIEXAVAIL, MITCRDIEXACTIVE, MITCRDIMEAVAIL, MITCRDIMEACTIVE, MSPCRD5AVAIL, MITCRDPSTAVAIL, MITCRDPSTACTIVE, MITCRDMDLAVAIL, MITCRDMDLACTIVE, MITCRDCARAVAIL, MITCRDCARACTIVE, MITCRDDLGAVAIL, MITCRDDLGACTIVE, MITCRDPNLAVAIL, MITCRDPNLACTIVE, MITCRDQRYAVAIL, MITCRDQRYACTIVE, MITCRDQCOAVAIL, MITCRDQCOACTIVE, MITCRDQMDAVAIL, MITCRDQMDACTIVE, MITCRDCONAVAIL, MITCRDCONACTIVE, MSPCRD6AVAIL, MITCRDOPKAVAIL, MITCRDOPKACTIVE, MITCRDOPXAVAIL, MITCRDOPXACTIVE, MSPCRD7AVAIL, MITCRDJOBAVAIL, MITCRDJOBACTIVE, MITCRDSGEAVAIL, MITCRDSGEACTIVE, MITCRDMTDAVAIL, MITCRDMTDACTIVE, MITCRDBLKAVAIL, MITCRDBLKACTIVE, MITCRDCALAVAIL, MITCRDCALACTIVE, MSPCRD8AVAIL, MITCRDCMPAVAIL, MITCRDRLSAVAIL, MITCRDRLSACTIVE, MSPCRD9AVAIL, MITCRDAPPAVAIL, MITCRDRTJAVAIL, MITCRDRTJACTIVE, MITCRDEVTAVAIL, MITCRDEVTACTIVE, MITCRDSEQAVAIL, MITCRDSEQACTIVE, MITCRDSTEAVAIL, MITCRDSTEACTIVE, MSPCRD10AVAIL, MITCRDUTLAVAIL, MSPAPP2AVAIL, MITAPPMLCAVAIL, MITAPPLOIAVAIL));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -1267,49 +1259,48 @@ public class CrdWznmNav {
 		public static final int MITCRDLOC = 9;
 		public static final int MITCRDTAG = 10;
 		public static final int MITCRDCTP = 11;
-		public static final int MITCRDMTY = 12;
-		public static final int MITCRDMCH = 13;
-		public static final int MITCRDLIB = 14;
-		public static final int MITCRDPRJ = 15;
-		public static final int MITCRDVER = 16;
-		public static final int MITCRDCAP = 17;
-		public static final int MITCRDERR = 18;
-		public static final int MITCRDTBL = 19;
-		public static final int MITCRDTCO = 20;
-		public static final int MITCRDSBS = 21;
-		public static final int MITCRDREL = 22;
-		public static final int MITCRDVEC = 23;
-		public static final int MITCRDVIT = 24;
-		public static final int MITCRDCHK = 25;
-		public static final int MITCRDSTB = 26;
-		public static final int MITCRDIEX = 27;
-		public static final int MITCRDIME = 28;
-		public static final int MITCRDPST = 29;
-		public static final int MITCRDMDL = 30;
-		public static final int MITCRDCAR = 31;
-		public static final int MITCRDDLG = 32;
-		public static final int MITCRDPNL = 33;
-		public static final int MITCRDQRY = 34;
-		public static final int MITCRDQCO = 35;
-		public static final int MITCRDQMD = 36;
-		public static final int MITCRDCON = 37;
-		public static final int MITCRDOPK = 38;
-		public static final int MITCRDOPX = 39;
-		public static final int MITCRDJOB = 40;
-		public static final int MITCRDSGE = 41;
-		public static final int MITCRDMTD = 42;
-		public static final int MITCRDBLK = 43;
-		public static final int MITCRDCAL = 44;
-		public static final int MITCRDCMP = 45;
-		public static final int MITCRDRLS = 46;
-		public static final int MITCRDAPP = 47;
-		public static final int MITCRDRTJ = 48;
-		public static final int MITCRDEVT = 49;
-		public static final int MITCRDSEQ = 50;
-		public static final int MITCRDSTE = 51;
-		public static final int MITCRDUTL = 52;
-		public static final int MITAPPMLC = 53;
-		public static final int MITAPPLOI = 54;
+		public static final int MITCRDMCH = 12;
+		public static final int MITCRDLIB = 13;
+		public static final int MITCRDPRJ = 14;
+		public static final int MITCRDVER = 15;
+		public static final int MITCRDCAP = 16;
+		public static final int MITCRDERR = 17;
+		public static final int MITCRDTBL = 18;
+		public static final int MITCRDTCO = 19;
+		public static final int MITCRDSBS = 20;
+		public static final int MITCRDREL = 21;
+		public static final int MITCRDVEC = 22;
+		public static final int MITCRDVIT = 23;
+		public static final int MITCRDCHK = 24;
+		public static final int MITCRDSTB = 25;
+		public static final int MITCRDIEX = 26;
+		public static final int MITCRDIME = 27;
+		public static final int MITCRDPST = 28;
+		public static final int MITCRDMDL = 29;
+		public static final int MITCRDCAR = 30;
+		public static final int MITCRDDLG = 31;
+		public static final int MITCRDPNL = 32;
+		public static final int MITCRDQRY = 33;
+		public static final int MITCRDQCO = 34;
+		public static final int MITCRDQMD = 35;
+		public static final int MITCRDCON = 36;
+		public static final int MITCRDOPK = 37;
+		public static final int MITCRDOPX = 38;
+		public static final int MITCRDJOB = 39;
+		public static final int MITCRDSGE = 40;
+		public static final int MITCRDMTD = 41;
+		public static final int MITCRDBLK = 42;
+		public static final int MITCRDCAL = 43;
+		public static final int MITCRDCMP = 44;
+		public static final int MITCRDRLS = 45;
+		public static final int MITCRDAPP = 46;
+		public static final int MITCRDRTJ = 47;
+		public static final int MITCRDEVT = 48;
+		public static final int MITCRDSEQ = 49;
+		public static final int MITCRDSTE = 50;
+		public static final int MITCRDUTL = 51;
+		public static final int MITAPPMLC = 52;
+		public static final int MITAPPLOI = 53;
 
 		public Tag(
 					String MitAppAbt
@@ -1323,7 +1314,6 @@ public class CrdWznmNav {
 					, String MitCrdLoc
 					, String MitCrdTag
 					, String MitCrdCtp
-					, String MitCrdMty
 					, String MitCrdMch
 					, String MitCrdLib
 					, String MitCrdPrj
@@ -1378,7 +1368,6 @@ public class CrdWznmNav {
 			this.MitCrdLoc = MitCrdLoc;
 			this.MitCrdTag = MitCrdTag;
 			this.MitCrdCtp = MitCrdCtp;
-			this.MitCrdMty = MitCrdMty;
 			this.MitCrdMch = MitCrdMch;
 			this.MitCrdLib = MitCrdLib;
 			this.MitCrdPrj = MitCrdPrj;
@@ -1422,7 +1411,7 @@ public class CrdWznmNav {
 			this.MitAppMlc = MitAppMlc;
 			this.MitAppLoi = MitAppLoi;
 
-			mask = new HashSet<Integer>(Arrays.asList(MITAPPABT, MRLAPPHLP, MITSESSPS, MITSESTRM, MITCRDUSG, MITCRDUSR, MITCRDPRS, MITCRDFIL, MITCRDLOC, MITCRDTAG, MITCRDCTP, MITCRDMTY, MITCRDMCH, MITCRDLIB, MITCRDPRJ, MITCRDVER, MITCRDCAP, MITCRDERR, MITCRDTBL, MITCRDTCO, MITCRDSBS, MITCRDREL, MITCRDVEC, MITCRDVIT, MITCRDCHK, MITCRDSTB, MITCRDIEX, MITCRDIME, MITCRDPST, MITCRDMDL, MITCRDCAR, MITCRDDLG, MITCRDPNL, MITCRDQRY, MITCRDQCO, MITCRDQMD, MITCRDCON, MITCRDOPK, MITCRDOPX, MITCRDJOB, MITCRDSGE, MITCRDMTD, MITCRDBLK, MITCRDCAL, MITCRDCMP, MITCRDRLS, MITCRDAPP, MITCRDRTJ, MITCRDEVT, MITCRDSEQ, MITCRDSTE, MITCRDUTL, MITAPPMLC, MITAPPLOI));
+			mask = new HashSet<Integer>(Arrays.asList(MITAPPABT, MRLAPPHLP, MITSESSPS, MITSESTRM, MITCRDUSG, MITCRDUSR, MITCRDPRS, MITCRDFIL, MITCRDLOC, MITCRDTAG, MITCRDCTP, MITCRDMCH, MITCRDLIB, MITCRDPRJ, MITCRDVER, MITCRDCAP, MITCRDERR, MITCRDTBL, MITCRDTCO, MITCRDSBS, MITCRDREL, MITCRDVEC, MITCRDVIT, MITCRDCHK, MITCRDSTB, MITCRDIEX, MITCRDIME, MITCRDPST, MITCRDMDL, MITCRDCAR, MITCRDDLG, MITCRDPNL, MITCRDQRY, MITCRDQCO, MITCRDQMD, MITCRDCON, MITCRDOPK, MITCRDOPX, MITCRDJOB, MITCRDSGE, MITCRDMTD, MITCRDBLK, MITCRDCAL, MITCRDCMP, MITCRDRLS, MITCRDAPP, MITCRDRTJ, MITCRDEVT, MITCRDSEQ, MITCRDSTE, MITCRDUTL, MITAPPMLC, MITAPPLOI));
 		};
 
 		public String MitAppAbt;
@@ -1436,7 +1425,6 @@ public class CrdWznmNav {
 		public String MitCrdLoc;
 		public String MitCrdTag;
 		public String MitCrdCtp;
-		public String MitCrdMty;
 		public String MitCrdMch;
 		public String MitCrdLib;
 		public String MitCrdPrj;
@@ -1504,7 +1492,6 @@ public class CrdWznmNav {
 				MitCrdLoc = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MitCrdLoc", mask, MITCRDLOC);
 				MitCrdTag = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MitCrdTag", mask, MITCRDTAG);
 				MitCrdCtp = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MitCrdCtp", mask, MITCRDCTP);
-				MitCrdMty = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MitCrdMty", mask, MITCRDMTY);
 				MitCrdMch = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MitCrdMch", mask, MITCRDMCH);
 				MitCrdLib = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MitCrdLib", mask, MITCRDLIB);
 				MitCrdPrj = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "MitCrdPrj", mask, MITCRDPRJ);
@@ -1570,7 +1557,6 @@ public class CrdWznmNav {
 			if (MitCrdLoc.equals(comp.MitCrdLoc)) items.add(MITCRDLOC);
 			if (MitCrdTag.equals(comp.MitCrdTag)) items.add(MITCRDTAG);
 			if (MitCrdCtp.equals(comp.MitCrdCtp)) items.add(MITCRDCTP);
-			if (MitCrdMty.equals(comp.MitCrdMty)) items.add(MITCRDMTY);
 			if (MitCrdMch.equals(comp.MitCrdMch)) items.add(MITCRDMCH);
 			if (MitCrdLib.equals(comp.MitCrdLib)) items.add(MITCRDLIB);
 			if (MitCrdPrj.equals(comp.MitCrdPrj)) items.add(MITCRDPRJ);
@@ -1625,7 +1611,7 @@ public class CrdWznmNav {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(MITAPPABT, MRLAPPHLP, MITSESSPS, MITSESTRM, MITCRDUSG, MITCRDUSR, MITCRDPRS, MITCRDFIL, MITCRDLOC, MITCRDTAG, MITCRDCTP, MITCRDMTY, MITCRDMCH, MITCRDLIB, MITCRDPRJ, MITCRDVER, MITCRDCAP, MITCRDERR, MITCRDTBL, MITCRDTCO, MITCRDSBS, MITCRDREL, MITCRDVEC, MITCRDVIT, MITCRDCHK, MITCRDSTB, MITCRDIEX, MITCRDIME, MITCRDPST, MITCRDMDL, MITCRDCAR, MITCRDDLG, MITCRDPNL, MITCRDQRY, MITCRDQCO, MITCRDQMD, MITCRDCON, MITCRDOPK, MITCRDOPX, MITCRDJOB, MITCRDSGE, MITCRDMTD, MITCRDBLK, MITCRDCAL, MITCRDCMP, MITCRDRLS, MITCRDAPP, MITCRDRTJ, MITCRDEVT, MITCRDSEQ, MITCRDSTE, MITCRDUTL, MITAPPMLC, MITAPPLOI));
+			diffitems = new HashSet<Integer>(Arrays.asList(MITAPPABT, MRLAPPHLP, MITSESSPS, MITSESTRM, MITCRDUSG, MITCRDUSR, MITCRDPRS, MITCRDFIL, MITCRDLOC, MITCRDTAG, MITCRDCTP, MITCRDMCH, MITCRDLIB, MITCRDPRJ, MITCRDVER, MITCRDCAP, MITCRDERR, MITCRDTBL, MITCRDTCO, MITCRDSBS, MITCRDREL, MITCRDVEC, MITCRDVIT, MITCRDCHK, MITCRDSTB, MITCRDIEX, MITCRDIME, MITCRDPST, MITCRDMDL, MITCRDCAR, MITCRDDLG, MITCRDPNL, MITCRDQRY, MITCRDQCO, MITCRDQMD, MITCRDCON, MITCRDOPK, MITCRDOPX, MITCRDJOB, MITCRDSGE, MITCRDMTD, MITCRDBLK, MITCRDCAL, MITCRDCMP, MITCRDRLS, MITCRDAPP, MITCRDRTJ, MITCRDEVT, MITCRDSEQ, MITCRDSTE, MITCRDUTL, MITAPPMLC, MITAPPLOI));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -1706,8 +1692,8 @@ public class CrdWznmNav {
 			continf = new ContInf(0, "", "", "", "");
 			feedFSge = new Feed("FeedFSge");
 			statapp = new StatApp(0, 0, "", 0, false, false, false, false, false, false, false, false, false, false, false, false);
-			statshr = new StatShr("", "", "", "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-			tag = new Tag("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+			statshr = new StatShr("", "", "", "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+			tag = new Tag("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 		};
 
 		public ContInf continf;
@@ -1751,8 +1737,8 @@ public class CrdWznmNav {
 				continf = new ContInf(0, "", "", "", "");
 				feedFSge = new Feed("FeedFSge");
 				statapp = new StatApp(0, 0, "", 0, false, false, false, false, false, false, false, false, false, false, false, false);
-				statshr = new StatShr("", "", "", "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-				tag = new Tag("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
+				statshr = new StatShr("", "", "", "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, "", false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+				tag = new Tag("", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "");
 			};
 		};
 

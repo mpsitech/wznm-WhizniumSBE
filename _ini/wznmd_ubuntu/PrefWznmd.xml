@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PrefWznmd>
+	<StgWznmAppearance>
+		<Si sref="histlength">20</Si>
+		<Si sref="suspsess">true</Si>
+	</StgWznmAppearance>
+	<StgWznmAppsrv>
+		<Si sref="port">13100</Si>
+		<Si sref="https">false</Si>
+	</StgWznmAppsrv>
+	<StgWznmd>
+		<Si sref="jobprcn">4</Si>
+		<Si sref="opengsrvport">13120</Si>
+		<Si sref="appsrv">true</Si>
+	</StgWznmd>
+	<StgWznmDatabase>
+		<Si sref="srefIxDbsVDbstype">mar</Si>
+		<Si sref="dbspath">./DbsWznm.sql</Si>
+		<Si sref="dbsname">DbsWznm</Si>
+		<Si sref="username">default</Si>
+		<Si sref="password">asdf1234</Si>
+		<Si sref="ip">127.0.0.1</Si>
+		<Si sref="port">3306</Si>
+	</StgWznmDatabase>
+	<StgWznmPath>
+		<Si sref="acvpath">${WHIZROOT}/acv/wznm</Si>
+		<Si sref="keypath"></Si>
+		<Si sref="monpath">${WHIZROOT}/mon/wznm</Si>
+		<Si sref="tmppath">${WHIZROOT}/tmp/wznm</Si>
+		<Si sref="webpath">${WHIZROOT}/web/appwznm</Si>
+		<Si sref="helpurl">http://www.mpsitech.com/wznm</Si>
+	</StgWznmPath>
+	<StgWznmTenant>
+		<Si sref="orgname"></Si>
+		<Si sref="orgweb"></Si>
+	</StgWznmTenant>
+	<StgJobWznmLicense>
+		<Si sref="engip">license.mpsitech.cloud</Si>
+		<Si sref="engport">13110</Si>
+		<Si sref="username"></Si>
+		<Si sref="password"></Si>
+		<Si sref="licenseBase"></Si>
+		<Si sref="licenseUa"></Si>
+		<Si sref="licenseDds"></Si>
+		<Si sref="lastAttempt"></Si>
+		<Si sref="lastSuccess"></Si>
+		<Si sref="lastSync"></Si>
+	</StgJobWznmLicense>
+</PrefWznmd>

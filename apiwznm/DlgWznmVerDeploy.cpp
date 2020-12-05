@@ -1,10 +1,11 @@
 /**
 	* \file DlgWznmVerDeploy.cpp
 	* API code for job DlgWznmVerDeploy (implementation)
-	* \author Alexander Wirthmueller
-	* \date created: 27 Aug 2020
-	* \date modified: 27 Aug 2020
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 5 Dec 2020
 	*/
+// IP header --- ABOVE
 
 #include "DlgWznmVerDeploy.h"
 
@@ -23,6 +24,7 @@ uint DlgWznmVerDeploy::VecVDit::getIx(
 
 	if (s == "ifi") return IFI;
 	if (s == "imp") return IMP;
+	if (s == "ppr") return PPR;
 	if (s == "lfi") return LFI;
 
 	return(0);
@@ -33,6 +35,7 @@ string DlgWznmVerDeploy::VecVDit::getSref(
 		) {
 	if (ix == IFI) return("Ifi");
 	if (ix == IMP) return("Imp");
+	if (ix == PPR) return("Ppr");
 	if (ix == LFI) return("Lfi");
 
 	return("");
@@ -85,6 +88,30 @@ string DlgWznmVerDeploy::VecVDoImp::getSref(
 };
 
 /******************************************************************************
+ class DlgWznmVerDeploy::VecVDoPpr
+ ******************************************************************************/
+
+uint DlgWznmVerDeploy::VecVDoPpr::getIx(
+			const string& sref
+		) {
+	string s = StrMod::lc(sref);
+
+	if (s == "butrunclick") return BUTRUNCLICK;
+	if (s == "butstoclick") return BUTSTOCLICK;
+
+	return(0);
+};
+
+string DlgWznmVerDeploy::VecVDoPpr::getSref(
+			const uint ix
+		) {
+	if (ix == BUTRUNCLICK) return("ButRunClick");
+	if (ix == BUTSTOCLICK) return("ButStoClick");
+
+	return("");
+};
+
+/******************************************************************************
  class DlgWznmVerDeploy::VecVSge
  ******************************************************************************/
 
@@ -101,6 +128,8 @@ uint DlgWznmVerDeploy::VecVSge::getIx(
 	if (s == "impidle") return IMPIDLE;
 	if (s == "import") return IMPORT;
 	if (s == "alrwznmier") return ALRWZNMIER;
+	if (s == "impdone") return IMPDONE;
+	if (s == "postprc") return POSTPRC;
 	if (s == "done") return DONE;
 
 	return(0);
@@ -117,6 +146,8 @@ string DlgWznmVerDeploy::VecVSge::getSref(
 	if (ix == IMPIDLE) return("impidle");
 	if (ix == IMPORT) return("import");
 	if (ix == ALRWZNMIER) return("alrwznmier");
+	if (ix == IMPDONE) return("impdone");
+	if (ix == POSTPRC) return("postprc");
 	if (ix == DONE) return("done");
 
 	return("");
@@ -377,6 +408,67 @@ set<uint> DlgWznmVerDeploy::ContInfLfi::diff(
 	commitems = comm(comp);
 
 	diffitems = {DLD};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class DlgWznmVerDeploy::ContInfPpr
+ ******************************************************************************/
+
+DlgWznmVerDeploy::ContInfPpr::ContInfPpr(
+			const string& TxtPrg
+		) :
+			Block()
+		{
+	this->TxtPrg = TxtPrg;
+
+	mask = {TXTPRG};
+};
+
+bool DlgWznmVerDeploy::ContInfPpr::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "ContInfDlgWznmVerDeployPpr");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	string itemtag = "ContitemInfDlgWznmVerDeployPpr";
+
+	if (basefound) {
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "TxtPrg", TxtPrg)) add(TXTPRG);
+	};
+
+	return basefound;
+};
+
+set<uint> DlgWznmVerDeploy::ContInfPpr::comm(
+			const ContInfPpr* comp
+		) {
+	set<uint> items;
+
+	if (TxtPrg == comp->TxtPrg) insert(items, TXTPRG);
+
+	return(items);
+};
+
+set<uint> DlgWznmVerDeploy::ContInfPpr::diff(
+			const ContInfPpr* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {TXTPRG};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -696,6 +788,71 @@ set<uint> DlgWznmVerDeploy::StatShrLfi::diff(
 };
 
 /******************************************************************************
+ class DlgWznmVerDeploy::StatShrPpr
+ ******************************************************************************/
+
+DlgWznmVerDeploy::StatShrPpr::StatShrPpr(
+			const bool ButRunActive
+			, const bool ButStoActive
+		) :
+			Block()
+		{
+	this->ButRunActive = ButRunActive;
+	this->ButStoActive = ButStoActive;
+
+	mask = {BUTRUNACTIVE, BUTSTOACTIVE};
+};
+
+bool DlgWznmVerDeploy::StatShrPpr::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StatShrDlgWznmVerDeployPpr");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	string itemtag = "StatitemShrDlgWznmVerDeployPpr";
+
+	if (basefound) {
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRunActive", ButRunActive)) add(BUTRUNACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButStoActive", ButStoActive)) add(BUTSTOACTIVE);
+	};
+
+	return basefound;
+};
+
+set<uint> DlgWznmVerDeploy::StatShrPpr::comm(
+			const StatShrPpr* comp
+		) {
+	set<uint> items;
+
+	if (ButRunActive == comp->ButRunActive) insert(items, BUTRUNACTIVE);
+	if (ButStoActive == comp->ButStoActive) insert(items, BUTSTOACTIVE);
+
+	return(items);
+};
+
+set<uint> DlgWznmVerDeploy::StatShrPpr::diff(
+			const StatShrPpr* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {BUTRUNACTIVE, BUTSTOACTIVE};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
  class DlgWznmVerDeploy::Tag
  ******************************************************************************/
 
@@ -856,6 +1013,49 @@ bool DlgWznmVerDeploy::TagLfi::readXML(
 };
 
 /******************************************************************************
+ class DlgWznmVerDeploy::TagPpr
+ ******************************************************************************/
+
+DlgWznmVerDeploy::TagPpr::TagPpr(
+			const string& CptPrg
+			, const string& ButRun
+			, const string& ButSto
+		) :
+			Block()
+		{
+	this->CptPrg = CptPrg;
+	this->ButRun = ButRun;
+	this->ButSto = ButSto;
+
+	mask = {CPTPRG, BUTRUN, BUTSTO};
+};
+
+bool DlgWznmVerDeploy::TagPpr::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "TagDlgWznmVerDeployPpr");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	string itemtag = "TagitemDlgWznmVerDeployPpr";
+
+	if (basefound) {
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "CptPrg", CptPrg)) add(CPTPRG);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "ButRun", ButRun)) add(BUTRUN);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "ButSto", ButSto)) add(BUTSTO);
+	};
+
+	return basefound;
+};
+
+/******************************************************************************
  class DlgWznmVerDeploy::DpchAppData
  ******************************************************************************/
 
@@ -902,15 +1102,17 @@ DlgWznmVerDeploy::DpchAppDo::DpchAppDo(
 			const string& scrJref
 			, const uint ixVDo
 			, const uint ixVDoImp
+			, const uint ixVDoPpr
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMVERDEPLOYDO, scrJref)
 		{
-	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO, IXVDOIMP};
+	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO, IXVDOIMP, IXVDOPPR};
 	else this->mask = mask;
 
 	this->ixVDo = ixVDo;
 	this->ixVDoImp = ixVDoImp;
+	this->ixVDoPpr = ixVDoPpr;
 };
 
 string DlgWznmVerDeploy::DpchAppDo::getSrefsMask() {
@@ -920,6 +1122,7 @@ string DlgWznmVerDeploy::DpchAppDo::getSrefsMask() {
 	if (has(SCRJREF)) ss.push_back("scrJref");
 	if (has(IXVDO)) ss.push_back("ixVDo");
 	if (has(IXVDOIMP)) ss.push_back("ixVDoImp");
+	if (has(IXVDOPPR)) ss.push_back("ixVDoPpr");
 
 	StrMod::vectorToString(ss, srefs);
 
@@ -934,6 +1137,7 @@ void DlgWznmVerDeploy::DpchAppDo::writeXML(
 		if (has(SCRJREF)) writeString(wr, "scrJref", scrJref);
 		if (has(IXVDO)) writeString(wr, "srefIxVDo", VecVDo::getSref(ixVDo));
 		if (has(IXVDOIMP)) writeString(wr, "srefIxVDoImp", VecVDoImp::getSref(ixVDoImp));
+		if (has(IXVDOPPR)) writeString(wr, "srefIxVDoPpr", VecVDoPpr::getSref(ixVDoPpr));
 	xmlTextWriterEndElement(wr);
 };
 
@@ -957,6 +1161,7 @@ string DlgWznmVerDeploy::DpchEngData::getSrefsMask() {
 	if (has(CONTINF)) ss.push_back("continf");
 	if (has(CONTINFIMP)) ss.push_back("continfimp");
 	if (has(CONTINFLFI)) ss.push_back("continflfi");
+	if (has(CONTINFPPR)) ss.push_back("continfppr");
 	if (has(FEEDFDSE)) ss.push_back("feedFDse");
 	if (has(FEEDFSGE)) ss.push_back("feedFSge");
 	if (has(STATAPP)) ss.push_back("statapp");
@@ -964,10 +1169,12 @@ string DlgWznmVerDeploy::DpchEngData::getSrefsMask() {
 	if (has(STATSHRIFI)) ss.push_back("statshrifi");
 	if (has(STATSHRIMP)) ss.push_back("statshrimp");
 	if (has(STATSHRLFI)) ss.push_back("statshrlfi");
+	if (has(STATSHRPPR)) ss.push_back("statshrppr");
 	if (has(TAG)) ss.push_back("tag");
 	if (has(TAGIFI)) ss.push_back("tagifi");
 	if (has(TAGIMP)) ss.push_back("tagimp");
 	if (has(TAGLFI)) ss.push_back("taglfi");
+	if (has(TAGPPR)) ss.push_back("tagppr");
 
 	StrMod::vectorToString(ss, srefs);
 
@@ -994,6 +1201,7 @@ void DlgWznmVerDeploy::DpchEngData::readXML(
 		if (continf.readXML(docctx, basexpath, true)) add(CONTINF);
 		if (continfimp.readXML(docctx, basexpath, true)) add(CONTINFIMP);
 		if (continflfi.readXML(docctx, basexpath, true)) add(CONTINFLFI);
+		if (continfppr.readXML(docctx, basexpath, true)) add(CONTINFPPR);
 		if (feedFDse.readXML(docctx, basexpath, true)) add(FEEDFDSE);
 		if (feedFSge.readXML(docctx, basexpath, true)) add(FEEDFSGE);
 		if (statapp.readXML(docctx, basexpath, true)) add(STATAPP);
@@ -1001,15 +1209,18 @@ void DlgWznmVerDeploy::DpchEngData::readXML(
 		if (statshrifi.readXML(docctx, basexpath, true)) add(STATSHRIFI);
 		if (statshrimp.readXML(docctx, basexpath, true)) add(STATSHRIMP);
 		if (statshrlfi.readXML(docctx, basexpath, true)) add(STATSHRLFI);
+		if (statshrppr.readXML(docctx, basexpath, true)) add(STATSHRPPR);
 		if (tag.readXML(docctx, basexpath, true)) add(TAG);
 		if (tagifi.readXML(docctx, basexpath, true)) add(TAGIFI);
 		if (tagimp.readXML(docctx, basexpath, true)) add(TAGIMP);
 		if (taglfi.readXML(docctx, basexpath, true)) add(TAGLFI);
+		if (tagppr.readXML(docctx, basexpath, true)) add(TAGPPR);
 	} else {
 		contiac = ContIac();
 		continf = ContInf();
 		continfimp = ContInfImp();
 		continflfi = ContInfLfi();
+		continfppr = ContInfPpr();
 		feedFDse.clear();
 		feedFSge.clear();
 		statapp = StatApp();
@@ -1017,10 +1228,12 @@ void DlgWznmVerDeploy::DpchEngData::readXML(
 		statshrifi = StatShrIfi();
 		statshrimp = StatShrImp();
 		statshrlfi = StatShrLfi();
+		statshrppr = StatShrPpr();
 		tag = Tag();
 		tagifi = TagIfi();
 		tagimp = TagImp();
 		taglfi = TagLfi();
+		tagppr = TagPpr();
 	};
 };
 
