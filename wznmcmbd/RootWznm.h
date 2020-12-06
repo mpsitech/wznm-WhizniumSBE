@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "JobWznmLicense.h"
 #include "SessWznm.h"
+#include "JobWznmLicense.h"
 
 #define VecVRootWznmSge RootWznm::VecVSge
 
@@ -99,8 +99,8 @@ public:
 
 public:
 
-	JobWznmLicense* license;
 	std::list<SessWznm*> sesss;
+	JobWznmLicense* license;
 
 	// IP vars.spec --- INSERT
 
@@ -153,6 +153,3 @@ private:
 };
 
 #endif
-
-
-

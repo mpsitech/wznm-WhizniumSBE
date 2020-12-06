@@ -23,8 +23,8 @@ uint QryWznmCmpList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "ver") return VER;
-	if (s == "srf") return SRF;
 	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -33,8 +33,8 @@ string QryWznmCmpList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == VER) return("ver");
-	if (ix == SRF) return("srf");
 	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -267,4 +267,3 @@ set<uint> QryWznmCmpList::StgIac::diff(
 
 	return(diffitems);
 };
-

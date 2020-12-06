@@ -367,27 +367,13 @@ void QryWznmAppList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMAPPMOD) {
-		call->abort = handleCallWznmAppMod(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMAPPUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMAPPUPD_REFEQ) {
 		call->abort = handleCallWznmAppUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMAPPMOD) {
+		call->abort = handleCallWznmAppMod(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmAppList::handleCallWznmAppMod(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
-		ixWznmVQrystate = VecWznmVQrystate::MNR;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmAppList::handleCallWznmAppUpd_refEq(
@@ -404,6 +390,20 @@ bool QryWznmAppList::handleCallWznmAppUpd_refEq(
 	return retval;
 };
 
+bool QryWznmAppList::handleCallWznmAppMod(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
+		ixWznmVQrystate = VecWznmVQrystate::MNR;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
 bool QryWznmAppList::handleCallWznmStubChgFromSelf(
 			DbsWznm* dbswznm
 		) {
@@ -411,6 +411,3 @@ bool QryWznmAppList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-

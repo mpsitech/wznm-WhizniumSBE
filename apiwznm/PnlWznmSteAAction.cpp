@@ -641,4 +641,3 @@ void PnlWznmSteAAction::DpchEngData::readXML(
 		stgiacqry = QryWznmSteAAction::StgIac();
 	};
 };
-

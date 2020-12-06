@@ -323,6 +323,3 @@ bool PnlWznmDlgRef1NControl::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

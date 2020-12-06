@@ -1953,6 +1953,3 @@ string WznmWrapiJob::getVecclass(
 	return retval;
 };
 // IP cust --- IEND
-
-
-

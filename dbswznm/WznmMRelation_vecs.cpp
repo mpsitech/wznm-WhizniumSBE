@@ -270,4 +270,3 @@ void TblWznmMRelation::VecVSupSubrole::fillFeed(
 
 	for (unsigned int i = 1; i <= 20; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
-

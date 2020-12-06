@@ -290,6 +290,3 @@ void DlgWznmUsrMngkeypair::leaveSgeFound(
 		) {
 	// IP leaveSgeFound --- INSERT
 };
-
-
-

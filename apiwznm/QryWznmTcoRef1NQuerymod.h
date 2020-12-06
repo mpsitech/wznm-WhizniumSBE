@@ -98,4 +98,3 @@ namespace QryWznmTcoRef1NQuerymod {
 };
 
 #endif
-

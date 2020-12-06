@@ -579,4 +579,3 @@ namespace DlgWznmAppWrite {
 };
 
 #endif
-

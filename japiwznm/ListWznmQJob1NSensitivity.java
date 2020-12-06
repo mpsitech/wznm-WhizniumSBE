@@ -59,4 +59,3 @@ public class ListWznmQJob1NSensitivity {
 		return false;
 	};
 };
-

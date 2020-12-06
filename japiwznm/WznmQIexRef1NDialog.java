@@ -41,4 +41,3 @@ public class WznmQIexRef1NDialog {
 		return false;
 	};
 };
-

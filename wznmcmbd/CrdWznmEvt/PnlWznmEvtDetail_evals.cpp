@@ -115,6 +115,3 @@ bool PnlWznmEvtDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
-
-
-

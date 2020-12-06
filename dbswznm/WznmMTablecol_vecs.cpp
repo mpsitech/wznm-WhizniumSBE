@@ -396,4 +396,3 @@ string TblWznmMTablecol::VecWSubset::getTitle(
 
 	return("");
 };
-

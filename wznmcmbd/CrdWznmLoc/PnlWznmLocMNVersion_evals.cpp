@@ -87,6 +87,3 @@ bool PnlWznmLocMNVersion::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

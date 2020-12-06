@@ -565,8 +565,8 @@ private:
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 
 	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);
@@ -601,6 +601,3 @@ private:
 };
 
 #endif
-
-
-

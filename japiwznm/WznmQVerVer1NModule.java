@@ -41,4 +41,3 @@ public class WznmQVerVer1NModule {
 		return false;
 	};
 };
-

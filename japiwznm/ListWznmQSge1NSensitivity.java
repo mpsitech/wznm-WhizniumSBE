@@ -59,4 +59,3 @@ public class ListWznmQSge1NSensitivity {
 		return false;
 	};
 };
-

@@ -98,4 +98,3 @@ namespace QryWznmTblSrc1NFeed {
 };
 
 #endif
-

@@ -321,6 +321,3 @@ bool PnlWznmQryDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
-
-
-

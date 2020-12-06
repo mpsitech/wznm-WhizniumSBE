@@ -59,4 +59,3 @@ public class ListWznmQLibMNComponent {
 		return false;
 	};
 };
-

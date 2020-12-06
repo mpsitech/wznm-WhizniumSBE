@@ -410,6 +410,3 @@ bool PnlWznmBlkDetail::handleCallWznmBlk_retEq(
 	boolvalRet = (recBlk.refIxVTbl == ixInv); // IP handleCallWznmBlk_retEq --- LINE
 	return retval;
 };
-
-
-

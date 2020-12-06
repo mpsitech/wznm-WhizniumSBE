@@ -24,6 +24,3 @@ string SqkWznmCtpWrsrv::getSquawk(
 	// example: "write capability template-specific server code for capability 'Acv (acv)' / implement upload/download dialogs"
 	return(""); // IP getSquawk --- LINE
 };
-
-
-

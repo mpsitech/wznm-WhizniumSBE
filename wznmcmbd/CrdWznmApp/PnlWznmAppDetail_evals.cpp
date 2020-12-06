@@ -143,6 +143,3 @@ bool PnlWznmAppDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
-
-
-

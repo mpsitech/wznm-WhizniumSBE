@@ -30,20 +30,6 @@ bool DlgWznmVerCustjob::evalButDneActive(
 	return(args.back());
 };
 
-bool DlgWznmVerCustjob::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(done)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool DlgWznmVerCustjob::evalImpButRunActive(
 			DbsWznm* dbswznm
 		) {
@@ -77,6 +63,20 @@ bool DlgWznmVerCustjob::evalImpButStoActive(
 	return(args.back());
 };
 
+bool DlgWznmVerCustjob::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(done)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool DlgWznmVerCustjob::evalIfiUldActive(
 			DbsWznm* dbswznm
 		) {
@@ -90,6 +90,3 @@ bool DlgWznmVerCustjob::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-

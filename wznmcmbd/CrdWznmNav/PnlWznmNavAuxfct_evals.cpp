@@ -24,6 +24,3 @@ bool PnlWznmNavAuxfct::evalButUtlNewcrdAvail(
 
 	return(args.back());
 };
-
-
-

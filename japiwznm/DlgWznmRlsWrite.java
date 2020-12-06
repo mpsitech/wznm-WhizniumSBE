@@ -1728,4 +1728,3 @@ public class DlgWznmRlsWrite {
 	};
 
 };
-

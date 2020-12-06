@@ -600,4 +600,3 @@ void PnlWznmPstList::DpchEngData::readXML(
 		stgiacqry = QryWznmPstList::StgIac();
 	};
 };
-

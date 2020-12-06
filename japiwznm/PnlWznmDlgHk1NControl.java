@@ -699,4 +699,3 @@ public class PnlWznmDlgHk1NControl {
 	};
 
 };
-

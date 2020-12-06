@@ -629,4 +629,3 @@ void PnlWznmBlkAItem::DpchEngData::readXML(
 		stgiacqry = QryWznmBlkAItem::StgIac();
 	};
 };
-

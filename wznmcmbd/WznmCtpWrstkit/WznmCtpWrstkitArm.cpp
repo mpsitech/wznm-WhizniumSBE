@@ -852,6 +852,3 @@ void WznmCtpWrstkitArm::writeIexIex(
 	IexWznmIex::exportToFile(outfolder + "/IexWznmIex_" + StrMod::lc(Prjshort) + ".xml", true, true, imeimimpexpcplx);
 };
 // IP cust --- IEND
-
-
-

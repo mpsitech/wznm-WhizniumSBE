@@ -143,6 +143,3 @@ bool PnlWznmErrDetail::evalButVerViewActive(
 
 	return(args.back());
 };
-
-
-

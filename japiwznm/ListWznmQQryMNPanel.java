@@ -59,4 +59,3 @@ public class ListWznmQQryMNPanel {
 		return false;
 	};
 };
-

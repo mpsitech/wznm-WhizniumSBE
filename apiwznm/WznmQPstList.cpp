@@ -132,4 +132,3 @@ bool ListWznmQPstList::readXML(
 
 	return basefound;
 };
-

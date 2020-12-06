@@ -241,4 +241,3 @@ set<uint> QryWznmPrj1NVersion::StgIac::diff(
 
 	return(diffitems);
 };
-

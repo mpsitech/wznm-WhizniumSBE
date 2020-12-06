@@ -38,10 +38,10 @@ PnlWznmBlkRec::PnlWznmBlkRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlref1nrtblock = NULL;
-	pnl1nrtdpch = NULL;
-	pnlaitem = NULL;
 	pnldetail = NULL;
+	pnlaitem = NULL;
+	pnl1nrtdpch = NULL;
+	pnlref1nrtblock = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -308,6 +308,3 @@ bool PnlWznmBlkRec::handleCallWznmBlk_retEq(
 	boolvalRet = (recBlk.refIxVTbl == ixInv); // IP handleCallWznmBlk_retEq --- LINE
 	return retval;
 };
-
-
-

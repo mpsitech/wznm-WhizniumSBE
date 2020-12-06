@@ -513,4 +513,3 @@ void PnlWznmMdlRef1NPanel::DpchEngData::readXML(
 		stgiacqry = QryWznmMdlRef1NPanel::StgIac();
 	};
 };
-

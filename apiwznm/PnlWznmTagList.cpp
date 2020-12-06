@@ -573,4 +573,3 @@ void PnlWznmTagList::DpchEngData::readXML(
 		stgiacqry = QryWznmTagList::StgIac();
 	};
 };
-

@@ -41,4 +41,3 @@ public class WznmQStbMNSquawk {
 		return false;
 	};
 };
-

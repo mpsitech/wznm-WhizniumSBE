@@ -28,10 +28,10 @@ namespace QryWznmPstList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint ATY = 1;
-		static const Sbecore::uint REU = 2;
-		static const Sbecore::uint VER = 3;
-		static const Sbecore::uint RET = 4;
+		static const Sbecore::uint REU = 1;
+		static const Sbecore::uint ATY = 2;
+		static const Sbecore::uint RET = 3;
+		static const Sbecore::uint VER = 4;
 		static const Sbecore::uint SRF = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -116,4 +116,3 @@ namespace QryWznmPstList {
 };
 
 #endif
-

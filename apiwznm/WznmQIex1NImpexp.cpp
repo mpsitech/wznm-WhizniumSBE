@@ -111,4 +111,3 @@ bool ListWznmQIex1NImpexp::readXML(
 
 	return basefound;
 };
-

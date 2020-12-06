@@ -529,4 +529,3 @@ void PnlWznmQryMNDialog::DpchEngData::readXML(
 		stgiacqry = QryWznmQryMNDialog::StgIac();
 	};
 };
-

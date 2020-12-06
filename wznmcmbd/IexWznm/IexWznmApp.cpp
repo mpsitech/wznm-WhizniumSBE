@@ -2638,6 +2638,3 @@ uint IexWznmApp::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
-
-
-

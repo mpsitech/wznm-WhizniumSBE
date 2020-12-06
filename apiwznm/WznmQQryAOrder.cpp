@@ -114,4 +114,3 @@ bool ListWznmQQryAOrder::readXML(
 
 	return basefound;
 };
-

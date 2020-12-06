@@ -63,6 +63,3 @@ namespace WznmWrdbsTbl {
 };
 
 #endif
-
-
-

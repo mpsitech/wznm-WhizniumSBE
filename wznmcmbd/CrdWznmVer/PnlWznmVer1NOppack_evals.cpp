@@ -97,6 +97,3 @@ bool PnlWznmVer1NOppack::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

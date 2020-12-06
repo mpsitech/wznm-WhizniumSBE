@@ -48,6 +48,3 @@ namespace WznmWrapiJob {
 };
 
 #endif
-
-
-

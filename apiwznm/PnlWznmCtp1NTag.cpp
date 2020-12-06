@@ -513,4 +513,3 @@ void PnlWznmCtp1NTag::DpchEngData::readXML(
 		stgiacqry = QryWznmCtp1NTag::StgIac();
 	};
 };
-

@@ -789,4 +789,3 @@ ubigint PgTblWznmRMCapabilityUniversal::loadRefsByCpb(
 };
 
 #endif
-

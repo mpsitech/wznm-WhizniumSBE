@@ -482,6 +482,3 @@ void PnlWznmCtpDetail::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

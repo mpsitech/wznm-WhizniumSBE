@@ -20,8 +20,8 @@ uint QryWznmTagList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "cpb") return CPB;
 	if (s == "grp") return GRP;
+	if (s == "cpb") return CPB;
 	if (s == "srf") return SRF;
 
 	return(0);
@@ -30,8 +30,8 @@ uint QryWznmTagList::VecVOrd::getIx(
 string QryWznmTagList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == CPB) return("cpb");
 	if (ix == GRP) return("grp");
+	if (ix == CPB) return("cpb");
 	if (ix == SRF) return("srf");
 
 	return("");
@@ -219,6 +219,3 @@ set<uint> QryWznmTagList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

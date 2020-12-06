@@ -171,4 +171,3 @@ void PnlWznmSeqHeadbar::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

@@ -947,4 +947,3 @@ ubigint PgTblWznmQOpxAInvarg::loadRstByJref(
 	return loadRstByStmt("TblWznmQOpxAInvarg_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

@@ -1680,4 +1680,3 @@ public class DlgWznmAppWrite {
 	};
 
 };
-

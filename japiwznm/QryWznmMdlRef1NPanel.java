@@ -272,4 +272,3 @@ public class QryWznmMdlRef1NPanel {
 	};
 
 };
-

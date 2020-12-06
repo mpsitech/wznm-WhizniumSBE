@@ -80,6 +80,3 @@ bool PnlWznmSteAAction::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

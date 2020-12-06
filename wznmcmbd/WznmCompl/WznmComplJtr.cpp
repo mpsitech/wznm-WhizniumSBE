@@ -292,6 +292,3 @@ void WznmComplJtr::findGlobal_traverse(
 	};
 };
 // IP cust --- IEND
-
-
-

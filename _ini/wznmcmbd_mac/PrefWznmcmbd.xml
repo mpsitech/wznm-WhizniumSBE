@@ -28,7 +28,7 @@
 		<Si sref="monpath">${WHIZROOT}/mon/wznm</Si>
 		<Si sref="tmppath">${WHIZROOT}/tmp/wznm</Si>
 		<Si sref="webpath">${WHIZROOT}/web/appwznm</Si>
-		<Si sref="helpurl">http://www.mpsitech.com/wznm</Si>
+		<Si sref="helpurl">/wznm</Si>
 	</StgWznmPath>
 	<StgWznmTenant>
 		<Si sref="orgname"></Si>

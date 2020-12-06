@@ -41,4 +41,3 @@ public class WznmQCarHk1NControl {
 		return false;
 	};
 };
-

@@ -645,4 +645,3 @@ public class PnlWznmTco1NQuerycol {
 	};
 
 };
-

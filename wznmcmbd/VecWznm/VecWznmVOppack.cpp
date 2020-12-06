@@ -107,6 +107,3 @@ void VecWznmVOppack::fillFeed(
 
 	for (unsigned int i = 1; i <= 15; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i));
 };
-
-
-

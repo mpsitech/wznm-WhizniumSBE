@@ -37,8 +37,8 @@ public:
 		static const Sbecore::uint SUP = 3;
 		static const Sbecore::uint VER = 4;
 		static const Sbecore::uint TYP = 5;
-		static const Sbecore::uint TOT = 6;
-		static const Sbecore::uint TOS = 7;
+		static const Sbecore::uint TOS = 6;
+		static const Sbecore::uint TOT = 7;
 		static const Sbecore::uint FRS = 8;
 		static const Sbecore::uint FRT = 9;
 
@@ -151,13 +151,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmRelUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmRelMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmRelMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmRelUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

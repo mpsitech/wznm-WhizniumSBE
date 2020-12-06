@@ -584,4 +584,3 @@ void PnlWznmImeList::DpchEngData::readXML(
 		stgiacqry = QryWznmImeList::StgIac();
 	};
 };
-

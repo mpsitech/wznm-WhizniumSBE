@@ -167,6 +167,3 @@ bool PnlWznmDlgHk1NControl::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

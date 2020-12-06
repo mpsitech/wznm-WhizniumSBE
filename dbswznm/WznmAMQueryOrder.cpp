@@ -827,4 +827,3 @@ ubigint PgTblWznmAMQueryOrder::loadRstByQry(
 };
 
 #endif
-

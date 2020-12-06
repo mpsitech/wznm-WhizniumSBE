@@ -901,4 +901,3 @@ ubigint PgTblWznmJMVersion::loadRstByVer(
 };
 
 #endif
-

@@ -134,6 +134,3 @@ bool PnlWznmMtdDetail::evalChkExsActive(
 
 	return(args.back());
 };
-
-
-

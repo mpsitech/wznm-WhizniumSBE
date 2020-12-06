@@ -484,6 +484,3 @@ string WznmWrappJbase::getJDefault(
 	return("new " + jtype + "()");
 };
 // IP cust --- IEND
-
-
-

@@ -828,4 +828,3 @@ ubigint PgTblWznmMError::loadRstByVer(
 };
 
 #endif
-

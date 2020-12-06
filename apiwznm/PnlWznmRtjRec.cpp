@@ -104,18 +104,18 @@ set<uint> PnlWznmRtjRec::ContInf::diff(
 
 PnlWznmRtjRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdone1NRtdpch
 			, const bool initdone1NRtblock
+			, const bool initdone1NRtdpch
 			, const bool initdoneSup1NRtjob
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdone1NRtdpch = initdone1NRtdpch;
 	this->initdone1NRtblock = initdone1NRtblock;
+	this->initdone1NRtdpch = initdone1NRtdpch;
 	this->initdoneSup1NRtjob = initdoneSup1NRtjob;
 
-	mask = {INITDONEDETAIL, INITDONE1NRTDPCH, INITDONE1NRTBLOCK, INITDONESUP1NRTJOB};
+	mask = {INITDONEDETAIL, INITDONE1NRTBLOCK, INITDONE1NRTDPCH, INITDONESUP1NRTJOB};
 };
 
 bool PnlWznmRtjRec::StatApp::readXML(
@@ -136,8 +136,8 @@ bool PnlWznmRtjRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NRtdpch", initdone1NRtdpch)) add(INITDONE1NRTDPCH);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NRtblock", initdone1NRtblock)) add(INITDONE1NRTBLOCK);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NRtdpch", initdone1NRtdpch)) add(INITDONE1NRTDPCH);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSup1NRtjob", initdoneSup1NRtjob)) add(INITDONESUP1NRTJOB);
 	};
 
@@ -150,8 +150,8 @@ set<uint> PnlWznmRtjRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdone1NRtdpch == comp->initdone1NRtdpch) insert(items, INITDONE1NRTDPCH);
 	if (initdone1NRtblock == comp->initdone1NRtblock) insert(items, INITDONE1NRTBLOCK);
+	if (initdone1NRtdpch == comp->initdone1NRtdpch) insert(items, INITDONE1NRTDPCH);
 	if (initdoneSup1NRtjob == comp->initdoneSup1NRtjob) insert(items, INITDONESUP1NRTJOB);
 
 	return(items);
@@ -165,7 +165,7 @@ set<uint> PnlWznmRtjRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONE1NRTDPCH, INITDONE1NRTBLOCK, INITDONESUP1NRTJOB};
+	diffitems = {INITDONEDETAIL, INITDONE1NRTBLOCK, INITDONE1NRTDPCH, INITDONESUP1NRTJOB};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -178,8 +178,8 @@ set<uint> PnlWznmRtjRec::StatApp::diff(
 PnlWznmRtjRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJref1NRtdpch
 			, const string& scrJref1NRtblock
+			, const string& scrJref1NRtdpch
 			, const string& scrJrefSup1NRtjob
 			, const bool ButRegularizeActive
 		) :
@@ -187,12 +187,12 @@ PnlWznmRtjRec::StatShr::StatShr(
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJref1NRtdpch = scrJref1NRtdpch;
 	this->scrJref1NRtblock = scrJref1NRtblock;
+	this->scrJref1NRtdpch = scrJref1NRtdpch;
 	this->scrJrefSup1NRtjob = scrJrefSup1NRtjob;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRTDPCH, SCRJREF1NRTBLOCK, SCRJREFSUP1NRTJOB, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRTBLOCK, SCRJREF1NRTDPCH, SCRJREFSUP1NRTJOB, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmRtjRec::StatShr::readXML(
@@ -219,8 +219,8 @@ bool PnlWznmRtjRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NRtdpch", scrJref1NRtdpch)) add(SCRJREF1NRTDPCH);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NRtblock", scrJref1NRtblock)) add(SCRJREF1NRTBLOCK);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NRtdpch", scrJref1NRtdpch)) add(SCRJREF1NRTDPCH);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSup1NRtjob", scrJrefSup1NRtjob)) add(SCRJREFSUP1NRTJOB);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
@@ -235,8 +235,8 @@ set<uint> PnlWznmRtjRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJref1NRtdpch == comp->scrJref1NRtdpch) insert(items, SCRJREF1NRTDPCH);
 	if (scrJref1NRtblock == comp->scrJref1NRtblock) insert(items, SCRJREF1NRTBLOCK);
+	if (scrJref1NRtdpch == comp->scrJref1NRtdpch) insert(items, SCRJREF1NRTDPCH);
 	if (scrJrefSup1NRtjob == comp->scrJrefSup1NRtjob) insert(items, SCRJREFSUP1NRTJOB);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -251,7 +251,7 @@ set<uint> PnlWznmRtjRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRTDPCH, SCRJREF1NRTBLOCK, SCRJREFSUP1NRTJOB, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRTBLOCK, SCRJREF1NRTDPCH, SCRJREFSUP1NRTJOB, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -384,4 +384,3 @@ void PnlWznmRtjRec::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

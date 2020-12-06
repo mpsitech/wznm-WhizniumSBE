@@ -24,6 +24,3 @@ string SqkWznmCtpGenui::getSquawk(
 	// example: "generate capability template-specific user interface for capability 'DlgBrlyNavLoaini (dlgloaini)' / prettify file card and add upload/download dialogs"
 	return(""); // IP getSquawk --- LINE
 };
-
-
-

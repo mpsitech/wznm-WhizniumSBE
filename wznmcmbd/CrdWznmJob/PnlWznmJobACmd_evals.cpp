@@ -80,6 +80,3 @@ bool PnlWznmJobACmd::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

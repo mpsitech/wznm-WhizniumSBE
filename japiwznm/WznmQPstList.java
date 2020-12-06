@@ -69,4 +69,3 @@ public class WznmQPstList {
 		return false;
 	};
 };
-

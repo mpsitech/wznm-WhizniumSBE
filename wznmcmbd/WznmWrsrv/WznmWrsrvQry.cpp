@@ -2321,6 +2321,3 @@ void WznmWrsrvQry::showQry(
 	};
 };
 // IP cust --- IEND
-
-
-

@@ -38,11 +38,11 @@ PnlWznmAppRec::PnlWznmAppRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlref1nfile = NULL;
-	pnl1nrtjob = NULL;
-	pnlapp1nsequence = NULL;
-	pnl1nevent = NULL;
 	pnldetail = NULL;
+	pnl1nevent = NULL;
+	pnlapp1nsequence = NULL;
+	pnl1nrtjob = NULL;
+	pnlref1nfile = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -285,6 +285,3 @@ bool PnlWznmAppRec::handleCallWznmApp_verEq(
 	boolvalRet = (recApp.verRefWznmMVersion == refInv); // IP handleCallWznmApp_verEq --- LINE
 	return retval;
 };
-
-
-

@@ -98,4 +98,3 @@ namespace QryWznmAppRef1NFile {
 };
 
 #endif
-

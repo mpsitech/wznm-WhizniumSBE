@@ -272,4 +272,3 @@ public class QryWznmAppApp1NSequence {
 	};
 
 };
-

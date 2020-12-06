@@ -92,6 +92,3 @@ bool PnlWznmJobMNOp::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

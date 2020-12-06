@@ -246,4 +246,3 @@ namespace PnlWznmTblRef1NPanel {
 };
 
 #endif
-

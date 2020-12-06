@@ -97,6 +97,3 @@ bool PnlWznmOpxRef1NBlock::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -103,4 +103,3 @@ ubigint PgTblWznmCAMJobVar::getNewRef() {
 	return ref;
 };
 #endif
-

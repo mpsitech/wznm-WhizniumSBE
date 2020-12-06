@@ -98,4 +98,3 @@ namespace QryWznmVerVer1NApp {
 };
 
 #endif
-

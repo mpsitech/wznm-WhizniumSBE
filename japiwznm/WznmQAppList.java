@@ -65,4 +65,3 @@ public class WznmQAppList {
 		return false;
 	};
 };
-

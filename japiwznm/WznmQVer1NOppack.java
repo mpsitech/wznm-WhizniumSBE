@@ -41,4 +41,3 @@ public class WznmQVer1NOppack {
 		return false;
 	};
 };
-

@@ -185,6 +185,3 @@ set<uint> QryWznmJobMNOp::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

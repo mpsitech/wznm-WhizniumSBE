@@ -819,4 +819,3 @@ ubigint PgTblWznmRMComponentMLibrary::loadRefsByCmp(
 };
 
 #endif
-

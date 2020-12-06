@@ -305,4 +305,3 @@ namespace PnlWznmQryDetail {
 };
 
 #endif
-

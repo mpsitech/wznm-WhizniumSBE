@@ -133,9 +133,9 @@ function refreshB(chgcol) {
 			} else if (i == 3) {
 				doc.cols.push("TcoTyp"); doc.widths.push(TcoTypWidth); doc.fs.push("typ2"); doc.tos.push(0); wtot += TcoTypWidth;
 			} else if (i == 4) {
-				doc.cols.push("TcoQry"); doc.widths.push(TcoQryWidth); doc.fs.push("qry"); doc.tos.push(1); wtot += TcoQryWidth;
+				doc.cols.push("TcoQry"); doc.widths.push(TcoQryWidth); doc.fs.push("qry"); doc.tos.push(2); wtot += TcoQryWidth;
 			} else if (i == 5) {
-				doc.cols.push("TcoTco"); doc.widths.push(TcoTcoWidth); doc.fs.push("tco"); doc.tos.push(2); wtot += TcoTcoWidth;
+				doc.cols.push("TcoTco"); doc.widths.push(TcoTcoWidth); doc.fs.push("tco"); doc.tos.push(1); wtot += TcoTcoWidth;
 			} else {
 				ix--;
 			};
@@ -754,4 +754,3 @@ function handleDpchAppDataDoReply() {
 		};
 	};
 };
-

@@ -111,4 +111,3 @@ bool ListWznmQCtp1NTag::readXML(
 
 	return basefound;
 };
-

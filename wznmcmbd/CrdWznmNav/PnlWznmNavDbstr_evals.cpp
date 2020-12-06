@@ -458,6 +458,3 @@ bool PnlWznmNavDbstr::evalButIelViewActive(
 
 	return(args.back());
 };
-
-
-

@@ -38,6 +38,3 @@ bool CrdWznmMch::evalMitCrdWisActive(
 
 	return(args.back());
 };
-
-
-

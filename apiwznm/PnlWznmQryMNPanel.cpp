@@ -529,4 +529,3 @@ void PnlWznmQryMNPanel::DpchEngData::readXML(
 		stgiacqry = QryWznmQryMNPanel::StgIac();
 	};
 };
-

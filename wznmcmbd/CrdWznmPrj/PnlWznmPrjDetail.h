@@ -271,12 +271,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmPrjUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPrj_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmPrjUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

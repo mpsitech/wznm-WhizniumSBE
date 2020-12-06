@@ -891,4 +891,3 @@ bool PgTblWznmAMTablecolTitle::loadTitByTcoTypLoc(
 };
 
 #endif
-

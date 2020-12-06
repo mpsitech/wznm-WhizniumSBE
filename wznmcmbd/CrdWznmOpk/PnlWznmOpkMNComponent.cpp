@@ -330,6 +330,3 @@ bool PnlWznmOpkMNComponent::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

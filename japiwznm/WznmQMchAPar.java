@@ -49,4 +49,3 @@ public class WznmQMchAPar {
 		return false;
 	};
 };
-

@@ -279,6 +279,3 @@ bool QryWznmSbs1NStub::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-

@@ -167,6 +167,3 @@ bool PnlWznmPrj1NVersion::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

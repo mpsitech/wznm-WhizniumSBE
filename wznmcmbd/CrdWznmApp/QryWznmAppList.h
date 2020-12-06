@@ -146,13 +146,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmAppMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmAppUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmAppMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };
 
 #endif
-
-
-

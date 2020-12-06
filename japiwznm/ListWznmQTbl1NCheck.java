@@ -59,4 +59,3 @@ public class ListWznmQTbl1NCheck {
 		return false;
 	};
 };
-

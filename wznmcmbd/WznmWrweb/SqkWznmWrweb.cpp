@@ -56,6 +56,3 @@ string SqkWznmWrweb::getSquawkPnl(
 	// example: "write web UI JS/HTML code for panel 'PnlBrlyLocMap'"
 	return("write web UI JS/HTML code for panel '" + StubWznm::getStubPnlStd(dbswznm, dpchinv->refWznmMPanel) + "'"); // IP getSquawkPnl --- RLINE
 };
-
-
-

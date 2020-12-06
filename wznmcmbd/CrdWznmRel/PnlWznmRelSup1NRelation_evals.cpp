@@ -50,6 +50,3 @@ bool PnlWznmRelSup1NRelation::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

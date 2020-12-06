@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmChkRef1NCall.h"
 #include "PnlWznmChkDetail.h"
+#include "PnlWznmChkRef1NCall.h"
 
 #define VecVWznmChkRecDo PnlWznmChkRec::VecVDo
 
@@ -168,8 +168,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmChkRef1NCall* pnlref1ncall;
 	PnlWznmChkDetail* pnldetail;
+	PnlWznmChkRef1NCall* pnlref1ncall;
 
 	WznmMCheck recChk;
 
@@ -203,13 +203,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmChkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmChk_tcoEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmChk_calEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmChkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

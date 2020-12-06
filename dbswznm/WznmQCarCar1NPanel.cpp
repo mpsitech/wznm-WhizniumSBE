@@ -811,4 +811,3 @@ ubigint PgTblWznmQCarCar1NPanel::loadRstByJref(
 	return loadRstByStmt("TblWznmQCarCar1NPanel_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

@@ -92,6 +92,3 @@ bool PnlWznmLibMNOppack::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

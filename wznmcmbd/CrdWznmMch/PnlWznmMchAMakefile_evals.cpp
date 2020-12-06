@@ -80,6 +80,3 @@ bool PnlWznmMchAMakefile::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

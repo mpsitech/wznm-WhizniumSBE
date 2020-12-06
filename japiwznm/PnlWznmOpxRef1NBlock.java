@@ -669,4 +669,3 @@ public class PnlWznmOpxRef1NBlock {
 	};
 
 };
-

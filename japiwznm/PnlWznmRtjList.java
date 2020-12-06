@@ -753,4 +753,3 @@ public class PnlWznmRtjList {
 	};
 
 };
-

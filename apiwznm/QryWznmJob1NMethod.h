@@ -98,4 +98,3 @@ namespace QryWznmJob1NMethod {
 };
 
 #endif
-

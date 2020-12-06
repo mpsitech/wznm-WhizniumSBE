@@ -111,4 +111,3 @@ bool ListWznmQRelSup1NRelation::readXML(
 
 	return basefound;
 };
-

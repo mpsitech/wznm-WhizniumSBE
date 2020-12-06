@@ -287,4 +287,3 @@ void DlgWznmFilDownload::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

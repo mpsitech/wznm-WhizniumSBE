@@ -890,4 +890,3 @@ public class PnlWznmIelDetail {
 	};
 
 };
-

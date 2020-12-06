@@ -206,6 +206,3 @@ bool PnlWznmNavAppdev::evalButSteNewcrdActive(
 
 	return(args.back());
 };
-
-
-

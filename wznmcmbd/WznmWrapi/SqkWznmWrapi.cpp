@@ -48,6 +48,3 @@ string SqkWznmWrapi::getSquawkQtb(
 	// example: "write API code for query table 'TblBrlyQLocList'"
 	return("write C++ API code for query table '" + StubWznm::getStubTblStd(dbswznm, dpchinv->refWznmMTable) + "'"); // IP getSquawkQtb --- RLINE
 };
-
-
-

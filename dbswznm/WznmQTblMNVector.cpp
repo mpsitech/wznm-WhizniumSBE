@@ -835,4 +835,3 @@ ubigint PgTblWznmQTblMNVector::loadRstByJref(
 	return loadRstByStmt("TblWznmQTblMNVector_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

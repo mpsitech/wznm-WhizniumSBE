@@ -98,4 +98,3 @@ namespace QryWznmTco1NQuerycol {
 };
 
 #endif
-

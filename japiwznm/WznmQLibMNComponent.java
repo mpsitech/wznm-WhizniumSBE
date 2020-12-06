@@ -41,4 +41,3 @@ public class WznmQLibMNComponent {
 		return false;
 	};
 };
-

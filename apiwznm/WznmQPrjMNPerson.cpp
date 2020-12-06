@@ -123,4 +123,3 @@ bool ListWznmQPrjMNPerson::readXML(
 
 	return basefound;
 };
-

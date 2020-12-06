@@ -66,8 +66,8 @@ namespace PnlWznmOpkRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEARETVAL = 2;
-		static const Sbecore::uint INITDONEAINVARG = 3;
+		static const Sbecore::uint INITDONEAINVARG = 2;
+		static const Sbecore::uint INITDONEARETVAL = 3;
 		static const Sbecore::uint INITDONE1NOP = 4;
 		static const Sbecore::uint INITDONEREF1NBLOCK = 5;
 		static const Sbecore::uint INITDONEMNJOB = 6;
@@ -76,12 +76,12 @@ namespace PnlWznmOpkRec {
 		static const Sbecore::uint INITDONESQKMNSTUB = 9;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdone1NOp = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneMNLibrary = false, const bool initdoneMNComponent = false, const bool initdoneSqkMNStub = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdone1NOp = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneMNLibrary = false, const bool initdoneMNComponent = false, const bool initdoneSqkMNStub = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdoneARetval;
 		bool initdoneAInvarg;
+		bool initdoneARetval;
 		bool initdone1NOp;
 		bool initdoneRef1NBlock;
 		bool initdoneMNJob;
@@ -103,8 +103,8 @@ namespace PnlWznmOpkRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFARETVAL = 3;
-		static const Sbecore::uint SCRJREFAINVARG = 4;
+		static const Sbecore::uint SCRJREFAINVARG = 3;
+		static const Sbecore::uint SCRJREFARETVAL = 4;
 		static const Sbecore::uint SCRJREF1NOP = 5;
 		static const Sbecore::uint SCRJREFREF1NBLOCK = 6;
 		static const Sbecore::uint SCRJREFMNJOB = 7;
@@ -115,13 +115,13 @@ namespace PnlWznmOpkRec {
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 12;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefARetval = "", const std::string& scrJrefAInvarg = "", const std::string& scrJref1NOp = "", const std::string& scrJrefRef1NBlock = "", const std::string& scrJrefMNJob = "", const std::string& scrJrefMNLibrary = "", const std::string& scrJrefMNComponent = "", const std::string& scrJrefSqkMNStub = "", const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAInvarg = "", const std::string& scrJrefARetval = "", const std::string& scrJref1NOp = "", const std::string& scrJrefRef1NBlock = "", const std::string& scrJrefMNJob = "", const std::string& scrJrefMNLibrary = "", const std::string& scrJrefMNComponent = "", const std::string& scrJrefSqkMNStub = "", const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJrefARetval;
 		std::string scrJrefAInvarg;
+		std::string scrJrefARetval;
 		std::string scrJref1NOp;
 		std::string scrJrefRef1NBlock;
 		std::string scrJrefMNJob;
@@ -207,4 +207,3 @@ namespace PnlWznmOpkRec {
 };
 
 #endif
-

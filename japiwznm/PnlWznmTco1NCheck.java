@@ -669,4 +669,3 @@ public class PnlWznmTco1NCheck {
 	};
 
 };
-

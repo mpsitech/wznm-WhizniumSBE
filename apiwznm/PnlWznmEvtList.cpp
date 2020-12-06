@@ -568,4 +568,3 @@ void PnlWznmEvtList::DpchEngData::readXML(
 		stgiacqry = QryWznmEvtList::StgIac();
 	};
 };
-

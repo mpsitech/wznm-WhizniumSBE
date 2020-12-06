@@ -50,6 +50,3 @@ bool PnlWznmQrySup1NQuery::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

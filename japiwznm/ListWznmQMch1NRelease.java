@@ -59,4 +59,3 @@ public class ListWznmQMch1NRelease {
 		return false;
 	};
 };
-

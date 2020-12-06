@@ -157,6 +157,3 @@ bool PnlWznmVerVer1NApp::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

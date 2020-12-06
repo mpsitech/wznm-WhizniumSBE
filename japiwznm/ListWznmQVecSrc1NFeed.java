@@ -59,4 +59,3 @@ public class ListWznmQVecSrc1NFeed {
 		return false;
 	};
 };
-

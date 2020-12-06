@@ -111,4 +111,3 @@ bool ListWznmQApp1NEvent::readXML(
 
 	return basefound;
 };
-

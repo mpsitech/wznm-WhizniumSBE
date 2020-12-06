@@ -76,6 +76,3 @@ bool DlgWznmVerWrinimdl::evalWriButStoActive(
 
 	return(args.back());
 };
-
-
-

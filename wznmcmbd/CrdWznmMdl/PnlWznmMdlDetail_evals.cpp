@@ -157,6 +157,3 @@ bool PnlWznmMdlDetail::evalButVerViewActive(
 
 	return(args.back());
 };
-
-
-

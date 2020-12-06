@@ -45,4 +45,3 @@ public class WznmQJobACmd {
 		return false;
 	};
 };
-

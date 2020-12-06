@@ -266,7 +266,3 @@ uint WznmdOpengcli::CurlPostrecv(
 
 	return(size*blocksize);
 };
-
-
-
-

@@ -41,4 +41,3 @@ public class WznmQTco1NQuerycol {
 		return false;
 	};
 };
-

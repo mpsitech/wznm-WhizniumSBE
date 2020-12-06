@@ -499,6 +499,3 @@ void PnlWznmAppApp1NSequence::DpchEngData::writeXML(
 		if (has(STGIACQRY)) stgiacqry.writeXML(wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

@@ -90,6 +90,3 @@ bool DlgWznmVerCustjtr::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-

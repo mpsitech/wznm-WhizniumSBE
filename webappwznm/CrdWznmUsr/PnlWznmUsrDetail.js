@@ -414,4 +414,3 @@ function handleDpchAppDoDlgopenReply() {
 		};
 	};
 };
-

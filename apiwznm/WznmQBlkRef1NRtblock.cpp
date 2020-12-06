@@ -111,4 +111,3 @@ bool ListWznmQBlkRef1NRtblock::readXML(
 
 	return basefound;
 };
-

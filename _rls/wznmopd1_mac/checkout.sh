@@ -3,7 +3,7 @@
 # checkout script for Wznm operation daemon, release wznmopd1_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 5 Dec 2020
+# date created: 6 Dec 2020
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -115,4 +115,3 @@ cp Makefile_WznmCompl $BUILDROOT/wznmopd1/WznmCompl/Makefile
 
 cp $CMBDBUILDROOT/WznmCompl/WznmCompl*.h $BUILDROOT/wznmopd1/WznmCompl/
 cp $CMBDBUILDROOT/WznmCompl/WznmCompl*.cpp $BUILDROOT/wznmopd1/WznmCompl/
-

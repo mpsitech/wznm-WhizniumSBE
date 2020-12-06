@@ -625,6 +625,3 @@ bool CrdWznmVer::evalMitCrdFnmActive(
 
 	return(args.back());
 };
-
-
-

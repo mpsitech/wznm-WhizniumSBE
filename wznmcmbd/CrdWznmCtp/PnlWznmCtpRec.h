@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCtpTpl1NCapability.h"
 #include "PnlWznmCtp1NTag.h"
+#include "PnlWznmCtpTpl1NCapability.h"
 #include "PnlWznmCtpAPar.h"
 #include "PnlWznmCtpKKey.h"
 #include "PnlWznmCtpKParKey.h"
@@ -76,7 +76,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneKParKey = false, const bool initdoneKKey = false, const bool initdoneAPar = false, const bool initdone1NTag = false, const bool initdoneTpl1NCapability = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneKParKey = false, const bool initdoneKKey = false, const bool initdoneAPar = false, const bool initdoneTpl1NCapability = false, const bool initdone1NTag = false);
 	};
 
 	/**
@@ -90,12 +90,12 @@ public:
 		static const Sbecore::uint JREFKPARKEY = 3;
 		static const Sbecore::uint JREFKKEY = 4;
 		static const Sbecore::uint JREFAPAR = 5;
-		static const Sbecore::uint JREF1NTAG = 6;
-		static const Sbecore::uint JREFTPL1NCAPABILITY = 7;
+		static const Sbecore::uint JREFTPL1NCAPABILITY = 6;
+		static const Sbecore::uint JREF1NTAG = 7;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 8;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefKParKey = 0, const Sbecore::ubigint jrefKKey = 0, const Sbecore::ubigint jrefAPar = 0, const Sbecore::ubigint jref1NTag = 0, const Sbecore::ubigint jrefTpl1NCapability = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefKParKey = 0, const Sbecore::ubigint jrefKKey = 0, const Sbecore::ubigint jrefAPar = 0, const Sbecore::ubigint jrefTpl1NCapability = 0, const Sbecore::ubigint jref1NTag = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
@@ -103,8 +103,8 @@ public:
 		Sbecore::ubigint jrefKParKey;
 		Sbecore::ubigint jrefKKey;
 		Sbecore::ubigint jrefAPar;
-		Sbecore::ubigint jref1NTag;
 		Sbecore::ubigint jrefTpl1NCapability;
+		Sbecore::ubigint jref1NTag;
 		bool ButRegularizeActive;
 
 	public:
@@ -180,8 +180,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCtpTpl1NCapability* pnltpl1ncapability;
 	PnlWznmCtp1NTag* pnl1ntag;
+	PnlWznmCtpTpl1NCapability* pnltpl1ncapability;
 	PnlWznmCtpAPar* pnlapar;
 	PnlWznmCtpKKey* pnlkkey;
 	PnlWznmCtpKParKey* pnlkparkey;
@@ -220,14 +220,11 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmCpbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmCpb_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCpb_tplEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCpb_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmCpbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

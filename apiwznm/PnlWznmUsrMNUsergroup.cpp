@@ -537,4 +537,3 @@ void PnlWznmUsrMNUsergroup::DpchEngData::readXML(
 		stgiacqry = QryWznmUsrMNUsergroup::StgIac();
 	};
 };
-

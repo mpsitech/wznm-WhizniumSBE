@@ -230,6 +230,3 @@ bool PnlWznmStbDetail::evalTxfExaActive(
 
 	return(args.back());
 };
-
-
-

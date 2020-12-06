@@ -46,6 +46,3 @@ string SqkWznmPrctree::getSquawkValidate(
 	// example: "validate file tree"
 	return("validate file tree"); // IP getSquawkValidate --- RLINE
 };
-
-
-

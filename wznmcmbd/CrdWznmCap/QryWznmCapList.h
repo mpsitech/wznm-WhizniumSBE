@@ -32,8 +32,8 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint TPL = 1;
-		static const Sbecore::uint VER = 2;
+		static const Sbecore::uint VER = 1;
+		static const Sbecore::uint TPL = 2;
 		static const Sbecore::uint SRF = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -152,6 +152,3 @@ private:
 };
 
 #endif
-
-
-

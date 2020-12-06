@@ -42,6 +42,3 @@ DpchRetWznmCtpGenui* WznmCtpGenuiDlgimp::run(
 };
 
 // IP cust --- INSERT
-
-
-

@@ -97,6 +97,3 @@ bool PnlWznmMdlMdl1NCard::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -59,4 +59,3 @@ public class ListWznmQJobRef1NBlock {
 		return false;
 	};
 };
-

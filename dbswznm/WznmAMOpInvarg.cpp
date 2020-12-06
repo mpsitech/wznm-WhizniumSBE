@@ -1005,4 +1005,3 @@ ubigint PgTblWznmAMOpInvarg::loadRstByOpx(
 };
 
 #endif
-

@@ -80,6 +80,3 @@ bool PnlWznmTblATitle::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

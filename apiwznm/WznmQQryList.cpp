@@ -135,4 +135,3 @@ bool ListWznmQQryList::readXML(
 
 	return basefound;
 };
-

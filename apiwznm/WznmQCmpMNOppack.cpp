@@ -111,4 +111,3 @@ bool ListWznmQCmpMNOppack::readXML(
 
 	return basefound;
 };
-

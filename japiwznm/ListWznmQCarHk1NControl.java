@@ -59,4 +59,3 @@ public class ListWznmQCarHk1NControl {
 		return false;
 	};
 };
-

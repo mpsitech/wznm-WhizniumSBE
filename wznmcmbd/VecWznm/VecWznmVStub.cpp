@@ -64,8 +64,8 @@ uint VecWznmVStub::getIx(
 	if (s == "stubwznmrlsstd") return STUBWZNMRLSSTD;
 	if (s == "stubwznmrtbstd") return STUBWZNMRTBSTD;
 	if (s == "stubwznmrtdstd") return STUBWZNMRTDSTD;
-	if (s == "stubwznmrtjstd") return STUBWZNMRTJSTD;
-	if (s == "stubwznmseqstd") return STUBWZNMSEQSTD;
+	if (s == "stubwznmowner") return STUBWZNMOWNER;
+	if (s == "stubwznmusrstd") return STUBWZNMUSRSTD;
 	if (s == "stubwznmsesmenu") return STUBWZNMSESMENU;
 	if (s == "stubwznmsesstd") return STUBWZNMSESSTD;
 	if (s == "stubwznmsqkstd") return STUBWZNMSQKSTD;
@@ -77,16 +77,16 @@ uint VecWznmVStub::getIx(
 	if (s == "stubwznmtcosref") return STUBWZNMTCOSREF;
 	if (s == "stubwznmtcostd") return STUBWZNMTCOSTD;
 	if (s == "stubwznmtagstd") return STUBWZNMTAGSTD;
-	if (s == "stubwznmowner") return STUBWZNMOWNER;
-	if (s == "stubwznmusrstd") return STUBWZNMUSRSTD;
-	if (s == "stubwznmgroup") return STUBWZNMGROUP;
-	if (s == "stubwznmusgstd") return STUBWZNMUSGSTD;
-	if (s == "stubwznmvecstd") return STUBWZNMVECSTD;
-	if (s == "stubwznmvitsref") return STUBWZNMVITSREF;
-	if (s == "stubwznmvitstd") return STUBWZNMVITSTD;
 	if (s == "stubwznmverno") return STUBWZNMVERNO;
 	if (s == "stubwznmvershort") return STUBWZNMVERSHORT;
 	if (s == "stubwznmverstd") return STUBWZNMVERSTD;
+	if (s == "stubwznmvitsref") return STUBWZNMVITSREF;
+	if (s == "stubwznmvitstd") return STUBWZNMVITSTD;
+	if (s == "stubwznmvecstd") return STUBWZNMVECSTD;
+	if (s == "stubwznmgroup") return STUBWZNMGROUP;
+	if (s == "stubwznmusgstd") return STUBWZNMUSGSTD;
+	if (s == "stubwznmseqstd") return STUBWZNMSEQSTD;
+	if (s == "stubwznmrtjstd") return STUBWZNMRTJSTD;
 
 	return(0);
 };
@@ -136,8 +136,8 @@ string VecWznmVStub::getSref(
 	if (ix == STUBWZNMRLSSTD) return("StubWznmRlsStd");
 	if (ix == STUBWZNMRTBSTD) return("StubWznmRtbStd");
 	if (ix == STUBWZNMRTDSTD) return("StubWznmRtdStd");
-	if (ix == STUBWZNMRTJSTD) return("StubWznmRtjStd");
-	if (ix == STUBWZNMSEQSTD) return("StubWznmSeqStd");
+	if (ix == STUBWZNMOWNER) return("StubWznmOwner");
+	if (ix == STUBWZNMUSRSTD) return("StubWznmUsrStd");
 	if (ix == STUBWZNMSESMENU) return("StubWznmSesMenu");
 	if (ix == STUBWZNMSESSTD) return("StubWznmSesStd");
 	if (ix == STUBWZNMSQKSTD) return("StubWznmSqkStd");
@@ -149,19 +149,16 @@ string VecWznmVStub::getSref(
 	if (ix == STUBWZNMTCOSREF) return("StubWznmTcoSref");
 	if (ix == STUBWZNMTCOSTD) return("StubWznmTcoStd");
 	if (ix == STUBWZNMTAGSTD) return("StubWznmTagStd");
-	if (ix == STUBWZNMOWNER) return("StubWznmOwner");
-	if (ix == STUBWZNMUSRSTD) return("StubWznmUsrStd");
-	if (ix == STUBWZNMGROUP) return("StubWznmGroup");
-	if (ix == STUBWZNMUSGSTD) return("StubWznmUsgStd");
-	if (ix == STUBWZNMVECSTD) return("StubWznmVecStd");
-	if (ix == STUBWZNMVITSREF) return("StubWznmVitSref");
-	if (ix == STUBWZNMVITSTD) return("StubWznmVitStd");
 	if (ix == STUBWZNMVERNO) return("StubWznmVerNo");
 	if (ix == STUBWZNMVERSHORT) return("StubWznmVerShort");
 	if (ix == STUBWZNMVERSTD) return("StubWznmVerStd");
+	if (ix == STUBWZNMVITSREF) return("StubWznmVitSref");
+	if (ix == STUBWZNMVITSTD) return("StubWznmVitStd");
+	if (ix == STUBWZNMVECSTD) return("StubWznmVecStd");
+	if (ix == STUBWZNMGROUP) return("StubWznmGroup");
+	if (ix == STUBWZNMUSGSTD) return("StubWznmUsgStd");
+	if (ix == STUBWZNMSEQSTD) return("StubWznmSeqStd");
+	if (ix == STUBWZNMRTJSTD) return("StubWznmRtjStd");
 
 	return("");
 };
-
-
-

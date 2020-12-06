@@ -949,4 +949,3 @@ bool PgTblWznmMVectoritem::loadSrfByRef(
 };
 
 #endif
-

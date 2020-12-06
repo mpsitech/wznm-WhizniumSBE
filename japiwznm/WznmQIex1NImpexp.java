@@ -41,4 +41,3 @@ public class WznmQIex1NImpexp {
 		return false;
 	};
 };
-

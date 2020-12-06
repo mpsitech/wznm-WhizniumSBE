@@ -811,4 +811,3 @@ ubigint PgTblWznmQVerMNLocale::loadRstByJref(
 	return loadRstByStmt("TblWznmQVerMNLocale_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

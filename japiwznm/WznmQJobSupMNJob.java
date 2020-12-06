@@ -57,4 +57,3 @@ public class WznmQJobSupMNJob {
 		return false;
 	};
 };
-

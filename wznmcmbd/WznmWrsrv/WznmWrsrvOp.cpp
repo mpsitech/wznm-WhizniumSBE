@@ -265,6 +265,3 @@ void WznmWrsrvOp::writeOpCpp(
 	outfile << "// IP run --- IEND" << endl;
 };
 // IP cust --- IEND
-
-
-

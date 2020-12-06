@@ -61,4 +61,3 @@ public class WznmQCarList {
 		return false;
 	};
 };
-

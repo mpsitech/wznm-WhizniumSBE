@@ -1982,6 +1982,3 @@ uint IexWznmJob::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
-
-
-

@@ -283,4 +283,3 @@ namespace PnlWznmVecList {
 };
 
 #endif
-

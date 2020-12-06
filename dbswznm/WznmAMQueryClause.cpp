@@ -919,4 +919,3 @@ ubigint PgTblWznmAMQueryClause::loadRstByQry(
 };
 
 #endif
-

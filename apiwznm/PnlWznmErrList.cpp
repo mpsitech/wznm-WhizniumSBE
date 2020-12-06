@@ -576,4 +576,3 @@ void PnlWznmErrList::DpchEngData::readXML(
 		stgiacqry = QryWznmErrList::StgIac();
 	};
 };
-

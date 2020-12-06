@@ -2504,6 +2504,3 @@ string VecWznmVDpch::getSref(
 
 	return("");
 };
-
-
-

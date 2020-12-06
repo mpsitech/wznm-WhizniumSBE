@@ -111,4 +111,3 @@ bool ListWznmQCarCar1NPanel::readXML(
 
 	return basefound;
 };
-

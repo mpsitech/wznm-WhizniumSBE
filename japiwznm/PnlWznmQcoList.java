@@ -766,4 +766,3 @@ public class PnlWznmQcoList {
 	};
 
 };
-

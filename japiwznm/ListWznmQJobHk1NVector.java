@@ -59,4 +59,3 @@ public class ListWznmQJobHk1NVector {
 		return false;
 	};
 };
-

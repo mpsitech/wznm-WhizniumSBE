@@ -65,4 +65,3 @@ public class WznmQQryAClause {
 		return false;
 	};
 };
-

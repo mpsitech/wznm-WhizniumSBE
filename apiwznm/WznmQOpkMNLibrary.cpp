@@ -111,4 +111,3 @@ bool ListWznmQOpkMNLibrary::readXML(
 
 	return basefound;
 };
-

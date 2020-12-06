@@ -117,4 +117,3 @@ bool ListWznmQCapAPar::readXML(
 
 	return basefound;
 };
-

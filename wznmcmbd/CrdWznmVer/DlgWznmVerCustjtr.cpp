@@ -125,8 +125,8 @@ void DlgWznmVerCustjtr::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrLfi oldStatshrlfi(statshrlfi);
 	ContInfLfi oldContinflfi(continflfi);
+	StatShrLfi oldStatshrlfi(statshrlfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -136,8 +136,8 @@ void DlgWznmVerCustjtr::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
+	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 };
 
 void DlgWznmVerCustjtr::refresh(
@@ -229,8 +229,8 @@ void DlgWznmVerCustjtr::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 	};
 };
@@ -321,14 +321,14 @@ string DlgWznmVerCustjtr::handleDownloadInSgeDone(
 	return(""); // IP handleDownloadInSgeDone --- LINE
 };
 
-void DlgWznmVerCustjtr::handleTimerInSgeImpidle(
+void DlgWznmVerCustjtr::handleTimerInSgePrsidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmVerCustjtr::handleTimerInSgePrsidle(
+void DlgWznmVerCustjtr::handleTimerInSgeImpidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
@@ -669,6 +669,3 @@ void DlgWznmVerCustjtr::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
-
-

@@ -32,7 +32,3 @@ struct WznmdOpengcli_curlarg {
 };
 
 #endif
-
-
-
-

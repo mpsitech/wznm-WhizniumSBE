@@ -545,4 +545,3 @@ void PnlWznmLibAMakefile::DpchEngData::readXML(
 		stgiacqry = QryWznmLibAMakefile::StgIac();
 	};
 };
-

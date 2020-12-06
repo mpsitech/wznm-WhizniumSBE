@@ -49,4 +49,3 @@ public class WznmQMchAMakefile {
 		return false;
 	};
 };
-

@@ -1324,4 +1324,3 @@ void DlgWznmAppWrite::DpchEngData::readXML(
 		tagwrc = TagWrc();
 	};
 };
-

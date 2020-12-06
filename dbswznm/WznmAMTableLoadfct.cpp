@@ -901,4 +901,3 @@ ubigint PgTblWznmAMTableLoadfct::loadRstByTbl(
 };
 
 #endif
-

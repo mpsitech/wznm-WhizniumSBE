@@ -272,4 +272,3 @@ public class QryWznmRtj1NRtblock {
 	};
 
 };
-

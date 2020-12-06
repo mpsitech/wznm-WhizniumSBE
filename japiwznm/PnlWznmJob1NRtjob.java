@@ -645,4 +645,3 @@ public class PnlWznmJob1NRtjob {
 	};
 
 };
-

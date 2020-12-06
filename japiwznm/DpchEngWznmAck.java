@@ -15,4 +15,3 @@ public class DpchEngWznmAck extends DpchEngWznm {
 		super(VecWznmVDpch.DPCHENGWZNMACK);
 	};
 };
-

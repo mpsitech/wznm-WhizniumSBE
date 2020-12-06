@@ -185,6 +185,3 @@ set<uint> QryWznmCal1NSensitivity::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

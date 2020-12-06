@@ -852,6 +852,3 @@ void DlgWznmFilNew::DpchEngData::writeXML(
 		if (has(TAGFIL)) TagFil::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

@@ -441,4 +441,3 @@ function handleDpchAppDoDlgopenReply() {
 		};
 	};
 };
-

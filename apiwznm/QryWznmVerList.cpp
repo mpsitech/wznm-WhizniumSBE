@@ -25,8 +25,8 @@ uint QryWznmVerList::VecVOrd::getIx(
 	if (s == "ste") return STE;
 	if (s == "loc") return LOC;
 	if (s == "bvr") return BVR;
-	if (s == "own") return OWN;
 	if (s == "prj") return PRJ;
+	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
 
 	return(0);
@@ -38,8 +38,8 @@ string QryWznmVerList::VecVOrd::getSref(
 	if (ix == STE) return("ste");
 	if (ix == LOC) return("loc");
 	if (ix == BVR) return("bvr");
-	if (ix == OWN) return("own");
 	if (ix == PRJ) return("prj");
+	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
 
 	return("");
@@ -273,4 +273,3 @@ set<uint> QryWznmVerList::StgIac::diff(
 
 	return(diffitems);
 };
-

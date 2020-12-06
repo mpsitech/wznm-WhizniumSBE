@@ -92,6 +92,3 @@ bool PnlWznmQryMNDialog::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

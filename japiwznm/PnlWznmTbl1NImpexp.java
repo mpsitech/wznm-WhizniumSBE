@@ -645,4 +645,3 @@ public class PnlWznmTbl1NImpexp {
 	};
 
 };
-

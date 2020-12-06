@@ -246,4 +246,3 @@ namespace PnlWznmSbs1NTablecol {
 };
 
 #endif
-

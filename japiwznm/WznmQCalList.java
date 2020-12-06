@@ -81,4 +81,3 @@ public class WznmQCalList {
 		return false;
 	};
 };
-

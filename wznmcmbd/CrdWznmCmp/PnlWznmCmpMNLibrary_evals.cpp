@@ -87,6 +87,3 @@ bool PnlWznmCmpMNLibrary::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

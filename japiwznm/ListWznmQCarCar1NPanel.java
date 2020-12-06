@@ -59,4 +59,3 @@ public class ListWznmQCarCar1NPanel {
 		return false;
 	};
 };
-

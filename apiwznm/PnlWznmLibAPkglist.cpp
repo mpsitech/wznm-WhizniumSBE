@@ -537,4 +537,3 @@ void PnlWznmLibAPkglist::DpchEngData::readXML(
 		stgiacqry = QryWznmLibAPkglist::StgIac();
 	};
 };
-

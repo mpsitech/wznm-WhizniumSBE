@@ -2,7 +2,7 @@
 # make file for CrdWznmStb card job handler, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 5 Dec 2020
+# date created: 6 Dec 2020
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmStb.o PnlWznmStbList.o QryWznmStbList.o PnlWznmStbHeadbar.o PnlWznmStbRec.o PnlWznmStbMNCall.o QryWznmStbMNCall.o PnlWznmStbMNSquawk.o QryWznmStbMNSquawk.o PnlWznmStbSubMNStub.o QryWznmStbSubMNStub.o PnlWznmStbSupMNStub.o QryWznmStbSupMNStub.o PnlWznmStbDetail.o
+OBJS = CrdWznmStb.o PnlWznmStbRec.o PnlWznmStbDetail.o PnlWznmStbSupMNStub.o QryWznmStbSupMNStub.o PnlWznmStbSubMNStub.o QryWznmStbSubMNStub.o PnlWznmStbMNSquawk.o QryWznmStbMNSquawk.o PnlWznmStbMNCall.o QryWznmStbMNCall.o PnlWznmStbHeadbar.o PnlWznmStbList.o QryWznmStbList.o
 
 LIB = libcrdwznmstb
 
@@ -36,4 +36,3 @@ install:
 
 clean:
 	rm -f *.o
-

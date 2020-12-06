@@ -845,4 +845,3 @@ public class PnlWznmSgeDetail {
 	};
 
 };
-

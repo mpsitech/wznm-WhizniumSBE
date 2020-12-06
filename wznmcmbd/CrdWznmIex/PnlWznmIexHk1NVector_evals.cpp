@@ -50,6 +50,3 @@ bool PnlWznmIexHk1NVector::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

@@ -527,4 +527,3 @@ void PnlWznmVecMNTable::DpchEngData::readXML(
 		stgiacqry = QryWznmVecMNTable::StgIac();
 	};
 };
-

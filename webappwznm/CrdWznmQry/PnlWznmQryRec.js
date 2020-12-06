@@ -459,4 +459,3 @@ function handleDpchAppDataDoReply() {
 		};
 	};
 };
-

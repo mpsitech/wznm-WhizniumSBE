@@ -49,4 +49,3 @@ public class WznmQMtdList {
 		return false;
 	};
 };
-

@@ -98,4 +98,3 @@ namespace QryWznmCtp1NTag {
 };
 
 #endif
-

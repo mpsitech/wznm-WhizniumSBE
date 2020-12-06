@@ -185,6 +185,3 @@ set<uint> QryWznmImeIme1NImpexpcol::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

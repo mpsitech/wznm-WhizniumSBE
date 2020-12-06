@@ -22,8 +22,8 @@ uint QryWznmOpxList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "opk") return OPK;
 	if (s == "srf") return SRF;
+	if (s == "opk") return OPK;
 
 	return(0);
 };
@@ -31,8 +31,8 @@ uint QryWznmOpxList::VecVOrd::getIx(
 string QryWznmOpxList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == OPK) return("opk");
 	if (ix == SRF) return("srf");
+	if (ix == OPK) return("opk");
 
 	return("");
 };
@@ -265,4 +265,3 @@ set<uint> QryWznmOpxList::StgIac::diff(
 
 	return(diffitems);
 };
-

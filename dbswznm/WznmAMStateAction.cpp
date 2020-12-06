@@ -1081,4 +1081,3 @@ ubigint PgTblWznmAMStateAction::loadRstBySte(
 };
 
 #endif
-

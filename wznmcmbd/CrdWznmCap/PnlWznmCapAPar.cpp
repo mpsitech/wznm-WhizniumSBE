@@ -351,6 +351,3 @@ bool PnlWznmCapAPar::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

@@ -403,6 +403,3 @@ bool PnlWznmEvtList::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

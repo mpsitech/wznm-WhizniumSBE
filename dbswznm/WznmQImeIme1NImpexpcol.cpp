@@ -811,4 +811,3 @@ ubigint PgTblWznmQImeIme1NImpexpcol::loadRstByJref(
 	return loadRstByStmt("TblWznmQImeIme1NImpexpcol_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

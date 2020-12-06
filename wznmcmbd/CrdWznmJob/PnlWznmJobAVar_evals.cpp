@@ -150,6 +150,3 @@ bool PnlWznmJobAVar::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

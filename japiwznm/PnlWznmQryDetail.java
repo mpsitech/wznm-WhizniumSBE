@@ -839,4 +839,3 @@ public class PnlWznmQryDetail {
 	};
 
 };
-

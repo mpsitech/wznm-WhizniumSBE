@@ -66,6 +66,3 @@ bool DlgWznmVerFinmod::evalButDneActive(
 
 	return(args.back());
 };
-
-
-

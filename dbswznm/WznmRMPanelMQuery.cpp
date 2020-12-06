@@ -784,4 +784,3 @@ ubigint PgTblWznmRMPanelMQuery::loadQrysByPnl(
 };
 
 #endif
-

@@ -33,8 +33,8 @@ namespace QryWznmRelList {
 		static const Sbecore::uint SUP = 3;
 		static const Sbecore::uint VER = 4;
 		static const Sbecore::uint TYP = 5;
-		static const Sbecore::uint TOT = 6;
-		static const Sbecore::uint TOS = 7;
+		static const Sbecore::uint TOS = 6;
+		static const Sbecore::uint TOT = 7;
 		static const Sbecore::uint FRS = 8;
 		static const Sbecore::uint FRT = 9;
 
@@ -120,4 +120,3 @@ namespace QryWznmRelList {
 };
 
 #endif
-

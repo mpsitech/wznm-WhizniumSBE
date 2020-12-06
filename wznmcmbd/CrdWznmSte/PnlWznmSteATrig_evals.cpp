@@ -80,6 +80,3 @@ bool PnlWznmSteATrig::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -32,6 +32,3 @@ string SqkWznmPrcfile::getSquawkPlhrpl(
 	// example: "replace placeholders by text into file 'test/abcd/test.txt'"
 	return("replace placeholders by text into file '" + dpchinv->outfile + "'"); // IP getSquawkPlhrpl --- RLINE
 };
-
-
-

@@ -50,6 +50,3 @@ bool PnlWznmCtpTpl1NCapability::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

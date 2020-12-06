@@ -98,4 +98,3 @@ namespace QryWznmSge1NSensitivity {
 };
 
 #endif
-

@@ -20,6 +20,3 @@ namespace SqkWznmCtpWrweb {
 };
 
 #endif
-
-
-

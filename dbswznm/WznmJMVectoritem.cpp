@@ -883,4 +883,3 @@ ubigint PgTblWznmJMVectoritem::loadRstByVit(
 };
 
 #endif
-

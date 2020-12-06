@@ -720,4 +720,3 @@ public class PnlWznmRlsDetail {
 	};
 
 };
-

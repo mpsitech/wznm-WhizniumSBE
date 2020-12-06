@@ -805,4 +805,3 @@ ubigint PgTblWznmTMQuerymodMQuery::loadRstByR(
 };
 
 #endif
-

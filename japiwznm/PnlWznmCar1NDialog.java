@@ -669,4 +669,3 @@ public class PnlWznmCar1NDialog {
 	};
 
 };
-

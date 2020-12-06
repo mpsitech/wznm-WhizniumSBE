@@ -277,9 +277,15 @@ void PnlWznmJobDetail::handleDpchAppDoButReuViewClick(
 	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
 
 	if (statshr.ButReuViewAvail && statshr.ButReuViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::DLG) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-			sref = "CrdWznmDlg";
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::CAR) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+			sref = "CrdWznmCar";
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::DLG) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmDlg";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
+			};
 		};
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::PNL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
@@ -299,12 +305,6 @@ void PnlWznmJobDetail::handleDpchAppDoButReuViewClick(
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
 			};
 		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref)) if (recJob.refIxVTbl == VecWznmVMJobRefTbl::CAR) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmCar";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recJob.refUref, jrefNew);
-			};
-		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
 		else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, sref);
@@ -315,9 +315,7 @@ void PnlWznmJobDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMJOBUPD_REFEQ) {
-		call->abort = handleCallWznmJobUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_VEREQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_VEREQ) {
 		call->abort = handleCallWznmJob_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_TYPEQ) {
 		call->abort = handleCallWznmJob_typEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
@@ -325,16 +323,9 @@ void PnlWznmJobDetail::handleCall(
 		call->abort = handleCallWznmJob_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_RETEQ) {
 		call->abort = handleCallWznmJob_retEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOBUPD_REFEQ) {
+		call->abort = handleCallWznmJobUpd_refEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmJobDetail::handleCallWznmJobUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmJobUpd_refEq --- INSERT
-	return retval;
 };
 
 bool PnlWznmJobDetail::handleCallWznmJob_verEq(
@@ -381,5 +372,11 @@ bool PnlWznmJobDetail::handleCallWznmJob_retEq(
 	return retval;
 };
 
-
-
+bool PnlWznmJobDetail::handleCallWznmJobUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmJobUpd_refEq --- INSERT
+	return retval;
+};

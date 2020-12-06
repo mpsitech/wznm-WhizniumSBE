@@ -247,4 +247,3 @@ void TblWznmMVersion::VecWOption::fillFeed(
 
 	for (unsigned int i = 1; i <= UASRV; i *= 2) feed.appendIxSrefTitles(i, getSrefs(i), getTitle(i, ixWznmVLocale));
 };
-

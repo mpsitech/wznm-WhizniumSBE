@@ -32,6 +32,3 @@ namespace WznmComplJtr {
 };
 
 #endif
-
-
-

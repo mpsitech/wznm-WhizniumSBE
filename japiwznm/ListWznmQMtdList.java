@@ -59,4 +59,3 @@ public class ListWznmQMtdList {
 		return false;
 	};
 };
-

@@ -21,6 +21,3 @@ namespace WznmCtpGenuiDlgloaini {
 };
 
 #endif
-
-
-

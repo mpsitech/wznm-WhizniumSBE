@@ -123,4 +123,3 @@ bool ListWznmQPrsMNProject::readXML(
 
 	return basefound;
 };
-

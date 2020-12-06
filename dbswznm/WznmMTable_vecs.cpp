@@ -190,4 +190,3 @@ string TblWznmMTable::VecWSubset::getTitle(
 
 	return("");
 };
-

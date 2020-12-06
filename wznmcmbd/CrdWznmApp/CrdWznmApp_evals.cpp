@@ -104,6 +104,3 @@ bool CrdWznmApp::evalMitCrdWrcActive(
 
 	return(args.back());
 };
-
-
-

@@ -250,18 +250,13 @@ void DlgWznmRlsWrite::createEng(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	if (custfolder == "") {
-		custfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMEXTFOLDER, jref);
-		if (custfolder != "") custfolder += "/" + cmp->sref;
-	};
-
 	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rls->sref);
+	createIpoutSubfolder(false, "_rls", rlssref);
 
 	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", rls->sref);
+	createIpoutSubfolder(false, "_ini", rlssref);
 
-	createIpoutSubfolder(true, cmp->sref);
+	createIpoutSubfolder(true, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -312,13 +307,13 @@ void DlgWznmRlsWrite::createEng(
 	keys.push_back("Crdsref"); vals.push_back("Crdsref");
 	keys.push_back("crdsref"); vals.push_back("crdsref");
 
-	addInv(new DpchInvWznmWrsrvDeploy(0, 0, rls->ref, Prjshort, ipfolder + "/_rls/" + rls->sref));
+	addInv(new DpchInvWznmWrsrvDeploy(0, 0, rls->ref, Prjshort, ipfolder + "/_rls/" + rlssref));
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rls->sref + "/checkout.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rls->sref + "/Makefile", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkincfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile.inc", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkshfile, "", outfolder + "/_rls/" + rls->sref + "/make.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refRmkshfile, "", outfolder + "/_rls/" + rls->sref + "/remake.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rlssref + "/checkout.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rlssref + "/Makefile", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkincfile, "", outfolder + "/_rls/" + rlssref + "/Makefile.inc", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkshfile, "", outfolder + "/_rls/" + rlssref + "/make.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refRmkshfile, "", outfolder + "/_rls/" + rlssref + "/remake.sh", keys, vals));
 
 	for (unsigned int i = 0; i < crds.nodes.size(); i++) {
 		crd = crds.nodes[i];
@@ -326,17 +321,17 @@ void DlgWznmRlsWrite::createEng(
 		vals[vals.size()-2] = crd->sref;
 		vals[vals.size()-1] = StrMod::lc(crd->sref);
 
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkcrdfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_" + crd->sref, keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkcrdfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_" + crd->sref, keys, vals));
 	};
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkiexfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_Iex" + Prjshort, keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkvecfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_Vec" + Prjshort, keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkiexfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_Iex" + Prjshort, keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkvecfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_Vec" + Prjshort, keys, vals));
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStashfile, "", outfolder + "/_ini/" + rls->sref + "/start.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStoshfile, "", outfolder + "/_ini/" + rls->sref + "/stop.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStashfile, "", outfolder + "/_ini/" + rlssref + "/start.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStoshfile, "", outfolder + "/_ini/" + rlssref + "/stop.sh", keys, vals));
 
 	// --- preferences file (WznmWrsrvPref)
-	addInv(new DpchInvWznmWrsrvPref(0, 0, rls->ref, "", outfolder + "/_ini/" + rls->sref + "/Pref" + StrMod::cap(cmp->sref) + ".xml"));
+	addInv(new DpchInvWznmWrsrvPref(0, 0, rls->ref, "", outfolder + "/_ini/" + rlssref + "/Pref" + Cmpsref + ".xml"));
 
 	if (!dplonly) {
 		// --- engine globals (WznmWrsrvEngbase)
@@ -351,50 +346,50 @@ void DlgWznmRlsWrite::createEng(
 		keys.push_back("version"); vals.push_back(version);
 		keys.push_back("PREFLCL"); vals.push_back(PREFLCL);
 
-		addInv(new DpchInvWznmWrsrvEngbase(0, 0, ver->ref, xchg->stgwznmtenant.orgname, Prjshort, ipfolder + "/" + cmp->sref));
+		addInv(new DpchInvWznmWrsrvEngbase(0, 0, ver->ref, xchg->stgwznmtenant.orgname, Prjshort, ipfolder + "/" + cmpsref));
 
 		// -- Xxxxd_exe
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDexehfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "d_exe.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDexecppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "d_exe.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDexehfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "d_exe.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDexecppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "d_exe.cpp", keys, vals));
 
 		// -- Appsrv
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAppsrvhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dAppsrv.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAppsrvcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dAppsrv.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAppsrvhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dAppsrv.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAppsrvcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dAppsrv.cpp", keys, vals));
 
 		// -- Jobprc
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJprchfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dJobprc.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJprccppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dJobprc.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJprchfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dJobprc.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJprccppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dJobprc.cpp", keys, vals));
 
 		// -- Opprc
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprchfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dOpprc.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprccppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dOpprc.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprchfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dOpprc.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprccppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dOpprc.cpp", keys, vals));
 
 		// -- Opengcli
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOeclihfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dOpengcli.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOeclicppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dOpengcli.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOeclihfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dOpengcli.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOeclicppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dOpengcli.cpp", keys, vals));
 
 		// -- Opengsrv
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOesrvhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dOpengsrv.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOesrvcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dOpengsrv.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOesrvhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dOpengsrv.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOesrvcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dOpengsrv.cpp", keys, vals));
 
 		// -- Xxxxd
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "d.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "d.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "d.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "d.cpp", keys, vals));
 
 		if (hasdds) {
 			// -- Ddspub
-			addInv(new DpchInvWznmWrsrvDds(0, 0, cmp->ref, Prjshort, ipfolder + "/" + cmp->sref, ipfolder + "/_ini/" + prjshort));
+			addInv(new DpchInvWznmWrsrvDds(0, 0, cmp->ref, Prjshort, ipfolder + "/" + cmpsref, ipfolder + "/_ini/" + prjshort));
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDdspubhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dDdspub.h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDdspubcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dDdspub.cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDdspubhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dDdspub.h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDdspubcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dDdspub.cpp", keys, vals));
 		};
 
 		if (hasua) {
 			// -- Uasrv
-			addInv(new DpchInvWznmWrsrvUa(0, 0, ver->ref, Prjshort, StrMod::cap(cmp->sref), ipfolder + "/" + cmp->sref));
+			addInv(new DpchInvWznmWrsrvUa(0, 0, ver->ref, Prjshort, Cmpsref, ipfolder + "/" + cmpsref));
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUasrvhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dUasrv.h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUasrvcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "dUasrv.cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUasrvhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dUasrv.h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUasrvcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "dUasrv.cpp", keys, vals));
 		};
 	};
 
@@ -466,18 +461,13 @@ void DlgWznmRlsWrite::createOpeng(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	if (custfolder == "") {
-		custfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMEXTFOLDER, jref);
-		if (custfolder != "") custfolder += "/" + cmp->sref;
-	};
-
 	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rls->sref);
+	createIpoutSubfolder(false, "_rls", rlssref);
 
 	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", rls->sref);
+	createIpoutSubfolder(false, "_ini", rlssref);
 
-	createIpoutSubfolder(false, cmp->sref);
+	createIpoutSubfolder(false, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -522,13 +512,13 @@ void DlgWznmRlsWrite::createOpeng(
 	keys.push_back("Opksref"); vals.push_back("Opksref");
 	keys.push_back("opksref"); vals.push_back("opksref");
 
-	addInv(new DpchInvWznmWrsrvDeploy(0, 0, rls->ref, Prjshort, ipfolder + "/_rls/" + rls->sref));
+	addInv(new DpchInvWznmWrsrvDeploy(0, 0, rls->ref, Prjshort, ipfolder + "/_rls/" + rlssref));
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rls->sref + "/checkout.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rls->sref + "/Makefile", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkincfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile.inc", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkshfile, "", outfolder + "/_rls/" + rls->sref + "/make.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refRmkshfile, "", outfolder + "/_rls/" + rls->sref + "/remake.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rlssref + "/checkout.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rlssref + "/Makefile", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkincfile, "", outfolder + "/_rls/" + rlssref + "/Makefile.inc", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkshfile, "", outfolder + "/_rls/" + rlssref + "/make.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refRmkshfile, "", outfolder + "/_rls/" + rlssref + "/remake.sh", keys, vals));
 
 	for (unsigned int i = 0; i < opks.nodes.size(); i++) {
 		opk = opks.nodes[i];
@@ -536,17 +526,17 @@ void DlgWznmRlsWrite::createOpeng(
 		vals[vals.size()-2] = opk->sref;
 		vals[vals.size()-1] = StrMod::lc(opk->sref);
 
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkopkfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_" + opk->sref, keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkopkfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_" + opk->sref, keys, vals));
 	};
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkiexfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_Iex" + Prjshort, keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkvecfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_Vec" + Prjshort, keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkiexfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_Iex" + Prjshort, keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkvecfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_Vec" + Prjshort, keys, vals));
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStashfile, "", outfolder + "/_ini/" + rls->sref + "/start.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStoshfile, "", outfolder + "/_ini/" + rls->sref + "/stop.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStashfile, "", outfolder + "/_ini/" + rlssref + "/start.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStoshfile, "", outfolder + "/_ini/" + rlssref + "/stop.sh", keys, vals));
 
 	// --- preferences file (WznmWrsrvPref)
-	addInv(new DpchInvWznmWrsrvPref(0, 0, rls->ref, "", outfolder + "/_ini/" + rls->sref + "/Pref" + Prjshort + "opd.xml"));
+	addInv(new DpchInvWznmWrsrvPref(0, 0, rls->ref, "", outfolder + "/_ini/" + rlssref + "/Pref" + Prjshort + "opd.xml"));
 
 	if (!dplonly) {
 		// --- operation engine globals (WznmWrsrvOpengbase)
@@ -561,23 +551,23 @@ void DlgWznmRlsWrite::createOpeng(
 		keys.push_back("cmpsref"); vals.push_back(cmpsref);
 		keys.push_back("PREFLCL"); vals.push_back(PREFLCL);
 
-		addInv(new DpchInvWznmWrsrvOpengbase(0, 0, cmp->ref, Prjshort, ipfolder + "/" + cmp->sref));
+		addInv(new DpchInvWznmWrsrvOpengbase(0, 0, cmp->ref, Prjshort, ipfolder + "/" + cmpsref));
 
 		// -- Xxxxopd_exe
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpdexehfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "opd_exe.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpdexecppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "opd_exe.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpdexehfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "opd_exe.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpdexecppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "opd_exe.cpp", keys, vals));
 
 		// -- Engsrv
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refEnsrvhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "opdEngsrv.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refEnsrvcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "opdEngsrv.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refEnsrvhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "opdEngsrv.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refEnsrvcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "opdEngsrv.cpp", keys, vals));
 
 		// -- Opprc
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprchfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "opdOpprc.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprccppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "opdOpprc.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprchfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "opdOpprc.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprccppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "opdOpprc.cpp", keys, vals));
 
 		// -- Xxxxopd
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOphfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "opd.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "opd.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOphfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "opd.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "opd.cpp", keys, vals));
 	};
 
 	// --- clean up
@@ -712,27 +702,22 @@ void DlgWznmRlsWrite::createCmbeng(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	if (custfolder == "") {
-		custfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMEXTFOLDER, jref);
-		if (custfolder != "") custfolder += "/" + cmp->sref;
-	};
-
 	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rls->sref);
+	createIpoutSubfolder(false, "_rls", rlssref);
 
 	createIpoutSubfolder(false, "_ini");
 	createIpoutSubfolder(false, "_ini", prjshort);
-	createIpoutSubfolder(false, "_ini", cmp->sref);
-	createIpoutSubfolder(false, "_ini", rls->sref);
+	createIpoutSubfolder(false, "_ini", cmpsref);
+	createIpoutSubfolder(false, "_ini", rlssref);
 
-	createIpoutSubfolder(true, cmp->sref);
+	createIpoutSubfolder(true, cmpsref);
 
-	createIpoutSubfolder(true, cmp->sref, "gbl");
+	createIpoutSubfolder(true, cmpsref, "gbl");
 
 	// -- all cards
 	for (unsigned int i = 0; i < crds.nodes.size(); i++) {
 		crd = crds.nodes[i];
-		createIpoutSubfolder(true, cmp->sref, crd->sref);
+		createIpoutSubfolder(true, cmpsref, crd->sref);
 	};
 
 	// -- all operation packs
@@ -740,12 +725,12 @@ void DlgWznmRlsWrite::createCmbeng(
 
 	for (unsigned int i = 0; i < opks.nodes.size(); i++) {
 		opk = opks.nodes[i];
-		createIpoutSubfolder(false, cmp->sref, opk->sref);
+		createIpoutSubfolder(false, cmpsref, opk->sref);
 	};
 
 	// -- IexXxxx, VecXxxx
-	createIpoutSubfolder(true, cmp->sref, "Iex" + Prjshort);
-	createIpoutSubfolder(false, cmp->sref, "Vec" + Prjshort);
+	createIpoutSubfolder(true, cmpsref, "Iex" + Prjshort);
+	createIpoutSubfolder(false, cmpsref, "Vec" + Prjshort);
 
 	// --- prepare standard key/value pairs
 
@@ -803,13 +788,13 @@ void DlgWznmRlsWrite::createCmbeng(
 	keys.push_back("Opksref"); vals.push_back("Opksref");
 	keys.push_back("opksref"); vals.push_back("opksref");
 
-	addInv(new DpchInvWznmWrsrvDeploy(0, 0, rls->ref, Prjshort, ipfolder + "/_rls/" + rls->sref));
+	addInv(new DpchInvWznmWrsrvDeploy(0, 0, rls->ref, Prjshort, ipfolder + "/_rls/" + rlssref));
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rls->sref + "/checkout.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rls->sref + "/Makefile", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkincfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile.inc", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkshfile, "", outfolder + "/_rls/" + rls->sref + "/make.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refRmkshfile, "", outfolder + "/_rls/" + rls->sref + "/remake.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rlssref + "/checkout.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rlssref + "/Makefile", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkincfile, "", outfolder + "/_rls/" + rlssref + "/Makefile.inc", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkshfile, "", outfolder + "/_rls/" + rlssref + "/make.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refRmkshfile, "", outfolder + "/_rls/" + rlssref + "/remake.sh", keys, vals));
 
 	for (unsigned int i = 0; i < crds.nodes.size(); i++) {
 		crd = crds.nodes[i];
@@ -817,10 +802,10 @@ void DlgWznmRlsWrite::createCmbeng(
 		vals[vals.size()-4] = crd->sref;
 		vals[vals.size()-3] = StrMod::lc(crd->sref);
 
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkcrdfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_" + crd->sref, keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkcrdfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_" + crd->sref, keys, vals));
 	};
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkiexfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_Iex" + Prjshort, keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkiexfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_Iex" + Prjshort, keys, vals));
 
 	for (unsigned int i = 0; i < opks.nodes.size(); i++) {
 		opk = opks.nodes[i];
@@ -828,20 +813,20 @@ void DlgWznmRlsWrite::createCmbeng(
 		vals[vals.size()-2] = opk->sref;
 		vals[vals.size()-1] = StrMod::lc(opk->sref);
 
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkopkfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_" + opk->sref, keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkopkfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_" + opk->sref, keys, vals));
 	};
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkvecfile, "", outfolder + "/_rls/" + rls->sref + "/Makefile_Vec" + Prjshort, keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkvecfile, "", outfolder + "/_rls/" + rlssref + "/Makefile_Vec" + Prjshort, keys, vals));
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStashfile, "", outfolder + "/_ini/" + rls->sref + "/start.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStoshfile, "", outfolder + "/_ini/" + rls->sref + "/stop.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStashfile, "", outfolder + "/_ini/" + rlssref + "/start.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStoshfile, "", outfolder + "/_ini/" + rlssref + "/stop.sh", keys, vals));
 
 	// --- preferences file (WznmWrsrvPref)
-	addInv(new DpchInvWznmWrsrvPref(0, 0, rls->ref, "", outfolder + "/_ini/" + rls->sref + "/Pref" + StrMod::cap(cmp->sref) + ".xml"));
+	addInv(new DpchInvWznmWrsrvPref(0, 0, rls->ref, "", outfolder + "/_ini/" + rlssref + "/Pref" + Cmpsref + ".xml"));
 
 	if (!dplonly) {
 		// --- initialization files (WznmWrsrvInixml)
-		addInv(new DpchInvWznmWrsrvInixml(0, 0, ver->ref, Prjshort, outfolder + "/_ini/" + cmp->sref));
+		addInv(new DpchInvWznmWrsrvInixml(0, 0, ver->ref, Prjshort, outfolder + "/_ini/" + cmpsref));
 
 		// --- combined engine globals (WznmWrsrvCmbengbase)
 		keys.resize(0); vals.resize(0);
@@ -855,43 +840,43 @@ void DlgWznmRlsWrite::createCmbeng(
 		keys.push_back("version"); vals.push_back(version);
 		keys.push_back("PREFLCL"); vals.push_back(PREFLCL);
 
-		addInv(new DpchInvWznmWrsrvCmbengbase(0, 0, ver->ref, xchg->stgwznmtenant.orgname, Prjshort, ipfolder + "/" + cmp->sref));
+		addInv(new DpchInvWznmWrsrvCmbengbase(0, 0, ver->ref, xchg->stgwznmtenant.orgname, Prjshort, ipfolder + "/" + cmpsref));
 
 		// -- Xxxxcmbd_exe
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCmbdexehfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbd_exe.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCmbdexecppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbd_exe.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCmbdexehfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbd_exe.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCmbdexecppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbd_exe.cpp", keys, vals));
 
 		// -- Appsrv
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAppsrvhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdAppsrv.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAppsrvcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdAppsrv.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAppsrvhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdAppsrv.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAppsrvcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdAppsrv.cpp", keys, vals));
 
 		// -- Jobprc
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJprchfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdJobprc.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJprccppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdJobprc.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJprchfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdJobprc.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJprccppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdJobprc.cpp", keys, vals));
 
 		// -- Opprc
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprchfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdOpprc.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprccppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdOpprc.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprchfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdOpprc.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOprccppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdOpprc.cpp", keys, vals));
 
 		// -- Xxxxcmbd
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCmbdhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbd.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCmbdcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbd.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCmbdhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbd.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCmbdcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbd.cpp", keys, vals));
 
 		if (hasdds) {
 			// -- Ddspub
-			addInv(new DpchInvWznmWrsrvDds(0, 0, cmp->ref, Prjshort, ipfolder + "/" + cmp->sref, ipfolder + "/_ini/" + prjshort));
+			addInv(new DpchInvWznmWrsrvDds(0, 0, cmp->ref, Prjshort, ipfolder + "/" + cmpsref, ipfolder + "/_ini/" + prjshort));
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDdspubhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdDdspub.h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDdspubcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdDdspub.cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDdspubhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdDdspub.h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDdspubcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdDdspub.cpp", keys, vals));
 			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDdsidlfile, "", outfolder + "/_ini/" + prjshort + "/Dds" + Prjshort + ".idl", keys, vals));
 		};
 
 		if (hasua) {
 			// -- Uasrv
-			addInv(new DpchInvWznmWrsrvUa(0, 0, ver->ref, Prjshort, StrMod::cap(cmp->sref), ipfolder + "/" + cmp->sref));
+			addInv(new DpchInvWznmWrsrvUa(0, 0, ver->ref, Prjshort, Cmpsref, ipfolder + "/" + cmpsref));
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUasrvhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdUasrv.h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUasrvcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + "cmbdUasrv.cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUasrvhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdUasrv.h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUasrvcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + "cmbdUasrv.cpp", keys, vals));
 		};
 
 		// --- server globals (WznmWrsrvBase)
@@ -906,10 +891,10 @@ void DlgWznmRlsWrite::createCmbeng(
 		keys.push_back("verminor"); vals.push_back(verminor);
 		keys.push_back("versub"); vals.push_back(versub);
 
-		addInv(new DpchInvWznmWrsrvBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmp->sref));
+		addInv(new DpchInvWznmWrsrvBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmpsref));
 
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblhfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + ".h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblcppfile, "", outfolder + "/" + cmp->sref + "/" + Prjshort + ".cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblhfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + ".h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblcppfile, "", outfolder + "/" + cmpsref + "/" + Prjshort + ".cpp", keys, vals));
 
 		// --- app-wide vectors (DpchInvWznmWrsrvVec)
 		keys.push_back("Vecsref"); vals.push_back("Vecsref");
@@ -921,13 +906,13 @@ void DlgWznmRlsWrite::createCmbeng(
 		for (unsigned int i = 0; i < vecs.nodes.size(); i++) {
 			vec = vecs.nodes[i];
 
-			addInv(new DpchInvWznmWrsrvVec(0, 0, vec->ref, Prjshort, ipfolder + "/" + cmp->sref + "/Vec" + Prjshort));
+			addInv(new DpchInvWznmWrsrvVec(0, 0, vec->ref, Prjshort, ipfolder + "/" + cmpsref + "/Vec" + Prjshort));
 
 			vals[vals.size()-2] = vec->sref;
 			vals[vals.size()-1] = StrMod::uc(vec->sref);
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVechfile, "", outfolder + "/" + cmp->sref + "/Vec" + Prjshort + "/" + vec->sref + ".h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVeccppfile, "", outfolder + "/" + cmp->sref + "/Vec" + Prjshort + "/" + vec->sref + ".cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVechfile, "", outfolder + "/" + cmpsref + "/Vec" + Prjshort + "/" + vec->sref + ".h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVeccppfile, "", outfolder + "/" + cmpsref + "/Vec" + Prjshort + "/" + vec->sref + ".cpp", keys, vals));
 		};
 
 		// --- engine base jobs (WznmWrsrvRootsess)
@@ -946,7 +931,7 @@ void DlgWznmRlsWrite::createCmbeng(
 		dbswznm->tblwznmmjob->loadRstBySQL("SELECT * FROM TblWznmMJob WHERE refWznmMVersion = " + to_string(ver->ref) + " AND ixVBasetype = " + to_string(VecWznmVMJobBasetype::ROOT), false, jobs);
 		dbswznm->tblwznmmjob->loadRstBySQL("SELECT * FROM TblWznmMJob WHERE refWznmMVersion = " + to_string(ver->ref) + " AND ixVBasetype = " + to_string(VecWznmVMJobBasetype::SESS), true, jobs);
 
-		addInv(new DpchInvWznmWrsrvRootsess(0, 0, ver->ref, Prjshort, specfolder + "/" + cmp->sref));
+		addInv(new DpchInvWznmWrsrvRootsess(0, 0, ver->ref, Prjshort, specfolder + "/" + cmpsref));
 
 		for (unsigned int i = 0; i < jobs.nodes.size(); i++) {
 			job = jobs.nodes[i];
@@ -955,10 +940,10 @@ void DlgWznmRlsWrite::createCmbeng(
 			vals[vals.size()-2] = job->sref;
 			vals[vals.size()-1] = StrMod::uc(job->sref);
 
-			addInv(new DpchInvWznmWrsrvJob(0, 0, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmp->sref));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobhfile, "", outfolder + "/" + cmp->sref + "/" + job->sref + ".h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobblkfile, "", outfolder + "/" + cmp->sref + "/" + job->sref + "_blks.cpp", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobcppfile, "", outfolder + "/" + cmp->sref + "/" + job->sref + ".cpp", keys, vals));
+			addInv(new DpchInvWznmWrsrvJob(0, 0, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmpsref));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobhfile, "", outfolder + "/" + cmpsref + "/" + job->sref + ".h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobblkfile, "", outfolder + "/" + cmpsref + "/" + job->sref + "_blks.cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobcppfile, "", outfolder + "/" + cmpsref + "/" + job->sref + ".cpp", keys, vals));
 		};
 
 		// --- global jobs
@@ -983,16 +968,16 @@ void DlgWznmRlsWrite::createCmbeng(
 			Wznm::getJobevals(dbswznm, job, bitsEval, rulesEval, exprsEval);
 			hasevals = (bitsEval.size() > 0);
 
-			addInv(new DpchInvWznmWrsrvJob(0, 0, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmp->sref + "/gbl"));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobhfile, "", outfolder + "/" + cmp->sref + "/gbl/" + job->sref + ".h", keys, vals));
-			if (hasblks) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobblkfile, "", outfolder + "/" + cmp->sref + "/gbl/" + job->sref + "_blks.cpp", keys, vals));
-			if (hasevals) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobevalfile, "", outfolder + "/" + cmp->sref + "/gbl/" + job->sref + "_evals.cpp", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobcppfile, "", outfolder + "/" + cmp->sref + "/gbl/" + job->sref + ".cpp", keys, vals));
+			addInv(new DpchInvWznmWrsrvJob(0, 0, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmpsref + "/gbl"));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobhfile, "", outfolder + "/" + cmpsref + "/gbl/" + job->sref + ".h", keys, vals));
+			if (hasblks) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobblkfile, "", outfolder + "/" + cmpsref + "/gbl/" + job->sref + "_blks.cpp", keys, vals));
+			if (hasevals) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobevalfile, "", outfolder + "/" + cmpsref + "/gbl/" + job->sref + "_evals.cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobcppfile, "", outfolder + "/" + cmpsref + "/gbl/" + job->sref + ".cpp", keys, vals));
 
 			if (job->ixVBasetype == VecWznmVMJobBasetype::PNL) {
-				addInv(new DpchInvWznmWrsrvPnl(0, 0, job->ref, Prjshort, specfolder + "/" + cmp->sref + "/gbl"));
+				addInv(new DpchInvWznmWrsrvPnl(0, 0, job->ref, Prjshort, specfolder + "/" + cmpsref + "/gbl"));
 			} else if (job->ixVBasetype == VecWznmVMJobBasetype::QRY) {
-				addInv(new DpchInvWznmWrsrvQry(0, 0, job->ref, Prjshort, specfolder + "/" + cmp->sref + "/gbl"));
+				addInv(new DpchInvWznmWrsrvQry(0, 0, job->ref, Prjshort, specfolder + "/" + cmpsref + "/gbl"));
 			};
 		};
 
@@ -1000,9 +985,9 @@ void DlgWznmRlsWrite::createCmbeng(
 		for (unsigned int i = 0; i < crds.nodes.size(); i++) {
 			crd = crds.nodes[i];
 
-			ipfld = ipfolder + "/" + cmp->sref + "/" + crd->sref;
-			specfld = specfolder + "/" + cmp->sref + "/" + crd->sref;
-			outfld = outfolder + "/" + cmp->sref + "/" + crd->sref;
+			ipfld = ipfolder + "/" + cmpsref + "/" + crd->sref;
+			specfld = specfolder + "/" + cmpsref + "/" + crd->sref;
+			outfld = outfolder + "/" + cmpsref + "/" + crd->sref;
 
 			jobs.clear();
 			Wznm::getCrdsubjobs(dbswznm, jobs, crd->refWznmMJob);
@@ -1060,14 +1045,14 @@ void DlgWznmRlsWrite::createCmbeng(
 				vals[vals.size()-2] = iex->sref;
 				vals[vals.size()-1] = StrMod::uc(iex->sref);
 
-				addInv(new DpchInvWznmWrsrvJob(0, 0, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmp->sref + "/Iex" + Prjshort));
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobhfile, "", outfolder + "/" + cmp->sref + "/Iex" + Prjshort + "/" + job->sref + ".h", keys, vals));
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobblkfile, "", outfolder + "/" + cmp->sref + "/Iex" + Prjshort + "/" + job->sref + "_blks.cpp", keys, vals));
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobcppfile, "", outfolder + "/" + cmp->sref + "/Iex" + Prjshort + "/" + job->sref + ".cpp", keys, vals));
+				addInv(new DpchInvWznmWrsrvJob(0, 0, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmpsref + "/Iex" + Prjshort));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobhfile, "", outfolder + "/" + cmpsref + "/Iex" + Prjshort + "/" + job->sref + ".h", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobblkfile, "", outfolder + "/" + cmpsref + "/Iex" + Prjshort + "/" + job->sref + "_blks.cpp", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobcppfile, "", outfolder + "/" + cmpsref + "/Iex" + Prjshort + "/" + job->sref + ".cpp", keys, vals));
 
-				addInv(new DpchInvWznmWrsrvIex(0, 0, job->ref, Prjshort, specfolder + "/" + cmp->sref + "/Iex" + Prjshort));
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refIexhfile, "", outfolder + "/" + cmp->sref + "/Iex" + Prjshort + "/" + iex->sref + ".h", keys, vals));
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refIexcppfile, "", outfolder + "/" + cmp->sref + "/Iex" + Prjshort + "/" + iex->sref + ".cpp", keys, vals));
+				addInv(new DpchInvWznmWrsrvIex(0, 0, job->ref, Prjshort, specfolder + "/" + cmpsref + "/Iex" + Prjshort));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refIexhfile, "", outfolder + "/" + cmpsref + "/Iex" + Prjshort + "/" + iex->sref + ".h", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refIexcppfile, "", outfolder + "/" + cmpsref + "/Iex" + Prjshort + "/" + iex->sref + ".cpp", keys, vals));
 
 				delete iex;
 			};
@@ -1094,14 +1079,14 @@ void DlgWznmRlsWrite::createCmbeng(
 			vals[vals.size()-2] = opk->sref;
 			vals[vals.size()-1] = StrMod::uc(opk->sref);
 
-			addInv(new DpchInvWznmWrsrvOpk(0, 0, opk->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmp->sref + "/" + opk->sref));
+			addInv(new DpchInvWznmWrsrvOpk(0, 0, opk->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmpsref + "/" + opk->sref));
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpkblkhfile, "", outfolder + "/" + cmp->sref + "/" + opk->sref + "/" + opk->sref + "_blks.h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpkblkcppfile, "", outfolder + "/" + cmp->sref + "/" + opk->sref + "/" + opk->sref + "_blks.cpp", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpkhfile, "", outfolder + "/" + cmp->sref + "/" + opk->sref + "/" + opk->sref + ".h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpkcppfile, "", outfolder + "/" + cmp->sref + "/" + opk->sref + "/" + opk->sref + ".cpp", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpksqkhfile, "", outfolder + "/" + cmp->sref + "/" + opk->sref + "/Sqk" + opk->sref + ".h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpksqkcppfile, "", outfolder + "/" + cmp->sref + "/" + opk->sref + "/Sqk" + opk->sref + ".cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpkblkhfile, "", outfolder + "/" + cmpsref + "/" + opk->sref + "/" + opk->sref + "_blks.h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpkblkcppfile, "", outfolder + "/" + cmpsref + "/" + opk->sref + "/" + opk->sref + "_blks.cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpkhfile, "", outfolder + "/" + cmpsref + "/" + opk->sref + "/" + opk->sref + ".h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpkcppfile, "", outfolder + "/" + cmpsref + "/" + opk->sref + "/" + opk->sref + ".cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpksqkhfile, "", outfolder + "/" + cmpsref + "/" + opk->sref + "/Sqk" + opk->sref + ".h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpksqkcppfile, "", outfolder + "/" + cmpsref + "/" + opk->sref + "/Sqk" + opk->sref + ".cpp", keys, vals));
 		};
 
 		// --- operations
@@ -1130,10 +1115,10 @@ void DlgWznmRlsWrite::createCmbeng(
 				vals[vals.size()-2] = StrMod::uc(op->sref);
 				vals[vals.size()-1] = op->Comment;
 
-				addInv(new DpchInvWznmWrsrvOp(0, 0, op->ref, Prjshort, ipfolder + "/" + cmp->sref + "/" + opk->sref));
+				addInv(new DpchInvWznmWrsrvOp(0, 0, op->ref, Prjshort, ipfolder + "/" + cmpsref + "/" + opk->sref));
 
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOphfile, "", outfolder + "/" + cmp->sref + "/" + opk->sref + "/" + op->sref + ".h", keys, vals));
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpcppfile, "", outfolder + "/" + cmp->sref + "/" + opk->sref + "/" + op->sref + ".cpp", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOphfile, "", outfolder + "/" + cmpsref + "/" + opk->sref + "/" + op->sref + ".h", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpcppfile, "", outfolder + "/" + cmpsref + "/" + opk->sref + "/" + op->sref + ".cpp", keys, vals));
 			};
 		};
 	};
@@ -1220,13 +1205,13 @@ void DlgWznmRlsWrite::createDbs(
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
 	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rls->sref);
+	createIpoutSubfolder(false, "_rls", rlssref);
 
 	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", cmp->sref);
-	if (StrMod::srefInSrefs(sbeconfig, "my") || StrMod::srefInSrefs(sbeconfig, "mar") || StrMod::srefInSrefs(sbeconfig, "pg")) createIpoutSubfolder(false, "_ini", rls->sref);
+	createIpoutSubfolder(false, "_ini", cmpsref);
+	if (StrMod::srefInSrefs(sbeconfig, "my") || StrMod::srefInSrefs(sbeconfig, "mar") || StrMod::srefInSrefs(sbeconfig, "pg")) createIpoutSubfolder(false, "_ini", rlssref);
 
-	createIpoutSubfolder(false, cmp->sref);
+	createIpoutSubfolder(false, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -1263,11 +1248,11 @@ void DlgWznmRlsWrite::createDbs(
 	keys.push_back("libroot"); vals.push_back(libroot);
 	keys.push_back("ncore"); vals.push_back(ncore);
 
-	addInv(new DpchInvWznmWrdbsDeploy(0, 0, rls->ref, ipfolder + "/_rls/" + rls->sref));
+	addInv(new DpchInvWznmWrdbsDeploy(0, 0, rls->ref, ipfolder + "/_rls/" + rlssref));
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rls->sref + "/checkout.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rls->sref + "/Makefile", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkallfile, "", outfolder + "/_rls/" + rls->sref + "/makeall.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rlssref + "/checkout.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rlssref + "/Makefile", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkallfile, "", outfolder + "/_rls/" + rlssref + "/makeall.sh", keys, vals));
 
 	// --- release-specific SQL scripts
 	keys.resize(0); vals.resize(0);
@@ -1281,10 +1266,10 @@ void DlgWznmRlsWrite::createDbs(
 	// -- CreateDbsXxxx.sql
 	addInv(new DpchInvWznmWrdbsSql(0, 0, rls->ref, Prjshort, ipfolder + "/_ini"));
 
-	if (mar && StrMod::srefInSrefs(sbeconfig, "mar")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMysqlfile, "", outfolder + "/_ini/" + rls->sref + "/CreateDbs" + Prjshort + "Mar.sql", keys, vals));
-	if (my && StrMod::srefInSrefs(sbeconfig, "my")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMysqlfile, "", outfolder + "/_ini/" + rls->sref + "/CreateDbs" + Prjshort + "My.sql", keys, vals));
-	if (pg && StrMod::srefInSrefs(sbeconfig, "pg")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPgsqlfile, "", outfolder + "/_ini/" + rls->sref + "/CreateDbs" + Prjshort + "Pg.sql", keys, vals));
-	if (lite && StrMod::srefInSrefs(sbeconfig, "lite")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLitesqlfile, "", outfolder + "/_ini/" + cmp->sref + "/CreateDbs" + Prjshort + "Lite.sql", keys, vals));
+	if (mar && StrMod::srefInSrefs(sbeconfig, "mar")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMysqlfile, "", outfolder + "/_ini/" + rlssref + "/CreateDbs" + Prjshort + "Mar.sql", keys, vals));
+	if (my && StrMod::srefInSrefs(sbeconfig, "my")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMysqlfile, "", outfolder + "/_ini/" + rlssref + "/CreateDbs" + Prjshort + "My.sql", keys, vals));
+	if (pg && StrMod::srefInSrefs(sbeconfig, "pg")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPgsqlfile, "", outfolder + "/_ini/" + rlssref + "/CreateDbs" + Prjshort + "Pg.sql", keys, vals));
+	if (lite && StrMod::srefInSrefs(sbeconfig, "lite")) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLitesqlfile, "", outfolder + "/_ini/" + cmpsref + "/CreateDbs" + Prjshort + "Lite.sql", keys, vals));
 
 	if (!dplonly) {
 		// --- database globals (DbsXxxx)
@@ -1304,11 +1289,11 @@ void DlgWznmRlsWrite::createDbs(
 
 		hasvecs = (cnt > 0);
 
-		addInv(new DpchInvWznmWrdbsDbs(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmp->sref));
+		addInv(new DpchInvWznmWrdbsDbs(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmpsref));
 
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDbshfile, "", outfolder + "/" + cmp->sref + "/Dbs" + Prjshort + ".h", keys, vals));
-		if (hasvecs) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDbsvecfile, "", outfolder + "/" + cmp->sref + "/Dbs" + Prjshort + "_vecs.cpp", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDbscppfile, "", outfolder + "/" + cmp->sref + "/Dbs" + Prjshort + ".cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDbshfile, "", outfolder + "/" + cmpsref + "/Dbs" + Prjshort + ".h", keys, vals));
+		if (hasvecs) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDbsvecfile, "", outfolder + "/" + cmpsref + "/Dbs" + Prjshort + "_vecs.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDbscppfile, "", outfolder + "/" + cmpsref + "/Dbs" + Prjshort + ".cpp", keys, vals));
 
 		// --- cluster tables
 		keys.resize(0); vals.resize(0);
@@ -1326,15 +1311,15 @@ void DlgWznmRlsWrite::createDbs(
 		for (unsigned int i = 0; i < tbls.nodes.size(); i++) {
 			tbl = tbls.nodes[i];
 
-			addInv(new DpchInvWznmWrdbsTbl(0, 0, tbl->ref, Prjshort, (mar || my), pg, lite, ipfolder + "/" + cmp->sref));
+			addInv(new DpchInvWznmWrdbsTbl(0, 0, tbl->ref, Prjshort, (mar || my), pg, lite, ipfolder + "/" + cmpsref));
 
 			tblshort = tbl->sref.substr(3+4+1);
 
 			vals[vals.size()-3] = StrMod::uc(tblshort);
 			vals[vals.size()-2] = tblshort;
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCluhfile, "", outfolder + "/" + cmp->sref + "/" + tbl->sref.substr(3) + ".h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refClucppfile, "", outfolder + "/" + cmp->sref + "/" + tbl->sref.substr(3) + ".cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCluhfile, "", outfolder + "/" + cmpsref + "/" + tbl->sref.substr(3) + ".h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refClucppfile, "", outfolder + "/" + cmpsref + "/" + tbl->sref.substr(3) + ".cpp", keys, vals));
 		};
 
 		// --- query tables
@@ -1343,15 +1328,15 @@ void DlgWznmRlsWrite::createDbs(
 		for (unsigned int i = 0; i < tbls.nodes.size(); i++) {
 			tbl = tbls.nodes[i];
 
-			addInv(new DpchInvWznmWrdbsTbl(0, 0, tbl->ref, Prjshort, (mar || my), pg, lite, ipfolder + "/" + cmp->sref));
+			addInv(new DpchInvWznmWrdbsTbl(0, 0, tbl->ref, Prjshort, (mar || my), pg, lite, ipfolder + "/" + cmpsref));
 
 			tblshort = tbl->sref.substr(3+4+1);
 
 			vals[vals.size()-3] = StrMod::uc(tblshort);
 			vals[vals.size()-2] = tblshort;
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbhfile, "", outfolder + "/" + cmp->sref + "/" + tbl->sref.substr(3) + ".h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbcppfile, "", outfolder + "/" + cmp->sref + "/" + tbl->sref.substr(3) + ".cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbhfile, "", outfolder + "/" + cmpsref + "/" + tbl->sref.substr(3) + ".h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbcppfile, "", outfolder + "/" + cmpsref + "/" + tbl->sref.substr(3) + ".cpp", keys, vals));
 		};
 
 		// --- tables which are neither cluster nor query
@@ -1360,7 +1345,7 @@ void DlgWznmRlsWrite::createDbs(
 		for (unsigned int i = 0; i < tbls.nodes.size(); i++) {
 			tbl = tbls.nodes[i];
 
-			addInv(new DpchInvWznmWrdbsTbl(0, 0, tbl->ref, Prjshort, (mar || my), pg, lite, ipfolder + "/" + cmp->sref));
+			addInv(new DpchInvWznmWrdbsTbl(0, 0, tbl->ref, Prjshort, (mar || my), pg, lite, ipfolder + "/" + cmpsref));
 
 			tblshort = tbl->sref.substr(3+4);
 
@@ -1374,13 +1359,13 @@ void DlgWznmRlsWrite::createDbs(
 				vals[vals.size()-1] = sref;
 			};
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refTblhfile, "", outfolder + "/" + cmp->sref + "/" + tbl->sref.substr(3) + ".h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refTblhfile, "", outfolder + "/" + cmpsref + "/" + tbl->sref.substr(3) + ".h", keys, vals));
 
 			dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMVector WHERE hkIxVTbl = " + to_string(VecWznmVMVectorHkTbl::TBL) + " AND TblWznmMVector.hkUref = " + to_string(tbl->ref) + " AND ((ixVBasetype = "
 					+ to_string(VecWznmVMVectorBasetype::LIN) + ") OR (ixVBasetype = " + to_string(VecWznmVMVectorBasetype::OR) + "))", cnt);
-			if (cnt > 0) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refTblvecfile, "", outfolder + "/" + cmp->sref + "/" + tbl->sref.substr(3) + "_vecs.cpp", keys, vals));
+			if (cnt > 0) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refTblvecfile, "", outfolder + "/" + cmpsref + "/" + tbl->sref.substr(3) + "_vecs.cpp", keys, vals));
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refTblcppfile, "", outfolder + "/" + cmp->sref + "/" + tbl->sref.substr(3) + ".cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refTblcppfile, "", outfolder + "/" + cmpsref + "/" + tbl->sref.substr(3) + ".cpp", keys, vals));
 		};
 	};
 
@@ -1547,30 +1532,25 @@ void DlgWznmRlsWrite::createWebapp(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	if (custfolder == "") {
-		custfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMEXTFOLDER, jref);
-		if (custfolder != "") custfolder += "/" + cmp->sref;
-	};
-
 	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rls->sref);
+	createIpoutSubfolder(false, "_rls", rlssref);
 
-	createIpoutSubfolder(false, cmp->sref);
+	createIpoutSubfolder(false, cmpsref);
 	
 	// -- all cards
 	for (unsigned int i = 0; i < crds.nodes.size(); i++) {
 		crd = crds.nodes[i];
-		createIpoutSubfolder(false, cmp->sref, crd->sref);
+		createIpoutSubfolder(false, cmpsref, crd->sref);
 	};
 
 	// -- CrdXxxxStart
-	createIpoutSubfolder(false, cmp->sref, "Crd" + Prjshort + "Start");
+	createIpoutSubfolder(false, cmpsref, "Crd" + Prjshort + "Start");
 
 	// -- iframe, icon, script and style
-	createIpoutSubfolder(false, cmp->sref, "iframe");
-	createIpoutSubfolder(false, cmp->sref, "icon");
-	createIpoutSubfolder(false, cmp->sref, "script");
-	createIpoutSubfolder(false, cmp->sref, "style");
+	createIpoutSubfolder(false, cmpsref, "iframe");
+	createIpoutSubfolder(false, cmpsref, "icon");
+	createIpoutSubfolder(false, cmpsref, "script");
+	createIpoutSubfolder(false, cmpsref, "style");
 
 	// --- prepare standard key/value pairs
 
@@ -1604,10 +1584,10 @@ void DlgWznmRlsWrite::createWebapp(
 	keys.push_back("webroot"); vals.push_back(webroot);
 	keys.push_back("reproot"); vals.push_back(reproot);
 
-	addInv(new DpchInvWznmWrwebDeploy(0, 0, ver->ref, Prjshort, ipfolder + "/_rls/" + rls->sref));
+	addInv(new DpchInvWznmWrwebDeploy(0, 0, ver->ref, Prjshort, ipfolder + "/_rls/" + rlssref));
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rls->sref + "/checkout.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkinfile, "", outfolder + "/_rls/" + rls->sref + "/checkin.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rlssref + "/checkout.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkinfile, "", outfolder + "/_rls/" + rlssref + "/checkin.sh", keys, vals));
 
 	if (!dplonly) {
 		// --- web UI globals (WznmWrwebBase)
@@ -1623,29 +1603,29 @@ void DlgWznmRlsWrite::createWebapp(
 		keys.push_back("verminor"); vals.push_back(verminor);
 		keys.push_back("versub"); vals.push_back(versub);
 
-		addInv(new DpchInvWznmWrwebBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmp->sref));
+		addInv(new DpchInvWznmWrwebBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmpsref));
 
 		// -- .tgz files
-		Wznm::untgz(xchg->acvpath + "/" + Acv::getfile(dbswznm, refIfrGzfile), xchg->tmppath + "/" + outfolder + "/" + cmp->sref + "/iframe");
-		Wznm::untgz(xchg->acvpath + "/" + Acv::getfile(dbswznm, refIconGzfile), xchg->tmppath + "/" + outfolder + "/" + cmp->sref + "/icon");
-		Wznm::untgz(xchg->acvpath + "/" + Acv::getfile(dbswznm, refScrGzfile), xchg->tmppath + "/" + outfolder + "/" + cmp->sref + "/script");
-		Wznm::untgz(xchg->acvpath + "/" + Acv::getfile(dbswznm, refStyGzfile), xchg->tmppath + "/" + outfolder + "/" + cmp->sref + "/style");
+		Wznm::untgz(xchg->acvpath + "/" + Acv::getfile(dbswznm, refIfrGzfile), xchg->tmppath + "/" + outfolder + "/" + cmpsref + "/iframe");
+		Wznm::untgz(xchg->acvpath + "/" + Acv::getfile(dbswznm, refIconGzfile), xchg->tmppath + "/" + outfolder + "/" + cmpsref + "/icon");
+		Wznm::untgz(xchg->acvpath + "/" + Acv::getfile(dbswznm, refScrGzfile), xchg->tmppath + "/" + outfolder + "/" + cmpsref + "/script");
+		Wznm::untgz(xchg->acvpath + "/" + Acv::getfile(dbswznm, refStyGzfile), xchg->tmppath + "/" + outfolder + "/" + cmpsref + "/style");
 
 		// -- srcxxxx.xml
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refSrcXmfile, "", outfolder + "/" + cmp->sref + "/iframe/src" + prjshort + ".xml", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refSrcXmfile, "", outfolder + "/" + cmpsref + "/iframe/src" + prjshort + ".xml", keys, vals));
 
 		// -- Xxxx.js, alr.js, lst.js, pup.js, rbu.js, sld.js, upd.js
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblJsfile, "", outfolder + "/" + cmp->sref + "/script/" + Prjshort + ".js", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAlrJsfile, "", outfolder + "/" + cmp->sref + "/script/alr.js", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLstJsfile, "", outfolder + "/" + cmp->sref + "/script/lst.js", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPupJsfile, "", outfolder + "/" + cmp->sref + "/script/pup.js", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refRbuJsfile, "", outfolder + "/" + cmp->sref + "/script/rbu.js", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refSldJsfile, "", outfolder + "/" + cmp->sref + "/script/sld.js", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUpdJsfile, "", outfolder + "/" + cmp->sref + "/script/upd.js", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblJsfile, "", outfolder + "/" + cmpsref + "/script/" + Prjshort + ".js", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAlrJsfile, "", outfolder + "/" + cmpsref + "/script/alr.js", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLstJsfile, "", outfolder + "/" + cmpsref + "/script/lst.js", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPupJsfile, "", outfolder + "/" + cmpsref + "/script/pup.js", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refRbuJsfile, "", outfolder + "/" + cmpsref + "/script/rbu.js", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refSldJsfile, "", outfolder + "/" + cmpsref + "/script/sld.js", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refUpdJsfile, "", outfolder + "/" + cmpsref + "/script/upd.js", keys, vals));
 
 		// -- CrdStart
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCsHtfile, "", outfolder + "/" + cmp->sref + "/Crd" + Prjshort + "Start/Crd" + Prjshort + "Start.html", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCssrcXmfile, "", outfolder + "/" + cmp->sref + "/Crd" + Prjshort + "Start/Crd" + Prjshort + "Start_src.xml", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCsHtfile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Start/Crd" + Prjshort + "Start.html", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCssrcXmfile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Start/Crd" + Prjshort + "Start_src.xml", keys, vals));
 
 		// - key "lcl" for CrdXxxxStart.js
 		s = "";
@@ -1653,16 +1633,16 @@ void DlgWznmRlsWrite::createWebapp(
 		// -
 		keys.push_back("lcl"); vals.push_back(s);
 
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCsJsfile, "", outfolder + "/" + cmp->sref + "/Crd" + Prjshort + "Start/Crd" + Prjshort + "Start.js", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCsJsfile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Start/Crd" + Prjshort + "Start.js", keys, vals));
 
 		keys.pop_back(); vals.pop_back();
 		// -
 
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPsfaXmfile, "", outfolder + "/" + cmp->sref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartFailure.xml", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPsliXmfile, "", outfolder + "/" + cmp->sref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartLogin.xml", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPsloXmfile, "", outfolder + "/" + cmp->sref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartLogout.xml", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPssuXmfile, "", outfolder + "/" + cmp->sref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartSuccess.xml", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPssulstXmfile, "", outfolder + "/" + cmp->sref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartSuccess_LstSuspsess.xml", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPsfaXmfile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartFailure.xml", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPsliXmfile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartLogin.xml", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPsloXmfile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartLogout.xml", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPssuXmfile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartSuccess.xml", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPssulstXmfile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Start/Pnl" + Prjshort + "StartSuccess_LstSuspsess.xml", keys, vals));
 
 		// --- cards
 		keys.resize(0); vals.resize(0);
@@ -1681,15 +1661,15 @@ void DlgWznmRlsWrite::createWebapp(
 			vals[vals.size()-2] = crd->sref.substr(3+4);
 			vals[vals.size()-1] = StrMod::lc(crd->sref.substr(3+4));
 
-			addInv(new DpchInvWznmWrwebCrd(0, 0, crd->ref, Prjshort, ipfolder + "/" + cmp->sref + "/" + crd->sref));
+			addInv(new DpchInvWznmWrwebCrd(0, 0, crd->ref, Prjshort, ipfolder + "/" + cmpsref + "/" + crd->sref));
 
 			if (crd->refIxVTbl == VecWznmVMCardRefTbl::VOID) {
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCrvHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + crd->sref + ".html", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCrvHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + crd->sref + ".html", keys, vals));
 			} else {
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCrdHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + crd->sref + ".html", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCrdHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + crd->sref + ".html", keys, vals));
 			};
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCrdJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + crd->sref + ".js", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCrdJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + crd->sref + ".js", keys, vals));
 
 			keys.push_back("Menshort"); vals.push_back("Menshort");
 
@@ -1700,7 +1680,7 @@ void DlgWznmRlsWrite::createWebapp(
 
 				vals[vals.size()-1] = con->sref.substr(3);
 
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMenHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + con->sref + ".html", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMenHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + con->sref + ".html", keys, vals));
 			};
 
 			keys.pop_back(); vals.pop_back();
@@ -1716,7 +1696,7 @@ void DlgWznmRlsWrite::createWebapp(
 			for (unsigned int j = 0; j < dlgs.nodes.size(); j++) {
 				dlg = dlgs.nodes[j];
 
-				addInv(new DpchInvWznmWrwebDlg(0, 0, dlg->ref, Prjshort, ipfolder + "/" + cmp->sref + "/" + crd->sref));
+				addInv(new DpchInvWznmWrwebDlg(0, 0, dlg->ref, Prjshort, ipfolder + "/" + cmpsref + "/" + crd->sref));
 
 				dbswznm->tblwznmmcontrol->loadRstBySQL("SELECT * FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::DLG) + " AND hkUref = " + to_string(dlg->ref)
 							+ " AND ixVBasetype = " + to_string(VecWznmVMControlBasetype::DIT) + " ORDER BY hkNum ASC", false, cons);
@@ -1740,7 +1720,7 @@ void DlgWznmRlsWrite::createWebapp(
 							if (hasdse) s += con->sref.substr(0, 3) + "_" + con->sref.substr(3);
 							else s += "_" + con->sref;
 
-							addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCusXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + s + ".xml", keys, vals));
+							addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCusXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + s + ".xml", keys, vals));
 						};
 					};
 
@@ -1784,7 +1764,7 @@ void DlgWznmRlsWrite::createWebapp(
 						if (hasdse) s += con->sref.substr(0, 3) + "_" + con->sref.substr(3);
 						else s += "_" + con->sref;
 
-						addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLstXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + s + ".xml", keys, vals));
+						addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLstXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + s + ".xml", keys, vals));
 					};
 
 					keys.pop_back(); vals.pop_back();
@@ -1803,19 +1783,19 @@ void DlgWznmRlsWrite::createWebapp(
 				vals[vals.size()-2] = dlg->sref.substr(3+4+3);
 				vals[vals.size()-1] = to_string(cons.nodes.size());
 
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + dlg->sref + ".html", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + dlg->sref + ".html", keys, vals));
 
 				if (hasdse) {
 					keys.push_back("colspan");
 					if (cons.nodes.size() < 5) vals.push_back(to_string(cons.nodes.size()+1));
 					else vals.push_back("6");
 
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlghXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + dlg->sref + "_hdr.xml", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlghXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + dlg->sref + "_hdr.xml", keys, vals));
 
 					keys.pop_back(); vals.pop_back();
 					// -
 
-				} else addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlghHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + dlg->sref + "_hdr.html", keys, vals));
+				} else addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlghHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + dlg->sref + "_hdr.html", keys, vals));
 
 				if (hasdse) {
 					keys.push_back("Ditshort"); vals.push_back("Ditshort");
@@ -1824,20 +1804,20 @@ void DlgWznmRlsWrite::createWebapp(
 						con = cons.nodes[k];
 
 						vals[vals.size()-1] = con->sref.substr(3);
-						addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgaXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + dlg->sref + con->sref.substr(3) + ".xml", keys, vals));
+						addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgaXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + dlg->sref + con->sref.substr(3) + ".xml", keys, vals));
 					};
 
 					keys.pop_back(); vals.pop_back();
 					// -
 
 				} else {
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgaXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + dlg->sref + "_cont.xml", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgaXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + dlg->sref + "_cont.xml", keys, vals));
 				};
 
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgfHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + dlg->sref + "_ftr.html", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgfHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + dlg->sref + "_ftr.html", keys, vals));
 
-				if (hasdse) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + dlg->sref + ".js", keys, vals));
-				else addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgndJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + dlg->sref + ".js", keys, vals));
+				if (hasdse) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + dlg->sref + ".js", keys, vals));
+				else addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDlgndJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + dlg->sref + ".js", keys, vals));
 			};
 
 			keys.pop_back(); vals.pop_back();
@@ -1870,7 +1850,7 @@ void DlgWznmRlsWrite::createWebapp(
 			for (unsigned int j = 0; j < pnls.nodes.size(); j++) {
 				pnl = pnls.nodes[j];
 
-				addInv(new DpchInvWznmWrwebPnl(0, 0, pnl->ref, Prjshort, ipfolder + "/" + cmp->sref + "/" + crd->sref));
+				addInv(new DpchInvWznmWrwebPnl(0, 0, pnl->ref, Prjshort, ipfolder + "/" + cmpsref + "/" + crd->sref));
 
 				dbswznm->tblwznmmcontrol->loadRstBySQL("SELECT * FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL) + " AND hkUref = " + to_string(pnl->ref)
 							+ " AND ixVBasetype = " + to_string(VecWznmVMControlBasetype::CUS) + " ORDER BY supNum ASC", false, cons);
@@ -1885,7 +1865,7 @@ void DlgWznmRlsWrite::createWebapp(
 						vals[vals.size()-1] = con->sref;
 
 						if (StrMod::srefInSrefs(con->srefsKOption, "iframe"))
-									addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCusXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_" + con->sref + ".xml", keys, vals));
+									addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCusXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_" + con->sref + ".xml", keys, vals));
 					};
 
 					keys.pop_back(); vals.pop_back();
@@ -1918,7 +1898,7 @@ void DlgWznmRlsWrite::createWebapp(
 						if (StrMod::srefInSrefs(con->srefsKOption, "multsel")) vals[vals.size()-1] = "true";
 						else vals[vals.size()-1] = "false";
 
-						addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLstXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_" + con->sref + ".xml", keys, vals));
+						addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLstXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_" + con->sref + ".xml", keys, vals));
 					};
 
 					keys.pop_back(); vals.pop_back();
@@ -1933,14 +1913,14 @@ void DlgWznmRlsWrite::createWebapp(
 				vals[vals.size()-1] = pnl->sref.substr(3+4+3);
 
 				if (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADBAR) {
-					copyAcvtmp(dbswznm, refPhcXmfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_cont.xml");
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
+					copyAcvtmp(dbswznm, refPhcXmfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_cont.xml");
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
 
 				} else if (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADLINE) {
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhlcXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_cont.xml", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhlHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhlJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhlcXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_cont.xml", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhlHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPhlJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
 
 				} else if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) {
 					hashdr = true;
@@ -1955,21 +1935,21 @@ void DlgWznmRlsWrite::createWebapp(
 					Wznm::getBasecons(dbswznm, cons, {VecWznmVMControlHkSection::CONT, VecWznmVMControlHkSection::CONTREGD}, 0, icsBasecons);
 					for (unsigned int k = 0; k < icsBasecons.size(); k++) h += Wznm::getConheight(dbswznm, cons.nodes[icsBasecons[k]]);
 
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfaHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_a.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlasHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_aside.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfaHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_a.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlasHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_aside.html", keys, vals));
 
 					// key "conth" for PnlXxxxYyyZzzzz_b_Form.html
 					keys.push_back("conth"); vals.push_back(to_string(h));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfbHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfbHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
 					keys.pop_back(); vals.pop_back();
 					// -
 
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfbcXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bcont.xml", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfbcXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bcont.xml", keys, vals));
 
-					if (hasftr) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfbfHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bftr.html", keys, vals));
-					if (hashdr) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfbhHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbsHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bside.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
+					if (hasftr) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfbfHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bftr.html", keys, vals));
+					if (hashdr) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfbhHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbsHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bside.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
 
 					// keys "regh", "hdrftrh" for PnlXxxxYyyZzzzz_Form.js
 					keys.push_back("regh"); vals.push_back(to_string(h));
@@ -1979,29 +1959,29 @@ void DlgWznmRlsWrite::createWebapp(
 					if (hasftr) h += 24;
 					keys.push_back("hdrftrh"); vals.push_back(to_string(h));
 		
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
 
 					keys.pop_back(); vals.pop_back();
 					keys.pop_back(); vals.pop_back();
 					// -
 
 				} else if (pnl->ixVBasetype == VecWznmVMPanelBasetype::LIST) {
-					copyAcvtmp(dbswznm, refPlaHtfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_a.html");
-					copyAcvtmp(dbswznm, refPlasHtfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_aside.html");
+					copyAcvtmp(dbswznm, refPlaHtfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_a.html");
+					copyAcvtmp(dbswznm, refPlasHtfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_aside.html");
 
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPlbHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPlbHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
 
-					copyAcvtmp(dbswznm, refPlbfXmfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bftr.xml");
-					copyAcvtmp(dbswznm, refPlbhHtfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html");
-					copyAcvtmp(dbswznm, refPlbsHtfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bside.html");
-					copyAcvtmp(dbswznm, refPlbtXmfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_btbl.xml");
+					copyAcvtmp(dbswznm, refPlbfXmfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bftr.xml");
+					copyAcvtmp(dbswznm, refPlbhHtfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html");
+					copyAcvtmp(dbswznm, refPlbsHtfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bside.html");
+					copyAcvtmp(dbswznm, refPlbtXmfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_btbl.xml");
 
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPlHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPlJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPlHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPlJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
 
 				} else if (pnl->ixVBasetype == VecWznmVMPanelBasetype::REC) {
-					copyAcvtmp(dbswznm, refPraHtfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_a.html");
-					copyAcvtmp(dbswznm, refPrasHtfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_aside.html");
+					copyAcvtmp(dbswznm, refPraHtfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_a.html");
+					copyAcvtmp(dbswznm, refPrasHtfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_aside.html");
 
 					// - key "lrhsh" for PnlXxxxYyyRec_b.html (re-use of h for flexh, regh)
 					h1 = 5; h2 = 5;
@@ -2016,26 +1996,26 @@ void DlgWznmRlsWrite::createWebapp(
 					if (h1 > h2) h = h1; else h = h2;
 
 					keys.push_back("lrhsh"); vals.push_back(to_string(h));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrbHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrbHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
 					keys.pop_back(); vals.pop_back();
 					// -
 
-					copyAcvtmp(dbswznm, refPrbhHtfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html");
+					copyAcvtmp(dbswznm, refPrbhHtfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html");
 
 					// - key "flexh" for PnlXxxxYyyRec_bside.html
 					keys.push_back("flexh"); vals.push_back(to_string(h+1));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrbsHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bside.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrbsHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bside.html", keys, vals));
 					keys.pop_back(); vals.pop_back();
 					// -
 
-					copyAcvtmp(dbswznm, refPrlhHtfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_lhs.html");
-					copyAcvtmp(dbswznm, refPrrhHtfile, outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_rhs.html");
+					copyAcvtmp(dbswznm, refPrlhHtfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_lhs.html");
+					copyAcvtmp(dbswznm, refPrrhHtfile, outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_rhs.html");
 
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
 
 					// - key "regh" for PnlXxxxYyyRec.js
 					keys.push_back("regh"); vals.push_back(to_string(h+1+45));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
 					keys.pop_back(); vals.pop_back();
 					// -
 
@@ -2052,21 +2032,21 @@ void DlgWznmRlsWrite::createWebapp(
 					Wznm::getBasecons(dbswznm, cons, {VecWznmVMControlHkSection::CONT, VecWznmVMControlHkSection::CONTREGD}, 0, icsBasecons);
 					for (unsigned int k = 0; k < icsBasecons.size(); k++) h += Wznm::getConheight(dbswznm, cons.nodes[icsBasecons[k]]);
 
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlaHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_a.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlasHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_aside.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlaHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_a.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlasHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_aside.html", keys, vals));
 
 					// key "conth" for PnlXxxxYyyZzzzz_b_Recform.html
 					keys.push_back("conth"); vals.push_back(to_string(h));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfbHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfbHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
 					keys.pop_back(); vals.pop_back();
 					// -
 
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfbcXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bcont.xml", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfbcXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bcont.xml", keys, vals));
 
-					if (hasftr) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfbfHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bftr.html", keys, vals));
-					if (hashdr) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfbhHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbsHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bside.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
+					if (hasftr) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfbfHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bftr.html", keys, vals));
+					if (hashdr) addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfbhHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbsHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bside.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
 
 
 					// keys "regh", "hdrftrh" for PnlXxxxYyyZzzzz_Form.js
@@ -2077,22 +2057,22 @@ void DlgWznmRlsWrite::createWebapp(
 					if (hasftr) h += 24;
 					keys.push_back("hdrftrh"); vals.push_back(to_string(h));
 		
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPrfJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
 
 					keys.pop_back(); vals.pop_back();
 					keys.pop_back(); vals.pop_back();
 					// -
 
 				} else if (pnl->ixVBasetype == VecWznmVMPanelBasetype::RECLIST) {
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlaHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_a.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlasHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_aside.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbfXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bftr.xml", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbhHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbsHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_bside.html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbtXmfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + "_btbl.xml", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlHtfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
-					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlJsfile, "", outfolder + "/" + cmp->sref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlaHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_a.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlasHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_aside.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_b.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbfXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bftr.xml", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbhHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bhdr.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbsHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_bside.html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlbtXmfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + "_btbl.xml", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlHtfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".html", keys, vals));
+					addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPnlJsfile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".js", keys, vals));
 				};
 			};
 		};
@@ -2173,12 +2153,12 @@ void DlgWznmRlsWrite::createApi(
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
 	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rls->sref);
+	createIpoutSubfolder(false, "_rls", rlssref);
 
 	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", cmp->sref);
+	createIpoutSubfolder(false, "_ini", cmpsref);
 
-	createIpoutSubfolder(true, cmp->sref);
+	createIpoutSubfolder(true, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -2214,11 +2194,11 @@ void DlgWznmRlsWrite::createApi(
 
 	keys.push_back("ncore"); vals.push_back(ncore);
 
-	addInv(new DpchInvWznmWrapiDeploy(0, 0, rls->ref, Prjshort, ipfolder + "/_rls/" + rls->sref));
+	addInv(new DpchInvWznmWrapiDeploy(0, 0, rls->ref, Prjshort, ipfolder + "/_rls/" + rlssref));
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rls->sref + "/checkout.sh", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rls->sref + "/Makefile", keys, vals));
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkallfile, "", outfolder + "/_rls/" + rls->sref + "/makeall.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rlssref + "/checkout.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMakefile, "", outfolder + "/_rls/" + rlssref + "/Makefile", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMkallfile, "", outfolder + "/_rls/" + rlssref + "/makeall.sh", keys, vals));
 
 	if (!dplonly) {
 		// --- API globals (WznmWrapiBase)
@@ -2233,15 +2213,15 @@ void DlgWznmRlsWrite::createApi(
 		keys.push_back("verminor"); vals.push_back(verminor);
 		keys.push_back("versub"); vals.push_back(versub);
 
-		addInv(new DpchInvWznmWrapiBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmp->sref));
+		addInv(new DpchInvWznmWrapiBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmpsref));
 
 		// -- ApiXxxx_blks
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblhfile, "", outfolder + "/" + cmp->sref + "/Api" + Prjshort + "_blks.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblcppfile, "", outfolder + "/" + cmp->sref + "/Api" + Prjshort + "_blks.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblhfile, "", outfolder + "/" + cmpsref + "/Api" + Prjshort + "_blks.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblcppfile, "", outfolder + "/" + cmpsref + "/Api" + Prjshort + "_blks.cpp", keys, vals));
 
 		// -- ApiXxxx
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refApihfile, "", outfolder + "/" + cmp->sref + "/Api" + Prjshort + ".h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refApicppfile, "", outfolder + "/" + cmp->sref + "/Api" + Prjshort + ".cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refApihfile, "", outfolder + "/" + cmpsref + "/Api" + Prjshort + ".h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refApicppfile, "", outfolder + "/" + cmpsref + "/Api" + Prjshort + ".cpp", keys, vals));
 
 		// -- global vectors
 		dbswznm->tblwznmmvector->loadRstBySQL("SELECT * FROM TblWznmMVector WHERE refWznmMVersion = " + to_string(ver->ref) + " AND hkIxVTbl = " + to_string(VecWznmVMVectorHkTbl::JOB) + " AND hkUref = 0", false, vecs);
@@ -2255,13 +2235,13 @@ void DlgWznmRlsWrite::createApi(
 			vals[vals.size()-2] = StrMod::uc(vec->sref);
 			vals[vals.size()-1] = vec->sref;
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVechfile, "", outfolder + "/" + cmp->sref + "/" + vec->sref + ".h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVeccppfile, "", outfolder + "/" + cmp->sref + "/" + vec->sref + ".cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVechfile, "", outfolder + "/" + cmpsref + "/" + vec->sref + ".h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVeccppfile, "", outfolder + "/" + cmpsref + "/" + vec->sref + ".cpp", keys, vals));
 		};
 
 		// -- VecXxxxVDpch
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecdphfile, "", outfolder + "/" + cmp->sref + "/Vec" + Prjshort + "VDpch.h", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecdpcppfile, "", outfolder + "/" + cmp->sref + "/Vec" + Prjshort + "VDpch.cpp", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecdphfile, "", outfolder + "/" + cmpsref + "/Vec" + Prjshort + "VDpch.h", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecdpcppfile, "", outfolder + "/" + cmpsref + "/Vec" + Prjshort + "VDpch.cpp", keys, vals));
 
 		// --- jobs (WznmWrapiJob)
 		keys.resize(0); vals.resize(0);
@@ -2285,10 +2265,10 @@ void DlgWznmRlsWrite::createApi(
 				vals[vals.size()-2] = StrMod::uc(job->sref);
 				vals[vals.size()-1] = job->sref;
 
-				addInv(new DpchInvWznmWrapiJob(0, 0, cmp->ref, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmp->sref));
+				addInv(new DpchInvWznmWrapiJob(0, 0, cmp->ref, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmpsref));
 
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobhfile, "", outfolder + "/" + cmp->sref + "/" + job->sref + ".h", keys, vals));
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobcppfile, "", outfolder + "/" + cmp->sref + "/" + job->sref + ".cpp", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobhfile, "", outfolder + "/" + cmpsref + "/" + job->sref + ".h", keys, vals));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobcppfile, "", outfolder + "/" + cmpsref + "/" + job->sref + ".cpp", keys, vals));
 			};
 		};
 
@@ -2313,10 +2293,10 @@ void DlgWznmRlsWrite::createApi(
 			vals[vals.size()-2] = StrMod::uc(tblshort);
 			vals[vals.size()-1] = tblshort;
 
-			addInv(new DpchInvWznmWrapiQtb(0, 0, qtb->ref, ipfolder + "/" + cmp->sref));
+			addInv(new DpchInvWznmWrapiQtb(0, 0, qtb->ref, ipfolder + "/" + cmpsref));
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbhfile, "", outfolder + "/" + cmp->sref + "/" + qtb->sref.substr(3) + ".h", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbcppfile, "", outfolder + "/" + cmp->sref + "/" + qtb->sref.substr(3) + ".cpp", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbhfile, "", outfolder + "/" + cmpsref + "/" + qtb->sref.substr(3) + ".h", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbcppfile, "", outfolder + "/" + cmpsref + "/" + qtb->sref.substr(3) + ".cpp", keys, vals));
 		};
 	};
 
@@ -2398,9 +2378,9 @@ void DlgWznmRlsWrite::createJapi(
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
 	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rls->sref);
+	createIpoutSubfolder(false, "_rls", rlssref);
 
-	createIpoutSubfolder(true, cmp->sref);
+	createIpoutSubfolder(true, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -2425,7 +2405,7 @@ void DlgWznmRlsWrite::createJapi(
 	keys.push_back("prjshort"); vals.push_back(prjshort);
 	keys.push_back("rlssref"); vals.push_back(rlssref);
 
-	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rls->sref + "/checkout.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rlssref + "/checkout.sh", keys, vals));
 
 	if (!dplonly) {
 		// --- Java API globals (WznmWrjapiBase)
@@ -2440,25 +2420,25 @@ void DlgWznmRlsWrite::createJapi(
 		keys.push_back("verminor"); vals.push_back(verminor);
 		keys.push_back("versub"); vals.push_back(versub);
 
-		addInv(new DpchInvWznmWrjapiBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmp->sref));
+		addInv(new DpchInvWznmWrjapiBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmpsref));
 
 		// -- ApiXxxx
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refApijfile, "", outfolder + "/" + cmp->sref + "/Api" + Prjshort + ".java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refApijfile, "", outfolder + "/" + cmpsref + "/Api" + Prjshort + ".java", keys, vals));
 
 		// -- ContInfXxxxAlert, DpchXxxx, DpchAppXxxx, DpchAppXxxxAlert, DpchAppXxxxInit, DpchAppXxxxResume
 		// -- DpchEngXxxx, DpchEngXxxxAck, DpchEngXxxxAlert, DpchEngXxxxConfirm, DpchEngXxxxSuspend, StgXxxxapi
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refContinfalrjfile, "", outfolder + "/" + cmp->sref + "/ContInf" + Prjshort + "Alert.java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchjfile, "", outfolder + "/" + cmp->sref + "/Dpch" + Prjshort + ".java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchappjfile, "", outfolder + "/" + cmp->sref + "/DpchApp" + Prjshort + ".java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchappalrjfile, "", outfolder + "/" + cmp->sref + "/DpchApp" + Prjshort + "Alert.java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchappinijfile, "", outfolder + "/" + cmp->sref + "/DpchApp" + Prjshort + "Init.java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchapprsmjfile, "", outfolder + "/" + cmp->sref + "/DpchApp" + Prjshort + "Resume.java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengjfile, "", outfolder + "/" + cmp->sref + "/DpchEng" + Prjshort + ".java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengackjfile, "", outfolder + "/" + cmp->sref + "/DpchEng" + Prjshort + "Ack.java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengalrjfile, "", outfolder + "/" + cmp->sref + "/DpchEng" + Prjshort + "Alert.java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengcnfjfile, "", outfolder + "/" + cmp->sref + "/DpchEng" + Prjshort + "Confirm.java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengspsjfile, "", outfolder + "/" + cmp->sref + "/DpchEng" + Prjshort + "Suspend.java", keys, vals));
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStgjfile, "", outfolder + "/" + cmp->sref + "/Stg" + Prjshort + "api.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refContinfalrjfile, "", outfolder + "/" + cmpsref + "/ContInf" + Prjshort + "Alert.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchjfile, "", outfolder + "/" + cmpsref + "/Dpch" + Prjshort + ".java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchappjfile, "", outfolder + "/" + cmpsref + "/DpchApp" + Prjshort + ".java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchappalrjfile, "", outfolder + "/" + cmpsref + "/DpchApp" + Prjshort + "Alert.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchappinijfile, "", outfolder + "/" + cmpsref + "/DpchApp" + Prjshort + "Init.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchapprsmjfile, "", outfolder + "/" + cmpsref + "/DpchApp" + Prjshort + "Resume.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengjfile, "", outfolder + "/" + cmpsref + "/DpchEng" + Prjshort + ".java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengackjfile, "", outfolder + "/" + cmpsref + "/DpchEng" + Prjshort + "Ack.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengalrjfile, "", outfolder + "/" + cmpsref + "/DpchEng" + Prjshort + "Alert.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengcnfjfile, "", outfolder + "/" + cmpsref + "/DpchEng" + Prjshort + "Confirm.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refDpchengspsjfile, "", outfolder + "/" + cmpsref + "/DpchEng" + Prjshort + "Suspend.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refStgjfile, "", outfolder + "/" + cmpsref + "/Stg" + Prjshort + "api.java", keys, vals));
 
 		// -- global vectors (WznmWrjapiVec) and VecXxxxVDpch
 		dbswznm->tblwznmmvector->loadRstBySQL("SELECT * FROM TblWznmMVector WHERE refWznmMVersion = " + to_string(ver->ref) + " AND hkIxVTbl = " + to_string(VecWznmVMVectorHkTbl::JOB) + " AND hkUref = 0", false, vecs);
@@ -2470,12 +2450,12 @@ void DlgWznmRlsWrite::createJapi(
 
 			vals[vals.size()-1] = vec->sref;
 
-			addInv(new DpchInvWznmWrjapiVec(0, 0, vec->ref, Prjshort, ipfolder + "/" + cmp->sref));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecjfile, "", outfolder + "/" + cmp->sref + "/" + vec->sref + ".java", keys, vals));
+			addInv(new DpchInvWznmWrjapiVec(0, 0, vec->ref, Prjshort, ipfolder + "/" + cmpsref));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecjfile, "", outfolder + "/" + cmpsref + "/" + vec->sref + ".java", keys, vals));
 		};
 
 		// -- VecXxxxVDpch
-		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecdpchjfile, "", outfolder + "/" + cmp->sref + "/Vec" + Prjshort + "VDpch.java", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecdpchjfile, "", outfolder + "/" + cmpsref + "/Vec" + Prjshort + "VDpch.java", keys, vals));
 
 		// --- jobs (WznmWrjapiJob)
 		keys.resize(0); vals.resize(0);
@@ -2497,8 +2477,8 @@ void DlgWznmRlsWrite::createJapi(
 			if (cnt > 0) {
 				vals[vals.size()-1] = job->sref;
 
-				addInv(new DpchInvWznmWrjapiJob(0, 0, cmp->ref, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmp->sref));
-				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobjfile, "", outfolder + "/" + cmp->sref + "/" + job->sref + ".java", keys, vals));
+				addInv(new DpchInvWznmWrjapiJob(0, 0, cmp->ref, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmpsref));
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobjfile, "", outfolder + "/" + cmpsref + "/" + job->sref + ".java", keys, vals));
 			};
 		};
 
@@ -2521,10 +2501,10 @@ void DlgWznmRlsWrite::createJapi(
 
 			vals[vals.size()-1] = tblshort;
 
-			addInv(new DpchInvWznmWrjapiQtb(0, 0, qtb->ref, ipfolder + "/" + cmp->sref));
+			addInv(new DpchInvWznmWrjapiQtb(0, 0, qtb->ref, ipfolder + "/" + cmpsref));
 
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbjfile, "", outfolder + "/" + cmp->sref + "/" + qtb->sref.substr(3) + ".java", keys, vals));
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLqtbjfile, "", outfolder + "/" + cmp->sref + "/List" + qtb->sref.substr(3) + ".java", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbjfile, "", outfolder + "/" + cmpsref + "/" + qtb->sref.substr(3) + ".java", keys, vals));
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refLqtbjfile, "", outfolder + "/" + cmpsref + "/List" + qtb->sref.substr(3) + ".java", keys, vals));
 		};
 	};
 
@@ -2583,8 +2563,8 @@ void DlgWznmRlsWrite::refreshWrc(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrWrc oldStatshrwrc(statshrwrc);
 	ContInfWrc oldContinfwrc(continfwrc);
+	StatShrWrc oldStatshrwrc(statshrwrc);
 
 	// IP refreshWrc --- RBEGIN
 	// continfwrc
@@ -2596,16 +2576,16 @@ void DlgWznmRlsWrite::refreshWrc(
 	statshrwrc.ButStoActive = evalWrcButStoActive(dbswznm);
 
 	// IP refreshWrc --- REND
-	if (statshrwrc.diff(&oldStatshrwrc).size() != 0) insert(moditems, DpchEngData::STATSHRWRC);
 	if (continfwrc.diff(&oldContinfwrc).size() != 0) insert(moditems, DpchEngData::CONTINFWRC);
+	if (statshrwrc.diff(&oldStatshrwrc).size() != 0) insert(moditems, DpchEngData::STATSHRWRC);
 };
 
 void DlgWznmRlsWrite::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfLfi oldContinflfi(continflfi);
 	StatShrLfi oldStatshrlfi(statshrlfi);
+	ContInfLfi oldContinflfi(continflfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -2615,16 +2595,16 @@ void DlgWznmRlsWrite::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
+	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 };
 
 void DlgWznmRlsWrite::refreshFia(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfFia oldContinffia(continffia);
 	StatShrFia oldStatshrfia(statshrfia);
+	ContInfFia oldContinffia(continffia);
 
 	// IP refreshFia --- RBEGIN
 	// statshrfia
@@ -2635,8 +2615,8 @@ void DlgWznmRlsWrite::refreshFia(
 	continffia.Dld = StubWznm::getStubRlsStd(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref)) + ".tgz";
 
 	// IP refreshFia --- REND
-	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
 	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
+	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
 };
 
 void DlgWznmRlsWrite::refresh(
@@ -2647,24 +2627,24 @@ void DlgWznmRlsWrite::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	StatShr oldStatshr(statshr);
 	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
-	// statshr
-	statshr.ButDneActive = evalButDneActive(dbswznm);
-
 	// continf
 	continf.numFSge = ixVSge;
 
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// statshr
+	statshr.ButDneActive = evalButDneActive(dbswznm);
+
 	// IP refresh --- END
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
 	refreshDet(dbswznm, moditems);
 	refreshCuc(dbswznm, moditems);
@@ -2731,8 +2711,8 @@ void DlgWznmRlsWrite::handleRequest(
 		if (ixVSge == VecVSge::IDLE) handleUploadInSgeIdle(dbswznm, req->filename);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DOWNLOAD) {
-		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
-		else if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
+		if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
+		else if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DPCHRET) {
 		if (req->dpchret->ixOpVOpres == VecOpVOpres::PROGRESS) {
@@ -2761,10 +2741,10 @@ void DlgWznmRlsWrite::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::CREIDLE) handleTimerInSgeCreidle(dbswznm, req->sref);
+		if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
+		else if (ixVSge == VecVSge::CREIDLE) handleTimerInSgeCreidle(dbswznm, req->sref);
+		else if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
 	};
 };
 
@@ -2891,30 +2871,23 @@ void DlgWznmRlsWrite::handleUploadInSgeIdle(
 	changeStage(dbswznm, VecVSge::UPKIDLE);
 };
 
-string DlgWznmRlsWrite::handleDownloadInSgeDone(
-			DbsWznm* dbswznm
-		) {
-	return(xchg->tmppath + "/" + outfolder + ".tgz"); // IP handleDownloadInSgeDone --- RLINE
-};
-
 string DlgWznmRlsWrite::handleDownloadInSgeFail(
 			DbsWznm* dbswznm
 		) {
 	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
-void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
+string DlgWznmRlsWrite::handleDownloadInSgeDone(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	return(xchg->tmppath + "/" + outfolder + ".tgz"); // IP handleDownloadInSgeDone --- RLINE
 };
 
-void DlgWznmRlsWrite::handleTimerInSgeCreidle(
+void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
 };
 
 void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
@@ -2924,11 +2897,18 @@ void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeCreate --- ILINE
 };
 
-void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
+void DlgWznmRlsWrite::handleTimerInSgeCreidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
+};
+
+void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsWrite::changeStage(
@@ -3260,6 +3240,7 @@ uint DlgWznmRlsWrite::enterSgeCreate(
 	} else if (ixCmptype == VecWznmVMComponentBasetype::DBS) {
 		// create -> outfolder
 		// IP's -> ipfolder -> outfolder
+		// (optional) custom IP's -> custfolder -> outfolder (concerns header ABOVE IP's only)
 		createDbs(dbswznm, contiacdet.ChkBso);
 
 	} else if (ixCmptype == VecWznmVMComponentBasetype::WEBAPP) {
@@ -3271,11 +3252,13 @@ uint DlgWznmRlsWrite::enterSgeCreate(
 	} else if (ixCmptype == VecWznmVMComponentBasetype::API) {
 		// create -> outfolder
 		// IP's -> ipfolder -> outfolder
+		// (optional) custom IP's -> custfolder -> outfolder (concerns header ABOVE IP's only)
 		createApi(dbswznm, contiacdet.ChkBso);
 
 	} else if (ixCmptype == VecWznmVMComponentBasetype::JAPI) {
 		// create -> outfolder
 		// IP's -> ipfolder -> outfolder
+		// (optional) custom IP's -> custfolder -> outfolder (concerns header ABOVE IP's only)
 		createJapi(dbswznm, contiacdet.ChkBso);
 	};
 
@@ -3325,34 +3308,8 @@ uint DlgWznmRlsWrite::enterSgeMrggnr(
 
 	// IP enterSgeMrggnr --- IBEGIN
 
-	if (ixCmptype == VecWznmVMComponentBasetype::ENG) {
-		// IP's -> ipfolder -> outfolder
-		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ipfolder, "", outfolder, true, true));
+	addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ipfolder, "", outfolder, true, true));
 
-	} else if (ixCmptype == VecWznmVMComponentBasetype::OPENG) {
-		// IP's -> ipfolder -> outfolder
-		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ipfolder, "", outfolder, true, true));
-
-	} else if (ixCmptype == VecWznmVMComponentBasetype::CMBENG) {
-		// IP's -> ipfolder -> outfolder
-		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ipfolder, "", outfolder, true, true));
-
-	} else if (ixCmptype == VecWznmVMComponentBasetype::DBS) {
-		// IP's -> ipfolder -> outfolder
-		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ipfolder, "", outfolder, true, true));
-
-	} else if (ixCmptype == VecWznmVMComponentBasetype::WEBAPP) {
-		// IP's -> ipfolder -> outfolder
-		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ipfolder, "", outfolder, true, true));
-
-	} else if (ixCmptype == VecWznmVMComponentBasetype::API) {
-		// IP's -> ipfolder -> outfolder
-		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ipfolder, "", outfolder, true, true));
-
-	} else if (ixCmptype == VecWznmVMComponentBasetype::JAPI) {
-		// IP's -> ipfolder -> outfolder
-		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ipfolder, "", outfolder, true, true));
-	};
 	// IP enterSgeMrggnr --- IEND
 
 	submitInvs(dbswznm, retval, retval);
@@ -3381,7 +3338,7 @@ uint DlgWznmRlsWrite::enterSgeMrgspec(
 	} else if (ixCmptype == VecWznmVMComponentBasetype::OPENG) {
 	} else if (ixCmptype == VecWznmVMComponentBasetype::CMBENG) {
 		// job-type specific IP's -> specfolder -> outfolder
-		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", specfolder + "/" + prjshort + "cmbd", "", outfolder + "/" + prjshort + "cmbd", true, true));
+		if (!contiacdet.ChkBso) addInv(new DpchInvWznmPrctreeMerge(0, 0, "", specfolder + "/" + cmpsref, "", outfolder + "/" + cmpsref, true, true));
 
 	} else if (ixCmptype == VecWznmVMComponentBasetype::DBS) {
 	} else if (ixCmptype == VecWznmVMComponentBasetype::WEBAPP) {
@@ -3435,25 +3392,13 @@ uint DlgWznmRlsWrite::enterSgeMrgcust(
 
 	// IP enterSgeMrgcust --- IBEGIN
 
-	if (ixCmptype == VecWznmVMComponentBasetype::ENG) {
-		// (optional) custom IP's -> custfolder -> outfolder (concerns IP's of cmbeng: Xxxxcmbd_exe.cpp -> Xxxxd_exe.cpp, Xxxxcmbd.h -> Xxxxd.h, Xxxxcmbd.cpp -> Xxxxd.cpp)
-		if (custfolder != "") addInv(new DpchInvWznmPrctreeMerge(0, 0, "", custfolder, "", outfolder + "/" + prjshort + "d", false, false));
+	if (!contiacdet.ChkBso) {
+		if (custfolder == "") {
+			custfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMEXTFOLDER, jref);
+			if (custfolder != "") custfolder += "/" + cmpsref;
+		};
 
-	} else if (ixCmptype == VecWznmVMComponentBasetype::OPENG) {
-		// (optional) custom IP's -> custfolder -> outfolder (concerns IP's of cmbeng: Xxxxcmbd_exe.cpp -> Xxxxopd_exe.cpp, Xxxxcmbd.h -> Xxxxopd.h, Xxxxcmbd.cpp -> Xxxxopd.cpp)
-		if (custfolder != "") addInv(new DpchInvWznmPrctreeMerge(0, 0, "", custfolder, "", outfolder + "/" + cmpsref, false, false));
-
-	} else if (ixCmptype == VecWznmVMComponentBasetype::CMBENG) {
-		// (optional) custom IP's -> custfolder -> outfolder
-		if (custfolder != "") addInv(new DpchInvWznmPrctreeMerge(0, 0, "", custfolder, "", outfolder + "/" + prjshort + "cmbd", false, false));
-
-	} else if (ixCmptype == VecWznmVMComponentBasetype::DBS) {
-	} else if (ixCmptype == VecWznmVMComponentBasetype::WEBAPP) {
-		// (optional) custom IP's -> custfolder -> outfolder
-		if (custfolder != "") addInv(new DpchInvWznmPrctreeMerge(0, 0, "", custfolder, "", outfolder + "/webapp" + prjshort, false, false));
-
-	} else if (ixCmptype == VecWznmVMComponentBasetype::API) {
-	} else if (ixCmptype == VecWznmVMComponentBasetype::JAPI) {
+		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", custfolder, "", outfolder + "/" + cmpsref, false, false));
 	};
 
 	// IP enterSgeMrgcust --- IEND
@@ -3527,6 +3472,3 @@ void DlgWznmRlsWrite::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
-
-

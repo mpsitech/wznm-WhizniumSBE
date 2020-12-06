@@ -811,4 +811,3 @@ ubigint PgTblWznmQOpxMNJob::loadRstByJref(
 	return loadRstByStmt("TblWznmQOpxMNJob_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

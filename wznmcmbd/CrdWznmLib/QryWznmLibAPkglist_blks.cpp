@@ -185,6 +185,3 @@ set<uint> QryWznmLibAPkglist::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

@@ -1108,4 +1108,3 @@ bool PgTblWznmMVector::loadSrfByRef(
 };
 
 #endif
-

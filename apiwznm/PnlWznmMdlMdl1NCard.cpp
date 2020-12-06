@@ -529,4 +529,3 @@ void PnlWznmMdlMdl1NCard::DpchEngData::readXML(
 		stgiacqry = QryWznmMdlMdl1NCard::StgIac();
 	};
 };
-

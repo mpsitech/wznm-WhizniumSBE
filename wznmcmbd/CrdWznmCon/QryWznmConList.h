@@ -34,11 +34,11 @@ public:
 	public:
 		static const Sbecore::uint SUP = 1;
 		static const Sbecore::uint REU = 2;
-		static const Sbecore::uint SCT = 3;
-		static const Sbecore::uint RET = 4;
-		static const Sbecore::uint HKU = 5;
-		static const Sbecore::uint TYP = 6;
-		static const Sbecore::uint HKT = 7;
+		static const Sbecore::uint RET = 3;
+		static const Sbecore::uint HKU = 4;
+		static const Sbecore::uint SCT = 5;
+		static const Sbecore::uint HKT = 6;
+		static const Sbecore::uint TYP = 7;
 		static const Sbecore::uint SRF = 8;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -150,13 +150,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmConUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmConMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmConMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmConUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

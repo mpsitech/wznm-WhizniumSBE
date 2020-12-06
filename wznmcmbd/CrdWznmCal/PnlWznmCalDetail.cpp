@@ -409,6 +409,3 @@ bool PnlWznmCalDetail::handleCallWznmCal_retEq(
 	boolvalRet = (recCal.refIxVTbl == ixInv); // IP handleCallWznmCal_retEq --- LINE
 	return retval;
 };
-
-
-

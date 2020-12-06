@@ -592,4 +592,3 @@ void PnlWznmCarList::DpchEngData::readXML(
 		stgiacqry = QryWznmCarList::StgIac();
 	};
 };
-

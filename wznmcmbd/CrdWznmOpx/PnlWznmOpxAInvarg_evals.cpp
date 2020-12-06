@@ -80,6 +80,3 @@ bool PnlWznmOpxAInvarg::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

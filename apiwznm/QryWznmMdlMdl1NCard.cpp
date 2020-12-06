@@ -241,4 +241,3 @@ set<uint> QryWznmMdlMdl1NCard::StgIac::diff(
 
 	return(diffitems);
 };
-

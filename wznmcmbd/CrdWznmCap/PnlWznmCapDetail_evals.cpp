@@ -178,6 +178,3 @@ bool PnlWznmCapDetail::evalLstAtfActive(
 
 	return(args.back());
 };
-
-
-

@@ -59,4 +59,3 @@ public class ListWznmQAppRef1NFile {
 		return false;
 	};
 };
-

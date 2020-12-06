@@ -22,8 +22,8 @@ uint QryWznmSeqList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
 	if (s == "app") return APP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -31,8 +31,8 @@ uint QryWznmSeqList::VecVOrd::getIx(
 string QryWznmSeqList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
 	if (ix == APP) return("app");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -265,4 +265,3 @@ set<uint> QryWznmSeqList::StgIac::diff(
 
 	return(diffitems);
 };
-

@@ -272,4 +272,3 @@ public class QryWznmTblTbl1NTablecol {
 	};
 
 };
-

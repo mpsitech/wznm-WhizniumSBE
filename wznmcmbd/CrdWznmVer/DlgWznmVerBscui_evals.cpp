@@ -118,6 +118,3 @@ bool DlgWznmVerBscui::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-

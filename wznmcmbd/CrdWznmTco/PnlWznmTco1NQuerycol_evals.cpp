@@ -50,6 +50,3 @@ bool PnlWznmTco1NQuerycol::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

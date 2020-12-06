@@ -103,4 +103,3 @@ ubigint PgTblWznmCAMOppackRetval::getNewRef() {
 	return ref;
 };
 #endif
-

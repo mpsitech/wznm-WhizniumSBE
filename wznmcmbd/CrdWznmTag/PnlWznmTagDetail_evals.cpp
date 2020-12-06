@@ -171,6 +171,3 @@ bool PnlWznmTagDetail::evalButGrpEditAvail(
 
 	return(args.back());
 };
-
-
-

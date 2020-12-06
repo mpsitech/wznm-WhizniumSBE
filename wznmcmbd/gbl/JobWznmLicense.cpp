@@ -550,6 +550,3 @@ bool JobWznmLicense::handleClaim(
 
 	return mod;
 };
-
-
-

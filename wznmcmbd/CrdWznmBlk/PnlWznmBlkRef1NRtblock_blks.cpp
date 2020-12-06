@@ -398,6 +398,3 @@ void PnlWznmBlkRef1NRtblock::DpchEngData::writeXML(
 		if (has(STGIACQRY)) stgiacqry.writeXML(wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

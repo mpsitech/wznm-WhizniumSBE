@@ -787,4 +787,3 @@ ubigint PgTblWznmQPreselect::loadRstByJref(
 	return loadRstByStmt("TblWznmQPreselect_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

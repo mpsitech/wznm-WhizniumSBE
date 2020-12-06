@@ -999,4 +999,3 @@ public class PnlWznmVecDetail {
 	};
 
 };
-

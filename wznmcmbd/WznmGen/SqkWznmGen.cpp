@@ -72,6 +72,3 @@ string SqkWznmGen::getSquawkSysvec(
 	// example: "fill system vectors for version 'BeamRelay 0.1'"
 	return("fill system vectors for version '" + StubWznm::getStubVerStd(dbswznm, dpchinv->refWznmMVersion) + "'"); // IP getSquawkSysvec --- RLINE
 };
-
-
-

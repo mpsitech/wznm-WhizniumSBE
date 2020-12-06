@@ -264,6 +264,3 @@ void DpchInvWznmComplJtr::writeXML(
 };
 
 // IP cust --- INSERT
-
-
-

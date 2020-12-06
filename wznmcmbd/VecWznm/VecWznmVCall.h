@@ -462,6 +462,3 @@ namespace VecWznmVCall {
 };
 
 #endif
-
-
-

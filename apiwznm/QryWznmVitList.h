@@ -113,4 +113,3 @@ namespace QryWznmVitList {
 };
 
 #endif
-

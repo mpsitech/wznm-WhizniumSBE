@@ -468,12 +468,12 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalResDldActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalSrcUldActive(DbsWznm* dbswznm);
 	bool evalExtButRunActive(DbsWznm* dbswznm);
 	bool evalExtButStoActive(DbsWznm* dbswznm);
-	bool evalSrcUldActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalResDldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmUtlExtrip(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -539,8 +539,8 @@ private:
 
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeExtract(DbsWznm* dbswznm, DpchRetWznmPrctreeExtract* dpchret);
@@ -584,6 +584,3 @@ private:
 };
 
 #endif
-
-
-

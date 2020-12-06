@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmLibMNComponent.h"
-#include "PnlWznmLibMNOppack.h"
 #include "PnlWznmLibRef1NFile.h"
+#include "PnlWznmLibMNOppack.h"
 #include "PnlWznmLibAMakefile.h"
 #include "PnlWznmLibAPkglist.h"
 #include "PnlWznmLibDetail.h"
@@ -181,8 +181,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmLibMNComponent* pnlmncomponent;
-	PnlWznmLibMNOppack* pnlmnoppack;
 	PnlWznmLibRef1NFile* pnlref1nfile;
+	PnlWznmLibMNOppack* pnlmnoppack;
 	PnlWznmLibAMakefile* pnlamakefile;
 	PnlWznmLibAPkglist* pnlapkglist;
 	PnlWznmLibDetail* pnldetail;
@@ -224,6 +224,3 @@ private:
 };
 
 #endif
-
-
-

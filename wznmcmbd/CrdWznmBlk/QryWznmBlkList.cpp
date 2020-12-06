@@ -379,8 +379,8 @@ void QryWznmBlkList::rerun_orderSQL(
 	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMBlock.refUref ASC";
 	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMBlock.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMBlock.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMBlock.sref ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMBlock.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMBlock.sref ASC";
 };
 
 void QryWznmBlkList::fetch(
@@ -610,6 +610,3 @@ bool QryWznmBlkList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-

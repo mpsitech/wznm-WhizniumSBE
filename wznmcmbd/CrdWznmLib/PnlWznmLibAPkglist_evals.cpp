@@ -80,6 +80,3 @@ bool PnlWznmLibAPkglist::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

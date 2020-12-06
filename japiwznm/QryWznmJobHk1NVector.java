@@ -272,4 +272,3 @@ public class QryWznmJobHk1NVector {
 	};
 
 };
-

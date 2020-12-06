@@ -272,4 +272,3 @@ public class QryWznmCtp1NTag {
 	};
 
 };
-

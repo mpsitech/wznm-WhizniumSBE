@@ -322,6 +322,3 @@ bool PnlWznmVecSrc1NFeed::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

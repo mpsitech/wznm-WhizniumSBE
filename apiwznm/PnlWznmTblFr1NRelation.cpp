@@ -513,4 +513,3 @@ void PnlWznmTblFr1NRelation::DpchEngData::readXML(
 		stgiacqry = QryWznmTblFr1NRelation::StgIac();
 	};
 };
-

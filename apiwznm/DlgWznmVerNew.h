@@ -287,4 +287,3 @@ namespace DlgWznmVerNew {
 };
 
 #endif
-

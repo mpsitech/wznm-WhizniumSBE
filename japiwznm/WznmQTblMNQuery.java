@@ -53,4 +53,3 @@ public class WznmQTblMNQuery {
 		return false;
 	};
 };
-

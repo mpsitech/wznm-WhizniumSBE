@@ -645,4 +645,3 @@ public class PnlWznmCtpTpl1NCapability {
 	};
 
 };
-

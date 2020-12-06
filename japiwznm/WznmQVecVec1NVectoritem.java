@@ -41,4 +41,3 @@ public class WznmQVecVec1NVectoritem {
 		return false;
 	};
 };
-

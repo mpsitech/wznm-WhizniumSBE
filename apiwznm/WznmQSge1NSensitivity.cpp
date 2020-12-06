@@ -111,4 +111,3 @@ bool ListWznmQSge1NSensitivity::readXML(
 
 	return basefound;
 };
-

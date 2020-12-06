@@ -655,4 +655,3 @@ public class PnlWznmErrDetail {
 	};
 
 };
-

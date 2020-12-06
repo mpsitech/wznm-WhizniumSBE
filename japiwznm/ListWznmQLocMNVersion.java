@@ -59,4 +59,3 @@ public class ListWznmQLocMNVersion {
 		return false;
 	};
 };
-

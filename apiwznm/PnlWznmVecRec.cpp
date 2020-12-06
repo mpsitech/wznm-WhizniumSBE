@@ -428,4 +428,3 @@ void PnlWznmVecRec::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

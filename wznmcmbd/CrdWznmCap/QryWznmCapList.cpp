@@ -221,8 +221,8 @@ void QryWznmCapList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::TPL) sqlstr += " ORDER BY TblWznmMCapability.tplRefWznmMCapability ASC";
-	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMCapability.refWznmMVersion ASC";
+	if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMCapability.refWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::TPL) sqlstr += " ORDER BY TblWznmMCapability.tplRefWznmMCapability ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMCapability.sref ASC";
 };
 
@@ -440,6 +440,3 @@ bool QryWznmCapList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-

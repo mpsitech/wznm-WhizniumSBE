@@ -415,6 +415,3 @@ bool PnlWznmRelDetail::evalButOptEditAvail(
 
 	return(args.back());
 };
-
-
-

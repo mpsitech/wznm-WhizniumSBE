@@ -1400,6 +1400,3 @@ string WznmWrjapiJob::getVecclass(
 	return retval;
 };
 // IP cust --- IEND
-
-
-

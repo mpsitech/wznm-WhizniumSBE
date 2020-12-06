@@ -537,4 +537,3 @@ void PnlWznmSbsAsbMNSubset::DpchEngData::readXML(
 		stgiacqry = QryWznmSbsAsbMNSubset::StgIac();
 	};
 };
-

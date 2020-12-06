@@ -111,4 +111,3 @@ bool ListWznmQTblSrc1NFeed::readXML(
 
 	return basefound;
 };
-

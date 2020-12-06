@@ -80,6 +80,3 @@ bool PnlWznmNavDeploy::evalButRlsNewcrdActive(
 
 	return(args.back());
 };
-
-
-

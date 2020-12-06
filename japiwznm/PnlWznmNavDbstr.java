@@ -1075,4 +1075,3 @@ public class PnlWznmNavDbstr {
 	};
 
 };
-

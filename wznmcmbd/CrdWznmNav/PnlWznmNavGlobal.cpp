@@ -613,6 +613,3 @@ bool PnlWznmNavGlobal::handleCallWznmHusrRunvMod_crdUsrEq(
 	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
-
-
-

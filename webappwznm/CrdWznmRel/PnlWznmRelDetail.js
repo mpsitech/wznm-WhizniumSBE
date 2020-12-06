@@ -653,4 +653,3 @@ function handleDpchAppDoDlgopenReply() {
 		};
 	};
 };
-

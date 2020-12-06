@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSgeSqkMNStub.h"
-#include "PnlWznmSge1NSensitivity.h"
 #include "PnlWznmSgeDetail.h"
+#include "PnlWznmSge1NSensitivity.h"
+#include "PnlWznmSgeSqkMNStub.h"
 
 #define VecVWznmSgeRecDo PnlWznmSgeRec::VecVDo
 
@@ -174,9 +174,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSgeSqkMNStub* pnlsqkmnstub;
-	PnlWznmSge1NSensitivity* pnl1nsensitivity;
 	PnlWznmSgeDetail* pnldetail;
+	PnlWznmSge1NSensitivity* pnl1nsensitivity;
+	PnlWznmSgeSqkMNStub* pnlsqkmnstub;
 
 	WznmMStage recSge;
 
@@ -212,16 +212,13 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmSgeUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmSqkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmSge_sqkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmSge_snxEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmSge_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmSge_fnxEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmSqkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmSgeUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

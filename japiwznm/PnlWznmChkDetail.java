@@ -704,4 +704,3 @@ public class PnlWznmChkDetail {
 	};
 
 };
-

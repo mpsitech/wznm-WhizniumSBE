@@ -45,9 +45,9 @@ CrdWznmPrj::CrdWznmPrj(
 
 	pnllist = NULL;
 	pnlheadbar = NULL;
-	dlgnew = NULL;
 	pnlrec = NULL;
 	dlgimpex = NULL;
+	dlgnew = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -418,6 +418,3 @@ void CrdWznmPrj::leaveSgeAlrwznmabt(
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
 };
-
-
-

@@ -98,4 +98,3 @@ namespace QryWznmChkRef1NCall {
 };
 
 #endif
-

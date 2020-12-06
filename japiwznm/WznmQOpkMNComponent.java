@@ -41,4 +41,3 @@ public class WznmQOpkMNComponent {
 		return false;
 	};
 };
-

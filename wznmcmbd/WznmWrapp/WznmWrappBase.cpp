@@ -479,6 +479,3 @@ void WznmWrappBase::writeVecSteCpp(
 	outfile << "// IP getSref --- IEND" << endl;
 };
 // IP cust --- IEND
-
-
-

@@ -287,4 +287,3 @@ namespace PnlWznmQryList {
 };
 
 #endif
-

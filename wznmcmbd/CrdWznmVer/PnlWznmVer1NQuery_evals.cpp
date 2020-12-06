@@ -97,6 +97,3 @@ bool PnlWznmVer1NQuery::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -22,11 +22,11 @@ uint QryWznmConList::VecVOrd::getIx(
 
 	if (s == "sup") return SUP;
 	if (s == "reu") return REU;
-	if (s == "sct") return SCT;
 	if (s == "ret") return RET;
 	if (s == "hku") return HKU;
-	if (s == "typ") return TYP;
+	if (s == "sct") return SCT;
 	if (s == "hkt") return HKT;
+	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
 
 	return(0);
@@ -37,11 +37,11 @@ string QryWznmConList::VecVOrd::getSref(
 		) {
 	if (ix == SUP) return("sup");
 	if (ix == REU) return("reu");
-	if (ix == SCT) return("sct");
 	if (ix == RET) return("ret");
 	if (ix == HKU) return("hku");
-	if (ix == TYP) return("typ");
+	if (ix == SCT) return("sct");
 	if (ix == HKT) return("hkt");
+	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
 
 	return("");
@@ -229,6 +229,3 @@ set<uint> QryWznmConList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

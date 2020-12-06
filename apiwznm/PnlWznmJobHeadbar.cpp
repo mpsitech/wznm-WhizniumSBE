@@ -171,4 +171,3 @@ void PnlWznmJobHeadbar::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

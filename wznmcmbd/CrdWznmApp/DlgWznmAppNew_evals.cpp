@@ -45,6 +45,3 @@ bool DlgWznmAppNew::evalButCreActive(
 
 	return(args.back());
 };
-
-
-

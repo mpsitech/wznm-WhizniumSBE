@@ -150,6 +150,3 @@ bool PnlWznmNavGlobal::evalButLibViewActive(
 
 	return(args.back());
 };
-
-
-

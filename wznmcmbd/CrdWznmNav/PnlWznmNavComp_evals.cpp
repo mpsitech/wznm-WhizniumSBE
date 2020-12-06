@@ -94,6 +94,3 @@ bool PnlWznmNavComp::evalButOpxNewcrdActive(
 
 	return(args.back());
 };
-
-
-

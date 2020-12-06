@@ -513,4 +513,3 @@ void PnlWznmTco1NQuerycol::DpchEngData::readXML(
 		stgiacqry = QryWznmTco1NQuerycol::StgIac();
 	};
 };
-

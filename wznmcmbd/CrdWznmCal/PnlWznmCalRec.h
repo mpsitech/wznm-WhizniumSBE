@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCalMNStub.h"
-#include "PnlWznmCal1NSensitivity.h"
 #include "PnlWznmCalDetail.h"
+#include "PnlWznmCal1NSensitivity.h"
+#include "PnlWznmCalMNStub.h"
 
 #define VecVWznmCalRecDo PnlWznmCalRec::VecVDo
 
@@ -171,9 +171,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCalMNStub* pnlmnstub;
-	PnlWznmCal1NSensitivity* pnl1nsensitivity;
 	PnlWznmCalDetail* pnldetail;
+	PnlWznmCal1NSensitivity* pnl1nsensitivity;
+	PnlWznmCalMNStub* pnlmnstub;
 
 	WznmMCall recCal;
 	Sbecore::uint ixWSubsetCal;
@@ -217,6 +217,3 @@ private:
 };
 
 #endif
-
-
-

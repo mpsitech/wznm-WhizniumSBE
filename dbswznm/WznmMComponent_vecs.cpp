@@ -126,4 +126,3 @@ string TblWznmMComponent::VecWSubset::getTitle(
 
 	return("");
 };
-

@@ -860,4 +860,3 @@ bool PgTblWznmMSequence::loadTitByRef(
 };
 
 #endif
-

@@ -56,6 +56,3 @@ string SqkWznmCompl::getSquawkJtr(
 	// example: "complement job tree for version 'BeamRelay 0.1'"
 	return(""); // IP getSquawkJtr --- LINE
 };
-
-
-

@@ -92,6 +92,3 @@ bool PnlWznmTblMNQuery::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

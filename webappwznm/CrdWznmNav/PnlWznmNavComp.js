@@ -479,4 +479,3 @@ function handleDpchAppDoCrdopenReply() {
 		};
 	};
 };
-

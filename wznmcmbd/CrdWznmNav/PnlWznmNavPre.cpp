@@ -184,6 +184,3 @@ void PnlWznmNavPre::handleDpchAppDoButVerRemoveClick(
 
 	*dpcheng = getNewDpchEng(moditems);
 };
-
-
-

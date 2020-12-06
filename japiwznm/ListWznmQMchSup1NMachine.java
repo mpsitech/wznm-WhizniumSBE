@@ -59,4 +59,3 @@ public class ListWznmQMchSup1NMachine {
 		return false;
 	};
 };
-

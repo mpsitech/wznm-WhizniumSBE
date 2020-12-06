@@ -22,8 +22,8 @@ public class QryWznmUsrList {
 		public static final int USG = 1;
 		public static final int SRF = 2;
 		public static final int PRS = 3;
-		public static final int OWN = 4;
-		public static final int GRP = 5;
+		public static final int GRP = 4;
+		public static final int OWN = 5;
 
 		public static int getIx(
 					String sref
@@ -33,8 +33,8 @@ public class QryWznmUsrList {
 			if (s.equals("usg")) return USG;
 			if (s.equals("srf")) return SRF;
 			if (s.equals("prs")) return PRS;
-			if (s.equals("own")) return OWN;
 			if (s.equals("grp")) return GRP;
+			if (s.equals("own")) return OWN;
 
 			return 0;
 		};
@@ -45,8 +45,8 @@ public class QryWznmUsrList {
 			if (ix == USG) return("usg");
 			if (ix == SRF) return("srf");
 			if (ix == PRS) return("prs");
-			if (ix == OWN) return("own");
 			if (ix == GRP) return("grp");
+			if (ix == OWN) return("own");
 
 			return "";
 		};
@@ -311,4 +311,3 @@ public class QryWznmUsrList {
 	};
 
 };
-

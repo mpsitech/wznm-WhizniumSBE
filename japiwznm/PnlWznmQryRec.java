@@ -530,4 +530,3 @@ public class PnlWznmQryRec {
 	};
 
 };
-

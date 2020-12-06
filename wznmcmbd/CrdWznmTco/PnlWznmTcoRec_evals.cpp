@@ -25,20 +25,6 @@ bool PnlWznmTcoRec::evalPnlatitleAvail(
 	return(args.back());
 };
 
-bool PnlWznmTcoRec::evalPnl1nquerycolAvail(
-			DbsWznm* dbswznm
-		) {
-	// tco.inSbs(stc)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTco & VecWznmWMTablecolSubset::SBSWZNMBMTABLECOLSTC) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool PnlWznmTcoRec::evalPnl1nimpexpcolAvail(
 			DbsWznm* dbswznm
 		) {
@@ -53,7 +39,7 @@ bool PnlWznmTcoRec::evalPnl1nimpexpcolAvail(
 	return(args.back());
 };
 
-bool PnlWznmTcoRec::evalPnlref1ncontrolAvail(
+bool PnlWznmTcoRec::evalPnl1nquerycolAvail(
 			DbsWznm* dbswznm
 		) {
 	// tco.inSbs(stc)
@@ -81,6 +67,20 @@ bool PnlWznmTcoRec::evalPnlref1nquerymodAvail(
 	return(args.back());
 };
 
+bool PnlWznmTcoRec::evalPnlref1ncontrolAvail(
+			DbsWznm* dbswznm
+		) {
+	// tco.inSbs(stc)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTco & VecWznmWMTablecolSubset::SBSWZNMBMTABLECOLSTC) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool PnlWznmTcoRec::evalButRegularizeActive(
 			DbsWznm* dbswznm
 		) {
@@ -94,6 +94,3 @@ bool PnlWznmTcoRec::evalButRegularizeActive(
 
 	return(args.back());
 };
-
-
-

@@ -123,4 +123,3 @@ bool ListWznmQLibList::readXML(
 
 	return basefound;
 };
-

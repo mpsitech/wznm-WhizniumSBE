@@ -117,4 +117,3 @@ bool ListWznmQSbsBsbMNSubset::readXML(
 
 	return basefound;
 };
-

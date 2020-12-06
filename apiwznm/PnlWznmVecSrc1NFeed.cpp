@@ -513,4 +513,3 @@ void PnlWznmVecSrc1NFeed::DpchEngData::readXML(
 		stgiacqry = QryWznmVecSrc1NFeed::StgIac();
 	};
 };
-

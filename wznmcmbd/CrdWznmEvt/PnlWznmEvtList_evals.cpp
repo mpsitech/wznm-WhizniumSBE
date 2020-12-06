@@ -24,6 +24,3 @@ bool PnlWznmEvtList::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

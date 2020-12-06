@@ -167,6 +167,3 @@ bool PnlWznmTblTbl1NTablecol::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

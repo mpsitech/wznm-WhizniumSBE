@@ -41,4 +41,3 @@ public class WznmQSeqSeq1NState {
 		return false;
 	};
 };
-

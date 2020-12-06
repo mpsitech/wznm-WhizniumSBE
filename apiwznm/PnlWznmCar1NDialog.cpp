@@ -529,4 +529,3 @@ void PnlWznmCar1NDialog::DpchEngData::readXML(
 		stgiacqry = QryWznmCar1NDialog::StgIac();
 	};
 };
-

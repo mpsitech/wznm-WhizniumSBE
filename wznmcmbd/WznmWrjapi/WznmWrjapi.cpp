@@ -158,6 +158,3 @@ string WznmWrjapi::getJDefault(
 	return("new " + jtype + "()");
 };
 // IP cust --- IEND
-
-
-

@@ -24,6 +24,3 @@ namespace WznmComplDeploy {
 };
 
 #endif
-
-
-

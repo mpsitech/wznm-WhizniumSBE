@@ -11,20 +11,6 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool DlgWznmVerGenui::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(fail)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::FAIL);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool DlgWznmVerGenui::evalGuiButRunActive(
 			DbsWznm* dbswznm
 		) {
@@ -82,5 +68,16 @@ bool DlgWznmVerGenui::evalButDneActive(
 	return(args.back());
 };
 
+bool DlgWznmVerGenui::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(fail)
 
+	vector<bool> args;
+	bool a;
 
+	a = false; a = (ixVSge == VecVSge::FAIL);
+	args.push_back(a);
+
+	return(args.back());
+};

@@ -589,6 +589,3 @@ void DlgWznmVerNew::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
-
-

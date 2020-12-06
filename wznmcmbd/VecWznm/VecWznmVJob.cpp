@@ -1400,6 +1400,3 @@ string VecWznmVJob::getSref(
 
 	return("");
 };
-
-
-

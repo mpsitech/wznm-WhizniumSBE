@@ -589,4 +589,3 @@ void PnlWznmQryAClause::DpchEngData::readXML(
 		stgiacqry = QryWznmQryAClause::StgIac();
 	};
 };
-

@@ -819,4 +819,3 @@ ubigint PgTblWznmRMLocaleMVersion::loadVersByLoc(
 };
 
 #endif
-

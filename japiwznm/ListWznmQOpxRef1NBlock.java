@@ -59,4 +59,3 @@ public class ListWznmQOpxRef1NBlock {
 		return false;
 	};
 };
-

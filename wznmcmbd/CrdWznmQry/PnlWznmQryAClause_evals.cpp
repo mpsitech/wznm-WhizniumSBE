@@ -150,6 +150,3 @@ bool PnlWznmQryAClause::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -246,4 +246,3 @@ namespace PnlWznmJobHk1NVector {
 };
 
 #endif
-

@@ -349,6 +349,3 @@ bool PnlWznmUsrMNUsergroup::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

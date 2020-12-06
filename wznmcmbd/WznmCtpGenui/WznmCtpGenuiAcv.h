@@ -21,6 +21,3 @@ namespace WznmCtpGenuiAcv {
 };
 
 #endif
-
-
-

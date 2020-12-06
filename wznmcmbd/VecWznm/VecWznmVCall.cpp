@@ -912,6 +912,3 @@ string VecWznmVCall::getSref(
 
 	return("");
 };
-
-
-

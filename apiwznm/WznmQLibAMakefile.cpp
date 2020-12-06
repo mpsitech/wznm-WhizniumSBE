@@ -120,4 +120,3 @@ bool ListWznmQLibAMakefile::readXML(
 
 	return basefound;
 };
-

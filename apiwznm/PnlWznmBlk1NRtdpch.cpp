@@ -443,4 +443,3 @@ void PnlWznmBlk1NRtdpch::DpchEngData::readXML(
 		stgiacqry = QryWznmBlk1NRtdpch::StgIac();
 	};
 };
-

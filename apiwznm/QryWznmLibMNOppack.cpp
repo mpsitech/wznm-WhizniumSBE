@@ -241,4 +241,3 @@ set<uint> QryWznmLibMNOppack::StgIac::diff(
 
 	return(diffitems);
 };
-

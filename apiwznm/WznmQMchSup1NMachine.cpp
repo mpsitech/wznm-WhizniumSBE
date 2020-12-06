@@ -111,4 +111,3 @@ bool ListWznmQMchSup1NMachine::readXML(
 
 	return basefound;
 };
-

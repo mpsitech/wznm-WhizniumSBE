@@ -969,4 +969,3 @@ ubigint PgTblWznmAMOppackRetval::loadRstByOpk(
 };
 
 #endif
-

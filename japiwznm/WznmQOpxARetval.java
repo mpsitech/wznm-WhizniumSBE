@@ -57,4 +57,3 @@ public class WznmQOpxARetval {
 		return false;
 	};
 };
-

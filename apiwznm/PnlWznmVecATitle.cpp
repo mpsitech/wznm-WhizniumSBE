@@ -545,4 +545,3 @@ void PnlWznmVecATitle::DpchEngData::readXML(
 		stgiacqry = QryWznmVecATitle::StgIac();
 	};
 };
-

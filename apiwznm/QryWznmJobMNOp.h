@@ -98,4 +98,3 @@ namespace QryWznmJobMNOp {
 };
 
 #endif
-

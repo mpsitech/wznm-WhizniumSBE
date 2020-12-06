@@ -150,6 +150,3 @@ bool PnlWznmCapAPar::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

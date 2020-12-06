@@ -45,4 +45,3 @@ public class WznmQVecMNTable {
 		return false;
 	};
 };
-

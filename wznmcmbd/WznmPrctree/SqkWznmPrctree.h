@@ -22,6 +22,3 @@ namespace SqkWznmPrctree {
 };
 
 #endif
-
-
-

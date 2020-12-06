@@ -1819,6 +1819,3 @@ void WznmWrsrvRootsess::writeM2msessCpp(
 	outfile << "// IP handleCall" << Prjshort << "Access --- IEND" << endl;
 };
 // IP cust --- IEND
-
-
-

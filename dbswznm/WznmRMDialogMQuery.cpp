@@ -784,4 +784,3 @@ ubigint PgTblWznmRMDialogMQuery::loadQrysByDlg(
 };
 
 #endif
-

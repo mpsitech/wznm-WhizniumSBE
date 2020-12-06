@@ -41,4 +41,3 @@ public class WznmQCarCar1NPanel {
 		return false;
 	};
 };
-

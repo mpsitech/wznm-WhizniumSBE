@@ -120,4 +120,3 @@ bool ListWznmQRelATitle::readXML(
 
 	return basefound;
 };
-

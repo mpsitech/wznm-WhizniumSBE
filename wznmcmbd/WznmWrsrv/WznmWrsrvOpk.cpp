@@ -293,6 +293,3 @@ void WznmWrsrvOpk::writeSqkCpp(
 	outfile << "// IP getSquawks --- IEND" << endl;
 };
 // IP cust --- IEND
-
-
-

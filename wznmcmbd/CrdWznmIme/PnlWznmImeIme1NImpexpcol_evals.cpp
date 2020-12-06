@@ -167,6 +167,3 @@ bool PnlWznmImeIme1NImpexpcol::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

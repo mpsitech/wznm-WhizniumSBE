@@ -549,4 +549,3 @@ void PnlWznmJobJob1NStage::DpchEngData::readXML(
 		stgiacqry = QryWznmJobJob1NStage::StgIac();
 	};
 };
-

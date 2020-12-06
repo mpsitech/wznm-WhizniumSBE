@@ -792,4 +792,3 @@ ubigint PgTblWznmAMPersonDetail::loadRstByPrs(
 };
 
 #endif
-

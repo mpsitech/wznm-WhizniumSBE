@@ -74,4 +74,3 @@ void TblWznmAMQueryClause::VecVBasetype::fillFeed(
 
 	for (unsigned int i = 1; i <= 8; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
-

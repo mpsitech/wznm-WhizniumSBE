@@ -799,4 +799,3 @@ bool PgTblWznmMLocale::loadSrfByRef(
 };
 
 #endif
-

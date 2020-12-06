@@ -272,4 +272,3 @@ public class QryWznmCarCar1NPanel {
 	};
 
 };
-

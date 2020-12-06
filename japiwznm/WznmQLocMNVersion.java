@@ -41,4 +41,3 @@ public class WznmQLocMNVersion {
 		return false;
 	};
 };
-

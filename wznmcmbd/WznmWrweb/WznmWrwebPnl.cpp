@@ -1593,6 +1593,3 @@ void WznmWrwebPnl::writePnlJsfile(
 	else outfile << "// IP handleDpchAppDoDlgopenReply --- REMOVE" << endl;
 };
 // IP cust --- IEND
-
-
-

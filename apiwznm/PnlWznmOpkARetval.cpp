@@ -553,4 +553,3 @@ void PnlWznmOpkARetval::DpchEngData::readXML(
 		stgiacqry = QryWznmOpkARetval::StgIac();
 	};
 };
-

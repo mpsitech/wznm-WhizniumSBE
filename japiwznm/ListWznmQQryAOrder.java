@@ -59,4 +59,3 @@ public class ListWznmQQryAOrder {
 		return false;
 	};
 };
-

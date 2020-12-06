@@ -97,6 +97,3 @@ bool PnlWznmVer1NComponent::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -167,6 +167,3 @@ bool PnlWznmVerVer1NError::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -57,4 +57,3 @@ public class WznmQConAPar {
 		return false;
 	};
 };
-

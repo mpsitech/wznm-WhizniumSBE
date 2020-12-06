@@ -59,4 +59,3 @@ public class ListWznmQCapList {
 		return false;
 	};
 };
-

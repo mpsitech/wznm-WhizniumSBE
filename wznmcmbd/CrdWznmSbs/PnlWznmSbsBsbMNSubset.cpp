@@ -358,6 +358,3 @@ bool PnlWznmSbsBsbMNSubset::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

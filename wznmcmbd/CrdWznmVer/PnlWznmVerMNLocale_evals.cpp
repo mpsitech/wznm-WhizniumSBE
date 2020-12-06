@@ -87,6 +87,3 @@ bool PnlWznmVerMNLocale::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

@@ -89,4 +89,3 @@ public class WznmQBlkAItem {
 		return false;
 	};
 };
-

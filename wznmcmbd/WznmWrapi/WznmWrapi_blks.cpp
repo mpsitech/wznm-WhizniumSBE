@@ -234,6 +234,3 @@ void DpchInvWznmWrapiQtb::writeXML(
 };
 
 // IP cust --- INSERT
-
-
-

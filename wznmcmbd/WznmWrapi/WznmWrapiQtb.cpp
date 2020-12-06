@@ -290,6 +290,3 @@ string WznmWrapiQtb::getQcoCppDefault(
 	return("0");
 };
 // IP cust --- IEND
-
-
-

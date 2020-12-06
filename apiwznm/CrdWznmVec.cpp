@@ -423,4 +423,3 @@ void CrdWznmVec::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

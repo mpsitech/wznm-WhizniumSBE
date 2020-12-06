@@ -24,6 +24,3 @@ bool PnlWznmCapList::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

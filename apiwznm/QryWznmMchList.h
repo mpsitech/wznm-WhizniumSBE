@@ -113,4 +113,3 @@ namespace QryWznmMchList {
 };
 
 #endif
-

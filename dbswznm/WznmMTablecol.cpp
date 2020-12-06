@@ -1100,4 +1100,3 @@ bool PgTblWznmMTablecol::loadSrfByRef(
 };
 
 #endif
-

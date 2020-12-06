@@ -529,4 +529,3 @@ void PnlWznmLocMNVersion::DpchEngData::readXML(
 		stgiacqry = QryWznmLocMNVersion::StgIac();
 	};
 };
-

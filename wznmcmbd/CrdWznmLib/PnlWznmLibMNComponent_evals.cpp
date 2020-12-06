@@ -52,6 +52,3 @@ bool PnlWznmLibMNComponent::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

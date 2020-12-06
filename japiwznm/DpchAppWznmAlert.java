@@ -72,4 +72,3 @@ public class DpchAppWznmAlert extends DpchAppWznm {
 		if (has(NUMFMCB)) Xmlio.writeInteger(doc, el, "numFMcb", numFMcb);
 	};
 };
-

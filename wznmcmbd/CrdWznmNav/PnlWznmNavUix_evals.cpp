@@ -388,6 +388,3 @@ bool PnlWznmNavUix::evalButConNewcrdActive(
 
 	return(args.back());
 };
-
-
-

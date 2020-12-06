@@ -556,6 +556,3 @@ void WznmGenBase::genStdBlks(
 	dbswznm->tblwznmmblock->insertNewRec(NULL, VecWznmVMBlockBasetype::DPCH, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG, VecWznmWScope::OPENG, "Dpch" + Prjshort + "opdUnreg", "");
 };
 // IP cust --- IEND
-
-
-

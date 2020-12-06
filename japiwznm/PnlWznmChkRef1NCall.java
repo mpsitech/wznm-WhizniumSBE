@@ -645,4 +645,3 @@ public class PnlWznmChkRef1NCall {
 	};
 
 };
-

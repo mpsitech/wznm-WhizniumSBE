@@ -945,6 +945,3 @@ void DlgWznmVerCustui::DpchEngData::writeXML(
 		if (has(TAGLFI)) TagLfi::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

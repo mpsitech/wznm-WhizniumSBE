@@ -126,4 +126,3 @@ bool ListWznmQMtdAInvpar::readXML(
 
 	return basefound;
 };
-

@@ -272,4 +272,3 @@ public class QryWznmAppRef1NFile {
 	};
 
 };
-

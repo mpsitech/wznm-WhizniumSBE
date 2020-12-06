@@ -223,4 +223,3 @@ void TblWznmMImpexpcol::VecWOccurrence::fillFeed(
 
 	for (unsigned int i = 1; i <= TBL; i *= 2) feed.appendIxSrefTitles(i, getSrefs(i), getTitle(i, ixWznmVLocale));
 };
-

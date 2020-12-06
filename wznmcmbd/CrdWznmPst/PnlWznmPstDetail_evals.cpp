@@ -245,6 +245,3 @@ bool PnlWznmPstDetail::evalPupAtyActive(
 
 	return(args.back());
 };
-
-
-

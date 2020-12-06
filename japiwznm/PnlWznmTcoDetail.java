@@ -930,4 +930,3 @@ public class PnlWznmTcoDetail {
 	};
 
 };
-

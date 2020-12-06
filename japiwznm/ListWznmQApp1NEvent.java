@@ -59,4 +59,3 @@ public class ListWznmQApp1NEvent {
 		return false;
 	};
 };
-

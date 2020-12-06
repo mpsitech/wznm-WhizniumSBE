@@ -272,4 +272,3 @@ public class QryWznmMdlMdl1NCard {
 	};
 
 };
-

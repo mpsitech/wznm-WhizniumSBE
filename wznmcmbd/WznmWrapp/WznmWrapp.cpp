@@ -938,6 +938,3 @@ string WznmWrapp::getScrJrefVar(
 	return retval;
 };
 // IP cust --- IEND
-
-
-

@@ -60,6 +60,3 @@ bool PnlWznmImeSup1NImpexp::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

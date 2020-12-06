@@ -1051,6 +1051,3 @@ bool PnlWznmConDetail::evalTxfFedCmtActive(
 
 	return(args.back());
 };
-
-
-

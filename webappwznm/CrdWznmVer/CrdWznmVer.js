@@ -459,7 +459,7 @@ function refresh() {
 		if (scrJrefDlg != scrJrefDlgwrinimdl) showDlg("DlgWznmVerWrinimdl", scrJrefDlgwrinimdl);
 	} else if (scrJrefDlg != "") hideDlg();
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmVer", "MtxCrdVer") + " - WhizniumSBE v1.1.0";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmVer", "MtxCrdVer") + " - WhizniumSBE v1.1.1";
 };
 
 // --- event handlers
@@ -733,4 +733,3 @@ function iterateReqit(ev) {
 		};
 	};
 };
-

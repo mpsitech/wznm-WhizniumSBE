@@ -367,9 +367,9 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalFiaDldActive(DbsWznm* dbswznm);
 	bool evalWriButRunActive(DbsWznm* dbswznm);
 	bool evalWriButStoActive(DbsWznm* dbswznm);
+	bool evalFiaDldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmMchWriniscr(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -442,6 +442,3 @@ private:
 };
 
 #endif
-
-
-

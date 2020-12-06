@@ -97,6 +97,3 @@ bool PnlWznmCar1NDialog::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

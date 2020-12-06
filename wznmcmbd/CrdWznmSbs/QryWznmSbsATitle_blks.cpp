@@ -185,6 +185,3 @@ set<uint> QryWznmSbsATitle::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

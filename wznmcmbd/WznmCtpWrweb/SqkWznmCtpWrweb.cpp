@@ -24,6 +24,3 @@ string SqkWznmCtpWrweb::getSquawk(
 	// example: "write capability template-specific web UI code for capability 'PnlSfbcLivView (2dplot)' / implement chart view"
 	return(""); // IP getSquawk --- LINE
 };
-
-
-

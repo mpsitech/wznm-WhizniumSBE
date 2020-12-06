@@ -566,4 +566,3 @@ public class PnlWznmConFedRef1NRtblock {
 	};
 
 };
-

@@ -111,4 +111,3 @@ bool ListWznmQUsr1NSession::readXML(
 
 	return basefound;
 };
-

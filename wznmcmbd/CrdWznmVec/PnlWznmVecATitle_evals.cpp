@@ -80,6 +80,3 @@ bool PnlWznmVecATitle::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

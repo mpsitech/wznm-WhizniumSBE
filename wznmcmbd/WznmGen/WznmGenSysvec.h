@@ -43,6 +43,3 @@ namespace WznmGenSysvec {
 };
 
 #endif
-
-
-

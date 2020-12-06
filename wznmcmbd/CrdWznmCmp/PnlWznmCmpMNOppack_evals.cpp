@@ -92,6 +92,3 @@ bool PnlWznmCmpMNOppack::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

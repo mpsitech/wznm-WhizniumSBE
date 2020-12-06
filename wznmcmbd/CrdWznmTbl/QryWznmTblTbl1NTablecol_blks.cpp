@@ -185,6 +185,3 @@ set<uint> QryWznmTblTbl1NTablecol::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

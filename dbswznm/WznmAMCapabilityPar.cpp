@@ -882,4 +882,3 @@ bool PgTblWznmAMCapabilityPar::loadValByCpbKey(
 };
 
 #endif
-

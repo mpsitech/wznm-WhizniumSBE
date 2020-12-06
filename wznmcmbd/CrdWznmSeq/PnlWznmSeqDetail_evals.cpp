@@ -129,6 +129,3 @@ bool PnlWznmSeqDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
-
-
-

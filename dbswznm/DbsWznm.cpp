@@ -2534,4 +2534,3 @@ void DbsWznm::fillFeedFromVlst(
 		feed.appendTitles(vlsAval->Val);
 	};
 };
-

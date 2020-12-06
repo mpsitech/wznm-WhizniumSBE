@@ -1109,4 +1109,3 @@ bool PgTblWznmMQuery::loadSrfByRef(
 };
 
 #endif
-

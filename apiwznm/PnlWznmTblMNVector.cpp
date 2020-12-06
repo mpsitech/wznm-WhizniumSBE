@@ -527,4 +527,3 @@ void PnlWznmTblMNVector::DpchEngData::readXML(
 		stgiacqry = QryWznmTblMNVector::StgIac();
 	};
 };
-

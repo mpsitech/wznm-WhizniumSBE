@@ -246,4 +246,3 @@ namespace PnlWznmTblFr1NRelation {
 };
 
 #endif
-

@@ -529,4 +529,3 @@ void PnlWznmStbSupMNStub::DpchEngData::readXML(
 		stgiacqry = QryWznmStbSupMNStub::StgIac();
 	};
 };
-

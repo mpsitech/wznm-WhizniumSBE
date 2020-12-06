@@ -835,4 +835,3 @@ ubigint PgTblWznmQLibAPkglist::loadRstByJref(
 	return loadRstByStmt("TblWznmQLibAPkglist_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

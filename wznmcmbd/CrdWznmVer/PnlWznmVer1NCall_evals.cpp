@@ -97,6 +97,3 @@ bool PnlWznmVer1NCall::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

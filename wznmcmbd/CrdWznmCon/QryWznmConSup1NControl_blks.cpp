@@ -185,6 +185,3 @@ set<uint> QryWznmConSup1NControl::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

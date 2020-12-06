@@ -85,4 +85,3 @@ public class WznmQVerList {
 		return false;
 	};
 };
-

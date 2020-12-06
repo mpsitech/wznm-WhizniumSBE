@@ -377,6 +377,3 @@ bool PnlWznmVerVer1NModule::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

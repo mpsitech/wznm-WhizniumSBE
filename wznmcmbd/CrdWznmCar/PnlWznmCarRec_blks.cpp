@@ -98,8 +98,8 @@ void PnlWznmCarRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdoneCar1NPanel
 			, const bool initdone1NDialog
+			, const bool initdoneCar1NPanel
 			, const bool initdoneHk1NControl
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmCarRec";
@@ -110,8 +110,8 @@ void PnlWznmCarRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneCar1NPanel", initdoneCar1NPanel);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NDialog", initdone1NDialog);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneCar1NPanel", initdoneCar1NPanel);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneHk1NControl", initdoneHk1NControl);
 	xmlTextWriterEndElement(wr);
 };
@@ -123,8 +123,8 @@ void PnlWznmCarRec::StatApp::writeXML(
 PnlWznmCarRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jrefCar1NPanel
 			, const ubigint jref1NDialog
+			, const ubigint jrefCar1NPanel
 			, const ubigint jrefHk1NControl
 			, const bool ButRegularizeActive
 		) :
@@ -132,12 +132,12 @@ PnlWznmCarRec::StatShr::StatShr(
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
-	this->jrefCar1NPanel = jrefCar1NPanel;
 	this->jref1NDialog = jref1NDialog;
+	this->jrefCar1NPanel = jrefCar1NPanel;
 	this->jrefHk1NControl = jrefHk1NControl;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFCAR1NPANEL, JREF1NDIALOG, JREFHK1NCONTROL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NDIALOG, JREFCAR1NPANEL, JREFHK1NCONTROL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmCarRec::StatShr::writeXML(
@@ -154,8 +154,8 @@ void PnlWznmCarRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefCar1NPanel", Scr::scramble(jrefCar1NPanel));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NDialog", Scr::scramble(jref1NDialog));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefCar1NPanel", Scr::scramble(jrefCar1NPanel));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefHk1NControl", Scr::scramble(jrefHk1NControl));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
@@ -168,8 +168,8 @@ set<uint> PnlWznmCarRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jrefCar1NPanel == comp->jrefCar1NPanel) insert(items, JREFCAR1NPANEL);
 	if (jref1NDialog == comp->jref1NDialog) insert(items, JREF1NDIALOG);
+	if (jrefCar1NPanel == comp->jrefCar1NPanel) insert(items, JREFCAR1NPANEL);
 	if (jrefHk1NControl == comp->jrefHk1NControl) insert(items, JREFHK1NCONTROL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -184,7 +184,7 @@ set<uint> PnlWznmCarRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFCAR1NPANEL, JREF1NDIALOG, JREFHK1NCONTROL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NDIALOG, JREFCAR1NPANEL, JREFHK1NCONTROL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -324,6 +324,3 @@ void PnlWznmCarRec::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

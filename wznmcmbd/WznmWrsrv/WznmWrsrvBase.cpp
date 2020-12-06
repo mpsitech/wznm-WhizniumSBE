@@ -539,6 +539,3 @@ void WznmWrsrvBase::writeVecappCpp(
 	outfile << "// IP vec --- IEND" << endl;
 };
 // IP cust --- IEND
-
-
-

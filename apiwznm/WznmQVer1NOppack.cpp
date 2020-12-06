@@ -111,4 +111,3 @@ bool ListWznmQVer1NOppack::readXML(
 
 	return basefound;
 };
-

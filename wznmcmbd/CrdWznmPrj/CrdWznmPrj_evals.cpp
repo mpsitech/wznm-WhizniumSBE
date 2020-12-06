@@ -52,6 +52,3 @@ bool CrdWznmPrj::evalMitCrdIpxAvail(
 
 	return(args.back());
 };
-
-
-

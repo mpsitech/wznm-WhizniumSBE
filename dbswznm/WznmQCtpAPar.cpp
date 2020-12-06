@@ -855,4 +855,3 @@ ubigint PgTblWznmQCtpAPar::loadRstByJref(
 	return loadRstByStmt("TblWznmQCtpAPar_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

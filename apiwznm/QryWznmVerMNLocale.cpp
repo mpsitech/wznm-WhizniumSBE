@@ -241,4 +241,3 @@ set<uint> QryWznmVerMNLocale::StgIac::diff(
 
 	return(diffitems);
 };
-

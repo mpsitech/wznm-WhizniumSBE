@@ -529,4 +529,3 @@ void PnlWznmCmpMNOppack::DpchEngData::readXML(
 		stgiacqry = QryWznmCmpMNOppack::StgIac();
 	};
 };
-

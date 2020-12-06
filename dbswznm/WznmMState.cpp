@@ -877,4 +877,3 @@ bool PgTblWznmMState::loadSrfByRef(
 };
 
 #endif
-

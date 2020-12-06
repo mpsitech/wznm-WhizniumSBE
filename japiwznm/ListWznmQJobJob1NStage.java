@@ -59,4 +59,3 @@ public class ListWznmQJobJob1NStage {
 		return false;
 	};
 };
-

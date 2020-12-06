@@ -97,6 +97,3 @@ bool PnlWznmApp1NEvent::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

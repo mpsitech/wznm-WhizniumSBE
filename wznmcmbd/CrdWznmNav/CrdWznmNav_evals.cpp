@@ -1865,6 +1865,3 @@ bool CrdWznmNav::evalMitAppLoiAvail(
 
 	return(args.back());
 };
-
-
-

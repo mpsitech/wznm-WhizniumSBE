@@ -59,4 +59,3 @@ public class ListWznmQVerMNLocale {
 		return false;
 	};
 };
-

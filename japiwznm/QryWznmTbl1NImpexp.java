@@ -272,4 +272,3 @@ public class QryWznmTbl1NImpexp {
 	};
 
 };
-

@@ -24,6 +24,3 @@ bool PnlWznmJobList::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

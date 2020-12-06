@@ -847,4 +847,3 @@ ubigint PgTblWznmMMethod::loadRstByJob(
 };
 
 #endif
-

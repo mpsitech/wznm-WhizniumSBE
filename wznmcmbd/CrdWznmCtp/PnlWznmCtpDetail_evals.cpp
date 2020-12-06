@@ -129,6 +129,3 @@ bool PnlWznmCtpDetail::evalLstAtfActive(
 
 	return(args.back());
 };
-
-
-

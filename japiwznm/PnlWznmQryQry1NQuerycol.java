@@ -699,4 +699,3 @@ public class PnlWznmQryQry1NQuerycol {
 	};
 
 };
-

@@ -31,6 +31,3 @@ namespace WznmWrappBase {
 };
 
 #endif
-
-
-

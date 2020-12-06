@@ -51,6 +51,3 @@ DpchRetWznm* WznmWrdbsDiffsql::run(
 };
 
 // IP cust --- INSERT
-
-
-

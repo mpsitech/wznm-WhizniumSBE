@@ -118,6 +118,3 @@ bool DlgWznmVerDeploy::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-

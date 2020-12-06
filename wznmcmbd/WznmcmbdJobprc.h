@@ -21,8 +21,3 @@ namespace WznmcmbdJobprc {
 };
 
 #endif
-
-
-
-
-

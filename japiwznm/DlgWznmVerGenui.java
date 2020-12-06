@@ -978,4 +978,3 @@ public class DlgWznmVerGenui {
 	};
 
 };
-

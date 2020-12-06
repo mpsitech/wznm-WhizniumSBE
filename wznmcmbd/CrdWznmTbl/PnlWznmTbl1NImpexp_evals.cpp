@@ -50,6 +50,3 @@ bool PnlWznmTbl1NImpexp::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

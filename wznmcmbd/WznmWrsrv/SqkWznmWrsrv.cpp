@@ -168,6 +168,3 @@ string SqkWznmWrsrv::getSquawkVec(
 	// example: "write C++ code for vector 'VecBrlyVMLocationBasetype'"
 	return(""); // IP getSquawkVec --- LINE
 };
-
-
-

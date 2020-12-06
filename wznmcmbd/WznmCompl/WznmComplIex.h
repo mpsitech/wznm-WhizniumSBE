@@ -21,6 +21,3 @@ namespace WznmComplIex {
 };
 
 #endif
-
-
-

@@ -798,4 +798,3 @@ public class PnlWznmOpkDetail {
 	};
 
 };
-

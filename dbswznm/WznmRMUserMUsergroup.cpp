@@ -823,4 +823,3 @@ ubigint PgTblWznmRMUserMUsergroup::loadRstByUsr(
 };
 
 #endif
-

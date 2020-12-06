@@ -97,6 +97,3 @@ bool PnlWznmIex1NImpexp::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

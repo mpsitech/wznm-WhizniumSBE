@@ -272,4 +272,3 @@ public class QryWznmTcoRef1NQuerymod {
 	};
 
 };
-

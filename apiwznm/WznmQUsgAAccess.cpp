@@ -123,4 +123,3 @@ bool ListWznmQUsgAAccess::readXML(
 
 	return basefound;
 };
-

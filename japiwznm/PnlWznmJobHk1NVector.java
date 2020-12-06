@@ -645,4 +645,3 @@ public class PnlWznmJobHk1NVector {
 	};
 
 };
-

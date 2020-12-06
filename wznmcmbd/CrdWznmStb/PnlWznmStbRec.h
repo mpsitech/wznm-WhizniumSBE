@@ -14,11 +14,11 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmStbMNCall.h"
-#include "PnlWznmStbMNSquawk.h"
-#include "PnlWznmStbSubMNStub.h"
-#include "PnlWznmStbSupMNStub.h"
 #include "PnlWznmStbDetail.h"
+#include "PnlWznmStbSupMNStub.h"
+#include "PnlWznmStbSubMNStub.h"
+#include "PnlWznmStbMNSquawk.h"
+#include "PnlWznmStbMNCall.h"
 
 #define VecVWznmStbRecDo PnlWznmStbRec::VecVDo
 
@@ -177,11 +177,11 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmStbMNCall* pnlmncall;
-	PnlWznmStbMNSquawk* pnlmnsquawk;
-	PnlWznmStbSubMNStub* pnlsubmnstub;
-	PnlWznmStbSupMNStub* pnlsupmnstub;
 	PnlWznmStbDetail* pnldetail;
+	PnlWznmStbSupMNStub* pnlsupmnstub;
+	PnlWznmStbSubMNStub* pnlsubmnstub;
+	PnlWznmStbMNSquawk* pnlmnsquawk;
+	PnlWznmStbMNCall* pnlmncall;
 
 	WznmMStub recStb;
 
@@ -215,13 +215,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmStbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStb_tcoEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmStb_sbsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmStbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

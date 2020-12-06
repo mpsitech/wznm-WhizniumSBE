@@ -461,4 +461,3 @@ namespace DlgWznmAppImpstr {
 };
 
 #endif
-

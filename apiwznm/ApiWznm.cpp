@@ -1524,4 +1524,3 @@ void ApiWznm::writeDpchApp(
 
 	xmlBufferFree(xbuf);
 };
-

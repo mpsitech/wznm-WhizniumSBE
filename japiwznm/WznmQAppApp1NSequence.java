@@ -41,4 +41,3 @@ public class WznmQAppApp1NSequence {
 		return false;
 	};
 };
-

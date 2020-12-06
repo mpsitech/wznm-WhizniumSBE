@@ -3222,6 +3222,3 @@ string WznmWrdbsTbl::getQcoWrite(
 	return("");
 };
 // IP cust --- IEND
-
-
-

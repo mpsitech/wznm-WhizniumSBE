@@ -773,4 +773,3 @@ public class PnlWznmSteATrig {
 	};
 
 };
-

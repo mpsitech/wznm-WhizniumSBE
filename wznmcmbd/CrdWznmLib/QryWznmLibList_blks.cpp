@@ -215,6 +215,3 @@ set<uint> QryWznmLibList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

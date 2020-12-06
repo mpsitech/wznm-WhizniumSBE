@@ -134,9 +134,9 @@ function refreshB(chgcol) {
 			if (i == 1) {
 				doc.cols.push("TcoGrp"); doc.widths.push(TcoGrpWidth); doc.fs.push("grp"); doc.tos.push(6); wtot += TcoGrpWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoOwn"); doc.widths.push(TcoOwnWidth); doc.fs.push("own"); doc.tos.push(4); wtot += TcoOwnWidth;
+				doc.cols.push("TcoOwn"); doc.widths.push(TcoOwnWidth); doc.fs.push("own"); doc.tos.push(5); wtot += TcoOwnWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoPrj"); doc.widths.push(TcoPrjWidth); doc.fs.push("prj"); doc.tos.push(5); wtot += TcoPrjWidth;
+				doc.cols.push("TcoPrj"); doc.widths.push(TcoPrjWidth); doc.fs.push("prj"); doc.tos.push(4); wtot += TcoPrjWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoMaj"); doc.widths.push(TcoMajWidth); doc.fs.push("maj"); doc.tos.push(0); wtot += TcoMajWidth;
 			} else if (i == 5) {
@@ -769,4 +769,3 @@ function handleDpchAppDataDoReply() {
 		};
 	};
 };
-

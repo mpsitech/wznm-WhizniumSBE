@@ -65,4 +65,3 @@ void TblWznmRMSubsetMSubset::VecVReltype::fillFeed(
 
 	for (unsigned int i = 1; i <= 5; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
-

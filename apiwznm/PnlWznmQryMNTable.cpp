@@ -543,4 +543,3 @@ void PnlWznmQryMNTable::DpchEngData::readXML(
 		stgiacqry = QryWznmQryMNTable::StgIac();
 	};
 };
-

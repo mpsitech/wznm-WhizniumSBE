@@ -365,11 +365,20 @@ void PnlWznmLibDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ) {
-		call->abort = handleCallWznmKlsAkeyMod_klsEq(dbswznm, call->jref, call->argInv.ix);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMLIBUPD_REFEQ) {
 		call->abort = handleCallWznmLibUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ) {
+		call->abort = handleCallWznmKlsAkeyMod_klsEq(dbswznm, call->jref, call->argInv.ix);
 	};
+};
+
+bool PnlWznmLibDetail::handleCallWznmLibUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmLibUpd_refEq --- INSERT
+	return retval;
 };
 
 bool PnlWznmLibDetail::handleCallWznmKlsAkeyMod_klsEq(
@@ -387,15 +396,3 @@ bool PnlWznmLibDetail::handleCallWznmKlsAkeyMod_klsEq(
 	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
-
-bool PnlWznmLibDetail::handleCallWznmLibUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmLibUpd_refEq --- INSERT
-	return retval;
-};
-
-
-

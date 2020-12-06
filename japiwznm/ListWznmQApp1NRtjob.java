@@ -59,4 +59,3 @@ public class ListWznmQApp1NRtjob {
 		return false;
 	};
 };
-

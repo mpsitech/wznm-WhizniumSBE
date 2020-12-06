@@ -185,6 +185,3 @@ set<uint> QryWznmMchSup1NMachine::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

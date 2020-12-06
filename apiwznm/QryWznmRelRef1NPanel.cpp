@@ -241,4 +241,3 @@ set<uint> QryWznmRelRef1NPanel::StgIac::diff(
 
 	return(diffitems);
 };
-

@@ -59,4 +59,3 @@ public class ListWznmQMdlMdl1NCard {
 		return false;
 	};
 };
-

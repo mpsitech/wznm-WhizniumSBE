@@ -38,6 +38,3 @@ bool PnlWznmRtj1NRtblock::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -20,8 +20,8 @@ uint QryWznmQcoList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "qry") return QRY;
 	if (s == "tco") return TCO;
+	if (s == "qry") return QRY;
 	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
 
@@ -31,8 +31,8 @@ uint QryWznmQcoList::VecVOrd::getIx(
 string QryWznmQcoList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == QRY) return("qry");
 	if (ix == TCO) return("tco");
+	if (ix == QRY) return("qry");
 	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
 
@@ -221,6 +221,3 @@ set<uint> QryWznmQcoList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

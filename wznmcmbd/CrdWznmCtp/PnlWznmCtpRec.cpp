@@ -38,8 +38,8 @@ PnlWznmCtpRec::PnlWznmCtpRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnltpl1ncapability = NULL;
 	pnl1ntag = NULL;
+	pnltpl1ncapability = NULL;
 	pnlapar = NULL;
 	pnlkkey = NULL;
 	pnlkparkey = NULL;
@@ -108,23 +108,23 @@ void PnlWznmCtpRec::refresh(
 		if (pnlkparkey) {delete pnlkparkey; pnlkparkey = NULL;};
 		if (pnlkkey) {delete pnlkkey; pnlkkey = NULL;};
 		if (pnlapar) {delete pnlapar; pnlapar = NULL;};
-		if (pnl1ntag) {delete pnl1ntag; pnl1ntag = NULL;};
 		if (pnltpl1ncapability) {delete pnltpl1ncapability; pnltpl1ncapability = NULL;};
+		if (pnl1ntag) {delete pnl1ntag; pnl1ntag = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmCtpDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlkparkey) pnlkparkey = new PnlWznmCtpKParKey(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlkkey) pnlkkey = new PnlWznmCtpKKey(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlapar) pnlapar = new PnlWznmCtpAPar(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnl1ntag) pnl1ntag = new PnlWznmCtp1NTag(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnltpl1ncapability) pnltpl1ncapability = new PnlWznmCtpTpl1NCapability(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnl1ntag) pnl1ntag = new PnlWznmCtp1NTag(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jrefKParKey = ((pnlkparkey) ? pnlkparkey->jref : 0);
 	statshr.jrefKKey = ((pnlkkey) ? pnlkkey->jref : 0);
 	statshr.jrefAPar = ((pnlapar) ? pnlapar->jref : 0);
-	statshr.jref1NTag = ((pnl1ntag) ? pnl1ntag->jref : 0);
 	statshr.jrefTpl1NCapability = ((pnltpl1ncapability) ? pnltpl1ncapability->jref : 0);
+	statshr.jref1NTag = ((pnl1ntag) ? pnl1ntag->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -159,8 +159,8 @@ void PnlWznmCtpRec::updatePreset(
 			if (pnlkparkey) pnlkparkey->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlkkey) pnlkkey->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlapar) pnlapar->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnl1ntag) pnl1ntag->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnltpl1ncapability) pnltpl1ncapability->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnl1ntag) pnl1ntag->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswznm, moditems);
@@ -270,24 +270,15 @@ void PnlWznmCtpRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMCPBUPD_REFEQ) {
-		call->abort = handleCallWznmCpbUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPB_VEREQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCPB_VEREQ) {
 		call->abort = handleCallWznmCpb_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPB_TPLEQ) {
 		call->abort = handleCallWznmCpb_tplEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPB_INSBS) {
 		call->abort = handleCallWznmCpb_inSbs(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPBUPD_REFEQ) {
+		call->abort = handleCallWznmCpbUpd_refEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmCtpRec::handleCallWznmCpbUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmCpbUpd_refEq --- INSERT
-	return retval;
 };
 
 bool PnlWznmCtpRec::handleCallWznmCpb_verEq(
@@ -323,5 +314,11 @@ bool PnlWznmCtpRec::handleCallWznmCpb_inSbs(
 	return retval;
 };
 
-
-
+bool PnlWznmCtpRec::handleCallWznmCpbUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmCpbUpd_refEq --- INSERT
+	return retval;
+};

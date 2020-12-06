@@ -549,4 +549,3 @@ void PnlWznmVerVer1NApp::DpchEngData::readXML(
 		stgiacqry = QryWznmVerVer1NApp::StgIac();
 	};
 };
-

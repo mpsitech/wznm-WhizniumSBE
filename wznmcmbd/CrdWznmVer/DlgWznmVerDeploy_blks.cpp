@@ -1133,6 +1133,3 @@ void DlgWznmVerDeploy::DpchEngData::writeXML(
 		if (has(TAGPPR)) TagPpr::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

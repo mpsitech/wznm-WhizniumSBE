@@ -885,4 +885,3 @@ ubigint PgTblWznmQCmpList::loadRstByJref(
 	return loadRstByStmt("TblWznmQCmpList_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

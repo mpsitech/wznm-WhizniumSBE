@@ -23,8 +23,8 @@ uint QryWznmUsrList::VecVOrd::getIx(
 	if (s == "usg") return USG;
 	if (s == "srf") return SRF;
 	if (s == "prs") return PRS;
-	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
+	if (s == "own") return OWN;
 
 	return(0);
 };
@@ -35,8 +35,8 @@ string QryWznmUsrList::VecVOrd::getSref(
 	if (ix == USG) return("usg");
 	if (ix == SRF) return("srf");
 	if (ix == PRS) return("prs");
-	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
+	if (ix == OWN) return("own");
 
 	return("");
 };
@@ -223,6 +223,3 @@ set<uint> QryWznmUsrList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

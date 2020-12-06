@@ -264,4 +264,3 @@ namespace PnlWznmQryQry1NQuerycol {
 };
 
 #endif
-

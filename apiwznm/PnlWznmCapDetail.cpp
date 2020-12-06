@@ -557,4 +557,3 @@ void PnlWznmCapDetail::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

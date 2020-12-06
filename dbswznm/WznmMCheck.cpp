@@ -915,4 +915,3 @@ bool PgTblWznmMCheck::loadSrfByRef(
 };
 
 #endif
-

@@ -959,4 +959,3 @@ public class CrdWznmVer {
 	};
 
 };
-

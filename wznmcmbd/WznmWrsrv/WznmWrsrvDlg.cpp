@@ -340,6 +340,3 @@ void WznmWrsrvDlg::getDitblks(
 	};
 };
 // IP cust --- IEND
-
-
-

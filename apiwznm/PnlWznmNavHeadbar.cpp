@@ -246,4 +246,3 @@ void PnlWznmNavHeadbar::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

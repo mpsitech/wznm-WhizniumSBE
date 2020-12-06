@@ -41,4 +41,3 @@ public class WznmQVerMNLocale {
 		return false;
 	};
 };
-

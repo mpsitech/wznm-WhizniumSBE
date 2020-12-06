@@ -882,4 +882,3 @@ ubigint PgTblWznmMApp::loadRstByVer(
 };
 
 #endif
-

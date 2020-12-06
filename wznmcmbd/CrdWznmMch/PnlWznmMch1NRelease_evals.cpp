@@ -50,6 +50,3 @@ bool PnlWznmMch1NRelease::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

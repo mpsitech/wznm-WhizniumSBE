@@ -30,20 +30,6 @@ bool DlgWznmPrjImpex::evalButDneActive(
 	return(args.back());
 };
 
-bool DlgWznmPrjImpex::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(done)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool DlgWznmPrjImpex::evalImpButAutActive(
 			DbsWznm* dbswznm
 		) {
@@ -91,6 +77,20 @@ bool DlgWznmPrjImpex::evalImpButStoActive(
 	return(args.back());
 };
 
+bool DlgWznmPrjImpex::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(done)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool DlgWznmPrjImpex::evalIfiUldActive(
 			DbsWznm* dbswznm
 		) {
@@ -104,6 +104,3 @@ bool DlgWznmPrjImpex::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-

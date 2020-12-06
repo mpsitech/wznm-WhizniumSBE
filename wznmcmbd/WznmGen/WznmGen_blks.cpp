@@ -364,6 +364,3 @@ void DpchInvWznmGenSysvec::writeXML(
 };
 
 // IP cust --- INSERT
-
-
-

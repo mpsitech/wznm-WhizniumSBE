@@ -161,6 +161,3 @@ void PnlWznmNavAuxfct::handleDpchAppDoButUtlNewcrdClick(
 	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
 	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmUtl");
 };
-
-
-

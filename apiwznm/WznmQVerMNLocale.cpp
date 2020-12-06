@@ -111,4 +111,3 @@ bool ListWznmQVerMNLocale::readXML(
 
 	return basefound;
 };
-

@@ -296,6 +296,3 @@ void DpchInvWznmWrdbsTbl::writeXML(
 };
 
 // IP cust --- INSERT
-
-
-

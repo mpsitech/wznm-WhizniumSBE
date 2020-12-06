@@ -59,4 +59,3 @@ public class ListWznmQUsr1NSession {
 		return false;
 	};
 };
-

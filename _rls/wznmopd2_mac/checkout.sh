@@ -3,7 +3,7 @@
 # checkout script for Wznm operation daemon, release wznmopd2_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 5 Dec 2020
+# date created: 6 Dec 2020
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -85,4 +85,3 @@ cp Makefile_WznmCtpGenjtr $BUILDROOT/wznmopd2/WznmCtpGenjtr/Makefile
 
 cp $CMBDBUILDROOT/WznmCtpGenjtr/WznmCtpGenjtr*.h $BUILDROOT/wznmopd2/WznmCtpGenjtr/
 cp $CMBDBUILDROOT/WznmCtpGenjtr/WznmCtpGenjtr*.cpp $BUILDROOT/wznmopd2/WznmCtpGenjtr/
-

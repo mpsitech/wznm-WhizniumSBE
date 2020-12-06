@@ -91,6 +91,3 @@ bool DlgWznmVerGenjtr::evalButDneActive(
 
 	return(args.back());
 };
-
-
-

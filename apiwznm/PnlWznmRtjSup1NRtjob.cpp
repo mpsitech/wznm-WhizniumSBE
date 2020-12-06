@@ -513,4 +513,3 @@ void PnlWznmRtjSup1NRtjob::DpchEngData::readXML(
 		stgiacqry = QryWznmRtjSup1NRtjob::StgIac();
 	};
 };
-

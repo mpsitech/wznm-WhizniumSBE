@@ -260,6 +260,3 @@ void WznmWrapiBase::writeVecdpchCpp(
 	outfile << "// IP getSref --- IEND" << endl;
 };
 // IP cust --- IEND
-
-
-

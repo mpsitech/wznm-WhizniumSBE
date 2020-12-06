@@ -61,4 +61,3 @@ public class WznmQMtdARetpar {
 		return false;
 	};
 };
-

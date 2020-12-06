@@ -167,6 +167,3 @@ bool PnlWznmVerVer1NModule::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

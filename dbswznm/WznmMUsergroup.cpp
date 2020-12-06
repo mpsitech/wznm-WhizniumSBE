@@ -817,4 +817,3 @@ bool PgTblWznmMUsergroup::loadSrfByRef(
 };
 
 #endif
-

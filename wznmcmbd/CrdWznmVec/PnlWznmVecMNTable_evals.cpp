@@ -52,6 +52,3 @@ bool PnlWznmVecMNTable::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

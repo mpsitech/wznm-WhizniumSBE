@@ -22,8 +22,8 @@ uint QryWznmRtjList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "job") return JOB;
 	if (s == "sup") return SUP;
+	if (s == "job") return JOB;
 	if (s == "app") return APP;
 	if (s == "srf") return SRF;
 
@@ -33,8 +33,8 @@ uint QryWznmRtjList::VecVOrd::getIx(
 string QryWznmRtjList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == JOB) return("job");
 	if (ix == SUP) return("sup");
+	if (ix == JOB) return("job");
 	if (ix == APP) return("app");
 	if (ix == SRF) return("srf");
 
@@ -269,4 +269,3 @@ set<uint> QryWznmRtjList::StgIac::diff(
 
 	return(diffitems);
 };
-

@@ -1977,6 +1977,3 @@ namespace IexWznmIni {
 };
 
 #endif
-
-
-

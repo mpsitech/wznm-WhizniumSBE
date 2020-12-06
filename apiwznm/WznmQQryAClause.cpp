@@ -129,4 +129,3 @@ bool ListWznmQQryAClause::readXML(
 
 	return basefound;
 };
-

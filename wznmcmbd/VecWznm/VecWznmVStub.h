@@ -58,8 +58,8 @@ namespace VecWznmVStub {
 	const Sbecore::uint STUBWZNMRLSSTD = 40;
 	const Sbecore::uint STUBWZNMRTBSTD = 41;
 	const Sbecore::uint STUBWZNMRTDSTD = 42;
-	const Sbecore::uint STUBWZNMRTJSTD = 43;
-	const Sbecore::uint STUBWZNMSEQSTD = 44;
+	const Sbecore::uint STUBWZNMOWNER = 43;
+	const Sbecore::uint STUBWZNMUSRSTD = 44;
 	const Sbecore::uint STUBWZNMSESMENU = 45;
 	const Sbecore::uint STUBWZNMSESSTD = 46;
 	const Sbecore::uint STUBWZNMSQKSTD = 47;
@@ -71,22 +71,19 @@ namespace VecWznmVStub {
 	const Sbecore::uint STUBWZNMTCOSREF = 53;
 	const Sbecore::uint STUBWZNMTCOSTD = 54;
 	const Sbecore::uint STUBWZNMTAGSTD = 55;
-	const Sbecore::uint STUBWZNMOWNER = 56;
-	const Sbecore::uint STUBWZNMUSRSTD = 57;
-	const Sbecore::uint STUBWZNMGROUP = 58;
-	const Sbecore::uint STUBWZNMUSGSTD = 59;
-	const Sbecore::uint STUBWZNMVECSTD = 60;
-	const Sbecore::uint STUBWZNMVITSREF = 61;
-	const Sbecore::uint STUBWZNMVITSTD = 62;
-	const Sbecore::uint STUBWZNMVERNO = 63;
-	const Sbecore::uint STUBWZNMVERSHORT = 64;
-	const Sbecore::uint STUBWZNMVERSTD = 65;
+	const Sbecore::uint STUBWZNMVERNO = 56;
+	const Sbecore::uint STUBWZNMVERSHORT = 57;
+	const Sbecore::uint STUBWZNMVERSTD = 58;
+	const Sbecore::uint STUBWZNMVITSREF = 59;
+	const Sbecore::uint STUBWZNMVITSTD = 60;
+	const Sbecore::uint STUBWZNMVECSTD = 61;
+	const Sbecore::uint STUBWZNMGROUP = 62;
+	const Sbecore::uint STUBWZNMUSGSTD = 63;
+	const Sbecore::uint STUBWZNMSEQSTD = 64;
+	const Sbecore::uint STUBWZNMRTJSTD = 65;
 
 	Sbecore::uint getIx(const std::string& sref);
 	std::string getSref(const Sbecore::uint ix);
 };
 
 #endif
-
-
-

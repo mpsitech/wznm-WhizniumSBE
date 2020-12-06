@@ -97,6 +97,3 @@ bool PnlWznmOpk1NOp::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

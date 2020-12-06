@@ -699,4 +699,3 @@ public class PnlWznmJobJob1NStage {
 	};
 
 };
-

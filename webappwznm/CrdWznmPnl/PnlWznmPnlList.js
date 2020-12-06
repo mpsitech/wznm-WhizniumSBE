@@ -135,7 +135,7 @@ function refreshB(chgcol) {
 			} else if (i == 4) {
 				doc.cols.push("TcoRet"); doc.widths.push(TcoRetWidth); doc.fs.push("ret2"); doc.tos.push(0); wtot += TcoRetWidth;
 			} else if (i == 5) {
-				doc.cols.push("TcoReu"); doc.widths.push(TcoReuWidth); doc.fs.push("reu"); doc.tos.push(1); wtot += TcoReuWidth;
+				doc.cols.push("TcoReu"); doc.widths.push(TcoReuWidth); doc.fs.push("reu"); doc.tos.push(2); wtot += TcoReuWidth;
 			} else {
 				ix--;
 			};
@@ -754,4 +754,3 @@ function handleDpchAppDataDoReply() {
 		};
 	};
 };
-

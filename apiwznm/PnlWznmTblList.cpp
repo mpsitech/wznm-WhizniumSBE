@@ -600,4 +600,3 @@ void PnlWznmTblList::DpchEngData::readXML(
 		stgiacqry = QryWznmTblList::StgIac();
 	};
 };
-

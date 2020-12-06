@@ -272,4 +272,3 @@ public class QryWznmImeIme1NImpexpcol {
 	};
 
 };
-

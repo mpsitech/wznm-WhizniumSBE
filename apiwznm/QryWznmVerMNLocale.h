@@ -98,4 +98,3 @@ namespace QryWznmVerMNLocale {
 };
 
 #endif
-

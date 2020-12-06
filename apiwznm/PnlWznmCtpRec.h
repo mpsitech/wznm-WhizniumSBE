@@ -69,19 +69,19 @@ namespace PnlWznmCtpRec {
 		static const Sbecore::uint INITDONEKPARKEY = 2;
 		static const Sbecore::uint INITDONEKKEY = 3;
 		static const Sbecore::uint INITDONEAPAR = 4;
-		static const Sbecore::uint INITDONE1NTAG = 5;
-		static const Sbecore::uint INITDONETPL1NCAPABILITY = 6;
+		static const Sbecore::uint INITDONETPL1NCAPABILITY = 5;
+		static const Sbecore::uint INITDONE1NTAG = 6;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneKParKey = false, const bool initdoneKKey = false, const bool initdoneAPar = false, const bool initdone1NTag = false, const bool initdoneTpl1NCapability = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneKParKey = false, const bool initdoneKKey = false, const bool initdoneAPar = false, const bool initdoneTpl1NCapability = false, const bool initdone1NTag = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneKParKey;
 		bool initdoneKKey;
 		bool initdoneAPar;
-		bool initdone1NTag;
 		bool initdoneTpl1NCapability;
+		bool initdone1NTag;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -100,12 +100,12 @@ namespace PnlWznmCtpRec {
 		static const Sbecore::uint SCRJREFKPARKEY = 3;
 		static const Sbecore::uint SCRJREFKKEY = 4;
 		static const Sbecore::uint SCRJREFAPAR = 5;
-		static const Sbecore::uint SCRJREF1NTAG = 6;
-		static const Sbecore::uint SCRJREFTPL1NCAPABILITY = 7;
+		static const Sbecore::uint SCRJREFTPL1NCAPABILITY = 6;
+		static const Sbecore::uint SCRJREF1NTAG = 7;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 8;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefKParKey = "", const std::string& scrJrefKKey = "", const std::string& scrJrefAPar = "", const std::string& scrJref1NTag = "", const std::string& scrJrefTpl1NCapability = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefKParKey = "", const std::string& scrJrefKKey = "", const std::string& scrJrefAPar = "", const std::string& scrJrefTpl1NCapability = "", const std::string& scrJref1NTag = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
@@ -113,8 +113,8 @@ namespace PnlWznmCtpRec {
 		std::string scrJrefKParKey;
 		std::string scrJrefKKey;
 		std::string scrJrefAPar;
-		std::string scrJref1NTag;
 		std::string scrJrefTpl1NCapability;
+		std::string scrJref1NTag;
 		bool ButRegularizeActive;
 
 	public:
@@ -193,4 +193,3 @@ namespace PnlWznmCtpRec {
 };
 
 #endif
-

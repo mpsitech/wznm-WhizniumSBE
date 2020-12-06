@@ -557,4 +557,3 @@ void PnlWznmLocList::DpchEngData::readXML(
 		stgiacqry = QryWznmLocList::StgIac();
 	};
 };
-

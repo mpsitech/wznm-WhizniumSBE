@@ -98,4 +98,3 @@ namespace QryWznmTblTbl1NTablecol {
 };
 
 #endif
-

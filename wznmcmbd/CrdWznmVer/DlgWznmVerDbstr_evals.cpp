@@ -118,6 +118,3 @@ bool DlgWznmVerDbstr::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-

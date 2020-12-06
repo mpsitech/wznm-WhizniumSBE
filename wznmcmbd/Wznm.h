@@ -10,10 +10,10 @@
 #ifndef WZNM_H
 #define WZNM_H
 
-#define WZNM_VERSION "1.1.0"
+#define WZNM_VERSION "1.1.1"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 1
-#define WZNM_VERSION_SUB 0
+#define WZNM_VERSION_SUB 1
 
 // IP include.cust --- IBEGIN
 #include <sys/wait.h>
@@ -428,6 +428,3 @@ public:
 };
 
 #endif
-
-
-

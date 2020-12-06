@@ -185,6 +185,3 @@ set<uint> QryWznmVer1NOppack::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

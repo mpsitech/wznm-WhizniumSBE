@@ -59,4 +59,3 @@ public class ListWznmQTblMNVector {
 		return false;
 	};
 };
-

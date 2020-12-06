@@ -632,4 +632,3 @@ function handleDpchAppDoDlgopenReply() {
 		};
 	};
 };
-

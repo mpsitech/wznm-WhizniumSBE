@@ -412,4 +412,3 @@ namespace DlgWznmFilNew {
 };
 
 #endif
-

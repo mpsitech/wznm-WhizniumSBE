@@ -32,7 +32,3 @@ namespace WznmdOpengsrv {
 };
 
 #endif
-
-
-
-

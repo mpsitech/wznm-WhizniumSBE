@@ -220,6 +220,3 @@ bool PnlWznmNavJob::evalButCalNewcrdActive(
 
 	return(args.back());
 };
-
-
-

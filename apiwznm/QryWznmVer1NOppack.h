@@ -98,4 +98,3 @@ namespace QryWznmVer1NOppack {
 };
 
 #endif
-

@@ -942,4 +942,3 @@ ubigint PgTblWznmMQuerymod::loadRstByRetReu(
 };
 
 #endif
-

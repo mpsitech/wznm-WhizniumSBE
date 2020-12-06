@@ -422,6 +422,3 @@ void WznmWrsrvOpengbase::writeOpdCpp(
 	outfile << "// IP stgblks --- IEND" << endl;
 };
 // IP cust --- IEND
-
-
-

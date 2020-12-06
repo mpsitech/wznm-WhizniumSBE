@@ -672,4 +672,3 @@ public class PnlWznmCmpDetail {
 	};
 
 };
-

@@ -41,4 +41,3 @@ public class WznmQQrySup1NQuery {
 		return false;
 	};
 };
-

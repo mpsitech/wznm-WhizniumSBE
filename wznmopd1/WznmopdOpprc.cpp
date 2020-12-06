@@ -224,7 +224,3 @@ void WznmopdOpprc::cleanup(
 
 	xchg->cOpprcs.unlockMutex("WznmopdOpprc", "cleanup");
 };
-
-
-
-

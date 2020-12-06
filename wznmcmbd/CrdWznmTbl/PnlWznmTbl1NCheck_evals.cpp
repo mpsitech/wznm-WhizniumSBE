@@ -97,6 +97,3 @@ bool PnlWznmTbl1NCheck::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

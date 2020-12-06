@@ -756,4 +756,3 @@ public class PnlWznmJobDetail {
 	};
 
 };
-

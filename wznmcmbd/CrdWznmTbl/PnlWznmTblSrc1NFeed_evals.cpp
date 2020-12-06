@@ -50,6 +50,3 @@ bool PnlWznmTblSrc1NFeed::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

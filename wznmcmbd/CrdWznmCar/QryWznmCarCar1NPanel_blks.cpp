@@ -185,6 +185,3 @@ set<uint> QryWznmCarCar1NPanel::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

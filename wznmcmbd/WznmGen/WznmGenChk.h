@@ -21,6 +21,3 @@ namespace WznmGenChk {
 };
 
 #endif
-
-
-

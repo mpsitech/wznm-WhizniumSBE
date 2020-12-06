@@ -225,6 +225,3 @@ set<uint> QryWznmVecList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

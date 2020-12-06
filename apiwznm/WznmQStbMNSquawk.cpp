@@ -111,4 +111,3 @@ bool ListWznmQStbMNSquawk::readXML(
 
 	return basefound;
 };
-

@@ -58,4 +58,3 @@ public class DpchAppWznm extends DpchWznm {
 		if (has(SCRJREF)) Xmlio.writeString(doc, el, "scrJref", scrJref);
 	};
 };
-

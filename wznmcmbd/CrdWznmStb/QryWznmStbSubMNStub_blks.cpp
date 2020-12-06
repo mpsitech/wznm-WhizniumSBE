@@ -185,6 +185,3 @@ set<uint> QryWznmStbSubMNStub::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

@@ -955,4 +955,3 @@ ubigint PgTblWznmAMStateTrig::loadRstBySte(
 };
 
 #endif
-

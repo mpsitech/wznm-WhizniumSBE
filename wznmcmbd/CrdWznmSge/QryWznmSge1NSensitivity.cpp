@@ -278,6 +278,3 @@ bool QryWznmSge1NSensitivity::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-

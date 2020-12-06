@@ -114,4 +114,3 @@ bool ListWznmQJobACmd::readXML(
 
 	return basefound;
 };
-

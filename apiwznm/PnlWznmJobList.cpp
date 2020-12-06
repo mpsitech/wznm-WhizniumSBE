@@ -616,4 +616,3 @@ void PnlWznmJobList::DpchEngData::readXML(
 		stgiacqry = QryWznmJobList::StgIac();
 	};
 };
-

@@ -645,4 +645,3 @@ public class PnlWznmTblRef1NDialog {
 	};
 
 };
-

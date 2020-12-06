@@ -151,6 +151,3 @@ void WznmWrjapiBase::writeVecdpchJ(
 	outfile << "// IP getSref --- IEND" << endl;
 };
 // IP cust --- IEND
-
-
-

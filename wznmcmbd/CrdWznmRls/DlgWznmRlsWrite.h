@@ -520,15 +520,15 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalFiaDldAvail(DbsWznm* dbswznm);
-	bool evalFiaDldActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalCucUldAvail(DbsWznm* dbswznm);
+	bool evalCucUldActive(DbsWznm* dbswznm);
 	bool evalWrcButAutActive(DbsWznm* dbswznm);
 	bool evalWrcButRunActive(DbsWznm* dbswznm);
 	bool evalWrcButStoActive(DbsWznm* dbswznm);
-	bool evalCucUldAvail(DbsWznm* dbswznm);
-	bool evalCucUldActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalFiaDldAvail(DbsWznm* dbswznm);
+	bool evalFiaDldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmRlsWrite(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -635,16 +635,16 @@ private:
 
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerInSgeCreidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerWithSrefMonInSgeCreate(DbsWznm* dbswznm);
 	void handleTimerWithSrefMonInSgeWrite(DbsWznm* dbswznm);
+	void handleTimerWithSrefMonInSgeCreate(DbsWznm* dbswznm);
+	void handleTimerInSgeCreidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);
@@ -693,6 +693,3 @@ private:
 };
 
 #endif
-
-
-

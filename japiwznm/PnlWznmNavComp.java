@@ -589,4 +589,3 @@ public class PnlWznmNavComp {
 	};
 
 };
-

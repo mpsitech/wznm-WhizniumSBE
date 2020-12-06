@@ -98,4 +98,3 @@ namespace QryWznmRtjSup1NRtjob {
 };
 
 #endif
-

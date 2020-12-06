@@ -628,4 +628,3 @@ public class PnlWznmSteDetail {
 	};
 
 };
-

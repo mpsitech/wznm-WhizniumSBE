@@ -50,6 +50,3 @@ bool PnlWznmVecFct1NTablecol::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

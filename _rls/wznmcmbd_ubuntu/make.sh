@@ -3,7 +3,7 @@
 # make script for Wznm combined daemon, release wznmcmbd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 5 Dec 2020
+# date created: 6 Dec 2020
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -17,7 +17,7 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ "$1" = "all" ]; then
-	subs=("IexWznm" "VecWznm" "CrdWznmUsg" "CrdWznmUsr" "CrdWznmPrs" "CrdWznmFil" "CrdWznmNav" "CrdWznmLoc" "CrdWznmTag" "CrdWznmCtp" "CrdWznmMch" "CrdWznmLib" "CrdWznmPrj" "CrdWznmVer" "CrdWznmCap" "CrdWznmErr" "CrdWznmTbl" "CrdWznmTco" "CrdWznmSbs" "CrdWznmRel" "CrdWznmVec" "CrdWznmVit" "CrdWznmChk" "CrdWznmStb" "CrdWznmIex" "CrdWznmIme" "CrdWznmIel" "CrdWznmPst" "CrdWznmMdl" "CrdWznmCar" "CrdWznmDlg" "CrdWznmPnl" "CrdWznmQry" "CrdWznmQco" "CrdWznmQmd" "CrdWznmCon" "CrdWznmOpk" "CrdWznmOpx" "CrdWznmJob" "CrdWznmSge" "CrdWznmMtd" "CrdWznmBlk" "CrdWznmCal" "CrdWznmCmp" "CrdWznmRls" "CrdWznmApp" "CrdWznmRtj" "CrdWznmEvt" "CrdWznmSeq" "CrdWznmSte" "CrdWznmUtl" "WznmWrweb" "WznmWrjapi" "WznmWrsrv" "WznmWrdbs" "WznmWrapp" "WznmPrctree" "WznmWrapi" "WznmGen" "WznmPrcfile" "WznmCtpWrsrv" "WznmCtpWrweb" "WznmCtpWrstkit" "WznmCtpGenui" "WznmCompl" "WznmCtpGenjtr")
+	subs=("IexWznm" "VecWznm" "CrdWznmNav" "CrdWznmUsg" "CrdWznmUsr" "CrdWznmPrs" "CrdWznmFil" "CrdWznmLoc" "CrdWznmTag" "CrdWznmCtp" "CrdWznmMch" "CrdWznmLib" "CrdWznmPrj" "CrdWznmVer" "CrdWznmCap" "CrdWznmErr" "CrdWznmTbl" "CrdWznmTco" "CrdWznmSbs" "CrdWznmRel" "CrdWznmVec" "CrdWznmVit" "CrdWznmChk" "CrdWznmStb" "CrdWznmIex" "CrdWznmIme" "CrdWznmIel" "CrdWznmPst" "CrdWznmMdl" "CrdWznmCar" "CrdWznmDlg" "CrdWznmPnl" "CrdWznmQry" "CrdWznmQco" "CrdWznmQmd" "CrdWznmCon" "CrdWznmOpk" "CrdWznmOpx" "CrdWznmJob" "CrdWznmSge" "CrdWznmMtd" "CrdWznmBlk" "CrdWznmCal" "CrdWznmCmp" "CrdWznmRls" "CrdWznmApp" "CrdWznmRtj" "CrdWznmEvt" "CrdWznmSeq" "CrdWznmSte" "CrdWznmUtl" "WznmWrsrv" "WznmWrweb" "WznmWrdbs" "WznmWrjapi" "WznmWrapi" "WznmWrapp" "WznmPrcfile" "WznmPrctree" "WznmGen" "WznmCtpWrsrv" "WznmCtpWrweb" "WznmCtpWrstkit" "WznmCtpGenui" "WznmCtpGenjtr" "WznmCompl")
 else
 	subs=("$@")
 fi
@@ -41,4 +41,3 @@ fi
 make install
 
 rm Wznmcmbd.h.gch
-

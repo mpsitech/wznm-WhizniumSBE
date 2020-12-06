@@ -24,6 +24,3 @@ string SqkWznmCtpWrstkit::getSquawk(
 	// example: "write capability template-specific starter kit for capability 'Acv (acv)' / database and basic UI"
 	return(""); // IP getSquawk --- LINE
 };
-
-
-

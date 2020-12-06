@@ -669,4 +669,3 @@ public class PnlWznmAppRef1NFile {
 	};
 
 };
-

@@ -38,13 +38,13 @@ PnlWznmRelRec::PnlWznmRelRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
+	pnldetail = NULL;
+	pnlatitle = NULL;
+	pnl1ntablecol = NULL;
+	pnlsup1nrelation = NULL;
+	pnlref1ncontrol = NULL;
 	pnlref1ndialog = NULL;
 	pnlref1npanel = NULL;
-	pnlref1ncontrol = NULL;
-	pnlsup1nrelation = NULL;
-	pnl1ntablecol = NULL;
-	pnlatitle = NULL;
-	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -112,16 +112,16 @@ void PnlWznmRelRec::refresh(
 		if (pnl1ntablecol) {delete pnl1ntablecol; pnl1ntablecol = NULL;};
 		if (pnlsup1nrelation) {delete pnlsup1nrelation; pnlsup1nrelation = NULL;};
 		if (pnlref1ncontrol) {delete pnlref1ncontrol; pnlref1ncontrol = NULL;};
-		if (pnlref1npanel) {delete pnlref1npanel; pnlref1npanel = NULL;};
 		if (pnlref1ndialog) {delete pnlref1ndialog; pnlref1ndialog = NULL;};
+		if (pnlref1npanel) {delete pnlref1npanel; pnlref1npanel = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmRelDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlatitle) pnlatitle = new PnlWznmRelATitle(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1ntablecol) pnl1ntablecol = new PnlWznmRel1NTablecol(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlsup1nrelation) pnlsup1nrelation = new PnlWznmRelSup1NRelation(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1ncontrol) pnlref1ncontrol = new PnlWznmRelRef1NControl(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlref1npanel) pnlref1npanel = new PnlWznmRelRef1NPanel(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1ndialog) pnlref1ndialog = new PnlWznmRelRef1NDialog(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlref1npanel) pnlref1npanel = new PnlWznmRelRef1NPanel(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
@@ -129,8 +129,8 @@ void PnlWznmRelRec::refresh(
 	statshr.jref1NTablecol = ((pnl1ntablecol) ? pnl1ntablecol->jref : 0);
 	statshr.jrefSup1NRelation = ((pnlsup1nrelation) ? pnlsup1nrelation->jref : 0);
 	statshr.jrefRef1NControl = ((pnlref1ncontrol) ? pnlref1ncontrol->jref : 0);
-	statshr.jrefRef1NPanel = ((pnlref1npanel) ? pnlref1npanel->jref : 0);
 	statshr.jrefRef1NDialog = ((pnlref1ndialog) ? pnlref1ndialog->jref : 0);
+	statshr.jrefRef1NPanel = ((pnlref1npanel) ? pnlref1npanel->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -162,8 +162,8 @@ void PnlWznmRelRec::updatePreset(
 			if (pnl1ntablecol) pnl1ntablecol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlsup1nrelation) pnlsup1nrelation->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1ncontrol) pnlref1ncontrol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlref1npanel) pnlref1npanel->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1ndialog) pnlref1ndialog->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlref1npanel) pnlref1npanel->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswznm, moditems);
@@ -273,9 +273,7 @@ void PnlWznmRelRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMRELUPD_REFEQ) {
-		call->abort = handleCallWznmRelUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREL_VEREQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMREL_VEREQ) {
 		call->abort = handleCallWznmRel_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREL_TOSEQ) {
 		call->abort = handleCallWznmRel_tosEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
@@ -285,16 +283,9 @@ void PnlWznmRelRec::handleCall(
 		call->abort = handleCallWznmRel_frsEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREL_CLUEQ) {
 		call->abort = handleCallWznmRel_cluEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMRELUPD_REFEQ) {
+		call->abort = handleCallWznmRelUpd_refEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmRelRec::handleCallWznmRelUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmRelUpd_refEq --- INSERT
-	return retval;
 };
 
 bool PnlWznmRelRec::handleCallWznmRel_verEq(
@@ -352,5 +343,11 @@ bool PnlWznmRelRec::handleCallWznmRel_cluEq(
 	return retval;
 };
 
-
-
+bool PnlWznmRelRec::handleCallWznmRelUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmRelUpd_refEq --- INSERT
+	return retval;
+};

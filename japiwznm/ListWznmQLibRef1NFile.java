@@ -59,4 +59,3 @@ public class ListWznmQLibRef1NFile {
 		return false;
 	};
 };
-

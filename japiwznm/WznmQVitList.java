@@ -49,4 +49,3 @@ public class WznmQVitList {
 		return false;
 	};
 };
-

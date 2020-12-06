@@ -272,4 +272,3 @@ public class QryWznmQryQry1NQuerycol {
 	};
 
 };
-

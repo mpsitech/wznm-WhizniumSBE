@@ -169,4 +169,3 @@ string TblWznmMVector::VecWSubset::getTitle(
 
 	return("");
 };
-

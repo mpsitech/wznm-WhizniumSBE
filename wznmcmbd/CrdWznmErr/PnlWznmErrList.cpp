@@ -257,7 +257,7 @@ void PnlWznmErrList::handleDpchAppDataContiac(
 	diffitems = _contiac->diff(&contiac);
 
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWznmErrList::VecVOrd::VER) && (_contiac->numFTos <= QryWznmErrList::VecVOrd::SRF)) {
+		if ((_contiac->numFTos >= QryWznmErrList::VecVOrd::SRF) && (_contiac->numFTos <= QryWznmErrList::VecVOrd::VER)) {
 			muteRefresh = true;
 
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);
@@ -403,6 +403,3 @@ bool PnlWznmErrList::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

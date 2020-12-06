@@ -98,4 +98,3 @@ namespace QryWznmSeqSeq1NState {
 };
 
 #endif
-

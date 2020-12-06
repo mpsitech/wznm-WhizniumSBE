@@ -53,4 +53,3 @@ public class WznmQLibAMakefile {
 		return false;
 	};
 };
-

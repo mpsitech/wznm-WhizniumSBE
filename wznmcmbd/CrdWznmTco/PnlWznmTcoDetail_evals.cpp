@@ -437,6 +437,3 @@ bool PnlWznmTcoDetail::evalChkEpoActive(
 
 	return(args.back());
 };
-
-
-

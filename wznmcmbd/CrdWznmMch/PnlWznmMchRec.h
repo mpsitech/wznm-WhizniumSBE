@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmMchSup1NMachine.h"
-#include "PnlWznmMchAPar.h"
 #include "PnlWznmMch1NRelease.h"
+#include "PnlWznmMchAPar.h"
 #include "PnlWznmMchAMakefile.h"
 #include "PnlWznmMchDetail.h"
 
@@ -178,8 +178,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmMchSup1NMachine* pnlsup1nmachine;
-	PnlWznmMchAPar* pnlapar;
 	PnlWznmMch1NRelease* pnl1nrelease;
+	PnlWznmMchAPar* pnlapar;
 	PnlWznmMchAMakefile* pnlamakefile;
 	PnlWznmMchDetail* pnldetail;
 
@@ -215,13 +215,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmMchUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmMch_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmMch_cchEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmMchUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

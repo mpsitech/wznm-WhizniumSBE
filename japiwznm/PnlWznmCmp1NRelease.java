@@ -669,4 +669,3 @@ public class PnlWznmCmp1NRelease {
 	};
 
 };
-

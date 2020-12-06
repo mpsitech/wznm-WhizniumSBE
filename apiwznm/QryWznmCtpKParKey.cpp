@@ -241,4 +241,3 @@ set<uint> QryWznmCtpKParKey::StgIac::diff(
 
 	return(diffitems);
 };
-

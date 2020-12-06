@@ -793,4 +793,3 @@ ubigint PgTblWznmQCal1NSensitivity::loadRstByJref(
 	return loadRstByStmt("TblWznmQCal1NSensitivity_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

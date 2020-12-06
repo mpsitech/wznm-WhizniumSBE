@@ -40,6 +40,3 @@ bool PnlWznmOpkRec::evalButRegularizeActive(
 
 	return(args.back());
 };
-
-
-

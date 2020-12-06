@@ -129,4 +129,3 @@ bool ListWznmQBlkList::readXML(
 
 	return basefound;
 };
-

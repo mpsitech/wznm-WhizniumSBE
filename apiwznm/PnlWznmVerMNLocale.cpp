@@ -529,4 +529,3 @@ void PnlWznmVerMNLocale::DpchEngData::readXML(
 		stgiacqry = QryWznmVerMNLocale::StgIac();
 	};
 };
-

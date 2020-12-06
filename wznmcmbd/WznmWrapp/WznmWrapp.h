@@ -43,6 +43,3 @@ namespace WznmWrapp {
 };
 
 #endif
-
-
-

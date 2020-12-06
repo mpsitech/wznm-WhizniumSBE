@@ -114,4 +114,3 @@ bool ListWznmQTblMNVector::readXML(
 
 	return basefound;
 };
-

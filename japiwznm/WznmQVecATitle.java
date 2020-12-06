@@ -53,4 +53,3 @@ public class WznmQVecATitle {
 		return false;
 	};
 };
-

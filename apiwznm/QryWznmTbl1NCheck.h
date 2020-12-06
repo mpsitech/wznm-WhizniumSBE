@@ -98,4 +98,3 @@ namespace QryWznmTbl1NCheck {
 };
 
 #endif
-

@@ -41,4 +41,3 @@ public class WznmQMdlMdl1NCard {
 		return false;
 	};
 };
-

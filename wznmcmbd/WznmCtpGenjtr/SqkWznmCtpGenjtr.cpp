@@ -24,6 +24,3 @@ string SqkWznmCtpGenjtr::getSquawk(
 	// example: "generate capability template-specific job tree for capability 'DlgBrlyNavLoaini (dlgloaini)' / add stages to initialization load dialog"
 	return(""); // IP getSquawk --- LINE
 };
-
-
-

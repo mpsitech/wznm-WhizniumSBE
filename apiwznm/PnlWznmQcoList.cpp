@@ -592,4 +592,3 @@ void PnlWznmQcoList::DpchEngData::readXML(
 		stgiacqry = QryWznmQcoList::StgIac();
 	};
 };
-

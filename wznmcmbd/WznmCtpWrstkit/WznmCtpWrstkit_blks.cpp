@@ -72,6 +72,3 @@ void DpchInvWznmCtpWrstkit::writeXML(
 };
 
 // IP cust --- INSERT
-
-
-

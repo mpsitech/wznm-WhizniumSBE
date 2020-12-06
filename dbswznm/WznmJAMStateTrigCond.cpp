@@ -903,4 +903,3 @@ ubigint PgTblWznmJAMStateTrigCond::loadRstByStr(
 };
 
 #endif
-

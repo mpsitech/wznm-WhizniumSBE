@@ -59,4 +59,3 @@ public class ListWznmQOpkSqkMNStub {
 		return false;
 	};
 };
-

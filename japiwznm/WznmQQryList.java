@@ -73,4 +73,3 @@ public class WznmQQryList {
 		return false;
 	};
 };
-

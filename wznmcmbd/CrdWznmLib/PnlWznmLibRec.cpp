@@ -39,8 +39,8 @@ PnlWznmLibRec::PnlWznmLibRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlmncomponent = NULL;
-	pnlmnoppack = NULL;
 	pnlref1nfile = NULL;
+	pnlmnoppack = NULL;
 	pnlamakefile = NULL;
 	pnlapkglist = NULL;
 	pnldetail = NULL;
@@ -275,6 +275,3 @@ bool PnlWznmLibRec::handleCallWznmLibUpd_refEq(
 	// IP handleCallWznmLibUpd_refEq --- INSERT
 	return retval;
 };
-
-
-

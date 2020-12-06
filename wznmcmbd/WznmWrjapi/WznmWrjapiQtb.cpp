@@ -232,6 +232,3 @@ string WznmWrjapiQtb::getQcoTcoXMLType(
 	return(StrMod::cap(jtype));
 };
 // IP cust --- IEND
-
-
-

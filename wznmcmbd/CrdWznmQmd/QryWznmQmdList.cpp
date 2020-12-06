@@ -46,8 +46,8 @@ QryWznmQmdList::QryWznmQmdList(
 
 	rerun(dbswznm);
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMQMDMOD, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMSTUBCHG, jref, Clstn::VecVJobmask::SELF, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMQMDMOD, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -485,26 +485,20 @@ void QryWznmQmdList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMQMDUPD_REFEQ) {
-		call->abort = handleCallWznmQmdUpd_refEq(dbswznm, call->jref);
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMQMDMOD) {
 		call->abort = handleCallWznmQmdMod(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMQMDUPD_REFEQ) {
+		call->abort = handleCallWznmQmdUpd_refEq(dbswznm, call->jref);
 	};
 };
 
-bool QryWznmQmdList::handleCallWznmQmdUpd_refEq(
+bool QryWznmQmdList::handleCallWznmStubChgFromSelf(
 			DbsWznm* dbswznm
-			, const ubigint jrefTrig
 		) {
 	bool retval = false;
-
-	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
-		ixWznmVQrystate = VecWznmVQrystate::OOD;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
+	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 
@@ -522,13 +516,16 @@ bool QryWznmQmdList::handleCallWznmQmdMod(
 	return retval;
 };
 
-bool QryWznmQmdList::handleCallWznmStubChgFromSelf(
+bool QryWznmQmdList::handleCallWznmQmdUpd_refEq(
 			DbsWznm* dbswznm
+			, const ubigint jrefTrig
 		) {
 	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
+
+	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
+		ixWznmVQrystate = VecWznmVQrystate::OOD;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
 	return retval;
 };
-
-
-

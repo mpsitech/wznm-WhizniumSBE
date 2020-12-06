@@ -1127,4 +1127,3 @@ public class DlgWznmMchWriniscr {
 	};
 
 };
-

@@ -184,6 +184,3 @@ DpchRetWznm* WznmGenQtb::run(
 };
 
 // IP cust --- INSERT
-
-
-

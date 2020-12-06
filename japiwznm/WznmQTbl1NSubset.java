@@ -41,4 +41,3 @@ public class WznmQTbl1NSubset {
 		return false;
 	};
 };
-

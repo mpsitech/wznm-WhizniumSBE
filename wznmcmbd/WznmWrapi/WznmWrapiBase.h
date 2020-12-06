@@ -28,6 +28,3 @@ namespace WznmWrapiBase {
 };
 
 #endif
-
-
-

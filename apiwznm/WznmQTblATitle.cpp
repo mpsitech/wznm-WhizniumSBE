@@ -126,4 +126,3 @@ bool ListWznmQTblATitle::readXML(
 
 	return basefound;
 };
-

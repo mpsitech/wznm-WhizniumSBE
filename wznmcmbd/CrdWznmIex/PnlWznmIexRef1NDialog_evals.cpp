@@ -50,6 +50,3 @@ bool PnlWznmIexRef1NDialog::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

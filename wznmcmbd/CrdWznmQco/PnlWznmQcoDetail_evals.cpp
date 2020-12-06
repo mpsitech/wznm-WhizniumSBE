@@ -216,6 +216,3 @@ bool PnlWznmQcoDetail::evalButStbViewActive(
 
 	return(args.back());
 };
-
-
-

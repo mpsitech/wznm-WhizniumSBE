@@ -858,4 +858,3 @@ ubigint PgTblWznmRMTableMVector::loadRstByVec(
 };
 
 #endif
-

@@ -104,6 +104,3 @@ bool DlgWznmNavLoaini::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-

@@ -97,6 +97,3 @@ bool PnlWznmJob1NMethod::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

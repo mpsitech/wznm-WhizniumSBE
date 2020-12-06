@@ -443,4 +443,3 @@ void PnlWznmTco1NImpexpcol::DpchEngData::readXML(
 		stgiacqry = QryWznmTco1NImpexpcol::StgIac();
 	};
 };
-

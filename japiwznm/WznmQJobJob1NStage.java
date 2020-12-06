@@ -41,4 +41,3 @@ public class WznmQJobJob1NStage {
 		return false;
 	};
 };
-

@@ -97,6 +97,3 @@ bool PnlWznmVer1NRelation::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

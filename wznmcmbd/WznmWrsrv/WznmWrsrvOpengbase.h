@@ -30,6 +30,3 @@ namespace WznmWrsrvOpengbase {
 };
 
 #endif
-
-
-

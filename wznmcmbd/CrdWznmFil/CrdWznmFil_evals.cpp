@@ -71,6 +71,3 @@ bool CrdWznmFil::evalMitCrdDldActive(
 
 	return(args.back());
 };
-
-
-

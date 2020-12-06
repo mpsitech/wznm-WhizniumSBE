@@ -103,4 +103,3 @@ ubigint PgTblWznmCRelation::getNewRef() {
 	return ref;
 };
 #endif
-

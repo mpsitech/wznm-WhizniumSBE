@@ -111,4 +111,3 @@ bool ListWznmQMdlMdl1NCard::readXML(
 
 	return basefound;
 };
-

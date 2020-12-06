@@ -357,6 +357,3 @@ bool PnlWznmSbs1NStub::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

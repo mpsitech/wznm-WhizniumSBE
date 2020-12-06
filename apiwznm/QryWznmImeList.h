@@ -115,4 +115,3 @@ namespace QryWznmImeList {
 };
 
 #endif
-

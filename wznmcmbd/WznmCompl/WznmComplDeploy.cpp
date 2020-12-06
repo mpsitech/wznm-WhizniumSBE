@@ -382,6 +382,3 @@ void WznmComplDeploy::addBitJ(
 				dbswznm->tblwznmjamblockitem->insertNewRec(NULL, bit->ref, rls->ref, Val + post, 0);
 };
 // IP cust --- IEND
-
-
-

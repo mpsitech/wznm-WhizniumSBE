@@ -819,4 +819,3 @@ ubigint PgTblWznmRMSquawkMStub::loadStbsBySqk(
 };
 
 #endif
-

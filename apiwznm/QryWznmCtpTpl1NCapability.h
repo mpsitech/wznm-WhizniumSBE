@@ -98,4 +98,3 @@ namespace QryWznmCtpTpl1NCapability {
 };
 
 #endif
-

@@ -50,6 +50,3 @@ bool PnlWznmTblRef1NPanel::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

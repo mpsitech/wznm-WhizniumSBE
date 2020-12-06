@@ -98,4 +98,3 @@ namespace QryWznmMchSup1NMachine {
 };
 
 #endif
-

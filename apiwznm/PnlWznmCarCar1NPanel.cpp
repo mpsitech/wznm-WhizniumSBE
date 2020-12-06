@@ -549,4 +549,3 @@ void PnlWznmCarCar1NPanel::DpchEngData::readXML(
 		stgiacqry = QryWznmCarCar1NPanel::StgIac();
 	};
 };
-

@@ -41,4 +41,3 @@ public class WznmQMchSup1NMachine {
 		return false;
 	};
 };
-

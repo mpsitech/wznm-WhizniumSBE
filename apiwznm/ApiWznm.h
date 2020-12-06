@@ -10,10 +10,10 @@
 #ifndef APIWZNM_H
 #define APIWZNM_H
 
-#define WZNM_VERSION "1.1.0"
+#define WZNM_VERSION "1.1.1"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 1
-#define WZNM_VERSION_SUB 0
+#define WZNM_VERSION_SUB 1
 
 #include "ApiWznm_blks.h"
 
@@ -944,4 +944,3 @@ namespace ApiWznm {
 };
 
 #endif
-

@@ -80,6 +80,3 @@ bool PnlWznmOpkARetval::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

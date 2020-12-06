@@ -80,6 +80,3 @@ bool PnlWznmTblALoadfct::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

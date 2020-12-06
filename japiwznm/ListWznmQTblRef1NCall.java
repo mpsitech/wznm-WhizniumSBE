@@ -59,4 +59,3 @@ public class ListWznmQTblRef1NCall {
 		return false;
 	};
 };
-

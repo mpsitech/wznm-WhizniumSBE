@@ -241,4 +241,3 @@ set<uint> QryWznmMchAMakefile::StgIac::diff(
 
 	return(diffitems);
 };
-

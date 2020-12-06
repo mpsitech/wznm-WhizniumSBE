@@ -245,6 +245,3 @@ private:
 };
 
 #endif
-
-
-

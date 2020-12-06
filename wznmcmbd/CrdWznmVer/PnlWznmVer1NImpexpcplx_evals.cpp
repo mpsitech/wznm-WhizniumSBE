@@ -97,6 +97,3 @@ bool PnlWznmVer1NImpexpcplx::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -3283,6 +3283,3 @@ uint IexWznmGbl::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
-
-
-

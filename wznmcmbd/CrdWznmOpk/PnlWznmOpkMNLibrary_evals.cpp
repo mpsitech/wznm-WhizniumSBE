@@ -87,6 +87,3 @@ bool PnlWznmOpkMNLibrary::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

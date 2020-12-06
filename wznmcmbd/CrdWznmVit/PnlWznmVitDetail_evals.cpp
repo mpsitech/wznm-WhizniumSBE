@@ -190,6 +190,3 @@ bool PnlWznmVitDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
-
-
-

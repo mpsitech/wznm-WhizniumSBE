@@ -24,6 +24,3 @@ bool PnlWznmPstRec::evalButRegularizeActive(
 
 	return(args.back());
 };
-
-
-

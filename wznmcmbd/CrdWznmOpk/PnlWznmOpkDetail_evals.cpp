@@ -301,6 +301,3 @@ bool PnlWznmOpkDetail::evalTxfSqkExaActive(
 
 	return(args.back());
 };
-
-
-

@@ -241,4 +241,3 @@ set<uint> QryWznmTco1NCheck::StgIac::diff(
 
 	return(diffitems);
 };
-

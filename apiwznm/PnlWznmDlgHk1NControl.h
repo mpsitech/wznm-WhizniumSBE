@@ -264,4 +264,3 @@ namespace PnlWznmDlgHk1NControl {
 };
 
 #endif
-

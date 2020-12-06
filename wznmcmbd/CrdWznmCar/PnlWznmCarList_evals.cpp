@@ -24,6 +24,3 @@ bool PnlWznmCarList::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

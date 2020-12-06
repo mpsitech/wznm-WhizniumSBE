@@ -41,4 +41,3 @@ public class WznmQCmpMNLibrary {
 		return false;
 	};
 };
-

@@ -622,4 +622,3 @@ public class PnlWznmLocDetail {
 	};
 
 };
-

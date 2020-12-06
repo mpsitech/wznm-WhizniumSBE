@@ -566,4 +566,3 @@ public class PnlWznmJob1NSensitivity {
 	};
 
 };
-

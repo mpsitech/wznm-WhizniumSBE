@@ -241,4 +241,3 @@ set<uint> QryWznmImeHk1NVector::StgIac::diff(
 
 	return(diffitems);
 };
-

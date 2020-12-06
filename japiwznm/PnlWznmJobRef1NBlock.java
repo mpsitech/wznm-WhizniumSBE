@@ -669,4 +669,3 @@ public class PnlWznmJobRef1NBlock {
 	};
 
 };
-

@@ -221,6 +221,3 @@ set<uint> QryWznmCarList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

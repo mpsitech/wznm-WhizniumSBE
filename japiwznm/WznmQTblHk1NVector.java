@@ -41,4 +41,3 @@ public class WznmQTblHk1NVector {
 		return false;
 	};
 };
-

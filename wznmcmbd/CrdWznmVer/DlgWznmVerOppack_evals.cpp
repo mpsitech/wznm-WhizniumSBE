@@ -30,6 +30,20 @@ bool DlgWznmVerOppack::evalButDneActive(
 	return(args.back());
 };
 
+bool DlgWznmVerOppack::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(done)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool DlgWznmVerOppack::evalImpButRunActive(
 			DbsWznm* dbswznm
 		) {
@@ -63,20 +77,6 @@ bool DlgWznmVerOppack::evalImpButStoActive(
 	return(args.back());
 };
 
-bool DlgWznmVerOppack::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(done)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool DlgWznmVerOppack::evalIfiUldActive(
 			DbsWznm* dbswznm
 		) {
@@ -90,6 +90,3 @@ bool DlgWznmVerOppack::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-

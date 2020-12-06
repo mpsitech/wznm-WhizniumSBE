@@ -31,7 +31,3 @@ namespace WznmopdOpprc {
 };
 
 #endif
-
-
-
-

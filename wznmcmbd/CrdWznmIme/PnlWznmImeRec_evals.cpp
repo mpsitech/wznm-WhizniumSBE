@@ -24,6 +24,3 @@ bool PnlWznmImeRec::evalButRegularizeActive(
 
 	return(args.back());
 };
-
-
-

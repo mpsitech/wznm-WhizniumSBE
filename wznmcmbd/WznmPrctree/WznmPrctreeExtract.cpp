@@ -230,6 +230,3 @@ void WznmPrctreeExtract::writeExtfile(
 	extfi.close();
 };
 // IP cust --- IEND
-
-
-

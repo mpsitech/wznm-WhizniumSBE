@@ -1752,6 +1752,3 @@ uint IexWznmPrj::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
-
-
-

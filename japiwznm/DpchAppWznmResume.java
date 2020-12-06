@@ -17,4 +17,3 @@ public class DpchAppWznmResume extends DpchAppWznm {
 		super(VecWznmVDpch.DPCHAPPWZNMRESUME, scrJref);
 	};
 };
-

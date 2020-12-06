@@ -292,6 +292,3 @@ bool PnlWznmSge1NSensitivity::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

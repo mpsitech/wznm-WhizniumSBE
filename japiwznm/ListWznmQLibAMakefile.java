@@ -59,4 +59,3 @@ public class ListWznmQLibAMakefile {
 		return false;
 	};
 };
-

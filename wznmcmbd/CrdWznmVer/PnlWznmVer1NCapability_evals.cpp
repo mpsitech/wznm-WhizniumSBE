@@ -117,6 +117,3 @@ bool PnlWznmVer1NCapability::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

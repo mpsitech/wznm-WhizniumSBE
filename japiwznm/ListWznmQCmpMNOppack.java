@@ -59,4 +59,3 @@ public class ListWznmQCmpMNOppack {
 		return false;
 	};
 };
-

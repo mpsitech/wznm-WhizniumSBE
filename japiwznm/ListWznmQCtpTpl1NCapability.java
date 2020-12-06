@@ -59,4 +59,3 @@ public class ListWznmQCtpTpl1NCapability {
 		return false;
 	};
 };
-

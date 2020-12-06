@@ -57,4 +57,3 @@ public class WznmQChkList {
 		return false;
 	};
 };
-

@@ -65,4 +65,3 @@ public class WznmQBlkList {
 		return false;
 	};
 };
-

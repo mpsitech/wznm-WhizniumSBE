@@ -899,4 +899,3 @@ ubigint PgTblWznmAMMethodInvpar::loadRstByMtd(
 };
 
 #endif
-

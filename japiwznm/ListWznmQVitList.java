@@ -59,4 +59,3 @@ public class ListWznmQVitList {
 		return false;
 	};
 };
-

@@ -98,4 +98,3 @@ namespace QryWznmLibAPkglist {
 };
 
 #endif
-

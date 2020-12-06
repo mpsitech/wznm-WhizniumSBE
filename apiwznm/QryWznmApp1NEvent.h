@@ -98,4 +98,3 @@ namespace QryWznmApp1NEvent {
 };
 
 #endif
-

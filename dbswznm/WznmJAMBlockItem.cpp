@@ -921,4 +921,3 @@ ubigint PgTblWznmJAMBlockItem::loadRstByBit(
 };
 
 #endif
-

@@ -41,4 +41,3 @@ public class WznmQSge1NSensitivity {
 		return false;
 	};
 };
-

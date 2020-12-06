@@ -923,4 +923,3 @@ bool PgTblWznmJMQuerycolStub::loadStbByQcoVitPst(
 };
 
 #endif
-

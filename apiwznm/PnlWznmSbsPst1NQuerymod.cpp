@@ -513,4 +513,3 @@ void PnlWznmSbsPst1NQuerymod::DpchEngData::readXML(
 		stgiacqry = QryWznmSbsPst1NQuerymod::StgIac();
 	};
 };
-

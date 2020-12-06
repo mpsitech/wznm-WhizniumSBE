@@ -1005,4 +1005,3 @@ ubigint PgTblWznmAMOppackInvarg::loadRstByOpk(
 };
 
 #endif
-

@@ -116,4 +116,3 @@ namespace QryWznmDlgList {
 };
 
 #endif
-

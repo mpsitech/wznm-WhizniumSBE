@@ -167,6 +167,3 @@ bool PnlWznmJobJob1NStage::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

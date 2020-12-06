@@ -645,4 +645,3 @@ public class PnlWznmTblFct1NTablecol {
 	};
 
 };
-

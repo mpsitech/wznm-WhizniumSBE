@@ -94,6 +94,3 @@ bool PnlWznmLocDetail::evalTxtTitActive(
 
 	return(args.back());
 };
-
-
-

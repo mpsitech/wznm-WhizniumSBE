@@ -41,4 +41,3 @@ public class WznmQVer1NBlock {
 		return false;
 	};
 };
-

@@ -59,4 +59,3 @@ public class ListWznmQMdlRef1NPanel {
 		return false;
 	};
 };
-

@@ -272,4 +272,3 @@ public class QryWznmCal1NSensitivity {
 	};
 
 };
-

@@ -355,6 +355,3 @@ bool PnlWznmVer1NJob::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

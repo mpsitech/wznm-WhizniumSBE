@@ -696,6 +696,3 @@ string WznmWrdbsSql::getTcoSqlLiteType(
 	return retval;
 };
 // IP cust --- IEND
-
-
-

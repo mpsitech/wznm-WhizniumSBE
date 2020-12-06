@@ -112,4 +112,3 @@ namespace QryWznmLibList {
 };
 
 #endif
-

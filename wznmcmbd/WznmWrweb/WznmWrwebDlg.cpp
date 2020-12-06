@@ -593,6 +593,3 @@ void WznmWrwebDlg::writeDlgndJsfile(
 	outfile << "// IP dpchhdls --- IEND" << endl;
 };
 // IP cust --- IEND
-
-
-

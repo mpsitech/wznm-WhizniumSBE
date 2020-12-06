@@ -202,6 +202,3 @@ bool PnlWznmRlsDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
-
-
-

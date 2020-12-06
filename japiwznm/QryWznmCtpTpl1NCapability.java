@@ -272,4 +272,3 @@ public class QryWznmCtpTpl1NCapability {
 	};
 
 };
-

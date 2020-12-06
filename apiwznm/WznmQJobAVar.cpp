@@ -129,4 +129,3 @@ bool ListWznmQJobAVar::readXML(
 
 	return basefound;
 };
-

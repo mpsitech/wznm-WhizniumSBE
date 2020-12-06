@@ -119,8 +119,8 @@ void DlgWznmVerGenjtr::refresh(
 	muteRefresh = true;
 
 	StatShr oldStatshr(statshr);
-	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
+	ContIac oldContiac(contiac);
 
 	// IP refresh --- RBEGIN
 	// statshr
@@ -134,8 +134,8 @@ void DlgWznmVerGenjtr::refresh(
 
 	// IP refresh --- REND
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 
 	refreshGjt(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);
@@ -642,6 +642,3 @@ void DlgWznmVerGenjtr::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
-
-

@@ -793,4 +793,3 @@ ubigint PgTblWznmQTblSrc1NFeed::loadRstByJref(
 	return loadRstByStmt("TblWznmQTblSrc1NFeed_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

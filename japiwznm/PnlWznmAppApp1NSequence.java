@@ -699,4 +699,3 @@ public class PnlWznmAppApp1NSequence {
 	};
 
 };
-

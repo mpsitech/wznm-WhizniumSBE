@@ -111,4 +111,3 @@ bool ListWznmQQryMNPanel::readXML(
 
 	return basefound;
 };
-

@@ -98,4 +98,3 @@ namespace QryWznmJobJob1NStage {
 };
 
 #endif
-

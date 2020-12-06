@@ -49,4 +49,3 @@ public class WznmQSbsAsbMNSubset {
 		return false;
 	};
 };
-

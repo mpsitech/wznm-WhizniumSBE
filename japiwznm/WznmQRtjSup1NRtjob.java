@@ -41,4 +41,3 @@ public class WznmQRtjSup1NRtjob {
 		return false;
 	};
 };
-

@@ -39,20 +39,6 @@ bool PnlWznmTblRec::evalPnlaloadfctAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nstubAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(mtb)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool PnlWznmTblRec::evalPnl1nsubsetAvail(
 			DbsWznm* dbswznm
 		) {
@@ -68,20 +54,6 @@ bool PnlWznmTblRec::evalPnl1nsubsetAvail(
 };
 
 bool PnlWznmTblRec::evalPnlfr1nrelationAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmTblRec::evalPnlto1nrelationAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -123,7 +95,21 @@ bool PnlWznmTblRec::evalPnl1ncheckAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnlfct1ntablecolAvail(
+bool PnlWznmTblRec::evalPnl1nstubAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(mtb)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnlto1nrelationAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -137,7 +123,7 @@ bool PnlWznmTblRec::evalPnlfct1ntablecolAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnlref1ncallAvail(
+bool PnlWznmTblRec::evalPnlfct1ntablecolAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -160,6 +146,20 @@ bool PnlWznmTblRec::evalPnlref1ndialogAvail(
 	bool a;
 
 	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnlref1ncallAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(stt)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -222,6 +222,3 @@ bool PnlWznmTblRec::evalButRegularizeActive(
 
 	return(args.back());
 };
-
-
-

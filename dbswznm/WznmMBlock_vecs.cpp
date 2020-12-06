@@ -117,4 +117,3 @@ void TblWznmMBlock::VecVRefTbl::fillFeed(
 
 	for (unsigned int i = 1; i <= 4; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
-

@@ -113,4 +113,3 @@ namespace QryWznmCtpList {
 };
 
 #endif
-

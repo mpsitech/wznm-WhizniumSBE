@@ -33,8 +33,8 @@ public:
 
 	public:
 		static const Sbecore::uint REU = 1;
-		static const Sbecore::uint FNM = 2;
-		static const Sbecore::uint RET = 3;
+		static const Sbecore::uint RET = 2;
+		static const Sbecore::uint FNM = 3;
 		static const Sbecore::uint GRP = 4;
 		static const Sbecore::uint OWN = 5;
 
@@ -146,13 +146,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmFilUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmFilMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmFilMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmFilUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

@@ -111,4 +111,3 @@ bool ListWznmQVerVer1NApp::readXML(
 
 	return basefound;
 };
-

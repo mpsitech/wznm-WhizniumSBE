@@ -833,6 +833,3 @@ void WznmGenCal::getRefsQryjobBySuprel(
 				+ " AND TblWznmMPanel.refUref = TblWznmMRelation.ref AND TblWznmMRelation.supRefWznmMRelation = " + to_string(refSuprel), false, refsQryjob);
 };
 // IP cust --- IEND
-
-
-

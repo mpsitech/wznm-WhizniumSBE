@@ -1643,6 +1643,3 @@ ubigint WznmGenJob::convRefC(
 	return(convRefCs[refC] = dbswznm->tblwznmcamblockitem->getNewRef());
 };
 // IP cust --- IEND
-
-
-

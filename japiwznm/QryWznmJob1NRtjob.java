@@ -272,4 +272,3 @@ public class QryWznmJob1NRtjob {
 	};
 
 };
-

@@ -98,4 +98,3 @@ namespace QryWznmQryMNDialog {
 };
 
 #endif
-

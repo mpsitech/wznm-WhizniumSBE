@@ -645,4 +645,3 @@ public class PnlWznmMdlRef1NPanel {
 	};
 
 };
-

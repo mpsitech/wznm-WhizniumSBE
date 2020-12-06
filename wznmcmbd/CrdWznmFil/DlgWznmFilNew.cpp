@@ -162,18 +162,18 @@ void DlgWznmFilNew::refreshDet(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrDet oldStatshrdet(statshrdet);
 	ContIacDet oldContiacdet(contiacdet);
+	StatShrDet oldStatshrdet(statshrdet);
 
 	// IP refreshDet --- BEGIN
+	// contiacdet
+
 	// statshrdet
 	statshrdet.ButCreActive = evalDetButCreActive(dbswznm);
 
-	// contiacdet
-
 	// IP refreshDet --- END
-	if (statshrdet.diff(&oldStatshrdet).size() != 0) insert(moditems, DpchEngData::STATSHRDET);
 	if (contiacdet.diff(&oldContiacdet).size() != 0) insert(moditems, DpchEngData::CONTIACDET);
+	if (statshrdet.diff(&oldStatshrdet).size() != 0) insert(moditems, DpchEngData::STATSHRDET);
 };
 
 void DlgWznmFilNew::refreshFil(
@@ -536,6 +536,3 @@ void DlgWznmFilNew::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
-
-

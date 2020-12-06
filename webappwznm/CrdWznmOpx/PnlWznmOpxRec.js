@@ -435,4 +435,3 @@ function handleDpchAppDataDoReply() {
 		};
 	};
 };
-

@@ -41,4 +41,3 @@ public class WznmQJobMNOppack {
 		return false;
 	};
 };
-

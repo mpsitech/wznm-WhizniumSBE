@@ -24,6 +24,3 @@ bool PnlWznmSeqList::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -111,4 +111,3 @@ bool ListWznmQIexHk1NVector::readXML(
 
 	return basefound;
 };
-

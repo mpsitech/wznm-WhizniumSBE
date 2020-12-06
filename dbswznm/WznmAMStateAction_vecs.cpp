@@ -129,4 +129,3 @@ void TblWznmAMStateAction::VecVType::fillFeed(
 
 	for (unsigned int i = 1; i <= 10; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
-

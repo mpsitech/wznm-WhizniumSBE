@@ -237,6 +237,3 @@ void WznmWrapi::writeVecCpp(
 	};
 };
 // IP cust --- IEND
-
-
-

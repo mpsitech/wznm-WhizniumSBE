@@ -173,6 +173,3 @@ set<uint> JobWznmLicense::Stg::diff(
 
 	return(diffitems);
 };
-
-
-

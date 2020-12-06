@@ -316,13 +316,33 @@ void PnlWznmErrDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMERRJTITMOD_ERREQ) {
-		call->abort = handleCallWznmErrJtitMod_errEq(dbswznm, call->jref);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMERR_VEREQ) {
+		call->abort = handleCallWznmErr_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMERRUPD_REFEQ) {
 		call->abort = handleCallWznmErrUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMERR_VEREQ) {
-		call->abort = handleCallWznmErr_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMERRJTITMOD_ERREQ) {
+		call->abort = handleCallWznmErrJtitMod_errEq(dbswznm, call->jref);
 	};
+};
+
+bool PnlWznmErrDetail::handleCallWznmErr_verEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recErr.verRefWznmMVersion == refInv); // IP handleCallWznmErr_verEq --- LINE
+	return retval;
+};
+
+bool PnlWznmErrDetail::handleCallWznmErrUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmErrUpd_refEq --- INSERT
+	return retval;
 };
 
 bool PnlWznmErrDetail::handleCallWznmErrJtitMod_errEq(
@@ -337,26 +357,3 @@ bool PnlWznmErrDetail::handleCallWznmErrJtitMod_errEq(
 	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };
-
-bool PnlWznmErrDetail::handleCallWznmErrUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmErrUpd_refEq --- INSERT
-	return retval;
-};
-
-bool PnlWznmErrDetail::handleCallWznmErr_verEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recErr.verRefWznmMVersion == refInv); // IP handleCallWznmErr_verEq --- LINE
-	return retval;
-};
-
-
-

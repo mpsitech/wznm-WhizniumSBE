@@ -97,6 +97,3 @@ bool PnlWznmTbl1NStub::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

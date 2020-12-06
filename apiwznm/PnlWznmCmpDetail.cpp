@@ -536,4 +536,3 @@ void PnlWznmCmpDetail::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

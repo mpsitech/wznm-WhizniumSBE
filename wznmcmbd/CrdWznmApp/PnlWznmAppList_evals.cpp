@@ -24,6 +24,3 @@ bool PnlWznmAppList::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

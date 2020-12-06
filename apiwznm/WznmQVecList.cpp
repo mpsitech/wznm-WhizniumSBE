@@ -135,4 +135,3 @@ bool ListWznmQVecList::readXML(
 
 	return basefound;
 };
-

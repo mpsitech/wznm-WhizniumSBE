@@ -529,4 +529,3 @@ void PnlWznmVer1NCapability::DpchEngData::readXML(
 		stgiacqry = QryWznmVer1NCapability::StgIac();
 	};
 };
-

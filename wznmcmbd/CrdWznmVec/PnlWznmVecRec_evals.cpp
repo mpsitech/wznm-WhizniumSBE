@@ -70,6 +70,3 @@ bool PnlWznmVecRec::evalButRegularizeActive(
 
 	return(args.back());
 };
-
-
-

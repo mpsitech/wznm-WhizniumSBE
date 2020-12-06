@@ -50,6 +50,3 @@ bool PnlWznmVecPst1NQuerymod::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

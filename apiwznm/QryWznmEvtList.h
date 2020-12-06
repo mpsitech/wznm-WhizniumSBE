@@ -113,4 +113,3 @@ namespace QryWznmEvtList {
 };
 
 #endif
-

@@ -111,4 +111,3 @@ bool ListWznmQTblTbl1NTablecol::readXML(
 
 	return basefound;
 };
-

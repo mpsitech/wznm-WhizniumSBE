@@ -111,4 +111,3 @@ bool ListWznmQCalMNStub::readXML(
 
 	return basefound;
 };
-

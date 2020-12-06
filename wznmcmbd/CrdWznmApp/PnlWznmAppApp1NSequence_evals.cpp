@@ -167,6 +167,3 @@ bool PnlWznmAppApp1NSequence::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

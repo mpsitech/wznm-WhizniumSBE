@@ -185,6 +185,3 @@ set<uint> QryWznmOpxARetval::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

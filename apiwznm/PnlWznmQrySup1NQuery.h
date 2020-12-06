@@ -246,4 +246,3 @@ namespace PnlWznmQrySup1NQuery {
 };
 
 #endif
-

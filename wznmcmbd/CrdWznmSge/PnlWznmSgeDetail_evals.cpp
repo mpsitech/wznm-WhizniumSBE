@@ -420,6 +420,3 @@ bool PnlWznmSgeDetail::evalTxfSqkExaActive(
 
 	return(args.back());
 };
-
-
-

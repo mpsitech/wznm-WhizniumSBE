@@ -167,6 +167,3 @@ bool PnlWznmQryQry1NQuerycol::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

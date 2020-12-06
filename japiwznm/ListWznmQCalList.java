@@ -59,4 +59,3 @@ public class ListWznmQCalList {
 		return false;
 	};
 };
-

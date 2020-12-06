@@ -761,4 +761,3 @@ public class PnlWznmAppList {
 	};
 
 };
-

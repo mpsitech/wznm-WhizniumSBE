@@ -559,6 +559,3 @@ string WznmWrsrvDds::getVarIdltype(
 	return retval;
 };
 // IP cust --- IEND
-
-
-

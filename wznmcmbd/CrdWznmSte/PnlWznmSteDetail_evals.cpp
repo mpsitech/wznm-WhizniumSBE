@@ -120,6 +120,3 @@ bool PnlWznmSteDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
-
-
-

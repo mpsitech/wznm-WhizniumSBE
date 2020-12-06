@@ -272,4 +272,3 @@ public class QryWznmVerVer1NError {
 	};
 
 };
-

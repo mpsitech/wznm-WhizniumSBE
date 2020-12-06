@@ -398,4 +398,3 @@ function handleDpchAppDoDlgopenReply() {
 		};
 	};
 };
-

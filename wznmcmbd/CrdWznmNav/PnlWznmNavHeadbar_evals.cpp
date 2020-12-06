@@ -1052,6 +1052,3 @@ bool PnlWznmNavHeadbar::evalMitCrdUtlAvail(
 
 	return(args.back());
 };
-
-
-

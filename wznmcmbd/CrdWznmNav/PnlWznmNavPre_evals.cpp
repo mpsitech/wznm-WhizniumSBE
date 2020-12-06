@@ -38,6 +38,3 @@ bool PnlWznmNavPre::evalTxtVerAvail(
 
 	return(args.back());
 };
-
-
-

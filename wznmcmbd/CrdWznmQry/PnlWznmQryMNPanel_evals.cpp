@@ -92,6 +92,3 @@ bool PnlWznmQryMNPanel::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

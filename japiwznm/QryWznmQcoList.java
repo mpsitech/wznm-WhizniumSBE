@@ -19,8 +19,8 @@ public class QryWznmQcoList {
 		*/
 	public static class VecVOrd {
 
-		public static final int QRY = 1;
-		public static final int TCO = 2;
+		public static final int TCO = 1;
+		public static final int QRY = 2;
 		public static final int TYP = 3;
 		public static final int SRF = 4;
 
@@ -29,8 +29,8 @@ public class QryWznmQcoList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("qry")) return QRY;
 			if (s.equals("tco")) return TCO;
+			if (s.equals("qry")) return QRY;
 			if (s.equals("typ")) return TYP;
 			if (s.equals("srf")) return SRF;
 
@@ -40,8 +40,8 @@ public class QryWznmQcoList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == QRY) return("qry");
 			if (ix == TCO) return("tco");
+			if (ix == QRY) return("qry");
 			if (ix == TYP) return("typ");
 			if (ix == SRF) return("srf");
 
@@ -308,4 +308,3 @@ public class QryWznmQcoList {
 	};
 
 };
-

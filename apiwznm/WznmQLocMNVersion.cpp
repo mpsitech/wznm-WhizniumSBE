@@ -111,4 +111,3 @@ bool ListWznmQLocMNVersion::readXML(
 
 	return basefound;
 };
-

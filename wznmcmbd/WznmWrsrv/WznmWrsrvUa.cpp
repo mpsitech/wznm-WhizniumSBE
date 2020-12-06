@@ -636,6 +636,3 @@ string WznmWrsrvUa::getVartypeOpcUaId(
 	return "";
 };
 // IP cust --- IEND
-
-
-

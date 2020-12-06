@@ -25,6 +25,3 @@ namespace WznmWrjapiBase {
 };
 
 #endif
-
-
-

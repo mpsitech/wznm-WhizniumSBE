@@ -246,4 +246,3 @@ namespace PnlWznmTblPst1NQuerymod {
 };
 
 #endif
-

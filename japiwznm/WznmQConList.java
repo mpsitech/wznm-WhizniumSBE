@@ -97,4 +97,3 @@ public class WznmQConList {
 		return false;
 	};
 };
-

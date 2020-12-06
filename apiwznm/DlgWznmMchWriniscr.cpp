@@ -905,4 +905,3 @@ void DlgWznmMchWriniscr::DpchEngData::readXML(
 		tagwri = TagWri();
 	};
 };
-

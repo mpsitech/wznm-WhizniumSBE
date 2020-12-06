@@ -20,10 +20,10 @@ uint QryWznmPstList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "aty") return ATY;
 	if (s == "reu") return REU;
-	if (s == "ver") return VER;
+	if (s == "aty") return ATY;
 	if (s == "ret") return RET;
+	if (s == "ver") return VER;
 	if (s == "srf") return SRF;
 
 	return(0);
@@ -32,10 +32,10 @@ uint QryWznmPstList::VecVOrd::getIx(
 string QryWznmPstList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == ATY) return("aty");
 	if (ix == REU) return("reu");
-	if (ix == VER) return("ver");
+	if (ix == ATY) return("aty");
 	if (ix == RET) return("ret");
+	if (ix == VER) return("ver");
 	if (ix == SRF) return("srf");
 
 	return("");
@@ -223,6 +223,3 @@ set<uint> QryWznmPstList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

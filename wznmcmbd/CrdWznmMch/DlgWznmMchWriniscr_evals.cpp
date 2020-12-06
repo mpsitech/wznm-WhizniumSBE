@@ -30,20 +30,6 @@ bool DlgWznmMchWriniscr::evalButDneActive(
 	return(args.back());
 };
 
-bool DlgWznmMchWriniscr::evalFiaDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(done)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool DlgWznmMchWriniscr::evalWriButRunActive(
 			DbsWznm* dbswznm
 		) {
@@ -72,5 +58,16 @@ bool DlgWznmMchWriniscr::evalWriButStoActive(
 	return(args.back());
 };
 
+bool DlgWznmMchWriniscr::evalFiaDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(done)
 
+	vector<bool> args;
+	bool a;
 
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+
+	return(args.back());
+};

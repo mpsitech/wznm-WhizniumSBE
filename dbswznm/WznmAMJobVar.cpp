@@ -1007,4 +1007,3 @@ ubigint PgTblWznmAMJobVar::loadRstByJob(
 };
 
 #endif
-

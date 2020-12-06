@@ -111,4 +111,3 @@ bool ListWznmQJobJob1NStage::readXML(
 
 	return basefound;
 };
-

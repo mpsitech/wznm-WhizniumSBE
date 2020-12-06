@@ -111,4 +111,3 @@ bool ListWznmQTblPst1NQuerymod::readXML(
 
 	return basefound;
 };
-

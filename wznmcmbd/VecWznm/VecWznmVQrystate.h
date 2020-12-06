@@ -30,6 +30,3 @@ namespace VecWznmVQrystate {
 };
 
 #endif
-
-
-

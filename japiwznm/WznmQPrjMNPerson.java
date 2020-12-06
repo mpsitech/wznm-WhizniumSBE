@@ -57,4 +57,3 @@ public class WznmQPrjMNPerson {
 		return false;
 	};
 };
-

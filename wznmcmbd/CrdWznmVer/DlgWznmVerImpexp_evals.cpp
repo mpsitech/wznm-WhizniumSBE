@@ -118,6 +118,3 @@ bool DlgWznmVerImpexp::evalIfiUldActive(
 
 	return(args.back());
 };
-
-
-

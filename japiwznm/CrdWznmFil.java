@@ -578,4 +578,3 @@ public class CrdWznmFil {
 	};
 
 };
-

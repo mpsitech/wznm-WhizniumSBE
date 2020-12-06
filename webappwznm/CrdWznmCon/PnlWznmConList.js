@@ -140,7 +140,7 @@ function refreshB(chgcol) {
 			} else if (i == 4) {
 				doc.cols.push("TcoHkt"); doc.widths.push(TcoHktWidth); doc.fs.push("hkt2"); doc.tos.push(0); wtot += TcoHktWidth;
 			} else if (i == 5) {
-				doc.cols.push("TcoHku"); doc.widths.push(TcoHkuWidth); doc.fs.push("hku"); doc.tos.push(5); wtot += TcoHkuWidth;
+				doc.cols.push("TcoHku"); doc.widths.push(TcoHkuWidth); doc.fs.push("hku"); doc.tos.push(4); wtot += TcoHkuWidth;
 			} else if (i == 6) {
 				doc.cols.push("TcoSct"); doc.widths.push(TcoSctWidth); doc.fs.push("sct2"); doc.tos.push(0); wtot += TcoSctWidth;
 			} else if (i == 7) {
@@ -769,4 +769,3 @@ function handleDpchAppDataDoReply() {
 		};
 	};
 };
-

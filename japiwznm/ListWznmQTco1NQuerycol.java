@@ -59,4 +59,3 @@ public class ListWznmQTco1NQuerycol {
 		return false;
 	};
 };
-

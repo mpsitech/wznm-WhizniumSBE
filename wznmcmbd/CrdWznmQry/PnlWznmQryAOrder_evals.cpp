@@ -80,6 +80,3 @@ bool PnlWznmQryAOrder::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

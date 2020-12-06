@@ -50,6 +50,3 @@ bool PnlWznmChkRef1NCall::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

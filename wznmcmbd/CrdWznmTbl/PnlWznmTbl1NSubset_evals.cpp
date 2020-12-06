@@ -97,6 +97,3 @@ bool PnlWznmTbl1NSubset::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

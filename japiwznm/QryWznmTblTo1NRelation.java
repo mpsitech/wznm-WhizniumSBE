@@ -272,4 +272,3 @@ public class QryWznmTblTo1NRelation {
 	};
 
 };
-

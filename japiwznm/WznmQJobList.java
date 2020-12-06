@@ -77,4 +77,3 @@ public class WznmQJobList {
 		return false;
 	};
 };
-

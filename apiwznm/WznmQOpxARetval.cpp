@@ -123,4 +123,3 @@ bool ListWznmQOpxARetval::readXML(
 
 	return basefound;
 };
-

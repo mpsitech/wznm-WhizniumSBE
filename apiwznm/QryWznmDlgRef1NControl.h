@@ -98,4 +98,3 @@ namespace QryWznmDlgRef1NControl {
 };
 
 #endif
-

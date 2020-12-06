@@ -693,4 +693,3 @@ public class PnlWznmQryMNTable {
 	};
 
 };
-

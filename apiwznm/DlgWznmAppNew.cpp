@@ -541,4 +541,3 @@ void DlgWznmAppNew::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

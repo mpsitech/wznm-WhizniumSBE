@@ -595,4 +595,3 @@ namespace DlgWznmRlsWrite {
 };
 
 #endif
-

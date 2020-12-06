@@ -513,4 +513,3 @@ void PnlWznmSbsTos1NRelation::DpchEngData::readXML(
 		stgiacqry = QryWznmSbsTos1NRelation::StgIac();
 	};
 };
-

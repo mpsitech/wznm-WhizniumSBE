@@ -1024,4 +1024,3 @@ void DlgWznmVerOppack::DpchEngData::readXML(
 		taglfi = TagLfi();
 	};
 };
-

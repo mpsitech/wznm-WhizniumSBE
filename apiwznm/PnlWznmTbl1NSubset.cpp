@@ -529,4 +529,3 @@ void PnlWznmTbl1NSubset::DpchEngData::readXML(
 		stgiacqry = QryWznmTbl1NSubset::StgIac();
 	};
 };
-

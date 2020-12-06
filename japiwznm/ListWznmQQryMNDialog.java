@@ -59,4 +59,3 @@ public class ListWznmQQryMNDialog {
 		return false;
 	};
 };
-

@@ -706,6 +706,3 @@ namespace VecWznmVJob {
 };
 
 #endif
-
-
-

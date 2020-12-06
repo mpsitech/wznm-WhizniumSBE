@@ -135,4 +135,3 @@ void TblWznmAMTableLoadfct::VecVLoadtype::fillFeed(
 
 	for (unsigned int i = 1; i <= 12; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
-

@@ -22,12 +22,12 @@
 #include "PnlWznmNavUix.h"
 #include "PnlWznmNavDbstr.h"
 #include "PnlWznmNavProject.h"
-#include "PnlWznmNavGlobal.h"
-#include "PnlWznmNavAdmin.h"
 #include "PnlWznmNavPre.h"
+#include "PnlWznmNavAdmin.h"
+#include "PnlWznmNavGlobal.h"
+#include "DlgWznmNavMnglic.h"
 #include "PnlWznmNavHeadbar.h"
 #include "DlgWznmNavLoaini.h"
-#include "DlgWznmNavMnglic.h"
 
 #define VecVWznmNavDo CrdWznmNav::VecVDo
 #define VecVWznmNavSge CrdWznmNav::VecVSge
@@ -602,12 +602,12 @@ public:
 	PnlWznmNavUix* pnluix;
 	PnlWznmNavDbstr* pnldbstr;
 	PnlWznmNavProject* pnlproject;
-	PnlWznmNavGlobal* pnlglobal;
-	PnlWznmNavAdmin* pnladmin;
 	PnlWznmNavPre* pnlpre;
+	PnlWznmNavAdmin* pnladmin;
+	PnlWznmNavGlobal* pnlglobal;
+	DlgWznmNavMnglic* dlgmnglic;
 	PnlWznmNavHeadbar* pnlheadbar;
 	DlgWznmNavLoaini* dlgloaini;
-	DlgWznmNavMnglic* dlgmnglic;
 
 	// IP vars.cust --- INSERT
 
@@ -704,6 +704,3 @@ private:
 };
 
 #endif
-
-
-

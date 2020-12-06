@@ -185,6 +185,3 @@ set<uint> QryWznmSeqSeq1NState::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

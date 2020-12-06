@@ -590,4 +590,3 @@ void PnlWznmJobDetail::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

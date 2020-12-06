@@ -120,4 +120,3 @@ bool ListWznmQTblMNQuery::readXML(
 
 	return basefound;
 };
-

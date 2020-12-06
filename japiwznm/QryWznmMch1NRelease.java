@@ -272,4 +272,3 @@ public class QryWznmMch1NRelease {
 	};
 
 };
-

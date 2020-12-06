@@ -129,4 +129,3 @@ bool ListWznmQOpkAInvarg::readXML(
 
 	return basefound;
 };
-

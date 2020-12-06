@@ -328,7 +328,7 @@ public:
 	static const Sbecore::uint HELPURL = 6;
 
 public:
-	StgWznmPath(const std::string& acvpath = "${WHIZROOT}/acv/wznm", const std::string& keypath = "", const std::string& monpath = "${WHIZROOT}/mon/wznm", const std::string& tmppath = "${WHIZROOT}/tmp/wznm", const std::string& webpath = "${WHIZROOT}/web/appwznm", const std::string& helpurl = "http://www.mpsitech.com/wznm");
+	StgWznmPath(const std::string& acvpath = "${WHIZROOT}/acv/wznm", const std::string& keypath = "", const std::string& monpath = "${WHIZROOT}/mon/wznm", const std::string& tmppath = "${WHIZROOT}/tmp/wznm", const std::string& webpath = "${WHIZROOT}/web/appwznm", const std::string& helpurl = "/wznm");
 
 public:
 	std::string acvpath;
@@ -965,6 +965,3 @@ public:
 	static void runExtcall(void* arg);
 };
 #endif
-
-
-

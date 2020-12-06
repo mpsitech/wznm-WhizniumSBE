@@ -322,6 +322,3 @@ bool PnlWznmTblRef1NDialog::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

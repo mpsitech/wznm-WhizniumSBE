@@ -59,4 +59,3 @@ public class ListWznmQIexList {
 		return false;
 	};
 };
-

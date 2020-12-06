@@ -97,6 +97,3 @@ bool PnlWznmCmp1NRelease::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

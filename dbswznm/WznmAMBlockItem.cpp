@@ -1115,4 +1115,3 @@ ubigint PgTblWznmAMBlockItem::loadRstByClu(
 };
 
 #endif
-

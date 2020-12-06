@@ -645,4 +645,3 @@ public class PnlWznmCtp1NTag {
 	};
 
 };
-

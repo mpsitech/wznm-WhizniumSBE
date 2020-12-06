@@ -903,4 +903,3 @@ ubigint PgTblWznmQOpxARetval::loadRstByJref(
 	return loadRstByStmt("TblWznmQOpxARetval_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

@@ -272,4 +272,3 @@ public class QryWznmRelRef1NControl {
 	};
 
 };
-

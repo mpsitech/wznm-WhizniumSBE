@@ -675,4 +675,3 @@ public class PnlWznmConSup1NControl {
 	};
 
 };
-

@@ -883,4 +883,3 @@ ubigint PgTblWznmJMModule::loadRstByMdl(
 };
 
 #endif
-

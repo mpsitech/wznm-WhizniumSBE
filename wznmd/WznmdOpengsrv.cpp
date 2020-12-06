@@ -283,7 +283,3 @@ void WznmdOpengsrv::writeDpchReg(
 
 	xmlBufferFree(buf);
 };
-
-
-
-

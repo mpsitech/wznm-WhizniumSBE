@@ -551,6 +551,3 @@ void WznmWrwebCrd::writeMenHtfile(
 	outfile << "<!-- IP mits - IEND -->" << endl;
 };
 // IP cust --- IEND
-
-
-

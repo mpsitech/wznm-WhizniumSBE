@@ -645,4 +645,3 @@ public class PnlWznmSbsTos1NRelation {
 	};
 
 };
-

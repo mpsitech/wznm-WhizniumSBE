@@ -45,4 +45,3 @@ public class WznmQQryAOrder {
 		return false;
 	};
 };
-

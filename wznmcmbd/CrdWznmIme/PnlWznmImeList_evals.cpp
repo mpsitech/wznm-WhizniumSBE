@@ -24,6 +24,3 @@ bool PnlWznmImeList::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

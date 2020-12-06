@@ -97,6 +97,3 @@ bool PnlWznmJobRef1NBlock::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

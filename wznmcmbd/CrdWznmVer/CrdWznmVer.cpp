@@ -48,20 +48,20 @@ CrdWznmVer::CrdWznmVer(
 	pnllist = NULL;
 	pnlheadbar = NULL;
 	pnlrec = NULL;
-	dlgbscui = NULL;
-	dlgcustjob = NULL;
-	dlgcustui = NULL;
-	dlgcustjtr = NULL;
-	dlgdbstr = NULL;
 	dlgdeploy = NULL;
 	dlgfinmod = NULL;
+	dlggenjtr = NULL;
+	dlggenui = NULL;
+	dlgdbstr = NULL;
+	dlgcustui = NULL;
+	dlgcustjob = NULL;
+	dlgcustjtr = NULL;
+	dlgbscui = NULL;
 	dlgwrinimdl = NULL;
 	dlgoppack = NULL;
-	dlgnew = NULL;
-	dlgimpexp = NULL;
 	dlgglobal = NULL;
-	dlggenui = NULL;
-	dlggenjtr = NULL;
+	dlgimpexp = NULL;
+	dlgnew = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -1558,6 +1558,3 @@ void CrdWznmVer::leaveSgeSetprjcvr(
 		) {
 	// IP leaveSgeSetprjcvr --- INSERT
 };
-
-
-

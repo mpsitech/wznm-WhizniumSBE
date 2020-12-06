@@ -90,8 +90,8 @@ void DlgWznmVerFinmod::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	StatShr oldStatshr(statshr);
 	ContInf oldContinf(continf);
+	StatShr oldStatshr(statshr);
 
 	// IP refresh --- RBEGIN
 	// statshr
@@ -104,8 +104,8 @@ void DlgWznmVerFinmod::refresh(
 	continf.FnmTxtPrg = getSquawk(dbswznm);
 
 	// IP refresh --- REND
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
 	muteRefresh = false;
 };
@@ -369,6 +369,3 @@ void DlgWznmVerFinmod::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
-
-

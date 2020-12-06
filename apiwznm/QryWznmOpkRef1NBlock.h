@@ -98,4 +98,3 @@ namespace QryWznmOpkRef1NBlock {
 };
 
 #endif
-

@@ -183,4 +183,3 @@ void TblWznmMQuerycol::VecWOccurrence::fillFeed(
 
 	for (unsigned int i = 1; i <= BTB; i *= 2) feed.appendIxSrefTitles(i, getSrefs(i), getTitle(i, ixWznmVLocale));
 };
-

@@ -278,6 +278,3 @@ bool PnlWznmOpxDetail::evalTxfSqkExaActive(
 
 	return(args.back());
 };
-
-
-

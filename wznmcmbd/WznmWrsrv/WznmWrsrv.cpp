@@ -3842,6 +3842,3 @@ bool WznmWrsrv::isStatic(
 	return((blk->sref.substr(0, 4+3) == "StatApp") || (blk->sref.substr(0, 3+3) == "StgInf") || (blk->ixVBasetype == VecWznmVMBlockBasetype::TAG));
 };
 // IP cust --- IEND
-
-
-

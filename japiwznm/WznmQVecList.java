@@ -73,4 +73,3 @@ public class WznmQVecList {
 		return false;
 	};
 };
-

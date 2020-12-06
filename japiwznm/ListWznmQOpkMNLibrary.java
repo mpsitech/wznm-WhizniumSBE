@@ -59,4 +59,3 @@ public class ListWznmQOpkMNLibrary {
 		return false;
 	};
 };
-

@@ -699,4 +699,3 @@ public class PnlWznmSeqSeq1NState {
 	};
 
 };
-

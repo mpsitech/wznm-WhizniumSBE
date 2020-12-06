@@ -669,4 +669,3 @@ public class PnlWznmMdlMdl1NCard {
 	};
 
 };
-

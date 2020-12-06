@@ -98,4 +98,3 @@ namespace QryWznmIex1NImpexp {
 };
 
 #endif
-

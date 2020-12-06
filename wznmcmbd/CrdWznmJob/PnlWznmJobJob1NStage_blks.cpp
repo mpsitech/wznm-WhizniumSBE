@@ -499,6 +499,3 @@ void PnlWznmJobJob1NStage::DpchEngData::writeXML(
 		if (has(STGIACQRY)) stgiacqry.writeXML(wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

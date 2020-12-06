@@ -147,4 +147,3 @@ public class ContInfWznmAlert extends Block {
 		return items;
 	};
 };
-

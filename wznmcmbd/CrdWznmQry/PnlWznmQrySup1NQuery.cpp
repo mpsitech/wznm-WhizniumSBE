@@ -322,6 +322,3 @@ bool PnlWznmQrySup1NQuery::handleCallWznmStatChg(
 	// IP handleCallWznmStatChg --- END
 	return retval;
 };
-
-
-

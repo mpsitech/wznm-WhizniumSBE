@@ -6638,6 +6638,3 @@ uint IexWznmDbs::getIxWznmVIop(
 
 	return ixWznmVIop;
 };
-
-
-

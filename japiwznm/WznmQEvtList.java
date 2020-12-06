@@ -45,4 +45,3 @@ public class WznmQEvtList {
 		return false;
 	};
 };
-

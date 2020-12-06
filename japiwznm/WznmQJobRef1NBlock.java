@@ -41,4 +41,3 @@ public class WznmQJobRef1NBlock {
 		return false;
 	};
 };
-

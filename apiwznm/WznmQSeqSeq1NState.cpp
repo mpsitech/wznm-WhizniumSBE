@@ -111,4 +111,3 @@ bool ListWznmQSeqSeq1NState::readXML(
 
 	return basefound;
 };
-

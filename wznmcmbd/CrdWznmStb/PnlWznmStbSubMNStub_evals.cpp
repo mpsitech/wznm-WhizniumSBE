@@ -92,6 +92,3 @@ bool PnlWznmStbSubMNStub::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

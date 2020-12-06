@@ -984,4 +984,3 @@ public class DlgWznmVerGenjtr {
 	};
 
 };
-

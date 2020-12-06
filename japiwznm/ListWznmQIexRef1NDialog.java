@@ -59,4 +59,3 @@ public class ListWznmQIexRef1NDialog {
 		return false;
 	};
 };
-

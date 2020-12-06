@@ -185,6 +185,3 @@ set<uint> QryWznmLocMNVersion::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

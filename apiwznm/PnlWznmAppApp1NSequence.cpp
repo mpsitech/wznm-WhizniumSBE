@@ -549,4 +549,3 @@ void PnlWznmAppApp1NSequence::DpchEngData::readXML(
 		stgiacqry = QryWznmAppApp1NSequence::StgIac();
 	};
 };
-

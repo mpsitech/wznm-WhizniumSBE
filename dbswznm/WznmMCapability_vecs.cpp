@@ -144,4 +144,3 @@ string TblWznmMCapability::VecWSubset::getTitle(
 
 	return("");
 };
-

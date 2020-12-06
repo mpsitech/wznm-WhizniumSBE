@@ -98,4 +98,3 @@ namespace QryWznmMdlMdl1NCard {
 };
 
 #endif
-

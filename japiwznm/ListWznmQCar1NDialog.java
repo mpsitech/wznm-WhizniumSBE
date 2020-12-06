@@ -59,4 +59,3 @@ public class ListWznmQCar1NDialog {
 		return false;
 	};
 };
-

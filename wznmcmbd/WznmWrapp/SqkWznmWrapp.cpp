@@ -32,6 +32,3 @@ string SqkWznmWrapp::getSquawkJbase(
 	// example: "write code for Java accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'"
 	return(""); // IP getSquawkJbase --- LINE
 };
-
-
-

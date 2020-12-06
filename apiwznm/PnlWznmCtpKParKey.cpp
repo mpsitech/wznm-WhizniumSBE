@@ -569,4 +569,3 @@ void PnlWznmCtpKParKey::DpchEngData::readXML(
 		stgiacqry = QryWznmCtpKParKey::StgIac();
 	};
 };
-

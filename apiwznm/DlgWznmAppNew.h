@@ -257,4 +257,3 @@ namespace DlgWznmAppNew {
 };
 
 #endif
-

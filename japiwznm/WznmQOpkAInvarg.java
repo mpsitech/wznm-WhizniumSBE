@@ -65,4 +65,3 @@ public class WznmQOpkAInvarg {
 		return false;
 	};
 };
-

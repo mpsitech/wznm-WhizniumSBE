@@ -347,4 +347,3 @@ function handleDpchAppDoCrdopenReply() {
 		};
 	};
 };
-

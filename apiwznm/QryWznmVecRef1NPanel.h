@@ -98,4 +98,3 @@ namespace QryWznmVecRef1NPanel {
 };
 
 #endif
-

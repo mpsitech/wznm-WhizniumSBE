@@ -1236,4 +1236,3 @@ void DlgWznmVerDbstr::DpchEngData::readXML(
 		tagppr = TagPpr();
 	};
 };
-

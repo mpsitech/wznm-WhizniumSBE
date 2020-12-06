@@ -28,8 +28,8 @@ namespace QryWznmPnlList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint REU = 1;
-		static const Sbecore::uint RET = 2;
+		static const Sbecore::uint RET = 1;
+		static const Sbecore::uint REU = 2;
 		static const Sbecore::uint CAR = 3;
 		static const Sbecore::uint TYP = 4;
 		static const Sbecore::uint SRF = 5;
@@ -116,4 +116,3 @@ namespace QryWznmPnlList {
 };
 
 #endif
-

@@ -59,4 +59,3 @@ public class ListWznmQAppApp1NSequence {
 		return false;
 	};
 };
-

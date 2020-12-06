@@ -45,6 +45,3 @@ bool PnlWznmCtp1NTag::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

@@ -167,6 +167,3 @@ bool PnlWznmQry1NQuerymod::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

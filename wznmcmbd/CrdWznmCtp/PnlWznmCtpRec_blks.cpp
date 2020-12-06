@@ -101,8 +101,8 @@ void PnlWznmCtpRec::StatApp::writeXML(
 			, const bool initdoneKParKey
 			, const bool initdoneKKey
 			, const bool initdoneAPar
-			, const bool initdone1NTag
 			, const bool initdoneTpl1NCapability
+			, const bool initdone1NTag
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmCtpRec";
 
@@ -115,8 +115,8 @@ void PnlWznmCtpRec::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "initdoneKParKey", initdoneKParKey);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneKKey", initdoneKKey);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneAPar", initdoneAPar);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NTag", initdone1NTag);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneTpl1NCapability", initdoneTpl1NCapability);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NTag", initdone1NTag);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -130,8 +130,8 @@ PnlWznmCtpRec::StatShr::StatShr(
 			, const ubigint jrefKParKey
 			, const ubigint jrefKKey
 			, const ubigint jrefAPar
-			, const ubigint jref1NTag
 			, const ubigint jrefTpl1NCapability
+			, const ubigint jref1NTag
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -141,11 +141,11 @@ PnlWznmCtpRec::StatShr::StatShr(
 	this->jrefKParKey = jrefKParKey;
 	this->jrefKKey = jrefKKey;
 	this->jrefAPar = jrefAPar;
-	this->jref1NTag = jref1NTag;
 	this->jrefTpl1NCapability = jrefTpl1NCapability;
+	this->jref1NTag = jref1NTag;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFKPARKEY, JREFKKEY, JREFAPAR, JREF1NTAG, JREFTPL1NCAPABILITY, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFKPARKEY, JREFKKEY, JREFAPAR, JREFTPL1NCAPABILITY, JREF1NTAG, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmCtpRec::StatShr::writeXML(
@@ -165,8 +165,8 @@ void PnlWznmCtpRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefKParKey", Scr::scramble(jrefKParKey));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefKKey", Scr::scramble(jrefKKey));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefAPar", Scr::scramble(jrefAPar));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NTag", Scr::scramble(jref1NTag));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefTpl1NCapability", Scr::scramble(jrefTpl1NCapability));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NTag", Scr::scramble(jref1NTag));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -181,8 +181,8 @@ set<uint> PnlWznmCtpRec::StatShr::comm(
 	if (jrefKParKey == comp->jrefKParKey) insert(items, JREFKPARKEY);
 	if (jrefKKey == comp->jrefKKey) insert(items, JREFKKEY);
 	if (jrefAPar == comp->jrefAPar) insert(items, JREFAPAR);
-	if (jref1NTag == comp->jref1NTag) insert(items, JREF1NTAG);
 	if (jrefTpl1NCapability == comp->jrefTpl1NCapability) insert(items, JREFTPL1NCAPABILITY);
+	if (jref1NTag == comp->jref1NTag) insert(items, JREF1NTAG);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -196,7 +196,7 @@ set<uint> PnlWznmCtpRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFKPARKEY, JREFKKEY, JREFAPAR, JREF1NTAG, JREFTPL1NCAPABILITY, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFKPARKEY, JREFKKEY, JREFAPAR, JREFTPL1NCAPABILITY, JREF1NTAG, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -336,6 +336,3 @@ void PnlWznmCtpRec::DpchEngData::writeXML(
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

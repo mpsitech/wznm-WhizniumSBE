@@ -122,6 +122,3 @@ bool PnlWznmNavAdmin::evalButFilViewActive(
 
 	return(args.back());
 };
-
-
-

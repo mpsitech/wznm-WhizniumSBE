@@ -56,6 +56,3 @@ string SqkWznmWrdbs::getSquawkTbl(
 	// example: "write database access library C++ code for table 'TblBrlyMLocation'"
 	return("write database access library C++ code for table '" + StubWznm::getStubTblStd(dbswznm, dpchinv->refWznmMTable) + "'"); // IP getSquawkTbl --- RLINE
 };
-
-
-

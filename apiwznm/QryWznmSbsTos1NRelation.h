@@ -98,4 +98,3 @@ namespace QryWznmSbsTos1NRelation {
 };
 
 #endif
-

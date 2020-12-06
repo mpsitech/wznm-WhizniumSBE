@@ -38,9 +38,9 @@ PnlWznmCalRec::PnlWznmCalRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlmnstub = NULL;
-	pnl1nsensitivity = NULL;
 	pnldetail = NULL;
+	pnl1nsensitivity = NULL;
+	pnlmnstub = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -321,6 +321,3 @@ bool PnlWznmCalRec::handleCallWznmCal_retEq(
 	boolvalRet = (recCal.refIxVTbl == ixInv); // IP handleCallWznmCal_retEq --- LINE
 	return retval;
 };
-
-
-

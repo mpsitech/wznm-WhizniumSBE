@@ -59,6 +59,3 @@ bool DlgWznmPrjNew::evalButCreActive(
 
 	return(args.back());
 };
-
-
-

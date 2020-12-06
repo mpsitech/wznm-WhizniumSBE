@@ -118,6 +118,3 @@ void SessWznm::DpchEngData::writeXML(
 		if (has(STATSHR)) statshr.writeXML(wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

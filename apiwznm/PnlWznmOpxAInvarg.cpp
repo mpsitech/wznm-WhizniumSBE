@@ -569,4 +569,3 @@ void PnlWznmOpxAInvarg::DpchEngData::readXML(
 		stgiacqry = QryWznmOpxAInvarg::StgIac();
 	};
 };
-

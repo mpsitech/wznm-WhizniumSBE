@@ -865,4 +865,3 @@ ubigint PgTblWznmJMPersonLastname::loadRstByPrs(
 };
 
 #endif
-

@@ -125,8 +125,8 @@ void DlgWznmVerCustjob::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfLfi oldContinflfi(continflfi);
 	StatShrLfi oldStatshrlfi(statshrlfi);
+	ContInfLfi oldContinflfi(continflfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -136,8 +136,8 @@ void DlgWznmVerCustjob::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
+	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 };
 
 void DlgWznmVerCustjob::refresh(
@@ -230,8 +230,8 @@ void DlgWznmVerCustjob::handleRequest(
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
 		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 	};
 };
 
@@ -328,18 +328,18 @@ void DlgWznmVerCustjob::handleTimerInSgePrsidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmVerCustjob::handleTimerWithSrefMonInSgeImport(
-			DbsWznm* dbswznm
-		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
-};
-
 void DlgWznmVerCustjob::handleTimerInSgeImpidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
 	changeStage(dbswznm, nextIxVSgeSuccess);
+};
+
+void DlgWznmVerCustjob::handleTimerWithSrefMonInSgeImport(
+			DbsWznm* dbswznm
+		) {
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
 };
 
 void DlgWznmVerCustjob::changeStage(
@@ -669,6 +669,3 @@ void DlgWznmVerCustjob::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
-
-

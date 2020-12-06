@@ -1210,6 +1210,3 @@ void DlgWznmAppWrite::DpchEngData::writeXML(
 		if (has(TAGWRC)) TagWrc::writeXML(ixWznmVLocale, wr);
 	xmlTextWriterEndElement(wr);
 };
-
-
-

@@ -59,4 +59,3 @@ public class ListWznmQIex1NImpexp {
 		return false;
 	};
 };
-

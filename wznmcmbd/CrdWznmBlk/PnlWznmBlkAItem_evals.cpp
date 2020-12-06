@@ -150,6 +150,3 @@ bool PnlWznmBlkAItem::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

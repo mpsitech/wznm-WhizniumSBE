@@ -32,6 +32,3 @@ namespace WznmCtpWrstkit {
 };
 
 #endif
-
-
-

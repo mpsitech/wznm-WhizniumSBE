@@ -108,8 +108,8 @@ PnlWznmRelRec::StatApp::StatApp(
 			, const bool initdone1NTablecol
 			, const bool initdoneSup1NRelation
 			, const bool initdoneRef1NControl
-			, const bool initdoneRef1NPanel
 			, const bool initdoneRef1NDialog
+			, const bool initdoneRef1NPanel
 		) :
 			Block()
 		{
@@ -118,10 +118,10 @@ PnlWznmRelRec::StatApp::StatApp(
 	this->initdone1NTablecol = initdone1NTablecol;
 	this->initdoneSup1NRelation = initdoneSup1NRelation;
 	this->initdoneRef1NControl = initdoneRef1NControl;
-	this->initdoneRef1NPanel = initdoneRef1NPanel;
 	this->initdoneRef1NDialog = initdoneRef1NDialog;
+	this->initdoneRef1NPanel = initdoneRef1NPanel;
 
-	mask = {INITDONEDETAIL, INITDONEATITLE, INITDONE1NTABLECOL, INITDONESUP1NRELATION, INITDONEREF1NCONTROL, INITDONEREF1NPANEL, INITDONEREF1NDIALOG};
+	mask = {INITDONEDETAIL, INITDONEATITLE, INITDONE1NTABLECOL, INITDONESUP1NRELATION, INITDONEREF1NCONTROL, INITDONEREF1NDIALOG, INITDONEREF1NPANEL};
 };
 
 bool PnlWznmRelRec::StatApp::readXML(
@@ -146,8 +146,8 @@ bool PnlWznmRelRec::StatApp::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NTablecol", initdone1NTablecol)) add(INITDONE1NTABLECOL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSup1NRelation", initdoneSup1NRelation)) add(INITDONESUP1NRELATION);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NControl", initdoneRef1NControl)) add(INITDONEREF1NCONTROL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NPanel", initdoneRef1NPanel)) add(INITDONEREF1NPANEL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NDialog", initdoneRef1NDialog)) add(INITDONEREF1NDIALOG);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NPanel", initdoneRef1NPanel)) add(INITDONEREF1NPANEL);
 	};
 
 	return basefound;
@@ -163,8 +163,8 @@ set<uint> PnlWznmRelRec::StatApp::comm(
 	if (initdone1NTablecol == comp->initdone1NTablecol) insert(items, INITDONE1NTABLECOL);
 	if (initdoneSup1NRelation == comp->initdoneSup1NRelation) insert(items, INITDONESUP1NRELATION);
 	if (initdoneRef1NControl == comp->initdoneRef1NControl) insert(items, INITDONEREF1NCONTROL);
-	if (initdoneRef1NPanel == comp->initdoneRef1NPanel) insert(items, INITDONEREF1NPANEL);
 	if (initdoneRef1NDialog == comp->initdoneRef1NDialog) insert(items, INITDONEREF1NDIALOG);
+	if (initdoneRef1NPanel == comp->initdoneRef1NPanel) insert(items, INITDONEREF1NPANEL);
 
 	return(items);
 };
@@ -177,7 +177,7 @@ set<uint> PnlWznmRelRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEATITLE, INITDONE1NTABLECOL, INITDONESUP1NRELATION, INITDONEREF1NCONTROL, INITDONEREF1NPANEL, INITDONEREF1NDIALOG};
+	diffitems = {INITDONEDETAIL, INITDONEATITLE, INITDONE1NTABLECOL, INITDONESUP1NRELATION, INITDONEREF1NCONTROL, INITDONEREF1NDIALOG, INITDONEREF1NPANEL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -194,8 +194,8 @@ PnlWznmRelRec::StatShr::StatShr(
 			, const string& scrJref1NTablecol
 			, const string& scrJrefSup1NRelation
 			, const string& scrJrefRef1NControl
-			, const string& scrJrefRef1NPanel
 			, const string& scrJrefRef1NDialog
+			, const string& scrJrefRef1NPanel
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -206,11 +206,11 @@ PnlWznmRelRec::StatShr::StatShr(
 	this->scrJref1NTablecol = scrJref1NTablecol;
 	this->scrJrefSup1NRelation = scrJrefSup1NRelation;
 	this->scrJrefRef1NControl = scrJrefRef1NControl;
-	this->scrJrefRef1NPanel = scrJrefRef1NPanel;
 	this->scrJrefRef1NDialog = scrJrefRef1NDialog;
+	this->scrJrefRef1NPanel = scrJrefRef1NPanel;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NTABLECOL, SCRJREFSUP1NRELATION, SCRJREFREF1NCONTROL, SCRJREFREF1NPANEL, SCRJREFREF1NDIALOG, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NTABLECOL, SCRJREFSUP1NRELATION, SCRJREFREF1NCONTROL, SCRJREFREF1NDIALOG, SCRJREFREF1NPANEL, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmRelRec::StatShr::readXML(
@@ -241,8 +241,8 @@ bool PnlWznmRelRec::StatShr::readXML(
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NTablecol", scrJref1NTablecol)) add(SCRJREF1NTABLECOL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSup1NRelation", scrJrefSup1NRelation)) add(SCRJREFSUP1NRELATION);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NControl", scrJrefRef1NControl)) add(SCRJREFREF1NCONTROL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NPanel", scrJrefRef1NPanel)) add(SCRJREFREF1NPANEL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NDialog", scrJrefRef1NDialog)) add(SCRJREFREF1NDIALOG);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NPanel", scrJrefRef1NPanel)) add(SCRJREFREF1NPANEL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
 
@@ -260,8 +260,8 @@ set<uint> PnlWznmRelRec::StatShr::comm(
 	if (scrJref1NTablecol == comp->scrJref1NTablecol) insert(items, SCRJREF1NTABLECOL);
 	if (scrJrefSup1NRelation == comp->scrJrefSup1NRelation) insert(items, SCRJREFSUP1NRELATION);
 	if (scrJrefRef1NControl == comp->scrJrefRef1NControl) insert(items, SCRJREFREF1NCONTROL);
-	if (scrJrefRef1NPanel == comp->scrJrefRef1NPanel) insert(items, SCRJREFREF1NPANEL);
 	if (scrJrefRef1NDialog == comp->scrJrefRef1NDialog) insert(items, SCRJREFREF1NDIALOG);
+	if (scrJrefRef1NPanel == comp->scrJrefRef1NPanel) insert(items, SCRJREFREF1NPANEL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -275,7 +275,7 @@ set<uint> PnlWznmRelRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NTABLECOL, SCRJREFSUP1NRELATION, SCRJREFREF1NCONTROL, SCRJREFREF1NPANEL, SCRJREFREF1NDIALOG, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NTABLECOL, SCRJREFSUP1NRELATION, SCRJREFREF1NCONTROL, SCRJREFREF1NDIALOG, SCRJREFREF1NPANEL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -408,4 +408,3 @@ void PnlWznmRelRec::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

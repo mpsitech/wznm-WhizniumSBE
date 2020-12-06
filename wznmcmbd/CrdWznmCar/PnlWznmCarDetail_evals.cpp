@@ -289,6 +289,3 @@ bool PnlWznmCarDetail::evalTxfActActive(
 
 	return(args.back());
 };
-
-
-

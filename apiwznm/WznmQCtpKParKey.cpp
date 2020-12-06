@@ -126,4 +126,3 @@ bool ListWznmQCtpKParKey::readXML(
 
 	return basefound;
 };
-

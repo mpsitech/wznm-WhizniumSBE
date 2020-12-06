@@ -150,6 +150,3 @@ bool PnlWznmNavProject::evalButErrNewcrdActive(
 
 	return(args.back());
 };
-
-
-

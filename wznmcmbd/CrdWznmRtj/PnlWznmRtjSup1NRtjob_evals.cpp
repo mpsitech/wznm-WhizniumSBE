@@ -50,6 +50,3 @@ bool PnlWznmRtjSup1NRtjob::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

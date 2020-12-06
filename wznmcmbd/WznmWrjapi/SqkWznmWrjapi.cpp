@@ -48,6 +48,3 @@ string SqkWznmWrjapi::getSquawkVec(
 	// example: "write Java code for vector 'VecBrlyVMLocationBasetype'"
 	return(""); // IP getSquawkVec --- LINE
 };
-
-
-

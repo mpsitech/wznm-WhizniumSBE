@@ -148,6 +148,3 @@ bool PnlWznmPrjDetail::evalTxfCmtActive(
 
 	return(args.back());
 };
-
-
-

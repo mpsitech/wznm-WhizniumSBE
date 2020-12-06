@@ -493,6 +493,3 @@ bool QryWznmCalList::handleCallWznmStubChgFromSelf(
 	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
-
-
-

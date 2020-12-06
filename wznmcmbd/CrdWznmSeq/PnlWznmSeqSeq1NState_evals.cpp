@@ -167,6 +167,3 @@ bool PnlWznmSeqSeq1NState::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -102,6 +102,3 @@ bool PnlWznmSbsBsbMNSubset::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

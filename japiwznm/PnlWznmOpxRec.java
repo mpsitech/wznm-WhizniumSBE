@@ -500,4 +500,3 @@ public class PnlWznmOpxRec {
 	};
 
 };
-

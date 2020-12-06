@@ -150,6 +150,3 @@ bool PnlWznmConSup1NControl::evalButViewActive(
 
 	return(args.back());
 };
-
-
-

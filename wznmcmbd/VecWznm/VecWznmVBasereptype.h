@@ -30,6 +30,3 @@ namespace VecWznmVBasereptype {
 };
 
 #endif
-
-
-

@@ -53,4 +53,3 @@ public class WznmQSgeList {
 		return false;
 	};
 };
-

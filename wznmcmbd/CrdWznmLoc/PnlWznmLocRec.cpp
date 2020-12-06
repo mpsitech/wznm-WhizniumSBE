@@ -255,6 +255,3 @@ bool PnlWznmLocRec::handleCallWznmLocUpd_refEq(
 	// IP handleCallWznmLocUpd_refEq --- INSERT
 	return retval;
 };
-
-
-

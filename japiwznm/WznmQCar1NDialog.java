@@ -41,4 +41,3 @@ public class WznmQCar1NDialog {
 		return false;
 	};
 };
-

@@ -645,4 +645,3 @@ public class PnlWznmDlgRef1NControl {
 	};
 
 };
-

@@ -98,4 +98,3 @@ namespace QryWznmTblPst1NQuerymod {
 };
 
 #endif
-

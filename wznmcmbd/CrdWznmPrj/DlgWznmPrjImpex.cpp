@@ -44,15 +44,15 @@ DlgWznmPrjImpex::DlgWznmPrjImpex(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	license = NULL;
 	iex = NULL;
+	license = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	ixVDit = VecVDit::IFI;
 
-	license = new JobWznmLicense(xchg, dbswznm, jref, ixWznmVLocale);
 	iex = new JobWznmIexPrj(xchg, dbswznm, jref, ixWznmVLocale);
+	license = new JobWznmLicense(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -107,8 +107,8 @@ void DlgWznmPrjImpex::refreshImp(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrImp oldStatshrimp(statshrimp);
 	ContInfImp oldContinfimp(continfimp);
+	StatShrImp oldStatshrimp(statshrimp);
 
 	// IP refreshImp --- RBEGIN
 	// continfimp
@@ -120,16 +120,16 @@ void DlgWznmPrjImpex::refreshImp(
 	statshrimp.ButStoActive = evalImpButStoActive(dbswznm);
 
 	// IP refreshImp --- REND
-	if (statshrimp.diff(&oldStatshrimp).size() != 0) insert(moditems, DpchEngData::STATSHRIMP);
 	if (continfimp.diff(&oldContinfimp).size() != 0) insert(moditems, DpchEngData::CONTINFIMP);
+	if (statshrimp.diff(&oldStatshrimp).size() != 0) insert(moditems, DpchEngData::STATSHRIMP);
 };
 
 void DlgWznmPrjImpex::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfLfi oldContinflfi(continflfi);
 	StatShrLfi oldStatshrlfi(statshrlfi);
+	ContInfLfi oldContinflfi(continflfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -139,8 +139,8 @@ void DlgWznmPrjImpex::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
+	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 };
 
 void DlgWznmPrjImpex::refresh(
@@ -234,9 +234,9 @@ void DlgWznmPrjImpex::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
 		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
+		else if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
 	};
 };
 
@@ -337,11 +337,11 @@ string DlgWznmPrjImpex::handleDownloadInSgeDone(
 	return(""); // IP handleDownloadInSgeDone --- LINE
 };
 
-void DlgWznmPrjImpex::handleTimerInSgePrsidle(
+void DlgWznmPrjImpex::handleTimerWithSrefMonInSgeImport(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
 };
 
 void DlgWznmPrjImpex::handleTimerInSgeImpidle(
@@ -351,11 +351,11 @@ void DlgWznmPrjImpex::handleTimerInSgeImpidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmPrjImpex::handleTimerWithSrefMonInSgeImport(
+void DlgWznmPrjImpex::handleTimerInSgePrsidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmPrjImpex::changeStage(
@@ -762,6 +762,3 @@ void DlgWznmPrjImpex::leaveSgeDone(
 		) {
 	// IP leaveSgeDone --- INSERT
 };
-
-
-

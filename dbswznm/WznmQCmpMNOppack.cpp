@@ -811,4 +811,3 @@ ubigint PgTblWznmQCmpMNOppack::loadRstByJref(
 	return loadRstByStmt("TblWznmQCmpMNOppack_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

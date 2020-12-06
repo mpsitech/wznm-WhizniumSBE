@@ -40,6 +40,3 @@ bool PnlWznmJobRec::evalButRegularizeActive(
 
 	return(args.back());
 };
-
-
-

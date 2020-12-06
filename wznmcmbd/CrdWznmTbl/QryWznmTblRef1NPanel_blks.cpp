@@ -185,6 +185,3 @@ set<uint> QryWznmTblRef1NPanel::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

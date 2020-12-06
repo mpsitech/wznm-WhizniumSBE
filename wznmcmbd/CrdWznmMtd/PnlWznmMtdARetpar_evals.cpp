@@ -150,6 +150,3 @@ bool PnlWznmMtdARetpar::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

@@ -903,4 +903,3 @@ bool PgTblWznmJMLocaleTitle::loadTitByLocLo2(
 };
 
 #endif
-

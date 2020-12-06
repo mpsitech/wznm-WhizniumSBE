@@ -198,7 +198,3 @@ void WznmdJobprc::accessJob(
 		if (job) job->unlockAccess("WznmdJobprc", "accessJob");
 	};
 };
-
-
-
-

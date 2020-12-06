@@ -20,9 +20,9 @@ uint QryWznmJobList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
+	if (s == "reu") return REU;
 	if (s == "gbl") return GBL;
 	if (s == "ret") return RET;
-	if (s == "reu") return REU;
 	if (s == "ver") return VER;
 	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
@@ -33,9 +33,9 @@ uint QryWznmJobList::VecVOrd::getIx(
 string QryWznmJobList::VecVOrd::getSref(
 			const uint ix
 		) {
+	if (ix == REU) return("reu");
 	if (ix == GBL) return("gbl");
 	if (ix == RET) return("ret");
-	if (ix == REU) return("reu");
 	if (ix == VER) return("ver");
 	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
@@ -225,6 +225,3 @@ set<uint> QryWznmJobList::StgIac::diff(
 
 	return(diffitems);
 };
-
-
-

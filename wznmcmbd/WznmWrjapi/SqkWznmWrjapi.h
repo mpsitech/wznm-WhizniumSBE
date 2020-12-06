@@ -23,6 +23,3 @@ namespace SqkWznmWrjapi {
 };
 
 #endif
-
-
-

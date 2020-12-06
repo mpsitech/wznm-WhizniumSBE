@@ -42,6 +42,3 @@ DpchRetWznmCtpGenui* WznmCtpGenuiDlgloaini::run(
 };
 
 // IP cust --- INSERT
-
-
-

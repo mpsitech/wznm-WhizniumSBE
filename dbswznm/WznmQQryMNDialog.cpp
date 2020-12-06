@@ -811,4 +811,3 @@ ubigint PgTblWznmQQryMNDialog::loadRstByJref(
 	return loadRstByStmt("TblWznmQQryMNDialog_loadRstByJref", 1, vals, l, f, append, rst);
 };
 #endif
-

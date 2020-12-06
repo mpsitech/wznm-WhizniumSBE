@@ -117,4 +117,3 @@ bool ListWznmQUsgMNUser::readXML(
 
 	return basefound;
 };
-

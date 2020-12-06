@@ -111,4 +111,3 @@ bool ListWznmQAppApp1NSequence::readXML(
 
 	return basefound;
 };
-

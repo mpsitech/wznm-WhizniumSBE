@@ -69,4 +69,3 @@ public class WznmQTblALoadfct {
 		return false;
 	};
 };
-

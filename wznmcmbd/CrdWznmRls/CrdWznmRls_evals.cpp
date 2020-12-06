@@ -148,6 +148,3 @@ bool CrdWznmRls::evalMitCrdWcoActive(
 
 	return(args.back());
 };
-
-
-

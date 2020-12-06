@@ -830,4 +830,3 @@ ubigint PgTblWznmMCapability::loadRstByVer(
 };
 
 #endif
-

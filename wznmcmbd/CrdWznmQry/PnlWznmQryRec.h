@@ -14,15 +14,15 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmQryMNDialog.h"
-#include "PnlWznmQryMNPanel.h"
-#include "PnlWznmQryMNTable.h"
-#include "PnlWznmQryQry1NQuerycol.h"
-#include "PnlWznmQry1NQuerymod.h"
-#include "PnlWznmQrySup1NQuery.h"
-#include "PnlWznmQryAOrder.h"
-#include "PnlWznmQryAClause.h"
 #include "PnlWznmQryDetail.h"
+#include "PnlWznmQryAClause.h"
+#include "PnlWznmQryAOrder.h"
+#include "PnlWznmQrySup1NQuery.h"
+#include "PnlWznmQry1NQuerymod.h"
+#include "PnlWznmQryQry1NQuerycol.h"
+#include "PnlWznmQryMNTable.h"
+#include "PnlWznmQryMNPanel.h"
+#include "PnlWznmQryMNDialog.h"
 
 #define VecVWznmQryRecDo PnlWznmQryRec::VecVDo
 
@@ -189,15 +189,15 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmQryMNDialog* pnlmndialog;
-	PnlWznmQryMNPanel* pnlmnpanel;
-	PnlWznmQryMNTable* pnlmntable;
-	PnlWznmQryQry1NQuerycol* pnlqry1nquerycol;
-	PnlWznmQry1NQuerymod* pnl1nquerymod;
-	PnlWznmQrySup1NQuery* pnlsup1nquery;
-	PnlWznmQryAOrder* pnlaorder;
-	PnlWznmQryAClause* pnlaclause;
 	PnlWznmQryDetail* pnldetail;
+	PnlWznmQryAClause* pnlaclause;
+	PnlWznmQryAOrder* pnlaorder;
+	PnlWznmQrySup1NQuery* pnlsup1nquery;
+	PnlWznmQry1NQuerymod* pnl1nquerymod;
+	PnlWznmQryQry1NQuerycol* pnlqry1nquerycol;
+	PnlWznmQryMNTable* pnlmntable;
+	PnlWznmQryMNPanel* pnlmnpanel;
+	PnlWznmQryMNDialog* pnlmndialog;
 
 	WznmMQuery recQry;
 
@@ -231,14 +231,11 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmQryUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmQry_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmQry_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmQry_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmQryUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 
 #endif
-
-
-

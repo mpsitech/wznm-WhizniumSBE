@@ -386,6 +386,3 @@ void CrdWznmUsr::leaveSgeAlrwznmabt(
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
 };
-
-
-

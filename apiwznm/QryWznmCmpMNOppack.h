@@ -98,4 +98,3 @@ namespace QryWznmCmpMNOppack {
 };
 
 #endif
-

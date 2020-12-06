@@ -59,4 +59,3 @@ public class ListWznmQOpxARetval {
 		return false;
 	};
 };
-

@@ -280,6 +280,3 @@ bool PnlWznmAppDetail::handleCallWznmApp_verEq(
 	boolvalRet = (recApp.verRefWznmMVersion == refInv); // IP handleCallWznmApp_verEq --- LINE
 	return retval;
 };
-
-
-

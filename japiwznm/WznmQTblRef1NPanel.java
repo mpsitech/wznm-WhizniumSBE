@@ -41,4 +41,3 @@ public class WznmQTblRef1NPanel {
 		return false;
 	};
 };
-

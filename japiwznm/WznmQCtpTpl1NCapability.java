@@ -41,4 +41,3 @@ public class WznmQCtpTpl1NCapability {
 		return false;
 	};
 };
-

@@ -32,6 +32,3 @@ namespace VecWznmVIop {
 };
 
 #endif
-
-
-

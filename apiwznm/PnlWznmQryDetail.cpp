@@ -643,4 +643,3 @@ void PnlWznmQryDetail::DpchEngData::readXML(
 		tag = Tag();
 	};
 };
-

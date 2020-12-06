@@ -669,4 +669,3 @@ public class PnlWznmJob1NMethod {
 	};
 
 };
-

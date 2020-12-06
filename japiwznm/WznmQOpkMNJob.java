@@ -41,4 +41,3 @@ public class WznmQOpkMNJob {
 		return false;
 	};
 };
-

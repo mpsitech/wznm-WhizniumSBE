@@ -645,4 +645,3 @@ public class PnlWznmQrySup1NQuery {
 	};
 
 };
-

@@ -87,6 +87,3 @@ bool PnlWznmAppRef1NFile::evalButDeleteActive(
 
 	return(args.back());
 };
-
-
-

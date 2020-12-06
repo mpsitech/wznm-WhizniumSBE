@@ -254,4 +254,3 @@ namespace PnlWznmVer1NCapability {
 };
 
 #endif
-

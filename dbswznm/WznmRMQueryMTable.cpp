@@ -882,4 +882,3 @@ ubigint PgTblWznmRMQueryMTable::loadRstByTbl(
 };
 
 #endif
-

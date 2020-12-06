@@ -160,6 +160,3 @@ string DlgWznmFilDownload::handleDownload(
 	return retval;
 	// IP handleDownload --- REND
 };
-
-
-

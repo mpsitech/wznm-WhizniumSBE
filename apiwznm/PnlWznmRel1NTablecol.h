@@ -220,4 +220,3 @@ namespace PnlWznmRel1NTablecol {
 };
 
 #endif
-

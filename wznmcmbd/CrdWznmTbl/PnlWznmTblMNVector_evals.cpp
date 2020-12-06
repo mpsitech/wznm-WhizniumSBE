@@ -52,6 +52,3 @@ bool PnlWznmTblMNVector::evalButSubActive(
 
 	return(args.back());
 };
-
-
-

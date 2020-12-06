@@ -103,4 +103,3 @@ ubigint PgTblWznmCAMBlockItem::getNewRef() {
 	return ref;
 };
 #endif
-

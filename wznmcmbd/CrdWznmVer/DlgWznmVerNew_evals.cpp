@@ -29,6 +29,3 @@ bool DlgWznmVerNew::evalButCreActive(
 
 	return(args.back());
 };
-
-
-
