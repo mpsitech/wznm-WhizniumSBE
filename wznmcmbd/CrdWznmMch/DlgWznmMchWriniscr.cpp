@@ -505,11 +505,11 @@ uint DlgWznmMchWriniscr::enterSgeWrite(
 	keys.push_back("dynlibflags"); Wznm::getMchmkf(dbswznm, refWznmMMachine, hrefsMch, "dynlibflags", s); vals.push_back(s);
 	keys.push_back("dynlibext"); Wznm::getMchmkf(dbswznm, refWznmMMachine, hrefsMch, "dynlibext", s); vals.push_back(s);
 
-	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("xml2", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); keys.push_back("libxmlinc"); vals.push_back(s);
-	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("mariadbclient", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); keys.push_back("libmariadbinc"); vals.push_back(s);
-	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("mysqlclient", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); keys.push_back("libmysqlinc"); vals.push_back(s);
-	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("postgresql", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); keys.push_back("libpqinc"); vals.push_back(s);
-	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("sqlite3", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); keys.push_back("libsqliteinc"); vals.push_back(s);
+	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("xml2", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); if (s == "") s = "."; keys.push_back("libxmlinc"); vals.push_back(s);
+	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("mariadbclient", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); if (s == "") s = "."; keys.push_back("libmariadbinc"); vals.push_back(s);
+	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("mysqlclient", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); if (s == "") s = "."; keys.push_back("libmysqlinc"); vals.push_back(s);
+	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("postgresql", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); if (s == "") s = "."; keys.push_back("libpqinc"); vals.push_back(s);
+	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("sqlite3", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); if (s == "") s = "."; keys.push_back("libsqliteinc"); vals.push_back(s);
 
 	cftpls = {"config.h", "init.sh", "Makefile_dbecore", "Makefile_sbecore"};
 
