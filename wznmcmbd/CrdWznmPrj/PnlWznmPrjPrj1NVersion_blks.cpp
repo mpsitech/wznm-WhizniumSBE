@@ -1,9 +1,9 @@
 /**
-	* \file PnlWznmPrj1NVersion_blks.cpp
-	* job handler for job PnlWznmPrj1NVersion (implementation of blocks)
+	* \file PnlWznmPrjPrj1NVersion_blks.cpp
+	* job handler for job PnlWznmPrjPrj1NVersion (implementation of blocks)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 28 Nov 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -12,10 +12,10 @@ using namespace Sbecore;
 using namespace Xmlio;
 
 /******************************************************************************
- class PnlWznmPrj1NVersion::VecVDo
+ class PnlWznmPrjPrj1NVersion::VecVDo
  ******************************************************************************/
 
-uint PnlWznmPrj1NVersion::VecVDo::getIx(
+uint PnlWznmPrjPrj1NVersion::VecVDo::getIx(
 			const string& sref
 		) {
 	string s = StrMod::lc(sref);
@@ -30,7 +30,7 @@ uint PnlWznmPrj1NVersion::VecVDo::getIx(
 	return(0);
 };
 
-string PnlWznmPrj1NVersion::VecVDo::getSref(
+string PnlWznmPrjPrj1NVersion::VecVDo::getSref(
 			const uint ix
 		) {
 	if (ix == BUTUPCLICK) return("ButUpClick");
@@ -44,10 +44,10 @@ string PnlWznmPrj1NVersion::VecVDo::getSref(
 };
 
 /******************************************************************************
- class PnlWznmPrj1NVersion::ContInf
+ class PnlWznmPrjPrj1NVersion::ContInf
  ******************************************************************************/
 
-PnlWznmPrj1NVersion::ContInf::ContInf(
+PnlWznmPrjPrj1NVersion::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
@@ -57,23 +57,23 @@ PnlWznmPrj1NVersion::ContInf::ContInf(
 	mask = {NUMFCSIQST};
 };
 
-void PnlWznmPrj1NVersion::ContInf::writeXML(
+void PnlWznmPrjPrj1NVersion::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
 		) {
-	if (difftag.length() == 0) difftag = "ContInfWznmPrj1NVersion";
+	if (difftag.length() == 0) difftag = "ContInfWznmPrjPrj1NVersion";
 
 	string itemtag;
 	if (shorttags) itemtag = "Ci";
-	else itemtag = "ContitemInfWznmPrj1NVersion";
+	else itemtag = "ContitemInfWznmPrjPrj1NVersion";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUintAttr(wr, itemtag, "sref", "numFCsiQst", numFCsiQst);
 	xmlTextWriterEndElement(wr);
 };
 
-set<uint> PnlWznmPrj1NVersion::ContInf::comm(
+set<uint> PnlWznmPrjPrj1NVersion::ContInf::comm(
 			const ContInf* comp
 		) {
 	set<uint> items;
@@ -83,7 +83,7 @@ set<uint> PnlWznmPrj1NVersion::ContInf::comm(
 	return(items);
 };
 
-set<uint> PnlWznmPrj1NVersion::ContInf::diff(
+set<uint> PnlWznmPrjPrj1NVersion::ContInf::diff(
 			const ContInf* comp
 		) {
 	set<uint> commitems;
@@ -98,20 +98,20 @@ set<uint> PnlWznmPrj1NVersion::ContInf::diff(
 };
 
 /******************************************************************************
- class PnlWznmPrj1NVersion::StatApp
+ class PnlWznmPrjPrj1NVersion::StatApp
  ******************************************************************************/
 
-void PnlWznmPrj1NVersion::StatApp::writeXML(
+void PnlWznmPrjPrj1NVersion::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
 			, const uint ixWznmVExpstate
 		) {
-	if (difftag.length() == 0) difftag = "StatAppWznmPrj1NVersion";
+	if (difftag.length() == 0) difftag = "StatAppWznmPrjPrj1NVersion";
 
 	string itemtag;
 	if (shorttags) itemtag = "Si";
-	else itemtag = "StatitemAppWznmPrj1NVersion";
+	else itemtag = "StatitemAppWznmPrjPrj1NVersion";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
@@ -119,10 +119,10 @@ void PnlWznmPrj1NVersion::StatApp::writeXML(
 };
 
 /******************************************************************************
- class PnlWznmPrj1NVersion::StatShr
+ class PnlWznmPrjPrj1NVersion::StatShr
  ******************************************************************************/
 
-PnlWznmPrj1NVersion::StatShr::StatShr(
+PnlWznmPrjPrj1NVersion::StatShr::StatShr(
 			const bool ButUpAvail
 			, const bool ButUpActive
 			, const bool ButDownAvail
@@ -148,16 +148,16 @@ PnlWznmPrj1NVersion::StatShr::StatShr(
 	mask = {BUTUPAVAIL, BUTUPACTIVE, BUTDOWNAVAIL, BUTDOWNACTIVE, BUTVIEWAVAIL, BUTVIEWACTIVE, BUTNEWAVAIL, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
-void PnlWznmPrj1NVersion::StatShr::writeXML(
+void PnlWznmPrjPrj1NVersion::StatShr::writeXML(
 			xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
 		) {
-	if (difftag.length() == 0) difftag = "StatShrWznmPrj1NVersion";
+	if (difftag.length() == 0) difftag = "StatShrWznmPrjPrj1NVersion";
 
 	string itemtag;
 	if (shorttags) itemtag = "Si";
-	else itemtag = "StatitemShrWznmPrj1NVersion";
+	else itemtag = "StatitemShrWznmPrjPrj1NVersion";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "ButUpAvail", ButUpAvail);
@@ -172,7 +172,7 @@ void PnlWznmPrj1NVersion::StatShr::writeXML(
 	xmlTextWriterEndElement(wr);
 };
 
-set<uint> PnlWznmPrj1NVersion::StatShr::comm(
+set<uint> PnlWznmPrjPrj1NVersion::StatShr::comm(
 			const StatShr* comp
 		) {
 	set<uint> items;
@@ -190,7 +190,7 @@ set<uint> PnlWznmPrj1NVersion::StatShr::comm(
 	return(items);
 };
 
-set<uint> PnlWznmPrj1NVersion::StatShr::diff(
+set<uint> PnlWznmPrjPrj1NVersion::StatShr::diff(
 			const StatShr* comp
 		) {
 	set<uint> commitems;
@@ -205,10 +205,10 @@ set<uint> PnlWznmPrj1NVersion::StatShr::diff(
 };
 
 /******************************************************************************
- class PnlWznmPrj1NVersion::StgIac
+ class PnlWznmPrjPrj1NVersion::StgIac
  ******************************************************************************/
 
-PnlWznmPrj1NVersion::StgIac::StgIac(
+PnlWznmPrjPrj1NVersion::StgIac::StgIac(
 			const uint TcoRefWidth
 		) :
 			Block()
@@ -217,7 +217,7 @@ PnlWznmPrj1NVersion::StgIac::StgIac(
 	mask = {TCOREFWIDTH};
 };
 
-bool PnlWznmPrj1NVersion::StgIac::readXML(
+bool PnlWznmPrjPrj1NVersion::StgIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
 			, bool addbasetag
@@ -227,11 +227,11 @@ bool PnlWznmPrj1NVersion::StgIac::readXML(
 	bool basefound;
 
 	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StgIacWznmPrj1NVersion");
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StgIacWznmPrjPrj1NVersion");
 	else
 		basefound = checkXPath(docctx, basexpath);
 
-	string itemtag = "StgitemIacWznmPrj1NVersion";
+	string itemtag = "StgitemIacWznmPrjPrj1NVersion";
 
 	if (basefound) {
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TcoRefWidth", TcoRefWidth)) add(TCOREFWIDTH);
@@ -240,23 +240,23 @@ bool PnlWznmPrj1NVersion::StgIac::readXML(
 	return basefound;
 };
 
-void PnlWznmPrj1NVersion::StgIac::writeXML(
+void PnlWznmPrjPrj1NVersion::StgIac::writeXML(
 			xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
 		) {
-	if (difftag.length() == 0) difftag = "StgIacWznmPrj1NVersion";
+	if (difftag.length() == 0) difftag = "StgIacWznmPrjPrj1NVersion";
 
 	string itemtag;
 	if (shorttags) itemtag = "Si";
-	else itemtag = "StgitemIacWznmPrj1NVersion";
+	else itemtag = "StgitemIacWznmPrjPrj1NVersion";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUintAttr(wr, itemtag, "sref", "TcoRefWidth", TcoRefWidth);
 	xmlTextWriterEndElement(wr);
 };
 
-set<uint> PnlWznmPrj1NVersion::StgIac::comm(
+set<uint> PnlWznmPrjPrj1NVersion::StgIac::comm(
 			const StgIac* comp
 		) {
 	set<uint> items;
@@ -266,7 +266,7 @@ set<uint> PnlWznmPrj1NVersion::StgIac::comm(
 	return(items);
 };
 
-set<uint> PnlWznmPrj1NVersion::StgIac::diff(
+set<uint> PnlWznmPrjPrj1NVersion::StgIac::diff(
 			const StgIac* comp
 		) {
 	set<uint> commitems;
@@ -281,20 +281,20 @@ set<uint> PnlWznmPrj1NVersion::StgIac::diff(
 };
 
 /******************************************************************************
- class PnlWznmPrj1NVersion::Tag
+ class PnlWznmPrjPrj1NVersion::Tag
  ******************************************************************************/
 
-void PnlWznmPrj1NVersion::Tag::writeXML(
+void PnlWznmPrjPrj1NVersion::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
 		) {
-	if (difftag.length() == 0) difftag = "TagWznmPrj1NVersion";
+	if (difftag.length() == 0) difftag = "TagWznmPrjPrj1NVersion";
 
 	string itemtag;
 	if (shorttags) itemtag = "Ti";
-	else itemtag = "TagitemWznmPrj1NVersion";
+	else itemtag = "TagitemWznmPrjPrj1NVersion";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
@@ -310,15 +310,15 @@ void PnlWznmPrj1NVersion::Tag::writeXML(
 };
 
 /******************************************************************************
- class PnlWznmPrj1NVersion::DpchAppData
+ class PnlWznmPrjPrj1NVersion::DpchAppData
  ******************************************************************************/
 
-PnlWznmPrj1NVersion::DpchAppData::DpchAppData() :
-			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMPRJ1NVERSIONDATA)
+PnlWznmPrjPrj1NVersion::DpchAppData::DpchAppData() :
+			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMPRJPRJ1NVERSIONDATA)
 		{
 };
 
-string PnlWznmPrj1NVersion::DpchAppData::getSrefsMask() {
+string PnlWznmPrjPrj1NVersion::DpchAppData::getSrefsMask() {
 	vector<string> ss;
 	string srefs;
 
@@ -331,7 +331,7 @@ string PnlWznmPrj1NVersion::DpchAppData::getSrefsMask() {
 	return(srefs);
 };
 
-void PnlWznmPrj1NVersion::DpchAppData::readXML(
+void PnlWznmPrjPrj1NVersion::DpchAppData::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
 			, bool addbasetag
@@ -343,7 +343,7 @@ void PnlWznmPrj1NVersion::DpchAppData::readXML(
 	bool basefound;
 
 	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "DpchAppWznmPrj1NVersionData");
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "DpchAppWznmPrjPrj1NVersionData");
 	else
 		basefound = checkXPath(docctx, basexpath);
 
@@ -356,21 +356,21 @@ void PnlWznmPrj1NVersion::DpchAppData::readXML(
 		if (stgiacqry.readXML(docctx, basexpath, true)) add(STGIACQRY);
 	} else {
 		stgiac = StgIac();
-		stgiacqry = QryWznmPrj1NVersion::StgIac();
+		stgiacqry = QryWznmPrjPrj1NVersion::StgIac();
 	};
 };
 
 /******************************************************************************
- class PnlWznmPrj1NVersion::DpchAppDo
+ class PnlWznmPrjPrj1NVersion::DpchAppDo
  ******************************************************************************/
 
-PnlWznmPrj1NVersion::DpchAppDo::DpchAppDo() :
-			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMPRJ1NVERSIONDO)
+PnlWznmPrjPrj1NVersion::DpchAppDo::DpchAppDo() :
+			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMPRJPRJ1NVERSIONDO)
 		{
 	ixVDo = 0;
 };
 
-string PnlWznmPrj1NVersion::DpchAppDo::getSrefsMask() {
+string PnlWznmPrjPrj1NVersion::DpchAppDo::getSrefsMask() {
 	vector<string> ss;
 	string srefs;
 
@@ -382,7 +382,7 @@ string PnlWznmPrj1NVersion::DpchAppDo::getSrefsMask() {
 	return(srefs);
 };
 
-void PnlWznmPrj1NVersion::DpchAppDo::readXML(
+void PnlWznmPrjPrj1NVersion::DpchAppDo::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
 			, bool addbasetag
@@ -395,7 +395,7 @@ void PnlWznmPrj1NVersion::DpchAppDo::readXML(
 	bool basefound;
 
 	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "DpchAppWznmPrj1NVersionDo");
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "DpchAppWznmPrjPrj1NVersionDo");
 	else
 		basefound = checkXPath(docctx, basexpath);
 
@@ -413,21 +413,21 @@ void PnlWznmPrj1NVersion::DpchAppDo::readXML(
 };
 
 /******************************************************************************
- class PnlWznmPrj1NVersion::DpchEngData
+ class PnlWznmPrjPrj1NVersion::DpchEngData
  ******************************************************************************/
 
-PnlWznmPrj1NVersion::DpchEngData::DpchEngData(
+PnlWznmPrjPrj1NVersion::DpchEngData::DpchEngData(
 			const ubigint jref
 			, ContInf* continf
 			, Feed* feedFCsiQst
 			, StatShr* statshr
 			, StgIac* stgiac
-			, ListWznmQPrj1NVersion* rst
-			, QryWznmPrj1NVersion::StatShr* statshrqry
-			, QryWznmPrj1NVersion::StgIac* stgiacqry
+			, ListWznmQPrjPrj1NVersion* rst
+			, QryWznmPrjPrj1NVersion::StatShr* statshrqry
+			, QryWznmPrjPrj1NVersion::StgIac* stgiacqry
 			, const set<uint>& mask
 		) :
-			DpchEngWznm(VecWznmVDpch::DPCHENGWZNMPRJ1NVERSIONDATA, jref)
+			DpchEngWznm(VecWznmVDpch::DPCHENGWZNMPRJPRJ1NVERSIONDATA, jref)
 		{
 	if (find(mask, ALL)) this->mask = {JREF, CONTINF, FEEDFCSIQST, STATAPP, STATSHR, STGIAC, TAG, RST, STATAPPQRY, STATSHRQRY, STGIACQRY};
 	else this->mask = mask;
@@ -441,7 +441,7 @@ PnlWznmPrj1NVersion::DpchEngData::DpchEngData(
 	if (find(this->mask, STGIACQRY) && stgiacqry) this->stgiacqry = *stgiacqry;
 };
 
-string PnlWznmPrj1NVersion::DpchEngData::getSrefsMask() {
+string PnlWznmPrjPrj1NVersion::DpchEngData::getSrefsMask() {
 	vector<string> ss;
 	string srefs;
 
@@ -462,7 +462,7 @@ string PnlWznmPrj1NVersion::DpchEngData::getSrefsMask() {
 	return(srefs);
 };
 
-void PnlWznmPrj1NVersion::DpchEngData::merge(
+void PnlWznmPrjPrj1NVersion::DpchEngData::merge(
 			DpchEngWznm* dpcheng
 		) {
 	DpchEngData* src = (DpchEngData*) dpcheng;
@@ -480,11 +480,11 @@ void PnlWznmPrj1NVersion::DpchEngData::merge(
 	if (src->has(STGIACQRY)) {stgiacqry = src->stgiacqry; add(STGIACQRY);};
 };
 
-void PnlWznmPrj1NVersion::DpchEngData::writeXML(
+void PnlWznmPrjPrj1NVersion::DpchEngData::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
 		) {
-	xmlTextWriterStartElement(wr, BAD_CAST "DpchEngWznmPrj1NVersionData");
+	xmlTextWriterStartElement(wr, BAD_CAST "DpchEngWznmPrjPrj1NVersionData");
 	xmlTextWriterWriteAttribute(wr, BAD_CAST "xmlns", BAD_CAST "http://www.mpsitech.com/wznm");
 		if (has(JREF)) writeString(wr, "scrJref", Scr::scramble(jref));
 		if (has(CONTINF)) continf.writeXML(wr);
@@ -494,7 +494,7 @@ void PnlWznmPrj1NVersion::DpchEngData::writeXML(
 		if (has(STGIAC)) stgiac.writeXML(wr);
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 		if (has(RST)) rst.writeXML(wr);
-		if (has(STATAPPQRY)) QryWznmPrj1NVersion::StatApp::writeXML(wr);
+		if (has(STATAPPQRY)) QryWznmPrjPrj1NVersion::StatApp::writeXML(wr);
 		if (has(STATSHRQRY)) statshrqry.writeXML(wr);
 		if (has(STGIACQRY)) stgiacqry.writeXML(wr);
 	xmlTextWriterEndElement(wr);

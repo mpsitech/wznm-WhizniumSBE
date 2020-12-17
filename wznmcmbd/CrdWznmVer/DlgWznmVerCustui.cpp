@@ -125,8 +125,8 @@ void DlgWznmVerCustui::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfLfi oldContinflfi(continflfi);
 	StatShrLfi oldStatshrlfi(statshrlfi);
+	ContInfLfi oldContinflfi(continflfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -136,8 +136,8 @@ void DlgWznmVerCustui::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
+	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 };
 
 void DlgWznmVerCustui::refresh(
@@ -149,23 +149,23 @@ void DlgWznmVerCustui::refresh(
 	muteRefresh = true;
 
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshIfi(dbswznm, moditems);
 	refreshImp(dbswznm, moditems);
@@ -230,8 +230,8 @@ void DlgWznmVerCustui::handleRequest(
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
 		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
+		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
 	};
 };
 
@@ -328,18 +328,18 @@ void DlgWznmVerCustui::handleTimerInSgePrsidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmVerCustui::handleTimerInSgeImpidle(
-			DbsWznm* dbswznm
-			, const string& sref
-		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
-};
-
 void DlgWznmVerCustui::handleTimerWithSrefMonInSgeImport(
 			DbsWznm* dbswznm
 		) {
 	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
+};
+
+void DlgWznmVerCustui::handleTimerInSgeImpidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmVerCustui::changeStage(

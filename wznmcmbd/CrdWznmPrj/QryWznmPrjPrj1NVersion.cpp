@@ -1,9 +1,9 @@
 /**
-	* \file QryWznmPrj1NVersion.cpp
-	* job handler for job QryWznmPrj1NVersion (implementation)
+	* \file QryWznmPrjPrj1NVersion.cpp
+	* job handler for job QryWznmPrjPrj1NVersion (implementation)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 28 Nov 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -13,9 +13,9 @@
 	#include <Wznmd.h>
 #endif
 
-#include "QryWznmPrj1NVersion.h"
+#include "QryWznmPrjPrj1NVersion.h"
 
-#include "QryWznmPrj1NVersion_blks.cpp"
+#include "QryWznmPrjPrj1NVersion_blks.cpp"
 
 using namespace std;
 using namespace Sbecore;
@@ -24,16 +24,16 @@ using namespace Xmlio;
 // IP ns.cust --- INSERT
 
 /******************************************************************************
- class QryWznmPrj1NVersion
+ class QryWznmPrjPrj1NVersion
  ******************************************************************************/
 
-QryWznmPrj1NVersion::QryWznmPrj1NVersion(
+QryWznmPrjPrj1NVersion::QryWznmPrjPrj1NVersion(
 			XchgWznm* xchg
 			, DbsWznm* dbswznm
 			, const ubigint jrefSup
 			, const uint ixWznmVLocale
 		) :
-			JobWznm(xchg, VecWznmVJob::QRYWZNMPRJ1NVERSION, jrefSup, ixWznmVLocale)
+			JobWznm(xchg, VecWznmVJob::QRYWZNMPRJPRJ1NVERSION, jrefSup, ixWznmVLocale)
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
@@ -53,7 +53,7 @@ QryWznmPrj1NVersion::QryWznmPrj1NVersion(
 	// IP constructor.spec3 --- INSERT
 };
 
-QryWznmPrj1NVersion::~QryWznmPrj1NVersion() {
+QryWznmPrjPrj1NVersion::~QryWznmPrjPrj1NVersion() {
 	// IP destructor.spec --- INSERT
 
 	// IP destructor.cust --- INSERT
@@ -63,13 +63,13 @@ QryWznmPrj1NVersion::~QryWznmPrj1NVersion() {
 
 // IP cust --- INSERT
 
-void QryWznmPrj1NVersion::refreshJnum() {
+void QryWznmPrjPrj1NVersion::refreshJnum() {
 	ubigint preRefSel = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFSEL, jref);
 
 	stgiac.jnum = getJnumByRef(preRefSel);
 };
 
-void QryWznmPrj1NVersion::rerun(
+void QryWznmPrjPrj1NVersion::rerun(
 			DbsWznm* dbswznm
 			, const bool call
 		) {
@@ -82,7 +82,7 @@ void QryWznmPrj1NVersion::rerun(
 	xchg->removeClstns(VecWznmVCall::CALLWZNMVERMOD_PRJEQ, jref);
 
 	dbswznm->tblwznmqselect->removeRstByJref(jref);
-	dbswznm->tblwznmqprj1nversion->removeRstByJref(jref);
+	dbswznm->tblwznmqprjprj1nversion->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmMVersion.ref)";
 	sqlstr += " FROM TblWznmMVersion";
@@ -97,7 +97,7 @@ void QryWznmPrj1NVersion::rerun(
 		else stgiac.jnumFirstload = 1;
 	};
 
-	sqlstr = "INSERT INTO TblWznmQPrj1NVersion(jref, jnum, ref, prjNum)";
+	sqlstr = "INSERT INTO TblWznmQPrjPrj1NVersion(jref, jnum, ref, prjNum)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMVersion.ref, TblWznmMVersion.prjNum";
 	sqlstr += " FROM TblWznmMVersion";
 	sqlstr += " WHERE TblWznmMVersion.prjRefWznmMProject = " + to_string(preRefPrj) + "";
@@ -105,7 +105,7 @@ void QryWznmPrj1NVersion::rerun(
 	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
 	dbswznm->executeQuery(sqlstr);
 
-	sqlstr = "UPDATE TblWznmQPrj1NVersion SET jnum = qref WHERE jref = " + to_string(jref);
+	sqlstr = "UPDATE TblWznmQPrjPrj1NVersion SET jnum = qref WHERE jref = " + to_string(jref);
 	dbswznm->executeQuery(sqlstr);
 
 	ixWznmVQrystate = VecWznmVQrystate::UTD;
@@ -118,7 +118,7 @@ void QryWznmPrj1NVersion::rerun(
 	xchg->addRefClstn(VecWznmVCall::CALLWZNMVERMOD_PRJEQ, jref, Clstn::VecVJobmask::ALL, 0, false, preRefPrj);
 };
 
-void QryWznmPrj1NVersion::fetch(
+void QryWznmPrjPrj1NVersion::fetch(
 			DbsWznm* dbswznm
 		) {
 	string sqlstr;
@@ -126,9 +126,9 @@ void QryWznmPrj1NVersion::fetch(
 	StmgrWznm* stmgr = NULL;
 	Stcch* stcch = NULL;
 
-	WznmQPrj1NVersion* rec = NULL;
+	WznmQPrjPrj1NVersion* rec = NULL;
 
-	dbswznm->tblwznmqprj1nversion->loadRstByJref(jref, false, rst);
+	dbswznm->tblwznmqprjprj1nversion->loadRstByJref(jref, false, rst);
 	statshr.nload = rst.nodes.size();
 
 	stmgr = xchg->getStmgrByJref(jref);
@@ -147,18 +147,18 @@ void QryWznmPrj1NVersion::fetch(
 		};
 
 		stmgr->commit();
-		stmgr->unlockAccess("QryWznmPrj1NVersion", "fetch");
+		stmgr->unlockAccess("QryWznmPrjPrj1NVersion", "fetch");
 	};
 
 	refreshJnum();
 };
 
-uint QryWznmPrj1NVersion::getJnumByRef(
+uint QryWznmPrjPrj1NVersion::getJnumByRef(
 			const ubigint ref
 		) {
 	uint retval = 0;
 
-	WznmQPrj1NVersion* rec = NULL;
+	WznmQPrjPrj1NVersion* rec = NULL;
 
 	for (unsigned int i = 0; i < rst.nodes.size(); i++) {
 		rec = rst.nodes[i];
@@ -172,20 +172,20 @@ uint QryWznmPrj1NVersion::getJnumByRef(
 	return retval;
 };
 
-ubigint QryWznmPrj1NVersion::getRefByJnum(
+ubigint QryWznmPrjPrj1NVersion::getRefByJnum(
 			const uint jnum
 		) {
 	uint ref = 0;
 
-	WznmQPrj1NVersion* rec = getRecByJnum(jnum);
+	WznmQPrjPrj1NVersion* rec = getRecByJnum(jnum);
 	if (rec) ref = rec->ref;
 	return ref;
 };
 
-WznmQPrj1NVersion* QryWznmPrj1NVersion::getRecByJnum(
+WznmQPrjPrj1NVersion* QryWznmPrjPrj1NVersion::getRecByJnum(
 			const uint jnum
 		) {
-	WznmQPrj1NVersion* rec = NULL;
+	WznmQPrjPrj1NVersion* rec = NULL;
 
 	for (unsigned int i = 0; i < rst.nodes.size(); i++) {
 		rec = rst.nodes[i];
@@ -196,7 +196,7 @@ WznmQPrj1NVersion* QryWznmPrj1NVersion::getRecByJnum(
 	return rec;
 };
 
-void QryWznmPrj1NVersion::handleRequest(
+void QryWznmPrjPrj1NVersion::handleRequest(
 			DbsWznm* dbswznm
 			, ReqWznm* req
 		) {
@@ -221,7 +221,7 @@ void QryWznmPrj1NVersion::handleRequest(
 	};
 };
 
-bool QryWznmPrj1NVersion::handleRerun(
+bool QryWznmPrjPrj1NVersion::handleRerun(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
@@ -238,11 +238,11 @@ bool QryWznmPrj1NVersion::handleRerun(
 	return retval;
 };
 
-bool QryWznmPrj1NVersion::handleShow(
+bool QryWznmPrjPrj1NVersion::handleShow(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	WznmQPrj1NVersion* rec = NULL;
+	WznmQPrjPrj1NVersion* rec = NULL;
 
 	// header row
 	cout << "\tqref";
@@ -268,26 +268,18 @@ bool QryWznmPrj1NVersion::handleShow(
 	return retval;
 };
 
-void QryWznmPrj1NVersion::handleCall(
+void QryWznmPrjPrj1NVersion::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVERMOD_PRJEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMVERMOD_PRJEQ) {
 		call->abort = handleCallWznmVerMod_prjEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
 };
 
-bool QryWznmPrj1NVersion::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
-};
-
-bool QryWznmPrj1NVersion::handleCallWznmVerMod_prjEq(
+bool QryWznmPrjPrj1NVersion::handleCallWznmVerMod_prjEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 		) {
@@ -298,5 +290,13 @@ bool QryWznmPrj1NVersion::handleCallWznmVerMod_prjEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
+	return retval;
+};
+
+bool QryWznmPrjPrj1NVersion::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

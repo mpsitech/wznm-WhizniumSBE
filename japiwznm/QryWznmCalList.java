@@ -19,8 +19,8 @@ public class QryWznmCalList {
 		*/
 	public static class VecVOrd {
 
-		public static final int RAT = 1;
-		public static final int IAT = 2;
+		public static final int IAT = 1;
+		public static final int RAT = 2;
 		public static final int REU = 3;
 		public static final int RET = 4;
 		public static final int VER = 5;
@@ -32,8 +32,8 @@ public class QryWznmCalList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("rat")) return RAT;
 			if (s.equals("iat")) return IAT;
+			if (s.equals("rat")) return RAT;
 			if (s.equals("reu")) return REU;
 			if (s.equals("ret")) return RET;
 			if (s.equals("ver")) return VER;
@@ -46,8 +46,8 @@ public class QryWznmCalList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == RAT) return("rat");
 			if (ix == IAT) return("iat");
+			if (ix == RAT) return("rat");
 			if (ix == REU) return("reu");
 			if (ix == RET) return("ret");
 			if (ix == VER) return("ver");

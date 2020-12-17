@@ -38,19 +38,19 @@ PnlWznmCarRec::PnlWznmCarRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
-	pnl1ndialog = NULL;
-	pnlcar1npanel = NULL;
 	pnlhk1ncontrol = NULL;
+	pnlcar1npanel = NULL;
+	pnl1ndialog = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_REUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_RETEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_MDLEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_JOBEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_MDLEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_RETEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_REUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -257,49 +257,25 @@ void PnlWznmCarRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_REUEQ) {
-		call->abort = handleCallWznmCar_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_RETEQ) {
-		call->abort = handleCallWznmCar_retEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_MDLEQ) {
-		call->abort = handleCallWznmCar_mdlEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCARUPD_REFEQ) {
+		call->abort = handleCallWznmCarUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_JOBEQ) {
 		call->abort = handleCallWznmCar_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCARUPD_REFEQ) {
-		call->abort = handleCallWznmCarUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_MDLEQ) {
+		call->abort = handleCallWznmCar_mdlEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_RETEQ) {
+		call->abort = handleCallWznmCar_retEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_REUEQ) {
+		call->abort = handleCallWznmCar_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
-bool PnlWznmCarRec::handleCallWznmCar_reuEq(
+bool PnlWznmCarRec::handleCallWznmCarUpd_refEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recCar.refUref == refInv); // IP handleCallWznmCar_reuEq --- LINE
-	return retval;
-};
-
-bool PnlWznmCarRec::handleCallWznmCar_retEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recCar.refIxVTbl == ixInv); // IP handleCallWznmCar_retEq --- LINE
-	return retval;
-};
-
-bool PnlWznmCarRec::handleCallWznmCar_mdlEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recCar.mdlRefWznmMModule == refInv); // IP handleCallWznmCar_mdlEq --- LINE
+	// IP handleCallWznmCarUpd_refEq --- INSERT
 	return retval;
 };
 
@@ -314,11 +290,35 @@ bool PnlWznmCarRec::handleCallWznmCar_jobEq(
 	return retval;
 };
 
-bool PnlWznmCarRec::handleCallWznmCarUpd_refEq(
+bool PnlWznmCarRec::handleCallWznmCar_mdlEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
 		) {
 	bool retval = false;
-	// IP handleCallWznmCarUpd_refEq --- INSERT
+	boolvalRet = (recCar.mdlRefWznmMModule == refInv); // IP handleCallWznmCar_mdlEq --- LINE
+	return retval;
+};
+
+bool PnlWznmCarRec::handleCallWznmCar_retEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recCar.refIxVTbl == ixInv); // IP handleCallWznmCar_retEq --- LINE
+	return retval;
+};
+
+bool PnlWznmCarRec::handleCallWznmCar_reuEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recCar.refUref == refInv); // IP handleCallWznmCar_reuEq --- LINE
 	return retval;
 };

@@ -2,7 +2,7 @@
 -- MySQL / MariaDB database create script
 -- copyright: (C) 2016-2020 MPSI Technologies GmbH
 -- author: Alexander Wirthmueller (auto-generation)
--- date created: 6 Dec 2020
+-- date created: 16 Dec 2020
 -- IP header --- ABOVE
 
 DROP DATABASE IF EXISTS DbsWznm;
@@ -2883,16 +2883,6 @@ CREATE TABLE TblWznmQPreselect(
 	INDEX (jref)
 ) ENGINE = MYISAM;
 
-CREATE TABLE TblWznmQPrj1NVersion(
-	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-	jref BIGINT UNSIGNED,
-	jnum INT UNSIGNED,
-	ref BIGINT UNSIGNED,
-	prjNum INT UNSIGNED,
-	INDEX (jref),
-	INDEX (jnum)
-) ENGINE = MYISAM;
-
 CREATE TABLE TblWznmQPrjList(
 	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 	jref BIGINT UNSIGNED,
@@ -2917,6 +2907,16 @@ CREATE TABLE TblWznmQPrjMNPerson(
 	x1Startd INT UNSIGNED,
 	x1Stopd INT UNSIGNED,
 	srefKFunction VARCHAR(50),
+	INDEX (jref),
+	INDEX (jnum)
+) ENGINE = MYISAM;
+
+CREATE TABLE TblWznmQPrjPrj1NVersion(
+	qref BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+	jref BIGINT UNSIGNED,
+	jnum INT UNSIGNED,
+	ref BIGINT UNSIGNED,
+	prjNum INT UNSIGNED,
 	INDEX (jref),
 	INDEX (jnum)
 ) ENGINE = MYISAM;

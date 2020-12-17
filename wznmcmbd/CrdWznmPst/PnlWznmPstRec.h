@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmPstDetail.h"
 #include "PnlWznmPst1NQuerymod.h"
+#include "PnlWznmPstDetail.h"
 
 #define VecVWznmPstRecDo PnlWznmPstRec::VecVDo
 
@@ -168,8 +168,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmPstDetail* pnldetail;
 	PnlWznmPst1NQuerymod* pnl1nquerymod;
+	PnlWznmPstDetail* pnldetail;
 
 	WznmMPreset recPst;
 
@@ -203,10 +203,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
+	bool handleCallWznmPstUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPst_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmPstUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

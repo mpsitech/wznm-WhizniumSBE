@@ -21,7 +21,7 @@ uint TblWznmMImpexp::VecWIop::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "ins") ix |= INS;

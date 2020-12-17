@@ -118,9 +118,9 @@ public class PnlWznmOpkRec {
 		public static final int INITDONEARETVAL = 3;
 		public static final int INITDONE1NOP = 4;
 		public static final int INITDONEREF1NBLOCK = 5;
-		public static final int INITDONEMNJOB = 6;
+		public static final int INITDONEMNCOMPONENT = 6;
 		public static final int INITDONEMNLIBRARY = 7;
-		public static final int INITDONEMNCOMPONENT = 8;
+		public static final int INITDONEMNJOB = 8;
 		public static final int INITDONESQKMNSTUB = 9;
 
 		public StatApp(
@@ -129,9 +129,9 @@ public class PnlWznmOpkRec {
 					, boolean initdoneARetval
 					, boolean initdone1NOp
 					, boolean initdoneRef1NBlock
-					, boolean initdoneMNJob
-					, boolean initdoneMNLibrary
 					, boolean initdoneMNComponent
+					, boolean initdoneMNLibrary
+					, boolean initdoneMNJob
 					, boolean initdoneSqkMNStub
 				) {
 			this.initdoneDetail = initdoneDetail;
@@ -139,12 +139,12 @@ public class PnlWznmOpkRec {
 			this.initdoneARetval = initdoneARetval;
 			this.initdone1NOp = initdone1NOp;
 			this.initdoneRef1NBlock = initdoneRef1NBlock;
-			this.initdoneMNJob = initdoneMNJob;
-			this.initdoneMNLibrary = initdoneMNLibrary;
 			this.initdoneMNComponent = initdoneMNComponent;
+			this.initdoneMNLibrary = initdoneMNLibrary;
+			this.initdoneMNJob = initdoneMNJob;
 			this.initdoneSqkMNStub = initdoneSqkMNStub;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAINVARG, INITDONEARETVAL, INITDONE1NOP, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONEMNLIBRARY, INITDONEMNCOMPONENT, INITDONESQKMNSTUB));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAINVARG, INITDONEARETVAL, INITDONE1NOP, INITDONEREF1NBLOCK, INITDONEMNCOMPONENT, INITDONEMNLIBRARY, INITDONEMNJOB, INITDONESQKMNSTUB));
 		};
 
 		public boolean initdoneDetail;
@@ -152,9 +152,9 @@ public class PnlWznmOpkRec {
 		public boolean initdoneARetval;
 		public boolean initdone1NOp;
 		public boolean initdoneRef1NBlock;
-		public boolean initdoneMNJob;
-		public boolean initdoneMNLibrary;
 		public boolean initdoneMNComponent;
+		public boolean initdoneMNLibrary;
+		public boolean initdoneMNJob;
 		public boolean initdoneSqkMNStub;
 
 		public boolean readXML(
@@ -175,9 +175,9 @@ public class PnlWznmOpkRec {
 				initdoneARetval = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneARetval", mask, INITDONEARETVAL);
 				initdone1NOp = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NOp", mask, INITDONE1NOP);
 				initdoneRef1NBlock = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NBlock", mask, INITDONEREF1NBLOCK);
-				initdoneMNJob = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNJob", mask, INITDONEMNJOB);
-				initdoneMNLibrary = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNLibrary", mask, INITDONEMNLIBRARY);
 				initdoneMNComponent = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNComponent", mask, INITDONEMNCOMPONENT);
+				initdoneMNLibrary = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNLibrary", mask, INITDONEMNLIBRARY);
+				initdoneMNJob = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNJob", mask, INITDONEMNJOB);
 				initdoneSqkMNStub = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneSqkMNStub", mask, INITDONESQKMNSTUB);
 
 				return true;
@@ -196,9 +196,9 @@ public class PnlWznmOpkRec {
 			if (initdoneARetval == comp.initdoneARetval) items.add(INITDONEARETVAL);
 			if (initdone1NOp == comp.initdone1NOp) items.add(INITDONE1NOP);
 			if (initdoneRef1NBlock == comp.initdoneRef1NBlock) items.add(INITDONEREF1NBLOCK);
-			if (initdoneMNJob == comp.initdoneMNJob) items.add(INITDONEMNJOB);
-			if (initdoneMNLibrary == comp.initdoneMNLibrary) items.add(INITDONEMNLIBRARY);
 			if (initdoneMNComponent == comp.initdoneMNComponent) items.add(INITDONEMNCOMPONENT);
+			if (initdoneMNLibrary == comp.initdoneMNLibrary) items.add(INITDONEMNLIBRARY);
+			if (initdoneMNJob == comp.initdoneMNJob) items.add(INITDONEMNJOB);
 			if (initdoneSqkMNStub == comp.initdoneSqkMNStub) items.add(INITDONESQKMNSTUB);
 
 			return(items);
@@ -212,7 +212,7 @@ public class PnlWznmOpkRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAINVARG, INITDONEARETVAL, INITDONE1NOP, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONEMNLIBRARY, INITDONEMNCOMPONENT, INITDONESQKMNSTUB));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAINVARG, INITDONEARETVAL, INITDONE1NOP, INITDONEREF1NBLOCK, INITDONEMNCOMPONENT, INITDONEMNLIBRARY, INITDONEMNJOB, INITDONESQKMNSTUB));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -231,9 +231,9 @@ public class PnlWznmOpkRec {
 		public static final int SCRJREFARETVAL = 4;
 		public static final int SCRJREF1NOP = 5;
 		public static final int SCRJREFREF1NBLOCK = 6;
-		public static final int SCRJREFMNJOB = 7;
+		public static final int SCRJREFMNCOMPONENT = 7;
 		public static final int SCRJREFMNLIBRARY = 8;
-		public static final int SCRJREFMNCOMPONENT = 9;
+		public static final int SCRJREFMNJOB = 9;
 		public static final int SCRJREFSQKMNSTUB = 10;
 		public static final int PNLSQKMNSTUBAVAIL = 11;
 		public static final int BUTREGULARIZEACTIVE = 12;
@@ -245,9 +245,9 @@ public class PnlWznmOpkRec {
 					, String scrJrefARetval
 					, String scrJref1NOp
 					, String scrJrefRef1NBlock
-					, String scrJrefMNJob
-					, String scrJrefMNLibrary
 					, String scrJrefMNComponent
+					, String scrJrefMNLibrary
+					, String scrJrefMNJob
 					, String scrJrefSqkMNStub
 					, boolean pnlsqkmnstubAvail
 					, boolean ButRegularizeActive
@@ -258,14 +258,14 @@ public class PnlWznmOpkRec {
 			this.scrJrefARetval = scrJrefARetval;
 			this.scrJref1NOp = scrJref1NOp;
 			this.scrJrefRef1NBlock = scrJrefRef1NBlock;
-			this.scrJrefMNJob = scrJrefMNJob;
-			this.scrJrefMNLibrary = scrJrefMNLibrary;
 			this.scrJrefMNComponent = scrJrefMNComponent;
+			this.scrJrefMNLibrary = scrJrefMNLibrary;
+			this.scrJrefMNJob = scrJrefMNJob;
 			this.scrJrefSqkMNStub = scrJrefSqkMNStub;
 			this.pnlsqkmnstubAvail = pnlsqkmnstubAvail;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAINVARG, SCRJREFARETVAL, SCRJREF1NOP, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFMNLIBRARY, SCRJREFMNCOMPONENT, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAINVARG, SCRJREFARETVAL, SCRJREF1NOP, SCRJREFREF1NBLOCK, SCRJREFMNCOMPONENT, SCRJREFMNLIBRARY, SCRJREFMNJOB, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
@@ -274,9 +274,9 @@ public class PnlWznmOpkRec {
 		public String scrJrefARetval;
 		public String scrJref1NOp;
 		public String scrJrefRef1NBlock;
-		public String scrJrefMNJob;
-		public String scrJrefMNLibrary;
 		public String scrJrefMNComponent;
+		public String scrJrefMNLibrary;
+		public String scrJrefMNJob;
 		public String scrJrefSqkMNStub;
 		public boolean pnlsqkmnstubAvail;
 		public boolean ButRegularizeActive;
@@ -302,9 +302,9 @@ public class PnlWznmOpkRec {
 				scrJrefARetval = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefARetval", mask, SCRJREFARETVAL);
 				scrJref1NOp = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NOp", mask, SCRJREF1NOP);
 				scrJrefRef1NBlock = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NBlock", mask, SCRJREFREF1NBLOCK);
-				scrJrefMNJob = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNJob", mask, SCRJREFMNJOB);
-				scrJrefMNLibrary = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNLibrary", mask, SCRJREFMNLIBRARY);
 				scrJrefMNComponent = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNComponent", mask, SCRJREFMNCOMPONENT);
+				scrJrefMNLibrary = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNLibrary", mask, SCRJREFMNLIBRARY);
+				scrJrefMNJob = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNJob", mask, SCRJREFMNJOB);
 				scrJrefSqkMNStub = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefSqkMNStub", mask, SCRJREFSQKMNSTUB);
 				pnlsqkmnstubAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "pnlsqkmnstubAvail", mask, PNLSQKMNSTUBAVAIL);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
@@ -326,9 +326,9 @@ public class PnlWznmOpkRec {
 			if (scrJrefARetval.equals(comp.scrJrefARetval)) items.add(SCRJREFARETVAL);
 			if (scrJref1NOp.equals(comp.scrJref1NOp)) items.add(SCRJREF1NOP);
 			if (scrJrefRef1NBlock.equals(comp.scrJrefRef1NBlock)) items.add(SCRJREFREF1NBLOCK);
-			if (scrJrefMNJob.equals(comp.scrJrefMNJob)) items.add(SCRJREFMNJOB);
-			if (scrJrefMNLibrary.equals(comp.scrJrefMNLibrary)) items.add(SCRJREFMNLIBRARY);
 			if (scrJrefMNComponent.equals(comp.scrJrefMNComponent)) items.add(SCRJREFMNCOMPONENT);
+			if (scrJrefMNLibrary.equals(comp.scrJrefMNLibrary)) items.add(SCRJREFMNLIBRARY);
+			if (scrJrefMNJob.equals(comp.scrJrefMNJob)) items.add(SCRJREFMNJOB);
 			if (scrJrefSqkMNStub.equals(comp.scrJrefSqkMNStub)) items.add(SCRJREFSQKMNSTUB);
 			if (pnlsqkmnstubAvail == comp.pnlsqkmnstubAvail) items.add(PNLSQKMNSTUBAVAIL);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
@@ -344,7 +344,7 @@ public class PnlWznmOpkRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAINVARG, SCRJREFARETVAL, SCRJREF1NOP, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFMNLIBRARY, SCRJREFMNCOMPONENT, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAINVARG, SCRJREFARETVAL, SCRJREF1NOP, SCRJREFREF1NBLOCK, SCRJREFMNCOMPONENT, SCRJREFMNLIBRARY, SCRJREFMNJOB, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

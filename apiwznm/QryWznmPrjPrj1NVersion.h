@@ -1,27 +1,27 @@
 /**
-	* \file QryWznmPrj1NVersion.h
-	* API code for job QryWznmPrj1NVersion (declarations)
+	* \file QryWznmPrjPrj1NVersion.h
+	* API code for job QryWznmPrjPrj1NVersion (declarations)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 5 Dec 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
-#ifndef QRYWZNMPRJ1NVERSION_H
-#define QRYWZNMPRJ1NVERSION_H
+#ifndef QRYWZNMPRJPRJ1NVERSION_H
+#define QRYWZNMPRJPRJ1NVERSION_H
 
 #include "ApiWznm_blks.h"
 
-#define StatAppQryWznmPrj1NVersion QryWznmPrj1NVersion::StatApp
-#define StatShrQryWznmPrj1NVersion QryWznmPrj1NVersion::StatShr
-#define StgIacQryWznmPrj1NVersion QryWznmPrj1NVersion::StgIac
+#define StatAppQryWznmPrjPrj1NVersion QryWznmPrjPrj1NVersion::StatApp
+#define StatShrQryWznmPrjPrj1NVersion QryWznmPrjPrj1NVersion::StatShr
+#define StgIacQryWznmPrjPrj1NVersion QryWznmPrjPrj1NVersion::StgIac
 
 /**
-	* QryWznmPrj1NVersion
+	* QryWznmPrjPrj1NVersion
 	*/
-namespace QryWznmPrj1NVersion {
+namespace QryWznmPrjPrj1NVersion {
 	/**
-	  * StatApp (full: StatAppQryWznmPrj1NVersion)
+	  * StatApp (full: StatAppQryWznmPrjPrj1NVersion)
 	  */
 	class StatApp : public Sbecore::Xmlio::Block {
 
@@ -47,7 +47,7 @@ namespace QryWznmPrj1NVersion {
 	};
 
 	/**
-	  * StatShr (full: StatShrQryWznmPrj1NVersion)
+	  * StatShr (full: StatShrQryWznmPrjPrj1NVersion)
 	  */
 	class StatShr : public Sbecore::Xmlio::Block {
 
@@ -71,7 +71,7 @@ namespace QryWznmPrj1NVersion {
 	};
 
 	/**
-	  * StgIac (full: StgIacQryWznmPrj1NVersion)
+	  * StgIac (full: StgIacQryWznmPrjPrj1NVersion)
 	  */
 	class StgIac : public Sbecore::Xmlio::Block {
 

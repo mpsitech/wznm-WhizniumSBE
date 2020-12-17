@@ -46,8 +46,8 @@ CrdWznmPrj::CrdWznmPrj(
 	pnllist = NULL;
 	pnlheadbar = NULL;
 	pnlrec = NULL;
-	dlgimpex = NULL;
 	dlgnew = NULL;
+	dlgimpex = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

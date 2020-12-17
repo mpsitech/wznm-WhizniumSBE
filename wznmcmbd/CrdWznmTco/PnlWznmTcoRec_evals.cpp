@@ -25,7 +25,7 @@ bool PnlWznmTcoRec::evalPnlatitleAvail(
 	return(args.back());
 };
 
-bool PnlWznmTcoRec::evalPnl1nimpexpcolAvail(
+bool PnlWznmTcoRec::evalPnl1nquerycolAvail(
 			DbsWznm* dbswznm
 		) {
 	// tco.inSbs(stc)
@@ -39,7 +39,7 @@ bool PnlWznmTcoRec::evalPnl1nimpexpcolAvail(
 	return(args.back());
 };
 
-bool PnlWznmTcoRec::evalPnl1nquerycolAvail(
+bool PnlWznmTcoRec::evalPnl1nimpexpcolAvail(
 			DbsWznm* dbswznm
 		) {
 	// tco.inSbs(stc)

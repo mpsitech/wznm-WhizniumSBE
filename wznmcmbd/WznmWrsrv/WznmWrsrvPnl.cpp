@@ -604,7 +604,7 @@ void WznmWrsrvPnl::writePnlCpp(
 							outfile << endl;
 
 							con = cons.nodes[ixTxf];
-							outfile << "\tStrMod::stringToVector(contiac." << con->sref << ", ss);" << endl;
+							outfile << "\tStrMod::srefsToVector(contiac." << con->sref << ", ss);" << endl;
 							outfile << endl;
 
 							outfile << "\tfor (unsigned int i = 0; i < ss.size(); i++) {" << endl;
@@ -723,7 +723,7 @@ void WznmWrsrvPnl::writePnlCpp(
 							outfile << endl;
 
 							con = cons.nodes[ixTxf];
-							outfile << "\tStrMod::stringToVector(contiac." << con->sref << ", ss);" << endl;
+							outfile << "\tStrMod::srefsToVector(contiac." << con->sref << ", ss);" << endl;
 							outfile << endl;
 
 							outfile << "\t// IP refresh" << baseconshort << ".validate --- INSERT" << endl;

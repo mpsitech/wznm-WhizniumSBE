@@ -3821,8 +3821,7 @@ bool SessWznm::handleCallWznmCrdOpen(
 		refRet = 0;
 
 	} else {
-		if (ixWznmVCard == VecWznmVCard::CRDWZNMNAV) {
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMUSG) {
+		if (ixWznmVCard == VecWznmVCard::CRDWZNMUSG) {
 			CrdWznmUsg* crdusg = NULL;
 
 			crdusg = new CrdWznmUsg(xchg, dbswznm, jref, ixWznmVLocale, ref);
@@ -3854,6 +3853,7 @@ bool SessWznm::handleCallWznmCrdOpen(
 
 			refRet = crdfil->jref;
 
+		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMNAV) {
 		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) {
 			CrdWznmLoc* crdloc = NULL;
 
@@ -4224,13 +4224,7 @@ bool SessWznm::handleCallWznmCrdClose(
 	ubigint jrefNotif = xchg->getRefPreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
 	if (jrefNotif == jrefTrig) xchg->removePreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
 
-	if (ixInv == VecWznmVCard::CRDWZNMNAV) {
-		if (crdnav) {
-			delete crdnav;
-			crdnav = NULL;
-		};
-
-	} else if (ixInv == VecWznmVCard::CRDWZNMUSG) {
+	if (ixInv == VecWznmVCard::CRDWZNMUSG) {
 		CrdWznmUsg* crdusg = NULL;
 
 		for (auto it = crdusgs.begin(); it != crdusgs.end();) {
@@ -4274,6 +4268,12 @@ bool SessWznm::handleCallWznmCrdClose(
 				break;
 			} else it++;
 		};
+	} else if (ixInv == VecWznmVCard::CRDWZNMNAV) {
+		if (crdnav) {
+			delete crdnav;
+			crdnav = NULL;
+		};
+
 	} else if (ixInv == VecWznmVCard::CRDWZNMLOC) {
 		CrdWznmLoc* crdloc = NULL;
 

@@ -46,8 +46,6 @@ uint DlgWznmVerGenjtr::VecVDo::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "gjtbutrunclick") return GJTBUTRUNCLICK;
-	if (s == "gjtbutstoclick") return GJTBUTSTOCLICK;
 	if (s == "butdneclick") return BUTDNECLICK;
 
 	return(0);
@@ -56,9 +54,31 @@ uint DlgWznmVerGenjtr::VecVDo::getIx(
 string DlgWznmVerGenjtr::VecVDo::getSref(
 			const uint ix
 		) {
-	if (ix == GJTBUTRUNCLICK) return("GjtButRunClick");
-	if (ix == GJTBUTSTOCLICK) return("GjtButStoClick");
 	if (ix == BUTDNECLICK) return("ButDneClick");
+
+	return("");
+};
+
+/******************************************************************************
+ class DlgWznmVerGenjtr::VecVDoGjt
+ ******************************************************************************/
+
+uint DlgWznmVerGenjtr::VecVDoGjt::getIx(
+			const string& sref
+		) {
+	string s = StrMod::lc(sref);
+
+	if (s == "butrunclick") return BUTRUNCLICK;
+	if (s == "butstoclick") return BUTSTOCLICK;
+
+	return(0);
+};
+
+string DlgWznmVerGenjtr::VecVDoGjt::getSref(
+			const uint ix
+		) {
+	if (ix == BUTRUNCLICK) return("ButRunClick");
+	if (ix == BUTSTOCLICK) return("ButStoClick");
 
 	return("");
 };
@@ -184,14 +204,12 @@ set<uint> DlgWznmVerGenjtr::ContIac::diff(
 
 DlgWznmVerGenjtr::ContInf::ContInf(
 			const uint numFSge
-			, const string& GjtTxtPrg
 		) :
 			Block()
 		{
 	this->numFSge = numFSge;
-	this->GjtTxtPrg = GjtTxtPrg;
 
-	mask = {NUMFSGE, GJTTXTPRG};
+	mask = {NUMFSGE};
 };
 
 bool DlgWznmVerGenjtr::ContInf::readXML(
@@ -212,7 +230,6 @@ bool DlgWznmVerGenjtr::ContInf::readXML(
 
 	if (basefound) {
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "numFSge", numFSge)) add(NUMFSGE);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "GjtTxtPrg", GjtTxtPrg)) add(GJTTXTPRG);
 	};
 
 	return basefound;
@@ -224,7 +241,6 @@ set<uint> DlgWznmVerGenjtr::ContInf::comm(
 	set<uint> items;
 
 	if (numFSge == comp->numFSge) insert(items, NUMFSGE);
-	if (GjtTxtPrg == comp->GjtTxtPrg) insert(items, GJTTXTPRG);
 
 	return(items);
 };
@@ -237,7 +253,68 @@ set<uint> DlgWznmVerGenjtr::ContInf::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {NUMFSGE, GJTTXTPRG};
+	diffitems = {NUMFSGE};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class DlgWznmVerGenjtr::ContInfGjt
+ ******************************************************************************/
+
+DlgWznmVerGenjtr::ContInfGjt::ContInfGjt(
+			const string& TxtPrg
+		) :
+			Block()
+		{
+	this->TxtPrg = TxtPrg;
+
+	mask = {TXTPRG};
+};
+
+bool DlgWznmVerGenjtr::ContInfGjt::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "ContInfDlgWznmVerGenjtrGjt");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	string itemtag = "ContitemInfDlgWznmVerGenjtrGjt";
+
+	if (basefound) {
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "TxtPrg", TxtPrg)) add(TXTPRG);
+	};
+
+	return basefound;
+};
+
+set<uint> DlgWznmVerGenjtr::ContInfGjt::comm(
+			const ContInfGjt* comp
+		) {
+	set<uint> items;
+
+	if (TxtPrg == comp->TxtPrg) insert(items, TXTPRG);
+
+	return(items);
+};
+
+set<uint> DlgWznmVerGenjtr::ContInfGjt::diff(
+			const ContInfGjt* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {TXTPRG};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -374,17 +451,13 @@ set<uint> DlgWznmVerGenjtr::StatApp::diff(
  ******************************************************************************/
 
 DlgWznmVerGenjtr::StatShr::StatShr(
-			const bool GjtButRunActive
-			, const bool GjtButStoActive
-			, const bool ButDneActive
+			const bool ButDneActive
 		) :
 			Block()
 		{
-	this->GjtButRunActive = GjtButRunActive;
-	this->GjtButStoActive = GjtButStoActive;
 	this->ButDneActive = ButDneActive;
 
-	mask = {GJTBUTRUNACTIVE, GJTBUTSTOACTIVE, BUTDNEACTIVE};
+	mask = {BUTDNEACTIVE};
 };
 
 bool DlgWznmVerGenjtr::StatShr::readXML(
@@ -404,8 +477,6 @@ bool DlgWznmVerGenjtr::StatShr::readXML(
 	string itemtag = "StatitemShrDlgWznmVerGenjtr";
 
 	if (basefound) {
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "GjtButRunActive", GjtButRunActive)) add(GJTBUTRUNACTIVE);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "GjtButStoActive", GjtButStoActive)) add(GJTBUTSTOACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButDneActive", ButDneActive)) add(BUTDNEACTIVE);
 	};
 
@@ -417,8 +488,6 @@ set<uint> DlgWznmVerGenjtr::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (GjtButRunActive == comp->GjtButRunActive) insert(items, GJTBUTRUNACTIVE);
-	if (GjtButStoActive == comp->GjtButStoActive) insert(items, GJTBUTSTOACTIVE);
 	if (ButDneActive == comp->ButDneActive) insert(items, BUTDNEACTIVE);
 
 	return(items);
@@ -432,7 +501,72 @@ set<uint> DlgWznmVerGenjtr::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {GJTBUTRUNACTIVE, GJTBUTSTOACTIVE, BUTDNEACTIVE};
+	diffitems = {BUTDNEACTIVE};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class DlgWznmVerGenjtr::StatShrGjt
+ ******************************************************************************/
+
+DlgWznmVerGenjtr::StatShrGjt::StatShrGjt(
+			const bool ButRunActive
+			, const bool ButStoActive
+		) :
+			Block()
+		{
+	this->ButRunActive = ButRunActive;
+	this->ButStoActive = ButStoActive;
+
+	mask = {BUTRUNACTIVE, BUTSTOACTIVE};
+};
+
+bool DlgWznmVerGenjtr::StatShrGjt::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StatShrDlgWznmVerGenjtrGjt");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	string itemtag = "StatitemShrDlgWznmVerGenjtrGjt";
+
+	if (basefound) {
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRunActive", ButRunActive)) add(BUTRUNACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButStoActive", ButStoActive)) add(BUTSTOACTIVE);
+	};
+
+	return basefound;
+};
+
+set<uint> DlgWznmVerGenjtr::StatShrGjt::comm(
+			const StatShrGjt* comp
+		) {
+	set<uint> items;
+
+	if (ButRunActive == comp->ButRunActive) insert(items, BUTRUNACTIVE);
+	if (ButStoActive == comp->ButStoActive) insert(items, BUTSTOACTIVE);
+
+	return(items);
+};
+
+set<uint> DlgWznmVerGenjtr::StatShrGjt::diff(
+			const StatShrGjt* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {BUTRUNACTIVE, BUTSTOACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -505,18 +639,14 @@ set<uint> DlgWznmVerGenjtr::StatShrLfi::diff(
 
 DlgWznmVerGenjtr::Tag::Tag(
 			const string& Cpt
-			, const string& GjtButRun
-			, const string& GjtButSto
 			, const string& ButDne
 		) :
 			Block()
 		{
 	this->Cpt = Cpt;
-	this->GjtButRun = GjtButRun;
-	this->GjtButSto = GjtButSto;
 	this->ButDne = ButDne;
 
-	mask = {CPT, GJTBUTRUN, GJTBUTSTO, BUTDNE};
+	mask = {CPT, BUTDNE};
 };
 
 bool DlgWznmVerGenjtr::Tag::readXML(
@@ -537,8 +667,6 @@ bool DlgWznmVerGenjtr::Tag::readXML(
 
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "Cpt", Cpt)) add(CPT);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "GjtButRun", GjtButRun)) add(GJTBUTRUN);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "GjtButSto", GjtButSto)) add(GJTBUTSTO);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "ButDne", ButDne)) add(BUTDNE);
 	};
 
@@ -551,12 +679,16 @@ bool DlgWznmVerGenjtr::Tag::readXML(
 
 DlgWznmVerGenjtr::TagGjt::TagGjt(
 			const string& CptPrg
+			, const string& ButRun
+			, const string& ButSto
 		) :
 			Block()
 		{
 	this->CptPrg = CptPrg;
+	this->ButRun = ButRun;
+	this->ButSto = ButSto;
 
-	mask = {CPTPRG};
+	mask = {CPTPRG, BUTRUN, BUTSTO};
 };
 
 bool DlgWznmVerGenjtr::TagGjt::readXML(
@@ -577,6 +709,8 @@ bool DlgWznmVerGenjtr::TagGjt::readXML(
 
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "CptPrg", CptPrg)) add(CPTPRG);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "ButRun", ButRun)) add(BUTRUN);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "ButSto", ButSto)) add(BUTSTO);
 	};
 
 	return basefound;
@@ -665,14 +799,16 @@ void DlgWznmVerGenjtr::DpchAppData::writeXML(
 DlgWznmVerGenjtr::DpchAppDo::DpchAppDo(
 			const string& scrJref
 			, const uint ixVDo
+			, const uint ixVDoGjt
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMVERGENJTRDO, scrJref)
 		{
-	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
+	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO, IXVDOGJT};
 	else this->mask = mask;
 
 	this->ixVDo = ixVDo;
+	this->ixVDoGjt = ixVDoGjt;
 };
 
 string DlgWznmVerGenjtr::DpchAppDo::getSrefsMask() {
@@ -681,6 +817,7 @@ string DlgWznmVerGenjtr::DpchAppDo::getSrefsMask() {
 
 	if (has(SCRJREF)) ss.push_back("scrJref");
 	if (has(IXVDO)) ss.push_back("ixVDo");
+	if (has(IXVDOGJT)) ss.push_back("ixVDoGjt");
 
 	StrMod::vectorToString(ss, srefs);
 
@@ -694,6 +831,7 @@ void DlgWznmVerGenjtr::DpchAppDo::writeXML(
 	xmlTextWriterWriteAttribute(wr, BAD_CAST "xmlns", BAD_CAST "http://www.mpsitech.com/wznm");
 		if (has(SCRJREF)) writeString(wr, "scrJref", scrJref);
 		if (has(IXVDO)) writeString(wr, "srefIxVDo", VecVDo::getSref(ixVDo));
+		if (has(IXVDOGJT)) writeString(wr, "srefIxVDoGjt", VecVDoGjt::getSref(ixVDoGjt));
 	xmlTextWriterEndElement(wr);
 };
 
@@ -715,11 +853,13 @@ string DlgWznmVerGenjtr::DpchEngData::getSrefsMask() {
 	if (has(SCRJREF)) ss.push_back("scrJref");
 	if (has(CONTIAC)) ss.push_back("contiac");
 	if (has(CONTINF)) ss.push_back("continf");
+	if (has(CONTINFGJT)) ss.push_back("continfgjt");
 	if (has(CONTINFLFI)) ss.push_back("continflfi");
 	if (has(FEEDFDSE)) ss.push_back("feedFDse");
 	if (has(FEEDFSGE)) ss.push_back("feedFSge");
 	if (has(STATAPP)) ss.push_back("statapp");
 	if (has(STATSHR)) ss.push_back("statshr");
+	if (has(STATSHRGJT)) ss.push_back("statshrgjt");
 	if (has(STATSHRLFI)) ss.push_back("statshrlfi");
 	if (has(TAG)) ss.push_back("tag");
 	if (has(TAGGJT)) ss.push_back("taggjt");
@@ -748,11 +888,13 @@ void DlgWznmVerGenjtr::DpchEngData::readXML(
 		if (extractStringUclc(docctx, basexpath, "scrJref", "", scrJref)) add(SCRJREF);
 		if (contiac.readXML(docctx, basexpath, true)) add(CONTIAC);
 		if (continf.readXML(docctx, basexpath, true)) add(CONTINF);
+		if (continfgjt.readXML(docctx, basexpath, true)) add(CONTINFGJT);
 		if (continflfi.readXML(docctx, basexpath, true)) add(CONTINFLFI);
 		if (feedFDse.readXML(docctx, basexpath, true)) add(FEEDFDSE);
 		if (feedFSge.readXML(docctx, basexpath, true)) add(FEEDFSGE);
 		if (statapp.readXML(docctx, basexpath, true)) add(STATAPP);
 		if (statshr.readXML(docctx, basexpath, true)) add(STATSHR);
+		if (statshrgjt.readXML(docctx, basexpath, true)) add(STATSHRGJT);
 		if (statshrlfi.readXML(docctx, basexpath, true)) add(STATSHRLFI);
 		if (tag.readXML(docctx, basexpath, true)) add(TAG);
 		if (taggjt.readXML(docctx, basexpath, true)) add(TAGGJT);
@@ -760,11 +902,13 @@ void DlgWznmVerGenjtr::DpchEngData::readXML(
 	} else {
 		contiac = ContIac();
 		continf = ContInf();
+		continfgjt = ContInfGjt();
 		continflfi = ContInfLfi();
 		feedFDse.clear();
 		feedFSge.clear();
 		statapp = StatApp();
 		statshr = StatShr();
+		statshrgjt = StatShrGjt();
 		statshrlfi = StatShrLfi();
 		tag = Tag();
 		taggjt = TagGjt();

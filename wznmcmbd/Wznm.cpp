@@ -50,7 +50,7 @@ ubigint Acv::addfile(
 	stat(path.c_str(), &st);
 	Size = st.st_size / 1024;
 
-	dbswznm->tblwznmmfile->insertNewRec(&fil, 0, grp, own, refIxVTbl, refUref, osrefKContent, Archived, Filename, "", srefKMimetype, Size, Comment);
+	dbswznm->tblwznmmfile->insertNewRec(&fil, grp, own, 0, refIxVTbl, refUref, osrefKContent, Archived, Filename, "", srefKMimetype, Size, Comment);
 	
 	// adjust archive name in record
 	str.str(""); str.fill('0'); str.width(8); str << right << fil->ref; str.width(0);
@@ -558,6 +558,7 @@ void Wznm::updateVerste(
 			, const ubigint refWznmMVersion
 			, const uint ixVState
 		) {
+	vector<ubigint> refs;
 	ubigint ref;
 
 	WznmJMVersionState* verJste = NULL;
@@ -572,6 +573,14 @@ void Wznm::updateVerste(
 	};
 
 	if (!skip) {
+		if (ixVState == VecWznmVMVersionState::READY) {
+			// make sure other versions with the same number in state build-ready become abandonned
+			dbswznm->loadRefsBySQL("SELECT TblWznmMVersion2.ref FROM TblWznmMVersion AS TblWznmMVersion1, TblWznmMVersion AS TblWznmMVersion2 WHERE TblWznmMVersion1.ref = " + to_string(refWznmMVersion)
+						+ " AND TblWznmMVersion1.ref <> TblWznmMVersion2.ref AND TblWznmMVersion2.prjRefWznmMProject = TblWznmMVersion1.prjRefWznmMProject AND TblWznmMVersion2.Major = TblWznmMVersion1.Major"
+						+ " AND TblWznmMVersion2.Minor = TblWznmMVersion1.Minor AND TblWznmMVersion2.Sub = TblWznmMVersion1.Sub AND TblWznmMVersion2.ixVState = " + to_string(VecWznmVMVersionState::READY), false, refs);
+			for (unsigned int i = 0; i < refs.size(); i++) updateVerste(dbswznm, refs[i], VecWznmVMVersionState::ABANDON);
+		};
+
 		// commence new state
 		ref = dbswznm->tblwznmjmversionstate->insertNewRec(NULL, refWznmMVersion, rawtime, ixVState);
 		dbswznm->executeQuery("UPDATE TblWznmMVersion SET refJState = " + to_string(ref) + ", ixVState = " + to_string(ixVState) + " WHERE ref = " + to_string(refWznmMVersion));
@@ -5359,7 +5368,7 @@ string StubWznm::getStubVerShort(
 	if (ref != 0) {
 		if (dbswznm->tblwznmmversion->loadRecByRef(ref, &rec)) {
 			if (stcch && !stit) stit = stcch->addStit(stref);
-			stub = getStubPrjShort(dbswznm, rec->prjRefWznmMProject, ixWznmVLocale, ixVNonetype, stcch, &stref) + " v" + to_string((int) (rec->Major)) + "." + to_string((int) (rec->Minor)) + "." + to_string((int) (rec->Sub)); // IP getStubVerShort --- ILINE
+			stub = getStubPrjShort(dbswznm, rec->prjRefWznmMProject, ixWznmVLocale, ixVNonetype, stcch, &stref) + " v" + to_string((int) (rec->Major)) + "." + to_string((int) (rec->Minor)) + "." + to_string((int) (rec->Sub)) + " (" + to_string(rec->prjNum) + ")"; // IP getStubVerShort --- ILINE
 			if (stit) stit->stub = stub;
 			delete rec;
 		};
@@ -5377,7 +5386,7 @@ string StubWznm::getStubVerStd(
 			, stcchitemref_t* strefSub
 			, const bool refresh
 		) {
-	// example: "BeamRelay v0.1.1 (candidate 77)"
+	// example: "BeamRelay v0.1.1 (s/n 77, abandonned)"
 	string stub;
 
 	WznmMVersion* rec = NULL;
@@ -5407,9 +5416,11 @@ string StubWznm::getStubVerStd(
 
 			stub = getStubPrjStd(dbswznm, rec->prjRefWznmMProject, ixWznmVLocale, ixVNonetype, stcch, &stref) + " v" + to_string(rec->Major) + "." + to_string(rec->Minor) + "." + to_string(rec->Sub);
 
-			if ((rec->ixVState == VecWznmVMVersionState::NEWCRE) || (rec->ixVState == VecWznmVMVersionState::NEWIMP) || (rec->ixVState == VecWznmVMVersionState::ABANDON)) stub += " " + VecWznmVMVersionState::getTitle(rec->ixVState, ixWznmVLocale);
-			else if (rec->ixVState != VecWznmVMVersionState::READY) stub += " (candidate " + to_string(rec->prjNum) + ")"; 
-
+			if (rec->ixVState != VecWznmVMVersionState::READY) {
+				stub += " (s/n " + to_string(rec->prjNum);
+				if ((rec->ixVState == VecWznmVMVersionState::NEWCRE) || (rec->ixVState == VecWznmVMVersionState::NEWIMP) || (rec->ixVState == VecWznmVMVersionState::ABANDON)) stub += ", " + VecWznmVMVersionState::getTitle(rec->ixVState, ixWznmVLocale);
+				stub += ")"; 
+			};
 			// IP getStubVerStd --- IEND
 			if (stit) stit->stub = stub;
 			delete rec;

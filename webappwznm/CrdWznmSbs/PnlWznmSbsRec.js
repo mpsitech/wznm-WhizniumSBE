@@ -1,10 +1,10 @@
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJrefDetail");
 	scrJrefATitle = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJrefATitle");
-	scrJrefTos1NRelation = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJrefTos1NRelation");
 	scrJref1NStub = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJref1NStub");
-	scrJref1NTablecol = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJref1NTablecol");
 	scrJrefFrs1NRelation = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJrefFrs1NRelation");
+	scrJrefTos1NRelation = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJrefTos1NRelation");
+	scrJref1NTablecol = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJref1NTablecol");
 	scrJrefPst1NQuerymod = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJrefPst1NQuerymod");
 	scrJrefAsbMNSubset = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJrefAsbMNSubset");
 	scrJrefBsbMNSubset = retrieveSi(srcdoc, "StatShrWznmSbsRec", "scrJrefBsbMNSubset");
@@ -13,10 +13,10 @@ function updateScrJrefs() {
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmSbsRec", "initdoneDetail", "false");
 	setSi(srcdoc, "StatAppWznmSbsRec", "initdoneATitle", "false");
-	setSi(srcdoc, "StatAppWznmSbsRec", "initdoneTos1NRelation", "false");
 	setSi(srcdoc, "StatAppWznmSbsRec", "initdone1NStub", "false");
-	setSi(srcdoc, "StatAppWznmSbsRec", "initdone1NTablecol", "false");
 	setSi(srcdoc, "StatAppWznmSbsRec", "initdoneFrs1NRelation", "false");
+	setSi(srcdoc, "StatAppWznmSbsRec", "initdoneTos1NRelation", "false");
+	setSi(srcdoc, "StatAppWznmSbsRec", "initdone1NTablecol", "false");
 	setSi(srcdoc, "StatAppWznmSbsRec", "initdonePst1NQuerymod", "false");
 	setSi(srcdoc, "StatAppWznmSbsRec", "initdoneAsbMNSubset", "false");
 	setSi(srcdoc, "StatAppWznmSbsRec", "initdoneBsbMNSubset", "false");
@@ -25,10 +25,10 @@ function resetInitdones() {
 function resetHeights() {
 	heightDetail = 30;
 	heightATitle = 30;
-	heightTos1NRelation = 30;
 	height1NStub = 30;
-	height1NTablecol = 30;
 	heightFrs1NRelation = 30;
+	heightTos1NRelation = 30;
+	height1NTablecol = 30;
 	heightPst1NQuerymod = 30;
 	heightAsbMNSubset = 30;
 	heightBsbMNSubset = 30;
@@ -51,10 +51,10 @@ function checkInitdone() {
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdoneDetail") == "true");
 	var initdoneATitle = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdoneATitle") == "true");
-	var initdoneTos1NRelation = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdoneTos1NRelation") == "true");
 	var initdone1NStub = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdone1NStub") == "true");
-	var initdone1NTablecol = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdone1NTablecol") == "true");
 	var initdoneFrs1NRelation = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdoneFrs1NRelation") == "true");
+	var initdoneTos1NRelation = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdoneTos1NRelation") == "true");
+	var initdone1NTablecol = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdone1NTablecol") == "true");
 	var initdonePst1NQuerymod = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdonePst1NQuerymod") == "true");
 	var initdoneAsbMNSubset = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdoneAsbMNSubset") == "true");
 	var initdoneBsbMNSubset = (retrieveSi(srcdoc, "StatAppWznmSbsRec", "initdoneBsbMNSubset") == "true");
@@ -63,14 +63,14 @@ function checkInitdone() {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmSbsDetail.html?scrJref=" + scrJrefDetail;
 	} else if (!initdoneATitle) {
 		lhsdoc.getElementById("ATitle").src = "./PnlWznmSbsATitle.html?scrJref=" + scrJrefATitle;
-	} else if (!initdoneTos1NRelation) {
-		rhsdoc.getElementById("Tos1NRelation").src = "./PnlWznmSbsTos1NRelation.html?scrJref=" + scrJrefTos1NRelation;
 	} else if (!initdone1NStub) {
 		rhsdoc.getElementById("1NStub").src = "./PnlWznmSbs1NStub.html?scrJref=" + scrJref1NStub;
-	} else if (!initdone1NTablecol) {
-		rhsdoc.getElementById("1NTablecol").src = "./PnlWznmSbs1NTablecol.html?scrJref=" + scrJref1NTablecol;
 	} else if (!initdoneFrs1NRelation) {
 		rhsdoc.getElementById("Frs1NRelation").src = "./PnlWznmSbsFrs1NRelation.html?scrJref=" + scrJrefFrs1NRelation;
+	} else if (!initdoneTos1NRelation) {
+		rhsdoc.getElementById("Tos1NRelation").src = "./PnlWznmSbsTos1NRelation.html?scrJref=" + scrJrefTos1NRelation;
+	} else if (!initdone1NTablecol) {
+		rhsdoc.getElementById("1NTablecol").src = "./PnlWznmSbs1NTablecol.html?scrJref=" + scrJref1NTablecol;
 	} else if (!initdonePst1NQuerymod) {
 		rhsdoc.getElementById("Pst1NQuerymod").src = "./PnlWznmSbsPst1NQuerymod.html?scrJref=" + scrJrefPst1NQuerymod;
 	} else if (!initdoneAsbMNSubset) {
@@ -117,10 +117,10 @@ function setPnlAvail(short, avail) {
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
 		else if (short == "ATitle") heightATitle = height;
-		else if (short == "Tos1NRelation") heightTos1NRelation = height;
 		else if (short == "1NStub") height1NStub = height;
-		else if (short == "1NTablecol") height1NTablecol = height;
 		else if (short == "Frs1NRelation") heightFrs1NRelation = height;
+		else if (short == "Tos1NRelation") heightTos1NRelation = height;
+		else if (short == "1NTablecol") height1NTablecol = height;
 		else if (short == "Pst1NQuerymod") heightPst1NQuerymod = height;
 		else if (short == "AsbMNSubset") heightAsbMNSubset = height;
 		else if (short == "BsbMNSubset") heightBsbMNSubset = height;
@@ -168,10 +168,10 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
 	else if (pnlshort == "ATitle") heightATitle = height;
-	else if (pnlshort == "Tos1NRelation") heightTos1NRelation = height;
 	else if (pnlshort == "1NStub") height1NStub = height;
-	else if (pnlshort == "1NTablecol") height1NTablecol = height;
 	else if (pnlshort == "Frs1NRelation") heightFrs1NRelation = height;
+	else if (pnlshort == "Tos1NRelation") heightTos1NRelation = height;
+	else if (pnlshort == "1NTablecol") height1NTablecol = height;
 	else if (pnlshort == "Pst1NQuerymod") heightPst1NQuerymod = height;
 	else if (pnlshort == "AsbMNSubset") heightAsbMNSubset = height;
 	else if (pnlshort == "BsbMNSubset") heightBsbMNSubset = height;
@@ -183,7 +183,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + heightATitle+13 + 5;
-	heightRhs = heightTos1NRelation+13 + height1NStub+13 + height1NTablecol+13 + heightFrs1NRelation+13 + heightPst1NQuerymod+13 + heightAsbMNSubset+13 + heightBsbMNSubset+13 + 5;
+	heightRhs = height1NStub+13 + heightFrs1NRelation+13 + heightTos1NRelation+13 + height1NTablecol+13 + heightPst1NQuerymod+13 + heightAsbMNSubset+13 + heightBsbMNSubset+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -382,14 +382,14 @@ function handleDpchEng(dom, dpch) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefATitle) {
 				if (getInitdone("ATitle")) lhsdoc.getElementById("ATitle").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefTos1NRelation) {
-				if (getInitdone("Tos1NRelation")) rhsdoc.getElementById("Tos1NRelation").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NStub) {
 				if (getInitdone("1NStub")) rhsdoc.getElementById("1NStub").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NTablecol) {
-				if (getInitdone("1NTablecol")) rhsdoc.getElementById("1NTablecol").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefFrs1NRelation) {
 				if (getInitdone("Frs1NRelation")) rhsdoc.getElementById("Frs1NRelation").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefTos1NRelation) {
+				if (getInitdone("Tos1NRelation")) rhsdoc.getElementById("Tos1NRelation").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NTablecol) {
+				if (getInitdone("1NTablecol")) rhsdoc.getElementById("1NTablecol").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefPst1NQuerymod) {
 				if (getInitdone("Pst1NQuerymod")) rhsdoc.getElementById("Pst1NQuerymod").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefAsbMNSubset) {

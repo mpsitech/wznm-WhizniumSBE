@@ -1,9 +1,9 @@
 /**
-  * \file PnlWznmPrj1NVersion.java
-  * Java API code for job PnlWznmPrj1NVersion
+  * \file PnlWznmPrjPrj1NVersion.java
+  * Java API code for job PnlWznmPrjPrj1NVersion
 	* \copyright (C) 2018-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 5 Dec 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -13,9 +13,9 @@ import java.util.*;
 import org.w3c.dom.*;
 import sbecore.*;
 
-public class PnlWznmPrj1NVersion {
+public class PnlWznmPrjPrj1NVersion {
 	/**
-		* VecVDo (full: VecVWznmPrj1NVersionDo)
+		* VecVDo (full: VecVWznmPrjPrj1NVersionDo)
 		*/
 	public static class VecVDo {
 
@@ -57,7 +57,7 @@ public class PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * ContInf (full: ContInfWznmPrj1NVersion)
+	  * ContInf (full: ContInfWznmPrjPrj1NVersion)
 	  */
 	public class ContInf extends Block {
 
@@ -81,9 +81,9 @@ public class PnlWznmPrj1NVersion {
 
 			clear();
 
-			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "ContInfWznmPrj1NVersion");
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "ContInfWznmPrjPrj1NVersion");
 
-			String itemtag = "ContitemInfWznmPrj1NVersion";
+			String itemtag = "ContitemInfWznmPrjPrj1NVersion";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				numFCsiQst = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFCsiQst", mask, NUMFCSIQST);
@@ -121,7 +121,7 @@ public class PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * StatApp (full: StatAppWznmPrj1NVersion)
+	  * StatApp (full: StatAppWznmPrjPrj1NVersion)
 	  */
 	public class StatApp extends Block {
 
@@ -146,9 +146,9 @@ public class PnlWznmPrj1NVersion {
 
 			clear();
 
-			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "StatAppWznmPrj1NVersion");
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "StatAppWznmPrjPrj1NVersion");
 
-			String itemtag = "StatitemAppWznmPrj1NVersion";
+			String itemtag = "StatitemAppWznmPrjPrj1NVersion";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				srefIxWznmVExpstate = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "srefIxWznmVExpstate", mask, IXWZNMVEXPSTATE);
@@ -187,7 +187,7 @@ public class PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * StatShr (full: StatShrWznmPrj1NVersion)
+	  * StatShr (full: StatShrWznmPrjPrj1NVersion)
 	  */
 	public class StatShr extends Block {
 
@@ -243,9 +243,9 @@ public class PnlWznmPrj1NVersion {
 
 			clear();
 
-			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "StatShrWznmPrj1NVersion");
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "StatShrWznmPrjPrj1NVersion");
 
-			String itemtag = "StatitemShrWznmPrj1NVersion";
+			String itemtag = "StatitemShrWznmPrjPrj1NVersion";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				ButUpAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButUpAvail", mask, BUTUPAVAIL);
@@ -299,7 +299,7 @@ public class PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * StgIac (full: StgIacWznmPrj1NVersion)
+	  * StgIac (full: StgIacWznmPrjPrj1NVersion)
 	  */
 	public class StgIac extends Block {
 
@@ -323,9 +323,9 @@ public class PnlWznmPrj1NVersion {
 
 			clear();
 
-			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "StgIacWznmPrj1NVersion");
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "StgIacWznmPrjPrj1NVersion");
 
-			String itemtag = "StgitemIacWznmPrj1NVersion";
+			String itemtag = "StgitemIacWznmPrjPrj1NVersion";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				TcoRefWidth = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TcoRefWidth", mask, TCOREFWIDTH);
@@ -342,12 +342,12 @@ public class PnlWznmPrj1NVersion {
 					, String difftag
 					, boolean shorttags
 				) {
-			if (difftag.isEmpty()) difftag = "StgIacWznmPrj1NVersion";
+			if (difftag.isEmpty()) difftag = "StgIacWznmPrjPrj1NVersion";
 
 			String itemtag;
 
 			if (shorttags) itemtag = "Si";
-			else itemtag = "StgitemIacWznmPrj1NVersion";
+			else itemtag = "StgitemIacWznmPrjPrj1NVersion";
 
 			Element el = doc.createElement(difftag);
 
@@ -384,7 +384,7 @@ public class PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * Tag (full: TagWznmPrj1NVersion)
+	  * Tag (full: TagWznmPrjPrj1NVersion)
 	  */
 	public class Tag extends Block {
 
@@ -432,9 +432,9 @@ public class PnlWznmPrj1NVersion {
 
 			clear();
 
-			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "TagWznmPrj1NVersion");
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "TagWznmPrjPrj1NVersion");
 
-			String itemtag = "TagitemWznmPrj1NVersion";
+			String itemtag = "TagitemWznmPrjPrj1NVersion";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				Cpt = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "Cpt", mask, CPT);
@@ -484,7 +484,7 @@ public class PnlWznmPrj1NVersion {
 	};
 
 	/**
-		* DpchAppData (full: DpchAppWznmPrj1NVersionData)
+		* DpchAppData (full: DpchAppWznmPrjPrj1NVersionData)
 		*/
 	public class DpchAppData extends DpchAppWznm {
 
@@ -496,10 +496,10 @@ public class PnlWznmPrj1NVersion {
 		public DpchAppData(
 					String scrJref
 					, StgIac stgiac
-					, QryWznmPrj1NVersion.StgIac stgiacqry
+					, QryWznmPrjPrj1NVersion.StgIac stgiacqry
 					, Integer[] mask
 				) {
-			super(VecWznmVDpch.DPCHAPPWZNMPRJ1NVERSIONDATA, scrJref);
+			super(VecWznmVDpch.DPCHAPPWZNMPRJPRJ1NVERSIONDATA, scrJref);
 
 			this.mask = new HashSet<Integer>(Arrays.asList(mask));
 
@@ -514,7 +514,7 @@ public class PnlWznmPrj1NVersion {
 		};
 
 		public StgIac stgiac;
-		public QryWznmPrj1NVersion.StgIac stgiacqry;
+		public QryWznmPrjPrj1NVersion.StgIac stgiacqry;
 
 		public String getSrefsMask() {
 			ArrayList<String> ss = new ArrayList<String>();
@@ -530,7 +530,7 @@ public class PnlWznmPrj1NVersion {
 					Document doc
 					, Element sup
 				) {
-			Element el = doc.createElement("DpchAppWznmPrj1NVersionData");
+			Element el = doc.createElement("DpchAppWznmPrjPrj1NVersionData");
 
 			if (sup == null) doc.appendChild(el);
 			else sup.appendChild(el);
@@ -545,7 +545,7 @@ public class PnlWznmPrj1NVersion {
 	};
 
 	/**
-		* DpchAppDo (full: DpchAppWznmPrj1NVersionDo)
+		* DpchAppDo (full: DpchAppWznmPrjPrj1NVersionDo)
 		*/
 	public class DpchAppDo extends DpchAppWznm {
 
@@ -558,7 +558,7 @@ public class PnlWznmPrj1NVersion {
 					, int ixVDo
 					, Integer[] mask
 				) {
-			super(VecWznmVDpch.DPCHAPPWZNMPRJ1NVERSIONDO, scrJref);
+			super(VecWznmVDpch.DPCHAPPWZNMPRJPRJ1NVERSIONDO, scrJref);
 
 			this.mask = new HashSet<Integer>(Arrays.asList(mask));
 
@@ -586,7 +586,7 @@ public class PnlWznmPrj1NVersion {
 					Document doc
 					, Element sup
 				) {
-			Element el = doc.createElement("DpchAppWznmPrj1NVersionDo");
+			Element el = doc.createElement("DpchAppWznmPrjPrj1NVersionDo");
 
 			if (sup == null) doc.appendChild(el);
 			else sup.appendChild(el);
@@ -600,7 +600,7 @@ public class PnlWznmPrj1NVersion {
 	};
 
 	/**
-		* DpchEngData (full: DpchEngWznmPrj1NVersionData)
+		* DpchEngData (full: DpchEngWznmPrjPrj1NVersionData)
 		*/
 	public class DpchEngData extends DpchEngWznm {
 
@@ -617,7 +617,7 @@ public class PnlWznmPrj1NVersion {
 		public static final int STGIACQRY = 11;
 
 		public DpchEngData() {
-			super(VecWznmVDpch.DPCHENGWZNMPRJ1NVERSIONDATA);
+			super(VecWznmVDpch.DPCHENGWZNMPRJPRJ1NVERSIONDATA);
 
 			continf = new ContInf(0);
 			feedFCsiQst = new Feed("FeedFCsiQst");
@@ -625,10 +625,10 @@ public class PnlWznmPrj1NVersion {
 			statshr = new StatShr(false, false, false, false, false, false, false, false, false);
 			stgiac = new StgIac(0);
 			tag = new Tag("", "", "", "", "", "", "");
-			rst = new ListWznmQPrj1NVersion();
-			statappqry = (new QryWznmPrj1NVersion()).new StatApp(0, 0, 0, 0);
-			statshrqry = (new QryWznmPrj1NVersion()).new StatShr(0, 0, 0);
-			stgiacqry = (new QryWznmPrj1NVersion()).new StgIac(0, 0, 0);
+			rst = new ListWznmQPrjPrj1NVersion();
+			statappqry = (new QryWznmPrjPrj1NVersion()).new StatApp(0, 0, 0, 0);
+			statshrqry = (new QryWznmPrjPrj1NVersion()).new StatShr(0, 0, 0);
+			stgiacqry = (new QryWznmPrjPrj1NVersion()).new StgIac(0, 0, 0);
 		};
 
 		public ContInf continf;
@@ -637,10 +637,10 @@ public class PnlWznmPrj1NVersion {
 		public StatShr statshr;
 		public StgIac stgiac;
 		public Tag tag;
-		public ListWznmQPrj1NVersion rst;
-		public QryWznmPrj1NVersion.StatApp statappqry;
-		public QryWznmPrj1NVersion.StatShr statshrqry;
-		public QryWznmPrj1NVersion.StgIac stgiacqry;
+		public ListWznmQPrjPrj1NVersion rst;
+		public QryWznmPrjPrj1NVersion.StatApp statappqry;
+		public QryWznmPrjPrj1NVersion.StatShr statshrqry;
+		public QryWznmPrjPrj1NVersion.StgIac stgiacqry;
 
 		public String getSrefsMask() {
 			ArrayList<String> ss = new ArrayList<String>();
@@ -668,7 +668,7 @@ public class PnlWznmPrj1NVersion {
 
 			clear();
 
-			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "DpchEngWznmPrj1NVersionData");
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "DpchEngWznmPrjPrj1NVersionData");
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				scrJref = Xmlio.extractStringUclc(doc, basexpath, "scrJref", "", mask, SCRJREF);
@@ -690,9 +690,9 @@ public class PnlWznmPrj1NVersion {
 				statshr = new StatShr(false, false, false, false, false, false, false, false, false);
 				stgiac = new StgIac(0);
 				tag = new Tag("", "", "", "", "", "", "");
-				statappqry = (new QryWznmPrj1NVersion()).new StatApp(0, 0, 0, 0);
-				statshrqry = (new QryWznmPrj1NVersion()).new StatShr(0, 0, 0);
-				stgiacqry = (new QryWznmPrj1NVersion()).new StgIac(0, 0, 0);
+				statappqry = (new QryWznmPrjPrj1NVersion()).new StatApp(0, 0, 0, 0);
+				statshrqry = (new QryWznmPrjPrj1NVersion()).new StatShr(0, 0, 0);
+				stgiacqry = (new QryWznmPrjPrj1NVersion()).new StgIac(0, 0, 0);
 			};
 		};
 

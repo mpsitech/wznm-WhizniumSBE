@@ -301,11 +301,11 @@ uint VecWznmVJob::getIx(
 	if (s == "pnlwznmpnllist") return PNLWZNMPNLLIST;
 	if (s == "pnlwznmpnlmnquery") return PNLWZNMPNLMNQUERY;
 	if (s == "pnlwznmpnlrec") return PNLWZNMPNLREC;
-	if (s == "pnlwznmprj1nversion") return PNLWZNMPRJ1NVERSION;
 	if (s == "pnlwznmprjdetail") return PNLWZNMPRJDETAIL;
 	if (s == "pnlwznmprjheadbar") return PNLWZNMPRJHEADBAR;
 	if (s == "pnlwznmprjlist") return PNLWZNMPRJLIST;
 	if (s == "pnlwznmprjmnperson") return PNLWZNMPRJMNPERSON;
+	if (s == "pnlwznmprjprj1nversion") return PNLWZNMPRJPRJ1NVERSION;
 	if (s == "pnlwznmprjrec") return PNLWZNMPRJREC;
 	if (s == "pnlwznmprsadetail") return PNLWZNMPRSADETAIL;
 	if (s == "pnlwznmprsdetail") return PNLWZNMPRSDETAIL;
@@ -586,9 +586,9 @@ uint VecWznmVJob::getIx(
 	if (s == "qrywznmpnlhk1ncontrol") return QRYWZNMPNLHK1NCONTROL;
 	if (s == "qrywznmpnllist") return QRYWZNMPNLLIST;
 	if (s == "qrywznmpnlmnquery") return QRYWZNMPNLMNQUERY;
-	if (s == "qrywznmprj1nversion") return QRYWZNMPRJ1NVERSION;
 	if (s == "qrywznmprjlist") return QRYWZNMPRJLIST;
 	if (s == "qrywznmprjmnperson") return QRYWZNMPRJMNPERSON;
+	if (s == "qrywznmprjprj1nversion") return QRYWZNMPRJPRJ1NVERSION;
 	if (s == "qrywznmprsadetail") return QRYWZNMPRSADETAIL;
 	if (s == "qrywznmprslist") return QRYWZNMPRSLIST;
 	if (s == "qrywznmprsmnproject") return QRYWZNMPRSMNPROJECT;
@@ -992,11 +992,11 @@ string VecWznmVJob::getSref(
 	if (ix == PNLWZNMPNLLIST) return("PnlWznmPnlList");
 	if (ix == PNLWZNMPNLMNQUERY) return("PnlWznmPnlMNQuery");
 	if (ix == PNLWZNMPNLREC) return("PnlWznmPnlRec");
-	if (ix == PNLWZNMPRJ1NVERSION) return("PnlWznmPrj1NVersion");
 	if (ix == PNLWZNMPRJDETAIL) return("PnlWznmPrjDetail");
 	if (ix == PNLWZNMPRJHEADBAR) return("PnlWznmPrjHeadbar");
 	if (ix == PNLWZNMPRJLIST) return("PnlWznmPrjList");
 	if (ix == PNLWZNMPRJMNPERSON) return("PnlWznmPrjMNPerson");
+	if (ix == PNLWZNMPRJPRJ1NVERSION) return("PnlWznmPrjPrj1NVersion");
 	if (ix == PNLWZNMPRJREC) return("PnlWznmPrjRec");
 	if (ix == PNLWZNMPRSADETAIL) return("PnlWznmPrsADetail");
 	if (ix == PNLWZNMPRSDETAIL) return("PnlWznmPrsDetail");
@@ -1277,9 +1277,9 @@ string VecWznmVJob::getSref(
 	if (ix == QRYWZNMPNLHK1NCONTROL) return("QryWznmPnlHk1NControl");
 	if (ix == QRYWZNMPNLLIST) return("QryWznmPnlList");
 	if (ix == QRYWZNMPNLMNQUERY) return("QryWznmPnlMNQuery");
-	if (ix == QRYWZNMPRJ1NVERSION) return("QryWznmPrj1NVersion");
 	if (ix == QRYWZNMPRJLIST) return("QryWznmPrjList");
 	if (ix == QRYWZNMPRJMNPERSON) return("QryWznmPrjMNPerson");
+	if (ix == QRYWZNMPRJPRJ1NVERSION) return("QryWznmPrjPrj1NVersion");
 	if (ix == QRYWZNMPRSADETAIL) return("QryWznmPrsADetail");
 	if (ix == QRYWZNMPRSLIST) return("QryWznmPrsList");
 	if (ix == QRYWZNMPRSMNPROJECT) return("QryWznmPrsMNProject");

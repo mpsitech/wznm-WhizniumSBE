@@ -959,7 +959,7 @@ void WznmWrsrvJob::writeJobCpp(
 
 		outfile << "\t" << StrMod::uncap(fed->sref) << ".tag = \"" << fed->sref << "\";" << endl;
 		if (fed->srcIxVTbl == VecWznmVMFeedSrcTbl::VOID) {
-			StrMod::stringToVector(fed->srefsWznmMTag, ss);
+			StrMod::srefsToVector(fed->srefsWznmMTag, ss);
 			for (unsigned int j = 0; j < ss.size(); j++) outfile << "\tVec" << Prjshort << "VTag::appendToFeed(Vec" << Prjshort << "VTag::" << StrMod::uc(ss[j]) << ", ix" << Prjshort << "VLocale, " << StrMod::uncap(fed->sref) << ");" << endl;
 
 		} else if (fed->srcIxVTbl == VecWznmVMFeedSrcTbl::VEC) {
@@ -972,7 +972,7 @@ void WznmWrsrvJob::writeJobCpp(
 						outfile << StrMod::uncap(fed->sref) << ");" << endl;
 
 					} else {
-						StrMod::stringToVector(fed->srefsWznmMVectoritem, ss);
+						StrMod::srefsToVector(fed->srefsWznmMVectoritem, ss);
 
 						if (dbswznm->tblwznmmcontrol->loadRecByRef(fed->refWznmMControl, &con)) {
 
@@ -2237,10 +2237,10 @@ void WznmWrsrvJob::analyzeSns(
 			if (sns->Argpatt != "") {
 				first = true;
 
-				StrMod::stringToVector(sns->Argpatt, ss, ',');
+				StrMod::stringToVector(sns->Argpatt, ss, ',', true);
 
 				for (unsigned int i = 0; i < ss.size(); i++) {
-					StrMod::stringToVector(ss[i], ss2, '=');
+					StrMod::stringToVector(ss[i], ss2, '=', true);
 
 					if (ss2.size() == 2) {
 						// fixed argument, e.g. sref=test

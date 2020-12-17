@@ -1,9 +1,9 @@
 /**
-	* \file PnlWznmPrj1NVersion.cpp
-	* job handler for job PnlWznmPrj1NVersion (implementation)
+	* \file PnlWznmPrjPrj1NVersion.cpp
+	* job handler for job PnlWznmPrjPrj1NVersion (implementation)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 28 Nov 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -13,10 +13,10 @@
 	#include <Wznmd.h>
 #endif
 
-#include "PnlWznmPrj1NVersion.h"
+#include "PnlWznmPrjPrj1NVersion.h"
 
-#include "PnlWznmPrj1NVersion_blks.cpp"
-#include "PnlWznmPrj1NVersion_evals.cpp"
+#include "PnlWznmPrjPrj1NVersion_blks.cpp"
+#include "PnlWznmPrjPrj1NVersion_evals.cpp"
 
 using namespace std;
 using namespace Sbecore;
@@ -25,16 +25,16 @@ using namespace Xmlio;
 // IP ns.cust --- INSERT
 
 /******************************************************************************
- class PnlWznmPrj1NVersion
+ class PnlWznmPrjPrj1NVersion
  ******************************************************************************/
 
-PnlWznmPrj1NVersion::PnlWznmPrj1NVersion(
+PnlWznmPrjPrj1NVersion::PnlWznmPrjPrj1NVersion(
 			XchgWznm* xchg
 			, DbsWznm* dbswznm
 			, const ubigint jrefSup
 			, const uint ixWznmVLocale
 		) :
-			JobWznm(xchg, VecWznmVJob::PNLWZNMPRJ1NVERSION, jrefSup, ixWznmVLocale)
+			JobWznm(xchg, VecWznmVJob::PNLWZNMPRJPRJ1NVERSION, jrefSup, ixWznmVLocale)
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
@@ -50,7 +50,7 @@ PnlWznmPrj1NVersion::PnlWznmPrj1NVersion(
 
 	xchg->addRefPreset(VecWznmVPreset::PREWZNMREFSEL, jref, 0);
 
-	qry = new QryWznmPrj1NVersion(xchg, dbswznm, jref, ixWznmVLocale);
+	qry = new QryWznmPrjPrj1NVersion(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -63,7 +63,7 @@ PnlWznmPrj1NVersion::PnlWznmPrj1NVersion(
 
 };
 
-PnlWznmPrj1NVersion::~PnlWznmPrj1NVersion() {
+PnlWznmPrjPrj1NVersion::~PnlWznmPrjPrj1NVersion() {
 	// IP destructor.spec --- INSERT
 
 	// IP destructor.cust --- INSERT
@@ -73,7 +73,7 @@ PnlWznmPrj1NVersion::~PnlWznmPrj1NVersion() {
 
 // IP cust --- INSERT
 
-DpchEngWznm* PnlWznmPrj1NVersion::getNewDpchEng(
+DpchEngWznm* PnlWznmPrjPrj1NVersion::getNewDpchEng(
 			set<uint> items
 		) {
 	DpchEngWznm* dpcheng = NULL;
@@ -88,7 +88,7 @@ DpchEngWznm* PnlWznmPrj1NVersion::getNewDpchEng(
 	return dpcheng;
 };
 
-void PnlWznmPrj1NVersion::refresh(
+void PnlWznmPrjPrj1NVersion::refresh(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 			, const bool unmute
@@ -121,7 +121,7 @@ void PnlWznmPrj1NVersion::refresh(
 	muteRefresh = false;
 };
 
-void PnlWznmPrj1NVersion::updatePreset(
+void PnlWznmPrjPrj1NVersion::updatePreset(
 			DbsWznm* dbswznm
 			, const uint ixWznmVPreset
 			, const ubigint jrefTrig
@@ -148,7 +148,7 @@ void PnlWznmPrj1NVersion::updatePreset(
 	// IP updatePreset --- END
 };
 
-void PnlWznmPrj1NVersion::handleRequest(
+void PnlWznmPrjPrj1NVersion::handleRequest(
 			DbsWznm* dbswznm
 			, ReqWznm* req
 		) {
@@ -167,7 +167,7 @@ void PnlWznmPrj1NVersion::handleRequest(
 		if (req->dpchapp->ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMINIT) {
 			handleDpchAppWznmInit(dbswznm, (DpchAppWznmInit*) (req->dpchapp), &(req->dpcheng));
 
-		} else if (req->dpchapp->ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMPRJ1NVERSIONDATA) {
+		} else if (req->dpchapp->ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMPRJPRJ1NVERSIONDATA) {
 			DpchAppData* dpchappdata = (DpchAppData*) (req->dpchapp);
 
 			if (dpchappdata->has(DpchAppData::STGIAC)) {
@@ -176,7 +176,7 @@ void PnlWznmPrj1NVersion::handleRequest(
 				handleDpchAppDataStgiacqry(dbswznm, &(dpchappdata->stgiacqry), &(req->dpcheng));
 			};
 
-		} else if (req->dpchapp->ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMPRJ1NVERSIONDO) {
+		} else if (req->dpchapp->ixWznmVDpch == VecWznmVDpch::DPCHAPPWZNMPRJPRJ1NVERSIONDO) {
 			DpchAppDo* dpchappdo = (DpchAppDo*) (req->dpchapp);
 
 			if (dpchappdo->ixVDo != 0) {
@@ -200,7 +200,7 @@ void PnlWznmPrj1NVersion::handleRequest(
 	};
 };
 
-void PnlWznmPrj1NVersion::handleDpchAppWznmInit(
+void PnlWznmPrjPrj1NVersion::handleDpchAppWznmInit(
 			DbsWznm* dbswznm
 			, DpchAppWznmInit* dpchappwznminit
 			, DpchEngWznm** dpcheng
@@ -208,7 +208,7 @@ void PnlWznmPrj1NVersion::handleDpchAppWznmInit(
 	*dpcheng = getNewDpchEng({DpchEngData::ALL});
 };
 
-void PnlWznmPrj1NVersion::handleDpchAppDataStgiac(
+void PnlWznmPrjPrj1NVersion::handleDpchAppDataStgiac(
 			DbsWznm* dbswznm
 			, StgIac* _stgiac
 			, DpchEngWznm** dpcheng
@@ -222,9 +222,9 @@ void PnlWznmPrj1NVersion::handleDpchAppDataStgiac(
 	*dpcheng = getNewDpchEng(moditems);
 };
 
-void PnlWznmPrj1NVersion::handleDpchAppDataStgiacqry(
+void PnlWznmPrjPrj1NVersion::handleDpchAppDataStgiacqry(
 			DbsWznm* dbswznm
-			, QryWznmPrj1NVersion::StgIac* _stgiacqry
+			, QryWznmPrjPrj1NVersion::StgIac* _stgiacqry
 			, DpchEngWznm** dpcheng
 		) {
 	set<uint> diffitems;
@@ -232,7 +232,7 @@ void PnlWznmPrj1NVersion::handleDpchAppDataStgiacqry(
 
 	diffitems = _stgiacqry->diff(&(qry->stgiac));
 
-	WznmQPrj1NVersion* recSelNew = NULL;
+	WznmQPrjPrj1NVersion* recSelNew = NULL;
 
 	WznmMVersion* _recVer = NULL;
 
@@ -241,14 +241,14 @@ void PnlWznmPrj1NVersion::handleDpchAppDataStgiacqry(
 
 		qry->stgiac = *_stgiacqry;
 
-		if (has(diffitems, QryWznmPrj1NVersion::StgIac::JNUM)) recSelNew = qry->getRecByJnum(_stgiacqry->jnum);
+		if (has(diffitems, QryWznmPrjPrj1NVersion::StgIac::JNUM)) recSelNew = qry->getRecByJnum(_stgiacqry->jnum);
 
-		if (!has(diffitems, QryWznmPrj1NVersion::StgIac::JNUM) || (diffitems.size() > 1)) {
+		if (!has(diffitems, QryWznmPrjPrj1NVersion::StgIac::JNUM) || (diffitems.size() > 1)) {
 			qry->rerun(dbswznm);
 			insert(moditems, {DpchEngData::STATSHRQRY, DpchEngData::RST});
 		};
 
-		if (has(diffitems, QryWznmPrj1NVersion::StgIac::JNUM)) {
+		if (has(diffitems, QryWznmPrjPrj1NVersion::StgIac::JNUM)) {
 			if (!recSelNew) recSelNew = qry->getRecByJnum(_stgiacqry->jnum);
 
 			recVer = WznmMVersion();
@@ -271,21 +271,21 @@ void PnlWznmPrj1NVersion::handleDpchAppDataStgiacqry(
 	*dpcheng = getNewDpchEng(moditems);
 };
 
-void PnlWznmPrj1NVersion::handleDpchAppDoButUpClick(
+void PnlWznmPrjPrj1NVersion::handleDpchAppDoButUpClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
 		) {
 	// IP handleDpchAppDoButUpClick --- INSERT
 };
 
-void PnlWznmPrj1NVersion::handleDpchAppDoButDownClick(
+void PnlWznmPrjPrj1NVersion::handleDpchAppDoButDownClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
 		) {
 	// IP handleDpchAppDoButDownClick --- INSERT
 };
 
-void PnlWznmPrj1NVersion::handleDpchAppDoButViewClick(
+void PnlWznmPrjPrj1NVersion::handleDpchAppDoButViewClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
 		) {
@@ -305,7 +305,7 @@ void PnlWznmPrj1NVersion::handleDpchAppDoButViewClick(
 	};
 };
 
-void PnlWznmPrj1NVersion::handleDpchAppDoButNewClick(
+void PnlWznmPrjPrj1NVersion::handleDpchAppDoButNewClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
 		) {
@@ -325,14 +325,14 @@ void PnlWznmPrj1NVersion::handleDpchAppDoButNewClick(
 	};
 };
 
-void PnlWznmPrj1NVersion::handleDpchAppDoButDeleteClick(
+void PnlWznmPrjPrj1NVersion::handleDpchAppDoButDeleteClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
 		) {
 	// IP handleDpchAppDoButDeleteClick --- INSERT
 };
 
-void PnlWznmPrj1NVersion::handleDpchAppDoButRefreshClick(
+void PnlWznmPrjPrj1NVersion::handleDpchAppDoButRefreshClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
 		) {
@@ -348,7 +348,7 @@ void PnlWznmPrj1NVersion::handleDpchAppDoButRefreshClick(
 	*dpcheng = getNewDpchEng(moditems);
 };
 
-void PnlWznmPrj1NVersion::handleCall(
+void PnlWznmPrjPrj1NVersion::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
@@ -357,7 +357,7 @@ void PnlWznmPrj1NVersion::handleCall(
 	};
 };
 
-bool PnlWznmPrj1NVersion::handleCallWznmStatChg(
+bool PnlWznmPrjPrj1NVersion::handleCallWznmStatChg(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 		) {

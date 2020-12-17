@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmJobRec.h"
-#include "PnlWznmJobHeadbar.h"
 #include "PnlWznmJobList.h"
+#include "PnlWznmJobHeadbar.h"
+#include "PnlWznmJobRec.h"
 
 #define VecVWznmJobDo CrdWznmJob::VecVDo
 #define VecVWznmJobSge CrdWznmJob::VecVSge
@@ -190,9 +190,9 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	PnlWznmJobRec* pnlrec;
-	PnlWznmJobHeadbar* pnlheadbar;
 	PnlWznmJobList* pnllist;
+	PnlWznmJobHeadbar* pnlheadbar;
+	PnlWznmJobRec* pnlrec;
 
 	// IP vars.cust --- INSERT
 

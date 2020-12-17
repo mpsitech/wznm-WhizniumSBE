@@ -14,12 +14,12 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmOpxDetail.h"
+#include "PnlWznmOpxSqkMNStub.h"
+#include "PnlWznmOpxMNJob.h"
+#include "PnlWznmOpxRef1NBlock.h"
 #include "PnlWznmOpxARetval.h"
 #include "PnlWznmOpxAInvarg.h"
-#include "PnlWznmOpxRef1NBlock.h"
-#include "PnlWznmOpxMNJob.h"
-#include "PnlWznmOpxSqkMNStub.h"
+#include "PnlWznmOpxDetail.h"
 
 #define VecVWznmOpxRecDo PnlWznmOpxRec::VecVDo
 
@@ -76,7 +76,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
 	};
 
 	/**
@@ -87,8 +87,8 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFARETVAL = 3;
-		static const Sbecore::uint JREFAINVARG = 4;
+		static const Sbecore::uint JREFAINVARG = 3;
+		static const Sbecore::uint JREFARETVAL = 4;
 		static const Sbecore::uint JREFREF1NBLOCK = 5;
 		static const Sbecore::uint JREFMNJOB = 6;
 		static const Sbecore::uint JREFSQKMNSTUB = 7;
@@ -96,13 +96,13 @@ public:
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 9;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefARetval = 0, const Sbecore::ubigint jrefAInvarg = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefMNJob = 0, const Sbecore::ubigint jrefSqkMNStub = 0, const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAInvarg = 0, const Sbecore::ubigint jrefARetval = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefMNJob = 0, const Sbecore::ubigint jrefSqkMNStub = 0, const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefARetval;
 		Sbecore::ubigint jrefAInvarg;
+		Sbecore::ubigint jrefARetval;
 		Sbecore::ubigint jrefRef1NBlock;
 		Sbecore::ubigint jrefMNJob;
 		Sbecore::ubigint jrefSqkMNStub;
@@ -183,12 +183,12 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmOpxDetail* pnldetail;
+	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
+	PnlWznmOpxMNJob* pnlmnjob;
+	PnlWznmOpxRef1NBlock* pnlref1nblock;
 	PnlWznmOpxARetval* pnlaretval;
 	PnlWznmOpxAInvarg* pnlainvarg;
-	PnlWznmOpxRef1NBlock* pnlref1nblock;
-	PnlWznmOpxMNJob* pnlmnjob;
-	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
+	PnlWznmOpxDetail* pnldetail;
 
 	WznmMOp recOpx;
 
@@ -224,10 +224,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
+	bool handleCallWznmSqkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmOpxUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmOpx_sqkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmOpx_opkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmOpxUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmSqkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

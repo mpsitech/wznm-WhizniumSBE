@@ -217,7 +217,7 @@ uint IexWznmOpk::ImeIAMOppackInvarg::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "irefrefwznmcamoppackinvarg") ix |= IREFREFWZNMCAMOPPACKINVARG;
@@ -486,7 +486,7 @@ uint IexWznmOpk::ImeIAMOppackRetval::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "irefrefwznmcamoppackretval") ix |= IREFREFWZNMCAMOPPACKRETVAL;
@@ -716,7 +716,7 @@ uint IexWznmOpk::ImeICAMOppackInvarg::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -938,7 +938,7 @@ uint IexWznmOpk::ImeICAMOppackRetval::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -1176,7 +1176,7 @@ uint IexWznmOpk::ImeIJAMBlockItem1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "defval") ix |= DEFVAL;
@@ -1461,7 +1461,7 @@ uint IexWznmOpk::ImeIAMBlockItem1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "irefrefwznmcamblockitem") ix |= IREFREFWZNMCAMBLOCKITEM;
@@ -1695,7 +1695,7 @@ uint IexWznmOpk::ImeICAMBlockItem1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -1957,7 +1957,7 @@ uint IexWznmOpk::ImeIMBlock1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -2228,7 +2228,7 @@ uint IexWznmOpk::ImeIAMOpInvarg::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "irefrefwznmcamopinvarg") ix |= IREFREFWZNMCAMOPINVARG;
@@ -2497,7 +2497,7 @@ uint IexWznmOpk::ImeIAMOpRetval::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "irefrefwznmcamopretval") ix |= IREFREFWZNMCAMOPRETVAL;
@@ -2727,7 +2727,7 @@ uint IexWznmOpk::ImeICAMOpInvarg::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -2949,7 +2949,7 @@ uint IexWznmOpk::ImeICAMOpRetval::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -3187,7 +3187,7 @@ uint IexWznmOpk::ImeIJAMBlockItem2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "defval") ix |= DEFVAL;
@@ -3472,7 +3472,7 @@ uint IexWznmOpk::ImeIAMBlockItem2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "irefrefwznmcamblockitem") ix |= IREFREFWZNMCAMBLOCKITEM;
@@ -3706,7 +3706,7 @@ uint IexWznmOpk::ImeICAMBlockItem2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -3968,7 +3968,7 @@ uint IexWznmOpk::ImeIMBlock2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -4208,7 +4208,7 @@ uint IexWznmOpk::ImeIJMSquawkTitle2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1refwznmmlocale") ix |= SREFX1REFWZNMMLOCALE;
@@ -4442,7 +4442,7 @@ uint IexWznmOpk::ImeIRMSquawkMStub2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefwznmmstub") ix |= SREFREFWZNMMSTUB;
@@ -4701,7 +4701,7 @@ uint IexWznmOpk::ImeIMSquawk2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "title") ix |= TITLE;
@@ -4995,7 +4995,7 @@ uint IexWznmOpk::ImeIMOp::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -5237,7 +5237,7 @@ uint IexWznmOpk::ImeIJMSquawkTitle1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1refwznmmlocale") ix |= SREFX1REFWZNMMLOCALE;
@@ -5471,7 +5471,7 @@ uint IexWznmOpk::ImeIRMSquawkMStub1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefwznmmstub") ix |= SREFREFWZNMMSTUB;
@@ -5730,7 +5730,7 @@ uint IexWznmOpk::ImeIMSquawk1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "title") ix |= TITLE;
@@ -5964,7 +5964,7 @@ uint IexWznmOpk::ImeIRMComponentMOppack::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefwznmmcomponent") ix |= SREFREFWZNMMCOMPONENT;
@@ -6196,7 +6196,7 @@ uint IexWznmOpk::ImeIRMLibraryMOppack::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefwznmmlibrary") ix |= SREFREFWZNMMLIBRARY;
@@ -6521,7 +6521,7 @@ uint IexWznmOpk::ImeIMOppack::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvbasetype") ix |= SREFIXVBASETYPE;

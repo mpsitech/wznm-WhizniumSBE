@@ -973,7 +973,7 @@ void WznmGenJob::addCon(
 		// ContInf, Tag (possibility of multiple tags)
 		if (con->ixVScope == VecWznmVMControlScope::SHR) addBit(dbswznm, job, blks, bitnums, "ContInf", ditshort, VecWznmVAMBlockItemBasetype::VAR, consref, VecWznmVVartype::STRING, con->ref, 0, "", 0);
 
-		StrMod::stringToVector(con->srefsWznmMTag, ss);
+		StrMod::srefsToVector(con->srefsWznmMTag, ss);
 		if (ss.size() > 1) {
 			for (unsigned int j = 0; j < ss.size(); j++) {
 				addBit(dbswznm, job, blks, bitnums, "Tag", ditshort, VecWznmVAMBlockItemBasetype::CONTIT, consref + to_string(j+1), VecWznmVVartype::STRING, con->ref, 0, "", 0);

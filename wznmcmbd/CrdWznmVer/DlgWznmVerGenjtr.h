@@ -16,13 +16,16 @@
 
 #define VecVDlgWznmVerGenjtrDit DlgWznmVerGenjtr::VecVDit
 #define VecVDlgWznmVerGenjtrDo DlgWznmVerGenjtr::VecVDo
+#define VecVDlgWznmVerGenjtrDoGjt DlgWznmVerGenjtr::VecVDoGjt
 #define VecVDlgWznmVerGenjtrSge DlgWznmVerGenjtr::VecVSge
 
 #define ContIacDlgWznmVerGenjtr DlgWznmVerGenjtr::ContIac
 #define ContInfDlgWznmVerGenjtr DlgWznmVerGenjtr::ContInf
+#define ContInfDlgWznmVerGenjtrGjt DlgWznmVerGenjtr::ContInfGjt
 #define ContInfDlgWznmVerGenjtrLfi DlgWznmVerGenjtr::ContInfLfi
 #define StatAppDlgWznmVerGenjtr DlgWznmVerGenjtr::StatApp
 #define StatShrDlgWznmVerGenjtr DlgWznmVerGenjtr::StatShr
+#define StatShrDlgWznmVerGenjtrGjt DlgWznmVerGenjtr::StatShrGjt
 #define StatShrDlgWznmVerGenjtrLfi DlgWznmVerGenjtr::StatShrLfi
 #define TagDlgWznmVerGenjtr DlgWznmVerGenjtr::Tag
 #define TagDlgWznmVerGenjtrGjt DlgWznmVerGenjtr::TagGjt
@@ -61,9 +64,20 @@ public:
 	class VecVDo {
 
 	public:
-		static const Sbecore::uint GJTBUTRUNCLICK = 1;
-		static const Sbecore::uint GJTBUTSTOCLICK = 2;
-		static const Sbecore::uint BUTDNECLICK = 3;
+		static const Sbecore::uint BUTDNECLICK = 1;
+
+		static Sbecore::uint getIx(const std::string& sref);
+		static std::string getSref(const Sbecore::uint ix);
+	};
+
+	/**
+		* VecVDoGjt (full: VecVDlgWznmVerGenjtrDoGjt)
+		*/
+	class VecVDoGjt {
+
+	public:
+		static const Sbecore::uint BUTRUNCLICK = 1;
+		static const Sbecore::uint BUTSTOCLICK = 2;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -119,19 +133,37 @@ public:
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
-		static const Sbecore::uint GJTTXTPRG = 2;
 
 	public:
-		ContInf(const Sbecore::uint numFSge = 1, const std::string& GjtTxtPrg = "");
+		ContInf(const Sbecore::uint numFSge = 1);
 
 	public:
 		Sbecore::uint numFSge;
-		std::string GjtTxtPrg;
 
 	public:
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInf* comp);
 		std::set<Sbecore::uint> diff(const ContInf* comp);
+	};
+
+	/**
+	  * ContInfGjt (full: ContInfDlgWznmVerGenjtrGjt)
+	  */
+	class ContInfGjt : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint TXTPRG = 1;
+
+	public:
+		ContInfGjt(const std::string& TxtPrg = "");
+
+	public:
+		std::string TxtPrg;
+
+	public:
+		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
+		std::set<Sbecore::uint> comm(const ContInfGjt* comp);
+		std::set<Sbecore::uint> diff(const ContInfGjt* comp);
 	};
 
 	/**
@@ -169,22 +201,40 @@ public:
 	class StatShr : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint GJTBUTRUNACTIVE = 1;
-		static const Sbecore::uint GJTBUTSTOACTIVE = 2;
-		static const Sbecore::uint BUTDNEACTIVE = 3;
+		static const Sbecore::uint BUTDNEACTIVE = 1;
 
 	public:
-		StatShr(const bool GjtButRunActive = true, const bool GjtButStoActive = true, const bool ButDneActive = true);
+		StatShr(const bool ButDneActive = true);
 
 	public:
-		bool GjtButRunActive;
-		bool GjtButStoActive;
 		bool ButDneActive;
 
 	public:
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
+	};
+
+	/**
+		* StatShrGjt (full: StatShrDlgWznmVerGenjtrGjt)
+		*/
+	class StatShrGjt : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint BUTRUNACTIVE = 1;
+		static const Sbecore::uint BUTSTOACTIVE = 2;
+
+	public:
+		StatShrGjt(const bool ButRunActive = true, const bool ButStoActive = true);
+
+	public:
+		bool ButRunActive;
+		bool ButStoActive;
+
+	public:
+		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
+		std::set<Sbecore::uint> comm(const StatShrGjt* comp);
+		std::set<Sbecore::uint> diff(const StatShrGjt* comp);
 	};
 
 	/**
@@ -263,12 +313,14 @@ public:
 	public:
 		static const Sbecore::uint JREF = 1;
 		static const Sbecore::uint IXVDO = 2;
+		static const Sbecore::uint IXVDOGJT = 3;
 
 	public:
 		DpchAppDo();
 
 	public:
 		Sbecore::uint ixVDo;
+		Sbecore::uint ixVDoGjt;
 
 	public:
 		std::string getSrefsMask();
@@ -285,27 +337,31 @@ public:
 		static const Sbecore::uint JREF = 1;
 		static const Sbecore::uint CONTIAC = 2;
 		static const Sbecore::uint CONTINF = 3;
-		static const Sbecore::uint CONTINFLFI = 4;
-		static const Sbecore::uint FEEDFDSE = 5;
-		static const Sbecore::uint FEEDFSGE = 6;
-		static const Sbecore::uint STATAPP = 7;
-		static const Sbecore::uint STATSHR = 8;
-		static const Sbecore::uint STATSHRLFI = 9;
-		static const Sbecore::uint TAG = 10;
-		static const Sbecore::uint TAGGJT = 11;
-		static const Sbecore::uint TAGLFI = 12;
-		static const Sbecore::uint ALL = 13;
+		static const Sbecore::uint CONTINFGJT = 4;
+		static const Sbecore::uint CONTINFLFI = 5;
+		static const Sbecore::uint FEEDFDSE = 6;
+		static const Sbecore::uint FEEDFSGE = 7;
+		static const Sbecore::uint STATAPP = 8;
+		static const Sbecore::uint STATSHR = 9;
+		static const Sbecore::uint STATSHRGJT = 10;
+		static const Sbecore::uint STATSHRLFI = 11;
+		static const Sbecore::uint TAG = 12;
+		static const Sbecore::uint TAGGJT = 13;
+		static const Sbecore::uint TAGLFI = 14;
+		static const Sbecore::uint ALL = 15;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContInf* continf = NULL, ContInfLfi* continflfi = NULL, Sbecore::Xmlio::Feed* feedFDse = NULL, Sbecore::Xmlio::Feed* feedFSge = NULL, StatShr* statshr = NULL, StatShrLfi* statshrlfi = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContInf* continf = NULL, ContInfGjt* continfgjt = NULL, ContInfLfi* continflfi = NULL, Sbecore::Xmlio::Feed* feedFDse = NULL, Sbecore::Xmlio::Feed* feedFSge = NULL, StatShr* statshr = NULL, StatShrGjt* statshrgjt = NULL, StatShrLfi* statshrlfi = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContIac contiac;
 		ContInf continf;
+		ContInfGjt continfgjt;
 		ContInfLfi continflfi;
 		Sbecore::Xmlio::Feed feedFDse;
 		Sbecore::Xmlio::Feed feedFSge;
 		StatShr statshr;
+		StatShrGjt statshrgjt;
 		StatShrLfi statshrlfi;
 
 	public:
@@ -315,10 +371,10 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalGjtButRunActive(DbsWznm* dbswznm);
 	bool evalGjtButStoActive(DbsWznm* dbswznm);
-	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmVerGenjtr(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -327,8 +383,10 @@ public:
 public:
 	ContIac contiac;
 	ContInf continf;
+	ContInfGjt continfgjt;
 	ContInfLfi continflfi;
 	StatShr statshr;
+	StatShrGjt statshrgjt;
 	StatShrLfi statshrlfi;
 
 	Sbecore::Xmlio::Feed feedFMcbAlert;
@@ -367,9 +425,10 @@ private:
 	void handleDpchAppWznmInit(DbsWznm* dbswznm, DpchAppWznmInit* dpchappwznminit, DpchEngWznm** dpcheng);
 	void handleDpchAppDataContiac(DbsWznm* dbswznm, ContIac* _contiac, DpchEngWznm** dpcheng);
 
+	void handleDpchAppDoButDneClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+
 	void handleDpchAppDoGjtButRunClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoGjtButStoClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
-	void handleDpchAppDoButDneClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
 	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);

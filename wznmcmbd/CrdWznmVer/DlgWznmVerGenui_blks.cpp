@@ -66,8 +66,6 @@ uint DlgWznmVerGenui::VecVDo::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "guibutrunclick") return GUIBUTRUNCLICK;
-	if (s == "guibutstoclick") return GUIBUTSTOCLICK;
 	if (s == "butdneclick") return BUTDNECLICK;
 
 	return(0);
@@ -76,9 +74,31 @@ uint DlgWznmVerGenui::VecVDo::getIx(
 string DlgWznmVerGenui::VecVDo::getSref(
 			const uint ix
 		) {
-	if (ix == GUIBUTRUNCLICK) return("GuiButRunClick");
-	if (ix == GUIBUTSTOCLICK) return("GuiButStoClick");
 	if (ix == BUTDNECLICK) return("ButDneClick");
+
+	return("");
+};
+
+/******************************************************************************
+ class DlgWznmVerGenui::VecVDoGui
+ ******************************************************************************/
+
+uint DlgWznmVerGenui::VecVDoGui::getIx(
+			const string& sref
+		) {
+	string s = StrMod::lc(sref);
+
+	if (s == "butrunclick") return BUTRUNCLICK;
+	if (s == "butstoclick") return BUTSTOCLICK;
+
+	return(0);
+};
+
+string DlgWznmVerGenui::VecVDoGui::getSref(
+			const uint ix
+		) {
+	if (ix == BUTRUNCLICK) return("ButRunClick");
+	if (ix == BUTSTOCLICK) return("ButStoClick");
 
 	return("");
 };
@@ -208,14 +228,12 @@ set<uint> DlgWznmVerGenui::ContIac::diff(
 
 DlgWznmVerGenui::ContInf::ContInf(
 			const uint numFSge
-			, const string& GuiTxtPrg
 		) :
 			Block()
 		{
 	this->numFSge = numFSge;
-	this->GuiTxtPrg = GuiTxtPrg;
 
-	mask = {NUMFSGE, GUITXTPRG};
+	mask = {NUMFSGE};
 };
 
 void DlgWznmVerGenui::ContInf::writeXML(
@@ -231,7 +249,6 @@ void DlgWznmVerGenui::ContInf::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUintAttr(wr, itemtag, "sref", "numFSge", numFSge);
-		writeStringAttr(wr, itemtag, "sref", "GuiTxtPrg", GuiTxtPrg);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -241,7 +258,6 @@ set<uint> DlgWznmVerGenui::ContInf::comm(
 	set<uint> items;
 
 	if (numFSge == comp->numFSge) insert(items, NUMFSGE);
-	if (GuiTxtPrg == comp->GuiTxtPrg) insert(items, GUITXTPRG);
 
 	return(items);
 };
@@ -254,7 +270,61 @@ set<uint> DlgWznmVerGenui::ContInf::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {NUMFSGE, GUITXTPRG};
+	diffitems = {NUMFSGE};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class DlgWznmVerGenui::ContInfGui
+ ******************************************************************************/
+
+DlgWznmVerGenui::ContInfGui::ContInfGui(
+			const string& TxtPrg
+		) :
+			Block()
+		{
+	this->TxtPrg = TxtPrg;
+
+	mask = {TXTPRG};
+};
+
+void DlgWznmVerGenui::ContInfGui::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "ContInfDlgWznmVerGenuiGui";
+
+	string itemtag;
+	if (shorttags) itemtag = "Ci";
+	else itemtag = "ContitemInfDlgWznmVerGenuiGui";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeStringAttr(wr, itemtag, "sref", "TxtPrg", TxtPrg);
+	xmlTextWriterEndElement(wr);
+};
+
+set<uint> DlgWznmVerGenui::ContInfGui::comm(
+			const ContInfGui* comp
+		) {
+	set<uint> items;
+
+	if (TxtPrg == comp->TxtPrg) insert(items, TXTPRG);
+
+	return(items);
+};
+
+set<uint> DlgWznmVerGenui::ContInfGui::diff(
+			const ContInfGui* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {TXTPRG};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -342,17 +412,13 @@ void DlgWznmVerGenui::StatApp::writeXML(
  ******************************************************************************/
 
 DlgWznmVerGenui::StatShr::StatShr(
-			const bool GuiButRunActive
-			, const bool GuiButStoActive
-			, const bool ButDneActive
+			const bool ButDneActive
 		) :
 			Block()
 		{
-	this->GuiButRunActive = GuiButRunActive;
-	this->GuiButStoActive = GuiButStoActive;
 	this->ButDneActive = ButDneActive;
 
-	mask = {GUIBUTRUNACTIVE, GUIBUTSTOACTIVE, BUTDNEACTIVE};
+	mask = {BUTDNEACTIVE};
 };
 
 void DlgWznmVerGenui::StatShr::writeXML(
@@ -367,8 +433,6 @@ void DlgWznmVerGenui::StatShr::writeXML(
 	else itemtag = "StatitemShrDlgWznmVerGenui";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeBoolAttr(wr, itemtag, "sref", "GuiButRunActive", GuiButRunActive);
-		writeBoolAttr(wr, itemtag, "sref", "GuiButStoActive", GuiButStoActive);
 		writeBoolAttr(wr, itemtag, "sref", "ButDneActive", ButDneActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -378,8 +442,6 @@ set<uint> DlgWznmVerGenui::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (GuiButRunActive == comp->GuiButRunActive) insert(items, GUIBUTRUNACTIVE);
-	if (GuiButStoActive == comp->GuiButStoActive) insert(items, GUIBUTSTOACTIVE);
 	if (ButDneActive == comp->ButDneActive) insert(items, BUTDNEACTIVE);
 
 	return(items);
@@ -393,7 +455,65 @@ set<uint> DlgWznmVerGenui::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {GUIBUTRUNACTIVE, GUIBUTSTOACTIVE, BUTDNEACTIVE};
+	diffitems = {BUTDNEACTIVE};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
+ class DlgWznmVerGenui::StatShrGui
+ ******************************************************************************/
+
+DlgWznmVerGenui::StatShrGui::StatShrGui(
+			const bool ButRunActive
+			, const bool ButStoActive
+		) :
+			Block()
+		{
+	this->ButRunActive = ButRunActive;
+	this->ButStoActive = ButStoActive;
+
+	mask = {BUTRUNACTIVE, BUTSTOACTIVE};
+};
+
+void DlgWznmVerGenui::StatShrGui::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "StatShrDlgWznmVerGenuiGui";
+
+	string itemtag;
+	if (shorttags) itemtag = "Si";
+	else itemtag = "StatitemShrDlgWznmVerGenuiGui";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeBoolAttr(wr, itemtag, "sref", "ButRunActive", ButRunActive);
+		writeBoolAttr(wr, itemtag, "sref", "ButStoActive", ButStoActive);
+	xmlTextWriterEndElement(wr);
+};
+
+set<uint> DlgWznmVerGenui::StatShrGui::comm(
+			const StatShrGui* comp
+		) {
+	set<uint> items;
+
+	if (ButRunActive == comp->ButRunActive) insert(items, BUTRUNACTIVE);
+	if (ButStoActive == comp->ButStoActive) insert(items, BUTSTOACTIVE);
+
+	return(items);
+};
+
+set<uint> DlgWznmVerGenui::StatShrGui::diff(
+			const StatShrGui* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {BUTRUNACTIVE, BUTSTOACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -473,8 +593,6 @@ void DlgWznmVerGenui::Tag::writeXML(
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			writeStringAttr(wr, itemtag, "sref", "Cpt", "Generate user interface");
 		};
-		writeStringAttr(wr, itemtag, "sref", "GuiButRun", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::RUN, ixWznmVLocale)));
-		writeStringAttr(wr, itemtag, "sref", "GuiButSto", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::STOP, ixWznmVLocale)));
 		writeStringAttr(wr, itemtag, "sref", "ButDne", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::DONE, ixWznmVLocale)));
 	xmlTextWriterEndElement(wr);
 };
@@ -499,6 +617,8 @@ void DlgWznmVerGenui::TagGui::writeXML(
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 		};
 		writeStringAttr(wr, itemtag, "sref", "CptPrg", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::PROGRESS, ixWznmVLocale)));
+		writeStringAttr(wr, itemtag, "sref", "ButRun", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::RUN, ixWznmVLocale)));
+		writeStringAttr(wr, itemtag, "sref", "ButSto", StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::STOP, ixWznmVLocale)));
 	xmlTextWriterEndElement(wr);
 };
 
@@ -581,6 +701,7 @@ DlgWznmVerGenui::DpchAppDo::DpchAppDo() :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMVERGENUIDO)
 		{
 	ixVDo = 0;
+	ixVDoGui = 0;
 };
 
 string DlgWznmVerGenui::DpchAppDo::getSrefsMask() {
@@ -589,6 +710,7 @@ string DlgWznmVerGenui::DpchAppDo::getSrefsMask() {
 
 	if (has(JREF)) ss.push_back("jref");
 	if (has(IXVDO)) ss.push_back("ixVDo");
+	if (has(IXVDOGUI)) ss.push_back("ixVDoGui");
 
 	StrMod::vectorToString(ss, srefs);
 
@@ -604,6 +726,7 @@ void DlgWznmVerGenui::DpchAppDo::readXML(
 
 	string scrJref;
 	string srefIxVDo;
+	string srefIxVDoGui;
 
 	bool basefound;
 
@@ -621,6 +744,10 @@ void DlgWznmVerGenui::DpchAppDo::readXML(
 			ixVDo = VecVDo::getIx(srefIxVDo);
 			add(IXVDO);
 		};
+		if (extractStringUclc(docctx, basexpath, "srefIxVDoGui", "", srefIxVDoGui)) {
+			ixVDoGui = VecVDoGui::getIx(srefIxVDoGui);
+			add(IXVDOGUI);
+		};
 	} else {
 	};
 };
@@ -633,24 +760,28 @@ DlgWznmVerGenui::DpchEngData::DpchEngData(
 			const ubigint jref
 			, ContIac* contiac
 			, ContInf* continf
+			, ContInfGui* continfgui
 			, ContInfLfi* continflfi
 			, Feed* feedFDse
 			, Feed* feedFSge
 			, StatShr* statshr
+			, StatShrGui* statshrgui
 			, StatShrLfi* statshrlfi
 			, const set<uint>& mask
 		) :
 			DpchEngWznm(VecWznmVDpch::DPCHENGDLGWZNMVERGENUIDATA, jref)
 		{
-	if (find(mask, ALL)) this->mask = {JREF, CONTIAC, CONTINF, CONTINFLFI, FEEDFDSE, FEEDFSGE, STATAPP, STATSHR, STATSHRLFI, TAG, TAGGUI, TAGLFI};
+	if (find(mask, ALL)) this->mask = {JREF, CONTIAC, CONTINF, CONTINFGUI, CONTINFLFI, FEEDFDSE, FEEDFSGE, STATAPP, STATSHR, STATSHRGUI, STATSHRLFI, TAG, TAGGUI, TAGLFI};
 	else this->mask = mask;
 
 	if (find(this->mask, CONTIAC) && contiac) this->contiac = *contiac;
 	if (find(this->mask, CONTINF) && continf) this->continf = *continf;
+	if (find(this->mask, CONTINFGUI) && continfgui) this->continfgui = *continfgui;
 	if (find(this->mask, CONTINFLFI) && continflfi) this->continflfi = *continflfi;
 	if (find(this->mask, FEEDFDSE) && feedFDse) this->feedFDse = *feedFDse;
 	if (find(this->mask, FEEDFSGE) && feedFSge) this->feedFSge = *feedFSge;
 	if (find(this->mask, STATSHR) && statshr) this->statshr = *statshr;
+	if (find(this->mask, STATSHRGUI) && statshrgui) this->statshrgui = *statshrgui;
 	if (find(this->mask, STATSHRLFI) && statshrlfi) this->statshrlfi = *statshrlfi;
 };
 
@@ -661,11 +792,13 @@ string DlgWznmVerGenui::DpchEngData::getSrefsMask() {
 	if (has(JREF)) ss.push_back("jref");
 	if (has(CONTIAC)) ss.push_back("contiac");
 	if (has(CONTINF)) ss.push_back("continf");
+	if (has(CONTINFGUI)) ss.push_back("continfgui");
 	if (has(CONTINFLFI)) ss.push_back("continflfi");
 	if (has(FEEDFDSE)) ss.push_back("feedFDse");
 	if (has(FEEDFSGE)) ss.push_back("feedFSge");
 	if (has(STATAPP)) ss.push_back("statapp");
 	if (has(STATSHR)) ss.push_back("statshr");
+	if (has(STATSHRGUI)) ss.push_back("statshrgui");
 	if (has(STATSHRLFI)) ss.push_back("statshrlfi");
 	if (has(TAG)) ss.push_back("tag");
 	if (has(TAGGUI)) ss.push_back("taggui");
@@ -684,11 +817,13 @@ void DlgWznmVerGenui::DpchEngData::merge(
 	if (src->has(JREF)) {jref = src->jref; add(JREF);};
 	if (src->has(CONTIAC)) {contiac = src->contiac; add(CONTIAC);};
 	if (src->has(CONTINF)) {continf = src->continf; add(CONTINF);};
+	if (src->has(CONTINFGUI)) {continfgui = src->continfgui; add(CONTINFGUI);};
 	if (src->has(CONTINFLFI)) {continflfi = src->continflfi; add(CONTINFLFI);};
 	if (src->has(FEEDFDSE)) {feedFDse = src->feedFDse; add(FEEDFDSE);};
 	if (src->has(FEEDFSGE)) {feedFSge = src->feedFSge; add(FEEDFSGE);};
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
+	if (src->has(STATSHRGUI)) {statshrgui = src->statshrgui; add(STATSHRGUI);};
 	if (src->has(STATSHRLFI)) {statshrlfi = src->statshrlfi; add(STATSHRLFI);};
 	if (src->has(TAG)) add(TAG);
 	if (src->has(TAGGUI)) add(TAGGUI);
@@ -704,11 +839,13 @@ void DlgWznmVerGenui::DpchEngData::writeXML(
 		if (has(JREF)) writeString(wr, "scrJref", Scr::scramble(jref));
 		if (has(CONTIAC)) contiac.writeXML(wr);
 		if (has(CONTINF)) continf.writeXML(wr);
+		if (has(CONTINFGUI)) continfgui.writeXML(wr);
 		if (has(CONTINFLFI)) continflfi.writeXML(wr);
 		if (has(FEEDFDSE)) feedFDse.writeXML(wr);
 		if (has(FEEDFSGE)) feedFSge.writeXML(wr);
 		if (has(STATAPP)) StatApp::writeXML(wr);
 		if (has(STATSHR)) statshr.writeXML(wr);
+		if (has(STATSHRGUI)) statshrgui.writeXML(wr);
 		if (has(STATSHRLFI)) statshrlfi.writeXML(wr);
 		if (has(TAG)) Tag::writeXML(ixWznmVLocale, wr);
 		if (has(TAGGUI)) TagGui::writeXML(ixWznmVLocale, wr);

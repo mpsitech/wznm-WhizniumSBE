@@ -139,9 +139,9 @@ function refreshB(chgcol) {
 			} else if (i == 5) {
 				doc.cols.push("TcoReu"); doc.widths.push(TcoReuWidth); doc.fs.push("reu"); doc.tos.push(3); wtot += TcoReuWidth;
 			} else if (i == 6) {
-				doc.cols.push("TcoIat"); doc.widths.push(TcoIatWidth); doc.fs.push("iat"); doc.tos.push(2); wtot += TcoIatWidth;
+				doc.cols.push("TcoIat"); doc.widths.push(TcoIatWidth); doc.fs.push("iat"); doc.tos.push(1); wtot += TcoIatWidth;
 			} else if (i == 7) {
-				doc.cols.push("TcoRat"); doc.widths.push(TcoRatWidth); doc.fs.push("rat"); doc.tos.push(1); wtot += TcoRatWidth;
+				doc.cols.push("TcoRat"); doc.widths.push(TcoRatWidth); doc.fs.push("rat"); doc.tos.push(2); wtot += TcoRatWidth;
 			} else {
 				ix--;
 			};

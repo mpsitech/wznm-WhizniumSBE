@@ -115,11 +115,12 @@ public:
 		static const Sbecore::uint DO = 3;
 		static const Sbecore::uint STEP = 4;
 		static const Sbecore::uint CSJSTEP = 5;
-		static const Sbecore::uint STEPSEQ = 6;
-		static const Sbecore::uint SUBSEQ = 7;
-		static const Sbecore::uint RETSEQ = 8;
-		static const Sbecore::uint BREAK = 9;
-		static const Sbecore::uint CUST = 10;
+		static const Sbecore::uint CSJNTFSTEP = 6;
+		static const Sbecore::uint STEPSEQ = 7;
+		static const Sbecore::uint SUBSEQ = 8;
+		static const Sbecore::uint RETSEQ = 9;
+		static const Sbecore::uint BREAK = 10;
+		static const Sbecore::uint CUST = 11;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

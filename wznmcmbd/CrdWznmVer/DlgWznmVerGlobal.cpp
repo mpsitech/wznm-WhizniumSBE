@@ -105,8 +105,8 @@ void DlgWznmVerGlobal::refreshImp(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfImp oldContinfimp(continfimp);
 	StatShrImp oldStatshrimp(statshrimp);
+	ContInfImp oldContinfimp(continfimp);
 
 	// IP refreshImp --- RBEGIN
 	// continfimp
@@ -117,8 +117,8 @@ void DlgWznmVerGlobal::refreshImp(
 	statshrimp.ButStoActive = evalImpButStoActive(dbswznm);
 
 	// IP refreshImp --- REND
-	if (continfimp.diff(&oldContinfimp).size() != 0) insert(moditems, DpchEngData::CONTINFIMP);
 	if (statshrimp.diff(&oldStatshrimp).size() != 0) insert(moditems, DpchEngData::STATSHRIMP);
+	if (continfimp.diff(&oldContinfimp).size() != 0) insert(moditems, DpchEngData::CONTINFIMP);
 };
 
 void DlgWznmVerGlobal::refreshPpr(
@@ -145,8 +145,8 @@ void DlgWznmVerGlobal::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrLfi oldStatshrlfi(statshrlfi);
 	ContInfLfi oldContinflfi(continflfi);
+	StatShrLfi oldStatshrlfi(statshrlfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -156,8 +156,8 @@ void DlgWznmVerGlobal::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
+	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 };
 
 void DlgWznmVerGlobal::refresh(
@@ -169,23 +169,23 @@ void DlgWznmVerGlobal::refresh(
 	muteRefresh = true;
 
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshIfi(dbswznm, moditems);
 	refreshImp(dbswznm, moditems);
@@ -459,13 +459,15 @@ string DlgWznmVerGlobal::getSquawk(
 		) {
 	string retval;
 	// IP getSquawk --- RBEGIN
-	if ( (ixVSge == VecVSge::PARSE) || (ixVSge == VecVSge::ALRWZNMPER) || (ixVSge == VecVSge::PRSDONE) || (ixVSge == VecVSge::IMPORT) || (ixVSge == VecVSge::ALRWZNMIER) ) {
+	if ( (ixVSge == VecVSge::PARSE) || (ixVSge == VecVSge::ALRWZNMPER) || (ixVSge == VecVSge::PRSDONE) || (ixVSge == VecVSge::IMPORT) || (ixVSge == VecVSge::ALRWZNMIER) || (ixVSge == VecVSge::IMPDONE) || (ixVSge == VecVSge::POSTPRC) ) {
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			if (ixVSge == VecVSge::PARSE) retval = "parsing global features";
 			else if (ixVSge == VecVSge::ALRWZNMPER) retval = "parse error";
 			else if (ixVSge == VecVSge::PRSDONE) retval = "global features parsed";
 			else if (ixVSge == VecVSge::IMPORT) retval = "importing global features (" + to_string(iex->impcnt) + " records added)";
 			else if (ixVSge == VecVSge::ALRWZNMIER) retval = "import error";
+			else if (ixVSge == VecVSge::IMPDONE) retval = "import done";
+			else if (ixVSge == VecVSge::POSTPRC) retval = "postprocessing";
 		};
 
 	} else {

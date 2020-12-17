@@ -2,7 +2,7 @@
 # make file for CrdWznmBlk card job handler, release wznmd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 6 Dec 2020
+# date created: 16 Dec 2020
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmd/VecWznm -I$(BUILDROOT)/wznmd/IexWznm -I$(BUILDROOT)/wznmd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
 
-OBJS = CrdWznmBlk.o PnlWznmBlkRec.o PnlWznmBlkDetail.o PnlWznmBlkAItem.o QryWznmBlkAItem.o PnlWznmBlk1NRtdpch.o QryWznmBlk1NRtdpch.o PnlWznmBlkRef1NRtblock.o QryWznmBlkRef1NRtblock.o PnlWznmBlkHeadbar.o PnlWznmBlkList.o QryWznmBlkList.o
+OBJS = CrdWznmBlk.o PnlWznmBlkList.o QryWznmBlkList.o PnlWznmBlkHeadbar.o PnlWznmBlkRec.o PnlWznmBlkRef1NRtblock.o QryWznmBlkRef1NRtblock.o PnlWznmBlk1NRtdpch.o QryWznmBlk1NRtdpch.o PnlWznmBlkAItem.o QryWznmBlkAItem.o PnlWznmBlkDetail.o
 
 LIB = libcrdwznmblk
 

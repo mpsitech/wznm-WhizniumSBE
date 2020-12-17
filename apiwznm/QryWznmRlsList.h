@@ -29,8 +29,8 @@ namespace QryWznmRlsList {
 
 	public:
 		static const Sbecore::uint MCH = 1;
-		static const Sbecore::uint CMP = 2;
-		static const Sbecore::uint SRF = 3;
+		static const Sbecore::uint SRF = 2;
+		static const Sbecore::uint CMP = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

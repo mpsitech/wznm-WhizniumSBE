@@ -5,6 +5,9 @@ function initGui() {
 	contdoc = doc.getElementById("_cont").contentDocument;
 
 	// IP initGui --- BEGIN
+	initCpt(contdoc, "CptPrg", retrieveTi(srcdoc, "TagDlgWznmVerGenuiGui", "CptPrg"));
+	initBut(contdoc, "ButRun", retrieveTi(srcdoc, "TagDlgWznmVerGenuiGui", "ButRun"));
+	initBut(contdoc, "ButSto", retrieveTi(srcdoc, "TagDlgWznmVerGenuiGui", "ButSto"));
 	// IP initGui --- END
 
 	setSi(srcdoc, "StatAppDlgWznmVerGenui", "initdone", "true");
@@ -67,9 +70,18 @@ function refreshHdr() {
 
 function refreshGui() {
 	// IP refreshGui.vars --- BEGIN
+
+	var ButRunActive = (retrieveSi(srcdoc, "StatShrDlgWznmVerGenuiGui", "ButRunActive") == "true");
+	var ButStoActive = (retrieveSi(srcdoc, "StatShrDlgWznmVerGenuiGui", "ButStoActive") == "true");
+
 	// IP refreshGui.vars --- END
 
 	// IP refreshGui --- BEGIN
+	refreshTxtt(contdoc, "TxtPrg", retrieveCi(srcdoc, "ContInfDlgWznmVerGenuiGui", "TxtPrg"));
+
+	refreshBut(contdoc, "ButRun", ButRunActive, false);
+	refreshBut(contdoc, "ButSto", ButStoActive, false);
+
 	// IP refreshGui --- END
 };
 
@@ -159,11 +171,13 @@ function mergeDpchEngData(dom) {
 
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "ContIacDlgWznmVerGenui", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "ContInfDlgWznmVerGenui", srcdoc)) mask.push("continf");
+	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "ContInfDlgWznmVerGenuiGui", srcdoc)) mask.push("continfgui");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "ContInfDlgWznmVerGenuiLfi", srcdoc)) mask.push("continflfi");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "FeedFDse", srcdoc)) mask.push("feedFDse");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "FeedFSge", srcdoc)) mask.push("feedFSge");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "StatAppDlgWznmVerGenui", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "StatShrDlgWznmVerGenui", srcdoc)) mask.push("statshr");
+	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "StatShrDlgWznmVerGenuiGui", srcdoc)) mask.push("statshrgui");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "StatShrDlgWznmVerGenuiLfi", srcdoc)) mask.push("statshrlfi");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "TagDlgWznmVerGenui", srcdoc)) mask.push("tag");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenuiData", "TagDlgWznmVerGenuiGui", srcdoc)) mask.push("taggui");

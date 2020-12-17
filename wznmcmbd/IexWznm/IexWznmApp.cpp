@@ -152,7 +152,7 @@ uint IexWznmApp::ImeIMEvent::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -401,7 +401,7 @@ uint IexWznmApp::ImeIMRtblock::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefixvtbl") ix |= SREFREFIXVTBL;
@@ -651,7 +651,7 @@ uint IexWznmApp::ImeIMRtdpch::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefwznmmblock") ix |= SREFREFWZNMMBLOCK;
@@ -929,7 +929,7 @@ uint IexWznmApp::ImeIMRtjob::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -1251,7 +1251,7 @@ uint IexWznmApp::ImeIAMStateAction::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvsection") ix |= SREFIXVSECTION;
@@ -1517,7 +1517,7 @@ uint IexWznmApp::ImeIJAMStateTrigCond::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixwznmvapptarget") ix |= SREFX1IXWZNMVAPPTARGET;
@@ -1811,7 +1811,7 @@ uint IexWznmApp::ImeIAMStateTrig::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -2085,7 +2085,7 @@ uint IexWznmApp::ImeIMState::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -2343,7 +2343,7 @@ uint IexWznmApp::ImeIMSequence::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;

@@ -150,7 +150,7 @@ uint IexWznmBui::ImeIJMModule::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1refwznmmlocale") ix |= SREFX1REFWZNMMLOCALE;
@@ -392,7 +392,7 @@ uint IexWznmBui::ImeIJMCardTitle::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1refwznmmlocale") ix |= SREFX1REFWZNMMLOCALE;
@@ -670,7 +670,7 @@ uint IexWznmBui::ImeIMCard::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefixvtbl") ix |= SREFREFIXVTBL;
@@ -945,7 +945,7 @@ uint IexWznmBui::ImeIMModule::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -1207,7 +1207,7 @@ uint IexWznmBui::ImeIMPreset::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixwznmviop") ix |= SREFIXWZNMVIOP;

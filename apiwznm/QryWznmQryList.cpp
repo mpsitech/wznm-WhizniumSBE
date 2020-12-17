@@ -22,8 +22,8 @@ uint QryWznmQryList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "qtb") return QTB;
 	if (s == "tbl") return TBL;
+	if (s == "qtb") return QTB;
 	if (s == "srl") return SRL;
 	if (s == "sup") return SUP;
 	if (s == "ver") return VER;
@@ -36,8 +36,8 @@ uint QryWznmQryList::VecVOrd::getIx(
 string QryWznmQryList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == QTB) return("qtb");
 	if (ix == TBL) return("tbl");
+	if (ix == QTB) return("qtb");
 	if (ix == SRL) return("srl");
 	if (ix == SUP) return("sup");
 	if (ix == VER) return("ver");

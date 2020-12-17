@@ -133,16 +133,16 @@ bool PnlWznmBlkDetail::evalTxtReuActive(
 bool PnlWznmBlkDetail::evalButReuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// blk.reuEq(0)|((pre.ixCrdaccJob()&blk.retEq(job)&pre.refVer())|(pre.ixCrdaccOpx()&blk.retEq(opx)&pre.refOpk())|(pre.ixCrdaccOpx()&blk.retEq(opx)&pre.refVer())|(pre.ixCrdaccOpk()&blk.retEq(opk)&pre.refVer()))
+	// blk.reuEq(0)|((pre.ixCrdaccOpk()&blk.retEq(opk)&pre.refVer())|(pre.ixCrdaccOpx()&blk.retEq(opx)&pre.refOpk())|(pre.ixCrdaccOpx()&blk.retEq(opx)&pre.refVer())|(pre.ixCrdaccJob()&blk.retEq(job)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recBlk.refUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPK, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recBlk.refIxVTbl == VecWznmVMBlockRefTbl::JOB);
+	a = false; a = (recBlk.refIxVTbl == VecWznmVMBlockRefTbl::OPK);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -176,9 +176,9 @@ bool PnlWznmBlkDetail::evalButReuViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPK, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recBlk.refIxVTbl == VecWznmVMBlockRefTbl::OPK);
+	a = false; a = (recBlk.refIxVTbl == VecWznmVMBlockRefTbl::JOB);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);

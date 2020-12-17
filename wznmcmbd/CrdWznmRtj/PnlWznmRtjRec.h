@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmRtjDetail.h"
-#include "PnlWznmRtj1NRtblock.h"
-#include "PnlWznmRtj1NRtdpch.h"
 #include "PnlWznmRtjSup1NRtjob.h"
+#include "PnlWznmRtj1NRtdpch.h"
+#include "PnlWznmRtj1NRtblock.h"
+#include "PnlWznmRtjDetail.h"
 
 #define VecVWznmRtjRecDo PnlWznmRtjRec::VecVDo
 
@@ -174,10 +174,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmRtjDetail* pnldetail;
-	PnlWznmRtj1NRtblock* pnl1nrtblock;
-	PnlWznmRtj1NRtdpch* pnl1nrtdpch;
 	PnlWznmRtjSup1NRtjob* pnlsup1nrtjob;
+	PnlWznmRtj1NRtdpch* pnl1nrtdpch;
+	PnlWznmRtj1NRtblock* pnl1nrtblock;
+	PnlWznmRtjDetail* pnldetail;
 
 	WznmMRtjob recRtj;
 
@@ -211,10 +211,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
+	bool handleCallWznmRtjUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmRtj_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmRtj_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmRtj_appEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmRtjUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

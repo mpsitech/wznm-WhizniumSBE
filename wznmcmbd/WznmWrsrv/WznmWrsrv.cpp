@@ -1566,7 +1566,7 @@ void WznmWrsrv::writeBlktagCpp(
 					ix = 0;
 				};
 
-				StrMod::stringToVector(con->srefsWznmMTag, ss);
+				StrMod::srefsToVector(con->srefsWznmMTag, ss);
 				if (ss.size() > ix) {
 					outfile << "\t\twriteStringAttr(wr, itemtag, \"sref\", \"" << bit->sref << "\", ";
 					if (cap) outfile << "StrMod::cap(";
@@ -1769,7 +1769,7 @@ void WznmWrsrv::writeVecCpp(
 		outfile << endl;
 
 		outfile << "\tvector<string> ss;" << endl;
-		outfile << "\tStrMod::stringToVector(StrMod::lc(srefs), ss);" << endl;
+		outfile << "\tStrMod::srefsToVector(StrMod::lc(srefs), ss);" << endl;
 		outfile << endl;
 
 		outfile << "\tfor (unsigned int i = 0; i < ss.size(); i++) {" << endl;
@@ -3347,7 +3347,7 @@ void WznmWrsrv::wrAlrCpp(
 	if (dbswznm->tblwznmmcontrol->loadRecBySQL("SELECT * FROM TblWznmMControl WHERE supRefWznmMControl = " + to_string(alrcon->ref) + " AND sref = 'Txt" + conroot + "Cpt'", &con)) {
 		if (con->srefsWznmMTag.length() > 0) {
 			// title from tag
-			StrMod::stringToVector(con->srefsWznmMTag, ss);
+			StrMod::srefsToVector(con->srefsWznmMTag, ss);
 			if (ss.size() == 1) outfile << "\tcontinf.TxtCpt = Vec" << Prjshort << "VTag::getTitle(Vec" << Prjshort << "VTag::" << StrMod::uc(ss[0]) << ", ix" << Prjshort << "VLocale);" << endl;
 
 		} else {
@@ -3434,7 +3434,7 @@ void WznmWrsrv::wrAlrCpp(
 
 				s = "";
 				if (con->srefsWznmMTag.length() > 0) {
-					StrMod::stringToVector(con->srefsWznmMTag, ss);
+					StrMod::srefsToVector(con->srefsWznmMTag, ss);
 					if (ss.size() == 1) {
 						if (ss[0].find("stdalr.") == 0) {
 							if (dbswznm->tblwznmmtag->loadRecBySrfGrp(ss[0].substr(7), "stdalr", &tag)) {
@@ -3467,7 +3467,7 @@ void WznmWrsrv::wrAlrCpp(
 	outfile << endl;
 
 	if (dbswznm->tblwznmmcontrol->loadRecBySQL("SELECT * FROM TblWznmMControl WHERE supRefWznmMControl = " + to_string(alrcon->ref) + " AND sref = 'Mcb" + conroot + "'", &con)) {
-		StrMod::stringToVector(con->srefsWznmMTag, ss);
+		StrMod::srefsToVector(con->srefsWznmMTag, ss);
 
 		for (unsigned int i = 0; i < ss.size(); i++)
 					outfile << "\tVec" << Prjshort << "VTag::appendToFeed(Vec" << Prjshort << "VTag::" << StrMod::uc(ss[i]) << ", ix" << Prjshort << "VLocale, feedFMcbAlert);" << endl;
@@ -3684,7 +3684,7 @@ void WznmWrsrv::getAlrplhs(
 	plhs.clear();
 
 	if (dbswznm->tblwznmmcontrol->loadRecBySQL("SELECT * FROM TblWznmMControl WHERE supRefWznmMControl = " + to_string(refAlr) + " AND sref LIKE 'Txt%Msg%'", &con)) {
-		StrMod::stringToVector(con->srefsWznmMTag, ss);
+		StrMod::srefsToVector(con->srefsWznmMTag, ss);
 
 		for (unsigned int i = 0; i < ss.size(); i++) {
 			s = ss[i];

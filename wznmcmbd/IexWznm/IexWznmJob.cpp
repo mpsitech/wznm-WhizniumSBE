@@ -148,7 +148,7 @@ uint IexWznmJob::ImeIRMCapabilityUniversal::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefunvuref") ix |= SREFUNVUREF;
@@ -393,7 +393,7 @@ uint IexWznmJob::ImeIMCapability::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -628,7 +628,7 @@ uint IexWznmJob::ImeIJAMBlockItem::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "defval") ix |= DEFVAL;
@@ -918,7 +918,7 @@ uint IexWznmJob::ImeIAMBlockItem::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "irefrefwznmcamblockitem") ix |= IREFREFWZNMCAMBLOCKITEM;
@@ -1154,7 +1154,7 @@ uint IexWznmJob::ImeICAMBlockItem::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -1426,7 +1426,7 @@ uint IexWznmJob::ImeIMBlock::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefsreaixwznmwscope") ix |= SREFSREAIXWZNMWSCOPE;
@@ -1696,7 +1696,7 @@ uint IexWznmJob::ImeIMJob::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;

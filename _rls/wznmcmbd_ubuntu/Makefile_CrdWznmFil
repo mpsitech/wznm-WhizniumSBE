@@ -2,7 +2,7 @@
 # make file for CrdWznmFil card job handler, release wznmcmbd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 6 Dec 2020
+# date created: 16 Dec 2020
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
 
-OBJS = CrdWznmFil.o PnlWznmFilList.o QryWznmFilList.o PnlWznmFilHeadbar.o PnlWznmFilRec.o PnlWznmFilDetail.o DlgWznmFilNew.o DlgWznmFilDownload.o
+OBJS = CrdWznmFil.o PnlWznmFilList.o QryWznmFilList.o PnlWznmFilHeadbar.o PnlWznmFilRec.o PnlWznmFilDetail.o DlgWznmFilDownload.o DlgWznmFilNew.o
 
 LIB = libcrdwznmfil
 

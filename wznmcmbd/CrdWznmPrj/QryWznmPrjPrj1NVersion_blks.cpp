@@ -1,9 +1,9 @@
 /**
-	* \file QryWznmPrj1NVersion_blks.cpp
-	* job handler for job QryWznmPrj1NVersion (implementation of blocks)
+	* \file QryWznmPrjPrj1NVersion_blks.cpp
+	* job handler for job QryWznmPrjPrj1NVersion (implementation of blocks)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 28 Nov 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -12,10 +12,10 @@ using namespace Sbecore;
 using namespace Xmlio;
 
 /******************************************************************************
- class QryWznmPrj1NVersion::StatApp
+ class QryWznmPrjPrj1NVersion::StatApp
  ******************************************************************************/
 
-void QryWznmPrj1NVersion::StatApp::writeXML(
+void QryWznmPrjPrj1NVersion::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
@@ -24,11 +24,11 @@ void QryWznmPrj1NVersion::StatApp::writeXML(
 			, const uint ncol
 			, const uint ndisp
 		) {
-	if (difftag.length() == 0) difftag = "StatAppQryWznmPrj1NVersion";
+	if (difftag.length() == 0) difftag = "StatAppQryWznmPrjPrj1NVersion";
 
 	string itemtag;
 	if (shorttags) itemtag = "Si";
-	else itemtag = "StatitemAppQryWznmPrj1NVersion";
+	else itemtag = "StatitemAppQryWznmPrjPrj1NVersion";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUintAttr(wr, itemtag, "sref", "firstcol", firstcol);
@@ -39,10 +39,10 @@ void QryWznmPrj1NVersion::StatApp::writeXML(
 };
 
 /******************************************************************************
- class QryWznmPrj1NVersion::StatShr
+ class QryWznmPrjPrj1NVersion::StatShr
  ******************************************************************************/
 
-QryWznmPrj1NVersion::StatShr::StatShr(
+QryWznmPrjPrj1NVersion::StatShr::StatShr(
 			const uint ntot
 			, const uint jnumFirstload
 			, const uint nload
@@ -56,16 +56,16 @@ QryWznmPrj1NVersion::StatShr::StatShr(
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
-void QryWznmPrj1NVersion::StatShr::writeXML(
+void QryWznmPrjPrj1NVersion::StatShr::writeXML(
 			xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
 		) {
-	if (difftag.length() == 0) difftag = "StatShrQryWznmPrj1NVersion";
+	if (difftag.length() == 0) difftag = "StatShrQryWznmPrjPrj1NVersion";
 
 	string itemtag;
 	if (shorttags) itemtag = "Si";
-	else itemtag = "StatitemShrQryWznmPrj1NVersion";
+	else itemtag = "StatitemShrQryWznmPrjPrj1NVersion";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUintAttr(wr, itemtag, "sref", "ntot", ntot);
@@ -74,7 +74,7 @@ void QryWznmPrj1NVersion::StatShr::writeXML(
 	xmlTextWriterEndElement(wr);
 };
 
-set<uint> QryWznmPrj1NVersion::StatShr::comm(
+set<uint> QryWznmPrjPrj1NVersion::StatShr::comm(
 			const StatShr* comp
 		) {
 	set<uint> items;
@@ -86,7 +86,7 @@ set<uint> QryWznmPrj1NVersion::StatShr::comm(
 	return(items);
 };
 
-set<uint> QryWznmPrj1NVersion::StatShr::diff(
+set<uint> QryWznmPrjPrj1NVersion::StatShr::diff(
 			const StatShr* comp
 		) {
 	set<uint> commitems;
@@ -101,10 +101,10 @@ set<uint> QryWznmPrj1NVersion::StatShr::diff(
 };
 
 /******************************************************************************
- class QryWznmPrj1NVersion::StgIac
+ class QryWznmPrjPrj1NVersion::StgIac
  ******************************************************************************/
 
-QryWznmPrj1NVersion::StgIac::StgIac(
+QryWznmPrjPrj1NVersion::StgIac::StgIac(
 			const uint jnum
 			, const uint jnumFirstload
 			, const uint nload
@@ -117,7 +117,7 @@ QryWznmPrj1NVersion::StgIac::StgIac(
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 
-bool QryWznmPrj1NVersion::StgIac::readXML(
+bool QryWznmPrjPrj1NVersion::StgIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
 			, bool addbasetag
@@ -127,11 +127,11 @@ bool QryWznmPrj1NVersion::StgIac::readXML(
 	bool basefound;
 
 	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StgIacQryWznmPrj1NVersion");
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StgIacQryWznmPrjPrj1NVersion");
 	else
 		basefound = checkXPath(docctx, basexpath);
 
-	string itemtag = "StgitemIacQryWznmPrj1NVersion";
+	string itemtag = "StgitemIacQryWznmPrjPrj1NVersion";
 
 	if (basefound) {
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "jnum", jnum)) add(JNUM);
@@ -142,16 +142,16 @@ bool QryWznmPrj1NVersion::StgIac::readXML(
 	return basefound;
 };
 
-void QryWznmPrj1NVersion::StgIac::writeXML(
+void QryWznmPrjPrj1NVersion::StgIac::writeXML(
 			xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
 		) {
-	if (difftag.length() == 0) difftag = "StgIacQryWznmPrj1NVersion";
+	if (difftag.length() == 0) difftag = "StgIacQryWznmPrjPrj1NVersion";
 
 	string itemtag;
 	if (shorttags) itemtag = "Si";
-	else itemtag = "StgitemIacQryWznmPrj1NVersion";
+	else itemtag = "StgitemIacQryWznmPrjPrj1NVersion";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUintAttr(wr, itemtag, "sref", "jnum", jnum);
@@ -160,7 +160,7 @@ void QryWznmPrj1NVersion::StgIac::writeXML(
 	xmlTextWriterEndElement(wr);
 };
 
-set<uint> QryWznmPrj1NVersion::StgIac::comm(
+set<uint> QryWznmPrjPrj1NVersion::StgIac::comm(
 			const StgIac* comp
 		) {
 	set<uint> items;
@@ -172,7 +172,7 @@ set<uint> QryWznmPrj1NVersion::StgIac::comm(
 	return(items);
 };
 
-set<uint> QryWznmPrj1NVersion::StgIac::diff(
+set<uint> QryWznmPrjPrj1NVersion::StgIac::diff(
 			const StgIac* comp
 		) {
 	set<uint> commitems;

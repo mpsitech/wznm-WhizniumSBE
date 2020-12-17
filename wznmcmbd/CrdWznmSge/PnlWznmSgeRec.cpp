@@ -38,9 +38,9 @@ PnlWznmSgeRec::PnlWznmSgeRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
-	pnl1nsensitivity = NULL;
 	pnlsqkmnstub = NULL;
+	pnl1nsensitivity = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -259,7 +259,11 @@ void PnlWznmSgeRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMSGE_SQKEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMSGEUPD_REFEQ) {
+		call->abort = handleCallWznmSgeUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSQKUPD_REFEQ) {
+		call->abort = handleCallWznmSqkUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGE_SQKEQ) {
 		call->abort = handleCallWznmSge_sqkEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGE_SNXEQ) {
 		call->abort = handleCallWznmSge_snxEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
@@ -267,11 +271,25 @@ void PnlWznmSgeRec::handleCall(
 		call->abort = handleCallWznmSge_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGE_FNXEQ) {
 		call->abort = handleCallWznmSge_fnxEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSQKUPD_REFEQ) {
-		call->abort = handleCallWznmSqkUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGEUPD_REFEQ) {
-		call->abort = handleCallWznmSgeUpd_refEq(dbswznm, call->jref);
 	};
+};
+
+bool PnlWznmSgeRec::handleCallWznmSgeUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmSgeUpd_refEq --- INSERT
+	return retval;
+};
+
+bool PnlWznmSgeRec::handleCallWznmSqkUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmSqkUpd_refEq --- INSERT
+	return retval;
 };
 
 bool PnlWznmSgeRec::handleCallWznmSge_sqkEq(
@@ -315,23 +333,5 @@ bool PnlWznmSgeRec::handleCallWznmSge_fnxEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recSge.fnxRefWznmMStage == refInv); // IP handleCallWznmSge_fnxEq --- LINE
-	return retval;
-};
-
-bool PnlWznmSgeRec::handleCallWznmSqkUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmSqkUpd_refEq --- INSERT
-	return retval;
-};
-
-bool PnlWznmSgeRec::handleCallWznmSgeUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmSgeUpd_refEq --- INSERT
 	return retval;
 };

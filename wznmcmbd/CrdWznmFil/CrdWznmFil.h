@@ -17,8 +17,8 @@
 #include "PnlWznmFilList.h"
 #include "PnlWznmFilHeadbar.h"
 #include "PnlWznmFilRec.h"
-#include "DlgWznmFilNew.h"
 #include "DlgWznmFilDownload.h"
+#include "DlgWznmFilNew.h"
 
 #define VecVWznmFilDo CrdWznmFil::VecVDo
 #define VecVWznmFilSge CrdWznmFil::VecVSge
@@ -214,8 +214,8 @@ public:
 	PnlWznmFilList* pnllist;
 	PnlWznmFilHeadbar* pnlheadbar;
 	PnlWznmFilRec* pnlrec;
-	DlgWznmFilNew* dlgnew;
 	DlgWznmFilDownload* dlgdownload;
+	DlgWznmFilNew* dlgnew;
 
 	// IP vars.cust --- INSERT
 

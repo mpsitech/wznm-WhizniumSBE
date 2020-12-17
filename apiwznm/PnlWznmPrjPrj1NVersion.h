@@ -1,39 +1,39 @@
 /**
-	* \file PnlWznmPrj1NVersion.h
-	* API code for job PnlWznmPrj1NVersion (declarations)
+	* \file PnlWznmPrjPrj1NVersion.h
+	* API code for job PnlWznmPrjPrj1NVersion (declarations)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 5 Dec 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
-#ifndef PNLWZNMPRJ1NVERSION_H
-#define PNLWZNMPRJ1NVERSION_H
+#ifndef PNLWZNMPRJPRJ1NVERSION_H
+#define PNLWZNMPRJPRJ1NVERSION_H
 
 #include "ApiWznm_blks.h"
 
-#include "WznmQPrj1NVersion.h"
+#include "WznmQPrjPrj1NVersion.h"
 
-#include "QryWznmPrj1NVersion.h"
+#include "QryWznmPrjPrj1NVersion.h"
 
-#define VecVWznmPrj1NVersionDo PnlWznmPrj1NVersion::VecVDo
+#define VecVWznmPrjPrj1NVersionDo PnlWznmPrjPrj1NVersion::VecVDo
 
-#define ContInfWznmPrj1NVersion PnlWznmPrj1NVersion::ContInf
-#define StatAppWznmPrj1NVersion PnlWznmPrj1NVersion::StatApp
-#define StatShrWznmPrj1NVersion PnlWznmPrj1NVersion::StatShr
-#define StgIacWznmPrj1NVersion PnlWznmPrj1NVersion::StgIac
-#define TagWznmPrj1NVersion PnlWznmPrj1NVersion::Tag
+#define ContInfWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::ContInf
+#define StatAppWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::StatApp
+#define StatShrWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::StatShr
+#define StgIacWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::StgIac
+#define TagWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::Tag
 
-#define DpchAppWznmPrj1NVersionData PnlWznmPrj1NVersion::DpchAppData
-#define DpchAppWznmPrj1NVersionDo PnlWznmPrj1NVersion::DpchAppDo
-#define DpchEngWznmPrj1NVersionData PnlWznmPrj1NVersion::DpchEngData
+#define DpchAppWznmPrjPrj1NVersionData PnlWznmPrjPrj1NVersion::DpchAppData
+#define DpchAppWznmPrjPrj1NVersionDo PnlWznmPrjPrj1NVersion::DpchAppDo
+#define DpchEngWznmPrjPrj1NVersionData PnlWznmPrjPrj1NVersion::DpchEngData
 
 /**
-	* PnlWznmPrj1NVersion
+	* PnlWznmPrjPrj1NVersion
 	*/
-namespace PnlWznmPrj1NVersion {
+namespace PnlWznmPrjPrj1NVersion {
 	/**
-		* VecVDo (full: VecVWznmPrj1NVersionDo)
+		* VecVDo (full: VecVWznmPrjPrj1NVersionDo)
 		*/
 	class VecVDo {
 
@@ -50,7 +50,7 @@ namespace PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * ContInf (full: ContInfWznmPrj1NVersion)
+	  * ContInf (full: ContInfWznmPrjPrj1NVersion)
 	  */
 	class ContInf : public Sbecore::Xmlio::Block {
 
@@ -70,7 +70,7 @@ namespace PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * StatApp (full: StatAppWznmPrj1NVersion)
+	  * StatApp (full: StatAppWznmPrjPrj1NVersion)
 	  */
 	class StatApp : public Sbecore::Xmlio::Block {
 
@@ -90,7 +90,7 @@ namespace PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * StatShr (full: StatShrWznmPrj1NVersion)
+	  * StatShr (full: StatShrWznmPrjPrj1NVersion)
 	  */
 	class StatShr : public Sbecore::Xmlio::Block {
 
@@ -126,7 +126,7 @@ namespace PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * StgIac (full: StgIacWznmPrj1NVersion)
+	  * StgIac (full: StgIacWznmPrjPrj1NVersion)
 	  */
 	class StgIac : public Sbecore::Xmlio::Block {
 
@@ -147,7 +147,7 @@ namespace PnlWznmPrj1NVersion {
 	};
 
 	/**
-	  * Tag (full: TagWznmPrj1NVersion)
+	  * Tag (full: TagWznmPrjPrj1NVersion)
 	  */
 	class Tag : public Sbecore::Xmlio::Block {
 
@@ -177,7 +177,7 @@ namespace PnlWznmPrj1NVersion {
 	};
 
 	/**
-		* DpchAppData (full: DpchAppWznmPrj1NVersionData)
+		* DpchAppData (full: DpchAppWznmPrjPrj1NVersionData)
 		*/
 	class DpchAppData : public DpchAppWznm {
 
@@ -188,11 +188,11 @@ namespace PnlWznmPrj1NVersion {
 		static const Sbecore::uint ALL = 4;
 
 	public:
-		DpchAppData(const std::string& scrJref = "", StgIac* stgiac = NULL, QryWznmPrj1NVersion::StgIac* stgiacqry = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchAppData(const std::string& scrJref = "", StgIac* stgiac = NULL, QryWznmPrjPrj1NVersion::StgIac* stgiacqry = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		StgIac stgiac;
-		QryWznmPrj1NVersion::StgIac stgiacqry;
+		QryWznmPrjPrj1NVersion::StgIac stgiacqry;
 
 	public:
 		std::string getSrefsMask();
@@ -201,7 +201,7 @@ namespace PnlWznmPrj1NVersion {
 	};
 
 	/**
-		* DpchAppDo (full: DpchAppWznmPrj1NVersionDo)
+		* DpchAppDo (full: DpchAppWznmPrjPrj1NVersionDo)
 		*/
 	class DpchAppDo : public DpchAppWznm {
 
@@ -223,7 +223,7 @@ namespace PnlWznmPrj1NVersion {
 	};
 
 	/**
-		* DpchEngData (full: DpchEngWznmPrj1NVersionData)
+		* DpchEngData (full: DpchEngWznmPrjPrj1NVersionData)
 		*/
 	class DpchEngData : public DpchEngWznm {
 
@@ -250,10 +250,10 @@ namespace PnlWznmPrj1NVersion {
 		StatShr statshr;
 		StgIac stgiac;
 		Tag tag;
-		ListWznmQPrj1NVersion rst;
-		QryWznmPrj1NVersion::StatApp statappqry;
-		QryWznmPrj1NVersion::StatShr statshrqry;
-		QryWznmPrj1NVersion::StgIac stgiacqry;
+		ListWznmQPrjPrj1NVersion rst;
+		QryWznmPrjPrj1NVersion::StatApp statappqry;
+		QryWznmPrjPrj1NVersion::StatShr statshrqry;
+		QryWznmPrjPrj1NVersion::StgIac stgiacqry;
 
 	public:
 		std::string getSrefsMask();

@@ -20,11 +20,11 @@ uint QryWznmFilList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "reu") return REU;
 	if (s == "ret") return RET;
+	if (s == "reu") return REU;
 	if (s == "fnm") return FNM;
-	if (s == "grp") return GRP;
 	if (s == "own") return OWN;
+	if (s == "grp") return GRP;
 
 	return(0);
 };
@@ -32,11 +32,11 @@ uint QryWznmFilList::VecVOrd::getIx(
 string QryWznmFilList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
+	if (ix == REU) return("reu");
 	if (ix == FNM) return("fnm");
-	if (ix == GRP) return("grp");
 	if (ix == OWN) return("own");
+	if (ix == GRP) return("grp");
 
 	return("");
 };

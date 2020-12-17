@@ -166,7 +166,7 @@ uint IexWznmDbs::ImeICRelation::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -407,7 +407,7 @@ uint IexWznmDbs::ImeIAMRelationTitle::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixvtype") ix |= SREFX1IXVTYPE;
@@ -720,7 +720,7 @@ uint IexWznmDbs::ImeIMRelation::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "iref") ix |= IREF;
@@ -1012,7 +1012,7 @@ uint IexWznmDbs::ImeIMStub::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvbasetype") ix |= SREFIXVBASETYPE;
@@ -1285,7 +1285,7 @@ uint IexWznmDbs::ImeIAMTableLoadfct::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvloadtype") ix |= SREFIXVLOADTYPE;
@@ -1545,7 +1545,7 @@ uint IexWznmDbs::ImeIAMTableTitle::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixvtype") ix |= SREFX1IXVTYPE;
@@ -1801,7 +1801,7 @@ uint IexWznmDbs::ImeIMCheck::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvbasetype") ix |= SREFIXVBASETYPE;
@@ -2057,7 +2057,7 @@ uint IexWznmDbs::ImeIAMSubsetTitle::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixvtype") ix |= SREFX1IXVTYPE;
@@ -2301,7 +2301,7 @@ uint IexWznmDbs::ImeIRMSubsetMSubset::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefbsbrefwznmmsubset") ix |= SREFBSBREFWZNMMSUBSET;
@@ -2572,7 +2572,7 @@ uint IexWznmDbs::ImeIMSubset::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -2822,7 +2822,7 @@ uint IexWznmDbs::ImeIAMTablecolTitle::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixvtype") ix |= SREFX1IXVTYPE;
@@ -3137,7 +3137,7 @@ uint IexWznmDbs::ImeIMTablecol::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvbasetype") ix |= SREFIXVBASETYPE;
@@ -3403,7 +3403,7 @@ uint IexWznmDbs::ImeIAMVectorTitle2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixvtype") ix |= SREFX1IXVTYPE;
@@ -3651,7 +3651,7 @@ uint IexWznmDbs::ImeIJMVectoritem2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1refwznmmlocale") ix |= SREFX1REFWZNMMLOCALE;
@@ -3925,7 +3925,7 @@ uint IexWznmDbs::ImeIMVectoritem2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -4171,7 +4171,7 @@ uint IexWznmDbs::ImeIRMTableMVector2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefwznmmtable") ix |= SREFREFWZNMMTABLE;
@@ -4451,7 +4451,7 @@ uint IexWznmDbs::ImeIMVector2::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvbasetype") ix |= SREFIXVBASETYPE;
@@ -4772,7 +4772,7 @@ uint IexWznmDbs::ImeIMTable::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvbasetype") ix |= SREFIXVBASETYPE;
@@ -5025,7 +5025,7 @@ uint IexWznmDbs::ImeIAMVectorTitle1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1ixvtype") ix |= SREFX1IXVTYPE;
@@ -5273,7 +5273,7 @@ uint IexWznmDbs::ImeIJMVectoritem1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1refwznmmlocale") ix |= SREFX1REFWZNMMLOCALE;
@@ -5547,7 +5547,7 @@ uint IexWznmDbs::ImeIMVectoritem1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "sref") ix |= SREF;
@@ -5793,7 +5793,7 @@ uint IexWznmDbs::ImeIRMTableMVector1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefwznmmtable") ix |= SREFREFWZNMMTABLE;
@@ -6072,7 +6072,7 @@ uint IexWznmDbs::ImeIMVector1::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvbasetype") ix |= SREFIXVBASETYPE;
@@ -6312,7 +6312,7 @@ uint IexWznmDbs::ImeIRMStubMStub::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefsuprefwznmmstub") ix |= SREFSUPREFWZNMMSTUB;

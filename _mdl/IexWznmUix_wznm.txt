@@ -1080,11 +1080,11 @@ CrdWznmVer
 				ImeIMVector3.end
 			ImeIMFeed3.end
 		4	dit	0	void	void		0	shr	DitGjt	dituld		Input file
-		5	txt	0	cont	void		0	shr	GjtTxtPrg	void							t
+		5	txt	0	cont	void		4	shr	GjtTxtPrg	void							t
 		6	cpt	0	cont	void		5	app	GjtCptPrg	void	progress						cap
-		7	sep	0	cont	void		0	app	GjtSep1	void
-		8	but	1	cont	void		0	shr	GjtButRun	void	run					sge(idle)	cap
-		9	but	1	cont	void		0	shr	GjtButSto	void	stop					sge(genqtb|genjob|gencall|genctp)	cap
+		7	sep	0	cont	void		4	app	GjtSep1	void
+		8	but	1	cont	void		4	shr	GjtButRun	void	run					sge(idle)	cap
+		9	but	1	cont	void		4	shr	GjtButSto	void	stop					sge(genqtb|genjob|gencall|genctp)	cap
 		10	dit	0	void	void		0	shr	DitLfi	ditdld		Log file
 		11	dld	0	cont	void		10	app	LfiDld	void	download					sge(fail)	cap
 		12	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|fail|done)	cap
@@ -1120,11 +1120,11 @@ CrdWznmVer
 				ImeIMVector3.end
 			ImeIMFeed3.end
 		4	dit	0	void	void		0	shr	DitGui	dituld		Input file
-		5	txt	0	cont	void		0	shr	GuiTxtPrg	void							t
+		5	txt	0	cont	void		4	shr	GuiTxtPrg	void							t
 		6	cpt	0	cont	void		5	app	GuiCptPrg	void	progress						cap
-		7	sep	0	cont	void		0	app	GuiSep1	void
-		8	but	1	cont	void		0	shr	GuiButRun	void	run					sge(idle)	cap
-		9	but	1	cont	void		0	shr	GuiButSto	void	stop					sge(genui|genctp)	cap
+		7	sep	0	cont	void		4	app	GuiSep1	void
+		8	but	1	cont	void		4	shr	GuiButRun	void	run					sge(idle)	cap
+		9	but	1	cont	void		4	shr	GuiButSto	void	stop					sge(genui|genctp)	cap
 		10	dit	0	void	void		0	shr	DitLfi	ditdld		Log file
 		11	dld	0	cont	void		10	app	LfiDld	void	download					sge(fail)	cap
 		12	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|fail|done)	cap

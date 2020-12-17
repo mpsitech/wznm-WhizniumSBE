@@ -159,7 +159,7 @@ void WznmWrapi::writeVecCpp(
 		outfile << endl;
 
 		outfile << "\tvector<string> ss;" << endl;
-		outfile << "\tStrMod::stringToVector(StrMod::lc(srefs), ss);" << endl;
+		outfile << "\tStrMod::srefsToVector(StrMod::lc(srefs), ss);" << endl;
 		outfile << endl;
 
 		outfile << "\tfor (unsigned int i = 0; i < ss.size(); i++) {" << endl;

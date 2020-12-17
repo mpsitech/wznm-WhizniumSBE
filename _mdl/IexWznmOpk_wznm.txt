@@ -131,7 +131,7 @@ cust	WznmCtpWrstkit	write capability template-specific starter kit	false
 	ImeIRMComponentMOppack.end
 	ImeIMOp.sref	Shrdat	Comment
 	WznmCtpWrstkitAcv	false	database and basic UI
-	WznmCtpWrstkitArm	false	database, basic UI and import/export
+	WznmCtpWrstkitArm	false	database, basic UI and import/export 
 	ImeIMOp.end
 cust	WznmCtpWrsrv	write capability template-specific server code	false
 	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment

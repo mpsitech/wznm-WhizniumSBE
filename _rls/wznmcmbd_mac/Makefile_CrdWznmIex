@@ -2,7 +2,7 @@
 # make file for CrdWznmIex card job handler, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 6 Dec 2020
+# date created: 16 Dec 2020
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmIex.o PnlWznmIexRec.o PnlWznmIexDetail.o PnlWznmIex1NImpexp.o QryWznmIex1NImpexp.o PnlWznmIexHk1NVector.o QryWznmIexHk1NVector.o PnlWznmIexRef1NDialog.o QryWznmIexRef1NDialog.o PnlWznmIexHeadbar.o PnlWznmIexList.o QryWznmIexList.o
+OBJS = CrdWznmIex.o PnlWznmIexList.o QryWznmIexList.o PnlWznmIexHeadbar.o PnlWznmIexRec.o PnlWznmIexRef1NDialog.o QryWznmIexRef1NDialog.o PnlWznmIexHk1NVector.o QryWznmIexHk1NVector.o PnlWznmIex1NImpexp.o QryWznmIex1NImpexp.o PnlWznmIexDetail.o
 
 LIB = libcrdwznmiex
 

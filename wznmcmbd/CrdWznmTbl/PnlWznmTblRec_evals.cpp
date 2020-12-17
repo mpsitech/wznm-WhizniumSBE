@@ -11,20 +11,6 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool PnlWznmTblRec::evalPnlatitleAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool PnlWznmTblRec::evalPnlaloadfctAvail(
 			DbsWznm* dbswznm
 		) {
@@ -39,15 +25,15 @@ bool PnlWznmTblRec::evalPnlaloadfctAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nsubsetAvail(
+bool PnlWznmTblRec::evalPnlatitleAvail(
 			DbsWznm* dbswznm
 		) {
-	// tbl.inSbs(mtb)
+	// tbl.inSbs(stt)
 
 	vector<bool> args;
 	bool a;
 
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
 	args.push_back(a);
 
 	return(args.back());
@@ -67,21 +53,7 @@ bool PnlWznmTblRec::evalPnlfr1nrelationAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nimpexpAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmTblRec::evalPnl1ncheckAvail(
+bool PnlWznmTblRec::evalPnlto1nrelationAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)
@@ -109,7 +81,35 @@ bool PnlWznmTblRec::evalPnl1nstubAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnlto1nrelationAvail(
+bool PnlWznmTblRec::evalPnl1nsubsetAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(mtb)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLEMTB) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnl1nimpexpAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(stt)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnl1ncheckAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)

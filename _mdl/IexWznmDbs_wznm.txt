@@ -3196,6 +3196,7 @@ aux	void	0	TblWznmAMStateAction	steAact
 		do			trigger UI action
 		step			step to next state
 		csjstep			copy scr. job ref. then step to next state
+		csjntfstep			copy sess. scr. job ref., start notify, step to next state
 		stepseq			step to next sequence
 		subseq			perform sub-sequence
 		retseq			return from sequence
@@ -4352,7 +4353,7 @@ ImeIMRelation.iref	srefIxVBasetype	irefRefWznmCRelation	irefSupRefWznmMRelation	
 166	jpref	0	165	pref	TblWznmJMVectoritem		TblWznmMVectoritem
 167	grp	0	0	void	TblWznmMUsergroup		TblWznmMVersion
 168	own	0	0	void	TblWznmMUser		TblWznmMVersion
-169	_1n	0	0	void	TblWznmMProject		TblWznmMVersion				pref;enum;affil
+169	_1n	0	0	void	TblWznmMProject		TblWznmMVersion			prj	pref;enum;affil
 170	mn	0	0	void	TblWznmMLocale		TblWznmMVersion		TblWznmRMLocaleMVersion		prefto
 171	_1n	0	170	from1n	TblWznmMLocale		TblWznmRMLocaleMVersion
 172	_1n	0	170	to1n	TblWznmMVersion		TblWznmRMLocaleMVersion
@@ -4790,7 +4791,7 @@ cust	TblWznmMUser		StubWznmUsrStd	false		false	fkuntz / Franz Kuntz
 tco	TblWznmMVector		StubWznmVecStd	false	sref	false	VecBrlyVMLocationBasetype
 cust	TblWznmMVersion		StubWznmVerNo	false		false	0.1.1
 cust	TblWznmMVersion		StubWznmVerShort	false		false	brly v0.1.1 (77)
-cust	TblWznmMVersion		StubWznmVerStd	false		false	BeamRelay v0.1.1 (candidate 77)
+cust	TblWznmMVersion		StubWznmVerStd	false		false	BeamRelay v0.1.1 (s/n 77, abandonned)
 tco	TblWznmMVectoritem		StubWznmVitSref	false	sref	false	ap
 cust	TblWznmMVectoritem		StubWznmVitStd	false		false	VecBrlyVMLocationBasetype.ap
 ImeIMStub.end

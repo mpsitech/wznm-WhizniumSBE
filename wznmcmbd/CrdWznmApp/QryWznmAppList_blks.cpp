@@ -20,10 +20,10 @@ uint QryWznmAppList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ver") return VER;
-	if (s == "trg") return TRG;
-	if (s == "tit") return TIT;
 	if (s == "own") return OWN;
+	if (s == "tit") return TIT;
+	if (s == "trg") return TRG;
+	if (s == "ver") return VER;
 	if (s == "grp") return GRP;
 
 	return(0);
@@ -32,10 +32,10 @@ uint QryWznmAppList::VecVOrd::getIx(
 string QryWznmAppList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == VER) return("ver");
-	if (ix == TRG) return("trg");
-	if (ix == TIT) return("tit");
 	if (ix == OWN) return("own");
+	if (ix == TIT) return("tit");
+	if (ix == TRG) return("trg");
+	if (ix == VER) return("ver");
 	if (ix == GRP) return("grp");
 
 	return("");

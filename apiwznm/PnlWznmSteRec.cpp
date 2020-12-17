@@ -104,16 +104,16 @@ set<uint> PnlWznmSteRec::ContInf::diff(
 
 PnlWznmSteRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdoneAAction
 			, const bool initdoneATrig
+			, const bool initdoneAAction
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdoneAAction = initdoneAAction;
 	this->initdoneATrig = initdoneATrig;
+	this->initdoneAAction = initdoneAAction;
 
-	mask = {INITDONEDETAIL, INITDONEAACTION, INITDONEATRIG};
+	mask = {INITDONEDETAIL, INITDONEATRIG, INITDONEAACTION};
 };
 
 bool PnlWznmSteRec::StatApp::readXML(
@@ -134,8 +134,8 @@ bool PnlWznmSteRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAAction", initdoneAAction)) add(INITDONEAACTION);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneATrig", initdoneATrig)) add(INITDONEATRIG);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAAction", initdoneAAction)) add(INITDONEAACTION);
 	};
 
 	return basefound;
@@ -147,8 +147,8 @@ set<uint> PnlWznmSteRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdoneAAction == comp->initdoneAAction) insert(items, INITDONEAACTION);
 	if (initdoneATrig == comp->initdoneATrig) insert(items, INITDONEATRIG);
+	if (initdoneAAction == comp->initdoneAAction) insert(items, INITDONEAACTION);
 
 	return(items);
 };
@@ -161,7 +161,7 @@ set<uint> PnlWznmSteRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEAACTION, INITDONEATRIG};
+	diffitems = {INITDONEDETAIL, INITDONEATRIG, INITDONEAACTION};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -174,19 +174,19 @@ set<uint> PnlWznmSteRec::StatApp::diff(
 PnlWznmSteRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJrefAAction
 			, const string& scrJrefATrig
+			, const string& scrJrefAAction
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAAction = scrJrefAAction;
 	this->scrJrefATrig = scrJrefATrig;
+	this->scrJrefAAction = scrJrefAAction;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAACTION, SCRJREFATRIG, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, SCRJREFAACTION, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmSteRec::StatShr::readXML(
@@ -213,8 +213,8 @@ bool PnlWznmSteRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAAction", scrJrefAAction)) add(SCRJREFAACTION);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefATrig", scrJrefATrig)) add(SCRJREFATRIG);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAAction", scrJrefAAction)) add(SCRJREFAACTION);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
 
@@ -228,8 +228,8 @@ set<uint> PnlWznmSteRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJrefAAction == comp->scrJrefAAction) insert(items, SCRJREFAACTION);
 	if (scrJrefATrig == comp->scrJrefATrig) insert(items, SCRJREFATRIG);
+	if (scrJrefAAction == comp->scrJrefAAction) insert(items, SCRJREFAACTION);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -243,7 +243,7 @@ set<uint> PnlWznmSteRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAACTION, SCRJREFATRIG, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, SCRJREFAACTION, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

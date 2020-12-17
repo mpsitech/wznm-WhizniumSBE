@@ -39,7 +39,7 @@ PnlWznmPrjRec::PnlWznmPrjRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlmnperson = NULL;
-	pnl1nversion = NULL;
+	pnlprj1nversion = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -100,16 +100,16 @@ void PnlWznmPrjRec::refresh(
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
-		if (pnl1nversion) {delete pnl1nversion; pnl1nversion = NULL;};
+		if (pnlprj1nversion) {delete pnlprj1nversion; pnlprj1nversion = NULL;};
 		if (pnlmnperson) {delete pnlmnperson; pnlmnperson = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmPrjDetail(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnl1nversion) pnl1nversion = new PnlWznmPrj1NVersion(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlprj1nversion) pnlprj1nversion = new PnlWznmPrjPrj1NVersion(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmnperson) pnlmnperson = new PnlWznmPrjMNPerson(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
-	statshr.jref1NVersion = ((pnl1nversion) ? pnl1nversion->jref : 0);
+	statshr.jrefPrj1NVersion = ((pnlprj1nversion) ? pnlprj1nversion->jref : 0);
 	statshr.jrefMNPerson = ((pnlmnperson) ? pnlmnperson->jref : 0);
 
 	// IP refresh --- END
@@ -138,7 +138,7 @@ void PnlWznmPrjRec::updatePreset(
 
 		if (recPrj.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnl1nversion) pnl1nversion->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlprj1nversion) pnlprj1nversion->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmnperson) pnlmnperson->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
@@ -249,11 +249,20 @@ void PnlWznmPrjRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMPRJ_VEREQ) {
-		call->abort = handleCallWznmPrj_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRJUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMPRJUPD_REFEQ) {
 		call->abort = handleCallWznmPrjUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRJ_VEREQ) {
+		call->abort = handleCallWznmPrj_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
+};
+
+bool PnlWznmPrjRec::handleCallWznmPrjUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmPrjUpd_refEq --- INSERT
+	return retval;
 };
 
 bool PnlWznmPrjRec::handleCallWznmPrj_verEq(
@@ -264,14 +273,5 @@ bool PnlWznmPrjRec::handleCallWznmPrj_verEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recPrj.refWznmMVersion == refInv); // IP handleCallWznmPrj_verEq --- LINE
-	return retval;
-};
-
-bool PnlWznmPrjRec::handleCallWznmPrjUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmPrjUpd_refEq --- INSERT
 	return retval;
 };

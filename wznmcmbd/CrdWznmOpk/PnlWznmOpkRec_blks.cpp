@@ -102,9 +102,9 @@ void PnlWznmOpkRec::StatApp::writeXML(
 			, const bool initdoneARetval
 			, const bool initdone1NOp
 			, const bool initdoneRef1NBlock
-			, const bool initdoneMNJob
-			, const bool initdoneMNLibrary
 			, const bool initdoneMNComponent
+			, const bool initdoneMNLibrary
+			, const bool initdoneMNJob
 			, const bool initdoneSqkMNStub
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmOpkRec";
@@ -119,9 +119,9 @@ void PnlWznmOpkRec::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "initdoneARetval", initdoneARetval);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NOp", initdone1NOp);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NBlock", initdoneRef1NBlock);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneMNJob", initdoneMNJob);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneMNLibrary", initdoneMNLibrary);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNComponent", initdoneMNComponent);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneMNLibrary", initdoneMNLibrary);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneMNJob", initdoneMNJob);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneSqkMNStub", initdoneSqkMNStub);
 	xmlTextWriterEndElement(wr);
 };
@@ -137,9 +137,9 @@ PnlWznmOpkRec::StatShr::StatShr(
 			, const ubigint jrefARetval
 			, const ubigint jref1NOp
 			, const ubigint jrefRef1NBlock
-			, const ubigint jrefMNJob
-			, const ubigint jrefMNLibrary
 			, const ubigint jrefMNComponent
+			, const ubigint jrefMNLibrary
+			, const ubigint jrefMNJob
 			, const ubigint jrefSqkMNStub
 			, const bool pnlsqkmnstubAvail
 			, const bool ButRegularizeActive
@@ -152,14 +152,14 @@ PnlWznmOpkRec::StatShr::StatShr(
 	this->jrefARetval = jrefARetval;
 	this->jref1NOp = jref1NOp;
 	this->jrefRef1NBlock = jrefRef1NBlock;
-	this->jrefMNJob = jrefMNJob;
-	this->jrefMNLibrary = jrefMNLibrary;
 	this->jrefMNComponent = jrefMNComponent;
+	this->jrefMNLibrary = jrefMNLibrary;
+	this->jrefMNJob = jrefMNJob;
 	this->jrefSqkMNStub = jrefSqkMNStub;
 	this->pnlsqkmnstubAvail = pnlsqkmnstubAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAINVARG, JREFARETVAL, JREF1NOP, JREFREF1NBLOCK, JREFMNJOB, JREFMNLIBRARY, JREFMNCOMPONENT, JREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAINVARG, JREFARETVAL, JREF1NOP, JREFREF1NBLOCK, JREFMNCOMPONENT, JREFMNLIBRARY, JREFMNJOB, JREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmOpkRec::StatShr::writeXML(
@@ -180,9 +180,9 @@ void PnlWznmOpkRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefARetval", Scr::scramble(jrefARetval));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NOp", Scr::scramble(jref1NOp));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NBlock", Scr::scramble(jrefRef1NBlock));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefMNJob", Scr::scramble(jrefMNJob));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefMNLibrary", Scr::scramble(jrefMNLibrary));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNComponent", Scr::scramble(jrefMNComponent));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefMNLibrary", Scr::scramble(jrefMNLibrary));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefMNJob", Scr::scramble(jrefMNJob));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefSqkMNStub", Scr::scramble(jrefSqkMNStub));
 		writeBoolAttr(wr, itemtag, "sref", "pnlsqkmnstubAvail", pnlsqkmnstubAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
@@ -200,9 +200,9 @@ set<uint> PnlWznmOpkRec::StatShr::comm(
 	if (jrefARetval == comp->jrefARetval) insert(items, JREFARETVAL);
 	if (jref1NOp == comp->jref1NOp) insert(items, JREF1NOP);
 	if (jrefRef1NBlock == comp->jrefRef1NBlock) insert(items, JREFREF1NBLOCK);
-	if (jrefMNJob == comp->jrefMNJob) insert(items, JREFMNJOB);
-	if (jrefMNLibrary == comp->jrefMNLibrary) insert(items, JREFMNLIBRARY);
 	if (jrefMNComponent == comp->jrefMNComponent) insert(items, JREFMNCOMPONENT);
+	if (jrefMNLibrary == comp->jrefMNLibrary) insert(items, JREFMNLIBRARY);
+	if (jrefMNJob == comp->jrefMNJob) insert(items, JREFMNJOB);
 	if (jrefSqkMNStub == comp->jrefSqkMNStub) insert(items, JREFSQKMNSTUB);
 	if (pnlsqkmnstubAvail == comp->pnlsqkmnstubAvail) insert(items, PNLSQKMNSTUBAVAIL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
@@ -218,7 +218,7 @@ set<uint> PnlWznmOpkRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAINVARG, JREFARETVAL, JREF1NOP, JREFREF1NBLOCK, JREFMNJOB, JREFMNLIBRARY, JREFMNCOMPONENT, JREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAINVARG, JREFARETVAL, JREF1NOP, JREFREF1NBLOCK, JREFMNCOMPONENT, JREFMNLIBRARY, JREFMNJOB, JREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

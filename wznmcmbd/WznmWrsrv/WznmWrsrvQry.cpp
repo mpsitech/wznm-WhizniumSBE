@@ -1107,7 +1107,7 @@ void WznmWrsrvQry::writeQryCpp(
 			if (i != 0) outfile << "else ";
 			outfile << "if (preIxOrd == VecVOrd::" << StrMod::uc(qao->Short) << ") sqlstr += \" ORDER BY";
 
-			StrMod::stringToVector(qao->srefsWznmMTablecol, ss);
+			StrMod::srefsToVector(qao->srefsWznmMTablecol, ss);
 			for (unsigned int j = 0; j < ss.size(); j++) {
 				if (j != 0) outfile << ",";
 				outfile << " " << ss[j] << " ASC";

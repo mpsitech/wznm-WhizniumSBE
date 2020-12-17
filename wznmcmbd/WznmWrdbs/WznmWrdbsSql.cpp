@@ -184,7 +184,7 @@ void WznmWrdbsSql::writeSqlMy(
 			outfile << "," << endl << "\t";
 			outfile << "CONSTRAINT UNIQUE (";
 
-			StrMod::stringToVector(tbl->unqSrefsWznmMTablecol, ss);
+			StrMod::srefsToVector(tbl->unqSrefsWznmMTablecol, ss);
 			for (unsigned int j = 0; j < ss.size(); j++) {
 				if (j != 0) outfile << ", ";
 				outfile << ss[j];
@@ -257,7 +257,7 @@ void WznmWrdbsSql::writeSqlPg(
 			outfile << "," << endl << "\t";
 			outfile << "UNIQUE (";
 
-			StrMod::stringToVector(tbl->unqSrefsWznmMTablecol, ss);
+			StrMod::srefsToVector(tbl->unqSrefsWznmMTablecol, ss);
 			for (unsigned int j = 0; j < ss.size(); j++) {
 				if (j != 0) outfile << ", ";
 				outfile << ss[j];
@@ -369,7 +369,7 @@ void WznmWrdbsSql::writeSqlLite(
 			outfile << "," << endl << "\t";
 			outfile << "UNIQUE (";
 
-			StrMod::stringToVector(tbl->unqSrefsWznmMTablecol, ss);
+			StrMod::srefsToVector(tbl->unqSrefsWznmMTablecol, ss);
 			for (unsigned int j = 0; j < ss.size(); j++) {
 				if (j != 0) outfile << ", ";
 				outfile << ss[j];

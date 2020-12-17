@@ -1,41 +1,41 @@
 /**
-	* \file PnlWznmPrj1NVersion.h
-	* job handler for job PnlWznmPrj1NVersion (declarations)
+	* \file PnlWznmPrjPrj1NVersion.h
+	* job handler for job PnlWznmPrjPrj1NVersion (declarations)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 28 Nov 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
-#ifndef PNLWZNMPRJ1NVERSION_H
-#define PNLWZNMPRJ1NVERSION_H
+#ifndef PNLWZNMPRJPRJ1NVERSION_H
+#define PNLWZNMPRJPRJ1NVERSION_H
 
 // IP include.spec --- INSERT
 
 // IP include.cust --- INSERT
 
-#include "QryWznmPrj1NVersion.h"
+#include "QryWznmPrjPrj1NVersion.h"
 
-#define VecVWznmPrj1NVersionDo PnlWznmPrj1NVersion::VecVDo
+#define VecVWznmPrjPrj1NVersionDo PnlWznmPrjPrj1NVersion::VecVDo
 
-#define ContInfWznmPrj1NVersion PnlWznmPrj1NVersion::ContInf
-#define StatAppWznmPrj1NVersion PnlWznmPrj1NVersion::StatApp
-#define StatShrWznmPrj1NVersion PnlWznmPrj1NVersion::StatShr
-#define StgIacWznmPrj1NVersion PnlWznmPrj1NVersion::StgIac
-#define TagWznmPrj1NVersion PnlWznmPrj1NVersion::Tag
+#define ContInfWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::ContInf
+#define StatAppWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::StatApp
+#define StatShrWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::StatShr
+#define StgIacWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::StgIac
+#define TagWznmPrjPrj1NVersion PnlWznmPrjPrj1NVersion::Tag
 
-#define DpchAppWznmPrj1NVersionData PnlWznmPrj1NVersion::DpchAppData
-#define DpchAppWznmPrj1NVersionDo PnlWznmPrj1NVersion::DpchAppDo
-#define DpchEngWznmPrj1NVersionData PnlWznmPrj1NVersion::DpchEngData
+#define DpchAppWznmPrjPrj1NVersionData PnlWznmPrjPrj1NVersion::DpchAppData
+#define DpchAppWznmPrjPrj1NVersionDo PnlWznmPrjPrj1NVersion::DpchAppDo
+#define DpchEngWznmPrjPrj1NVersionData PnlWznmPrjPrj1NVersion::DpchEngData
 
 /**
-	* PnlWznmPrj1NVersion
+	* PnlWznmPrjPrj1NVersion
 	*/
-class PnlWznmPrj1NVersion : public JobWznm {
+class PnlWznmPrjPrj1NVersion : public JobWznm {
 
 public:
 	/**
-		* VecVDo (full: VecVWznmPrj1NVersionDo)
+		* VecVDo (full: VecVWznmPrjPrj1NVersionDo)
 		*/
 	class VecVDo {
 
@@ -52,7 +52,7 @@ public:
 	};
 
 	/**
-	  * ContInf (full: ContInfWznmPrj1NVersion)
+	  * ContInf (full: ContInfWznmPrjPrj1NVersion)
 	  */
 	class ContInf : public Sbecore::Xmlio::Block {
 
@@ -72,7 +72,7 @@ public:
 	};
 
 	/**
-		* StatApp (full: StatAppWznmPrj1NVersion)
+		* StatApp (full: StatAppWznmPrjPrj1NVersion)
 		*/
 	class StatApp {
 
@@ -81,7 +81,7 @@ public:
 	};
 
 	/**
-		* StatShr (full: StatShrWznmPrj1NVersion)
+		* StatShr (full: StatShrWznmPrjPrj1NVersion)
 		*/
 	class StatShr : public Sbecore::Xmlio::Block {
 
@@ -117,7 +117,7 @@ public:
 	};
 
 	/**
-		* StgIac (full: StgIacWznmPrj1NVersion)
+		* StgIac (full: StgIacWznmPrjPrj1NVersion)
 		*/
 	class StgIac : public Sbecore::Xmlio::Block {
 
@@ -138,7 +138,7 @@ public:
 	};
 
 	/**
-		* Tag (full: TagWznmPrj1NVersion)
+		* Tag (full: TagWznmPrjPrj1NVersion)
 		*/
 	class Tag {
 
@@ -147,7 +147,7 @@ public:
 	};
 
 	/**
-		* DpchAppData (full: DpchAppWznmPrj1NVersionData)
+		* DpchAppData (full: DpchAppWznmPrjPrj1NVersionData)
 		*/
 	class DpchAppData : public DpchAppWznm {
 
@@ -161,7 +161,7 @@ public:
 
 	public:
 		StgIac stgiac;
-		QryWznmPrj1NVersion::StgIac stgiacqry;
+		QryWznmPrjPrj1NVersion::StgIac stgiacqry;
 
 	public:
 		std::string getSrefsMask();
@@ -170,7 +170,7 @@ public:
 	};
 
 	/**
-		* DpchAppDo (full: DpchAppWznmPrj1NVersionDo)
+		* DpchAppDo (full: DpchAppWznmPrjPrj1NVersionDo)
 		*/
 	class DpchAppDo : public DpchAppWznm {
 
@@ -191,7 +191,7 @@ public:
 	};
 
 	/**
-		* DpchEngData (full: DpchEngWznmPrj1NVersionData)
+		* DpchEngData (full: DpchEngWznmPrjPrj1NVersionData)
 		*/
 	class DpchEngData : public DpchEngWznm {
 
@@ -210,16 +210,16 @@ public:
 		static const Sbecore::uint ALL = 12;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContInf* continf = NULL, Sbecore::Xmlio::Feed* feedFCsiQst = NULL, StatShr* statshr = NULL, StgIac* stgiac = NULL, ListWznmQPrj1NVersion* rst = NULL, QryWznmPrj1NVersion::StatShr* statshrqry = NULL, QryWznmPrj1NVersion::StgIac* stgiacqry = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContInf* continf = NULL, Sbecore::Xmlio::Feed* feedFCsiQst = NULL, StatShr* statshr = NULL, StgIac* stgiac = NULL, ListWznmQPrjPrj1NVersion* rst = NULL, QryWznmPrjPrj1NVersion::StatShr* statshrqry = NULL, QryWznmPrjPrj1NVersion::StgIac* stgiacqry = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContInf continf;
 		Sbecore::Xmlio::Feed feedFCsiQst;
 		StatShr statshr;
 		StgIac stgiac;
-		ListWznmQPrj1NVersion rst;
-		QryWznmPrj1NVersion::StatShr statshrqry;
-		QryWznmPrj1NVersion::StgIac stgiacqry;
+		ListWznmQPrjPrj1NVersion rst;
+		QryWznmPrjPrj1NVersion::StatShr statshrqry;
+		QryWznmPrjPrj1NVersion::StgIac stgiacqry;
 
 	public:
 		std::string getSrefsMask();
@@ -239,8 +239,8 @@ public:
 	bool evalButDeleteActive(DbsWznm* dbswznm);
 
 public:
-	PnlWznmPrj1NVersion(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
-	~PnlWznmPrj1NVersion();
+	PnlWznmPrjPrj1NVersion(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
+	~PnlWznmPrjPrj1NVersion();
 
 public:
 	ContInf continf;
@@ -249,7 +249,7 @@ public:
 
 	Sbecore::Xmlio::Feed feedFCsiQst;
 
-	QryWznmPrj1NVersion* qry;
+	QryWznmPrjPrj1NVersion* qry;
 
 	WznmMVersion recVer;
 
@@ -274,7 +274,7 @@ private:
 
 	void handleDpchAppWznmInit(DbsWznm* dbswznm, DpchAppWznmInit* dpchappwznminit, DpchEngWznm** dpcheng);
 	void handleDpchAppDataStgiac(DbsWznm* dbswznm, StgIac* _stgiac, DpchEngWznm** dpcheng);
-	void handleDpchAppDataStgiacqry(DbsWznm* dbswznm, QryWznmPrj1NVersion::StgIac* _stgiacqry, DpchEngWznm** dpcheng);
+	void handleDpchAppDataStgiacqry(DbsWznm* dbswznm, QryWznmPrjPrj1NVersion::StgIac* _stgiacqry, DpchEngWznm** dpcheng);
 
 	void handleDpchAppDoButUpClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoButDownClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);

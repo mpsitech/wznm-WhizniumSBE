@@ -293,7 +293,7 @@ void WznmWrapp::writeHandleTrigger(
 			if (app->ixWznmVApptarget == VecWznmVApptarget::JAVA) outfile << "stkIcsVState.push";
 			else outfile << "stkIcsVState.push_back";
 
-			outfile << "(_ixVState); ixVState = Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << "; break;" << endl;
+			outfile << "(ixVState); ixVState = Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << "; break;" << endl;
 		};
 	};
 
@@ -429,7 +429,7 @@ string WznmWrapp::getSteTrigs_string(
 
 		if (steAtrg->srefsMask != "") {
 			dpchsref = job->sref + subdlm + Wznm::getSubsref(job, blk->sref);
-			StrMod::stringToVector(steAtrg->srefsMask, ss);
+			StrMod::srefsToVector(steAtrg->srefsMask, ss);
 
 			if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval += " && _dpcheng.hasAll(new Integer[]";
 			else retval += " && _dpcheng->hasAll(";
@@ -726,19 +726,23 @@ string WznmWrapp::writeState_action(
 			delete rtj;
 		};
 
-	} else if ((steAact->ixVType == VecWznmVAMStateActionType::CSJSTEP) || (steAact->ixVType == VecWznmVAMStateActionType::STEP)) {
-		if (dbswznm->tblwznmmstate->loadRecByRef(steAact->snxRefWznmMState, &snx)) {
-			if (steAact->ixVType == VecWznmVAMStateActionType::CSJSTEP) {
-				if (dbswznm->tblwznmmrtjob->loadRecByRef(steAact->refWznmMRtjob, &rtj)) {
-					if (dbswznm->tblwznmmjob->loadRecByRef(rtj->refWznmMJob, &job)) {
-						retval = dom + getScrJrefVar(dbswznm, rtj, job) + " = " + dpchjref + ";\n";
-						delete job;
-					};
-					delete rtj;
+	} else if ((steAact->ixVType == VecWznmVAMStateActionType::CSJSTEP) || (steAact->ixVType == VecWznmVAMStateActionType::CSJNTFSTEP) || (steAact->ixVType == VecWznmVAMStateActionType::STEP)) {
+		if ((steAact->ixVType == VecWznmVAMStateActionType::CSJSTEP) || (steAact->ixVType == VecWznmVAMStateActionType::CSJNTFSTEP)) {
+			if (dbswznm->tblwznmmrtjob->loadRecByRef(steAact->refWznmMRtjob, &rtj)) {
+				if (dbswznm->tblwznmmjob->loadRecByRef(rtj->refWznmMJob, &job)) {
+					retval = dom + getScrJrefVar(dbswznm, rtj, job) + " = " + dpchjref + ";\n";
+					delete job;
 				};
+				delete rtj;
 			};
-			retval += "retval = Vec" + Appshort + "VState" + subdlm + StrMod::uc(StrMod::dotToUsc(snx->sref)) + ";";
+			if (steAact->ixVType == VecWznmVAMStateActionType::CSJNTFSTEP) {
+				if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += "[self startNotify];\n";
+				else retval += "startNotify();\n";
+			};
+		};
 
+		if (dbswznm->tblwznmmstate->loadRecByRef(steAact->snxRefWznmMState, &snx)) {
+			retval += "retval = Vec" + Appshort + "VState" + subdlm + StrMod::uc(StrMod::dotToUsc(snx->sref)) + ";";
 			delete snx;
 		};
 
@@ -787,7 +791,7 @@ void WznmWrapp::writeMerge(
 	for (unsigned int i = 0; i < rtbs.nodes.size(); i++) {
 		rtb = rtbs.nodes[i];
 
-		StrMod::stringToVector(rtb->srcSrefsWznmAMBlockItem, ss);
+		StrMod::srefsToVector(rtb->srcSrefsWznmAMBlockItem, ss);
 		for (unsigned int j = 0; j < ss.size(); j++) {
 			s = ss[j];
 

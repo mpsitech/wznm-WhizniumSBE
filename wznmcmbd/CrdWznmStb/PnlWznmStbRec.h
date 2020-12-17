@@ -14,11 +14,11 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmStbDetail.h"
-#include "PnlWznmStbSupMNStub.h"
 #include "PnlWznmStbSubMNStub.h"
 #include "PnlWznmStbMNSquawk.h"
 #include "PnlWznmStbMNCall.h"
+#include "PnlWznmStbSupMNStub.h"
+#include "PnlWznmStbDetail.h"
 
 #define VecVWznmStbRecDo PnlWznmStbRec::VecVDo
 
@@ -75,7 +75,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneSupMNStub = false, const bool initdoneSubMNStub = false, const bool initdoneMNSquawk = false, const bool initdoneMNCall = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneSupMNStub = false, const bool initdoneMNCall = false, const bool initdoneMNSquawk = false, const bool initdoneSubMNStub = false);
 	};
 
 	/**
@@ -87,21 +87,21 @@ public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREFSUPMNSTUB = 3;
-		static const Sbecore::uint JREFSUBMNSTUB = 4;
+		static const Sbecore::uint JREFMNCALL = 4;
 		static const Sbecore::uint JREFMNSQUAWK = 5;
-		static const Sbecore::uint JREFMNCALL = 6;
+		static const Sbecore::uint JREFSUBMNSTUB = 6;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 7;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefSupMNStub = 0, const Sbecore::ubigint jrefSubMNStub = 0, const Sbecore::ubigint jrefMNSquawk = 0, const Sbecore::ubigint jrefMNCall = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefSupMNStub = 0, const Sbecore::ubigint jrefMNCall = 0, const Sbecore::ubigint jrefMNSquawk = 0, const Sbecore::ubigint jrefSubMNStub = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jrefSupMNStub;
-		Sbecore::ubigint jrefSubMNStub;
-		Sbecore::ubigint jrefMNSquawk;
 		Sbecore::ubigint jrefMNCall;
+		Sbecore::ubigint jrefMNSquawk;
+		Sbecore::ubigint jrefSubMNStub;
 		bool ButRegularizeActive;
 
 	public:
@@ -177,11 +177,11 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmStbDetail* pnldetail;
-	PnlWznmStbSupMNStub* pnlsupmnstub;
 	PnlWznmStbSubMNStub* pnlsubmnstub;
 	PnlWznmStbMNSquawk* pnlmnsquawk;
 	PnlWznmStbMNCall* pnlmncall;
+	PnlWznmStbSupMNStub* pnlsupmnstub;
+	PnlWznmStbDetail* pnldetail;
 
 	WznmMStub recStb;
 
@@ -215,9 +215,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
+	bool handleCallWznmStbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStb_tcoEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmStb_sbsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmStbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

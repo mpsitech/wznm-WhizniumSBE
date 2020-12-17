@@ -23,10 +23,10 @@ import sbecore.*;
 
 public class ApiWznm {
 
-	public static final String WZNM_VERSION = "1.1.1";
+	public static final String WZNM_VERSION = "1.1.3";
 	public static final int WZNM_VERSION_MAJOR = 1;
 	public static final int WZNM_VERSION_MINOR = 1;
-	public static final int WZNM_VERSION_SUB = 1;
+	public static final int WZNM_VERSION_SUB = 3;
 
 	public static DpchEngWznm readDpchEng(
 				String s
@@ -289,12 +289,12 @@ public class ApiWznm {
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPNLLISTDATA) dpcheng = (new PnlWznmPnlList()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPNLMNQUERYDATA) dpcheng = (new PnlWznmPnlMNQuery()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPNLRECDATA) dpcheng = (new PnlWznmPnlRec()).new DpchEngData();
-			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRJ1NVERSIONDATA) dpcheng = (new PnlWznmPrj1NVersion()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRJDATA) dpcheng = (new CrdWznmPrj()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRJDETAILDATA) dpcheng = (new PnlWznmPrjDetail()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRJHEADBARDATA) dpcheng = (new PnlWznmPrjHeadbar()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRJLISTDATA) dpcheng = (new PnlWznmPrjList()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRJMNPERSONDATA) dpcheng = (new PnlWznmPrjMNPerson()).new DpchEngData();
+			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRJPRJ1NVERSIONDATA) dpcheng = (new PnlWznmPrjPrj1NVersion()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRJRECDATA) dpcheng = (new PnlWznmPrjRec()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRSADETAILDATA) dpcheng = (new PnlWznmPrsADetail()).new DpchEngData();
 			else if (ixWznmVDpch == VecWznmVDpch.DPCHENGWZNMPRSDATA) dpcheng = (new CrdWznmPrs()).new DpchEngData();

@@ -74,6 +74,7 @@ uint TblWznmAMStateAction::VecVType::getIx(
 	if (s == "do") return DO;
 	if (s == "step") return STEP;
 	if (s == "csjstep") return CSJSTEP;
+	if (s == "csjntfstep") return CSJNTFSTEP;
 	if (s == "stepseq") return STEPSEQ;
 	if (s == "subseq") return SUBSEQ;
 	if (s == "retseq") return RETSEQ;
@@ -91,6 +92,7 @@ string TblWznmAMStateAction::VecVType::getSref(
 	if (ix == DO) return("do");
 	if (ix == STEP) return("step");
 	if (ix == CSJSTEP) return("csjstep");
+	if (ix == CSJNTFSTEP) return("csjntfstep");
 	if (ix == STEPSEQ) return("stepseq");
 	if (ix == SUBSEQ) return("subseq");
 	if (ix == RETSEQ) return("retseq");
@@ -110,6 +112,7 @@ string TblWznmAMStateAction::VecVType::getTitle(
 		if (ix == DO) return("trigger UI action");
 		if (ix == STEP) return("step to next state");
 		if (ix == CSJSTEP) return("copy scr. job ref. then step to next state");
+		if (ix == CSJNTFSTEP) return("copy sess. scr. job ref., start notify, step to next state");
 		if (ix == STEPSEQ) return("step to next sequence");
 		if (ix == SUBSEQ) return("perform sub-sequence");
 		if (ix == RETSEQ) return("return from sequence");
@@ -127,5 +130,5 @@ void TblWznmAMStateAction::VecVType::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 10; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
+	for (unsigned int i = 1; i <= 11; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };

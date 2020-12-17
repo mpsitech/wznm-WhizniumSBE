@@ -20,8 +20,8 @@ uint QryWznmCalList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "rat") return RAT;
 	if (s == "iat") return IAT;
+	if (s == "rat") return RAT;
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
 	if (s == "ver") return VER;
@@ -34,8 +34,8 @@ uint QryWznmCalList::VecVOrd::getIx(
 string QryWznmCalList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == RAT) return("rat");
 	if (ix == IAT) return("iat");
+	if (ix == RAT) return("rat");
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
 	if (ix == VER) return("ver");

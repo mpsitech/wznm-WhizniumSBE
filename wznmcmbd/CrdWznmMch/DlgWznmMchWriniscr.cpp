@@ -106,8 +106,8 @@ void DlgWznmMchWriniscr::refreshFia(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrFia oldStatshrfia(statshrfia);
 	ContInfFia oldContinffia(continffia);
+	StatShrFia oldStatshrfia(statshrfia);
 
 	// IP refreshFia --- RBEGIN
 
@@ -122,8 +122,8 @@ void DlgWznmMchWriniscr::refreshFia(
 	statshrfia.DldActive = evalFiaDldActive(dbswznm);
 
 	// IP refreshFia --- REND
-	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
 	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
+	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
 };
 
 void DlgWznmMchWriniscr::refresh(

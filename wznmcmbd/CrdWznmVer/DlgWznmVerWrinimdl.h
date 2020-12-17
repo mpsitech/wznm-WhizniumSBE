@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
+#include "JobWznmIexPrj.h"
 #include "JobWznmIexDpl.h"
 #include "JobWznmIexGbl.h"
-#include "JobWznmIexPrj.h"
 
 #define VecVDlgWznmVerWrinimdlDit DlgWznmVerWrinimdl::VecVDit
 #define VecVDlgWznmVerWrinimdlDo DlgWznmVerWrinimdl::VecVDo
@@ -371,8 +371,8 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalFiaDldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalWriButRunActive(DbsWznm* dbswznm);
 	bool evalWriButStoActive(DbsWznm* dbswznm);
 
@@ -392,9 +392,9 @@ public:
 	Sbecore::Xmlio::Feed feedFDse;
 	Sbecore::Xmlio::Feed feedFSge;
 
+	JobWznmIexPrj* iexprj;
 	JobWznmIexDpl* iexdpl;
 	JobWznmIexGbl* iexgbl;
-	JobWznmIexPrj* iexprj;
 
 	Sbecore::uint ixVDit;
 

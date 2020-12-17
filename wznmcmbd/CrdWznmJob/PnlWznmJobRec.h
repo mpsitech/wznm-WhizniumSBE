@@ -14,19 +14,19 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmJobDetail.h"
-#include "PnlWznmJobAVar.h"
-#include "PnlWznmJobACmd.h"
-#include "PnlWznmJob1NRtjob.h"
-#include "PnlWznmJob1NMethod.h"
-#include "PnlWznmJobJob1NStage.h"
-#include "PnlWznmJob1NSensitivity.h"
-#include "PnlWznmJobHk1NVector.h"
-#include "PnlWznmJobRef1NBlock.h"
+#include "PnlWznmJobSubMNJob.h"
+#include "PnlWznmJobMNOppack.h"
 #include "PnlWznmJobMNOp.h"
 #include "PnlWznmJobSupMNJob.h"
-#include "PnlWznmJobMNOppack.h"
-#include "PnlWznmJobSubMNJob.h"
+#include "PnlWznmJobRef1NBlock.h"
+#include "PnlWznmJobHk1NVector.h"
+#include "PnlWznmJob1NSensitivity.h"
+#include "PnlWznmJob1NMethod.h"
+#include "PnlWznmJobJob1NStage.h"
+#include "PnlWznmJob1NRtjob.h"
+#include "PnlWznmJobAVar.h"
+#include "PnlWznmJobACmd.h"
+#include "PnlWznmJobDetail.h"
 
 #define VecVWznmJobRecDo PnlWznmJobRec::VecVDo
 
@@ -83,7 +83,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAVar = false, const bool initdoneACmd = false, const bool initdone1NRtjob = false, const bool initdone1NMethod = false, const bool initdoneJob1NStage = false, const bool initdone1NSensitivity = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NBlock = false, const bool initdoneMNOp = false, const bool initdoneSupMNJob = false, const bool initdoneMNOppack = false, const bool initdoneSubMNJob = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneACmd = false, const bool initdoneAVar = false, const bool initdone1NRtjob = false, const bool initdone1NMethod = false, const bool initdoneJob1NStage = false, const bool initdone1NSensitivity = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NBlock = false, const bool initdoneSupMNJob = false, const bool initdoneMNOp = false, const bool initdoneMNOppack = false, const bool initdoneSubMNJob = false);
 	};
 
 	/**
@@ -94,37 +94,37 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFAVAR = 3;
-		static const Sbecore::uint JREFACMD = 4;
+		static const Sbecore::uint JREFACMD = 3;
+		static const Sbecore::uint JREFAVAR = 4;
 		static const Sbecore::uint JREF1NRTJOB = 5;
 		static const Sbecore::uint JREF1NMETHOD = 6;
 		static const Sbecore::uint JREFJOB1NSTAGE = 7;
 		static const Sbecore::uint JREF1NSENSITIVITY = 8;
 		static const Sbecore::uint JREFHK1NVECTOR = 9;
 		static const Sbecore::uint JREFREF1NBLOCK = 10;
-		static const Sbecore::uint JREFMNOP = 11;
-		static const Sbecore::uint JREFSUPMNJOB = 12;
+		static const Sbecore::uint JREFSUPMNJOB = 11;
+		static const Sbecore::uint JREFMNOP = 12;
 		static const Sbecore::uint JREFMNOPPACK = 13;
 		static const Sbecore::uint JREFSUBMNJOB = 14;
 		static const Sbecore::uint PNLSUBMNJOBAVAIL = 15;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 16;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAVar = 0, const Sbecore::ubigint jrefACmd = 0, const Sbecore::ubigint jref1NRtjob = 0, const Sbecore::ubigint jref1NMethod = 0, const Sbecore::ubigint jrefJob1NStage = 0, const Sbecore::ubigint jref1NSensitivity = 0, const Sbecore::ubigint jrefHk1NVector = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefMNOp = 0, const Sbecore::ubigint jrefSupMNJob = 0, const Sbecore::ubigint jrefMNOppack = 0, const Sbecore::ubigint jrefSubMNJob = 0, const bool pnlsubmnjobAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefACmd = 0, const Sbecore::ubigint jrefAVar = 0, const Sbecore::ubigint jref1NRtjob = 0, const Sbecore::ubigint jref1NMethod = 0, const Sbecore::ubigint jrefJob1NStage = 0, const Sbecore::ubigint jref1NSensitivity = 0, const Sbecore::ubigint jrefHk1NVector = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefSupMNJob = 0, const Sbecore::ubigint jrefMNOp = 0, const Sbecore::ubigint jrefMNOppack = 0, const Sbecore::ubigint jrefSubMNJob = 0, const bool pnlsubmnjobAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefAVar;
 		Sbecore::ubigint jrefACmd;
+		Sbecore::ubigint jrefAVar;
 		Sbecore::ubigint jref1NRtjob;
 		Sbecore::ubigint jref1NMethod;
 		Sbecore::ubigint jrefJob1NStage;
 		Sbecore::ubigint jref1NSensitivity;
 		Sbecore::ubigint jrefHk1NVector;
 		Sbecore::ubigint jrefRef1NBlock;
-		Sbecore::ubigint jrefMNOp;
 		Sbecore::ubigint jrefSupMNJob;
+		Sbecore::ubigint jrefMNOp;
 		Sbecore::ubigint jrefMNOppack;
 		Sbecore::ubigint jrefSubMNJob;
 		bool pnlsubmnjobAvail;
@@ -204,19 +204,19 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmJobDetail* pnldetail;
-	PnlWznmJobAVar* pnlavar;
-	PnlWznmJobACmd* pnlacmd;
-	PnlWznmJob1NRtjob* pnl1nrtjob;
-	PnlWznmJob1NMethod* pnl1nmethod;
-	PnlWznmJobJob1NStage* pnljob1nstage;
-	PnlWznmJob1NSensitivity* pnl1nsensitivity;
-	PnlWznmJobHk1NVector* pnlhk1nvector;
-	PnlWznmJobRef1NBlock* pnlref1nblock;
+	PnlWznmJobSubMNJob* pnlsubmnjob;
+	PnlWznmJobMNOppack* pnlmnoppack;
 	PnlWznmJobMNOp* pnlmnop;
 	PnlWznmJobSupMNJob* pnlsupmnjob;
-	PnlWznmJobMNOppack* pnlmnoppack;
-	PnlWznmJobSubMNJob* pnlsubmnjob;
+	PnlWznmJobRef1NBlock* pnlref1nblock;
+	PnlWznmJobHk1NVector* pnlhk1nvector;
+	PnlWznmJob1NSensitivity* pnl1nsensitivity;
+	PnlWznmJob1NMethod* pnl1nmethod;
+	PnlWznmJobJob1NStage* pnljob1nstage;
+	PnlWznmJob1NRtjob* pnl1nrtjob;
+	PnlWznmJobAVar* pnlavar;
+	PnlWznmJobACmd* pnlacmd;
+	PnlWznmJobDetail* pnldetail;
 
 	WznmMJob recJob;
 
@@ -250,11 +250,11 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmJob_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmJob_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmJob_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmJob_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmJobUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmJob_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmJob_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmJob_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmJob_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

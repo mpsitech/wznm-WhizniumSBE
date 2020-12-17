@@ -19,8 +19,8 @@ public class QryWznmQryList {
 		*/
 	public static class VecVOrd {
 
-		public static final int QTB = 1;
-		public static final int TBL = 2;
+		public static final int TBL = 1;
+		public static final int QTB = 2;
 		public static final int SRL = 3;
 		public static final int SUP = 4;
 		public static final int VER = 5;
@@ -32,8 +32,8 @@ public class QryWznmQryList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("qtb")) return QTB;
 			if (s.equals("tbl")) return TBL;
+			if (s.equals("qtb")) return QTB;
 			if (s.equals("srl")) return SRL;
 			if (s.equals("sup")) return SUP;
 			if (s.equals("ver")) return VER;
@@ -46,8 +46,8 @@ public class QryWznmQryList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == QTB) return("qtb");
 			if (ix == TBL) return("tbl");
+			if (ix == QTB) return("qtb");
 			if (ix == SRL) return("srl");
 			if (ix == SUP) return("sup");
 			if (ix == VER) return("ver");

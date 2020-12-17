@@ -31,12 +31,12 @@ namespace QryWznmRelList {
 		static const Sbecore::uint TBL = 1;
 		static const Sbecore::uint SRL = 2;
 		static const Sbecore::uint SUP = 3;
-		static const Sbecore::uint VER = 4;
-		static const Sbecore::uint TYP = 5;
-		static const Sbecore::uint TOS = 6;
-		static const Sbecore::uint TOT = 7;
-		static const Sbecore::uint FRS = 8;
-		static const Sbecore::uint FRT = 9;
+		static const Sbecore::uint FRT = 4;
+		static const Sbecore::uint VER = 5;
+		static const Sbecore::uint TYP = 6;
+		static const Sbecore::uint TOS = 7;
+		static const Sbecore::uint TOT = 8;
+		static const Sbecore::uint FRS = 9;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

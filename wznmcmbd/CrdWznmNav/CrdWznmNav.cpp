@@ -50,12 +50,12 @@ CrdWznmNav::CrdWznmNav(
 	pnluix = NULL;
 	pnldbstr = NULL;
 	pnlproject = NULL;
-	pnlpre = NULL;
-	pnladmin = NULL;
 	pnlglobal = NULL;
-	dlgmnglic = NULL;
+	pnladmin = NULL;
+	pnlpre = NULL;
 	pnlheadbar = NULL;
 	dlgloaini = NULL;
+	dlgmnglic = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -70,9 +70,9 @@ CrdWznmNav::CrdWznmNav(
 	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
 	pnldbstr = new PnlWznmNavDbstr(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlproject = new PnlWznmNavProject(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlpre = new PnlWznmNavPre(xchg, dbswznm, jref, ixWznmVLocale);
-	pnladmin = new PnlWznmNavAdmin(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlglobal = new PnlWznmNavGlobal(xchg, dbswznm, jref, ixWznmVLocale);
+	pnladmin = new PnlWznmNavAdmin(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlpre = new PnlWznmNavPre(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmNavHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT

@@ -114,24 +114,24 @@ public class PnlWznmSteRec {
 	public class StatApp extends Block {
 
 		public static final int INITDONEDETAIL = 1;
-		public static final int INITDONEAACTION = 2;
-		public static final int INITDONEATRIG = 3;
+		public static final int INITDONEATRIG = 2;
+		public static final int INITDONEAACTION = 3;
 
 		public StatApp(
 					boolean initdoneDetail
-					, boolean initdoneAAction
 					, boolean initdoneATrig
+					, boolean initdoneAAction
 				) {
 			this.initdoneDetail = initdoneDetail;
-			this.initdoneAAction = initdoneAAction;
 			this.initdoneATrig = initdoneATrig;
+			this.initdoneAAction = initdoneAAction;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAACTION, INITDONEATRIG));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATRIG, INITDONEAACTION));
 		};
 
 		public boolean initdoneDetail;
-		public boolean initdoneAAction;
 		public boolean initdoneATrig;
+		public boolean initdoneAAction;
 
 		public boolean readXML(
 					Document doc
@@ -147,8 +147,8 @@ public class PnlWznmSteRec {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
-				initdoneAAction = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAAction", mask, INITDONEAACTION);
 				initdoneATrig = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneATrig", mask, INITDONEATRIG);
+				initdoneAAction = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAAction", mask, INITDONEAACTION);
 
 				return true;
 			};
@@ -162,8 +162,8 @@ public class PnlWznmSteRec {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
-			if (initdoneAAction == comp.initdoneAAction) items.add(INITDONEAACTION);
 			if (initdoneATrig == comp.initdoneATrig) items.add(INITDONEATRIG);
+			if (initdoneAAction == comp.initdoneAAction) items.add(INITDONEAACTION);
 
 			return(items);
 		};
@@ -176,7 +176,7 @@ public class PnlWznmSteRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAACTION, INITDONEATRIG));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATRIG, INITDONEAACTION));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -191,30 +191,30 @@ public class PnlWznmSteRec {
 
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
-		public static final int SCRJREFAACTION = 3;
-		public static final int SCRJREFATRIG = 4;
+		public static final int SCRJREFATRIG = 3;
+		public static final int SCRJREFAACTION = 4;
 		public static final int BUTREGULARIZEACTIVE = 5;
 
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
-					, String scrJrefAAction
 					, String scrJrefATrig
+					, String scrJrefAAction
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
-			this.scrJrefAAction = scrJrefAAction;
 			this.scrJrefATrig = scrJrefATrig;
+			this.scrJrefAAction = scrJrefAAction;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAACTION, SCRJREFATRIG, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, SCRJREFAACTION, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
-		public String scrJrefAAction;
 		public String scrJrefATrig;
+		public String scrJrefAAction;
 		public boolean ButRegularizeActive;
 
 		public boolean readXML(
@@ -234,8 +234,8 @@ public class PnlWznmSteRec {
 				srefIxWznmVExpstate = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "srefIxWznmVExpstate", mask, IXWZNMVEXPSTATE);
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
-				scrJrefAAction = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAAction", mask, SCRJREFAACTION);
 				scrJrefATrig = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefATrig", mask, SCRJREFATRIG);
+				scrJrefAAction = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAAction", mask, SCRJREFAACTION);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
 				return true;
@@ -251,8 +251,8 @@ public class PnlWznmSteRec {
 
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
-			if (scrJrefAAction.equals(comp.scrJrefAAction)) items.add(SCRJREFAACTION);
 			if (scrJrefATrig.equals(comp.scrJrefATrig)) items.add(SCRJREFATRIG);
+			if (scrJrefAAction.equals(comp.scrJrefAAction)) items.add(SCRJREFAACTION);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
 			return(items);
@@ -266,7 +266,7 @@ public class PnlWznmSteRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAACTION, SCRJREFATRIG, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATRIG, SCRJREFAACTION, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

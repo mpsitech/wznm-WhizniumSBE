@@ -1,9 +1,9 @@
 /**
-	* \file PnlWznmPrj1NVersion_evals.cpp
-	* job handler for job PnlWznmPrj1NVersion (implementation of availability/activation evaluation)
+	* \file PnlWznmPrjPrj1NVersion_evals.cpp
+	* job handler for job PnlWznmPrjPrj1NVersion (implementation of availability/activation evaluation)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 28 Nov 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
@@ -11,7 +11,7 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool PnlWznmPrj1NVersion::evalButUpAvail(
+bool PnlWznmPrjPrj1NVersion::evalButUpAvail(
 			DbsWznm* dbswznm
 		) {
 	// pre.ixCrdaccPrjIncl(edit)
@@ -25,7 +25,7 @@ bool PnlWznmPrj1NVersion::evalButUpAvail(
 	return(args.back());
 };
 
-bool PnlWznmPrj1NVersion::evalButUpActive(
+bool PnlWznmPrjPrj1NVersion::evalButUpActive(
 			DbsWznm* dbswznm
 		) {
 	// sel()&!sel.first()
@@ -46,7 +46,7 @@ bool PnlWznmPrj1NVersion::evalButUpActive(
 	return(args.back());
 };
 
-bool PnlWznmPrj1NVersion::evalButDownAvail(
+bool PnlWznmPrjPrj1NVersion::evalButDownAvail(
 			DbsWznm* dbswznm
 		) {
 	// pre.ixCrdaccPrjIncl(edit)
@@ -60,7 +60,7 @@ bool PnlWznmPrj1NVersion::evalButDownAvail(
 	return(args.back());
 };
 
-bool PnlWznmPrj1NVersion::evalButDownActive(
+bool PnlWznmPrjPrj1NVersion::evalButDownActive(
 			DbsWznm* dbswznm
 		) {
 	// sel()&!sel.last()
@@ -81,7 +81,7 @@ bool PnlWznmPrj1NVersion::evalButDownActive(
 	return(args.back());
 };
 
-bool PnlWznmPrj1NVersion::evalButViewAvail(
+bool PnlWznmPrjPrj1NVersion::evalButViewAvail(
 			DbsWznm* dbswznm
 		) {
 	// !sel()|(pre.ixCrdaccVer()&pre.refPrj())
@@ -107,7 +107,7 @@ bool PnlWznmPrj1NVersion::evalButViewAvail(
 	return(args.back());
 };
 
-bool PnlWznmPrj1NVersion::evalButViewActive(
+bool PnlWznmPrjPrj1NVersion::evalButViewActive(
 			DbsWznm* dbswznm
 		) {
 	// sel()
@@ -121,7 +121,7 @@ bool PnlWznmPrj1NVersion::evalButViewActive(
 	return(args.back());
 };
 
-bool PnlWznmPrj1NVersion::evalButNewAvail(
+bool PnlWznmPrjPrj1NVersion::evalButNewAvail(
 			DbsWznm* dbswznm
 		) {
 	// pre.ixCrdaccVerIncl(edit)&pre.refPrj()
@@ -140,7 +140,7 @@ bool PnlWznmPrj1NVersion::evalButNewAvail(
 	return(args.back());
 };
 
-bool PnlWznmPrj1NVersion::evalButDeleteAvail(
+bool PnlWznmPrjPrj1NVersion::evalButDeleteAvail(
 			DbsWznm* dbswznm
 		) {
 	// pre.ixCrdaccPrjIncl(edit)
@@ -154,7 +154,7 @@ bool PnlWznmPrj1NVersion::evalButDeleteAvail(
 	return(args.back());
 };
 
-bool PnlWznmPrj1NVersion::evalButDeleteActive(
+bool PnlWznmPrjPrj1NVersion::evalButDeleteActive(
 			DbsWznm* dbswznm
 		) {
 	// sel()

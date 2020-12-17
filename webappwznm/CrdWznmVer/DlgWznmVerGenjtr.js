@@ -5,6 +5,9 @@ function initGjt() {
 	contdoc = doc.getElementById("_cont").contentDocument;
 
 	// IP initGjt --- BEGIN
+	initCpt(contdoc, "CptPrg", retrieveTi(srcdoc, "TagDlgWznmVerGenjtrGjt", "CptPrg"));
+	initBut(contdoc, "ButRun", retrieveTi(srcdoc, "TagDlgWznmVerGenjtrGjt", "ButRun"));
+	initBut(contdoc, "ButSto", retrieveTi(srcdoc, "TagDlgWznmVerGenjtrGjt", "ButSto"));
 	// IP initGjt --- END
 
 	setSi(srcdoc, "StatAppDlgWznmVerGenjtr", "initdone", "true");
@@ -67,9 +70,18 @@ function refreshHdr() {
 
 function refreshGjt() {
 	// IP refreshGjt.vars --- BEGIN
+
+	var ButRunActive = (retrieveSi(srcdoc, "StatShrDlgWznmVerGenjtrGjt", "ButRunActive") == "true");
+	var ButStoActive = (retrieveSi(srcdoc, "StatShrDlgWznmVerGenjtrGjt", "ButStoActive") == "true");
+
 	// IP refreshGjt.vars --- END
 
 	// IP refreshGjt --- BEGIN
+	refreshTxtt(contdoc, "TxtPrg", retrieveCi(srcdoc, "ContInfDlgWznmVerGenjtrGjt", "TxtPrg"));
+
+	refreshBut(contdoc, "ButRun", ButRunActive, false);
+	refreshBut(contdoc, "ButSto", ButStoActive, false);
+
 	// IP refreshGjt --- END
 };
 
@@ -159,11 +171,13 @@ function mergeDpchEngData(dom) {
 
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "ContIacDlgWznmVerGenjtr", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "ContInfDlgWznmVerGenjtr", srcdoc)) mask.push("continf");
+	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "ContInfDlgWznmVerGenjtrGjt", srcdoc)) mask.push("continfgjt");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "ContInfDlgWznmVerGenjtrLfi", srcdoc)) mask.push("continflfi");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "FeedFDse", srcdoc)) mask.push("feedFDse");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "FeedFSge", srcdoc)) mask.push("feedFSge");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "StatAppDlgWznmVerGenjtr", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "StatShrDlgWznmVerGenjtr", srcdoc)) mask.push("statshr");
+	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "StatShrDlgWznmVerGenjtrGjt", srcdoc)) mask.push("statshrgjt");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "StatShrDlgWznmVerGenjtrLfi", srcdoc)) mask.push("statshrlfi");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "TagDlgWznmVerGenjtr", srcdoc)) mask.push("tag");
 	if (updateSrcblock(dom, "DpchEngDlgWznmVerGenjtrData", "TagDlgWznmVerGenjtrGjt", srcdoc)) mask.push("taggjt");

@@ -38,17 +38,17 @@ PnlWznmIexRec::PnlWznmIexRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
-	pnl1nimpexp = NULL;
-	pnlhk1nvector = NULL;
 	pnlref1ndialog = NULL;
+	pnlhk1nvector = NULL;
+	pnl1nimpexp = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMIEX_VEREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMIEX_JOBEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMIEX_VEREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -255,23 +255,21 @@ void PnlWznmIexRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMIEX_VEREQ) {
-		call->abort = handleCallWznmIex_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMIEXUPD_REFEQ) {
+		call->abort = handleCallWznmIexUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEX_JOBEQ) {
 		call->abort = handleCallWznmIex_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEXUPD_REFEQ) {
-		call->abort = handleCallWznmIexUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEX_VEREQ) {
+		call->abort = handleCallWznmIex_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
-bool PnlWznmIexRec::handleCallWznmIex_verEq(
+bool PnlWznmIexRec::handleCallWznmIexUpd_refEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recIex.refWznmMVersion == refInv); // IP handleCallWznmIex_verEq --- LINE
+	// IP handleCallWznmIexUpd_refEq --- INSERT
 	return retval;
 };
 
@@ -286,11 +284,13 @@ bool PnlWznmIexRec::handleCallWznmIex_jobEq(
 	return retval;
 };
 
-bool PnlWznmIexRec::handleCallWznmIexUpd_refEq(
+bool PnlWznmIexRec::handleCallWznmIex_verEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
 		) {
 	bool retval = false;
-	// IP handleCallWznmIexUpd_refEq --- INSERT
+	boolvalRet = (recIex.refWznmMVersion == refInv); // IP handleCallWznmIex_verEq --- LINE
 	return retval;
 };

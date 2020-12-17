@@ -125,7 +125,7 @@ void PnlWznmTblDetail::refreshUnq(
 	// feedFLstUnq
 	feedFLstUnq.clear();
 
-	StrMod::stringToVector(contiac.TxfUnq, ss);
+	StrMod::srefsToVector(contiac.TxfUnq, ss);
 
 	// IP refreshUnq.validate --- INSERT
 
@@ -557,7 +557,13 @@ void PnlWznmTblDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMTBL_VEREQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMPSTJTITMOD_PSTEQ) {
+		call->abort = handleCallWznmPstJtitMod_pstEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTBLUPD_REFEQ) {
+		call->abort = handleCallWznmTblUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPSTUPD_REFEQ) {
+		call->abort = handleCallWznmPstUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTBL_VEREQ) {
 		call->abort = handleCallWznmTbl_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTBL_TYPEQ) {
 		call->abort = handleCallWznmTbl_typEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
@@ -577,13 +583,38 @@ void PnlWznmTblDetail::handleCall(
 		call->abort = handleCallWznmPst_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPST_RETEQ) {
 		call->abort = handleCallWznmPst_retEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPSTUPD_REFEQ) {
-		call->abort = handleCallWznmPstUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTBLUPD_REFEQ) {
-		call->abort = handleCallWznmTblUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPSTJTITMOD_PSTEQ) {
-		call->abort = handleCallWznmPstJtitMod_pstEq(dbswznm, call->jref);
 	};
+};
+
+bool PnlWznmTblDetail::handleCallWznmPstJtitMod_pstEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	refreshPstJti(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
+	return retval;
+};
+
+bool PnlWznmTblDetail::handleCallWznmTblUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmTblUpd_refEq --- INSERT
+	return retval;
+};
+
+bool PnlWznmTblDetail::handleCallWznmPstUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmPstUpd_refEq --- INSERT
+	return retval;
 };
 
 bool PnlWznmTblDetail::handleCallWznmTbl_verEq(
@@ -693,36 +724,5 @@ bool PnlWznmTblDetail::handleCallWznmPst_retEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recPst.refIxVTbl == ixInv); // IP handleCallWznmPst_retEq --- LINE
-	return retval;
-};
-
-bool PnlWznmTblDetail::handleCallWznmPstUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmPstUpd_refEq --- INSERT
-	return retval;
-};
-
-bool PnlWznmTblDetail::handleCallWznmTblUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmTblUpd_refEq --- INSERT
-	return retval;
-};
-
-bool PnlWznmTblDetail::handleCallWznmPstJtitMod_pstEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	set<uint> moditems;
-
-	refreshPstJti(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };

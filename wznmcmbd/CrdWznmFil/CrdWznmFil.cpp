@@ -46,8 +46,8 @@ CrdWznmFil::CrdWznmFil(
 	pnllist = NULL;
 	pnlheadbar = NULL;
 	pnlrec = NULL;
-	dlgnew = NULL;
 	dlgdownload = NULL;
+	dlgnew = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

@@ -105,8 +105,8 @@ void DlgWznmVerDeploy::refreshImp(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfImp oldContinfimp(continfimp);
 	StatShrImp oldStatshrimp(statshrimp);
+	ContInfImp oldContinfimp(continfimp);
 
 	// IP refreshImp --- RBEGIN
 	// continfimp
@@ -117,8 +117,8 @@ void DlgWznmVerDeploy::refreshImp(
 	statshrimp.ButStoActive = evalImpButStoActive(dbswznm);
 
 	// IP refreshImp --- REND
-	if (continfimp.diff(&oldContinfimp).size() != 0) insert(moditems, DpchEngData::CONTINFIMP);
 	if (statshrimp.diff(&oldStatshrimp).size() != 0) insert(moditems, DpchEngData::STATSHRIMP);
+	if (continfimp.diff(&oldContinfimp).size() != 0) insert(moditems, DpchEngData::CONTINFIMP);
 };
 
 void DlgWznmVerDeploy::refreshPpr(
@@ -168,23 +168,23 @@ void DlgWznmVerDeploy::refresh(
 	muteRefresh = true;
 
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// continf
-	continf.numFSge = ixVSge;
-
 	// contiac
 	contiac.numFDse = ixVDit;
 
+	// continf
+	continf.numFSge = ixVSge;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshIfi(dbswznm, moditems);
 	refreshImp(dbswznm, moditems);
@@ -458,13 +458,15 @@ string DlgWznmVerDeploy::getSquawk(
 		) {
 	string retval;
 	// IP getSquawk --- RBEGIN
-	if ( (ixVSge == VecVSge::PARSE) || (ixVSge == VecVSge::ALRWZNMPER) || (ixVSge == VecVSge::PRSDONE) || (ixVSge == VecVSge::IMPORT) || (ixVSge == VecVSge::ALRWZNMIER) ) {
+	if ( (ixVSge == VecVSge::PARSE) || (ixVSge == VecVSge::ALRWZNMPER) || (ixVSge == VecVSge::PRSDONE) || (ixVSge == VecVSge::IMPORT) || (ixVSge == VecVSge::ALRWZNMIER) || (ixVSge == VecVSge::IMPDONE) || (ixVSge == VecVSge::POSTPRC) ) {
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			if (ixVSge == VecVSge::PARSE) retval = "parsing deployment information";
 			else if (ixVSge == VecVSge::ALRWZNMPER) retval = "parse error";
 			else if (ixVSge == VecVSge::PRSDONE) retval = "deployment information parsed";
 			else if (ixVSge == VecVSge::IMPORT) retval = "importing deployment information (" + to_string(iex->impcnt) + " records added)";
 			else if (ixVSge == VecVSge::ALRWZNMIER) retval = "import error";
+			else if (ixVSge == VecVSge::IMPDONE) retval = "import done";
+			else if (ixVSge == VecVSge::POSTPRC) retval = "postprocessing";
 		};
 
 	} else {

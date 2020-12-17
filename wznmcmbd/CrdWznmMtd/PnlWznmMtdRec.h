@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmMtdDetail.h"
 #include "PnlWznmMtdARetpar.h"
 #include "PnlWznmMtdAInvpar.h"
+#include "PnlWznmMtdDetail.h"
 
 #define VecVWznmMtdRecDo PnlWznmMtdRec::VecVDo
 
@@ -73,7 +73,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneARetpar = false, const bool initdoneAInvpar = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAInvpar = false, const bool initdoneARetpar = false);
 	};
 
 	/**
@@ -84,18 +84,18 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFARETPAR = 3;
-		static const Sbecore::uint JREFAINVPAR = 4;
+		static const Sbecore::uint JREFAINVPAR = 3;
+		static const Sbecore::uint JREFARETPAR = 4;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 5;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefARetpar = 0, const Sbecore::ubigint jrefAInvpar = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAInvpar = 0, const Sbecore::ubigint jrefARetpar = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefARetpar;
 		Sbecore::ubigint jrefAInvpar;
+		Sbecore::ubigint jrefARetpar;
 		bool ButRegularizeActive;
 
 	public:
@@ -171,9 +171,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmMtdDetail* pnldetail;
 	PnlWznmMtdARetpar* pnlaretpar;
 	PnlWznmMtdAInvpar* pnlainvpar;
+	PnlWznmMtdDetail* pnldetail;
 
 	WznmMMethod recMtd;
 
@@ -207,8 +207,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmMtd_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmMtdUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmMtd_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

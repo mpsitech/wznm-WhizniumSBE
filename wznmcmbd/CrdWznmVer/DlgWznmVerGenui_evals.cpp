@@ -11,39 +11,6 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool DlgWznmVerGenui::evalGuiButRunActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(idle)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::IDLE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool DlgWznmVerGenui::evalGuiButStoActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(genui|genctp)
-
-	vector<bool> args;
-	bool a, b;
-
-	a = false; a = (ixVSge == VecVSge::GENUI);
-	args.push_back(a);
-	a = false; a = (ixVSge == VecVSge::GENCTP);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a || b);
-
-	return(args.back());
-};
-
 bool DlgWznmVerGenui::evalButDneActive(
 			DbsWznm* dbswznm
 		) {
@@ -78,6 +45,39 @@ bool DlgWznmVerGenui::evalLfiDldActive(
 
 	a = false; a = (ixVSge == VecVSge::FAIL);
 	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmVerGenui::evalGuiButRunActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(idle)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::IDLE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmVerGenui::evalGuiButStoActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(genui|genctp)
+
+	vector<bool> args;
+	bool a, b;
+
+	a = false; a = (ixVSge == VecVSge::GENUI);
+	args.push_back(a);
+	a = false; a = (ixVSge == VecVSge::GENCTP);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 
 	return(args.back());
 };

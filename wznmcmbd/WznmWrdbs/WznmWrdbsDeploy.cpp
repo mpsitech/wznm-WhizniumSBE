@@ -195,7 +195,7 @@ void WznmWrdbsDeploy::addLibBySref(
 		if (dbswznm->tblwznmmlibrary->loadRecByRef(refLib, &lib)) {
 			if (Wznm::getLibmkf(dbswznm, refLib, refMch, hrefsMch, "incpath", s)) incpaths.insert(s);
 
-			StrMod::stringToVector(lib->depSrefsWznmMLibrary, ss);
+			StrMod::srefsToVector(lib->depSrefsWznmMLibrary, ss);
 			for (unsigned int i = 0; i < ss.size(); i++) addLibBySref(dbswznm, ss[i], refMch, hrefsMch, incpaths);
 
 			delete lib;

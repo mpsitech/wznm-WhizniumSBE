@@ -1,31 +1,31 @@
 /**
-	* \file QryWznmPrj1NVersion.h
-	* job handler for job QryWznmPrj1NVersion (declarations)
+	* \file QryWznmPrjPrj1NVersion.h
+	* job handler for job QryWznmPrjPrj1NVersion (declarations)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 28 Nov 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
-#ifndef QRYWZNMPRJ1NVERSION_H
-#define QRYWZNMPRJ1NVERSION_H
+#ifndef QRYWZNMPRJPRJ1NVERSION_H
+#define QRYWZNMPRJPRJ1NVERSION_H
 
 // IP include.spec --- INSERT
 
 // IP include.cust --- INSERT
 
-#define StatAppQryWznmPrj1NVersion QryWznmPrj1NVersion::StatApp
-#define StatShrQryWznmPrj1NVersion QryWznmPrj1NVersion::StatShr
-#define StgIacQryWznmPrj1NVersion QryWznmPrj1NVersion::StgIac
+#define StatAppQryWznmPrjPrj1NVersion QryWznmPrjPrj1NVersion::StatApp
+#define StatShrQryWznmPrjPrj1NVersion QryWznmPrjPrj1NVersion::StatShr
+#define StgIacQryWznmPrjPrj1NVersion QryWznmPrjPrj1NVersion::StgIac
 
 /**
-	* QryWznmPrj1NVersion
+	* QryWznmPrjPrj1NVersion
 	*/
-class QryWznmPrj1NVersion : public JobWznm {
+class QryWznmPrjPrj1NVersion : public JobWznm {
 
 public:
 	/**
-		* StatApp (full: StatAppQryWznmPrj1NVersion)
+		* StatApp (full: StatAppQryWznmPrjPrj1NVersion)
 		*/
 	class StatApp {
 
@@ -34,7 +34,7 @@ public:
 	};
 
 	/**
-		* StatShr (full: StatShrQryWznmPrj1NVersion)
+		* StatShr (full: StatShrQryWznmPrjPrj1NVersion)
 		*/
 	class StatShr : public Sbecore::Xmlio::Block {
 
@@ -58,7 +58,7 @@ public:
 	};
 
 	/**
-		* StgIac (full: StgIacQryWznmPrj1NVersion)
+		* StgIac (full: StgIacQryWznmPrjPrj1NVersion)
 		*/
 	class StgIac : public Sbecore::Xmlio::Block {
 
@@ -83,14 +83,14 @@ public:
 	};
 
 public:
-	QryWznmPrj1NVersion(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
-	~QryWznmPrj1NVersion();
+	QryWznmPrjPrj1NVersion(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
+	~QryWznmPrjPrj1NVersion();
 
 public:
 	StatShr statshr;
 	StgIac stgiac;
 
-	ListWznmQPrj1NVersion rst;
+	ListWznmQPrjPrj1NVersion rst;
 
 	Sbecore::uint ixWznmVQrystate;
 
@@ -108,7 +108,7 @@ public:
 
 	Sbecore::uint getJnumByRef(const Sbecore::ubigint ref);
 	Sbecore::ubigint getRefByJnum(const Sbecore::uint jnum);
-	WznmQPrj1NVersion* getRecByJnum(const Sbecore::uint jnum);
+	WznmQPrjPrj1NVersion* getRecByJnum(const Sbecore::uint jnum);
 
 public:
 
@@ -123,8 +123,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 	bool handleCallWznmVerMod_prjEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };
 

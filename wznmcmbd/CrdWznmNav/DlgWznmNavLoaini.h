@@ -451,9 +451,9 @@ public:
 
 	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalAcvUldActive(DbsWznm* dbswznm);
 	bool evalImpButRunActive(DbsWznm* dbswznm);
 	bool evalImpButStoActive(DbsWznm* dbswznm);
-	bool evalAcvUldActive(DbsWznm* dbswznm);
 	bool evalIfiUldActive(DbsWznm* dbswznm);
 
 public:
@@ -512,15 +512,15 @@ private:
 	void handleDpchAppDoImpButStoClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
-	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 	void handleUploadInSgeImpdone(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
-	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

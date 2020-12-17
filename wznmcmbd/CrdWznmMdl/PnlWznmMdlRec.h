@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmMdlDetail.h"
-#include "PnlWznmMdlMdl1NCard.h"
 #include "PnlWznmMdlRef1NPanel.h"
+#include "PnlWznmMdlMdl1NCard.h"
+#include "PnlWznmMdlDetail.h"
 
 #define VecVWznmMdlRecDo PnlWznmMdlRec::VecVDo
 
@@ -171,9 +171,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmMdlDetail* pnldetail;
-	PnlWznmMdlMdl1NCard* pnlmdl1ncard;
 	PnlWznmMdlRef1NPanel* pnlref1npanel;
+	PnlWznmMdlMdl1NCard* pnlmdl1ncard;
+	PnlWznmMdlDetail* pnldetail;
 
 	WznmMModule recMdl;
 
@@ -207,8 +207,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmMdl_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmMdlUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmMdl_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

@@ -853,13 +853,13 @@ void WznmGenSysvec::fillVecTag(
 		for (unsigned int i = 0; i < cons.nodes.size(); i++) {
 			con = cons.nodes[i];
 
-			StrMod::stringToVector(con->srefsWznmMTag, ss);
+			StrMod::srefsToVector(con->srefsWznmMTag, ss);
 			for (unsigned int j = 0; j < ss.size(); j++) if (ss[j].length() > 0) srefs.insert(ss[j]);
 
 			if (con->refWznmMFeed != 0) {
 				if (dbswznm->loadStringBySQL("SELECT srefsWznmMTag FROM TblWznmMFeed WHERE ref = " + to_string(con->refWznmMFeed), s)) {
 
-					StrMod::stringToVector(s, ss);
+					StrMod::srefsToVector(s, ss);
 					for (unsigned int j = 0; j < ss.size(); j++) if (ss[j].length() > 0) srefs.insert(ss[j]);
 				};
 			};

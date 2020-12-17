@@ -90,8 +90,8 @@ void DlgWznmVerFinmod::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	ContInf oldContinf(continf);
 	StatShr oldStatshr(statshr);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- RBEGIN
 	// statshr
@@ -104,8 +104,8 @@ void DlgWznmVerFinmod::refresh(
 	continf.FnmTxtPrg = getSquawk(dbswznm);
 
 	// IP refresh --- REND
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	muteRefresh = false;
 };
@@ -321,6 +321,9 @@ void DlgWznmVerFinmod::leaveSgeFinmod(
 
 		// make project's current version
 		dbswznm->executeQuery("UPDATE TblWznmMProject SET refWznmMVersion = " + to_string(ver->ref) + " WHERE ref = " + to_string(ver->prjRefWznmMProject));
+
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMPRJMOD, jref);
+		xchg->triggerRefCall(dbswznm, VecWznmVCall::CALLWZNMVERMOD_PRJEQ, jref, ver->prjRefWznmMProject);
 
 		delete ver;
 	};

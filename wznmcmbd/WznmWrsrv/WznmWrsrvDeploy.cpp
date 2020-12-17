@@ -1272,7 +1272,7 @@ void WznmWrsrvDeploy::addLibByRef(
 			ix0 += ss.size();
 		};
 
-		StrMod::stringToVector(lib->depSrefsWznmMLibrary, ss);
+		StrMod::srefsToVector(lib->depSrefsWznmMLibrary, ss);
 		for (unsigned int i = 0; i < ss.size(); i++) addLibBySref(dbswznm, ss[i], refMch, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, ix0);
 
 		delete lib;
@@ -1289,10 +1289,10 @@ void WznmWrsrvDeploy::trimLibss(
 
 	string s;
 
-	for (unsigned int i=libss.size();i>0;i--) {
+	for (unsigned int i = libss.size(); i > 0; i--) {
 		unqss.clear();
 
-		StrMod::stringToVector(libss[i-1], ss, ' ');
+		StrMod::stringToVector(libss[i - 1], ss, ' ');
 		for (unsigned int j = 0; j < ss.size(); j++) {
 			if (unqlibs.find(ss[j]) == unqlibs.end()) {
 				unqlibs.insert(ss[j]);

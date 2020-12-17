@@ -17,8 +17,8 @@
 #include "PnlWznmPrjList.h"
 #include "PnlWznmPrjHeadbar.h"
 #include "PnlWznmPrjRec.h"
-#include "DlgWznmPrjImpex.h"
 #include "DlgWznmPrjNew.h"
+#include "DlgWznmPrjImpex.h"
 
 #define VecVWznmPrjDo CrdWznmPrj::VecVDo
 #define VecVWznmPrjSge CrdWznmPrj::VecVSge
@@ -211,8 +211,8 @@ public:
 	PnlWznmPrjList* pnllist;
 	PnlWznmPrjHeadbar* pnlheadbar;
 	PnlWznmPrjRec* pnlrec;
-	DlgWznmPrjImpex* dlgimpex;
 	DlgWznmPrjNew* dlgnew;
+	DlgWznmPrjImpex* dlgimpex;
 
 	// IP vars.cust --- INSERT
 

@@ -16,8 +16,8 @@
 
 #include "PnlWznmMchList.h"
 #include "DlgWznmMchWriniscr.h"
-#include "PnlWznmMchRec.h"
 #include "PnlWznmMchHeadbar.h"
+#include "PnlWznmMchRec.h"
 
 #define VecVWznmMchDo CrdWznmMch::VecVDo
 #define VecVWznmMchSge CrdWznmMch::VecVSge
@@ -203,8 +203,8 @@ public:
 
 	PnlWznmMchList* pnllist;
 	DlgWznmMchWriniscr* dlgwriniscr;
-	PnlWznmMchRec* pnlrec;
 	PnlWznmMchHeadbar* pnlheadbar;
+	PnlWznmMchRec* pnlrec;
 
 	// IP vars.cust --- INSERT
 

@@ -1,9 +1,9 @@
 /**
-	* \file WznmQPrj1NVersion.h
-	* Java API code for record of table TblWznmQPrj1NVersion
+	* \file WznmQPrjPrj1NVersion.h
+	* Java API code for record of table TblWznmQPrjPrj1NVersion
 	* \copyright (C) 2018-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 5 Dec 2020
+	* \date created: 16 Dec 2020
   */
 // IP header --- ABOVE
 
@@ -12,9 +12,9 @@ package apiwznm;
 import org.w3c.dom.*;
 import sbecore.*;
 
-public class WznmQPrj1NVersion {
+public class WznmQPrjPrj1NVersion {
 	
-	public WznmQPrj1NVersion(
+	public WznmQPrjPrj1NVersion(
 				int jnum
 				, String stubRef
 			) {
@@ -30,7 +30,7 @@ public class WznmQPrj1NVersion {
 				, String basexpath
 				, boolean addbasetag
 			) {
-		if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "WznmQPrj1NVersion");
+		if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "WznmQPrjPrj1NVersion");
 
 		if (Xmlio.checkXPath(doc, basexpath)) {
 			stubRef = Xmlio.extractStringUclc(doc, basexpath, "stubRef", "ref", null, 0);

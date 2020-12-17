@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCarDetail.h"
-#include "PnlWznmCar1NDialog.h"
-#include "PnlWznmCarCar1NPanel.h"
 #include "PnlWznmCarHk1NControl.h"
+#include "PnlWznmCarCar1NPanel.h"
+#include "PnlWznmCar1NDialog.h"
+#include "PnlWznmCarDetail.h"
 
 #define VecVWznmCarRecDo PnlWznmCarRec::VecVDo
 
@@ -174,10 +174,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCarDetail* pnldetail;
-	PnlWznmCar1NDialog* pnl1ndialog;
-	PnlWznmCarCar1NPanel* pnlcar1npanel;
 	PnlWznmCarHk1NControl* pnlhk1ncontrol;
+	PnlWznmCarCar1NPanel* pnlcar1npanel;
+	PnlWznmCar1NDialog* pnl1ndialog;
+	PnlWznmCarDetail* pnldetail;
 
 	WznmMCard recCar;
 
@@ -211,11 +211,11 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmCar_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmCar_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmCar_mdlEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmCar_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCarUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmCar_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmCar_mdlEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmCar_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmCar_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

@@ -22,9 +22,9 @@ uint QryWznmPnlList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
+	if (s == "car") return CAR;
 	if (s == "ret") return RET;
 	if (s == "reu") return REU;
-	if (s == "car") return CAR;
 	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
 
@@ -34,9 +34,9 @@ uint QryWznmPnlList::VecVOrd::getIx(
 string QryWznmPnlList::VecVOrd::getSref(
 			const uint ix
 		) {
+	if (ix == CAR) return("car");
 	if (ix == RET) return("ret");
 	if (ix == REU) return("reu");
-	if (ix == CAR) return("car");
 	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
 

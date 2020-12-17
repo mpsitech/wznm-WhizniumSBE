@@ -43,17 +43,17 @@ DlgWznmVerWrinimdl::DlgWznmVerWrinimdl(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
+	iexprj = NULL;
 	iexdpl = NULL;
 	iexgbl = NULL;
-	iexprj = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	ixVDit = VecVDit::WRI;
 
+	iexprj = new JobWznmIexPrj(xchg, dbswznm, jref, ixWznmVLocale);
 	iexdpl = new JobWznmIexDpl(xchg, dbswznm, jref, ixWznmVLocale);
 	iexgbl = new JobWznmIexGbl(xchg, dbswznm, jref, ixWznmVLocale);
-	iexprj = new JobWznmIexPrj(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -114,8 +114,8 @@ void DlgWznmVerWrinimdl::refreshFia(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfFia oldContinffia(continffia);
 	StatShrFia oldStatshrfia(statshrfia);
+	ContInfFia oldContinffia(continffia);
 
 	// IP refreshFia --- RBEGIN
 	// statshrfia
@@ -125,8 +125,8 @@ void DlgWznmVerWrinimdl::refreshFia(
 	continffia.Dld = "Inimdl_" + prjshort + ".tgz";
 
 	// IP refreshFia --- REND
-	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
 	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
+	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
 };
 
 void DlgWznmVerWrinimdl::refresh(

@@ -10,10 +10,10 @@
 #ifndef APIWZNM_H
 #define APIWZNM_H
 
-#define WZNM_VERSION "1.1.1"
+#define WZNM_VERSION "1.1.3"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 1
-#define WZNM_VERSION_SUB 1
+#define WZNM_VERSION_SUB 3
 
 #include "ApiWznm_blks.h"
 
@@ -117,9 +117,9 @@
 #include "WznmQPnlHk1NControl.h"
 #include "WznmQPnlList.h"
 #include "WznmQPnlMNQuery.h"
-#include "WznmQPrj1NVersion.h"
 #include "WznmQPrjList.h"
 #include "WznmQPrjMNPerson.h"
+#include "WznmQPrjPrj1NVersion.h"
 #include "WznmQPrsADetail.h"
 #include "WznmQPrsList.h"
 #include "WznmQPrsMNProject.h"
@@ -502,11 +502,11 @@
 #include "PnlWznmPnlList.h"
 #include "PnlWznmPnlMNQuery.h"
 #include "PnlWznmPnlRec.h"
-#include "PnlWznmPrj1NVersion.h"
 #include "PnlWznmPrjDetail.h"
 #include "PnlWznmPrjHeadbar.h"
 #include "PnlWznmPrjList.h"
 #include "PnlWznmPrjMNPerson.h"
+#include "PnlWznmPrjPrj1NVersion.h"
 #include "PnlWznmPrjRec.h"
 #include "PnlWznmPrsADetail.h"
 #include "PnlWznmPrsDetail.h"
@@ -787,9 +787,9 @@
 #include "QryWznmPnlHk1NControl.h"
 #include "QryWznmPnlList.h"
 #include "QryWznmPnlMNQuery.h"
-#include "QryWznmPrj1NVersion.h"
 #include "QryWznmPrjList.h"
 #include "QryWznmPrjMNPerson.h"
+#include "QryWznmPrjPrj1NVersion.h"
 #include "QryWznmPrsADetail.h"
 #include "QryWznmPrsList.h"
 #include "QryWznmPrsMNProject.h"

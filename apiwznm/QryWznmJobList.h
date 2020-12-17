@@ -28,8 +28,8 @@ namespace QryWznmJobList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint REU = 1;
-		static const Sbecore::uint GBL = 2;
+		static const Sbecore::uint GBL = 1;
+		static const Sbecore::uint REU = 2;
 		static const Sbecore::uint RET = 3;
 		static const Sbecore::uint VER = 4;
 		static const Sbecore::uint TYP = 5;

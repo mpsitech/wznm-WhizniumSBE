@@ -11,16 +11,26 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool DlgWznmVerGenjtr::evalLfiDldActive(
+bool DlgWznmVerGenjtr::evalButDneActive(
 			DbsWznm* dbswznm
 		) {
-	// sge(fail)
+	// sge(idle|fail|done)
 
 	vector<bool> args;
-	bool a;
+	bool a, b;
 
+	a = false; a = (ixVSge == VecVSge::IDLE);
+	args.push_back(a);
 	a = false; a = (ixVSge == VecVSge::FAIL);
 	args.push_back(a);
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 
 	return(args.back());
 };
@@ -68,26 +78,16 @@ bool DlgWznmVerGenjtr::evalGjtButStoActive(
 	return(args.back());
 };
 
-bool DlgWznmVerGenjtr::evalButDneActive(
+bool DlgWznmVerGenjtr::evalLfiDldActive(
 			DbsWznm* dbswznm
 		) {
-	// sge(idle|fail|done)
+	// sge(fail)
 
 	vector<bool> args;
-	bool a, b;
+	bool a;
 
-	a = false; a = (ixVSge == VecVSge::IDLE);
-	args.push_back(a);
 	a = false; a = (ixVSge == VecVSge::FAIL);
 	args.push_back(a);
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a || b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a || b);
 
 	return(args.back());
 };

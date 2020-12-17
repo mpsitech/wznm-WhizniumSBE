@@ -66,7 +66,7 @@ void WznmCtpWrstkit::addIAMTableTitles(
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];
 
-		StrMod::stringToVector(tagTits[lcl->ref], ss);
+		StrMod::stringToVector(tagTits[lcl->ref], ss, ';', true);
 		if (ss.size() == 2) tbl->imeiamtabletitle.nodes.push_back(new IexWznmDbs::ImeitemIAMTableTitle(ixVType, lcl->sref, VecWznmVGender::getIx(ss[0]), ss[1]));
 	};
 };
@@ -136,7 +136,7 @@ void WznmCtpWrstkit::addIJMVectoritems(
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];
 
-		StrMod::stringToVector(tagTits[lcl->ref], ss);
+		StrMod::stringToVector(tagTits[lcl->ref], ss, ';', true);
 		if (ss.size() > 0) vit->imeijmvectoritem2.nodes.push_back(new IexWznmDbs::ImeitemIJMVectoritem2(lcl->sref, ss[ss.size()-1], ""));
 	};
 };

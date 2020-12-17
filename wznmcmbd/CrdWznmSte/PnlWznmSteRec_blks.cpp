@@ -98,8 +98,8 @@ void PnlWznmSteRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdoneAAction
 			, const bool initdoneATrig
+			, const bool initdoneAAction
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmSteRec";
 
@@ -109,8 +109,8 @@ void PnlWznmSteRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneAAction", initdoneAAction);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneATrig", initdoneATrig);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneAAction", initdoneAAction);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -121,19 +121,19 @@ void PnlWznmSteRec::StatApp::writeXML(
 PnlWznmSteRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jrefAAction
 			, const ubigint jrefATrig
+			, const ubigint jrefAAction
 			, const bool ButRegularizeActive
 		) :
 			Block()
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
-	this->jrefAAction = jrefAAction;
 	this->jrefATrig = jrefATrig;
+	this->jrefAAction = jrefAAction;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAACTION, JREFATRIG, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATRIG, JREFAACTION, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmSteRec::StatShr::writeXML(
@@ -150,8 +150,8 @@ void PnlWznmSteRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefAAction", Scr::scramble(jrefAAction));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefATrig", Scr::scramble(jrefATrig));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefAAction", Scr::scramble(jrefAAction));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -163,8 +163,8 @@ set<uint> PnlWznmSteRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jrefAAction == comp->jrefAAction) insert(items, JREFAACTION);
 	if (jrefATrig == comp->jrefATrig) insert(items, JREFATRIG);
+	if (jrefAAction == comp->jrefAAction) insert(items, JREFAACTION);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -178,7 +178,7 @@ set<uint> PnlWznmSteRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAACTION, JREFATRIG, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATRIG, JREFAACTION, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

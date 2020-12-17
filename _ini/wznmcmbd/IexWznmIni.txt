@@ -1,4 +1,4 @@
-IexWznmIni v1.1.1
+IexWznmIni v1.1.3
 ImeIAVKeylistKey1.srefKlsIxWznmVKeylist	sref	Avail	Implied	Title	Comment
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrAcv			add stages to upload dialog	
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgimp			add stages to data import dialog	
@@ -10,7 +10,7 @@ KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvAcv			implement upload/download dialogs
 KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvDlgimp			implement data import dialog	
 KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvDlgloaini			implement initialization load dialog	
 KlstKWznmCtpWrstkitCustop	WznmCtpWrstkitAcv			database and basic UI	
-KlstKWznmCtpWrstkitCustop	WznmCtpWrstkitArm			database, basic UI and import/export	
+KlstKWznmCtpWrstkitCustop	WznmCtpWrstkitArm			database, basic UI and import/export 	
 KlstWznmKAMControlParKey	action			triggered action	
 KlstWznmKAMControlParKey	cptwidth			caption width	
 KlstWznmKAMControlParKey	height			height	

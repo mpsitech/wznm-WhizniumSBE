@@ -146,7 +146,7 @@ function refreshB(chgcol) {
 			} else if (i == 7) {
 				doc.cols.push("TcoBvr"); doc.widths.push(TcoBvrWidth); doc.fs.push("bvr"); doc.tos.push(3); wtot += TcoBvrWidth;
 			} else if (i == 8) {
-				doc.cols.push("TcoLoc"); doc.widths.push(TcoLocWidth); doc.fs.push("loc"); doc.tos.push(2); wtot += TcoLocWidth;
+				doc.cols.push("TcoLoc"); doc.widths.push(TcoLocWidth); doc.fs.push("loc"); doc.tos.push(1); wtot += TcoLocWidth;
 			} else if (i == 9) {
 				doc.cols.push("TcoSte"); doc.widths.push(TcoSteWidth); doc.fs.push("ste2"); doc.tos.push(0); wtot += TcoSteWidth;
 			} else if (i == 10) {

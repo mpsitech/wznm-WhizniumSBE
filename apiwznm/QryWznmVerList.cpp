@@ -22,8 +22,8 @@ uint QryWznmVerList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ste") return STE;
 	if (s == "loc") return LOC;
+	if (s == "ste") return STE;
 	if (s == "bvr") return BVR;
 	if (s == "prj") return PRJ;
 	if (s == "own") return OWN;
@@ -35,8 +35,8 @@ uint QryWznmVerList::VecVOrd::getIx(
 string QryWznmVerList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == STE) return("ste");
 	if (ix == LOC) return("loc");
+	if (ix == STE) return("ste");
 	if (ix == BVR) return("bvr");
 	if (ix == PRJ) return("prj");
 	if (ix == OWN) return("own");

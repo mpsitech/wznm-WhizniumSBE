@@ -371,9 +371,9 @@ void RootWznm::clearQtb(
 	dbswznm->executeQuery("DELETE FROM TblWznmQPnlList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQPnlMNQuery");
 	dbswznm->executeQuery("DELETE FROM TblWznmQPreselect");
-	dbswznm->executeQuery("DELETE FROM TblWznmQPrj1NVersion");
 	dbswznm->executeQuery("DELETE FROM TblWznmQPrjList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQPrjMNPerson");
+	dbswznm->executeQuery("DELETE FROM TblWznmQPrjPrj1NVersion");
 	dbswznm->executeQuery("DELETE FROM TblWznmQPrsADetail");
 	dbswznm->executeQuery("DELETE FROM TblWznmQPrsList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQPrsMNProject");

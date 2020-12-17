@@ -158,7 +158,7 @@ bool JobWznmLicense::validateLicenseBase(
 
 	// expect <license sref/8>;sbe_base;<expiry/time stamp>
 	s = Wznm::decrypt(stg.licenseBase);
-	StrMod::stringToVector(s, ss);
+	StrMod::stringToVector(s, ss, ';', true);
 
 	try {
 		if (ss.size() != 3) throw SbeException(0, {{"msg","invalid base license format"}});
@@ -265,7 +265,7 @@ bool JobWznmLicense::handleTest(
 		refWznmMProject = prj->ref;
 
 		dbswznm->tblwznmmversion->loadRstBySQL("SELECT * FROM TblWznmMVersion WHERE prjRefWznmMProject = " + to_string(refWznmMProject) + " AND ixVState = " + to_string(VecWznmVMVersionState::READY)
-					+ " ORDER BY Major ASC, Minor ASC, Sub ASC", false, vers);
+					+ " ORDER BY prjNum ASC, Major ASC, Minor ASC, Sub ASC", false, vers);
 		for (unsigned int i = 0; i < vers.nodes.size(); i++) {
 			ver = vers.nodes[i];
 

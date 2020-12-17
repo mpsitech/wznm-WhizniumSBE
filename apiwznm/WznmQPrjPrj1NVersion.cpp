@@ -1,23 +1,23 @@
 /**
-	* \file WznmQPrj1NVersion.cpp
-	* API code for table TblWznmQPrj1NVersion (implementation)
+	* \file WznmQPrjPrj1NVersion.cpp
+	* API code for table TblWznmQPrjPrj1NVersion (implementation)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 5 Dec 2020
+	* \date created: 16 Dec 2020
   */
 // IP header --- ABOVE
 
-#include "WznmQPrj1NVersion.h"
+#include "WznmQPrjPrj1NVersion.h"
 
 using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
 /******************************************************************************
- class WznmQPrj1NVersion
+ class WznmQPrjPrj1NVersion
  ******************************************************************************/
 
-WznmQPrj1NVersion::WznmQPrj1NVersion(
+WznmQPrjPrj1NVersion::WznmQPrjPrj1NVersion(
 			const uint jnum
 			, const string stubRef
 		) {
@@ -25,7 +25,7 @@ WznmQPrj1NVersion::WznmQPrj1NVersion(
 	this->stubRef = stubRef;
 };
 
-bool WznmQPrj1NVersion::readXML(
+bool WznmQPrjPrj1NVersion::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
 			, bool addbasetag
@@ -33,7 +33,7 @@ bool WznmQPrj1NVersion::readXML(
 	bool basefound;
 
 	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "WznmQPrj1NVersion");
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "WznmQPrjPrj1NVersion");
 	else
 		basefound = checkXPath(docctx, basexpath);
 
@@ -45,38 +45,38 @@ bool WznmQPrj1NVersion::readXML(
 };
 
 /******************************************************************************
- class ListWznmQPrj1NVersion
+ class ListWznmQPrjPrj1NVersion
  ******************************************************************************/
 
-ListWznmQPrj1NVersion::ListWznmQPrj1NVersion() {
+ListWznmQPrjPrj1NVersion::ListWznmQPrjPrj1NVersion() {
 };
 
-ListWznmQPrj1NVersion::ListWznmQPrj1NVersion(
-			const ListWznmQPrj1NVersion& src
+ListWznmQPrjPrj1NVersion::ListWznmQPrjPrj1NVersion(
+			const ListWznmQPrjPrj1NVersion& src
 		) {
 	nodes.resize(src.nodes.size(), NULL);
-	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i] = new WznmQPrj1NVersion(*(src.nodes[i]));
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i] = new WznmQPrjPrj1NVersion(*(src.nodes[i]));
 };
 
-ListWznmQPrj1NVersion& ListWznmQPrj1NVersion::operator=(
-			const ListWznmQPrj1NVersion& src
+ListWznmQPrjPrj1NVersion& ListWznmQPrjPrj1NVersion::operator=(
+			const ListWznmQPrjPrj1NVersion& src
 		) {
 	nodes.resize(src.nodes.size(), NULL);
-	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i] = new WznmQPrj1NVersion(*(src.nodes[i]));
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i] = new WznmQPrjPrj1NVersion(*(src.nodes[i]));
 
 	return *this;
 };
 
-ListWznmQPrj1NVersion::~ListWznmQPrj1NVersion() {
+ListWznmQPrjPrj1NVersion::~ListWznmQPrjPrj1NVersion() {
 	clear();
 };
 
-void ListWznmQPrj1NVersion::clear() {
+void ListWznmQPrjPrj1NVersion::clear() {
 	for (unsigned int i = 0; i < nodes.size(); i++) if (nodes[i]) delete nodes[i];
 	nodes.resize(0);
 };
 
-bool ListWznmQPrj1NVersion::readXML(
+bool ListWznmQPrjPrj1NVersion::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
 			, bool addbasetag
@@ -86,24 +86,24 @@ bool ListWznmQPrj1NVersion::readXML(
 	vector<unsigned int> ics;
 	vector<bool> shorttags;
 
-	WznmQPrj1NVersion* rec = NULL;
+	WznmQPrjPrj1NVersion* rec = NULL;
 
 	string s;
 
 	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "ListWznmQPrj1NVersion");
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "ListWznmQPrjPrj1NVersion");
 	else
 		basefound = checkXPath(docctx, basexpath);
 
-	extractList(docctx, basexpath, "WznmQPrj1NVersion", "row", "jnum", ics, shorttags);
+	extractList(docctx, basexpath, "WznmQPrjPrj1NVersion", "row", "jnum", ics, shorttags);
 
 	clear();
 
 	for (unsigned int i = 0; i < ics.size(); i++) {
-		rec = new WznmQPrj1NVersion(ics[i]);
+		rec = new WznmQPrjPrj1NVersion(ics[i]);
 
 		if (shorttags[i]) s = basexpath + "/row[@jnum='" + to_string(ics[i]) + "']";
-		else s = basexpath + "/WznmQPrj1NVersion[@jnum='" + to_string(ics[i]) + "']";
+		else s = basexpath + "/WznmQPrjPrj1NVersion[@jnum='" + to_string(ics[i]) + "']";
 
 		if (rec->readXML(docctx, s)) nodes.push_back(rec);
 		else delete rec;

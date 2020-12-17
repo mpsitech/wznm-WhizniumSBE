@@ -49,17 +49,13 @@ public class DlgWznmVerGenui {
 		*/
 	public static class VecVDo {
 
-		public static final int GUIBUTRUNCLICK = 1;
-		public static final int GUIBUTSTOCLICK = 2;
-		public static final int BUTDNECLICK = 3;
+		public static final int BUTDNECLICK = 1;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("guibutrunclick")) return GUIBUTRUNCLICK;
-			if (s.equals("guibutstoclick")) return GUIBUTSTOCLICK;
 			if (s.equals("butdneclick")) return BUTDNECLICK;
 
 			return 0;
@@ -68,9 +64,37 @@ public class DlgWznmVerGenui {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == GUIBUTRUNCLICK) return("GuiButRunClick");
-			if (ix == GUIBUTSTOCLICK) return("GuiButStoClick");
 			if (ix == BUTDNECLICK) return("ButDneClick");
+
+			return "";
+		};
+
+	};
+
+	/**
+		* VecVDoGui (full: VecVDlgWznmVerGenuiDoGui)
+		*/
+	public static class VecVDoGui {
+
+		public static final int BUTRUNCLICK = 1;
+		public static final int BUTSTOCLICK = 2;
+
+		public static int getIx(
+					String sref
+				) {
+			String s = sref.toLowerCase();
+
+			if (s.equals("butrunclick")) return BUTRUNCLICK;
+			if (s.equals("butstoclick")) return BUTSTOCLICK;
+
+			return 0;
+		};
+
+		public static String getSref(
+					int ix
+				) {
+			if (ix == BUTRUNCLICK) return("ButRunClick");
+			if (ix == BUTSTOCLICK) return("ButStoClick");
 
 			return "";
 		};
@@ -213,20 +237,16 @@ public class DlgWznmVerGenui {
 	public class ContInf extends Block {
 
 		public static final int NUMFSGE = 1;
-		public static final int GUITXTPRG = 2;
 
 		public ContInf(
 					int numFSge
-					, String GuiTxtPrg
 				) {
 			this.numFSge = numFSge;
-			this.GuiTxtPrg = GuiTxtPrg;
 
-			mask = new HashSet<Integer>(Arrays.asList(NUMFSGE, GUITXTPRG));
+			mask = new HashSet<Integer>(Arrays.asList(NUMFSGE));
 		};
 
 		public int numFSge;
-		public String GuiTxtPrg;
 
 		public boolean readXML(
 					Document doc
@@ -242,7 +262,6 @@ public class DlgWznmVerGenui {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				numFSge = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFSge", mask, NUMFSGE);
-				GuiTxtPrg = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "GuiTxtPrg", mask, GUITXTPRG);
 
 				return true;
 			};
@@ -256,7 +275,6 @@ public class DlgWznmVerGenui {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (numFSge == comp.numFSge) items.add(NUMFSGE);
-			if (GuiTxtPrg.equals(comp.GuiTxtPrg)) items.add(GUITXTPRG);
 
 			return(items);
 		};
@@ -269,7 +287,71 @@ public class DlgWznmVerGenui {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(NUMFSGE, GUITXTPRG));
+			diffitems = new HashSet<Integer>(Arrays.asList(NUMFSGE));
+			for (Integer ci: commitems) diffitems.remove(ci);
+
+			return(diffitems);
+		};
+
+	};
+
+	/**
+	  * ContInfGui (full: ContInfDlgWznmVerGenuiGui)
+	  */
+	public class ContInfGui extends Block {
+
+		public static final int TXTPRG = 1;
+
+		public ContInfGui(
+					String TxtPrg
+				) {
+			this.TxtPrg = TxtPrg;
+
+			mask = new HashSet<Integer>(Arrays.asList(TXTPRG));
+		};
+
+		public String TxtPrg;
+
+		public boolean readXML(
+					Document doc
+					, String basexpath
+					, boolean addbasetag
+				) {
+
+			clear();
+
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "ContInfDlgWznmVerGenuiGui");
+
+			String itemtag = "ContitemInfDlgWznmVerGenuiGui";
+
+			if (Xmlio.checkXPath(doc, basexpath)) {
+				TxtPrg = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "TxtPrg", mask, TXTPRG);
+
+				return true;
+			};
+
+			return false;
+		};
+
+		public HashSet<Integer> comm(
+					ContInfGui comp
+				) {
+			HashSet<Integer> items = new HashSet<Integer>();
+
+			if (TxtPrg.equals(comp.TxtPrg)) items.add(TXTPRG);
+
+			return(items);
+		};
+
+		public HashSet<Integer> diff(
+					ContInfGui comp
+				) {
+			HashSet<Integer> commitems;
+			HashSet<Integer> diffitems;
+
+			commitems = comm(comp);
+
+			diffitems = new HashSet<Integer>(Arrays.asList(TXTPRG));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -416,24 +498,16 @@ public class DlgWznmVerGenui {
 	  */
 	public class StatShr extends Block {
 
-		public static final int GUIBUTRUNACTIVE = 1;
-		public static final int GUIBUTSTOACTIVE = 2;
-		public static final int BUTDNEACTIVE = 3;
+		public static final int BUTDNEACTIVE = 1;
 
 		public StatShr(
-					boolean GuiButRunActive
-					, boolean GuiButStoActive
-					, boolean ButDneActive
+					boolean ButDneActive
 				) {
-			this.GuiButRunActive = GuiButRunActive;
-			this.GuiButStoActive = GuiButStoActive;
 			this.ButDneActive = ButDneActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(GUIBUTRUNACTIVE, GUIBUTSTOACTIVE, BUTDNEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(BUTDNEACTIVE));
 		};
 
-		public boolean GuiButRunActive;
-		public boolean GuiButStoActive;
 		public boolean ButDneActive;
 
 		public boolean readXML(
@@ -449,8 +523,6 @@ public class DlgWznmVerGenui {
 			String itemtag = "StatitemShrDlgWznmVerGenui";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
-				GuiButRunActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "GuiButRunActive", mask, GUIBUTRUNACTIVE);
-				GuiButStoActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "GuiButStoActive", mask, GUIBUTSTOACTIVE);
 				ButDneActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButDneActive", mask, BUTDNEACTIVE);
 
 				return true;
@@ -464,8 +536,6 @@ public class DlgWznmVerGenui {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
-			if (GuiButRunActive == comp.GuiButRunActive) items.add(GUIBUTRUNACTIVE);
-			if (GuiButStoActive == comp.GuiButStoActive) items.add(GUIBUTSTOACTIVE);
 			if (ButDneActive == comp.ButDneActive) items.add(BUTDNEACTIVE);
 
 			return(items);
@@ -479,7 +549,77 @@ public class DlgWznmVerGenui {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(GUIBUTRUNACTIVE, GUIBUTSTOACTIVE, BUTDNEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(BUTDNEACTIVE));
+			for (Integer ci: commitems) diffitems.remove(ci);
+
+			return(diffitems);
+		};
+
+	};
+
+	/**
+	  * StatShrGui (full: StatShrDlgWznmVerGenuiGui)
+	  */
+	public class StatShrGui extends Block {
+
+		public static final int BUTRUNACTIVE = 1;
+		public static final int BUTSTOACTIVE = 2;
+
+		public StatShrGui(
+					boolean ButRunActive
+					, boolean ButStoActive
+				) {
+			this.ButRunActive = ButRunActive;
+			this.ButStoActive = ButStoActive;
+
+			mask = new HashSet<Integer>(Arrays.asList(BUTRUNACTIVE, BUTSTOACTIVE));
+		};
+
+		public boolean ButRunActive;
+		public boolean ButStoActive;
+
+		public boolean readXML(
+					Document doc
+					, String basexpath
+					, boolean addbasetag
+				) {
+
+			clear();
+
+			if (addbasetag) basexpath = Xmlio.checkUclcXPaths(doc, basexpath, "StatShrDlgWznmVerGenuiGui");
+
+			String itemtag = "StatitemShrDlgWznmVerGenuiGui";
+
+			if (Xmlio.checkXPath(doc, basexpath)) {
+				ButRunActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRunActive", mask, BUTRUNACTIVE);
+				ButStoActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButStoActive", mask, BUTSTOACTIVE);
+
+				return true;
+			};
+
+			return false;
+		};
+
+		public HashSet<Integer> comm(
+					StatShrGui comp
+				) {
+			HashSet<Integer> items = new HashSet<Integer>();
+
+			if (ButRunActive == comp.ButRunActive) items.add(BUTRUNACTIVE);
+			if (ButStoActive == comp.ButStoActive) items.add(BUTSTOACTIVE);
+
+			return(items);
+		};
+
+		public HashSet<Integer> diff(
+					StatShrGui comp
+				) {
+			HashSet<Integer> commitems;
+			HashSet<Integer> diffitems;
+
+			commitems = comm(comp);
+
+			diffitems = new HashSet<Integer>(Arrays.asList(BUTRUNACTIVE, BUTSTOACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -557,27 +697,19 @@ public class DlgWznmVerGenui {
 	public class Tag extends Block {
 
 		public static final int CPT = 1;
-		public static final int GUIBUTRUN = 2;
-		public static final int GUIBUTSTO = 3;
-		public static final int BUTDNE = 4;
+		public static final int BUTDNE = 2;
 
 		public Tag(
 					String Cpt
-					, String GuiButRun
-					, String GuiButSto
 					, String ButDne
 				) {
 			this.Cpt = Cpt;
-			this.GuiButRun = GuiButRun;
-			this.GuiButSto = GuiButSto;
 			this.ButDne = ButDne;
 
-			mask = new HashSet<Integer>(Arrays.asList(CPT, GUIBUTRUN, GUIBUTSTO, BUTDNE));
+			mask = new HashSet<Integer>(Arrays.asList(CPT, BUTDNE));
 		};
 
 		public String Cpt;
-		public String GuiButRun;
-		public String GuiButSto;
 		public String ButDne;
 
 		public boolean readXML(
@@ -594,8 +726,6 @@ public class DlgWznmVerGenui {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				Cpt = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "Cpt", mask, CPT);
-				GuiButRun = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "GuiButRun", mask, GUIBUTRUN);
-				GuiButSto = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "GuiButSto", mask, GUIBUTSTO);
 				ButDne = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "ButDne", mask, BUTDNE);
 
 				return true;
@@ -610,8 +740,6 @@ public class DlgWznmVerGenui {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (Cpt.equals(comp.Cpt)) items.add(CPT);
-			if (GuiButRun.equals(comp.GuiButRun)) items.add(GUIBUTRUN);
-			if (GuiButSto.equals(comp.GuiButSto)) items.add(GUIBUTSTO);
 			if (ButDne.equals(comp.ButDne)) items.add(BUTDNE);
 
 			return(items);
@@ -625,7 +753,7 @@ public class DlgWznmVerGenui {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(CPT, GUIBUTRUN, GUIBUTSTO, BUTDNE));
+			diffitems = new HashSet<Integer>(Arrays.asList(CPT, BUTDNE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -639,16 +767,24 @@ public class DlgWznmVerGenui {
 	public class TagGui extends Block {
 
 		public static final int CPTPRG = 1;
+		public static final int BUTRUN = 2;
+		public static final int BUTSTO = 3;
 
 		public TagGui(
 					String CptPrg
+					, String ButRun
+					, String ButSto
 				) {
 			this.CptPrg = CptPrg;
+			this.ButRun = ButRun;
+			this.ButSto = ButSto;
 
-			mask = new HashSet<Integer>(Arrays.asList(CPTPRG));
+			mask = new HashSet<Integer>(Arrays.asList(CPTPRG, BUTRUN, BUTSTO));
 		};
 
 		public String CptPrg;
+		public String ButRun;
+		public String ButSto;
 
 		public boolean readXML(
 					Document doc
@@ -664,6 +800,8 @@ public class DlgWznmVerGenui {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				CptPrg = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptPrg", mask, CPTPRG);
+				ButRun = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "ButRun", mask, BUTRUN);
+				ButSto = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "ButSto", mask, BUTSTO);
 
 				return true;
 			};
@@ -677,6 +815,8 @@ public class DlgWznmVerGenui {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (CptPrg.equals(comp.CptPrg)) items.add(CPTPRG);
+			if (ButRun.equals(comp.ButRun)) items.add(BUTRUN);
+			if (ButSto.equals(comp.ButSto)) items.add(BUTSTO);
 
 			return(items);
 		};
@@ -689,7 +829,7 @@ public class DlgWznmVerGenui {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(CPTPRG));
+			diffitems = new HashSet<Integer>(Arrays.asList(CPTPRG, BUTRUN, BUTSTO));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -823,11 +963,13 @@ public class DlgWznmVerGenui {
 
 		public static final int SCRJREF = 1;
 		public static final int IXVDO = 2;
-		public static final int ALL = 3;
+		public static final int IXVDOGUI = 3;
+		public static final int ALL = 4;
 
 		public DpchAppDo(
 					String scrJref
 					, int ixVDo
+					, int ixVDoGui
 					, Integer[] mask
 				) {
 			super(VecWznmVDpch.DPCHAPPDLGWZNMVERGENUIDO, scrJref);
@@ -836,20 +978,23 @@ public class DlgWznmVerGenui {
 
 			for (Integer i: mask)
 				if (i == ALL) {
-					this.mask = new HashSet<Integer>(Arrays.asList(SCRJREF, IXVDO));
+					this.mask = new HashSet<Integer>(Arrays.asList(SCRJREF, IXVDO, IXVDOGUI));
 					break;
 				};
 
 			this.ixVDo = ixVDo;
+			this.ixVDoGui = ixVDoGui;
 		};
 
 		public int ixVDo;
+		public int ixVDoGui;
 
 		public String getSrefsMask() {
 			ArrayList<String> ss = new ArrayList<String>();
 
 			if (has(SCRJREF)) ss.add("scrJref");
 			if (has(IXVDO)) ss.add("ixVDo");
+			if (has(IXVDOGUI)) ss.add("ixVDoGui");
 
 			return StrMod.vectorToString(ss, ';');
 		};
@@ -867,6 +1012,7 @@ public class DlgWznmVerGenui {
 
 			if (has(SCRJREF)) Xmlio.writeString(doc, el, "scrJref", scrJref);
 			if (has(IXVDO)) Xmlio.writeString(doc, el, "srefIxVDo", VecVDo.getSref(ixVDo));
+			if (has(IXVDOGUI)) Xmlio.writeString(doc, el, "srefIxVDoGui", VecVDoGui.getSref(ixVDoGui));
 		};
 
 	};
@@ -879,39 +1025,45 @@ public class DlgWznmVerGenui {
 		public static final int SCRJREF = 1;
 		public static final int CONTIAC = 2;
 		public static final int CONTINF = 3;
-		public static final int CONTINFLFI = 4;
-		public static final int FEEDFDSE = 5;
-		public static final int FEEDFSGE = 6;
-		public static final int STATAPP = 7;
-		public static final int STATSHR = 8;
-		public static final int STATSHRLFI = 9;
-		public static final int TAG = 10;
-		public static final int TAGGUI = 11;
-		public static final int TAGLFI = 12;
+		public static final int CONTINFGUI = 4;
+		public static final int CONTINFLFI = 5;
+		public static final int FEEDFDSE = 6;
+		public static final int FEEDFSGE = 7;
+		public static final int STATAPP = 8;
+		public static final int STATSHR = 9;
+		public static final int STATSHRGUI = 10;
+		public static final int STATSHRLFI = 11;
+		public static final int TAG = 12;
+		public static final int TAGGUI = 13;
+		public static final int TAGLFI = 14;
 
 		public DpchEngData() {
 			super(VecWznmVDpch.DPCHENGDLGWZNMVERGENUIDATA);
 
 			contiac = new ContIac(0);
-			continf = new ContInf(0, "");
+			continf = new ContInf(0);
+			continfgui = new ContInfGui("");
 			continflfi = new ContInfLfi("");
 			feedFDse = new Feed("FeedFDse");
 			feedFSge = new Feed("FeedFSge");
 			statapp = new StatApp(false, "");
-			statshr = new StatShr(false, false, false);
+			statshr = new StatShr(false);
+			statshrgui = new StatShrGui(false, false);
 			statshrlfi = new StatShrLfi(false);
-			tag = new Tag("", "", "", "");
-			taggui = new TagGui("");
+			tag = new Tag("", "");
+			taggui = new TagGui("", "", "");
 			taglfi = new TagLfi("");
 		};
 
 		public ContIac contiac;
 		public ContInf continf;
+		public ContInfGui continfgui;
 		public ContInfLfi continflfi;
 		public Feed feedFDse;
 		public Feed feedFSge;
 		public StatApp statapp;
 		public StatShr statshr;
+		public StatShrGui statshrgui;
 		public StatShrLfi statshrlfi;
 		public Tag tag;
 		public TagGui taggui;
@@ -923,11 +1075,13 @@ public class DlgWznmVerGenui {
 			if (has(SCRJREF)) ss.add("scrJref");
 			if (has(CONTIAC)) ss.add("contiac");
 			if (has(CONTINF)) ss.add("continf");
+			if (has(CONTINFGUI)) ss.add("continfgui");
 			if (has(CONTINFLFI)) ss.add("continflfi");
 			if (has(FEEDFDSE)) ss.add("feedFDse");
 			if (has(FEEDFSGE)) ss.add("feedFSge");
 			if (has(STATAPP)) ss.add("statapp");
 			if (has(STATSHR)) ss.add("statshr");
+			if (has(STATSHRGUI)) ss.add("statshrgui");
 			if (has(STATSHRLFI)) ss.add("statshrlfi");
 			if (has(TAG)) ss.add("tag");
 			if (has(TAGGUI)) ss.add("taggui");
@@ -950,11 +1104,13 @@ public class DlgWznmVerGenui {
 				scrJref = Xmlio.extractStringUclc(doc, basexpath, "scrJref", "", mask, SCRJREF);
 				if (contiac.readXML(doc, basexpath, true)) add(CONTIAC);
 				if (continf.readXML(doc, basexpath, true)) add(CONTINF);
+				if (continfgui.readXML(doc, basexpath, true)) add(CONTINFGUI);
 				if (continflfi.readXML(doc, basexpath, true)) add(CONTINFLFI);
 				if (feedFDse.readXML(doc, basexpath, true)) add(FEEDFDSE);
 				if (feedFSge.readXML(doc, basexpath, true)) add(FEEDFSGE);
 				if (statapp.readXML(doc, basexpath, true)) add(STATAPP);
 				if (statshr.readXML(doc, basexpath, true)) add(STATSHR);
+				if (statshrgui.readXML(doc, basexpath, true)) add(STATSHRGUI);
 				if (statshrlfi.readXML(doc, basexpath, true)) add(STATSHRLFI);
 				if (tag.readXML(doc, basexpath, true)) add(TAG);
 				if (taggui.readXML(doc, basexpath, true)) add(TAGGUI);
@@ -962,15 +1118,17 @@ public class DlgWznmVerGenui {
 			} else {
 				scrJref = "";
 				contiac = new ContIac(0);
-				continf = new ContInf(0, "");
+				continf = new ContInf(0);
+				continfgui = new ContInfGui("");
 				continflfi = new ContInfLfi("");
 				feedFDse = new Feed("FeedFDse");
 				feedFSge = new Feed("FeedFSge");
 				statapp = new StatApp(false, "");
-				statshr = new StatShr(false, false, false);
+				statshr = new StatShr(false);
+				statshrgui = new StatShrGui(false, false);
 				statshrlfi = new StatShrLfi(false);
-				tag = new Tag("", "", "", "");
-				taggui = new TagGui("");
+				tag = new Tag("", "");
+				taggui = new TagGui("", "", "");
 				taglfi = new TagLfi("");
 			};
 		};

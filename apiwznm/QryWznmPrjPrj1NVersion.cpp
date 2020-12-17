@@ -1,23 +1,23 @@
 /**
-	* \file QryWznmPrj1NVersion.cpp
-	* API code for job QryWznmPrj1NVersion (implementation)
+	* \file QryWznmPrjPrj1NVersion.cpp
+	* API code for job QryWznmPrjPrj1NVersion (implementation)
 	* \copyright (C) 2016-2020 MPSI Technologies GmbH
 	* \author Alexander Wirthmueller (auto-generation)
-	* \date created: 5 Dec 2020
+	* \date created: 16 Dec 2020
 	*/
 // IP header --- ABOVE
 
-#include "QryWznmPrj1NVersion.h"
+#include "QryWznmPrjPrj1NVersion.h"
 
 using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
 /******************************************************************************
- class QryWznmPrj1NVersion::StatApp
+ class QryWznmPrjPrj1NVersion::StatApp
  ******************************************************************************/
 
-QryWznmPrj1NVersion::StatApp::StatApp(
+QryWznmPrjPrj1NVersion::StatApp::StatApp(
 			const uint firstcol
 			, const uint jnumFirstdisp
 			, const uint ncol
@@ -33,7 +33,7 @@ QryWznmPrj1NVersion::StatApp::StatApp(
 	mask = {FIRSTCOL, JNUMFIRSTDISP, NCOL, NDISP};
 };
 
-bool QryWznmPrj1NVersion::StatApp::readXML(
+bool QryWznmPrjPrj1NVersion::StatApp::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
 			, bool addbasetag
@@ -43,11 +43,11 @@ bool QryWznmPrj1NVersion::StatApp::readXML(
 	bool basefound;
 
 	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StatAppQryWznmPrj1NVersion");
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StatAppQryWznmPrjPrj1NVersion");
 	else
 		basefound = checkXPath(docctx, basexpath);
 
-	string itemtag = "StatitemAppQryWznmPrj1NVersion";
+	string itemtag = "StatitemAppQryWznmPrjPrj1NVersion";
 
 	if (basefound) {
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "firstcol", firstcol)) add(FIRSTCOL);
@@ -59,7 +59,7 @@ bool QryWznmPrj1NVersion::StatApp::readXML(
 	return basefound;
 };
 
-set<uint> QryWznmPrj1NVersion::StatApp::comm(
+set<uint> QryWznmPrjPrj1NVersion::StatApp::comm(
 			const StatApp* comp
 		) {
 	set<uint> items;
@@ -72,7 +72,7 @@ set<uint> QryWznmPrj1NVersion::StatApp::comm(
 	return(items);
 };
 
-set<uint> QryWznmPrj1NVersion::StatApp::diff(
+set<uint> QryWznmPrjPrj1NVersion::StatApp::diff(
 			const StatApp* comp
 		) {
 	set<uint> commitems;
@@ -87,10 +87,10 @@ set<uint> QryWznmPrj1NVersion::StatApp::diff(
 };
 
 /******************************************************************************
- class QryWznmPrj1NVersion::StatShr
+ class QryWznmPrjPrj1NVersion::StatShr
  ******************************************************************************/
 
-QryWznmPrj1NVersion::StatShr::StatShr(
+QryWznmPrjPrj1NVersion::StatShr::StatShr(
 			const uint ntot
 			, const uint jnumFirstload
 			, const uint nload
@@ -104,7 +104,7 @@ QryWznmPrj1NVersion::StatShr::StatShr(
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
-bool QryWznmPrj1NVersion::StatShr::readXML(
+bool QryWznmPrjPrj1NVersion::StatShr::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
 			, bool addbasetag
@@ -114,11 +114,11 @@ bool QryWznmPrj1NVersion::StatShr::readXML(
 	bool basefound;
 
 	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StatShrQryWznmPrj1NVersion");
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StatShrQryWznmPrjPrj1NVersion");
 	else
 		basefound = checkXPath(docctx, basexpath);
 
-	string itemtag = "StatitemShrQryWznmPrj1NVersion";
+	string itemtag = "StatitemShrQryWznmPrjPrj1NVersion";
 
 	if (basefound) {
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ntot", ntot)) add(NTOT);
@@ -129,7 +129,7 @@ bool QryWznmPrj1NVersion::StatShr::readXML(
 	return basefound;
 };
 
-set<uint> QryWznmPrj1NVersion::StatShr::comm(
+set<uint> QryWznmPrjPrj1NVersion::StatShr::comm(
 			const StatShr* comp
 		) {
 	set<uint> items;
@@ -141,7 +141,7 @@ set<uint> QryWznmPrj1NVersion::StatShr::comm(
 	return(items);
 };
 
-set<uint> QryWznmPrj1NVersion::StatShr::diff(
+set<uint> QryWznmPrjPrj1NVersion::StatShr::diff(
 			const StatShr* comp
 		) {
 	set<uint> commitems;
@@ -156,10 +156,10 @@ set<uint> QryWznmPrj1NVersion::StatShr::diff(
 };
 
 /******************************************************************************
- class QryWznmPrj1NVersion::StgIac
+ class QryWznmPrjPrj1NVersion::StgIac
  ******************************************************************************/
 
-QryWznmPrj1NVersion::StgIac::StgIac(
+QryWznmPrjPrj1NVersion::StgIac::StgIac(
 			const uint jnum
 			, const uint jnumFirstload
 			, const uint nload
@@ -173,7 +173,7 @@ QryWznmPrj1NVersion::StgIac::StgIac(
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 
-bool QryWznmPrj1NVersion::StgIac::readXML(
+bool QryWznmPrjPrj1NVersion::StgIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
 			, bool addbasetag
@@ -183,11 +183,11 @@ bool QryWznmPrj1NVersion::StgIac::readXML(
 	bool basefound;
 
 	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StgIacQryWznmPrj1NVersion");
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StgIacQryWznmPrjPrj1NVersion");
 	else
 		basefound = checkXPath(docctx, basexpath);
 
-	string itemtag = "StgitemIacQryWznmPrj1NVersion";
+	string itemtag = "StgitemIacQryWznmPrjPrj1NVersion";
 
 	if (basefound) {
 		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "jnum", jnum)) add(JNUM);
@@ -198,16 +198,16 @@ bool QryWznmPrj1NVersion::StgIac::readXML(
 	return basefound;
 };
 
-void QryWznmPrj1NVersion::StgIac::writeXML(
+void QryWznmPrjPrj1NVersion::StgIac::writeXML(
 			xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
 		) {
-	if (difftag.length() == 0) difftag = "StgIacQryWznmPrj1NVersion";
+	if (difftag.length() == 0) difftag = "StgIacQryWznmPrjPrj1NVersion";
 
 	string itemtag;
 	if (shorttags) itemtag = "Si";
-	else itemtag = "StgitemIacQryWznmPrj1NVersion";
+	else itemtag = "StgitemIacQryWznmPrjPrj1NVersion";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUintAttr(wr, itemtag, "sref", "jnum", jnum);
@@ -216,7 +216,7 @@ void QryWznmPrj1NVersion::StgIac::writeXML(
 	xmlTextWriterEndElement(wr);
 };
 
-set<uint> QryWznmPrj1NVersion::StgIac::comm(
+set<uint> QryWznmPrjPrj1NVersion::StgIac::comm(
 			const StgIac* comp
 		) {
 	set<uint> items;
@@ -228,7 +228,7 @@ set<uint> QryWznmPrj1NVersion::StgIac::comm(
 	return(items);
 };
 
-set<uint> QryWznmPrj1NVersion::StgIac::diff(
+set<uint> QryWznmPrjPrj1NVersion::StgIac::diff(
 			const StgIac* comp
 		) {
 	set<uint> commitems;

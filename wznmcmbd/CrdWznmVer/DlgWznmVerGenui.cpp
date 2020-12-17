@@ -77,7 +77,7 @@ DpchEngWznm* DlgWznmVerGenui::getNewDpchEng(
 		dpcheng = new DpchEngWznmConfirm(true, jref, "");
 	} else {
 		insert(items, DpchEngData::JREF);
-		dpcheng = new DpchEngData(jref, &contiac, &continf, &continflfi, &feedFDse, &feedFSge, &statshr, &statshrlfi, items);
+		dpcheng = new DpchEngData(jref, &contiac, &continf, &continfgui, &continflfi, &feedFDse, &feedFSge, &statshr, &statshrgui, &statshrlfi, items);
 	};
 
 	return dpcheng;
@@ -87,9 +87,20 @@ void DlgWznmVerGenui::refreshGui(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
+	StatShrGui oldStatshrgui(statshrgui);
+	ContInfGui oldContinfgui(continfgui);
 
-	// IP refreshGui --- BEGIN
-	// IP refreshGui --- END
+	// IP refreshGui --- RBEGIN
+	// continfgui
+	continfgui.TxtPrg = getSquawk(dbswznm);
+
+	// statshrgui
+	statshrgui.ButRunActive = evalGuiButRunActive(dbswznm);
+	statshrgui.ButStoActive = evalGuiButStoActive(dbswznm);
+
+	// IP refreshGui --- REND
+	if (statshrgui.diff(&oldStatshrgui).size() != 0) insert(moditems, DpchEngData::STATSHRGUI);
+	if (continfgui.diff(&oldContinfgui).size() != 0) insert(moditems, DpchEngData::CONTINFGUI);
 };
 
 void DlgWznmVerGenui::refreshLfi(
@@ -119,23 +130,20 @@ void DlgWznmVerGenui::refresh(
 	muteRefresh = true;
 
 	StatShr oldStatshr(statshr);
-	ContInf oldContinf(continf);
 	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- RBEGIN
 	// continf
 	continf.numFSge = ixVSge;
-	continf.GuiTxtPrg = getSquawk(dbswznm);
 
 	// statshr
-	statshr.GuiButRunActive = evalGuiButRunActive(dbswznm);
-	statshr.GuiButStoActive = evalGuiButStoActive(dbswznm);
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
 	// IP refresh --- REND
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshGui(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);
@@ -173,12 +181,15 @@ void DlgWznmVerGenui::handleRequest(
 			DpchAppDo* dpchappdo = (DpchAppDo*) (req->dpchapp);
 
 			if (dpchappdo->ixVDo != 0) {
-				if (dpchappdo->ixVDo == VecVDo::GUIBUTRUNCLICK) {
-					handleDpchAppDoGuiButRunClick(dbswznm, &(req->dpcheng));
-				} else if (dpchappdo->ixVDo == VecVDo::GUIBUTSTOCLICK) {
-					handleDpchAppDoGuiButStoClick(dbswznm, &(req->dpcheng));
-				} else if (dpchappdo->ixVDo == VecVDo::BUTDNECLICK) {
+				if (dpchappdo->ixVDo == VecVDo::BUTDNECLICK) {
 					handleDpchAppDoButDneClick(dbswznm, &(req->dpcheng));
+				};
+
+			} else if (dpchappdo->ixVDoGui != 0) {
+				if (dpchappdo->ixVDoGui == VecVDoGui::BUTRUNCLICK) {
+					handleDpchAppDoGuiButRunClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDoGui == VecVDoGui::BUTSTOCLICK) {
+					handleDpchAppDoGuiButStoClick(dbswznm, &(req->dpcheng));
 				};
 
 			};
@@ -246,24 +257,6 @@ void DlgWznmVerGenui::handleDpchAppDataContiac(
 	*dpcheng = getNewDpchEng(moditems);
 };
 
-void DlgWznmVerGenui::handleDpchAppDoGuiButRunClick(
-			DbsWznm* dbswznm
-			, DpchEngWznm** dpcheng
-		) {
-	// IP handleDpchAppDoGuiButRunClick --- BEGIN
-	if (statshr.GuiButRunActive) {
-		changeStage(dbswznm, VecVSge::GENUI, dpcheng);
-	};
-	// IP handleDpchAppDoGuiButRunClick --- END
-};
-
-void DlgWznmVerGenui::handleDpchAppDoGuiButStoClick(
-			DbsWznm* dbswznm
-			, DpchEngWznm** dpcheng
-		) {
-	// IP handleDpchAppDoGuiButStoClick --- INSERT
-};
-
 void DlgWznmVerGenui::handleDpchAppDoButDneClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
@@ -274,6 +267,24 @@ void DlgWznmVerGenui::handleDpchAppDoButDneClick(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMDLGCLOSE, jref);
 	};
 	// IP handleDpchAppDoButDneClick --- IEND
+};
+
+void DlgWznmVerGenui::handleDpchAppDoGuiButRunClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	// IP handleDpchAppDoGuiButRunClick --- BEGIN
+	if (statshrgui.ButRunActive) {
+		changeStage(dbswznm, VecVSge::GENUI, dpcheng);
+	};
+	// IP handleDpchAppDoGuiButRunClick --- END
+};
+
+void DlgWznmVerGenui::handleDpchAppDoGuiButStoClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	// IP handleDpchAppDoGuiButStoClick --- INSERT
 };
 
 void DlgWznmVerGenui::handleDpchAppWznmAlert(

@@ -19,9 +19,9 @@ public class QryWznmRtjList {
 		*/
 	public static class VecVOrd {
 
-		public static final int SUP = 1;
-		public static final int JOB = 2;
-		public static final int APP = 3;
+		public static final int JOB = 1;
+		public static final int APP = 2;
+		public static final int SUP = 3;
 		public static final int SRF = 4;
 
 		public static int getIx(
@@ -29,9 +29,9 @@ public class QryWznmRtjList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("sup")) return SUP;
 			if (s.equals("job")) return JOB;
 			if (s.equals("app")) return APP;
+			if (s.equals("sup")) return SUP;
 			if (s.equals("srf")) return SRF;
 
 			return 0;
@@ -40,9 +40,9 @@ public class QryWznmRtjList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == SUP) return("sup");
 			if (ix == JOB) return("job");
 			if (ix == APP) return("app");
+			if (ix == SUP) return("sup");
 			if (ix == SRF) return("srf");
 
 			return "";

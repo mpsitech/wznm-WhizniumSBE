@@ -20,8 +20,8 @@ uint QryWznmPstList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "reu") return REU;
 	if (s == "aty") return ATY;
+	if (s == "reu") return REU;
 	if (s == "ret") return RET;
 	if (s == "ver") return VER;
 	if (s == "srf") return SRF;
@@ -32,8 +32,8 @@ uint QryWznmPstList::VecVOrd::getIx(
 string QryWznmPstList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == REU) return("reu");
 	if (ix == ATY) return("aty");
+	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
 	if (ix == VER) return("ver");
 	if (ix == SRF) return("srf");

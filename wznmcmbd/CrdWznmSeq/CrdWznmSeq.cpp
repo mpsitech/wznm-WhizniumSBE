@@ -44,9 +44,9 @@ CrdWznmSeq::CrdWznmSeq(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnlrec = NULL;
-	pnlheadbar = NULL;
 	pnllist = NULL;
+	pnlheadbar = NULL;
+	pnlrec = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -58,9 +58,9 @@ CrdWznmSeq::CrdWznmSeq(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnlrec = new PnlWznmSeqRec(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlheadbar = new PnlWznmSeqHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnllist = new PnlWznmSeqList(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmSeqHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlrec = new PnlWznmSeqRec(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

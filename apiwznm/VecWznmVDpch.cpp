@@ -269,12 +269,12 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengwznmpnllistdata") return DPCHENGWZNMPNLLISTDATA;
 	if (s == "dpchengwznmpnlmnquerydata") return DPCHENGWZNMPNLMNQUERYDATA;
 	if (s == "dpchengwznmpnlrecdata") return DPCHENGWZNMPNLRECDATA;
-	if (s == "dpchengwznmprj1nversiondata") return DPCHENGWZNMPRJ1NVERSIONDATA;
 	if (s == "dpchengwznmprjdata") return DPCHENGWZNMPRJDATA;
 	if (s == "dpchengwznmprjdetaildata") return DPCHENGWZNMPRJDETAILDATA;
 	if (s == "dpchengwznmprjheadbardata") return DPCHENGWZNMPRJHEADBARDATA;
 	if (s == "dpchengwznmprjlistdata") return DPCHENGWZNMPRJLISTDATA;
 	if (s == "dpchengwznmprjmnpersondata") return DPCHENGWZNMPRJMNPERSONDATA;
+	if (s == "dpchengwznmprjprj1nversiondata") return DPCHENGWZNMPRJPRJ1NVERSIONDATA;
 	if (s == "dpchengwznmprjrecdata") return DPCHENGWZNMPRJRECDATA;
 	if (s == "dpchengwznmprsadetaildata") return DPCHENGWZNMPRSADETAILDATA;
 	if (s == "dpchengwznmprsdata") return DPCHENGWZNMPRSDATA;
@@ -859,8 +859,6 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappwznmpnlmnquerydata") return DPCHAPPWZNMPNLMNQUERYDATA;
 	if (s == "dpchappwznmpnlmnquerydo") return DPCHAPPWZNMPNLMNQUERYDO;
 	if (s == "dpchappwznmpnlrecdo") return DPCHAPPWZNMPNLRECDO;
-	if (s == "dpchappwznmprj1nversiondata") return DPCHAPPWZNMPRJ1NVERSIONDATA;
-	if (s == "dpchappwznmprj1nversiondo") return DPCHAPPWZNMPRJ1NVERSIONDO;
 	if (s == "dpchappwznmprjdetaildata") return DPCHAPPWZNMPRJDETAILDATA;
 	if (s == "dpchappwznmprjdetaildo") return DPCHAPPWZNMPRJDETAILDO;
 	if (s == "dpchappwznmprjdo") return DPCHAPPWZNMPRJDO;
@@ -868,6 +866,8 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchappwznmprjlistdo") return DPCHAPPWZNMPRJLISTDO;
 	if (s == "dpchappwznmprjmnpersondata") return DPCHAPPWZNMPRJMNPERSONDATA;
 	if (s == "dpchappwznmprjmnpersondo") return DPCHAPPWZNMPRJMNPERSONDO;
+	if (s == "dpchappwznmprjprj1nversiondata") return DPCHAPPWZNMPRJPRJ1NVERSIONDATA;
+	if (s == "dpchappwznmprjprj1nversiondo") return DPCHAPPWZNMPRJPRJ1NVERSIONDO;
 	if (s == "dpchappwznmprjrecdo") return DPCHAPPWZNMPRJRECDO;
 	if (s == "dpchappwznmprsadetaildata") return DPCHAPPWZNMPRSADETAILDATA;
 	if (s == "dpchappwznmprsadetaildo") return DPCHAPPWZNMPRSADETAILDO;
@@ -1440,12 +1440,12 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGWZNMPNLLISTDATA) return("DpchEngWznmPnlListData");
 	if (ix == DPCHENGWZNMPNLMNQUERYDATA) return("DpchEngWznmPnlMNQueryData");
 	if (ix == DPCHENGWZNMPNLRECDATA) return("DpchEngWznmPnlRecData");
-	if (ix == DPCHENGWZNMPRJ1NVERSIONDATA) return("DpchEngWznmPrj1NVersionData");
 	if (ix == DPCHENGWZNMPRJDATA) return("DpchEngWznmPrjData");
 	if (ix == DPCHENGWZNMPRJDETAILDATA) return("DpchEngWznmPrjDetailData");
 	if (ix == DPCHENGWZNMPRJHEADBARDATA) return("DpchEngWznmPrjHeadbarData");
 	if (ix == DPCHENGWZNMPRJLISTDATA) return("DpchEngWznmPrjListData");
 	if (ix == DPCHENGWZNMPRJMNPERSONDATA) return("DpchEngWznmPrjMNPersonData");
+	if (ix == DPCHENGWZNMPRJPRJ1NVERSIONDATA) return("DpchEngWznmPrjPrj1NVersionData");
 	if (ix == DPCHENGWZNMPRJRECDATA) return("DpchEngWznmPrjRecData");
 	if (ix == DPCHENGWZNMPRSADETAILDATA) return("DpchEngWznmPrsADetailData");
 	if (ix == DPCHENGWZNMPRSDATA) return("DpchEngWznmPrsData");
@@ -2030,8 +2030,6 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPWZNMPNLMNQUERYDATA) return("DpchAppWznmPnlMNQueryData");
 	if (ix == DPCHAPPWZNMPNLMNQUERYDO) return("DpchAppWznmPnlMNQueryDo");
 	if (ix == DPCHAPPWZNMPNLRECDO) return("DpchAppWznmPnlRecDo");
-	if (ix == DPCHAPPWZNMPRJ1NVERSIONDATA) return("DpchAppWznmPrj1NVersionData");
-	if (ix == DPCHAPPWZNMPRJ1NVERSIONDO) return("DpchAppWznmPrj1NVersionDo");
 	if (ix == DPCHAPPWZNMPRJDETAILDATA) return("DpchAppWznmPrjDetailData");
 	if (ix == DPCHAPPWZNMPRJDETAILDO) return("DpchAppWznmPrjDetailDo");
 	if (ix == DPCHAPPWZNMPRJDO) return("DpchAppWznmPrjDo");
@@ -2039,6 +2037,8 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHAPPWZNMPRJLISTDO) return("DpchAppWznmPrjListDo");
 	if (ix == DPCHAPPWZNMPRJMNPERSONDATA) return("DpchAppWznmPrjMNPersonData");
 	if (ix == DPCHAPPWZNMPRJMNPERSONDO) return("DpchAppWznmPrjMNPersonDo");
+	if (ix == DPCHAPPWZNMPRJPRJ1NVERSIONDATA) return("DpchAppWznmPrjPrj1NVersionData");
+	if (ix == DPCHAPPWZNMPRJPRJ1NVERSIONDO) return("DpchAppWznmPrjPrj1NVersionDo");
 	if (ix == DPCHAPPWZNMPRJRECDO) return("DpchAppWznmPrjRecDo");
 	if (ix == DPCHAPPWZNMPRSADETAILDATA) return("DpchAppWznmPrsADetailData");
 	if (ix == DPCHAPPWZNMPRSADETAILDO) return("DpchAppWznmPrsADetailDo");

@@ -22,11 +22,11 @@ uint QryWznmUsrList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "usg") return USG;
-	if (s == "srf") return SRF;
 	if (s == "prs") return PRS;
-	if (s == "grp") return GRP;
+	if (s == "srf") return SRF;
+	if (s == "usg") return USG;
 	if (s == "own") return OWN;
+	if (s == "grp") return GRP;
 
 	return(0);
 };
@@ -34,11 +34,11 @@ uint QryWznmUsrList::VecVOrd::getIx(
 string QryWznmUsrList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == USG) return("usg");
-	if (ix == SRF) return("srf");
 	if (ix == PRS) return("prs");
-	if (ix == GRP) return("grp");
+	if (ix == SRF) return("srf");
+	if (ix == USG) return("usg");
 	if (ix == OWN) return("own");
+	if (ix == GRP) return("grp");
 
 	return("");
 };

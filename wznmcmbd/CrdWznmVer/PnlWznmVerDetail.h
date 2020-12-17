@@ -330,9 +330,9 @@ public:
 
 	WznmMVersion recVer;
 
-	WznmJMVersion recVerJ;
-
 	WznmJMVersionState recVerJste;
+
+	WznmJMVersion recVerJ;
 
 	bool dirty;
 
@@ -350,8 +350,8 @@ public:
 	void refreshJ(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
 	void refreshRecVer(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
-	void refreshRecVerJ(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshRecVerJste(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refreshRecVerJ(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
 	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 
@@ -378,13 +378,13 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
+	bool handleCallWznmVerJsteMod_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmVerJMod_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmVerUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmVer_steEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmVer_prjEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmVer_locEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmVer_bvrEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVerUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmVerJMod_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmVerJsteMod_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

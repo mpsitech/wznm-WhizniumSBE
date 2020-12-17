@@ -48,20 +48,20 @@ CrdWznmVer::CrdWznmVer(
 	pnllist = NULL;
 	pnlheadbar = NULL;
 	pnlrec = NULL;
+	dlgbscui = NULL;
+	dlgcustjob = NULL;
+	dlgcustjtr = NULL;
+	dlgcustui = NULL;
+	dlgdbstr = NULL;
 	dlgdeploy = NULL;
 	dlgfinmod = NULL;
 	dlggenjtr = NULL;
 	dlggenui = NULL;
-	dlgdbstr = NULL;
-	dlgcustui = NULL;
-	dlgcustjob = NULL;
-	dlgcustjtr = NULL;
-	dlgbscui = NULL;
-	dlgwrinimdl = NULL;
-	dlgoppack = NULL;
 	dlgglobal = NULL;
 	dlgimpexp = NULL;
 	dlgnew = NULL;
+	dlgoppack = NULL;
+	dlgwrinimdl = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -1536,18 +1536,16 @@ uint CrdWznmVer::enterSgeSetprjcvr(
 	retval = nextIxVSgeSuccess;
 
 	// IP enterSgeSetprjcvr --- IBEGIN
+	WznmMVersion* ver = NULL;
 
-	WznmMProject* prj = NULL;
+	if (dbswznm->tblwznmmversion->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref), &ver)) {
+		if (ver->ixVState == VecWznmVMVersionState::ABANDON) Wznm::updateVerste(dbswznm, ver->ref, VecWznmVMVersionState::READY);
 
-	ubigint refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
+		dbswznm->executeQuery("UPDATE TblWznmMProject SET refWznmMVersion = " + to_string(ver->ref) + " WHERE ref = " + to_string(ver->prjRefWznmMProject));
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMPRJMOD, jref);
 
-	if (dbswznm->tblwznmmproject->loadRecBySQL("SELECT TblWznmMProject.* FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(refWznmMVersion), &prj)) {
-		prj->refWznmMVersion = refWznmMVersion;
-		dbswznm->tblwznmmproject->updateRec(prj);
-
-		delete prj;
+		delete ver;
 	};
-
 	// IP enterSgeSetprjcvr --- IEND
 
 	return retval;

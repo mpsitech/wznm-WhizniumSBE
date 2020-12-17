@@ -14,6 +14,38 @@
 
 // IP include.cust --- INSERT
 
+#include "CrdWznmUtl.h"
+#include "CrdWznmSte.h"
+#include "CrdWznmSeq.h"
+#include "CrdWznmEvt.h"
+#include "CrdWznmRtj.h"
+#include "CrdWznmApp.h"
+#include "CrdWznmRls.h"
+#include "CrdWznmCmp.h"
+#include "CrdWznmCal.h"
+#include "CrdWznmBlk.h"
+#include "CrdWznmMtd.h"
+#include "CrdWznmSge.h"
+#include "CrdWznmJob.h"
+#include "CrdWznmOpx.h"
+#include "CrdWznmOpk.h"
+#include "CrdWznmCon.h"
+#include "CrdWznmQmd.h"
+#include "CrdWznmQco.h"
+#include "CrdWznmQry.h"
+#include "CrdWznmPnl.h"
+#include "CrdWznmDlg.h"
+#include "CrdWznmCar.h"
+#include "CrdWznmMdl.h"
+#include "CrdWznmPst.h"
+#include "CrdWznmIel.h"
+#include "CrdWznmIme.h"
+#include "CrdWznmIex.h"
+#include "CrdWznmStb.h"
+#include "CrdWznmChk.h"
+#include "CrdWznmVit.h"
+#include "CrdWznmVec.h"
+#include "CrdWznmRel.h"
 #include "CrdWznmSbs.h"
 #include "CrdWznmTco.h"
 #include "CrdWznmTbl.h"
@@ -26,43 +58,11 @@
 #include "CrdWznmCtp.h"
 #include "CrdWznmTag.h"
 #include "CrdWznmLoc.h"
+#include "CrdWznmNav.h"
 #include "CrdWznmFil.h"
 #include "CrdWznmPrs.h"
 #include "CrdWznmUsr.h"
 #include "CrdWznmUsg.h"
-#include "CrdWznmNav.h"
-#include "CrdWznmRel.h"
-#include "CrdWznmVec.h"
-#include "CrdWznmVit.h"
-#include "CrdWznmChk.h"
-#include "CrdWznmStb.h"
-#include "CrdWznmIex.h"
-#include "CrdWznmIme.h"
-#include "CrdWznmIel.h"
-#include "CrdWznmPst.h"
-#include "CrdWznmMdl.h"
-#include "CrdWznmCar.h"
-#include "CrdWznmDlg.h"
-#include "CrdWznmPnl.h"
-#include "CrdWznmQry.h"
-#include "CrdWznmQco.h"
-#include "CrdWznmQmd.h"
-#include "CrdWznmCon.h"
-#include "CrdWznmOpk.h"
-#include "CrdWznmOpx.h"
-#include "CrdWznmJob.h"
-#include "CrdWznmSge.h"
-#include "CrdWznmMtd.h"
-#include "CrdWznmBlk.h"
-#include "CrdWznmCal.h"
-#include "CrdWznmCmp.h"
-#include "CrdWznmRls.h"
-#include "CrdWznmApp.h"
-#include "CrdWznmRtj.h"
-#include "CrdWznmEvt.h"
-#include "CrdWznmSeq.h"
-#include "CrdWznmSte.h"
-#include "CrdWznmUtl.h"
 
 #define StatShrSessWznm SessWznm::StatShr
 
@@ -126,6 +126,38 @@ public:
 public:
 	StatShr statshr;
 
+	std::list<CrdWznmUtl*> crdutls;
+	std::list<CrdWznmSte*> crdstes;
+	std::list<CrdWznmSeq*> crdseqs;
+	std::list<CrdWznmEvt*> crdevts;
+	std::list<CrdWznmRtj*> crdrtjs;
+	std::list<CrdWznmApp*> crdapps;
+	std::list<CrdWznmRls*> crdrlss;
+	std::list<CrdWznmCmp*> crdcmps;
+	std::list<CrdWznmCal*> crdcals;
+	std::list<CrdWznmBlk*> crdblks;
+	std::list<CrdWznmMtd*> crdmtds;
+	std::list<CrdWznmSge*> crdsges;
+	std::list<CrdWznmJob*> crdjobs;
+	std::list<CrdWznmOpx*> crdopxs;
+	std::list<CrdWznmOpk*> crdopks;
+	std::list<CrdWznmCon*> crdcons;
+	std::list<CrdWznmQmd*> crdqmds;
+	std::list<CrdWznmQco*> crdqcos;
+	std::list<CrdWznmQry*> crdqrys;
+	std::list<CrdWznmPnl*> crdpnls;
+	std::list<CrdWznmDlg*> crddlgs;
+	std::list<CrdWznmCar*> crdcars;
+	std::list<CrdWznmMdl*> crdmdls;
+	std::list<CrdWznmPst*> crdpsts;
+	std::list<CrdWznmIel*> crdiels;
+	std::list<CrdWznmIme*> crdimes;
+	std::list<CrdWznmIex*> crdiexs;
+	std::list<CrdWznmStb*> crdstbs;
+	std::list<CrdWznmChk*> crdchks;
+	std::list<CrdWznmVit*> crdvits;
+	std::list<CrdWznmVec*> crdvecs;
+	std::list<CrdWznmRel*> crdrels;
 	std::list<CrdWznmSbs*> crdsbss;
 	std::list<CrdWznmTco*> crdtcos;
 	std::list<CrdWznmTbl*> crdtbls;
@@ -138,43 +170,11 @@ public:
 	std::list<CrdWznmCtp*> crdctps;
 	std::list<CrdWznmTag*> crdtags;
 	std::list<CrdWznmLoc*> crdlocs;
+	CrdWznmNav* crdnav;
 	std::list<CrdWznmFil*> crdfils;
 	std::list<CrdWznmPrs*> crdprss;
 	std::list<CrdWznmUsr*> crdusrs;
 	std::list<CrdWznmUsg*> crdusgs;
-	CrdWznmNav* crdnav;
-	std::list<CrdWznmRel*> crdrels;
-	std::list<CrdWznmVec*> crdvecs;
-	std::list<CrdWznmVit*> crdvits;
-	std::list<CrdWznmChk*> crdchks;
-	std::list<CrdWznmStb*> crdstbs;
-	std::list<CrdWznmIex*> crdiexs;
-	std::list<CrdWznmIme*> crdimes;
-	std::list<CrdWznmIel*> crdiels;
-	std::list<CrdWznmPst*> crdpsts;
-	std::list<CrdWznmMdl*> crdmdls;
-	std::list<CrdWznmCar*> crdcars;
-	std::list<CrdWznmDlg*> crddlgs;
-	std::list<CrdWznmPnl*> crdpnls;
-	std::list<CrdWznmQry*> crdqrys;
-	std::list<CrdWznmQco*> crdqcos;
-	std::list<CrdWznmQmd*> crdqmds;
-	std::list<CrdWznmCon*> crdcons;
-	std::list<CrdWznmOpk*> crdopks;
-	std::list<CrdWznmOpx*> crdopxs;
-	std::list<CrdWznmJob*> crdjobs;
-	std::list<CrdWznmSge*> crdsges;
-	std::list<CrdWznmMtd*> crdmtds;
-	std::list<CrdWznmBlk*> crdblks;
-	std::list<CrdWznmCal*> crdcals;
-	std::list<CrdWznmCmp*> crdcmps;
-	std::list<CrdWznmRls*> crdrlss;
-	std::list<CrdWznmApp*> crdapps;
-	std::list<CrdWznmRtj*> crdrtjs;
-	std::list<CrdWznmEvt*> crdevts;
-	std::list<CrdWznmSeq*> crdseqs;
-	std::list<CrdWznmSte*> crdstes;
-	std::list<CrdWznmUtl*> crdutls;
 
 	std::map<Sbecore::ubigint,Sbecore::uint> usgaccs;
 

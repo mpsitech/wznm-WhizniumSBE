@@ -245,8 +245,8 @@ void QryWznmCalList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::RAT) sqlstr += " ORDER BY TblWznmMCall.retIxWznmWArgtype ASC";
-	else if (preIxOrd == VecVOrd::IAT) sqlstr += " ORDER BY TblWznmMCall.invIxWznmWArgtype ASC";
+	if (preIxOrd == VecVOrd::IAT) sqlstr += " ORDER BY TblWznmMCall.invIxWznmWArgtype ASC";
+	else if (preIxOrd == VecVOrd::RAT) sqlstr += " ORDER BY TblWznmMCall.retIxWznmWArgtype ASC";
 	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMCall.refUref ASC";
 	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMCall.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMCall.refWznmMVersion ASC";
@@ -449,27 +449,13 @@ void QryWznmCalList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMCALMOD) {
-		call->abort = handleCallWznmCalMod(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCALUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCALUPD_REFEQ) {
 		call->abort = handleCallWznmCalUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCALMOD) {
+		call->abort = handleCallWznmCalMod(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmCalList::handleCallWznmCalMod(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
-		ixWznmVQrystate = VecWznmVQrystate::MNR;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmCalList::handleCallWznmCalUpd_refEq(
@@ -480,6 +466,20 @@ bool QryWznmCalList::handleCallWznmCalUpd_refEq(
 
 	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
 		ixWznmVQrystate = VecWznmVQrystate::OOD;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWznmCalList::handleCallWznmCalMod(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
+		ixWznmVQrystate = VecWznmVQrystate::MNR;
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 

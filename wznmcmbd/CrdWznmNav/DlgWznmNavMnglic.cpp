@@ -92,23 +92,23 @@ void DlgWznmNavMnglic::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
+	ContIac oldContiac(contiac);
 	StatShr oldStatshr(statshr);
 	ContInf oldContinf(continf);
-	ContIac oldContiac(contiac);
 
 	// IP refresh --- BEGIN
+	// contiac
+
 	// statshr
 	//statshr.DetButActActive = CUSTOM;
 
 	// continf
 	continf.numFSge = ixVSge;
 
-	// contiac
-
 	// IP refresh --- END
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 
 	muteRefresh = false;
 };

@@ -486,8 +486,8 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalPprButRunActive(DbsWznm* dbswznm);
 	bool evalPprButStoActive(DbsWznm* dbswznm);
 	bool evalImpButRunActive(DbsWznm* dbswznm);

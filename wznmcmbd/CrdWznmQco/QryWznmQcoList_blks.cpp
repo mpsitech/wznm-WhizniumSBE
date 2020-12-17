@@ -22,8 +22,8 @@ uint QryWznmQcoList::VecVOrd::getIx(
 
 	if (s == "tco") return TCO;
 	if (s == "qry") return QRY;
-	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
+	if (s == "typ") return TYP;
 
 	return(0);
 };
@@ -33,8 +33,8 @@ string QryWznmQcoList::VecVOrd::getSref(
 		) {
 	if (ix == TCO) return("tco");
 	if (ix == QRY) return("qry");
-	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
+	if (ix == TYP) return("typ");
 
 	return("");
 };

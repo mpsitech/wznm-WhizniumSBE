@@ -152,7 +152,7 @@ uint IexWznmDpl::ImeIMRelease::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "hsrefrefwznmmmachine") ix |= HSREFREFWZNMMMACHINE;
@@ -390,7 +390,7 @@ uint IexWznmDpl::ImeIRMComponentMLibrary::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefrefwznmmlibrary") ix |= SREFREFWZNMMLIBRARY;
@@ -659,7 +659,7 @@ uint IexWznmDpl::ImeIMComponent::VecWIel::getIx(
 	uint ix = 0;
 
 	vector<string> ss;
-	StrMod::stringToVector(StrMod::lc(srefs), ss);
+	StrMod::srefsToVector(StrMod::lc(srefs), ss);
 
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefixvbasetype") ix |= SREFIXVBASETYPE;

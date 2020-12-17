@@ -14,13 +14,16 @@
 
 #define VecVDlgWznmVerGenuiDit DlgWznmVerGenui::VecVDit
 #define VecVDlgWznmVerGenuiDo DlgWznmVerGenui::VecVDo
+#define VecVDlgWznmVerGenuiDoGui DlgWznmVerGenui::VecVDoGui
 #define VecVDlgWznmVerGenuiSge DlgWznmVerGenui::VecVSge
 
 #define ContIacDlgWznmVerGenui DlgWznmVerGenui::ContIac
 #define ContInfDlgWznmVerGenui DlgWznmVerGenui::ContInf
+#define ContInfDlgWznmVerGenuiGui DlgWznmVerGenui::ContInfGui
 #define ContInfDlgWznmVerGenuiLfi DlgWznmVerGenui::ContInfLfi
 #define StatAppDlgWznmVerGenui DlgWznmVerGenui::StatApp
 #define StatShrDlgWznmVerGenui DlgWznmVerGenui::StatShr
+#define StatShrDlgWznmVerGenuiGui DlgWznmVerGenui::StatShrGui
 #define StatShrDlgWznmVerGenuiLfi DlgWznmVerGenui::StatShrLfi
 #define TagDlgWznmVerGenui DlgWznmVerGenui::Tag
 #define TagDlgWznmVerGenuiGui DlgWznmVerGenui::TagGui
@@ -53,9 +56,20 @@ namespace DlgWznmVerGenui {
 	class VecVDo {
 
 	public:
-		static const Sbecore::uint GUIBUTRUNCLICK = 1;
-		static const Sbecore::uint GUIBUTSTOCLICK = 2;
-		static const Sbecore::uint BUTDNECLICK = 3;
+		static const Sbecore::uint BUTDNECLICK = 1;
+
+		static Sbecore::uint getIx(const std::string& sref);
+		static std::string getSref(const Sbecore::uint ix);
+	};
+
+	/**
+		* VecVDoGui (full: VecVDlgWznmVerGenuiDoGui)
+		*/
+	class VecVDoGui {
+
+	public:
+		static const Sbecore::uint BUTRUNCLICK = 1;
+		static const Sbecore::uint BUTSTOCLICK = 2;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -107,19 +121,37 @@ namespace DlgWznmVerGenui {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
-		static const Sbecore::uint GUITXTPRG = 2;
 
 	public:
-		ContInf(const Sbecore::uint numFSge = 1, const std::string& GuiTxtPrg = "");
+		ContInf(const Sbecore::uint numFSge = 1);
 
 	public:
 		Sbecore::uint numFSge;
-		std::string GuiTxtPrg;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 		std::set<Sbecore::uint> comm(const ContInf* comp);
 		std::set<Sbecore::uint> diff(const ContInf* comp);
+	};
+
+	/**
+	  * ContInfGui (full: ContInfDlgWznmVerGenuiGui)
+	  */
+	class ContInfGui : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint TXTPRG = 1;
+
+	public:
+		ContInfGui(const std::string& TxtPrg = "");
+
+	public:
+		std::string TxtPrg;
+
+	public:
+		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		std::set<Sbecore::uint> comm(const ContInfGui* comp);
+		std::set<Sbecore::uint> diff(const ContInfGui* comp);
 	};
 
 	/**
@@ -170,22 +202,40 @@ namespace DlgWznmVerGenui {
 	class StatShr : public Sbecore::Xmlio::Block {
 
 	public:
-		static const Sbecore::uint GUIBUTRUNACTIVE = 1;
-		static const Sbecore::uint GUIBUTSTOACTIVE = 2;
-		static const Sbecore::uint BUTDNEACTIVE = 3;
+		static const Sbecore::uint BUTDNEACTIVE = 1;
 
 	public:
-		StatShr(const bool GuiButRunActive = true, const bool GuiButStoActive = true, const bool ButDneActive = true);
+		StatShr(const bool ButDneActive = true);
 
 	public:
-		bool GuiButRunActive;
-		bool GuiButStoActive;
 		bool ButDneActive;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
+	};
+
+	/**
+	  * StatShrGui (full: StatShrDlgWznmVerGenuiGui)
+	  */
+	class StatShrGui : public Sbecore::Xmlio::Block {
+
+	public:
+		static const Sbecore::uint BUTRUNACTIVE = 1;
+		static const Sbecore::uint BUTSTOACTIVE = 2;
+
+	public:
+		StatShrGui(const bool ButRunActive = true, const bool ButStoActive = true);
+
+	public:
+		bool ButRunActive;
+		bool ButStoActive;
+
+	public:
+		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		std::set<Sbecore::uint> comm(const StatShrGui* comp);
+		std::set<Sbecore::uint> diff(const StatShrGui* comp);
 	};
 
 	/**
@@ -215,17 +265,13 @@ namespace DlgWznmVerGenui {
 
 	public:
 		static const Sbecore::uint CPT = 1;
-		static const Sbecore::uint GUIBUTRUN = 2;
-		static const Sbecore::uint GUIBUTSTO = 3;
-		static const Sbecore::uint BUTDNE = 4;
+		static const Sbecore::uint BUTDNE = 2;
 
 	public:
-		Tag(const std::string& Cpt = "", const std::string& GuiButRun = "", const std::string& GuiButSto = "", const std::string& ButDne = "");
+		Tag(const std::string& Cpt = "", const std::string& ButDne = "");
 
 	public:
 		std::string Cpt;
-		std::string GuiButRun;
-		std::string GuiButSto;
 		std::string ButDne;
 
 	public:
@@ -239,12 +285,16 @@ namespace DlgWznmVerGenui {
 
 	public:
 		static const Sbecore::uint CPTPRG = 1;
+		static const Sbecore::uint BUTRUN = 2;
+		static const Sbecore::uint BUTSTO = 3;
 
 	public:
-		TagGui(const std::string& CptPrg = "");
+		TagGui(const std::string& CptPrg = "", const std::string& ButRun = "", const std::string& ButSto = "");
 
 	public:
 		std::string CptPrg;
+		std::string ButRun;
+		std::string ButSto;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -298,13 +348,15 @@ namespace DlgWznmVerGenui {
 	public:
 		static const Sbecore::uint SCRJREF = 1;
 		static const Sbecore::uint IXVDO = 2;
-		static const Sbecore::uint ALL = 3;
+		static const Sbecore::uint IXVDOGUI = 3;
+		static const Sbecore::uint ALL = 4;
 
 	public:
-		DpchAppDo(const std::string& scrJref = "", const Sbecore::uint ixVDo = 0, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchAppDo(const std::string& scrJref = "", const Sbecore::uint ixVDo = 0, const Sbecore::uint ixVDoGui = 0, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		Sbecore::uint ixVDo;
+		Sbecore::uint ixVDoGui;
 
 	public:
 		std::string getSrefsMask();
@@ -321,15 +373,17 @@ namespace DlgWznmVerGenui {
 		static const Sbecore::uint SCRJREF = 1;
 		static const Sbecore::uint CONTIAC = 2;
 		static const Sbecore::uint CONTINF = 3;
-		static const Sbecore::uint CONTINFLFI = 4;
-		static const Sbecore::uint FEEDFDSE = 5;
-		static const Sbecore::uint FEEDFSGE = 6;
-		static const Sbecore::uint STATAPP = 7;
-		static const Sbecore::uint STATSHR = 8;
-		static const Sbecore::uint STATSHRLFI = 9;
-		static const Sbecore::uint TAG = 10;
-		static const Sbecore::uint TAGGUI = 11;
-		static const Sbecore::uint TAGLFI = 12;
+		static const Sbecore::uint CONTINFGUI = 4;
+		static const Sbecore::uint CONTINFLFI = 5;
+		static const Sbecore::uint FEEDFDSE = 6;
+		static const Sbecore::uint FEEDFSGE = 7;
+		static const Sbecore::uint STATAPP = 8;
+		static const Sbecore::uint STATSHR = 9;
+		static const Sbecore::uint STATSHRGUI = 10;
+		static const Sbecore::uint STATSHRLFI = 11;
+		static const Sbecore::uint TAG = 12;
+		static const Sbecore::uint TAGGUI = 13;
+		static const Sbecore::uint TAGLFI = 14;
 
 	public:
 		DpchEngData();
@@ -337,11 +391,13 @@ namespace DlgWznmVerGenui {
 	public:
 		ContIac contiac;
 		ContInf continf;
+		ContInfGui continfgui;
 		ContInfLfi continflfi;
 		Sbecore::Xmlio::Feed feedFDse;
 		Sbecore::Xmlio::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;
+		StatShrGui statshrgui;
 		StatShrLfi statshrlfi;
 		Tag tag;
 		TagGui taggui;

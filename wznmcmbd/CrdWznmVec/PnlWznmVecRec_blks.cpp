@@ -101,8 +101,8 @@ void PnlWznmVecRec::StatApp::writeXML(
 			, const bool initdoneATitle
 			, const bool initdoneVec1NVectoritem
 			, const bool initdoneFct1NTablecol
-			, const bool initdoneSrc1NFeed
 			, const bool initdoneRef1NPanel
+			, const bool initdoneSrc1NFeed
 			, const bool initdonePst1NQuerymod
 			, const bool initdoneMNTable
 		) {
@@ -117,8 +117,8 @@ void PnlWznmVecRec::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "initdoneATitle", initdoneATitle);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneVec1NVectoritem", initdoneVec1NVectoritem);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneFct1NTablecol", initdoneFct1NTablecol);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneSrc1NFeed", initdoneSrc1NFeed);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NPanel", initdoneRef1NPanel);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneSrc1NFeed", initdoneSrc1NFeed);
 		writeBoolAttr(wr, itemtag, "sref", "initdonePst1NQuerymod", initdonePst1NQuerymod);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNTable", initdoneMNTable);
 	xmlTextWriterEndElement(wr);
@@ -135,8 +135,8 @@ PnlWznmVecRec::StatShr::StatShr(
 			, const ubigint jrefVec1NVectoritem
 			, const ubigint jrefFct1NTablecol
 			, const bool pnlfct1ntablecolAvail
-			, const ubigint jrefSrc1NFeed
 			, const ubigint jrefRef1NPanel
+			, const ubigint jrefSrc1NFeed
 			, const ubigint jrefPst1NQuerymod
 			, const bool pnlpst1nquerymodAvail
 			, const ubigint jrefMNTable
@@ -151,15 +151,15 @@ PnlWznmVecRec::StatShr::StatShr(
 	this->jrefVec1NVectoritem = jrefVec1NVectoritem;
 	this->jrefFct1NTablecol = jrefFct1NTablecol;
 	this->pnlfct1ntablecolAvail = pnlfct1ntablecolAvail;
-	this->jrefSrc1NFeed = jrefSrc1NFeed;
 	this->jrefRef1NPanel = jrefRef1NPanel;
+	this->jrefSrc1NFeed = jrefSrc1NFeed;
 	this->jrefPst1NQuerymod = jrefPst1NQuerymod;
 	this->pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
 	this->jrefMNTable = jrefMNTable;
 	this->pnlmntableAvail = pnlmntableAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFVEC1NVECTORITEM, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFSRC1NFEED, JREFREF1NPANEL, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFVEC1NVECTORITEM, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFREF1NPANEL, JREFSRC1NFEED, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmVecRec::StatShr::writeXML(
@@ -180,8 +180,8 @@ void PnlWznmVecRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefVec1NVectoritem", Scr::scramble(jrefVec1NVectoritem));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefFct1NTablecol", Scr::scramble(jrefFct1NTablecol));
 		writeBoolAttr(wr, itemtag, "sref", "pnlfct1ntablecolAvail", pnlfct1ntablecolAvail);
-		writeStringAttr(wr, itemtag, "sref", "scrJrefSrc1NFeed", Scr::scramble(jrefSrc1NFeed));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NPanel", Scr::scramble(jrefRef1NPanel));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefSrc1NFeed", Scr::scramble(jrefSrc1NFeed));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefPst1NQuerymod", Scr::scramble(jrefPst1NQuerymod));
 		writeBoolAttr(wr, itemtag, "sref", "pnlpst1nquerymodAvail", pnlpst1nquerymodAvail);
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNTable", Scr::scramble(jrefMNTable));
@@ -201,8 +201,8 @@ set<uint> PnlWznmVecRec::StatShr::comm(
 	if (jrefVec1NVectoritem == comp->jrefVec1NVectoritem) insert(items, JREFVEC1NVECTORITEM);
 	if (jrefFct1NTablecol == comp->jrefFct1NTablecol) insert(items, JREFFCT1NTABLECOL);
 	if (pnlfct1ntablecolAvail == comp->pnlfct1ntablecolAvail) insert(items, PNLFCT1NTABLECOLAVAIL);
-	if (jrefSrc1NFeed == comp->jrefSrc1NFeed) insert(items, JREFSRC1NFEED);
 	if (jrefRef1NPanel == comp->jrefRef1NPanel) insert(items, JREFREF1NPANEL);
+	if (jrefSrc1NFeed == comp->jrefSrc1NFeed) insert(items, JREFSRC1NFEED);
 	if (jrefPst1NQuerymod == comp->jrefPst1NQuerymod) insert(items, JREFPST1NQUERYMOD);
 	if (pnlpst1nquerymodAvail == comp->pnlpst1nquerymodAvail) insert(items, PNLPST1NQUERYMODAVAIL);
 	if (jrefMNTable == comp->jrefMNTable) insert(items, JREFMNTABLE);
@@ -220,7 +220,7 @@ set<uint> PnlWznmVecRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFVEC1NVECTORITEM, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFSRC1NFEED, JREFREF1NPANEL, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFVEC1NVECTORITEM, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFREF1NPANEL, JREFSRC1NFEED, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

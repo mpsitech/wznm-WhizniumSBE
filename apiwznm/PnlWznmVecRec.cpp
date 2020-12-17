@@ -107,8 +107,8 @@ PnlWznmVecRec::StatApp::StatApp(
 			, const bool initdoneATitle
 			, const bool initdoneVec1NVectoritem
 			, const bool initdoneFct1NTablecol
-			, const bool initdoneSrc1NFeed
 			, const bool initdoneRef1NPanel
+			, const bool initdoneSrc1NFeed
 			, const bool initdonePst1NQuerymod
 			, const bool initdoneMNTable
 		) :
@@ -118,12 +118,12 @@ PnlWznmVecRec::StatApp::StatApp(
 	this->initdoneATitle = initdoneATitle;
 	this->initdoneVec1NVectoritem = initdoneVec1NVectoritem;
 	this->initdoneFct1NTablecol = initdoneFct1NTablecol;
-	this->initdoneSrc1NFeed = initdoneSrc1NFeed;
 	this->initdoneRef1NPanel = initdoneRef1NPanel;
+	this->initdoneSrc1NFeed = initdoneSrc1NFeed;
 	this->initdonePst1NQuerymod = initdonePst1NQuerymod;
 	this->initdoneMNTable = initdoneMNTable;
 
-	mask = {INITDONEDETAIL, INITDONEATITLE, INITDONEVEC1NVECTORITEM, INITDONEFCT1NTABLECOL, INITDONESRC1NFEED, INITDONEREF1NPANEL, INITDONEPST1NQUERYMOD, INITDONEMNTABLE};
+	mask = {INITDONEDETAIL, INITDONEATITLE, INITDONEVEC1NVECTORITEM, INITDONEFCT1NTABLECOL, INITDONEREF1NPANEL, INITDONESRC1NFEED, INITDONEPST1NQUERYMOD, INITDONEMNTABLE};
 };
 
 bool PnlWznmVecRec::StatApp::readXML(
@@ -147,8 +147,8 @@ bool PnlWznmVecRec::StatApp::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneATitle", initdoneATitle)) add(INITDONEATITLE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneVec1NVectoritem", initdoneVec1NVectoritem)) add(INITDONEVEC1NVECTORITEM);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneFct1NTablecol", initdoneFct1NTablecol)) add(INITDONEFCT1NTABLECOL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSrc1NFeed", initdoneSrc1NFeed)) add(INITDONESRC1NFEED);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NPanel", initdoneRef1NPanel)) add(INITDONEREF1NPANEL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSrc1NFeed", initdoneSrc1NFeed)) add(INITDONESRC1NFEED);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdonePst1NQuerymod", initdonePst1NQuerymod)) add(INITDONEPST1NQUERYMOD);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNTable", initdoneMNTable)) add(INITDONEMNTABLE);
 	};
@@ -165,8 +165,8 @@ set<uint> PnlWznmVecRec::StatApp::comm(
 	if (initdoneATitle == comp->initdoneATitle) insert(items, INITDONEATITLE);
 	if (initdoneVec1NVectoritem == comp->initdoneVec1NVectoritem) insert(items, INITDONEVEC1NVECTORITEM);
 	if (initdoneFct1NTablecol == comp->initdoneFct1NTablecol) insert(items, INITDONEFCT1NTABLECOL);
-	if (initdoneSrc1NFeed == comp->initdoneSrc1NFeed) insert(items, INITDONESRC1NFEED);
 	if (initdoneRef1NPanel == comp->initdoneRef1NPanel) insert(items, INITDONEREF1NPANEL);
+	if (initdoneSrc1NFeed == comp->initdoneSrc1NFeed) insert(items, INITDONESRC1NFEED);
 	if (initdonePst1NQuerymod == comp->initdonePst1NQuerymod) insert(items, INITDONEPST1NQUERYMOD);
 	if (initdoneMNTable == comp->initdoneMNTable) insert(items, INITDONEMNTABLE);
 
@@ -181,7 +181,7 @@ set<uint> PnlWznmVecRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEATITLE, INITDONEVEC1NVECTORITEM, INITDONEFCT1NTABLECOL, INITDONESRC1NFEED, INITDONEREF1NPANEL, INITDONEPST1NQUERYMOD, INITDONEMNTABLE};
+	diffitems = {INITDONEDETAIL, INITDONEATITLE, INITDONEVEC1NVECTORITEM, INITDONEFCT1NTABLECOL, INITDONEREF1NPANEL, INITDONESRC1NFEED, INITDONEPST1NQUERYMOD, INITDONEMNTABLE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -198,8 +198,8 @@ PnlWznmVecRec::StatShr::StatShr(
 			, const string& scrJrefVec1NVectoritem
 			, const string& scrJrefFct1NTablecol
 			, const bool pnlfct1ntablecolAvail
-			, const string& scrJrefSrc1NFeed
 			, const string& scrJrefRef1NPanel
+			, const string& scrJrefSrc1NFeed
 			, const string& scrJrefPst1NQuerymod
 			, const bool pnlpst1nquerymodAvail
 			, const string& scrJrefMNTable
@@ -214,15 +214,15 @@ PnlWznmVecRec::StatShr::StatShr(
 	this->scrJrefVec1NVectoritem = scrJrefVec1NVectoritem;
 	this->scrJrefFct1NTablecol = scrJrefFct1NTablecol;
 	this->pnlfct1ntablecolAvail = pnlfct1ntablecolAvail;
-	this->scrJrefSrc1NFeed = scrJrefSrc1NFeed;
 	this->scrJrefRef1NPanel = scrJrefRef1NPanel;
+	this->scrJrefSrc1NFeed = scrJrefSrc1NFeed;
 	this->scrJrefPst1NQuerymod = scrJrefPst1NQuerymod;
 	this->pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
 	this->scrJrefMNTable = scrJrefMNTable;
 	this->pnlmntableAvail = pnlmntableAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFVEC1NVECTORITEM, SCRJREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, SCRJREFSRC1NFEED, SCRJREFREF1NPANEL, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFVEC1NVECTORITEM, SCRJREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, SCRJREFREF1NPANEL, SCRJREFSRC1NFEED, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmVecRec::StatShr::readXML(
@@ -253,8 +253,8 @@ bool PnlWznmVecRec::StatShr::readXML(
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefVec1NVectoritem", scrJrefVec1NVectoritem)) add(SCRJREFVEC1NVECTORITEM);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefFct1NTablecol", scrJrefFct1NTablecol)) add(SCRJREFFCT1NTABLECOL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "pnlfct1ntablecolAvail", pnlfct1ntablecolAvail)) add(PNLFCT1NTABLECOLAVAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSrc1NFeed", scrJrefSrc1NFeed)) add(SCRJREFSRC1NFEED);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NPanel", scrJrefRef1NPanel)) add(SCRJREFREF1NPANEL);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSrc1NFeed", scrJrefSrc1NFeed)) add(SCRJREFSRC1NFEED);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefPst1NQuerymod", scrJrefPst1NQuerymod)) add(SCRJREFPST1NQUERYMOD);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "pnlpst1nquerymodAvail", pnlpst1nquerymodAvail)) add(PNLPST1NQUERYMODAVAIL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNTable", scrJrefMNTable)) add(SCRJREFMNTABLE);
@@ -276,8 +276,8 @@ set<uint> PnlWznmVecRec::StatShr::comm(
 	if (scrJrefVec1NVectoritem == comp->scrJrefVec1NVectoritem) insert(items, SCRJREFVEC1NVECTORITEM);
 	if (scrJrefFct1NTablecol == comp->scrJrefFct1NTablecol) insert(items, SCRJREFFCT1NTABLECOL);
 	if (pnlfct1ntablecolAvail == comp->pnlfct1ntablecolAvail) insert(items, PNLFCT1NTABLECOLAVAIL);
-	if (scrJrefSrc1NFeed == comp->scrJrefSrc1NFeed) insert(items, SCRJREFSRC1NFEED);
 	if (scrJrefRef1NPanel == comp->scrJrefRef1NPanel) insert(items, SCRJREFREF1NPANEL);
+	if (scrJrefSrc1NFeed == comp->scrJrefSrc1NFeed) insert(items, SCRJREFSRC1NFEED);
 	if (scrJrefPst1NQuerymod == comp->scrJrefPst1NQuerymod) insert(items, SCRJREFPST1NQUERYMOD);
 	if (pnlpst1nquerymodAvail == comp->pnlpst1nquerymodAvail) insert(items, PNLPST1NQUERYMODAVAIL);
 	if (scrJrefMNTable == comp->scrJrefMNTable) insert(items, SCRJREFMNTABLE);
@@ -295,7 +295,7 @@ set<uint> PnlWznmVecRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFVEC1NVECTORITEM, SCRJREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, SCRJREFSRC1NFEED, SCRJREFREF1NPANEL, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFVEC1NVECTORITEM, SCRJREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, SCRJREFREF1NPANEL, SCRJREFSRC1NFEED, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

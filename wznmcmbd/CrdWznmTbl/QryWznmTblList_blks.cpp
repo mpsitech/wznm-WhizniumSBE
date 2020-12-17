@@ -20,9 +20,9 @@ uint QryWznmTblList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
+	if (s == "ver") return VER;
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
-	if (s == "ver") return VER;
 	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
 
@@ -32,9 +32,9 @@ uint QryWznmTblList::VecVOrd::getIx(
 string QryWznmTblList::VecVOrd::getSref(
 			const uint ix
 		) {
+	if (ix == VER) return("ver");
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
-	if (ix == VER) return("ver");
 	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
 

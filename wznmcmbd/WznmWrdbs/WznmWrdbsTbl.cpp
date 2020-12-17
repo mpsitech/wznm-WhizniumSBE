@@ -478,7 +478,7 @@ void WznmWrdbsTbl::writeTblH_lfc(
 	size_t ptr;
 
 	// extract "load by" table columns
-	StrMod::stringToVector(lfc->lbySrefsWznmMTablecol, lbys);
+	StrMod::srefsToVector(lfc->lbySrefsWznmMTablecol, lbys);
 
 	outfile << getLfcRetType(lfc->ixVLoadtype, true) << " " << lfc->Fctname << "(";
 
@@ -1048,7 +1048,7 @@ void WznmWrdbsTbl::writeTblCpp_pg(
 		lfc = lfcs.nodes[i];
 
 		if (getLfc(lfc->ixVLoadtype)) {
-			StrMod::stringToVector(lfc->lbySrefsWznmMTablecol, lbys);
+			StrMod::srefsToVector(lfc->lbySrefsWznmMTablecol, lbys);
 
 			outfile << "\tcreateStatement(\"" << tbl->sref << "_" << lfc->Fctname << "\", ";
 			getLfcSql(outfile, lfc, tcos, tbl->sref, false, true, false);
@@ -1280,7 +1280,7 @@ void WznmWrdbsTbl::writeTblCpp_pg(
 		lfc = lfcs.nodes[i];
 
 		if (getLfc(lfc->ixVLoadtype)) {
-			StrMod::stringToVector(lfc->lbySrefsWznmMTablecol, lbys);
+			StrMod::srefsToVector(lfc->lbySrefsWznmMTablecol, lbys);
 
 			writeTblCpp_lfchdr(outfile, lfc, tbl->sref, tcos, "Pg");
 
@@ -1619,7 +1619,7 @@ void WznmWrdbsTbl::writeTblCpp_lite(
 		lfc = lfcs.nodes[i];
 
 		if (getLfc(lfc->ixVLoadtype)) {
-			StrMod::stringToVector(lfc->lbySrefsWznmMTablecol, lbys);
+			StrMod::srefsToVector(lfc->lbySrefsWznmMTablecol, lbys);
 
 			writeTblCpp_lfchdr(outfile, lfc, tbl->sref, tcos, "Lite");
 
@@ -1690,7 +1690,7 @@ void WznmWrdbsTbl::writeTblCpp_lfchdr(
 	size_t ptr;
 
 	// extract "load by" table columns
-	StrMod::stringToVector(lfc->lbySrefsWznmMTablecol, lbys);
+	StrMod::srefsToVector(lfc->lbySrefsWznmMTablecol, lbys);
 
 	outfile << getLfcRetType(lfc->ixVLoadtype, false) << " " << prefix << tblsref << "::" << lfc->Fctname << "(" << endl;
 
@@ -2991,8 +2991,8 @@ void WznmWrdbsTbl::getLfcSql(
 	size_t ptr;
 	string postfix;
 
-	StrMod::stringToVector(lfc->lbySrefsWznmMTablecol, lbys);
-	StrMod::stringToVector(lfc->ordSrefsWznmMTablecol, ords);
+	StrMod::srefsToVector(lfc->lbySrefsWznmMTablecol, lbys);
+	StrMod::srefsToVector(lfc->ordSrefsWznmMTablecol, ords);
 
 	outfile << "\"SELECT ";
 
