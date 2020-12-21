@@ -432,6 +432,7 @@ uint DlgWznmMchWriniscr::enterSgeWrite(
 		keys.push_back("cchinherit"); vals.push_back("");
 		keys.push_back("cchrel"); vals.push_back("");
 		keys.push_back("inceq"); vals.push_back("");
+		keys.push_back("sysroot_env"); vals.push_back("");
 
 	} else {
 		// cross-compilation
@@ -443,6 +444,7 @@ uint DlgWznmMchWriniscr::enterSgeWrite(
 		keys.push_back("cchinherit"); vals.push_back(" (inherited from cross-compile host)");
 		keys.push_back("cchrel"); vals.push_back(" on the cross-compile host");
 		keys.push_back("inceq"); vals.push_back("=");
+		keys.push_back("sysroot_env"); vals.push_back("${SYSROOT}");
 	};
 
 	keys.push_back("mar");

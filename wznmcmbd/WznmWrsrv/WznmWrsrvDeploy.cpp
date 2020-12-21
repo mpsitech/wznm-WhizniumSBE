@@ -48,7 +48,7 @@ DpchRetWznm* WznmWrsrvDeploy::run(
 
 	vector<ubigint> hrefsMch;
 
-	bool hasdds, hasua;
+	bool hasm2m, hasdds, hasua;
 
 	string sysroot, inclibeq;
 
@@ -77,6 +77,7 @@ DpchRetWznm* WznmWrsrvDeploy::run(
 	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
 	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "sbeconfig", sbeconfig);
 
+	hasm2m = (ver->ixWOption & (VecWznmWMVersionOption::DDSPUB + VecWznmWMVersionOption::UASRV));
 	hasdds = StrMod::srefInSrefs(sbeconfig, "dds") && (ver->ixWOption & VecWznmWMVersionOption::DDSPUB);
 	hasua = StrMod::srefInSrefs(sbeconfig, "ua") && (ver->ixWOption & VecWznmWMVersionOption::UASRV);
 
@@ -138,7 +139,7 @@ DpchRetWznm* WznmWrsrvDeploy::run(
 	if (cmp->ixVBasetype == VecWznmVMComponentBasetype::ENG) {
 		s = xchg->tmppath + "/" + folder + "/checkout.sh.ip";
 		shfile.open(s.c_str(), ios::out);
-		writeChkoutSh(dbswznm, shfile, cmp->refWznmMVersion, Prjshort, cars, opks, hasdds, hasua);
+		writeChkoutSh(dbswznm, shfile, cmp->refWznmMVersion, Prjshort, cars, opks, hasm2m, hasdds, hasua);
 		shfile.close();
 
 		s = xchg->tmppath + "/" + folder + "/Makefile.inc.ip";
@@ -176,7 +177,7 @@ DpchRetWznm* WznmWrsrvDeploy::run(
 		// create files
 		s = xchg->tmppath + "/" + folder + "/checkout.sh.ip";
 		shfile.open(s.c_str(), ios::out);
-		writeCocmbSh(dbswznm, shfile, cmp->refWznmMVersion, Prjshort, cars, opks, hasdds, hasua);
+		writeCocmbSh(dbswznm, shfile, cmp->refWznmMVersion, Prjshort, cars, opks, hasm2m, hasdds, hasua);
 		shfile.close();
 
 		s = xchg->tmppath + "/" + folder + "/Makefile.inc.ip";
@@ -246,6 +247,7 @@ void WznmWrsrvDeploy::writeChkoutSh(
 			, const string& Prjshort
 			, ListWznmMCard& cars
 			, ListWznmMOppack& opks
+			, const bool hasm2m
 			, const bool hasdds
 			, const bool hasua
 		) {
@@ -272,7 +274,7 @@ void WznmWrsrvDeploy::writeChkoutSh(
 	else outfile << "# IP cp.uasrv --- REMOVE" << endl;
 
 	// --- cp.m2msess*
-	if (hasdds || hasua) outfile << "# IP cp.m2msess --- AFFIRM" << endl;
+	if (hasm2m) outfile << "# IP cp.m2msess --- AFFIRM" << endl;
 	else outfile << "# IP cp.m2msess --- REMOVE" << endl;
 
 	// --- cp.cars
@@ -937,6 +939,7 @@ void WznmWrsrvDeploy::writeCocmbSh(
 			, const string& Prjshort
 			, ListWznmMCard& cars
 			, ListWznmMOppack& opks
+			, const bool hasm2m
 			, const bool hasdds
 			, const bool hasua
 		) {
@@ -971,7 +974,7 @@ void WznmWrsrvDeploy::writeCocmbSh(
 	else outfile << "# IP cp.uasrv --- REMOVE" << endl;
 
 	// --- cp.m2msess*
-	if (hasdds || hasua) outfile << "# IP cp.m2msess --- AFFIRM" << endl;
+	if (hasm2m) outfile << "# IP cp.m2msess --- AFFIRM" << endl;
 	else outfile << "# IP cp.m2msess --- REMOVE" << endl;
 
 	// --- cp.cars

@@ -19,7 +19,7 @@ namespace WznmWrsrvDeploy {
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmWrsrvDeploy* dpchinv);
 	// IP cust --- IBEGIN
 
-	void writeChkoutSh(DbsWznm* dbswznm, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort, ListWznmMCard& cars, ListWznmMOppack& opks, const bool hasdds, const bool hasua);
+	void writeChkoutSh(DbsWznm* dbswznm, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort, ListWznmMCard& cars, ListWznmMOppack& opks, const bool hasm2m, const bool hasdds, const bool hasua);
 	void writeMakeInc(std::fstream& outfile, const bool hasdds, const bool hasua);
 	void writeMake(DbsWznm* dbswznm, std::fstream& outfile, WznmMVersion* ver, const std::string& sysroot, const std::string& inclibeq, WznmMRelease* rls, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& Prjshort, std::set<std::string>& cppflags, std::set<std::string>& linkflags, std::set<std::string>& incpaths, std::set<std::string>& libpaths, std::vector<std::string>& libss, ListWznmMCard& cars, ListWznmMOppack& opks, ListWznmMJob& gbljobs, const bool hasdds, const bool hasua);
 	void writeMkSh(DbsWznm* dbswznm, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort, ListWznmMCard& cars);
@@ -32,7 +32,7 @@ namespace WznmWrsrvDeploy {
 	void writeMkopSh(DbsWznm* dbswznm, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort, ListWznmMOppack& opks);
 	void writeMkopk(DbsWznm* dbswznm, std::fstream& outfile, const bool cmbdNotOpd, const Sbecore::ubigint refMch, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& sysroot, const std::string& inclibeq, const std::string& Prjshort, std::set<std::string>& cppflags, std::set<std::string>& incpaths, WznmMOppack* opk);
 
-	void writeCocmbSh(DbsWznm* dbswznm, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort, ListWznmMCard& cars, ListWznmMOppack& opks, const bool hasdds, const bool hasua);
+	void writeCocmbSh(DbsWznm* dbswznm, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort, ListWznmMCard& cars, ListWznmMOppack& opks, const bool hasm2m, const bool hasdds, const bool hasua);
 	void writeMkcmb(DbsWznm* dbswznm, std::fstream& outfile, WznmMVersion* ver, const std::string& sysroot, const std::string& inclibeq, WznmMRelease* rls, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& Prjshort, std::set<std::string>& cppflags, std::set<std::string>& linkflags, std::set<std::string>& incpaths, std::set<std::string>& libpaths, std::vector<std::string>& libss, ListWznmMCard& cars, ListWznmMOppack& opks, ListWznmMJob& gbljobs, const bool hasdds, const bool hasua);
 	void writeMkcmbSh(DbsWznm* dbswznm, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort, ListWznmMCard& cars, ListWznmMOppack& opks);
 
