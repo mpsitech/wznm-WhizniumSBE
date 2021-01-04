@@ -704,7 +704,137 @@ bool RootWznm::handleTest(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	// IP handleTest --- INSERT
+	// IP handleTest --- IBEGIN
+
+	// derive hash from list of projects
+	string hash;
+
+	ListWznmMProject prjs;
+	WznmMProject* prj = NULL;
+
+	dbswznm->tblwznmmproject->loadRstBySQL("SELECT * FROM TblWznmMProject ORDER BY Short ASC", false, prjs);
+
+	for (unsigned int i = 0; i < prjs.nodes.size(); i++) {
+		prj = prjs.nodes[i];
+		hash += prj->Short + prj->Title;
+	};
+
+	cout << "project list hash: '" << hash << "'" << endl;
+
+	// derive hash for (build-ready) versions
+	//string hash;
+	ubigint refWznmMProject;
+
+	ListWznmMVersion vers;
+	WznmMVersion* ver = NULL;
+
+//	ListWznmJMVersionState verJstes;
+//	WznmJMVersionState* verJste = NULL;
+
+	ListWznmMTable tbls;
+	WznmMTable* tbl = NULL;
+
+	ListWznmMVector vecs;
+	WznmMVector* vec = NULL;
+
+	ListWznmMImpexp imes;
+	WznmMImpexp* ime = NULL;
+
+	ListWznmMPreset psts;
+	WznmMPreset* pst = NULL;
+
+	ListWznmMOp ops;
+	WznmMOp* op = NULL;
+
+	ListWznmMBlock blks;
+	WznmMBlock* blk = NULL;
+
+	ListWznmMRelease rlss;
+	WznmMRelease* rls = NULL;
+
+	for (unsigned int k = 0; k < prjs.nodes.size(); k++) {
+		prj = prjs.nodes[k];
+
+		refWznmMProject = prj->ref;
+
+		dbswznm->tblwznmmversion->loadRstBySQL("SELECT * FROM TblWznmMVersion WHERE prjRefWznmMProject = " + to_string(refWznmMProject) + " AND ixVState = " + to_string(VecWznmVMVersionState::READY)
+					+ " ORDER BY Major ASC, Minor ASC, Sub ASC", false, vers);
+		for (unsigned int i = 0; i < vers.nodes.size(); i++) {
+			ver = vers.nodes[i];
+
+			hash = to_string(ver->Major) + to_string(ver->Minor) + to_string(ver->Sub);
+
+/*
+			dbswznm->tblwznmjmversionstate->loadRstByVer(ver->ref, false, verJstes);
+			for (unsigned int j = 0; j < verJstes.nodes.size(); j++) {
+				verJste = verJstes.nodes[j];
+				hash += to_string(verJste->x1Start) + VecWznmVMVersionState::getSref(verJste->ixVState);
+			};
+*/
+
+			dbswznm->tblwznmmtable->loadRstByVer(ver->ref, false, tbls);
+			for (unsigned int j = 0; j < tbls.nodes.size(); j++) {
+				tbl = tbls.nodes[j];
+				hash += tbl->sref;
+			};
+
+			dbswznm->tblwznmmvector->loadRstByVer(ver->ref, false, vecs);
+			for (unsigned int j = 0; j < vecs.nodes.size(); j++) {
+				vec = vecs.nodes[j];
+				hash += vec->sref;
+			};
+
+			dbswznm->tblwznmmimpexp->loadRstBySQL("SELECT TblWznmMImpexp.* FROM TblWznmMImpexpcplx, TblWznmMImpexp WHERE TblWznmMImpexp.refWznmMImpexpcplx = TblWznmMImpexpcplx.ref AND TblWznmMImpexpcplx.refWznmMVersion = "
+						+ to_string(ver->ref) + " ORDER BY TblWznmMImpexp.sref ASC", false, imes);
+			for (unsigned int j = 0; j < imes.nodes.size(); j++) {
+				ime = imes.nodes[j];
+				hash += ime->sref;
+			};
+
+			dbswznm->tblwznmmpreset->loadRstByVer(ver->ref, false, psts);
+			for (unsigned int j = 0; j < psts.nodes.size(); j++) {
+				pst = psts.nodes[j];
+				hash += pst->sref;
+			};
+
+			dbswznm->tblwznmmop->loadRstBySQL("SELECT TblWznmMOp.* FROM TblWznmMOppack, TblWznmMOp WHERE TblWznmMOp.refWznmMOppack = TblWznmMOppack.ref AND TblWznmMOppack.refWznmMVersion = " + to_string(ver->ref)
+						+ " ORDER BY TblWznmMOp.sref ASC", false, ops);
+			for (unsigned int j = 0; j < ops.nodes.size(); j++) {
+				op = ops.nodes[j];
+				hash += op->sref;
+			};
+
+			dbswznm->tblwznmmblock->loadRstByVer(ver->ref, false, blks);
+			for (unsigned int j = 0; j < blks.nodes.size(); j++) {
+				blk = blks.nodes[j];
+				hash += blk->sref;
+			};
+
+			dbswznm->tblwznmmrelease->loadRstBySQL("SELECT TblWznmMRelease.* FROM TblWznmMComponent, TblWznmMRelease WHERE TblWznmMRelease.refWznmMComponent = TblWznmMComponent.ref AND TblWznmMComponent.refWznmMVersion = "
+						+ to_string(ver->ref) + " ORDER BY TblWznmMRelease.sref ASC", false, rlss);
+			for (unsigned int j = 0; j < rlss.nodes.size(); j++) {
+				rls = rlss.nodes[j];
+				hash += rls->sref;
+			};
+
+			cout << "hash for build-ready version " << prj->Short << " " << to_string(ver->Major) << "." << to_string(ver->Minor) << "." << to_string(ver->Sub) << " is '" << hash << "'" << endl;
+		};
+	};
+
+	unsigned char md[SHA256_DIGEST_LENGTH];
+	SHA256_CTX context;
+
+	bool success;
+
+	success = SHA256_Init(&context);
+
+	if (success) success = SHA256_Update(&context, (const unsigned char*) hash.c_str(), hash.length());
+
+	if (success) success = SHA256_Final(md, &context);
+
+	if (success) cout << "success." << endl;
+
+	// IP handleTest --- IEND
 	return retval;
 };
 

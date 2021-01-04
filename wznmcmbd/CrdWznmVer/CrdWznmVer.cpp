@@ -592,6 +592,276 @@ string CrdWznmVer::handleWriteIexHtml_ieltype(
 
 	return retval;
 };
+
+void CrdWznmVer::handleWriteIexMd_struct(
+			DbsWznm* dbswznm
+			, fstream& outfile
+			, WznmMImpexp* sup
+			, const ubigint refWznmMImpexp
+			, vector<unsigned int>& ics
+			, const ubigint refLocEnus
+		) {
+	vector<ubigint> refs;
+
+	WznmMImpexp* ime = NULL;
+
+	if (dbswznm->tblwznmmimpexp->loadRecByRef(refWznmMImpexp, &ime)) {
+		dbswznm->tblwznmmimpexp->loadRefsBySup(refWznmMImpexp, false, refs);
+
+		for (unsigned int i = 0; i < ics.size(); i++) outfile << "&nbsp;&nbsp;&nbsp;&nbsp;";
+
+		if (refs.size() == 0) outfile << "\\- ";
+		else outfile << "\\+ ";
+
+		outfile << StrMod::cap(handleWriteIexMd_imetit(dbswznm, ime, refLocEnus)) << " [``[" << ime->sref << "]``](#" << ime->sref << ")" << endl;
+
+		ics.push_back(1);
+		for (unsigned int i = 0; i < refs.size(); i++) {
+			handleWriteIexMd_struct(dbswznm, outfile, ime, refs[i], ics, refLocEnus);
+			ics[ics.size()-1]++;
+		};
+		ics.pop_back();
+
+		delete ime;
+	};
+};
+
+void CrdWznmVer::handleWriteIexMd_descr(
+			DbsWznm* dbswznm
+			, fstream& outfile
+			, WznmMImpexp* sup
+			, const ubigint refWznmMImpexp
+			, vector<unsigned int>& ics
+			, const ubigint refLocEnus
+		) {
+	vector<ubigint> refs;
+
+	WznmMImpexp* ime = NULL;
+
+	ListWznmMImpexpcol iels;
+	WznmMImpexpcol* iel = NULL;
+
+	ListWznmMVectoritem vits;
+	WznmMVectoritem* vit = NULL;
+
+	set<uint> icsWIop;
+
+	if (dbswznm->tblwznmmimpexp->loadRecByRef(refWznmMImpexp, &ime)) {
+		dbswznm->tblwznmmimpexpcol->loadRstByIme(ime->ref, false, iels);
+
+		outfile << "<span id=\"" << ime->sref << "\"></span>" << endl;
+		outfile << endl;
+
+		outfile << "### ";
+		for (unsigned int i = 0; i < ics.size(); i++) {
+			if (i != 0) outfile << ".";
+			outfile << ics[i];
+		};
+
+		outfile << " " << StrMod::cap(handleWriteIexMd_imetit(dbswznm, ime, refLocEnus)) << " ``[" << ime->sref << "]``" << endl;
+		outfile << endl;
+
+		outfile << "[//]: # (IP " << ime->sref << ".superUse - BEGIN)" << endl;
+		outfile << endl;
+
+		if (sup) {
+			outfile << "Super import: " << handleWriteIexMd_imetit(dbswznm, sup, refLocEnus);
+
+			outfile << " (" << handleWriteIexMd_supreltype(dbswznm, sup, iels, refLocEnus) << ")" << endl;
+
+			outfile << endl;
+		};
+
+		outfile << "Use:" << endl;
+		outfile << endl;
+
+		outfile << "[//]: # (IP " << ime->sref << ".superUse - END)" << endl;
+		outfile << endl;
+
+		outfile << "[//]: # (IP " << ime->sref << ".columns - BEGIN)" << endl;
+		outfile << endl;
+
+		outfile << "Column|Content|" << endl;
+		outfile << "-|-|" << endl;
+
+		for (unsigned int i = 0; i < iels.nodes.size(); i++) {
+			iel = iels.nodes[i];
+
+			if (iel->ixWOccurrence & VecWznmWMImpexpcolOccurrence::FIL) {
+				outfile << iel->sref << " (" << handleWriteIexMd_ieltype(dbswznm, iel) << ")|";
+
+				if (iel->ixVBasetype == VecWznmVMImpexpcolBasetype::IOP) {
+					outfile << "import operation";
+
+					VecWznmWMImpexpIop::getIcs(ime->ixWIop, icsWIop);
+					for (auto it = icsWIop.begin(); it != icsWIop.end(); it++) outfile << "<br>" << VecWznmWMImpexpIop::getSrefs(*it) << ": " << VecWznmWMImpexpIop::getTitle(*it, VecWznmVLocale::ENUS);
+
+				} else {
+					outfile << handleWriteIexMd_ieltit(dbswznm, iel, refLocEnus);
+
+					if (iel->refWznmMTablecol != 0) {
+						dbswznm->tblwznmmvectoritem->loadRstBySQL("SELECT TblWznmMVectoritem.* FROM TblWznmMTablecol, TblWznmMVectoritem WHERE TblWznmMTablecol.ref = " + to_string(iel->refWznmMTablecol)
+									+ " AND TblWznmMTablecol.fctIxVTbl = " + to_string(VecWznmVMTablecolFctTbl::VEC) + " AND TblWznmMVectoritem.vecRefWznmMVector = TblWznmMTablecol.fctUref ORDER BY TblWznmMVectoritem.vecNum ASC", false, vits);
+
+						for (unsigned int j = 0; j < vits.nodes.size(); j++) {
+							vit = vits.nodes[j];
+							outfile << "<br>" << vit->sref << ": " << vit->Title;
+						};
+					};
+				};
+
+				outfile << "|" << endl;
+			};
+		};
+		outfile << endl;
+
+		outfile << "[//]: # (IP " << ime->sref << ".columns - END)" << endl;
+		outfile << endl;
+
+		dbswznm->tblwznmmimpexp->loadRefsBySup(refWznmMImpexp, false, refs);
+		ics.push_back(1);
+		for (unsigned int i = 0; i < refs.size(); i++) {
+			handleWriteIexMd_descr(dbswznm, outfile, ime, refs[i], ics, refLocEnus);
+			ics[ics.size()-1]++;
+		};
+		ics.pop_back();
+
+		delete ime;
+	};
+};
+
+string CrdWznmVer::handleWriteIexMd_imetit(
+			DbsWznm* dbswznm
+			, WznmMImpexp* ime
+			, const ubigint refLocEnus
+		) {
+	// 1st try: tbl sngfull; 2nd try: tbl plfull; 3rd try: tbl->sref
+	string retval = ime->sref;
+
+	if (!dbswznm->tblwznmamtabletitle->loadTitByTblTypLoc(ime->refWznmMTable, VecWznmVAMTableTitleType::SNGFULL, refLocEnus, retval))
+		if (!dbswznm->tblwznmamtabletitle->loadTitByTblTypLoc(ime->refWznmMTable, VecWznmVAMTableTitleType::PLFULL, refLocEnus, retval))
+			dbswznm->tblwznmmtable->loadSrfByRef(ime->refWznmMTable, retval);
+
+	return retval;
+};
+
+string CrdWznmVer::handleWriteIexMd_supreltype(
+			DbsWznm* dbswznm
+			, WznmMImpexp* sup
+			, ListWznmMImpexpcol& iels
+			, const ubigint refLocEnus
+		) {
+	string retval = "1:N";
+
+	WznmMImpexpcol* iel = NULL;
+	WznmMRelation* rel = NULL;
+
+	for (unsigned int i = 0; i < iels.nodes.size(); i++) {
+		iel = iels.nodes[i];
+
+		if (iel->ixVConvtype == VecWznmVMImpexpcolConvtype::SUP) {
+			if (dbswznm->tblwznmmrelation->loadRecBySQL("SELECT TblWznmMRelation.* FROM TblWznmMRelation, TblWznmMTablecol WHERE TblWznmMRelation.ref = TblWznmMTablecol.refWznmMRelation AND TblWznmMTablecol.ref = "
+						+ to_string(iel->refWznmMTablecol), &rel)) {
+
+				if ((rel->ixVBasetype == VecWznmVMRelationBasetype::_11) || (rel->ixVBasetype == VecWznmVMRelationBasetype::_1NPREF) || (rel->ixVBasetype == VecWznmVMRelationBasetype::MNPREF) || (rel->ixVBasetype == VecWznmVMRelationBasetype::INC)
+							|| (rel->ixVBasetype == VecWznmVMRelationBasetype::JPREF) || (rel->ixVBasetype == VecWznmVMRelationBasetype::AUXPREF) || (rel->ixVBasetype == VecWznmVMRelationBasetype::U1NSUBPREF) || (rel->ixVBasetype == VecWznmVMRelationBasetype::U1NSUBINC)
+							|| (rel->ixVBasetype == VecWznmVMRelationBasetype::U1NSUB11)) retval = "1:1";
+
+				delete rel;
+			};
+		};
+	};
+
+	return retval;
+};
+
+string CrdWznmVer::handleWriteIexMd_ieltype(
+			DbsWznm* dbswznm
+			, WznmMImpexpcol* iel
+		) {
+	// cf. WznmWrsrvIex.writeIexblksH_imeDecl
+	string retval;
+
+	WznmMTablecol* tco = NULL;
+
+	if (iel->ixVBasetype == VecWznmVMImpexpcolBasetype::IOP) retval = "string";
+	else if ((iel->ixVBasetype == VecWznmVMImpexpcolBasetype::IDIREF) || (iel->ixVBasetype == VecWznmVMImpexpcolBasetype::IREF)) retval = "ubigint";
+	else if (iel->ixVBasetype == VecWznmVMImpexpcolBasetype::TBL) {
+		if (dbswznm->tblwznmmtablecol->loadRecByRef(iel->refWznmMTablecol, &tco)) {
+			if (tco->ixVBasetype == VecWznmVMTablecolBasetype::ENUM) retval = "uint";
+			else if (tco->ixVBasetype == VecWznmVMTablecolBasetype::INTVAL) retval = VecWznmVMTablecolSubtype::getSref(tco->ixVSubtype);
+			else if (tco->ixVBasetype == VecWznmVMTablecolBasetype::DBLVAL) retval = "double";
+			else if (tco->ixVBasetype == VecWznmVMTablecolBasetype::BOOLVAL) retval = "bool";
+			else if (tco->ixVBasetype == VecWznmVMTablecolBasetype::TIMEVAL) {
+				if (tco->ixVSubtype == VecWznmVMTablecolSubtype::TMUSTAMP) retval = "double";
+				else retval = "uint";
+			} else retval = "string"; // IDSREF, KLREF, TBLSREF, TXTVAL, EXPR
+
+			delete tco;
+		};
+
+	} else retval = "string"; // VSREF, FTM, TSREF, THSREF, THINT, IARG
+
+	return retval;
+};
+
+string CrdWznmVer::handleWriteIexMd_ieltit(
+			DbsWznm* dbswznm
+			, WznmMImpexpcol* iel
+			, const ubigint refLocEnus
+		) {
+	// cf. various WznmGenDetui.genPnldetail_cjt*
+
+	// 1st try: tco full; 2nd try: rel {to/from}full; 3rd try: vec/tbl full/sref; 4th try: tco->sref
+	string retval = iel->sref;
+
+	WznmMTablecol* tco = NULL;
+	WznmMRelation* rel = NULL;
+
+	bool found;
+
+	bool toNotFr;
+
+	if (dbswznm->tblwznmmtablecol->loadRecByRef(iel->refWznmMTablecol, &tco)) {
+		if (!dbswznm->tblwznmamtablecoltitle->loadTitByTcoTypLoc(tco->ref, VecWznmVAMTablecolTitleType::FULL, refLocEnus, retval)) {
+			found = false;
+
+			if (tco->refWznmMRelation != 0) {
+				if (dbswznm->tblwznmmrelation->loadRecByRef(tco->refWznmMRelation, &rel)) {
+					found = true;
+
+					toNotFr = ( ((rel->ixVBasetype == VecWznmVMRelationBasetype::_11) && (tco->tblRefWznmMTable == rel->frRefWznmMTable)) || (rel->ixVBasetype == VecWznmVMRelationBasetype::U1NSUB11) );
+
+					if (toNotFr) {
+						if (!dbswznm->tblwznmamrelationtitle->loadTitByRelTypLoc(rel->ref, VecWznmVAMRelationTitleType::TOSNGFULL, refLocEnus, retval))
+							if (!dbswznm->tblwznmamtabletitle->loadTitByTblTypLoc(rel->toRefWznmMTable, VecWznmVAMTableTitleType::SNGFULL, refLocEnus, retval)) found = false;
+
+					} else {
+						if (!dbswznm->tblwznmamrelationtitle->loadTitByRelTypLoc(rel->ref, VecWznmVAMRelationTitleType::FROMSNGFULL, refLocEnus, retval))
+							if (!dbswznm->tblwznmamtabletitle->loadTitByTblTypLoc(rel->frRefWznmMTable, VecWznmVAMTableTitleType::SNGFULL, refLocEnus, retval)) found = false;
+					};
+				};
+			};
+
+			if (!found) {
+				if (tco->fctIxVTbl == VecWznmVMTablecolFctTbl::TBL) {
+					found = dbswznm->tblwznmamtabletitle->loadTitByTblTypLoc(tco->fctUref, VecWznmVAMTableTitleType::SNGFULL, refLocEnus, retval);
+					if (!found) found = dbswznm->tblwznmamtabletitle->loadTitByTblTypLoc(tco->fctUref, VecWznmVAMTableTitleType::PLFULL, refLocEnus, retval);
+					if (!found) found = dbswznm->tblwznmmtable->loadSrfByRef(tco->fctUref, retval);
+
+				} else if (tco->fctIxVTbl == VecWznmVMTablecolFctTbl::VEC) {
+					found = dbswznm->tblwznmamvectortitle->loadTitByVecTypLoc(tco->fctUref, VecWznmVAMVectorTitleType::FULL, refLocEnus, retval);
+				};
+			};
+
+			if (!found) retval = tco->sref;
+		};
+
+		delete tco;
+	};
+
+	return retval;
+};
 // IP cust --- IEND
 
 DpchEngWznm* CrdWznmVer::getNewDpchEng(
@@ -1045,11 +1315,485 @@ bool CrdWznmVer::handleShowVars(
 	return retval;
 };
 
+bool CrdWznmVer::handleWriteDbsHtml(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleWriteDbsHtml --- IBEGIN
+	ubigint refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
+
+	time_t rawtime;
+	time(&rawtime);
+
+	string head = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n";
+	head += "<html>\n";
+	head += "\t<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n";
+	head += "\t<title>" + StubWznm::getStubVerStd(dbswznm, refWznmMVersion) + " database structure as of " + StrMod::timetToString(rawtime) + "</title>\n";
+	head += "\t<head>\n";
+	head += "\t\t<style type=\"text/css\">\n";
+	head += "\t\t\t@page { margin: 2cm }\n";
+	head += "\t\t\tp { margin-bottom: 0.25cm; line-height: 115% }\n";
+	head += "\t\t\ttd p { margin-bottom: 0cm }\n";
+	head += "\t\t\tth p { margin-bottom: 0cm }\n";
+	head += "\t\t</style>\n";
+	head += "\t</head>\n";
+	head += "\t<body lang=\"en-US\" dir=\"ltr\">\n";
+
+	string foot = "\t</body>\n";
+	foot += "</html>\n";
+
+	string p_hdr_major = "<p style=\"margin-bottom: 0cm; font-style: normal; font-weight: normal; line-height: 100%\"><b>";
+	string p_hdr_major_close = "</b></p><br>";
+
+	string p_hdr_minor = "<p style=\"margin-bottom: 0cm; font-style: normal; font-weight: normal; line-height: 100%\"><u>";
+	string p_hdr_minor_close = "</u></p><br>";
+
+	string p_body = "<p style=\"margin-bottom: 0cm; font-style: normal; font-weight: normal; line-height: 100%\">";
+	string p_body_close = "</p><br>";
+
+	ifstream infile;
+	char* buf = new char[1024];
+
+	fstream outfile;
+
+	string prefix;
+
+	vector<ubigint> refs;
+
+	ListWznmMTable tbls; // all tables, including sub-tables
+	WznmMTable* tbl = NULL;
+
+	map<ubigint, uint> icsTbls; // by ref
+	map<ubigint, string> anchorsTbls;
+
+	WznmMTable* mtb = NULL;
+	map<string, uint> icsMtbs; // by sref
+
+	WznmMTable* rtb = NULL;
+	map<string, uint> icsRtbs; // by sref
+
+	ListWznmMTablecol tcos;
+	WznmMTablecol* tco = NULL;	
+
+	// chapter number / anchor: <prefix.><major>.<minor 1 for mtb, 2 for rtb>.<sub for each mtb/rtb>.<subsub for each subtbl>
+	// ex. 7.1 User interface
+	// ex. 7.1.2 Relation tables
+	// ex. 7.1.1.1 Cards [TblWznmMCard]
+	// ex. 7.1.1.1. Name by locale [TblWznmJMCardTitle]
+
+	ubigint refLocEnus;
+
+	unsigned int major, minor, sub, subsub;
+
+	string s;
+
+	string prjshort;
+	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(refWznmMVersion), prjshort);
+
+	dbswznm->tblwznmmlocale->loadRefBySrf("enus", refLocEnus);
+
+	// load and categorize version's tables
+	dbswznm->tblwznmmtable->loadRstByVer(refWznmMVersion, false, tbls);
+
+	for (unsigned int i = 0; i < tbls.nodes.size(); i++) {
+		tbl = tbls.nodes[i];
+
+		icsTbls[tbl->ref] = i;
+
+		if (tbl->ixVBasetype == VecWznmVMTableBasetype::MAIN) icsMtbs[tbl->sref] = i;
+		else if (tbl->ixVBasetype == VecWznmVMTableBasetype::REL) icsRtbs[tbl->sref] = i;
+	};
+
+	// query parameters via command line
+	cout << "\tchapter prefix: ";
+	cin >> prefix;
+
+	cout << "\tstructure file path: ";
+	cin >> s;
+
+	infile.open(s.c_str(), ifstream::in);
+	if (!infile.is_open()) {
+		cout << "\terror opening structure file." << endl;
+		return retval;
+	};
+
+	s = xchg->exedir + "/database_" + prjshort + ".html";
+	outfile.open(s.c_str(), ios::out);
+
+	outfile << head;
+
+	for (unsigned int i = 0; i < 2; i++) { // 0: prepare structure, define anchors; 1: write HTML
+		infile.clear();
+		infile.seekg(0);
+
+		major = 0;
+		minor = 0;
+
+		while (infile.good() && !infile.eof()) {
+			s = StrMod::readLine(infile, buf, 1024);
+			if (s == "") continue;
+
+			mtb = NULL;
+			rtb = NULL;
+
+			auto it = icsMtbs.find(s);
+			if (it != icsMtbs.end()) {
+				// new main table
+				mtb = tbls[it->second];
+
+				if (minor == 0) {
+					minor = 1;
+					sub = 1;
+
+					if (i == 1) {
+						outfile << p_hdr_minor << prefix << major << "." << minor << " Main tables" << p_hdr_minor_close << endl;
+						outfile << endl;
+					};
+
+				} else if (minor == 1) sub++;
+				else continue;
+
+			} else {
+				it = icsRtbs.find(s);
+				if (it != icsRtbs.end()) {
+					// new relation table
+					rtb = tbls[it->second];
+
+					if (minor == 1) {
+						minor = 2;
+						sub = 1;
+
+						if (i == 1) {
+							outfile << p_hdr_minor << prefix << major << "." << minor << " Relation tables" << p_hdr_minor_close << endl;
+							outfile << endl;
+						};
+
+					} else if (minor == 2) sub++;
+					else continue;
+
+				} else {
+					// new group
+					major++;
+
+					if (i == 1) {
+						outfile << p_hdr_major << prefix << major << " " << s << p_hdr_major_close << endl;
+						outfile << endl;
+
+						outfile << p_body << endl;
+						outfile << "\t<!-- IP " << StrMod::replaceChar(StrMod::replaceChar(s, ' ', '_'), '.', '_') << " - BEGIN -->" << endl;
+						outfile << "\t" << s << " description." << endl;
+						outfile << "\t<!-- IP " << StrMod::replaceChar(StrMod::replaceChar(s, ' ', '_'), '.', '_') << " - END -->" << endl;
+						outfile << p_body_close << endl;
+					};
+
+					minor = 0;
+				};
+			};
+
+			if (mtb != NULL) {
+				if (i == 0) {
+					anchorsTbls[mtb->ref] = prefix + to_string(major) + "." + to_string(minor) + "." + to_string(sub);
+
+				} else if (i == 1) {
+					outfile << "<a name=\"" << StrMod::replaceChar(anchorsTbls[mtb->ref], '.', '_') << "\">";
+					outfile << p_hdr_minor << anchorsTbls[mtb->ref] << " " << handleWriteDbsHtml_tbltit(dbswznm, mtb, refLocEnus) << " [" << mtb->sref << "]" << p_hdr_minor_close;
+					outfile << "</a>" << endl << endl;
+
+					outfile << p_body << endl;
+					outfile << "\t<!-- IP " << mtb->sref << " - BEGIN -->" << endl;
+					outfile << "\t" << mtb->sref << " description." << endl;
+					outfile << "\t<!-- IP " << mtb->sref << " - END -->" << endl;
+					outfile << p_body_close << endl;
+				};
+
+				// sub-tbls (clust, jump, aux)
+				dbswznm->loadRefsBySQL("SELECT frRefWznmMTable FROM TblWznmMRelation WHERE toRefWznmMTable = " + to_string(mtb->ref) + " AND ixVBasetype = " + to_string(VecWznmVMRelationBasetype::CLUST), false, refs);
+				dbswznm->loadRefsBySQL("SELECT TblWznmMTable.ref FROM TblWznmMRelation, TblWznmMTable WHERE TblWznmMRelation.frRefWznmMTable = " + to_string(mtb->ref) + " AND TblWznmMRelation.ixVBasetype = "
+							+ to_string(VecWznmVMRelationBasetype::J) + " AND TblWznmMTable.ref = TblWznmMRelation.toRefWznmMTable ORDER BY TblWznmMTable.sref ASC", true, refs);
+				dbswznm->loadRefsBySQL("SELECT TblWznmMTable.ref FROM TblWznmMRelation, TblWznmMTable WHERE TblWznmMRelation.frRefWznmMTable = " + to_string(mtb->ref) + " AND TblWznmMRelation.ixVBasetype = "
+							+ to_string(VecWznmVMRelationBasetype::AUX) + " AND TblWznmMTable.ref = TblWznmMRelation.toRefWznmMTable ORDER BY TblWznmMTable.sref ASC", true, refs);
+
+				if (i == 1) {
+					// tcos
+					dbswznm->tblwznmmtablecol->loadRstByTbl(mtb->ref, false, tcos);
+					handleWriteDbsHtml_tcos(dbswznm, outfile, mtb->sref, tcos, anchorsTbls, refLocEnus);
+				};
+
+				// sub-tbls
+				subsub = 0;
+				for (unsigned int j = 0; j < refs.size(); j++) {
+					auto it = icsTbls.find(refs[j]);
+
+					if (it != icsTbls.end()) {
+						tbl = tbls.nodes[it->second];
+						subsub++;
+
+						if (i == 0) {
+							anchorsTbls[tbl->ref] = prefix + to_string(major) + "." + to_string(minor) + "." + to_string(sub) + "." + to_string(subsub);
+
+						} else if (i == 1) {
+							outfile << "<a name=\"" << StrMod::replaceChar(anchorsTbls[tbl->ref], '.', '_') << "\">";
+							outfile << p_hdr_minor << anchorsTbls[tbl->ref] << " " << handleWriteDbsHtml_tbltit(dbswznm, tbl, refLocEnus) << " [" << tbl->sref << "]" << p_hdr_minor_close;
+							outfile << "</a>" << endl << endl;
+
+							outfile << p_body << endl;
+							outfile << "\t<!-- IP " << tbl->sref << " - BEGIN -->" << endl;
+							outfile << "\t" << tbl->sref << " description." << endl;
+							outfile << "\t<!-- IP " << tbl->sref << " - END -->" << endl;
+							outfile << p_body_close << endl;
+
+							// sub-tbl tcos
+							dbswznm->tblwznmmtablecol->loadRstByTbl(tbl->ref, false, tcos);
+							handleWriteDbsHtml_tcos(dbswznm, outfile, tbl->sref, tcos, anchorsTbls, refLocEnus);
+						};
+					};
+				};
+
+			} else if (rtb != NULL) {
+				if (i == 0) {
+					anchorsTbls[rtb->ref] = prefix + to_string(major) + "." + to_string(minor) + "." + to_string(sub);
+
+				} else if (i == 1) {
+					outfile << "<a name=\"" << StrMod::replaceChar(anchorsTbls[rtb->ref], '.', '_') << "\">";
+					outfile << p_hdr_minor << anchorsTbls[rtb->ref] << " " << handleWriteDbsHtml_tbltit(dbswznm, rtb, refLocEnus) << " [" << rtb->sref << "]" << p_hdr_minor_close;
+					outfile << "</a>" << endl << endl;
+
+					outfile << p_body << endl;
+					outfile << "\t<!-- IP " << rtb->sref << " - BEGIN -->" << endl;
+					outfile << "\t" << rtb->sref << " description." << endl;
+					outfile << "\t<!-- IP " << rtb->sref << " - END -->" << endl;
+					outfile << p_body_close << endl;
+				};
+
+				if (i == 1) {
+					// tcos
+					dbswznm->tblwznmmtablecol->loadRstByTbl(rtb->ref, false, tcos);
+					handleWriteDbsHtml_tcos(dbswznm, outfile, rtb->sref, tcos, anchorsTbls, refLocEnus);
+				};
+			};
+		};
+	};
+
+	infile.close();
+
+	outfile << foot;
+	outfile.close();
+
+	delete[] buf;
+	// IP handleWriteDbsHtml --- IEND
+	return retval;
+};
+
+bool CrdWznmVer::handleWriteIexHtml(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleWriteIexHtml --- IBEGIN
+	ubigint refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
+
+	time_t rawtime;
+	time(&rawtime);
+
+	string head = "<!DOCTYPE HTML PUBLIC \"-//W3C//DTD HTML 4.0 Transitional//EN\">\n";
+	head += "<html>\n";
+	head += "\t<meta http-equiv=\"content-type\" content=\"text/html; charset=utf-8\">\n";
+	head += "\t<title>" + StubWznm::getStubVerStd(dbswznm, refWznmMVersion) + " import/export structure as of " + StrMod::timetToString(rawtime) + "</title>\n";
+	head += "\t<head>\n";
+	head += "\t\t<style type=\"text/css\">\n";
+	head += "\t\t\t@page { margin: 2cm }\n";
+	head += "\t\t\tp { margin-bottom: 0.25cm; line-height: 115% }\n";
+	head += "\t\t\ttd p { margin-bottom: 0cm }\n";
+	head += "\t\t\tth p { margin-bottom: 0cm }\n";
+	head += "\t\t</style>\n";
+	head += "\t</head>\n";
+	head += "\t<body lang=\"en-US\" dir=\"ltr\">\n";
+
+	string foot = "\t</body>\n";
+	foot += "</html>\n";
+
+	string p_hdr_major = "<p style=\"margin-bottom: 0cm; font-style: normal; font-weight: normal; line-height: 100%\"><b>";
+	string p_hdr_major_close = "</b></p><br>";
+
+	string p_body = "<p style=\"margin-bottom: 0cm; font-style: normal; font-weight: normal; line-height: 100%\">";
+	string p_body_close = "</p><br>";
+
+	fstream outfile;
+
+	string prefix;
+
+	vector<ubigint> refs;
+
+	ListWznmMImpexpcplx iexs;
+	WznmMImpexpcplx* iex = NULL;
+
+	// chapter number / anchor: <prefix.><major>.<minor 1 for mtb, 2 for rtb>.<sub for each mtb/rtb>.<subsub for each subtbl>
+	// ex. 7.1 Updates to dialogs, panels, controls and queries [IexWznmUix]
+	// ex. 7.1.1 Card [ImeIMCard]
+	// ex. 7.1.1.2 Panel [ImeIMPanel]
+	// ex. 7.1.1.2.2 Control [ImeIMControl2]
+	// ex. 7.1.1.2.2.3 Feed [ImeIMFeed2]
+	// ex. 7.1.1.2.2.3.1 Vector [ImeIMVector2]
+
+	ubigint refLocEnus;
+
+	vector<unsigned int> ics;
+
+	string s;
+
+	string prjshort;
+	dbswznm->loadStringBySQL("SELECT TblWznmMProject.Short FROM TblWznmMProject, TblWznmMVersion WHERE TblWznmMProject.ref = TblWznmMVersion.prjRefWznmMProject AND TblWznmMVersion.ref = " + to_string(refWznmMVersion), prjshort);
+
+	dbswznm->tblwznmmlocale->loadRefBySrf("enus", refLocEnus);
+
+	dbswznm->tblwznmmimpexpcplx->loadRstByVer(refWznmMVersion, false, iexs);
+
+	// query parameters via command line
+	cout << "\tchapter prefix: ";
+	cin >> prefix;
+
+	s = xchg->exedir + "/impexp_" + prjshort + ".html";
+	outfile.open(s.c_str(), ios::out);
+
+	outfile << head;
+
+	ics.resize(1);
+
+	for (unsigned int i = 0; i < iexs.nodes.size(); i++) {
+		iex = iexs.nodes[i];
+		ics[0] = i + 1;
+
+		dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMImpexp WHERE refWznmMImpexpcplx = " + to_string(iex->ref) + " AND supLvl = 0 ORDER BY sref ASC", false, refs);
+
+		// --- header
+		outfile << p_hdr_major << prefix << ics[0] << " " << StrMod::cap(iex->Title) << " [" << iex->sref << "]" << p_hdr_major_close << endl;
+		outfile << endl;
+
+		// - description and schema
+		outfile << p_body << endl;
+		outfile << "\t<!-- IP " << iex->sref << " - BEGIN -->" << endl;
+		outfile << "\t" << StrMod::cap(iex->Title) << " description and schema." << endl;
+		outfile << "\t<!-- IP " << iex->sref << " - END -->" << endl;
+		outfile << p_body_close << endl;
+
+		// - structure
+		outfile << p_body << endl;
+		outfile << "\t<!-- IP " << iex->sref << ".struct - BEGIN -->" << endl;
+
+		ics.resize(2);
+		ics[1] = 1;
+		for (unsigned int j = 0; j < refs.size(); j++) {
+			handleWriteIexHtml_struct(dbswznm, outfile, NULL, refs[j], prefix, ics, refLocEnus);
+			ics[1]++;
+		};
+
+		outfile << "\t<!-- IP " << iex->sref << ".struct - END -->" << endl;
+		outfile << p_body_close << endl;
+
+		// --- detailed description
+		ics.resize(2);
+		ics[1] = 1;
+		for (unsigned int j = 0; j < refs.size(); j++) {
+			handleWriteIexHtml_descr(dbswznm, outfile, iex->sref, NULL, refs[j], prefix, ics, refLocEnus);
+			ics[1]++;
+		};
+	};
+
+	outfile << foot;
+
+	outfile.close();
+	// IP handleWriteIexHtml --- IEND
+	return retval;
+};
+
 bool CrdWznmVer::handleWriteIexMd(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	// IP handleWriteIexMd --- INSERT
+	// IP handleWriteIexMd --- IBEGIN
+
+	vector<ubigint> refs;
+
+	ListWznmMImpexpcplx iexs;
+	WznmMImpexpcplx* iex = NULL;
+
+	fstream outfile;
+
+	vector<unsigned int> ics;
+
+	time_t rawtime;
+	string created;
+
+	ubigint refLocEnus;
+
+	string s;
+
+	ubigint refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
+
+	time(&rawtime);
+	created = StrMod::timetToString(rawtime);
+
+	dbswznm->tblwznmmlocale->loadRefBySrf("enus", refLocEnus);
+
+	dbswznm->tblwznmmimpexpcplx->loadRstByVer(refWznmMVersion, false, iexs);
+	for (unsigned int i = 0; i < iexs.nodes.size(); i++) {
+		iex = iexs.nodes[i];
+
+		dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMImpexp WHERE refWznmMImpexpcplx = " + to_string(iex->ref) + " AND supLvl = 0 ORDER BY sref ASC", false, refs);
+
+		s = xchg->exedir + "/" + iex->sref + ".md";
+
+		outfile.open(s.c_str(), ios::out);
+
+		// --- header
+		outfile << StrMod::cap(iex->Comment) << " ``" << iex->sref << "``" << endl;
+		outfile << "===" << endl;
+		outfile << endl;
+
+		outfile << "Schema" << endl;
+		outfile << "---" << endl;
+		outfile << endl;
+
+		outfile << "![Figure 1: " << StrMod::cap(iex->Comment) << " schema - table columns in light blue are part of the input file, table columns in dark blue are inferred](./" << iex->sref << ".png)" << endl;
+		outfile << endl;
+
+		// --- overview
+		outfile << "Structure" << endl;
+		outfile << "---" << endl;
+		outfile << endl;
+
+		outfile << "[//]: # (IP structure - BEGIN)" << endl;
+		outfile << endl;
+
+		ics.resize(1);
+		ics[0] = 1;
+		for (unsigned int j = 0; j < refs.size(); j++) {
+			handleWriteIexMd_struct(dbswznm, outfile, NULL, refs[j], ics, refLocEnus);
+			ics[0]++;
+		};
+		outfile << endl;
+
+		outfile << "[//]: # (IP structure - END)" << endl;
+		outfile << endl;
+
+		// --- detailed description
+		outfile << "Details" << endl;
+		outfile << "---" << endl;
+		outfile << endl;
+
+		ics.resize(1);
+		ics[0] = 1;
+		for (unsigned int j = 0; j < refs.size(); j++) {
+			handleWriteIexMd_descr(dbswznm, outfile, NULL, refs[j], ics, refLocEnus);
+			ics[0]++;
+		};
+
+		// --- footer
+		outfile << "<small>Markdown for " << StubWznm::getStubVerStd(dbswznm, refWznmMVersion) << " auto-generated (what else ;-) ) by WhizniumSBE on " << created << "</small>" << endl;
+
+		outfile.close();
+	};
+
+	// IP handleWriteIexMd --- IEND
 	return retval;
 };
 

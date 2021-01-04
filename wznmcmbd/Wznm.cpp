@@ -2798,7 +2798,7 @@ string StubWznm::getStubCapStd(
 			, stcchitemref_t* strefSub
 			, const bool refresh
 		) {
-	// example: "Acv (acv - managed file archive)"
+	// example: "acv (acv - managed file archive)"
 	string stub;
 
 	WznmMCapability* rec = NULL;
@@ -2824,7 +2824,7 @@ string StubWznm::getStubCapStd(
 	if (ref != 0) {
 		if (dbswznm->tblwznmmcapability->loadRecByRef(ref, &rec)) {
 			if (stcch && !stit) stit = stcch->addStit(stref);
-			// IP getStubCapStd --- INSERT
+			stub = rec->sref + " (" + getStubCtpStd(dbswznm, rec->tplRefWznmMCapability, ixWznmVLocale, ixVNonetype, stcch, &stref) + ")"; // IP getStubCapStd --- ILINE
 			if (stit) stit->stub = stub;
 			delete rec;
 		};
@@ -3917,7 +3917,7 @@ string StubWznm::getStubMtdStd(
 	if (ref != 0) {
 		if (dbswznm->tblwznmmmethod->loadRecByRef(ref, &rec)) {
 			if (stcch && !stit) stit = stcch->addStit(stref);
-			// IP getStubMtdStd --- INSERT
+			stub = getStubJobStd(dbswznm, rec->refWznmMJob, ixWznmVLocale, ixVNonetype, stcch, &stref) + "." + rec->sref; // IP getStubMtdStd --- ILINE
 			if (stit) stit->stub = stub;
 			delete rec;
 		};
@@ -4892,7 +4892,11 @@ string StubWznm::getStubSqkStd(
 	if (ref != 0) {
 		if (dbswznm->tblwznmmsquawk->loadRecByRef(ref, &rec)) {
 			if (stcch && !stit) stit = stcch->addStit(stref);
-			// IP getStubSqkStd --- INSERT
+			// IP getStubSqkStd --- IBEGIN
+			if (rec->refIxVTbl == VecWznmVMSquawkRefTbl::OPK) stub = getStubOpkStd(dbswznm, rec->refUref, ixWznmVLocale, ixVNonetype, stcch, &stref);
+			else if (rec->refIxVTbl == VecWznmVMSquawkRefTbl::OPX) stub = getStubOpxStd(dbswznm, rec->refUref, ixWznmVLocale, ixVNonetype, stcch, &stref);
+			else if (rec->refIxVTbl == VecWznmVMSquawkRefTbl::SGE) stub = getStubSgeStd(dbswznm, rec->refUref, ixWznmVLocale, ixVNonetype, stcch, &stref);
+			// IP getStubSqkStd --- IEND
 			if (stit) stit->stub = stub;
 			delete rec;
 		};

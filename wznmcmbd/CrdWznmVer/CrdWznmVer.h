@@ -390,6 +390,13 @@ public:
 	std::string handleWriteIexHtml_imetit(DbsWznm* dbswznm, WznmMImpexp* ime, const Sbecore::ubigint refLocEnus);
 	std::string handleWriteIexHtml_supreltype(DbsWznm* dbswznm, WznmMImpexp* sup, ListWznmMImpexpcol& iels, const Sbecore::ubigint refLocEnus);
 	std::string handleWriteIexHtml_ieltype(DbsWznm* dbswznm, WznmMImpexpcol* iel);
+
+	void handleWriteIexMd_struct(DbsWznm* dbswznm, std::fstream& outfile, WznmMImpexp* sup, const Sbecore::ubigint refWznmMImpexp, std::vector<unsigned int>& ics, const Sbecore::ubigint refLocEnus);
+	void handleWriteIexMd_descr(DbsWznm* dbswznm, std::fstream& outfile, WznmMImpexp* sup, const Sbecore::ubigint refWznmMImpexp, std::vector<unsigned int>& ics, const Sbecore::ubigint refLocEnus);
+	std::string handleWriteIexMd_imetit(DbsWznm* dbswznm, WznmMImpexp* ime, const Sbecore::ubigint refLocEnus);
+	std::string handleWriteIexMd_supreltype(DbsWznm* dbswznm, WznmMImpexp* sup, ListWznmMImpexpcol& iels, const Sbecore::ubigint refLocEnus);
+	std::string handleWriteIexMd_ieltype(DbsWznm* dbswznm, WznmMImpexpcol* iel);
+	std::string handleWriteIexMd_ieltit(DbsWznm* dbswznm, WznmMImpexpcol* iel, const Sbecore::ubigint refLocEnus);
 	// IP cust --- IEND
 
 public:
@@ -408,6 +415,8 @@ private:
 	bool handleShowJobtree(DbsWznm* dbswznm);
 	bool handleShowMethods(DbsWznm* dbswznm);
 	bool handleShowVars(DbsWznm* dbswznm);
+	bool handleWriteDbsHtml(DbsWznm* dbswznm);
+	bool handleWriteIexHtml(DbsWznm* dbswznm);
 	bool handleWriteIexMd(DbsWznm* dbswznm);
 
 	void handleDpchAppWznmInit(DbsWznm* dbswznm, DpchAppWznmInit* dpchappwznminit, DpchEngWznm** dpcheng);

@@ -13,6 +13,19 @@ Besides being model-based, software development with WhizniumSBE rests on the fo
 
 ![](_exp/sbe.png)
 
+## Setup instructions
+
+To prepare your system for use with Whiznium and to learn how to make your first steps, please visit the separate this [separate Git repository](https://github.com/mpsitech/The-Whiznium-Documentation).
+
+## The Whiznium Developer Experience YouTube format
+
+WhizniumSBE-related episodes so far include:
+
+- [S1E1](https://youtu.be/SIz8meoCUl4): Why Whiznium? Let a laser scanner do the talking. 
+- [S1E2](https://youtu.be/_J5aEs5J9tE): Whiznium modeling: Any aspect that's fit to code.
+- [S1E3](https://youtu.be/Zf6G5EiLEak): Hunting down bugs in Whiznium application code.
+- [S1E4](https://youtu.be/NqhiURBacEI): Boosting your development workflow: the Whiznium tooling.
+
 ## Source code
 
 ### Directory structure
@@ -97,9 +110,17 @@ In some applications so far, WhizniumSBE-backed projects needed either OPC UA or
 
 WhizniumSBE is a WhizniumSBE-backed project. Accordingly, it requires libxml2, GNU Libmicrohttpd and libcurl to work. Our preferred choice for DBMS is MariaDB.
 
-## Deployment
+## Further Reading
 
-## Resources for now
+### Reference
+
+- Documentation of model files (slightly outdated) as [Git repository](https://github.com/mpsitech/WhizniumSBE-docs)
+- [YouTube video](https://youtu.be/yBvqSAvEhDg) of the most essential workflow step when using WhizniumSBE - iterating a source code tree
+- A [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/M2M_communication_v2.pdf) highlighting M2M communication options in WhizniumSBE-backed projects
+
+### Upcoming book
+
+- The Whiznium book (draft available [here](https://mpsitech-public.s3.eu-central-1.amazonaws.com/book.pdf)), offering an introduction to WhizniumSBE/DBE by means of a handy use case
 
 ### Use cases
 
@@ -108,12 +129,6 @@ WhizniumSBE is a WhizniumSBE-backed project. Accordingly, it requires libxml2, G
 - The ICARUS detector: a [European robotics research project](http://www.fp7-icarus.eu) alongside which WhizniumSBE/DBE developed lots of its functionality, [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/icarus.pdf)
 - Multi-spectral detector: developed from the ICARUS detector, combines stereo vision with a thermal imager and a laser mounted on a tilt/pan unit. [.pdf code walk-through](https://mpsitech-public.s3.eu-central-1.amazonaws.com/Thermal_Imager_Data_Path.pdf) available
 - BeamRelay: a cool air traffic simulation developed when Whiznium's focus was still on distributed simulation applications, [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/beamrelay.pdf) available and [ICNS conference proceedings .pdf](https://mpsitech-public.s3.eu-central-1.amazonaws.com/Global_coverage_free_space.pdf)
-
-### Reference / documentation
-
-- Documentation of model files (slightly outdated) as [Git repository](https://github.com/mpsitech/WhizniumSBE-docs)
-- [YouTube video](https://youtu.be/yBvqSAvEhDg) of the most essential workflow step when using WhizniumSBE - iterating a source code tree
-- A [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/M2M_communication_v2.pdf) highlighting M2M communication options in WhizniumSBE-backed projects
 
 ### Marketing material
 
@@ -125,10 +140,6 @@ Most of these publications pre-date Whiznium's Open Source era.
 - Co-marketing of Whiznium and Matrikon's FLEX OPC UA SDK for industrial automation applications [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/FLEX_MPSI_DataSheet-V2.1.pdf)
 - Elektronik.net interview at Embedded World 2020 with the founder of MPSI Technologies [video, German only](https://www.elektroniknet.de/video/vip-buehne-startups-stellen-sich-vor-mpsi-technologies-2012-video.html)
 - MPSI Technologies start-up pitch at Embedded World 2020 [video, from 20:15](https://www.embedded-world.de/de/events/vortrag/start-up-presentation-/767308)
-
-## Upcoming documentation
-
-- The Whiznium book (draft available [here](https://mpsitech-public.s3.eu-central-1.amazonaws.com/book.pdf)), offering an introduction to WhizniumSBE/DBE by means of a handy use case in the first chapters, but also with a complete reference in the later chapters
 
 ## Related Repositories
 
