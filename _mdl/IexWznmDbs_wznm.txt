@@ -1899,7 +1899,7 @@ main	void	0	TblWznmMSequence	seq
 		ImeIAMTablecolTitle.end
 	txtval			void		Title	tit	txt50	void		true	true
 		ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
-		full	enus	title
+		full	enus	name
 		ImeIAMTablecolTitle.end
 	txtval			void		Comment	cmt	txtlong	void		false	false
 		ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
@@ -3155,6 +3155,7 @@ aux	void	0	TblWznmAMSubsetTitle	sbsAtit
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
 		sngshort			singular short form
 		sngfull			singular full title
+		plshort			plural short form
 		plfull			plural full title
 		ImeIMVectoritem2.end
 	ImeIMVector2.end
@@ -3319,6 +3320,7 @@ aux	void	0	TblWznmAMTableTitle	tblAtit
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
 		sngshort			singular short form
 		sngfull			singular full title
+		plshort			plural short form
 		plfull			plural full title
 		ImeIMVectoritem2.end
 	ImeIMVector2.end
@@ -4734,8 +4736,10 @@ ImeIMStub.srefIxVBasetype	srefRefWznmMTable	srefRefWznmMSubset	sref	Hierarch	sre
 cust	TblWznmMApp		StubWznmAppStd	false		false	WhizniumDBE Iterator (wdbe v0.1.1) variant 3
 tco	TblWznmMBlock		StubWznmBlkStd	false	sref	false	DpchInvBrlyBaseLocloc
 tco	TblWznmMCall		StubWznmCalStd	false	sref	false	CallBrlyLoc.typEq
-cust	TblWznmMCapability		StubWznmCpbStd	false		false	Acv (acv - managed file archive) - vs. - acv - managed file archive
-cust	TblWznmMCapability	SbsWznmBMCapabilityCap	StubWznmCapStd	false		false	Acv (acv - managed file archive)
+tco	TblWznmMCapability		StubWznmCpbSref	false	sref	false	acv
+cust	TblWznmMCapability		StubWznmCpbStd	false		false	acv (acv - managed file archive) - vs. - acv - managed file archive
+cust	TblWznmMCapability	SbsWznmBMCapabilityCap	StubWznmCapStd	false		false	acv (acv - managed file archive)
+tco	TblWznmMCapability	SbsWznmBMCapabilityCtp	StubWznmCtpSref	false	sref	false	acv
 cust	TblWznmMCapability	SbsWznmBMCapabilityCtp	StubWznmCtpStd	false		false	acv - managed file archive
 tco	TblWznmMCard		StubWznmCarStd	false	sref	false	CrdBrlyLoc
 tco	TblWznmMCheck		StubWznmChkStd	false	sref	false	isLeaf

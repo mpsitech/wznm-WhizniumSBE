@@ -366,10 +366,10 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalFiaDldActive(DbsWznm* dbswznm);
 	bool evalWriButRunActive(DbsWznm* dbswznm);
 	bool evalWriButStoActive(DbsWznm* dbswznm);
+	bool evalFiaDldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmMchWriniscr(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);

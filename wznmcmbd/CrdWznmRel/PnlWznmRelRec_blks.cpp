@@ -101,9 +101,9 @@ void PnlWznmRelRec::StatApp::writeXML(
 			, const bool initdoneATitle
 			, const bool initdoneSup1NRelation
 			, const bool initdone1NTablecol
-			, const bool initdoneRef1NPanel
-			, const bool initdoneRef1NDialog
 			, const bool initdoneRef1NControl
+			, const bool initdoneRef1NDialog
+			, const bool initdoneRef1NPanel
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmRelRec";
 
@@ -116,9 +116,9 @@ void PnlWznmRelRec::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "initdoneATitle", initdoneATitle);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneSup1NRelation", initdoneSup1NRelation);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NTablecol", initdone1NTablecol);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NPanel", initdoneRef1NPanel);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NDialog", initdoneRef1NDialog);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NControl", initdoneRef1NControl);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NDialog", initdoneRef1NDialog);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NPanel", initdoneRef1NPanel);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -132,9 +132,9 @@ PnlWznmRelRec::StatShr::StatShr(
 			, const ubigint jrefATitle
 			, const ubigint jrefSup1NRelation
 			, const ubigint jref1NTablecol
-			, const ubigint jrefRef1NPanel
-			, const ubigint jrefRef1NDialog
 			, const ubigint jrefRef1NControl
+			, const ubigint jrefRef1NDialog
+			, const ubigint jrefRef1NPanel
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -144,12 +144,12 @@ PnlWznmRelRec::StatShr::StatShr(
 	this->jrefATitle = jrefATitle;
 	this->jrefSup1NRelation = jrefSup1NRelation;
 	this->jref1NTablecol = jref1NTablecol;
-	this->jrefRef1NPanel = jrefRef1NPanel;
-	this->jrefRef1NDialog = jrefRef1NDialog;
 	this->jrefRef1NControl = jrefRef1NControl;
+	this->jrefRef1NDialog = jrefRef1NDialog;
+	this->jrefRef1NPanel = jrefRef1NPanel;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NPANEL, JREFREF1NDIALOG, JREFREF1NCONTROL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NCONTROL, JREFREF1NDIALOG, JREFREF1NPANEL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmRelRec::StatShr::writeXML(
@@ -169,9 +169,9 @@ void PnlWznmRelRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefATitle", Scr::scramble(jrefATitle));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefSup1NRelation", Scr::scramble(jrefSup1NRelation));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NTablecol", Scr::scramble(jref1NTablecol));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NPanel", Scr::scramble(jrefRef1NPanel));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NDialog", Scr::scramble(jrefRef1NDialog));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NControl", Scr::scramble(jrefRef1NControl));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NDialog", Scr::scramble(jrefRef1NDialog));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NPanel", Scr::scramble(jrefRef1NPanel));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -186,9 +186,9 @@ set<uint> PnlWznmRelRec::StatShr::comm(
 	if (jrefATitle == comp->jrefATitle) insert(items, JREFATITLE);
 	if (jrefSup1NRelation == comp->jrefSup1NRelation) insert(items, JREFSUP1NRELATION);
 	if (jref1NTablecol == comp->jref1NTablecol) insert(items, JREF1NTABLECOL);
-	if (jrefRef1NPanel == comp->jrefRef1NPanel) insert(items, JREFREF1NPANEL);
-	if (jrefRef1NDialog == comp->jrefRef1NDialog) insert(items, JREFREF1NDIALOG);
 	if (jrefRef1NControl == comp->jrefRef1NControl) insert(items, JREFREF1NCONTROL);
+	if (jrefRef1NDialog == comp->jrefRef1NDialog) insert(items, JREFREF1NDIALOG);
+	if (jrefRef1NPanel == comp->jrefRef1NPanel) insert(items, JREFREF1NPANEL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -202,7 +202,7 @@ set<uint> PnlWznmRelRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NPANEL, JREFREF1NDIALOG, JREFREF1NCONTROL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NCONTROL, JREFREF1NDIALOG, JREFREF1NPANEL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

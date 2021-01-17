@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "JobWznmLicense.h"
 #include "SessWznm.h"
+#include "JobWznmLicense.h"
 
 #define VecVRootWznmSge RootWznm::VecVSge
 
@@ -99,8 +99,8 @@ public:
 
 public:
 
-	JobWznmLicense* license;
 	std::list<SessWznm*> sesss;
+	JobWznmLicense* license;
 
 	// IP vars.spec --- INSERT
 
@@ -135,8 +135,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmSuspsess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmLogout(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const bool boolvalInv);
+	bool handleCallWznmSuspsess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

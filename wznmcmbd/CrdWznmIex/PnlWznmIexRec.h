@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
+#include "PnlWznmIexDetail.h"
+#include "PnlWznmIex1NImpexp.h"
 #include "PnlWznmIexRef1NDialog.h"
 #include "PnlWznmIexHk1NVector.h"
-#include "PnlWznmIex1NImpexp.h"
-#include "PnlWznmIexDetail.h"
 
 #define VecVWznmIexRecDo PnlWznmIexRec::VecVDo
 
@@ -74,7 +74,7 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NDialog = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneRef1NDialog = false, const bool initdoneHk1NVector = false);
 	};
 
 	/**
@@ -86,19 +86,19 @@ public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREF1NIMPEXP = 3;
-		static const Sbecore::uint JREFHK1NVECTOR = 4;
-		static const Sbecore::uint JREFREF1NDIALOG = 5;
+		static const Sbecore::uint JREFREF1NDIALOG = 4;
+		static const Sbecore::uint JREFHK1NVECTOR = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NImpexp = 0, const Sbecore::ubigint jrefHk1NVector = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NImpexp = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const Sbecore::ubigint jrefHk1NVector = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jref1NImpexp;
-		Sbecore::ubigint jrefHk1NVector;
 		Sbecore::ubigint jrefRef1NDialog;
+		Sbecore::ubigint jrefHk1NVector;
 		bool ButRegularizeActive;
 
 	public:
@@ -174,10 +174,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
+	PnlWznmIexDetail* pnldetail;
+	PnlWznmIex1NImpexp* pnl1nimpexp;
 	PnlWznmIexRef1NDialog* pnlref1ndialog;
 	PnlWznmIexHk1NVector* pnlhk1nvector;
-	PnlWznmIex1NImpexp* pnl1nimpexp;
-	PnlWznmIexDetail* pnldetail;
 
 	WznmMImpexpcplx recIex;
 
@@ -211,9 +211,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmIexUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmIex_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmIex_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmIexUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

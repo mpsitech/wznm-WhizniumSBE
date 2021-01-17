@@ -22,8 +22,8 @@ uint QryWznmSteList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "seq") return SEQ;
 	if (s == "srf") return SRF;
+	if (s == "seq") return SEQ;
 
 	return(0);
 };
@@ -31,8 +31,8 @@ uint QryWznmSteList::VecVOrd::getIx(
 string QryWznmSteList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SEQ) return("seq");
 	if (ix == SRF) return("srf");
+	if (ix == SEQ) return("seq");
 
 	return("");
 };

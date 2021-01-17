@@ -575,7 +575,8 @@ uint JobWznmIexApp::enterSgeImport(
 					};
 				};
 
-				dbswznm->tblwznmmrtjob->updateRec(rtj);
+				if (rtj->supRefWznmMRtjob == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(rtj->irefSupRefWznmMRtjob)}, {"iel","irefSupRefWznmMRtjob"}, {"lineno",to_string(rtj->lineno)}});
+				else dbswznm->tblwznmmrtjob->updateRec(rtj);
 			};
 		};
 
@@ -616,7 +617,8 @@ uint JobWznmIexApp::enterSgeImport(
 					if (steAact->srefSnxRefWznmMState != "") {
 						//steAact->snxRefWznmMState: IMPPP
 						itRefsSte = refsSte.find(steAact->srefSnxRefWznmMState);
-						if (itRefsSte != refsSte.end()) {
+						if (itRefsSte == refsSte.end()) throw SbeException(SbeException::IEX_TSREF, {{"tsref",steAact->srefSnxRefWznmMState}, {"iel","srefSnxRefWznmMState"}, {"lineno",to_string(steAact->lineno)}});
+						else {
 							steAact->snxRefWznmMState = itRefsSte->second;
 							dbswznm->tblwznmamstateaction->updateRec(steAact);
 						};
@@ -634,6 +636,8 @@ uint JobWznmIexApp::enterSgeImport(
 								break;
 							};
 						};
+
+						if (steAact->refWznmMSequence == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",steAact->srefRefWznmMSequence}, {"iel","srefRefWznmMSequence"}, {"lineno",to_string(steAact->lineno)}});
 					};
 				};
 			};

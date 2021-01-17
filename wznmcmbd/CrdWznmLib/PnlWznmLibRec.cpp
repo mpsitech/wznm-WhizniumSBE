@@ -38,12 +38,12 @@ PnlWznmLibRec::PnlWznmLibRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlmncomponent = NULL;
-	pnlmnoppack = NULL;
-	pnlref1nfile = NULL;
-	pnlapkglist = NULL;
-	pnlamakefile = NULL;
 	pnldetail = NULL;
+	pnlamakefile = NULL;
+	pnlapkglist = NULL;
+	pnlref1nfile = NULL;
+	pnlmnoppack = NULL;
+	pnlmncomponent = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

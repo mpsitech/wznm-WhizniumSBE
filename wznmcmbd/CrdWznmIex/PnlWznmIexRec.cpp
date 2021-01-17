@@ -38,10 +38,10 @@ PnlWznmIexRec::PnlWznmIexRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
+	pnldetail = NULL;
+	pnl1nimpexp = NULL;
 	pnlref1ndialog = NULL;
 	pnlhk1nvector = NULL;
-	pnl1nimpexp = NULL;
-	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -103,19 +103,19 @@ void PnlWznmIexRec::refresh(
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnl1nimpexp) {delete pnl1nimpexp; pnl1nimpexp = NULL;};
-		if (pnlhk1nvector) {delete pnlhk1nvector; pnlhk1nvector = NULL;};
 		if (pnlref1ndialog) {delete pnlref1ndialog; pnlref1ndialog = NULL;};
+		if (pnlhk1nvector) {delete pnlhk1nvector; pnlhk1nvector = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmIexDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nimpexp) pnl1nimpexp = new PnlWznmIex1NImpexp(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlhk1nvector) pnlhk1nvector = new PnlWznmIexHk1NVector(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1ndialog) pnlref1ndialog = new PnlWznmIexRef1NDialog(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlhk1nvector) pnlhk1nvector = new PnlWznmIexHk1NVector(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jref1NImpexp = ((pnl1nimpexp) ? pnl1nimpexp->jref : 0);
-	statshr.jrefHk1NVector = ((pnlhk1nvector) ? pnlhk1nvector->jref : 0);
 	statshr.jrefRef1NDialog = ((pnlref1ndialog) ? pnlref1ndialog->jref : 0);
+	statshr.jrefHk1NVector = ((pnlhk1nvector) ? pnlhk1nvector->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -144,8 +144,8 @@ void PnlWznmIexRec::updatePreset(
 		if (recIex.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nimpexp) pnl1nimpexp->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlhk1nvector) pnlhk1nvector->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1ndialog) pnlref1ndialog->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlhk1nvector) pnlhk1nvector->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswznm, moditems);
@@ -255,22 +255,13 @@ void PnlWznmIexRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMIEXUPD_REFEQ) {
-		call->abort = handleCallWznmIexUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEX_JOBEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMIEX_JOBEQ) {
 		call->abort = handleCallWznmIex_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEX_VEREQ) {
 		call->abort = handleCallWznmIex_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEXUPD_REFEQ) {
+		call->abort = handleCallWznmIexUpd_refEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmIexRec::handleCallWznmIexUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmIexUpd_refEq --- INSERT
-	return retval;
 };
 
 bool PnlWznmIexRec::handleCallWznmIex_jobEq(
@@ -292,5 +283,14 @@ bool PnlWznmIexRec::handleCallWznmIex_verEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recIex.refWznmMVersion == refInv); // IP handleCallWznmIex_verEq --- LINE
+	return retval;
+};
+
+bool PnlWznmIexRec::handleCallWznmIexUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmIexUpd_refEq --- INSERT
 	return retval;
 };

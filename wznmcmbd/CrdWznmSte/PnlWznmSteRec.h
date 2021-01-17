@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSteAAction.h"
-#include "PnlWznmSteATrig.h"
 #include "PnlWznmSteDetail.h"
+#include "PnlWznmSteATrig.h"
+#include "PnlWznmSteAAction.h"
 
 #define VecVWznmSteRecDo PnlWznmSteRec::VecVDo
 
@@ -171,9 +171,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSteAAction* pnlaaction;
-	PnlWznmSteATrig* pnlatrig;
 	PnlWznmSteDetail* pnldetail;
+	PnlWznmSteATrig* pnlatrig;
+	PnlWznmSteAAction* pnlaaction;
 
 	WznmMState recSte;
 
@@ -207,8 +207,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmSteUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmSte_seqEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmSteUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

@@ -10,17 +10,17 @@
 #ifndef WZNMOPDOPPRC_H
 #define WZNMOPDOPPRC_H
 
-#include "WznmCtpWrsrvAcv.h"
-#include "WznmCtpWrsrvDlgimp.h"
-#include "WznmCtpWrsrvDlgloaini.h"
-#include "WznmCtpWrstkitAcv.h"
-#include "WznmCtpWrstkitArm.h"
-#include "WznmCtpGenuiAcv.h"
-#include "WznmCtpGenuiDlgimp.h"
-#include "WznmCtpGenuiDlgloaini.h"
 #include "WznmCtpGenjtrAcv.h"
 #include "WznmCtpGenjtrDlgimp.h"
 #include "WznmCtpGenjtrDlgloaini.h"
+#include "WznmCtpGenuiAcv.h"
+#include "WznmCtpGenuiDlgimp.h"
+#include "WznmCtpGenuiDlgloaini.h"
+#include "WznmCtpWrstkitAcv.h"
+#include "WznmCtpWrstkitArm.h"
+#include "WznmCtpWrsrvAcv.h"
+#include "WznmCtpWrsrvDlgimp.h"
+#include "WznmCtpWrsrvDlgloaini.h"
 
 /**
 	* WznmopdOpprc

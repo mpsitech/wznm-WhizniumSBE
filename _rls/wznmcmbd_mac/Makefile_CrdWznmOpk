@@ -2,7 +2,7 @@
 # make file for CrdWznmOpk card job handler, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 16 Dec 2020
+# date created: 13 Jan 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmOpk.o PnlWznmOpkList.o QryWznmOpkList.o PnlWznmOpkHeadbar.o PnlWznmOpkRec.o PnlWznmOpkSqkMNStub.o QryWznmOpkSqkMNStub.o PnlWznmOpkMNJob.o QryWznmOpkMNJob.o PnlWznmOpkMNLibrary.o QryWznmOpkMNLibrary.o PnlWznmOpkMNComponent.o QryWznmOpkMNComponent.o PnlWznmOpkRef1NBlock.o QryWznmOpkRef1NBlock.o PnlWznmOpk1NOp.o QryWznmOpk1NOp.o PnlWznmOpkARetval.o QryWznmOpkARetval.o PnlWznmOpkAInvarg.o QryWznmOpkAInvarg.o PnlWznmOpkDetail.o
+OBJS = CrdWznmOpk.o PnlWznmOpkRec.o PnlWznmOpkDetail.o PnlWznmOpkAInvarg.o QryWznmOpkAInvarg.o PnlWznmOpkARetval.o QryWznmOpkARetval.o PnlWznmOpk1NOp.o QryWznmOpk1NOp.o PnlWznmOpkRef1NBlock.o QryWznmOpkRef1NBlock.o PnlWznmOpkMNComponent.o QryWznmOpkMNComponent.o PnlWznmOpkMNLibrary.o QryWznmOpkMNLibrary.o PnlWznmOpkMNJob.o QryWznmOpkMNJob.o PnlWznmOpkSqkMNStub.o QryWznmOpkSqkMNStub.o PnlWznmOpkHeadbar.o PnlWznmOpkList.o QryWznmOpkList.o
 
 LIB = libcrdwznmopk
 

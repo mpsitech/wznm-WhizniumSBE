@@ -81,7 +81,8 @@ public:
 	public:
 		static const Sbecore::uint SNGSHORT = 1;
 		static const Sbecore::uint SNGFULL = 2;
-		static const Sbecore::uint PLFULL = 3;
+		static const Sbecore::uint PLSHORT = 3;
+		static const Sbecore::uint PLFULL = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

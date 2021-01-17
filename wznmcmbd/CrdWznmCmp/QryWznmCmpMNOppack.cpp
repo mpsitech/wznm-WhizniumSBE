@@ -85,7 +85,7 @@ void QryWznmCmpMNOppack::rerun(
 	dbswznm->tblwznmqcmpmnoppack->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMComponentMOppack.ref)";
-	sqlstr += " FROM TblWznmMOppack, TblWznmRMComponentMOppack";
+	sqlstr += " FROM TblWznmRMComponentMOppack, TblWznmMOppack";
 	sqlstr += " WHERE TblWznmRMComponentMOppack.refWznmMOppack = TblWznmMOppack.ref";
 	sqlstr += " AND TblWznmRMComponentMOppack.refWznmMComponent = " + to_string(preRefCmp) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -100,7 +100,7 @@ void QryWznmCmpMNOppack::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQCmpMNOppack(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMOppack.ref, TblWznmRMComponentMOppack.ref";
-	sqlstr += " FROM TblWznmMOppack, TblWznmRMComponentMOppack";
+	sqlstr += " FROM TblWznmRMComponentMOppack, TblWznmMOppack";
 	sqlstr += " WHERE TblWznmRMComponentMOppack.refWznmMOppack = TblWznmMOppack.ref";
 	sqlstr += " AND TblWznmRMComponentMOppack.refWznmMComponent = " + to_string(preRefCmp) + "";
 	sqlstr += " ORDER BY TblWznmMOppack.sref ASC";
@@ -274,11 +274,19 @@ void QryWznmCmpMNOppack::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMCMPROPKMOD_CMPEQ) {
-		call->abort = handleCallWznmCmpRopkMod_cmpEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCMPROPKMOD_CMPEQ) {
+		call->abort = handleCallWznmCmpRopkMod_cmpEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmCmpMNOppack::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmCmpMNOppack::handleCallWznmCmpRopkMod_cmpEq(
@@ -292,13 +300,5 @@ bool QryWznmCmpMNOppack::handleCallWznmCmpRopkMod_cmpEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmCmpMNOppack::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

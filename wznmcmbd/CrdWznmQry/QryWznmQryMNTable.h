@@ -123,8 +123,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmQryRtblMod_qryEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmQryRtblMod_qryEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

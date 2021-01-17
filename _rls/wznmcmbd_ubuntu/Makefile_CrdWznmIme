@@ -2,7 +2,7 @@
 # make file for CrdWznmIme card job handler, release wznmcmbd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 16 Dec 2020
+# date created: 13 Jan 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
 
-OBJS = CrdWznmIme.o PnlWznmImeList.o QryWznmImeList.o PnlWznmImeRec.o PnlWznmImeHk1NVector.o QryWznmImeHk1NVector.o PnlWznmImeIme1NImpexpcol.o QryWznmImeIme1NImpexpcol.o PnlWznmImeSup1NImpexp.o QryWznmImeSup1NImpexp.o PnlWznmImeDetail.o PnlWznmImeHeadbar.o
+OBJS = CrdWznmIme.o PnlWznmImeRec.o PnlWznmImeDetail.o PnlWznmImeIme1NImpexpcol.o QryWznmImeIme1NImpexpcol.o PnlWznmImeSup1NImpexp.o QryWznmImeSup1NImpexp.o PnlWznmImeHk1NVector.o QryWznmImeHk1NVector.o PnlWznmImeHeadbar.o PnlWznmImeList.o QryWznmImeList.o
 
 LIB = libcrdwznmime
 

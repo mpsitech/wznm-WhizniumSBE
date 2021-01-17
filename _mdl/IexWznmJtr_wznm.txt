@@ -1,5 +1,5 @@
 IexWznmJtr v0.9.29
-ImeIMJob.srefIxWznmVIop	sref	Mastslv	Shrdat	Autostart	Comment
+ImeIMJob.sref
 CrdWznmRls
 	ImeIMSensitivity1.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
 	cal	CallWznmReptrStart	lock	imm					cust
@@ -14,6 +14,8 @@ CrdWznmVer
 	showJobtree
 	showMethods
 	showVars
+	writeDbsHtml
+	writeIexHtml
 	writeIexMd
 	ImeIAMJobCmd.end
 DlgWznmAppImpstr

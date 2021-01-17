@@ -1657,15 +1657,11 @@ uint JobWznmIexUix::enterSgeImport(
 			for (unsigned int ix1 = 0; ix1 < car->imeimcontrol1.nodes.size(); ix1++) {
 				con1 = car->imeimcontrol1.nodes[ix1];
 
-				//con1->refUref = CUSTSQLPP;
-				if (con1->srefRefUref != "") {
-					if (con1->refIxVTbl == VecWznmVMControlRefTbl::DLG) {
-						dbswznm->loadRefBySQL("SELECT TblWznmMDialog.ref FROM TblWznmMModule, TblWznmMCard, TblWznmMDialog WHERE TblWznmMCard.mdlRefWznmMModule = TblWznmMModule.ref AND TblWznmMModule.verRefWznmMVersion = "
+				if ((con1->refIxVTbl == VecWznmVMControlRefTbl::DLG) && (con1->srefRefUref != "")) {
+					if (dbswznm->loadRefBySQL("SELECT TblWznmMDialog.ref FROM TblWznmMModule, TblWznmMCard, TblWznmMDialog WHERE TblWznmMCard.mdlRefWznmMModule = TblWznmMModule.ref AND TblWznmMModule.verRefWznmMVersion = "
 									+ to_string(refWznmMVersion) + " AND TblWznmMCard.ref = TblWznmMDialog.refWznmMCard AND TblWznmMDialog.sref = '"
-									+ con1->srefRefUref + "'", con1->refUref);
-
-						dbswznm->executeQuery("UPDATE TblWznmMControl SET refUref = " + to_string(con1->refUref) + " WHERE ref = " + to_string(con1->ref));
-					};
+									+ con1->srefRefUref + "'", con1->refUref)) dbswznm->executeQuery("UPDATE TblWznmMControl SET refUref = " + to_string(con1->refUref) + " WHERE ref = " + to_string(con1->ref));
+					else throw SbeException(SbeException::IEX_TSREF, {{"tsref",con1->srefRefUref}, {"iel","srefRefUref"}, {"lineno",to_string(con1->lineno)}});
 				};
 			};
 
@@ -1675,9 +1671,8 @@ uint JobWznmIexUix::enterSgeImport(
 				for (unsigned int ix2 = 0; ix2 < pnl->imeimcontrol2.nodes.size(); ix2++) {
 					con2 = pnl->imeimcontrol2.nodes[ix2];
 
+					//con2->refUref = CUSTSQLPP ... TBD?
 					if ((con2->ixWznmVIop == VecWznmVIop::INS) && (con2->irefSupRefWznmMControl != 0)) {
-						//con2->refUref = CUSTSQLPP;
-						//con2->supRefWznmMControl = IMPPP;
 						for (unsigned int i = 0; i < pnl->imeimcontrol2.nodes.size(); i++) {
 							con22 = pnl->imeimcontrol2.nodes[i];
 							if (con22->iref == con2->irefSupRefWznmMControl) {
@@ -1687,7 +1682,8 @@ uint JobWznmIexUix::enterSgeImport(
 							};
 						};
 
-						dbswznm->executeQuery("UPDATE TblWznmMControl SET supRefWznmMControl = " + to_string(con2->supRefWznmMControl) + ", supLvl = " + to_string(con2->supLvl) + " WHERE ref = " + to_string(con2->ref));
+						if (con2->supRefWznmMControl == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(con2->irefSupRefWznmMControl)}, {"iel","irefSupRefWznmMControl"}, {"lineno",to_string(con2->lineno)}});
+						else dbswznm->executeQuery("UPDATE TblWznmMControl SET supRefWznmMControl = " + to_string(con2->supRefWznmMControl) + ", supLvl = " + to_string(con2->supLvl) + " WHERE ref = " + to_string(con2->ref));
 					};
 				};
 			};
@@ -1698,9 +1694,8 @@ uint JobWznmIexUix::enterSgeImport(
 				for (unsigned int ix2 = 0; ix2 < dlg->imeimcontrol3.nodes.size(); ix2++) {
 					con3 = dlg->imeimcontrol3.nodes[ix2];
 
+					//con3->refUref = CUSTSQLPP ... TBD?
 					if (con3->irefSupRefWznmMControl != 0) {
-						//con3->refUref = CUSTSQLPP;
-						//con3->supRefWznmMControl = IMPPP;
 						for (unsigned int i = 0; i < dlg->imeimcontrol3.nodes.size(); i++) {
 							con32 = dlg->imeimcontrol3.nodes[i];
 							if (con32->iref == con3->irefSupRefWznmMControl) {
@@ -1710,7 +1705,8 @@ uint JobWznmIexUix::enterSgeImport(
 							};
 						};
 
-						dbswznm->executeQuery("UPDATE TblWznmMControl SET supRefWznmMControl = " + to_string(con3->supRefWznmMControl) + ", supLvl = " + to_string(con3->supLvl) + " WHERE ref = " + to_string(con3->ref));
+						if (con3->supRefWznmMControl == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(con3->irefSupRefWznmMControl)}, {"iel","irefSupRefWznmMControl"}, {"lineno",to_string(con3->lineno)}});
+						else dbswznm->executeQuery("UPDATE TblWznmMControl SET supRefWznmMControl = " + to_string(con3->supRefWznmMControl) + ", supLvl = " + to_string(con3->supLvl) + " WHERE ref = " + to_string(con3->ref));
 					};
 				};
 			};
@@ -1725,12 +1721,12 @@ uint JobWznmIexUix::enterSgeImport(
 					
 					if (qry2->iref == qry->irefSupRefWznmMQuery) {
 						qry->supRefWznmMQuery = qry2->ref;
-						
 						break;
 					};
 				};
 
-				dbswznm->tblwznmmquery->updateRec(qry);
+				if (qry->supRefWznmMQuery == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(qry->irefSupRefWznmMQuery)}, {"iel","irefSupRefWznmMQuery"}, {"lineno",to_string(qry->lineno)}});
+				else dbswznm->tblwznmmquery->updateRec(qry);
 			};
 
 			for (unsigned int ix1 = 0; ix1 < qry->imeirmquerymtable.nodes.size(); ix1++) {
@@ -1745,12 +1741,12 @@ uint JobWznmIexUix::enterSgeImport(
 
 							if (qmd->iref == qryTqmd->irefRefWznmMQuerymod) {
 								qryTqmd->refWznmMQuerymod = qmd->ref;
-
 								break;
 							};
 						};
 
-						dbswznm->tblwznmtmquerymodmquery->updateRec(qryTqmd);
+						if (qryTqmd->refWznmMQuerymod == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(qryTqmd->irefRefWznmMQuerymod)}, {"iel","irefRefWznmMQuerymod"}, {"lineno",to_string(qryTqmd->lineno)}});
+						else dbswznm->tblwznmtmquerymodmquery->updateRec(qryTqmd);
 					};
 				};
 			};
@@ -1764,12 +1760,12 @@ uint JobWznmIexUix::enterSgeImport(
 
 						if (qmd->iref == qryAcse->irefX1RefWznmMQuerymod) {
 							qryAcse->x1RefWznmMQuerymod = qmd->ref;
-
 							break;
 						};
 					};
 
-					dbswznm->tblwznmamqueryclause->updateRec(qryAcse);
+					if (qryAcse->x1RefWznmMQuerymod == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(qryAcse->irefX1RefWznmMQuerymod)}, {"iel","irefX1RefWznmMQuerymod"}, {"lineno",to_string(qryAcse->lineno)}});
+					else dbswznm->tblwznmamqueryclause->updateRec(qryAcse);
 				};
 			};
 		};

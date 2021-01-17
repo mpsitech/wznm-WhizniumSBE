@@ -804,7 +804,7 @@ uint JobWznmIexGbl::enterSgeCollect(
 		cpb = imeimcapability.nodes[ix0];
 
 		if (cpb->ref != 0) {
-			//cpb->srefTplRefWznmMCapability: STUB
+			cpb->srefTplRefWznmMCapability = StubWznm::getStubCpbSref(dbswznm, cpb->tplRefWznmMCapability, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
 		};
 
 		if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIAMCAPABILITYPAR, ixWznmVIop)) {

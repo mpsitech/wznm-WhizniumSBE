@@ -132,11 +132,11 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoGrp"); doc.widths.push(TcoGrpWidth); doc.fs.push("grp"); doc.tos.push(6); wtot += TcoGrpWidth;
+				doc.cols.push("TcoGrp"); doc.widths.push(TcoGrpWidth); doc.fs.push("grp"); doc.tos.push(1); wtot += TcoGrpWidth;
 			} else if (i == 2) {
-				doc.cols.push("TcoOwn"); doc.widths.push(TcoOwnWidth); doc.fs.push("own"); doc.tos.push(5); wtot += TcoOwnWidth;
+				doc.cols.push("TcoOwn"); doc.widths.push(TcoOwnWidth); doc.fs.push("own"); doc.tos.push(2); wtot += TcoOwnWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoPrj"); doc.widths.push(TcoPrjWidth); doc.fs.push("prj"); doc.tos.push(4); wtot += TcoPrjWidth;
+				doc.cols.push("TcoPrj"); doc.widths.push(TcoPrjWidth); doc.fs.push("prj"); doc.tos.push(3); wtot += TcoPrjWidth;
 			} else if (i == 4) {
 				doc.cols.push("TcoMaj"); doc.widths.push(TcoMajWidth); doc.fs.push("maj"); doc.tos.push(0); wtot += TcoMajWidth;
 			} else if (i == 5) {
@@ -144,9 +144,9 @@ function refreshB(chgcol) {
 			} else if (i == 6) {
 				doc.cols.push("TcoSub"); doc.widths.push(TcoSubWidth); doc.fs.push("sub"); doc.tos.push(0); wtot += TcoSubWidth;
 			} else if (i == 7) {
-				doc.cols.push("TcoBvr"); doc.widths.push(TcoBvrWidth); doc.fs.push("bvr"); doc.tos.push(3); wtot += TcoBvrWidth;
+				doc.cols.push("TcoBvr"); doc.widths.push(TcoBvrWidth); doc.fs.push("bvr"); doc.tos.push(4); wtot += TcoBvrWidth;
 			} else if (i == 8) {
-				doc.cols.push("TcoLoc"); doc.widths.push(TcoLocWidth); doc.fs.push("loc"); doc.tos.push(1); wtot += TcoLocWidth;
+				doc.cols.push("TcoLoc"); doc.widths.push(TcoLocWidth); doc.fs.push("loc"); doc.tos.push(5); wtot += TcoLocWidth;
 			} else if (i == 9) {
 				doc.cols.push("TcoSte"); doc.widths.push(TcoSteWidth); doc.fs.push("ste2"); doc.tos.push(0); wtot += TcoSteWidth;
 			} else if (i == 10) {

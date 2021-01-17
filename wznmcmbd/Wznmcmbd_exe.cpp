@@ -492,7 +492,7 @@ int main(
 
 	try {
 		// welcome message
-		cout << "Welcome to WhizniumSBE v1.1.3!" << endl;
+		cout << "Welcome to WhizniumSBE v1.1.4!" << endl;
 
 		// calls wznmcmbd.init()
 		wznmcmbd = new Wznmcmbd(exedir, clearAll, startMon);

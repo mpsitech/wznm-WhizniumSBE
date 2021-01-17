@@ -470,7 +470,7 @@ IexWznmGbl	gbl	global features	0.9.29	capabilities, errors and blocks
 	174	0	TblWznmMCapability	ImeIMCapability		ins
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		tbl	tbl	refWznmMVersion	refWznmMVersion			preset		PreWznmRefVer
-		tsref	fil	tplRefWznmMCapability	srefTplRefWznmMCapability	tpl		custsql
+		tsref	fil	tplRefWznmMCapability	srefTplRefWznmMCapability	tpl		custsql			StubWznmCpbSref
 		tbl	fil;tbl	sref	sref	srf		void
 		tbl	fil;tbl	Title	Title	tit		void
 		ImeIMImpexpcol.end

@@ -87,8 +87,8 @@ void DlgWznmVerGenjtr::refreshGjt(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrGjt oldStatshrgjt(statshrgjt);
 	ContInfGjt oldContinfgjt(continfgjt);
+	StatShrGjt oldStatshrgjt(statshrgjt);
 
 	// IP refreshGjt --- RBEGIN
 	// continfgjt
@@ -99,26 +99,26 @@ void DlgWznmVerGenjtr::refreshGjt(
 	statshrgjt.ButStoActive = evalGjtButStoActive(dbswznm);
 
 	// IP refreshGjt --- REND
-	if (statshrgjt.diff(&oldStatshrgjt).size() != 0) insert(moditems, DpchEngData::STATSHRGJT);
 	if (continfgjt.diff(&oldContinfgjt).size() != 0) insert(moditems, DpchEngData::CONTINFGJT);
+	if (statshrgjt.diff(&oldStatshrgjt).size() != 0) insert(moditems, DpchEngData::STATSHRGJT);
 };
 
 void DlgWznmVerGenjtr::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfLfi oldContinflfi(continflfi);
 	StatShrLfi oldStatshrlfi(statshrlfi);
+	ContInfLfi oldContinflfi(continflfi);
 
 	// IP refreshLfi --- BEGIN
-	// continflfi
-
 	// statshrlfi
 	statshrlfi.DldActive = evalLfiDldActive(dbswznm);
 
+	// continflfi
+
 	// IP refreshLfi --- END
-	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
+	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 };
 
 void DlgWznmVerGenjtr::refresh(
@@ -129,9 +129,9 @@ void DlgWznmVerGenjtr::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	StatShr oldStatshr(statshr);
-	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
+	ContIac oldContiac(contiac);
+	StatShr oldStatshr(statshr);
 
 	// IP refresh --- RBEGIN
 	// statshr
@@ -141,9 +141,9 @@ void DlgWznmVerGenjtr::refresh(
 	continf.numFSge = ixVSge;
 
 	// IP refresh --- REND
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
 	refreshGjt(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);

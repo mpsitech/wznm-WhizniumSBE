@@ -22,6 +22,7 @@ uint TblWznmAMSubsetTitle::VecVType::getIx(
 
 	if (s == "sngshort") return SNGSHORT;
 	if (s == "sngfull") return SNGFULL;
+	if (s == "plshort") return PLSHORT;
 	if (s == "plfull") return PLFULL;
 
 	return(0);
@@ -32,6 +33,7 @@ string TblWznmAMSubsetTitle::VecVType::getSref(
 		) {
 	if (ix == SNGSHORT) return("sngshort");
 	if (ix == SNGFULL) return("sngfull");
+	if (ix == PLSHORT) return("plshort");
 	if (ix == PLFULL) return("plfull");
 
 	return("");
@@ -44,6 +46,7 @@ string TblWznmAMSubsetTitle::VecVType::getTitle(
 	if (ixWznmVLocale == 1) {
 		if (ix == SNGSHORT) return("singular short form");
 		if (ix == SNGFULL) return("singular full title");
+		if (ix == PLSHORT) return("plural short form");
 		if (ix == PLFULL) return("plural full title");
 		return(getSref(ix));
 	};
@@ -57,5 +60,5 @@ void TblWznmAMSubsetTitle::VecVType::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 3; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
+	for (unsigned int i = 1; i <= 4; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };

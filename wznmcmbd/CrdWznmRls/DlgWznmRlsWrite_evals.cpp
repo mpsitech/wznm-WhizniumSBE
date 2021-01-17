@@ -11,45 +11,7 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool DlgWznmRlsWrite::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(fail)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::FAIL);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool DlgWznmRlsWrite::evalButDneActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(idle|fail|done)
-
-	vector<bool> args;
-	bool a, b;
-
-	a = false; a = (ixVSge == VecVSge::IDLE);
-	args.push_back(a);
-	a = false; a = (ixVSge == VecVSge::FAIL);
-	args.push_back(a);
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a || b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a || b);
-
-	return(args.back());
-};
-
-bool DlgWznmRlsWrite::evalFiaDldAvail(
+bool DlgWznmRlsWrite::evalCucUldAvail(
 			DbsWznm* dbswznm
 		) {
 	// !pre.ixBasereptype()
@@ -65,15 +27,15 @@ bool DlgWznmRlsWrite::evalFiaDldAvail(
 	return(args.back());
 };
 
-bool DlgWznmRlsWrite::evalFiaDldActive(
+bool DlgWznmRlsWrite::evalCucUldActive(
 			DbsWznm* dbswznm
 		) {
-	// sge(done)
+	// sge(idle)
 
 	vector<bool> args;
 	bool a;
 
-	a = false; a = (ixVSge == VecVSge::DONE);
+	a = false; a = (ixVSge == VecVSge::IDLE);
 	args.push_back(a);
 
 	return(args.back());
@@ -170,7 +132,21 @@ bool DlgWznmRlsWrite::evalWrcButStoActive(
 	return(args.back());
 };
 
-bool DlgWznmRlsWrite::evalCucUldAvail(
+bool DlgWznmRlsWrite::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(fail)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::FAIL);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmRlsWrite::evalFiaDldAvail(
 			DbsWznm* dbswznm
 		) {
 	// !pre.ixBasereptype()
@@ -186,16 +162,40 @@ bool DlgWznmRlsWrite::evalCucUldAvail(
 	return(args.back());
 };
 
-bool DlgWznmRlsWrite::evalCucUldActive(
+bool DlgWznmRlsWrite::evalFiaDldActive(
 			DbsWznm* dbswznm
 		) {
-	// sge(idle)
+	// sge(done)
 
 	vector<bool> args;
 	bool a;
 
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmRlsWrite::evalButDneActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(idle|fail|done)
+
+	vector<bool> args;
+	bool a, b;
+
 	a = false; a = (ixVSge == VecVSge::IDLE);
 	args.push_back(a);
+	a = false; a = (ixVSge == VecVSge::FAIL);
+	args.push_back(a);
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 
 	return(args.back());
 };

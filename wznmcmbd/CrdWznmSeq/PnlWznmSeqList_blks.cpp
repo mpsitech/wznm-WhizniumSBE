@@ -350,7 +350,7 @@ void PnlWznmSeqList::Tag::writeXML(
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			writeStringAttr(wr, itemtag, "sref", "Cpt", "Sequences");
 			writeStringAttr(wr, itemtag, "sref", "TcoSrf", "Identifier");
-			writeStringAttr(wr, itemtag, "sref", "TcoTit", "Title");
+			writeStringAttr(wr, itemtag, "sref", "TcoTit", "Name");
 			writeStringAttr(wr, itemtag, "sref", "TcoApp", "Accessor app");
 		};
 		writeStringAttr(wr, itemtag, "sref", "TxtFor", VecWznmVTag::getTitle(VecWznmVTag::FOR, ixWznmVLocale));

@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCapAPar.h"
 #include "PnlWznmCapDetail.h"
+#include "PnlWznmCapAPar.h"
 
 #define VecVWznmCapRecDo PnlWznmCapRec::VecVDo
 
@@ -168,8 +168,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCapAPar* pnlapar;
 	PnlWznmCapDetail* pnldetail;
+	PnlWznmCapAPar* pnlapar;
 
 	WznmMCapability recCpb;
 	Sbecore::uint ixWSubsetCpb;
@@ -204,10 +204,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmCpbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmCpb_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmCpb_tplEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCpb_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmCpbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

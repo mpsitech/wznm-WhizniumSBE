@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmImeHk1NVector.h"
+#include "PnlWznmImeDetail.h"
 #include "PnlWznmImeIme1NImpexpcol.h"
 #include "PnlWznmImeSup1NImpexp.h"
-#include "PnlWznmImeDetail.h"
+#include "PnlWznmImeHk1NVector.h"
 
 #define VecVWznmImeRecDo PnlWznmImeRec::VecVDo
 
@@ -174,10 +174,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmImeHk1NVector* pnlhk1nvector;
+	PnlWznmImeDetail* pnldetail;
 	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
 	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
-	PnlWznmImeDetail* pnldetail;
+	PnlWznmImeHk1NVector* pnlhk1nvector;
 
 	WznmMImpexp recIme;
 
@@ -211,9 +211,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmImeUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmIme_iexEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmIme_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmImeUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

@@ -85,7 +85,7 @@ void QryWznmJobMNOp::rerun(
 	dbswznm->tblwznmqjobmnop->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMJobMOp.ref)";
-	sqlstr += " FROM TblWznmMOp, TblWznmRMJobMOp";
+	sqlstr += " FROM TblWznmRMJobMOp, TblWznmMOp";
 	sqlstr += " WHERE TblWznmRMJobMOp.refWznmMOp = TblWznmMOp.ref";
 	sqlstr += " AND TblWznmRMJobMOp.refWznmMJob = " + to_string(preRefJob) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -100,7 +100,7 @@ void QryWznmJobMNOp::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQJobMNOp(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMOp.ref, TblWznmRMJobMOp.ref";
-	sqlstr += " FROM TblWznmMOp, TblWznmRMJobMOp";
+	sqlstr += " FROM TblWznmRMJobMOp, TblWznmMOp";
 	sqlstr += " WHERE TblWznmRMJobMOp.refWznmMOp = TblWznmMOp.ref";
 	sqlstr += " AND TblWznmRMJobMOp.refWznmMJob = " + to_string(preRefJob) + "";
 	sqlstr += " ORDER BY TblWznmMOp.sref ASC";
@@ -274,11 +274,19 @@ void QryWznmJobMNOp::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMJOBROPXMOD_JOBEQ) {
-		call->abort = handleCallWznmJobRopxMod_jobEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOBROPXMOD_JOBEQ) {
+		call->abort = handleCallWznmJobRopxMod_jobEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmJobMNOp::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmJobMNOp::handleCallWznmJobRopxMod_jobEq(
@@ -292,13 +300,5 @@ bool QryWznmJobMNOp::handleCallWznmJobRopxMod_jobEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmJobMNOp::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

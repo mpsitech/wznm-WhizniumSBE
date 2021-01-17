@@ -14,11 +14,11 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmAppRef1NFile.h"
-#include "PnlWznmApp1NRtjob.h"
-#include "PnlWznmApp1NEvent.h"
-#include "PnlWznmAppApp1NSequence.h"
 #include "PnlWznmAppDetail.h"
+#include "PnlWznmApp1NRtjob.h"
+#include "PnlWznmAppApp1NSequence.h"
+#include "PnlWznmApp1NEvent.h"
+#include "PnlWznmAppRef1NFile.h"
 
 #define VecVWznmAppRecDo PnlWznmAppRec::VecVDo
 
@@ -177,11 +177,11 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmAppRef1NFile* pnlref1nfile;
-	PnlWznmApp1NRtjob* pnl1nrtjob;
-	PnlWznmApp1NEvent* pnl1nevent;
-	PnlWznmAppApp1NSequence* pnlapp1nsequence;
 	PnlWznmAppDetail* pnldetail;
+	PnlWznmApp1NRtjob* pnl1nrtjob;
+	PnlWznmAppApp1NSequence* pnlapp1nsequence;
+	PnlWznmApp1NEvent* pnl1nevent;
+	PnlWznmAppRef1NFile* pnlref1nfile;
 
 	WznmMApp recApp;
 
@@ -215,8 +215,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmAppUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmApp_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmAppUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

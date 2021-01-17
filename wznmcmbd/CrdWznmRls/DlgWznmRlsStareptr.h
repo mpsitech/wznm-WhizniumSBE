@@ -545,10 +545,6 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
-	bool evalExtButRunActive(DbsWznm* dbswznm);
-	bool evalExtButStoActive(DbsWznm* dbswznm);
 	bool evalDetTxfGrlAvail(DbsWznm* dbswznm);
 	bool evalDetButStaActive(DbsWznm* dbswznm);
 	bool evalIniUldAvail(DbsWznm* dbswznm);
@@ -557,6 +553,10 @@ public:
 	bool evalIniSep1Avail(DbsWznm* dbswznm);
 	bool evalIniButClgAvail(DbsWznm* dbswznm);
 	bool evalIniButClgActive(DbsWznm* dbswznm);
+	bool evalExtButRunActive(DbsWznm* dbswznm);
+	bool evalExtButStoActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmRlsStareptr(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -637,8 +637,8 @@ private:
 
 	void handleUploadInSgeStadone(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleDpchRetWznmPrctreeExtract(DbsWznm* dbswznm, DpchRetWznmPrctreeExtract* dpchret);
 

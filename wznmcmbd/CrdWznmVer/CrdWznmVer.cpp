@@ -45,9 +45,6 @@ CrdWznmVer::CrdWznmVer(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnllist = NULL;
-	pnlheadbar = NULL;
-	pnlrec = NULL;
 	dlgbscui = NULL;
 	dlgcustjob = NULL;
 	dlgcustjtr = NULL;
@@ -62,6 +59,9 @@ CrdWznmVer::CrdWznmVer(
 	dlgnew = NULL;
 	dlgoppack = NULL;
 	dlgwrinimdl = NULL;
+	pnlrec = NULL;
+	pnlheadbar = NULL;
+	pnllist = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -73,9 +73,9 @@ CrdWznmVer::CrdWznmVer(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnllist = new PnlWznmVerList(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlheadbar = new PnlWznmVerHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlrec = new PnlWznmVerRec(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmVerHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnllist = new PnlWznmVerList(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -93,9 +93,9 @@ CrdWznmVer::CrdWznmVer(
 
 	changeStage(dbswznm, VecVSge::IDLE);
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMDLGCLOSE, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -987,6 +987,8 @@ void CrdWznmVer::handleRequest(
 			cout << "\tshowJobtree" << endl;
 			cout << "\tshowMethods" << endl;
 			cout << "\tshowVars" << endl;
+			cout << "\twriteDbsHtml" << endl;
+			cout << "\twriteIexHtml" << endl;
 			cout << "\twriteIexMd" << endl;
 		} else if (req->cmd == "selectLocales") {
 			req->retain = handleSelectLocales(dbswznm);
@@ -999,6 +1001,12 @@ void CrdWznmVer::handleRequest(
 
 		} else if (req->cmd == "showVars") {
 			req->retain = handleShowVars(dbswznm);
+
+		} else if (req->cmd == "writeDbsHtml") {
+			req->retain = handleWriteDbsHtml(dbswznm);
+
+		} else if (req->cmd == "writeIexHtml") {
+			req->retain = handleWriteIexHtml(dbswznm);
 
 		} else if (req->cmd == "writeIexMd") {
 			req->retain = handleWriteIexMd(dbswznm);
@@ -1745,7 +1753,7 @@ bool CrdWznmVer::handleWriteIexMd(
 		outfile.open(s.c_str(), ios::out);
 
 		// --- header
-		outfile << StrMod::cap(iex->Comment) << " ``" << iex->sref << "``" << endl;
+		outfile << StrMod::cap(iex->Title) << " ``" << iex->sref << "``" << endl;
 		outfile << "===" << endl;
 		outfile << endl;
 
@@ -1753,7 +1761,7 @@ bool CrdWznmVer::handleWriteIexMd(
 		outfile << "---" << endl;
 		outfile << endl;
 
-		outfile << "![Figure 1: " << StrMod::cap(iex->Comment) << " schema - table columns in light blue are part of the input file, table columns in dark blue are inferred](./" << iex->sref << ".png)" << endl;
+		outfile << "![Figure 1: " << StrMod::cap(iex->Title) << " schema - table columns in light blue are part of the input file, table columns in dark blue are inferred](./" << iex->sref << ".png)" << endl;
 		outfile << endl;
 
 		// --- overview
@@ -2025,44 +2033,13 @@ void CrdWznmVer::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
-		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMDLGCLOSE) {
+		call->abort = handleCallWznmDlgClose(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTATCHG) {
 		call->abort = handleCallWznmStatChg(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMDLGCLOSE) {
-		call->abort = handleCallWznmDlgClose(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
+		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
 	};
-};
-
-bool CrdWznmVer::handleCallWznmRefPreSet(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, const ubigint refInv
-		) {
-	bool retval = false;
-
-	if (ixInv == VecWznmVPreset::PREWZNMREFVER) {
-		changeRef(dbswznm, jrefTrig, refInv, true);
-
-		if (refInv == 0) pnlrec->minimize(dbswznm, true);
-		else if ((jrefTrig == statshr.jrefDlgnew) && (refInv != 0)) {
-			pnllist->qry->rerun(dbswznm, true);
-			pnllist->minimize(dbswznm, true);
-			pnlrec->regularize(dbswznm, true);
-		};
-	};
-
-	return retval;
-};
-
-bool CrdWznmVer::handleCallWznmStatChg(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWznmVExpstate == VecWznmVExpstate::REGD) && (pnlrec->statshr.ixWznmVExpstate == VecWznmVExpstate::REGD)) pnllist->minimize(dbswznm, true);
-	return retval;
 };
 
 bool CrdWznmVer::handleCallWznmDlgClose(
@@ -2155,6 +2132,37 @@ bool CrdWznmVer::handleCallWznmDlgClose(
 		statshr.jrefDlgwrinimdl = 0;
 
 		xchg->submitDpch(getNewDpchEng({DpchEngData::STATSHR}));
+	};
+
+	return retval;
+};
+
+bool CrdWznmVer::handleCallWznmStatChg(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWznmVExpstate == VecWznmVExpstate::REGD) && (pnlrec->statshr.ixWznmVExpstate == VecWznmVExpstate::REGD)) pnllist->minimize(dbswznm, true);
+	return retval;
+};
+
+bool CrdWznmVer::handleCallWznmRefPreSet(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, const ubigint refInv
+		) {
+	bool retval = false;
+
+	if (ixInv == VecWznmVPreset::PREWZNMREFVER) {
+		changeRef(dbswznm, jrefTrig, refInv, true);
+
+		if (refInv == 0) pnlrec->minimize(dbswznm, true);
+		else if ((jrefTrig == statshr.jrefDlgnew) && (refInv != 0)) {
+			pnllist->qry->rerun(dbswznm, true);
+			pnllist->minimize(dbswznm, true);
+			pnlrec->regularize(dbswznm, true);
+		};
 	};
 
 	return retval;

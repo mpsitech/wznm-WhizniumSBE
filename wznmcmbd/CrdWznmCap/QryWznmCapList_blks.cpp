@@ -20,9 +20,9 @@ uint QryWznmCapList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "tpl") return TPL;
-	if (s == "ver") return VER;
 	if (s == "srf") return SRF;
+	if (s == "ver") return VER;
+	if (s == "tpl") return TPL;
 
 	return(0);
 };
@@ -30,9 +30,9 @@ uint QryWznmCapList::VecVOrd::getIx(
 string QryWznmCapList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TPL) return("tpl");
-	if (ix == VER) return("ver");
 	if (ix == SRF) return("srf");
+	if (ix == VER) return("ver");
+	if (ix == TPL) return("tpl");
 
 	return("");
 };

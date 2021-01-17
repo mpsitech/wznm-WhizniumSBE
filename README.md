@@ -13,9 +13,11 @@ Besides being model-based, software development with WhizniumSBE rests on the fo
 
 ![](_exp/sbe.png)
 
-## Setup instructions
+## Setup instructions and reference
 
-To prepare your system for use with Whiznium and to learn how to make your first steps, please visit the separate this [separate Git repository](https://github.com/mpsitech/The-Whiznium-Documentation).
+To prepare your system for use with Whiznium and to learn how to make your first steps, please visit this [separate Git repository](https://github.com/mpsitech/The-Whiznium-Documentation).
+
+Also included is a full [WhizniumSBE model file reference](https://github.com/mpsitech/The-Whiznium-Documentation/blob/main/sbemdl.md).
 
 ## The Whiznium Developer Experience YouTube format
 
@@ -112,12 +114,6 @@ WhizniumSBE is a WhizniumSBE-backed project. Accordingly, it requires libxml2, G
 
 ## Further Reading
 
-### Reference
-
-- Documentation of model files (slightly outdated) as [Git repository](https://github.com/mpsitech/WhizniumSBE-docs)
-- [YouTube video](https://youtu.be/yBvqSAvEhDg) of the most essential workflow step when using WhizniumSBE - iterating a source code tree
-- A [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/M2M_communication_v2.pdf) highlighting M2M communication options in WhizniumSBE-backed projects
-
 ### Upcoming book
 
 - The Whiznium book (draft available [here](https://mpsitech-public.s3.eu-central-1.amazonaws.com/book.pdf)), offering an introduction to WhizniumSBE/DBE by means of a handy use case
@@ -136,6 +132,7 @@ Most of these publications pre-date Whiznium's Open Source era.
 
 - WhizniumSBE/DBE [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/flyer_en_v1.1.pdf)
 - WhizniumSBE technology overview [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/whizniumsbe.pdf)
+- A [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/M2M_communication_v2.pdf) highlighting M2M communication options in WhizniumSBE-backed projects
 - Whiznium-related services offerings for the photonics industry [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/epic_flyer.pdf)
 - Co-marketing of Whiznium and Matrikon's FLEX OPC UA SDK for industrial automation applications [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/FLEX_MPSI_DataSheet-V2.1.pdf)
 - Elektronik.net interview at Embedded World 2020 with the founder of MPSI Technologies [video, German only](https://www.elektroniknet.de/video/vip-buehne-startups-stellen-sich-vor-mpsi-technologies-2012-video.html)

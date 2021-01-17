@@ -14,15 +14,15 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmOpkSqkMNStub.h"
-#include "PnlWznmOpkMNJob.h"
-#include "PnlWznmOpkMNLibrary.h"
-#include "PnlWznmOpkMNComponent.h"
-#include "PnlWznmOpkRef1NBlock.h"
-#include "PnlWznmOpk1NOp.h"
-#include "PnlWznmOpkARetval.h"
-#include "PnlWznmOpkAInvarg.h"
 #include "PnlWznmOpkDetail.h"
+#include "PnlWznmOpkAInvarg.h"
+#include "PnlWznmOpkARetval.h"
+#include "PnlWznmOpk1NOp.h"
+#include "PnlWznmOpkRef1NBlock.h"
+#include "PnlWznmOpkMNComponent.h"
+#include "PnlWznmOpkMNLibrary.h"
+#include "PnlWznmOpkMNJob.h"
+#include "PnlWznmOpkSqkMNStub.h"
 
 #define VecVWznmOpkRecDo PnlWznmOpkRec::VecVDo
 
@@ -192,15 +192,15 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmOpkSqkMNStub* pnlsqkmnstub;
-	PnlWznmOpkMNJob* pnlmnjob;
-	PnlWznmOpkMNLibrary* pnlmnlibrary;
-	PnlWznmOpkMNComponent* pnlmncomponent;
-	PnlWznmOpkRef1NBlock* pnlref1nblock;
-	PnlWznmOpk1NOp* pnl1nop;
-	PnlWznmOpkARetval* pnlaretval;
-	PnlWznmOpkAInvarg* pnlainvarg;
 	PnlWznmOpkDetail* pnldetail;
+	PnlWznmOpkAInvarg* pnlainvarg;
+	PnlWznmOpkARetval* pnlaretval;
+	PnlWznmOpk1NOp* pnl1nop;
+	PnlWznmOpkRef1NBlock* pnlref1nblock;
+	PnlWznmOpkMNComponent* pnlmncomponent;
+	PnlWznmOpkMNLibrary* pnlmnlibrary;
+	PnlWznmOpkMNJob* pnlmnjob;
+	PnlWznmOpkSqkMNStub* pnlsqkmnstub;
 
 	WznmMOppack recOpk;
 
@@ -236,10 +236,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmSqkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmOpkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmOpk_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmOpk_sqkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmOpk_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmOpkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmSqkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

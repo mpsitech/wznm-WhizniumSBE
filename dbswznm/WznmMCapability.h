@@ -131,6 +131,7 @@ public:
 
 	virtual bool loadRecByRef(Sbecore::ubigint ref, WznmMCapability** rec);
 	virtual Sbecore::ubigint loadRstByVer(Sbecore::ubigint refWznmMVersion, const bool append, ListWznmMCapability& rst);
+	virtual bool loadSrfByRef(Sbecore::ubigint ref, std::string& sref);
 	Sbecore::ubigint loadRstByRefs(std::vector<Sbecore::ubigint>& refs, const bool append, ListWznmMCapability& rst);
 };
 
@@ -164,6 +165,7 @@ public:
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmMCapability** rec);
 	Sbecore::ubigint loadRstByVer(Sbecore::ubigint refWznmMVersion, const bool append, ListWznmMCapability& rst);
+	bool loadSrfByRef(Sbecore::ubigint ref, std::string& sref);
 };
 #endif
 
@@ -198,6 +200,7 @@ public:
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmMCapability** rec);
 	Sbecore::ubigint loadRstByVer(Sbecore::ubigint refWznmMVersion, const bool append, ListWznmMCapability& rst);
+	bool loadSrfByRef(Sbecore::ubigint ref, std::string& sref);
 };
 #endif
 

@@ -28,15 +28,15 @@ namespace QryWznmRelList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint TBL = 1;
-		static const Sbecore::uint SRL = 2;
-		static const Sbecore::uint SUP = 3;
-		static const Sbecore::uint FRT = 4;
-		static const Sbecore::uint VER = 5;
-		static const Sbecore::uint TYP = 6;
-		static const Sbecore::uint TOS = 7;
-		static const Sbecore::uint TOT = 8;
-		static const Sbecore::uint FRS = 9;
+		static const Sbecore::uint FRT = 1;
+		static const Sbecore::uint FRS = 2;
+		static const Sbecore::uint TOT = 3;
+		static const Sbecore::uint TOS = 4;
+		static const Sbecore::uint TYP = 5;
+		static const Sbecore::uint VER = 6;
+		static const Sbecore::uint SUP = 7;
+		static const Sbecore::uint SRL = 8;
+		static const Sbecore::uint TBL = 9;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

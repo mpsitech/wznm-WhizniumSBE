@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmPrsList.h"
-#include "PnlWznmPrsHeadbar.h"
 #include "PnlWznmPrsRec.h"
+#include "PnlWznmPrsHeadbar.h"
+#include "PnlWznmPrsList.h"
 
 #define VecVWznmPrsDo CrdWznmPrs::VecVDo
 #define VecVWznmPrsSge CrdWznmPrs::VecVSge
@@ -190,9 +190,9 @@ public:
 	Sbecore::Xmlio::Feed feedFMcbAlert;
 	Sbecore::Xmlio::Feed feedFSge;
 
-	PnlWznmPrsList* pnllist;
-	PnlWznmPrsHeadbar* pnlheadbar;
 	PnlWznmPrsRec* pnlrec;
+	PnlWznmPrsHeadbar* pnlheadbar;
+	PnlWznmPrsList* pnllist;
 
 	// IP vars.cust --- INSERT
 
@@ -222,9 +222,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
-	bool handleCallWznmStatChg(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmDlgClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmStatChg(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

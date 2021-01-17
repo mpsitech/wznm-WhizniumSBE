@@ -299,11 +299,19 @@ void QryWznmLibAPkglist::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMLIBAPKLMOD_LIBEQ) {
-		call->abort = handleCallWznmLibApklMod_libEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBAPKLMOD_LIBEQ) {
+		call->abort = handleCallWznmLibApklMod_libEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmLibAPkglist::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmLibAPkglist::handleCallWznmLibApklMod_libEq(
@@ -317,13 +325,5 @@ bool QryWznmLibAPkglist::handleCallWznmLibApklMod_libEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmLibAPkglist::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

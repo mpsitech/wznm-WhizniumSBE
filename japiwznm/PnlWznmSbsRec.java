@@ -115,10 +115,10 @@ public class PnlWznmSbsRec {
 
 		public static final int INITDONEDETAIL = 1;
 		public static final int INITDONEATITLE = 2;
-		public static final int INITDONE1NSTUB = 3;
-		public static final int INITDONEFRS1NRELATION = 4;
-		public static final int INITDONETOS1NRELATION = 5;
-		public static final int INITDONE1NTABLECOL = 6;
+		public static final int INITDONEFRS1NRELATION = 3;
+		public static final int INITDONETOS1NRELATION = 4;
+		public static final int INITDONE1NTABLECOL = 5;
+		public static final int INITDONE1NSTUB = 6;
 		public static final int INITDONEPST1NQUERYMOD = 7;
 		public static final int INITDONEASBMNSUBSET = 8;
 		public static final int INITDONEBSBMNSUBSET = 9;
@@ -126,33 +126,33 @@ public class PnlWznmSbsRec {
 		public StatApp(
 					boolean initdoneDetail
 					, boolean initdoneATitle
-					, boolean initdone1NStub
 					, boolean initdoneFrs1NRelation
 					, boolean initdoneTos1NRelation
 					, boolean initdone1NTablecol
+					, boolean initdone1NStub
 					, boolean initdonePst1NQuerymod
 					, boolean initdoneAsbMNSubset
 					, boolean initdoneBsbMNSubset
 				) {
 			this.initdoneDetail = initdoneDetail;
 			this.initdoneATitle = initdoneATitle;
-			this.initdone1NStub = initdone1NStub;
 			this.initdoneFrs1NRelation = initdoneFrs1NRelation;
 			this.initdoneTos1NRelation = initdoneTos1NRelation;
 			this.initdone1NTablecol = initdone1NTablecol;
+			this.initdone1NStub = initdone1NStub;
 			this.initdonePst1NQuerymod = initdonePst1NQuerymod;
 			this.initdoneAsbMNSubset = initdoneAsbMNSubset;
 			this.initdoneBsbMNSubset = initdoneBsbMNSubset;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATITLE, INITDONE1NSTUB, INITDONEFRS1NRELATION, INITDONETOS1NRELATION, INITDONE1NTABLECOL, INITDONEPST1NQUERYMOD, INITDONEASBMNSUBSET, INITDONEBSBMNSUBSET));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATITLE, INITDONEFRS1NRELATION, INITDONETOS1NRELATION, INITDONE1NTABLECOL, INITDONE1NSTUB, INITDONEPST1NQUERYMOD, INITDONEASBMNSUBSET, INITDONEBSBMNSUBSET));
 		};
 
 		public boolean initdoneDetail;
 		public boolean initdoneATitle;
-		public boolean initdone1NStub;
 		public boolean initdoneFrs1NRelation;
 		public boolean initdoneTos1NRelation;
 		public boolean initdone1NTablecol;
+		public boolean initdone1NStub;
 		public boolean initdonePst1NQuerymod;
 		public boolean initdoneAsbMNSubset;
 		public boolean initdoneBsbMNSubset;
@@ -172,10 +172,10 @@ public class PnlWznmSbsRec {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
 				initdoneATitle = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneATitle", mask, INITDONEATITLE);
-				initdone1NStub = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NStub", mask, INITDONE1NSTUB);
 				initdoneFrs1NRelation = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneFrs1NRelation", mask, INITDONEFRS1NRELATION);
 				initdoneTos1NRelation = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneTos1NRelation", mask, INITDONETOS1NRELATION);
 				initdone1NTablecol = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NTablecol", mask, INITDONE1NTABLECOL);
+				initdone1NStub = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NStub", mask, INITDONE1NSTUB);
 				initdonePst1NQuerymod = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdonePst1NQuerymod", mask, INITDONEPST1NQUERYMOD);
 				initdoneAsbMNSubset = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAsbMNSubset", mask, INITDONEASBMNSUBSET);
 				initdoneBsbMNSubset = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneBsbMNSubset", mask, INITDONEBSBMNSUBSET);
@@ -193,10 +193,10 @@ public class PnlWznmSbsRec {
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
 			if (initdoneATitle == comp.initdoneATitle) items.add(INITDONEATITLE);
-			if (initdone1NStub == comp.initdone1NStub) items.add(INITDONE1NSTUB);
 			if (initdoneFrs1NRelation == comp.initdoneFrs1NRelation) items.add(INITDONEFRS1NRELATION);
 			if (initdoneTos1NRelation == comp.initdoneTos1NRelation) items.add(INITDONETOS1NRELATION);
 			if (initdone1NTablecol == comp.initdone1NTablecol) items.add(INITDONE1NTABLECOL);
+			if (initdone1NStub == comp.initdone1NStub) items.add(INITDONE1NSTUB);
 			if (initdonePst1NQuerymod == comp.initdonePst1NQuerymod) items.add(INITDONEPST1NQUERYMOD);
 			if (initdoneAsbMNSubset == comp.initdoneAsbMNSubset) items.add(INITDONEASBMNSUBSET);
 			if (initdoneBsbMNSubset == comp.initdoneBsbMNSubset) items.add(INITDONEBSBMNSUBSET);
@@ -212,7 +212,7 @@ public class PnlWznmSbsRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATITLE, INITDONE1NSTUB, INITDONEFRS1NRELATION, INITDONETOS1NRELATION, INITDONE1NTABLECOL, INITDONEPST1NQUERYMOD, INITDONEASBMNSUBSET, INITDONEBSBMNSUBSET));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATITLE, INITDONEFRS1NRELATION, INITDONETOS1NRELATION, INITDONE1NTABLECOL, INITDONE1NSTUB, INITDONEPST1NQUERYMOD, INITDONEASBMNSUBSET, INITDONEBSBMNSUBSET));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -228,10 +228,10 @@ public class PnlWznmSbsRec {
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
 		public static final int SCRJREFATITLE = 3;
-		public static final int SCRJREF1NSTUB = 4;
-		public static final int SCRJREFFRS1NRELATION = 5;
-		public static final int SCRJREFTOS1NRELATION = 6;
-		public static final int SCRJREF1NTABLECOL = 7;
+		public static final int SCRJREFFRS1NRELATION = 4;
+		public static final int SCRJREFTOS1NRELATION = 5;
+		public static final int SCRJREF1NTABLECOL = 6;
+		public static final int SCRJREF1NSTUB = 7;
 		public static final int SCRJREFPST1NQUERYMOD = 8;
 		public static final int PNLPST1NQUERYMODAVAIL = 9;
 		public static final int SCRJREFASBMNSUBSET = 10;
@@ -242,10 +242,10 @@ public class PnlWznmSbsRec {
 					int ixWznmVExpstate
 					, String scrJrefDetail
 					, String scrJrefATitle
-					, String scrJref1NStub
 					, String scrJrefFrs1NRelation
 					, String scrJrefTos1NRelation
 					, String scrJref1NTablecol
+					, String scrJref1NStub
 					, String scrJrefPst1NQuerymod
 					, boolean pnlpst1nquerymodAvail
 					, String scrJrefAsbMNSubset
@@ -255,26 +255,26 @@ public class PnlWznmSbsRec {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
 			this.scrJrefATitle = scrJrefATitle;
-			this.scrJref1NStub = scrJref1NStub;
 			this.scrJrefFrs1NRelation = scrJrefFrs1NRelation;
 			this.scrJrefTos1NRelation = scrJrefTos1NRelation;
 			this.scrJref1NTablecol = scrJref1NTablecol;
+			this.scrJref1NStub = scrJref1NStub;
 			this.scrJrefPst1NQuerymod = scrJrefPst1NQuerymod;
 			this.pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
 			this.scrJrefAsbMNSubset = scrJrefAsbMNSubset;
 			this.scrJrefBsbMNSubset = scrJrefBsbMNSubset;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NSTUB, SCRJREFFRS1NRELATION, SCRJREFTOS1NRELATION, SCRJREF1NTABLECOL, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFASBMNSUBSET, SCRJREFBSBMNSUBSET, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFFRS1NRELATION, SCRJREFTOS1NRELATION, SCRJREF1NTABLECOL, SCRJREF1NSTUB, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFASBMNSUBSET, SCRJREFBSBMNSUBSET, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
 		public String scrJrefATitle;
-		public String scrJref1NStub;
 		public String scrJrefFrs1NRelation;
 		public String scrJrefTos1NRelation;
 		public String scrJref1NTablecol;
+		public String scrJref1NStub;
 		public String scrJrefPst1NQuerymod;
 		public boolean pnlpst1nquerymodAvail;
 		public String scrJrefAsbMNSubset;
@@ -299,10 +299,10 @@ public class PnlWznmSbsRec {
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
 				scrJrefATitle = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefATitle", mask, SCRJREFATITLE);
-				scrJref1NStub = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NStub", mask, SCRJREF1NSTUB);
 				scrJrefFrs1NRelation = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefFrs1NRelation", mask, SCRJREFFRS1NRELATION);
 				scrJrefTos1NRelation = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefTos1NRelation", mask, SCRJREFTOS1NRELATION);
 				scrJref1NTablecol = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NTablecol", mask, SCRJREF1NTABLECOL);
+				scrJref1NStub = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NStub", mask, SCRJREF1NSTUB);
 				scrJrefPst1NQuerymod = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefPst1NQuerymod", mask, SCRJREFPST1NQUERYMOD);
 				pnlpst1nquerymodAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "pnlpst1nquerymodAvail", mask, PNLPST1NQUERYMODAVAIL);
 				scrJrefAsbMNSubset = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAsbMNSubset", mask, SCRJREFASBMNSUBSET);
@@ -323,10 +323,10 @@ public class PnlWznmSbsRec {
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
 			if (scrJrefATitle.equals(comp.scrJrefATitle)) items.add(SCRJREFATITLE);
-			if (scrJref1NStub.equals(comp.scrJref1NStub)) items.add(SCRJREF1NSTUB);
 			if (scrJrefFrs1NRelation.equals(comp.scrJrefFrs1NRelation)) items.add(SCRJREFFRS1NRELATION);
 			if (scrJrefTos1NRelation.equals(comp.scrJrefTos1NRelation)) items.add(SCRJREFTOS1NRELATION);
 			if (scrJref1NTablecol.equals(comp.scrJref1NTablecol)) items.add(SCRJREF1NTABLECOL);
+			if (scrJref1NStub.equals(comp.scrJref1NStub)) items.add(SCRJREF1NSTUB);
 			if (scrJrefPst1NQuerymod.equals(comp.scrJrefPst1NQuerymod)) items.add(SCRJREFPST1NQUERYMOD);
 			if (pnlpst1nquerymodAvail == comp.pnlpst1nquerymodAvail) items.add(PNLPST1NQUERYMODAVAIL);
 			if (scrJrefAsbMNSubset.equals(comp.scrJrefAsbMNSubset)) items.add(SCRJREFASBMNSUBSET);
@@ -344,7 +344,7 @@ public class PnlWznmSbsRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NSTUB, SCRJREFFRS1NRELATION, SCRJREFTOS1NRELATION, SCRJREF1NTABLECOL, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFASBMNSUBSET, SCRJREFBSBMNSUBSET, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFFRS1NRELATION, SCRJREFTOS1NRELATION, SCRJREF1NTABLECOL, SCRJREF1NSTUB, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFASBMNSUBSET, SCRJREFBSBMNSUBSET, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

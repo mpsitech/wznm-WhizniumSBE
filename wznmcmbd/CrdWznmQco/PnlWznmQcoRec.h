@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmQcoRef1NControl.h"
 #include "PnlWznmQcoDetail.h"
+#include "PnlWznmQcoRef1NControl.h"
 
 #define VecVWznmQcoRecDo PnlWznmQcoRec::VecVDo
 
@@ -168,8 +168,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmQcoRef1NControl* pnlref1ncontrol;
 	PnlWznmQcoDetail* pnldetail;
+	PnlWznmQcoRef1NControl* pnlref1ncontrol;
 
 	WznmMQuerycol recQco;
 
@@ -203,9 +203,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmQcoUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmQco_stbEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmQco_qryEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmQco_stbEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmQcoUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

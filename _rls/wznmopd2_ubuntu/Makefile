@@ -2,7 +2,7 @@
 # make file for Wznm operation daemon, release wznmopd2_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 16 Dec 2020
+# date created: 13 Jan 2021
 # IP header --- ABOVE
 
 include Makefile.inc
@@ -14,7 +14,7 @@ LINK = g++
 LINKFLAGS =
 
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmopd2/VecWznm -I$(BUILDROOT)/wznmopd2/IexWznm -I$(BUILDROOT)/wznmopd2
-INCPATH += -I$(BUILDROOT)/wznmopd2/WznmCtpWrweb -I$(BUILDROOT)/wznmopd2/WznmCtpWrsrv -I$(BUILDROOT)/wznmopd2/WznmCtpWrstkit -I$(BUILDROOT)/wznmopd2/WznmCtpGenui -I$(BUILDROOT)/wznmopd2/WznmCtpGenjtr
+INCPATH += -I$(BUILDROOT)/wznmopd2/WznmCtpGenjtr -I$(BUILDROOT)/wznmopd2/WznmCtpGenui -I$(BUILDROOT)/wznmopd2/WznmCtpWrstkit -I$(BUILDROOT)/wznmopd2/WznmCtpWrsrv -I$(BUILDROOT)/wznmopd2/WznmCtpWrweb
 INCPATH += -I${WHIZSDKROOT}/build -I/usr/include -I/usr/include/libxml2 -I/usr/include/mariadb
 
 PCHS = Wznmopd.h.gch
@@ -27,7 +27,7 @@ LIBPATH += -L$(LIBROOT)/wznmopd2
 LIBPATH += -L${WHIZSDKROOT}/lib -L/usr/lib/x86_64-linux-gnu
 LIBPATH += -L/lib/x86_64-linux-gnu
 
-LIBS = -lwznmctpwrweb -lwznmctpwrsrv -lwznmctpwrstkit -lwznmctpgenui -lwznmctpgenjtr
+LIBS = -lwznmctpgenjtr -lwznmctpgenui -lwznmctpwrstkit -lwznmctpwrsrv -lwznmctpwrweb
 LIBS += -liexwznm -lvecwznm -ldbswznm
 LIBS += -lcurl -lmicrohttpd -lsbecore_mar
 LIBS += -lmariadbclient -lsbecore_plus

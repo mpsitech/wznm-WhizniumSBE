@@ -316,25 +316,23 @@ void PnlWznmErrDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMERRJTITMOD_ERREQ) {
-		call->abort = handleCallWznmErrJtitMod_errEq(dbswznm, call->jref);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMERR_VEREQ) {
+		call->abort = handleCallWznmErr_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMERRUPD_REFEQ) {
 		call->abort = handleCallWznmErrUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMERR_VEREQ) {
-		call->abort = handleCallWznmErr_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMERRJTITMOD_ERREQ) {
+		call->abort = handleCallWznmErrJtitMod_errEq(dbswznm, call->jref);
 	};
 };
 
-bool PnlWznmErrDetail::handleCallWznmErrJtitMod_errEq(
+bool PnlWznmErrDetail::handleCallWznmErr_verEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
 		) {
 	bool retval = false;
-	set<uint> moditems;
-
-	refreshJti(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
+	boolvalRet = (recErr.verRefWznmMVersion == refInv); // IP handleCallWznmErr_verEq --- LINE
 	return retval;
 };
 
@@ -347,13 +345,15 @@ bool PnlWznmErrDetail::handleCallWznmErrUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmErrDetail::handleCallWznmErr_verEq(
+bool PnlWznmErrDetail::handleCallWznmErrJtitMod_errEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recErr.verRefWznmMVersion == refInv); // IP handleCallWznmErr_verEq --- LINE
+	set<uint> moditems;
+
+	refreshJti(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };

@@ -55,8 +55,8 @@ RootWznm::RootWznm(
 
 	// IP constructor.spec2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMSUSPSESS, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMLOGOUT, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMSUSPSESS, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -901,23 +901,11 @@ void RootWznm::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMSUSPSESS) {
-		call->abort = handleCallWznmSuspsess(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOGOUT) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMLOGOUT) {
 		call->abort = handleCallWznmLogout(dbswznm, call->jref, call->argInv.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSUSPSESS) {
+		call->abort = handleCallWznmSuspsess(dbswznm, call->jref);
 	};
-};
-
-bool RootWznm::handleCallWznmSuspsess(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	xchg->addBoolvalPreset(VecWznmVPreset::PREWZNMSUSPSESS, jrefTrig, true);
-	xchg->removeDcolsByJref(jrefTrig);
-
-	return retval;
 };
 
 bool RootWznm::handleCallWznmLogout(
@@ -941,6 +929,18 @@ bool RootWznm::handleCallWznmLogout(
 			} else it++;
 		};
 	};
+
+	return retval;
+};
+
+bool RootWznm::handleCallWznmSuspsess(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	xchg->addBoolvalPreset(VecWznmVPreset::PREWZNMSUSPSESS, jrefTrig, true);
+	xchg->removeDcolsByJref(jrefTrig);
 
 	return retval;
 };

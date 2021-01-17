@@ -2599,7 +2599,9 @@ string StubWznm::getStub(
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCMPSTD) return getStubCmpStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCONSREF) return getStubConSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCONSTD) return getStubConStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCPBSREF) return getStubCpbSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCPBSTD) return getStubCpbStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCTPSREF) return getStubCtpSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCTPSTD) return getStubCtpStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMDLGSTD) return getStubDlgStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 	else if (ixWznmVStub == VecWznmVStub::STUBWZNMEVTSTD) return getStubEvtStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
@@ -3053,6 +3055,48 @@ string StubWznm::getStubConStd(
 	return stub;
 };
 
+string StubWznm::getStubCpbSref(
+			DbsWznm* dbswznm
+			, const ubigint ref
+			, const uint ixWznmVLocale
+			, const uint ixVNonetype
+			, Stcch* stcch
+			, stcchitemref_t* strefSub
+			, const bool refresh
+		) {
+	// example: "acv"
+	string stub;
+
+	stcchitemref_t stref(VecWznmVStub::STUBWZNMCPBSREF, ref, ixWznmVLocale);
+	Stcchitem* stit = NULL;
+
+	if (stcch) {
+		stit = stcch->getStitByStref(stref);
+		if (stit && !refresh) {
+			if (strefSub) stcch->link(stref, *strefSub);
+			return stit->stub;
+		};
+	};
+
+	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
+	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
+	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no capability)";
+	};
+
+	if (ref != 0) {
+		if (dbswznm->tblwznmmcapability->loadSrfByRef(ref, stub)) {
+			if (stcch) {
+				if (!stit) stit = stcch->addStit(stref);
+				stit->stub = stub;
+			};
+		};
+	};
+
+	return stub;
+};
+
 string StubWznm::getStubCpbStd(
 			DbsWznm* dbswznm
 			, const ubigint ref
@@ -3062,7 +3106,7 @@ string StubWznm::getStubCpbStd(
 			, stcchitemref_t* strefSub
 			, const bool refresh
 		) {
-	// example: "Acv (acv - managed file archive) - vs. - acv - managed file archive"
+	// example: "acv (acv - managed file archive) - vs. - acv - managed file archive"
 	string stub;
 
 	WznmMCapability* rec = NULL;
@@ -3098,6 +3142,48 @@ string StubWznm::getStubCpbStd(
 			// IP getStubCpbStd --- IEND
 			if (stit) stit->stub = stub;
 			delete rec;
+		};
+	};
+
+	return stub;
+};
+
+string StubWznm::getStubCtpSref(
+			DbsWznm* dbswznm
+			, const ubigint ref
+			, const uint ixWznmVLocale
+			, const uint ixVNonetype
+			, Stcch* stcch
+			, stcchitemref_t* strefSub
+			, const bool refresh
+		) {
+	// example: "acv"
+	string stub;
+
+	stcchitemref_t stref(VecWznmVStub::STUBWZNMCTPSREF, ref, ixWznmVLocale);
+	Stcchitem* stit = NULL;
+
+	if (stcch) {
+		stit = stcch->getStitByStref(stref);
+		if (stit && !refresh) {
+			if (strefSub) stcch->link(stref, *strefSub);
+			return stit->stub;
+		};
+	};
+
+	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
+	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
+	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no capability template)";
+	};
+
+	if (ref != 0) {
+		if (dbswznm->tblwznmmcapability->loadSrfByRef(ref, stub)) {
+			if (stcch) {
+				if (!stit) stit = stcch->addStit(stref);
+				stit->stub = stub;
+			};
 		};
 	};
 

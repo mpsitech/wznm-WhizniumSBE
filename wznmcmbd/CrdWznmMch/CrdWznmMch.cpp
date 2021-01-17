@@ -43,10 +43,10 @@ CrdWznmMch::CrdWznmMch(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	pnllist = NULL;
 	dlgwriniscr = NULL;
-	pnlheadbar = NULL;
 	pnlrec = NULL;
+	pnlheadbar = NULL;
+	pnllist = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -55,9 +55,9 @@ CrdWznmMch::CrdWznmMch(
 	// initialize according to ref
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
-	pnllist = new PnlWznmMchList(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlheadbar = new PnlWznmMchHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlrec = new PnlWznmMchRec(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmMchHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnllist = new PnlWznmMchList(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -70,9 +70,9 @@ CrdWznmMch::CrdWznmMch(
 
 	changeStage(dbswznm, VecVSge::IDLE);
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMDLGCLOSE, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMSTATCHG, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -255,39 +255,13 @@ void CrdWznmMch::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
-		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMDLGCLOSE) {
+		call->abort = handleCallWznmDlgClose(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTATCHG) {
 		call->abort = handleCallWznmStatChg(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMDLGCLOSE) {
-		call->abort = handleCallWznmDlgClose(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
+		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
 	};
-};
-
-bool CrdWznmMch::handleCallWznmRefPreSet(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, const ubigint refInv
-		) {
-	bool retval = false;
-
-	if (ixInv == VecWznmVPreset::PREWZNMREFMCH) {
-		changeRef(dbswznm, jrefTrig, refInv, true);
-
-		if (refInv == 0) pnlrec->minimize(dbswznm, true);
-	};
-
-	return retval;
-};
-
-bool CrdWznmMch::handleCallWznmStatChg(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWznmVExpstate == VecWznmVExpstate::REGD) && (pnlrec->statshr.ixWznmVExpstate == VecWznmVExpstate::REGD)) pnllist->minimize(dbswznm, true);
-	return retval;
 };
 
 bool CrdWznmMch::handleCallWznmDlgClose(
@@ -302,6 +276,32 @@ bool CrdWznmMch::handleCallWznmDlgClose(
 		statshr.jrefDlgwriniscr = 0;
 
 		xchg->submitDpch(getNewDpchEng({DpchEngData::STATSHR}));
+	};
+
+	return retval;
+};
+
+bool CrdWznmMch::handleCallWznmStatChg(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	if (jrefTrig == pnlrec->jref) if ((pnllist->statshr.ixWznmVExpstate == VecWznmVExpstate::REGD) && (pnlrec->statshr.ixWznmVExpstate == VecWznmVExpstate::REGD)) pnllist->minimize(dbswznm, true);
+	return retval;
+};
+
+bool CrdWznmMch::handleCallWznmRefPreSet(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, const ubigint refInv
+		) {
+	bool retval = false;
+
+	if (ixInv == VecWznmVPreset::PREWZNMREFMCH) {
+		changeRef(dbswznm, jrefTrig, refInv, true);
+
+		if (refInv == 0) pnlrec->minimize(dbswznm, true);
 	};
 
 	return retval;

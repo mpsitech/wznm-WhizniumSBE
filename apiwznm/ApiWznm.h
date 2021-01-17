@@ -10,10 +10,10 @@
 #ifndef APIWZNM_H
 #define APIWZNM_H
 
-#define WZNM_VERSION "1.1.3"
+#define WZNM_VERSION "1.1.4"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 1
-#define WZNM_VERSION_SUB 3
+#define WZNM_VERSION_SUB 4
 
 #include "ApiWznm_blks.h"
 

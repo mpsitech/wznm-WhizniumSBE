@@ -22,10 +22,10 @@ uint QryWznmRtjList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "job") return JOB;
+	if (s == "srf") return SRF;
 	if (s == "app") return APP;
 	if (s == "sup") return SUP;
-	if (s == "srf") return SRF;
+	if (s == "job") return JOB;
 
 	return(0);
 };
@@ -33,10 +33,10 @@ uint QryWznmRtjList::VecVOrd::getIx(
 string QryWznmRtjList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == JOB) return("job");
+	if (ix == SRF) return("srf");
 	if (ix == APP) return("app");
 	if (ix == SUP) return("sup");
-	if (ix == SRF) return("srf");
+	if (ix == JOB) return("job");
 
 	return("");
 };

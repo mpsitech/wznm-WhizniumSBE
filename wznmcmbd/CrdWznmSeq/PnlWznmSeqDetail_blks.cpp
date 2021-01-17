@@ -297,7 +297,7 @@ void PnlWznmSeqDetail::Tag::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			writeStringAttr(wr, itemtag, "sref", "CptSrf", "identifier");
-			writeStringAttr(wr, itemtag, "sref", "CptTit", "title");
+			writeStringAttr(wr, itemtag, "sref", "CptTit", "name");
 			writeStringAttr(wr, itemtag, "sref", "CptApp", "accessor app");
 			writeStringAttr(wr, itemtag, "sref", "CptCmt", "comment");
 		};

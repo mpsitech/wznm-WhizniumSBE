@@ -504,13 +504,13 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalResDldActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalSrcUldActive(DbsWznm* dbswznm);
+	bool evalTrgUldActive(DbsWznm* dbswznm);
 	bool evalMrgButRunActive(DbsWznm* dbswznm);
 	bool evalMrgButStoActive(DbsWznm* dbswznm);
-	bool evalTrgUldActive(DbsWznm* dbswznm);
-	bool evalSrcUldActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalResDldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmUtlMrgip(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -577,12 +577,12 @@ private:
 	void handleDpchAppDoMrgButStoClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
-	void handleUploadInSgeSuldone(DbsWznm* dbswznm, const std::string& filename);
-	void handleUploadInSgeSupdone(DbsWznm* dbswznm, const std::string& filename);
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeSupdone(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeSuldone(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);

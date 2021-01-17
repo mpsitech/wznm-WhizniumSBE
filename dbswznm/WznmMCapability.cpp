@@ -240,6 +240,13 @@ ubigint TblWznmMCapability::loadRstByVer(
 	return 0;
 };
 
+bool TblWznmMCapability::loadSrfByRef(
+			ubigint ref
+			, string& sref
+		) {
+	return false;
+};
+
 ubigint TblWznmMCapability::loadRstByRefs(
 			vector<ubigint>& refs
 			, const bool append
@@ -486,6 +493,13 @@ ubigint MyTblWznmMCapability::loadRstByVer(
 	return loadRstBySQL("SELECT ref, refWznmMVersion, tplRefWznmMCapability, sref, ixWArtefact, Title FROM TblWznmMCapability WHERE refWznmMVersion = " + to_string(refWznmMVersion) + " ORDER BY sref ASC", append, rst);
 };
 
+bool MyTblWznmMCapability::loadSrfByRef(
+			ubigint ref
+			, string& sref
+		) {
+	return loadStringBySQL("SELECT sref FROM TblWznmMCapability WHERE ref = " + to_string(ref) + "", sref);
+};
+
 #endif
 
 #if defined(SBECORE_PG)
@@ -510,6 +524,7 @@ void PgTblWznmMCapability::initStatements() {
 
 	createStatement("TblWznmMCapability_loadRecByRef", "SELECT ref, refWznmMVersion, tplRefWznmMCapability, sref, ixWArtefact, Title FROM TblWznmMCapability WHERE ref = $1", 1);
 	createStatement("TblWznmMCapability_loadRstByVer", "SELECT ref, refWznmMVersion, tplRefWznmMCapability, sref, ixWArtefact, Title FROM TblWznmMCapability WHERE refWznmMVersion = $1 ORDER BY sref ASC", 1);
+	createStatement("TblWznmMCapability_loadSrfByRef", "SELECT sref FROM TblWznmMCapability WHERE ref = $1", 1);
 };
 
 bool PgTblWznmMCapability::loadRec(
@@ -827,6 +842,23 @@ ubigint PgTblWznmMCapability::loadRstByVer(
 	const int f[] = {1};
 
 	return loadRstByStmt("TblWznmMCapability_loadRstByVer", 1, vals, l, f, append, rst);
+};
+
+bool PgTblWznmMCapability::loadSrfByRef(
+			ubigint ref
+			, string& sref
+		) {
+	ubigint _ref = htonl64(ref);
+
+	const char* vals[] = {
+		(char*) &_ref
+	};
+	const int l[] = {
+		sizeof(ubigint)
+	};
+	const int f[] = {1};
+
+	return loadStringByStmt("TblWznmMCapability_loadSrfByRef", 1, vals, l, f, sref);
 };
 
 #endif

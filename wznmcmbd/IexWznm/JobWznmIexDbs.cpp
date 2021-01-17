@@ -954,41 +954,48 @@ uint JobWznmIexDbs::enterSgeImport(
 		// IP enterSgeImport.traverse --- REND
 
 		// IP enterSgeImport.ppr --- IBEGIN
-		// -- MVector
+		// -- ImeIMVector1
 		for (unsigned int ix0 = 0; ix0 < imeimvector1.nodes.size(); ix0++) {
 			vec1 = imeimvector1.nodes[ix0];
 
 			for (unsigned int ix1 = 0; ix1 < vec1->imeirmtablemvector1.nodes.size(); ix1++) {
 				tblRvec1 = vec1->imeirmtablemvector1.nodes[ix1];
 
-				for (unsigned int ix2 = 0; ix2 < imeimtable.nodes.size(); ix2++) {
-					tbl = imeimtable.nodes[ix2];
+				if (tblRvec1->srefRefWznmMTable != "") {
+					for (unsigned int ix2 = 0; ix2 < imeimtable.nodes.size(); ix2++) {
+						tbl = imeimtable.nodes[ix2];
 
-					if (tbl->sref == tblRvec1->srefRefWznmMTable) {
-						tblRvec1->refWznmMTable = tbl->ref;
+						if (tbl->sref == tblRvec1->srefRefWznmMTable) {
+							tblRvec1->refWznmMTable = tbl->ref;
 
-						for (unsigned int ix3 = 0; ix3 < tbl->imeimsubset.nodes.size(); ix3++) {
-							sbs = tbl->imeimsubset.nodes[ix3];
+							if (tblRvec1->srefRefWznmMSubset != "") {
+								for (unsigned int ix3 = 0; ix3 < tbl->imeimsubset.nodes.size(); ix3++) {
+									sbs = tbl->imeimsubset.nodes[ix3];
 
-							if (sbs->sref == tblRvec1->srefRefWznmMSubset) {
-								tblRvec1->refWznmMSubset = sbs->ref;
-								break;
+									if (sbs->sref == tblRvec1->srefRefWznmMSubset) {
+										tblRvec1->refWznmMSubset = sbs->ref;
+										break;
+									};
+								};
+
+								if (tblRvec1->refWznmMSubset == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",tblRvec1->srefRefWznmMSubset}, {"iel","srefRefWznmMSubset"}, {"lineno",to_string(tblRvec1->lineno)}});
 							};
+
+							break;
 						};
-
-						break;
 					};
-				};
 
-				dbswznm->tblwznmrmtablemvector->updateRec(tblRvec1);
+					if (tblRvec1->refWznmMTable == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",tblRvec1->srefRefWznmMTable}, {"iel","srefRefWznmMTable"}, {"lineno",to_string(tblRvec1->lineno)}});
+					else dbswznm->tblwznmrmtablemvector->updateRec(tblRvec1);
+				};
 			};
 		};
 
-		// -- MTable
+		// -- ImeIMTable
 		for (unsigned int ix0 = 0; ix0 < imeimtable.nodes.size(); ix0++) {
 			tbl = imeimtable.nodes[ix0];
 
-			if (tbl->refIxVTbl == VecWznmVMTableRefTbl::REL) {
+			if ((tbl->refIxVTbl == VecWznmVMTableRefTbl::REL) && (tbl->irefRefUref != 0)) {
 				for (unsigned int ix1 = 0; ix1 < imeimrelation.nodes.size(); ix1++) {
 					rel = imeimrelation.nodes[ix1];
 
@@ -998,7 +1005,8 @@ uint JobWznmIexDbs::enterSgeImport(
 					};
 				};
 
-				dbswznm->tblwznmmtable->updateRec(tbl);
+				if (tbl->refUref == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(tbl->irefRefUref)}, {"iel","irefRefUref"}, {"lineno",to_string(tbl->lineno)}});
+				else dbswznm->tblwznmmtable->updateRec(tbl);
 			};
 
 			for (unsigned int ix1 = 0; ix1 < tbl->imeimsubset.nodes.size(); ix1++) {
@@ -1007,16 +1015,19 @@ uint JobWznmIexDbs::enterSgeImport(
 				for (unsigned int ix2 = 0; ix2 < sbs->imeirmsubsetmsubset.nodes.size(); ix2++) {
 					sbsRsbs = sbs->imeirmsubsetmsubset.nodes[ix2];
 
-					for (unsigned int i = 0; i < tbl->imeimsubset.nodes.size(); i++) {
-						sbs2 = tbl->imeimsubset.nodes[i];
-				
-						if (sbs2->sref == sbsRsbs->srefBsbRefWznmMSubset) {
-							sbsRsbs->bsbRefWznmMSubset = sbs2->ref;
-							break;
+					if (sbsRsbs->srefBsbRefWznmMSubset != "") {
+						for (unsigned int i = 0; i < tbl->imeimsubset.nodes.size(); i++) {
+							sbs2 = tbl->imeimsubset.nodes[i];
+					
+							if (sbs2->sref == sbsRsbs->srefBsbRefWznmMSubset) {
+								sbsRsbs->bsbRefWznmMSubset = sbs2->ref;
+								break;
+							};
 						};
-					};
 
-					dbswznm->tblwznmrmsubsetmsubset->updateRec(sbsRsbs);
+						if (sbsRsbs->bsbRefWznmMSubset == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",sbsRsbs->srefBsbRefWznmMSubset}, {"iel","srefBsbRefWznmMSubset"}, {"lineno",to_string(sbsRsbs->lineno)}});
+						else dbswznm->tblwznmrmsubsetmsubset->updateRec(sbsRsbs);
+					};
 				};
 			};
 
@@ -1026,23 +1037,31 @@ uint JobWznmIexDbs::enterSgeImport(
 				for (unsigned int ix2 = 0; ix2 < vec2->imeirmtablemvector2.nodes.size(); ix2++) {
 					tblRvec2 = vec2->imeirmtablemvector2.nodes[ix2];
 
-					for (unsigned int i = 0; i < imeimtable.nodes.size(); i++) {
-						tbl2 = imeimtable.nodes[i];
+					if (tblRvec2->srefRefWznmMTable != "") {
+						for (unsigned int i = 0; i < imeimtable.nodes.size(); i++) {
+							tbl2 = imeimtable.nodes[i];
 
-						if (tbl2->sref == tblRvec2->srefRefWznmMTable) {
-							tblRvec2->refWznmMTable = tbl2->ref;
+							if (tbl2->sref == tblRvec2->srefRefWznmMTable) {
+								tblRvec2->refWznmMTable = tbl2->ref;
 
-							for (unsigned int j = 0; j < tbl2->imeimsubset.nodes.size(); j++) {
-								sbs2 = tbl2->imeimsubset.nodes[j];
+								if (tblRvec2->srefRefWznmMSubset != "") {
+									for (unsigned int j = 0; j < tbl2->imeimsubset.nodes.size(); j++) {
+										sbs2 = tbl2->imeimsubset.nodes[j];
 
-								if (sbs2->sref == tblRvec2->srefRefWznmMSubset) {
-									tblRvec2->refWznmMSubset = sbs2->ref;
-									break;
+										if (sbs2->sref == tblRvec2->srefRefWznmMSubset) {
+											tblRvec2->refWznmMSubset = sbs2->ref;
+											break;
+										};
+									};
+
+									if (tblRvec2->refWznmMSubset == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",tblRvec2->srefRefWznmMSubset}, {"iel","srefRefWznmMSubset"}, {"lineno",to_string(tblRvec2->lineno)}});
 								};
-							};
 
-							break;
+								break;
+							};
 						};
+
+						if (tblRvec2->refWznmMTable == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",tblRvec2->srefRefWznmMTable}, {"iel","srefRefWznmMTable"}, {"lineno",to_string(tblRvec2->lineno)}});
 					};
 
 					dbswznm->tblwznmrmtablemvector->updateRec(tblRvec2);
@@ -1052,13 +1071,17 @@ uint JobWznmIexDbs::enterSgeImport(
 			for (unsigned int ix1 = 0; ix1 < tbl->imeimtablecol.nodes.size(); ix1++) {
 				tco = tbl->imeimtablecol.nodes[ix1];
 
-				for (unsigned int i = 0; i < tbl->imeimsubset.nodes.size(); i++) {
-					sbs = tbl->imeimsubset.nodes[i];
+				if (tco->srefRefWznmMSubset != "") {
+					for (unsigned int i = 0; i < tbl->imeimsubset.nodes.size(); i++) {
+						sbs = tbl->imeimsubset.nodes[i];
 
-					if (sbs->sref == tco->srefRefWznmMSubset) {
-						tco->refWznmMSubset = sbs->ref;
-						break;
+						if (sbs->sref == tco->srefRefWznmMSubset) {
+							tco->refWznmMSubset = sbs->ref;
+							break;
+						};
 					};
+
+					if (tco->refWznmMSubset == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",tco->srefRefWznmMSubset}, {"iel","srefRefWznmMSubset"}, {"lineno",to_string(tco->lineno)}});
 				};
 
 				if (tco->irefRefWznmMRelation != 0) {
@@ -1070,9 +1093,11 @@ uint JobWznmIexDbs::enterSgeImport(
 							break;
 						};
 					};
+
+					if (tco->refWznmMRelation == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(tco->irefRefWznmMRelation)}, {"iel","irefRefWznmMRelation"}, {"lineno",to_string(tco->lineno)}});
 				};
 
-				if (tco->fctIxVTbl == VecWznmVMTablecolFctTbl::TBL) {
+				if ((tco->fctIxVTbl == VecWznmVMTablecolFctTbl::TBL) && (tco->srefFctUref != "")) {
 					for (unsigned int i = 0; i < imeimtable.nodes.size(); i++) {
 						tbl2 = imeimtable.nodes[i];
 
@@ -1082,8 +1107,11 @@ uint JobWznmIexDbs::enterSgeImport(
 						};
 					};
 
-				} else if (tco->fctIxVTbl == VecWznmVMTablecolFctTbl::VEC) {
+					if (tco->fctUref == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",tco->srefFctUref}, {"iel","srefFctUref"}, {"lineno",to_string(tco->lineno)}});
+
+				} else if ((tco->fctIxVTbl == VecWznmVMTablecolFctTbl::VEC) && (tco->srefFctUref != "")) {
 					if (dbswznm->tblwznmmvector->loadRefByVerSrf(refWznmMVersion, tco->srefFctUref, ref)) tco->fctUref = ref;
+					else throw SbeException(SbeException::IEX_TSREF, {{"tsref",tco->srefFctUref}, {"iel","srefFctUref"}, {"lineno",to_string(tco->lineno)}});
 				};
 
 				dbswznm->tblwznmmtablecol->updateRec(tco);
@@ -1104,7 +1132,8 @@ uint JobWznmIexDbs::enterSgeImport(
 					};
 				};
 
-				dbswznm->tblwznmmrelation->updateRec(rel);
+				if (rel->supRefWznmMRelation == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(rel->irefSupRefWznmMRelation)}, {"iel","irefSupRefWznmMRelation"}, {"lineno",to_string(tco->lineno)}});
+				else dbswznm->tblwznmmrelation->updateRec(rel);
 			};
 		};
 		// IP enterSgeImport.ppr --- IEND

@@ -14,12 +14,12 @@
 
 // IP include.cust --- INSERT
 
+#include "PnlWznmCtpDetail.h"
+#include "PnlWznmCtpKParKey.h"
+#include "PnlWznmCtpKKey.h"
+#include "PnlWznmCtpAPar.h"
 #include "PnlWznmCtp1NTag.h"
 #include "PnlWznmCtpTpl1NCapability.h"
-#include "PnlWznmCtpAPar.h"
-#include "PnlWznmCtpKKey.h"
-#include "PnlWznmCtpKParKey.h"
-#include "PnlWznmCtpDetail.h"
 
 #define VecVWznmCtpRecDo PnlWznmCtpRec::VecVDo
 
@@ -180,12 +180,12 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
+	PnlWznmCtpDetail* pnldetail;
+	PnlWznmCtpKParKey* pnlkparkey;
+	PnlWznmCtpKKey* pnlkkey;
+	PnlWznmCtpAPar* pnlapar;
 	PnlWznmCtp1NTag* pnl1ntag;
 	PnlWznmCtpTpl1NCapability* pnltpl1ncapability;
-	PnlWznmCtpAPar* pnlapar;
-	PnlWznmCtpKKey* pnlkkey;
-	PnlWznmCtpKParKey* pnlkparkey;
-	PnlWznmCtpDetail* pnldetail;
 
 	WznmMCapability recCpb;
 	Sbecore::uint ixWSubsetCpb;
@@ -220,10 +220,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmCpbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmCpb_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmCpb_tplEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCpb_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmCpbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

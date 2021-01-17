@@ -19,28 +19,28 @@ public class QryWznmConList {
 		*/
 	public static class VecVOrd {
 
-		public static final int SUP = 1;
-		public static final int RET = 2;
-		public static final int REU = 3;
+		public static final int SRF = 1;
+		public static final int TYP = 2;
+		public static final int HKT = 3;
 		public static final int HKU = 4;
 		public static final int SCT = 5;
-		public static final int TYP = 6;
-		public static final int HKT = 7;
-		public static final int SRF = 8;
+		public static final int RET = 6;
+		public static final int REU = 7;
+		public static final int SUP = 8;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("sup")) return SUP;
-			if (s.equals("ret")) return RET;
-			if (s.equals("reu")) return REU;
-			if (s.equals("hku")) return HKU;
-			if (s.equals("sct")) return SCT;
+			if (s.equals("srf")) return SRF;
 			if (s.equals("typ")) return TYP;
 			if (s.equals("hkt")) return HKT;
-			if (s.equals("srf")) return SRF;
+			if (s.equals("hku")) return HKU;
+			if (s.equals("sct")) return SCT;
+			if (s.equals("ret")) return RET;
+			if (s.equals("reu")) return REU;
+			if (s.equals("sup")) return SUP;
 
 			return 0;
 		};
@@ -48,14 +48,14 @@ public class QryWznmConList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == SUP) return("sup");
-			if (ix == RET) return("ret");
-			if (ix == REU) return("reu");
-			if (ix == HKU) return("hku");
-			if (ix == SCT) return("sct");
+			if (ix == SRF) return("srf");
 			if (ix == TYP) return("typ");
 			if (ix == HKT) return("hkt");
-			if (ix == SRF) return("srf");
+			if (ix == HKU) return("hku");
+			if (ix == SCT) return("sct");
+			if (ix == RET) return("ret");
+			if (ix == REU) return("reu");
+			if (ix == SUP) return("sup");
 
 			return "";
 		};

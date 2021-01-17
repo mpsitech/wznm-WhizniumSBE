@@ -1021,10 +1021,10 @@ DpchEngWznmAlert* AlrWznm::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE version v1.1.3 released on 16-12-2020";
+		continf.TxtMsg1 = "WhizniumSBE version v1.1.4 released on 13-1-2021";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
-		continf.TxtMsg6 = "libraries: apiwzlm 1.0.0, curl 7.65, git2 0.24.0, openssl 1.1.1 and jsoncpp 1.8";
+		continf.TxtMsg6 = "libraries: apiwzlm 1.0.0, curl 7.65, git2 0.24.0, jsoncpp 1.8 and openssl 1.1.1";
 		continf.TxtMsg8 = "WhizniumSBE implements all functionality of the Whiznium Service Builder's Edition framework for automated code generation and iteration.";
 	};
 
@@ -1822,10 +1822,12 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCMPSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCONUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSREF);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPBUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCAPSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMDLGUPD_REFEQ) {
@@ -1833,9 +1835,9 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMEVTUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMEVTSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFEDUPD_REFEQ) {
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSREF);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFILSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIELUPD_REFEQ) {
@@ -1848,17 +1850,17 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOBUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMJOBSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOCUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSREF);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCHUPD_REFEQ) {
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSREF);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMDLUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMDLSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMTDUPD_REFEQ) {
@@ -1909,8 +1911,8 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSESUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESMENU);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESMENU);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGEUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSGESTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSGESTD);
@@ -1933,19 +1935,19 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSGSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMGROUP);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSRUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMOWNER);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVECUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVECSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVERUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERNO);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERNO);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVITUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSTD);
 	};
 
@@ -2005,7 +2007,11 @@ void StmgrWznm::commit() {
 		} else if (*it == VecWznmVStub::STUBWZNMCONSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMCONUPD_REFEQ, jref);
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMCONUPD_REFEQ, jref);
+		} else if (*it == VecWznmVStub::STUBWZNMCPBSREF) {
+			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMCPBUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMCPBSTD) {
+			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMCPBUPD_REFEQ, jref);
+		} else if (*it == VecWznmVStub::STUBWZNMCTPSREF) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMCPBUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMCTPSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMCPBUPD_REFEQ, jref);
@@ -2311,7 +2317,7 @@ void XchgWznmd::startMon() {
 	Preset* preset = NULL;
 	NodeWznm* node = NULL;
 
-	mon.start("WhizniumSBE v1.1.3", stgwznmpath.monpath);
+	mon.start("WhizniumSBE v1.1.4", stgwznmpath.monpath);
 
 	rwmJobs.rlock("XchgWznmd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {

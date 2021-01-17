@@ -3,7 +3,7 @@
 # make script for Wznm operation daemon, release wznmopd1_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 16 Dec 2020
+# date created: 13 Jan 2021
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -17,7 +17,7 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ "$1" = "all" ]; then
-	subs=("IexWznm" "VecWznm" "WznmWrweb" "WznmWrsrv" "WznmWrjapi" "WznmWrdbs" "WznmWrapp" "WznmWrapi" "WznmPrctree" "WznmPrcfile" "WznmGen" "WznmCompl")
+	subs=("IexWznm" "VecWznm" "WznmCompl" "WznmGen" "WznmPrcfile" "WznmPrctree" "WznmWrapi" "WznmWrapp" "WznmWrdbs" "WznmWrjapi" "WznmWrsrv" "WznmWrweb")
 else
 	subs=("$@")
 fi

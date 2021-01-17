@@ -39,6 +39,34 @@ bool PnlWznmTblRec::evalPnlatitleAvail(
 	return(args.back());
 };
 
+bool PnlWznmTblRec::evalPnl1nimpexpAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(stt)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnl1ncheckAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(stt)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool PnlWznmTblRec::evalPnlfr1nrelationAvail(
 			DbsWznm* dbswznm
 		) {
@@ -95,48 +123,6 @@ bool PnlWznmTblRec::evalPnl1nsubsetAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nimpexpAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmTblRec::evalPnl1ncheckAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool PnlWznmTblRec::evalPnlfct1ntablecolAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool PnlWznmTblRec::evalPnlref1ndialogAvail(
 			DbsWznm* dbswznm
 		) {
@@ -152,6 +138,20 @@ bool PnlWznmTblRec::evalPnlref1ndialogAvail(
 };
 
 bool PnlWznmTblRec::evalPnlref1ncallAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(stt)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnlfct1ntablecolAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(stt)

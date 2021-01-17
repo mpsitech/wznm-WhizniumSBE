@@ -2,7 +2,7 @@
 # make file for CrdWznmQry card job handler, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 16 Dec 2020
+# date created: 13 Jan 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmQry.o PnlWznmQryList.o QryWznmQryList.o PnlWznmQryHeadbar.o PnlWznmQryRec.o PnlWznmQryMNPanel.o QryWznmQryMNPanel.o PnlWznmQryMNDialog.o QryWznmQryMNDialog.o PnlWznmQryMNTable.o QryWznmQryMNTable.o PnlWznmQrySup1NQuery.o QryWznmQrySup1NQuery.o PnlWznmQryQry1NQuerycol.o QryWznmQryQry1NQuerycol.o PnlWznmQry1NQuerymod.o QryWznmQry1NQuerymod.o PnlWznmQryAOrder.o QryWznmQryAOrder.o PnlWznmQryAClause.o QryWznmQryAClause.o PnlWznmQryDetail.o
+OBJS = CrdWznmQry.o PnlWznmQryRec.o PnlWznmQryDetail.o PnlWznmQryAOrder.o QryWznmQryAOrder.o PnlWznmQryAClause.o QryWznmQryAClause.o PnlWznmQrySup1NQuery.o QryWznmQrySup1NQuery.o PnlWznmQryQry1NQuerycol.o QryWznmQryQry1NQuerycol.o PnlWznmQry1NQuerymod.o QryWznmQry1NQuerymod.o PnlWznmQryMNTable.o QryWznmQryMNTable.o PnlWznmQryMNDialog.o QryWznmQryMNDialog.o PnlWznmQryMNPanel.o QryWznmQryMNPanel.o PnlWznmQryHeadbar.o PnlWznmQryList.o QryWznmQryList.o
 
 LIB = libcrdwznmqry
 

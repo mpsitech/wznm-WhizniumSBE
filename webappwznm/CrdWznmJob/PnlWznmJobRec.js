@@ -2,12 +2,12 @@ function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefDetail");
 	scrJrefACmd = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefACmd");
 	scrJrefAVar = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefAVar");
+	scrJref1NSensitivity = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJref1NSensitivity");
+	scrJrefJob1NStage = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefJob1NStage");
 	scrJref1NRtjob = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJref1NRtjob");
 	scrJref1NMethod = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJref1NMethod");
-	scrJrefJob1NStage = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefJob1NStage");
-	scrJref1NSensitivity = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJref1NSensitivity");
-	scrJrefHk1NVector = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefHk1NVector");
 	scrJrefRef1NBlock = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefRef1NBlock");
+	scrJrefHk1NVector = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefHk1NVector");
 	scrJrefSupMNJob = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefSupMNJob");
 	scrJrefMNOp = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefMNOp");
 	scrJrefMNOppack = retrieveSi(srcdoc, "StatShrWznmJobRec", "scrJrefMNOppack");
@@ -18,12 +18,12 @@ function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmJobRec", "initdoneDetail", "false");
 	setSi(srcdoc, "StatAppWznmJobRec", "initdoneACmd", "false");
 	setSi(srcdoc, "StatAppWznmJobRec", "initdoneAVar", "false");
+	setSi(srcdoc, "StatAppWznmJobRec", "initdone1NSensitivity", "false");
+	setSi(srcdoc, "StatAppWznmJobRec", "initdoneJob1NStage", "false");
 	setSi(srcdoc, "StatAppWznmJobRec", "initdone1NRtjob", "false");
 	setSi(srcdoc, "StatAppWznmJobRec", "initdone1NMethod", "false");
-	setSi(srcdoc, "StatAppWznmJobRec", "initdoneJob1NStage", "false");
-	setSi(srcdoc, "StatAppWznmJobRec", "initdone1NSensitivity", "false");
-	setSi(srcdoc, "StatAppWznmJobRec", "initdoneHk1NVector", "false");
 	setSi(srcdoc, "StatAppWznmJobRec", "initdoneRef1NBlock", "false");
+	setSi(srcdoc, "StatAppWznmJobRec", "initdoneHk1NVector", "false");
 	setSi(srcdoc, "StatAppWznmJobRec", "initdoneSupMNJob", "false");
 	setSi(srcdoc, "StatAppWznmJobRec", "initdoneMNOp", "false");
 	setSi(srcdoc, "StatAppWznmJobRec", "initdoneMNOppack", "false");
@@ -34,12 +34,12 @@ function resetHeights() {
 	heightDetail = 30;
 	heightACmd = 30;
 	heightAVar = 30;
+	height1NSensitivity = 30;
+	heightJob1NStage = 30;
 	height1NRtjob = 30;
 	height1NMethod = 30;
-	heightJob1NStage = 30;
-	height1NSensitivity = 30;
-	heightHk1NVector = 30;
 	heightRef1NBlock = 30;
+	heightHk1NVector = 30;
 	heightSupMNJob = 30;
 	heightMNOp = 30;
 	heightMNOppack = 30;
@@ -64,12 +64,12 @@ function checkInitdone() {
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneDetail") == "true");
 	var initdoneACmd = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneACmd") == "true");
 	var initdoneAVar = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneAVar") == "true");
+	var initdone1NSensitivity = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdone1NSensitivity") == "true");
+	var initdoneJob1NStage = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneJob1NStage") == "true");
 	var initdone1NRtjob = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdone1NRtjob") == "true");
 	var initdone1NMethod = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdone1NMethod") == "true");
-	var initdoneJob1NStage = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneJob1NStage") == "true");
-	var initdone1NSensitivity = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdone1NSensitivity") == "true");
-	var initdoneHk1NVector = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneHk1NVector") == "true");
 	var initdoneRef1NBlock = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneRef1NBlock") == "true");
+	var initdoneHk1NVector = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneHk1NVector") == "true");
 	var initdoneSupMNJob = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneSupMNJob") == "true");
 	var initdoneMNOp = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneMNOp") == "true");
 	var initdoneMNOppack = (retrieveSi(srcdoc, "StatAppWznmJobRec", "initdoneMNOppack") == "true");
@@ -81,18 +81,18 @@ function checkInitdone() {
 		lhsdoc.getElementById("ACmd").src = "./PnlWznmJobACmd.html?scrJref=" + scrJrefACmd;
 	} else if (!initdoneAVar) {
 		lhsdoc.getElementById("AVar").src = "./PnlWznmJobAVar.html?scrJref=" + scrJrefAVar;
+	} else if (!initdone1NSensitivity) {
+		rhsdoc.getElementById("1NSensitivity").src = "./PnlWznmJob1NSensitivity.html?scrJref=" + scrJref1NSensitivity;
+	} else if (!initdoneJob1NStage) {
+		rhsdoc.getElementById("Job1NStage").src = "./PnlWznmJobJob1NStage.html?scrJref=" + scrJrefJob1NStage;
 	} else if (!initdone1NRtjob) {
 		rhsdoc.getElementById("1NRtjob").src = "./PnlWznmJob1NRtjob.html?scrJref=" + scrJref1NRtjob;
 	} else if (!initdone1NMethod) {
 		rhsdoc.getElementById("1NMethod").src = "./PnlWznmJob1NMethod.html?scrJref=" + scrJref1NMethod;
-	} else if (!initdoneJob1NStage) {
-		rhsdoc.getElementById("Job1NStage").src = "./PnlWznmJobJob1NStage.html?scrJref=" + scrJrefJob1NStage;
-	} else if (!initdone1NSensitivity) {
-		rhsdoc.getElementById("1NSensitivity").src = "./PnlWznmJob1NSensitivity.html?scrJref=" + scrJref1NSensitivity;
-	} else if (!initdoneHk1NVector) {
-		rhsdoc.getElementById("Hk1NVector").src = "./PnlWznmJobHk1NVector.html?scrJref=" + scrJrefHk1NVector;
 	} else if (!initdoneRef1NBlock) {
 		rhsdoc.getElementById("Ref1NBlock").src = "./PnlWznmJobRef1NBlock.html?scrJref=" + scrJrefRef1NBlock;
+	} else if (!initdoneHk1NVector) {
+		rhsdoc.getElementById("Hk1NVector").src = "./PnlWznmJobHk1NVector.html?scrJref=" + scrJrefHk1NVector;
 	} else if (!initdoneSupMNJob) {
 		rhsdoc.getElementById("SupMNJob").src = "./PnlWznmJobSupMNJob.html?scrJref=" + scrJrefSupMNJob;
 	} else if (!initdoneMNOp) {
@@ -142,12 +142,12 @@ function setPnlAvail(short, avail) {
 		else if (short == "Detail") heightDetail = height;
 		else if (short == "ACmd") heightACmd = height;
 		else if (short == "AVar") heightAVar = height;
+		else if (short == "1NSensitivity") height1NSensitivity = height;
+		else if (short == "Job1NStage") heightJob1NStage = height;
 		else if (short == "1NRtjob") height1NRtjob = height;
 		else if (short == "1NMethod") height1NMethod = height;
-		else if (short == "Job1NStage") heightJob1NStage = height;
-		else if (short == "1NSensitivity") height1NSensitivity = height;
-		else if (short == "Hk1NVector") heightHk1NVector = height;
 		else if (short == "Ref1NBlock") heightRef1NBlock = height;
+		else if (short == "Hk1NVector") heightHk1NVector = height;
 		else if (short == "SupMNJob") heightSupMNJob = height;
 		else if (short == "MNOp") heightMNOp = height;
 		else if (short == "MNOppack") heightMNOppack = height;
@@ -197,12 +197,12 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "Detail") heightDetail = height;
 	else if (pnlshort == "ACmd") heightACmd = height;
 	else if (pnlshort == "AVar") heightAVar = height;
+	else if (pnlshort == "1NSensitivity") height1NSensitivity = height;
+	else if (pnlshort == "Job1NStage") heightJob1NStage = height;
 	else if (pnlshort == "1NRtjob") height1NRtjob = height;
 	else if (pnlshort == "1NMethod") height1NMethod = height;
-	else if (pnlshort == "Job1NStage") heightJob1NStage = height;
-	else if (pnlshort == "1NSensitivity") height1NSensitivity = height;
-	else if (pnlshort == "Hk1NVector") heightHk1NVector = height;
 	else if (pnlshort == "Ref1NBlock") heightRef1NBlock = height;
+	else if (pnlshort == "Hk1NVector") heightHk1NVector = height;
 	else if (pnlshort == "SupMNJob") heightSupMNJob = height;
 	else if (pnlshort == "MNOp") heightMNOp = height;
 	else if (pnlshort == "MNOppack") heightMNOppack = height;
@@ -215,7 +215,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + heightACmd+13 + heightAVar+13 + 5;
-	heightRhs = height1NRtjob+13 + height1NMethod+13 + heightJob1NStage+13 + height1NSensitivity+13 + heightHk1NVector+13 + heightRef1NBlock+13 + heightSupMNJob+13 + heightMNOp+13 + heightMNOppack+13 + heightSubMNJob+13 + 5;
+	heightRhs = height1NSensitivity+13 + heightJob1NStage+13 + height1NRtjob+13 + height1NMethod+13 + heightRef1NBlock+13 + heightHk1NVector+13 + heightSupMNJob+13 + heightMNOp+13 + heightMNOppack+13 + heightSubMNJob+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -416,18 +416,18 @@ function handleDpchEng(dom, dpch) {
 				if (getInitdone("ACmd")) lhsdoc.getElementById("ACmd").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefAVar) {
 				if (getInitdone("AVar")) lhsdoc.getElementById("AVar").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NSensitivity) {
+				if (getInitdone("1NSensitivity")) rhsdoc.getElementById("1NSensitivity").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefJob1NStage) {
+				if (getInitdone("Job1NStage")) rhsdoc.getElementById("Job1NStage").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NRtjob) {
 				if (getInitdone("1NRtjob")) rhsdoc.getElementById("1NRtjob").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NMethod) {
 				if (getInitdone("1NMethod")) rhsdoc.getElementById("1NMethod").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefJob1NStage) {
-				if (getInitdone("Job1NStage")) rhsdoc.getElementById("Job1NStage").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NSensitivity) {
-				if (getInitdone("1NSensitivity")) rhsdoc.getElementById("1NSensitivity").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefHk1NVector) {
-				if (getInitdone("Hk1NVector")) rhsdoc.getElementById("Hk1NVector").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefRef1NBlock) {
 				if (getInitdone("Ref1NBlock")) rhsdoc.getElementById("Ref1NBlock").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefHk1NVector) {
+				if (getInitdone("Hk1NVector")) rhsdoc.getElementById("Hk1NVector").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefSupMNJob) {
 				if (getInitdone("SupMNJob")) rhsdoc.getElementById("SupMNJob").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNOp) {

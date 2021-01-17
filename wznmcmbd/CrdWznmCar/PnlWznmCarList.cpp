@@ -257,7 +257,7 @@ void PnlWznmCarList::handleDpchAppDataContiac(
 	diffitems = _contiac->diff(&contiac);
 
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWznmCarList::VecVOrd::REU) && (_contiac->numFTos <= QryWznmCarList::VecVOrd::SRF)) {
+		if ((_contiac->numFTos >= QryWznmCarList::VecVOrd::SRF) && (_contiac->numFTos <= QryWznmCarList::VecVOrd::REU)) {
 			muteRefresh = true;
 
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);

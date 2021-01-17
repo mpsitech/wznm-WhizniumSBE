@@ -19,20 +19,20 @@ public class QryWznmIelList {
 		*/
 	public static class VecVOrd {
 
-		public static final int TCO = 1;
-		public static final int IME = 2;
-		public static final int SRF = 3;
-		public static final int TYP = 4;
+		public static final int SRF = 1;
+		public static final int TYP = 2;
+		public static final int IME = 3;
+		public static final int TCO = 4;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("tco")) return TCO;
-			if (s.equals("ime")) return IME;
 			if (s.equals("srf")) return SRF;
 			if (s.equals("typ")) return TYP;
+			if (s.equals("ime")) return IME;
+			if (s.equals("tco")) return TCO;
 
 			return 0;
 		};
@@ -40,10 +40,10 @@ public class QryWznmIelList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == TCO) return("tco");
-			if (ix == IME) return("ime");
 			if (ix == SRF) return("srf");
 			if (ix == TYP) return("typ");
+			if (ix == IME) return("ime");
+			if (ix == TCO) return("tco");
 
 			return "";
 		};

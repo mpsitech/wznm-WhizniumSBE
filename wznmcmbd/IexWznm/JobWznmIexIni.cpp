@@ -898,12 +898,16 @@ uint JobWznmIexIni::enterSgeImport(
 			for (unsigned int ix1 = 0; ix1 < loc->imeijmlocaletitle.nodes.size(); ix1++) {
 				locJtit = loc->imeijmlocaletitle.nodes[ix1];
 
-				for (unsigned int ix=0;ix<imeimlocale.nodes.size();ix++) {
-					if (imeimlocale.nodes[ix]->sref.compare(locJtit->srefX1RefWznmMLocale) == 0) {
-						locJtit->x1RefWznmMLocale = imeimlocale.nodes[ix]->ref;
-						dbswznm->tblwznmjmlocaletitle->updateRec(locJtit);
-						break;
+				if (locJtit->srefX1RefWznmMLocale != "") {
+					for (unsigned int i = 0; i < imeimlocale.nodes.size(); i++) {
+						if (imeimlocale.nodes[i]->sref == locJtit->srefX1RefWznmMLocale) {
+							locJtit->x1RefWznmMLocale = imeimlocale.nodes[i]->ref;
+							break;
+						};
 					};
+
+					if (locJtit->x1RefWznmMLocale == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",locJtit->srefX1RefWznmMLocale}, {"iel","srefX1RefWznmMLocale"}, {"lineno",to_string(locJtit->lineno)}});
+					else dbswznm->tblwznmjmlocaletitle->updateRec(locJtit);
 				};
 			};
 		};
