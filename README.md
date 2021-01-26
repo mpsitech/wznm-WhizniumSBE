@@ -13,11 +13,13 @@ Besides being model-based, software development with WhizniumSBE rests on the fo
 
 ![](_exp/sbe.png)
 
-## Setup instructions and reference
+## Setup instructions, reference and cheat sheet
 
 To prepare your system for use with Whiznium and to learn how to make your first steps, please visit this [separate Git repository](https://github.com/mpsitech/The-Whiznium-Documentation).
 
 Also included is a full [WhizniumSBE model file reference](https://github.com/mpsitech/The-Whiznium-Documentation/blob/main/sbemdl.md).
+
+To streamline the everyday WhizniumSBE-enhanced development workflow, the [WhizniumSBE .pdf cheat sheet](https://content.mpsitech.cloud/cheatsheet_wznm.pdf), packed with useful information, might come in handy. A paper copy (size A2) can be ordered free of charge [here](https://content.mpsitech.cloud/cheatsheet.html).
 
 ## The Whiznium Developer Experience YouTube format
 
@@ -66,7 +68,7 @@ wznmcmbd/WznmWrweb/WznmWrweb.cpp|write HTML and JS code e.g. for controls|
 
 ## Template files
 
-WhizniumSBE's automated source code generation relies on template files with inline placeholders and insertion points for multi-line code fragments. For each version of WhizniumSBE, the relevant template files can be found [online](https://mpsitech-public.s3.eu-central-1.amazonaws.com/WhizniumSBE/v1.0.2/files.tgz); they are part of the tool initialization routine.
+WhizniumSBE's automated source code generation relies on template files with inline placeholders and insertion points for multi-line code fragments. For each version of WhizniumSBE, the relevant template files can be found [online](https://content.mpsitech.cloud/WhizniumSBE/v1.0.2/files.tgz); they are part of the tool initialization routine.
 
 ### Some highlights
 
@@ -116,25 +118,25 @@ WhizniumSBE is a WhizniumSBE-backed project. Accordingly, it requires libxml2, G
 
 ### Upcoming book
 
-- The Whiznium book (draft available [here](https://mpsitech-public.s3.eu-central-1.amazonaws.com/book.pdf)), offering an introduction to WhizniumSBE/DBE by means of a handy use case
+- The Whiznium book (draft available [here](https://content.mpsitech.cloud/book.pdf)), offering an introduction to WhizniumSBE/DBE by means of a handy use case
 
 ### Use cases
 
 - Whiznium StarterKit: a tabletop 3D laser scanner reference implementation on various platforms. Zynq (ARM and Xilinx FPGA) and i.MX6 (ARM) available, PolarFire SoC (RISC-V and Microchip FPGA) and standalone (workstation and MCU-based peripherals) in the making. [Git repository](https://github.com/mpsitech/wzsk-Whiznium-StarterKit)
-- FabSight: montioring of industrial appliances, [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/fabsight.pdf) and [YouTube video](https://youtu.be/Z-NvdSHfAvM) showing device in action including .NET API access
-- The ICARUS detector: a [European robotics research project](http://www.fp7-icarus.eu) alongside which WhizniumSBE/DBE developed lots of its functionality, [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/icarus.pdf)
-- Multi-spectral detector: developed from the ICARUS detector, combines stereo vision with a thermal imager and a laser mounted on a tilt/pan unit. [.pdf code walk-through](https://mpsitech-public.s3.eu-central-1.amazonaws.com/Thermal_Imager_Data_Path.pdf) available
-- BeamRelay: a cool air traffic simulation developed when Whiznium's focus was still on distributed simulation applications, [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/beamrelay.pdf) available and [ICNS conference proceedings .pdf](https://mpsitech-public.s3.eu-central-1.amazonaws.com/Global_coverage_free_space.pdf)
+- FabSight: montioring of industrial appliances, [.pdf datasheet](https://content.mpsitech.cloud/fabsight.pdf) and [YouTube video](https://youtu.be/Z-NvdSHfAvM) showing device in action including .NET API access
+- The ICARUS detector: a [European robotics research project](http://www.fp7-icarus.eu) alongside which WhizniumSBE/DBE developed lots of its functionality, [.pdf datasheet](https://content.mpsitech.cloud/icarus.pdf)
+- Multi-spectral detector: developed from the ICARUS detector, combines stereo vision with a thermal imager and a laser mounted on a tilt/pan unit. [.pdf code walk-through](https://content.mpsitech.cloud/Thermal_Imager_Data_Path.pdf) available
+- BeamRelay: a cool air traffic simulation developed when Whiznium's focus was still on distributed simulation applications, [.pdf datasheet](https://content.mpsitech.cloud/beamrelay.pdf) available and [ICNS conference proceedings .pdf](https://content.mpsitech.cloud/Global_coverage_free_space.pdf)
 
 ### Marketing material
 
 Most of these publications pre-date Whiznium's Open Source era.
 
-- WhizniumSBE/DBE [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/flyer_en_v1.1.pdf)
-- WhizniumSBE technology overview [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/whizniumsbe.pdf)
-- A [.pdf datasheet](https://mpsitech-public.s3.eu-central-1.amazonaws.com/M2M_communication_v2.pdf) highlighting M2M communication options in WhizniumSBE-backed projects
-- Whiznium-related services offerings for the photonics industry [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/epic_flyer.pdf)
-- Co-marketing of Whiznium and Matrikon's FLEX OPC UA SDK for industrial automation applications [.pdf flyer](https://mpsitech-public.s3.eu-central-1.amazonaws.com/FLEX_MPSI_DataSheet-V2.1.pdf)
+- WhizniumSBE/DBE [.pdf flyer](https://content.mpsitech.cloud/flyer_en_v1.1.pdf)
+- WhizniumSBE technology overview [.pdf datasheet](https://content.mpsitech.cloud/whizniumsbe.pdf)
+- A [.pdf datasheet](https://content.mpsitech.cloud/M2M_communication_v2.pdf) highlighting M2M communication options in WhizniumSBE-backed projects
+- Whiznium-related services offerings for the photonics industry [.pdf flyer](https://content.mpsitech.cloud/epic_flyer.pdf)
+- Co-marketing of Whiznium and Matrikon's FLEX OPC UA SDK for industrial automation applications [.pdf flyer](https://content.mpsitech.cloud/FLEX_MPSI_DataSheet-V2.1.pdf)
 - Elektronik.net interview at Embedded World 2020 with the founder of MPSI Technologies [video, German only](https://www.elektroniknet.de/video/vip-buehne-startups-stellen-sich-vor-mpsi-technologies-2012-video.html)
 - MPSI Technologies start-up pitch at Embedded World 2020 [video, from 20:15](https://www.embedded-world.de/de/events/vortrag/start-up-presentation-/767308)
 
