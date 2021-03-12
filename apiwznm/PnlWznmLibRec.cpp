@@ -104,8 +104,8 @@ set<uint> PnlWznmLibRec::ContInf::diff(
 
 PnlWznmLibRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdoneAMakefile
 			, const bool initdoneAPkglist
+			, const bool initdoneAMakefile
 			, const bool initdoneRef1NFile
 			, const bool initdoneMNOppack
 			, const bool initdoneMNComponent
@@ -113,13 +113,13 @@ PnlWznmLibRec::StatApp::StatApp(
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
-	this->initdoneAMakefile = initdoneAMakefile;
 	this->initdoneAPkglist = initdoneAPkglist;
+	this->initdoneAMakefile = initdoneAMakefile;
 	this->initdoneRef1NFile = initdoneRef1NFile;
 	this->initdoneMNOppack = initdoneMNOppack;
 	this->initdoneMNComponent = initdoneMNComponent;
 
-	mask = {INITDONEDETAIL, INITDONEAMAKEFILE, INITDONEAPKGLIST, INITDONEREF1NFILE, INITDONEMNOPPACK, INITDONEMNCOMPONENT};
+	mask = {INITDONEDETAIL, INITDONEAPKGLIST, INITDONEAMAKEFILE, INITDONEREF1NFILE, INITDONEMNOPPACK, INITDONEMNCOMPONENT};
 };
 
 bool PnlWznmLibRec::StatApp::readXML(
@@ -140,8 +140,8 @@ bool PnlWznmLibRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAMakefile", initdoneAMakefile)) add(INITDONEAMAKEFILE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAPkglist", initdoneAPkglist)) add(INITDONEAPKGLIST);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAMakefile", initdoneAMakefile)) add(INITDONEAMAKEFILE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NFile", initdoneRef1NFile)) add(INITDONEREF1NFILE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNOppack", initdoneMNOppack)) add(INITDONEMNOPPACK);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNComponent", initdoneMNComponent)) add(INITDONEMNCOMPONENT);
@@ -156,8 +156,8 @@ set<uint> PnlWznmLibRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdoneAMakefile == comp->initdoneAMakefile) insert(items, INITDONEAMAKEFILE);
 	if (initdoneAPkglist == comp->initdoneAPkglist) insert(items, INITDONEAPKGLIST);
+	if (initdoneAMakefile == comp->initdoneAMakefile) insert(items, INITDONEAMAKEFILE);
 	if (initdoneRef1NFile == comp->initdoneRef1NFile) insert(items, INITDONEREF1NFILE);
 	if (initdoneMNOppack == comp->initdoneMNOppack) insert(items, INITDONEMNOPPACK);
 	if (initdoneMNComponent == comp->initdoneMNComponent) insert(items, INITDONEMNCOMPONENT);
@@ -173,7 +173,7 @@ set<uint> PnlWznmLibRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEAMAKEFILE, INITDONEAPKGLIST, INITDONEREF1NFILE, INITDONEMNOPPACK, INITDONEMNCOMPONENT};
+	diffitems = {INITDONEDETAIL, INITDONEAPKGLIST, INITDONEAMAKEFILE, INITDONEREF1NFILE, INITDONEMNOPPACK, INITDONEMNCOMPONENT};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -186,8 +186,8 @@ set<uint> PnlWznmLibRec::StatApp::diff(
 PnlWznmLibRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJrefAMakefile
 			, const string& scrJrefAPkglist
+			, const string& scrJrefAMakefile
 			, const string& scrJrefRef1NFile
 			, const string& scrJrefMNOppack
 			, const string& scrJrefMNComponent
@@ -197,14 +197,14 @@ PnlWznmLibRec::StatShr::StatShr(
 		{
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAMakefile = scrJrefAMakefile;
 	this->scrJrefAPkglist = scrJrefAPkglist;
+	this->scrJrefAMakefile = scrJrefAMakefile;
 	this->scrJrefRef1NFile = scrJrefRef1NFile;
 	this->scrJrefMNOppack = scrJrefMNOppack;
 	this->scrJrefMNComponent = scrJrefMNComponent;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAMAKEFILE, SCRJREFAPKGLIST, SCRJREFREF1NFILE, SCRJREFMNOPPACK, SCRJREFMNCOMPONENT, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAPKGLIST, SCRJREFAMAKEFILE, SCRJREFREF1NFILE, SCRJREFMNOPPACK, SCRJREFMNCOMPONENT, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmLibRec::StatShr::readXML(
@@ -231,8 +231,8 @@ bool PnlWznmLibRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAMakefile", scrJrefAMakefile)) add(SCRJREFAMAKEFILE);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAPkglist", scrJrefAPkglist)) add(SCRJREFAPKGLIST);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAMakefile", scrJrefAMakefile)) add(SCRJREFAMAKEFILE);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NFile", scrJrefRef1NFile)) add(SCRJREFREF1NFILE);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNOppack", scrJrefMNOppack)) add(SCRJREFMNOPPACK);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNComponent", scrJrefMNComponent)) add(SCRJREFMNCOMPONENT);
@@ -249,8 +249,8 @@ set<uint> PnlWznmLibRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJrefAMakefile == comp->scrJrefAMakefile) insert(items, SCRJREFAMAKEFILE);
 	if (scrJrefAPkglist == comp->scrJrefAPkglist) insert(items, SCRJREFAPKGLIST);
+	if (scrJrefAMakefile == comp->scrJrefAMakefile) insert(items, SCRJREFAMAKEFILE);
 	if (scrJrefRef1NFile == comp->scrJrefRef1NFile) insert(items, SCRJREFREF1NFILE);
 	if (scrJrefMNOppack == comp->scrJrefMNOppack) insert(items, SCRJREFMNOPPACK);
 	if (scrJrefMNComponent == comp->scrJrefMNComponent) insert(items, SCRJREFMNCOMPONENT);
@@ -267,7 +267,7 @@ set<uint> PnlWznmLibRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAMAKEFILE, SCRJREFAPKGLIST, SCRJREFREF1NFILE, SCRJREFMNOPPACK, SCRJREFMNCOMPONENT, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAPKGLIST, SCRJREFAMAKEFILE, SCRJREFREF1NFILE, SCRJREFMNOPPACK, SCRJREFMNCOMPONENT, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

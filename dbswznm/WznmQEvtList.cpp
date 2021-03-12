@@ -35,6 +35,23 @@ WznmQEvtList::WznmQEvtList(
 	this->stubRefWznmMApp = stubRefWznmMApp;
 };
 
+void WznmQEvtList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["app"] = stubRefWznmMApp;
+	} else {
+		me["sref"] = sref;
+		me["stubRefWznmMApp"] = stubRefWznmMApp;
+	};
+};
+
 void WznmQEvtList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -102,6 +119,16 @@ ListWznmQEvtList& ListWznmQEvtList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQEvtList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQEvtList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQEvtList::writeXML(

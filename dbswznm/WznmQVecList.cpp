@@ -55,6 +55,37 @@ WznmQVecList::WznmQVecList(
 	this->titOsrefWznmKTaggrp = titOsrefWznmKTaggrp;
 };
 
+void WznmQVecList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["ver"] = stubRefWznmMVersion;
+		me["hkt"] = srefHkIxVTbl;
+		me["hkt2"] = titHkIxVTbl;
+		me["hku"] = stubHkUref;
+		me["tgr"] = osrefWznmKTaggrp;
+		me["tgr2"] = titOsrefWznmKTaggrp;
+	} else {
+		me["sref"] = sref;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["stubRefWznmMVersion"] = stubRefWznmMVersion;
+		me["srefHkIxVTbl"] = srefHkIxVTbl;
+		me["titHkIxVTbl"] = titHkIxVTbl;
+		me["stubHkUref"] = stubHkUref;
+		me["osrefWznmKTaggrp"] = osrefWznmKTaggrp;
+		me["titOsrefWznmKTaggrp"] = titOsrefWznmKTaggrp;
+	};
+};
+
 void WznmQVecList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -136,6 +167,16 @@ ListWznmQVecList& ListWznmQVecList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQVecList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQVecList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQVecList::writeXML(

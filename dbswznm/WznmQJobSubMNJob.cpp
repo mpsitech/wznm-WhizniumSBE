@@ -45,6 +45,29 @@ WznmQJobSubMNJob::WznmQJobSubMNJob(
 	this->titIxVConstract = titIxVConstract;
 };
 
+void WznmQJobSubMNJob::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+		me["sho"] = Short;
+		me["mlt"] = yesnoMulti;
+		me["csa"] = srefIxVConstract;
+		me["csa2"] = titIxVConstract;
+	} else {
+		me["stubMref"] = stubMref;
+		me["Short"] = Short;
+		me["yesnoMulti"] = yesnoMulti;
+		me["srefIxVConstract"] = srefIxVConstract;
+		me["titIxVConstract"] = titIxVConstract;
+	};
+};
+
 void WznmQJobSubMNJob::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -118,6 +141,16 @@ ListWznmQJobSubMNJob& ListWznmQJobSubMNJob::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQJobSubMNJob::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQJobSubMNJob";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQJobSubMNJob::writeXML(

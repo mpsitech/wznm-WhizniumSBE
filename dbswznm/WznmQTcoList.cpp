@@ -61,6 +61,41 @@ WznmQTcoList::WznmQTcoList(
 	this->titIxVAxisfct = titIxVAxisfct;
 };
 
+void WznmQTcoList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["sho"] = Short;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["tbl"] = stubTblRefWznmMTable;
+		me["fct"] = srefFctIxVTbl;
+		me["fct2"] = titFctIxVTbl;
+		me["sty"] = srefIxVSubtype;
+		me["sty2"] = titIxVSubtype;
+		me["axf"] = srefIxVAxisfct;
+		me["axf2"] = titIxVAxisfct;
+	} else {
+		me["sref"] = sref;
+		me["Short"] = Short;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["stubTblRefWznmMTable"] = stubTblRefWznmMTable;
+		me["srefFctIxVTbl"] = srefFctIxVTbl;
+		me["titFctIxVTbl"] = titFctIxVTbl;
+		me["srefIxVSubtype"] = srefIxVSubtype;
+		me["titIxVSubtype"] = titIxVSubtype;
+		me["srefIxVAxisfct"] = srefIxVAxisfct;
+		me["titIxVAxisfct"] = titIxVAxisfct;
+	};
+};
+
 void WznmQTcoList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -146,6 +181,16 @@ ListWznmQTcoList& ListWznmQTcoList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQTcoList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQTcoList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQTcoList::writeXML(

@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmWrsrv;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrsrvRootsess
  ******************************************************************************/
@@ -97,6 +99,11 @@ void WznmWrsrvRootsess::writeRtH(
 		) {
 	string prjshort = StrMod::lc(Prjshort);
 
+	// --- include.spec
+	outfile << "// IP include.spec --- IBEGIN" << endl;
+	outfile << "#include <signal.h>" << endl;
+	outfile << "// IP include.spec --- IEND" << endl;
+
 	// --- constructor
 	outfile << "// IP constructor --- RBEGIN" << endl;
 	outfile << "\tRoot" << Prjshort << "(Xchg" << Prjshort << "* xchg, Dbs" << Prjshort << "* dbs" << prjshort << ", const Sbecore::ubigint jrefSup, const bool _clearAll);" << endl;
@@ -158,6 +165,11 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\tif (_clearAll) clearAll(dbs" << prjshort << ");" << endl;
 	outfile << "\telse clearQtb(dbs" << prjshort << ");" << endl;
 	outfile << "// IP constructor.spec1 --- IEND" << endl;
+
+	// --- constructor.spec3
+	outfile << "// IP constructor.spec3 --- IBEGIN" << endl;
+	outfile << "\tif (xchg->stg" << prjshort << "appearance.roottterm != 0) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * xchg->stg" << prjshort << "appearance.roottterm);" << endl;
+	outfile << "// IP constructor.spec3 --- IEND" << endl;
 
 	// --- destructor.spec
 	outfile << "// IP destructor.spec --- IBEGIN" << endl;
@@ -346,6 +358,9 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t\txchg->jrefCmd = sess->jref;" << endl;
 	outfile << endl;
 
+	outfile << "\t\tif ((xchg->stg" << prjshort << "appearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * (xchg->stg" << prjshort << "appearance.sesstterm - xchg->stg" << prjshort << "appearance.sesstwarn));" << endl;
+	outfile << endl;
+
 	outfile << "\t\txchg->appendToLogfile(\"command line session created for user '\" + input + \"'\");" << endl;
 	outfile << endl;
 
@@ -429,6 +444,9 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t\t\t\tsesss.push_back(sess);" << endl;
 	outfile << endl;
 
+	outfile << "\t\t\t\tif ((xchg->stg" << prjshort << "appearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * (xchg->stg" << prjshort << "appearance.sesstterm - xchg->stg" << prjshort << "appearance.sesstwarn));" << endl;
+	outfile << endl;
+
 	outfile << "\t\t\t\txchg->appendToLogfile(\"session created for user '\" + dpchapplogin->username + \"' from IP \" + ip);" << endl;
 	outfile << endl;
 
@@ -468,12 +486,80 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t};" << endl;
 	outfile << "// IP handleDpchAppLogin --- IEND" << endl;
 
+	// --- handleTimerWithSrefWarnterm
+	outfile << "// IP handleTimerWithSrefWarnterm --- IBEGIN" << endl;
+	outfile << "\tSess" << Prjshort << "* sess = NULL;" << endl;
+	outfile << endl;
+
+	outfile << "\ttime_t tlast;" << endl;
+	outfile << "\ttime_t tnext = 0;" << endl;
+	outfile << endl;
+
+	outfile << "\ttime_t rawtime;" << endl;
+	outfile << "\ttime(&rawtime);" << endl;
+	outfile << endl;
+
+	outfile << "\tbool term;" << endl;
+	outfile << endl;
+
+	outfile << "\tif (xchg->stg" << prjshort << "appearance.sesstterm != 0) {" << endl;
+	outfile << "\t\tfor (auto it = sesss.begin(); it != sesss.end();) {" << endl;
+	outfile << "\t\t\tsess = *it;" << endl;
+	outfile << endl;
+
+	outfile << "\t\t\tterm = false;" << endl;
+	outfile << endl;
+
+	outfile << "\t\t\ttlast = xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "TLAST, sess->jref);" << endl;
+	outfile << endl;
+
+	outfile << "\t\t\tif ((tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm)) <= rawtime) term = true;" << endl;
+	outfile << "\t\t\telse if ((tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm) - ((int) xchg->stg" << prjshort << "appearance.sesstwarn)) <= rawtime) {" << endl;
+	outfile << "\t\t\t\tsess->warnTerm(dbs" << prjshort << ");" << endl;
+	outfile << "\t\t\t\tif ((tnext == 0) || ((tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm)) < tnext)) tnext = tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm);" << endl;
+	outfile << "\t\t\t} else if ((tnext == 0) || ((tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm) - ((int) xchg->stg" << prjshort << "appearance.sesstwarn)) < tnext)) tnext = tlast + xchg->stg" << prjshort << "appearance.sesstterm - xchg->stg" << prjshort << "appearance.sesstwarn;" << endl;
+	outfile << endl;
+	
+	outfile << "\t\t\tif (term) {" << endl;
+	outfile << "\t\t\t\tsess->term(dbs" << prjshort << ");" << endl;
+	outfile << "\t\t\t\tit = sesss.erase(it);" << endl;
+	outfile << endl;
+
+	outfile << "\t\t\t\tdelete sess;" << endl;
+	outfile << endl;
+
+	outfile << "\t\t\t} else it++;" << endl;
+	outfile << "\t\t};" << endl;
+	outfile << "\t};" << endl;
+	outfile << endl;
+
+	outfile << "\tterm = false;" << endl;
+	outfile << endl;
+
+	outfile << "\tif (xchg->stg" << prjshort << "appearance.roottterm != 0) {" << endl;
+	outfile << "\t\ttlast = xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "TLAST, jref);" << endl;
+	outfile << endl;
+
+	outfile << "\t\tif ((tlast + ((int) xchg->stg" << prjshort << "appearance.roottterm)) <= rawtime) term = true;" << endl;
+	outfile << "\t\telse if ((tnext == 0) || ((tlast + ((int) xchg->stg" << prjshort << "appearance.roottterm)) < tnext)) tnext = tlast + xchg->stg" << prjshort << "appearance.roottterm;" << endl;
+	outfile << "\t};" << endl;
+	outfile << endl;
+
+	outfile << "\tif (term) {" << endl;
+	outfile << "\t\tcout << endl << \"\\tterminating due to inactivity\" << endl;" << endl;
+	outfile << "\t\tkill(getpid(), SIGTERM);" << endl;
+	outfile << "\t} else if (tnext != 0) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * (tnext - rawtime));" << endl;
+	outfile << "// IP handleTimerWithSrefWarnterm --- IEND" << endl;
+
 	// --- handleCallXxxxLogout
 	outfile << "// IP handleCall" << Prjshort << "Logout --- IBEGIN" << endl;
 	outfile << endl;
 
 	outfile << "\tSess" << Prjshort << "* sess = NULL;" << endl;
 	if (hasm2m) outfile << "\tM2msess" << Prjshort << "* m2msess = NULL;" << endl;
+	outfile << endl;
+
+	outfile << "\ttime_t rawtime;" << endl;
 	outfile << endl;
 
 	outfile << "\tif (!boolvalInv) {" << endl;
@@ -487,6 +573,12 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t\t\t\tdelete sess;" << endl;
 	outfile << "\t\t\t\tbreak;" << endl;
 	outfile << "\t\t\t} else it++;" << endl;
+	outfile << "\t\t};" << endl;
+	outfile << endl;
+
+	outfile << "\t\tif (xchg->stg" << prjshort << "appearance.roottterm) {" << endl;
+	outfile << "\t\t\ttime(&rawtime);" << endl;
+	outfile << "\t\t\txchg->addRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "TLAST, jref, rawtime);" << endl;
 	outfile << "\t\t};" << endl;
 
 	if (hasm2m) {
@@ -509,6 +601,17 @@ void WznmWrsrvRootsess::writeRtCpp(
 
 	outfile << endl;
 	outfile << "// IP handleCall" << Prjshort << "Logout --- IEND" << endl;
+
+	// --- handleCallXxxxRefPreSet
+	outfile << "// IP handleCall" << Prjshort << "RefPreSet --- IBEGIN" << endl;
+	outfile << endl;
+
+	outfile << "\tif (ixInv == Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "TLAST) {" << endl;
+	outfile << "\t\txchg->addRefPreset(ixInv, jref, refInv);" << endl;
+	outfile << "\t};" << endl;
+
+	outfile << endl;
+	outfile << "// IP handleCall" << Prjshort << "RefPreSet --- IEND" << endl;
 
 	// --- handleCallXxxxSuspsess
 	outfile << "// IP handleCall" << Prjshort << "Suspsess --- IBEGIN" << endl;
@@ -553,6 +656,7 @@ void WznmWrsrvRootsess::writeSessH(
 
 	// --- spec
 	outfile << "// IP spec --- IBEGIN" << endl;
+	outfile << "\tvoid warnTerm(Dbs" << Prjshort << "* dbs" << prjshort << ");" << endl;
 	outfile << "\tvoid term(Dbs" << Prjshort << "* dbs" << prjshort << ");" << endl;
 	outfile << endl;
 
@@ -757,6 +861,14 @@ void WznmWrsrvRootsess::writeSessCpp(
 
 	// --- spec
 	outfile << "// IP spec --- IBEGIN" << endl;
+
+	// -- warnTerm
+	outfile << "void Sess" << Prjshort << "::warnTerm(" << endl;
+	outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
+	outfile << "\t\t) {" << endl;
+	outfile << "\tcrdnav->warnTerm(dbs" << prjshort << ");" << endl;
+	outfile << "};" << endl;
+	outfile << endl;
 
 	// -- term
 	outfile << "void Sess" << Prjshort << "::term(" << endl;
@@ -1461,6 +1573,10 @@ void WznmWrsrvRootsess::writeSessCpp(
 	outfile << "\t\t\tif (refInv == 0) xchg->removePreset(ixInv, jref);" << endl;
 	outfile << "\t\t\telse xchg->addRefPreset(ixInv, jref, refInv);" << endl;
 	outfile << "\t\t};" << endl;
+	outfile << endl;
+
+	outfile << "\t} else if (ixInv == Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "TLAST) {" << endl;
+	outfile << "\t\tif (xchg->stg" << prjshort << "appearance.sesstterm != 0) xchg->addRefPreset(ixInv, jref, refInv);" << endl;
 	outfile << endl;
 
 	first = true;

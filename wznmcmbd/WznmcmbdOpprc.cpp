@@ -94,24 +94,35 @@ void* WznmcmbdOpprc::run(
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPGENJTR) {
 				if (((DpchInvWznmCtpGenjtr*) req->dpchinv)->srefKCustop == "WznmCtpGenjtrAcv") req->dpchret = WznmCtpGenjtrAcv::run(xchg, &dbswznm, (DpchInvWznmCtpGenjtr*) req->dpchinv);
+				else if (((DpchInvWznmCtpGenjtr*) req->dpchinv)->srefKCustop == "WznmCtpGenjtrClustmgr") req->dpchret = WznmCtpGenjtrClustmgr::run(xchg, &dbswznm, (DpchInvWznmCtpGenjtr*) req->dpchinv);
 				else if (((DpchInvWznmCtpGenjtr*) req->dpchinv)->srefKCustop == "WznmCtpGenjtrDlgimp") req->dpchret = WznmCtpGenjtrDlgimp::run(xchg, &dbswznm, (DpchInvWznmCtpGenjtr*) req->dpchinv);
 				else if (((DpchInvWznmCtpGenjtr*) req->dpchinv)->srefKCustop == "WznmCtpGenjtrDlgloaini") req->dpchret = WznmCtpGenjtrDlgloaini::run(xchg, &dbswznm, (DpchInvWznmCtpGenjtr*) req->dpchinv);
+				else if (((DpchInvWznmCtpGenjtr*) req->dpchinv)->srefKCustop == "WznmCtpGenjtrPrefs") req->dpchret = WznmCtpGenjtrPrefs::run(xchg, &dbswznm, (DpchInvWznmCtpGenjtr*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPGENUI) {
 				if (((DpchInvWznmCtpGenui*) req->dpchinv)->srefKCustop == "WznmCtpGenuiAcv") req->dpchret = WznmCtpGenuiAcv::run(xchg, &dbswznm, (DpchInvWznmCtpGenui*) req->dpchinv);
+				else if (((DpchInvWznmCtpGenui*) req->dpchinv)->srefKCustop == "WznmCtpGenuiClustmgr") req->dpchret = WznmCtpGenuiClustmgr::run(xchg, &dbswznm, (DpchInvWznmCtpGenui*) req->dpchinv);
+				else if (((DpchInvWznmCtpGenui*) req->dpchinv)->srefKCustop == "WznmCtpGenuiDbeterm") req->dpchret = WznmCtpGenuiDbeterm::run(xchg, &dbswznm, (DpchInvWznmCtpGenui*) req->dpchinv);
 				else if (((DpchInvWznmCtpGenui*) req->dpchinv)->srefKCustop == "WznmCtpGenuiDlgimp") req->dpchret = WznmCtpGenuiDlgimp::run(xchg, &dbswznm, (DpchInvWznmCtpGenui*) req->dpchinv);
 				else if (((DpchInvWznmCtpGenui*) req->dpchinv)->srefKCustop == "WznmCtpGenuiDlgloaini") req->dpchret = WznmCtpGenuiDlgloaini::run(xchg, &dbswznm, (DpchInvWznmCtpGenui*) req->dpchinv);
+				else if (((DpchInvWznmCtpGenui*) req->dpchinv)->srefKCustop == "WznmCtpGenuiPrefs") req->dpchret = WznmCtpGenuiPrefs::run(xchg, &dbswznm, (DpchInvWznmCtpGenui*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPWRSRV) {
 				if (((DpchInvWznmCtpWrsrv*) req->dpchinv)->srefKCustop == "WznmCtpWrsrvAcv") req->dpchret = WznmCtpWrsrvAcv::run(xchg, &dbswznm, (DpchInvWznmCtpWrsrv*) req->dpchinv);
+				else if (((DpchInvWznmCtpWrsrv*) req->dpchinv)->srefKCustop == "WznmCtpWrsrvClustmgr") req->dpchret = WznmCtpWrsrvClustmgr::run(xchg, &dbswznm, (DpchInvWznmCtpWrsrv*) req->dpchinv);
+				else if (((DpchInvWznmCtpWrsrv*) req->dpchinv)->srefKCustop == "WznmCtpWrsrvDbeterm") req->dpchret = WznmCtpWrsrvDbeterm::run(xchg, &dbswznm, (DpchInvWznmCtpWrsrv*) req->dpchinv);
 				else if (((DpchInvWznmCtpWrsrv*) req->dpchinv)->srefKCustop == "WznmCtpWrsrvDlgimp") req->dpchret = WznmCtpWrsrvDlgimp::run(xchg, &dbswznm, (DpchInvWznmCtpWrsrv*) req->dpchinv);
 				else if (((DpchInvWznmCtpWrsrv*) req->dpchinv)->srefKCustop == "WznmCtpWrsrvDlgloaini") req->dpchret = WznmCtpWrsrvDlgloaini::run(xchg, &dbswznm, (DpchInvWznmCtpWrsrv*) req->dpchinv);
+				else if (((DpchInvWznmCtpWrsrv*) req->dpchinv)->srefKCustop == "WznmCtpWrsrvPrefs") req->dpchret = WznmCtpWrsrvPrefs::run(xchg, &dbswznm, (DpchInvWznmCtpWrsrv*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPWRSTKIT) {
 				if (((DpchInvWznmCtpWrstkit*) req->dpchinv)->srefKCustop == "WznmCtpWrstkitAcv") req->dpchret = WznmCtpWrstkitAcv::run(xchg, &dbswznm, (DpchInvWznmCtpWrstkit*) req->dpchinv);
 				else if (((DpchInvWznmCtpWrstkit*) req->dpchinv)->srefKCustop == "WznmCtpWrstkitArm") req->dpchret = WznmCtpWrstkitArm::run(xchg, &dbswznm, (DpchInvWznmCtpWrstkit*) req->dpchinv);
+				else if (((DpchInvWznmCtpWrstkit*) req->dpchinv)->srefKCustop == "WznmCtpWrstkitClustmgr") req->dpchret = WznmCtpWrstkitClustmgr::run(xchg, &dbswznm, (DpchInvWznmCtpWrstkit*) req->dpchinv);
+				else if (((DpchInvWznmCtpWrstkit*) req->dpchinv)->srefKCustop == "WznmCtpWrstkitPrefs") req->dpchret = WznmCtpWrstkitPrefs::run(xchg, &dbswznm, (DpchInvWznmCtpWrstkit*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPWRWEB) {
+				if (((DpchInvWznmCtpWrweb*) req->dpchinv)->srefKCustop == "WznmCtpWrwebDbeterm") req->dpchret = WznmCtpWrwebDbeterm::run(xchg, &dbswznm, (DpchInvWznmCtpWrweb*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMGENBASE) {
 				req->dpchret = WznmGenBase::run(xchg, &dbswznm, (DpchInvWznmGenBase*) req->dpchinv);

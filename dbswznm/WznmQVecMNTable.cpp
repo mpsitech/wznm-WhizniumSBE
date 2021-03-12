@@ -37,6 +37,23 @@ WznmQVecMNTable::WznmQVecMNTable(
 	this->stubRefWznmMSubset = stubRefWznmMSubset;
 };
 
+void WznmQVecMNTable::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+		me["sbs"] = stubRefWznmMSubset;
+	} else {
+		me["stubMref"] = stubMref;
+		me["stubRefWznmMSubset"] = stubRefWznmMSubset;
+	};
+};
+
 void WznmQVecMNTable::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -104,6 +121,16 @@ ListWznmQVecMNTable& ListWznmQVecMNTable::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQVecMNTable::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQVecMNTable";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQVecMNTable::writeXML(

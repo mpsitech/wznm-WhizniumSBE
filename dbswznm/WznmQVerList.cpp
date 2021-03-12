@@ -67,6 +67,43 @@ WznmQVerList::WznmQVerList(
 	this->titsIxWDbmstype = titsIxWDbmstype;
 };
 
+void WznmQVerList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["grp"] = stubGrp;
+		me["own"] = stubOwn;
+		me["prj"] = stubPrjRefWznmMProject;
+		me["maj"] = Major;
+		me["min"] = Minor;
+		me["sub"] = Sub;
+		me["bvr"] = stubBvrRefWznmMVersion;
+		me["loc"] = stubRefWznmMLocale;
+		me["ste"] = srefIxVState;
+		me["ste2"] = titIxVState;
+		me["dty"] = srefsIxWDbmstype;
+		me["dty2"] = titsIxWDbmstype;
+	} else {
+		me["stubGrp"] = stubGrp;
+		me["stubOwn"] = stubOwn;
+		me["stubPrjRefWznmMProject"] = stubPrjRefWznmMProject;
+		me["Major"] = Major;
+		me["Minor"] = Minor;
+		me["Sub"] = Sub;
+		me["stubBvrRefWznmMVersion"] = stubBvrRefWznmMVersion;
+		me["stubRefWznmMLocale"] = stubRefWznmMLocale;
+		me["srefIxVState"] = srefIxVState;
+		me["titIxVState"] = titIxVState;
+		me["srefsIxWDbmstype"] = srefsIxWDbmstype;
+		me["titsIxWDbmstype"] = titsIxWDbmstype;
+	};
+};
+
 void WznmQVerList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -154,6 +191,16 @@ ListWznmQVerList& ListWznmQVerList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQVerList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQVerList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQVerList::writeXML(

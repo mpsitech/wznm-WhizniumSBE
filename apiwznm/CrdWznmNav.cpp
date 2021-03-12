@@ -150,6 +150,7 @@ uint CrdWznmNav::VecVSge::getIx(
 
 	if (s == "idle") return IDLE;
 	if (s == "alrwznmabt") return ALRWZNMABT;
+	if (s == "alrwznmtrm") return ALRWZNMTRM;
 
 	return(0);
 };
@@ -159,6 +160,7 @@ string CrdWznmNav::VecVSge::getSref(
 		) {
 	if (ix == IDLE) return("idle");
 	if (ix == ALRWZNMABT) return("alrwznmabt");
+	if (ix == ALRWZNMTRM) return("alrwznmtrm");
 
 	return("");
 };

@@ -19,22 +19,22 @@ public class QryWznmPstList {
 		*/
 	public static class VecVOrd {
 
-		public static final int SRF = 1;
-		public static final int VER = 2;
+		public static final int ATY = 1;
+		public static final int REU = 2;
 		public static final int RET = 3;
-		public static final int REU = 4;
-		public static final int ATY = 5;
+		public static final int SRF = 4;
+		public static final int VER = 5;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
+			if (s.equals("aty")) return ATY;
+			if (s.equals("reu")) return REU;
+			if (s.equals("ret")) return RET;
 			if (s.equals("srf")) return SRF;
 			if (s.equals("ver")) return VER;
-			if (s.equals("ret")) return RET;
-			if (s.equals("reu")) return REU;
-			if (s.equals("aty")) return ATY;
 
 			return 0;
 		};
@@ -42,11 +42,11 @@ public class QryWznmPstList {
 		public static String getSref(
 					int ix
 				) {
+			if (ix == ATY) return("aty");
+			if (ix == REU) return("reu");
+			if (ix == RET) return("ret");
 			if (ix == SRF) return("srf");
 			if (ix == VER) return("ver");
-			if (ix == RET) return("ret");
-			if (ix == REU) return("reu");
-			if (ix == ATY) return("aty");
 
 			return "";
 		};

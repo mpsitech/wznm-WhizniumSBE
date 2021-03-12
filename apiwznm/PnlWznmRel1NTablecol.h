@@ -46,7 +46,7 @@ namespace PnlWznmRel1NTablecol {
 	/**
 	  * ContInf (full: ContInfWznmRel1NTablecol)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFCSIQST = 1;
@@ -66,7 +66,7 @@ namespace PnlWznmRel1NTablecol {
 	/**
 	  * StatApp (full: StatAppWznmRel1NTablecol)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -86,7 +86,7 @@ namespace PnlWznmRel1NTablecol {
 	/**
 	  * StgIac (full: StgIacWznmRel1NTablecol)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TCOREFWIDTH = 1;
@@ -107,7 +107,7 @@ namespace PnlWznmRel1NTablecol {
 	/**
 	  * Tag (full: TagWznmRel1NTablecol)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -202,7 +202,7 @@ namespace PnlWznmRel1NTablecol {
 
 	public:
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFCsiQst;
+		Sbecore::Feed feedFCsiQst;
 		StatApp statapp;
 		StgIac stgiac;
 		Tag tag;

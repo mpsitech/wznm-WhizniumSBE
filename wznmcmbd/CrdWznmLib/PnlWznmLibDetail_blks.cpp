@@ -63,6 +63,32 @@ PnlWznmLibDetail::ContIac::ContIac(
 	mask = {TXFTIT, TXFVER, NUMFPUPLTY, TXFLTY, NUMFLSTDEP, TXFDEP, TXFCMT};
 };
 
+bool PnlWznmLibDetail::ContIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["ContIacWznmLibDetail"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("TxfTit")) {TxfTit = me["TxfTit"].asString(); add(TXFTIT);};
+		if (me.isMember("TxfVer")) {TxfVer = me["TxfVer"].asString(); add(TXFVER);};
+		if (me.isMember("numFPupLty")) {numFPupLty = me["numFPupLty"].asUInt(); add(NUMFPUPLTY);};
+		if (me.isMember("TxfLty")) {TxfLty = me["TxfLty"].asString(); add(TXFLTY);};
+		if (me.isMember("numFLstDep")) {numFLstDep = me["numFLstDep"].asUInt(); add(NUMFLSTDEP);};
+		if (me.isMember("TxfDep")) {TxfDep = me["TxfDep"].asString(); add(TXFDEP);};
+		if (me.isMember("TxfCmt")) {TxfCmt = me["TxfCmt"].asString(); add(TXFCMT);};
+	};
+
+	return basefound;
+};
+
 bool PnlWznmLibDetail::ContIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -90,6 +116,23 @@ bool PnlWznmLibDetail::ContIac::readXML(
 	};
 
 	return basefound;
+};
+
+void PnlWznmLibDetail::ContIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContIacWznmLibDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxfTit"] = TxfTit;
+	me["TxfVer"] = TxfVer;
+	me["numFPupLty"] = numFPupLty;
+	me["TxfLty"] = TxfLty;
+	me["numFLstDep"] = numFLstDep;
+	me["TxfDep"] = TxfDep;
+	me["TxfCmt"] = TxfCmt;
 };
 
 void PnlWznmLibDetail::ContIac::writeXML(
@@ -158,6 +201,17 @@ PnlWznmLibDetail::ContInf::ContInf(
 	mask = {TXTSRF};
 };
 
+void PnlWznmLibDetail::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWznmLibDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxtSrf"] = TxtSrf;
+};
+
 void PnlWznmLibDetail::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -201,6 +255,24 @@ set<uint> PnlWznmLibDetail::ContInf::diff(
 /******************************************************************************
  class PnlWznmLibDetail::StatApp
  ******************************************************************************/
+
+void PnlWznmLibDetail::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWznmVExpstate
+			, const bool PupLtyAlt
+			, const bool LstDepAlt
+			, const uint LstDepNumFirstdisp
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmLibDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
+	me["PupLtyAlt"] = PupLtyAlt;
+	me["LstDepAlt"] = LstDepAlt;
+	me["LstDepNumFirstdisp"] = LstDepNumFirstdisp;
+};
 
 void PnlWznmLibDetail::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -261,6 +333,29 @@ PnlWznmLibDetail::StatShr::StatShr(
 	this->TxfCmtActive = TxfCmtActive;
 
 	mask = {TXFLTYVALID, TXFDEPVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXFVERACTIVE, PUPLTYACTIVE, BUTLTYEDITAVAIL, LSTDEPACTIVE, BUTDEPVIEWAVAIL, BUTDEPVIEWACTIVE, TXFCMTACTIVE};
+};
+
+void PnlWznmLibDetail::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmLibDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxfLtyValid"] = TxfLtyValid;
+	me["TxfDepValid"] = TxfDepValid;
+	me["ButSaveAvail"] = ButSaveAvail;
+	me["ButSaveActive"] = ButSaveActive;
+	me["TxtSrfActive"] = TxtSrfActive;
+	me["TxfTitActive"] = TxfTitActive;
+	me["TxfVerActive"] = TxfVerActive;
+	me["PupLtyActive"] = PupLtyActive;
+	me["ButLtyEditAvail"] = ButLtyEditAvail;
+	me["LstDepActive"] = LstDepActive;
+	me["ButDepViewAvail"] = ButDepViewAvail;
+	me["ButDepViewActive"] = ButDepViewActive;
+	me["TxfCmtActive"] = TxfCmtActive;
 };
 
 void PnlWznmLibDetail::StatShr::writeXML(
@@ -331,6 +426,26 @@ set<uint> PnlWznmLibDetail::StatShr::diff(
  class PnlWznmLibDetail::Tag
  ******************************************************************************/
 
+void PnlWznmLibDetail::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmLibDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["CptSrf"] = "identifier";
+		me["CptTit"] = "name";
+		me["CptVer"] = "version";
+		me["CptLty"] = "license type";
+		me["CptDep"] = "libraries dependent on";
+		me["CptCmt"] = "comment";
+	};
+	me["Cpt"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::DETAIL, ixWznmVLocale));
+};
+
 void PnlWznmLibDetail::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -375,6 +490,27 @@ string PnlWznmLibDetail::DpchAppData::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmLibDetail::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmLibDetailData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (contiac.readJSON(me, true)) add(CONTIAC);
+	} else {
+		contiac = ContIac();
+	};
 };
 
 void PnlWznmLibDetail::DpchAppData::readXML(
@@ -424,6 +560,26 @@ string PnlWznmLibDetail::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmLibDetail::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmLibDetailDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWznmLibDetail::DpchAppDo::readXML(
@@ -512,6 +668,22 @@ void PnlWznmLibDetail::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmLibDetail::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmLibDetailData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTIAC)) contiac.writeJSON(me);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFLSTDEP)) feedFLstDep.writeJSON(me);
+	if (has(FEEDFPUPLTY)) feedFPupLty.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmLibDetail::DpchEngData::writeXML(

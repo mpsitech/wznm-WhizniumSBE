@@ -31,7 +31,7 @@ void WznmdOpengsrv::stop(
 	MHD_stop_daemon(d);
 };
 
-int WznmdOpengsrv::MhdAccept(
+MHD_Result WznmdOpengsrv::MhdAccept(
 			void* cls
 			, const sockaddr* addr
 			, socklen_t addrlen
@@ -39,7 +39,7 @@ int WznmdOpengsrv::MhdAccept(
 	return MHD_YES;
 };
 
-int WznmdOpengsrv::MhdCallback(
+MHD_Result WznmdOpengsrv::MhdCallback(
 			void* cls
 			, MHD_Connection* connection
 			, const char* url
@@ -52,7 +52,7 @@ int WznmdOpengsrv::MhdCallback(
 	XchgWznmd* xchg = (XchgWznmd*) cls;
 
 	MHD_Response* response;
-	int retval = MHD_YES;
+	MHD_Result retval = MHD_YES;
 
 	ReqopengconWznm* req = NULL;
 
@@ -164,7 +164,7 @@ int WznmdOpengsrv::MhdCallback(
 	return retval;
 };
 
-int WznmdOpengsrv::MhdPostrecv(
+MHD_Result WznmdOpengsrv::MhdPostrecv(
 			void* con_cls
 			, MHD_ValueKind kind
 			, const char* key

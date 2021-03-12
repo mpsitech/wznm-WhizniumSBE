@@ -42,7 +42,7 @@ namespace PnlWznmIexRec {
 	/**
 	  * ContInf (full: ContInfWznmIexRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,22 +62,22 @@ namespace PnlWznmIexRec {
 	/**
 	  * StatApp (full: StatAppWznmIexRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONE1NIMPEXP = 2;
-		static const Sbecore::uint INITDONEREF1NDIALOG = 3;
-		static const Sbecore::uint INITDONEHK1NVECTOR = 4;
+		static const Sbecore::uint INITDONEHK1NVECTOR = 3;
+		static const Sbecore::uint INITDONEREF1NDIALOG = 4;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneRef1NDialog = false, const bool initdoneHk1NVector = false);
+		StatApp(const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NDialog = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdone1NImpexp;
-		bool initdoneRef1NDialog;
 		bool initdoneHk1NVector;
+		bool initdoneRef1NDialog;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -88,25 +88,25 @@ namespace PnlWznmIexRec {
 	/**
 	  * StatShr (full: StatShrWznmIexRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREF1NIMPEXP = 3;
-		static const Sbecore::uint SCRJREFREF1NDIALOG = 4;
-		static const Sbecore::uint SCRJREFHK1NVECTOR = 5;
+		static const Sbecore::uint SCRJREFHK1NVECTOR = 4;
+		static const Sbecore::uint SCRJREFREF1NDIALOG = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NImpexp = "", const std::string& scrJrefRef1NDialog = "", const std::string& scrJrefHk1NVector = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NImpexp = "", const std::string& scrJrefHk1NVector = "", const std::string& scrJrefRef1NDialog = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJref1NImpexp;
-		std::string scrJrefRef1NDialog;
 		std::string scrJrefHk1NVector;
+		std::string scrJrefRef1NDialog;
 		bool ButRegularizeActive;
 
 	public:
@@ -118,7 +118,7 @@ namespace PnlWznmIexRec {
 	/**
 	  * Tag (full: TagWznmIexRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

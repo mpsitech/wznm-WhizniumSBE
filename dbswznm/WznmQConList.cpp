@@ -75,6 +75,49 @@ WznmQConList::WznmQConList(
 	this->titIxVSubtype = titIxVSubtype;
 };
 
+void WznmQConList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["tit"] = Title;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["hkt"] = srefHkIxVTbl;
+		me["hkt2"] = titHkIxVTbl;
+		me["hku"] = stubHkUref;
+		me["sct"] = srefHkIxVSection;
+		me["sct2"] = titHkIxVSection;
+		me["ret"] = srefRefIxVTbl;
+		me["ret2"] = titRefIxVTbl;
+		me["reu"] = stubRefUref;
+		me["sup"] = stubSupRefWznmMControl;
+		me["sty"] = srefIxVSubtype;
+		me["sty2"] = titIxVSubtype;
+	} else {
+		me["sref"] = sref;
+		me["Title"] = Title;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["srefHkIxVTbl"] = srefHkIxVTbl;
+		me["titHkIxVTbl"] = titHkIxVTbl;
+		me["stubHkUref"] = stubHkUref;
+		me["srefHkIxVSection"] = srefHkIxVSection;
+		me["titHkIxVSection"] = titHkIxVSection;
+		me["srefRefIxVTbl"] = srefRefIxVTbl;
+		me["titRefIxVTbl"] = titRefIxVTbl;
+		me["stubRefUref"] = stubRefUref;
+		me["stubSupRefWznmMControl"] = stubSupRefWznmMControl;
+		me["srefIxVSubtype"] = srefIxVSubtype;
+		me["titIxVSubtype"] = titIxVSubtype;
+	};
+};
+
 void WznmQConList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -168,6 +211,16 @@ ListWznmQConList& ListWznmQConList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQConList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQConList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQConList::writeXML(

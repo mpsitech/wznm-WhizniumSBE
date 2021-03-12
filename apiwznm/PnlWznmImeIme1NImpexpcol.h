@@ -52,7 +52,7 @@ namespace PnlWznmImeIme1NImpexpcol {
 	/**
 	  * ContInf (full: ContInfWznmImeIme1NImpexpcol)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFCSIQST = 1;
@@ -72,7 +72,7 @@ namespace PnlWznmImeIme1NImpexpcol {
 	/**
 	  * StatApp (full: StatAppWznmImeIme1NImpexpcol)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -92,7 +92,7 @@ namespace PnlWznmImeIme1NImpexpcol {
 	/**
 	  * StatShr (full: StatShrWznmImeIme1NImpexpcol)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTUPAVAIL = 1;
@@ -128,7 +128,7 @@ namespace PnlWznmImeIme1NImpexpcol {
 	/**
 	  * StgIac (full: StgIacWznmImeIme1NImpexpcol)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TCOREFWIDTH = 1;
@@ -149,7 +149,7 @@ namespace PnlWznmImeIme1NImpexpcol {
 	/**
 	  * Tag (full: TagWznmImeIme1NImpexpcol)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -245,7 +245,7 @@ namespace PnlWznmImeIme1NImpexpcol {
 
 	public:
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFCsiQst;
+		Sbecore::Feed feedFCsiQst;
 		StatApp statapp;
 		StatShr statshr;
 		StgIac stgiac;

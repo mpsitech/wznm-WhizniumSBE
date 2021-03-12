@@ -39,6 +39,29 @@ WznmQLibList::WznmQLibList(
 	this->titSrefKLictype = titSrefKLictype;
 };
 
+void WznmQLibList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["tit"] = Title;
+		me["ver"] = Version;
+		me["lty"] = srefKLictype;
+		me["lty2"] = titSrefKLictype;
+	} else {
+		me["sref"] = sref;
+		me["Title"] = Title;
+		me["Version"] = Version;
+		me["srefKLictype"] = srefKLictype;
+		me["titSrefKLictype"] = titSrefKLictype;
+	};
+};
+
 void WznmQLibList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -112,6 +135,16 @@ ListWznmQLibList& ListWznmQLibList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQLibList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQLibList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQLibList::writeXML(

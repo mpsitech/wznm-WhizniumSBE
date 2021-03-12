@@ -41,6 +41,27 @@ WznmQTcoATitle::WznmQTcoATitle(
 	this->Title = Title;
 };
 
+void WznmQTcoATitle::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["typ"] = srefX1IxVType;
+		me["typ2"] = titX1IxVType;
+		me["loc"] = stubX2RefWznmMLocale;
+		me["tit"] = Title;
+	} else {
+		me["srefX1IxVType"] = srefX1IxVType;
+		me["titX1IxVType"] = titX1IxVType;
+		me["stubX2RefWznmMLocale"] = stubX2RefWznmMLocale;
+		me["Title"] = Title;
+	};
+};
+
 void WznmQTcoATitle::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -112,6 +133,16 @@ ListWznmQTcoATitle& ListWznmQTcoATitle::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQTcoATitle::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQTcoATitle";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQTcoATitle::writeXML(

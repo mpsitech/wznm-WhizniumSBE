@@ -35,6 +35,23 @@ WznmQLibAPkglist::WznmQLibAPkglist(
 	this->Pkglist = Pkglist;
 };
 
+void WznmQLibAPkglist::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mch"] = stubX1RefWznmMMachine;
+		me["pkl"] = Pkglist;
+	} else {
+		me["stubX1RefWznmMMachine"] = stubX1RefWznmMMachine;
+		me["Pkglist"] = Pkglist;
+	};
+};
+
 void WznmQLibAPkglist::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -102,6 +119,16 @@ ListWznmQLibAPkglist& ListWznmQLibAPkglist::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQLibAPkglist::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQLibAPkglist";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQLibAPkglist::writeXML(

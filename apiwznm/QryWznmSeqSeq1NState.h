@@ -23,7 +23,7 @@ namespace QryWznmSeqSeq1NState {
 	/**
 	  * StatApp (full: StatAppQryWznmSeqSeq1NState)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -49,7 +49,7 @@ namespace QryWznmSeqSeq1NState {
 	/**
 	  * StatShr (full: StatShrQryWznmSeqSeq1NState)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -73,7 +73,7 @@ namespace QryWznmSeqSeq1NState {
 	/**
 	  * StgIac (full: StgIacQryWznmSeqSeq1NState)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

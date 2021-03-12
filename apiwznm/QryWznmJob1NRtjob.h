@@ -23,7 +23,7 @@ namespace QryWznmJob1NRtjob {
 	/**
 	  * StatApp (full: StatAppQryWznmJob1NRtjob)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -49,7 +49,7 @@ namespace QryWznmJob1NRtjob {
 	/**
 	  * StatShr (full: StatShrQryWznmJob1NRtjob)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -73,7 +73,7 @@ namespace QryWznmJob1NRtjob {
 	/**
 	  * StgIac (full: StgIacQryWznmJob1NRtjob)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

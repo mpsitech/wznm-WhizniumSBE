@@ -10,10 +10,10 @@
 #ifndef APIWZNM_H
 #define APIWZNM_H
 
-#define WZNM_VERSION "1.1.4"
+#define WZNM_VERSION "1.1.5"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 1
-#define WZNM_VERSION_SUB 4
+#define WZNM_VERSION_SUB 5
 
 #include "ApiWznm_blks.h"
 
@@ -911,7 +911,7 @@
 /**
 	* StgWznmapi
 	*/
-class StgWznmapi : public Sbecore::Xmlio::Block {
+class StgWznmapi : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint ENGIP = 1;

@@ -22,9 +22,9 @@ uint QryWznmRlsList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
-	if (s == "cmp") return CMP;
 	if (s == "mch") return MCH;
+	if (s == "cmp") return CMP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -32,9 +32,9 @@ uint QryWznmRlsList::VecVOrd::getIx(
 string QryWznmRlsList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
-	if (ix == CMP) return("cmp");
 	if (ix == MCH) return("mch");
+	if (ix == CMP) return("cmp");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

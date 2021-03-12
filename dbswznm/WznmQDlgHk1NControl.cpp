@@ -33,6 +33,21 @@ WznmQDlgHk1NControl::WznmQDlgHk1NControl(
 	this->hkNum = hkNum;
 };
 
+void WznmQDlgHk1NControl::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQDlgHk1NControl::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQDlgHk1NControl& ListWznmQDlgHk1NControl::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQDlgHk1NControl::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQDlgHk1NControl";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQDlgHk1NControl::writeXML(

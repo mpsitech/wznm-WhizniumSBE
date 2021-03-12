@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmGen;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmGenDetui
  ******************************************************************************/
@@ -115,7 +117,7 @@ DpchRetWznm* WznmGenDetui::run(
 		if ( (car->refIxVTbl == VecWznmVMCardRefTbl::VOID) && (car->sref.substr(3+4).compare("Nav") == 0) ) {
 			dbswznm->tblwznmmmodule->loadRstBySQL("SELECT * FROM TblWznmMModule WHERE verRefWznmMVersion = " + to_string(refWznmMVersion) + " ORDER BY verNum ASC", false, mdls);
 
-			// -- navigator card basics (application, session and card menus)
+			// -- navigator card basics (application, session and card menus ; session termination alert)
 			genCarnav(dbswznm, refWznmMVersion, Prjshort, sesspsts, car, cons, connum, mdls, refLcl, refsLcl);
 
 			// -- navigator preset panel

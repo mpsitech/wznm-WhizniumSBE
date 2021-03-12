@@ -14,12 +14,12 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmOpxDetail.h"
-#include "PnlWznmOpxAInvarg.h"
-#include "PnlWznmOpxARetval.h"
+#include "PnlWznmOpxSqkMNStub.h"
 #include "PnlWznmOpxRef1NBlock.h"
 #include "PnlWznmOpxMNJob.h"
-#include "PnlWznmOpxSqkMNStub.h"
+#include "PnlWznmOpxAInvarg.h"
+#include "PnlWznmOpxARetval.h"
+#include "PnlWznmOpxDetail.h"
 
 #define VecVWznmOpxRecDo PnlWznmOpxRec::VecVDo
 
@@ -53,7 +53,7 @@ public:
 	/**
 	  * ContInf (full: ContInfWznmOpxRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -65,6 +65,7 @@ public:
 		std::string TxtRef;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInf* comp);
 		std::set<Sbecore::uint> diff(const ContInf* comp);
@@ -76,13 +77,14 @@ public:
 	class StatApp {
 
 	public:
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
 		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
 	};
 
 	/**
 		* StatShr (full: StatShrWznmOpxRec)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -110,6 +112,7 @@ public:
 		bool ButRegularizeActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -121,6 +124,7 @@ public:
 	class Tag {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -142,6 +146,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -169,6 +174,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
@@ -183,12 +189,12 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmOpxDetail* pnldetail;
-	PnlWznmOpxAInvarg* pnlainvarg;
-	PnlWznmOpxARetval* pnlaretval;
+	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
 	PnlWznmOpxRef1NBlock* pnlref1nblock;
 	PnlWznmOpxMNJob* pnlmnjob;
-	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
+	PnlWznmOpxAInvarg* pnlainvarg;
+	PnlWznmOpxARetval* pnlaretval;
+	PnlWznmOpxDetail* pnldetail;
 
 	WznmMOp recOpx;
 
@@ -224,10 +230,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmOpx_opkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmOpx_sqkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmOpxUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmSqkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmOpxUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmOpx_sqkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmOpx_opkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

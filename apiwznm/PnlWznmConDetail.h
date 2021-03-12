@@ -59,7 +59,7 @@ namespace PnlWznmConDetail {
 	/**
 	  * ContIac (full: ContIacWznmConDetail)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFPUPJTI = 1;
@@ -116,7 +116,7 @@ namespace PnlWznmConDetail {
 	/**
 	  * ContInf (full: ContInfWznmConDetail)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTSRF = 1;
@@ -154,7 +154,7 @@ namespace PnlWznmConDetail {
 	/**
 	  * StatApp (full: StatAppWznmConDetail)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -194,7 +194,7 @@ namespace PnlWznmConDetail {
 	/**
 	  * StatShr (full: StatShrWznmConDetail)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXFTAGVALID = 1;
@@ -330,7 +330,7 @@ namespace PnlWznmConDetail {
 	/**
 	  * Tag (full: TagWznmConDetail)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -462,18 +462,18 @@ namespace PnlWznmConDetail {
 	public:
 		ContIac contiac;
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFLstClu;
-		Sbecore::Xmlio::Feed feedFLstFedTag;
-		Sbecore::Xmlio::Feed feedFLstFedVit;
-		Sbecore::Xmlio::Feed feedFLstOpt;
-		Sbecore::Xmlio::Feed feedFLstTag;
-		Sbecore::Xmlio::Feed feedFPupFedSrt;
-		Sbecore::Xmlio::Feed feedFPupHkt;
-		Sbecore::Xmlio::Feed feedFPupJti;
-		Sbecore::Xmlio::Feed feedFPupRet;
-		Sbecore::Xmlio::Feed feedFPupSco;
-		Sbecore::Xmlio::Feed feedFPupSty;
-		Sbecore::Xmlio::Feed feedFPupTyp;
+		Sbecore::Feed feedFLstClu;
+		Sbecore::Feed feedFLstFedTag;
+		Sbecore::Feed feedFLstFedVit;
+		Sbecore::Feed feedFLstOpt;
+		Sbecore::Feed feedFLstTag;
+		Sbecore::Feed feedFPupFedSrt;
+		Sbecore::Feed feedFPupHkt;
+		Sbecore::Feed feedFPupJti;
+		Sbecore::Feed feedFPupRet;
+		Sbecore::Feed feedFPupSco;
+		Sbecore::Feed feedFPupSty;
+		Sbecore::Feed feedFPupTyp;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

@@ -82,9 +82,11 @@ cust	WznmCtpGenjtr	generate capability template-specific job tree	false
 	wznmopd2
 	ImeIRMComponentMOppack.end
 	ImeIMOp.sref	Shrdat	Comment
-	WznmCtpGenjtrAcv	false	add stages to upload dialog
-	WznmCtpGenjtrDlgloaini	false	add stages to initialization load dialog
-	WznmCtpGenjtrDlgimp	false	add stages to data import dialog
+	WznmCtpGenjtrAcv	false	prettify file list and add state machine to create file dialog
+	WznmCtpGenjtrClustmgr	false	add state machines to launch dialogs
+	WznmCtpGenjtrDlgimp	false	add state machine to import dialog
+	WznmCtpGenjtrDlgloaini	false	add state machine to initialization data load dialog
+	WznmCtpGenjtrPrefs	false	modify slider limits
 	ImeIMOp.end
 cust	WznmCtpGenui	generate capability template-specific user interface	false
 	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
@@ -107,9 +109,38 @@ cust	WznmCtpGenui	generate capability template-specific user interface	false
 	wznmopd2
 	ImeIRMComponentMOppack.end
 	ImeIMOp.sref	Shrdat	Comment
-	WznmCtpGenuiAcv	false	prettify file card and add upload/download dialogs
-	WznmCtpGenuiDlgloaini	false	generate initialization load dialog
-	WznmCtpGenuiDlgimp	false	generate data import dialog
+	WznmCtpGenuiAcv	false	add create file/download dialogs
+	WznmCtpGenuiClustmgr	false	add system control panels and launch dialogs
+	WznmCtpGenuiDbeterm	false	add terminal panel
+	WznmCtpGenuiDlgimp	false	add import dialog
+	WznmCtpGenuiDlgloaini	false	add initialization data load dialog
+	WznmCtpGenuiPrefs	false	add preferences panels
+	ImeIMOp.end
+cust	WznmCtpWrsrv	write capability template-specific server code	false
+	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+	0	refWznmMCapability	ubigint
+	0	Prjshort	string
+	0	folder	string
+	ImeIAMOppackInvarg.end
+	ImeIMSquawk1.Title	Example
+		write capability template-specific server code for capability 'Acv (acv)' / implement upload/download dialogs
+		ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title
+		enus	write capability template-specific server code for capability '&StubWznmCpbStd;' / &optit;
+		ImeIJMSquawkTitle1.end
+		ImeIRMSquawkMStub1.srefRefWznmMStub
+		StubWznmCpbStd
+		ImeIRMSquawkMStub1.end
+	ImeIMSquawk1.end
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd2
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmCtpWrsrvAcv	false	implement create file/download dialogs
+	WznmCtpWrsrvClustmgr	false	implement system control panels and launch dialogs
+	WznmCtpWrsrvDbeterm	false	implement terminal panel
+	WznmCtpWrsrvDlgimp	false	implement import dialog
+	WznmCtpWrsrvDlgloaini	false	implement initialization data load dialog
+	WznmCtpWrsrvPrefs	false	implement preferences panels
 	ImeIMOp.end
 cust	WznmCtpWrstkit	write capability template-specific starter kit	false
 	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
@@ -132,29 +163,8 @@ cust	WznmCtpWrstkit	write capability template-specific starter kit	false
 	ImeIMOp.sref	Shrdat	Comment
 	WznmCtpWrstkitAcv	false	database and basic UI
 	WznmCtpWrstkitArm	false	database, basic UI and import/export 
-	ImeIMOp.end
-cust	WznmCtpWrsrv	write capability template-specific server code	false
-	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
-	0	refWznmMCapability	ubigint
-	0	Prjshort	string
-	0	folder	string
-	ImeIAMOppackInvarg.end
-	ImeIMSquawk1.Title	Example
-		write capability template-specific server code for capability 'Acv (acv)' / implement upload/download dialogs
-		ImeIJMSquawkTitle1.srefX1RefWznmMLocale	Title
-		enus	write capability template-specific server code for capability '&StubWznmCpbStd;' / &optit;
-		ImeIJMSquawkTitle1.end
-		ImeIRMSquawkMStub1.srefRefWznmMStub
-		StubWznmCpbStd
-		ImeIRMSquawkMStub1.end
-	ImeIMSquawk1.end
-	ImeIRMComponentMOppack.srefRefWznmMComponent
-	wznmopd2
-	ImeIRMComponentMOppack.end
-	ImeIMOp.sref	Shrdat	Comment
-	WznmCtpWrsrvAcv	false	implement upload/download dialogs
-	WznmCtpWrsrvDlgloaini	false	implement initialization load dialog
-	WznmCtpWrsrvDlgimp	false	implement data import dialog
+	WznmCtpWrstkitClustmgr	false	basic UI
+	WznmCtpWrstkitPrefs	false	basic UI
 	ImeIMOp.end
 cust	WznmCtpWrweb	write capability template-specific web UI code	false
 	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
@@ -174,6 +184,9 @@ cust	WznmCtpWrweb	write capability template-specific web UI code	false
 	ImeIRMComponentMOppack.srefRefWznmMComponent
 	wznmopd2
 	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmCtpWrwebDbeterm	false	modify data text field
+	ImeIMOp.end
 stat	WznmGen	generate	false
 	ImeIRMComponentMOppack.srefRefWznmMComponent
 	wznmopd1

@@ -55,12 +55,13 @@ RootWznm::RootWznm(
 
 	// IP constructor.spec2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMLOGOUT, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMSUSPSESS, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMLOGOUT, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
-	// IP constructor.spec3 --- INSERT
+	if (xchg->stgwznmappearance.roottterm != 0) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * xchg->stgwznmappearance.roottterm);
 };
 
 RootWznm::~RootWznm() {
@@ -572,6 +573,7 @@ void RootWznm::handleRequest(
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
 		if ((req->sref == "mon") && (ixVSge == VecVSge::IDLE)) handleTimerWithSrefMonInSgeIdle(dbswznm);
+		else if (req->sref == "warnterm") handleTimerWithSrefWarnterm(dbswznm);
 	};
 };
 
@@ -606,6 +608,8 @@ bool RootWznm::handleCreateSess(
 
 		cout << "\tjob reference: " << sess->jref << endl;
 		xchg->jrefCmd = sess->jref;
+
+		if ((xchg->stgwznmappearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwznmappearance.sesstterm - xchg->stgwznmappearance.sesstwarn));
 
 		xchg->appendToLogfile("command line session created for user '" + input + "'");
 
@@ -872,6 +876,8 @@ void RootWznm::handleDpchAppLogin(
 				sess = new SessWznm(xchg, dbswznm, jref, refUsr, ip);
 				sesss.push_back(sess);
 
+				if ((xchg->stgwznmappearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwznmappearance.sesstterm - xchg->stgwznmappearance.sesstwarn));
+
 				xchg->appendToLogfile("session created for user '" + dpchapplogin->username + "' from IP " + ip);
 
 				*dpcheng = new DpchEngWznmConfirm(true, sess->jref, "");
@@ -897,15 +903,96 @@ void RootWznm::handleTimerWithSrefMonInSgeIdle(
 	changeStage(dbswznm, VecVSge::IDLE); // IP handleTimerWithSrefMonInSgeIdle --- ILINE
 };
 
+void RootWznm::handleTimerWithSrefWarnterm(
+			DbsWznm* dbswznm
+		) {
+	SessWznm* sess = NULL;
+
+	time_t tlast;
+	time_t tnext = 0;
+
+	time_t rawtime;
+	time(&rawtime);
+
+	bool term;
+
+	if (xchg->stgwznmappearance.sesstterm != 0) {
+		for (auto it = sesss.begin(); it != sesss.end();) {
+			sess = *it;
+
+			term = false;
+
+			tlast = xchg->getRefPreset(VecWznmVPreset::PREWZNMTLAST, sess->jref);
+
+			if ((tlast + ((int) xchg->stgwznmappearance.sesstterm)) <= rawtime) term = true;
+			else if ((tlast + ((int) xchg->stgwznmappearance.sesstterm) - ((int) xchg->stgwznmappearance.sesstwarn)) <= rawtime) {
+				sess->warnTerm(dbswznm);
+				if ((tnext == 0) || ((tlast + ((int) xchg->stgwznmappearance.sesstterm)) < tnext)) tnext = tlast + ((int) xchg->stgwznmappearance.sesstterm);
+			} else if ((tnext == 0) || ((tlast + ((int) xchg->stgwznmappearance.sesstterm) - ((int) xchg->stgwznmappearance.sesstwarn)) < tnext)) tnext = tlast + xchg->stgwznmappearance.sesstterm - xchg->stgwznmappearance.sesstwarn;
+
+			if (term) {
+				sess->term(dbswznm);
+				it = sesss.erase(it);
+
+				delete sess;
+
+			} else it++;
+		};
+	};
+
+	term = false;
+
+	if (xchg->stgwznmappearance.roottterm != 0) {
+		tlast = xchg->getRefPreset(VecWznmVPreset::PREWZNMTLAST, jref);
+
+		if ((tlast + ((int) xchg->stgwznmappearance.roottterm)) <= rawtime) term = true;
+		else if ((tnext == 0) || ((tlast + ((int) xchg->stgwznmappearance.roottterm)) < tnext)) tnext = tlast + xchg->stgwznmappearance.roottterm;
+	};
+
+	if (term) {
+		cout << endl << "\tterminating due to inactivity" << endl;
+		kill(getpid(), SIGTERM);
+	} else if (tnext != 0) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (tnext - rawtime));
+};
+
 void RootWznm::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMLOGOUT) {
-		call->abort = handleCallWznmLogout(dbswznm, call->jref, call->argInv.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSUSPSESS) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMSUSPSESS) {
 		call->abort = handleCallWznmSuspsess(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
+		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOGOUT) {
+		call->abort = handleCallWznmLogout(dbswznm, call->jref, call->argInv.boolval);
 	};
+};
+
+bool RootWznm::handleCallWznmSuspsess(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	xchg->addBoolvalPreset(VecWznmVPreset::PREWZNMSUSPSESS, jrefTrig, true);
+	xchg->removeDcolsByJref(jrefTrig);
+
+	return retval;
+};
+
+bool RootWznm::handleCallWznmRefPreSet(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, const ubigint refInv
+		) {
+	bool retval = false;
+
+	if (ixInv == VecWznmVPreset::PREWZNMTLAST) {
+		xchg->addRefPreset(ixInv, jref, refInv);
+	};
+
+	return retval;
 };
 
 bool RootWznm::handleCallWznmLogout(
@@ -916,6 +1003,8 @@ bool RootWznm::handleCallWznmLogout(
 	bool retval = false;
 
 	SessWznm* sess = NULL;
+
+	time_t rawtime;
 
 	if (!boolvalInv) {
 		for (auto it = sesss.begin(); it != sesss.end();) {
@@ -928,19 +1017,12 @@ bool RootWznm::handleCallWznmLogout(
 				break;
 			} else it++;
 		};
+
+		if (xchg->stgwznmappearance.roottterm) {
+			time(&rawtime);
+			xchg->addRefPreset(VecWznmVPreset::PREWZNMTLAST, jref, rawtime);
+		};
 	};
-
-	return retval;
-};
-
-bool RootWznm::handleCallWznmSuspsess(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	xchg->addBoolvalPreset(VecWznmVPreset::PREWZNMSUSPSESS, jrefTrig, true);
-	xchg->removeDcolsByJref(jrefTrig);
 
 	return retval;
 };

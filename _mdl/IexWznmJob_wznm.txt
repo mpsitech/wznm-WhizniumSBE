@@ -17,3 +17,60 @@ JobWznmLicense	true	true
 		ImeIAMBlockItem.end
 	ImeIMBlock.end
 ImeIMJob.end
+ImeIMCapability.sref
+DlgWznmAppImpstr
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmApp	car
+	IexWznmApp	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmPrjImpex
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmPrj	car
+	IexWznmPrj	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmVerBscui
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmVer	car
+	IexWznmBui	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmVerCustjob
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmVer	car
+	IexWznmJob	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmVerCustjtr
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmVer	car
+	IexWznmJtr	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmVerCustui
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmVer	car
+	IexWznmUix	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmVerDbstr
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmVer	car
+	IexWznmDbs	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmVerDeploy
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmVer	car
+	IexWznmDpl	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmVerGlobal
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmVer	car
+	IexWznmGbl	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmVerImpexp
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmVer	car
+	IexWznmIex	iex
+	ImeIRMCapabilityUniversal.end
+DlgWznmVerOppack
+	ImeIRMCapabilityUniversal.srefUnvUref	srefKKey
+	CrdWznmVer	car
+	IexWznmOpk	iex
+	ImeIRMCapabilityUniversal.end
+ImeIMCapability.end

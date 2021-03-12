@@ -43,6 +43,27 @@ WznmQRtjList::WznmQRtjList(
 	this->stubRefWznmMJob = stubRefWznmMJob;
 };
 
+void WznmQRtjList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["app"] = stubRefWznmMApp;
+		me["sup"] = stubSupRefWznmMRtjob;
+		me["job"] = stubRefWznmMJob;
+	} else {
+		me["sref"] = sref;
+		me["stubRefWznmMApp"] = stubRefWznmMApp;
+		me["stubSupRefWznmMRtjob"] = stubSupRefWznmMRtjob;
+		me["stubRefWznmMJob"] = stubRefWznmMJob;
+	};
+};
+
 void WznmQRtjList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -114,6 +135,16 @@ ListWznmQRtjList& ListWznmQRtjList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQRtjList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQRtjList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQRtjList::writeXML(

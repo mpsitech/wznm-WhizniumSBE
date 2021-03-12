@@ -63,6 +63,41 @@ WznmQCalList::WznmQCalList(
 	this->titsRetIxWznmWArgtype = titsRetIxWznmWArgtype;
 };
 
+void WznmQCalList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["ver"] = stubRefWznmMVersion;
+		me["ret"] = srefRefIxVTbl;
+		me["ret2"] = titRefIxVTbl;
+		me["reu"] = stubRefUref;
+		me["iat"] = srefsInvIxWznmWArgtype;
+		me["iat2"] = titsInvIxWznmWArgtype;
+		me["rat"] = srefsRetIxWznmWArgtype;
+		me["rat2"] = titsRetIxWznmWArgtype;
+	} else {
+		me["sref"] = sref;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["stubRefWznmMVersion"] = stubRefWznmMVersion;
+		me["srefRefIxVTbl"] = srefRefIxVTbl;
+		me["titRefIxVTbl"] = titRefIxVTbl;
+		me["stubRefUref"] = stubRefUref;
+		me["srefsInvIxWznmWArgtype"] = srefsInvIxWznmWArgtype;
+		me["titsInvIxWznmWArgtype"] = titsInvIxWznmWArgtype;
+		me["srefsRetIxWznmWArgtype"] = srefsRetIxWznmWArgtype;
+		me["titsRetIxWznmWArgtype"] = titsRetIxWznmWArgtype;
+	};
+};
+
 void WznmQCalList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -148,6 +183,16 @@ ListWznmQCalList& ListWznmQCalList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQCalList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQCalList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQCalList::writeXML(

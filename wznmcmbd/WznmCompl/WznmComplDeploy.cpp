@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmCompl;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmComplDeploy
  ******************************************************************************/
@@ -249,6 +251,9 @@ DpchRetWznm* WznmComplDeploy::run(
 
 					dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "histlength", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "20", 0, "");
 					dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "suspsess", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "true", 0, "");
+					dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "sesstterm", VecWznmVVartype::UINT, 0, 0, 0, 0, 0, 0, "0", 0, "");
+					dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "sesstwarn", VecWznmVVartype::UINT, 0, 0, 0, 0, 0, 0, "0", 0, "");
+					dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "roottterm", VecWznmVVartype::UINT, 0, 0, 0, 0, 0, 0, "0", 0, "");
 
 					delete blk;
 				};

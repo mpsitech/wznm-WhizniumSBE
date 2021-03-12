@@ -47,6 +47,31 @@ WznmQStbList::WznmQStbList(
 	this->Example = Example;
 };
 
+void WznmQStbList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["tbl"] = stubRefWznmMTable;
+		me["sbs"] = stubRefWznmMSubset;
+		me["exa"] = Example;
+	} else {
+		me["sref"] = sref;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["stubRefWznmMTable"] = stubRefWznmMTable;
+		me["stubRefWznmMSubset"] = stubRefWznmMSubset;
+		me["Example"] = Example;
+	};
+};
+
 void WznmQStbList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -122,6 +147,16 @@ ListWznmQStbList& ListWznmQStbList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQStbList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQStbList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQStbList::writeXML(

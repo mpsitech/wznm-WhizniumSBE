@@ -49,6 +49,35 @@ WznmQTblALoadfct::WznmQTblALoadfct(
 	this->titIxVLimtype = titIxVLimtype;
 };
 
+void WznmQTblALoadfct::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["lot"] = srefIxVLoadtype;
+		me["lot2"] = titIxVLoadtype;
+		me["fna"] = Fctname;
+		me["ldx"] = ldSrefWznmMTablecol;
+		me["lby"] = lbySrefsWznmMTablecol;
+		me["ord"] = ordSrefsWznmMTablecol;
+		me["lit"] = srefIxVLimtype;
+		me["lit2"] = titIxVLimtype;
+	} else {
+		me["srefIxVLoadtype"] = srefIxVLoadtype;
+		me["titIxVLoadtype"] = titIxVLoadtype;
+		me["Fctname"] = Fctname;
+		me["ldSrefWznmMTablecol"] = ldSrefWznmMTablecol;
+		me["lbySrefsWznmMTablecol"] = lbySrefsWznmMTablecol;
+		me["ordSrefsWznmMTablecol"] = ordSrefsWznmMTablecol;
+		me["srefIxVLimtype"] = srefIxVLimtype;
+		me["titIxVLimtype"] = titIxVLimtype;
+	};
+};
+
 void WznmQTblALoadfct::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -128,6 +157,16 @@ ListWznmQTblALoadfct& ListWznmQTblALoadfct::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQTblALoadfct::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQTblALoadfct";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQTblALoadfct::writeXML(

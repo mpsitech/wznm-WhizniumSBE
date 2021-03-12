@@ -19,6 +19,8 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrdbs
  ******************************************************************************/
@@ -107,12 +109,12 @@ void WznmWrdbs::writeVecH(
 		if (apdfed) {
 			outfile << pre << "void appendToFeed(const Sbecore::uint ix";
 			if (!noloc) outfile << ", const Sbecore::uint ix" << Prjshort << "VLocale";
-			outfile << ", Sbecore::Xmlio::Feed& feed);" << endl;
+			outfile << ", Sbecore::Feed& feed);" << endl;
 		};
 		if (filfed) {
 			outfile << pre << "void fillFeed(";
 			if (!noloc) outfile << "const Sbecore::uint ix" << Prjshort << "VLocale, ";
-			outfile << "Sbecore::Xmlio::Feed& feed);" << endl;
+			outfile << "Sbecore::Feed& feed);" << endl;
 		};
 	};
 

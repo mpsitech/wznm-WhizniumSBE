@@ -14,12 +14,12 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmLibDetail.h"
+#include "PnlWznmLibMNComponent.h"
+#include "PnlWznmLibMNOppack.h"
+#include "PnlWznmLibRef1NFile.h"
 #include "PnlWznmLibAMakefile.h"
 #include "PnlWznmLibAPkglist.h"
-#include "PnlWznmLibRef1NFile.h"
-#include "PnlWznmLibMNOppack.h"
-#include "PnlWznmLibMNComponent.h"
+#include "PnlWznmLibDetail.h"
 
 #define VecVWznmLibRecDo PnlWznmLibRec::VecVDo
 
@@ -53,7 +53,7 @@ public:
 	/**
 	  * ContInf (full: ContInfWznmLibRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -65,6 +65,7 @@ public:
 		std::string TxtRef;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInf* comp);
 		std::set<Sbecore::uint> diff(const ContInf* comp);
@@ -76,38 +77,40 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAMakefile = false, const bool initdoneAPkglist = false, const bool initdoneRef1NFile = false, const bool initdoneMNOppack = false, const bool initdoneMNComponent = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneAPkglist = false, const bool initdoneAMakefile = false, const bool initdoneRef1NFile = false, const bool initdoneMNOppack = false, const bool initdoneMNComponent = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAPkglist = false, const bool initdoneAMakefile = false, const bool initdoneRef1NFile = false, const bool initdoneMNOppack = false, const bool initdoneMNComponent = false);
 	};
 
 	/**
 		* StatShr (full: StatShrWznmLibRec)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFAMAKEFILE = 3;
-		static const Sbecore::uint JREFAPKGLIST = 4;
+		static const Sbecore::uint JREFAPKGLIST = 3;
+		static const Sbecore::uint JREFAMAKEFILE = 4;
 		static const Sbecore::uint JREFREF1NFILE = 5;
 		static const Sbecore::uint JREFMNOPPACK = 6;
 		static const Sbecore::uint JREFMNCOMPONENT = 7;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 8;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAMakefile = 0, const Sbecore::ubigint jrefAPkglist = 0, const Sbecore::ubigint jrefRef1NFile = 0, const Sbecore::ubigint jrefMNOppack = 0, const Sbecore::ubigint jrefMNComponent = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAPkglist = 0, const Sbecore::ubigint jrefAMakefile = 0, const Sbecore::ubigint jrefRef1NFile = 0, const Sbecore::ubigint jrefMNOppack = 0, const Sbecore::ubigint jrefMNComponent = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefAMakefile;
 		Sbecore::ubigint jrefAPkglist;
+		Sbecore::ubigint jrefAMakefile;
 		Sbecore::ubigint jrefRef1NFile;
 		Sbecore::ubigint jrefMNOppack;
 		Sbecore::ubigint jrefMNComponent;
 		bool ButRegularizeActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -119,6 +122,7 @@ public:
 	class Tag {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -140,6 +144,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -167,6 +172,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
@@ -180,12 +186,12 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmLibDetail* pnldetail;
+	PnlWznmLibMNComponent* pnlmncomponent;
+	PnlWznmLibMNOppack* pnlmnoppack;
+	PnlWznmLibRef1NFile* pnlref1nfile;
 	PnlWznmLibAMakefile* pnlamakefile;
 	PnlWznmLibAPkglist* pnlapkglist;
-	PnlWznmLibRef1NFile* pnlref1nfile;
-	PnlWznmLibMNOppack* pnlmnoppack;
-	PnlWznmLibMNComponent* pnlmncomponent;
+	PnlWznmLibDetail* pnldetail;
 
 	WznmMLibrary recLib;
 

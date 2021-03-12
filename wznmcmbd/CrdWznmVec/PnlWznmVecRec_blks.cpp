@@ -49,6 +49,17 @@ PnlWznmVecRec::ContInf::ContInf(
 	mask = {TXTREF};
 };
 
+void PnlWznmVecRec::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWznmVecRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxtRef"] = TxtRef;
+};
+
 void PnlWznmVecRec::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -93,6 +104,32 @@ set<uint> PnlWznmVecRec::ContInf::diff(
  class PnlWznmVecRec::StatApp
  ******************************************************************************/
 
+void PnlWznmVecRec::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const bool initdoneDetail
+			, const bool initdoneATitle
+			, const bool initdoneVec1NVectoritem
+			, const bool initdoneRef1NPanel
+			, const bool initdoneFct1NTablecol
+			, const bool initdoneSrc1NFeed
+			, const bool initdonePst1NQuerymod
+			, const bool initdoneMNTable
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmVecRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["initdoneDetail"] = initdoneDetail;
+	me["initdoneATitle"] = initdoneATitle;
+	me["initdoneVec1NVectoritem"] = initdoneVec1NVectoritem;
+	me["initdoneRef1NPanel"] = initdoneRef1NPanel;
+	me["initdoneFct1NTablecol"] = initdoneFct1NTablecol;
+	me["initdoneSrc1NFeed"] = initdoneSrc1NFeed;
+	me["initdonePst1NQuerymod"] = initdonePst1NQuerymod;
+	me["initdoneMNTable"] = initdoneMNTable;
+};
+
 void PnlWznmVecRec::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -100,9 +137,9 @@ void PnlWznmVecRec::StatApp::writeXML(
 			, const bool initdoneDetail
 			, const bool initdoneATitle
 			, const bool initdoneVec1NVectoritem
-			, const bool initdoneSrc1NFeed
 			, const bool initdoneRef1NPanel
 			, const bool initdoneFct1NTablecol
+			, const bool initdoneSrc1NFeed
 			, const bool initdonePst1NQuerymod
 			, const bool initdoneMNTable
 		) {
@@ -116,9 +153,9 @@ void PnlWznmVecRec::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneATitle", initdoneATitle);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneVec1NVectoritem", initdoneVec1NVectoritem);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneSrc1NFeed", initdoneSrc1NFeed);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NPanel", initdoneRef1NPanel);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneFct1NTablecol", initdoneFct1NTablecol);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneSrc1NFeed", initdoneSrc1NFeed);
 		writeBoolAttr(wr, itemtag, "sref", "initdonePst1NQuerymod", initdonePst1NQuerymod);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNTable", initdoneMNTable);
 	xmlTextWriterEndElement(wr);
@@ -133,10 +170,10 @@ PnlWznmVecRec::StatShr::StatShr(
 			, const ubigint jrefDetail
 			, const ubigint jrefATitle
 			, const ubigint jrefVec1NVectoritem
-			, const ubigint jrefSrc1NFeed
 			, const ubigint jrefRef1NPanel
 			, const ubigint jrefFct1NTablecol
 			, const bool pnlfct1ntablecolAvail
+			, const ubigint jrefSrc1NFeed
 			, const ubigint jrefPst1NQuerymod
 			, const bool pnlpst1nquerymodAvail
 			, const ubigint jrefMNTable
@@ -149,17 +186,40 @@ PnlWznmVecRec::StatShr::StatShr(
 	this->jrefDetail = jrefDetail;
 	this->jrefATitle = jrefATitle;
 	this->jrefVec1NVectoritem = jrefVec1NVectoritem;
-	this->jrefSrc1NFeed = jrefSrc1NFeed;
 	this->jrefRef1NPanel = jrefRef1NPanel;
 	this->jrefFct1NTablecol = jrefFct1NTablecol;
 	this->pnlfct1ntablecolAvail = pnlfct1ntablecolAvail;
+	this->jrefSrc1NFeed = jrefSrc1NFeed;
 	this->jrefPst1NQuerymod = jrefPst1NQuerymod;
 	this->pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
 	this->jrefMNTable = jrefMNTable;
 	this->pnlmntableAvail = pnlmntableAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFVEC1NVECTORITEM, JREFSRC1NFEED, JREFREF1NPANEL, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFVEC1NVECTORITEM, JREFREF1NPANEL, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFSRC1NFEED, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
+};
+
+void PnlWznmVecRec::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmVecRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
+	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
+	me["scrJrefATitle"] = Scr::scramble(jrefATitle);
+	me["scrJrefVec1NVectoritem"] = Scr::scramble(jrefVec1NVectoritem);
+	me["scrJrefRef1NPanel"] = Scr::scramble(jrefRef1NPanel);
+	me["scrJrefFct1NTablecol"] = Scr::scramble(jrefFct1NTablecol);
+	me["pnlfct1ntablecolAvail"] = pnlfct1ntablecolAvail;
+	me["scrJrefSrc1NFeed"] = Scr::scramble(jrefSrc1NFeed);
+	me["scrJrefPst1NQuerymod"] = Scr::scramble(jrefPst1NQuerymod);
+	me["pnlpst1nquerymodAvail"] = pnlpst1nquerymodAvail;
+	me["scrJrefMNTable"] = Scr::scramble(jrefMNTable);
+	me["pnlmntableAvail"] = pnlmntableAvail;
+	me["ButRegularizeActive"] = ButRegularizeActive;
 };
 
 void PnlWznmVecRec::StatShr::writeXML(
@@ -178,10 +238,10 @@ void PnlWznmVecRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefATitle", Scr::scramble(jrefATitle));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefVec1NVectoritem", Scr::scramble(jrefVec1NVectoritem));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefSrc1NFeed", Scr::scramble(jrefSrc1NFeed));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NPanel", Scr::scramble(jrefRef1NPanel));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefFct1NTablecol", Scr::scramble(jrefFct1NTablecol));
 		writeBoolAttr(wr, itemtag, "sref", "pnlfct1ntablecolAvail", pnlfct1ntablecolAvail);
+		writeStringAttr(wr, itemtag, "sref", "scrJrefSrc1NFeed", Scr::scramble(jrefSrc1NFeed));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefPst1NQuerymod", Scr::scramble(jrefPst1NQuerymod));
 		writeBoolAttr(wr, itemtag, "sref", "pnlpst1nquerymodAvail", pnlpst1nquerymodAvail);
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNTable", Scr::scramble(jrefMNTable));
@@ -199,10 +259,10 @@ set<uint> PnlWznmVecRec::StatShr::comm(
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
 	if (jrefATitle == comp->jrefATitle) insert(items, JREFATITLE);
 	if (jrefVec1NVectoritem == comp->jrefVec1NVectoritem) insert(items, JREFVEC1NVECTORITEM);
-	if (jrefSrc1NFeed == comp->jrefSrc1NFeed) insert(items, JREFSRC1NFEED);
 	if (jrefRef1NPanel == comp->jrefRef1NPanel) insert(items, JREFREF1NPANEL);
 	if (jrefFct1NTablecol == comp->jrefFct1NTablecol) insert(items, JREFFCT1NTABLECOL);
 	if (pnlfct1ntablecolAvail == comp->pnlfct1ntablecolAvail) insert(items, PNLFCT1NTABLECOLAVAIL);
+	if (jrefSrc1NFeed == comp->jrefSrc1NFeed) insert(items, JREFSRC1NFEED);
 	if (jrefPst1NQuerymod == comp->jrefPst1NQuerymod) insert(items, JREFPST1NQUERYMOD);
 	if (pnlpst1nquerymodAvail == comp->pnlpst1nquerymodAvail) insert(items, PNLPST1NQUERYMODAVAIL);
 	if (jrefMNTable == comp->jrefMNTable) insert(items, JREFMNTABLE);
@@ -220,7 +280,7 @@ set<uint> PnlWznmVecRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFVEC1NVECTORITEM, JREFSRC1NFEED, JREFREF1NPANEL, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFVEC1NVECTORITEM, JREFREF1NPANEL, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFSRC1NFEED, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -229,6 +289,20 @@ set<uint> PnlWznmVecRec::StatShr::diff(
 /******************************************************************************
  class PnlWznmVecRec::Tag
  ******************************************************************************/
+
+void PnlWznmVecRec::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmVecRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["Cpt"] = "Vector";
+	};
+};
 
 void PnlWznmVecRec::Tag::writeXML(
 			const uint ixWznmVLocale
@@ -269,6 +343,26 @@ string PnlWznmVecRec::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmVecRec::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmVecRecDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWznmVecRec::DpchAppDo::readXML(
@@ -345,6 +439,19 @@ void PnlWznmVecRec::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmVecRec::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmVecRecData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmVecRec::DpchEngData::writeXML(

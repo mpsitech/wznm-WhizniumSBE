@@ -33,6 +33,23 @@ WznmQQryAOrder::WznmQQryAOrder(
 	this->srefsWznmMTablecol = srefsWznmMTablecol;
 };
 
+void WznmQQryAOrder::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["sho"] = Short;
+		me["tco"] = srefsWznmMTablecol;
+	} else {
+		me["Short"] = Short;
+		me["srefsWznmMTablecol"] = srefsWznmMTablecol;
+	};
+};
+
 void WznmQQryAOrder::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -100,6 +117,16 @@ ListWznmQQryAOrder& ListWznmQQryAOrder::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQQryAOrder::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQQryAOrder";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQQryAOrder::writeXML(

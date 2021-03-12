@@ -43,6 +43,29 @@ WznmQUsrAAccess::WznmQUsrAAccess(
 	this->titsIxWznmWAccess = titsIxWznmWAccess;
 };
 
+void WznmQUsrAAccess::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["feg"] = srefX1IxWznmVFeatgroup;
+		me["feg2"] = titX1IxWznmVFeatgroup;
+		me["fea"] = x2FeaSrefUix;
+		me["acc"] = srefsIxWznmWAccess;
+		me["acc2"] = titsIxWznmWAccess;
+	} else {
+		me["srefX1IxWznmVFeatgroup"] = srefX1IxWznmVFeatgroup;
+		me["titX1IxWznmVFeatgroup"] = titX1IxWznmVFeatgroup;
+		me["x2FeaSrefUix"] = x2FeaSrefUix;
+		me["srefsIxWznmWAccess"] = srefsIxWznmWAccess;
+		me["titsIxWznmWAccess"] = titsIxWznmWAccess;
+	};
+};
+
 void WznmQUsrAAccess::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -116,6 +139,16 @@ ListWznmQUsrAAccess& ListWznmQUsrAAccess::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQUsrAAccess::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQUsrAAccess";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQUsrAAccess::writeXML(

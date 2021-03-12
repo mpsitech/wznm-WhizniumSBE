@@ -65,7 +65,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWznmVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Feed& feed);
 	};
 
 	/**
@@ -117,13 +117,13 @@ public:
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
 
-		static void fillFeed(Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(Sbecore::Feed& feed);
 	};
 
 	/**
 	  * ContIac (full: ContIacDlgWznmUtlMrgip)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFDSE = 1;
@@ -135,7 +135,9 @@ public:
 		Sbecore::uint numFDse;
 
 	public:
+		bool readJSON(Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContIac* comp);
 		std::set<Sbecore::uint> diff(const ContIac* comp);
@@ -144,7 +146,7 @@ public:
 	/**
 	  * ContInf (full: ContInfDlgWznmUtlMrgip)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -156,6 +158,7 @@ public:
 		Sbecore::uint numFSge;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInf* comp);
 		std::set<Sbecore::uint> diff(const ContInf* comp);
@@ -164,7 +167,7 @@ public:
 	/**
 	  * ContInfLfi (full: ContInfDlgWznmUtlMrgipLfi)
 	  */
-	class ContInfLfi : public Sbecore::Xmlio::Block {
+	class ContInfLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -176,6 +179,7 @@ public:
 		std::string Dld;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInfLfi* comp);
 		std::set<Sbecore::uint> diff(const ContInfLfi* comp);
@@ -184,7 +188,7 @@ public:
 	/**
 	  * ContInfMrg (full: ContInfDlgWznmUtlMrgipMrg)
 	  */
-	class ContInfMrg : public Sbecore::Xmlio::Block {
+	class ContInfMrg : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTPRG = 1;
@@ -196,6 +200,7 @@ public:
 		std::string TxtPrg;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInfMrg* comp);
 		std::set<Sbecore::uint> diff(const ContInfMrg* comp);
@@ -204,7 +209,7 @@ public:
 	/**
 	  * ContInfRes (full: ContInfDlgWznmUtlMrgipRes)
 	  */
-	class ContInfRes : public Sbecore::Xmlio::Block {
+	class ContInfRes : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -216,6 +221,7 @@ public:
 		std::string Dld;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInfRes* comp);
 		std::set<Sbecore::uint> diff(const ContInfRes* comp);
@@ -227,13 +233,14 @@ public:
 	class StatApp {
 
 	public:
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdone = false, const std::string& shortMenu = "");
 		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdone = false, const std::string& shortMenu = "");
 	};
 
 	/**
 		* StatShr (full: StatShrDlgWznmUtlMrgip)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTDNEACTIVE = 1;
@@ -245,6 +252,7 @@ public:
 		bool ButDneActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -253,7 +261,7 @@ public:
 	/**
 		* StatShrLfi (full: StatShrDlgWznmUtlMrgipLfi)
 		*/
-	class StatShrLfi : public Sbecore::Xmlio::Block {
+	class StatShrLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLDACTIVE = 1;
@@ -265,6 +273,7 @@ public:
 		bool DldActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShrLfi* comp);
 		std::set<Sbecore::uint> diff(const StatShrLfi* comp);
@@ -273,7 +282,7 @@ public:
 	/**
 		* StatShrMrg (full: StatShrDlgWznmUtlMrgipMrg)
 		*/
-	class StatShrMrg : public Sbecore::Xmlio::Block {
+	class StatShrMrg : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTRUNACTIVE = 1;
@@ -287,6 +296,7 @@ public:
 		bool ButStoActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShrMrg* comp);
 		std::set<Sbecore::uint> diff(const StatShrMrg* comp);
@@ -295,7 +305,7 @@ public:
 	/**
 		* StatShrRes (full: StatShrDlgWznmUtlMrgipRes)
 		*/
-	class StatShrRes : public Sbecore::Xmlio::Block {
+	class StatShrRes : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLDACTIVE = 1;
@@ -307,6 +317,7 @@ public:
 		bool DldActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShrRes* comp);
 		std::set<Sbecore::uint> diff(const StatShrRes* comp);
@@ -315,7 +326,7 @@ public:
 	/**
 		* StatShrSrc (full: StatShrDlgWznmUtlMrgipSrc)
 		*/
-	class StatShrSrc : public Sbecore::Xmlio::Block {
+	class StatShrSrc : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint ULDACTIVE = 1;
@@ -327,6 +338,7 @@ public:
 		bool UldActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShrSrc* comp);
 		std::set<Sbecore::uint> diff(const StatShrSrc* comp);
@@ -335,7 +347,7 @@ public:
 	/**
 		* StatShrTrg (full: StatShrDlgWznmUtlMrgipTrg)
 		*/
-	class StatShrTrg : public Sbecore::Xmlio::Block {
+	class StatShrTrg : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint ULDACTIVE = 1;
@@ -347,6 +359,7 @@ public:
 		bool UldActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShrTrg* comp);
 		std::set<Sbecore::uint> diff(const StatShrTrg* comp);
@@ -358,6 +371,7 @@ public:
 	class Tag {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -367,6 +381,7 @@ public:
 	class TagLfi {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -376,6 +391,7 @@ public:
 	class TagMrg {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -385,6 +401,7 @@ public:
 	class TagRes {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -394,6 +411,7 @@ public:
 	class TagSrc {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -403,6 +421,7 @@ public:
 	class TagTrg {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -424,6 +443,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -447,6 +467,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -480,7 +501,7 @@ public:
 		static const Sbecore::uint ALL = 22;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContInf* continf = NULL, ContInfLfi* continflfi = NULL, ContInfMrg* continfmrg = NULL, ContInfRes* continfres = NULL, Sbecore::Xmlio::Feed* feedFDse = NULL, Sbecore::Xmlio::Feed* feedFSge = NULL, StatShr* statshr = NULL, StatShrLfi* statshrlfi = NULL, StatShrMrg* statshrmrg = NULL, StatShrRes* statshrres = NULL, StatShrSrc* statshrsrc = NULL, StatShrTrg* statshrtrg = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, ContInf* continf = NULL, ContInfLfi* continflfi = NULL, ContInfMrg* continfmrg = NULL, ContInfRes* continfres = NULL, Sbecore::Feed* feedFDse = NULL, Sbecore::Feed* feedFSge = NULL, StatShr* statshr = NULL, StatShrLfi* statshrlfi = NULL, StatShrMrg* statshrmrg = NULL, StatShrRes* statshrres = NULL, StatShrSrc* statshrsrc = NULL, StatShrTrg* statshrtrg = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContIac contiac;
@@ -488,8 +509,8 @@ public:
 		ContInfLfi continflfi;
 		ContInfMrg continfmrg;
 		ContInfRes continfres;
-		Sbecore::Xmlio::Feed feedFDse;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFDse;
+		Sbecore::Feed feedFSge;
 		StatShr statshr;
 		StatShrLfi statshrlfi;
 		StatShrMrg statshrmrg;
@@ -501,16 +522,17 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalSrcUldActive(DbsWznm* dbswznm);
-	bool evalTrgUldActive(DbsWznm* dbswznm);
-	bool evalMrgButRunActive(DbsWznm* dbswznm);
-	bool evalMrgButStoActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalResDldActive(DbsWznm* dbswznm);
-	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalMrgButRunActive(DbsWznm* dbswznm);
+	bool evalMrgButStoActive(DbsWznm* dbswznm);
+	bool evalTrgUldActive(DbsWznm* dbswznm);
+	bool evalSrcUldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmUtlMrgip(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -529,9 +551,9 @@ public:
 	StatShrSrc statshrsrc;
 	StatShrTrg statshrtrg;
 
-	Sbecore::Xmlio::Feed feedFMcbAlert;
-	Sbecore::Xmlio::Feed feedFDse;
-	Sbecore::Xmlio::Feed feedFSge;
+	Sbecore::Feed feedFMcbAlert;
+	Sbecore::Feed feedFDse;
+	Sbecore::Feed feedFSge;
 
 	Sbecore::uint ixVDit;
 
@@ -577,18 +599,18 @@ private:
 	void handleDpchAppDoMrgButStoClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
-	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
-	void handleUploadInSgeSupdone(DbsWznm* dbswznm, const std::string& filename);
 	void handleUploadInSgeSuldone(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeSupdone(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerInSgeSupidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeTupidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeSupidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

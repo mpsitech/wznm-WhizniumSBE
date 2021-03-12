@@ -34,9 +34,11 @@ namespace WznmWrsrv {
 	void wrVarDeclH(std::fstream& outfile, const Sbecore::uint ixWznmVVartype, const std::string& sref, const unsigned int il);
 	void wrBitvarConstrhdrCpp(std::fstream& outfile, WznmAMBlockItem* bit, const bool scrsimple = false);
 	void wrBitvarConstrCpp(std::fstream& outfile, WznmAMBlockItem* bit);
+	void wrBitvarReadjsonCpp(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmAMBlockItem* bit);
 	void wrBitvarReadxmlCpp(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmAMBlockItem* bit, const bool attr, const std::string& shorttag, const bool scrsimple = false);
 	void wrBitvarWritexmlH(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmAMBlockItem* bit);
 	void wrBitvarWritexmlhdrCpp(std::fstream& outfile, WznmAMBlockItem* bit);
+	void wrBitvarWritejsonCpp(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmAMBlockItem* bit, const bool mask);
 	void wrBitvarWritexmlCpp(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmAMBlockItem* bit, const bool mask, const bool attr, const bool scrsimple = false);
 	void wrBitvarCompareCpp(std::fstream& outfile, WznmAMBlockItem* bit);
 
@@ -47,6 +49,8 @@ namespace WznmWrsrv {
 	std::string getCaleval(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort, ListWznmMTable& rectbls, Sbecore::Expr::Node* node, const bool reta, const std::string& chkaltjref = "");
 	std::string getChkeval(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, const std::string& Prjshort, ListWznmMTable& rectbls, Sbecore::Expr::Node* node, WznmMCall* cal, const bool reta, const std::string& altjref = "");
 
+	void wrReaddpchappCpp(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, ListWznmMBlock& blks, const bool jsonNotXml);
+
 	void wrGetnewdpchengCpp(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, ListWznmAMBlockItem& bits, WznmMJob* job, ListWznmMBlock& jobblks, ListWznmRMJobMJob& jrjs);
 
 	void wrAlrCpp(DbsWznm* dbswznm, const std::string& orgname, const std::string& Prjshort, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion, WznmMControl* alrcon, std::set<std::string>& plhs);
@@ -56,6 +60,8 @@ namespace WznmWrsrv {
 	void wrAlrCpp_abtlibini(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, std::set<Sbecore::ubigint>& refsLib);
 	std::string wrAlrCpp_abtlib(DbsWznm* dbswznm, std::set<Sbecore::ubigint>& refsLib, const std::string& _and, const std::string& libs);
 	void wrAlrCpp_abt123(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMVersion, const Sbecore::ubigint refLcl, std::string& abt1, std::string& abt2, std::string& abt3);
+
+	void wrAlrTrmCpp_dtToString(const std::string& Prjshort, std::fstream& outfile, WznmMControl* con);
 
 	void getAlrplhs(DbsWznm* dbswznm, const Sbecore::ubigint refAlr, std::set<std::string>& plhs);
 	std::string getBlkclass(DbsWznm* dbswznm, WznmMJob* job, WznmMBlock* blk);

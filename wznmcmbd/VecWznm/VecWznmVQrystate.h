@@ -26,7 +26,7 @@ namespace VecWznmVQrystate {
 
 	std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWznmVLocale);
 
-	void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Xmlio::Feed& feed);
+	void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Feed& feed);
 };
 
 #endif

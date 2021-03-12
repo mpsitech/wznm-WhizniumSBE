@@ -28,10 +28,10 @@ namespace QryWznmCarList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint SRF = 1;
+		static const Sbecore::uint REU = 1;
 		static const Sbecore::uint MDL = 2;
 		static const Sbecore::uint RET = 3;
-		static const Sbecore::uint REU = 4;
+		static const Sbecore::uint SRF = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -40,7 +40,7 @@ namespace QryWznmCarList {
 	/**
 	  * StatApp (full: StatAppQryWznmCarList)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -66,7 +66,7 @@ namespace QryWznmCarList {
 	/**
 	  * StatShr (full: StatShrQryWznmCarList)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -90,7 +90,7 @@ namespace QryWznmCarList {
 	/**
 	  * StgIac (full: StgIacQryWznmCarList)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

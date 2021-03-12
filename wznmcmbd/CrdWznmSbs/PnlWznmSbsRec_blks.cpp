@@ -49,6 +49,17 @@ PnlWznmSbsRec::ContInf::ContInf(
 	mask = {TXTREF};
 };
 
+void PnlWznmSbsRec::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWznmSbsRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxtRef"] = TxtRef;
+};
+
 void PnlWznmSbsRec::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -93,16 +104,44 @@ set<uint> PnlWznmSbsRec::ContInf::diff(
  class PnlWznmSbsRec::StatApp
  ******************************************************************************/
 
+void PnlWznmSbsRec::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const bool initdoneDetail
+			, const bool initdoneATitle
+			, const bool initdone1NStub
+			, const bool initdoneFrs1NRelation
+			, const bool initdoneTos1NRelation
+			, const bool initdone1NTablecol
+			, const bool initdonePst1NQuerymod
+			, const bool initdoneAsbMNSubset
+			, const bool initdoneBsbMNSubset
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmSbsRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["initdoneDetail"] = initdoneDetail;
+	me["initdoneATitle"] = initdoneATitle;
+	me["initdone1NStub"] = initdone1NStub;
+	me["initdoneFrs1NRelation"] = initdoneFrs1NRelation;
+	me["initdoneTos1NRelation"] = initdoneTos1NRelation;
+	me["initdone1NTablecol"] = initdone1NTablecol;
+	me["initdonePst1NQuerymod"] = initdonePst1NQuerymod;
+	me["initdoneAsbMNSubset"] = initdoneAsbMNSubset;
+	me["initdoneBsbMNSubset"] = initdoneBsbMNSubset;
+};
+
 void PnlWznmSbsRec::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
 			, const bool initdoneATitle
+			, const bool initdone1NStub
 			, const bool initdoneFrs1NRelation
 			, const bool initdoneTos1NRelation
 			, const bool initdone1NTablecol
-			, const bool initdone1NStub
 			, const bool initdonePst1NQuerymod
 			, const bool initdoneAsbMNSubset
 			, const bool initdoneBsbMNSubset
@@ -116,10 +155,10 @@ void PnlWznmSbsRec::StatApp::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneATitle", initdoneATitle);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NStub", initdone1NStub);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneFrs1NRelation", initdoneFrs1NRelation);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneTos1NRelation", initdoneTos1NRelation);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NTablecol", initdone1NTablecol);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NStub", initdone1NStub);
 		writeBoolAttr(wr, itemtag, "sref", "initdonePst1NQuerymod", initdonePst1NQuerymod);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneAsbMNSubset", initdoneAsbMNSubset);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneBsbMNSubset", initdoneBsbMNSubset);
@@ -134,10 +173,10 @@ PnlWznmSbsRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
 			, const ubigint jrefATitle
+			, const ubigint jref1NStub
 			, const ubigint jrefFrs1NRelation
 			, const ubigint jrefTos1NRelation
 			, const ubigint jref1NTablecol
-			, const ubigint jref1NStub
 			, const ubigint jrefPst1NQuerymod
 			, const bool pnlpst1nquerymodAvail
 			, const ubigint jrefAsbMNSubset
@@ -149,17 +188,39 @@ PnlWznmSbsRec::StatShr::StatShr(
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
 	this->jrefATitle = jrefATitle;
+	this->jref1NStub = jref1NStub;
 	this->jrefFrs1NRelation = jrefFrs1NRelation;
 	this->jrefTos1NRelation = jrefTos1NRelation;
 	this->jref1NTablecol = jref1NTablecol;
-	this->jref1NStub = jref1NStub;
 	this->jrefPst1NQuerymod = jrefPst1NQuerymod;
 	this->pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
 	this->jrefAsbMNSubset = jrefAsbMNSubset;
 	this->jrefBsbMNSubset = jrefBsbMNSubset;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFFRS1NRELATION, JREFTOS1NRELATION, JREF1NTABLECOL, JREF1NSTUB, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFASBMNSUBSET, JREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREF1NSTUB, JREFFRS1NRELATION, JREFTOS1NRELATION, JREF1NTABLECOL, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFASBMNSUBSET, JREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
+};
+
+void PnlWznmSbsRec::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmSbsRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
+	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
+	me["scrJrefATitle"] = Scr::scramble(jrefATitle);
+	me["scrJref1NStub"] = Scr::scramble(jref1NStub);
+	me["scrJrefFrs1NRelation"] = Scr::scramble(jrefFrs1NRelation);
+	me["scrJrefTos1NRelation"] = Scr::scramble(jrefTos1NRelation);
+	me["scrJref1NTablecol"] = Scr::scramble(jref1NTablecol);
+	me["scrJrefPst1NQuerymod"] = Scr::scramble(jrefPst1NQuerymod);
+	me["pnlpst1nquerymodAvail"] = pnlpst1nquerymodAvail;
+	me["scrJrefAsbMNSubset"] = Scr::scramble(jrefAsbMNSubset);
+	me["scrJrefBsbMNSubset"] = Scr::scramble(jrefBsbMNSubset);
+	me["ButRegularizeActive"] = ButRegularizeActive;
 };
 
 void PnlWznmSbsRec::StatShr::writeXML(
@@ -177,10 +238,10 @@ void PnlWznmSbsRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefATitle", Scr::scramble(jrefATitle));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NStub", Scr::scramble(jref1NStub));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefFrs1NRelation", Scr::scramble(jrefFrs1NRelation));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefTos1NRelation", Scr::scramble(jrefTos1NRelation));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NTablecol", Scr::scramble(jref1NTablecol));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NStub", Scr::scramble(jref1NStub));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefPst1NQuerymod", Scr::scramble(jrefPst1NQuerymod));
 		writeBoolAttr(wr, itemtag, "sref", "pnlpst1nquerymodAvail", pnlpst1nquerymodAvail);
 		writeStringAttr(wr, itemtag, "sref", "scrJrefAsbMNSubset", Scr::scramble(jrefAsbMNSubset));
@@ -197,10 +258,10 @@ set<uint> PnlWznmSbsRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
 	if (jrefATitle == comp->jrefATitle) insert(items, JREFATITLE);
+	if (jref1NStub == comp->jref1NStub) insert(items, JREF1NSTUB);
 	if (jrefFrs1NRelation == comp->jrefFrs1NRelation) insert(items, JREFFRS1NRELATION);
 	if (jrefTos1NRelation == comp->jrefTos1NRelation) insert(items, JREFTOS1NRELATION);
 	if (jref1NTablecol == comp->jref1NTablecol) insert(items, JREF1NTABLECOL);
-	if (jref1NStub == comp->jref1NStub) insert(items, JREF1NSTUB);
 	if (jrefPst1NQuerymod == comp->jrefPst1NQuerymod) insert(items, JREFPST1NQUERYMOD);
 	if (pnlpst1nquerymodAvail == comp->pnlpst1nquerymodAvail) insert(items, PNLPST1NQUERYMODAVAIL);
 	if (jrefAsbMNSubset == comp->jrefAsbMNSubset) insert(items, JREFASBMNSUBSET);
@@ -218,7 +279,7 @@ set<uint> PnlWznmSbsRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFFRS1NRELATION, JREFTOS1NRELATION, JREF1NTABLECOL, JREF1NSTUB, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFASBMNSUBSET, JREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREF1NSTUB, JREFFRS1NRELATION, JREFTOS1NRELATION, JREF1NTABLECOL, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFASBMNSUBSET, JREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -227,6 +288,20 @@ set<uint> PnlWznmSbsRec::StatShr::diff(
 /******************************************************************************
  class PnlWznmSbsRec::Tag
  ******************************************************************************/
+
+void PnlWznmSbsRec::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmSbsRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["Cpt"] = "Subset";
+	};
+};
 
 void PnlWznmSbsRec::Tag::writeXML(
 			const uint ixWznmVLocale
@@ -267,6 +342,26 @@ string PnlWznmSbsRec::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmSbsRec::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmSbsRecDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWznmSbsRec::DpchAppDo::readXML(
@@ -343,6 +438,19 @@ void PnlWznmSbsRec::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmSbsRec::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmSbsRecData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmSbsRec::DpchEngData::writeXML(

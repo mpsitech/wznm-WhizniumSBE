@@ -52,6 +52,7 @@ public:
 	std::string titIxWznmVUserlevel;
 
 public:
+	void writeJSON(Json::Value& sup, bool jnumattr = false, bool shorttags = false);
 	void writeXML(xmlTextWriter* wr, std::string difftag = "", bool jnumattr = false, bool shorttags = false);
 };
 
@@ -75,6 +76,7 @@ public:
 	std::vector<WznmQUsrList*> nodes;
 
 public:
+	void writeJSON(Json::Value& sup, std::string difftag = "");
 	void writeXML(xmlTextWriter* wr, std::string difftag = "");
 };
 

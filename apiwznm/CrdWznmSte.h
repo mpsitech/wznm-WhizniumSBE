@@ -56,7 +56,7 @@ namespace CrdWznmSte {
 	/**
 	  * ContInf (full: ContInfWznmSte)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -80,7 +80,7 @@ namespace CrdWznmSte {
 	/**
 	  * StatApp (full: StatAppWznmSte)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVREQITMODE = 1;
@@ -112,7 +112,7 @@ namespace CrdWznmSte {
 	/**
 	  * StatShr (full: StatShrWznmSte)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint SCRJREFHEADBAR = 1;
@@ -136,7 +136,7 @@ namespace CrdWznmSte {
 	/**
 	  * Tag (full: TagWznmSte)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint MITAPPABT = 1;
@@ -193,7 +193,7 @@ namespace CrdWznmSte {
 
 	public:
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

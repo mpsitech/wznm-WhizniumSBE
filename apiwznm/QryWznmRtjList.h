@@ -28,10 +28,10 @@ namespace QryWznmRtjList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint SRF = 1;
-		static const Sbecore::uint APP = 2;
-		static const Sbecore::uint SUP = 3;
-		static const Sbecore::uint JOB = 4;
+		static const Sbecore::uint JOB = 1;
+		static const Sbecore::uint SUP = 2;
+		static const Sbecore::uint SRF = 3;
+		static const Sbecore::uint APP = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -40,7 +40,7 @@ namespace QryWznmRtjList {
 	/**
 	  * StatApp (full: StatAppQryWznmRtjList)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -66,7 +66,7 @@ namespace QryWznmRtjList {
 	/**
 	  * StatShr (full: StatShrQryWznmRtjList)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -90,7 +90,7 @@ namespace QryWznmRtjList {
 	/**
 	  * StgIac (full: StgIacQryWznmRtjList)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

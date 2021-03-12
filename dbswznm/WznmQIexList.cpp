@@ -41,6 +41,29 @@ WznmQIexList::WznmQIexList(
 	this->Minversion = Minversion;
 };
 
+void WznmQIexList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["sho"] = Short;
+		me["tit"] = Title;
+		me["ver"] = stubRefWznmMVersion;
+		me["miv"] = Minversion;
+	} else {
+		me["sref"] = sref;
+		me["Short"] = Short;
+		me["Title"] = Title;
+		me["stubRefWznmMVersion"] = stubRefWznmMVersion;
+		me["Minversion"] = Minversion;
+	};
+};
+
 void WznmQIexList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -114,6 +137,16 @@ ListWznmQIexList& ListWznmQIexList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQIexList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQIexList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQIexList::writeXML(

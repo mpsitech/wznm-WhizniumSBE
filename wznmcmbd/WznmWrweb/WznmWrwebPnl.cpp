@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmWrweb;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrwebPnl
  ******************************************************************************/
@@ -1025,7 +1027,6 @@ void WznmWrwebPnl::writePlJsfile(
 
 	// --- evthdls
 	outfile << "// IP evthdls --- IBEGIN" << endl;
-/// HERE
 	wrEvthdlsJs(dbswznm, Prjshort, outfile, cons, pnl->sref.substr(3), true, false);
 	outfile << "// IP evthdls --- IEND" << endl;
 

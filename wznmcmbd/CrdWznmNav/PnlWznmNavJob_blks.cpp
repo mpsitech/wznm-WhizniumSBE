@@ -73,6 +73,30 @@ PnlWznmNavJob::ContIac::ContIac(
 	mask = {NUMFLSTJOB, NUMFLSTSGE, NUMFLSTMTD, NUMFLSTBLK, NUMFLSTCAL};
 };
 
+bool PnlWznmNavJob::ContIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["ContIacWznmNavJob"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("numFLstJob")) {numFLstJob = me["numFLstJob"].asUInt(); add(NUMFLSTJOB);};
+		if (me.isMember("numFLstSge")) {numFLstSge = me["numFLstSge"].asUInt(); add(NUMFLSTSGE);};
+		if (me.isMember("numFLstMtd")) {numFLstMtd = me["numFLstMtd"].asUInt(); add(NUMFLSTMTD);};
+		if (me.isMember("numFLstBlk")) {numFLstBlk = me["numFLstBlk"].asUInt(); add(NUMFLSTBLK);};
+		if (me.isMember("numFLstCal")) {numFLstCal = me["numFLstCal"].asUInt(); add(NUMFLSTCAL);};
+	};
+
+	return basefound;
+};
+
 bool PnlWznmNavJob::ContIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -98,6 +122,21 @@ bool PnlWznmNavJob::ContIac::readXML(
 	};
 
 	return basefound;
+};
+
+void PnlWznmNavJob::ContIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContIacWznmNavJob";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFLstJob"] = numFLstJob;
+	me["numFLstSge"] = numFLstSge;
+	me["numFLstMtd"] = numFLstMtd;
+	me["numFLstBlk"] = numFLstBlk;
+	me["numFLstCal"] = numFLstCal;
 };
 
 void PnlWznmNavJob::ContIac::writeXML(
@@ -151,6 +190,38 @@ set<uint> PnlWznmNavJob::ContIac::diff(
 /******************************************************************************
  class PnlWznmNavJob::StatApp
  ******************************************************************************/
+
+void PnlWznmNavJob::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWznmVExpstate
+			, const bool LstJobAlt
+			, const bool LstSgeAlt
+			, const bool LstMtdAlt
+			, const bool LstBlkAlt
+			, const bool LstCalAlt
+			, const uint LstJobNumFirstdisp
+			, const uint LstSgeNumFirstdisp
+			, const uint LstMtdNumFirstdisp
+			, const uint LstBlkNumFirstdisp
+			, const uint LstCalNumFirstdisp
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmNavJob";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
+	me["LstJobAlt"] = LstJobAlt;
+	me["LstSgeAlt"] = LstSgeAlt;
+	me["LstMtdAlt"] = LstMtdAlt;
+	me["LstBlkAlt"] = LstBlkAlt;
+	me["LstCalAlt"] = LstCalAlt;
+	me["LstJobNumFirstdisp"] = LstJobNumFirstdisp;
+	me["LstSgeNumFirstdisp"] = LstSgeNumFirstdisp;
+	me["LstMtdNumFirstdisp"] = LstMtdNumFirstdisp;
+	me["LstBlkNumFirstdisp"] = LstBlkNumFirstdisp;
+	me["LstCalNumFirstdisp"] = LstCalNumFirstdisp;
+};
 
 void PnlWznmNavJob::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -231,6 +302,31 @@ PnlWznmNavJob::StatShr::StatShr(
 	mask = {LSTJOBAVAIL, BUTJOBVIEWACTIVE, BUTJOBNEWCRDACTIVE, LSTSGEAVAIL, BUTSGEVIEWACTIVE, BUTSGENEWCRDACTIVE, LSTMTDAVAIL, BUTMTDVIEWACTIVE, BUTMTDNEWCRDACTIVE, LSTBLKAVAIL, BUTBLKVIEWACTIVE, BUTBLKNEWCRDACTIVE, LSTCALAVAIL, BUTCALVIEWACTIVE, BUTCALNEWCRDACTIVE};
 };
 
+void PnlWznmNavJob::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmNavJob";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["LstJobAvail"] = LstJobAvail;
+	me["ButJobViewActive"] = ButJobViewActive;
+	me["ButJobNewcrdActive"] = ButJobNewcrdActive;
+	me["LstSgeAvail"] = LstSgeAvail;
+	me["ButSgeViewActive"] = ButSgeViewActive;
+	me["ButSgeNewcrdActive"] = ButSgeNewcrdActive;
+	me["LstMtdAvail"] = LstMtdAvail;
+	me["ButMtdViewActive"] = ButMtdViewActive;
+	me["ButMtdNewcrdActive"] = ButMtdNewcrdActive;
+	me["LstBlkAvail"] = LstBlkAvail;
+	me["ButBlkViewActive"] = ButBlkViewActive;
+	me["ButBlkNewcrdActive"] = ButBlkNewcrdActive;
+	me["LstCalAvail"] = LstCalAvail;
+	me["ButCalViewActive"] = ButCalViewActive;
+	me["ButCalNewcrdActive"] = ButCalNewcrdActive;
+};
+
 void PnlWznmNavJob::StatShr::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -303,6 +399,25 @@ set<uint> PnlWznmNavJob::StatShr::diff(
  class PnlWznmNavJob::Tag
  ******************************************************************************/
 
+void PnlWznmNavJob::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmNavJob";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["Cpt"] = "Job tree module";
+		me["CptJob"] = "jobs";
+		me["CptSge"] = "stages";
+		me["CptMtd"] = "methods";
+		me["CptBlk"] = "blocks";
+		me["CptCal"] = "calls";
+	};
+};
+
 void PnlWznmNavJob::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -346,6 +461,27 @@ string PnlWznmNavJob::DpchAppData::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmNavJob::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmNavJobData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (contiac.readJSON(me, true)) add(CONTIAC);
+	} else {
+		contiac = ContIac();
+	};
 };
 
 void PnlWznmNavJob::DpchAppData::readXML(
@@ -395,6 +531,26 @@ string PnlWznmNavJob::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmNavJob::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmNavJobDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWznmNavJob::DpchAppDo::readXML(
@@ -491,6 +647,24 @@ void PnlWznmNavJob::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmNavJob::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmNavJobData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTIAC)) contiac.writeJSON(me);
+	if (has(FEEDFLSTBLK)) feedFLstBlk.writeJSON(me);
+	if (has(FEEDFLSTCAL)) feedFLstCal.writeJSON(me);
+	if (has(FEEDFLSTJOB)) feedFLstJob.writeJSON(me);
+	if (has(FEEDFLSTMTD)) feedFLstMtd.writeJSON(me);
+	if (has(FEEDFLSTSGE)) feedFLstSge.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmNavJob::DpchEngData::writeXML(

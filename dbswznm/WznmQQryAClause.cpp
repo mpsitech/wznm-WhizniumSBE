@@ -55,6 +55,33 @@ WznmQQryAClause::WznmQQryAClause(
 	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
 };
 
+void WznmQQryAClause::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["qmd"] = stubX1RefWznmMQuerymod;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["cse"] = Clause;
+		me["pst"] = stubRefWznmMPreset;
+		me["vec"] = stubRefWznmMVector;
+		me["vit"] = stubRefWznmMVectoritem;
+	} else {
+		me["stubX1RefWznmMQuerymod"] = stubX1RefWznmMQuerymod;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["Clause"] = Clause;
+		me["stubRefWznmMPreset"] = stubRefWznmMPreset;
+		me["stubRefWznmMVector"] = stubRefWznmMVector;
+		me["stubRefWznmMVectoritem"] = stubRefWznmMVectoritem;
+	};
+};
+
 void WznmQQryAClause::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -132,6 +159,16 @@ ListWznmQQryAClause& ListWznmQQryAClause::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQQryAClause::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQQryAClause";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQQryAClause::writeXML(

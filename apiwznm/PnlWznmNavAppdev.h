@@ -51,7 +51,7 @@ namespace PnlWznmNavAppdev {
 	/**
 	  * ContIac (full: ContIacWznmNavAppdev)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFLSTAPP = 1;
@@ -80,7 +80,7 @@ namespace PnlWznmNavAppdev {
 	/**
 	  * StatApp (full: StatAppWznmNavAppdev)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -120,7 +120,7 @@ namespace PnlWznmNavAppdev {
 	/**
 	  * StatShr (full: StatShrWznmNavAppdev)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint LSTAPPAVAIL = 1;
@@ -166,7 +166,7 @@ namespace PnlWznmNavAppdev {
 	/**
 	  * Tag (full: TagWznmNavAppdev)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -257,11 +257,11 @@ namespace PnlWznmNavAppdev {
 
 	public:
 		ContIac contiac;
-		Sbecore::Xmlio::Feed feedFLstApp;
-		Sbecore::Xmlio::Feed feedFLstEvt;
-		Sbecore::Xmlio::Feed feedFLstRtj;
-		Sbecore::Xmlio::Feed feedFLstSeq;
-		Sbecore::Xmlio::Feed feedFLstSte;
+		Sbecore::Feed feedFLstApp;
+		Sbecore::Feed feedFLstEvt;
+		Sbecore::Feed feedFLstRtj;
+		Sbecore::Feed feedFLstSeq;
+		Sbecore::Feed feedFLstSte;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

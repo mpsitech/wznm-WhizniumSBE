@@ -51,6 +51,33 @@ WznmQJobAVar::WznmQJobAVar(
 	this->Comment = Comment;
 };
 
+void WznmQJobAVar::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["vty"] = srefIxWznmVVartype;
+		me["vty2"] = titIxWznmVVartype;
+		me["vec"] = stubRefWznmMVector;
+		me["len"] = Length;
+		me["shr"] = yesnoShr;
+		me["cmt"] = Comment;
+	} else {
+		me["sref"] = sref;
+		me["srefIxWznmVVartype"] = srefIxWznmVVartype;
+		me["titIxWznmVVartype"] = titIxWznmVVartype;
+		me["stubRefWznmMVector"] = stubRefWznmMVector;
+		me["Length"] = Length;
+		me["yesnoShr"] = yesnoShr;
+		me["Comment"] = Comment;
+	};
+};
+
 void WznmQJobAVar::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -128,6 +155,16 @@ ListWznmQJobAVar& ListWznmQJobAVar::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQJobAVar::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQJobAVar";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQJobAVar::writeXML(

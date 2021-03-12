@@ -115,6 +115,44 @@ PnlWznmConDetail::ContIac::ContIac(
 	mask = {NUMFPUPJTI, NUMFPUPTYP, NUMFLSTCLU, NUMFPUPHKT, NUMFPUPRET, NUMFPUPSCO, NUMFPUPSTY, NUMFLSTTAG, TXFTAG, TXFAVL, TXFACT, NUMSFLSTOPT, TXFOPT, NUMFPUPFEDSRT, NUMFLSTFEDVIT, TXFFEDVIT, NUMFLSTFEDTAG, TXFFEDTAG, TXFFEDCMT};
 };
 
+bool PnlWznmConDetail::ContIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["ContIacWznmConDetail"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("numFPupJti")) {numFPupJti = me["numFPupJti"].asUInt(); add(NUMFPUPJTI);};
+		if (me.isMember("numFPupTyp")) {numFPupTyp = me["numFPupTyp"].asUInt(); add(NUMFPUPTYP);};
+		if (me.isMember("numFLstClu")) {numFLstClu = me["numFLstClu"].asUInt(); add(NUMFLSTCLU);};
+		if (me.isMember("numFPupHkt")) {numFPupHkt = me["numFPupHkt"].asUInt(); add(NUMFPUPHKT);};
+		if (me.isMember("numFPupRet")) {numFPupRet = me["numFPupRet"].asUInt(); add(NUMFPUPRET);};
+		if (me.isMember("numFPupSco")) {numFPupSco = me["numFPupSco"].asUInt(); add(NUMFPUPSCO);};
+		if (me.isMember("numFPupSty")) {numFPupSty = me["numFPupSty"].asUInt(); add(NUMFPUPSTY);};
+		if (me.isMember("numFLstTag")) {numFLstTag = me["numFLstTag"].asUInt(); add(NUMFLSTTAG);};
+		if (me.isMember("TxfTag")) {TxfTag = me["TxfTag"].asString(); add(TXFTAG);};
+		if (me.isMember("TxfAvl")) {TxfAvl = me["TxfAvl"].asString(); add(TXFAVL);};
+		if (me.isMember("TxfAct")) {TxfAct = me["TxfAct"].asString(); add(TXFACT);};
+		if (Jsonio::extractUintvec(me, "numsFLstOpt", numsFLstOpt)) add(NUMSFLSTOPT);
+		if (me.isMember("TxfOpt")) {TxfOpt = me["TxfOpt"].asString(); add(TXFOPT);};
+		if (me.isMember("numFPupFedSrt")) {numFPupFedSrt = me["numFPupFedSrt"].asUInt(); add(NUMFPUPFEDSRT);};
+		if (me.isMember("numFLstFedVit")) {numFLstFedVit = me["numFLstFedVit"].asUInt(); add(NUMFLSTFEDVIT);};
+		if (me.isMember("TxfFedVit")) {TxfFedVit = me["TxfFedVit"].asString(); add(TXFFEDVIT);};
+		if (me.isMember("numFLstFedTag")) {numFLstFedTag = me["numFLstFedTag"].asUInt(); add(NUMFLSTFEDTAG);};
+		if (me.isMember("TxfFedTag")) {TxfFedTag = me["TxfFedTag"].asString(); add(TXFFEDTAG);};
+		if (me.isMember("TxfFedCmt")) {TxfFedCmt = me["TxfFedCmt"].asString(); add(TXFFEDCMT);};
+	};
+
+	return basefound;
+};
+
 bool PnlWznmConDetail::ContIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -154,6 +192,35 @@ bool PnlWznmConDetail::ContIac::readXML(
 	};
 
 	return basefound;
+};
+
+void PnlWznmConDetail::ContIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContIacWznmConDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFPupJti"] = numFPupJti;
+	me["numFPupTyp"] = numFPupTyp;
+	me["numFLstClu"] = numFLstClu;
+	me["numFPupHkt"] = numFPupHkt;
+	me["numFPupRet"] = numFPupRet;
+	me["numFPupSco"] = numFPupSco;
+	me["numFPupSty"] = numFPupSty;
+	me["numFLstTag"] = numFLstTag;
+	me["TxfTag"] = TxfTag;
+	me["TxfAvl"] = TxfAvl;
+	me["TxfAct"] = TxfAct;
+	Jsonio::writeUintvec(me, "numsFLstOpt", numsFLstOpt);
+	me["TxfOpt"] = TxfOpt;
+	me["numFPupFedSrt"] = numFPupFedSrt;
+	me["numFLstFedVit"] = numFLstFedVit;
+	me["TxfFedVit"] = TxfFedVit;
+	me["numFLstFedTag"] = numFLstFedTag;
+	me["TxfFedTag"] = TxfFedTag;
+	me["TxfFedCmt"] = TxfFedCmt;
 };
 
 void PnlWznmConDetail::ContIac::writeXML(
@@ -264,6 +331,26 @@ PnlWznmConDetail::ContInf::ContInf(
 	mask = {TXTSRF, TXTTIT, TXTCLU, TXTHKU, TXTREU, TXTSUP, TXTSTS, TXTSHS, TXTFEDSRF, TXTFEDSRU};
 };
 
+void PnlWznmConDetail::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWznmConDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxtSrf"] = TxtSrf;
+	me["TxtTit"] = TxtTit;
+	me["TxtClu"] = TxtClu;
+	me["TxtHku"] = TxtHku;
+	me["TxtReu"] = TxtReu;
+	me["TxtSup"] = TxtSup;
+	me["TxtSts"] = TxtSts;
+	me["TxtShs"] = TxtShs;
+	me["TxtFedSrf"] = TxtFedSrf;
+	me["TxtFedSru"] = TxtFedSru;
+};
+
 void PnlWznmConDetail::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -325,6 +412,38 @@ set<uint> PnlWznmConDetail::ContInf::diff(
 /******************************************************************************
  class PnlWznmConDetail::StatApp
  ******************************************************************************/
+
+void PnlWznmConDetail::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWznmVExpstate
+			, const bool LstCluAlt
+			, const bool LstTagAlt
+			, const bool LstOptAlt
+			, const bool LstFedVitAlt
+			, const bool LstFedTagAlt
+			, const uint LstCluNumFirstdisp
+			, const uint LstTagNumFirstdisp
+			, const uint LstOptNumFirstdisp
+			, const uint LstFedVitNumFirstdisp
+			, const uint LstFedTagNumFirstdisp
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmConDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
+	me["LstCluAlt"] = LstCluAlt;
+	me["LstTagAlt"] = LstTagAlt;
+	me["LstOptAlt"] = LstOptAlt;
+	me["LstFedVitAlt"] = LstFedVitAlt;
+	me["LstFedTagAlt"] = LstFedTagAlt;
+	me["LstCluNumFirstdisp"] = LstCluNumFirstdisp;
+	me["LstTagNumFirstdisp"] = LstTagNumFirstdisp;
+	me["LstOptNumFirstdisp"] = LstOptNumFirstdisp;
+	me["LstFedVitNumFirstdisp"] = LstFedVitNumFirstdisp;
+	me["LstFedTagNumFirstdisp"] = LstFedTagNumFirstdisp;
+};
 
 void PnlWznmConDetail::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -493,6 +612,75 @@ PnlWznmConDetail::StatShr::StatShr(
 	mask = {TXFTAGVALID, TXFOPTVALID, TXFFEDVITVALID, TXFFEDTAGVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, PUPSCOACTIVE, PUPSTYACTIVE, LSTTAGACTIVE, BUTTAGVIEWAVAIL, BUTTAGVIEWACTIVE, TXTSTSACTIVE, BUTSTSVIEWAVAIL, BUTSTSVIEWACTIVE, TXTSHSACTIVE, BUTSHSVIEWAVAIL, BUTSHSVIEWACTIVE, TXFAVLACTIVE, TXFACTACTIVE, LSTOPTACTIVE, BUTOPTEDITAVAIL, SEPFEDAVAIL, HDGFEDAVAIL, BUTFEDNEWAVAIL, BUTFEDDELETEAVAIL, TXTFEDSRFAVAIL, TXTFEDSRFACTIVE, TXTFEDSRUAVAIL, TXTFEDSRUACTIVE, BUTFEDSRUVIEWAVAIL, BUTFEDSRUVIEWACTIVE, LSTFEDVITAVAIL, LSTFEDVITACTIVE, BUTFEDVITVIEWAVAIL, BUTFEDVITVIEWACTIVE, LSTFEDTAGAVAIL, LSTFEDTAGACTIVE, BUTFEDTAGVIEWAVAIL, BUTFEDTAGVIEWACTIVE, TXFFEDCMTAVAIL, TXFFEDCMTACTIVE};
 };
 
+void PnlWznmConDetail::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmConDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxfTagValid"] = TxfTagValid;
+	me["TxfOptValid"] = TxfOptValid;
+	me["TxfFedVitValid"] = TxfFedVitValid;
+	me["TxfFedTagValid"] = TxfFedTagValid;
+	me["ButSaveAvail"] = ButSaveAvail;
+	me["ButSaveActive"] = ButSaveActive;
+	me["TxtSrfActive"] = TxtSrfActive;
+	me["PupJtiActive"] = PupJtiActive;
+	me["ButJtiEditAvail"] = ButJtiEditAvail;
+	me["TxtTitActive"] = TxtTitActive;
+	me["PupTypActive"] = PupTypActive;
+	me["LstCluActive"] = LstCluActive;
+	me["ButCluViewActive"] = ButCluViewActive;
+	me["ButCluClusterAvail"] = ButCluClusterAvail;
+	me["ButCluUnclusterAvail"] = ButCluUnclusterAvail;
+	me["TxtHkuActive"] = TxtHkuActive;
+	me["ButHkuViewAvail"] = ButHkuViewAvail;
+	me["ButHkuViewActive"] = ButHkuViewActive;
+	me["TxtReuActive"] = TxtReuActive;
+	me["ButReuViewAvail"] = ButReuViewAvail;
+	me["ButReuViewActive"] = ButReuViewActive;
+	me["TxtSupActive"] = TxtSupActive;
+	me["ButSupViewAvail"] = ButSupViewAvail;
+	me["ButSupViewActive"] = ButSupViewActive;
+	me["PupScoActive"] = PupScoActive;
+	me["PupStyActive"] = PupStyActive;
+	me["LstTagActive"] = LstTagActive;
+	me["ButTagViewAvail"] = ButTagViewAvail;
+	me["ButTagViewActive"] = ButTagViewActive;
+	me["TxtStsActive"] = TxtStsActive;
+	me["ButStsViewAvail"] = ButStsViewAvail;
+	me["ButStsViewActive"] = ButStsViewActive;
+	me["TxtShsActive"] = TxtShsActive;
+	me["ButShsViewAvail"] = ButShsViewAvail;
+	me["ButShsViewActive"] = ButShsViewActive;
+	me["TxfAvlActive"] = TxfAvlActive;
+	me["TxfActActive"] = TxfActActive;
+	me["LstOptActive"] = LstOptActive;
+	me["ButOptEditAvail"] = ButOptEditAvail;
+	me["SepFedAvail"] = SepFedAvail;
+	me["HdgFedAvail"] = HdgFedAvail;
+	me["ButFedNewAvail"] = ButFedNewAvail;
+	me["ButFedDeleteAvail"] = ButFedDeleteAvail;
+	me["TxtFedSrfAvail"] = TxtFedSrfAvail;
+	me["TxtFedSrfActive"] = TxtFedSrfActive;
+	me["TxtFedSruAvail"] = TxtFedSruAvail;
+	me["TxtFedSruActive"] = TxtFedSruActive;
+	me["ButFedSruViewAvail"] = ButFedSruViewAvail;
+	me["ButFedSruViewActive"] = ButFedSruViewActive;
+	me["LstFedVitAvail"] = LstFedVitAvail;
+	me["LstFedVitActive"] = LstFedVitActive;
+	me["ButFedVitViewAvail"] = ButFedVitViewAvail;
+	me["ButFedVitViewActive"] = ButFedVitViewActive;
+	me["LstFedTagAvail"] = LstFedTagAvail;
+	me["LstFedTagActive"] = LstFedTagActive;
+	me["ButFedTagViewAvail"] = ButFedTagViewAvail;
+	me["ButFedTagViewActive"] = ButFedTagViewActive;
+	me["TxfFedCmtAvail"] = TxfFedCmtAvail;
+	me["TxfFedCmtActive"] = TxfFedCmtActive;
+};
+
 void PnlWznmConDetail::StatShr::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -653,6 +841,41 @@ set<uint> PnlWznmConDetail::StatShr::diff(
  class PnlWznmConDetail::Tag
  ******************************************************************************/
 
+void PnlWznmConDetail::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmConDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["CptSrf"] = "identifier";
+		me["CptTit"] = "name";
+		me["CptTyp"] = "type";
+		me["CptHku"] = "hook";
+		me["CptReu"] = "reference";
+		me["CptSup"] = "super control";
+		me["CptSco"] = "scope";
+		me["CptSty"] = "subtype";
+		me["CptTag"] = "tags";
+		me["CptSts"] = "stub";
+		me["CptShs"] = "stub";
+		me["CptAvl"] = "availability rule";
+		me["CptAct"] = "activation rule";
+		me["CptOpt"] = "options";
+		me["HdgFed"] = "Feed";
+		me["CptFedSrf"] = "identifier";
+		me["CptFedSru"] = "source";
+		me["CptFedVit"] = "vector items";
+		me["CptFedTag"] = "tags";
+		me["CptFedCmt"] = "comment";
+	};
+	me["Cpt"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::DETAIL, ixWznmVLocale));
+	me["CptClu"] = VecWznmVTag::getTitle(VecWznmVTag::CLUST, ixWznmVLocale);
+};
+
 void PnlWznmConDetail::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -714,6 +937,27 @@ string PnlWznmConDetail::DpchAppData::getSrefsMask() {
 	return(srefs);
 };
 
+void PnlWznmConDetail::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmConDetailData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (contiac.readJSON(me, true)) add(CONTIAC);
+	} else {
+		contiac = ContIac();
+	};
+};
+
 void PnlWznmConDetail::DpchAppData::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -761,6 +1005,26 @@ string PnlWznmConDetail::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmConDetail::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmConDetailDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWznmConDetail::DpchAppDo::readXML(
@@ -889,6 +1153,32 @@ void PnlWznmConDetail::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmConDetail::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmConDetailData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTIAC)) contiac.writeJSON(me);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFLSTCLU)) feedFLstClu.writeJSON(me);
+	if (has(FEEDFLSTFEDTAG)) feedFLstFedTag.writeJSON(me);
+	if (has(FEEDFLSTFEDVIT)) feedFLstFedVit.writeJSON(me);
+	if (has(FEEDFLSTOPT)) feedFLstOpt.writeJSON(me);
+	if (has(FEEDFLSTTAG)) feedFLstTag.writeJSON(me);
+	if (has(FEEDFPUPFEDSRT)) feedFPupFedSrt.writeJSON(me);
+	if (has(FEEDFPUPHKT)) feedFPupHkt.writeJSON(me);
+	if (has(FEEDFPUPJTI)) feedFPupJti.writeJSON(me);
+	if (has(FEEDFPUPRET)) feedFPupRet.writeJSON(me);
+	if (has(FEEDFPUPSCO)) feedFPupSco.writeJSON(me);
+	if (has(FEEDFPUPSTY)) feedFPupSty.writeJSON(me);
+	if (has(FEEDFPUPTYP)) feedFPupTyp.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmConDetail::DpchEngData::writeXML(

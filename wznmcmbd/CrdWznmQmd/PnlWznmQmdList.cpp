@@ -110,8 +110,8 @@ void PnlWznmQmdList::refresh(
 	if ((ixPre != 0) && (ixPre != VecWznmVPreset::VOID)) {
 		continf.TxtFor = VecWznmVPreset::getTitle(ixPre, ixWznmVLocale);
 
-		if (ixPre == VecWznmVPreset::PREWZNMREFQRY) continf.TxtPre = StubWznm::getStubQryStd(dbswznm, xchg->getRefPreset(ixPre, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
-		else if (ixPre == VecWznmVPreset::PREWZNMREFVER) continf.TxtPre = StubWznm::getStubVerStd(dbswznm, xchg->getRefPreset(ixPre, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
+		if (ixPre == VecWznmVPreset::PREWZNMREFVER) continf.TxtPre = StubWznm::getStubVerStd(dbswznm, xchg->getRefPreset(ixPre, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
+		else if (ixPre == VecWznmVPreset::PREWZNMREFQRY) continf.TxtPre = StubWznm::getStubQryStd(dbswznm, xchg->getRefPreset(ixPre, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
 
 	} else {
 		continf.TxtFor = "";
@@ -257,7 +257,7 @@ void PnlWznmQmdList::handleDpchAppDataContiac(
 	diffitems = _contiac->diff(&contiac);
 
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWznmQmdList::VecVOrd::TYP) && (_contiac->numFTos <= QryWznmQmdList::VecVOrd::REU)) {
+		if ((_contiac->numFTos >= QryWznmQmdList::VecVOrd::REU) && (_contiac->numFTos <= QryWznmQmdList::VecVOrd::TYP)) {
 			muteRefresh = true;
 
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);

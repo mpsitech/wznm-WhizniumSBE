@@ -47,6 +47,17 @@ DlgWznmFilDownload::ContInf::ContInf(
 	mask = {DLD};
 };
 
+void DlgWznmFilDownload::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfDlgWznmFilDownload";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["Dld"] = Dld;
+};
+
 void DlgWznmFilDownload::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -91,6 +102,18 @@ set<uint> DlgWznmFilDownload::ContInf::diff(
  class DlgWznmFilDownload::StatApp
  ******************************************************************************/
 
+void DlgWznmFilDownload::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const string& shortMenu
+		) {
+	if (difftag.length() == 0) difftag = "StatAppDlgWznmFilDownload";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["shortMenu"] = shortMenu;
+};
+
 void DlgWznmFilDownload::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -111,6 +134,22 @@ void DlgWznmFilDownload::StatApp::writeXML(
 /******************************************************************************
  class DlgWznmFilDownload::Tag
  ******************************************************************************/
+
+void DlgWznmFilDownload::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagDlgWznmFilDownload";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["Cpt"] = "Download file";
+	};
+	me["Dld"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::DOWNLOAD, ixWznmVLocale));
+	me["ButDne"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::DONE, ixWznmVLocale));
+};
 
 void DlgWznmFilDownload::Tag::writeXML(
 			const uint ixWznmVLocale
@@ -153,6 +192,26 @@ string DlgWznmFilDownload::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void DlgWznmFilDownload::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppDlgWznmFilDownloadDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void DlgWznmFilDownload::DpchAppDo::readXML(
@@ -225,6 +284,18 @@ void DlgWznmFilDownload::DpchEngData::merge(
 	if (src->has(CONTINF)) {continf = src->continf; add(CONTINF);};
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(TAG)) add(TAG);
+};
+
+void DlgWznmFilDownload::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngDlgWznmFilDownloadData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void DlgWznmFilDownload::DpchEngData::writeXML(

@@ -25,6 +25,17 @@ PnlWznmNavHeadbar::StatShr::StatShr(
 	mask = {MENCRDAVAIL};
 };
 
+void PnlWznmNavHeadbar::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmNavHeadbar";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["MenCrdAvail"] = MenCrdAvail;
+};
+
 void PnlWznmNavHeadbar::StatShr::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -69,6 +80,25 @@ set<uint> PnlWznmNavHeadbar::StatShr::diff(
  class PnlWznmNavHeadbar::StgInf
  ******************************************************************************/
 
+void PnlWznmNavHeadbar::StgInf::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StgInfWznmNavHeadbar";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["MenAppCptwidth"] = "120";
+		me["MenAppWidth"] = "204";
+		me["MenSesCptwidth"] = "66";
+		me["MenSesWidth"] = "323";
+		me["MenCrdCptwidth"] = "100";
+		me["MenCrdWidth"] = "197";
+	};
+};
+
 void PnlWznmNavHeadbar::StgInf::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -96,6 +126,22 @@ void PnlWznmNavHeadbar::StgInf::writeXML(
 /******************************************************************************
  class PnlWznmNavHeadbar::Tag
  ******************************************************************************/
+
+void PnlWznmNavHeadbar::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmNavHeadbar";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["MenApp"] = "WhizniumSBE";
+	};
+	me["MenSes"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::SESS, ixWznmVLocale));
+	me["MenCrd"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::NAV, ixWznmVLocale));
+};
 
 void PnlWznmNavHeadbar::Tag::writeXML(
 			const uint ixWznmVLocale
@@ -158,6 +204,18 @@ void PnlWznmNavHeadbar::DpchEngData::merge(
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(STGINF)) add(STGINF);
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmNavHeadbar::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmNavHeadbarData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(STGINF)) StgInf::writeJSON(ixWznmVLocale, me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmNavHeadbar::DpchEngData::writeXML(

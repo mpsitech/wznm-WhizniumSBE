@@ -33,6 +33,21 @@ WznmQOpkMNJob::WznmQOpkMNJob(
 	this->ref = ref;
 };
 
+void WznmQOpkMNJob::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+	} else {
+		me["stubMref"] = stubMref;
+	};
+};
+
 void WznmQOpkMNJob::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQOpkMNJob& ListWznmQOpkMNJob::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQOpkMNJob::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQOpkMNJob";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQOpkMNJob::writeXML(

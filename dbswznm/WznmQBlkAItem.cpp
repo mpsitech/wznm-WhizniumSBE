@@ -75,6 +75,45 @@ WznmQBlkAItem::WznmQBlkAItem(
 	this->Comment = Comment;
 };
 
+void WznmQBlkAItem::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["srf"] = sref;
+		me["vty"] = srefIxWznmVVartype;
+		me["vty2"] = titIxWznmVVartype;
+		me["con"] = stubRefWznmMControl;
+		me["vec"] = stubRefWznmMVector;
+		me["fed"] = stubRefWznmMFeed;
+		me["tbl"] = stubRefWznmMTable;
+		me["bl2"] = stubRefWznmMBlock;
+		me["dfv"] = Defval;
+		me["vit"] = stubRefWznmMVectoritem;
+		me["cmt"] = Comment;
+	} else {
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["sref"] = sref;
+		me["srefIxWznmVVartype"] = srefIxWznmVVartype;
+		me["titIxWznmVVartype"] = titIxWznmVVartype;
+		me["stubRefWznmMControl"] = stubRefWznmMControl;
+		me["stubRefWznmMVector"] = stubRefWznmMVector;
+		me["stubRefWznmMFeed"] = stubRefWznmMFeed;
+		me["stubRefWznmMTable"] = stubRefWznmMTable;
+		me["stubRefWznmMBlock"] = stubRefWznmMBlock;
+		me["Defval"] = Defval;
+		me["stubRefWznmMVectoritem"] = stubRefWznmMVectoritem;
+		me["Comment"] = Comment;
+	};
+};
+
 void WznmQBlkAItem::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -164,6 +203,16 @@ ListWznmQBlkAItem& ListWznmQBlkAItem::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQBlkAItem::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQBlkAItem";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQBlkAItem::writeXML(

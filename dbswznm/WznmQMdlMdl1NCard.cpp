@@ -33,6 +33,21 @@ WznmQMdlMdl1NCard::WznmQMdlMdl1NCard(
 	this->mdlNum = mdlNum;
 };
 
+void WznmQMdlMdl1NCard::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQMdlMdl1NCard::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQMdlMdl1NCard& ListWznmQMdlMdl1NCard::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQMdlMdl1NCard::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQMdlMdl1NCard";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQMdlMdl1NCard::writeXML(

@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmGen;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmGenSysvec
  ******************************************************************************/
@@ -808,6 +810,14 @@ void WznmGenSysvec::fillVecTag(
 	// find VecXxxxVTag
 	if (dbswznm->tblwznmmvector->loadRefByVerSrf(refWznmMVersion, "Vec" + Prjshort + "VTag", refVec)) {
 		vitcnt = 1;
+
+		// - tags "hour(s)", "minute(s)" and "second(s)" for session termination alert
+		srefs.insert("hour");
+		srefs.insert("hours");
+		srefs.insert("minute");
+		srefs.insert("minutes");
+		srefs.insert("second");
+		srefs.insert("seconds");
 
 		// - tag "error" as prerequisite for parse/import error alerts
 		srefs.insert("error");

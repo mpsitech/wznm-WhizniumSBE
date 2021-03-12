@@ -69,6 +69,29 @@ string RootWznm::DpchAppLogin::getSrefsMask() {
 	return(srefs);
 };
 
+void RootWznm::DpchAppLogin::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppRootWznmLogin"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("username")) {username = me["username"].asString(); add(USERNAME);};
+		if (me.isMember("password")) {password = me["password"].asString(); add(PASSWORD);};
+		if (me.isMember("m2mNotReg")) {m2mNotReg = me["m2mNotReg"].asBool(); add(M2MNOTREG);};
+		if (me.isMember("chksuspsess")) {chksuspsess = me["chksuspsess"].asBool(); add(CHKSUSPSESS);};
+	} else {
+	};
+};
+
 void RootWznm::DpchAppLogin::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -134,6 +157,16 @@ void RootWznm::DpchEngData::merge(
 
 	if (src->has(JREF)) {jref = src->jref; add(JREF);};
 	if (src->has(FEEDFENSSPS)) {feedFEnsSps = src->feedFEnsSps; add(FEEDFENSSPS);};
+};
+
+void RootWznm::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngRootWznmData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(FEEDFENSSPS)) feedFEnsSps.writeJSON(me);
 };
 
 void RootWznm::DpchEngData::writeXML(

@@ -47,6 +47,31 @@ WznmQOpkList::WznmQOpkList(
 	this->yesnoShrdat = yesnoShrdat;
 };
 
+void WznmQOpkList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["tit"] = Title;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["ver"] = stubRefWznmMVersion;
+		me["shd"] = yesnoShrdat;
+	} else {
+		me["sref"] = sref;
+		me["Title"] = Title;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["stubRefWznmMVersion"] = stubRefWznmMVersion;
+		me["yesnoShrdat"] = yesnoShrdat;
+	};
+};
+
 void WznmQOpkList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -122,6 +147,16 @@ ListWznmQOpkList& ListWznmQOpkList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQOpkList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQOpkList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQOpkList::writeXML(

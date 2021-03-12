@@ -32,20 +32,20 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint FRT = 1;
-		static const Sbecore::uint FRS = 2;
-		static const Sbecore::uint TOT = 3;
-		static const Sbecore::uint TOS = 4;
-		static const Sbecore::uint TYP = 5;
-		static const Sbecore::uint VER = 6;
-		static const Sbecore::uint SUP = 7;
-		static const Sbecore::uint SRL = 8;
-		static const Sbecore::uint TBL = 9;
+		static const Sbecore::uint TBL = 1;
+		static const Sbecore::uint SRL = 2;
+		static const Sbecore::uint SUP = 3;
+		static const Sbecore::uint VER = 4;
+		static const Sbecore::uint TOS = 5;
+		static const Sbecore::uint TYP = 6;
+		static const Sbecore::uint TOT = 7;
+		static const Sbecore::uint FRS = 8;
+		static const Sbecore::uint FRT = 9;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
 
-		static void fillFeed(Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(Sbecore::Feed& feed);
 	};
 
 	/**
@@ -54,13 +54,14 @@ public:
 	class StatApp {
 
 	public:
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const Sbecore::uint firstcol = 1, const Sbecore::uint jnumFirstdisp = 1, const Sbecore::uint ncol = 12, const Sbecore::uint ndisp = 25);
 		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint firstcol = 1, const Sbecore::uint jnumFirstdisp = 1, const Sbecore::uint ncol = 12, const Sbecore::uint ndisp = 25);
 	};
 
 	/**
 		* StatShr (full: StatShrQryWznmRelList)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -76,6 +77,7 @@ public:
 		Sbecore::uint nload;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -84,7 +86,7 @@ public:
 	/**
 		* StgIac (full: StgIacQryWznmRelList)
 		*/
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;
@@ -100,7 +102,9 @@ public:
 		Sbecore::uint nload;
 
 	public:
+		bool readJSON(Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StgIac* comp);
 		std::set<Sbecore::uint> diff(const StgIac* comp);
@@ -151,9 +155,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
-	bool handleCallWznmRelMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmRelUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmRelMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };
 

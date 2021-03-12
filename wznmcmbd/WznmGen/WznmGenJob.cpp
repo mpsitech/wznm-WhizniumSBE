@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmGen;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmGenJob
  ******************************************************************************/
@@ -415,7 +417,7 @@ ubigint WznmGenJob::genJobCrd(
 		dbswznm->tblwznmrmjobmjob->insertNewRec(NULL, refJobSess, job->ref, "crd" + StrMod::lc(crd->sref.substr(3+4)), true, VecWznmVRMJobMJobConstract::VOID);
 	};
 
-	// - stages {idle, alrxxxxabt, <alr's>}
+	// - stages {idle, alrxxxxabt, alrxxxxtrm, <alr's>}
 	dbswznm->tblwznmmcontrol->loadRstBySQL("SELECT * FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::CAR) + " AND hkUref = " + to_string(crd->ref) + " AND ixVBasetype = "
 				+ to_string(VecWznmVMControlBasetype::ALR) + " ORDER BY hkNum ASC", false, cons);
 	for (unsigned int i = 0; i < cons.nodes.size(); i++) refsAlr.insert(cons.nodes[i]->ref);
@@ -426,6 +428,10 @@ ubigint WznmGenJob::genJobCrd(
 		refSgeAlr = dbswznm->tblwznmmstage->insertNewRec(NULL, VecWznmVMStageBasetype::ALR, job->ref, sgenum++, 0, StrMod::lc("Alr" + Prjshort + "Abt"), 0, refSgeIdle, 0, 0, "");
 
 		dbswznm->tblwznmmsensitivity->insertNewRec(NULL, VecWznmVMSensitivityBasetype::CON, job->ref, refSgeIdle, 0, VecWznmVMSensitivityJactype::LOCK, 0, "", "", ref, "", VecWznmVMSensitivityAction::CHGSGE, refSgeAlr, false);
+	};
+
+	if (crd->sref.substr(3+4).compare("Nav") == 0) {
+		refSgeAlr = dbswznm->tblwznmmstage->insertNewRec(NULL, VecWznmVMStageBasetype::ALR, job->ref, sgenum++, 0, StrMod::lc("Alr" + Prjshort + "Trm"), 0, refSgeIdle, 0, 0, "");
 	};
 
 	for (unsigned int i = 0; i < cons.nodes.size(); i++) {

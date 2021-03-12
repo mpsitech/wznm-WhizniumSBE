@@ -23,7 +23,7 @@ namespace QryWznmJob1NSensitivity {
 	/**
 	  * StatApp (full: StatAppQryWznmJob1NSensitivity)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -49,7 +49,7 @@ namespace QryWznmJob1NSensitivity {
 	/**
 	  * StatShr (full: StatShrQryWznmJob1NSensitivity)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -73,7 +73,7 @@ namespace QryWznmJob1NSensitivity {
 	/**
 	  * StgIac (full: StgIacQryWznmJob1NSensitivity)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

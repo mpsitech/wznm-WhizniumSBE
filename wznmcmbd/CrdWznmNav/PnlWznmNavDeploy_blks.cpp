@@ -55,6 +55,27 @@ PnlWznmNavDeploy::ContIac::ContIac(
 	mask = {NUMFLSTCMP, NUMFLSTRLS};
 };
 
+bool PnlWznmNavDeploy::ContIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["ContIacWznmNavDeploy"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("numFLstCmp")) {numFLstCmp = me["numFLstCmp"].asUInt(); add(NUMFLSTCMP);};
+		if (me.isMember("numFLstRls")) {numFLstRls = me["numFLstRls"].asUInt(); add(NUMFLSTRLS);};
+	};
+
+	return basefound;
+};
+
 bool PnlWznmNavDeploy::ContIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -77,6 +98,18 @@ bool PnlWznmNavDeploy::ContIac::readXML(
 	};
 
 	return basefound;
+};
+
+void PnlWznmNavDeploy::ContIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContIacWznmNavDeploy";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFLstCmp"] = numFLstCmp;
+	me["numFLstRls"] = numFLstRls;
 };
 
 void PnlWznmNavDeploy::ContIac::writeXML(
@@ -125,6 +158,26 @@ set<uint> PnlWznmNavDeploy::ContIac::diff(
  class PnlWznmNavDeploy::StatApp
  ******************************************************************************/
 
+void PnlWznmNavDeploy::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWznmVExpstate
+			, const bool LstCmpAlt
+			, const bool LstRlsAlt
+			, const uint LstCmpNumFirstdisp
+			, const uint LstRlsNumFirstdisp
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmNavDeploy";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
+	me["LstCmpAlt"] = LstCmpAlt;
+	me["LstRlsAlt"] = LstRlsAlt;
+	me["LstCmpNumFirstdisp"] = LstCmpNumFirstdisp;
+	me["LstRlsNumFirstdisp"] = LstRlsNumFirstdisp;
+};
+
 void PnlWznmNavDeploy::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -170,6 +223,21 @@ PnlWznmNavDeploy::StatShr::StatShr(
 	this->ButRlsNewcrdActive = ButRlsNewcrdActive;
 
 	mask = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
+};
+
+void PnlWznmNavDeploy::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmNavDeploy";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["LstCmpAvail"] = LstCmpAvail;
+	me["ButCmpViewActive"] = ButCmpViewActive;
+	me["LstRlsAvail"] = LstRlsAvail;
+	me["ButRlsViewActive"] = ButRlsViewActive;
+	me["ButRlsNewcrdActive"] = ButRlsNewcrdActive;
 };
 
 void PnlWznmNavDeploy::StatShr::writeXML(
@@ -224,6 +292,22 @@ set<uint> PnlWznmNavDeploy::StatShr::diff(
  class PnlWznmNavDeploy::Tag
  ******************************************************************************/
 
+void PnlWznmNavDeploy::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmNavDeploy";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["Cpt"] = "Deployment module";
+		me["CptCmp"] = "components";
+		me["CptRls"] = "releases";
+	};
+};
+
 void PnlWznmNavDeploy::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -264,6 +348,27 @@ string PnlWznmNavDeploy::DpchAppData::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmNavDeploy::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmNavDeployData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (contiac.readJSON(me, true)) add(CONTIAC);
+	} else {
+		contiac = ContIac();
+	};
 };
 
 void PnlWznmNavDeploy::DpchAppData::readXML(
@@ -313,6 +418,26 @@ string PnlWznmNavDeploy::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmNavDeploy::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmNavDeployDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWznmNavDeploy::DpchAppDo::readXML(
@@ -397,6 +522,21 @@ void PnlWznmNavDeploy::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmNavDeploy::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmNavDeployData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTIAC)) contiac.writeJSON(me);
+	if (has(FEEDFLSTCMP)) feedFLstCmp.writeJSON(me);
+	if (has(FEEDFLSTRLS)) feedFLstRls.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmNavDeploy::DpchEngData::writeXML(

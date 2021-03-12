@@ -31,6 +31,21 @@ WznmQUsr1NSession::WznmQUsr1NSession(
 	this->stubRef = stubRef;
 };
 
+void WznmQUsr1NSession::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQUsr1NSession::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQUsr1NSession& ListWznmQUsr1NSession::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQUsr1NSession::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQUsr1NSession";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQUsr1NSession::writeXML(

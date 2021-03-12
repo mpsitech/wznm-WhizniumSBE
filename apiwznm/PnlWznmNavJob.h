@@ -51,7 +51,7 @@ namespace PnlWznmNavJob {
 	/**
 	  * ContIac (full: ContIacWznmNavJob)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFLSTJOB = 1;
@@ -80,7 +80,7 @@ namespace PnlWznmNavJob {
 	/**
 	  * StatApp (full: StatAppWznmNavJob)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -120,7 +120,7 @@ namespace PnlWznmNavJob {
 	/**
 	  * StatShr (full: StatShrWznmNavJob)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint LSTJOBAVAIL = 1;
@@ -168,7 +168,7 @@ namespace PnlWznmNavJob {
 	/**
 	  * Tag (full: TagWznmNavJob)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -259,11 +259,11 @@ namespace PnlWznmNavJob {
 
 	public:
 		ContIac contiac;
-		Sbecore::Xmlio::Feed feedFLstBlk;
-		Sbecore::Xmlio::Feed feedFLstCal;
-		Sbecore::Xmlio::Feed feedFLstJob;
-		Sbecore::Xmlio::Feed feedFLstMtd;
-		Sbecore::Xmlio::Feed feedFLstSge;
+		Sbecore::Feed feedFLstBlk;
+		Sbecore::Feed feedFLstCal;
+		Sbecore::Feed feedFLstJob;
+		Sbecore::Feed feedFLstMtd;
+		Sbecore::Feed feedFLstSge;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

@@ -63,7 +63,7 @@ public:
 	/**
 	  * ContIac (full: ContIacWznmNavUix)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFLSTPST = 1;
@@ -91,7 +91,9 @@ public:
 		Sbecore::uint numFLstCon;
 
 	public:
+		bool readJSON(Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContIac* comp);
 		std::set<Sbecore::uint> diff(const ContIac* comp);
@@ -103,13 +105,14 @@ public:
 	class StatApp {
 
 	public:
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND, const bool LstPstAlt = true, const bool LstMdlAlt = true, const bool LstCarAlt = true, const bool LstDlgAlt = true, const bool LstPnlAlt = true, const bool LstQryAlt = true, const bool LstQcoAlt = true, const bool LstQmdAlt = true, const bool LstConAlt = true, const Sbecore::uint LstPstNumFirstdisp = 1, const Sbecore::uint LstMdlNumFirstdisp = 1, const Sbecore::uint LstCarNumFirstdisp = 1, const Sbecore::uint LstDlgNumFirstdisp = 1, const Sbecore::uint LstPnlNumFirstdisp = 1, const Sbecore::uint LstQryNumFirstdisp = 1, const Sbecore::uint LstQcoNumFirstdisp = 1, const Sbecore::uint LstQmdNumFirstdisp = 1, const Sbecore::uint LstConNumFirstdisp = 1);
 		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND, const bool LstPstAlt = true, const bool LstMdlAlt = true, const bool LstCarAlt = true, const bool LstDlgAlt = true, const bool LstPnlAlt = true, const bool LstQryAlt = true, const bool LstQcoAlt = true, const bool LstQmdAlt = true, const bool LstConAlt = true, const Sbecore::uint LstPstNumFirstdisp = 1, const Sbecore::uint LstMdlNumFirstdisp = 1, const Sbecore::uint LstCarNumFirstdisp = 1, const Sbecore::uint LstDlgNumFirstdisp = 1, const Sbecore::uint LstPnlNumFirstdisp = 1, const Sbecore::uint LstQryNumFirstdisp = 1, const Sbecore::uint LstQcoNumFirstdisp = 1, const Sbecore::uint LstQmdNumFirstdisp = 1, const Sbecore::uint LstConNumFirstdisp = 1);
 	};
 
 	/**
 		* StatShr (full: StatShrWznmNavUix)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint LSTPSTAVAIL = 1;
@@ -173,6 +176,7 @@ public:
 		bool ButConNewcrdActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -184,6 +188,7 @@ public:
 	class Tag {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -205,6 +210,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -226,6 +232,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -252,25 +259,26 @@ public:
 		static const Sbecore::uint ALL = 15;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, Sbecore::Xmlio::Feed* feedFLstCar = NULL, Sbecore::Xmlio::Feed* feedFLstCon = NULL, Sbecore::Xmlio::Feed* feedFLstDlg = NULL, Sbecore::Xmlio::Feed* feedFLstMdl = NULL, Sbecore::Xmlio::Feed* feedFLstPnl = NULL, Sbecore::Xmlio::Feed* feedFLstPst = NULL, Sbecore::Xmlio::Feed* feedFLstQco = NULL, Sbecore::Xmlio::Feed* feedFLstQmd = NULL, Sbecore::Xmlio::Feed* feedFLstQry = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, Sbecore::Feed* feedFLstCar = NULL, Sbecore::Feed* feedFLstCon = NULL, Sbecore::Feed* feedFLstDlg = NULL, Sbecore::Feed* feedFLstMdl = NULL, Sbecore::Feed* feedFLstPnl = NULL, Sbecore::Feed* feedFLstPst = NULL, Sbecore::Feed* feedFLstQco = NULL, Sbecore::Feed* feedFLstQmd = NULL, Sbecore::Feed* feedFLstQry = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContIac contiac;
-		Sbecore::Xmlio::Feed feedFLstCar;
-		Sbecore::Xmlio::Feed feedFLstCon;
-		Sbecore::Xmlio::Feed feedFLstDlg;
-		Sbecore::Xmlio::Feed feedFLstMdl;
-		Sbecore::Xmlio::Feed feedFLstPnl;
-		Sbecore::Xmlio::Feed feedFLstPst;
-		Sbecore::Xmlio::Feed feedFLstQco;
-		Sbecore::Xmlio::Feed feedFLstQmd;
-		Sbecore::Xmlio::Feed feedFLstQry;
+		Sbecore::Feed feedFLstCar;
+		Sbecore::Feed feedFLstCon;
+		Sbecore::Feed feedFLstDlg;
+		Sbecore::Feed feedFLstMdl;
+		Sbecore::Feed feedFLstPnl;
+		Sbecore::Feed feedFLstPst;
+		Sbecore::Feed feedFLstQco;
+		Sbecore::Feed feedFLstQmd;
+		Sbecore::Feed feedFLstQry;
 		StatShr statshr;
 
 	public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
@@ -310,15 +318,15 @@ public:
 	ContIac contiac;
 	StatShr statshr;
 
-	Sbecore::Xmlio::Feed feedFLstCar;
-	Sbecore::Xmlio::Feed feedFLstCon;
-	Sbecore::Xmlio::Feed feedFLstDlg;
-	Sbecore::Xmlio::Feed feedFLstMdl;
-	Sbecore::Xmlio::Feed feedFLstPnl;
-	Sbecore::Xmlio::Feed feedFLstPst;
-	Sbecore::Xmlio::Feed feedFLstQco;
-	Sbecore::Xmlio::Feed feedFLstQmd;
-	Sbecore::Xmlio::Feed feedFLstQry;
+	Sbecore::Feed feedFLstCar;
+	Sbecore::Feed feedFLstCon;
+	Sbecore::Feed feedFLstDlg;
+	Sbecore::Feed feedFLstMdl;
+	Sbecore::Feed feedFLstPnl;
+	Sbecore::Feed feedFLstPst;
+	Sbecore::Feed feedFLstQco;
+	Sbecore::Feed feedFLstQmd;
+	Sbecore::Feed feedFLstQry;
 
 	// IP vars.cust --- INSERT
 

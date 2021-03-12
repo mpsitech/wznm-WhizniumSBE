@@ -121,7 +121,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * ContIac (full: ContIacDlgWznmVerDeploy)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFDSE = 1;
@@ -142,7 +142,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * ContInf (full: ContInfDlgWznmVerDeploy)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -162,7 +162,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * ContInfImp (full: ContInfDlgWznmVerDeployImp)
 	  */
-	class ContInfImp : public Sbecore::Xmlio::Block {
+	class ContInfImp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTPRG = 1;
@@ -182,7 +182,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * ContInfLfi (full: ContInfDlgWznmVerDeployLfi)
 	  */
-	class ContInfLfi : public Sbecore::Xmlio::Block {
+	class ContInfLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -202,7 +202,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * ContInfPpr (full: ContInfDlgWznmVerDeployPpr)
 	  */
-	class ContInfPpr : public Sbecore::Xmlio::Block {
+	class ContInfPpr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTPRG = 1;
@@ -222,7 +222,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * StatApp (full: StatAppDlgWznmVerDeploy)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONE = 1;
@@ -244,7 +244,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * StatShr (full: StatShrDlgWznmVerDeploy)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTDNEACTIVE = 1;
@@ -264,7 +264,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * StatShrIfi (full: StatShrDlgWznmVerDeployIfi)
 	  */
-	class StatShrIfi : public Sbecore::Xmlio::Block {
+	class StatShrIfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint ULDACTIVE = 1;
@@ -284,7 +284,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * StatShrImp (full: StatShrDlgWznmVerDeployImp)
 	  */
-	class StatShrImp : public Sbecore::Xmlio::Block {
+	class StatShrImp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTRUNACTIVE = 1;
@@ -306,7 +306,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * StatShrLfi (full: StatShrDlgWznmVerDeployLfi)
 	  */
-	class StatShrLfi : public Sbecore::Xmlio::Block {
+	class StatShrLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLDACTIVE = 1;
@@ -326,7 +326,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * StatShrPpr (full: StatShrDlgWznmVerDeployPpr)
 	  */
-	class StatShrPpr : public Sbecore::Xmlio::Block {
+	class StatShrPpr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTRUNACTIVE = 1;
@@ -348,7 +348,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * Tag (full: TagDlgWznmVerDeploy)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -368,7 +368,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * TagIfi (full: TagDlgWznmVerDeployIfi)
 	  */
-	class TagIfi : public Sbecore::Xmlio::Block {
+	class TagIfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint ULD = 1;
@@ -388,7 +388,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * TagImp (full: TagDlgWznmVerDeployImp)
 	  */
-	class TagImp : public Sbecore::Xmlio::Block {
+	class TagImp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPTPRG = 1;
@@ -410,7 +410,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * TagLfi (full: TagDlgWznmVerDeployLfi)
 	  */
-	class TagLfi : public Sbecore::Xmlio::Block {
+	class TagLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -428,7 +428,7 @@ namespace DlgWznmVerDeploy {
 	/**
 	  * TagPpr (full: TagDlgWznmVerDeployPpr)
 	  */
-	class TagPpr : public Sbecore::Xmlio::Block {
+	class TagPpr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPTPRG = 1;
@@ -530,8 +530,8 @@ namespace DlgWznmVerDeploy {
 		ContInfImp continfimp;
 		ContInfLfi continflfi;
 		ContInfPpr continfppr;
-		Sbecore::Xmlio::Feed feedFDse;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFDse;
+		Sbecore::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;
 		StatShrIfi statshrifi;

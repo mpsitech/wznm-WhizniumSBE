@@ -109,7 +109,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * ContIac (full: ContIacDlgWznmUtlExtrip)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFDSE = 1;
@@ -130,7 +130,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * ContInf (full: ContInfDlgWznmUtlExtrip)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -150,7 +150,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * ContInfExt (full: ContInfDlgWznmUtlExtripExt)
 	  */
-	class ContInfExt : public Sbecore::Xmlio::Block {
+	class ContInfExt : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTPRG = 1;
@@ -170,7 +170,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * ContInfLfi (full: ContInfDlgWznmUtlExtripLfi)
 	  */
-	class ContInfLfi : public Sbecore::Xmlio::Block {
+	class ContInfLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -190,7 +190,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * ContInfRes (full: ContInfDlgWznmUtlExtripRes)
 	  */
-	class ContInfRes : public Sbecore::Xmlio::Block {
+	class ContInfRes : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -210,7 +210,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * StatApp (full: StatAppDlgWznmUtlExtrip)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONE = 1;
@@ -232,7 +232,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * StatShr (full: StatShrDlgWznmUtlExtrip)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTDNEACTIVE = 1;
@@ -252,7 +252,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * StatShrExt (full: StatShrDlgWznmUtlExtripExt)
 	  */
-	class StatShrExt : public Sbecore::Xmlio::Block {
+	class StatShrExt : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTRUNACTIVE = 1;
@@ -274,7 +274,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * StatShrLfi (full: StatShrDlgWznmUtlExtripLfi)
 	  */
-	class StatShrLfi : public Sbecore::Xmlio::Block {
+	class StatShrLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLDACTIVE = 1;
@@ -294,7 +294,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * StatShrRes (full: StatShrDlgWznmUtlExtripRes)
 	  */
-	class StatShrRes : public Sbecore::Xmlio::Block {
+	class StatShrRes : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLDACTIVE = 1;
@@ -314,7 +314,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * StatShrSrc (full: StatShrDlgWznmUtlExtripSrc)
 	  */
-	class StatShrSrc : public Sbecore::Xmlio::Block {
+	class StatShrSrc : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint ULDACTIVE = 1;
@@ -334,7 +334,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * Tag (full: TagDlgWznmUtlExtrip)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -354,7 +354,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * TagExt (full: TagDlgWznmUtlExtripExt)
 	  */
-	class TagExt : public Sbecore::Xmlio::Block {
+	class TagExt : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPTPRG = 1;
@@ -376,7 +376,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * TagLfi (full: TagDlgWznmUtlExtripLfi)
 	  */
-	class TagLfi : public Sbecore::Xmlio::Block {
+	class TagLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -394,7 +394,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * TagRes (full: TagDlgWznmUtlExtripRes)
 	  */
-	class TagRes : public Sbecore::Xmlio::Block {
+	class TagRes : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -412,7 +412,7 @@ namespace DlgWznmUtlExtrip {
 	/**
 	  * TagSrc (full: TagDlgWznmUtlExtripSrc)
 	  */
-	class TagSrc : public Sbecore::Xmlio::Block {
+	class TagSrc : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint ULD = 1;
@@ -510,8 +510,8 @@ namespace DlgWznmUtlExtrip {
 		ContInfExt continfext;
 		ContInfLfi continflfi;
 		ContInfRes continfres;
-		Sbecore::Xmlio::Feed feedFDse;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFDse;
+		Sbecore::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;
 		StatShrExt statshrext;

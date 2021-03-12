@@ -35,6 +35,23 @@ WznmQSteList::WznmQSteList(
 	this->stubSeqRefWznmMSequence = stubSeqRefWznmMSequence;
 };
 
+void WznmQSteList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["seq"] = stubSeqRefWznmMSequence;
+	} else {
+		me["sref"] = sref;
+		me["stubSeqRefWznmMSequence"] = stubSeqRefWznmMSequence;
+	};
+};
+
 void WznmQSteList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -102,6 +119,16 @@ ListWznmQSteList& ListWznmQSteList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQSteList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQSteList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQSteList::writeXML(

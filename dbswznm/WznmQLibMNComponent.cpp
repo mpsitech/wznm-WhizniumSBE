@@ -33,6 +33,21 @@ WznmQLibMNComponent::WznmQLibMNComponent(
 	this->ref = ref;
 };
 
+void WznmQLibMNComponent::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+	} else {
+		me["stubMref"] = stubMref;
+	};
+};
+
 void WznmQLibMNComponent::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQLibMNComponent& ListWznmQLibMNComponent::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQLibMNComponent::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQLibMNComponent";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQLibMNComponent::writeXML(

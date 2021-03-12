@@ -14,20 +14,20 @@
 
 // IP include.cust --- INSERT
 
-#include "DlgWznmNavLoaini.h"
-#include "DlgWznmNavMnglic.h"
-#include "PnlWznmNavHeadbar.h"
-#include "PnlWznmNavPre.h"
-#include "PnlWznmNavAdmin.h"
-#include "PnlWznmNavGlobal.h"
-#include "PnlWznmNavProject.h"
-#include "PnlWznmNavDbstr.h"
-#include "PnlWznmNavUix.h"
-#include "PnlWznmNavComp.h"
+#include "PnlWznmNavAuxfct.h"
+#include "PnlWznmNavAppdev.h"
 #include "PnlWznmNavJob.h"
 #include "PnlWznmNavDeploy.h"
-#include "PnlWznmNavAppdev.h"
-#include "PnlWznmNavAuxfct.h"
+#include "PnlWznmNavComp.h"
+#include "PnlWznmNavUix.h"
+#include "PnlWznmNavDbstr.h"
+#include "PnlWznmNavProject.h"
+#include "PnlWznmNavGlobal.h"
+#include "PnlWznmNavAdmin.h"
+#include "PnlWznmNavPre.h"
+#include "PnlWznmNavHeadbar.h"
+#include "DlgWznmNavLoaini.h"
+#include "DlgWznmNavMnglic.h"
 
 #define VecVWznmNavDo CrdWznmNav::VecVDo
 #define VecVWznmNavSge CrdWznmNav::VecVSge
@@ -118,17 +118,18 @@ public:
 	public:
 		static const Sbecore::uint IDLE = 1;
 		static const Sbecore::uint ALRWZNMABT = 2;
+		static const Sbecore::uint ALRWZNMTRM = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
 
-		static void fillFeed(Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(Sbecore::Feed& feed);
 	};
 
 	/**
 	  * ContInf (full: ContInfWznmNav)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -148,6 +149,7 @@ public:
 		std::string MtxSesSes3;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInf* comp);
 		std::set<Sbecore::uint> diff(const ContInf* comp);
@@ -159,13 +161,14 @@ public:
 	class StatApp {
 
 	public:
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const Sbecore::uint ixWznmVReqitmode = VecWznmVReqitmode::IDLE, const Sbecore::usmallint latency = 5, const std::string& shortMenu = "", const Sbecore::uint widthMenu = 0, const bool initdoneHeadbar = false, const bool initdonePre = false, const bool initdoneAdmin = false, const bool initdoneGlobal = false, const bool initdoneProject = false, const bool initdoneDbstr = false, const bool initdoneUix = false, const bool initdoneComp = false, const bool initdoneJob = false, const bool initdoneDeploy = false, const bool initdoneAppdev = false, const bool initdoneAuxfct = false);
 		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint ixWznmVReqitmode = VecWznmVReqitmode::IDLE, const Sbecore::usmallint latency = 5, const std::string& shortMenu = "", const Sbecore::uint widthMenu = 0, const bool initdoneHeadbar = false, const bool initdonePre = false, const bool initdoneAdmin = false, const bool initdoneGlobal = false, const bool initdoneProject = false, const bool initdoneDbstr = false, const bool initdoneUix = false, const bool initdoneComp = false, const bool initdoneJob = false, const bool initdoneDeploy = false, const bool initdoneAppdev = false, const bool initdoneAuxfct = false);
 	};
 
 	/**
 		* StatShr (full: StatShrWznmNav)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JREFDLGLOAINI = 1;
@@ -413,6 +416,7 @@ public:
 		bool MitAppLoiAvail;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -424,6 +428,7 @@ public:
 	class Tag {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -445,6 +450,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -463,17 +469,18 @@ public:
 		static const Sbecore::uint ALL = 7;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContInf* continf = NULL, Sbecore::Xmlio::Feed* feedFSge = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContInf* continf = NULL, Sbecore::Feed* feedFSge = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFSge;
 		StatShr statshr;
 
 	public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
@@ -591,23 +598,23 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	Sbecore::Xmlio::Feed feedFMcbAlert;
-	Sbecore::Xmlio::Feed feedFSge;
+	Sbecore::Feed feedFMcbAlert;
+	Sbecore::Feed feedFSge;
 
-	DlgWznmNavLoaini* dlgloaini;
-	DlgWznmNavMnglic* dlgmnglic;
-	PnlWznmNavHeadbar* pnlheadbar;
-	PnlWznmNavPre* pnlpre;
-	PnlWznmNavAdmin* pnladmin;
-	PnlWznmNavGlobal* pnlglobal;
-	PnlWznmNavProject* pnlproject;
-	PnlWznmNavDbstr* pnldbstr;
-	PnlWznmNavUix* pnluix;
-	PnlWznmNavComp* pnlcomp;
+	PnlWznmNavAuxfct* pnlauxfct;
+	PnlWznmNavAppdev* pnlappdev;
 	PnlWznmNavJob* pnljob;
 	PnlWznmNavDeploy* pnldeploy;
-	PnlWznmNavAppdev* pnlappdev;
-	PnlWznmNavAuxfct* pnlauxfct;
+	PnlWznmNavComp* pnlcomp;
+	PnlWznmNavUix* pnluix;
+	PnlWznmNavDbstr* pnldbstr;
+	PnlWznmNavProject* pnlproject;
+	PnlWznmNavGlobal* pnlglobal;
+	PnlWznmNavAdmin* pnladmin;
+	PnlWznmNavPre* pnlpre;
+	PnlWznmNavHeadbar* pnlheadbar;
+	DlgWznmNavLoaini* dlgloaini;
+	DlgWznmNavMnglic* dlgmnglic;
 
 	// IP vars.cust --- INSERT
 
@@ -618,6 +625,7 @@ public:
 	DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 	void updatePreset(DbsWznm* dbswznm, const Sbecore::uint ixWznmVPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);
+	void warnTerm(DbsWznm* dbswznm);
 
 public:
 
@@ -700,6 +708,8 @@ private:
 	void leaveSgeIdle(DbsWznm* dbswznm);
 	Sbecore::uint enterSgeAlrwznmabt(DbsWznm* dbswznm, const bool reenter);
 	void leaveSgeAlrwznmabt(DbsWznm* dbswznm);
+	Sbecore::uint enterSgeAlrwznmtrm(DbsWznm* dbswznm, const bool reenter);
+	void leaveSgeAlrwznmtrm(DbsWznm* dbswznm);
 
 };
 

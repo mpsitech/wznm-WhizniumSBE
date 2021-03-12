@@ -33,6 +33,21 @@ WznmQVecVec1NVectoritem::WznmQVecVec1NVectoritem(
 	this->vecNum = vecNum;
 };
 
+void WznmQVecVec1NVectoritem::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQVecVec1NVectoritem::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQVecVec1NVectoritem& ListWznmQVecVec1NVectoritem::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQVecVec1NVectoritem::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQVecVec1NVectoritem";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQVecVec1NVectoritem::writeXML(

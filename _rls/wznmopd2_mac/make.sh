@@ -3,7 +3,7 @@
 # make script for Wznm operation daemon, release wznmopd2_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 13 Jan 2021
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -17,7 +17,7 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ "$1" = "all" ]; then
-	subs=("IexWznm" "VecWznm" "WznmCtpGenjtr" "WznmCtpGenui" "WznmCtpWrstkit" "WznmCtpWrsrv" "WznmCtpWrweb")
+	subs=("IexWznm" "VecWznm" "WznmCtpWrweb" "WznmCtpWrstkit" "WznmCtpWrsrv" "WznmCtpGenui" "WznmCtpGenjtr")
 else
 	subs=("$@")
 fi

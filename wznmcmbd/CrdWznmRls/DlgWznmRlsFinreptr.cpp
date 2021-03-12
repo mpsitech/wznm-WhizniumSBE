@@ -167,8 +167,8 @@ void DlgWznmRlsFinreptr::refreshFin(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfFin oldContinffin(continffin);
 	StatShrFin oldStatshrfin(statshrfin);
+	ContInfFin oldContinffin(continffin);
 
 	// IP refreshFin --- RBEGIN
 	// continffin
@@ -179,8 +179,8 @@ void DlgWznmRlsFinreptr::refreshFin(
 	statshrfin.ButStoActive = evalFinButStoActive(dbswznm);
 
 	// IP refreshFin --- REND
-	if (continffin.diff(&oldContinffin).size() != 0) insert(moditems, DpchEngData::CONTINFFIN);
 	if (statshrfin.diff(&oldStatshrfin).size() != 0) insert(moditems, DpchEngData::STATSHRFIN);
+	if (continffin.diff(&oldContinffin).size() != 0) insert(moditems, DpchEngData::CONTINFFIN);
 };
 
 void DlgWznmRlsFinreptr::refreshRes(
@@ -219,24 +219,24 @@ void DlgWznmRlsFinreptr::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	ContInf oldContinf(continf);
-	ContIac oldContiac(contiac);
 	StatShr oldStatshr(statshr);
+	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
-	// continf
-	continf.numFSge = ixVSge;
+	// statshr
+	statshr.ButDneActive = evalButDneActive(dbswznm);
 
 	// contiac
 	contiac.numFDse = ixVDit;
 
-	// statshr
-	statshr.ButDneActive = evalButDneActive(dbswznm);
+	// continf
+	continf.numFSge = ixVSge;
 
 	// IP refresh --- END
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshFin(dbswznm, moditems);
 	refreshRes(dbswznm, moditems);
@@ -301,8 +301,8 @@ void DlgWznmRlsFinreptr::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::FINIDLE) handleTimerInSgeFinidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::PSGIDLE) handleTimerInSgePsgidle(dbswznm, req->sref);
+		if (ixVSge == VecVSge::PSGIDLE) handleTimerInSgePsgidle(dbswznm, req->sref);
+		else if (ixVSge == VecVSge::FINIDLE) handleTimerInSgeFinidle(dbswznm, req->sref);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::PUSHGIT)) handleTimerWithSrefMonInSgePushgit(dbswznm);
 	};
 };
@@ -393,14 +393,14 @@ string DlgWznmRlsFinreptr::handleDownloadInSgeDone(
 	return(xchg->tmppath + "/" + tgzfile); // IP handleDownloadInSgeDone --- RLINE
 };
 
-void DlgWznmRlsFinreptr::handleTimerInSgeFinidle(
+void DlgWznmRlsFinreptr::handleTimerInSgePsgidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmRlsFinreptr::handleTimerInSgePsgidle(
+void DlgWznmRlsFinreptr::handleTimerInSgeFinidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
@@ -508,11 +508,13 @@ uint DlgWznmRlsFinreptr::enterSgeAlrgnf(
 
 	ContInfWznmAlert continf;
 	// IP enterSgeAlrgnf --- BEGIN
+	string giturl = "";
+
 	continf.TxtCpt = VecWznmVTag::getTitle(VecWznmVTag::ERROR, ixWznmVLocale);
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
-		continf.TxtMsg1 = "Unable to locate Git repository at &giturl;.";
+		continf.TxtMsg1 = "Unable to locate Git repository at " + giturl + ".";
 	};
 
 	feedFMcbAlert.clear();
@@ -540,11 +542,14 @@ uint DlgWznmRlsFinreptr::enterSgeAlrgad(
 
 	ContInfWznmAlert continf;
 	// IP enterSgeAlrgad --- BEGIN
+	string giturl = "";
+	string usr = "";
+
 	continf.TxtCpt = VecWznmVTag::getTitle(VecWznmVTag::ERROR, ixWznmVLocale);
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
-		continf.TxtMsg1 = "Access to Git repository at &giturl; denied for user &usr;.";
+		continf.TxtMsg1 = "Access to Git repository at " + giturl + " denied for user " + usr + ".";
 	};
 
 	feedFMcbAlert.clear();

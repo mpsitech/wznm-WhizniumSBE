@@ -31,6 +31,21 @@ WznmQIexRef1NDialog::WznmQIexRef1NDialog(
 	this->stubRef = stubRef;
 };
 
+void WznmQIexRef1NDialog::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQIexRef1NDialog::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQIexRef1NDialog& ListWznmQIexRef1NDialog::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQIexRef1NDialog::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQIexRef1NDialog";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQIexRef1NDialog::writeXML(

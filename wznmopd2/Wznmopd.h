@@ -32,6 +32,9 @@
 #endif
 
 #include <microhttpd.h>
+#if MHD_VERSION < 0x0097002
+	#define MHD_Result int
+#endif
 
 #include <curl/curl.h>
 
@@ -84,7 +87,7 @@ namespace DpchWznmopdUnreg {
 /**
 	* StgWznmDatabase
 	*/
-class StgWznmDatabase : public Sbecore::Xmlio::Block {
+class StgWznmDatabase : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint IXDBSVDBSTYPE = 1;
@@ -117,7 +120,7 @@ public:
 /**
 	* StgWznmopd
 	*/
-class StgWznmopd : public Sbecore::Xmlio::Block {
+class StgWznmopd : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint ENGIP = 1;
@@ -146,7 +149,7 @@ public:
 /**
 	* StgWznmPath
 	*/
-class StgWznmPath : public Sbecore::Xmlio::Block {
+class StgWznmPath : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint ACVPATH = 1;

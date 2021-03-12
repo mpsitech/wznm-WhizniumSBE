@@ -41,7 +41,7 @@ namespace PnlWznmNavPre {
 	/**
 	  * ContInf (full: ContInfWznmNavPre)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTAPP = 1;
@@ -63,7 +63,7 @@ namespace PnlWznmNavPre {
 	/**
 	  * StatShr (full: StatShrWznmNavPre)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTAPPAVAIL = 1;
@@ -85,7 +85,7 @@ namespace PnlWznmNavPre {
 	/**
 	  * Tag (full: TagWznmNavPre)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPTAPP = 1;

@@ -75,7 +75,7 @@ namespace RootWznm {
 		DpchEngData();
 
 	public:
-		Sbecore::Xmlio::Feed feedFEnsSps;
+		Sbecore::Feed feedFEnsSps;
 
 	public:
 		std::string getSrefsMask();

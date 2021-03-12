@@ -53,6 +53,37 @@ WznmQPrsList::WznmQPrsList(
 	this->emlVal = emlVal;
 };
 
+void WznmQPrsList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["grp"] = stubGrp;
+		me["own"] = stubOwn;
+		me["tit"] = Title;
+		me["fnm"] = Firstname;
+		me["lnm"] = Lastname;
+		me["sex"] = srefIxVSex;
+		me["sex2"] = titIxVSex;
+		me["tel"] = telVal;
+		me["eml"] = emlVal;
+	} else {
+		me["stubGrp"] = stubGrp;
+		me["stubOwn"] = stubOwn;
+		me["Title"] = Title;
+		me["Firstname"] = Firstname;
+		me["Lastname"] = Lastname;
+		me["srefIxVSex"] = srefIxVSex;
+		me["titIxVSex"] = titIxVSex;
+		me["telVal"] = telVal;
+		me["emlVal"] = emlVal;
+	};
+};
+
 void WznmQPrsList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -134,6 +165,16 @@ ListWznmQPrsList& ListWznmQPrsList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQPrsList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQPrsList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQPrsList::writeXML(

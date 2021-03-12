@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmWrsrv;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrsrvEngbase
  ******************************************************************************/
@@ -252,42 +254,20 @@ void WznmWrsrvEngbase::writeAppCpp(
 
 	string subsref;
 
-	// --- readDpchApp
+	// --- readDpchApp.xml
 	dbswznm->tblwznmmblock->loadRstBySQL("SELECT * FROM TblWznmMBlock WHERE ixVBasetype = " + to_string(VecWznmVMBlockBasetype::DPCH) + " AND refWznmMVersion = "
 				+ to_string(refWznmMVersion) + " AND (reaIxWznmWScope & " + to_string(VecWznmWScope::ENG) + ") <> 0 AND (wriIxWznmWScope & "
 				+ to_string(VecWznmWScope::APP) + ") <> 0 ORDER BY sref ASC", false, blks);
 
-	outfile << "// IP readDpchApp --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < blks.nodes.size(); i++) {
-		blk = blks.nodes[i];
+	// --- readDpchApp.xml
+	outfile << "// IP readDpchApp.xml --- IBEGIN" << endl;
+	wrReaddpchappCpp(dbswznm, Prjshort, outfile, blks, false);
+	outfile << "// IP readDpchApp.xml --- IEND" << endl;
 
-		outfile << "\t\t";
-		if (i != 0) outfile << "} else ";
-		outfile << "if (ix" << Prjshort << "VDpch == Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << ") {" << endl;
-
-		if (dbswznm->tblwznmmjob->loadRecByRef(blk->refUref, &job)) {
-			if ((job->ixVBasetype == VecWznmVMJobBasetype::CRD) || (job->ixVBasetype == VecWznmVMJobBasetype::PNL)) {
-				// special rule for subsref
-				// ex. DpchAppPlnrNavData -> CrdPlnrNav::DpchAppData
-				subsref = "DpchApp" + blk->sref.substr(blk->sref.find(job->sref.substr(3)) + job->sref.length() - 3);
-			} else {
-				// regular rule for subsref
-				// ex. DpchAppDlgPlnrNavLoainiData -> DlgPlnrNavLoaini::DpchAppData
-				subsref = "DpchApp" + blk->sref.substr(blk->sref.find(job->sref) + job->sref.length());
-			};
-
-			outfile << "\t\t\treq->dpchapp = new " << job->sref << "::" << subsref << "();" << endl;
-			outfile << "\t\t\t((" << job->sref << "::" << subsref << "*) (req->dpchapp))->readXML(docctx, \"/\", true);" << endl;
-
-			delete job;
-
-		} else {
-			outfile << "\t\t\treq->dpchapp = new " << blk->sref << "();" << endl;
-			outfile << "\t\t\t((" << blk->sref << "*) (req->dpchapp))->readXML(docctx, \"/\", true);" << endl;
-		};
-	};
-	if (blks.nodes.size() > 0) outfile << "\t\t};" << endl;
-	outfile << "// IP readDpchApp --- IEND" << endl;
+	// --- readDpchApp.json
+	outfile << "// IP readDpchApp.json --- IBEGIN" << endl;
+	wrReaddpchappCpp(dbswznm, Prjshort, outfile, blks, true);
+	outfile << "// IP readDpchApp.json --- IEND" << endl;
 };
 
 void WznmWrsrvEngbase::writeOprcCpp(
@@ -374,7 +354,10 @@ void WznmWrsrvEngbase::writeDH(
 
 		outfile << "\tDpchEng" << Prjshort << "Alert* prepareAlr" << con->sref.substr(3+4) << "(const Sbecore::ubigint jref, const Sbecore::uint ix" << Prjshort << "VLocale";
 		for (auto it = plhs.begin(); it != plhs.end(); it++) outfile << ", const std::string& " << *it;
-		outfile << ", Sbecore::Xmlio::Feed& feedFMcbAlert);" << endl;
+		if (con->sref.substr(3+4) == "Trm") outfile << ", const Sbecore::uint sesstterm, const Sbecore::uint sesstwarn";
+		outfile << ", Sbecore::Feed& feedFMcbAlert);" << endl;
+
+		if (con->sref.substr(3+4) == "Trm") outfile << "\tstd::string prepareAlr" << con->sref.substr(3+4) << "_dtToString(const uint ix" << Prjshort << "VLocale, const time_t dt);" << endl;
 	};
 	outfile << "// IP alrs --- IEND" << endl;
 
@@ -475,6 +458,10 @@ void WznmWrsrvEngbase::writeDCpp(
 		outfile << "\t\t\tconst ubigint jref" << endl;
 		outfile << "\t\t\t, const uint ix" << Prjshort << "VLocale" << endl;
 		for (auto it = plhs.begin(); it != plhs.end(); it++) outfile << "\t\t\t, const string& " << *it << endl;
+		if (con->sref.substr(3+4) == "Trm") {
+			outfile << "\t\t\t, const uint sesstterm" << endl;
+			outfile << "\t\t\t, const uint sesstwarn" << endl;
+		};
 		outfile << "\t\t\t, Feed& feedFMcbAlert" << endl;
 		outfile << "\t\t) {" << endl;
 		outfile << "\tContInf" << Prjshort << "Alert continf;" << endl;
@@ -484,6 +471,8 @@ void WznmWrsrvEngbase::writeDCpp(
 		outfile << "\treturn(new DpchEng" << Prjshort << "Alert(jref, &continf, &feedFMcbAlert, {DpchEng" << Prjshort << "Alert::ALL}));" << endl;
 		outfile << "};" << endl;
 		outfile << endl;
+
+		if (con->sref.substr(3+4) == "Trm") wrAlrTrmCpp_dtToString(Prjshort, outfile, con);
 	};
 	outfile << "// IP alrs --- IEND" << endl;
 

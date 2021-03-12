@@ -2,7 +2,7 @@
 # make file for Wznm operation daemon, release wznmopd1_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 13 Jan 2021
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 include Makefile.inc
@@ -14,7 +14,7 @@ LINK = g++
 LINKFLAGS =
 
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmopd1/VecWznm -I$(BUILDROOT)/wznmopd1/IexWznm -I$(BUILDROOT)/wznmopd1
-INCPATH += -I$(BUILDROOT)/wznmopd1/WznmCompl -I$(BUILDROOT)/wznmopd1/WznmGen -I$(BUILDROOT)/wznmopd1/WznmPrcfile -I$(BUILDROOT)/wznmopd1/WznmPrctree -I$(BUILDROOT)/wznmopd1/WznmWrapi -I$(BUILDROOT)/wznmopd1/WznmWrapp -I$(BUILDROOT)/wznmopd1/WznmWrdbs -I$(BUILDROOT)/wznmopd1/WznmWrjapi -I$(BUILDROOT)/wznmopd1/WznmWrsrv -I$(BUILDROOT)/wznmopd1/WznmWrweb
+INCPATH += -I$(BUILDROOT)/wznmopd1/WznmWrweb -I$(BUILDROOT)/wznmopd1/WznmWrsrv -I$(BUILDROOT)/wznmopd1/WznmWrjapi -I$(BUILDROOT)/wznmopd1/WznmWrdbs -I$(BUILDROOT)/wznmopd1/WznmWrapp -I$(BUILDROOT)/wznmopd1/WznmWrapi -I$(BUILDROOT)/wznmopd1/WznmPrctree -I$(BUILDROOT)/wznmopd1/WznmPrcfile -I$(BUILDROOT)/wznmopd1/WznmGen -I$(BUILDROOT)/wznmopd1/WznmCompl
 INCPATH += -I${WHIZSDKROOT}/build -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
 PCHS = Wznmopd.h.gch
@@ -26,12 +26,12 @@ LIBPATH = -L$(LIBROOT)
 LIBPATH += -L$(LIBROOT)/wznmopd1
 LIBPATH += -L${WHIZSDKROOT}/lib -L/usr/local/lib -L/usr/local/mysql/lib
 
-LIBS = -lwznmcompl -lwznmgen -lwznmprcfile -lwznmprctree -lwznmwrapi -lwznmwrapp -lwznmwrdbs -lwznmwrjapi -lwznmwrsrv -lwznmwrweb
+LIBS = -lwznmwrweb -lwznmwrsrv -lwznmwrjapi -lwznmwrdbs -lwznmwrapp -lwznmwrapi -lwznmprctree -lwznmprcfile -lwznmgen -lwznmcompl
 LIBS += -liexwznm -lvecwznm -ldbswznm
 LIBS += -lcurl -lmicrohttpd -lsbecore_my
 LIBS += -lmysqlclient -lsbecore_plus
 LIBS += -lsbecore
-LIBS += -lxml2
+LIBS += -ljsoncpp -lxml2
 
 EXE = Wznmopd1
 

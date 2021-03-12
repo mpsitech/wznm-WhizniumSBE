@@ -28,12 +28,12 @@ namespace QryWznmJobList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint SRF = 1;
-		static const Sbecore::uint TYP = 2;
-		static const Sbecore::uint VER = 3;
-		static const Sbecore::uint RET = 4;
-		static const Sbecore::uint REU = 5;
-		static const Sbecore::uint GBL = 6;
+		static const Sbecore::uint RET = 1;
+		static const Sbecore::uint REU = 2;
+		static const Sbecore::uint GBL = 3;
+		static const Sbecore::uint VER = 4;
+		static const Sbecore::uint SRF = 5;
+		static const Sbecore::uint TYP = 6;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -42,7 +42,7 @@ namespace QryWznmJobList {
 	/**
 	  * StatApp (full: StatAppQryWznmJobList)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -68,7 +68,7 @@ namespace QryWznmJobList {
 	/**
 	  * StatShr (full: StatShrQryWznmJobList)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -92,7 +92,7 @@ namespace QryWznmJobList {
 	/**
 	  * StgIac (full: StgIacQryWznmJobList)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

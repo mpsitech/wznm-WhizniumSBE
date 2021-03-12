@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmWrdbs;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrdbsTbl
  ******************************************************************************/
@@ -1890,6 +1892,22 @@ void WznmWrdbsTbl::writeQtbCpp(
 	};
 	outfile << "// IP constructor --- IEND" << endl;
 
+	// --- writeJSON.shorttags
+	outfile << "// IP writeJSON.shorttags --- IBEGIN" << endl;
+	for (unsigned int i = 0; i < qcos.nodes.size(); i++) {
+		qco = qcos.nodes[i];
+		if (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::XML) outfile << "\t\tme[\"" << qco->Short << "\"] = " << qco->sref << ";" << endl;
+	};
+	outfile << "// IP writeJSON.shorttags --- IEND" << endl;
+
+	// --- writeJSON.nonshorttags
+	outfile << "// IP writeJSON.nonshorttags --- IBEGIN" << endl;
+	for (unsigned int i = 0; i < qcos.nodes.size(); i++) {
+		qco = qcos.nodes[i];
+		if (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::XML) outfile << "\t\tme[\"" << qco->sref << "\"] = " << qco->sref << ";" << endl;
+	};
+	outfile << "// IP writeJSON.nonshorttags --- IEND" << endl;
+
 	// --- writeXML.shorttags
 	outfile << "// IP writeXML.shorttags --- IBEGIN" << endl;
 	for (unsigned int i = 0; i < qcos.nodes.size(); i++) {
@@ -1917,6 +1935,14 @@ void WznmWrdbsTbl::writeQtbCpp(
 		};
 	};
 	outfile << "// IP writeXML.nonshorttags --- IEND" << endl;
+
+	// --- listWriteJSON.qwr
+	if (hasqwr) outfile << "// IP listWriteJSON.qwr --- AFFIRM" << endl;
+	else outfile << "// IP listWriteJSON.qwr --- REMOVE" << endl;
+
+	// --- listWriteJSON.noqwr
+	if (!hasqwr) outfile << "// IP listWriteJSON.noqwr --- AFFIRM" << endl;
+	else outfile << "// IP listWriteJSON.noqwr --- REMOVE" << endl;
 
 	// --- listWriteXML.qwr
 	if (hasqwr) outfile << "// IP listWriteXML.qwr --- AFFIRM" << endl;

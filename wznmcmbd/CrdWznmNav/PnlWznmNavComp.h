@@ -49,7 +49,7 @@ public:
 	/**
 	  * ContIac (full: ContIacWznmNavComp)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFLSTOPK = 1;
@@ -63,7 +63,9 @@ public:
 		Sbecore::uint numFLstOpx;
 
 	public:
+		bool readJSON(Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContIac* comp);
 		std::set<Sbecore::uint> diff(const ContIac* comp);
@@ -75,13 +77,14 @@ public:
 	class StatApp {
 
 	public:
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND, const bool LstOpkAlt = true, const bool LstOpxAlt = true, const Sbecore::uint LstOpkNumFirstdisp = 1, const Sbecore::uint LstOpxNumFirstdisp = 1);
 		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::MIND, const bool LstOpkAlt = true, const bool LstOpxAlt = true, const Sbecore::uint LstOpkNumFirstdisp = 1, const Sbecore::uint LstOpxNumFirstdisp = 1);
 	};
 
 	/**
 		* StatShr (full: StatShrWznmNavComp)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint LSTOPKAVAIL = 1;
@@ -103,6 +106,7 @@ public:
 		bool ButOpxNewcrdActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -114,6 +118,7 @@ public:
 	class Tag {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -135,6 +140,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -156,6 +162,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -175,18 +182,19 @@ public:
 		static const Sbecore::uint ALL = 8;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, Sbecore::Xmlio::Feed* feedFLstOpk = NULL, Sbecore::Xmlio::Feed* feedFLstOpx = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, ContIac* contiac = NULL, Sbecore::Feed* feedFLstOpk = NULL, Sbecore::Feed* feedFLstOpx = NULL, StatShr* statshr = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
 		ContIac contiac;
-		Sbecore::Xmlio::Feed feedFLstOpk;
-		Sbecore::Xmlio::Feed feedFLstOpx;
+		Sbecore::Feed feedFLstOpk;
+		Sbecore::Feed feedFLstOpx;
 		StatShr statshr;
 
 	public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
@@ -205,8 +213,8 @@ public:
 	ContIac contiac;
 	StatShr statshr;
 
-	Sbecore::Xmlio::Feed feedFLstOpk;
-	Sbecore::Xmlio::Feed feedFLstOpx;
+	Sbecore::Feed feedFLstOpk;
+	Sbecore::Feed feedFLstOpx;
 
 	// IP vars.cust --- INSERT
 

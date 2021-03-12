@@ -14,7 +14,7 @@ using namespace Xmlio;
 bool PnlWznmVer1NPreset::evalButViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// !sel()|((pre.ixCrdaccPst()&pre.refVer())|(pre.ixCrdaccVec()&pre.refVer())|(pre.ixCrdaccTbl()&pre.refVer())|(pre.ixCrdaccSbs()&pre.refVer()))
+	// !sel()|((pre.ixCrdaccPst()&pre.refVer())|(pre.ixCrdaccTbl()&pre.refVer())|(pre.ixCrdaccSbs()&pre.refVer())|(pre.ixCrdaccVec()&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
@@ -30,13 +30,6 @@ bool PnlWznmVer1NPreset::evalButViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) != 0);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
@@ -45,6 +38,13 @@ bool PnlWznmVer1NPreset::evalButViewAvail(
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) != 0);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -84,19 +84,12 @@ bool PnlWznmVer1NPreset::evalButViewActive(
 bool PnlWznmVer1NPreset::evalButNewAvail(
 			DbsWznm* dbswznm
 		) {
-	// (pre.ixCrdaccPstIncl(edit)&pre.refVer())|(pre.ixCrdaccVecIncl(edit)&pre.refVer())|(pre.ixCrdaccTblIncl(edit)&pre.refVer())|(pre.ixCrdaccSbsIncl(edit)&pre.refVer())
+	// (pre.ixCrdaccPstIncl(edit)&pre.refVer())|(pre.ixCrdaccTblIncl(edit)&pre.refVer())|(pre.ixCrdaccSbsIncl(edit)&pre.refVer())|(pre.ixCrdaccVecIncl(edit)&pre.refVer())
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPST, jref) & VecWznmWAccess::EDIT);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) & VecWznmWAccess::EDIT);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -111,6 +104,13 @@ bool PnlWznmVer1NPreset::evalButNewAvail(
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) & VecWznmWAccess::EDIT);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) & VecWznmWAccess::EDIT);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);

@@ -2,7 +2,7 @@
 # make file for operation pack WznmCtpGenui, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 13 Jan 2021
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -17,7 +17,7 @@ INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
 OBJS = WznmCtpGenui_blks.o WznmCtpGenui.o
-OBJS += WznmCtpGenuiAcv.o WznmCtpGenuiDlgimp.o WznmCtpGenuiDlgloaini.o SqkWznmCtpGenui.o
+OBJS += WznmCtpGenuiAcv.o WznmCtpGenuiClustmgr.o WznmCtpGenuiDbeterm.o WznmCtpGenuiDlgimp.o WznmCtpGenuiDlgloaini.o WznmCtpGenuiPrefs.o SqkWznmCtpGenui.o
 
 LIB = libwznmctpgenui
 

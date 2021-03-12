@@ -42,7 +42,7 @@ namespace PnlWznmLibRec {
 	/**
 	  * ContInf (full: ContInfWznmLibRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,23 +62,23 @@ namespace PnlWznmLibRec {
 	/**
 	  * StatApp (full: StatAppWznmLibRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEAMAKEFILE = 2;
-		static const Sbecore::uint INITDONEAPKGLIST = 3;
+		static const Sbecore::uint INITDONEAPKGLIST = 2;
+		static const Sbecore::uint INITDONEAMAKEFILE = 3;
 		static const Sbecore::uint INITDONEREF1NFILE = 4;
 		static const Sbecore::uint INITDONEMNOPPACK = 5;
 		static const Sbecore::uint INITDONEMNCOMPONENT = 6;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneAMakefile = false, const bool initdoneAPkglist = false, const bool initdoneRef1NFile = false, const bool initdoneMNOppack = false, const bool initdoneMNComponent = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneAPkglist = false, const bool initdoneAMakefile = false, const bool initdoneRef1NFile = false, const bool initdoneMNOppack = false, const bool initdoneMNComponent = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdoneAMakefile;
 		bool initdoneAPkglist;
+		bool initdoneAMakefile;
 		bool initdoneRef1NFile;
 		bool initdoneMNOppack;
 		bool initdoneMNComponent;
@@ -92,26 +92,26 @@ namespace PnlWznmLibRec {
 	/**
 	  * StatShr (full: StatShrWznmLibRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFAMAKEFILE = 3;
-		static const Sbecore::uint SCRJREFAPKGLIST = 4;
+		static const Sbecore::uint SCRJREFAPKGLIST = 3;
+		static const Sbecore::uint SCRJREFAMAKEFILE = 4;
 		static const Sbecore::uint SCRJREFREF1NFILE = 5;
 		static const Sbecore::uint SCRJREFMNOPPACK = 6;
 		static const Sbecore::uint SCRJREFMNCOMPONENT = 7;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 8;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAMakefile = "", const std::string& scrJrefAPkglist = "", const std::string& scrJrefRef1NFile = "", const std::string& scrJrefMNOppack = "", const std::string& scrJrefMNComponent = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAPkglist = "", const std::string& scrJrefAMakefile = "", const std::string& scrJrefRef1NFile = "", const std::string& scrJrefMNOppack = "", const std::string& scrJrefMNComponent = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJrefAMakefile;
 		std::string scrJrefAPkglist;
+		std::string scrJrefAMakefile;
 		std::string scrJrefRef1NFile;
 		std::string scrJrefMNOppack;
 		std::string scrJrefMNComponent;
@@ -126,7 +126,7 @@ namespace PnlWznmLibRec {
 	/**
 	  * Tag (full: TagWznmLibRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

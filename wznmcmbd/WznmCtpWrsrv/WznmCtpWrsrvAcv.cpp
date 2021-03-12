@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmCtpWrsrv;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmCtpWrsrvAcv
  ******************************************************************************/
@@ -35,7 +37,21 @@ DpchRetWznm* WznmCtpWrsrvAcv::run(
 
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
-	// IP run --- INSERT
+	// IP run --- IBEGIN
+	bool uld = false;
+
+	if (uld) {
+		// modify DlgXxxxFilNew.h
+		// cf. wznmcmbd/CrdWznmFil/DlgWznmFilNew.h vars.cust
+
+		// modify DlgXxxxFilNew.cpp
+		// cf. wznmcmbd/CrdWznmFil/DlgWznmFilNew.cpp handleDpchAppDataContiacdet, handleDpchAppDoButDneClick, enterSgeCreate, enterSgeDone
+	};
+
+	// modify DlgXxxxFilDownload.cpp
+	// cf. wznmcmbd/CrdWznmFil/DlgWznmFilDownload.cpp refresh, handleDpchAppDoButDneClick, handleDownload
+
+	// IP run --- IEND
 
 	return(new DpchRetWznm(VecWznmVDpch::DPCHRETWZNM, "", "", ixOpVOpres, 100));
 };

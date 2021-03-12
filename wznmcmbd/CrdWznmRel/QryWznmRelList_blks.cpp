@@ -20,15 +20,15 @@ uint QryWznmRelList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "frt") return FRT;
-	if (s == "frs") return FRS;
-	if (s == "tot") return TOT;
+	if (s == "tbl") return TBL;
+	if (s == "srl") return SRL;
+	if (s == "sup") return SUP;
+	if (s == "ver") return VER;
 	if (s == "tos") return TOS;
 	if (s == "typ") return TYP;
-	if (s == "ver") return VER;
-	if (s == "sup") return SUP;
-	if (s == "srl") return SRL;
-	if (s == "tbl") return TBL;
+	if (s == "tot") return TOT;
+	if (s == "frs") return FRS;
+	if (s == "frt") return FRT;
 
 	return(0);
 };
@@ -36,15 +36,15 @@ uint QryWznmRelList::VecVOrd::getIx(
 string QryWznmRelList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == FRT) return("frt");
-	if (ix == FRS) return("frs");
-	if (ix == TOT) return("tot");
+	if (ix == TBL) return("tbl");
+	if (ix == SRL) return("srl");
+	if (ix == SUP) return("sup");
+	if (ix == VER) return("ver");
 	if (ix == TOS) return("tos");
 	if (ix == TYP) return("typ");
-	if (ix == VER) return("ver");
-	if (ix == SUP) return("sup");
-	if (ix == SRL) return("srl");
-	if (ix == TBL) return("tbl");
+	if (ix == TOT) return("tot");
+	if (ix == FRS) return("frs");
+	if (ix == FRT) return("frt");
 
 	return("");
 };
@@ -60,6 +60,24 @@ void QryWznmRelList::VecVOrd::fillFeed(
 /******************************************************************************
  class QryWznmRelList::StatApp
  ******************************************************************************/
+
+void QryWznmRelList::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint firstcol
+			, const uint jnumFirstdisp
+			, const uint ncol
+			, const uint ndisp
+		) {
+	if (difftag.length() == 0) difftag = "StatAppQryWznmRelList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["firstcol"] = firstcol;
+	me["jnumFirstdisp"] = jnumFirstdisp;
+	me["ncol"] = ncol;
+	me["ndisp"] = ndisp;
+};
 
 void QryWznmRelList::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -100,6 +118,19 @@ QryWznmRelList::StatShr::StatShr(
 	this->nload = nload;
 
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
+};
+
+void QryWznmRelList::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrQryWznmRelList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["ntot"] = ntot;
+	me["jnumFirstload"] = jnumFirstload;
+	me["nload"] = nload;
 };
 
 void QryWznmRelList::StatShr::writeXML(
@@ -163,6 +194,28 @@ QryWznmRelList::StgIac::StgIac(
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 
+bool QryWznmRelList::StgIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["StgIacQryWznmRelList"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("jnum")) {jnum = me["jnum"].asUInt(); add(JNUM);};
+		if (me.isMember("jnumFirstload")) {jnumFirstload = me["jnumFirstload"].asUInt(); add(JNUMFIRSTLOAD);};
+		if (me.isMember("nload")) {nload = me["nload"].asUInt(); add(NLOAD);};
+	};
+
+	return basefound;
+};
+
 bool QryWznmRelList::StgIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -186,6 +239,19 @@ bool QryWznmRelList::StgIac::readXML(
 	};
 
 	return basefound;
+};
+
+void QryWznmRelList::StgIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StgIacQryWznmRelList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["jnum"] = jnum;
+	me["jnumFirstload"] = jnumFirstload;
+	me["nload"] = nload;
 };
 
 void QryWznmRelList::StgIac::writeXML(

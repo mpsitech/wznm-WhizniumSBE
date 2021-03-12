@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmWrsrv;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrsrvCrd
  ******************************************************************************/
@@ -104,6 +106,8 @@ void WznmWrsrvCrd::writeCrdH(
 				outfile << "\tvoid changeRef(Dbs" << Prjshort << "* dbs" << prjshort << ", const Sbecore::ubigint jrefTrig, const Sbecore::ubigint ref, const bool notif = false);" << endl;
 
 	outfile << "\tvoid updatePreset(Dbs" << Prjshort << "* dbs" << prjshort << ", const Sbecore::uint ix" << Prjshort << "VPreset, const Sbecore::ubigint jrefTrig, const bool notif = false);" << endl;
+
+	if (car->sref.substr(3+4) == "Nav") outfile << "\tvoid warnTerm(Dbs" << Prjshort << "* dbs" << prjshort << ");" << endl;
 	outfile << "// IP spec --- IEND" << endl;
 };
 
@@ -504,6 +508,17 @@ void WznmWrsrvCrd::writeCrdCpp(
 
 	outfile << "};" << endl;
 	outfile << endl;
+
+	if (car->sref.substr(3+4) == "Nav") {
+		// -- warnTerm
+		outfile << "void " << car->sref << "::warnTerm(" << endl;
+		outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
+		outfile << "\t\t) {" << endl;
+		outfile << "\tif (ixVSge == VecVSge::IDLE) changeStage(dbs" << prjshort << ", VecVSge::ALR" << PRJSHORT << "TRM);" << endl;
+		outfile << "};" << endl;
+		outfile << endl;
+	};
+
 	outfile << "// IP spec --- IEND" << endl;
 
 	// --- handleDpchAppXxxxInit
@@ -516,6 +531,10 @@ void WznmWrsrvCrd::writeCrdCpp(
 	outfile << "\t// IP handleDpchApp" << Prjshort << "Alert --- BEGIN" << endl;
 	outfile << "\tif (ixVSge == VecVSge::ALR" << PRJSHORT << "ABT) {" << endl;
 	outfile << "\t\tchangeStage(dbs" << prjshort << ", nextIxVSgeSuccess);" << endl;
+	if (car->sref.substr(3+4) == "Nav") {
+		outfile << "\t} else if (ixVSge == VecVSge::ALR" << PRJSHORT << "TRM) {" << endl;
+		outfile << "\t\tchangeStage(dbs" << prjshort << ", nextIxVSgeSuccess);" << endl;
+	};
 	outfile << "\t};" << endl;
 	outfile << endl;
 

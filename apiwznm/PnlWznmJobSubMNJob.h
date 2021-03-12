@@ -50,7 +50,7 @@ namespace PnlWznmJobSubMNJob {
 	/**
 	  * ContInf (full: ContInfWznmJobSubMNJob)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFCSIQST = 1;
@@ -70,7 +70,7 @@ namespace PnlWznmJobSubMNJob {
 	/**
 	  * StatApp (full: StatAppWznmJobSubMNJob)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -90,7 +90,7 @@ namespace PnlWznmJobSubMNJob {
 	/**
 	  * StatShr (full: StatShrWznmJobSubMNJob)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTVIEWAVAIL = 1;
@@ -118,7 +118,7 @@ namespace PnlWznmJobSubMNJob {
 	/**
 	  * StgIac (full: StgIacWznmJobSubMNJob)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TCOMREFWIDTH = 1;
@@ -145,7 +145,7 @@ namespace PnlWznmJobSubMNJob {
 	/**
 	  * Tag (full: TagWznmJobSubMNJob)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -247,7 +247,7 @@ namespace PnlWznmJobSubMNJob {
 
 	public:
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFCsiQst;
+		Sbecore::Feed feedFCsiQst;
 		StatApp statapp;
 		StatShr statshr;
 		StgIac stgiac;

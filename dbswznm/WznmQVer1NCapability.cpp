@@ -31,6 +31,21 @@ WznmQVer1NCapability::WznmQVer1NCapability(
 	this->stubRef = stubRef;
 };
 
+void WznmQVer1NCapability::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQVer1NCapability::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQVer1NCapability& ListWznmQVer1NCapability::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQVer1NCapability::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQVer1NCapability";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQVer1NCapability::writeXML(

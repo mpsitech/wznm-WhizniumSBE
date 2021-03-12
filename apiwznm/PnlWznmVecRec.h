@@ -42,7 +42,7 @@ namespace PnlWznmVecRec {
 	/**
 	  * ContInf (full: ContInfWznmVecRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,28 +62,28 @@ namespace PnlWznmVecRec {
 	/**
 	  * StatApp (full: StatAppWznmVecRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONEATITLE = 2;
 		static const Sbecore::uint INITDONEVEC1NVECTORITEM = 3;
-		static const Sbecore::uint INITDONESRC1NFEED = 4;
-		static const Sbecore::uint INITDONEREF1NPANEL = 5;
-		static const Sbecore::uint INITDONEFCT1NTABLECOL = 6;
+		static const Sbecore::uint INITDONEREF1NPANEL = 4;
+		static const Sbecore::uint INITDONEFCT1NTABLECOL = 5;
+		static const Sbecore::uint INITDONESRC1NFEED = 6;
 		static const Sbecore::uint INITDONEPST1NQUERYMOD = 7;
 		static const Sbecore::uint INITDONEMNTABLE = 8;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneVec1NVectoritem = false, const bool initdoneSrc1NFeed = false, const bool initdoneRef1NPanel = false, const bool initdoneFct1NTablecol = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNTable = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneVec1NVectoritem = false, const bool initdoneRef1NPanel = false, const bool initdoneFct1NTablecol = false, const bool initdoneSrc1NFeed = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNTable = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneATitle;
 		bool initdoneVec1NVectoritem;
-		bool initdoneSrc1NFeed;
 		bool initdoneRef1NPanel;
 		bool initdoneFct1NTablecol;
+		bool initdoneSrc1NFeed;
 		bool initdonePst1NQuerymod;
 		bool initdoneMNTable;
 
@@ -96,17 +96,17 @@ namespace PnlWznmVecRec {
 	/**
 	  * StatShr (full: StatShrWznmVecRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREFATITLE = 3;
 		static const Sbecore::uint SCRJREFVEC1NVECTORITEM = 4;
-		static const Sbecore::uint SCRJREFSRC1NFEED = 5;
-		static const Sbecore::uint SCRJREFREF1NPANEL = 6;
-		static const Sbecore::uint SCRJREFFCT1NTABLECOL = 7;
-		static const Sbecore::uint PNLFCT1NTABLECOLAVAIL = 8;
+		static const Sbecore::uint SCRJREFREF1NPANEL = 5;
+		static const Sbecore::uint SCRJREFFCT1NTABLECOL = 6;
+		static const Sbecore::uint PNLFCT1NTABLECOLAVAIL = 7;
+		static const Sbecore::uint SCRJREFSRC1NFEED = 8;
 		static const Sbecore::uint SCRJREFPST1NQUERYMOD = 9;
 		static const Sbecore::uint PNLPST1NQUERYMODAVAIL = 10;
 		static const Sbecore::uint SCRJREFMNTABLE = 11;
@@ -114,17 +114,17 @@ namespace PnlWznmVecRec {
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 13;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJrefVec1NVectoritem = "", const std::string& scrJrefSrc1NFeed = "", const std::string& scrJrefRef1NPanel = "", const std::string& scrJrefFct1NTablecol = "", const bool pnlfct1ntablecolAvail = false, const std::string& scrJrefPst1NQuerymod = "", const bool pnlpst1nquerymodAvail = false, const std::string& scrJrefMNTable = "", const bool pnlmntableAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJrefVec1NVectoritem = "", const std::string& scrJrefRef1NPanel = "", const std::string& scrJrefFct1NTablecol = "", const bool pnlfct1ntablecolAvail = false, const std::string& scrJrefSrc1NFeed = "", const std::string& scrJrefPst1NQuerymod = "", const bool pnlpst1nquerymodAvail = false, const std::string& scrJrefMNTable = "", const bool pnlmntableAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJrefATitle;
 		std::string scrJrefVec1NVectoritem;
-		std::string scrJrefSrc1NFeed;
 		std::string scrJrefRef1NPanel;
 		std::string scrJrefFct1NTablecol;
 		bool pnlfct1ntablecolAvail;
+		std::string scrJrefSrc1NFeed;
 		std::string scrJrefPst1NQuerymod;
 		bool pnlpst1nquerymodAvail;
 		std::string scrJrefMNTable;
@@ -140,7 +140,7 @@ namespace PnlWznmVecRec {
 	/**
 	  * Tag (full: TagWznmVecRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

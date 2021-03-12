@@ -45,6 +45,29 @@ WznmQPrsMNProject::WznmQPrsMNProject(
 	this->titSrefKFunction = titSrefKFunction;
 };
 
+void WznmQPrsMNProject::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+		me["sta"] = ftmX1Startd;
+		me["sto"] = ftmX1Stopd;
+		me["fct"] = srefKFunction;
+		me["fct2"] = titSrefKFunction;
+	} else {
+		me["stubMref"] = stubMref;
+		me["ftmX1Startd"] = ftmX1Startd;
+		me["ftmX1Stopd"] = ftmX1Stopd;
+		me["srefKFunction"] = srefKFunction;
+		me["titSrefKFunction"] = titSrefKFunction;
+	};
+};
+
 void WznmQPrsMNProject::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -118,6 +141,16 @@ ListWznmQPrsMNProject& ListWznmQPrsMNProject::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQPrsMNProject::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQPrsMNProject";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQPrsMNProject::writeXML(

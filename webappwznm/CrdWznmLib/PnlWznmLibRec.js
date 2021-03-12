@@ -1,7 +1,7 @@
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmLibRec", "scrJrefDetail");
-	scrJrefAMakefile = retrieveSi(srcdoc, "StatShrWznmLibRec", "scrJrefAMakefile");
 	scrJrefAPkglist = retrieveSi(srcdoc, "StatShrWznmLibRec", "scrJrefAPkglist");
+	scrJrefAMakefile = retrieveSi(srcdoc, "StatShrWznmLibRec", "scrJrefAMakefile");
 	scrJrefRef1NFile = retrieveSi(srcdoc, "StatShrWznmLibRec", "scrJrefRef1NFile");
 	scrJrefMNOppack = retrieveSi(srcdoc, "StatShrWznmLibRec", "scrJrefMNOppack");
 	scrJrefMNComponent = retrieveSi(srcdoc, "StatShrWznmLibRec", "scrJrefMNComponent");
@@ -9,8 +9,8 @@ function updateScrJrefs() {
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmLibRec", "initdoneDetail", "false");
-	setSi(srcdoc, "StatAppWznmLibRec", "initdoneAMakefile", "false");
 	setSi(srcdoc, "StatAppWznmLibRec", "initdoneAPkglist", "false");
+	setSi(srcdoc, "StatAppWznmLibRec", "initdoneAMakefile", "false");
 	setSi(srcdoc, "StatAppWznmLibRec", "initdoneRef1NFile", "false");
 	setSi(srcdoc, "StatAppWznmLibRec", "initdoneMNOppack", "false");
 	setSi(srcdoc, "StatAppWznmLibRec", "initdoneMNComponent", "false");
@@ -18,8 +18,8 @@ function resetInitdones() {
 
 function resetHeights() {
 	heightDetail = 30;
-	heightAMakefile = 30;
 	heightAPkglist = 30;
+	heightAMakefile = 30;
 	heightRef1NFile = 30;
 	heightMNOppack = 30;
 	heightMNComponent = 30;
@@ -41,18 +41,18 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmLibRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmLibRec", "initdoneDetail") == "true");
-	var initdoneAMakefile = (retrieveSi(srcdoc, "StatAppWznmLibRec", "initdoneAMakefile") == "true");
 	var initdoneAPkglist = (retrieveSi(srcdoc, "StatAppWznmLibRec", "initdoneAPkglist") == "true");
+	var initdoneAMakefile = (retrieveSi(srcdoc, "StatAppWznmLibRec", "initdoneAMakefile") == "true");
 	var initdoneRef1NFile = (retrieveSi(srcdoc, "StatAppWznmLibRec", "initdoneRef1NFile") == "true");
 	var initdoneMNOppack = (retrieveSi(srcdoc, "StatAppWznmLibRec", "initdoneMNOppack") == "true");
 	var initdoneMNComponent = (retrieveSi(srcdoc, "StatAppWznmLibRec", "initdoneMNComponent") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmLibDetail.html?scrJref=" + scrJrefDetail;
-	} else if (!initdoneAMakefile) {
-		lhsdoc.getElementById("AMakefile").src = "./PnlWznmLibAMakefile.html?scrJref=" + scrJrefAMakefile;
 	} else if (!initdoneAPkglist) {
 		lhsdoc.getElementById("APkglist").src = "./PnlWznmLibAPkglist.html?scrJref=" + scrJrefAPkglist;
+	} else if (!initdoneAMakefile) {
+		lhsdoc.getElementById("AMakefile").src = "./PnlWznmLibAMakefile.html?scrJref=" + scrJrefAMakefile;
 	} else if (!initdoneRef1NFile) {
 		rhsdoc.getElementById("Ref1NFile").src = "./PnlWznmLibRef1NFile.html?scrJref=" + scrJrefRef1NFile;
 	} else if (!initdoneMNOppack) {
@@ -71,7 +71,7 @@ function reinitPnl(scrJrefPnl) {
 function setPnlAvail(short, avail) {
 	var lhsrhsdoc;
 
-	if ((short == "Detail") || (short == "AMakefile") || (short == "APkglist")) lhsrhsdoc = lhsdoc;
+	if ((short == "Detail") || (short == "APkglist") || (short == "AMakefile")) lhsrhsdoc = lhsdoc;
 	else lhsrhsdoc = rhsdoc;
 
 	var oldAvail = (lhsrhsdoc.getElementById("tr" + short).getAttribute("class") == "show");
@@ -98,8 +98,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
-		else if (short == "AMakefile") heightAMakefile = height;
 		else if (short == "APkglist") heightAPkglist = height;
+		else if (short == "AMakefile") heightAMakefile = height;
 		else if (short == "Ref1NFile") heightRef1NFile = height;
 		else if (short == "MNOppack") heightMNOppack = height;
 		else if (short == "MNComponent") heightMNComponent = height;
@@ -136,7 +136,7 @@ function regularize() {
 function changeHeight(pnlshort, height, update) {
 	var lhsrhsdoc;
 
-	if ((pnlshort == "Detail") || (pnlshort == "AMakefile") || (pnlshort == "APkglist")) lhsrhsdoc = lhsdoc;
+	if ((pnlshort == "Detail") || (pnlshort == "APkglist") || (pnlshort == "AMakefile")) lhsrhsdoc = lhsdoc;
 	else lhsrhsdoc = rhsdoc;
 
 	lhsrhsdoc.getElementById("td" + pnlshort).setAttribute("height", "" + height);
@@ -146,8 +146,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
-	else if (pnlshort == "AMakefile") heightAMakefile = height;
 	else if (pnlshort == "APkglist") heightAPkglist = height;
+	else if (pnlshort == "AMakefile") heightAMakefile = height;
 	else if (pnlshort == "Ref1NFile") heightRef1NFile = height;
 	else if (pnlshort == "MNOppack") heightMNOppack = height;
 	else if (pnlshort == "MNComponent") heightMNComponent = height;
@@ -158,7 +158,7 @@ function changeHeight(pnlshort, height, update) {
 function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
-	heightLhs = heightDetail+13 + heightAMakefile+13 + heightAPkglist+13 + 5;
+	heightLhs = heightDetail+13 + heightAPkglist+13 + heightAMakefile+13 + 5;
 	heightRhs = heightRef1NFile+13 + heightMNOppack+13 + heightMNComponent+13 + 5;
 
 	if (heightLhs > heightRhs) {
@@ -350,10 +350,10 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefAMakefile) {
-				if (getInitdone("AMakefile")) lhsdoc.getElementById("AMakefile").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefAPkglist) {
 				if (getInitdone("APkglist")) lhsdoc.getElementById("APkglist").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefAMakefile) {
+				if (getInitdone("AMakefile")) lhsdoc.getElementById("AMakefile").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefRef1NFile) {
 				if (getInitdone("Ref1NFile")) rhsdoc.getElementById("Ref1NFile").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNOppack) {

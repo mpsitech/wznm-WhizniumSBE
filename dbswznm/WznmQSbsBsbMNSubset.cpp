@@ -39,6 +39,25 @@ WznmQSbsBsbMNSubset::WznmQSbsBsbMNSubset(
 	this->titIxVReltype = titIxVReltype;
 };
 
+void WznmQSbsBsbMNSubset::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+		me["rty"] = srefIxVReltype;
+		me["rty2"] = titIxVReltype;
+	} else {
+		me["stubMref"] = stubMref;
+		me["srefIxVReltype"] = srefIxVReltype;
+		me["titIxVReltype"] = titIxVReltype;
+	};
+};
+
 void WznmQSbsBsbMNSubset::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -108,6 +127,16 @@ ListWznmQSbsBsbMNSubset& ListWznmQSbsBsbMNSubset::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQSbsBsbMNSubset::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQSbsBsbMNSubset";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQSbsBsbMNSubset::writeXML(

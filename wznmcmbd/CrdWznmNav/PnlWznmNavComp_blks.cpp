@@ -55,6 +55,27 @@ PnlWznmNavComp::ContIac::ContIac(
 	mask = {NUMFLSTOPK, NUMFLSTOPX};
 };
 
+bool PnlWznmNavComp::ContIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["ContIacWznmNavComp"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("numFLstOpk")) {numFLstOpk = me["numFLstOpk"].asUInt(); add(NUMFLSTOPK);};
+		if (me.isMember("numFLstOpx")) {numFLstOpx = me["numFLstOpx"].asUInt(); add(NUMFLSTOPX);};
+	};
+
+	return basefound;
+};
+
 bool PnlWznmNavComp::ContIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -77,6 +98,18 @@ bool PnlWznmNavComp::ContIac::readXML(
 	};
 
 	return basefound;
+};
+
+void PnlWznmNavComp::ContIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContIacWznmNavComp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFLstOpk"] = numFLstOpk;
+	me["numFLstOpx"] = numFLstOpx;
 };
 
 void PnlWznmNavComp::ContIac::writeXML(
@@ -125,6 +158,26 @@ set<uint> PnlWznmNavComp::ContIac::diff(
  class PnlWznmNavComp::StatApp
  ******************************************************************************/
 
+void PnlWznmNavComp::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWznmVExpstate
+			, const bool LstOpkAlt
+			, const bool LstOpxAlt
+			, const uint LstOpkNumFirstdisp
+			, const uint LstOpxNumFirstdisp
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmNavComp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
+	me["LstOpkAlt"] = LstOpkAlt;
+	me["LstOpxAlt"] = LstOpxAlt;
+	me["LstOpkNumFirstdisp"] = LstOpkNumFirstdisp;
+	me["LstOpxNumFirstdisp"] = LstOpxNumFirstdisp;
+};
+
 void PnlWznmNavComp::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -172,6 +225,22 @@ PnlWznmNavComp::StatShr::StatShr(
 	this->ButOpxNewcrdActive = ButOpxNewcrdActive;
 
 	mask = {LSTOPKAVAIL, BUTOPKVIEWACTIVE, BUTOPKNEWCRDACTIVE, LSTOPXAVAIL, BUTOPXVIEWACTIVE, BUTOPXNEWCRDACTIVE};
+};
+
+void PnlWznmNavComp::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmNavComp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["LstOpkAvail"] = LstOpkAvail;
+	me["ButOpkViewActive"] = ButOpkViewActive;
+	me["ButOpkNewcrdActive"] = ButOpkNewcrdActive;
+	me["LstOpxAvail"] = LstOpxAvail;
+	me["ButOpxViewActive"] = ButOpxViewActive;
+	me["ButOpxNewcrdActive"] = ButOpxNewcrdActive;
 };
 
 void PnlWznmNavComp::StatShr::writeXML(
@@ -228,6 +297,22 @@ set<uint> PnlWznmNavComp::StatShr::diff(
  class PnlWznmNavComp::Tag
  ******************************************************************************/
 
+void PnlWznmNavComp::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmNavComp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["Cpt"] = "Computing module";
+		me["CptOpk"] = "operation packs";
+		me["CptOpx"] = "operations";
+	};
+};
+
 void PnlWznmNavComp::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -268,6 +353,27 @@ string PnlWznmNavComp::DpchAppData::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmNavComp::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmNavCompData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (contiac.readJSON(me, true)) add(CONTIAC);
+	} else {
+		contiac = ContIac();
+	};
 };
 
 void PnlWznmNavComp::DpchAppData::readXML(
@@ -317,6 +423,26 @@ string PnlWznmNavComp::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmNavComp::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmNavCompDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWznmNavComp::DpchAppDo::readXML(
@@ -401,6 +527,21 @@ void PnlWznmNavComp::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmNavComp::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmNavCompData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTIAC)) contiac.writeJSON(me);
+	if (has(FEEDFLSTOPK)) feedFLstOpk.writeJSON(me);
+	if (has(FEEDFLSTOPX)) feedFLstOpx.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmNavComp::DpchEngData::writeXML(

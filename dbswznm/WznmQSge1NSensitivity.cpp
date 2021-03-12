@@ -31,6 +31,21 @@ WznmQSge1NSensitivity::WznmQSge1NSensitivity(
 	this->stubRef = stubRef;
 };
 
+void WznmQSge1NSensitivity::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQSge1NSensitivity::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQSge1NSensitivity& ListWznmQSge1NSensitivity::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQSge1NSensitivity::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQSge1NSensitivity";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQSge1NSensitivity::writeXML(

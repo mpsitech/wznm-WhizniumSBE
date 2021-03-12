@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmIexDetail.h"
 #include "PnlWznmIex1NImpexp.h"
 #include "PnlWznmIexRef1NDialog.h"
 #include "PnlWznmIexHk1NVector.h"
+#include "PnlWznmIexDetail.h"
 
 #define VecVWznmIexRecDo PnlWznmIexRec::VecVDo
 
@@ -51,7 +51,7 @@ public:
 	/**
 	  * ContInf (full: ContInfWznmIexRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -63,6 +63,7 @@ public:
 		std::string TxtRef;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInf* comp);
 		std::set<Sbecore::uint> diff(const ContInf* comp);
@@ -74,34 +75,36 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneRef1NDialog = false, const bool initdoneHk1NVector = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NDialog = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NImpexp = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NDialog = false);
 	};
 
 	/**
 		* StatShr (full: StatShrWznmIexRec)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREF1NIMPEXP = 3;
-		static const Sbecore::uint JREFREF1NDIALOG = 4;
-		static const Sbecore::uint JREFHK1NVECTOR = 5;
+		static const Sbecore::uint JREFHK1NVECTOR = 4;
+		static const Sbecore::uint JREFREF1NDIALOG = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NImpexp = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const Sbecore::ubigint jrefHk1NVector = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NImpexp = 0, const Sbecore::ubigint jrefHk1NVector = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jref1NImpexp;
-		Sbecore::ubigint jrefRef1NDialog;
 		Sbecore::ubigint jrefHk1NVector;
+		Sbecore::ubigint jrefRef1NDialog;
 		bool ButRegularizeActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -113,6 +116,7 @@ public:
 	class Tag {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -134,6 +138,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -161,6 +166,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
@@ -174,10 +180,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmIexDetail* pnldetail;
 	PnlWznmIex1NImpexp* pnl1nimpexp;
 	PnlWznmIexRef1NDialog* pnlref1ndialog;
 	PnlWznmIexHk1NVector* pnlhk1nvector;
+	PnlWznmIexDetail* pnldetail;
 
 	WznmMImpexpcplx recIex;
 
@@ -211,9 +217,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmIex_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmIex_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmIexUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmIex_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmIex_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

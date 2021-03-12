@@ -31,6 +31,21 @@ WznmQSbsFrs1NRelation::WznmQSbsFrs1NRelation(
 	this->stubRef = stubRef;
 };
 
+void WznmQSbsFrs1NRelation::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQSbsFrs1NRelation::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQSbsFrs1NRelation& ListWznmQSbsFrs1NRelation::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQSbsFrs1NRelation::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQSbsFrs1NRelation";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQSbsFrs1NRelation::writeXML(

@@ -33,6 +33,21 @@ WznmQStbMNSquawk::WznmQStbMNSquawk(
 	this->ref = ref;
 };
 
+void WznmQStbMNSquawk::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+	} else {
+		me["stubMref"] = stubMref;
+	};
+};
+
 void WznmQStbMNSquawk::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQStbMNSquawk& ListWznmQStbMNSquawk::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQStbMNSquawk::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQStbMNSquawk";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQStbMNSquawk::writeXML(

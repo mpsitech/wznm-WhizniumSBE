@@ -31,6 +31,21 @@ WznmQJob1NSensitivity::WznmQJob1NSensitivity(
 	this->stubRef = stubRef;
 };
 
+void WznmQJob1NSensitivity::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQJob1NSensitivity::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQJob1NSensitivity& ListWznmQJob1NSensitivity::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQJob1NSensitivity::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQJob1NSensitivity";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQJob1NSensitivity::writeXML(

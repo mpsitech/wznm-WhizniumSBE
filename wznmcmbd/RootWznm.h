@@ -10,12 +10,12 @@
 #ifndef ROOTWZNM_H
 #define ROOTWZNM_H
 
-// IP include.spec --- INSERT
+#include <signal.h>
 
 // IP include.cust --- INSERT
 
-#include "SessWznm.h"
 #include "JobWznmLicense.h"
+#include "SessWznm.h"
 
 #define VecVRootWznmSge RootWznm::VecVSge
 
@@ -40,7 +40,7 @@ public:
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
 
-		static void fillFeed(Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(Sbecore::Feed& feed);
 	};
 
 	/**
@@ -67,6 +67,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -81,15 +82,16 @@ public:
 		static const Sbecore::uint ALL = 3;
 
 	public:
-		DpchEngData(const Sbecore::ubigint jref = 0, Sbecore::Xmlio::Feed* feedFEnsSps = NULL, const std::set<Sbecore::uint>& mask = {NONE});
+		DpchEngData(const Sbecore::ubigint jref = 0, Sbecore::Feed* feedFEnsSps = NULL, const std::set<Sbecore::uint>& mask = {NONE});
 
 	public:
-		Sbecore::Xmlio::Feed feedFEnsSps;
+		Sbecore::Feed feedFEnsSps;
 
 	public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
@@ -99,8 +101,8 @@ public:
 
 public:
 
-	std::list<SessWznm*> sesss;
 	JobWznmLicense* license;
+	std::list<SessWznm*> sesss;
 
 	// IP vars.spec --- INSERT
 
@@ -130,13 +132,15 @@ private:
 	void handleDpchAppLogin(DbsWznm* dbswznm, DpchAppLogin* dpchapplogin, const std::string ip, DpchEngWznm** dpcheng);
 
 	void handleTimerWithSrefMonInSgeIdle(DbsWznm* dbswznm);
+	void handleTimerWithSrefWarnterm(DbsWznm* dbswznm);
 
 public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmLogout(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const bool boolvalInv);
 	bool handleCallWznmSuspsess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
+	bool handleCallWznmLogout(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const bool boolvalInv);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

@@ -148,6 +148,7 @@ uint CrdWznmNav::VecVSge::getIx(
 
 	if (s == "idle") return IDLE;
 	if (s == "alrwznmabt") return ALRWZNMABT;
+	if (s == "alrwznmtrm") return ALRWZNMTRM;
 
 	return(0);
 };
@@ -157,6 +158,7 @@ string CrdWznmNav::VecVSge::getSref(
 		) {
 	if (ix == IDLE) return("idle");
 	if (ix == ALRWZNMABT) return("alrwznmabt");
+	if (ix == ALRWZNMTRM) return("alrwznmtrm");
 
 	return("");
 };
@@ -166,7 +168,7 @@ void CrdWznmNav::VecVSge::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 2; i++) feed.appendIxSrefTitles(i, getSref(i), getSref(i));
+	for (unsigned int i = 1; i <= 3; i++) feed.appendIxSrefTitles(i, getSref(i), getSref(i));
 };
 
 /******************************************************************************
@@ -189,6 +191,21 @@ CrdWznmNav::ContInf::ContInf(
 	this->MtxSesSes3 = MtxSesSes3;
 
 	mask = {NUMFSGE, MRLAPPHLP, MTXSESSES1, MTXSESSES2, MTXSESSES3};
+};
+
+void CrdWznmNav::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWznmNav";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFSge"] = numFSge;
+	me["MrlAppHlp"] = MrlAppHlp;
+	me["MtxSesSes1"] = MtxSesSes1;
+	me["MtxSesSes2"] = MtxSesSes2;
+	me["MtxSesSes3"] = MtxSesSes3;
 };
 
 void CrdWznmNav::ContInf::writeXML(
@@ -242,6 +259,48 @@ set<uint> CrdWznmNav::ContInf::diff(
 /******************************************************************************
  class CrdWznmNav::StatApp
  ******************************************************************************/
+
+void CrdWznmNav::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWznmVReqitmode
+			, const usmallint latency
+			, const string& shortMenu
+			, const uint widthMenu
+			, const bool initdoneHeadbar
+			, const bool initdonePre
+			, const bool initdoneAdmin
+			, const bool initdoneGlobal
+			, const bool initdoneProject
+			, const bool initdoneDbstr
+			, const bool initdoneUix
+			, const bool initdoneComp
+			, const bool initdoneJob
+			, const bool initdoneDeploy
+			, const bool initdoneAppdev
+			, const bool initdoneAuxfct
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmNav";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVReqitmode"] = VecWznmVReqitmode::getSref(ixWznmVReqitmode);
+	me["latency"] = latency;
+	me["shortMenu"] = shortMenu;
+	me["widthMenu"] = widthMenu;
+	me["initdoneHeadbar"] = initdoneHeadbar;
+	me["initdonePre"] = initdonePre;
+	me["initdoneAdmin"] = initdoneAdmin;
+	me["initdoneGlobal"] = initdoneGlobal;
+	me["initdoneProject"] = initdoneProject;
+	me["initdoneDbstr"] = initdoneDbstr;
+	me["initdoneUix"] = initdoneUix;
+	me["initdoneComp"] = initdoneComp;
+	me["initdoneJob"] = initdoneJob;
+	me["initdoneDeploy"] = initdoneDeploy;
+	me["initdoneAppdev"] = initdoneAppdev;
+	me["initdoneAuxfct"] = initdoneAuxfct;
+};
 
 void CrdWznmNav::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -540,6 +599,135 @@ CrdWznmNav::StatShr::StatShr(
 	mask = {JREFDLGLOAINI, JREFDLGMNGLIC, JREFHEADBAR, JREFPRE, PNLPREAVAIL, JREFADMIN, PNLADMINAVAIL, JREFGLOBAL, PNLGLOBALAVAIL, JREFPROJECT, PNLPROJECTAVAIL, JREFDBSTR, PNLDBSTRAVAIL, JREFUIX, PNLUIXAVAIL, JREFCOMP, PNLCOMPAVAIL, JREFJOB, PNLJOBAVAIL, JREFDEPLOY, PNLDEPLOYAVAIL, JREFAPPDEV, PNLAPPDEVAVAIL, JREFAUXFCT, PNLAUXFCTAVAIL, MITSESSPSAVAIL, MSPCRD1AVAIL, MITCRDUSGAVAIL, MITCRDUSRAVAIL, MITCRDPRSAVAIL, MITCRDFILAVAIL, MSPCRD2AVAIL, MITCRDLOCAVAIL, MITCRDTAGAVAIL, MITCRDCTPAVAIL, MITCRDMCHAVAIL, MITCRDLIBAVAIL, MSPCRD3AVAIL, MITCRDPRJAVAIL, MITCRDVERAVAIL, MITCRDCAPAVAIL, MITCRDCAPACTIVE, MITCRDERRAVAIL, MITCRDERRACTIVE, MSPCRD4AVAIL, MITCRDTBLAVAIL, MITCRDTBLACTIVE, MITCRDTCOAVAIL, MITCRDTCOACTIVE, MITCRDSBSAVAIL, MITCRDSBSACTIVE, MITCRDRELAVAIL, MITCRDRELACTIVE, MITCRDVECAVAIL, MITCRDVECACTIVE, MITCRDVITAVAIL, MITCRDVITACTIVE, MITCRDCHKAVAIL, MITCRDCHKACTIVE, MITCRDSTBAVAIL, MITCRDSTBACTIVE, MITCRDIEXAVAIL, MITCRDIEXACTIVE, MITCRDIMEAVAIL, MITCRDIMEACTIVE, MSPCRD5AVAIL, MITCRDPSTAVAIL, MITCRDPSTACTIVE, MITCRDMDLAVAIL, MITCRDMDLACTIVE, MITCRDCARAVAIL, MITCRDCARACTIVE, MITCRDDLGAVAIL, MITCRDDLGACTIVE, MITCRDPNLAVAIL, MITCRDPNLACTIVE, MITCRDQRYAVAIL, MITCRDQRYACTIVE, MITCRDQCOAVAIL, MITCRDQCOACTIVE, MITCRDQMDAVAIL, MITCRDQMDACTIVE, MITCRDCONAVAIL, MITCRDCONACTIVE, MSPCRD6AVAIL, MITCRDOPKAVAIL, MITCRDOPKACTIVE, MITCRDOPXAVAIL, MITCRDOPXACTIVE, MSPCRD7AVAIL, MITCRDJOBAVAIL, MITCRDJOBACTIVE, MITCRDSGEAVAIL, MITCRDSGEACTIVE, MITCRDMTDAVAIL, MITCRDMTDACTIVE, MITCRDBLKAVAIL, MITCRDBLKACTIVE, MITCRDCALAVAIL, MITCRDCALACTIVE, MSPCRD8AVAIL, MITCRDCMPAVAIL, MITCRDRLSAVAIL, MITCRDRLSACTIVE, MSPCRD9AVAIL, MITCRDAPPAVAIL, MITCRDRTJAVAIL, MITCRDRTJACTIVE, MITCRDEVTAVAIL, MITCRDEVTACTIVE, MITCRDSEQAVAIL, MITCRDSEQACTIVE, MITCRDSTEAVAIL, MITCRDSTEACTIVE, MSPCRD10AVAIL, MITCRDUTLAVAIL, MSPAPP2AVAIL, MITAPPMLCAVAIL, MITAPPLOIAVAIL};
 };
 
+void CrdWznmNav::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmNav";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["scrJrefDlgloaini"] = Scr::scramble(jrefDlgloaini);
+	me["scrJrefDlgmnglic"] = Scr::scramble(jrefDlgmnglic);
+	me["scrJrefHeadbar"] = Scr::scramble(jrefHeadbar);
+	me["scrJrefPre"] = Scr::scramble(jrefPre);
+	me["pnlpreAvail"] = pnlpreAvail;
+	me["scrJrefAdmin"] = Scr::scramble(jrefAdmin);
+	me["pnladminAvail"] = pnladminAvail;
+	me["scrJrefGlobal"] = Scr::scramble(jrefGlobal);
+	me["pnlglobalAvail"] = pnlglobalAvail;
+	me["scrJrefProject"] = Scr::scramble(jrefProject);
+	me["pnlprojectAvail"] = pnlprojectAvail;
+	me["scrJrefDbstr"] = Scr::scramble(jrefDbstr);
+	me["pnldbstrAvail"] = pnldbstrAvail;
+	me["scrJrefUix"] = Scr::scramble(jrefUix);
+	me["pnluixAvail"] = pnluixAvail;
+	me["scrJrefComp"] = Scr::scramble(jrefComp);
+	me["pnlcompAvail"] = pnlcompAvail;
+	me["scrJrefJob"] = Scr::scramble(jrefJob);
+	me["pnljobAvail"] = pnljobAvail;
+	me["scrJrefDeploy"] = Scr::scramble(jrefDeploy);
+	me["pnldeployAvail"] = pnldeployAvail;
+	me["scrJrefAppdev"] = Scr::scramble(jrefAppdev);
+	me["pnlappdevAvail"] = pnlappdevAvail;
+	me["scrJrefAuxfct"] = Scr::scramble(jrefAuxfct);
+	me["pnlauxfctAvail"] = pnlauxfctAvail;
+	me["MitSesSpsAvail"] = MitSesSpsAvail;
+	me["MspCrd1Avail"] = MspCrd1Avail;
+	me["MitCrdUsgAvail"] = MitCrdUsgAvail;
+	me["MitCrdUsrAvail"] = MitCrdUsrAvail;
+	me["MitCrdPrsAvail"] = MitCrdPrsAvail;
+	me["MitCrdFilAvail"] = MitCrdFilAvail;
+	me["MspCrd2Avail"] = MspCrd2Avail;
+	me["MitCrdLocAvail"] = MitCrdLocAvail;
+	me["MitCrdTagAvail"] = MitCrdTagAvail;
+	me["MitCrdCtpAvail"] = MitCrdCtpAvail;
+	me["MitCrdMchAvail"] = MitCrdMchAvail;
+	me["MitCrdLibAvail"] = MitCrdLibAvail;
+	me["MspCrd3Avail"] = MspCrd3Avail;
+	me["MitCrdPrjAvail"] = MitCrdPrjAvail;
+	me["MitCrdVerAvail"] = MitCrdVerAvail;
+	me["MitCrdCapAvail"] = MitCrdCapAvail;
+	me["MitCrdCapActive"] = MitCrdCapActive;
+	me["MitCrdErrAvail"] = MitCrdErrAvail;
+	me["MitCrdErrActive"] = MitCrdErrActive;
+	me["MspCrd4Avail"] = MspCrd4Avail;
+	me["MitCrdTblAvail"] = MitCrdTblAvail;
+	me["MitCrdTblActive"] = MitCrdTblActive;
+	me["MitCrdTcoAvail"] = MitCrdTcoAvail;
+	me["MitCrdTcoActive"] = MitCrdTcoActive;
+	me["MitCrdSbsAvail"] = MitCrdSbsAvail;
+	me["MitCrdSbsActive"] = MitCrdSbsActive;
+	me["MitCrdRelAvail"] = MitCrdRelAvail;
+	me["MitCrdRelActive"] = MitCrdRelActive;
+	me["MitCrdVecAvail"] = MitCrdVecAvail;
+	me["MitCrdVecActive"] = MitCrdVecActive;
+	me["MitCrdVitAvail"] = MitCrdVitAvail;
+	me["MitCrdVitActive"] = MitCrdVitActive;
+	me["MitCrdChkAvail"] = MitCrdChkAvail;
+	me["MitCrdChkActive"] = MitCrdChkActive;
+	me["MitCrdStbAvail"] = MitCrdStbAvail;
+	me["MitCrdStbActive"] = MitCrdStbActive;
+	me["MitCrdIexAvail"] = MitCrdIexAvail;
+	me["MitCrdIexActive"] = MitCrdIexActive;
+	me["MitCrdImeAvail"] = MitCrdImeAvail;
+	me["MitCrdImeActive"] = MitCrdImeActive;
+	me["MspCrd5Avail"] = MspCrd5Avail;
+	me["MitCrdPstAvail"] = MitCrdPstAvail;
+	me["MitCrdPstActive"] = MitCrdPstActive;
+	me["MitCrdMdlAvail"] = MitCrdMdlAvail;
+	me["MitCrdMdlActive"] = MitCrdMdlActive;
+	me["MitCrdCarAvail"] = MitCrdCarAvail;
+	me["MitCrdCarActive"] = MitCrdCarActive;
+	me["MitCrdDlgAvail"] = MitCrdDlgAvail;
+	me["MitCrdDlgActive"] = MitCrdDlgActive;
+	me["MitCrdPnlAvail"] = MitCrdPnlAvail;
+	me["MitCrdPnlActive"] = MitCrdPnlActive;
+	me["MitCrdQryAvail"] = MitCrdQryAvail;
+	me["MitCrdQryActive"] = MitCrdQryActive;
+	me["MitCrdQcoAvail"] = MitCrdQcoAvail;
+	me["MitCrdQcoActive"] = MitCrdQcoActive;
+	me["MitCrdQmdAvail"] = MitCrdQmdAvail;
+	me["MitCrdQmdActive"] = MitCrdQmdActive;
+	me["MitCrdConAvail"] = MitCrdConAvail;
+	me["MitCrdConActive"] = MitCrdConActive;
+	me["MspCrd6Avail"] = MspCrd6Avail;
+	me["MitCrdOpkAvail"] = MitCrdOpkAvail;
+	me["MitCrdOpkActive"] = MitCrdOpkActive;
+	me["MitCrdOpxAvail"] = MitCrdOpxAvail;
+	me["MitCrdOpxActive"] = MitCrdOpxActive;
+	me["MspCrd7Avail"] = MspCrd7Avail;
+	me["MitCrdJobAvail"] = MitCrdJobAvail;
+	me["MitCrdJobActive"] = MitCrdJobActive;
+	me["MitCrdSgeAvail"] = MitCrdSgeAvail;
+	me["MitCrdSgeActive"] = MitCrdSgeActive;
+	me["MitCrdMtdAvail"] = MitCrdMtdAvail;
+	me["MitCrdMtdActive"] = MitCrdMtdActive;
+	me["MitCrdBlkAvail"] = MitCrdBlkAvail;
+	me["MitCrdBlkActive"] = MitCrdBlkActive;
+	me["MitCrdCalAvail"] = MitCrdCalAvail;
+	me["MitCrdCalActive"] = MitCrdCalActive;
+	me["MspCrd8Avail"] = MspCrd8Avail;
+	me["MitCrdCmpAvail"] = MitCrdCmpAvail;
+	me["MitCrdRlsAvail"] = MitCrdRlsAvail;
+	me["MitCrdRlsActive"] = MitCrdRlsActive;
+	me["MspCrd9Avail"] = MspCrd9Avail;
+	me["MitCrdAppAvail"] = MitCrdAppAvail;
+	me["MitCrdRtjAvail"] = MitCrdRtjAvail;
+	me["MitCrdRtjActive"] = MitCrdRtjActive;
+	me["MitCrdEvtAvail"] = MitCrdEvtAvail;
+	me["MitCrdEvtActive"] = MitCrdEvtActive;
+	me["MitCrdSeqAvail"] = MitCrdSeqAvail;
+	me["MitCrdSeqActive"] = MitCrdSeqActive;
+	me["MitCrdSteAvail"] = MitCrdSteAvail;
+	me["MitCrdSteActive"] = MitCrdSteActive;
+	me["MspCrd10Avail"] = MspCrd10Avail;
+	me["MitCrdUtlAvail"] = MitCrdUtlAvail;
+	me["MspApp2Avail"] = MspApp2Avail;
+	me["MitAppMlcAvail"] = MitAppMlcAvail;
+	me["MitAppLoiAvail"] = MitAppLoiAvail;
+};
+
 void CrdWznmNav::StatShr::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -820,6 +1008,72 @@ set<uint> CrdWznmNav::StatShr::diff(
  class CrdWznmNav::Tag
  ******************************************************************************/
 
+void CrdWznmNav::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmNav";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["MitCrdUsg"] = "User groups ...";
+		me["MitCrdUsr"] = "Users ...";
+		me["MitCrdPrs"] = "Persons ...";
+		me["MitCrdFil"] = "Files ...";
+		me["MitCrdLoc"] = "Locales ...";
+		me["MitCrdTag"] = "Tags ...";
+		me["MitCrdCtp"] = "Capability templates ...";
+		me["MitCrdMch"] = "Machines ...";
+		me["MitCrdLib"] = "Libraries ...";
+		me["MitCrdPrj"] = "Projects ...";
+		me["MitCrdVer"] = "Versions ...";
+		me["MitCrdCap"] = "Capabilities ...";
+		me["MitCrdErr"] = "Errors ...";
+		me["MitCrdTbl"] = "Tables ...";
+		me["MitCrdTco"] = "Table columns ...";
+		me["MitCrdSbs"] = "Subsets ...";
+		me["MitCrdRel"] = "Relations ...";
+		me["MitCrdVec"] = "Vectors ...";
+		me["MitCrdVit"] = "Vector items ...";
+		me["MitCrdChk"] = "Feature checks ...";
+		me["MitCrdStb"] = "Stubs ...";
+		me["MitCrdIex"] = "Import/export complexes ...";
+		me["MitCrdIme"] = "Import/exports ...";
+		me["MitCrdPst"] = "Presettings ...";
+		me["MitCrdMdl"] = "Modules ...";
+		me["MitCrdCar"] = "Cards ...";
+		me["MitCrdDlg"] = "Dialogs ...";
+		me["MitCrdPnl"] = "Panels ...";
+		me["MitCrdQry"] = "Queries ...";
+		me["MitCrdQco"] = "Query columns ...";
+		me["MitCrdQmd"] = "Query modifiers ...";
+		me["MitCrdCon"] = "Controls ...";
+		me["MitCrdOpk"] = "Operation packs ...";
+		me["MitCrdOpx"] = "Operations ...";
+		me["MitCrdJob"] = "Jobs ...";
+		me["MitCrdSge"] = "Stages ...";
+		me["MitCrdMtd"] = "Methods ...";
+		me["MitCrdBlk"] = "Blocks ...";
+		me["MitCrdCal"] = "Calls ...";
+		me["MitCrdCmp"] = "Components ...";
+		me["MitCrdRls"] = "Releases ...";
+		me["MitCrdApp"] = "Accessor apps ...";
+		me["MitCrdRtj"] = "Run-time jobs ...";
+		me["MitCrdEvt"] = "Events ...";
+		me["MitCrdSeq"] = "Sequences ...";
+		me["MitCrdSte"] = "States ...";
+		me["MitCrdUtl"] = "Utilities ...";
+		me["MitAppMlc"] = "Manage licenses ...";
+	};
+	me["MitAppAbt"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::ABOUT, ixWznmVLocale)) + " ...";
+	me["MrlAppHlp"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::HELP, ixWznmVLocale)) + " ...";
+	me["MitSesSps"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::SUSPSESS, ixWznmVLocale));
+	me["MitSesTrm"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::CLSESS, ixWznmVLocale));
+	me["MitAppLoi"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::LOAINI, ixWznmVLocale)) + " ...";
+};
+
 void CrdWznmNav::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -913,6 +1167,26 @@ string CrdWznmNav::DpchAppDo::getSrefsMask() {
 	return(srefs);
 };
 
+void CrdWznmNav::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmNavDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
+};
+
 void CrdWznmNav::DpchAppDo::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -991,6 +1265,20 @@ void CrdWznmNav::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void CrdWznmNav::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmNavData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFSGE)) feedFSge.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void CrdWznmNav::DpchEngData::writeXML(

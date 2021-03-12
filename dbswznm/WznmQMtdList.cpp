@@ -39,6 +39,25 @@ WznmQMtdList::WznmQMtdList(
 	this->yesnoExecsrv = yesnoExecsrv;
 };
 
+void WznmQMtdList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["job"] = stubRefWznmMJob;
+		me["exs"] = yesnoExecsrv;
+	} else {
+		me["sref"] = sref;
+		me["stubRefWznmMJob"] = stubRefWznmMJob;
+		me["yesnoExecsrv"] = yesnoExecsrv;
+	};
+};
+
 void WznmQMtdList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -108,6 +127,16 @@ ListWznmQMtdList& ListWznmQMtdList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQMtdList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQMtdList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQMtdList::writeXML(

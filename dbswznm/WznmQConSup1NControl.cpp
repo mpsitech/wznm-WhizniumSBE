@@ -33,6 +33,21 @@ WznmQConSup1NControl::WznmQConSup1NControl(
 	this->supNum = supNum;
 };
 
+void WznmQConSup1NControl::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQConSup1NControl::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQConSup1NControl& ListWznmQConSup1NControl::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQConSup1NControl::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQConSup1NControl";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQConSup1NControl::writeXML(

@@ -116,7 +116,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWznmVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Feed& feed);
 	};
 
 	/**
@@ -138,7 +138,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWznmVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Feed& feed);
 	};
 
 	/**
@@ -160,7 +160,7 @@ public:
 
 		static std::string getTitle(const Sbecore::uint ix, const Sbecore::uint ixWznmVLocale);
 
-		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Xmlio::Feed& feed);
+		static void fillFeed(const Sbecore::uint ixWznmVLocale, Sbecore::Feed& feed);
 	};
 
 public:

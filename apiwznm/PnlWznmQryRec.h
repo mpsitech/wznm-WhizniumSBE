@@ -42,7 +42,7 @@ namespace PnlWznmQryRec {
 	/**
 	  * ContInf (full: ContInfWznmQryRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,32 +62,32 @@ namespace PnlWznmQryRec {
 	/**
 	  * StatApp (full: StatAppWznmQryRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEAORDER = 2;
-		static const Sbecore::uint INITDONEACLAUSE = 3;
-		static const Sbecore::uint INITDONESUP1NQUERY = 4;
-		static const Sbecore::uint INITDONEQRY1NQUERYCOL = 5;
-		static const Sbecore::uint INITDONE1NQUERYMOD = 6;
+		static const Sbecore::uint INITDONEACLAUSE = 2;
+		static const Sbecore::uint INITDONEAORDER = 3;
+		static const Sbecore::uint INITDONEQRY1NQUERYCOL = 4;
+		static const Sbecore::uint INITDONE1NQUERYMOD = 5;
+		static const Sbecore::uint INITDONESUP1NQUERY = 6;
 		static const Sbecore::uint INITDONEMNTABLE = 7;
-		static const Sbecore::uint INITDONEMNDIALOG = 8;
-		static const Sbecore::uint INITDONEMNPANEL = 9;
+		static const Sbecore::uint INITDONEMNPANEL = 8;
+		static const Sbecore::uint INITDONEMNDIALOG = 9;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneAOrder = false, const bool initdoneAClause = false, const bool initdoneSup1NQuery = false, const bool initdoneQry1NQuerycol = false, const bool initdone1NQuerymod = false, const bool initdoneMNTable = false, const bool initdoneMNDialog = false, const bool initdoneMNPanel = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneAClause = false, const bool initdoneAOrder = false, const bool initdoneQry1NQuerycol = false, const bool initdone1NQuerymod = false, const bool initdoneSup1NQuery = false, const bool initdoneMNTable = false, const bool initdoneMNPanel = false, const bool initdoneMNDialog = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdoneAOrder;
 		bool initdoneAClause;
-		bool initdoneSup1NQuery;
+		bool initdoneAOrder;
 		bool initdoneQry1NQuerycol;
 		bool initdone1NQuerymod;
+		bool initdoneSup1NQuery;
 		bool initdoneMNTable;
-		bool initdoneMNDialog;
 		bool initdoneMNPanel;
+		bool initdoneMNDialog;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -98,35 +98,35 @@ namespace PnlWznmQryRec {
 	/**
 	  * StatShr (full: StatShrWznmQryRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFAORDER = 3;
-		static const Sbecore::uint SCRJREFACLAUSE = 4;
-		static const Sbecore::uint SCRJREFSUP1NQUERY = 5;
-		static const Sbecore::uint SCRJREFQRY1NQUERYCOL = 6;
-		static const Sbecore::uint SCRJREF1NQUERYMOD = 7;
+		static const Sbecore::uint SCRJREFACLAUSE = 3;
+		static const Sbecore::uint SCRJREFAORDER = 4;
+		static const Sbecore::uint SCRJREFQRY1NQUERYCOL = 5;
+		static const Sbecore::uint SCRJREF1NQUERYMOD = 6;
+		static const Sbecore::uint SCRJREFSUP1NQUERY = 7;
 		static const Sbecore::uint SCRJREFMNTABLE = 8;
-		static const Sbecore::uint SCRJREFMNDIALOG = 9;
-		static const Sbecore::uint SCRJREFMNPANEL = 10;
+		static const Sbecore::uint SCRJREFMNPANEL = 9;
+		static const Sbecore::uint SCRJREFMNDIALOG = 10;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 11;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAOrder = "", const std::string& scrJrefAClause = "", const std::string& scrJrefSup1NQuery = "", const std::string& scrJrefQry1NQuerycol = "", const std::string& scrJref1NQuerymod = "", const std::string& scrJrefMNTable = "", const std::string& scrJrefMNDialog = "", const std::string& scrJrefMNPanel = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAClause = "", const std::string& scrJrefAOrder = "", const std::string& scrJrefQry1NQuerycol = "", const std::string& scrJref1NQuerymod = "", const std::string& scrJrefSup1NQuery = "", const std::string& scrJrefMNTable = "", const std::string& scrJrefMNPanel = "", const std::string& scrJrefMNDialog = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJrefAOrder;
 		std::string scrJrefAClause;
-		std::string scrJrefSup1NQuery;
+		std::string scrJrefAOrder;
 		std::string scrJrefQry1NQuerycol;
 		std::string scrJref1NQuerymod;
+		std::string scrJrefSup1NQuery;
 		std::string scrJrefMNTable;
-		std::string scrJrefMNDialog;
 		std::string scrJrefMNPanel;
+		std::string scrJrefMNDialog;
 		bool ButRegularizeActive;
 
 	public:
@@ -138,7 +138,7 @@ namespace PnlWznmQryRec {
 	/**
 	  * Tag (full: TagWznmQryRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

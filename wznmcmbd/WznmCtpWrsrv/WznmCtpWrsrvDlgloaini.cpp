@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmCtpWrsrv;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmCtpWrsrvDlgloaini
  ******************************************************************************/
@@ -35,7 +37,13 @@ DpchRetWznm* WznmCtpWrsrvDlgloaini::run(
 
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
-	// IP run --- INSERT
+	// IP run --- IBEGIN
+	// modify DlgXxxxNavLoaini.h
+	// ...
+
+	// modify DlgXxxxNavLoaini.cpp
+	// ...
+	// IP run --- IEND
 
 	return(new DpchRetWznm(VecWznmVDpch::DPCHRETWZNM, "", "", ixOpVOpres, 100));
 };

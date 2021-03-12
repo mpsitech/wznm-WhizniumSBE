@@ -37,6 +37,23 @@ WznmQTblMNVector::WznmQTblMNVector(
 	this->stubRefWznmMSubset = stubRefWznmMSubset;
 };
 
+void WznmQTblMNVector::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+		me["sbs"] = stubRefWznmMSubset;
+	} else {
+		me["stubMref"] = stubMref;
+		me["stubRefWznmMSubset"] = stubRefWznmMSubset;
+	};
+};
+
 void WznmQTblMNVector::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -104,6 +121,16 @@ ListWznmQTblMNVector& ListWznmQTblMNVector::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQTblMNVector::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQTblMNVector";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQTblMNVector::writeXML(

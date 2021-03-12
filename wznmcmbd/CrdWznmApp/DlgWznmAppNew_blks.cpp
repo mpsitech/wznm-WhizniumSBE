@@ -89,6 +89,29 @@ DlgWznmAppNew::ContIac::ContIac(
 	mask = {NUMFDETPUPTRG, NUMFDETPUPVER, DETTXFSHO, DETTXFTIT};
 };
 
+bool DlgWznmAppNew::ContIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["ContIacDlgWznmAppNew"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("numFDetPupTrg")) {numFDetPupTrg = me["numFDetPupTrg"].asUInt(); add(NUMFDETPUPTRG);};
+		if (me.isMember("numFDetPupVer")) {numFDetPupVer = me["numFDetPupVer"].asUInt(); add(NUMFDETPUPVER);};
+		if (me.isMember("DetTxfSho")) {DetTxfSho = me["DetTxfSho"].asString(); add(DETTXFSHO);};
+		if (me.isMember("DetTxfTit")) {DetTxfTit = me["DetTxfTit"].asString(); add(DETTXFTIT);};
+	};
+
+	return basefound;
+};
+
 bool DlgWznmAppNew::ContIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -113,6 +136,20 @@ bool DlgWznmAppNew::ContIac::readXML(
 	};
 
 	return basefound;
+};
+
+void DlgWznmAppNew::ContIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContIacDlgWznmAppNew";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFDetPupTrg"] = numFDetPupTrg;
+	me["numFDetPupVer"] = numFDetPupVer;
+	me["DetTxfSho"] = DetTxfSho;
+	me["DetTxfTit"] = DetTxfTit;
 };
 
 void DlgWznmAppNew::ContIac::writeXML(
@@ -175,6 +212,17 @@ DlgWznmAppNew::ContInf::ContInf(
 	mask = {NUMFSGE};
 };
 
+void DlgWznmAppNew::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfDlgWznmAppNew";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFSge"] = numFSge;
+};
+
 void DlgWznmAppNew::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -219,6 +267,18 @@ set<uint> DlgWznmAppNew::ContInf::diff(
  class DlgWznmAppNew::StatApp
  ******************************************************************************/
 
+void DlgWznmAppNew::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const string& shortMenu
+		) {
+	if (difftag.length() == 0) difftag = "StatAppDlgWznmAppNew";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["shortMenu"] = shortMenu;
+};
+
 void DlgWznmAppNew::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -250,6 +310,18 @@ DlgWznmAppNew::StatShr::StatShr(
 	this->ButCreActive = ButCreActive;
 
 	mask = {BUTCNCACTIVE, BUTCREACTIVE};
+};
+
+void DlgWznmAppNew::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrDlgWznmAppNew";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["ButCncActive"] = ButCncActive;
+	me["ButCreActive"] = ButCreActive;
 };
 
 void DlgWznmAppNew::StatShr::writeXML(
@@ -298,6 +370,26 @@ set<uint> DlgWznmAppNew::StatShr::diff(
  class DlgWznmAppNew::Tag
  ******************************************************************************/
 
+void DlgWznmAppNew::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagDlgWznmAppNew";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["Cpt"] = "Create new accessor app";
+		me["DetCptTrg"] = "Target";
+		me["DetCptVer"] = "Version";
+		me["DetCptSho"] = "Acronym";
+		me["DetCptTit"] = "Name";
+	};
+	me["ButCnc"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::CANCEL, ixWznmVLocale));
+	me["ButCre"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::CREATE, ixWznmVLocale));
+};
+
 void DlgWznmAppNew::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -342,6 +434,27 @@ string DlgWznmAppNew::DpchAppData::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void DlgWznmAppNew::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppDlgWznmAppNewData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (contiac.readJSON(me, true)) add(CONTIAC);
+	} else {
+		contiac = ContIac();
+	};
 };
 
 void DlgWznmAppNew::DpchAppData::readXML(
@@ -391,6 +504,26 @@ string DlgWznmAppNew::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void DlgWznmAppNew::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppDlgWznmAppNewDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void DlgWznmAppNew::DpchAppDo::readXML(
@@ -483,6 +616,23 @@ void DlgWznmAppNew::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void DlgWznmAppNew::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngDlgWznmAppNewData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTIAC)) contiac.writeJSON(me);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFDETPUPTRG)) feedFDetPupTrg.writeJSON(me);
+	if (has(FEEDFDETPUPVER)) feedFDetPupVer.writeJSON(me);
+	if (has(FEEDFSGE)) feedFSge.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void DlgWznmAppNew::DpchEngData::writeXML(

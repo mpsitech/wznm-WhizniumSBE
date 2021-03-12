@@ -1,21 +1,21 @@
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmCarRec", "scrJrefDetail");
-	scrJref1NDialog = retrieveSi(srcdoc, "StatShrWznmCarRec", "scrJref1NDialog");
 	scrJrefCar1NPanel = retrieveSi(srcdoc, "StatShrWznmCarRec", "scrJrefCar1NPanel");
+	scrJref1NDialog = retrieveSi(srcdoc, "StatShrWznmCarRec", "scrJref1NDialog");
 	scrJrefHk1NControl = retrieveSi(srcdoc, "StatShrWznmCarRec", "scrJrefHk1NControl");
 };
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmCarRec", "initdoneDetail", "false");
-	setSi(srcdoc, "StatAppWznmCarRec", "initdone1NDialog", "false");
 	setSi(srcdoc, "StatAppWznmCarRec", "initdoneCar1NPanel", "false");
+	setSi(srcdoc, "StatAppWznmCarRec", "initdone1NDialog", "false");
 	setSi(srcdoc, "StatAppWznmCarRec", "initdoneHk1NControl", "false");
 };
 
 function resetHeights() {
 	heightDetail = 30;
-	height1NDialog = 30;
 	heightCar1NPanel = 30;
+	height1NDialog = 30;
 	heightHk1NControl = 30;
 };
 
@@ -35,16 +35,16 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmCarRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmCarRec", "initdoneDetail") == "true");
-	var initdone1NDialog = (retrieveSi(srcdoc, "StatAppWznmCarRec", "initdone1NDialog") == "true");
 	var initdoneCar1NPanel = (retrieveSi(srcdoc, "StatAppWznmCarRec", "initdoneCar1NPanel") == "true");
+	var initdone1NDialog = (retrieveSi(srcdoc, "StatAppWznmCarRec", "initdone1NDialog") == "true");
 	var initdoneHk1NControl = (retrieveSi(srcdoc, "StatAppWznmCarRec", "initdoneHk1NControl") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmCarDetail.html?scrJref=" + scrJrefDetail;
-	} else if (!initdone1NDialog) {
-		rhsdoc.getElementById("1NDialog").src = "./PnlWznmCar1NDialog.html?scrJref=" + scrJref1NDialog;
 	} else if (!initdoneCar1NPanel) {
 		rhsdoc.getElementById("Car1NPanel").src = "./PnlWznmCarCar1NPanel.html?scrJref=" + scrJrefCar1NPanel;
+	} else if (!initdone1NDialog) {
+		rhsdoc.getElementById("1NDialog").src = "./PnlWznmCar1NDialog.html?scrJref=" + scrJref1NDialog;
 	} else if (!initdoneHk1NControl) {
 		rhsdoc.getElementById("Hk1NControl").src = "./PnlWznmCarHk1NControl.html?scrJref=" + scrJrefHk1NControl;
 
@@ -86,8 +86,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
-		else if (short == "1NDialog") height1NDialog = height;
 		else if (short == "Car1NPanel") heightCar1NPanel = height;
+		else if (short == "1NDialog") height1NDialog = height;
 		else if (short == "Hk1NControl") heightHk1NControl = height;
 	};
 
@@ -132,8 +132,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
-	else if (pnlshort == "1NDialog") height1NDialog = height;
 	else if (pnlshort == "Car1NPanel") heightCar1NPanel = height;
+	else if (pnlshort == "1NDialog") height1NDialog = height;
 	else if (pnlshort == "Hk1NControl") heightHk1NControl = height;
 
 	if (update) updateHeight();
@@ -143,7 +143,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + 5;
-	heightRhs = height1NDialog+13 + heightCar1NPanel+13 + heightHk1NControl+13 + 5;
+	heightRhs = heightCar1NPanel+13 + height1NDialog+13 + heightHk1NControl+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -334,10 +334,10 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NDialog) {
-				if (getInitdone("1NDialog")) rhsdoc.getElementById("1NDialog").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefCar1NPanel) {
 				if (getInitdone("Car1NPanel")) rhsdoc.getElementById("Car1NPanel").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NDialog) {
+				if (getInitdone("1NDialog")) rhsdoc.getElementById("1NDialog").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefHk1NControl) {
 				if (getInitdone("Hk1NControl")) rhsdoc.getElementById("Hk1NControl").contentWindow.handleDpchEng(dom, dpch);
 			} else {

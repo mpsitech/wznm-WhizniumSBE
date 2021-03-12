@@ -85,7 +85,7 @@ void QryWznmVerMNLocale::rerun(
 	dbswznm->tblwznmqvermnlocale->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMLocaleMVersion.ref)";
-	sqlstr += " FROM TblWznmRMLocaleMVersion, TblWznmMLocale";
+	sqlstr += " FROM TblWznmMLocale, TblWznmRMLocaleMVersion";
 	sqlstr += " WHERE TblWznmRMLocaleMVersion.refWznmMLocale = TblWznmMLocale.ref";
 	sqlstr += " AND TblWznmRMLocaleMVersion.refWznmMVersion = " + to_string(preRefVer) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -100,7 +100,7 @@ void QryWznmVerMNLocale::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQVerMNLocale(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMLocale.ref, TblWznmRMLocaleMVersion.ref";
-	sqlstr += " FROM TblWznmRMLocaleMVersion, TblWznmMLocale";
+	sqlstr += " FROM TblWznmMLocale, TblWznmRMLocaleMVersion";
 	sqlstr += " WHERE TblWznmRMLocaleMVersion.refWznmMLocale = TblWznmMLocale.ref";
 	sqlstr += " AND TblWznmRMLocaleMVersion.refWznmMVersion = " + to_string(preRefVer) + "";
 	sqlstr += " ORDER BY TblWznmMLocale.sref ASC";
@@ -274,19 +274,11 @@ void QryWznmVerMNLocale::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOCRVERMOD_VEREQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMLOCRVERMOD_VEREQ) {
 		call->abort = handleCallWznmLocRverMod_verEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmVerMNLocale::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmVerMNLocale::handleCallWznmLocRverMod_verEq(
@@ -300,5 +292,13 @@ bool QryWznmVerMNLocale::handleCallWznmLocRverMod_verEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
+	return retval;
+};
+
+bool QryWznmVerMNLocale::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

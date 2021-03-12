@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmCtpGenjtr;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmCtpGenjtrAcv
  ******************************************************************************/
@@ -36,7 +38,17 @@ DpchRetWznmCtpGenjtr* WznmCtpGenjtrAcv::run(
 
 	std::string logfile;
 
-	// IP run --- INSERT
+	// IP run --- IBEGIN
+	bool uld = false;
+
+	// prettify file list PnlXxxxFilList
+	// cf. IexWznmJtr_plnr PnlPlnrFilList
+
+	if (uld) {
+		// add state machine to DlgXxxxFilNew
+		// cf. IexWznmJtr_plnr DlgPlnrFilNew
+	};
+	// IP run --- IEND
 
 	return(new DpchRetWznmCtpGenjtr("", "", ixOpVOpres, 100, logfile));
 };

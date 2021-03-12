@@ -43,6 +43,29 @@ WznmQCtpList::WznmQCtpList(
 	this->titsIxWArtefact = titsIxWArtefact;
 };
 
+void WznmQCtpList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["tit"] = Title;
+		me["ver"] = stubRefWznmMVersion;
+		me["atf"] = srefsIxWArtefact;
+		me["atf2"] = titsIxWArtefact;
+	} else {
+		me["sref"] = sref;
+		me["Title"] = Title;
+		me["stubRefWznmMVersion"] = stubRefWznmMVersion;
+		me["srefsIxWArtefact"] = srefsIxWArtefact;
+		me["titsIxWArtefact"] = titsIxWArtefact;
+	};
+};
+
 void WznmQCtpList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -116,6 +139,16 @@ ListWznmQCtpList& ListWznmQCtpList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQCtpList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQCtpList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQCtpList::writeXML(

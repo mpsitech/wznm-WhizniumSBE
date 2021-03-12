@@ -41,6 +41,27 @@ WznmQTblMNQuery::WznmQTblMNQuery(
 	this->Prefix = Prefix;
 };
 
+void WznmQTblMNQuery::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+		me["tqmd"] = stubsTrefWznmMQuerymod;
+		me["src"] = yesnoSource;
+		me["pfx"] = Prefix;
+	} else {
+		me["stubMref"] = stubMref;
+		me["stubsTrefWznmMQuerymod"] = stubsTrefWznmMQuerymod;
+		me["yesnoSource"] = yesnoSource;
+		me["Prefix"] = Prefix;
+	};
+};
+
 void WznmQTblMNQuery::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -112,6 +133,16 @@ ListWznmQTblMNQuery& ListWznmQTblMNQuery::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQTblMNQuery::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQTblMNQuery";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQTblMNQuery::writeXML(

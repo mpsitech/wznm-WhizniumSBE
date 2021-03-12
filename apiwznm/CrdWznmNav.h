@@ -99,6 +99,7 @@ namespace CrdWznmNav {
 	public:
 		static const Sbecore::uint IDLE = 1;
 		static const Sbecore::uint ALRWZNMABT = 2;
+		static const Sbecore::uint ALRWZNMTRM = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -107,7 +108,7 @@ namespace CrdWznmNav {
 	/**
 	  * ContInf (full: ContInfWznmNav)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -135,7 +136,7 @@ namespace CrdWznmNav {
 	/**
 	  * StatApp (full: StatAppWznmNav)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVREQITMODE = 1;
@@ -185,7 +186,7 @@ namespace CrdWznmNav {
 	/**
 	  * StatShr (full: StatShrWznmNav)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint SCRJREFDLGLOAINI = 1;
@@ -441,7 +442,7 @@ namespace CrdWznmNav {
 	/**
 	  * Tag (full: TagWznmNav)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint MITAPPABT = 1;
@@ -600,7 +601,7 @@ namespace CrdWznmNav {
 
 	public:
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

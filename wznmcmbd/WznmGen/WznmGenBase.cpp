@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmGen;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmGenBase
  ******************************************************************************/
@@ -172,6 +174,16 @@ void WznmGenBase::genStdAlrs(
 
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::MCB, 0, VecWznmVMControlHkTbl::VER, ver->ref, connum++, VecWznmVMControlHkSection::FTR,
 				VecWznmVMControlRefTbl::VOID, 0, supref, 1, 3, VecWznmVMControlScope::SHR, 0, "McbSav", VecWznmVMControlSubtype::VOID, "cancel;fls;tru", 0, "", 0, 0, 0, "", "", "cap");
+
+	// AlrXxxxTrm (termination)
+	supref = dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::ALR, 0, VecWznmVMControlHkTbl::VER, ver->ref, connum++, VecWznmVMControlHkSection::VOID,
+				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "Alr" + Prjshort + "Trm", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "");
+
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXT, 0, VecWznmVMControlHkTbl::VER, ver->ref, connum++, VecWznmVMControlHkSection::HDR,
+				VecWznmVMControlRefTbl::VOID, 0, supref, 1, 1, VecWznmVMControlScope::APP, 0, "TxtTrmCpt", VecWznmVMControlSubtype::VOID, "announce", 0, "", 0, 0, 0, "", "", "cap");
+
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::MCB, 0, VecWznmVMControlHkTbl::VER, ver->ref, connum++, VecWznmVMControlHkSection::FTR,
+				VecWznmVMControlRefTbl::VOID, 0, supref, 1, 2, VecWznmVMControlScope::SHR, 0, "McbTrm", VecWznmVMControlSubtype::VOID, "ok", 0, "", 0, 0, 0, "", "", "cap");
 };
 
 void WznmGenBase::genStdVecs(
@@ -464,7 +476,7 @@ void WznmGenBase::genStdPres(
 
 	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VOID, 0, VecWznmVMPresetScope::SYS, "Pre" + Prjshort + "Sysdate", VecWznmWArgtype::INTVAL, 0, "");
 	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VOID, 0, VecWznmVMPresetScope::SYS, "Pre" + Prjshort + "Systime", VecWznmWArgtype::INTVAL, 0, "");
-	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VOID, 0, VecWznmVMPresetScope::SYS, "Pre" + Prjshort + "Sysstamp", VecWznmWArgtype::INTVAL, 0, "");
+	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VOID, 0, VecWznmVMPresetScope::SYS, "Pre" + Prjshort + "Sysstamp", VecWznmWArgtype::REF, 0, "");
 
 	dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMVersion = " + to_string(ver->ref) + " AND sref = 'Vec" + Prjshort + "VLocale'", refVec);
 	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VEC, refVec, VecWznmVMPresetScope::SESS, "Pre" + Prjshort + "IxLcl", VecWznmWArgtype::IX, 0, "");
@@ -478,6 +490,7 @@ void WznmGenBase::genStdPres(
 	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VOID, 0, VecWznmVMPresetScope::SESS, "Pre" + Prjshort + "JrefNotify", VecWznmWArgtype::REF, 0, "");
 	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VOID, 0, VecWznmVMPresetScope::SESS, "Pre" + Prjshort + "JrefSess", VecWznmWArgtype::REF, 0, "");
 	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VOID, 0, VecWznmVMPresetScope::SESS, "Pre" + Prjshort + "Suspsess", VecWznmWArgtype::BOOLVAL, 0, "");
+	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VOID, 0, VecWznmVMPresetScope::SESS, "Pre" + Prjshort + "Tlast", VecWznmWArgtype::REF, 0, "");
 
 	dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMVersion = " + to_string(ver->ref) + " AND sref = 'Vec" + Prjshort + "VRecaccess'", refVec);
 	dbswznm->tblwznmmpreset->insertNewRec(NULL, ver->ref, VecWznmVMPresetRefTbl::VEC, refVec, VecWznmVMPresetScope::SESS, "Pre" + Prjshort + "IxRecacc", VecWznmWArgtype::IX, 0, "");

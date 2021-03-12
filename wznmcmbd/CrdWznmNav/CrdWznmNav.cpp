@@ -42,38 +42,38 @@ CrdWznmNav::CrdWznmNav(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	dlgloaini = NULL;
-	dlgmnglic = NULL;
-	pnlheadbar = NULL;
-	pnlpre = NULL;
-	pnladmin = NULL;
-	pnlglobal = NULL;
-	pnlproject = NULL;
-	pnldbstr = NULL;
-	pnluix = NULL;
-	pnlcomp = NULL;
+	pnlauxfct = NULL;
+	pnlappdev = NULL;
 	pnljob = NULL;
 	pnldeploy = NULL;
-	pnlappdev = NULL;
-	pnlauxfct = NULL;
+	pnlcomp = NULL;
+	pnluix = NULL;
+	pnldbstr = NULL;
+	pnlproject = NULL;
+	pnlglobal = NULL;
+	pnladmin = NULL;
+	pnlpre = NULL;
+	pnlheadbar = NULL;
+	dlgloaini = NULL;
+	dlgmnglic = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	set<uint> moditems;
 	refresh(dbswznm, moditems);
 
-	pnlheadbar = new PnlWznmNavHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlpre = new PnlWznmNavPre(xchg, dbswznm, jref, ixWznmVLocale);
-	pnladmin = new PnlWznmNavAdmin(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlglobal = new PnlWznmNavGlobal(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlproject = new PnlWznmNavProject(xchg, dbswznm, jref, ixWznmVLocale);
-	pnldbstr = new PnlWznmNavDbstr(xchg, dbswznm, jref, ixWznmVLocale);
-	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlcomp = new PnlWznmNavComp(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlauxfct = new PnlWznmNavAuxfct(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlappdev = new PnlWznmNavAppdev(xchg, dbswznm, jref, ixWznmVLocale);
 	pnljob = new PnlWznmNavJob(xchg, dbswznm, jref, ixWznmVLocale);
 	pnldeploy = new PnlWznmNavDeploy(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlappdev = new PnlWznmNavAppdev(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlauxfct = new PnlWznmNavAuxfct(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlcomp = new PnlWznmNavComp(xchg, dbswznm, jref, ixWznmVLocale);
+	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
+	pnldbstr = new PnlWznmNavDbstr(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlproject = new PnlWznmNavProject(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlglobal = new PnlWznmNavGlobal(xchg, dbswznm, jref, ixWznmVLocale);
+	pnladmin = new PnlWznmNavAdmin(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlpre = new PnlWznmNavPre(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmNavHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -289,6 +289,12 @@ void CrdWznmNav::updatePreset(
 	if (pnlappdev) pnlappdev->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 	if (pnlauxfct) pnlauxfct->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 	// IP updatePreset --- END
+};
+
+void CrdWznmNav::warnTerm(
+			DbsWznm* dbswznm
+		) {
+	if (ixVSge == VecVSge::IDLE) changeStage(dbswznm, VecVSge::ALRWZNMTRM);
 };
 
 void CrdWznmNav::handleRequest(
@@ -1073,6 +1079,8 @@ void CrdWznmNav::handleDpchAppWznmAlert(
 	// IP handleDpchAppWznmAlert --- BEGIN
 	if (ixVSge == VecVSge::ALRWZNMABT) {
 		changeStage(dbswznm, nextIxVSgeSuccess);
+	} else if (ixVSge == VecVSge::ALRWZNMTRM) {
+		changeStage(dbswznm, nextIxVSgeSuccess);
 	};
 
 	*dpcheng = new DpchEngWznmConfirm(true, jref, "");
@@ -1123,6 +1131,7 @@ void CrdWznmNav::changeStage(
 			switch (ixVSge) {
 				case VecVSge::IDLE: leaveSgeIdle(dbswznm); break;
 				case VecVSge::ALRWZNMABT: leaveSgeAlrwznmabt(dbswznm); break;
+				case VecVSge::ALRWZNMTRM: leaveSgeAlrwznmtrm(dbswznm); break;
 			};
 
 			setStage(dbswznm, _ixVSge);
@@ -1133,6 +1142,7 @@ void CrdWznmNav::changeStage(
 		switch (_ixVSge) {
 			case VecVSge::IDLE: _ixVSge = enterSgeIdle(dbswznm, reenter); break;
 			case VecVSge::ALRWZNMABT: _ixVSge = enterSgeAlrwznmabt(dbswznm, reenter); break;
+			case VecVSge::ALRWZNMTRM: _ixVSge = enterSgeAlrwznmtrm(dbswznm, reenter); break;
 		};
 
 		// IP changeStage.refresh2 --- INSERT
@@ -1182,4 +1192,22 @@ void CrdWznmNav::leaveSgeAlrwznmabt(
 			DbsWznm* dbswznm
 		) {
 	// IP leaveSgeAlrwznmabt --- INSERT
+};
+
+uint CrdWznmNav::enterSgeAlrwznmtrm(
+			DbsWznm* dbswznm
+			, const bool reenter
+		) {
+	uint retval = VecVSge::ALRWZNMTRM;
+	nextIxVSgeSuccess = VecVSge::IDLE;
+
+	xchg->submitDpch(AlrWznm::prepareAlrTrm(jref, ixWznmVLocale, xchg->stgwznmappearance.sesstterm, xchg->stgwznmappearance.sesstwarn, feedFMcbAlert)); // IP enterSgeAlrwznmtrm --- LINE
+
+	return retval;
+};
+
+void CrdWznmNav::leaveSgeAlrwznmtrm(
+			DbsWznm* dbswznm
+		) {
+	// IP leaveSgeAlrwznmtrm --- INSERT
 };

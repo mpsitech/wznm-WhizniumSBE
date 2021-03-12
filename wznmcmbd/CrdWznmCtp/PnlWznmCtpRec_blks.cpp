@@ -49,6 +49,17 @@ PnlWznmCtpRec::ContInf::ContInf(
 	mask = {TXTREF};
 };
 
+void PnlWznmCtpRec::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWznmCtpRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxtRef"] = TxtRef;
+};
+
 void PnlWznmCtpRec::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -92,6 +103,28 @@ set<uint> PnlWznmCtpRec::ContInf::diff(
 /******************************************************************************
  class PnlWznmCtpRec::StatApp
  ******************************************************************************/
+
+void PnlWznmCtpRec::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const bool initdoneDetail
+			, const bool initdoneKParKey
+			, const bool initdoneKKey
+			, const bool initdoneAPar
+			, const bool initdone1NTag
+			, const bool initdoneTpl1NCapability
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmCtpRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["initdoneDetail"] = initdoneDetail;
+	me["initdoneKParKey"] = initdoneKParKey;
+	me["initdoneKKey"] = initdoneKKey;
+	me["initdoneAPar"] = initdoneAPar;
+	me["initdone1NTag"] = initdone1NTag;
+	me["initdoneTpl1NCapability"] = initdoneTpl1NCapability;
+};
 
 void PnlWznmCtpRec::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -146,6 +179,24 @@ PnlWznmCtpRec::StatShr::StatShr(
 	this->ButRegularizeActive = ButRegularizeActive;
 
 	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFKPARKEY, JREFKKEY, JREFAPAR, JREF1NTAG, JREFTPL1NCAPABILITY, BUTREGULARIZEACTIVE};
+};
+
+void PnlWznmCtpRec::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmCtpRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
+	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
+	me["scrJrefKParKey"] = Scr::scramble(jrefKParKey);
+	me["scrJrefKKey"] = Scr::scramble(jrefKKey);
+	me["scrJrefAPar"] = Scr::scramble(jrefAPar);
+	me["scrJref1NTag"] = Scr::scramble(jref1NTag);
+	me["scrJrefTpl1NCapability"] = Scr::scramble(jrefTpl1NCapability);
+	me["ButRegularizeActive"] = ButRegularizeActive;
 };
 
 void PnlWznmCtpRec::StatShr::writeXML(
@@ -206,6 +257,20 @@ set<uint> PnlWznmCtpRec::StatShr::diff(
  class PnlWznmCtpRec::Tag
  ******************************************************************************/
 
+void PnlWznmCtpRec::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmCtpRec";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["Cpt"] = "Capability template";
+	};
+};
+
 void PnlWznmCtpRec::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -245,6 +310,26 @@ string PnlWznmCtpRec::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmCtpRec::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmCtpRecDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWznmCtpRec::DpchAppDo::readXML(
@@ -321,6 +406,19 @@ void PnlWznmCtpRec::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmCtpRec::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmCtpRecData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmCtpRec::DpchEngData::writeXML(

@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmGen;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmGenCal
  ******************************************************************************/
@@ -90,6 +92,9 @@ DpchRetWznm* WznmGenCal::run(
 
 	dbswznm->tblwznmmmodule->loadRefsByVer(refWznmMVersion, false, refs);
 	for (unsigned int i = 0; i < refs.size(); i++) dbswznm->tblwznmmcard->loadRstByMdl(refs[i], true, cars);
+
+	// --- root sensitivity to timer
+	dbswznm->tblwznmmsensitivity->insertNewRec(NULL, VecWznmVMSensitivityBasetype::TMR, refRoot, 0, 0, VecWznmVMSensitivityJactype::LOCK, VecWznmVMSensitivityJobmask::VOID, "", "", 0, "warnterm", VecWznmVMSensitivityAction::CUST, 0, false);
 
 	// --- standard calls (skip the trigger part, listening jobs only)
 
@@ -210,11 +215,11 @@ DpchRetWznm* WznmGenCal::run(
 	dbswznm->tblwznmmcall->insertNewRec(NULL, VecWznmVMCallBasetype::PSTSET, refWznmMVersion, VecWznmVMCallRefTbl::VOID, 0,
 				VecWznmWArgtype::IX + VecWznmWArgtype::SREF, 0, "Call" + Prjshort + "IxPreSet", "");
 
-	// -- CallXxxxRefPreSet (listened to by session to immediate subs, and by card down the job tree ; inv: ix=ixPre, ref=ref ; unset by ref=0)
+	// -- CallXxxxRefPreSet (listened to by root, session and card down the job tree ; inv: ix=ixPre, ref=ref ; unset by ref=0)
 	refCal = dbswznm->tblwznmmcall->insertNewRec(NULL, VecWznmVMCallBasetype::PSTSET, refWznmMVersion, VecWznmVMCallRefTbl::VOID, 0,
 				VecWznmWArgtype::IX + VecWznmWArgtype::REF, 0, "Call" + Prjshort + "RefPreSet", "");
 
-	// preliminary: should be IMM ... used to be SPEC
+	dbswznm->tblwznmmsensitivity->insertNewRec(NULL, VecWznmVMSensitivityBasetype::CAL, refRoot, 0, refCal, VecWznmVMSensitivityJactype::LOCK, VecWznmVMSensitivityJobmask::TREE, "", "", 0, "", VecWznmVMSensitivityAction::CUST, 0, false);
 	dbswznm->tblwznmmsensitivity->insertNewRec(NULL, VecWznmVMSensitivityBasetype::CAL, refSess, 0, refCal, VecWznmVMSensitivityJactype::LOCK, VecWznmVMSensitivityJobmask::TREE, "", "", 0, "", VecWznmVMSensitivityAction::CUST, 0, false);
 
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {

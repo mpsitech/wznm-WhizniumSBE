@@ -10,10 +10,10 @@
 #ifndef WZNM_H
 #define WZNM_H
 
-#define WZNM_VERSION "1.1.4"
+#define WZNM_VERSION "1.1.5"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 1
-#define WZNM_VERSION_SUB 4
+#define WZNM_VERSION_SUB 5
 
 // IP include.cust --- IBEGIN
 #include <sys/wait.h>
@@ -316,7 +316,7 @@ public:
 /**
 	* ContInfWznmAlert
 	*/
-class ContInfWznmAlert : public Sbecore::Xmlio::Block {
+class ContInfWznmAlert : public Sbecore::Block {
 
 public:
 	static const Sbecore::uint TXTCPT = 1;
@@ -353,6 +353,7 @@ public:
 
 public:
 	static bool all(const std::set<Sbecore::uint>& items);
+	void writeJSON(Json::Value& sup, std::string difftag = "");
 	void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	std::set<Sbecore::uint> compare(const ContInfWznmAlert* comp);
 };
@@ -360,7 +361,7 @@ public:
 /**
 	* DpchWznm
 	*/
-class DpchWznm : public Sbecore::Xmlio::Block {
+class DpchWznm : public Sbecore::Block {
 
 public:
 	DpchWznm(const Sbecore::uint ixWznmVDpch = 0);

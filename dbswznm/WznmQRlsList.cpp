@@ -39,6 +39,25 @@ WznmQRlsList::WznmQRlsList(
 	this->stubRefWznmMMachine = stubRefWznmMMachine;
 };
 
+void WznmQRlsList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["cmp"] = stubRefWznmMComponent;
+		me["mch"] = stubRefWznmMMachine;
+	} else {
+		me["sref"] = sref;
+		me["stubRefWznmMComponent"] = stubRefWznmMComponent;
+		me["stubRefWznmMMachine"] = stubRefWznmMMachine;
+	};
+};
+
 void WznmQRlsList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -108,6 +127,16 @@ ListWznmQRlsList& ListWznmQRlsList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQRlsList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQRlsList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQRlsList::writeXML(

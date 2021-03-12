@@ -33,6 +33,21 @@ WznmQAppApp1NSequence::WznmQAppApp1NSequence(
 	this->appNum = appNum;
 };
 
+void WznmQAppApp1NSequence::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQAppApp1NSequence::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQAppApp1NSequence& ListWznmQAppApp1NSequence::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQAppApp1NSequence::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQAppApp1NSequence";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQAppApp1NSequence::writeXML(

@@ -42,7 +42,7 @@ namespace PnlWznmUsrRec {
 	/**
 	  * ContInf (full: ContInfWznmUsrRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,7 +62,7 @@ namespace PnlWznmUsrRec {
 	/**
 	  * StatApp (full: StatAppWznmUsrRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
@@ -88,7 +88,7 @@ namespace PnlWznmUsrRec {
 	/**
 	  * StatShr (full: StatShrWznmUsrRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -118,7 +118,7 @@ namespace PnlWznmUsrRec {
 	/**
 	  * Tag (full: TagWznmUsrRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

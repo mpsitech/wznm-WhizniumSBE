@@ -28,8 +28,8 @@ namespace QryWznmMtdList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint SRF = 1;
-		static const Sbecore::uint JOB = 2;
+		static const Sbecore::uint JOB = 1;
+		static const Sbecore::uint SRF = 2;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -38,7 +38,7 @@ namespace QryWznmMtdList {
 	/**
 	  * StatApp (full: StatAppQryWznmMtdList)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -64,7 +64,7 @@ namespace QryWznmMtdList {
 	/**
 	  * StatShr (full: StatShrQryWznmMtdList)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -88,7 +88,7 @@ namespace QryWznmMtdList {
 	/**
 	  * StgIac (full: StgIacQryWznmMtdList)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

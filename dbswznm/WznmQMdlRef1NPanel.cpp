@@ -31,6 +31,21 @@ WznmQMdlRef1NPanel::WznmQMdlRef1NPanel(
 	this->stubRef = stubRef;
 };
 
+void WznmQMdlRef1NPanel::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQMdlRef1NPanel::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQMdlRef1NPanel& ListWznmQMdlRef1NPanel::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQMdlRef1NPanel::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQMdlRef1NPanel";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQMdlRef1NPanel::writeXML(

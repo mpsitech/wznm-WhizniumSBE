@@ -257,7 +257,7 @@ void PnlWznmJobList::handleDpchAppDataContiac(
 	diffitems = _contiac->diff(&contiac);
 
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWznmJobList::VecVOrd::SRF) && (_contiac->numFTos <= QryWznmJobList::VecVOrd::GBL)) {
+		if ((_contiac->numFTos >= QryWznmJobList::VecVOrd::RET) && (_contiac->numFTos <= QryWznmJobList::VecVOrd::TYP)) {
 			muteRefresh = true;
 
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);

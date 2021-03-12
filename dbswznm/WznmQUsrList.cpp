@@ -65,6 +65,41 @@ WznmQUsrList::WznmQUsrList(
 	this->titIxWznmVUserlevel = titIxWznmVUserlevel;
 };
 
+void WznmQUsrList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["grp"] = stubGrp;
+		me["own"] = stubOwn;
+		me["prs"] = stubRefWznmMPerson;
+		me["srf"] = sref;
+		me["usg"] = stubRefWznmMUsergroup;
+		me["ste"] = srefIxVState;
+		me["ste2"] = titIxVState;
+		me["lcl"] = srefIxWznmVLocale;
+		me["lcl2"] = titIxWznmVLocale;
+		me["ulv"] = srefIxWznmVUserlevel;
+		me["ulv2"] = titIxWznmVUserlevel;
+	} else {
+		me["stubGrp"] = stubGrp;
+		me["stubOwn"] = stubOwn;
+		me["stubRefWznmMPerson"] = stubRefWznmMPerson;
+		me["sref"] = sref;
+		me["stubRefWznmMUsergroup"] = stubRefWznmMUsergroup;
+		me["srefIxVState"] = srefIxVState;
+		me["titIxVState"] = titIxVState;
+		me["srefIxWznmVLocale"] = srefIxWznmVLocale;
+		me["titIxWznmVLocale"] = titIxWznmVLocale;
+		me["srefIxWznmVUserlevel"] = srefIxWznmVUserlevel;
+		me["titIxWznmVUserlevel"] = titIxWznmVUserlevel;
+	};
+};
+
 void WznmQUsrList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -150,6 +185,16 @@ ListWznmQUsrList& ListWznmQUsrList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQUsrList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQUsrList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQUsrList::writeXML(

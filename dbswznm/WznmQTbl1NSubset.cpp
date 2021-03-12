@@ -31,6 +31,21 @@ WznmQTbl1NSubset::WznmQTbl1NSubset(
 	this->stubRef = stubRef;
 };
 
+void WznmQTbl1NSubset::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQTbl1NSubset::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQTbl1NSubset& ListWznmQTbl1NSubset::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQTbl1NSubset::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQTbl1NSubset";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQTbl1NSubset::writeXML(

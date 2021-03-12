@@ -28,11 +28,11 @@ namespace QryWznmUsrList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint GRP = 1;
-		static const Sbecore::uint OWN = 2;
-		static const Sbecore::uint PRS = 3;
-		static const Sbecore::uint SRF = 4;
-		static const Sbecore::uint USG = 5;
+		static const Sbecore::uint USG = 1;
+		static const Sbecore::uint PRS = 2;
+		static const Sbecore::uint SRF = 3;
+		static const Sbecore::uint GRP = 4;
+		static const Sbecore::uint OWN = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -41,7 +41,7 @@ namespace QryWznmUsrList {
 	/**
 	  * StatApp (full: StatAppQryWznmUsrList)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FIRSTCOL = 1;
@@ -67,7 +67,7 @@ namespace QryWznmUsrList {
 	/**
 	  * StatShr (full: StatShrQryWznmUsrList)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NTOT = 1;
@@ -91,7 +91,7 @@ namespace QryWznmUsrList {
 	/**
 	  * StgIac (full: StgIacQryWznmUsrList)
 	  */
-	class StgIac : public Sbecore::Xmlio::Block {
+	class StgIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint JNUM = 1;

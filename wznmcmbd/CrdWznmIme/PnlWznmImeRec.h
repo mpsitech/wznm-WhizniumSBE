@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmImeDetail.h"
-#include "PnlWznmImeIme1NImpexpcol.h"
-#include "PnlWznmImeSup1NImpexp.h"
 #include "PnlWznmImeHk1NVector.h"
+#include "PnlWznmImeDetail.h"
+#include "PnlWznmImeSup1NImpexp.h"
+#include "PnlWznmImeIme1NImpexpcol.h"
 
 #define VecVWznmImeRecDo PnlWznmImeRec::VecVDo
 
@@ -51,7 +51,7 @@ public:
 	/**
 	  * ContInf (full: ContInfWznmImeRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -63,6 +63,7 @@ public:
 		std::string TxtRef;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInf* comp);
 		std::set<Sbecore::uint> diff(const ContInf* comp);
@@ -74,13 +75,14 @@ public:
 	class StatApp {
 
 	public:
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneIme1NImpexpcol = false, const bool initdoneSup1NImpexp = false, const bool initdoneHk1NVector = false);
 		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneIme1NImpexpcol = false, const bool initdoneSup1NImpexp = false, const bool initdoneHk1NVector = false);
 	};
 
 	/**
 		* StatShr (full: StatShrWznmImeRec)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -102,6 +104,7 @@ public:
 		bool ButRegularizeActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -113,6 +116,7 @@ public:
 	class Tag {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -134,6 +138,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -161,6 +166,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
@@ -174,10 +180,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmImeDetail* pnldetail;
-	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
-	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
 	PnlWznmImeHk1NVector* pnlhk1nvector;
+	PnlWznmImeDetail* pnldetail;
+	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
+	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
 
 	WznmMImpexp recIme;
 
@@ -211,9 +217,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmIme_iexEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmIme_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmImeUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmIme_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmIme_iexEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

@@ -110,7 +110,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * ContIac (full: ContIacDlgWznmAppWrite)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFDSE = 1;
@@ -131,7 +131,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * ContIacDet (full: ContIacDlgWznmAppWriteDet)
 	  */
-	class ContIacDet : public Sbecore::Xmlio::Block {
+	class ContIacDet : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CHKUSF = 1;
@@ -152,7 +152,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * ContInf (full: ContInfDlgWznmAppWrite)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -172,7 +172,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * ContInfFia (full: ContInfDlgWznmAppWriteFia)
 	  */
-	class ContInfFia : public Sbecore::Xmlio::Block {
+	class ContInfFia : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -192,7 +192,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * ContInfLfi (full: ContInfDlgWznmAppWriteLfi)
 	  */
-	class ContInfLfi : public Sbecore::Xmlio::Block {
+	class ContInfLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -212,7 +212,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * ContInfWrc (full: ContInfDlgWznmAppWriteWrc)
 	  */
-	class ContInfWrc : public Sbecore::Xmlio::Block {
+	class ContInfWrc : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTPRG = 1;
@@ -232,7 +232,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * StatApp (full: StatAppDlgWznmAppWrite)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONE = 1;
@@ -254,7 +254,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * StatShr (full: StatShrDlgWznmAppWrite)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTDNEACTIVE = 1;
@@ -274,7 +274,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * StatShrCuc (full: StatShrDlgWznmAppWriteCuc)
 	  */
-	class StatShrCuc : public Sbecore::Xmlio::Block {
+	class StatShrCuc : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint ULDACTIVE = 1;
@@ -294,7 +294,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * StatShrFia (full: StatShrDlgWznmAppWriteFia)
 	  */
-	class StatShrFia : public Sbecore::Xmlio::Block {
+	class StatShrFia : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLDACTIVE = 1;
@@ -314,7 +314,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * StatShrLfi (full: StatShrDlgWznmAppWriteLfi)
 	  */
-	class StatShrLfi : public Sbecore::Xmlio::Block {
+	class StatShrLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLDACTIVE = 1;
@@ -334,7 +334,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * StatShrWrc (full: StatShrDlgWznmAppWriteWrc)
 	  */
-	class StatShrWrc : public Sbecore::Xmlio::Block {
+	class StatShrWrc : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTRUNACTIVE = 1;
@@ -356,7 +356,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * Tag (full: TagDlgWznmAppWrite)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -376,7 +376,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * TagCuc (full: TagDlgWznmAppWriteCuc)
 	  */
-	class TagCuc : public Sbecore::Xmlio::Block {
+	class TagCuc : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint ULD = 1;
@@ -396,7 +396,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * TagDet (full: TagDlgWznmAppWriteDet)
 	  */
-	class TagDet : public Sbecore::Xmlio::Block {
+	class TagDet : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPTUSF = 1;
@@ -414,7 +414,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * TagFia (full: TagDlgWznmAppWriteFia)
 	  */
-	class TagFia : public Sbecore::Xmlio::Block {
+	class TagFia : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -432,7 +432,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * TagLfi (full: TagDlgWznmAppWriteLfi)
 	  */
-	class TagLfi : public Sbecore::Xmlio::Block {
+	class TagLfi : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DLD = 1;
@@ -450,7 +450,7 @@ namespace DlgWznmAppWrite {
 	/**
 	  * TagWrc (full: TagDlgWznmAppWriteWrc)
 	  */
-	class TagWrc : public Sbecore::Xmlio::Block {
+	class TagWrc : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPTPRG = 1;
@@ -555,8 +555,8 @@ namespace DlgWznmAppWrite {
 		ContInfFia continffia;
 		ContInfLfi continflfi;
 		ContInfWrc continfwrc;
-		Sbecore::Xmlio::Feed feedFDse;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFDse;
+		Sbecore::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;
 		StatShrCuc statshrcuc;

@@ -63,6 +63,39 @@ WznmQJobList::WznmQJobList(
 	this->yesnoShrdat = yesnoShrdat;
 };
 
+void WznmQJobList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["ver"] = stubRefWznmMVersion;
+		me["ret"] = srefRefIxVTbl;
+		me["ret2"] = titRefIxVTbl;
+		me["reu"] = stubRefUref;
+		me["gbl"] = yesnoGlobal;
+		me["cls"] = yesnoClisrv;
+		me["shd"] = yesnoShrdat;
+	} else {
+		me["sref"] = sref;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["stubRefWznmMVersion"] = stubRefWznmMVersion;
+		me["srefRefIxVTbl"] = srefRefIxVTbl;
+		me["titRefIxVTbl"] = titRefIxVTbl;
+		me["stubRefUref"] = stubRefUref;
+		me["yesnoGlobal"] = yesnoGlobal;
+		me["yesnoClisrv"] = yesnoClisrv;
+		me["yesnoShrdat"] = yesnoShrdat;
+	};
+};
+
 void WznmQJobList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -146,6 +179,16 @@ ListWznmQJobList& ListWznmQJobList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQJobList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQJobList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQJobList::writeXML(

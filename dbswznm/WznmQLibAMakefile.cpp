@@ -39,6 +39,27 @@ WznmQLibAMakefile::WznmQLibAMakefile(
 	this->Val = Val;
 };
 
+void WznmQLibAMakefile::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mch"] = stubX1RefWznmMMachine;
+		me["tag"] = x2SrefKTag;
+		me["tag2"] = titX2SrefKTag;
+		me["val"] = Val;
+	} else {
+		me["stubX1RefWznmMMachine"] = stubX1RefWznmMMachine;
+		me["x2SrefKTag"] = x2SrefKTag;
+		me["titX2SrefKTag"] = titX2SrefKTag;
+		me["Val"] = Val;
+	};
+};
+
 void WznmQLibAMakefile::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -110,6 +131,16 @@ ListWznmQLibAMakefile& ListWznmQLibAMakefile::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQLibAMakefile::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQLibAMakefile";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQLibAMakefile::writeXML(

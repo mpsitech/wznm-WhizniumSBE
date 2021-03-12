@@ -22,15 +22,15 @@ uint QryWznmRelList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "frt") return FRT;
-	if (s == "frs") return FRS;
-	if (s == "tot") return TOT;
+	if (s == "tbl") return TBL;
+	if (s == "srl") return SRL;
+	if (s == "sup") return SUP;
+	if (s == "ver") return VER;
 	if (s == "tos") return TOS;
 	if (s == "typ") return TYP;
-	if (s == "ver") return VER;
-	if (s == "sup") return SUP;
-	if (s == "srl") return SRL;
-	if (s == "tbl") return TBL;
+	if (s == "tot") return TOT;
+	if (s == "frs") return FRS;
+	if (s == "frt") return FRT;
 
 	return(0);
 };
@@ -38,15 +38,15 @@ uint QryWznmRelList::VecVOrd::getIx(
 string QryWznmRelList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == FRT) return("frt");
-	if (ix == FRS) return("frs");
-	if (ix == TOT) return("tot");
+	if (ix == TBL) return("tbl");
+	if (ix == SRL) return("srl");
+	if (ix == SUP) return("sup");
+	if (ix == VER) return("ver");
 	if (ix == TOS) return("tos");
 	if (ix == TYP) return("typ");
-	if (ix == VER) return("ver");
-	if (ix == SUP) return("sup");
-	if (ix == SRL) return("srl");
-	if (ix == TBL) return("tbl");
+	if (ix == TOT) return("tot");
+	if (ix == FRS) return("frs");
+	if (ix == FRT) return("frt");
 
 	return("");
 };

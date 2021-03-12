@@ -33,6 +33,21 @@ WznmQVerVer1NApp::WznmQVerVer1NApp(
 	this->verNum = verNum;
 };
 
+void WznmQVerVer1NApp::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQVerVer1NApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQVerVer1NApp& ListWznmQVerVer1NApp::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQVerVer1NApp::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQVerVer1NApp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQVerVer1NApp::writeXML(

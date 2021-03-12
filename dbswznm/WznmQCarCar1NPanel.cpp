@@ -33,6 +33,21 @@ WznmQCarCar1NPanel::WznmQCarCar1NPanel(
 	this->carNum = carNum;
 };
 
+void WznmQCarCar1NPanel::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQCarCar1NPanel::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQCarCar1NPanel& ListWznmQCarCar1NPanel::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQCarCar1NPanel::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQCarCar1NPanel";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQCarCar1NPanel::writeXML(

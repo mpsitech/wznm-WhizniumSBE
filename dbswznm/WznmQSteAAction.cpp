@@ -79,6 +79,53 @@ WznmQSteAAction::WznmQSteAAction(
 	this->Ip4 = Ip4;
 };
 
+void WznmQSteAAction::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["sct"] = srefIxVSection;
+		me["sct2"] = titIxVSection;
+		me["typ"] = srefIxVType;
+		me["typ2"] = titIxVType;
+		me["trj"] = stubRefWznmMRtjob;
+		me["vec"] = stubRefWznmMVector;
+		me["vit"] = stubRefWznmMVectoritem;
+		me["snx"] = stubSnxRefWznmMState;
+		me["seq"] = stubRefWznmMSequence;
+		me["tr1"] = tr1SrefATrig;
+		me["ip1"] = Ip1;
+		me["tr2"] = tr2SrefATrig;
+		me["ip2"] = Ip2;
+		me["tr3"] = tr3SrefATrig;
+		me["ip3"] = Ip3;
+		me["tr4"] = tr4SrefATrig;
+		me["ip4"] = Ip4;
+	} else {
+		me["srefIxVSection"] = srefIxVSection;
+		me["titIxVSection"] = titIxVSection;
+		me["srefIxVType"] = srefIxVType;
+		me["titIxVType"] = titIxVType;
+		me["stubRefWznmMRtjob"] = stubRefWznmMRtjob;
+		me["stubRefWznmMVector"] = stubRefWznmMVector;
+		me["stubRefWznmMVectoritem"] = stubRefWznmMVectoritem;
+		me["stubSnxRefWznmMState"] = stubSnxRefWznmMState;
+		me["stubRefWznmMSequence"] = stubRefWznmMSequence;
+		me["tr1SrefATrig"] = tr1SrefATrig;
+		me["Ip1"] = Ip1;
+		me["tr2SrefATrig"] = tr2SrefATrig;
+		me["Ip2"] = Ip2;
+		me["tr3SrefATrig"] = tr3SrefATrig;
+		me["Ip3"] = Ip3;
+		me["tr4SrefATrig"] = tr4SrefATrig;
+		me["Ip4"] = Ip4;
+	};
+};
+
 void WznmQSteAAction::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -176,6 +223,16 @@ ListWznmQSteAAction& ListWznmQSteAAction::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQSteAAction::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQSteAAction";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQSteAAction::writeXML(

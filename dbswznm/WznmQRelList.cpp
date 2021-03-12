@@ -71,6 +71,43 @@ WznmQRelList::WznmQRelList(
 	this->Prefix = Prefix;
 };
 
+void WznmQRelList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["frt"] = stubFrRefWznmMTable;
+		me["frs"] = stubFrsRefWznmMSubset;
+		me["tot"] = stubToRefWznmMTable;
+		me["tos"] = stubTosRefWznmMSubset;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["ver"] = stubRefWznmMVersion;
+		me["sup"] = stubSupRefWznmMRelation;
+		me["srl"] = srefSupIxVSubrole;
+		me["srl2"] = titSupIxVSubrole;
+		me["tbl"] = stubRefWznmMTable;
+		me["pfx"] = Prefix;
+	} else {
+		me["stubFrRefWznmMTable"] = stubFrRefWznmMTable;
+		me["stubFrsRefWznmMSubset"] = stubFrsRefWznmMSubset;
+		me["stubToRefWznmMTable"] = stubToRefWznmMTable;
+		me["stubTosRefWznmMSubset"] = stubTosRefWznmMSubset;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["stubRefWznmMVersion"] = stubRefWznmMVersion;
+		me["stubSupRefWznmMRelation"] = stubSupRefWznmMRelation;
+		me["srefSupIxVSubrole"] = srefSupIxVSubrole;
+		me["titSupIxVSubrole"] = titSupIxVSubrole;
+		me["stubRefWznmMTable"] = stubRefWznmMTable;
+		me["Prefix"] = Prefix;
+	};
+};
+
 void WznmQRelList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -158,6 +195,16 @@ ListWznmQRelList& ListWznmQRelList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQRelList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQRelList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQRelList::writeXML(

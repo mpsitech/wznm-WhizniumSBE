@@ -26,12 +26,22 @@ ImeIMBlock.end
 ImeIMCapability.srefTplRefWznmMCapability	sref	Title
 acv	Acv
 	ImeIAMCapabilityPar.x1SrefKKey	Val
-	dld	true
 	uld	true
 	ImeIAMCapabilityPar.end
 arm	Arm
+dlgimp	DlgWznmAppImpstr
 dlgloaini	DlgWznmNavLoaini
 	ImeIAMCapabilityPar.x1SrefKKey	Val
 	acv	true
 	ImeIAMCapabilityPar.end
+dlgimp	DlgWznmPrjImpex
+dlgimp	DlgWznmVerBscui
+dlgimp	DlgWznmVerCustjob
+dlgimp	DlgWznmVerCustjtr
+dlgimp	DlgWznmVerCustui
+dlgimp	DlgWznmVerDbstr
+dlgimp	DlgWznmVerDeploy
+dlgimp	DlgWznmVerGlobal
+dlgimp	DlgWznmVerImpexp
+dlgimp	DlgWznmVerOppack
 ImeIMCapability.end

@@ -31,6 +31,21 @@ WznmQOpk1NOp::WznmQOpk1NOp(
 	this->stubRef = stubRef;
 };
 
+void WznmQOpk1NOp::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQOpk1NOp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQOpk1NOp& ListWznmQOpk1NOp::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQOpk1NOp::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQOpk1NOp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQOpk1NOp::writeXML(

@@ -41,6 +41,29 @@ WznmQTagList::WznmQTagList(
 	this->titOsrefWznmKTaggrp = titOsrefWznmKTaggrp;
 };
 
+void WznmQTagList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["tit"] = Title;
+		me["cpb"] = stubRefWznmMCapability;
+		me["grp"] = osrefWznmKTaggrp;
+		me["grp2"] = titOsrefWznmKTaggrp;
+	} else {
+		me["sref"] = sref;
+		me["Title"] = Title;
+		me["stubRefWznmMCapability"] = stubRefWznmMCapability;
+		me["osrefWznmKTaggrp"] = osrefWznmKTaggrp;
+		me["titOsrefWznmKTaggrp"] = titOsrefWznmKTaggrp;
+	};
+};
+
 void WznmQTagList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -114,6 +137,16 @@ ListWznmQTagList& ListWznmQTagList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQTagList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQTagList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQTagList::writeXML(

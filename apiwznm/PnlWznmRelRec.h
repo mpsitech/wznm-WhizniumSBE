@@ -42,7 +42,7 @@ namespace PnlWznmRelRec {
 	/**
 	  * ContInf (full: ContInfWznmRelRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,28 +62,28 @@ namespace PnlWznmRelRec {
 	/**
 	  * StatApp (full: StatAppWznmRelRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONEATITLE = 2;
 		static const Sbecore::uint INITDONESUP1NRELATION = 3;
 		static const Sbecore::uint INITDONE1NTABLECOL = 4;
-		static const Sbecore::uint INITDONEREF1NCONTROL = 5;
+		static const Sbecore::uint INITDONEREF1NPANEL = 5;
 		static const Sbecore::uint INITDONEREF1NDIALOG = 6;
-		static const Sbecore::uint INITDONEREF1NPANEL = 7;
+		static const Sbecore::uint INITDONEREF1NCONTROL = 7;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneSup1NRelation = false, const bool initdone1NTablecol = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NDialog = false, const bool initdoneRef1NPanel = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneSup1NRelation = false, const bool initdone1NTablecol = false, const bool initdoneRef1NPanel = false, const bool initdoneRef1NDialog = false, const bool initdoneRef1NControl = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneATitle;
 		bool initdoneSup1NRelation;
 		bool initdone1NTablecol;
-		bool initdoneRef1NControl;
-		bool initdoneRef1NDialog;
 		bool initdoneRef1NPanel;
+		bool initdoneRef1NDialog;
+		bool initdoneRef1NControl;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -94,7 +94,7 @@ namespace PnlWznmRelRec {
 	/**
 	  * StatShr (full: StatShrWznmRelRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
@@ -102,13 +102,13 @@ namespace PnlWznmRelRec {
 		static const Sbecore::uint SCRJREFATITLE = 3;
 		static const Sbecore::uint SCRJREFSUP1NRELATION = 4;
 		static const Sbecore::uint SCRJREF1NTABLECOL = 5;
-		static const Sbecore::uint SCRJREFREF1NCONTROL = 6;
+		static const Sbecore::uint SCRJREFREF1NPANEL = 6;
 		static const Sbecore::uint SCRJREFREF1NDIALOG = 7;
-		static const Sbecore::uint SCRJREFREF1NPANEL = 8;
+		static const Sbecore::uint SCRJREFREF1NCONTROL = 8;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 9;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJrefSup1NRelation = "", const std::string& scrJref1NTablecol = "", const std::string& scrJrefRef1NControl = "", const std::string& scrJrefRef1NDialog = "", const std::string& scrJrefRef1NPanel = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJrefSup1NRelation = "", const std::string& scrJref1NTablecol = "", const std::string& scrJrefRef1NPanel = "", const std::string& scrJrefRef1NDialog = "", const std::string& scrJrefRef1NControl = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
@@ -116,9 +116,9 @@ namespace PnlWznmRelRec {
 		std::string scrJrefATitle;
 		std::string scrJrefSup1NRelation;
 		std::string scrJref1NTablecol;
-		std::string scrJrefRef1NControl;
-		std::string scrJrefRef1NDialog;
 		std::string scrJrefRef1NPanel;
+		std::string scrJrefRef1NDialog;
+		std::string scrJrefRef1NControl;
 		bool ButRegularizeActive;
 
 	public:
@@ -130,7 +130,7 @@ namespace PnlWznmRelRec {
 	/**
 	  * Tag (full: TagWznmRelRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

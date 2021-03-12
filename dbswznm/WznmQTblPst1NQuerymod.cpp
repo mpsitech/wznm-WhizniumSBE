@@ -31,6 +31,21 @@ WznmQTblPst1NQuerymod::WznmQTblPst1NQuerymod(
 	this->stubRef = stubRef;
 };
 
+void WznmQTblPst1NQuerymod::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQTblPst1NQuerymod::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQTblPst1NQuerymod& ListWznmQTblPst1NQuerymod::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQTblPst1NQuerymod::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQTblPst1NQuerymod";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQTblPst1NQuerymod::writeXML(

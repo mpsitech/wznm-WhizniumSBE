@@ -35,6 +35,25 @@ WznmQMchAPar::WznmQMchAPar(
 	this->Val = Val;
 };
 
+void WznmQMchAPar::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["key"] = x1SrefKKey;
+		me["key2"] = titX1SrefKKey;
+		me["val"] = Val;
+	} else {
+		me["x1SrefKKey"] = x1SrefKKey;
+		me["titX1SrefKKey"] = titX1SrefKKey;
+		me["Val"] = Val;
+	};
+};
+
 void WznmQMchAPar::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -104,6 +123,16 @@ ListWznmQMchAPar& ListWznmQMchAPar::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQMchAPar::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQMchAPar";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQMchAPar::writeXML(

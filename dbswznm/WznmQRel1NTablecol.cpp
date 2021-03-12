@@ -31,6 +31,21 @@ WznmQRel1NTablecol::WznmQRel1NTablecol(
 	this->stubRef = stubRef;
 };
 
+void WznmQRel1NTablecol::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQRel1NTablecol::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQRel1NTablecol& ListWznmQRel1NTablecol::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQRel1NTablecol::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQRel1NTablecol";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQRel1NTablecol::writeXML(

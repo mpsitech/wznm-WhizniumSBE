@@ -2,7 +2,7 @@
 # make file for Wznm daemon, release wznmd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 13 Jan 2021
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 include Makefile.inc
@@ -21,7 +21,7 @@ PCHS = Wznmd.h.gch
 
 OBJS = Wznm.o WznmdAppsrv.o WznmdJobprc.o WznmdOpprc.o WznmdOpengcli.o WznmdOpengsrv.o Wznmd.o
 OBJS += RootWznm.o SessWznm.o JobWznmLicense.o
-OBJS += WznmCompl_blks.o SqkWznmCompl.o WznmCtpGenjtr_blks.o SqkWznmCtpGenjtr.o WznmCtpGenui_blks.o SqkWznmCtpGenui.o WznmCtpWrstkit_blks.o SqkWznmCtpWrstkit.o WznmCtpWrsrv_blks.o SqkWznmCtpWrsrv.o WznmCtpWrweb_blks.o SqkWznmCtpWrweb.o WznmGen_blks.o SqkWznmGen.o WznmPrcfile_blks.o SqkWznmPrcfile.o WznmPrctree_blks.o SqkWznmPrctree.o WznmWrapi_blks.o SqkWznmWrapi.o WznmWrapp_blks.o SqkWznmWrapp.o WznmWrdbs_blks.o SqkWznmWrdbs.o WznmWrjapi_blks.o SqkWznmWrjapi.o WznmWrsrv_blks.o SqkWznmWrsrv.o WznmWrweb_blks.o SqkWznmWrweb.o
+OBJS += WznmWrweb_blks.o SqkWznmWrweb.o WznmWrjapi_blks.o SqkWznmWrjapi.o WznmWrsrv_blks.o SqkWznmWrsrv.o WznmWrdbs_blks.o SqkWznmWrdbs.o WznmWrapi_blks.o SqkWznmWrapi.o WznmWrapp_blks.o SqkWznmWrapp.o WznmPrcfile_blks.o SqkWznmPrcfile.o WznmPrctree_blks.o SqkWznmPrctree.o WznmCtpWrsrv_blks.o SqkWznmCtpWrsrv.o WznmCtpWrstkit_blks.o SqkWznmCtpWrstkit.o WznmCtpWrweb_blks.o SqkWznmCtpWrweb.o WznmGen_blks.o SqkWznmGen.o WznmCtpGenui_blks.o SqkWznmCtpGenui.o WznmCtpGenjtr_blks.o SqkWznmCtpGenjtr.o WznmCompl_blks.o SqkWznmCompl.o
 OBJS += Wznmd_exe.o
 
 LIBPATH = -L$(LIBROOT)
@@ -30,10 +30,10 @@ LIBPATH += -L${WHIZSDKROOT}/lib -L/usr/local/lib -L/usr/local/mysql/lib
 
 LIBS = -lcrdwznmnav -lcrdwznmusg -lcrdwznmusr -lcrdwznmprs -lcrdwznmfil -lcrdwznmloc -lcrdwznmtag -lcrdwznmctp -lcrdwznmmch -lcrdwznmlib -lcrdwznmprj -lcrdwznmver -lcrdwznmcap -lcrdwznmerr -lcrdwznmtbl -lcrdwznmtco -lcrdwznmsbs -lcrdwznmrel -lcrdwznmvec -lcrdwznmvit -lcrdwznmchk -lcrdwznmstb -lcrdwznmiex -lcrdwznmime -lcrdwznmiel -lcrdwznmpst -lcrdwznmmdl -lcrdwznmcar -lcrdwznmdlg -lcrdwznmpnl -lcrdwznmqry -lcrdwznmqco -lcrdwznmqmd -lcrdwznmcon -lcrdwznmopk -lcrdwznmopx -lcrdwznmjob -lcrdwznmsge -lcrdwznmmtd -lcrdwznmblk -lcrdwznmcal -lcrdwznmcmp -lcrdwznmrls -lcrdwznmapp -lcrdwznmrtj -lcrdwznmevt -lcrdwznmseq -lcrdwznmste -lcrdwznmutl
 LIBS += -liexwznm -lvecwznm -ldbswznm
-LIBS += -lapiwzlm -lcurl -lgit2 -ljsoncpp -lmicrohttpd -lsbecore_mon -lsbecore_my
+LIBS += -lapiwzlm -lcurl -lgit2 -lmicrohttpd -lsbecore_mon -lsbecore_my
 LIBS += -lmysqlclient -lsbecore_plus
 LIBS += -lsbecore
-LIBS += -lssl -lxml2
+LIBS += -ljsoncpp -lssl -lxml2
 LIBS += -lcrypto
 
 EXE = Wznmd

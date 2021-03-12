@@ -59,6 +59,39 @@ WznmQSteATrig::WznmQSteATrig(
 	this->Cond = Cond;
 };
 
+void WznmQSteATrig::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["typ"] = srefIxVType;
+		me["typ2"] = titIxVType;
+		me["evt"] = stubRefWznmMEvent;
+		me["rtj"] = stubRefWznmMRtjob;
+		me["vit"] = stubRefWznmMVectoritem;
+		me["xsr"] = xsref;
+		me["rtd"] = stubRefWznmMRtdpch;
+		me["msk"] = srefsMask;
+		me["cnd"] = Cond;
+	} else {
+		me["sref"] = sref;
+		me["srefIxVType"] = srefIxVType;
+		me["titIxVType"] = titIxVType;
+		me["stubRefWznmMEvent"] = stubRefWznmMEvent;
+		me["stubRefWznmMRtjob"] = stubRefWznmMRtjob;
+		me["stubRefWznmMVectoritem"] = stubRefWznmMVectoritem;
+		me["xsref"] = xsref;
+		me["stubRefWznmMRtdpch"] = stubRefWznmMRtdpch;
+		me["srefsMask"] = srefsMask;
+		me["Cond"] = Cond;
+	};
+};
+
 void WznmQSteATrig::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -142,6 +175,16 @@ ListWznmQSteATrig& ListWznmQSteATrig::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQSteATrig::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQSteATrig";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQSteATrig::writeXML(

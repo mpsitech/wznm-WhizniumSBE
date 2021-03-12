@@ -33,6 +33,21 @@ WznmQCmpMNLibrary::WznmQCmpMNLibrary(
 	this->ref = ref;
 };
 
+void WznmQCmpMNLibrary::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["mref"] = stubMref;
+	} else {
+		me["stubMref"] = stubMref;
+	};
+};
+
 void WznmQCmpMNLibrary::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQCmpMNLibrary& ListWznmQCmpMNLibrary::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQCmpMNLibrary::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQCmpMNLibrary";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQCmpMNLibrary::writeXML(

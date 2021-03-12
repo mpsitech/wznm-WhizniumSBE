@@ -22,9 +22,9 @@ uint QryWznmOpkList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
-	if (s == "typ") return TYP;
 	if (s == "ver") return VER;
+	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -32,9 +32,9 @@ uint QryWznmOpkList::VecVOrd::getIx(
 string QryWznmOpkList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
-	if (ix == TYP) return("typ");
 	if (ix == VER) return("ver");
+	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

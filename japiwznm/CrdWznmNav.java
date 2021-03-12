@@ -204,6 +204,7 @@ public class CrdWznmNav {
 
 		public static final int IDLE = 1;
 		public static final int ALRWZNMABT = 2;
+		public static final int ALRWZNMTRM = 3;
 
 		public static int getIx(
 					String sref
@@ -212,6 +213,7 @@ public class CrdWznmNav {
 
 			if (s.equals("idle")) return IDLE;
 			if (s.equals("alrwznmabt")) return ALRWZNMABT;
+			if (s.equals("alrwznmtrm")) return ALRWZNMTRM;
 
 			return 0;
 		};
@@ -221,6 +223,7 @@ public class CrdWznmNav {
 				) {
 			if (ix == IDLE) return("idle");
 			if (ix == ALRWZNMABT) return("alrwznmabt");
+			if (ix == ALRWZNMTRM) return("alrwznmtrm");
 
 			return "";
 		};

@@ -87,8 +87,8 @@ void DlgWznmVerGenjtr::refreshGjt(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfGjt oldContinfgjt(continfgjt);
 	StatShrGjt oldStatshrgjt(statshrgjt);
+	ContInfGjt oldContinfgjt(continfgjt);
 
 	// IP refreshGjt --- RBEGIN
 	// continfgjt
@@ -99,8 +99,8 @@ void DlgWznmVerGenjtr::refreshGjt(
 	statshrgjt.ButStoActive = evalGjtButStoActive(dbswznm);
 
 	// IP refreshGjt --- REND
-	if (continfgjt.diff(&oldContinfgjt).size() != 0) insert(moditems, DpchEngData::CONTINFGJT);
 	if (statshrgjt.diff(&oldStatshrgjt).size() != 0) insert(moditems, DpchEngData::STATSHRGJT);
+	if (continfgjt.diff(&oldContinfgjt).size() != 0) insert(moditems, DpchEngData::CONTINFGJT);
 };
 
 void DlgWznmVerGenjtr::refreshLfi(
@@ -129,9 +129,9 @@ void DlgWznmVerGenjtr::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	ContInf oldContinf(continf);
-	ContIac oldContiac(contiac);
 	StatShr oldStatshr(statshr);
+	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- RBEGIN
 	// statshr
@@ -141,9 +141,9 @@ void DlgWznmVerGenjtr::refresh(
 	continf.numFSge = ixVSge;
 
 	// IP refresh --- REND
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshGjt(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);

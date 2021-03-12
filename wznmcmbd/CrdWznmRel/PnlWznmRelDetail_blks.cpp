@@ -71,6 +71,30 @@ PnlWznmRelDetail::ContIac::ContIac(
 	mask = {NUMFPUPTYP, NUMFLSTCLU, TXFPFX, NUMSFLSTOPT, TXFOPT};
 };
 
+bool PnlWznmRelDetail::ContIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["ContIacWznmRelDetail"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("numFPupTyp")) {numFPupTyp = me["numFPupTyp"].asUInt(); add(NUMFPUPTYP);};
+		if (me.isMember("numFLstClu")) {numFLstClu = me["numFLstClu"].asUInt(); add(NUMFLSTCLU);};
+		if (me.isMember("TxfPfx")) {TxfPfx = me["TxfPfx"].asString(); add(TXFPFX);};
+		if (Jsonio::extractUintvec(me, "numsFLstOpt", numsFLstOpt)) add(NUMSFLSTOPT);
+		if (me.isMember("TxfOpt")) {TxfOpt = me["TxfOpt"].asString(); add(TXFOPT);};
+	};
+
+	return basefound;
+};
+
 bool PnlWznmRelDetail::ContIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -96,6 +120,21 @@ bool PnlWznmRelDetail::ContIac::readXML(
 	};
 
 	return basefound;
+};
+
+void PnlWznmRelDetail::ContIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContIacWznmRelDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFPupTyp"] = numFPupTyp;
+	me["numFLstClu"] = numFLstClu;
+	me["TxfPfx"] = TxfPfx;
+	Jsonio::writeUintvec(me, "numsFLstOpt", numsFLstOpt);
+	me["TxfOpt"] = TxfOpt;
 };
 
 void PnlWznmRelDetail::ContIac::writeXML(
@@ -174,6 +213,24 @@ PnlWznmRelDetail::ContInf::ContInf(
 	mask = {TXTFRT, TXTFRS, TXTTOT, TXTTOS, TXTCLU, TXTVER, TXTSUP, TXTTBL};
 };
 
+void PnlWznmRelDetail::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWznmRelDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxtFrt"] = TxtFrt;
+	me["TxtFrs"] = TxtFrs;
+	me["TxtTot"] = TxtTot;
+	me["TxtTos"] = TxtTos;
+	me["TxtClu"] = TxtClu;
+	me["TxtVer"] = TxtVer;
+	me["TxtSup"] = TxtSup;
+	me["TxtTbl"] = TxtTbl;
+};
+
 void PnlWznmRelDetail::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -231,6 +288,26 @@ set<uint> PnlWznmRelDetail::ContInf::diff(
 /******************************************************************************
  class PnlWznmRelDetail::StatApp
  ******************************************************************************/
+
+void PnlWznmRelDetail::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWznmVExpstate
+			, const bool LstCluAlt
+			, const bool LstOptAlt
+			, const uint LstCluNumFirstdisp
+			, const uint LstOptNumFirstdisp
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmRelDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
+	me["LstCluAlt"] = LstCluAlt;
+	me["LstOptAlt"] = LstOptAlt;
+	me["LstCluNumFirstdisp"] = LstCluNumFirstdisp;
+	me["LstOptNumFirstdisp"] = LstOptNumFirstdisp;
+};
 
 void PnlWznmRelDetail::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -319,6 +396,42 @@ PnlWznmRelDetail::StatShr::StatShr(
 	this->ButOptEditAvail = ButOptEditAvail;
 
 	mask = {TXFOPTVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTFRTACTIVE, TXTFRSACTIVE, BUTFRSVIEWAVAIL, BUTFRSVIEWACTIVE, TXTTOTACTIVE, TXTTOSACTIVE, BUTTOSVIEWAVAIL, BUTTOSVIEWACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXFPFXACTIVE, LSTOPTACTIVE, BUTOPTEDITAVAIL};
+};
+
+void PnlWznmRelDetail::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmRelDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["TxfOptValid"] = TxfOptValid;
+	me["ButSaveAvail"] = ButSaveAvail;
+	me["ButSaveActive"] = ButSaveActive;
+	me["TxtFrtActive"] = TxtFrtActive;
+	me["TxtFrsActive"] = TxtFrsActive;
+	me["ButFrsViewAvail"] = ButFrsViewAvail;
+	me["ButFrsViewActive"] = ButFrsViewActive;
+	me["TxtTotActive"] = TxtTotActive;
+	me["TxtTosActive"] = TxtTosActive;
+	me["ButTosViewAvail"] = ButTosViewAvail;
+	me["ButTosViewActive"] = ButTosViewActive;
+	me["PupTypActive"] = PupTypActive;
+	me["LstCluActive"] = LstCluActive;
+	me["ButCluViewActive"] = ButCluViewActive;
+	me["ButCluClusterAvail"] = ButCluClusterAvail;
+	me["ButCluUnclusterAvail"] = ButCluUnclusterAvail;
+	me["TxtVerActive"] = TxtVerActive;
+	me["ButVerViewAvail"] = ButVerViewAvail;
+	me["ButVerViewActive"] = ButVerViewActive;
+	me["TxtSupActive"] = TxtSupActive;
+	me["ButSupViewAvail"] = ButSupViewAvail;
+	me["ButSupViewActive"] = ButSupViewActive;
+	me["TxtTblActive"] = TxtTblActive;
+	me["TxfPfxActive"] = TxfPfxActive;
+	me["LstOptActive"] = LstOptActive;
+	me["ButOptEditAvail"] = ButOptEditAvail;
 };
 
 void PnlWznmRelDetail::StatShr::writeXML(
@@ -415,6 +528,31 @@ set<uint> PnlWznmRelDetail::StatShr::diff(
  class PnlWznmRelDetail::Tag
  ******************************************************************************/
 
+void PnlWznmRelDetail::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmRelDetail";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["CptFrt"] = "from table";
+		me["CptFrs"] = "from subset";
+		me["CptTot"] = "to table";
+		me["CptTos"] = "to subset";
+		me["CptTyp"] = "type";
+		me["CptVer"] = "version";
+		me["CptSup"] = "super relation";
+		me["CptTbl"] = "table";
+		me["CptPfx"] = "prefix";
+		me["CptOpt"] = "options";
+	};
+	me["Cpt"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::DETAIL, ixWznmVLocale));
+	me["CptClu"] = VecWznmVTag::getTitle(VecWznmVTag::CLUST, ixWznmVLocale);
+};
+
 void PnlWznmRelDetail::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -466,6 +604,27 @@ string PnlWznmRelDetail::DpchAppData::getSrefsMask() {
 	return(srefs);
 };
 
+void PnlWznmRelDetail::DpchAppData::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmRelDetailData"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (contiac.readJSON(me, true)) add(CONTIAC);
+	} else {
+		contiac = ContIac();
+	};
+};
+
 void PnlWznmRelDetail::DpchAppData::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -513,6 +672,26 @@ string PnlWznmRelDetail::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void PnlWznmRelDetail::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmRelDetailDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void PnlWznmRelDetail::DpchAppDo::readXML(
@@ -605,6 +784,23 @@ void PnlWznmRelDetail::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void PnlWznmRelDetail::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmRelDetailData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTIAC)) contiac.writeJSON(me);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFLSTCLU)) feedFLstClu.writeJSON(me);
+	if (has(FEEDFLSTOPT)) feedFLstOpt.writeJSON(me);
+	if (has(FEEDFPUPTYP)) feedFPupTyp.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void PnlWznmRelDetail::DpchEngData::writeXML(

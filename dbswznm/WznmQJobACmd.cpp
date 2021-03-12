@@ -33,6 +33,23 @@ WznmQJobACmd::WznmQJobACmd(
 	this->Comment = Comment;
 };
 
+void WznmQJobACmd::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["cmt"] = Comment;
+	} else {
+		me["sref"] = sref;
+		me["Comment"] = Comment;
+	};
+};
+
 void WznmQJobACmd::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -100,6 +117,16 @@ ListWznmQJobACmd& ListWznmQJobACmd::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQJobACmd::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQJobACmd";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQJobACmd::writeXML(

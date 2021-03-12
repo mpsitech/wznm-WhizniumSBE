@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmCtpGenjtr;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmCtpGenjtrDlgloaini
  ******************************************************************************/
@@ -36,7 +38,12 @@ DpchRetWznmCtpGenjtr* WznmCtpGenjtrDlgloaini::run(
 
 	std::string logfile;
 
-	// IP run --- INSERT
+	// IP run --- IBEGIN
+
+	// add state machine to DlgXxxxNavLoaini
+	// cf. IexWznmJtr_wznm DlgWznmNavLoaini
+
+	// IP run --- IEND
 
 	return(new DpchRetWznmCtpGenjtr("", "", ixOpVOpres, 100, logfile));
 };

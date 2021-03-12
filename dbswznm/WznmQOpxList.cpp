@@ -39,6 +39,25 @@ WznmQOpxList::WznmQOpxList(
 	this->yesnoShrdat = yesnoShrdat;
 };
 
+void WznmQOpxList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["opk"] = stubRefWznmMOppack;
+		me["shd"] = yesnoShrdat;
+	} else {
+		me["sref"] = sref;
+		me["stubRefWznmMOppack"] = stubRefWznmMOppack;
+		me["yesnoShrdat"] = yesnoShrdat;
+	};
+};
+
 void WznmQOpxList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -108,6 +127,16 @@ ListWznmQOpxList& ListWznmQOpxList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQOpxList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQOpxList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQOpxList::writeXML(

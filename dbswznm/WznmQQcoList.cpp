@@ -47,6 +47,31 @@ WznmQQcoList::WznmQQcoList(
 	this->stubRefWznmMTablecol = stubRefWznmMTablecol;
 };
 
+void WznmQQcoList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["sho"] = Short;
+		me["typ"] = srefIxVBasetype;
+		me["typ2"] = titIxVBasetype;
+		me["qry"] = stubQryRefWznmMQuery;
+		me["tco"] = stubRefWznmMTablecol;
+	} else {
+		me["sref"] = sref;
+		me["Short"] = Short;
+		me["srefIxVBasetype"] = srefIxVBasetype;
+		me["titIxVBasetype"] = titIxVBasetype;
+		me["stubQryRefWznmMQuery"] = stubQryRefWznmMQuery;
+		me["stubRefWznmMTablecol"] = stubRefWznmMTablecol;
+	};
+};
+
 void WznmQQcoList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -122,6 +147,16 @@ ListWznmQQcoList& ListWznmQQcoList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQQcoList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQQcoList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQQcoList::writeXML(

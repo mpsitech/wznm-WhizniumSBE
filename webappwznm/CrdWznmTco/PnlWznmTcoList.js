@@ -129,7 +129,7 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(1); wtot += TcoSrfWidth;
+				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(4); wtot += TcoSrfWidth;
 			} else if (i == 2) {
 				doc.cols.push("TcoSho"); doc.widths.push(TcoShoWidth); doc.fs.push("sho"); doc.tos.push(0); wtot += TcoShoWidth;
 			} else if (i == 3) {

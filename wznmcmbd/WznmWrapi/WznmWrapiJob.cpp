@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmWrapi;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrapiJob
  ******************************************************************************/
@@ -314,7 +316,7 @@ void WznmWrapiJob::writeBlkcontH(
 	outfile << "\t/**" << endl;
 	outfile << "\t  * " << subsref << " (full: " << blk->sref << ")" << endl;
 	outfile << "\t  */" << endl;
-	outfile << "\tclass " << subsref << " : public Sbecore::Xmlio::Block {" << endl;
+	outfile << "\tclass " << subsref << " : public Sbecore::Block {" << endl;
 	outfile << endl;
 
 	outfile << "\tpublic:" << endl;
@@ -582,7 +584,7 @@ void WznmWrapiJob::writeBlkdpchH(
 					outfile << ", ";
 					wrBitvarWritexmlH(dbswznm, outfile, job, bit);
 				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
-					outfile << ", Sbecore::Xmlio::Feed* " << bit->sref << " = NULL";
+					outfile << ", Sbecore::Feed* " << bit->sref << " = NULL";
 				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
 					if (dbswznm->tblwznmmblock->loadRecByRef(bit->refWznmMBlock, &subblk)) {
 						// all sub-blocks should be non-static
@@ -613,7 +615,7 @@ void WznmWrapiJob::writeBlkdpchH(
 
 			} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
 				if (!first && (bit->refWznmCAMBlockItem != refC)) outfile << endl;
-				outfile << "\t\tSbecore::Xmlio::Feed " << bit->sref << ";" << endl;
+				outfile << "\t\tSbecore::Feed " << bit->sref << ";" << endl;
 				refC = bit->refWznmCAMBlockItem;
 				first = false;
 
@@ -898,7 +900,7 @@ void WznmWrapiJob::writeBlkstatH(
 	outfile << "\t/**" << endl;
 	outfile << "\t  * " << subsref << " (full: " << blk->sref << ")" << endl;
 	outfile << "\t  */" << endl;
-	outfile << "\tclass " << subsref << " : public Sbecore::Xmlio::Block {" << endl;
+	outfile << "\tclass " << subsref << " : public Sbecore::Block {" << endl;
 	outfile << endl;
 
 	outfile << "\tpublic:" << endl;
@@ -1104,7 +1106,7 @@ void WznmWrapiJob::writeBlkstgH(
 	outfile << "\t/**" << endl;
 	outfile << "\t  * " << subsref << " (full: " << blk->sref << ")" << endl;
 	outfile << "\t  */" << endl;
-	outfile << "\tclass " << subsref << " : public Sbecore::Xmlio::Block {" << endl;
+	outfile << "\tclass " << subsref << " : public Sbecore::Block {" << endl;
 	outfile << endl;
 
 	outfile << "\tpublic:" << endl;
@@ -1329,7 +1331,7 @@ void WznmWrapiJob::writeBlktagH(
 	outfile << "\t/**" << endl;
 	outfile << "\t  * " << subsref << " (full: " << blk->sref << ")" << endl;
 	outfile << "\t  */" << endl;
-	outfile << "\tclass " << subsref << " : public Sbecore::Xmlio::Block {" << endl;
+	outfile << "\tclass " << subsref << " : public Sbecore::Block {" << endl;
 	outfile << endl;
 
 	outfile << "\tpublic:" << endl;

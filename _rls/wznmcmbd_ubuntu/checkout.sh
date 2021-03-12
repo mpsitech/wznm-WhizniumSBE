@@ -3,7 +3,7 @@
 # checkout script for Wznm combined daemon, release wznmcmbd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 13 Jan 2021
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -67,21 +67,21 @@ mkdir $BUILDROOT/wznmcmbd/CrdWznmEvt
 mkdir $BUILDROOT/wznmcmbd/CrdWznmSeq
 mkdir $BUILDROOT/wznmcmbd/CrdWznmSte
 mkdir $BUILDROOT/wznmcmbd/CrdWznmUtl
-mkdir $BUILDROOT/wznmcmbd/WznmCompl
-mkdir $BUILDROOT/wznmcmbd/WznmCtpGenjtr
-mkdir $BUILDROOT/wznmcmbd/WznmCtpGenui
-mkdir $BUILDROOT/wznmcmbd/WznmCtpWrstkit
-mkdir $BUILDROOT/wznmcmbd/WznmCtpWrsrv
-mkdir $BUILDROOT/wznmcmbd/WznmCtpWrweb
-mkdir $BUILDROOT/wznmcmbd/WznmGen
-mkdir $BUILDROOT/wznmcmbd/WznmPrcfile
-mkdir $BUILDROOT/wznmcmbd/WznmPrctree
-mkdir $BUILDROOT/wznmcmbd/WznmWrapi
-mkdir $BUILDROOT/wznmcmbd/WznmWrapp
-mkdir $BUILDROOT/wznmcmbd/WznmWrdbs
+mkdir $BUILDROOT/wznmcmbd/WznmWrweb
 mkdir $BUILDROOT/wznmcmbd/WznmWrjapi
 mkdir $BUILDROOT/wznmcmbd/WznmWrsrv
-mkdir $BUILDROOT/wznmcmbd/WznmWrweb
+mkdir $BUILDROOT/wznmcmbd/WznmWrdbs
+mkdir $BUILDROOT/wznmcmbd/WznmWrapi
+mkdir $BUILDROOT/wznmcmbd/WznmWrapp
+mkdir $BUILDROOT/wznmcmbd/WznmPrcfile
+mkdir $BUILDROOT/wznmcmbd/WznmPrctree
+mkdir $BUILDROOT/wznmcmbd/WznmCtpWrsrv
+mkdir $BUILDROOT/wznmcmbd/WznmCtpWrstkit
+mkdir $BUILDROOT/wznmcmbd/WznmCtpWrweb
+mkdir $BUILDROOT/wznmcmbd/WznmGen
+mkdir $BUILDROOT/wznmcmbd/WznmCtpGenui
+mkdir $BUILDROOT/wznmcmbd/WznmCtpGenjtr
+mkdir $BUILDROOT/wznmcmbd/WznmCompl
 
 mkdir $LIBROOT/wznmcmbd
 
@@ -378,65 +378,10 @@ cp Makefile_CrdWznmUtl $BUILDROOT/wznmcmbd/CrdWznmUtl/Makefile
 cp ../../wznmcmbd/CrdWznmUtl/*.h $BUILDROOT/wznmcmbd/CrdWznmUtl/
 cp ../../wznmcmbd/CrdWznmUtl/*.cpp $BUILDROOT/wznmcmbd/CrdWznmUtl/
 
-cp Makefile_WznmCompl $BUILDROOT/wznmcmbd/WznmCompl/Makefile
+cp Makefile_WznmWrweb $BUILDROOT/wznmcmbd/WznmWrweb/Makefile
 
-cp ../../wznmcmbd/WznmCompl/*.h $BUILDROOT/wznmcmbd/WznmCompl/
-cp ../../wznmcmbd/WznmCompl/*.cpp $BUILDROOT/wznmcmbd/WznmCompl/
-
-cp Makefile_WznmCtpGenjtr $BUILDROOT/wznmcmbd/WznmCtpGenjtr/Makefile
-
-cp ../../wznmcmbd/WznmCtpGenjtr/*.h $BUILDROOT/wznmcmbd/WznmCtpGenjtr/
-cp ../../wznmcmbd/WznmCtpGenjtr/*.cpp $BUILDROOT/wznmcmbd/WznmCtpGenjtr/
-
-cp Makefile_WznmCtpGenui $BUILDROOT/wznmcmbd/WznmCtpGenui/Makefile
-
-cp ../../wznmcmbd/WznmCtpGenui/*.h $BUILDROOT/wznmcmbd/WznmCtpGenui/
-cp ../../wznmcmbd/WznmCtpGenui/*.cpp $BUILDROOT/wznmcmbd/WznmCtpGenui/
-
-cp Makefile_WznmCtpWrstkit $BUILDROOT/wznmcmbd/WznmCtpWrstkit/Makefile
-
-cp ../../wznmcmbd/WznmCtpWrstkit/*.h $BUILDROOT/wznmcmbd/WznmCtpWrstkit/
-cp ../../wznmcmbd/WznmCtpWrstkit/*.cpp $BUILDROOT/wznmcmbd/WznmCtpWrstkit/
-
-cp Makefile_WznmCtpWrsrv $BUILDROOT/wznmcmbd/WznmCtpWrsrv/Makefile
-
-cp ../../wznmcmbd/WznmCtpWrsrv/*.h $BUILDROOT/wznmcmbd/WznmCtpWrsrv/
-cp ../../wznmcmbd/WznmCtpWrsrv/*.cpp $BUILDROOT/wznmcmbd/WznmCtpWrsrv/
-
-cp Makefile_WznmCtpWrweb $BUILDROOT/wznmcmbd/WznmCtpWrweb/Makefile
-
-cp ../../wznmcmbd/WznmCtpWrweb/*.h $BUILDROOT/wznmcmbd/WznmCtpWrweb/
-cp ../../wznmcmbd/WznmCtpWrweb/*.cpp $BUILDROOT/wznmcmbd/WznmCtpWrweb/
-
-cp Makefile_WznmGen $BUILDROOT/wznmcmbd/WznmGen/Makefile
-
-cp ../../wznmcmbd/WznmGen/*.h $BUILDROOT/wznmcmbd/WznmGen/
-cp ../../wznmcmbd/WznmGen/*.cpp $BUILDROOT/wznmcmbd/WznmGen/
-
-cp Makefile_WznmPrcfile $BUILDROOT/wznmcmbd/WznmPrcfile/Makefile
-
-cp ../../wznmcmbd/WznmPrcfile/*.h $BUILDROOT/wznmcmbd/WznmPrcfile/
-cp ../../wznmcmbd/WznmPrcfile/*.cpp $BUILDROOT/wznmcmbd/WznmPrcfile/
-
-cp Makefile_WznmPrctree $BUILDROOT/wznmcmbd/WznmPrctree/Makefile
-
-cp ../../wznmcmbd/WznmPrctree/*.h $BUILDROOT/wznmcmbd/WznmPrctree/
-cp ../../wznmcmbd/WznmPrctree/*.cpp $BUILDROOT/wznmcmbd/WznmPrctree/
-
-cp Makefile_WznmWrapi $BUILDROOT/wznmcmbd/WznmWrapi/Makefile
-
-cp ../../wznmcmbd/WznmWrapi/*.h $BUILDROOT/wznmcmbd/WznmWrapi/
-cp ../../wznmcmbd/WznmWrapi/*.cpp $BUILDROOT/wznmcmbd/WznmWrapi/
-
-cp Makefile_WznmWrapp $BUILDROOT/wznmcmbd/WznmWrapp/Makefile
-
-cp ../../wznmcmbd/WznmWrapp/*.h $BUILDROOT/wznmcmbd/WznmWrapp/
-cp ../../wznmcmbd/WznmWrapp/*.cpp $BUILDROOT/wznmcmbd/WznmWrapp/
-
-cp Makefile_WznmWrdbs $BUILDROOT/wznmcmbd/WznmWrdbs/Makefile
-
-cp ../../wznmcmbd/WznmWrdbs/*.h $BUILDROOT/wznmcmbd/WznmWrdbs/
-cp ../../wznmcmbd/WznmWrdbs/*.cpp $BUILDROOT/wznmcmbd/WznmWrdbs/
+cp ../../wznmcmbd/WznmWrweb/*.h $BUILDROOT/wznmcmbd/WznmWrweb/
+cp ../../wznmcmbd/WznmWrweb/*.cpp $BUILDROOT/wznmcmbd/WznmWrweb/
 
 cp Makefile_WznmWrjapi $BUILDROOT/wznmcmbd/WznmWrjapi/Makefile
 
@@ -448,7 +393,62 @@ cp Makefile_WznmWrsrv $BUILDROOT/wznmcmbd/WznmWrsrv/Makefile
 cp ../../wznmcmbd/WznmWrsrv/*.h $BUILDROOT/wznmcmbd/WznmWrsrv/
 cp ../../wznmcmbd/WznmWrsrv/*.cpp $BUILDROOT/wznmcmbd/WznmWrsrv/
 
-cp Makefile_WznmWrweb $BUILDROOT/wznmcmbd/WznmWrweb/Makefile
+cp Makefile_WznmWrdbs $BUILDROOT/wznmcmbd/WznmWrdbs/Makefile
 
-cp ../../wznmcmbd/WznmWrweb/*.h $BUILDROOT/wznmcmbd/WznmWrweb/
-cp ../../wznmcmbd/WznmWrweb/*.cpp $BUILDROOT/wznmcmbd/WznmWrweb/
+cp ../../wznmcmbd/WznmWrdbs/*.h $BUILDROOT/wznmcmbd/WznmWrdbs/
+cp ../../wznmcmbd/WznmWrdbs/*.cpp $BUILDROOT/wznmcmbd/WznmWrdbs/
+
+cp Makefile_WznmWrapi $BUILDROOT/wznmcmbd/WznmWrapi/Makefile
+
+cp ../../wznmcmbd/WznmWrapi/*.h $BUILDROOT/wznmcmbd/WznmWrapi/
+cp ../../wznmcmbd/WznmWrapi/*.cpp $BUILDROOT/wznmcmbd/WznmWrapi/
+
+cp Makefile_WznmWrapp $BUILDROOT/wznmcmbd/WznmWrapp/Makefile
+
+cp ../../wznmcmbd/WznmWrapp/*.h $BUILDROOT/wznmcmbd/WznmWrapp/
+cp ../../wznmcmbd/WznmWrapp/*.cpp $BUILDROOT/wznmcmbd/WznmWrapp/
+
+cp Makefile_WznmPrcfile $BUILDROOT/wznmcmbd/WznmPrcfile/Makefile
+
+cp ../../wznmcmbd/WznmPrcfile/*.h $BUILDROOT/wznmcmbd/WznmPrcfile/
+cp ../../wznmcmbd/WznmPrcfile/*.cpp $BUILDROOT/wznmcmbd/WznmPrcfile/
+
+cp Makefile_WznmPrctree $BUILDROOT/wznmcmbd/WznmPrctree/Makefile
+
+cp ../../wznmcmbd/WznmPrctree/*.h $BUILDROOT/wznmcmbd/WznmPrctree/
+cp ../../wznmcmbd/WznmPrctree/*.cpp $BUILDROOT/wznmcmbd/WznmPrctree/
+
+cp Makefile_WznmCtpWrsrv $BUILDROOT/wznmcmbd/WznmCtpWrsrv/Makefile
+
+cp ../../wznmcmbd/WznmCtpWrsrv/*.h $BUILDROOT/wznmcmbd/WznmCtpWrsrv/
+cp ../../wznmcmbd/WznmCtpWrsrv/*.cpp $BUILDROOT/wznmcmbd/WznmCtpWrsrv/
+
+cp Makefile_WznmCtpWrstkit $BUILDROOT/wznmcmbd/WznmCtpWrstkit/Makefile
+
+cp ../../wznmcmbd/WznmCtpWrstkit/*.h $BUILDROOT/wznmcmbd/WznmCtpWrstkit/
+cp ../../wznmcmbd/WznmCtpWrstkit/*.cpp $BUILDROOT/wznmcmbd/WznmCtpWrstkit/
+
+cp Makefile_WznmCtpWrweb $BUILDROOT/wznmcmbd/WznmCtpWrweb/Makefile
+
+cp ../../wznmcmbd/WznmCtpWrweb/*.h $BUILDROOT/wznmcmbd/WznmCtpWrweb/
+cp ../../wznmcmbd/WznmCtpWrweb/*.cpp $BUILDROOT/wznmcmbd/WznmCtpWrweb/
+
+cp Makefile_WznmGen $BUILDROOT/wznmcmbd/WznmGen/Makefile
+
+cp ../../wznmcmbd/WznmGen/*.h $BUILDROOT/wznmcmbd/WznmGen/
+cp ../../wznmcmbd/WznmGen/*.cpp $BUILDROOT/wznmcmbd/WznmGen/
+
+cp Makefile_WznmCtpGenui $BUILDROOT/wznmcmbd/WznmCtpGenui/Makefile
+
+cp ../../wznmcmbd/WznmCtpGenui/*.h $BUILDROOT/wznmcmbd/WznmCtpGenui/
+cp ../../wznmcmbd/WznmCtpGenui/*.cpp $BUILDROOT/wznmcmbd/WznmCtpGenui/
+
+cp Makefile_WznmCtpGenjtr $BUILDROOT/wznmcmbd/WznmCtpGenjtr/Makefile
+
+cp ../../wznmcmbd/WznmCtpGenjtr/*.h $BUILDROOT/wznmcmbd/WznmCtpGenjtr/
+cp ../../wznmcmbd/WznmCtpGenjtr/*.cpp $BUILDROOT/wznmcmbd/WznmCtpGenjtr/
+
+cp Makefile_WznmCompl $BUILDROOT/wznmcmbd/WznmCompl/Makefile
+
+cp ../../wznmcmbd/WznmCompl/*.h $BUILDROOT/wznmcmbd/WznmCompl/
+cp ../../wznmcmbd/WznmCompl/*.cpp $BUILDROOT/wznmcmbd/WznmCompl/

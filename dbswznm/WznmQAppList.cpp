@@ -51,6 +51,33 @@ WznmQAppList::WznmQAppList(
 	this->stubVerRefWznmMVersion = stubVerRefWznmMVersion;
 };
 
+void WznmQAppList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["grp"] = stubGrp;
+		me["own"] = stubOwn;
+		me["sho"] = Short;
+		me["tit"] = Title;
+		me["trg"] = srefIxWznmVApptarget;
+		me["trg2"] = titIxWznmVApptarget;
+		me["ver"] = stubVerRefWznmMVersion;
+	} else {
+		me["stubGrp"] = stubGrp;
+		me["stubOwn"] = stubOwn;
+		me["Short"] = Short;
+		me["Title"] = Title;
+		me["srefIxWznmVApptarget"] = srefIxWznmVApptarget;
+		me["titIxWznmVApptarget"] = titIxWznmVApptarget;
+		me["stubVerRefWznmMVersion"] = stubVerRefWznmMVersion;
+	};
+};
+
 void WznmQAppList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -128,6 +155,16 @@ ListWznmQAppList& ListWznmQAppList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQAppList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQAppList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQAppList::writeXML(

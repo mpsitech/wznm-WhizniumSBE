@@ -14,11 +14,11 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmMchDetail.h"
-#include "PnlWznmMchAPar.h"
-#include "PnlWznmMchAMakefile.h"
-#include "PnlWznmMch1NRelease.h"
 #include "PnlWznmMchSup1NMachine.h"
+#include "PnlWznmMchAPar.h"
+#include "PnlWznmMch1NRelease.h"
+#include "PnlWznmMchAMakefile.h"
+#include "PnlWznmMchDetail.h"
 
 #define VecVWznmMchRecDo PnlWznmMchRec::VecVDo
 
@@ -52,7 +52,7 @@ public:
 	/**
 	  * ContInf (full: ContInfWznmMchRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -64,6 +64,7 @@ public:
 		std::string TxtRef;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const ContInf* comp);
 		std::set<Sbecore::uint> diff(const ContInf* comp);
@@ -75,36 +76,38 @@ public:
 	class StatApp {
 
 	public:
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAPar = false, const bool initdoneAMakefile = false, const bool initdone1NRelease = false, const bool initdoneSup1NMachine = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneAMakefile = false, const bool initdoneAPar = false, const bool initdone1NRelease = false, const bool initdoneSup1NMachine = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAMakefile = false, const bool initdoneAPar = false, const bool initdone1NRelease = false, const bool initdoneSup1NMachine = false);
 	};
 
 	/**
 		* StatShr (full: StatShrWznmMchRec)
 		*/
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFAPAR = 3;
-		static const Sbecore::uint JREFAMAKEFILE = 4;
+		static const Sbecore::uint JREFAMAKEFILE = 3;
+		static const Sbecore::uint JREFAPAR = 4;
 		static const Sbecore::uint JREF1NRELEASE = 5;
 		static const Sbecore::uint JREFSUP1NMACHINE = 6;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 7;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAPar = 0, const Sbecore::ubigint jrefAMakefile = 0, const Sbecore::ubigint jref1NRelease = 0, const Sbecore::ubigint jrefSup1NMachine = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAMakefile = 0, const Sbecore::ubigint jrefAPar = 0, const Sbecore::ubigint jref1NRelease = 0, const Sbecore::ubigint jrefSup1NMachine = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefAPar;
 		Sbecore::ubigint jrefAMakefile;
+		Sbecore::ubigint jrefAPar;
 		Sbecore::ubigint jref1NRelease;
 		Sbecore::ubigint jrefSup1NMachine;
 		bool ButRegularizeActive;
 
 	public:
+		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 		std::set<Sbecore::uint> comm(const StatShr* comp);
 		std::set<Sbecore::uint> diff(const StatShr* comp);
@@ -116,6 +119,7 @@ public:
 	class Tag {
 
 	public:
+		static void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup, std::string difftag = "");
 		static void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	};
 
@@ -137,6 +141,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
+		void readJSON(Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -164,6 +169,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
+		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
@@ -177,11 +183,11 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmMchDetail* pnldetail;
-	PnlWznmMchAPar* pnlapar;
-	PnlWznmMchAMakefile* pnlamakefile;
-	PnlWznmMch1NRelease* pnl1nrelease;
 	PnlWznmMchSup1NMachine* pnlsup1nmachine;
+	PnlWznmMchAPar* pnlapar;
+	PnlWznmMch1NRelease* pnl1nrelease;
+	PnlWznmMchAMakefile* pnlamakefile;
+	PnlWznmMchDetail* pnldetail;
 
 	WznmMMachine recMch;
 
@@ -215,9 +221,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmMch_cchEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmMch_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmMchUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmMch_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmMch_cchEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

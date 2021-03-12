@@ -20,11 +20,11 @@ uint QryWznmPnlList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
+	if (s == "reu") return REU;
+	if (s == "ret") return RET;
 	if (s == "typ") return TYP;
 	if (s == "car") return CAR;
-	if (s == "ret") return RET;
-	if (s == "reu") return REU;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -32,11 +32,11 @@ uint QryWznmPnlList::VecVOrd::getIx(
 string QryWznmPnlList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
+	if (ix == REU) return("reu");
+	if (ix == RET) return("ret");
 	if (ix == TYP) return("typ");
 	if (ix == CAR) return("car");
-	if (ix == RET) return("ret");
-	if (ix == REU) return("reu");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -52,6 +52,24 @@ void QryWznmPnlList::VecVOrd::fillFeed(
 /******************************************************************************
  class QryWznmPnlList::StatApp
  ******************************************************************************/
+
+void QryWznmPnlList::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint firstcol
+			, const uint jnumFirstdisp
+			, const uint ncol
+			, const uint ndisp
+		) {
+	if (difftag.length() == 0) difftag = "StatAppQryWznmPnlList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["firstcol"] = firstcol;
+	me["jnumFirstdisp"] = jnumFirstdisp;
+	me["ncol"] = ncol;
+	me["ndisp"] = ndisp;
+};
 
 void QryWznmPnlList::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -92,6 +110,19 @@ QryWznmPnlList::StatShr::StatShr(
 	this->nload = nload;
 
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
+};
+
+void QryWznmPnlList::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrQryWznmPnlList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["ntot"] = ntot;
+	me["jnumFirstload"] = jnumFirstload;
+	me["nload"] = nload;
 };
 
 void QryWznmPnlList::StatShr::writeXML(
@@ -155,6 +186,28 @@ QryWznmPnlList::StgIac::StgIac(
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 
+bool QryWznmPnlList::StgIac::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["StgIacQryWznmPnlList"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("jnum")) {jnum = me["jnum"].asUInt(); add(JNUM);};
+		if (me.isMember("jnumFirstload")) {jnumFirstload = me["jnumFirstload"].asUInt(); add(JNUMFIRSTLOAD);};
+		if (me.isMember("nload")) {nload = me["nload"].asUInt(); add(NLOAD);};
+	};
+
+	return basefound;
+};
+
 bool QryWznmPnlList::StgIac::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -178,6 +231,19 @@ bool QryWznmPnlList::StgIac::readXML(
 	};
 
 	return basefound;
+};
+
+void QryWznmPnlList::StgIac::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StgIacQryWznmPnlList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["jnum"] = jnum;
+	me["jnumFirstload"] = jnumFirstload;
+	me["nload"] = nload;
 };
 
 void QryWznmPnlList::StgIac::writeXML(

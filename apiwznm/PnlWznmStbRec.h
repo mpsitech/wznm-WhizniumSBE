@@ -42,7 +42,7 @@ namespace PnlWznmStbRec {
 	/**
 	  * ContInf (full: ContInfWznmStbRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,24 +62,24 @@ namespace PnlWznmStbRec {
 	/**
 	  * StatApp (full: StatAppWznmStbRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONESUPMNSTUB = 2;
-		static const Sbecore::uint INITDONEMNCALL = 3;
-		static const Sbecore::uint INITDONEMNSQUAWK = 4;
-		static const Sbecore::uint INITDONESUBMNSTUB = 5;
+		static const Sbecore::uint INITDONEMNSQUAWK = 3;
+		static const Sbecore::uint INITDONESUBMNSTUB = 4;
+		static const Sbecore::uint INITDONEMNCALL = 5;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneSupMNStub = false, const bool initdoneMNCall = false, const bool initdoneMNSquawk = false, const bool initdoneSubMNStub = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneSupMNStub = false, const bool initdoneMNSquawk = false, const bool initdoneSubMNStub = false, const bool initdoneMNCall = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneSupMNStub;
-		bool initdoneMNCall;
 		bool initdoneMNSquawk;
 		bool initdoneSubMNStub;
+		bool initdoneMNCall;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -90,27 +90,27 @@ namespace PnlWznmStbRec {
 	/**
 	  * StatShr (full: StatShrWznmStbRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREFSUPMNSTUB = 3;
-		static const Sbecore::uint SCRJREFMNCALL = 4;
-		static const Sbecore::uint SCRJREFMNSQUAWK = 5;
-		static const Sbecore::uint SCRJREFSUBMNSTUB = 6;
+		static const Sbecore::uint SCRJREFMNSQUAWK = 4;
+		static const Sbecore::uint SCRJREFSUBMNSTUB = 5;
+		static const Sbecore::uint SCRJREFMNCALL = 6;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 7;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefSupMNStub = "", const std::string& scrJrefMNCall = "", const std::string& scrJrefMNSquawk = "", const std::string& scrJrefSubMNStub = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefSupMNStub = "", const std::string& scrJrefMNSquawk = "", const std::string& scrJrefSubMNStub = "", const std::string& scrJrefMNCall = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJrefSupMNStub;
-		std::string scrJrefMNCall;
 		std::string scrJrefMNSquawk;
 		std::string scrJrefSubMNStub;
+		std::string scrJrefMNCall;
 		bool ButRegularizeActive;
 
 	public:
@@ -122,7 +122,7 @@ namespace PnlWznmStbRec {
 	/**
 	  * Tag (full: TagWznmStbRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

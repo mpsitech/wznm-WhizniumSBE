@@ -47,6 +47,31 @@ WznmQPrjList::WznmQPrjList(
 	this->Giturl = Giturl;
 };
 
+void WznmQPrjList::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["grp"] = stubGrp;
+		me["own"] = stubOwn;
+		me["sho"] = Short;
+		me["tit"] = Title;
+		me["ver"] = stubRefWznmMVersion;
+		me["grl"] = Giturl;
+	} else {
+		me["stubGrp"] = stubGrp;
+		me["stubOwn"] = stubOwn;
+		me["Short"] = Short;
+		me["Title"] = Title;
+		me["stubRefWznmMVersion"] = stubRefWznmMVersion;
+		me["Giturl"] = Giturl;
+	};
+};
+
 void WznmQPrjList::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -122,6 +147,16 @@ ListWznmQPrjList& ListWznmQPrjList::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQPrjList::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQPrjList";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQPrjList::writeXML(

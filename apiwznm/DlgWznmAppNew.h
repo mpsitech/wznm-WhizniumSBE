@@ -59,7 +59,7 @@ namespace DlgWznmAppNew {
 	/**
 	  * ContIac (full: ContIacDlgWznmAppNew)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFDETPUPTRG = 1;
@@ -86,7 +86,7 @@ namespace DlgWznmAppNew {
 	/**
 	  * ContInf (full: ContInfDlgWznmAppNew)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -106,7 +106,7 @@ namespace DlgWznmAppNew {
 	/**
 	  * StatApp (full: StatAppDlgWznmAppNew)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint SHORTMENU = 1;
@@ -126,7 +126,7 @@ namespace DlgWznmAppNew {
 	/**
 	  * StatShr (full: StatShrDlgWznmAppNew)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint BUTCNCACTIVE = 1;
@@ -148,7 +148,7 @@ namespace DlgWznmAppNew {
 	/**
 	  * Tag (full: TagDlgWznmAppNew)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -241,9 +241,9 @@ namespace DlgWznmAppNew {
 	public:
 		ContIac contiac;
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFDetPupTrg;
-		Sbecore::Xmlio::Feed feedFDetPupVer;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFDetPupTrg;
+		Sbecore::Feed feedFDetPupVer;
+		Sbecore::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

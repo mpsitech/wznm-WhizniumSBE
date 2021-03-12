@@ -284,7 +284,7 @@ main	void	0	TblWznmMCapability	cpb
 	ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
 	or	VecWznmWMCapabilityArtefact		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
-		full	enus	artefact
+		full	enus	artefacts
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
 		dbs			database structure

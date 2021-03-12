@@ -1,16 +1,27 @@
-IexWznmIni v1.1.4
+IexWznmIni v1.1.5
 ImeIAVKeylistKey1.srefKlsIxWznmVKeylist	sref	Avail	Implied	Title	Comment
-KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrAcv			add stages to upload dialog	
-KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgimp			add stages to data import dialog	
-KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgloaini			add stages to initialization load dialog	
-KlstKWznmCtpGenuiCustop	WznmCtpGenuiAcv			prettify file card and add upload/download dialogs	
-KlstKWznmCtpGenuiCustop	WznmCtpGenuiDlgimp			generate data import dialog	
-KlstKWznmCtpGenuiCustop	WznmCtpGenuiDlgloaini			generate initialization load dialog	
-KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvAcv			implement upload/download dialogs	
-KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvDlgimp			implement data import dialog	
-KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvDlgloaini			implement initialization load dialog	
+KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrAcv			prettify file list and add state machine to create file dialog	
+KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrClustmgr			add state machines to launch dialogs	
+KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgimp			add state machine to import dialog	
+KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgloaini			add state machine to initialization data load dialog	
+KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrPrefs			modify slider limits	
+KlstKWznmCtpGenuiCustop	WznmCtpGenuiAcv			add create file/download dialogs	
+KlstKWznmCtpGenuiCustop	WznmCtpGenuiClustmgr			add system control panels and launch dialogs	
+KlstKWznmCtpGenuiCustop	WznmCtpGenuiDbeterm			add terminal panel	
+KlstKWznmCtpGenuiCustop	WznmCtpGenuiDlgimp			add import dialog	
+KlstKWznmCtpGenuiCustop	WznmCtpGenuiDlgloaini			add initialization data load dialog	
+KlstKWznmCtpGenuiCustop	WznmCtpGenuiPrefs			add preferences panels	
+KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvAcv			implement create file/download dialogs	
+KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvClustmgr			implement system control panels and launch dialogs	
+KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvDbeterm			implement terminal panel	
+KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvDlgimp			implement import dialog	
+KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvDlgloaini			implement initialization data load dialog	
+KlstKWznmCtpWrsrvCustop	WznmCtpWrsrvPrefs			implement preferences panels	
 KlstKWznmCtpWrstkitCustop	WznmCtpWrstkitAcv			database and basic UI	
 KlstKWznmCtpWrstkitCustop	WznmCtpWrstkitArm			database, basic UI and import/export 	
+KlstKWznmCtpWrstkitCustop	WznmCtpWrstkitClustmgr			basic UI	
+KlstKWznmCtpWrstkitCustop	WznmCtpWrstkitPrefs			basic UI	
+KlstKWznmCtpWrwebCustop	WznmCtpWrwebDbeterm			modify data text field	
 KlstWznmKAMControlParKey	action			triggered action	
 KlstWznmKAMControlParKey	cptwidth			caption width	
 KlstWznmKAMControlParKey	height			height	

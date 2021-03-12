@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmWrjapi;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrjapiBase
  ******************************************************************************/

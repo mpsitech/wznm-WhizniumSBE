@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmWrsrv;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrsrvJob
  ******************************************************************************/
@@ -486,12 +488,12 @@ void WznmWrsrvJob::writeJobH(
 	if ((feds.nodes.size() > 0) || (job->ixVBasetype == VecWznmVMJobBasetype::CRD) || (job->ixVBasetype == VecWznmVMJobBasetype::DLG)
 				|| (job->ixVBasetype == VecWznmVMJobBasetype::PNL)) outfile << endl;
 
-	if (hassgealr) outfile << "\tSbecore::Xmlio::Feed feedFMcbAlert;" << endl;
+	if (hassgealr) outfile << "\tSbecore::Feed feedFMcbAlert;" << endl;
 
 	for (unsigned int i = 0; i < feds.nodes.size(); i++) {
 		fed = feds.nodes[i];
 
-		outfile << "\tSbecore::Xmlio::Feed " << StrMod::uncap(fed->sref) << ";" << endl;
+		outfile << "\tSbecore::Feed " << StrMod::uncap(fed->sref) << ";" << endl;
 	};
 	outfile << "// IP vars.blks --- IEND" << endl;
 
@@ -2050,12 +2052,19 @@ void WznmWrsrvJob::writeJobCpp(
 				if (stdalr) {
 					outfile << "\txchg->submitDpch(Alr" << Prjshort << "::prepareAlr" << s.substr(3+4) << "(jref, ix" << Prjshort << "VLocale";
 					for (unsigned int j = 0; j < plhs.size(); j++) outfile << ", \"\"";
+					if (con->sref.substr(3+4) == "Trm") outfile << ", xchg->stg" << prjshort << "appearance.sesstterm, xchg->stg" << prjshort << "appearance.sesstwarn";
 					outfile << ", feedFMcbAlert)); // IP enterSge" << StrMod::cap(sge->sref) << " --- LINE" << endl;
 
 				} else {
 					outfile << "\tContInf" << Prjshort << "Alert continf;" << endl;
 					outfile << "\t// IP enterSge" << StrMod::cap(sge->sref) << " --- BEGIN" << endl;
-					plhs.clear();
+
+					if (!plhs.empty()) {
+						for (auto it = plhs.begin(); it != plhs.end(); it++) outfile << "\tstring " << *it << " = \"\";" << endl;
+
+						outfile << endl;
+					};
+
 					wrAlrCpp(dbswznm, "", Prjshort, outfile, job->refWznmMVersion, con, plhs);
 					outfile << "\t// IP enterSge" << StrMod::cap(sge->sref) << " --- END" << endl;
 					outfile << "\txchg->submitDpch(new DpchEng" << Prjshort << "Alert(jref, &continf, &feedFMcbAlert, {DpchEng" << Prjshort << "Alert::ALL}));" << endl;

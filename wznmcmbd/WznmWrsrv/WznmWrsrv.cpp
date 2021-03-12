@@ -19,6 +19,8 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmWrsrv
  ******************************************************************************/
@@ -43,7 +45,7 @@ void WznmWrsrv::writeBlkcontH(
 	outfile << "\t/**" << endl;
 	outfile << "\t  * " << subsref << " (full: " << blk->sref << ")" << endl;
 	outfile << "\t  */" << endl;
-	outfile << "\tclass " << subsref << " : public Sbecore::Xmlio::Block {" << endl;
+	outfile << "\tclass " << subsref << " : public Sbecore::Block {" << endl;
 	outfile << endl;
 
 	outfile << "\tpublic:" << endl;
@@ -77,7 +79,12 @@ void WznmWrsrv::writeBlkcontH(
 	outfile << endl;
 	
 	outfile << "\tpublic:" << endl;
-	if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) outfile << "\t\tbool readXML(xmlXPathContext* docctx, std::string basexpath = \"\", bool addbasetag = false);" << endl;
+	if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) {
+		outfile << "\t\tbool readJSON(Json::Value& sup, bool addbasetag = false);" << endl;
+		outfile << "\t\tbool readXML(xmlXPathContext* docctx, std::string basexpath = \"\", bool addbasetag = false);" << endl;
+	};
+
+	outfile << "\t\tvoid writeJSON(Json::Value& sup, std::string difftag = \"\");" << endl;
 	outfile << "\t\tvoid writeXML(xmlTextWriter* wr, std::string difftag = \"\", bool shorttags = true);" << endl;
 	outfile << "\t\tstd::set<Sbecore::uint> comm(const " << subsref << "* comp);" << endl;
 	outfile << "\t\tstd::set<Sbecore::uint> diff(const " << subsref << "* comp);" << endl;
@@ -137,6 +144,36 @@ void WznmWrsrv::writeBlkcontCpp(
 	outfile << endl;
 
 	if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) {
+		// readJSON
+		outfile << "bool " << job->sref << "::" << subsref << "::readJSON(" << endl;
+		outfile << "\t\t\tJson::Value& sup" << endl;
+		outfile << "\t\t\t, bool addbasetag" << endl;
+		outfile << "\t\t) {" << endl;
+		outfile << "\tclear();" << endl;
+		outfile << endl;
+
+		outfile << "\tbool basefound;" << endl;
+		outfile << endl;
+
+		outfile << "\tJson::Value& me = sup;" << endl;
+		outfile << "\tif (addbasetag) me = sup[\"" << blk->sref << "\"];" << endl;
+		outfile << endl;
+
+		outfile << "\tbasefound = (me != Json::nullValue);" << endl;
+		outfile << endl;
+
+		outfile << "\tif (basefound) {" << endl;
+		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+			bit = bits.nodes[i];
+			wrBitvarReadjsonCpp(dbswznm, outfile, job, bit);
+		};
+		outfile << "\t};" << endl;
+		outfile << endl;
+
+		outfile << "\treturn basefound;" << endl;
+		outfile << "};" << endl;
+		outfile << endl;
+
 		// readXML
 		outfile << "bool " << job->sref << "::" << subsref << "::readXML(" << endl;
 		outfile << "\t\t\txmlXPathContext* docctx" << endl;
@@ -176,6 +213,24 @@ void WznmWrsrv::writeBlkcontCpp(
 		outfile << "};" << endl;
 		outfile << endl;
 	};
+
+	// writeJSON
+	outfile << "void " << job->sref << "::" << subsref << "::writeJSON(" << endl;
+	outfile << "\t\t\tJson::Value& sup" << endl;
+	outfile << "\t\t\t, string difftag" << endl;
+	outfile << "\t\t) {" << endl;
+	outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
+	outfile << endl;
+
+	outfile << "\tJson::Value& me = sup[difftag] = Json::Value(Json::objectValue);" << endl;
+	outfile << endl;
+
+	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+		bit = bits.nodes[i];
+		wrBitvarWritejsonCpp(dbswznm, outfile, job, bit, false);
+	};
+	outfile << "};" << endl;
+	outfile << endl;
 
 	// writeXML
 	outfile << "void " << job->sref << "::" << subsref << "::writeXML(" << endl;
@@ -304,7 +359,7 @@ void WznmWrsrv::writeBlkdpchH(
 						outfile << ", ";
 						wrBitvarWritexmlH(dbswznm, outfile, job, bit);
 					} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
-						outfile << ", Sbecore::Xmlio::Feed* " << bit->sref << " = NULL";
+						outfile << ", Sbecore::Feed* " << bit->sref << " = NULL";
 					} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) {
 						if (dbswznm->tblwznmmtable->loadRecByRef(bit->refWznmMTable, &tbl)) {
 							outfile << ", List" << tbl->sref.substr(3) << "* " << bit->sref << " = NULL";
@@ -342,7 +397,7 @@ void WznmWrsrv::writeBlkdpchH(
 
 				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
 					if (!first && (bit->refWznmCAMBlockItem != refC)) outfile << endl;
-					outfile << "\t\tSbecore::Xmlio::Feed " << bit->sref << ";" << endl;
+					outfile << "\t\tSbecore::Feed " << bit->sref << ";" << endl;
 					refC = bit->refWznmCAMBlockItem;
 					first = false;
 
@@ -376,8 +431,14 @@ void WznmWrsrv::writeBlkdpchH(
 		if (blk->reaIxWznmWScope & VecWznmWScope::APP) outfile << "\t\tvoid merge(DpchEng" << Prjshort << "* dpcheng);" << endl;
 		outfile << endl;
 
-		if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) outfile << "\t\tvoid readXML(xmlXPathContext* docctx, std::string basexpath = \"\", bool addbasetag = false);" << endl;
-		if (blk->reaIxWznmWScope & VecWznmWScope::APP) outfile << "\t\tvoid writeXML(const Sbecore::uint ix" << Prjshort << "VLocale, xmlTextWriter* wr);" << endl;
+		if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) {
+			outfile << "\t\tvoid readJSON(Json::Value& sup, bool addbasetag = false);" << endl;
+			outfile << "\t\tvoid readXML(xmlXPathContext* docctx, std::string basexpath = \"\", bool addbasetag = false);" << endl;
+		};
+		if (blk->reaIxWznmWScope & VecWznmWScope::APP) {
+			outfile << "\t\tvoid writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);" << endl;
+			outfile << "\t\tvoid writeXML(const Sbecore::uint ix" << Prjshort << "VLocale, xmlTextWriter* wr);" << endl;
+		};
 		outfile << "\t};" << endl;
 		outfile << endl;
 
@@ -630,6 +691,49 @@ void WznmWrsrv::writeBlkdpchCpp(
 		};
 
 		if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) {
+			// readJSON
+			outfile << "void " << job->sref << "::" << subsref << "::readJSON(" << endl;
+			outfile << "\t\t\tJson::Value& sup" << endl;
+			outfile << "\t\t\t, bool addbasetag" << endl;
+			outfile << "\t\t) {" << endl;
+			outfile << "\tclear();" << endl;
+			outfile << endl;
+
+			outfile << "\tbool basefound;" << endl;
+			outfile << endl;
+
+			outfile << "\tJson::Value& me = sup;" << endl;
+			outfile << "\tif (addbasetag) me = sup[\"" << blk->sref << "\"];" << endl;
+			outfile << endl;
+
+			outfile << "\tbasefound = (me != Json::nullValue);" << endl;
+			outfile << endl;
+
+			outfile << "\tif (basefound) {" << endl;
+			for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+				bit = bits.nodes[i];
+
+				if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::VAR) {
+					wrBitvarReadjsonCpp(dbswznm, outfile, job, bit);
+				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
+					outfile << "\t\tif (" << StrMod::lc(bit->sref) << ".readJSON(me, true)) add(" << StrMod::uc(bit->sref) << ");" << endl;
+				};
+			};
+			outfile << "\t} else {" << endl;
+			for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+				bit = bits.nodes[i];
+
+				if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
+					if (dbswznm->tblwznmmblock->loadRecByRef(bit->refWznmMBlock, &subblk)) {
+						outfile << "\t\t" << StrMod::lc(bit->sref) << " = " << getBlkclass(dbswznm, job, subblk) << "();" << endl;
+						delete subblk;
+					};
+				};
+			};
+			outfile << "\t};" << endl;
+			outfile << "};" << endl;
+			outfile << endl;
+
 			// readXML
 			outfile << "void " << job->sref << "::" << subsref << "::readXML(" << endl;
 			outfile << "\t\t\txmlXPathContext* docctx" << endl;
@@ -683,6 +787,40 @@ void WznmWrsrv::writeBlkdpchCpp(
 		};
 
 		if (blk->reaIxWznmWScope & VecWznmWScope::APP) {
+			// writeJSON
+			outfile << "void " << job->sref << "::" << subsref << "::writeJSON(" << endl;
+			outfile << "\t\t\tconst uint ix" << Prjshort << "VLocale" << endl;
+			outfile << "\t\t\t, Json::Value& sup" << endl;
+			outfile << "\t\t) {" << endl;
+			outfile << "\tJson::Value& me = sup[\"" << blk->sref << "\"] = Json::Value(Json::objectValue);" << endl;
+			outfile << endl;
+			for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+				bit = bits.nodes[i];
+
+				if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::VAR) {
+					wrBitvarWritejsonCpp(dbswznm, outfile, job, bit, true);
+				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
+					outfile << "\tif (has(" << StrMod::uc(bit->sref) << ")) " << bit->sref << ".writeJSON(me);" << endl;
+				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) {
+					outfile << "\tif (has(" << StrMod::uc(bit->sref) << ")) " << bit->sref << ".writeJSON(me);" << endl;
+				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
+					if (dbswznm->tblwznmmblock->loadRecByRef(bit->refWznmMBlock, &subblk)) {
+						if (isStatic(subblk)) {
+							if (subblk->sref.substr(0, 4+3) == "StatApp") {
+								outfile << "\tif (has(" << StrMod::uc(bit->sref) << ")) " << getBlkclass(dbswznm, job, subblk) << "::writeJSON(me);" << endl;
+							} else {
+								outfile << "\tif (has(" << StrMod::uc(bit->sref) << ")) " << getBlkclass(dbswznm, job, subblk) << "::writeJSON(ix" << Prjshort << "VLocale, me);" << endl;
+							};
+						} else {
+							outfile << "\tif (has(" << StrMod::uc(bit->sref) << ")) " << StrMod::lc(bit->sref) << ".writeJSON(me);" << endl;
+						};
+						delete subblk;
+					};
+				};
+			};
+			outfile << "};" << endl;
+			outfile << endl;
+
 			// writeXML
 			outfile << "void " << job->sref << "::" << subsref << "::writeXML(" << endl;
 			outfile << "\t\t\tconst uint ix" << Prjshort << "VLocale" << endl;
@@ -827,7 +965,7 @@ void WznmWrsrv::writeBlkstatH(
 		outfile << "\t/**" << endl;
 		outfile << "\t\t* " << subsref << " (full: " << blk->sref << ")" << endl;
 		outfile << "\t\t*/" << endl;
-		outfile << "\tclass " << subsref << " : public Sbecore::Xmlio::Block {" << endl;
+		outfile << "\tclass " << subsref << " : public Sbecore::Block {" << endl;
 		outfile << endl;
 
 		outfile << "\tpublic:" << endl;
@@ -861,6 +999,7 @@ void WznmWrsrv::writeBlkstatH(
 		outfile << endl;
 
 		outfile << "\tpublic:" << endl;
+		outfile << "\t\tvoid writeJSON(Json::Value& sup, std::string difftag = \"\");" << endl;
 		outfile << "\t\tvoid writeXML(xmlTextWriter* wr, std::string difftag = \"\", bool shorttags = true);" << endl;
 		outfile << "\t\tstd::set<Sbecore::uint> comm(const " << subsref << "* comp);" << endl;
 		outfile << "\t\tstd::set<Sbecore::uint> diff(const " << subsref << "* comp);" << endl;
@@ -876,6 +1015,15 @@ void WznmWrsrv::writeBlkstatH(
 		outfile << endl;
 
 		outfile << "\tpublic:" << endl;
+
+		outfile << "\t\tstatic void writeJSON(Json::Value& sup, std::string difftag = \"\"";
+		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+			bit = bits.nodes[i];
+
+			outfile << ", ";
+			wrBitvarWritexmlH(dbswznm, outfile, job, bit);
+		};
+		outfile << ");" << endl;
 
 		outfile << "\t\tstatic void writeXML(xmlTextWriter* wr, std::string difftag = \"\", bool shorttags = true";
 		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
@@ -912,7 +1060,7 @@ void WznmWrsrv::writeBlkstatCpp(
 	outfile << endl;
 
 	if (blk->sref.substr(0, 4+3) != "StatApp") {
-		// StatShr
+		// - StatShr
 
 		// constructor
 		outfile << job->sref << "::" << subsref << "::" << subsref << "(" << endl;
@@ -943,6 +1091,24 @@ void WznmWrsrv::writeBlkstatCpp(
 		};
 		outfile << "};" << endl;
 
+		outfile << "};" << endl;
+		outfile << endl;
+
+		// writeJSON
+		outfile << "void " << job->sref << "::" << subsref << "::writeJSON(" << endl;
+		outfile << "\t\t\tJson::Value& sup" << endl;
+		outfile << "\t\t\t, string difftag" << endl;
+		outfile << "\t\t) {" << endl;
+		outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
+		outfile << endl;
+
+		outfile << "\tJson::Value& me = sup[difftag] = Json::Value(Json::objectValue);" << endl;
+		outfile << endl;
+
+		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+			bit = bits.nodes[i];
+			wrBitvarWritejsonCpp(dbswznm, outfile, job, bit, false);
+		};
 		outfile << "};" << endl;
 		outfile << endl;
 
@@ -1015,7 +1181,33 @@ void WznmWrsrv::writeBlkstatCpp(
 		outfile << endl;
 
 	} else {
-		// StatApp
+		// - StatApp
+
+		// writeJSON
+		outfile << "void " << job->sref << "::" << subsref << "::writeJSON(" << endl;
+		outfile << "\t\t\tJson::Value& sup" << endl;
+		outfile << "\t\t\t, string difftag" << endl;
+		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+			bit = bits.nodes[i];
+
+			outfile << "\t\t\t, ";
+			wrBitvarWritexmlhdrCpp(outfile, bit);
+		};
+		outfile << "\t\t) {" << endl;
+		outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
+		outfile << endl;
+
+		outfile << "\tJson::Value& me = sup[difftag] = Json::Value(Json::objectValue);" << endl;
+		outfile << endl;
+
+		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+			bit = bits.nodes[i];
+			wrBitvarWritejsonCpp(dbswznm, outfile, job, bit, false);
+		};
+		outfile << "};" << endl;
+		outfile << endl;
+
+		// writeXML
 		outfile << "void " << job->sref << "::" << subsref << "::writeXML(" << endl;
 		outfile << "\t\t\txmlTextWriter* wr" << endl;
 		outfile << "\t\t\t, string difftag" << endl;
@@ -1076,11 +1268,11 @@ void WznmWrsrv::writeBlkstgH(
 		if (subclass) {
 			outfile << pre << "\t* " << subsref << " (full: " << blk->sref << ")" << endl;
 			outfile << pre << "\t*/" << endl;
-			outfile << pre << "class " << subsref << " : public Sbecore::Xmlio::Block {" << endl;
+			outfile << pre << "class " << subsref << " : public Sbecore::Block {" << endl;
 		} else {
 			outfile << "\t* " << blk->sref << endl;
 			outfile << "\t*/" << endl;
-			outfile << "class " << blk->sref << " : public Sbecore::Xmlio::Block {" << endl;
+			outfile << "class " << blk->sref << " : public Sbecore::Block {" << endl;
 		};
 		outfile << endl;
 
@@ -1122,7 +1314,9 @@ void WznmWrsrv::writeBlkstgH(
 		outfile << endl;
 
 		outfile << pre << "public:" << endl;
+		if (blk->wriIxWznmWScope & VecWznmWScope::APP) outfile << pre << "\tbool readJSON(Json::Value& sup, bool addbasetag = false);" << endl;
 		outfile << pre << "\tbool readXML(xmlXPathContext* docctx, std::string basexpath = \"\", bool addbasetag = false);" << endl;
+		if (blk->reaIxWznmWScope & VecWznmWScope::APP) outfile << pre << "\tvoid writeJSON(Json::Value& sup, std::string difftag = \"\");" << endl;
 		outfile << pre << "\tvoid writeXML(xmlTextWriter* wr, std::string difftag = \"\", bool shorttags = true);" << endl;
 		if (subclass) {
 			outfile << "\t\tstd::set<Sbecore::uint> comm(const " << subsref << "* comp);" << endl;
@@ -1143,6 +1337,7 @@ void WznmWrsrv::writeBlkstgH(
 		outfile << endl;
 
 		outfile << "\tpublic:" << endl;
+		outfile << "\t\tstatic void writeJSON(const Sbecore::uint ix" << Prjshort << "VLocale, Json::Value& sup, std::string difftag = \"\");" << endl;
 		outfile << "\t\tstatic void writeXML(const Sbecore::uint ix" << Prjshort << "VLocale, xmlTextWriter* wr, std::string difftag = \"\", bool shorttags = true);" << endl;
 		outfile << "\t};" << endl;
 		outfile << endl;
@@ -1173,6 +1368,8 @@ void WznmWrsrv::writeBlkstgCpp(
 	WznmMLocale* lcl = NULL;
 
 	string s, s2;
+
+	string indent;
 
 	bool found;
 
@@ -1227,6 +1424,38 @@ void WznmWrsrv::writeBlkstgCpp(
 		outfile << "};" << endl;
 		outfile << endl;
 
+		if (blk->wriIxWznmWScope & VecWznmWScope::APP) {
+			// readJSON
+			outfile << "bool " << supsref << "::" << subsref << "::readJSON(" << endl;
+			outfile << "\t\t\tJson::Value& sup" << endl;
+			outfile << "\t\t\t, bool addbasetag" << endl;
+			outfile << "\t\t) {" << endl;
+			outfile << "\tclear();" << endl;
+			outfile << endl;
+
+			outfile << "\tbool basefound;" << endl;
+			outfile << endl;
+
+			outfile << "\tJson::Value& me = sup;" << endl;
+			outfile << "\tif (addbasetag) me = sup[\"" << blk->sref << "\"];" << endl;
+			outfile << endl;
+
+			outfile << "\tbasefound = (me != Json::nullValue);" << endl;
+			outfile << endl;
+
+			outfile << "\tif (basefound) {" << endl;
+			for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+				bit = bits.nodes[i];
+				wrBitvarReadjsonCpp(dbswznm, outfile, job, bit);
+			};
+			outfile << "\t};" << endl;
+			outfile << endl;
+
+			outfile << "\treturn basefound;" << endl;
+			outfile << "};" << endl;
+			outfile << endl;
+		};
+
 		// readXML
 		if (subclass) {
 			outfile << "bool " << supsref << "::" << subsref << "::readXML(" << endl;
@@ -1269,6 +1498,26 @@ void WznmWrsrv::writeBlkstgCpp(
 		outfile << "\treturn basefound;" << endl;
 		outfile << "};" << endl;
 		outfile << endl;
+
+		if (blk->reaIxWznmWScope & VecWznmWScope::APP) {
+			// writeJSON
+			outfile << "void " << supsref << "::" << subsref << "::writeJSON(" << endl;
+			outfile << "\t\t\tJson::Value& sup" << endl;
+			outfile << "\t\t\t, string difftag" << endl;
+			outfile << "\t\t) {" << endl;
+			outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
+			outfile << endl;
+
+			outfile << "\tJson::Value& me = sup[difftag] = Json::Value(Json::objectValue);" << endl;
+			outfile << endl;
+
+			for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+				bit = bits.nodes[i];
+				wrBitvarWritejsonCpp(dbswznm, outfile, job, bit, false);
+			};
+			outfile << "};" << endl;
+			outfile << endl;
+		};
 
 		// writeXML
 		if (subclass) {
@@ -1355,61 +1604,84 @@ void WznmWrsrv::writeBlkstgCpp(
 	} else {
 		// app-only version, always sub-block
 
-		// writeXML
-		outfile << "void " << supsref << "::" << subsref << "::writeXML(" << endl;
-		outfile << "\t\t\tconst uint ix" << Prjshort << "VLocale" << endl;
-		outfile << "\t\t\t, xmlTextWriter* wr" << endl;
-		outfile << "\t\t\t, string difftag" << endl;
-		outfile << "\t\t\t, bool shorttags" << endl;
-		outfile << "\t\t) {" << endl;
-		outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
-		outfile << endl;
+		for (unsigned int k = 0; k < 2; k++) {
+			if (k == 0) indent = "\t";
+			else indent = "\t\t";
 
-		outfile << "\tstring itemtag;" << endl;
-		outfile << "\tif (shorttags) itemtag = \"Si\";" << endl;
-		outfile << "\telse itemtag = \"Stgitem" << blk->sref.substr(3) << "\";" << endl;
-		outfile << endl;
+			if (k == 0) {
+				// writeJSON
+				outfile << "void " << supsref << "::" << subsref << "::writeJSON(" << endl;
+				outfile << "\t\t\tconst uint ix" << Prjshort << "VLocale" << endl;
+				outfile << "\t\t\t, Json::Value& sup" << endl;
+				outfile << "\t\t\t, string difftag" << endl;
+				outfile << "\t\t) {" << endl;
+				outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
+				outfile << endl;
 
-		outfile << "\txmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());" << endl;
+				outfile << "\tJson::Value& me = sup[difftag] = Json::Value(Json::objectValue);" << endl;
+				outfile << endl;
 
-		// control parameters only
+			} else {
+				// writeXML
+				outfile << "void " << supsref << "::" << subsref << "::writeXML(" << endl;
+				outfile << "\t\t\tconst uint ix" << Prjshort << "VLocale" << endl;
+				outfile << "\t\t\t, xmlTextWriter* wr" << endl;
+				outfile << "\t\t\t, string difftag" << endl;
+				outfile << "\t\t\t, bool shorttags" << endl;
+				outfile << "\t\t) {" << endl;
+				outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
+				outfile << endl;
 
-		// output by locale
-		for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
-			lcl = lcls.nodes[i];
+				outfile << "\tstring itemtag;" << endl;
+				outfile << "\tif (shorttags) itemtag = \"Si\";" << endl;
+				outfile << "\telse itemtag = \"Stgitem" << blk->sref.substr(3) << "\";" << endl;
+				outfile << endl;
 
-			outfile << "\t\t";
-			if (i != 0) outfile << "} else ";
-			outfile << "if (ix" << Prjshort << "VLocale == Vec" << Prjshort << "VLocale::" << StrMod::uc(lcl->sref) << ") {" << endl;
+				outfile << "\txmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());" << endl;
+			};
 
-			for (unsigned int j = 0; j < bits.nodes.size(); j++) {
-				bit = bits.nodes[j];
+			// control parameters only
 
-				if (dbswznm->tblwznmmcontrol->loadRecByRef(bit->refWznmMControl, &con)) {
-					// isolate parameter sref
-					if (bit->sref.length() > con->sref.length()) {
-						s = StrMod::lc(bit->sref.substr(con->sref.length()));
+			// output by locale
+			for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
+				lcl = lcls.nodes[i];
 
-						found = true;
-						if (!dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con->ref, s, lcl->ref, s2)) {
-							if (!dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con->ref, s, 0, s2)) found = false;
+				outfile << indent;
+				if (i != 0) outfile << "} else ";
+				outfile << "if (ix" << Prjshort << "VLocale == Vec" << Prjshort << "VLocale::" << StrMod::uc(lcl->sref) << ") {" << endl;
+
+				for (unsigned int j = 0; j < bits.nodes.size(); j++) {
+					bit = bits.nodes[j];
+
+					if (dbswznm->tblwznmmcontrol->loadRecByRef(bit->refWznmMControl, &con)) {
+						// isolate parameter sref
+						if (bit->sref.length() > con->sref.length()) {
+							s = StrMod::lc(bit->sref.substr(con->sref.length()));
+
+							found = true;
+							if (!dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con->ref, s, lcl->ref, s2)) {
+								if (!dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con->ref, s, 0, s2)) found = false;
+							};
+
+							if (found) {
+								if (k == 0) outfile << indent << "\tme[\"" << bit->sref << "\"] = \"" << StrMod::esc(s2) << "\";" << endl;
+								else outfile << indent << "\twriteStringAttr(wr, itemtag, \"sref\", \"" << bit->sref << "\", \"" << StrMod::esc(s2) << "\");" << endl;
+							} else {
+								if (k == 0) outfile << indent << "\tme[\"" << bit->sref << "\"] = \"" << StrMod::esc(bit->Defval) << "\";" << endl;
+								else outfile << indent << "\twriteStringAttr(wr, itemtag, \"sref\", \"" << bit->sref << "\", \"" << StrMod::esc(bit->Defval) << "\");" << endl;
+							};
 						};
-
-						if (found) {
-							outfile << "\t\t\twriteStringAttr(wr, itemtag, \"sref\", \"" << bit->sref << "\", \"" << StrMod::esc(s2) << "\");" << endl;
-						} else {
-							outfile << "\t\t\twriteStringAttr(wr, itemtag, \"sref\", \"" << bit->sref << "\", \"" << StrMod::esc(bit->Defval) << "\");" << endl;
-						};
+						delete con;
 					};
-					delete con;
 				};
 			};
-		};
-		if (lcls.nodes.size() > 0) outfile << "\t\t};" << endl;
+			if (lcls.nodes.size() > 0) outfile << indent << "};" << endl;
 
-		outfile << "\txmlTextWriterEndElement(wr);" << endl;
-		outfile << "};" << endl;
-		outfile << endl;
+			if (k == 1) outfile << "\txmlTextWriterEndElement(wr);" << endl;
+
+			outfile << "};" << endl;
+			outfile << endl;
+		};
 	};
 };
 
@@ -1427,6 +1699,7 @@ void WznmWrsrv::writeBlktagH(
 	outfile << endl;
 
 	outfile << "\tpublic:" << endl;
+	outfile << "\t\tstatic void writeJSON(const Sbecore::uint ix" << Prjshort << "VLocale, Json::Value& sup, std::string difftag = \"\");" << endl;
 	outfile << "\t\tstatic void writeXML(const Sbecore::uint ix" << Prjshort << "VLocale, xmlTextWriter* wr, std::string difftag = \"\", bool shorttags = true);" << endl;
 	outfile << "\t};" << endl;
 	outfile << endl;
@@ -1461,6 +1734,8 @@ void WznmWrsrv::writeBlktagCpp(
 	vector<string> ss;
 	string s;
 
+	string indent;
+
 	unsigned int ix;
 
 	bool found;
@@ -1476,114 +1751,138 @@ void WznmWrsrv::writeBlktagCpp(
 	outfile << " ******************************************************************************/" << endl;
 	outfile << endl;
 
-	// writeXML
-	outfile << "void " << job->sref << "::" << subsref << "::writeXML(" << endl;
-	outfile << "\t\t\tconst uint ix" << Prjshort << "VLocale" << endl;
-	outfile << "\t\t\t, xmlTextWriter* wr" << endl;
-	outfile << "\t\t\t, string difftag" << endl;
-	outfile << "\t\t\t, bool shorttags" << endl;
-	outfile << "\t\t) {" << endl;
-	outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
-	outfile << endl;
+	for (unsigned int k = 0; k < 2; k++) {
+		if (k == 0) indent = "\t";
+		else indent = "\t\t";
 
-	outfile << "\tstring itemtag;" << endl;
-	outfile << "\tif (shorttags) itemtag = \"Ti\";" << endl;
-	outfile << "\telse itemtag = \"Tagitem" << blk->sref.substr(3) << "\";" << endl;
-	outfile << endl;
+		if (k == 0) {
+			// writeJSON
+			outfile << "void " << job->sref << "::" << subsref << "::writeJSON(" << endl;
+			outfile << "\t\t\tconst uint ix" << Prjshort << "VLocale" << endl;
+			outfile << "\t\t\t, Json::Value& sup" << endl;
+			outfile << "\t\t\t, string difftag" << endl;
+			outfile << "\t\t) {" << endl;
+			outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
+			outfile << endl;
 
-	outfile << "\txmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());" << endl;
+			outfile << "\tJson::Value& me = sup[difftag] = Json::Value(Json::objectValue);" << endl;
+			outfile << endl;
 
-	// sort control titles by with/without tag
-	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
-		bit = bits.nodes[i];
+		} else {
+			// writeXML
+			outfile << "void " << job->sref << "::" << subsref << "::writeXML(" << endl;
+			outfile << "\t\t\tconst uint ix" << Prjshort << "VLocale" << endl;
+			outfile << "\t\t\t, xmlTextWriter* wr" << endl;
+			outfile << "\t\t\t, string difftag" << endl;
+			outfile << "\t\t\t, bool shorttags" << endl;
+			outfile << "\t\t) {" << endl;
+			outfile << "\tif (difftag.length() == 0) difftag = \"" << blk->sref << "\";" << endl;
+			outfile << endl;
 
-		if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::CONTIT) {
-			if (dbswznm->tblwznmmcontrol->loadRecByRef(bit->refWznmMControl, &con)) {
-				if (con->srefsWznmMTag.length() == 0) refsWithout.push_back(bit->ref);
-				else {
-					refsWith.push_back(bit->ref);
-					capsWith.push_back(StrMod::srefInSrefs(con->srefsKOption, "cap"));
-					dddsWith.push_back(StrMod::srefInSrefs(con->srefsKOption, "ddd"));
+			outfile << "\tstring itemtag;" << endl;
+			outfile << "\tif (shorttags) itemtag = \"Ti\";" << endl;
+			outfile << "\telse itemtag = \"Tagitem" << blk->sref.substr(3) << "\";" << endl;
+			outfile << endl;
+
+			outfile << "\txmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());" << endl;
+		};
+
+		// sort control titles by with/without tag
+		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+			bit = bits.nodes[i];
+
+			if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::CONTIT) {
+				if (dbswznm->tblwznmmcontrol->loadRecByRef(bit->refWznmMControl, &con)) {
+					if (con->srefsWznmMTag.length() == 0) refsWithout.push_back(bit->ref);
+					else {
+						refsWith.push_back(bit->ref);
+						capsWith.push_back(StrMod::srefInSrefs(con->srefsKOption, "cap"));
+						dddsWith.push_back(StrMod::srefInSrefs(con->srefsKOption, "ddd"));
+					};
+
+					delete con;
 				};
-
-				delete con;
 			};
 		};
-	};
 
-	// output by locale for control titles without tag
-	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
-		lcl = lcls.nodes[i];
+		// output by locale for control titles without tag
+		for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
+			lcl = lcls.nodes[i];
 
-		outfile << "\t\t";
-		if (i != 0) outfile << "} else ";
-		outfile << "if (ix" << Prjshort << "VLocale == Vec" << Prjshort << "VLocale::" << StrMod::uc(lcl->sref) << ") {" << endl;
+			outfile << indent;
+			if (i != 0) outfile << "} else ";
+			outfile << "if (ix" << Prjshort << "VLocale == Vec" << Prjshort << "VLocale::" << StrMod::uc(lcl->sref) << ") {" << endl;
 
+			for (unsigned int j = 0; j < bits.nodes.size(); j++) {
+				bit = bits.nodes[j];
+
+				found = false;
+				for (unsigned int k = 0; k < refsWithout.size(); k++) {
+					if (refsWithout[k] == bit->ref) {
+						found = true;
+						break;
+					};
+				};
+
+				if (found) {
+					// copy localized control title
+					if (!dbswznm->tblwznmjmcontroltitle->loadTitByConLoc(bit->refWznmMControl, lcl->ref, s))
+								dbswznm->loadStringBySQL("SELECT Title FROM TblWznmMControl WHERE ref = " + to_string(bit->refWznmMControl), s);
+
+					if (k == 0) outfile << indent << "\tme[\"" << bit->sref << "\"] = \"" << StrMod::esc(s) << "\";" << endl;
+					else outfile << indent << "\twriteStringAttr(wr, itemtag, \"sref\", \"" << bit->sref << "\", \"" << StrMod::esc(s) << "\");" << endl;
+				};
+			};
+		};
+		if (lcls.nodes.size() > 0) outfile << indent << "};" << endl;
+
+		// output using the tag vector
 		for (unsigned int j = 0; j < bits.nodes.size(); j++) {
 			bit = bits.nodes[j];
 
 			found = false;
-			for (unsigned int k = 0; k < refsWithout.size(); k++) {
-				if (refsWithout[k] == bit->ref) {
+			for (unsigned int k = 0; k < refsWith.size(); k++) {
+				if (refsWith[k] == bit->ref) {
+					cap = capsWith[k];
+					ddd = dddsWith[k];
+
 					found = true;
 					break;
 				};
 			};
 
 			if (found) {
-				// copy localized control title
-				outfile << "\t\t\twriteStringAttr(wr, itemtag, \"sref\", \"" << bit->sref << "\", \"";
-				if (!dbswznm->tblwznmjmcontroltitle->loadTitByConLoc(bit->refWznmMControl, lcl->ref, s)) {
-					dbswznm->loadStringBySQL("SELECT Title FROM TblWznmMControl WHERE ref = " + to_string(bit->refWznmMControl), s);
+				if (dbswznm->tblwznmmcontrol->loadRecByRef(bit->refWznmMControl, &con)) {
+					if (bit->sref.length() > con->sref.length()) {
+						ix = atoi(bit->sref.substr(con->sref.length()).c_str());
+						if (ix >= 1) ix--;
+					} else {
+						ix = 0;
+					};
+
+					StrMod::srefsToVector(con->srefsWznmMTag, ss);
+					if (ss.size() > ix) {
+						if (k == 0) outfile << indent << "me[\"" << bit->sref << "\"] = ";
+						else outfile << indent << "writeStringAttr(wr, itemtag, \"sref\", \"" << bit->sref << "\", ";
+
+						if (cap) outfile << "StrMod::cap(";
+						outfile << "Vec" << Prjshort << "VTag::getTitle(Vec" << Prjshort << "VTag::" << StrMod::uc(ss[ix]) << ", ix" << Prjshort << "VLocale)";
+						if (cap) outfile << ")";
+						if (ddd) outfile << " + \" ...\"";
+
+						if (k == 0) outfile << ";" << endl;
+						else outfile << ");" << endl;
+					};
+
+					delete con;
 				};
-				outfile << StrMod::esc(s) << "\");" << endl;
 			};
 		};
+
+		if (k == 1) outfile << "\txmlTextWriterEndElement(wr);" << endl;
+		outfile << "};" << endl;
+		outfile << endl;
 	};
-	if (lcls.nodes.size() > 0) outfile << "\t\t};" << endl;
-
-	// output using the tag vector
-	for (unsigned int j = 0; j < bits.nodes.size(); j++) {
-		bit = bits.nodes[j];
-
-		found = false;
-		for (unsigned int k = 0; k < refsWith.size(); k++) {
-			if (refsWith[k] == bit->ref) {
-				cap = capsWith[k];
-				ddd = dddsWith[k];
-
-				found = true;
-				break;
-			};
-		};
-
-		if (found) {
-			if (dbswznm->tblwznmmcontrol->loadRecByRef(bit->refWznmMControl, &con)) {
-				if (bit->sref.length() > con->sref.length()) {
-					ix = atoi(bit->sref.substr(con->sref.length()).c_str());
-					if (ix >= 1) ix--;
-				} else {
-					ix = 0;
-				};
-
-				StrMod::srefsToVector(con->srefsWznmMTag, ss);
-				if (ss.size() > ix) {
-					outfile << "\t\twriteStringAttr(wr, itemtag, \"sref\", \"" << bit->sref << "\", ";
-					if (cap) outfile << "StrMod::cap(";
-					outfile << "Vec" << Prjshort << "VTag::getTitle(Vec" << Prjshort << "VTag::" << StrMod::uc(ss[ix]) << ", ix" << Prjshort << "VLocale)";
-					if (cap) outfile << ")";
-					if (ddd) outfile << " + \" ...\"";
-					outfile << ");" << endl;
-				};
-
-				delete con;
-			};
-		};
-	};
-
-	outfile << "\txmlTextWriterEndElement(wr);" << endl;
-	outfile << "};" << endl;
-	outfile << endl;
 };
 
 void WznmWrsrv::writeVecH(
@@ -1691,12 +1990,12 @@ void WznmWrsrv::writeVecH(
 		if (apdfed) {
 			outfile << pre << "void appendToFeed(const Sbecore::uint ix";
 			if (!noloc) outfile << ", const Sbecore::uint ix" << Prjshort << "VLocale";
-			outfile << ", Sbecore::Xmlio::Feed& feed);" << endl;
+			outfile << ", Sbecore::Feed& feed);" << endl;
 		};
 		if (filfed) {
 			outfile << pre << "void fillFeed(";
 			if (!noloc) outfile << "const Sbecore::uint ix" << Prjshort << "VLocale, ";
-			outfile << "Sbecore::Xmlio::Feed& feed);" << endl;
+			outfile << "Sbecore::Feed& feed);" << endl;
 		};
 	};
 
@@ -2181,6 +2480,53 @@ void WznmWrsrv::wrBitvarConstrCpp(
 	outfile << "\tthis->" << bit->sref << " = " << bit->sref << ";" << endl;
 };
 
+void WznmWrsrv::wrBitvarReadjsonCpp(
+			DbsWznm* dbswznm
+			, fstream& outfile
+			, WznmMJob* job
+			, WznmAMBlockItem* bit
+		) {
+	WznmMVector* vec = NULL;
+
+	string s;
+
+	if ((bit->ixWznmVVartype == VecWznmVVartype::BOOLEAN) || (bit->ixWznmVVartype == VecWznmVVartype::TINYINT) || (bit->ixWznmVVartype == VecWznmVVartype::UTINYINT) || (bit->ixWznmVVartype == VecWznmVVartype::SMALLINT)
+				|| (bit->ixWznmVVartype == VecWznmVVartype::USMALLINT) || (bit->ixWznmVVartype == VecWznmVVartype::INT) || (bit->ixWznmVVartype == VecWznmVVartype::UINT) || (bit->ixWznmVVartype == VecWznmVVartype::BIGINT)
+				|| (bit->ixWznmVVartype == VecWznmVVartype::UBIGINT) || (bit->ixWznmVVartype == VecWznmVVartype::FLOAT) || (bit->ixWznmVVartype == VecWznmVVartype::DOUBLE) || (bit->ixWznmVVartype == VecWznmVVartype::STRING)) {
+
+		outfile << "\t\tif (me.isMember(\"" << bit->sref << "\")) {" << bit->sref << " = me[\"" << bit->sref << "\"].";
+
+		if (bit->ixWznmVVartype == VecWznmVVartype::BOOLEAN) outfile << "asBool";
+		else if ((bit->ixWznmVVartype == VecWznmVVartype::TINYINT) || (bit->ixWznmVVartype == VecWznmVVartype::SMALLINT) || (bit->ixWznmVVartype == VecWznmVVartype::INT)) outfile << "asInt";
+		else if ((bit->ixWznmVVartype == VecWznmVVartype::UTINYINT) || (bit->ixWznmVVartype == VecWznmVVartype::USMALLINT) || (bit->ixWznmVVartype == VecWznmVVartype::UINT)) outfile << "asUInt";
+		else if (bit->ixWznmVVartype == VecWznmVVartype::BIGINT) outfile << "asInt64";
+		else if (bit->ixWznmVVartype == VecWznmVVartype::UBIGINT) outfile << "asUInt64";
+		else if (bit->ixWznmVVartype == VecWznmVVartype::FLOAT) outfile << "asFloat";
+		else if (bit->ixWznmVVartype == VecWznmVVartype::DOUBLE) outfile << "asDouble";
+		else if (bit->ixWznmVVartype == VecWznmVVartype::STRING) outfile << "asString";
+
+		outfile << "(); add(" << StrMod::uc(bit->sref) << ");};" << endl;
+
+	} else if (bit->ixWznmVVartype == VecWznmVVartype::VECSREF) {
+		outfile << "\t\tif (me.isMember(\"sref" << StrMod::cap(bit->sref) << "\")) {" << bit->sref << " = ";
+		if (dbswznm->tblwznmmvector->loadRecByRef(bit->refWznmMVector, &vec)) {
+			outfile << getVecclass(dbswznm, job, vec);
+			delete vec;
+		} else outfile << "Vec" << bit->sref.substr(2);
+		outfile << "::getIx(me[\"sref" << StrMod::cap(bit->sref) << "\"].asString()); add(" << StrMod::uc(bit->sref) << ");};" << endl;
+
+	} else if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) {
+		outfile << "\t\tif (me.isMember(\"scr" << StrMod::cap(bit->sref) << "\")) {" << bit->sref << " = Scr::descramble(me[\"scr" << StrMod::cap(bit->sref) << "\"].asString()); add(" << StrMod::uc(bit->sref) << ");};" << endl;
+
+	} else {
+		// VOID, BOOLEANVEC, UTINYINTVEC, USMALLINTVEC, INTVEC, UINTVEC, UBIGINTVEC, FLOATVEC, FLOATMAT, DOUBLEVEC, DOUBLEMAT, STRINGVEC
+		if (bit->ixWznmVVartype == VecWznmVVartype::BOOLEANVEC) s = "Boolvec";
+		else s = StrMod::cap(VecWznmVVartype::getSref(bit->ixWznmVVartype));
+
+		outfile << "\t\tif (Jsonio::extract" << s << "(me, \"" << bit->sref << "\", " << bit->sref << ")) add(" << StrMod::uc(bit->sref) << ");" << endl;
+	};
+};
+
 void WznmWrsrv::wrBitvarReadxmlCpp(
 			DbsWznm* dbswznm
 			, fstream& outfile
@@ -2367,6 +2713,49 @@ void WznmWrsrv::wrBitvarWritexmlhdrCpp(
 	} else {
 		// VOID, TINYINT, UTINYINT, SMALLINT, USMALLINT, INT, UINT, BIGINT, UBIGINT, FLOAT, DOUBLE
 		outfile << "const " << VecWznmVVartype::getSref(bit->ixWznmVVartype) << " " << bit->sref << endl;
+	};
+};
+
+void WznmWrsrv::wrBitvarWritejsonCpp(
+			DbsWznm* dbswznm
+			, fstream& outfile
+			, WznmMJob* job
+			, WznmAMBlockItem* bit
+			, const bool mask
+		) {
+	WznmMVector* vec = NULL;
+
+	string s;
+
+	if (mask) {
+		outfile << "\tif (has(" << StrMod::uc(bit->sref) << ")) ";
+	} else {
+		outfile << "\t";
+	};
+
+	if ((bit->ixWznmVVartype == VecWznmVVartype::BOOLEAN) || (bit->ixWznmVVartype == VecWznmVVartype::TINYINT) || (bit->ixWznmVVartype == VecWznmVVartype::UTINYINT) || (bit->ixWznmVVartype == VecWznmVVartype::SMALLINT)
+				|| (bit->ixWznmVVartype == VecWznmVVartype::USMALLINT) || (bit->ixWznmVVartype == VecWznmVVartype::INT) || (bit->ixWznmVVartype == VecWznmVVartype::UINT) || (bit->ixWznmVVartype == VecWznmVVartype::BIGINT)
+				|| (bit->ixWznmVVartype == VecWznmVVartype::UBIGINT) || (bit->ixWznmVVartype == VecWznmVVartype::FLOAT) || (bit->ixWznmVVartype == VecWznmVVartype::DOUBLE) || (bit->ixWznmVVartype == VecWznmVVartype::STRING)) {
+
+		outfile << "me[\"" << bit->sref << "\"] = " << bit->sref << ";" << endl;
+	
+	} else if (bit->ixWznmVVartype == VecWznmVVartype::VECSREF) {
+			if (dbswznm->tblwznmmvector->loadRecByRef(bit->refWznmMVector, &vec)) {
+				outfile << "me[\"sref" << StrMod::cap(bit->sref) << "\"] = " << getVecclass(dbswznm, job, vec) << "::getSref(" << bit->sref << ");" << endl;
+				delete vec;
+			} else {
+				outfile << "me[\"sref" << StrMod::cap(bit->sref) << "\"] = Vec" << bit->sref.substr(2) << "::getSref(" << bit->sref << ");" << endl;
+			};
+
+	} else if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) {
+		outfile << "me[\"scr" << StrMod::cap(bit->sref) << "\"] = Scr::scramble(" << bit->sref << ");" << endl;
+
+	} else {
+		// VOID, BOOLEANVEC, UTINYINTVEC, USMALLINTVEC, INTVEC, UINTVEC, UBIGINTVEC, FLOATVEC, FLOATMAT, DOUBLEVEC, DOUBLEMAT, STRINGVEC
+		if (bit->ixWznmVVartype == VecWznmVVartype::BOOLEANVEC) s = "Boolvec";
+		else s = StrMod::cap(VecWznmVVartype::getSref(bit->ixWznmVVartype));
+
+		outfile << "Jsonio::write" << s << "(me, \"" << bit->sref << "\", " << bit->sref << ");" << endl;
 	};
 };
 
@@ -3212,6 +3601,53 @@ string WznmWrsrv::getChkeval( // invoked from getCaleval and WznmWrsrvJob::write
 	return retval;
 };
 
+void WznmWrsrv::wrReaddpchappCpp(
+			DbsWznm* dbswznm
+			, const string& Prjshort
+			, fstream& outfile
+			, ListWznmMBlock& blks
+			, const bool jsonNotXml
+		) {
+	WznmMBlock* blk = NULL;
+
+	WznmMJob* job = NULL;
+
+	string subsref;
+
+	for (unsigned int i = 0; i < blks.nodes.size(); i++) {
+		blk = blks.nodes[i];
+
+		outfile << "\t\t\t";
+		if (i != 0) outfile << "} else ";
+		outfile << "if (ix" << Prjshort << "VDpch == Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << ") {" << endl;
+
+		if (dbswznm->tblwznmmjob->loadRecByRef(blk->refUref, &job)) {
+			if ((job->ixVBasetype == VecWznmVMJobBasetype::CRD) || (job->ixVBasetype == VecWznmVMJobBasetype::PNL)) {
+				// special rule for subsref
+				// ex. DpchAppPlnrNavData -> CrdPlnrNav::DpchAppData
+				subsref = "DpchApp" + blk->sref.substr(blk->sref.find(job->sref.substr(3)) + job->sref.length() - 3);
+			} else {
+				// regular rule for subsref
+				// ex. DpchAppDlgPlnrNavLoainiData -> DlgPlnrNavLoaini::DpchAppData
+				subsref = "DpchApp" + blk->sref.substr(blk->sref.find(job->sref) + job->sref.length());
+			};
+
+			outfile << "\t\t\t\treq->dpchapp = new " << job->sref << "::" << subsref << "();" << endl;
+			if (!jsonNotXml) outfile << "\t\t\t\t((" << job->sref << "::" << subsref << "*) (req->dpchapp))->readXML(docctx, \"/\", true);" << endl;
+			else outfile << "\t\t\t\t((" << job->sref << "::" << subsref << "*) (req->dpchapp))->readJSON(root, true);" << endl;
+
+			delete job;
+
+		} else {
+			outfile << "\t\t\t\treq->dpchapp = new " << blk->sref << "();" << endl;
+			if (!jsonNotXml) outfile << "\t\t\t\t((" << blk->sref << "*) (req->dpchapp))->readXML(docctx, \"/\", true);" << endl;
+			else outfile << "\t\t\t\t((" << blk->sref << "*) (req->dpchapp))->readJSON(root, true);" << endl;
+		};
+	};
+
+	if (blks.nodes.size() > 0) outfile << "\t\t\t};" << endl;
+};
+
 void WznmWrsrv::wrGetnewdpchengCpp(
 			DbsWznm* dbswznm
 			, const string& Prjshort
@@ -3332,11 +3768,15 @@ void WznmWrsrv::wrAlrCpp(
 	map<ubigint,string> pctbsTits;
 	map<ubigint,string> libsTits;
 
+	map<ubigint,string> warntermTits;
+
 	set<ubigint> refsCtb;
 	set<ubigint> refsPctb;
 	set<ubigint> refsLib;
 
 	unsigned int ix;
+
+	string prjshort = StrMod::lc(Prjshort);
 
 	Wznm::getVerlcls(dbswznm, refWznmMVersion, refLcl, refsLcl, lcls);
 
@@ -3414,6 +3854,24 @@ void WznmWrsrv::wrAlrCpp(
 			if (s.length() > 0) outfile << "\t\tcontinf.TxtMsg" << (ix++) << " = \"" << StrMod::esc(s) << "\";" << endl;
 			if (s2.length() > 0) outfile << "\t\tcontinf.TxtMsg" << (ix++) << " = \"" << StrMod::esc(s2) << "\";" << endl;
 			if (s3.length() > 0) outfile << "\t\tcontinf.TxtMsg" << (ix++) << " = \"" << StrMod::esc(s3) << "\";" << endl;
+		};
+		if (lcls.nodes.size() > 0) outfile << "\t};" << endl;
+
+	} else if (conroot == "Trm") {
+		// special treatment for termination alert
+		Wznm::getTagtits(dbswznm, "warnterm", "", "", {}, refLcl, refsLcl, warntermTits);
+
+		for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
+			lcl = lcls.nodes[i];
+
+			outfile << "\t";
+			if (i != 0) outfile << "} else ";
+			outfile << "if (ix" << Prjshort << "VLocale == Vec" << Prjshort << "VLocale::" << StrMod::uc(lcl->sref) << ") {" << endl;
+
+			s = StrMod::replacePlh(warntermTits[lcl->ref], "sesstterm", "\" + prepareAlrTrm_dtToString(ix" + Prjshort + "VLocale, sesstterm) + \"");
+			s = StrMod::replacePlh(s, "sesstwarn", "\" + prepareAlrTrm_dtToString(ix" + Prjshort + "VLocale, sesstwarn) + \"");
+
+			outfile << "\t\tcontinf.TxtMsg1 = \"" << s << "\";" << endl;
 		};
 		if (lcls.nodes.size() > 0) outfile << "\t};" << endl;
 
@@ -3669,6 +4127,49 @@ void WznmWrsrv::wrAlrCpp_abt123(
 			delete ver;
 		};
 	};
+};
+
+void WznmWrsrv::wrAlrTrmCpp_dtToString(
+			const string& Prjshort
+			, fstream& outfile
+			, WznmMControl* con
+		) {
+	outfile << "string Alr" << Prjshort << "::prepareAlr" << con->sref.substr(3+4) << "_dtToString(" << endl;
+	outfile << "\t\t\tconst uint ix" << Prjshort << "VLocale" << endl;
+	outfile << "\t\t\t, const time_t dt" << endl;
+	outfile << "\t\t) {" << endl;
+	outfile << "\tstring s;" << endl;
+	outfile << endl;
+
+	outfile << "\tif ((dt%3600) == 0) {" << endl;
+	outfile << "\t\ts = to_string(dt/3600);" << endl;
+	outfile << endl;
+
+	outfile << "\t\tif (dt == 3600) s += \" \" + Vec" << Prjshort << "VTag::getTitle(Vec" << Prjshort << "VTag::HOUR, ix" << Prjshort << "VLocale);" << endl;
+	outfile << "\t\telse s += \" \" + Vec" << Prjshort << "VTag::getTitle(Vec" << Prjshort << "VTag::HOURS, ix" << Prjshort << "VLocale);" << endl;
+	outfile << endl;
+
+	outfile << "\t} else if ((dt%60) == 0) {" << endl;
+	outfile << "\t\ts = to_string(dt/60);" << endl;
+	outfile << endl;
+
+	outfile << "\t\tif (dt == 60) s += \" \" + Vec" << Prjshort << "VTag::getTitle(Vec" << Prjshort << "VTag::MINUTE, ix" << Prjshort << "VLocale);" << endl;
+	outfile << "\t\telse s += \" \" + Vec" << Prjshort << "VTag::getTitle(Vec" << Prjshort << "VTag::MINUTES, ix" << Prjshort << "VLocale);" << endl;
+	outfile << endl;
+
+	outfile << "\t} else {" << endl;
+	outfile << "\t\ts = to_string(dt);" << endl;
+	outfile << endl;
+
+	outfile << "\t\tif (dt == 1) s += \" \" + Vec" << Prjshort << "VTag::getTitle(Vec" << Prjshort << "VTag::SECOND, ix" << Prjshort << "VLocale);" << endl;
+	outfile << "\t\telse s += \" \" + Vec" << Prjshort << "VTag::getTitle(Vec" << Prjshort << "VTag::SECONDS, ix" << Prjshort << "VLocale);" << endl;
+	outfile << "\t};" << endl;
+	outfile << endl;
+
+	outfile << "\treturn s;" << endl;
+	outfile << "};" << endl;
+	outfile << endl;
+
 };
 
 void WznmWrsrv::getAlrplhs(

@@ -257,7 +257,7 @@ void PnlWznmMdlList::handleDpchAppDataContiac(
 	diffitems = _contiac->diff(&contiac);
 
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWznmMdlList::VecVOrd::SRF) && (_contiac->numFTos <= QryWznmMdlList::VecVOrd::VER)) {
+		if ((_contiac->numFTos >= QryWznmMdlList::VecVOrd::VER) && (_contiac->numFTos <= QryWznmMdlList::VecVOrd::SRF)) {
 			muteRefresh = true;
 
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);

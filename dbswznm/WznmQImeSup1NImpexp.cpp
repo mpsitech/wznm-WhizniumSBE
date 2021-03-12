@@ -31,6 +31,21 @@ WznmQImeSup1NImpexp::WznmQImeSup1NImpexp(
 	this->stubRef = stubRef;
 };
 
+void WznmQImeSup1NImpexp::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQImeSup1NImpexp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQImeSup1NImpexp& ListWznmQImeSup1NImpexp::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQImeSup1NImpexp::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQImeSup1NImpexp";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQImeSup1NImpexp::writeXML(

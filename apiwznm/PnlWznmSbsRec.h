@@ -42,7 +42,7 @@ namespace PnlWznmSbsRec {
 	/**
 	  * ContInf (full: ContInfWznmSbsRec)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint TXTREF = 1;
@@ -62,29 +62,29 @@ namespace PnlWznmSbsRec {
 	/**
 	  * StatApp (full: StatAppWznmSbsRec)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONEATITLE = 2;
-		static const Sbecore::uint INITDONEFRS1NRELATION = 3;
-		static const Sbecore::uint INITDONETOS1NRELATION = 4;
-		static const Sbecore::uint INITDONE1NTABLECOL = 5;
-		static const Sbecore::uint INITDONE1NSTUB = 6;
+		static const Sbecore::uint INITDONE1NSTUB = 3;
+		static const Sbecore::uint INITDONEFRS1NRELATION = 4;
+		static const Sbecore::uint INITDONETOS1NRELATION = 5;
+		static const Sbecore::uint INITDONE1NTABLECOL = 6;
 		static const Sbecore::uint INITDONEPST1NQUERYMOD = 7;
 		static const Sbecore::uint INITDONEASBMNSUBSET = 8;
 		static const Sbecore::uint INITDONEBSBMNSUBSET = 9;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneFrs1NRelation = false, const bool initdoneTos1NRelation = false, const bool initdone1NTablecol = false, const bool initdone1NStub = false, const bool initdonePst1NQuerymod = false, const bool initdoneAsbMNSubset = false, const bool initdoneBsbMNSubset = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NStub = false, const bool initdoneFrs1NRelation = false, const bool initdoneTos1NRelation = false, const bool initdone1NTablecol = false, const bool initdonePst1NQuerymod = false, const bool initdoneAsbMNSubset = false, const bool initdoneBsbMNSubset = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneATitle;
+		bool initdone1NStub;
 		bool initdoneFrs1NRelation;
 		bool initdoneTos1NRelation;
 		bool initdone1NTablecol;
-		bool initdone1NStub;
 		bool initdonePst1NQuerymod;
 		bool initdoneAsbMNSubset;
 		bool initdoneBsbMNSubset;
@@ -98,16 +98,16 @@ namespace PnlWznmSbsRec {
 	/**
 	  * StatShr (full: StatShrWznmSbsRec)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREFATITLE = 3;
-		static const Sbecore::uint SCRJREFFRS1NRELATION = 4;
-		static const Sbecore::uint SCRJREFTOS1NRELATION = 5;
-		static const Sbecore::uint SCRJREF1NTABLECOL = 6;
-		static const Sbecore::uint SCRJREF1NSTUB = 7;
+		static const Sbecore::uint SCRJREF1NSTUB = 4;
+		static const Sbecore::uint SCRJREFFRS1NRELATION = 5;
+		static const Sbecore::uint SCRJREFTOS1NRELATION = 6;
+		static const Sbecore::uint SCRJREF1NTABLECOL = 7;
 		static const Sbecore::uint SCRJREFPST1NQUERYMOD = 8;
 		static const Sbecore::uint PNLPST1NQUERYMODAVAIL = 9;
 		static const Sbecore::uint SCRJREFASBMNSUBSET = 10;
@@ -115,16 +115,16 @@ namespace PnlWznmSbsRec {
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 12;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJrefFrs1NRelation = "", const std::string& scrJrefTos1NRelation = "", const std::string& scrJref1NTablecol = "", const std::string& scrJref1NStub = "", const std::string& scrJrefPst1NQuerymod = "", const bool pnlpst1nquerymodAvail = false, const std::string& scrJrefAsbMNSubset = "", const std::string& scrJrefBsbMNSubset = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefATitle = "", const std::string& scrJref1NStub = "", const std::string& scrJrefFrs1NRelation = "", const std::string& scrJrefTos1NRelation = "", const std::string& scrJref1NTablecol = "", const std::string& scrJrefPst1NQuerymod = "", const bool pnlpst1nquerymodAvail = false, const std::string& scrJrefAsbMNSubset = "", const std::string& scrJrefBsbMNSubset = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJrefATitle;
+		std::string scrJref1NStub;
 		std::string scrJrefFrs1NRelation;
 		std::string scrJrefTos1NRelation;
 		std::string scrJref1NTablecol;
-		std::string scrJref1NStub;
 		std::string scrJrefPst1NQuerymod;
 		bool pnlpst1nquerymodAvail;
 		std::string scrJrefAsbMNSubset;
@@ -140,7 +140,7 @@ namespace PnlWznmSbsRec {
 	/**
 	  * Tag (full: TagWznmSbsRec)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;

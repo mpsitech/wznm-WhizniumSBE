@@ -87,6 +87,19 @@ DlgWznmUsrMngkeypair::ContInf::ContInf(
 	mask = {NUMFSGE, DETTXTSTE, DETDLD};
 };
 
+void DlgWznmUsrMngkeypair::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfDlgWznmUsrMngkeypair";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFSge"] = numFSge;
+	me["DetTxtSte"] = DetTxtSte;
+	me["DetDld"] = DetDld;
+};
+
 void DlgWznmUsrMngkeypair::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -135,6 +148,18 @@ set<uint> DlgWznmUsrMngkeypair::ContInf::diff(
  class DlgWznmUsrMngkeypair::StatApp
  ******************************************************************************/
 
+void DlgWznmUsrMngkeypair::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const string& shortMenu
+		) {
+	if (difftag.length() == 0) difftag = "StatAppDlgWznmUsrMngkeypair";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["shortMenu"] = shortMenu;
+};
+
 void DlgWznmUsrMngkeypair::StatApp::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -168,6 +193,19 @@ DlgWznmUsrMngkeypair::StatShr::StatShr(
 	this->DetDldActive = DetDldActive;
 
 	mask = {DETBUTDELAVAIL, DETBUTGENAVAIL, DETDLDACTIVE};
+};
+
+void DlgWznmUsrMngkeypair::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrDlgWznmUsrMngkeypair";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["DetButDelAvail"] = DetButDelAvail;
+	me["DetButGenAvail"] = DetButGenAvail;
+	me["DetDldActive"] = DetDldActive;
 };
 
 void DlgWznmUsrMngkeypair::StatShr::writeXML(
@@ -218,6 +256,25 @@ set<uint> DlgWznmUsrMngkeypair::StatShr::diff(
  class DlgWznmUsrMngkeypair::Tag
  ******************************************************************************/
 
+void DlgWznmUsrMngkeypair::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagDlgWznmUsrMngkeypair";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["Cpt"] = "Manage SSH key pair";
+		me["DetCptSte"] = "State";
+		me["DetButDel"] = "Delete";
+		me["DetButGen"] = "Generate";
+		me["DetDld"] = "Download public key";
+	};
+	me["ButDne"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::DONE, ixWznmVLocale));
+};
+
 void DlgWznmUsrMngkeypair::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -262,6 +319,26 @@ string DlgWznmUsrMngkeypair::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void DlgWznmUsrMngkeypair::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppDlgWznmUsrMngkeypairDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void DlgWznmUsrMngkeypair::DpchAppDo::readXML(
@@ -342,6 +419,20 @@ void DlgWznmUsrMngkeypair::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void DlgWznmUsrMngkeypair::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngDlgWznmUsrMngkeypairData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFSGE)) feedFSge.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void DlgWznmUsrMngkeypair::DpchEngData::writeXML(

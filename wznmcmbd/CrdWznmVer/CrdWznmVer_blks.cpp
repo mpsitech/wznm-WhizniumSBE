@@ -119,6 +119,19 @@ CrdWznmVer::ContInf::ContInf(
 	mask = {NUMFSGE, MRLAPPHLP, MTXCRDVER};
 };
 
+void CrdWznmVer::ContInf::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "ContInfWznmVer";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["numFSge"] = numFSge;
+	me["MrlAppHlp"] = MrlAppHlp;
+	me["MtxCrdVer"] = MtxCrdVer;
+};
+
 void CrdWznmVer::ContInf::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -166,6 +179,30 @@ set<uint> CrdWznmVer::ContInf::diff(
 /******************************************************************************
  class CrdWznmVer::StatApp
  ******************************************************************************/
+
+void CrdWznmVer::StatApp::writeJSON(
+			Json::Value& sup
+			, string difftag
+			, const uint ixWznmVReqitmode
+			, const usmallint latency
+			, const string& shortMenu
+			, const uint widthMenu
+			, const bool initdoneHeadbar
+			, const bool initdoneList
+			, const bool initdoneRec
+		) {
+	if (difftag.length() == 0) difftag = "StatAppWznmVer";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["srefIxWznmVReqitmode"] = VecWznmVReqitmode::getSref(ixWznmVReqitmode);
+	me["latency"] = latency;
+	me["shortMenu"] = shortMenu;
+	me["widthMenu"] = widthMenu;
+	me["initdoneHeadbar"] = initdoneHeadbar;
+	me["initdoneList"] = initdoneList;
+	me["initdoneRec"] = initdoneRec;
+};
 
 void CrdWznmVer::StatApp::writeXML(
 			xmlTextWriter* wr
@@ -310,6 +347,68 @@ CrdWznmVer::StatShr::StatShr(
 	this->MitCrdFnmActive = MitCrdFnmActive;
 
 	mask = {JREFDLGBSCUI, JREFDLGCUSTJOB, JREFDLGCUSTJTR, JREFDLGCUSTUI, JREFDLGDBSTR, JREFDLGDEPLOY, JREFDLGFINMOD, JREFDLGGENJTR, JREFDLGGENUI, JREFDLGGLOBAL, JREFDLGIMPEXP, JREFDLGNEW, JREFDLGOPPACK, JREFDLGWRINIMDL, JREFHEADBAR, JREFLIST, JREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDPCVAVAIL, MITCRDPCVACTIVE, MSPCRD3AVAIL, MITCRDIDPAVAIL, MITCRDIDPACTIVE, MITCRDIGBAVAIL, MITCRDIGBACTIVE, MSPCRD4AVAIL, MITCRDIMDAVAIL, MITCRDIMDACTIVE, MSPCRD5AVAIL, MITCRDIDBAVAIL, MITCRDIDBACTIVE, MITCRDIBUAVAIL, MITCRDIBUACTIVE, MITCRDIIEAVAIL, MITCRDIIEACTIVE, MITCRDIOPAVAIL, MITCRDIOPACTIVE, MITCRDICJAVAIL, MITCRDICJACTIVE, MSPCRD6AVAIL, MITCRDGUIAVAIL, MITCRDGUIACTIVE, MITCRDAUIAVAIL, MITCRDAUIACTIVE, MITCRDGJTAVAIL, MITCRDGJTACTIVE, MITCRDAJTAVAIL, MITCRDAJTACTIVE, MSPCRD7AVAIL, MITCRDFNMAVAIL, MITCRDFNMACTIVE};
+};
+
+void CrdWznmVer::StatShr::writeJSON(
+			Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "StatShrWznmVer";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	me["scrJrefDlgbscui"] = Scr::scramble(jrefDlgbscui);
+	me["scrJrefDlgcustjob"] = Scr::scramble(jrefDlgcustjob);
+	me["scrJrefDlgcustjtr"] = Scr::scramble(jrefDlgcustjtr);
+	me["scrJrefDlgcustui"] = Scr::scramble(jrefDlgcustui);
+	me["scrJrefDlgdbstr"] = Scr::scramble(jrefDlgdbstr);
+	me["scrJrefDlgdeploy"] = Scr::scramble(jrefDlgdeploy);
+	me["scrJrefDlgfinmod"] = Scr::scramble(jrefDlgfinmod);
+	me["scrJrefDlggenjtr"] = Scr::scramble(jrefDlggenjtr);
+	me["scrJrefDlggenui"] = Scr::scramble(jrefDlggenui);
+	me["scrJrefDlgglobal"] = Scr::scramble(jrefDlgglobal);
+	me["scrJrefDlgimpexp"] = Scr::scramble(jrefDlgimpexp);
+	me["scrJrefDlgnew"] = Scr::scramble(jrefDlgnew);
+	me["scrJrefDlgoppack"] = Scr::scramble(jrefDlgoppack);
+	me["scrJrefDlgwrinimdl"] = Scr::scramble(jrefDlgwrinimdl);
+	me["scrJrefHeadbar"] = Scr::scramble(jrefHeadbar);
+	me["scrJrefList"] = Scr::scramble(jrefList);
+	me["scrJrefRec"] = Scr::scramble(jrefRec);
+	me["MspCrd1Avail"] = MspCrd1Avail;
+	me["MitCrdNewAvail"] = MitCrdNewAvail;
+	me["MitCrdPcvAvail"] = MitCrdPcvAvail;
+	me["MitCrdPcvActive"] = MitCrdPcvActive;
+	me["MspCrd3Avail"] = MspCrd3Avail;
+	me["MitCrdIdpAvail"] = MitCrdIdpAvail;
+	me["MitCrdIdpActive"] = MitCrdIdpActive;
+	me["MitCrdIgbAvail"] = MitCrdIgbAvail;
+	me["MitCrdIgbActive"] = MitCrdIgbActive;
+	me["MspCrd4Avail"] = MspCrd4Avail;
+	me["MitCrdImdAvail"] = MitCrdImdAvail;
+	me["MitCrdImdActive"] = MitCrdImdActive;
+	me["MspCrd5Avail"] = MspCrd5Avail;
+	me["MitCrdIdbAvail"] = MitCrdIdbAvail;
+	me["MitCrdIdbActive"] = MitCrdIdbActive;
+	me["MitCrdIbuAvail"] = MitCrdIbuAvail;
+	me["MitCrdIbuActive"] = MitCrdIbuActive;
+	me["MitCrdIieAvail"] = MitCrdIieAvail;
+	me["MitCrdIieActive"] = MitCrdIieActive;
+	me["MitCrdIopAvail"] = MitCrdIopAvail;
+	me["MitCrdIopActive"] = MitCrdIopActive;
+	me["MitCrdIcjAvail"] = MitCrdIcjAvail;
+	me["MitCrdIcjActive"] = MitCrdIcjActive;
+	me["MspCrd6Avail"] = MspCrd6Avail;
+	me["MitCrdGuiAvail"] = MitCrdGuiAvail;
+	me["MitCrdGuiActive"] = MitCrdGuiActive;
+	me["MitCrdAuiAvail"] = MitCrdAuiAvail;
+	me["MitCrdAuiActive"] = MitCrdAuiActive;
+	me["MitCrdGjtAvail"] = MitCrdGjtAvail;
+	me["MitCrdGjtActive"] = MitCrdGjtActive;
+	me["MitCrdAjtAvail"] = MitCrdAjtAvail;
+	me["MitCrdAjtActive"] = MitCrdAjtActive;
+	me["MspCrd7Avail"] = MspCrd7Avail;
+	me["MitCrdFnmAvail"] = MitCrdFnmAvail;
+	me["MitCrdFnmActive"] = MitCrdFnmActive;
 };
 
 void CrdWznmVer::StatShr::writeXML(
@@ -458,6 +557,36 @@ set<uint> CrdWznmVer::StatShr::diff(
  class CrdWznmVer::Tag
  ******************************************************************************/
 
+void CrdWznmVer::Tag::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+			, string difftag
+		) {
+	if (difftag.length() == 0) difftag = "TagWznmVer";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		me["MitCrdPcv"] = "Make project's current version";
+		me["MitCrdIdp"] = "Import deployment information ...";
+		me["MitCrdIgb"] = "Import global features ...";
+		me["MitCrdImd"] = "Write initial model file set ...";
+		me["MitCrdIdb"] = "Import database structure ...";
+		me["MitCrdIbu"] = "Import basic user interface structure ...";
+		me["MitCrdIie"] = "Import import/export structure ...";
+		me["MitCrdIop"] = "Import operation pack structure ...";
+		me["MitCrdIcj"] = "Import custom jobs ...";
+		me["MitCrdGui"] = "Generate user interface ...";
+		me["MitCrdAui"] = "Apply custom user interface features ...";
+		me["MitCrdGjt"] = "Generate job tree ...";
+		me["MitCrdAjt"] = "Apply custom job tree features ...";
+		me["MitCrdFnm"] = "Finalize model ...";
+	};
+	me["MitAppAbt"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::ABOUT, ixWznmVLocale)) + " ...";
+	me["MrlAppHlp"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::HELP, ixWznmVLocale)) + " ...";
+	me["MitCrdNew"] = StrMod::cap(VecWznmVTag::getTitle(VecWznmVTag::NEW, ixWznmVLocale)) + " ...";
+};
+
 void CrdWznmVer::Tag::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -513,6 +642,26 @@ string CrdWznmVer::DpchAppDo::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void CrdWznmVer::DpchAppDo::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmVerDo"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {jref = Scr::descramble(me["scrJref"].asString()); add(JREF);};
+		if (me.isMember("srefIxVDo")) {ixVDo = VecVDo::getIx(me["srefIxVDo"].asString()); add(IXVDO);};
+	} else {
+	};
 };
 
 void CrdWznmVer::DpchAppDo::readXML(
@@ -593,6 +742,20 @@ void CrdWznmVer::DpchEngData::merge(
 	if (src->has(STATAPP)) add(STATAPP);
 	if (src->has(STATSHR)) {statshr = src->statshr; add(STATSHR);};
 	if (src->has(TAG)) add(TAG);
+};
+
+void CrdWznmVer::DpchEngData::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmVerData"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFSGE)) feedFSge.writeJSON(me);
+	if (has(STATAPP)) StatApp::writeJSON(me);
+	if (has(STATSHR)) statshr.writeJSON(me);
+	if (has(TAG)) Tag::writeJSON(ixWznmVLocale, me);
 };
 
 void CrdWznmVer::DpchEngData::writeXML(

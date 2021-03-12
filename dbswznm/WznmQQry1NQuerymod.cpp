@@ -33,6 +33,21 @@ WznmQQry1NQuerymod::WznmQQry1NQuerymod(
 	this->qryNum = qryNum;
 };
 
+void WznmQQry1NQuerymod::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQQry1NQuerymod::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -98,6 +113,16 @@ ListWznmQQry1NQuerymod& ListWznmQQry1NQuerymod::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQQry1NQuerymod::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQQry1NQuerymod";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQQry1NQuerymod::writeXML(

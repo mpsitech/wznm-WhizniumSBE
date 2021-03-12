@@ -43,17 +43,17 @@ DlgWznmVerWrinimdl::DlgWznmVerWrinimdl(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	iexdpl = NULL;
 	iexgbl = NULL;
 	iexprj = NULL;
+	iexdpl = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	ixVDit = VecVDit::WRI;
 
-	iexdpl = new JobWznmIexDpl(xchg, dbswznm, jref, ixWznmVLocale);
 	iexgbl = new JobWznmIexGbl(xchg, dbswznm, jref, ixWznmVLocale);
 	iexprj = new JobWznmIexPrj(xchg, dbswznm, jref, ixWznmVLocale);
+	iexdpl = new JobWznmIexDpl(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -94,8 +94,8 @@ void DlgWznmVerWrinimdl::refreshWri(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfWri oldContinfwri(continfwri);
 	StatShrWri oldStatshrwri(statshrwri);
+	ContInfWri oldContinfwri(continfwri);
 
 	// IP refreshWri --- RBEGIN
 	// statshrwri
@@ -106,16 +106,16 @@ void DlgWznmVerWrinimdl::refreshWri(
 	continfwri.TxtPrg = getSquawk(dbswznm);
 
 	// IP refreshWri --- REND
-	if (continfwri.diff(&oldContinfwri).size() != 0) insert(moditems, DpchEngData::CONTINFWRI);
 	if (statshrwri.diff(&oldStatshrwri).size() != 0) insert(moditems, DpchEngData::STATSHRWRI);
+	if (continfwri.diff(&oldContinfwri).size() != 0) insert(moditems, DpchEngData::CONTINFWRI);
 };
 
 void DlgWznmVerWrinimdl::refreshFia(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrFia oldStatshrfia(statshrfia);
 	ContInfFia oldContinffia(continffia);
+	StatShrFia oldStatshrfia(statshrfia);
 
 	// IP refreshFia --- RBEGIN
 	// statshrfia
@@ -125,8 +125,8 @@ void DlgWznmVerWrinimdl::refreshFia(
 	continffia.Dld = "Inimdl_" + prjshort + ".tgz";
 
 	// IP refreshFia --- REND
-	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
 	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
+	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
 };
 
 void DlgWznmVerWrinimdl::refresh(
@@ -137,24 +137,24 @@ void DlgWznmVerWrinimdl::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	ContInf oldContinf(continf);
-	ContIac oldContiac(contiac);
 	StatShr oldStatshr(statshr);
+	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
-	// continf
-	continf.numFSge = ixVSge;
+	// statshr
+	statshr.ButDneActive = evalButDneActive(dbswznm);
 
 	// contiac
 	contiac.numFDse = ixVDit;
 
-	// statshr
-	statshr.ButDneActive = evalButDneActive(dbswznm);
+	// continf
+	continf.numFSge = ixVSge;
 
 	// IP refresh --- END
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshWri(dbswznm, moditems);
 	refreshFia(dbswznm, moditems);

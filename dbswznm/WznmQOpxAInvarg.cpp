@@ -51,6 +51,33 @@ WznmQOpxAInvarg::WznmQOpxAInvarg(
 	this->Comment = Comment;
 };
 
+void WznmQOpxAInvarg::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["srf"] = sref;
+		me["vty"] = srefIxWznmVVartype;
+		me["vty2"] = titIxWznmVVartype;
+		me["vec"] = stubRefWznmMVector;
+		me["dvl"] = Defval;
+		me["vit"] = stubRefWznmMVectoritem;
+		me["cmt"] = Comment;
+	} else {
+		me["sref"] = sref;
+		me["srefIxWznmVVartype"] = srefIxWznmVVartype;
+		me["titIxWznmVVartype"] = titIxWznmVVartype;
+		me["stubRefWznmMVector"] = stubRefWznmMVector;
+		me["Defval"] = Defval;
+		me["stubRefWznmMVectoritem"] = stubRefWznmMVectoritem;
+		me["Comment"] = Comment;
+	};
+};
+
 void WznmQOpxAInvarg::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -128,6 +155,16 @@ ListWznmQOpxAInvarg& ListWznmQOpxAInvarg::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQOpxAInvarg::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQOpxAInvarg";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQOpxAInvarg::writeXML(

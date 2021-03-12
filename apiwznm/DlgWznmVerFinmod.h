@@ -59,7 +59,7 @@ namespace DlgWznmVerFinmod {
 	/**
 	  * ContInf (full: ContInfDlgWznmVerFinmod)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -81,7 +81,7 @@ namespace DlgWznmVerFinmod {
 	/**
 	  * StatApp (full: StatAppDlgWznmVerFinmod)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint SHORTMENU = 1;
@@ -101,7 +101,7 @@ namespace DlgWznmVerFinmod {
 	/**
 	  * StatShr (full: StatShrDlgWznmVerFinmod)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint FNMBUTRUNACTIVE = 1;
@@ -125,7 +125,7 @@ namespace DlgWznmVerFinmod {
 	/**
 	  * Tag (full: TagDlgWznmVerFinmod)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -188,7 +188,7 @@ namespace DlgWznmVerFinmod {
 
 	public:
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

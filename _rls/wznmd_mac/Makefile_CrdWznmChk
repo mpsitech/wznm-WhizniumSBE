@@ -2,7 +2,7 @@
 # make file for CrdWznmChk card job handler, release wznmd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 13 Jan 2021
+# date created: 12 Mar 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmd/VecWznm -I$(BUILDROOT)/wznmd/IexWznm -I$(BUILDROOT)/wznmd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmChk.o PnlWznmChkRec.o PnlWznmChkDetail.o PnlWznmChkRef1NCall.o QryWznmChkRef1NCall.o PnlWznmChkHeadbar.o PnlWznmChkList.o QryWznmChkList.o
+OBJS = CrdWznmChk.o PnlWznmChkList.o QryWznmChkList.o PnlWznmChkHeadbar.o PnlWznmChkRec.o PnlWznmChkRef1NCall.o QryWznmChkRef1NCall.o PnlWznmChkDetail.o
 
 LIB = libcrdwznmchk
 

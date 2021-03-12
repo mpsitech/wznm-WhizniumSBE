@@ -31,6 +31,21 @@ WznmQMchSup1NMachine::WznmQMchSup1NMachine(
 	this->stubRef = stubRef;
 };
 
+void WznmQMchSup1NMachine::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQMchSup1NMachine::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQMchSup1NMachine& ListWznmQMchSup1NMachine::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQMchSup1NMachine::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQMchSup1NMachine";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQMchSup1NMachine::writeXML(

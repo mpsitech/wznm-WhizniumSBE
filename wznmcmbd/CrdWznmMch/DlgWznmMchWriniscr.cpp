@@ -86,8 +86,8 @@ void DlgWznmMchWriniscr::refreshWri(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfWri oldContinfwri(continfwri);
 	StatShrWri oldStatshrwri(statshrwri);
+	ContInfWri oldContinfwri(continfwri);
 
 	// IP refreshWri --- RBEGIN
 	// continfwri
@@ -98,16 +98,16 @@ void DlgWznmMchWriniscr::refreshWri(
 	statshrwri.ButStoActive = evalWriButStoActive(dbswznm);
 
 	// IP refreshWri --- REND
-	if (continfwri.diff(&oldContinfwri).size() != 0) insert(moditems, DpchEngData::CONTINFWRI);
 	if (statshrwri.diff(&oldStatshrwri).size() != 0) insert(moditems, DpchEngData::STATSHRWRI);
+	if (continfwri.diff(&oldContinfwri).size() != 0) insert(moditems, DpchEngData::CONTINFWRI);
 };
 
 void DlgWznmMchWriniscr::refreshFia(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrFia oldStatshrfia(statshrfia);
 	ContInfFia oldContinffia(continffia);
+	StatShrFia oldStatshrfia(statshrfia);
 
 	// IP refreshFia --- RBEGIN
 
@@ -122,8 +122,8 @@ void DlgWznmMchWriniscr::refreshFia(
 	statshrfia.DldActive = evalFiaDldActive(dbswznm);
 
 	// IP refreshFia --- REND
-	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
 	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
+	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
 };
 
 void DlgWznmMchWriniscr::refresh(
@@ -134,24 +134,24 @@ void DlgWznmMchWriniscr::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	ContInf oldContinf(continf);
-	ContIac oldContiac(contiac);
 	StatShr oldStatshr(statshr);
+	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
-	// continf
-	continf.numFSge = ixVSge;
+	// statshr
+	statshr.ButDneActive = evalButDneActive(dbswznm);
 
 	// contiac
 	contiac.numFDse = ixVDit;
 
-	// statshr
-	statshr.ButDneActive = evalButDneActive(dbswznm);
+	// continf
+	continf.numFSge = ixVSge;
 
 	// IP refresh --- END
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshWri(dbswznm, moditems);
 	refreshFia(dbswznm, moditems);
@@ -507,6 +507,7 @@ uint DlgWznmMchWriniscr::enterSgeWrite(
 	keys.push_back("dynlibflags"); Wznm::getMchmkf(dbswznm, refWznmMMachine, hrefsMch, "dynlibflags", s); vals.push_back(s);
 	keys.push_back("dynlibext"); Wznm::getMchmkf(dbswznm, refWznmMMachine, hrefsMch, "dynlibext", s); vals.push_back(s);
 
+	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("jsoncpp", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); if (s == "") s = "."; keys.push_back("libjsoncppinc"); vals.push_back(s);
 	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("xml2", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); if (s == "") s = "."; keys.push_back("libxmlinc"); vals.push_back(s);
 	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("mariadbclient", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); if (s == "") s = "."; keys.push_back("libmariadbinc"); vals.push_back(s);
 	s = ""; if (dbswznm->tblwznmmlibrary->loadRefBySrf("mysqlclient", ref)) Wznm::getLibmkf(dbswznm, ref, refWznmMMachine, hrefsMch, "incpath", s); if (s == "") s = "."; keys.push_back("libmysqlinc"); vals.push_back(s);

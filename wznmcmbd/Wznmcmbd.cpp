@@ -41,6 +41,27 @@ string DpchAppWznm::getSrefsMask() {
 	else return("");
 };
 
+void DpchAppWznm::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup[VecWznmVDpch::getSref(ixWznmVDpch)];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {
+			jref = Scr::descramble(me["scrJref"].asString());
+			add(JREF);
+		};
+	};
+};
+
 void DpchAppWznm::readXML(
 			xmlXPathContext* docctx
 			, string basexpath
@@ -93,6 +114,28 @@ string DpchAppWznmAlert::getSrefsMask() {
 	StrMod::vectorToString(ss, srefs);
 
 	return(srefs);
+};
+
+void DpchAppWznmAlert::readJSON(
+			Json::Value& sup
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	Json::Value& me = sup;
+	if (addbasetag) me = sup["DpchAppWznmAlert"];
+
+	basefound = (me != Json::nullValue);
+
+	if (basefound) {
+		if (me.isMember("scrJref")) {
+			jref = Scr::descramble(me["scrJref"].asString());
+			add(JREF);
+		};
+		if (me.isMember("numFMcb")) {numFMcb = me["numFMcb"].asInt(); add(NUMFMCB);};
+	};
 };
 
 void DpchAppWznmAlert::readXML(
@@ -178,6 +221,15 @@ void DpchEngWznm::merge(
 	if (src->has(JREF)) {jref = src->jref; add(JREF);};
 };
 
+void DpchEngWznm::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup[VecWznmVDpch::getSref(ixWznmVDpch)] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+};
+
 void DpchEngWznm::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -253,6 +305,17 @@ void DpchEngWznmAlert::merge(
 	if (src->has(FEEDFMCB)) {feedFMcb = src->feedFMcb; add(FEEDFMCB);};
 };
 
+void DpchEngWznmAlert::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmAlert"] = Json::Value(Json::objectValue);
+
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(CONTINF)) continf.writeJSON(me);
+	if (has(FEEDFMCB)) feedFMcb.writeJSON(me);
+};
+
 void DpchEngWznmAlert::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -318,6 +381,17 @@ void DpchEngWznmConfirm::merge(
 	if (src->has(SREF)) {sref = src->sref; add(SREF);};
 };
 
+void DpchEngWznmConfirm::writeJSON(
+			const uint ixWznmVLocale
+			, Json::Value& sup
+		) {
+	Json::Value& me = sup["DpchEngWznmConfirm"] = Json::Value(Json::objectValue);
+
+	if (has(ACCEPTED)) me["accepted"] = accepted;
+	if (has(JREF)) me["scrJref"] = Scr::scramble(jref);
+	if (has(SREF)) me["sref"] = sref;
+};
+
 void DpchEngWznmConfirm::writeXML(
 			const uint ixWznmVLocale
 			, xmlTextWriter* wr
@@ -348,12 +422,18 @@ DpchEngWznmSuspend::DpchEngWznmSuspend(
 StgWznmAppearance::StgWznmAppearance(
 			const usmallint histlength
 			, const bool suspsess
+			, const uint sesstterm
+			, const uint sesstwarn
+			, const uint roottterm
 		) :
 			Block()
 		{
 	this->histlength = histlength;
 	this->suspsess = suspsess;
-	mask = {HISTLENGTH, SUSPSESS};
+	this->sesstterm = sesstterm;
+	this->sesstwarn = sesstwarn;
+	this->roottterm = roottterm;
+	mask = {HISTLENGTH, SUSPSESS, SESSTTERM, SESSTWARN, ROOTTTERM};
 };
 
 bool StgWznmAppearance::readXML(
@@ -375,6 +455,9 @@ bool StgWznmAppearance::readXML(
 	if (basefound) {
 		if (extractUsmallintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "histlength", histlength)) add(HISTLENGTH);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "suspsess", suspsess)) add(SUSPSESS);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "sesstterm", sesstterm)) add(SESSTTERM);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "sesstwarn", sesstwarn)) add(SESSTWARN);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "roottterm", roottterm)) add(ROOTTTERM);
 	};
 
 	return basefound;
@@ -394,6 +477,9 @@ void StgWznmAppearance::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUsmallintAttr(wr, itemtag, "sref", "histlength", histlength);
 		writeBoolAttr(wr, itemtag, "sref", "suspsess", suspsess);
+		writeUintAttr(wr, itemtag, "sref", "sesstterm", sesstterm);
+		writeUintAttr(wr, itemtag, "sref", "sesstwarn", sesstwarn);
+		writeUintAttr(wr, itemtag, "sref", "roottterm", roottterm);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -404,6 +490,9 @@ set<uint> StgWznmAppearance::comm(
 
 	if (histlength == comp->histlength) insert(items, HISTLENGTH);
 	if (suspsess == comp->suspsess) insert(items, SUSPSESS);
+	if (sesstterm == comp->sesstterm) insert(items, SESSTTERM);
+	if (sesstwarn == comp->sesstwarn) insert(items, SESSTWARN);
+	if (roottterm == comp->roottterm) insert(items, ROOTTTERM);
 
 	return(items);
 };
@@ -416,7 +505,7 @@ set<uint> StgWznmAppearance::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {HISTLENGTH, SUSPSESS};
+	diffitems = {HISTLENGTH, SUSPSESS, SESSTTERM, SESSTWARN, ROOTTTERM};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -897,10 +986,10 @@ DpchEngWznmAlert* AlrWznm::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE version v1.1.4 released on 13-1-2021";
+		continf.TxtMsg1 = "WhizniumSBE version v1.1.5 released on 12-3-2021";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
-		continf.TxtMsg6 = "libraries: apiwzlm 1.0.0, curl 7.65, git2 0.24.0, jsoncpp 1.8 and openssl 1.1.1";
+		continf.TxtMsg6 = "libraries: apiwzlm 1.0.0, curl 7.65, git2 0.24.0, jsoncpp 1.8.4 and openssl 1.1.1";
 		continf.TxtMsg8 = "WhizniumSBE implements all functionality of the Whiznium Service Builder's Edition framework for automated code generation and iteration.";
 	};
 
@@ -983,6 +1072,58 @@ DpchEngWznmAlert* AlrWznm::prepareAlrSav(
 	return(new DpchEngWznmAlert(jref, &continf, &feedFMcbAlert, {DpchEngWznmAlert::ALL}));
 };
 
+DpchEngWznmAlert* AlrWznm::prepareAlrTrm(
+			const ubigint jref
+			, const uint ixWznmVLocale
+			, const uint sesstterm
+			, const uint sesstwarn
+			, Feed& feedFMcbAlert
+		) {
+	ContInfWznmAlert continf;
+	// IP prepareAlrTrm --- BEGIN
+	continf.TxtCpt = VecWznmVTag::getTitle(VecWznmVTag::ANNOUNCE, ixWznmVLocale);
+	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
+
+	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
+		continf.TxtMsg1 = "Your session has been inactive for " + prepareAlrTrm_dtToString(ixWznmVLocale, sesstterm) + ". It will be terminated in " + prepareAlrTrm_dtToString(ixWznmVLocale, sesstwarn) + ".";
+	};
+
+	feedFMcbAlert.clear();
+
+	VecWznmVTag::appendToFeed(VecWznmVTag::OK, ixWznmVLocale, feedFMcbAlert);
+	feedFMcbAlert.cap();
+	// IP prepareAlrTrm --- END
+	return(new DpchEngWznmAlert(jref, &continf, &feedFMcbAlert, {DpchEngWznmAlert::ALL}));
+};
+
+string AlrWznm::prepareAlrTrm_dtToString(
+			const uint ixWznmVLocale
+			, const time_t dt
+		) {
+	string s;
+
+	if ((dt%3600) == 0) {
+		s = to_string(dt/3600);
+
+		if (dt == 3600) s += " " + VecWznmVTag::getTitle(VecWznmVTag::HOUR, ixWznmVLocale);
+		else s += " " + VecWznmVTag::getTitle(VecWznmVTag::HOURS, ixWznmVLocale);
+
+	} else if ((dt%60) == 0) {
+		s = to_string(dt/60);
+
+		if (dt == 60) s += " " + VecWznmVTag::getTitle(VecWznmVTag::MINUTE, ixWznmVLocale);
+		else s += " " + VecWznmVTag::getTitle(VecWznmVTag::MINUTES, ixWznmVLocale);
+
+	} else {
+		s = to_string(dt);
+
+		if (dt == 1) s += " " + VecWznmVTag::getTitle(VecWznmVTag::SECOND, ixWznmVLocale);
+		else s += " " + VecWznmVTag::getTitle(VecWznmVTag::SECONDS, ixWznmVLocale);
+	};
+
+	return s;
+};
+
 /******************************************************************************
  class ReqWznm
  ******************************************************************************/
@@ -1008,6 +1149,8 @@ ReqWznm::ReqWznm(
 
 	request = NULL;
 	requestlen = 0;
+
+	jsonNotXml = false;
 
 	jref = 0;
 
@@ -1669,10 +1812,10 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSREF);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPBUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSREF);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCAPSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMDLGUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMDLGSTD);
@@ -1680,8 +1823,8 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMEVTSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFEDUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFILSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIELUPD_REFEQ) {
@@ -1699,8 +1842,8 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOCUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCHUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
@@ -1716,8 +1859,8 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPNLUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPNLSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRJUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSHORT);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRSUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRSSTD);
@@ -1754,8 +1897,8 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSEQSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSESUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESMENU);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESMENU);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGEUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSGESTD);
@@ -1772,26 +1915,26 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTBLUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTBLSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTCOUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSGUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSGSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMGROUP);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSRUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMOWNER);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMOWNER);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVECUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVECSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVERUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERNO);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVITUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSTD);
 	};
 
@@ -2019,7 +2162,7 @@ WakeupWznm::WakeupWznm(
 			, const ubigint wref
 			, const ubigint jref
 			, const string sref
-			, const unsigned int deltat
+			, const uint64_t deltat
 			, const bool weak
 		) {
 	this->xchg = xchg;
@@ -2150,7 +2293,7 @@ void XchgWznmcmbd::startMon() {
 	Clstn* clstn = NULL;
 	Preset* preset = NULL;
 
-	mon.start("WhizniumSBE v1.1.4", stgwznmpath.monpath);
+	mon.start("WhizniumSBE v1.1.5", stgwznmpath.monpath);
 
 	rwmJobs.rlock("XchgWznmcmbd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {
@@ -2413,11 +2556,16 @@ Arg XchgWznmcmbd::getPreset(
 		time_t rawtime;
 		time(&rawtime);
 
-		arg.mask = Arg::INTVAL;
+		if (ixWznmVPreset == VecWznmVPreset::PREWZNMSYSSTAMP) {
+			arg.mask = Arg::REF;
+			arg.ref = rawtime;
 
-		if (ixWznmVPreset == VecWznmVPreset::PREWZNMSYSDATE) arg.intval = (rawtime-rawtime%(3600*24))/(3600*24);
-		else if (ixWznmVPreset == VecWznmVPreset::PREWZNMSYSTIME) arg.intval = rawtime%(3600*24);
-		else if (ixWznmVPreset == VecWznmVPreset::PREWZNMSYSSTAMP) arg.intval = rawtime;
+		} else {
+			arg.mask = Arg::INTVAL;
+
+			if (ixWznmVPreset == VecWznmVPreset::PREWZNMSYSDATE) arg.intval = (rawtime-rawtime%(3600*24))/(3600*24);
+			else arg.intval = rawtime%(3600*24);
+		};
 
 	} else {
 		rwmJobs.rlock("XchgWznmcmbd", "getPreset", "jref=" + to_string(jref));
@@ -4102,7 +4250,7 @@ set<ubigint> XchgWznmcmbd::getCsjobClisByJref(
 ubigint XchgWznmcmbd::addWakeup(
 			const ubigint jref
 			, const string sref
-			, const unsigned int deltat
+			, const uint64_t deltat
 			, const bool weak
 		) {
 	int res;

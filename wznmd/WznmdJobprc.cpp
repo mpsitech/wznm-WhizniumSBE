@@ -183,8 +183,17 @@ void WznmdJobprc::accessJob(
 			, DbsWznm* dbswznm
 			, ReqWznm* req
 		) {
+	time_t rawtime;
+
 	JobWznm* job = NULL;
-	
+
+	if ((req->ixVBasetype == ReqWznm::VecVBasetype::CMD) || (req->ixVBasetype == ReqWznm::VecVBasetype::DPCHAPP) || (req->ixVBasetype == ReqWznm::VecVBasetype::UPLOAD) || (req->ixVBasetype == ReqWznm::VecVBasetype::DOWNLOAD)) {
+		if ((xchg->stgwznmappearance.roottterm != 0) || (xchg->stgwznmappearance.sesstterm != 0)) {
+			time(&rawtime);
+			xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, req->jref, VecWznmVPreset::PREWZNMTLAST, rawtime);
+		};
+	};
+
 	job = xchg->getJobByJref(req->jref);
 	if (job) {
 		if (!req->weak) job->lockAccess("WznmdJobprc", "accessJob");

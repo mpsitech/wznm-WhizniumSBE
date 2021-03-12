@@ -31,6 +31,21 @@ WznmQApp1NEvent::WznmQApp1NEvent(
 	this->stubRef = stubRef;
 };
 
+void WznmQApp1NEvent::writeJSON(
+			Json::Value& sup
+			, bool jnumattr
+			, bool shorttags
+		) {
+	Json::Value& me = sup.append(Json::Value(Json::objectValue));
+
+	if (jnumattr) me["jnum"] = jnum;
+	if (shorttags) {
+		me["ref"] = stubRef;
+	} else {
+		me["stubRef"] = stubRef;
+	};
+};
+
 void WznmQApp1NEvent::writeXML(
 			xmlTextWriter* wr
 			, string difftag
@@ -96,6 +111,16 @@ ListWznmQApp1NEvent& ListWznmQApp1NEvent::operator=(
 	};
 
 	return(*this);
+};
+
+void ListWznmQApp1NEvent::writeJSON(
+			Json::Value& sup
+			, std::string difftag
+		) {
+	if (difftag == "") difftag = "ListWznmQApp1NEvent";
+
+	Json::Value& me = sup[difftag] = Json::Value(Json::arrayValue);
+	for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeJSON(me, true, true);
 };
 
 void ListWznmQApp1NEvent::writeXML(

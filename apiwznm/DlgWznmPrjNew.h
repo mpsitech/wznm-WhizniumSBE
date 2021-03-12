@@ -64,7 +64,7 @@ namespace DlgWznmPrjNew {
 	/**
 	  * ContIac (full: ContIacDlgWznmPrjNew)
 	  */
-	class ContIac : public Sbecore::Xmlio::Block {
+	class ContIac : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DETTXFSHO = 1;
@@ -97,7 +97,7 @@ namespace DlgWznmPrjNew {
 	/**
 	  * ContInf (full: ContInfDlgWznmPrjNew)
 	  */
-	class ContInf : public Sbecore::Xmlio::Block {
+	class ContInf : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint NUMFSGE = 1;
@@ -117,7 +117,7 @@ namespace DlgWznmPrjNew {
 	/**
 	  * StatApp (full: StatAppDlgWznmPrjNew)
 	  */
-	class StatApp : public Sbecore::Xmlio::Block {
+	class StatApp : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint SHORTMENU = 1;
@@ -141,7 +141,7 @@ namespace DlgWznmPrjNew {
 	/**
 	  * StatShr (full: StatShrDlgWznmPrjNew)
 	  */
-	class StatShr : public Sbecore::Xmlio::Block {
+	class StatShr : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint DETBUTAUTACTIVE = 1;
@@ -165,7 +165,7 @@ namespace DlgWznmPrjNew {
 	/**
 	  * Tag (full: TagDlgWznmPrjNew)
 	  */
-	class Tag : public Sbecore::Xmlio::Block {
+	class Tag : public Sbecore::Block {
 
 	public:
 		static const Sbecore::uint CPT = 1;
@@ -268,11 +268,11 @@ namespace DlgWznmPrjNew {
 	public:
 		ContIac contiac;
 		ContInf continf;
-		Sbecore::Xmlio::Feed feedFDetLstDty;
-		Sbecore::Xmlio::Feed feedFDetLstLoc;
-		Sbecore::Xmlio::Feed feedFDetPupPlc;
-		Sbecore::Xmlio::Feed feedFDetPupPmc;
-		Sbecore::Xmlio::Feed feedFSge;
+		Sbecore::Feed feedFDetLstDty;
+		Sbecore::Feed feedFDetLstLoc;
+		Sbecore::Feed feedFDetPupPlc;
+		Sbecore::Feed feedFDetPupPmc;
+		Sbecore::Feed feedFSge;
 		StatApp statapp;
 		StatShr statshr;
 		Tag tag;

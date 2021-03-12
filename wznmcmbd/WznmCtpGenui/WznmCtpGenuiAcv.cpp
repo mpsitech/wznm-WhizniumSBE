@@ -20,6 +20,8 @@ using namespace Sbecore;
 using namespace Xmlio;
 using namespace WznmCtpGenui;
 
+// IP ns.cust --- INSERT
+
 /******************************************************************************
  namespace WznmCtpGenuiAcv
  ******************************************************************************/
@@ -36,7 +38,17 @@ DpchRetWznmCtpGenui* WznmCtpGenuiAcv::run(
 
 	std::string logfile;
 
-	// IP run --- INSERT
+	// IP run --- IBEGIN
+	bool uld = false;
+
+	if (uld) {
+		// add create file dialog DlgXxxxFilNew
+		// cf. IexWznmUix_plnr DlgPlnrFilNew
+	};
+
+	// add download dialog DlgXxxxFilDownload
+	// cf. IexWznmUix_plnr DlgPlnrFilDownload
+	// IP run --- IEND
 
 	return(new DpchRetWznmCtpGenui("", "", ixOpVOpres, 100, logfile));
 };
