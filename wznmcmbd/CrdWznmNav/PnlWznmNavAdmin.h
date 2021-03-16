@@ -210,7 +210,7 @@ public:
 		std::string getSrefsMask();
 		void merge(DpchEngWznm* dpcheng);
 
-		void writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);
+		void writeJSON(const Sbecore::uint ixWznmVLocale, Json::Value& sup);
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 

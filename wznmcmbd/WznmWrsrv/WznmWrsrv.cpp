@@ -436,7 +436,7 @@ void WznmWrsrv::writeBlkdpchH(
 			outfile << "\t\tvoid readXML(xmlXPathContext* docctx, std::string basexpath = \"\", bool addbasetag = false);" << endl;
 		};
 		if (blk->reaIxWznmWScope & VecWznmWScope::APP) {
-			outfile << "\t\tvoid writeJSON(const Sbecore::uint ixWzskVLocale, Json::Value& sup);" << endl;
+			outfile << "\t\tvoid writeJSON(const Sbecore::uint ix" << Prjshort << "VLocale, Json::Value& sup);" << endl;
 			outfile << "\t\tvoid writeXML(const Sbecore::uint ix" << Prjshort << "VLocale, xmlTextWriter* wr);" << endl;
 		};
 		outfile << "\t};" << endl;
