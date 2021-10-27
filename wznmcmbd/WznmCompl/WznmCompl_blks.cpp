@@ -64,6 +64,52 @@ void DpchInvWznmComplBscui::writeXML(
 };
 
 /******************************************************************************
+ class DpchInvWznmComplCtpcpy
+ ******************************************************************************/
+
+DpchInvWznmComplCtpcpy::DpchInvWznmComplCtpcpy(
+			const ubigint oref
+			, const ubigint jref
+			, const ubigint refWznmMCapability
+		) :
+			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMCOMPLCTPCPY, oref, jref)
+		{
+	this->refWznmMCapability = refWznmMCapability;
+};
+
+void DpchInvWznmComplCtpcpy::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "DpchInvWznmComplCtpcpy");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	if (basefound) {
+		if (extractStringUclc(docctx, basexpath, "scrOref", "", scrOref)) add(SCROREF);
+		if (extractStringUclc(docctx, basexpath, "scrJref", "", scrJref)) add(SCRJREF);
+		if (extractUbigintUclc(docctx, basexpath, "refWznmMCapability", "", refWznmMCapability)) add(REFWZNMMCAPABILITY);
+	};
+};
+
+void DpchInvWznmComplCtpcpy::writeXML(
+			xmlTextWriter* wr
+		) {
+	xmlTextWriterStartElement(wr, BAD_CAST "DpchInvWznmComplCtpcpy");
+	xmlTextWriterWriteAttribute(wr, BAD_CAST "xmlns", BAD_CAST "http://www.mpsitech.com/wznm");
+		writeString(wr, "scrOref", Scr::scramble(oref));
+		writeString(wr, "scrJref", Scr::scramble(jref));
+		writeUbigint(wr, "refWznmMCapability", refWznmMCapability);
+	xmlTextWriterEndElement(wr);
+};
+
+/******************************************************************************
  class DpchInvWznmComplDbs
  ******************************************************************************/
 

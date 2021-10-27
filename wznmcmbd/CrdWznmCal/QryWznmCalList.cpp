@@ -245,11 +245,11 @@ void QryWznmCalList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::IAT) sqlstr += " ORDER BY TblWznmMCall.invIxWznmWArgtype ASC";
-	else if (preIxOrd == VecVOrd::RAT) sqlstr += " ORDER BY TblWznmMCall.retIxWznmWArgtype ASC";
-	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMCall.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMCall.refIxVTbl ASC";
+	if (preIxOrd == VecVOrd::RAT) sqlstr += " ORDER BY TblWznmMCall.retIxWznmWArgtype ASC";
+	else if (preIxOrd == VecVOrd::IAT) sqlstr += " ORDER BY TblWznmMCall.invIxWznmWArgtype ASC";
 	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMCall.refUref ASC";
+	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMCall.refIxVTbl ASC";
+	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMCall.refWznmMVersion ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMCall.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMCall.sref ASC";
 };

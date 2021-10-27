@@ -25,7 +25,7 @@ namespace WznmWrsrvJob {
 
 	void writeJobCpp(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, ListWznmRMJobMJob& jrjs, ListWznmMVector& vecs, ListWznmMBlock& blks, ListWznmMBlock& dpchs, ListWznmMBlock& rets, ListWznmMControl& cons, ListWznmMFeed& feds, ListWznmMStage& sges, std::map<Sbecore::ubigint,std::string>& srefsSges, ListWznmAMJobCmd& cmds, ListWznmMMethod& mtds, ListWznmMSensitivity& snss, ListWznmMTable& rectbls, const std::string& Prjshort, ListWznmMLocale& lcls, const bool hasblks, const bool hasevals, const bool hasdpch, const bool hassge, const bool hassgealr, const bool hasuld, const bool hasdld, const bool hasret, const bool hastmr, const bool hascall);
 
-	void wrIparpa(std::fstream& outfile, const std::string& sref, const Sbecore::uint ixWznmVVartype, const bool newline, const bool refNotConst, const bool ns);
+	void wrIparpa(std::fstream& outfile, const std::string& sref, const std::string& Comment, const Sbecore::uint ixWznmVVartype, const bool newline, const bool refNotConst, const bool ns);
 
 	void analyzeSns(DbsWznm* dbswznm, WznmMSensitivity* sns, const std::map<std::string,Sbecore::uint>& csasJrjs, const std::map<Sbecore::ubigint,std::string>& srefsSges, const std::string& Prjshort, std::string& fctname, std::string& fctif, Sbecore::uint& skipInvIxWznmWArgtype, bool& skipsref, bool& skipsge, Sbecore::Arg& arg, bool& nonspecarg);
 

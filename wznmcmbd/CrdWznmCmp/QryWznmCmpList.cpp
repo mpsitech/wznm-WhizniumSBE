@@ -218,8 +218,8 @@ void QryWznmCmpList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMComponent.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMComponent.sref ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMComponent.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMComponent.sref ASC";
 };
 
 void QryWznmCmpList::fetch(

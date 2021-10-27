@@ -38,15 +38,15 @@ PnlWznmQryRec::PnlWznmQryRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlmndialog = NULL;
 	pnlmnpanel = NULL;
+	pnlmndialog = NULL;
 	pnlmntable = NULL;
 	pnlsup1nquery = NULL;
-	pnlaorder = NULL;
-	pnl1nquerymod = NULL;
 	pnlqry1nquerycol = NULL;
-	pnldetail = NULL;
+	pnl1nquerymod = NULL;
+	pnlaorder = NULL;
 	pnlaclause = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -110,33 +110,33 @@ void PnlWznmQryRec::refresh(
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnlaclause) {delete pnlaclause; pnlaclause = NULL;};
 		if (pnlaorder) {delete pnlaorder; pnlaorder = NULL;};
-		if (pnlqry1nquerycol) {delete pnlqry1nquerycol; pnlqry1nquerycol = NULL;};
 		if (pnl1nquerymod) {delete pnl1nquerymod; pnl1nquerymod = NULL;};
+		if (pnlqry1nquerycol) {delete pnlqry1nquerycol; pnlqry1nquerycol = NULL;};
 		if (pnlsup1nquery) {delete pnlsup1nquery; pnlsup1nquery = NULL;};
 		if (pnlmntable) {delete pnlmntable; pnlmntable = NULL;};
-		if (pnlmnpanel) {delete pnlmnpanel; pnlmnpanel = NULL;};
 		if (pnlmndialog) {delete pnlmndialog; pnlmndialog = NULL;};
+		if (pnlmnpanel) {delete pnlmnpanel; pnlmnpanel = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmQryDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlaclause) pnlaclause = new PnlWznmQryAClause(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlaorder) pnlaorder = new PnlWznmQryAOrder(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlqry1nquerycol) pnlqry1nquerycol = new PnlWznmQryQry1NQuerycol(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nquerymod) pnl1nquerymod = new PnlWznmQry1NQuerymod(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlqry1nquerycol) pnlqry1nquerycol = new PnlWznmQryQry1NQuerycol(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlsup1nquery) pnlsup1nquery = new PnlWznmQrySup1NQuery(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmntable) pnlmntable = new PnlWznmQryMNTable(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlmnpanel) pnlmnpanel = new PnlWznmQryMNPanel(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmndialog) pnlmndialog = new PnlWznmQryMNDialog(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlmnpanel) pnlmnpanel = new PnlWznmQryMNPanel(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jrefAClause = ((pnlaclause) ? pnlaclause->jref : 0);
 	statshr.jrefAOrder = ((pnlaorder) ? pnlaorder->jref : 0);
-	statshr.jrefQry1NQuerycol = ((pnlqry1nquerycol) ? pnlqry1nquerycol->jref : 0);
 	statshr.jref1NQuerymod = ((pnl1nquerymod) ? pnl1nquerymod->jref : 0);
+	statshr.jrefQry1NQuerycol = ((pnlqry1nquerycol) ? pnlqry1nquerycol->jref : 0);
 	statshr.jrefSup1NQuery = ((pnlsup1nquery) ? pnlsup1nquery->jref : 0);
 	statshr.jrefMNTable = ((pnlmntable) ? pnlmntable->jref : 0);
-	statshr.jrefMNPanel = ((pnlmnpanel) ? pnlmnpanel->jref : 0);
 	statshr.jrefMNDialog = ((pnlmndialog) ? pnlmndialog->jref : 0);
+	statshr.jrefMNPanel = ((pnlmnpanel) ? pnlmnpanel->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -166,12 +166,12 @@ void PnlWznmQryRec::updatePreset(
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlaclause) pnlaclause->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlaorder) pnlaorder->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlqry1nquerycol) pnlqry1nquerycol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nquerymod) pnl1nquerymod->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlqry1nquerycol) pnlqry1nquerycol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlsup1nquery) pnlsup1nquery->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmntable) pnlmntable->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlmnpanel) pnlmnpanel->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmndialog) pnlmndialog->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlmnpanel) pnlmnpanel->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswznm, moditems);

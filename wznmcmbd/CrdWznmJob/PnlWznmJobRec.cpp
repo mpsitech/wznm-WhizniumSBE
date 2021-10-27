@@ -39,16 +39,16 @@ PnlWznmJobRec::PnlWznmJobRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlsubmnjob = NULL;
-	pnlmnop = NULL;
-	pnlmnoppack = NULL;
 	pnlsupmnjob = NULL;
+	pnlmnoppack = NULL;
+	pnlmnop = NULL;
 	pnlref1nblock = NULL;
-	pnl1nsensitivity = NULL;
 	pnlhk1nvector = NULL;
+	pnl1nsensitivity = NULL;
 	pnljob1nstage = NULL;
+	pnl1nmethod = NULL;
 	pnl1nrtjob = NULL;
 	pnlacmd = NULL;
-	pnl1nmethod = NULL;
 	pnlavar = NULL;
 	pnldetail = NULL;
 
@@ -116,44 +116,44 @@ void PnlWznmJobRec::refresh(
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnlavar) {delete pnlavar; pnlavar = NULL;};
 		if (pnlacmd) {delete pnlacmd; pnlacmd = NULL;};
-		if (pnl1nmethod) {delete pnl1nmethod; pnl1nmethod = NULL;};
 		if (pnl1nrtjob) {delete pnl1nrtjob; pnl1nrtjob = NULL;};
+		if (pnl1nmethod) {delete pnl1nmethod; pnl1nmethod = NULL;};
 		if (pnljob1nstage) {delete pnljob1nstage; pnljob1nstage = NULL;};
 		if (pnl1nsensitivity) {delete pnl1nsensitivity; pnl1nsensitivity = NULL;};
 		if (pnlhk1nvector) {delete pnlhk1nvector; pnlhk1nvector = NULL;};
 		if (pnlref1nblock) {delete pnlref1nblock; pnlref1nblock = NULL;};
+		if (pnlmnop) {delete pnlmnop; pnlmnop = NULL;};
 		if (pnlmnoppack) {delete pnlmnoppack; pnlmnoppack = NULL;};
 		if (pnlsupmnjob) {delete pnlsupmnjob; pnlsupmnjob = NULL;};
-		if (pnlmnop) {delete pnlmnop; pnlmnop = NULL;};
 		if (pnlsubmnjob) {delete pnlsubmnjob; pnlsubmnjob = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmJobDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlavar) pnlavar = new PnlWznmJobAVar(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlacmd) pnlacmd = new PnlWznmJobACmd(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnl1nmethod) pnl1nmethod = new PnlWznmJob1NMethod(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nrtjob) pnl1nrtjob = new PnlWznmJob1NRtjob(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnl1nmethod) pnl1nmethod = new PnlWznmJob1NMethod(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnljob1nstage) pnljob1nstage = new PnlWznmJobJob1NStage(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nsensitivity) pnl1nsensitivity = new PnlWznmJob1NSensitivity(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlhk1nvector) pnlhk1nvector = new PnlWznmJobHk1NVector(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1nblock) pnlref1nblock = new PnlWznmJobRef1NBlock(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlmnop) pnlmnop = new PnlWznmJobMNOp(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmnoppack) pnlmnoppack = new PnlWznmJobMNOppack(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlsupmnjob) pnlsupmnjob = new PnlWznmJobSupMNJob(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlmnop) pnlmnop = new PnlWznmJobMNOp(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlsubmnjob) pnlsubmnjob = new PnlWznmJobSubMNJob(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jrefAVar = ((pnlavar) ? pnlavar->jref : 0);
 	statshr.jrefACmd = ((pnlacmd) ? pnlacmd->jref : 0);
-	statshr.jref1NMethod = ((pnl1nmethod) ? pnl1nmethod->jref : 0);
 	statshr.jref1NRtjob = ((pnl1nrtjob) ? pnl1nrtjob->jref : 0);
+	statshr.jref1NMethod = ((pnl1nmethod) ? pnl1nmethod->jref : 0);
 	statshr.jrefJob1NStage = ((pnljob1nstage) ? pnljob1nstage->jref : 0);
 	statshr.jref1NSensitivity = ((pnl1nsensitivity) ? pnl1nsensitivity->jref : 0);
 	statshr.jrefHk1NVector = ((pnlhk1nvector) ? pnlhk1nvector->jref : 0);
 	statshr.jrefRef1NBlock = ((pnlref1nblock) ? pnlref1nblock->jref : 0);
+	statshr.jrefMNOp = ((pnlmnop) ? pnlmnop->jref : 0);
 	statshr.jrefMNOppack = ((pnlmnoppack) ? pnlmnoppack->jref : 0);
 	statshr.jrefSupMNJob = ((pnlsupmnjob) ? pnlsupmnjob->jref : 0);
-	statshr.jrefMNOp = ((pnlmnop) ? pnlmnop->jref : 0);
 	statshr.jrefSubMNJob = ((pnlsubmnjob) ? pnlsubmnjob->jref : 0);
 
 	// IP refresh --- END
@@ -184,15 +184,15 @@ void PnlWznmJobRec::updatePreset(
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlavar) pnlavar->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlacmd) pnlacmd->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnl1nmethod) pnl1nmethod->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nrtjob) pnl1nrtjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnl1nmethod) pnl1nmethod->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnljob1nstage) pnljob1nstage->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nsensitivity) pnl1nsensitivity->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlhk1nvector) pnlhk1nvector->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1nblock) pnlref1nblock->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlmnop) pnlmnop->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmnoppack) pnlmnoppack->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlsupmnjob) pnlsupmnjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlmnop) pnlmnop->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlsubmnjob) pnlsubmnjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 

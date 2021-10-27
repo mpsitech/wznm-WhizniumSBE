@@ -449,7 +449,7 @@ void WznmWrsrvJob::writeJobH(
 
 		if (var->Shr) {
 			if (!first && (var->refWznmCAMJobVar != refC)) outfile << endl;
-			wrVarDeclH(outfile, var->ixWznmVVartype, var->sref, 1);
+			wrVarDeclH(outfile, var->ixWznmVVartype, var->sref, var->Comment, 1);
 
 			refC = var->refWznmCAMJobVar;
 			first = false;
@@ -504,7 +504,7 @@ void WznmWrsrvJob::writeJobH(
 
 		if (dbswznm->tblwznmmjob->loadRecByRef(jrj->subRefWznmMJob, &subjob)) {
 			if (jrj->Multi) {
-				outfile << "\tstd::list<" << subjob->sref << "*> " << jrj->Short << "s;" << endl;
+				outfile << "\tstd::map<Sbecore::ubigint, Job" << Prjshort << "*> " << jrj->Short << "s;" << endl;
 			} else {
 				outfile << "\t" << subjob->sref << "* " << jrj->Short << ";" << endl;
 			};
@@ -523,7 +523,7 @@ void WznmWrsrvJob::writeJobH(
 
 		if (!var->Shr) {
 			if (!first && (var->refWznmCAMJobVar != refC)) outfile << endl;
-			wrVarDeclH(outfile, var->ixWznmVVartype, var->sref, 0);
+			wrVarDeclH(outfile, var->ixWznmVVartype, var->sref, var->Comment, 0);
 
 			refC = var->refWznmCAMJobVar;
 			first = false;
@@ -543,12 +543,12 @@ void WznmWrsrvJob::writeJobH(
 
 		for (unsigned int j = 0; j < ipas.nodes.size(); j++) {
 			ipa = ipas.nodes[j];
-			wrIparpa(outfile, ipa->sref, ipa->ixWznmVVartype, false, false, true);
+			wrIparpa(outfile, ipa->sref, "", ipa->ixWznmVVartype, false, false, true);
 		};
 
 		for (unsigned int j = 0; j < rpas.nodes.size(); j++) {
 			rpa = rpas.nodes[j];
-			wrIparpa(outfile, rpa->sref, rpa->ixWznmVVartype, false, true, true);
+			wrIparpa(outfile, rpa->sref, "", rpa->ixWznmVVartype, false, true, true);
 		};
 
 		outfile << ");" << endl;
@@ -1116,12 +1116,12 @@ void WznmWrsrvJob::writeJobCpp(
 
 		for (unsigned int j = 0; j < ipas.nodes.size(); j++) {
 			ipa = ipas.nodes[j];
-			wrIparpa(outfile, ipa->sref, ipa->ixWznmVVartype, true, false, false);
+			wrIparpa(outfile, ipa->sref, ipa->Comment, ipa->ixWznmVVartype, true, false, false);
 		};
 
 		for (unsigned int j = 0; j < rpas.nodes.size(); j++) {
 			rpa = rpas.nodes[j];
-			wrIparpa(outfile, rpa->sref, rpa->ixWznmVVartype, true, true, false);
+			wrIparpa(outfile, rpa->sref, rpa->Comment, rpa->ixWznmVVartype, true, true, false);
 		};
 
 		outfile << "\t\t) {" << endl;
@@ -2141,6 +2141,7 @@ void WznmWrsrvJob::writeJobCpp(
 void WznmWrsrvJob::wrIparpa(
 			fstream& outfile
 			, const string& sref
+			, const string& Comment
 			, const uint ixWznmVVartype
 			, const bool newline
 			, const bool refNotConst
@@ -2185,7 +2186,10 @@ void WznmWrsrvJob::wrIparpa(
 
 	outfile << " " << sref;
 
-	if (newline) outfile << endl;
+	if (newline) {
+		if (Comment != "") outfile << " // " << Comment;
+		outfile << endl;
+	};
 };
 
 void WznmWrsrvJob::analyzeSns(

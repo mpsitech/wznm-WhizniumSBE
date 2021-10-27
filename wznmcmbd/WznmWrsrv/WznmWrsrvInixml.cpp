@@ -168,7 +168,7 @@ DpchRetWznm* WznmWrsrvInixml::run(
 
 			if (!preflclonly) {
 				xmlfile << "\t\t\t<" << srefKakJkey << ">" << endl;
-				txtfile << "\t- " << srefKakJkey << ".srefX1" << Prjshort << "VLocale\tTitle\tComment" << endl;
+				txtfile << "\t" << srefKakJkey << ".srefX1" << Prjshort << "VLocale\tTitle\tComment" << endl;
 
 				for (unsigned int j = 0; j < vitJs.nodes.size(); j++) {
 					vitJ = vitJs.nodes[j];

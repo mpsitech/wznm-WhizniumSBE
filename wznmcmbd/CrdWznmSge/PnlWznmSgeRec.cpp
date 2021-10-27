@@ -39,8 +39,8 @@ PnlWznmSgeRec::PnlWznmSgeRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlsqkmnstub = NULL;
-	pnldetail = NULL;
 	pnl1nsensitivity = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

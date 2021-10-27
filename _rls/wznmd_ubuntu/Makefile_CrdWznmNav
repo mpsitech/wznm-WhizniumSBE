@@ -2,7 +2,7 @@
 # make file for CrdWznmNav card job handler, release wznmd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 12 Mar 2021
+# date created: 25 Oct 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmd/VecWznm -I$(BUILDROOT)/wznmd/IexWznm -I$(BUILDROOT)/wznmd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
 
-OBJS = CrdWznmNav.o PnlWznmNavAuxfct.o PnlWznmNavAppdev.o PnlWznmNavJob.o PnlWznmNavDeploy.o PnlWznmNavComp.o PnlWznmNavUix.o PnlWznmNavDbstr.o PnlWznmNavProject.o PnlWznmNavGlobal.o PnlWznmNavAdmin.o PnlWznmNavPre.o PnlWznmNavHeadbar.o DlgWznmNavLoaini.o DlgWznmNavMnglic.o
+OBJS = CrdWznmNav.o PnlWznmNavAuxfct.o PnlWznmNavAppdev.o PnlWznmNavDeploy.o PnlWznmNavJob.o PnlWznmNavComp.o PnlWznmNavUix.o PnlWznmNavDbstr.o PnlWznmNavProject.o PnlWznmNavGlobal.o PnlWznmNavAdmin.o PnlWznmNavPre.o PnlWznmNavHeadbar.o DlgWznmNavMnglic.o DlgWznmNavLoaini.o
 
 LIB = libcrdwznmnav
 

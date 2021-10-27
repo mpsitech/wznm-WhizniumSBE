@@ -23,8 +23,8 @@ public class QryWznmRelList {
 		public static final int SRL = 2;
 		public static final int SUP = 3;
 		public static final int VER = 4;
-		public static final int TOS = 5;
-		public static final int TYP = 6;
+		public static final int TYP = 5;
+		public static final int TOS = 6;
 		public static final int TOT = 7;
 		public static final int FRS = 8;
 		public static final int FRT = 9;
@@ -38,8 +38,8 @@ public class QryWznmRelList {
 			if (s.equals("srl")) return SRL;
 			if (s.equals("sup")) return SUP;
 			if (s.equals("ver")) return VER;
-			if (s.equals("tos")) return TOS;
 			if (s.equals("typ")) return TYP;
+			if (s.equals("tos")) return TOS;
 			if (s.equals("tot")) return TOT;
 			if (s.equals("frs")) return FRS;
 			if (s.equals("frt")) return FRT;
@@ -54,8 +54,8 @@ public class QryWznmRelList {
 			if (ix == SRL) return("srl");
 			if (ix == SUP) return("sup");
 			if (ix == VER) return("ver");
-			if (ix == TOS) return("tos");
 			if (ix == TYP) return("typ");
+			if (ix == TOS) return("tos");
 			if (ix == TOT) return("tot");
 			if (ix == FRS) return("frs");
 			if (ix == FRT) return("frt");

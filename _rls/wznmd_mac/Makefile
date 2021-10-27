@@ -2,7 +2,7 @@
 # make file for Wznm daemon, release wznmd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 12 Mar 2021
+# date created: 25 Oct 2021
 # IP header --- ABOVE
 
 include Makefile.inc
@@ -21,7 +21,7 @@ PCHS = Wznmd.h.gch
 
 OBJS = Wznm.o WznmdAppsrv.o WznmdJobprc.o WznmdOpprc.o WznmdOpengcli.o WznmdOpengsrv.o Wznmd.o
 OBJS += RootWznm.o SessWznm.o JobWznmLicense.o
-OBJS += WznmWrweb_blks.o SqkWznmWrweb.o WznmWrjapi_blks.o SqkWznmWrjapi.o WznmWrsrv_blks.o SqkWznmWrsrv.o WznmWrdbs_blks.o SqkWznmWrdbs.o WznmWrapi_blks.o SqkWznmWrapi.o WznmWrapp_blks.o SqkWznmWrapp.o WznmPrcfile_blks.o SqkWznmPrcfile.o WznmPrctree_blks.o SqkWznmPrctree.o WznmCtpWrsrv_blks.o SqkWznmCtpWrsrv.o WznmCtpWrstkit_blks.o SqkWznmCtpWrstkit.o WznmCtpWrweb_blks.o SqkWznmCtpWrweb.o WznmGen_blks.o SqkWznmGen.o WznmCtpGenui_blks.o SqkWznmCtpGenui.o WznmCtpGenjtr_blks.o SqkWznmCtpGenjtr.o WznmCompl_blks.o SqkWznmCompl.o
+OBJS += WznmWrweb_blks.o SqkWznmWrweb.o WznmWrjapi_blks.o SqkWznmWrjapi.o WznmWrsrv_blks.o SqkWznmWrsrv.o WznmWrdbs_blks.o SqkWznmWrdbs.o WznmWrapi_blks.o SqkWznmWrapi.o WznmWrapp_blks.o SqkWznmWrapp.o WznmPrctree_blks.o SqkWznmPrctree.o WznmGen_blks.o SqkWznmGen.o WznmPrcfile_blks.o SqkWznmPrcfile.o WznmCtpWrweb_blks.o SqkWznmCtpWrweb.o WznmCtpWrstkit_blks.o SqkWznmCtpWrstkit.o WznmCtpWrsrv_blks.o SqkWznmCtpWrsrv.o WznmCtpGenui_blks.o SqkWznmCtpGenui.o WznmCompl_blks.o SqkWznmCompl.o WznmCtpGenjtr_blks.o SqkWznmCtpGenjtr.o
 OBJS += Wznmd_exe.o
 
 LIBPATH = -L$(LIBROOT)

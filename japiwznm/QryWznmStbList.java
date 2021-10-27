@@ -19,20 +19,20 @@ public class QryWznmStbList {
 		*/
 	public static class VecVOrd {
 
-		public static final int TBL = 1;
-		public static final int SBS = 2;
-		public static final int TYP = 3;
-		public static final int SRF = 4;
+		public static final int SBS = 1;
+		public static final int TBL = 2;
+		public static final int SRF = 3;
+		public static final int TYP = 4;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("tbl")) return TBL;
 			if (s.equals("sbs")) return SBS;
-			if (s.equals("typ")) return TYP;
+			if (s.equals("tbl")) return TBL;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("typ")) return TYP;
 
 			return 0;
 		};
@@ -40,10 +40,10 @@ public class QryWznmStbList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == TBL) return("tbl");
 			if (ix == SBS) return("sbs");
-			if (ix == TYP) return("typ");
+			if (ix == TBL) return("tbl");
 			if (ix == SRF) return("srf");
+			if (ix == TYP) return("typ");
 
 			return "";
 		};

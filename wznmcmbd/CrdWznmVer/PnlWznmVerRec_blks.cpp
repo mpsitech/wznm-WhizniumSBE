@@ -110,20 +110,20 @@ void PnlWznmVerRec::StatApp::writeJSON(
 			, const bool initdoneDetail
 			, const bool initdone1NCapability
 			, const bool initdoneVer1NApp
-			, const bool initdone1NOppack
-			, const bool initdoneVer1NModule
-			, const bool initdone1NPreset
+			, const bool initdoneVer1NError
+			, const bool initdoneBvr1NVersion
 			, const bool initdone1NQuery
 			, const bool initdone1NRelation
 			, const bool initdone1NTable
-			, const bool initdoneVer1NError
 			, const bool initdone1NVector
+			, const bool initdone1NPreset
+			, const bool initdoneVer1NModule
+			, const bool initdone1NOppack
 			, const bool initdone1NImpexpcplx
-			, const bool initdone1NJob
-			, const bool initdone1NCall
 			, const bool initdone1NComponent
+			, const bool initdone1NCall
 			, const bool initdone1NBlock
-			, const bool initdoneBvr1NVersion
+			, const bool initdone1NJob
 			, const bool initdoneRef1NFile
 			, const bool initdoneMNLocale
 		) {
@@ -134,20 +134,20 @@ void PnlWznmVerRec::StatApp::writeJSON(
 	me["initdoneDetail"] = initdoneDetail;
 	me["initdone1NCapability"] = initdone1NCapability;
 	me["initdoneVer1NApp"] = initdoneVer1NApp;
-	me["initdone1NOppack"] = initdone1NOppack;
-	me["initdoneVer1NModule"] = initdoneVer1NModule;
-	me["initdone1NPreset"] = initdone1NPreset;
+	me["initdoneVer1NError"] = initdoneVer1NError;
+	me["initdoneBvr1NVersion"] = initdoneBvr1NVersion;
 	me["initdone1NQuery"] = initdone1NQuery;
 	me["initdone1NRelation"] = initdone1NRelation;
 	me["initdone1NTable"] = initdone1NTable;
-	me["initdoneVer1NError"] = initdoneVer1NError;
 	me["initdone1NVector"] = initdone1NVector;
+	me["initdone1NPreset"] = initdone1NPreset;
+	me["initdoneVer1NModule"] = initdoneVer1NModule;
+	me["initdone1NOppack"] = initdone1NOppack;
 	me["initdone1NImpexpcplx"] = initdone1NImpexpcplx;
-	me["initdone1NJob"] = initdone1NJob;
-	me["initdone1NCall"] = initdone1NCall;
 	me["initdone1NComponent"] = initdone1NComponent;
+	me["initdone1NCall"] = initdone1NCall;
 	me["initdone1NBlock"] = initdone1NBlock;
-	me["initdoneBvr1NVersion"] = initdoneBvr1NVersion;
+	me["initdone1NJob"] = initdone1NJob;
 	me["initdoneRef1NFile"] = initdoneRef1NFile;
 	me["initdoneMNLocale"] = initdoneMNLocale;
 };
@@ -159,20 +159,20 @@ void PnlWznmVerRec::StatApp::writeXML(
 			, const bool initdoneDetail
 			, const bool initdone1NCapability
 			, const bool initdoneVer1NApp
-			, const bool initdone1NOppack
-			, const bool initdoneVer1NModule
-			, const bool initdone1NPreset
+			, const bool initdoneVer1NError
+			, const bool initdoneBvr1NVersion
 			, const bool initdone1NQuery
 			, const bool initdone1NRelation
 			, const bool initdone1NTable
-			, const bool initdoneVer1NError
 			, const bool initdone1NVector
+			, const bool initdone1NPreset
+			, const bool initdoneVer1NModule
+			, const bool initdone1NOppack
 			, const bool initdone1NImpexpcplx
-			, const bool initdone1NJob
-			, const bool initdone1NCall
 			, const bool initdone1NComponent
+			, const bool initdone1NCall
 			, const bool initdone1NBlock
-			, const bool initdoneBvr1NVersion
+			, const bool initdone1NJob
 			, const bool initdoneRef1NFile
 			, const bool initdoneMNLocale
 		) {
@@ -186,20 +186,20 @@ void PnlWznmVerRec::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NCapability", initdone1NCapability);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneVer1NApp", initdoneVer1NApp);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NOppack", initdone1NOppack);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneVer1NModule", initdoneVer1NModule);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NPreset", initdone1NPreset);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneVer1NError", initdoneVer1NError);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneBvr1NVersion", initdoneBvr1NVersion);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NQuery", initdone1NQuery);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NRelation", initdone1NRelation);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NTable", initdone1NTable);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneVer1NError", initdoneVer1NError);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NVector", initdone1NVector);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NPreset", initdone1NPreset);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneVer1NModule", initdoneVer1NModule);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NOppack", initdone1NOppack);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NImpexpcplx", initdone1NImpexpcplx);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NJob", initdone1NJob);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NCall", initdone1NCall);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NComponent", initdone1NComponent);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NCall", initdone1NCall);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NBlock", initdone1NBlock);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneBvr1NVersion", initdoneBvr1NVersion);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NJob", initdone1NJob);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NFile", initdoneRef1NFile);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNLocale", initdoneMNLocale);
 	xmlTextWriterEndElement(wr);
@@ -214,20 +214,20 @@ PnlWznmVerRec::StatShr::StatShr(
 			, const ubigint jrefDetail
 			, const ubigint jref1NCapability
 			, const ubigint jrefVer1NApp
-			, const ubigint jref1NOppack
-			, const ubigint jrefVer1NModule
-			, const ubigint jref1NPreset
+			, const ubigint jrefVer1NError
+			, const ubigint jrefBvr1NVersion
 			, const ubigint jref1NQuery
 			, const ubigint jref1NRelation
 			, const ubigint jref1NTable
-			, const ubigint jrefVer1NError
 			, const ubigint jref1NVector
+			, const ubigint jref1NPreset
+			, const ubigint jrefVer1NModule
+			, const ubigint jref1NOppack
 			, const ubigint jref1NImpexpcplx
-			, const ubigint jref1NJob
-			, const ubigint jref1NCall
 			, const ubigint jref1NComponent
+			, const ubigint jref1NCall
 			, const ubigint jref1NBlock
-			, const ubigint jrefBvr1NVersion
+			, const ubigint jref1NJob
 			, const ubigint jrefRef1NFile
 			, const ubigint jrefMNLocale
 			, const bool ButRegularizeActive
@@ -238,25 +238,25 @@ PnlWznmVerRec::StatShr::StatShr(
 	this->jrefDetail = jrefDetail;
 	this->jref1NCapability = jref1NCapability;
 	this->jrefVer1NApp = jrefVer1NApp;
-	this->jref1NOppack = jref1NOppack;
-	this->jrefVer1NModule = jrefVer1NModule;
-	this->jref1NPreset = jref1NPreset;
+	this->jrefVer1NError = jrefVer1NError;
+	this->jrefBvr1NVersion = jrefBvr1NVersion;
 	this->jref1NQuery = jref1NQuery;
 	this->jref1NRelation = jref1NRelation;
 	this->jref1NTable = jref1NTable;
-	this->jrefVer1NError = jrefVer1NError;
 	this->jref1NVector = jref1NVector;
+	this->jref1NPreset = jref1NPreset;
+	this->jrefVer1NModule = jrefVer1NModule;
+	this->jref1NOppack = jref1NOppack;
 	this->jref1NImpexpcplx = jref1NImpexpcplx;
-	this->jref1NJob = jref1NJob;
-	this->jref1NCall = jref1NCall;
 	this->jref1NComponent = jref1NComponent;
+	this->jref1NCall = jref1NCall;
 	this->jref1NBlock = jref1NBlock;
-	this->jrefBvr1NVersion = jrefBvr1NVersion;
+	this->jref1NJob = jref1NJob;
 	this->jrefRef1NFile = jrefRef1NFile;
 	this->jrefMNLocale = jrefMNLocale;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NCAPABILITY, JREFVER1NAPP, JREF1NOPPACK, JREFVER1NMODULE, JREF1NPRESET, JREF1NQUERY, JREF1NRELATION, JREF1NTABLE, JREFVER1NERROR, JREF1NVECTOR, JREF1NIMPEXPCPLX, JREF1NJOB, JREF1NCALL, JREF1NCOMPONENT, JREF1NBLOCK, JREFBVR1NVERSION, JREFREF1NFILE, JREFMNLOCALE, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NCAPABILITY, JREFVER1NAPP, JREFVER1NERROR, JREFBVR1NVERSION, JREF1NQUERY, JREF1NRELATION, JREF1NTABLE, JREF1NVECTOR, JREF1NPRESET, JREFVER1NMODULE, JREF1NOPPACK, JREF1NIMPEXPCPLX, JREF1NCOMPONENT, JREF1NCALL, JREF1NBLOCK, JREF1NJOB, JREFREF1NFILE, JREFMNLOCALE, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmVerRec::StatShr::writeJSON(
@@ -271,20 +271,20 @@ void PnlWznmVerRec::StatShr::writeJSON(
 	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
 	me["scrJref1NCapability"] = Scr::scramble(jref1NCapability);
 	me["scrJrefVer1NApp"] = Scr::scramble(jrefVer1NApp);
-	me["scrJref1NOppack"] = Scr::scramble(jref1NOppack);
-	me["scrJrefVer1NModule"] = Scr::scramble(jrefVer1NModule);
-	me["scrJref1NPreset"] = Scr::scramble(jref1NPreset);
+	me["scrJrefVer1NError"] = Scr::scramble(jrefVer1NError);
+	me["scrJrefBvr1NVersion"] = Scr::scramble(jrefBvr1NVersion);
 	me["scrJref1NQuery"] = Scr::scramble(jref1NQuery);
 	me["scrJref1NRelation"] = Scr::scramble(jref1NRelation);
 	me["scrJref1NTable"] = Scr::scramble(jref1NTable);
-	me["scrJrefVer1NError"] = Scr::scramble(jrefVer1NError);
 	me["scrJref1NVector"] = Scr::scramble(jref1NVector);
+	me["scrJref1NPreset"] = Scr::scramble(jref1NPreset);
+	me["scrJrefVer1NModule"] = Scr::scramble(jrefVer1NModule);
+	me["scrJref1NOppack"] = Scr::scramble(jref1NOppack);
 	me["scrJref1NImpexpcplx"] = Scr::scramble(jref1NImpexpcplx);
-	me["scrJref1NJob"] = Scr::scramble(jref1NJob);
-	me["scrJref1NCall"] = Scr::scramble(jref1NCall);
 	me["scrJref1NComponent"] = Scr::scramble(jref1NComponent);
+	me["scrJref1NCall"] = Scr::scramble(jref1NCall);
 	me["scrJref1NBlock"] = Scr::scramble(jref1NBlock);
-	me["scrJrefBvr1NVersion"] = Scr::scramble(jrefBvr1NVersion);
+	me["scrJref1NJob"] = Scr::scramble(jref1NJob);
 	me["scrJrefRef1NFile"] = Scr::scramble(jrefRef1NFile);
 	me["scrJrefMNLocale"] = Scr::scramble(jrefMNLocale);
 	me["ButRegularizeActive"] = ButRegularizeActive;
@@ -306,20 +306,20 @@ void PnlWznmVerRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NCapability", Scr::scramble(jref1NCapability));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefVer1NApp", Scr::scramble(jrefVer1NApp));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NOppack", Scr::scramble(jref1NOppack));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefVer1NModule", Scr::scramble(jrefVer1NModule));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NPreset", Scr::scramble(jref1NPreset));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefVer1NError", Scr::scramble(jrefVer1NError));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefBvr1NVersion", Scr::scramble(jrefBvr1NVersion));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NQuery", Scr::scramble(jref1NQuery));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NRelation", Scr::scramble(jref1NRelation));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NTable", Scr::scramble(jref1NTable));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefVer1NError", Scr::scramble(jrefVer1NError));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NVector", Scr::scramble(jref1NVector));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NPreset", Scr::scramble(jref1NPreset));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefVer1NModule", Scr::scramble(jrefVer1NModule));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NOppack", Scr::scramble(jref1NOppack));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NImpexpcplx", Scr::scramble(jref1NImpexpcplx));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NJob", Scr::scramble(jref1NJob));
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NCall", Scr::scramble(jref1NCall));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NComponent", Scr::scramble(jref1NComponent));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NCall", Scr::scramble(jref1NCall));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NBlock", Scr::scramble(jref1NBlock));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefBvr1NVersion", Scr::scramble(jrefBvr1NVersion));
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NJob", Scr::scramble(jref1NJob));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NFile", Scr::scramble(jrefRef1NFile));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNLocale", Scr::scramble(jrefMNLocale));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
@@ -335,20 +335,20 @@ set<uint> PnlWznmVerRec::StatShr::comm(
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
 	if (jref1NCapability == comp->jref1NCapability) insert(items, JREF1NCAPABILITY);
 	if (jrefVer1NApp == comp->jrefVer1NApp) insert(items, JREFVER1NAPP);
-	if (jref1NOppack == comp->jref1NOppack) insert(items, JREF1NOPPACK);
-	if (jrefVer1NModule == comp->jrefVer1NModule) insert(items, JREFVER1NMODULE);
-	if (jref1NPreset == comp->jref1NPreset) insert(items, JREF1NPRESET);
+	if (jrefVer1NError == comp->jrefVer1NError) insert(items, JREFVER1NERROR);
+	if (jrefBvr1NVersion == comp->jrefBvr1NVersion) insert(items, JREFBVR1NVERSION);
 	if (jref1NQuery == comp->jref1NQuery) insert(items, JREF1NQUERY);
 	if (jref1NRelation == comp->jref1NRelation) insert(items, JREF1NRELATION);
 	if (jref1NTable == comp->jref1NTable) insert(items, JREF1NTABLE);
-	if (jrefVer1NError == comp->jrefVer1NError) insert(items, JREFVER1NERROR);
 	if (jref1NVector == comp->jref1NVector) insert(items, JREF1NVECTOR);
+	if (jref1NPreset == comp->jref1NPreset) insert(items, JREF1NPRESET);
+	if (jrefVer1NModule == comp->jrefVer1NModule) insert(items, JREFVER1NMODULE);
+	if (jref1NOppack == comp->jref1NOppack) insert(items, JREF1NOPPACK);
 	if (jref1NImpexpcplx == comp->jref1NImpexpcplx) insert(items, JREF1NIMPEXPCPLX);
-	if (jref1NJob == comp->jref1NJob) insert(items, JREF1NJOB);
-	if (jref1NCall == comp->jref1NCall) insert(items, JREF1NCALL);
 	if (jref1NComponent == comp->jref1NComponent) insert(items, JREF1NCOMPONENT);
+	if (jref1NCall == comp->jref1NCall) insert(items, JREF1NCALL);
 	if (jref1NBlock == comp->jref1NBlock) insert(items, JREF1NBLOCK);
-	if (jrefBvr1NVersion == comp->jrefBvr1NVersion) insert(items, JREFBVR1NVERSION);
+	if (jref1NJob == comp->jref1NJob) insert(items, JREF1NJOB);
 	if (jrefRef1NFile == comp->jrefRef1NFile) insert(items, JREFREF1NFILE);
 	if (jrefMNLocale == comp->jrefMNLocale) insert(items, JREFMNLOCALE);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
@@ -364,7 +364,7 @@ set<uint> PnlWznmVerRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NCAPABILITY, JREFVER1NAPP, JREF1NOPPACK, JREFVER1NMODULE, JREF1NPRESET, JREF1NQUERY, JREF1NRELATION, JREF1NTABLE, JREFVER1NERROR, JREF1NVECTOR, JREF1NIMPEXPCPLX, JREF1NJOB, JREF1NCALL, JREF1NCOMPONENT, JREF1NBLOCK, JREFBVR1NVERSION, JREFREF1NFILE, JREFMNLOCALE, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NCAPABILITY, JREFVER1NAPP, JREFVER1NERROR, JREFBVR1NVERSION, JREF1NQUERY, JREF1NRELATION, JREF1NTABLE, JREF1NVECTOR, JREF1NPRESET, JREFVER1NMODULE, JREF1NOPPACK, JREF1NIMPEXPCPLX, JREF1NCOMPONENT, JREF1NCALL, JREF1NBLOCK, JREF1NJOB, JREFREF1NFILE, JREFMNLOCALE, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

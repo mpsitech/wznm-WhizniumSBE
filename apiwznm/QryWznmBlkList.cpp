@@ -25,8 +25,8 @@ uint QryWznmBlkList::VecVOrd::getIx(
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
 	if (s == "ver") return VER;
-	if (s == "srf") return SRF;
 	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -37,8 +37,8 @@ string QryWznmBlkList::VecVOrd::getSref(
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
 	if (ix == VER) return("ver");
-	if (ix == SRF) return("srf");
 	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

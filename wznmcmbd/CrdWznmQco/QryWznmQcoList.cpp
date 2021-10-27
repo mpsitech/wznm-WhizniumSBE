@@ -245,8 +245,8 @@ void QryWznmQcoList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::QRY) sqlstr += " ORDER BY TblWznmMQuerycol.qryRefWznmMQuery ASC";
-	else if (preIxOrd == VecVOrd::TCO) sqlstr += " ORDER BY TblWznmMQuerycol.refWznmMTablecol ASC";
+	if (preIxOrd == VecVOrd::TCO) sqlstr += " ORDER BY TblWznmMQuerycol.refWznmMTablecol ASC";
+	else if (preIxOrd == VecVOrd::QRY) sqlstr += " ORDER BY TblWznmMQuerycol.qryRefWznmMQuery ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMQuerycol.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMQuerycol.sref ASC";
 };

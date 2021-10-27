@@ -15,9 +15,9 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmTco1NCheck.h"
-#include "PnlWznmTco1NImpexpcol.h"
 #include "PnlWznmTcoRef1NControl.h"
 #include "PnlWznmTcoRef1NQuerymod.h"
+#include "PnlWznmTco1NImpexpcol.h"
 #include "PnlWznmTco1NQuerycol.h"
 #include "PnlWznmTcoATitle.h"
 #include "PnlWznmTcoDetail.h"
@@ -205,9 +205,9 @@ public:
 	StatShr statshr;
 
 	PnlWznmTco1NCheck* pnl1ncheck;
-	PnlWznmTco1NImpexpcol* pnl1nimpexpcol;
 	PnlWznmTcoRef1NControl* pnlref1ncontrol;
 	PnlWznmTcoRef1NQuerymod* pnlref1nquerymod;
+	PnlWznmTco1NImpexpcol* pnl1nimpexpcol;
 	PnlWznmTco1NQuerycol* pnl1nquerycol;
 	PnlWznmTcoATitle* pnlatitle;
 	PnlWznmTcoDetail* pnldetail;

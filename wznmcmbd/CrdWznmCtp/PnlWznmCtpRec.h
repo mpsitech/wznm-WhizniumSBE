@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
+#include "PnlWznmCtpAPar.h"
 #include "PnlWznmCtp1NTag.h"
 #include "PnlWznmCtpTpl1NCapability.h"
-#include "PnlWznmCtpAPar.h"
 #include "PnlWznmCtpKParKey.h"
 #include "PnlWznmCtpKKey.h"
 #include "PnlWznmCtpDetail.h"
@@ -186,9 +186,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
+	PnlWznmCtpAPar* pnlapar;
 	PnlWznmCtp1NTag* pnl1ntag;
 	PnlWznmCtpTpl1NCapability* pnltpl1ncapability;
-	PnlWznmCtpAPar* pnlapar;
 	PnlWznmCtpKParKey* pnlkparkey;
 	PnlWznmCtpKKey* pnlkkey;
 	PnlWznmCtpDetail* pnldetail;

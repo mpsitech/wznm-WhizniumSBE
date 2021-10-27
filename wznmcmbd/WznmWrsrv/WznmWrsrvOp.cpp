@@ -238,7 +238,7 @@ void WznmWrsrvOp::writeOpCpp(
 			if ((bit->sref != "oref") && (bit->sref != "jref") && (bit->sref != "ixOpVOpres") && (bit->sref != "pdone")) {
 				if (!first && (bit->refWznmCAMBlockItem != refC)) outfile << endl;
 
-				wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, 0);
+				wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, bit->Comment, 0);
 
 				refC = bit->refWznmCAMBlockItem;
 				first = false;

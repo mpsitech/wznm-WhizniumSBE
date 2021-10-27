@@ -185,8 +185,8 @@ void QryWznmAppList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMApp.verRefWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::TIT) sqlstr += " ORDER BY TblWznmMApp.Title ASC";
 	else if (preIxOrd == VecVOrd::TRG) sqlstr += " ORDER BY TblWznmMApp.ixWznmVApptarget ASC";
+	else if (preIxOrd == VecVOrd::TIT) sqlstr += " ORDER BY TblWznmMApp.Title ASC";
 	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMApp.own ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMApp.grp ASC";
 };

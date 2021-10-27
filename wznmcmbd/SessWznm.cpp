@@ -211,10 +211,25 @@ void SessWznm::term(
 	};
 };
 
+void SessWznm::eraseCrd(
+			map<ubigint, JobWznm*>& subjobs
+		) {
+	string input;
+	ubigint iinput;
+
+	cout << "\tjob reference: ";
+	cin >> input;
+	iinput = atoll(input.c_str());
+
+	if (!eraseSubjobByJref(subjobs, iinput)) cout << "\tjob reference doesn't exist!" << endl;
+	else cout << "\tcard erased." << endl;
+};
+
 uint SessWznm::checkCrdActive(
 			const uint ixWznmVCard
 		) {
-	if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) return evalCrdverActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) return evalCrdtagActive();
+	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) return evalCrdverActive();
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) return evalCrdcapActive();
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMERR) return evalCrderrActive();
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) return evalCrdtblActive();
@@ -252,6 +267,22 @@ uint SessWznm::checkCrdActive(
 	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTE) return evalCrdsteActive();
 
 	return 0;
+};
+
+uint SessWznm::evalCrdtagActive() {
+	// pre.refCtp() > pre.void()
+
+	vector<uint> args;
+	uint a, b;
+
+	args.push_back((xchg->getRefPreset(VecWznmVPreset::PREWZNMREFCTP, jref)) ? VecWznmVPreset::PREWZNMREFCTP : 0);
+	args.push_back([](){uint preVoid = VecWznmVPreset::VOID; return preVoid;}());
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	if (a != 0) args.push_back(a);
+	else args.push_back(b);
+
+	return(args.back());
 };
 
 uint SessWznm::evalCrdverActive() {
@@ -1085,7 +1116,7 @@ uint SessWznm::preToMtb(
 bool SessWznm::hasActive(
 			const uint ixWznmVCard
 		) {
-	return((ixWznmVCard == VecWznmVCard::CRDWZNMVER) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) || (ixWznmVCard == VecWznmVCard::CRDWZNMERR) || (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) || (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) || (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) || (ixWznmVCard == VecWznmVCard::CRDWZNMREL) || (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) || (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) || (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) || (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) || (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) || (ixWznmVCard == VecWznmVCard::CRDWZNMIME) || (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) || (ixWznmVCard == VecWznmVCard::CRDWZNMPST) || (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) || (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) || (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) || (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) || (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) || (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) || (ixWznmVCard == VecWznmVCard::CRDWZNMCON) || (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) || (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) || (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) || (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) || (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) || (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) || (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) || (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) || (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) || (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) || (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) || (ixWznmVCard == VecWznmVCard::CRDWZNMSTE));
+	return((ixWznmVCard == VecWznmVCard::CRDWZNMTAG) || (ixWznmVCard == VecWznmVCard::CRDWZNMVER) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) || (ixWznmVCard == VecWznmVCard::CRDWZNMERR) || (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) || (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) || (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) || (ixWznmVCard == VecWznmVCard::CRDWZNMREL) || (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) || (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) || (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) || (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) || (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) || (ixWznmVCard == VecWznmVCard::CRDWZNMIME) || (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) || (ixWznmVCard == VecWznmVCard::CRDWZNMPST) || (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) || (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) || (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) || (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) || (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) || (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) || (ixWznmVCard == VecWznmVCard::CRDWZNMCON) || (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) || (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) || (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) || (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) || (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) || (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) || (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) || (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) || (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) || (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) || (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) || (ixWznmVCard == VecWznmVCard::CRDWZNMSTE));
 };
 
 bool SessWznm::hasGrpown(
@@ -1504,14 +1535,10 @@ bool SessWznm::handleCreateCrdapp(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmApp* crdapp = NULL;
 
-	crdapp = new CrdWznmApp(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdapps.push_back(crdapp);
-	cout << "\tjob reference: " << crdapp->jref << endl;
-	xchg->jrefCmd = crdapp->jref;
+	xchg->jrefCmd = insertSubjob(crdapps, new CrdWznmApp(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -1519,20 +1546,16 @@ bool SessWznm::handleCreateCrdblk(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmBlk* crdblk = NULL;
 
 	uint ixWznmVPreset = evalCrdblkActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdblk = new CrdWznmBlk(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdblks.push_back(crdblk);
-		cout << "\tjob reference: " << crdblk->jref << endl;
-		xchg->jrefCmd = crdblk->jref;
+		xchg->jrefCmd = insertSubjob(crdblks, new CrdWznmBlk(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1540,20 +1563,16 @@ bool SessWznm::handleCreateCrdcal(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmCal* crdcal = NULL;
 
 	uint ixWznmVPreset = evalCrdcalActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdcal = new CrdWznmCal(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdcals.push_back(crdcal);
-		cout << "\tjob reference: " << crdcal->jref << endl;
-		xchg->jrefCmd = crdcal->jref;
+		xchg->jrefCmd = insertSubjob(crdcals, new CrdWznmCal(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1561,20 +1580,16 @@ bool SessWznm::handleCreateCrdcap(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmCap* crdcap = NULL;
 
 	uint ixWznmVPreset = evalCrdcapActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdcap = new CrdWznmCap(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdcaps.push_back(crdcap);
-		cout << "\tjob reference: " << crdcap->jref << endl;
-		xchg->jrefCmd = crdcap->jref;
+		xchg->jrefCmd = insertSubjob(crdcaps, new CrdWznmCap(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1582,20 +1597,16 @@ bool SessWznm::handleCreateCrdcar(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmCar* crdcar = NULL;
 
 	uint ixWznmVPreset = evalCrdcarActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdcar = new CrdWznmCar(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdcars.push_back(crdcar);
-		cout << "\tjob reference: " << crdcar->jref << endl;
-		xchg->jrefCmd = crdcar->jref;
+		xchg->jrefCmd = insertSubjob(crdcars, new CrdWznmCar(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1603,20 +1614,16 @@ bool SessWznm::handleCreateCrdchk(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmChk* crdchk = NULL;
 
 	uint ixWznmVPreset = evalCrdchkActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdchk = new CrdWznmChk(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdchks.push_back(crdchk);
-		cout << "\tjob reference: " << crdchk->jref << endl;
-		xchg->jrefCmd = crdchk->jref;
+		xchg->jrefCmd = insertSubjob(crdchks, new CrdWznmChk(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1624,20 +1631,16 @@ bool SessWznm::handleCreateCrdcmp(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmCmp* crdcmp = NULL;
 
 	uint ixWznmVPreset = evalCrdcmpActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdcmp = new CrdWznmCmp(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdcmps.push_back(crdcmp);
-		cout << "\tjob reference: " << crdcmp->jref << endl;
-		xchg->jrefCmd = crdcmp->jref;
+		xchg->jrefCmd = insertSubjob(crdcmps, new CrdWznmCmp(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1645,20 +1648,16 @@ bool SessWznm::handleCreateCrdcon(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmCon* crdcon = NULL;
 
 	uint ixWznmVPreset = evalCrdconActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdcon = new CrdWznmCon(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdcons.push_back(crdcon);
-		cout << "\tjob reference: " << crdcon->jref << endl;
-		xchg->jrefCmd = crdcon->jref;
+		xchg->jrefCmd = insertSubjob(crdcons, new CrdWznmCon(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1666,14 +1665,10 @@ bool SessWznm::handleCreateCrdctp(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmCtp* crdctp = NULL;
 
-	crdctp = new CrdWznmCtp(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdctps.push_back(crdctp);
-	cout << "\tjob reference: " << crdctp->jref << endl;
-	xchg->jrefCmd = crdctp->jref;
+	xchg->jrefCmd = insertSubjob(crdctps, new CrdWznmCtp(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -1681,20 +1676,16 @@ bool SessWznm::handleCreateCrddlg(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmDlg* crddlg = NULL;
 
 	uint ixWznmVPreset = evalCrddlgActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crddlg = new CrdWznmDlg(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crddlgs.push_back(crddlg);
-		cout << "\tjob reference: " << crddlg->jref << endl;
-		xchg->jrefCmd = crddlg->jref;
+		xchg->jrefCmd = insertSubjob(crddlgs, new CrdWznmDlg(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1702,20 +1693,16 @@ bool SessWznm::handleCreateCrderr(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmErr* crderr = NULL;
 
 	uint ixWznmVPreset = evalCrderrActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crderr = new CrdWznmErr(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crderrs.push_back(crderr);
-		cout << "\tjob reference: " << crderr->jref << endl;
-		xchg->jrefCmd = crderr->jref;
+		xchg->jrefCmd = insertSubjob(crderrs, new CrdWznmErr(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1723,20 +1710,16 @@ bool SessWznm::handleCreateCrdevt(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmEvt* crdevt = NULL;
 
 	uint ixWznmVPreset = evalCrdevtActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdevt = new CrdWznmEvt(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdevts.push_back(crdevt);
-		cout << "\tjob reference: " << crdevt->jref << endl;
-		xchg->jrefCmd = crdevt->jref;
+		xchg->jrefCmd = insertSubjob(crdevts, new CrdWznmEvt(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1744,14 +1727,10 @@ bool SessWznm::handleCreateCrdfil(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmFil* crdfil = NULL;
 
-	crdfil = new CrdWznmFil(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdfils.push_back(crdfil);
-	cout << "\tjob reference: " << crdfil->jref << endl;
-	xchg->jrefCmd = crdfil->jref;
+	xchg->jrefCmd = insertSubjob(crdfils, new CrdWznmFil(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -1759,20 +1738,16 @@ bool SessWznm::handleCreateCrdiel(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmIel* crdiel = NULL;
 
 	uint ixWznmVPreset = evalCrdielActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdiel = new CrdWznmIel(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdiels.push_back(crdiel);
-		cout << "\tjob reference: " << crdiel->jref << endl;
-		xchg->jrefCmd = crdiel->jref;
+		xchg->jrefCmd = insertSubjob(crdiels, new CrdWznmIel(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1780,20 +1755,16 @@ bool SessWznm::handleCreateCrdiex(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmIex* crdiex = NULL;
 
 	uint ixWznmVPreset = evalCrdiexActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdiex = new CrdWznmIex(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdiexs.push_back(crdiex);
-		cout << "\tjob reference: " << crdiex->jref << endl;
-		xchg->jrefCmd = crdiex->jref;
+		xchg->jrefCmd = insertSubjob(crdiexs, new CrdWznmIex(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1801,20 +1772,16 @@ bool SessWznm::handleCreateCrdime(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmIme* crdime = NULL;
 
 	uint ixWznmVPreset = evalCrdimeActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdime = new CrdWznmIme(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdimes.push_back(crdime);
-		cout << "\tjob reference: " << crdime->jref << endl;
-		xchg->jrefCmd = crdime->jref;
+		xchg->jrefCmd = insertSubjob(crdimes, new CrdWznmIme(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1822,20 +1789,16 @@ bool SessWznm::handleCreateCrdjob(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmJob* crdjob = NULL;
 
 	uint ixWznmVPreset = evalCrdjobActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdjob = new CrdWznmJob(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdjobs.push_back(crdjob);
-		cout << "\tjob reference: " << crdjob->jref << endl;
-		xchg->jrefCmd = crdjob->jref;
+		xchg->jrefCmd = insertSubjob(crdjobs, new CrdWznmJob(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1843,14 +1806,10 @@ bool SessWznm::handleCreateCrdlib(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmLib* crdlib = NULL;
 
-	crdlib = new CrdWznmLib(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdlibs.push_back(crdlib);
-	cout << "\tjob reference: " << crdlib->jref << endl;
-	xchg->jrefCmd = crdlib->jref;
+	xchg->jrefCmd = insertSubjob(crdlibs, new CrdWznmLib(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -1858,14 +1817,10 @@ bool SessWznm::handleCreateCrdloc(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmLoc* crdloc = NULL;
 
-	crdloc = new CrdWznmLoc(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdlocs.push_back(crdloc);
-	cout << "\tjob reference: " << crdloc->jref << endl;
-	xchg->jrefCmd = crdloc->jref;
+	xchg->jrefCmd = insertSubjob(crdlocs, new CrdWznmLoc(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -1873,14 +1828,10 @@ bool SessWznm::handleCreateCrdmch(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmMch* crdmch = NULL;
 
-	crdmch = new CrdWznmMch(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdmchs.push_back(crdmch);
-	cout << "\tjob reference: " << crdmch->jref << endl;
-	xchg->jrefCmd = crdmch->jref;
+	xchg->jrefCmd = insertSubjob(crdmchs, new CrdWznmMch(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -1888,20 +1839,16 @@ bool SessWznm::handleCreateCrdmdl(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmMdl* crdmdl = NULL;
 
 	uint ixWznmVPreset = evalCrdmdlActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdmdl = new CrdWznmMdl(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdmdls.push_back(crdmdl);
-		cout << "\tjob reference: " << crdmdl->jref << endl;
-		xchg->jrefCmd = crdmdl->jref;
+		xchg->jrefCmd = insertSubjob(crdmdls, new CrdWznmMdl(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1909,20 +1856,16 @@ bool SessWznm::handleCreateCrdmtd(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmMtd* crdmtd = NULL;
 
 	uint ixWznmVPreset = evalCrdmtdActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdmtd = new CrdWznmMtd(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdmtds.push_back(crdmtd);
-		cout << "\tjob reference: " << crdmtd->jref << endl;
-		xchg->jrefCmd = crdmtd->jref;
+		xchg->jrefCmd = insertSubjob(crdmtds, new CrdWznmMtd(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1930,20 +1873,16 @@ bool SessWznm::handleCreateCrdopk(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmOpk* crdopk = NULL;
 
 	uint ixWznmVPreset = evalCrdopkActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdopk = new CrdWznmOpk(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdopks.push_back(crdopk);
-		cout << "\tjob reference: " << crdopk->jref << endl;
-		xchg->jrefCmd = crdopk->jref;
+		xchg->jrefCmd = insertSubjob(crdopks, new CrdWznmOpk(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1951,20 +1890,16 @@ bool SessWznm::handleCreateCrdopx(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmOpx* crdopx = NULL;
 
 	uint ixWznmVPreset = evalCrdopxActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdopx = new CrdWznmOpx(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdopxs.push_back(crdopx);
-		cout << "\tjob reference: " << crdopx->jref << endl;
-		xchg->jrefCmd = crdopx->jref;
+		xchg->jrefCmd = insertSubjob(crdopxs, new CrdWznmOpx(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1972,20 +1907,16 @@ bool SessWznm::handleCreateCrdpnl(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmPnl* crdpnl = NULL;
 
 	uint ixWznmVPreset = evalCrdpnlActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdpnl = new CrdWznmPnl(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdpnls.push_back(crdpnl);
-		cout << "\tjob reference: " << crdpnl->jref << endl;
-		xchg->jrefCmd = crdpnl->jref;
+		xchg->jrefCmd = insertSubjob(crdpnls, new CrdWznmPnl(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -1993,14 +1924,10 @@ bool SessWznm::handleCreateCrdprj(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmPrj* crdprj = NULL;
 
-	crdprj = new CrdWznmPrj(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdprjs.push_back(crdprj);
-	cout << "\tjob reference: " << crdprj->jref << endl;
-	xchg->jrefCmd = crdprj->jref;
+	xchg->jrefCmd = insertSubjob(crdprjs, new CrdWznmPrj(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -2008,14 +1935,10 @@ bool SessWznm::handleCreateCrdprs(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmPrs* crdprs = NULL;
 
-	crdprs = new CrdWznmPrs(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdprss.push_back(crdprs);
-	cout << "\tjob reference: " << crdprs->jref << endl;
-	xchg->jrefCmd = crdprs->jref;
+	xchg->jrefCmd = insertSubjob(crdprss, new CrdWznmPrs(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -2023,20 +1946,16 @@ bool SessWznm::handleCreateCrdpst(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmPst* crdpst = NULL;
 
 	uint ixWznmVPreset = evalCrdpstActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdpst = new CrdWznmPst(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdpsts.push_back(crdpst);
-		cout << "\tjob reference: " << crdpst->jref << endl;
-		xchg->jrefCmd = crdpst->jref;
+		xchg->jrefCmd = insertSubjob(crdpsts, new CrdWznmPst(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2044,20 +1963,16 @@ bool SessWznm::handleCreateCrdqco(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmQco* crdqco = NULL;
 
 	uint ixWznmVPreset = evalCrdqcoActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdqco = new CrdWznmQco(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdqcos.push_back(crdqco);
-		cout << "\tjob reference: " << crdqco->jref << endl;
-		xchg->jrefCmd = crdqco->jref;
+		xchg->jrefCmd = insertSubjob(crdqcos, new CrdWznmQco(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2065,20 +1980,16 @@ bool SessWznm::handleCreateCrdqmd(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmQmd* crdqmd = NULL;
 
 	uint ixWznmVPreset = evalCrdqmdActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdqmd = new CrdWznmQmd(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdqmds.push_back(crdqmd);
-		cout << "\tjob reference: " << crdqmd->jref << endl;
-		xchg->jrefCmd = crdqmd->jref;
+		xchg->jrefCmd = insertSubjob(crdqmds, new CrdWznmQmd(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2086,20 +1997,16 @@ bool SessWznm::handleCreateCrdqry(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmQry* crdqry = NULL;
 
 	uint ixWznmVPreset = evalCrdqryActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdqry = new CrdWznmQry(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdqrys.push_back(crdqry);
-		cout << "\tjob reference: " << crdqry->jref << endl;
-		xchg->jrefCmd = crdqry->jref;
+		xchg->jrefCmd = insertSubjob(crdqrys, new CrdWznmQry(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2107,20 +2014,16 @@ bool SessWznm::handleCreateCrdrel(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmRel* crdrel = NULL;
 
 	uint ixWznmVPreset = evalCrdrelActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdrel = new CrdWznmRel(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdrels.push_back(crdrel);
-		cout << "\tjob reference: " << crdrel->jref << endl;
-		xchg->jrefCmd = crdrel->jref;
+		xchg->jrefCmd = insertSubjob(crdrels, new CrdWznmRel(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2128,20 +2031,16 @@ bool SessWznm::handleCreateCrdrls(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmRls* crdrls = NULL;
 
 	uint ixWznmVPreset = evalCrdrlsActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdrls = new CrdWznmRls(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdrlss.push_back(crdrls);
-		cout << "\tjob reference: " << crdrls->jref << endl;
-		xchg->jrefCmd = crdrls->jref;
+		xchg->jrefCmd = insertSubjob(crdrlss, new CrdWznmRls(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2149,20 +2048,16 @@ bool SessWznm::handleCreateCrdrtj(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmRtj* crdrtj = NULL;
 
 	uint ixWznmVPreset = evalCrdrtjActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdrtj = new CrdWznmRtj(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdrtjs.push_back(crdrtj);
-		cout << "\tjob reference: " << crdrtj->jref << endl;
-		xchg->jrefCmd = crdrtj->jref;
+		xchg->jrefCmd = insertSubjob(crdrtjs, new CrdWznmRtj(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2170,20 +2065,16 @@ bool SessWznm::handleCreateCrdsbs(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmSbs* crdsbs = NULL;
 
 	uint ixWznmVPreset = evalCrdsbsActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdsbs = new CrdWznmSbs(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdsbss.push_back(crdsbs);
-		cout << "\tjob reference: " << crdsbs->jref << endl;
-		xchg->jrefCmd = crdsbs->jref;
+		xchg->jrefCmd = insertSubjob(crdsbss, new CrdWznmSbs(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2191,20 +2082,16 @@ bool SessWznm::handleCreateCrdseq(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmSeq* crdseq = NULL;
 
 	uint ixWznmVPreset = evalCrdseqActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdseq = new CrdWznmSeq(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdseqs.push_back(crdseq);
-		cout << "\tjob reference: " << crdseq->jref << endl;
-		xchg->jrefCmd = crdseq->jref;
+		xchg->jrefCmd = insertSubjob(crdseqs, new CrdWznmSeq(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2212,20 +2099,16 @@ bool SessWznm::handleCreateCrdsge(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmSge* crdsge = NULL;
 
 	uint ixWznmVPreset = evalCrdsgeActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdsge = new CrdWznmSge(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdsges.push_back(crdsge);
-		cout << "\tjob reference: " << crdsge->jref << endl;
-		xchg->jrefCmd = crdsge->jref;
+		xchg->jrefCmd = insertSubjob(crdsges, new CrdWznmSge(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2233,20 +2116,16 @@ bool SessWznm::handleCreateCrdstb(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmStb* crdstb = NULL;
 
 	uint ixWznmVPreset = evalCrdstbActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdstb = new CrdWznmStb(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdstbs.push_back(crdstb);
-		cout << "\tjob reference: " << crdstb->jref << endl;
-		xchg->jrefCmd = crdstb->jref;
+		xchg->jrefCmd = insertSubjob(crdstbs, new CrdWznmStb(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2254,20 +2133,16 @@ bool SessWznm::handleCreateCrdste(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmSte* crdste = NULL;
 
 	uint ixWznmVPreset = evalCrdsteActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdste = new CrdWznmSte(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdstes.push_back(crdste);
-		cout << "\tjob reference: " << crdste->jref << endl;
-		xchg->jrefCmd = crdste->jref;
+		xchg->jrefCmd = insertSubjob(crdstes, new CrdWznmSte(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2275,14 +2150,16 @@ bool SessWznm::handleCreateCrdtag(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmTag* crdtag = NULL;
 
-	crdtag = new CrdWznmTag(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdtags.push_back(crdtag);
-	cout << "\tjob reference: " << crdtag->jref << endl;
-	xchg->jrefCmd = crdtag->jref;
+	uint ixWznmVPreset = evalCrdtagActive();
 
-	return false;
+	if (ixWznmVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdtags, new CrdWznmTag(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
 	return retval;
 };
 
@@ -2290,20 +2167,16 @@ bool SessWznm::handleCreateCrdtbl(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmTbl* crdtbl = NULL;
 
 	uint ixWznmVPreset = evalCrdtblActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdtbl = new CrdWznmTbl(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdtbls.push_back(crdtbl);
-		cout << "\tjob reference: " << crdtbl->jref << endl;
-		xchg->jrefCmd = crdtbl->jref;
+		xchg->jrefCmd = insertSubjob(crdtbls, new CrdWznmTbl(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2311,20 +2184,16 @@ bool SessWznm::handleCreateCrdtco(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmTco* crdtco = NULL;
 
 	uint ixWznmVPreset = evalCrdtcoActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdtco = new CrdWznmTco(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdtcos.push_back(crdtco);
-		cout << "\tjob reference: " << crdtco->jref << endl;
-		xchg->jrefCmd = crdtco->jref;
+		xchg->jrefCmd = insertSubjob(crdtcos, new CrdWznmTco(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2332,14 +2201,10 @@ bool SessWznm::handleCreateCrdusg(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmUsg* crdusg = NULL;
 
-	crdusg = new CrdWznmUsg(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdusgs.push_back(crdusg);
-	cout << "\tjob reference: " << crdusg->jref << endl;
-	xchg->jrefCmd = crdusg->jref;
+	xchg->jrefCmd = insertSubjob(crdusgs, new CrdWznmUsg(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -2347,14 +2212,10 @@ bool SessWznm::handleCreateCrdusr(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmUsr* crdusr = NULL;
 
-	crdusr = new CrdWznmUsr(xchg, dbswznm, jref, ixWznmVLocale, 0);
-	crdusrs.push_back(crdusr);
-	cout << "\tjob reference: " << crdusr->jref << endl;
-	xchg->jrefCmd = crdusr->jref;
+	xchg->jrefCmd = insertSubjob(crdusrs, new CrdWznmUsr(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -2362,14 +2223,10 @@ bool SessWznm::handleCreateCrdutl(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmUtl* crdutl = NULL;
 
-	crdutl = new CrdWznmUtl(xchg, dbswznm, jref, ixWznmVLocale);
-	crdutls.push_back(crdutl);
-	cout << "\tjob reference: " << crdutl->jref << endl;
-	xchg->jrefCmd = crdutl->jref;
+	xchg->jrefCmd = insertSubjob(crdutls, new CrdWznmUtl(xchg, dbswznm, jref, ixWznmVLocale));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-	return false;
 	return retval;
 };
 
@@ -2377,20 +2234,16 @@ bool SessWznm::handleCreateCrdvec(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmVec* crdvec = NULL;
 
 	uint ixWznmVPreset = evalCrdvecActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdvec = new CrdWznmVec(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdvecs.push_back(crdvec);
-		cout << "\tjob reference: " << crdvec->jref << endl;
-		xchg->jrefCmd = crdvec->jref;
+		xchg->jrefCmd = insertSubjob(crdvecs, new CrdWznmVec(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2398,20 +2251,16 @@ bool SessWznm::handleCreateCrdver(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmVer* crdver = NULL;
 
 	uint ixWznmVPreset = evalCrdverActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdver = new CrdWznmVer(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdvers.push_back(crdver);
-		cout << "\tjob reference: " << crdver->jref << endl;
-		xchg->jrefCmd = crdver->jref;
+		xchg->jrefCmd = insertSubjob(crdvers, new CrdWznmVer(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2419,20 +2268,16 @@ bool SessWznm::handleCreateCrdvit(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	CrdWznmVit* crdvit = NULL;
 
 	uint ixWznmVPreset = evalCrdvitActive();
 
 	if (ixWznmVPreset == 0) {
 		cout << "\tcard is not activated!" << endl;
 	} else {
-		crdvit = new CrdWznmVit(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref));
-		crdvits.push_back(crdvit);
-		cout << "\tjob reference: " << crdvit->jref << endl;
-		xchg->jrefCmd = crdvit->jref;
+		xchg->jrefCmd = insertSubjob(crdvits, new CrdWznmVit(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
-	return false;
 	return retval;
 };
 
@@ -2440,24 +2285,7 @@ bool SessWznm::handleEraseCrdapp(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmApp* crdapp = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdapps.begin(); it != crdapps.end();) {
-		crdapp = *it;
-		if (crdapp->jref == iinput) {
-			it = crdapps.erase(it);
-			delete crdapp;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdapps);
 	return retval;
 };
 
@@ -2465,24 +2293,7 @@ bool SessWznm::handleEraseCrdblk(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmBlk* crdblk = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdblks.begin(); it != crdblks.end();) {
-		crdblk = *it;
-		if (crdblk->jref == iinput) {
-			it = crdblks.erase(it);
-			delete crdblk;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdblks);
 	return retval;
 };
 
@@ -2490,24 +2301,7 @@ bool SessWznm::handleEraseCrdcal(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmCal* crdcal = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdcals.begin(); it != crdcals.end();) {
-		crdcal = *it;
-		if (crdcal->jref == iinput) {
-			it = crdcals.erase(it);
-			delete crdcal;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdcals);
 	return retval;
 };
 
@@ -2515,24 +2309,7 @@ bool SessWznm::handleEraseCrdcap(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmCap* crdcap = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdcaps.begin(); it != crdcaps.end();) {
-		crdcap = *it;
-		if (crdcap->jref == iinput) {
-			it = crdcaps.erase(it);
-			delete crdcap;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdcaps);
 	return retval;
 };
 
@@ -2540,24 +2317,7 @@ bool SessWznm::handleEraseCrdcar(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmCar* crdcar = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdcars.begin(); it != crdcars.end();) {
-		crdcar = *it;
-		if (crdcar->jref == iinput) {
-			it = crdcars.erase(it);
-			delete crdcar;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdcars);
 	return retval;
 };
 
@@ -2565,24 +2325,7 @@ bool SessWznm::handleEraseCrdchk(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmChk* crdchk = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdchks.begin(); it != crdchks.end();) {
-		crdchk = *it;
-		if (crdchk->jref == iinput) {
-			it = crdchks.erase(it);
-			delete crdchk;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdchks);
 	return retval;
 };
 
@@ -2590,24 +2333,7 @@ bool SessWznm::handleEraseCrdcmp(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmCmp* crdcmp = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdcmps.begin(); it != crdcmps.end();) {
-		crdcmp = *it;
-		if (crdcmp->jref == iinput) {
-			it = crdcmps.erase(it);
-			delete crdcmp;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdcmps);
 	return retval;
 };
 
@@ -2615,24 +2341,7 @@ bool SessWznm::handleEraseCrdcon(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmCon* crdcon = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdcons.begin(); it != crdcons.end();) {
-		crdcon = *it;
-		if (crdcon->jref == iinput) {
-			it = crdcons.erase(it);
-			delete crdcon;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdcons);
 	return retval;
 };
 
@@ -2640,24 +2349,7 @@ bool SessWznm::handleEraseCrdctp(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmCtp* crdctp = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdctps.begin(); it != crdctps.end();) {
-		crdctp = *it;
-		if (crdctp->jref == iinput) {
-			it = crdctps.erase(it);
-			delete crdctp;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdctps);
 	return retval;
 };
 
@@ -2665,24 +2357,7 @@ bool SessWznm::handleEraseCrddlg(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmDlg* crddlg = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crddlgs.begin(); it != crddlgs.end();) {
-		crddlg = *it;
-		if (crddlg->jref == iinput) {
-			it = crddlgs.erase(it);
-			delete crddlg;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crddlgs);
 	return retval;
 };
 
@@ -2690,24 +2365,7 @@ bool SessWznm::handleEraseCrderr(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmErr* crderr = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crderrs.begin(); it != crderrs.end();) {
-		crderr = *it;
-		if (crderr->jref == iinput) {
-			it = crderrs.erase(it);
-			delete crderr;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crderrs);
 	return retval;
 };
 
@@ -2715,24 +2373,7 @@ bool SessWznm::handleEraseCrdevt(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmEvt* crdevt = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdevts.begin(); it != crdevts.end();) {
-		crdevt = *it;
-		if (crdevt->jref == iinput) {
-			it = crdevts.erase(it);
-			delete crdevt;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdevts);
 	return retval;
 };
 
@@ -2740,24 +2381,7 @@ bool SessWznm::handleEraseCrdfil(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmFil* crdfil = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdfils.begin(); it != crdfils.end();) {
-		crdfil = *it;
-		if (crdfil->jref == iinput) {
-			it = crdfils.erase(it);
-			delete crdfil;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdfils);
 	return retval;
 };
 
@@ -2765,24 +2389,7 @@ bool SessWznm::handleEraseCrdiel(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmIel* crdiel = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdiels.begin(); it != crdiels.end();) {
-		crdiel = *it;
-		if (crdiel->jref == iinput) {
-			it = crdiels.erase(it);
-			delete crdiel;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdiels);
 	return retval;
 };
 
@@ -2790,24 +2397,7 @@ bool SessWznm::handleEraseCrdiex(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmIex* crdiex = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdiexs.begin(); it != crdiexs.end();) {
-		crdiex = *it;
-		if (crdiex->jref == iinput) {
-			it = crdiexs.erase(it);
-			delete crdiex;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdiexs);
 	return retval;
 };
 
@@ -2815,24 +2405,7 @@ bool SessWznm::handleEraseCrdime(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmIme* crdime = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdimes.begin(); it != crdimes.end();) {
-		crdime = *it;
-		if (crdime->jref == iinput) {
-			it = crdimes.erase(it);
-			delete crdime;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdimes);
 	return retval;
 };
 
@@ -2840,24 +2413,7 @@ bool SessWznm::handleEraseCrdjob(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmJob* crdjob = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdjobs.begin(); it != crdjobs.end();) {
-		crdjob = *it;
-		if (crdjob->jref == iinput) {
-			it = crdjobs.erase(it);
-			delete crdjob;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdjobs);
 	return retval;
 };
 
@@ -2865,24 +2421,7 @@ bool SessWznm::handleEraseCrdlib(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmLib* crdlib = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdlibs.begin(); it != crdlibs.end();) {
-		crdlib = *it;
-		if (crdlib->jref == iinput) {
-			it = crdlibs.erase(it);
-			delete crdlib;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdlibs);
 	return retval;
 };
 
@@ -2890,24 +2429,7 @@ bool SessWznm::handleEraseCrdloc(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmLoc* crdloc = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdlocs.begin(); it != crdlocs.end();) {
-		crdloc = *it;
-		if (crdloc->jref == iinput) {
-			it = crdlocs.erase(it);
-			delete crdloc;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdlocs);
 	return retval;
 };
 
@@ -2915,24 +2437,7 @@ bool SessWznm::handleEraseCrdmch(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmMch* crdmch = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdmchs.begin(); it != crdmchs.end();) {
-		crdmch = *it;
-		if (crdmch->jref == iinput) {
-			it = crdmchs.erase(it);
-			delete crdmch;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdmchs);
 	return retval;
 };
 
@@ -2940,24 +2445,7 @@ bool SessWznm::handleEraseCrdmdl(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmMdl* crdmdl = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdmdls.begin(); it != crdmdls.end();) {
-		crdmdl = *it;
-		if (crdmdl->jref == iinput) {
-			it = crdmdls.erase(it);
-			delete crdmdl;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdmdls);
 	return retval;
 };
 
@@ -2965,24 +2453,7 @@ bool SessWznm::handleEraseCrdmtd(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmMtd* crdmtd = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdmtds.begin(); it != crdmtds.end();) {
-		crdmtd = *it;
-		if (crdmtd->jref == iinput) {
-			it = crdmtds.erase(it);
-			delete crdmtd;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdmtds);
 	return retval;
 };
 
@@ -2990,24 +2461,7 @@ bool SessWznm::handleEraseCrdopk(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmOpk* crdopk = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdopks.begin(); it != crdopks.end();) {
-		crdopk = *it;
-		if (crdopk->jref == iinput) {
-			it = crdopks.erase(it);
-			delete crdopk;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdopks);
 	return retval;
 };
 
@@ -3015,24 +2469,7 @@ bool SessWznm::handleEraseCrdopx(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmOpx* crdopx = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdopxs.begin(); it != crdopxs.end();) {
-		crdopx = *it;
-		if (crdopx->jref == iinput) {
-			it = crdopxs.erase(it);
-			delete crdopx;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdopxs);
 	return retval;
 };
 
@@ -3040,24 +2477,7 @@ bool SessWznm::handleEraseCrdpnl(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmPnl* crdpnl = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdpnls.begin(); it != crdpnls.end();) {
-		crdpnl = *it;
-		if (crdpnl->jref == iinput) {
-			it = crdpnls.erase(it);
-			delete crdpnl;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdpnls);
 	return retval;
 };
 
@@ -3065,24 +2485,7 @@ bool SessWznm::handleEraseCrdprj(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmPrj* crdprj = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdprjs.begin(); it != crdprjs.end();) {
-		crdprj = *it;
-		if (crdprj->jref == iinput) {
-			it = crdprjs.erase(it);
-			delete crdprj;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdprjs);
 	return retval;
 };
 
@@ -3090,24 +2493,7 @@ bool SessWznm::handleEraseCrdprs(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmPrs* crdprs = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdprss.begin(); it != crdprss.end();) {
-		crdprs = *it;
-		if (crdprs->jref == iinput) {
-			it = crdprss.erase(it);
-			delete crdprs;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdprss);
 	return retval;
 };
 
@@ -3115,24 +2501,7 @@ bool SessWznm::handleEraseCrdpst(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmPst* crdpst = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdpsts.begin(); it != crdpsts.end();) {
-		crdpst = *it;
-		if (crdpst->jref == iinput) {
-			it = crdpsts.erase(it);
-			delete crdpst;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdpsts);
 	return retval;
 };
 
@@ -3140,24 +2509,7 @@ bool SessWznm::handleEraseCrdqco(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmQco* crdqco = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdqcos.begin(); it != crdqcos.end();) {
-		crdqco = *it;
-		if (crdqco->jref == iinput) {
-			it = crdqcos.erase(it);
-			delete crdqco;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdqcos);
 	return retval;
 };
 
@@ -3165,24 +2517,7 @@ bool SessWznm::handleEraseCrdqmd(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmQmd* crdqmd = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdqmds.begin(); it != crdqmds.end();) {
-		crdqmd = *it;
-		if (crdqmd->jref == iinput) {
-			it = crdqmds.erase(it);
-			delete crdqmd;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdqmds);
 	return retval;
 };
 
@@ -3190,24 +2525,7 @@ bool SessWznm::handleEraseCrdqry(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmQry* crdqry = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdqrys.begin(); it != crdqrys.end();) {
-		crdqry = *it;
-		if (crdqry->jref == iinput) {
-			it = crdqrys.erase(it);
-			delete crdqry;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdqrys);
 	return retval;
 };
 
@@ -3215,24 +2533,7 @@ bool SessWznm::handleEraseCrdrel(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmRel* crdrel = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdrels.begin(); it != crdrels.end();) {
-		crdrel = *it;
-		if (crdrel->jref == iinput) {
-			it = crdrels.erase(it);
-			delete crdrel;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdrels);
 	return retval;
 };
 
@@ -3240,24 +2541,7 @@ bool SessWznm::handleEraseCrdrls(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmRls* crdrls = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdrlss.begin(); it != crdrlss.end();) {
-		crdrls = *it;
-		if (crdrls->jref == iinput) {
-			it = crdrlss.erase(it);
-			delete crdrls;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdrlss);
 	return retval;
 };
 
@@ -3265,24 +2549,7 @@ bool SessWznm::handleEraseCrdrtj(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmRtj* crdrtj = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdrtjs.begin(); it != crdrtjs.end();) {
-		crdrtj = *it;
-		if (crdrtj->jref == iinput) {
-			it = crdrtjs.erase(it);
-			delete crdrtj;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdrtjs);
 	return retval;
 };
 
@@ -3290,24 +2557,7 @@ bool SessWznm::handleEraseCrdsbs(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmSbs* crdsbs = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdsbss.begin(); it != crdsbss.end();) {
-		crdsbs = *it;
-		if (crdsbs->jref == iinput) {
-			it = crdsbss.erase(it);
-			delete crdsbs;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdsbss);
 	return retval;
 };
 
@@ -3315,24 +2565,7 @@ bool SessWznm::handleEraseCrdseq(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmSeq* crdseq = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdseqs.begin(); it != crdseqs.end();) {
-		crdseq = *it;
-		if (crdseq->jref == iinput) {
-			it = crdseqs.erase(it);
-			delete crdseq;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdseqs);
 	return retval;
 };
 
@@ -3340,24 +2573,7 @@ bool SessWznm::handleEraseCrdsge(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmSge* crdsge = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdsges.begin(); it != crdsges.end();) {
-		crdsge = *it;
-		if (crdsge->jref == iinput) {
-			it = crdsges.erase(it);
-			delete crdsge;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdsges);
 	return retval;
 };
 
@@ -3365,24 +2581,7 @@ bool SessWznm::handleEraseCrdstb(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmStb* crdstb = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdstbs.begin(); it != crdstbs.end();) {
-		crdstb = *it;
-		if (crdstb->jref == iinput) {
-			it = crdstbs.erase(it);
-			delete crdstb;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdstbs);
 	return retval;
 };
 
@@ -3390,24 +2589,7 @@ bool SessWznm::handleEraseCrdste(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmSte* crdste = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdstes.begin(); it != crdstes.end();) {
-		crdste = *it;
-		if (crdste->jref == iinput) {
-			it = crdstes.erase(it);
-			delete crdste;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdstes);
 	return retval;
 };
 
@@ -3415,24 +2597,7 @@ bool SessWznm::handleEraseCrdtag(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmTag* crdtag = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdtags.begin(); it != crdtags.end();) {
-		crdtag = *it;
-		if (crdtag->jref == iinput) {
-			it = crdtags.erase(it);
-			delete crdtag;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdtags);
 	return retval;
 };
 
@@ -3440,24 +2605,7 @@ bool SessWznm::handleEraseCrdtbl(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmTbl* crdtbl = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdtbls.begin(); it != crdtbls.end();) {
-		crdtbl = *it;
-		if (crdtbl->jref == iinput) {
-			it = crdtbls.erase(it);
-			delete crdtbl;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdtbls);
 	return retval;
 };
 
@@ -3465,24 +2613,7 @@ bool SessWznm::handleEraseCrdtco(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmTco* crdtco = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdtcos.begin(); it != crdtcos.end();) {
-		crdtco = *it;
-		if (crdtco->jref == iinput) {
-			it = crdtcos.erase(it);
-			delete crdtco;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdtcos);
 	return retval;
 };
 
@@ -3490,24 +2621,7 @@ bool SessWznm::handleEraseCrdusg(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmUsg* crdusg = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdusgs.begin(); it != crdusgs.end();) {
-		crdusg = *it;
-		if (crdusg->jref == iinput) {
-			it = crdusgs.erase(it);
-			delete crdusg;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdusgs);
 	return retval;
 };
 
@@ -3515,24 +2629,7 @@ bool SessWznm::handleEraseCrdusr(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmUsr* crdusr = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdusrs.begin(); it != crdusrs.end();) {
-		crdusr = *it;
-		if (crdusr->jref == iinput) {
-			it = crdusrs.erase(it);
-			delete crdusr;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdusrs);
 	return retval;
 };
 
@@ -3540,24 +2637,7 @@ bool SessWznm::handleEraseCrdutl(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmUtl* crdutl = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdutls.begin(); it != crdutls.end();) {
-		crdutl = *it;
-		if (crdutl->jref == iinput) {
-			it = crdutls.erase(it);
-			delete crdutl;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdutls);
 	return retval;
 };
 
@@ -3565,24 +2645,7 @@ bool SessWznm::handleEraseCrdvec(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmVec* crdvec = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdvecs.begin(); it != crdvecs.end();) {
-		crdvec = *it;
-		if (crdvec->jref == iinput) {
-			it = crdvecs.erase(it);
-			delete crdvec;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdvecs);
 	return retval;
 };
 
@@ -3590,24 +2653,7 @@ bool SessWznm::handleEraseCrdver(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmVer* crdver = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdvers.begin(); it != crdvers.end();) {
-		crdver = *it;
-		if (crdver->jref == iinput) {
-			it = crdvers.erase(it);
-			delete crdver;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdvers);
 	return retval;
 };
 
@@ -3615,24 +2661,7 @@ bool SessWznm::handleEraseCrdvit(
 			DbsWznm* dbswznm
 		) {
 	bool retval = false;
-	string input;
-	uint iinput;
-
-	CrdWznmVit* crdvit = NULL;
-
-	cout << "\tjob reference: ";
-	cin >> input;
-	iinput = atoi(input.c_str());
-
-	for (auto it = crdvits.begin(); it != crdvits.end();) {
-		crdvit = *it;
-		if (crdvit->jref == iinput) {
-			it = crdvits.erase(it);
-			delete crdvit;
-			break;
-		} else it++;
-	};
-
+	eraseCrd(crdvits);
 	return retval;
 };
 
@@ -3646,54 +2675,54 @@ void SessWznm::handleDpchAppWznmInit(
 	// resume session
 	xchg->removePreset(VecWznmVPreset::PREWZNMSUSPSESS, jref);
 
-	for (auto it = crdusgs.begin(); it != crdusgs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmUsg");
-	for (auto it = crdusrs.begin(); it != crdusrs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmUsr");
-	for (auto it = crdprss.begin(); it != crdprss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmPrs");
-	for (auto it = crdfils.begin(); it != crdfils.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmFil");
-	for (auto it = crdlocs.begin(); it != crdlocs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmLoc");
-	for (auto it = crdtags.begin(); it != crdtags.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmTag");
-	for (auto it = crdctps.begin(); it != crdctps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmCtp");
-	for (auto it = crdmchs.begin(); it != crdmchs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmMch");
-	for (auto it = crdlibs.begin(); it != crdlibs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmLib");
-	for (auto it = crdprjs.begin(); it != crdprjs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmPrj");
-	for (auto it = crdvers.begin(); it != crdvers.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmVer");
-	for (auto it = crdcaps.begin(); it != crdcaps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmCap");
-	for (auto it = crderrs.begin(); it != crderrs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmErr");
-	for (auto it = crdtbls.begin(); it != crdtbls.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmTbl");
-	for (auto it = crdtcos.begin(); it != crdtcos.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmTco");
-	for (auto it = crdsbss.begin(); it != crdsbss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmSbs");
-	for (auto it = crdrels.begin(); it != crdrels.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmRel");
-	for (auto it = crdvecs.begin(); it != crdvecs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmVec");
-	for (auto it = crdvits.begin(); it != crdvits.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmVit");
-	for (auto it = crdchks.begin(); it != crdchks.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmChk");
-	for (auto it = crdstbs.begin(); it != crdstbs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmStb");
-	for (auto it = crdiexs.begin(); it != crdiexs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmIex");
-	for (auto it = crdimes.begin(); it != crdimes.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmIme");
-	for (auto it = crdiels.begin(); it != crdiels.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmIel");
-	for (auto it = crdpsts.begin(); it != crdpsts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmPst");
-	for (auto it = crdmdls.begin(); it != crdmdls.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmMdl");
-	for (auto it = crdcars.begin(); it != crdcars.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmCar");
-	for (auto it = crddlgs.begin(); it != crddlgs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmDlg");
-	for (auto it = crdpnls.begin(); it != crdpnls.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmPnl");
-	for (auto it = crdqrys.begin(); it != crdqrys.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmQry");
-	for (auto it = crdqcos.begin(); it != crdqcos.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmQco");
-	for (auto it = crdqmds.begin(); it != crdqmds.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmQmd");
-	for (auto it = crdcons.begin(); it != crdcons.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmCon");
-	for (auto it = crdopks.begin(); it != crdopks.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmOpk");
-	for (auto it = crdopxs.begin(); it != crdopxs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmOpx");
-	for (auto it = crdjobs.begin(); it != crdjobs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmJob");
-	for (auto it = crdsges.begin(); it != crdsges.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmSge");
-	for (auto it = crdmtds.begin(); it != crdmtds.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmMtd");
-	for (auto it = crdblks.begin(); it != crdblks.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmBlk");
-	for (auto it = crdcals.begin(); it != crdcals.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmCal");
-	for (auto it = crdcmps.begin(); it != crdcmps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmCmp");
-	for (auto it = crdrlss.begin(); it != crdrlss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmRls");
-	for (auto it = crdapps.begin(); it != crdapps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmApp");
-	for (auto it = crdrtjs.begin(); it != crdrtjs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmRtj");
-	for (auto it = crdevts.begin(); it != crdevts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmEvt");
-	for (auto it = crdseqs.begin(); it != crdseqs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmSeq");
-	for (auto it = crdstes.begin(); it != crdstes.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmSte");
-	for (auto it = crdutls.begin(); it != crdutls.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), "CrdWznmUtl");
+	for (auto it = crdusgs.begin(); it != crdusgs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmUsg");
+	for (auto it = crdusrs.begin(); it != crdusrs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmUsr");
+	for (auto it = crdprss.begin(); it != crdprss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmPrs");
+	for (auto it = crdfils.begin(); it != crdfils.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmFil");
+	for (auto it = crdlocs.begin(); it != crdlocs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmLoc");
+	for (auto it = crdtags.begin(); it != crdtags.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmTag");
+	for (auto it = crdctps.begin(); it != crdctps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmCtp");
+	for (auto it = crdmchs.begin(); it != crdmchs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmMch");
+	for (auto it = crdlibs.begin(); it != crdlibs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmLib");
+	for (auto it = crdprjs.begin(); it != crdprjs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmPrj");
+	for (auto it = crdvers.begin(); it != crdvers.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmVer");
+	for (auto it = crdcaps.begin(); it != crdcaps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmCap");
+	for (auto it = crderrs.begin(); it != crderrs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmErr");
+	for (auto it = crdtbls.begin(); it != crdtbls.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmTbl");
+	for (auto it = crdtcos.begin(); it != crdtcos.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmTco");
+	for (auto it = crdsbss.begin(); it != crdsbss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmSbs");
+	for (auto it = crdrels.begin(); it != crdrels.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmRel");
+	for (auto it = crdvecs.begin(); it != crdvecs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmVec");
+	for (auto it = crdvits.begin(); it != crdvits.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmVit");
+	for (auto it = crdchks.begin(); it != crdchks.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmChk");
+	for (auto it = crdstbs.begin(); it != crdstbs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmStb");
+	for (auto it = crdiexs.begin(); it != crdiexs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmIex");
+	for (auto it = crdimes.begin(); it != crdimes.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmIme");
+	for (auto it = crdiels.begin(); it != crdiels.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmIel");
+	for (auto it = crdpsts.begin(); it != crdpsts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmPst");
+	for (auto it = crdmdls.begin(); it != crdmdls.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmMdl");
+	for (auto it = crdcars.begin(); it != crdcars.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmCar");
+	for (auto it = crddlgs.begin(); it != crddlgs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmDlg");
+	for (auto it = crdpnls.begin(); it != crdpnls.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmPnl");
+	for (auto it = crdqrys.begin(); it != crdqrys.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmQry");
+	for (auto it = crdqcos.begin(); it != crdqcos.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmQco");
+	for (auto it = crdqmds.begin(); it != crdqmds.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmQmd");
+	for (auto it = crdcons.begin(); it != crdcons.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmCon");
+	for (auto it = crdopks.begin(); it != crdopks.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmOpk");
+	for (auto it = crdopxs.begin(); it != crdopxs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmOpx");
+	for (auto it = crdjobs.begin(); it != crdjobs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmJob");
+	for (auto it = crdsges.begin(); it != crdsges.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmSge");
+	for (auto it = crdmtds.begin(); it != crdmtds.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmMtd");
+	for (auto it = crdblks.begin(); it != crdblks.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmBlk");
+	for (auto it = crdcals.begin(); it != crdcals.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmCal");
+	for (auto it = crdcmps.begin(); it != crdcmps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmCmp");
+	for (auto it = crdrlss.begin(); it != crdrlss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmRls");
+	for (auto it = crdapps.begin(); it != crdapps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmApp");
+	for (auto it = crdrtjs.begin(); it != crdrtjs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmRtj");
+	for (auto it = crdevts.begin(); it != crdevts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmEvt");
+	for (auto it = crdseqs.begin(); it != crdseqs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmSeq");
+	for (auto it = crdstes.begin(); it != crdstes.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmSte");
+	for (auto it = crdutls.begin(); it != crdutls.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmUtl");
 
 	*dpcheng = new DpchEngData(jref, &feedFEnsSec, &statshr, {DpchEngData::ALL});
 };
@@ -3724,6 +2753,7 @@ bool SessWznm::handleCallWznmRefPreSet(
 			, const ubigint refInv
 		) {
 	bool retval = false;
+// IP handleCallWznmRefPreSet --- BEGIN
 	if (ixInv == VecWznmVPreset::PREWZNMJREFNOTIFY) {
 		ubigint jrefNotify_old = xchg->getRefPreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
 
@@ -3743,6 +2773,7 @@ bool SessWznm::handleCallWznmRefPreSet(
 
 		if (crdnav) crdnav->updatePreset(dbswznm, ixInv, jrefTrig, true);
 	};
+// IP handleCallWznmRefPreSet --- END
 	return retval;
 };
 
@@ -3830,392 +2861,54 @@ bool SessWznm::handleCallWznmCrdOpen(
 		refRet = 0;
 
 	} else {
-		if (ixWznmVCard == VecWznmVCard::CRDWZNMNAV) {
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMUSG) {
-			CrdWznmUsg* crdusg = NULL;
-
-			crdusg = new CrdWznmUsg(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdusgs.push_back(crdusg);
-
-			refRet = crdusg->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMUSR) {
-			CrdWznmUsr* crdusr = NULL;
-
-			crdusr = new CrdWznmUsr(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdusrs.push_back(crdusr);
-
-			refRet = crdusr->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRS) {
-			CrdWznmPrs* crdprs = NULL;
-
-			crdprs = new CrdWznmPrs(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdprss.push_back(crdprs);
-
-			refRet = crdprs->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMFIL) {
-			CrdWznmFil* crdfil = NULL;
-
-			crdfil = new CrdWznmFil(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdfils.push_back(crdfil);
-
-			refRet = crdfil->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) {
-			CrdWznmLoc* crdloc = NULL;
-
-			crdloc = new CrdWznmLoc(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdlocs.push_back(crdloc);
-
-			refRet = crdloc->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) {
-			CrdWznmTag* crdtag = NULL;
-
-			crdtag = new CrdWznmTag(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdtags.push_back(crdtag);
-
-			refRet = crdtag->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMCTP) {
-			CrdWznmCtp* crdctp = NULL;
-
-			crdctp = new CrdWznmCtp(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdctps.push_back(crdctp);
-
-			refRet = crdctp->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMMCH) {
-			CrdWznmMch* crdmch = NULL;
-
-			crdmch = new CrdWznmMch(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdmchs.push_back(crdmch);
-
-			refRet = crdmch->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMLIB) {
-			CrdWznmLib* crdlib = NULL;
-
-			crdlib = new CrdWznmLib(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdlibs.push_back(crdlib);
-
-			refRet = crdlib->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRJ) {
-			CrdWznmPrj* crdprj = NULL;
-
-			crdprj = new CrdWznmPrj(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdprjs.push_back(crdprj);
-
-			refRet = crdprj->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) {
-			CrdWznmVer* crdver = NULL;
-
-			crdver = new CrdWznmVer(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdvers.push_back(crdver);
-
-			refRet = crdver->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) {
-			CrdWznmCap* crdcap = NULL;
-
-			crdcap = new CrdWznmCap(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdcaps.push_back(crdcap);
-
-			refRet = crdcap->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMERR) {
-			CrdWznmErr* crderr = NULL;
-
-			crderr = new CrdWznmErr(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crderrs.push_back(crderr);
-
-			refRet = crderr->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) {
-			CrdWznmTbl* crdtbl = NULL;
-
-			crdtbl = new CrdWznmTbl(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdtbls.push_back(crdtbl);
-
-			refRet = crdtbl->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) {
-			CrdWznmTco* crdtco = NULL;
-
-			crdtco = new CrdWznmTco(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdtcos.push_back(crdtco);
-
-			refRet = crdtco->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) {
-			CrdWznmSbs* crdsbs = NULL;
-
-			crdsbs = new CrdWznmSbs(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdsbss.push_back(crdsbs);
-
-			refRet = crdsbs->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMREL) {
-			CrdWznmRel* crdrel = NULL;
-
-			crdrel = new CrdWznmRel(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdrels.push_back(crdrel);
-
-			refRet = crdrel->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) {
-			CrdWznmVec* crdvec = NULL;
-
-			crdvec = new CrdWznmVec(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdvecs.push_back(crdvec);
-
-			refRet = crdvec->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) {
-			CrdWznmVit* crdvit = NULL;
-
-			crdvit = new CrdWznmVit(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdvits.push_back(crdvit);
-
-			refRet = crdvit->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) {
-			CrdWznmChk* crdchk = NULL;
-
-			crdchk = new CrdWznmChk(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdchks.push_back(crdchk);
-
-			refRet = crdchk->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) {
-			CrdWznmStb* crdstb = NULL;
-
-			crdstb = new CrdWznmStb(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdstbs.push_back(crdstb);
-
-			refRet = crdstb->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) {
-			CrdWznmIex* crdiex = NULL;
-
-			crdiex = new CrdWznmIex(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdiexs.push_back(crdiex);
-
-			refRet = crdiex->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMIME) {
-			CrdWznmIme* crdime = NULL;
-
-			crdime = new CrdWznmIme(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdimes.push_back(crdime);
-
-			refRet = crdime->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) {
-			CrdWznmIel* crdiel = NULL;
-
-			crdiel = new CrdWznmIel(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdiels.push_back(crdiel);
-
-			refRet = crdiel->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMPST) {
-			CrdWznmPst* crdpst = NULL;
-
-			crdpst = new CrdWznmPst(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdpsts.push_back(crdpst);
-
-			refRet = crdpst->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) {
-			CrdWznmMdl* crdmdl = NULL;
-
-			crdmdl = new CrdWznmMdl(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdmdls.push_back(crdmdl);
-
-			refRet = crdmdl->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) {
-			CrdWznmCar* crdcar = NULL;
-
-			crdcar = new CrdWznmCar(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdcars.push_back(crdcar);
-
-			refRet = crdcar->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) {
-			CrdWznmDlg* crddlg = NULL;
-
-			crddlg = new CrdWznmDlg(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crddlgs.push_back(crddlg);
-
-			refRet = crddlg->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) {
-			CrdWznmPnl* crdpnl = NULL;
-
-			crdpnl = new CrdWznmPnl(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdpnls.push_back(crdpnl);
-
-			refRet = crdpnl->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) {
-			CrdWznmQry* crdqry = NULL;
-
-			crdqry = new CrdWznmQry(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdqrys.push_back(crdqry);
-
-			refRet = crdqry->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) {
-			CrdWznmQco* crdqco = NULL;
-
-			crdqco = new CrdWznmQco(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdqcos.push_back(crdqco);
-
-			refRet = crdqco->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) {
-			CrdWznmQmd* crdqmd = NULL;
-
-			crdqmd = new CrdWznmQmd(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdqmds.push_back(crdqmd);
-
-			refRet = crdqmd->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMCON) {
-			CrdWznmCon* crdcon = NULL;
-
-			crdcon = new CrdWznmCon(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdcons.push_back(crdcon);
-
-			refRet = crdcon->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) {
-			CrdWznmOpk* crdopk = NULL;
-
-			crdopk = new CrdWznmOpk(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdopks.push_back(crdopk);
-
-			refRet = crdopk->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) {
-			CrdWznmOpx* crdopx = NULL;
-
-			crdopx = new CrdWznmOpx(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdopxs.push_back(crdopx);
-
-			refRet = crdopx->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) {
-			CrdWznmJob* crdjob = NULL;
-
-			crdjob = new CrdWznmJob(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdjobs.push_back(crdjob);
-
-			refRet = crdjob->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) {
-			CrdWznmSge* crdsge = NULL;
-
-			crdsge = new CrdWznmSge(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdsges.push_back(crdsge);
-
-			refRet = crdsge->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) {
-			CrdWznmMtd* crdmtd = NULL;
-
-			crdmtd = new CrdWznmMtd(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdmtds.push_back(crdmtd);
-
-			refRet = crdmtd->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) {
-			CrdWznmBlk* crdblk = NULL;
-
-			crdblk = new CrdWznmBlk(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdblks.push_back(crdblk);
-
-			refRet = crdblk->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) {
-			CrdWznmCal* crdcal = NULL;
-
-			crdcal = new CrdWznmCal(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdcals.push_back(crdcal);
-
-			refRet = crdcal->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) {
-			CrdWznmCmp* crdcmp = NULL;
-
-			crdcmp = new CrdWznmCmp(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdcmps.push_back(crdcmp);
-
-			refRet = crdcmp->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) {
-			CrdWznmRls* crdrls = NULL;
-
-			crdrls = new CrdWznmRls(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdrlss.push_back(crdrls);
-
-			refRet = crdrls->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMAPP) {
-			CrdWznmApp* crdapp = NULL;
-
-			crdapp = new CrdWznmApp(xchg, dbswznm, jref, ixWznmVLocale, ref);
-			crdapps.push_back(crdapp);
-
-			refRet = crdapp->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) {
-			CrdWznmRtj* crdrtj = NULL;
-
-			crdrtj = new CrdWznmRtj(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdrtjs.push_back(crdrtj);
-
-			refRet = crdrtj->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) {
-			CrdWznmEvt* crdevt = NULL;
-
-			crdevt = new CrdWznmEvt(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdevts.push_back(crdevt);
-
-			refRet = crdevt->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) {
-			CrdWznmSeq* crdseq = NULL;
-
-			crdseq = new CrdWznmSeq(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdseqs.push_back(crdseq);
-
-			refRet = crdseq->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTE) {
-			CrdWznmSte* crdste = NULL;
-
-			crdste = new CrdWznmSte(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref);
-			crdstes.push_back(crdste);
-
-			refRet = crdste->jref;
-
-		} else if (ixWznmVCard == VecWznmVCard::CRDWZNMUTL) {
-			CrdWznmUtl* crdutl = NULL;
-
-			crdutl = new CrdWznmUtl(xchg, dbswznm, jref, ixWznmVLocale);
-			crdutls.push_back(crdutl);
-
-			refRet = crdutl->jref;
-
-		};
+		if (ixWznmVCard == VecWznmVCard::CRDWZNMUSG) refRet = insertSubjob(crdusgs, new CrdWznmUsg(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMUSR) refRet = insertSubjob(crdusrs, new CrdWznmUsr(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRS) refRet = insertSubjob(crdprss, new CrdWznmPrs(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMFIL) refRet = insertSubjob(crdfils, new CrdWznmFil(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) refRet = insertSubjob(crdlocs, new CrdWznmLoc(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) refRet = insertSubjob(crdtags, new CrdWznmTag(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMCTP) refRet = insertSubjob(crdctps, new CrdWznmCtp(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMMCH) refRet = insertSubjob(crdmchs, new CrdWznmMch(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMLIB) refRet = insertSubjob(crdlibs, new CrdWznmLib(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRJ) refRet = insertSubjob(crdprjs, new CrdWznmPrj(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) refRet = insertSubjob(crdvers, new CrdWznmVer(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) refRet = insertSubjob(crdcaps, new CrdWznmCap(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMERR) refRet = insertSubjob(crderrs, new CrdWznmErr(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) refRet = insertSubjob(crdtbls, new CrdWznmTbl(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) refRet = insertSubjob(crdtcos, new CrdWznmTco(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) refRet = insertSubjob(crdsbss, new CrdWznmSbs(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMREL) refRet = insertSubjob(crdrels, new CrdWznmRel(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) refRet = insertSubjob(crdvecs, new CrdWznmVec(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) refRet = insertSubjob(crdvits, new CrdWznmVit(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) refRet = insertSubjob(crdchks, new CrdWznmChk(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) refRet = insertSubjob(crdstbs, new CrdWznmStb(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) refRet = insertSubjob(crdiexs, new CrdWznmIex(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMIME) refRet = insertSubjob(crdimes, new CrdWznmIme(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) refRet = insertSubjob(crdiels, new CrdWznmIel(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMPST) refRet = insertSubjob(crdpsts, new CrdWznmPst(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) refRet = insertSubjob(crdmdls, new CrdWznmMdl(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) refRet = insertSubjob(crdcars, new CrdWznmCar(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) refRet = insertSubjob(crddlgs, new CrdWznmDlg(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) refRet = insertSubjob(crdpnls, new CrdWznmPnl(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) refRet = insertSubjob(crdqrys, new CrdWznmQry(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) refRet = insertSubjob(crdqcos, new CrdWznmQco(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) refRet = insertSubjob(crdqmds, new CrdWznmQmd(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMCON) refRet = insertSubjob(crdcons, new CrdWznmCon(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) refRet = insertSubjob(crdopks, new CrdWznmOpk(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) refRet = insertSubjob(crdopxs, new CrdWznmOpx(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) refRet = insertSubjob(crdjobs, new CrdWznmJob(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) refRet = insertSubjob(crdsges, new CrdWznmSge(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) refRet = insertSubjob(crdmtds, new CrdWznmMtd(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) refRet = insertSubjob(crdblks, new CrdWznmBlk(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) refRet = insertSubjob(crdcals, new CrdWznmCal(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) refRet = insertSubjob(crdcmps, new CrdWznmCmp(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) refRet = insertSubjob(crdrlss, new CrdWznmRls(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMAPP) refRet = insertSubjob(crdapps, new CrdWznmApp(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) refRet = insertSubjob(crdrtjs, new CrdWznmRtj(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) refRet = insertSubjob(crdevts, new CrdWznmEvt(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) refRet = insertSubjob(crdseqs, new CrdWznmSeq(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTE) refRet = insertSubjob(crdstes, new CrdWznmSte(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMUTL) refRet = insertSubjob(crdutls, new CrdWznmUtl(xchg, dbswznm, jref, ixWznmVLocale));
 	};
 
 	return retval;
@@ -4239,535 +2932,55 @@ bool SessWznm::handleCallWznmCrdClose(
 			crdnav = NULL;
 		};
 
-	} else if (ixInv == VecWznmVCard::CRDWZNMUSG) {
-		CrdWznmUsg* crdusg = NULL;
-
-		for (auto it = crdusgs.begin(); it != crdusgs.end();) {
-			crdusg = *it;
-			if (crdusg->jref == jrefTrig) {
-				it = crdusgs.erase(it);
-				delete crdusg;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMUSR) {
-		CrdWznmUsr* crdusr = NULL;
-
-		for (auto it = crdusrs.begin(); it != crdusrs.end();) {
-			crdusr = *it;
-			if (crdusr->jref == jrefTrig) {
-				it = crdusrs.erase(it);
-				delete crdusr;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMPRS) {
-		CrdWznmPrs* crdprs = NULL;
-
-		for (auto it = crdprss.begin(); it != crdprss.end();) {
-			crdprs = *it;
-			if (crdprs->jref == jrefTrig) {
-				it = crdprss.erase(it);
-				delete crdprs;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMFIL) {
-		CrdWznmFil* crdfil = NULL;
-
-		for (auto it = crdfils.begin(); it != crdfils.end();) {
-			crdfil = *it;
-			if (crdfil->jref == jrefTrig) {
-				it = crdfils.erase(it);
-				delete crdfil;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMLOC) {
-		CrdWznmLoc* crdloc = NULL;
-
-		for (auto it = crdlocs.begin(); it != crdlocs.end();) {
-			crdloc = *it;
-			if (crdloc->jref == jrefTrig) {
-				it = crdlocs.erase(it);
-				delete crdloc;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMTAG) {
-		CrdWznmTag* crdtag = NULL;
-
-		for (auto it = crdtags.begin(); it != crdtags.end();) {
-			crdtag = *it;
-			if (crdtag->jref == jrefTrig) {
-				it = crdtags.erase(it);
-				delete crdtag;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMCTP) {
-		CrdWznmCtp* crdctp = NULL;
-
-		for (auto it = crdctps.begin(); it != crdctps.end();) {
-			crdctp = *it;
-			if (crdctp->jref == jrefTrig) {
-				it = crdctps.erase(it);
-				delete crdctp;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMMCH) {
-		CrdWznmMch* crdmch = NULL;
-
-		for (auto it = crdmchs.begin(); it != crdmchs.end();) {
-			crdmch = *it;
-			if (crdmch->jref == jrefTrig) {
-				it = crdmchs.erase(it);
-				delete crdmch;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMLIB) {
-		CrdWznmLib* crdlib = NULL;
-
-		for (auto it = crdlibs.begin(); it != crdlibs.end();) {
-			crdlib = *it;
-			if (crdlib->jref == jrefTrig) {
-				it = crdlibs.erase(it);
-				delete crdlib;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMPRJ) {
-		CrdWznmPrj* crdprj = NULL;
-
-		for (auto it = crdprjs.begin(); it != crdprjs.end();) {
-			crdprj = *it;
-			if (crdprj->jref == jrefTrig) {
-				it = crdprjs.erase(it);
-				delete crdprj;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMVER) {
-		CrdWznmVer* crdver = NULL;
-
-		for (auto it = crdvers.begin(); it != crdvers.end();) {
-			crdver = *it;
-			if (crdver->jref == jrefTrig) {
-				it = crdvers.erase(it);
-				delete crdver;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMCAP) {
-		CrdWznmCap* crdcap = NULL;
-
-		for (auto it = crdcaps.begin(); it != crdcaps.end();) {
-			crdcap = *it;
-			if (crdcap->jref == jrefTrig) {
-				it = crdcaps.erase(it);
-				delete crdcap;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMERR) {
-		CrdWznmErr* crderr = NULL;
-
-		for (auto it = crderrs.begin(); it != crderrs.end();) {
-			crderr = *it;
-			if (crderr->jref == jrefTrig) {
-				it = crderrs.erase(it);
-				delete crderr;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMTBL) {
-		CrdWznmTbl* crdtbl = NULL;
-
-		for (auto it = crdtbls.begin(); it != crdtbls.end();) {
-			crdtbl = *it;
-			if (crdtbl->jref == jrefTrig) {
-				it = crdtbls.erase(it);
-				delete crdtbl;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMTCO) {
-		CrdWznmTco* crdtco = NULL;
-
-		for (auto it = crdtcos.begin(); it != crdtcos.end();) {
-			crdtco = *it;
-			if (crdtco->jref == jrefTrig) {
-				it = crdtcos.erase(it);
-				delete crdtco;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMSBS) {
-		CrdWznmSbs* crdsbs = NULL;
-
-		for (auto it = crdsbss.begin(); it != crdsbss.end();) {
-			crdsbs = *it;
-			if (crdsbs->jref == jrefTrig) {
-				it = crdsbss.erase(it);
-				delete crdsbs;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMREL) {
-		CrdWznmRel* crdrel = NULL;
-
-		for (auto it = crdrels.begin(); it != crdrels.end();) {
-			crdrel = *it;
-			if (crdrel->jref == jrefTrig) {
-				it = crdrels.erase(it);
-				delete crdrel;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMVEC) {
-		CrdWznmVec* crdvec = NULL;
-
-		for (auto it = crdvecs.begin(); it != crdvecs.end();) {
-			crdvec = *it;
-			if (crdvec->jref == jrefTrig) {
-				it = crdvecs.erase(it);
-				delete crdvec;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMVIT) {
-		CrdWznmVit* crdvit = NULL;
-
-		for (auto it = crdvits.begin(); it != crdvits.end();) {
-			crdvit = *it;
-			if (crdvit->jref == jrefTrig) {
-				it = crdvits.erase(it);
-				delete crdvit;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMCHK) {
-		CrdWznmChk* crdchk = NULL;
-
-		for (auto it = crdchks.begin(); it != crdchks.end();) {
-			crdchk = *it;
-			if (crdchk->jref == jrefTrig) {
-				it = crdchks.erase(it);
-				delete crdchk;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMSTB) {
-		CrdWznmStb* crdstb = NULL;
-
-		for (auto it = crdstbs.begin(); it != crdstbs.end();) {
-			crdstb = *it;
-			if (crdstb->jref == jrefTrig) {
-				it = crdstbs.erase(it);
-				delete crdstb;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMIEX) {
-		CrdWznmIex* crdiex = NULL;
-
-		for (auto it = crdiexs.begin(); it != crdiexs.end();) {
-			crdiex = *it;
-			if (crdiex->jref == jrefTrig) {
-				it = crdiexs.erase(it);
-				delete crdiex;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMIME) {
-		CrdWznmIme* crdime = NULL;
-
-		for (auto it = crdimes.begin(); it != crdimes.end();) {
-			crdime = *it;
-			if (crdime->jref == jrefTrig) {
-				it = crdimes.erase(it);
-				delete crdime;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMIEL) {
-		CrdWznmIel* crdiel = NULL;
-
-		for (auto it = crdiels.begin(); it != crdiels.end();) {
-			crdiel = *it;
-			if (crdiel->jref == jrefTrig) {
-				it = crdiels.erase(it);
-				delete crdiel;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMPST) {
-		CrdWznmPst* crdpst = NULL;
-
-		for (auto it = crdpsts.begin(); it != crdpsts.end();) {
-			crdpst = *it;
-			if (crdpst->jref == jrefTrig) {
-				it = crdpsts.erase(it);
-				delete crdpst;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMMDL) {
-		CrdWznmMdl* crdmdl = NULL;
-
-		for (auto it = crdmdls.begin(); it != crdmdls.end();) {
-			crdmdl = *it;
-			if (crdmdl->jref == jrefTrig) {
-				it = crdmdls.erase(it);
-				delete crdmdl;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMCAR) {
-		CrdWznmCar* crdcar = NULL;
-
-		for (auto it = crdcars.begin(); it != crdcars.end();) {
-			crdcar = *it;
-			if (crdcar->jref == jrefTrig) {
-				it = crdcars.erase(it);
-				delete crdcar;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMDLG) {
-		CrdWznmDlg* crddlg = NULL;
-
-		for (auto it = crddlgs.begin(); it != crddlgs.end();) {
-			crddlg = *it;
-			if (crddlg->jref == jrefTrig) {
-				it = crddlgs.erase(it);
-				delete crddlg;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMPNL) {
-		CrdWznmPnl* crdpnl = NULL;
-
-		for (auto it = crdpnls.begin(); it != crdpnls.end();) {
-			crdpnl = *it;
-			if (crdpnl->jref == jrefTrig) {
-				it = crdpnls.erase(it);
-				delete crdpnl;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMQRY) {
-		CrdWznmQry* crdqry = NULL;
-
-		for (auto it = crdqrys.begin(); it != crdqrys.end();) {
-			crdqry = *it;
-			if (crdqry->jref == jrefTrig) {
-				it = crdqrys.erase(it);
-				delete crdqry;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMQCO) {
-		CrdWznmQco* crdqco = NULL;
-
-		for (auto it = crdqcos.begin(); it != crdqcos.end();) {
-			crdqco = *it;
-			if (crdqco->jref == jrefTrig) {
-				it = crdqcos.erase(it);
-				delete crdqco;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMQMD) {
-		CrdWznmQmd* crdqmd = NULL;
-
-		for (auto it = crdqmds.begin(); it != crdqmds.end();) {
-			crdqmd = *it;
-			if (crdqmd->jref == jrefTrig) {
-				it = crdqmds.erase(it);
-				delete crdqmd;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMCON) {
-		CrdWznmCon* crdcon = NULL;
-
-		for (auto it = crdcons.begin(); it != crdcons.end();) {
-			crdcon = *it;
-			if (crdcon->jref == jrefTrig) {
-				it = crdcons.erase(it);
-				delete crdcon;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMOPK) {
-		CrdWznmOpk* crdopk = NULL;
-
-		for (auto it = crdopks.begin(); it != crdopks.end();) {
-			crdopk = *it;
-			if (crdopk->jref == jrefTrig) {
-				it = crdopks.erase(it);
-				delete crdopk;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMOPX) {
-		CrdWznmOpx* crdopx = NULL;
-
-		for (auto it = crdopxs.begin(); it != crdopxs.end();) {
-			crdopx = *it;
-			if (crdopx->jref == jrefTrig) {
-				it = crdopxs.erase(it);
-				delete crdopx;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMJOB) {
-		CrdWznmJob* crdjob = NULL;
-
-		for (auto it = crdjobs.begin(); it != crdjobs.end();) {
-			crdjob = *it;
-			if (crdjob->jref == jrefTrig) {
-				it = crdjobs.erase(it);
-				delete crdjob;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMSGE) {
-		CrdWznmSge* crdsge = NULL;
-
-		for (auto it = crdsges.begin(); it != crdsges.end();) {
-			crdsge = *it;
-			if (crdsge->jref == jrefTrig) {
-				it = crdsges.erase(it);
-				delete crdsge;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMMTD) {
-		CrdWznmMtd* crdmtd = NULL;
-
-		for (auto it = crdmtds.begin(); it != crdmtds.end();) {
-			crdmtd = *it;
-			if (crdmtd->jref == jrefTrig) {
-				it = crdmtds.erase(it);
-				delete crdmtd;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMBLK) {
-		CrdWznmBlk* crdblk = NULL;
-
-		for (auto it = crdblks.begin(); it != crdblks.end();) {
-			crdblk = *it;
-			if (crdblk->jref == jrefTrig) {
-				it = crdblks.erase(it);
-				delete crdblk;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMCAL) {
-		CrdWznmCal* crdcal = NULL;
-
-		for (auto it = crdcals.begin(); it != crdcals.end();) {
-			crdcal = *it;
-			if (crdcal->jref == jrefTrig) {
-				it = crdcals.erase(it);
-				delete crdcal;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMCMP) {
-		CrdWznmCmp* crdcmp = NULL;
-
-		for (auto it = crdcmps.begin(); it != crdcmps.end();) {
-			crdcmp = *it;
-			if (crdcmp->jref == jrefTrig) {
-				it = crdcmps.erase(it);
-				delete crdcmp;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMRLS) {
-		CrdWznmRls* crdrls = NULL;
-
-		for (auto it = crdrlss.begin(); it != crdrlss.end();) {
-			crdrls = *it;
-			if (crdrls->jref == jrefTrig) {
-				it = crdrlss.erase(it);
-				delete crdrls;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMAPP) {
-		CrdWznmApp* crdapp = NULL;
-
-		for (auto it = crdapps.begin(); it != crdapps.end();) {
-			crdapp = *it;
-			if (crdapp->jref == jrefTrig) {
-				it = crdapps.erase(it);
-				delete crdapp;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMRTJ) {
-		CrdWznmRtj* crdrtj = NULL;
-
-		for (auto it = crdrtjs.begin(); it != crdrtjs.end();) {
-			crdrtj = *it;
-			if (crdrtj->jref == jrefTrig) {
-				it = crdrtjs.erase(it);
-				delete crdrtj;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMEVT) {
-		CrdWznmEvt* crdevt = NULL;
-
-		for (auto it = crdevts.begin(); it != crdevts.end();) {
-			crdevt = *it;
-			if (crdevt->jref == jrefTrig) {
-				it = crdevts.erase(it);
-				delete crdevt;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMSEQ) {
-		CrdWznmSeq* crdseq = NULL;
-
-		for (auto it = crdseqs.begin(); it != crdseqs.end();) {
-			crdseq = *it;
-			if (crdseq->jref == jrefTrig) {
-				it = crdseqs.erase(it);
-				delete crdseq;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMSTE) {
-		CrdWznmSte* crdste = NULL;
-
-		for (auto it = crdstes.begin(); it != crdstes.end();) {
-			crdste = *it;
-			if (crdste->jref == jrefTrig) {
-				it = crdstes.erase(it);
-				delete crdste;
-				break;
-			} else it++;
-		};
-	} else if (ixInv == VecWznmVCard::CRDWZNMUTL) {
-		CrdWznmUtl* crdutl = NULL;
-
-		for (auto it = crdutls.begin(); it != crdutls.end();) {
-			crdutl = *it;
-			if (crdutl->jref == jrefTrig) {
-				it = crdutls.erase(it);
-				delete crdutl;
-				break;
-			} else it++;
-		};
-	};
+	} 
+else if (ixInv == VecWznmVCard::CRDWZNMUSG) eraseSubjobByJref(crdusgs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMUSR) eraseSubjobByJref(crdusrs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMPRS) eraseSubjobByJref(crdprss, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMFIL) eraseSubjobByJref(crdfils, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMLOC) eraseSubjobByJref(crdlocs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMTAG) eraseSubjobByJref(crdtags, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCTP) eraseSubjobByJref(crdctps, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMMCH) eraseSubjobByJref(crdmchs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMLIB) eraseSubjobByJref(crdlibs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMPRJ) eraseSubjobByJref(crdprjs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMVER) eraseSubjobByJref(crdvers, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCAP) eraseSubjobByJref(crdcaps, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMERR) eraseSubjobByJref(crderrs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMTBL) eraseSubjobByJref(crdtbls, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMTCO) eraseSubjobByJref(crdtcos, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSBS) eraseSubjobByJref(crdsbss, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMREL) eraseSubjobByJref(crdrels, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMVEC) eraseSubjobByJref(crdvecs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMVIT) eraseSubjobByJref(crdvits, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCHK) eraseSubjobByJref(crdchks, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSTB) eraseSubjobByJref(crdstbs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMIEX) eraseSubjobByJref(crdiexs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMIME) eraseSubjobByJref(crdimes, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMIEL) eraseSubjobByJref(crdiels, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMPST) eraseSubjobByJref(crdpsts, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMMDL) eraseSubjobByJref(crdmdls, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCAR) eraseSubjobByJref(crdcars, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMDLG) eraseSubjobByJref(crddlgs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMPNL) eraseSubjobByJref(crdpnls, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMQRY) eraseSubjobByJref(crdqrys, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMQCO) eraseSubjobByJref(crdqcos, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMQMD) eraseSubjobByJref(crdqmds, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCON) eraseSubjobByJref(crdcons, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMOPK) eraseSubjobByJref(crdopks, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMOPX) eraseSubjobByJref(crdopxs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMJOB) eraseSubjobByJref(crdjobs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSGE) eraseSubjobByJref(crdsges, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMMTD) eraseSubjobByJref(crdmtds, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMBLK) eraseSubjobByJref(crdblks, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCAL) eraseSubjobByJref(crdcals, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCMP) eraseSubjobByJref(crdcmps, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMRLS) eraseSubjobByJref(crdrlss, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMAPP) eraseSubjobByJref(crdapps, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMRTJ) eraseSubjobByJref(crdrtjs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMEVT) eraseSubjobByJref(crdevts, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSEQ) eraseSubjobByJref(crdseqs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSTE) eraseSubjobByJref(crdstes, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMUTL) eraseSubjobByJref(crdutls, jrefTrig);
 	return retval;
 };
 

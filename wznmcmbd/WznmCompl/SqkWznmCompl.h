@@ -17,6 +17,7 @@
 	*/
 namespace SqkWznmCompl {
 	std::string getSquawkBscui(DbsWznm* dbswznm, DpchInvWznmComplBscui* dpchinv);
+	std::string getSquawkCtpcpy(DbsWznm* dbswznm, DpchInvWznmComplCtpcpy* dpchinv);
 	std::string getSquawkDbs(DbsWznm* dbswznm, DpchInvWznmComplDbs* dpchinv);
 	std::string getSquawkDeploy(DbsWznm* dbswznm, DpchInvWznmComplDeploy* dpchinv);
 	std::string getSquawkIex(DbsWznm* dbswznm, DpchInvWznmComplIex* dpchinv);

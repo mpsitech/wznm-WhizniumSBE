@@ -375,8 +375,8 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalFilUldActive(DbsWznm* dbswznm);
 	bool evalDetButCreActive(DbsWznm* dbswznm);
+	bool evalFilUldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmFilNew(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);

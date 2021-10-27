@@ -43,6 +43,7 @@ lin	VecWznmVApptarget		noloc;filfed
 	ImeIAMVectorTitle1.end
 	ImeIMVectoritem1.sref	Avail	Implied	Title	Comment
 	cocoa.objc			Cocoa / Objective-C
+	cocoa.swift			Cocoa / Swift
 	dotnet.cppcli			.NET / C++ CLI
 	java			Java
 	js			JavaScript
@@ -2349,7 +2350,7 @@ main	void	0	TblWznmMTag	tag
 	ImeIMTablecol.end
 	ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype
 	rst	loadRstByGrp		osrefWznmKTaggrp	sref	void
-	rec	loadRecBySrfGrp		sref;osrefWznmKTaggrp		void
+	rec	loadRecByCpbSrfGrp		refWznmMCapability;sref;osrefWznmKTaggrp		void
 	ImeIAMTableLoadfct.end
 main	void	0	TblWznmMUser	usr
 	ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title
@@ -3858,7 +3859,7 @@ rel	rel	380	TblWznmRMCapabilityUniversal	cpbRunv
 	tblref		381	tbl	TblWznmMCapability	refWznmMCapability	cpb	trefspec	void		true	false
 	vecref		382	vec	VecWznmVMaintable	unvIxWznmVMaintable	mtb	vreflin	void	idx	true	false
 	tblref		382	tbl		unvUref	unv	trefuniv	void		true	false
-	klref			vec	KlstWznmKRMCapabilityUniversalKey	srefKKey	key	klrefsng	void		false	false
+	klref			vec	KlstWznmKRMCapabilityUniversalKey	srefKKey	key	klrefsng	void	idx	false	false
 	ImeIMTablecol.end
 rel	rel	242	TblWznmRMDialogMQuery	dlgRqry
 	ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
@@ -4552,7 +4553,7 @@ ImeIMRelation.iref	srefIxVBasetype	irefRefWznmCRelation	irefSupRefWznmMRelation	
 	toplfull	enus	record access rights
 	ImeIAMRelationTitle.end
 278	um1n	0	276	toum1n			TblWznmRMUsergroupUniversal			unv
-279	_1n	0	0	void	TblWznmMCapability	SbsWznmBMCapabilityCtp	TblWznmMTag
+279	_1n	0	0	void	TblWznmMCapability	SbsWznmBMCapabilityCtp	TblWznmMTag				affil
 280	_1n	0	0	void	TblWznmMVersion		TblWznmMCapability				affil
 281	_1n	0	0	void	TblWznmMCapability	SbsWznmBMCapabilityCtp	TblWznmMCapability	SbsWznmBMCapabilityCap		tpl
 	ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title

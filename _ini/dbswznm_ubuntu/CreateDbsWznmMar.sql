@@ -2,7 +2,7 @@
 -- MySQL / MariaDB database create script
 -- copyright: (C) 2016-2020 MPSI Technologies GmbH
 -- author: Alexander Wirthmueller (auto-generation)
--- date created: 12 Mar 2021
+-- date created: 25 Oct 2021
 -- IP header --- ABOVE
 
 DROP DATABASE IF EXISTS DbsWznm;
@@ -1568,7 +1568,8 @@ CREATE TABLE TblWznmRMCapabilityUniversal(
 	srefKKey VARCHAR(50),
 	INDEX (refWznmMCapability),
 	INDEX (unvIxWznmVMaintable),
-	INDEX (unvUref)
+	INDEX (unvUref),
+	INDEX (srefKKey)
 ) ENGINE = ARIA;
 
 CREATE TABLE TblWznmRMComponentMLibrary(

@@ -21,6 +21,8 @@ uint PnlWznmCtp1NTag::VecVDo::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "butviewclick") return BUTVIEWCLICK;
+	if (s == "butnewclick") return BUTNEWCLICK;
+	if (s == "butdeleteclick") return BUTDELETECLICK;
 	if (s == "butrefreshclick") return BUTREFRESHCLICK;
 
 	return(0);
@@ -30,6 +32,8 @@ string PnlWznmCtp1NTag::VecVDo::getSref(
 			const uint ix
 		) {
 	if (ix == BUTVIEWCLICK) return("ButViewClick");
+	if (ix == BUTNEWCLICK) return("ButNewClick");
+	if (ix == BUTDELETECLICK) return("ButDeleteClick");
 	if (ix == BUTREFRESHCLICK) return("ButRefreshClick");
 
 	return("");
@@ -140,13 +144,19 @@ void PnlWznmCtp1NTag::StatApp::writeXML(
 PnlWznmCtp1NTag::StatShr::StatShr(
 			const bool ButViewAvail
 			, const bool ButViewActive
+			, const bool ButNewAvail
+			, const bool ButDeleteAvail
+			, const bool ButDeleteActive
 		) :
 			Block()
 		{
 	this->ButViewAvail = ButViewAvail;
 	this->ButViewActive = ButViewActive;
+	this->ButNewAvail = ButNewAvail;
+	this->ButDeleteAvail = ButDeleteAvail;
+	this->ButDeleteActive = ButDeleteActive;
 
-	mask = {BUTVIEWAVAIL, BUTVIEWACTIVE};
+	mask = {BUTVIEWAVAIL, BUTVIEWACTIVE, BUTNEWAVAIL, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
 void PnlWznmCtp1NTag::StatShr::writeJSON(
@@ -159,6 +169,9 @@ void PnlWznmCtp1NTag::StatShr::writeJSON(
 
 	me["ButViewAvail"] = ButViewAvail;
 	me["ButViewActive"] = ButViewActive;
+	me["ButNewAvail"] = ButNewAvail;
+	me["ButDeleteAvail"] = ButDeleteAvail;
+	me["ButDeleteActive"] = ButDeleteActive;
 };
 
 void PnlWznmCtp1NTag::StatShr::writeXML(
@@ -175,6 +188,9 @@ void PnlWznmCtp1NTag::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "ButViewAvail", ButViewAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButViewActive", ButViewActive);
+		writeBoolAttr(wr, itemtag, "sref", "ButNewAvail", ButNewAvail);
+		writeBoolAttr(wr, itemtag, "sref", "ButDeleteAvail", ButDeleteAvail);
+		writeBoolAttr(wr, itemtag, "sref", "ButDeleteActive", ButDeleteActive);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -185,6 +201,9 @@ set<uint> PnlWznmCtp1NTag::StatShr::comm(
 
 	if (ButViewAvail == comp->ButViewAvail) insert(items, BUTVIEWAVAIL);
 	if (ButViewActive == comp->ButViewActive) insert(items, BUTVIEWACTIVE);
+	if (ButNewAvail == comp->ButNewAvail) insert(items, BUTNEWAVAIL);
+	if (ButDeleteAvail == comp->ButDeleteAvail) insert(items, BUTDELETEAVAIL);
+	if (ButDeleteActive == comp->ButDeleteActive) insert(items, BUTDELETEACTIVE);
 
 	return(items);
 };
@@ -197,7 +216,7 @@ set<uint> PnlWznmCtp1NTag::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {BUTVIEWAVAIL, BUTVIEWACTIVE};
+	diffitems = {BUTVIEWAVAIL, BUTVIEWACTIVE, BUTNEWAVAIL, BUTDELETEAVAIL, BUTDELETEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

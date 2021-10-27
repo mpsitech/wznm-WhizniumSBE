@@ -15,10 +15,10 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmOpxSqkMNStub.h"
-#include "PnlWznmOpxRef1NBlock.h"
 #include "PnlWznmOpxMNJob.h"
-#include "PnlWznmOpxAInvarg.h"
+#include "PnlWznmOpxRef1NBlock.h"
 #include "PnlWznmOpxARetval.h"
+#include "PnlWznmOpxAInvarg.h"
 #include "PnlWznmOpxDetail.h"
 
 #define VecVWznmOpxRecDo PnlWznmOpxRec::VecVDo
@@ -190,10 +190,10 @@ public:
 	StatShr statshr;
 
 	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
-	PnlWznmOpxRef1NBlock* pnlref1nblock;
 	PnlWznmOpxMNJob* pnlmnjob;
-	PnlWznmOpxAInvarg* pnlainvarg;
+	PnlWznmOpxRef1NBlock* pnlref1nblock;
 	PnlWznmOpxARetval* pnlaretval;
+	PnlWznmOpxAInvarg* pnlainvarg;
 	PnlWznmOpxDetail* pnldetail;
 
 	WznmMOp recOpx;

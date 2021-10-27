@@ -658,15 +658,15 @@ private:
 
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerInSgeCreidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerWithSrefMonInSgeCreate(DbsWznm* dbswznm);
 	void handleTimerWithSrefMonInSgeWrite(DbsWznm* dbswznm);
+	void handleTimerWithSrefMonInSgeCreate(DbsWznm* dbswznm);
+	void handleTimerInSgeCreidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:

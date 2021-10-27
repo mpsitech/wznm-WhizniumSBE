@@ -87,8 +87,9 @@ public:
 	virtual void removeRecByRef(Sbecore::ubigint ref);
 
 	virtual bool loadRecByRef(Sbecore::ubigint ref, WznmMTag** rec);
-	virtual bool loadRecBySrfGrp(std::string sref, std::string osrefWznmKTaggrp, WznmMTag** rec);
+	virtual bool loadRecByCpbSrfGrp(Sbecore::ubigint refWznmMCapability, std::string sref, std::string osrefWznmKTaggrp, WznmMTag** rec);
 	virtual Sbecore::ubigint loadRefsByCpb(Sbecore::ubigint refWznmMCapability, const bool append, std::vector<Sbecore::ubigint>& refs);
+	virtual Sbecore::ubigint loadRstByCpb(Sbecore::ubigint refWznmMCapability, const bool append, ListWznmMTag& rst);
 	virtual Sbecore::ubigint loadRstByGrp(std::string osrefWznmKTaggrp, const bool append, ListWznmMTag& rst);
 	virtual bool loadSrfByRef(Sbecore::ubigint ref, std::string& sref);
 	Sbecore::ubigint loadRstByRefs(std::vector<Sbecore::ubigint>& refs, const bool append, ListWznmMTag& rst);
@@ -123,8 +124,9 @@ public:
 	void removeRecByRef(Sbecore::ubigint ref);
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmMTag** rec);
-	bool loadRecBySrfGrp(std::string sref, std::string osrefWznmKTaggrp, WznmMTag** rec);
+	bool loadRecByCpbSrfGrp(Sbecore::ubigint refWznmMCapability, std::string sref, std::string osrefWznmKTaggrp, WznmMTag** rec);
 	Sbecore::ubigint loadRefsByCpb(Sbecore::ubigint refWznmMCapability, const bool append, std::vector<Sbecore::ubigint>& refs);
+	Sbecore::ubigint loadRstByCpb(Sbecore::ubigint refWznmMCapability, const bool append, ListWznmMTag& rst);
 	Sbecore::ubigint loadRstByGrp(std::string osrefWznmKTaggrp, const bool append, ListWznmMTag& rst);
 	bool loadSrfByRef(Sbecore::ubigint ref, std::string& sref);
 };
@@ -160,8 +162,9 @@ public:
 	void removeRecByRef(Sbecore::ubigint ref);
 
 	bool loadRecByRef(Sbecore::ubigint ref, WznmMTag** rec);
-	bool loadRecBySrfGrp(std::string sref, std::string osrefWznmKTaggrp, WznmMTag** rec);
+	bool loadRecByCpbSrfGrp(Sbecore::ubigint refWznmMCapability, std::string sref, std::string osrefWznmKTaggrp, WznmMTag** rec);
 	Sbecore::ubigint loadRefsByCpb(Sbecore::ubigint refWznmMCapability, const bool append, std::vector<Sbecore::ubigint>& refs);
+	Sbecore::ubigint loadRstByCpb(Sbecore::ubigint refWznmMCapability, const bool append, ListWznmMTag& rst);
 	Sbecore::ubigint loadRstByGrp(std::string osrefWznmKTaggrp, const bool append, ListWznmMTag& rst);
 	bool loadSrfByRef(Sbecore::ubigint ref, std::string& sref);
 };

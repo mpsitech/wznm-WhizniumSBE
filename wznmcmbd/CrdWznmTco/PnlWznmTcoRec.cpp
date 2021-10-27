@@ -39,9 +39,9 @@ PnlWznmTcoRec::PnlWznmTcoRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnl1ncheck = NULL;
-	pnl1nimpexpcol = NULL;
 	pnlref1ncontrol = NULL;
 	pnlref1nquerymod = NULL;
+	pnl1nimpexpcol = NULL;
 	pnl1nquerycol = NULL;
 	pnlatitle = NULL;
 	pnldetail = NULL;

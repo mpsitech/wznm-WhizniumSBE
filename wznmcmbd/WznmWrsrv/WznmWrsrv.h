@@ -31,7 +31,7 @@ namespace WznmWrsrv {
 	void writeVecCpp(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, WznmMVector* vec, const bool subclass, const std::string& supsref, const std::string& subsref, Sbecore::ubigint refLcl, const std::vector<Sbecore::ubigint>& refsLcl);
 
 	void wrBitvarConstrH(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmAMBlockItem* bit, const bool scrsimple = false);
-	void wrVarDeclH(std::fstream& outfile, const Sbecore::uint ixWznmVVartype, const std::string& sref, const unsigned int il);
+	void wrVarDeclH(std::fstream& outfile, const Sbecore::uint ixWznmVVartype, const std::string& sref, const std::string& Comment, const unsigned int il);
 	void wrBitvarConstrhdrCpp(std::fstream& outfile, WznmAMBlockItem* bit, const bool scrsimple = false);
 	void wrBitvarConstrCpp(std::fstream& outfile, WznmAMBlockItem* bit);
 	void wrBitvarReadjsonCpp(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmAMBlockItem* bit);

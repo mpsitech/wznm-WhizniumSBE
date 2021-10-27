@@ -124,6 +124,15 @@ void QryWznmBlkList::rerun(
 
 	} else if (preIxPre == VecWznmVPreset::PREWZNMREFOPK) {
 		sqlstr = "SELECT COUNT(TblWznmMBlock.ref)";
+		sqlstr += " FROM TblWznmMBlock";
+		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPK);
+		sqlstr += " AND TblWznmMBlock.refUref = " + to_string(preRefOpk) + "";
+		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
+		dbswznm->loadUintBySQL(sqlstr, cnt);
+		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
+		cntsum += cnt;
+
+		sqlstr = "SELECT COUNT(TblWznmMBlock.ref)";
 		sqlstr += " FROM TblWznmMBlock, TblWznmMOp";
 		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPX);
 		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMOp.ref";
@@ -133,19 +142,20 @@ void QryWznmBlkList::rerun(
 		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
 		cntsum += cnt;
 
+	} else if (preIxPre == VecWznmVPreset::PREWZNMREFVER) {
 		sqlstr = "SELECT COUNT(TblWznmMBlock.ref)";
 		sqlstr += " FROM TblWznmMBlock";
-		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPK);
-		sqlstr += " AND TblWznmMBlock.refUref = " + to_string(preRefOpk) + "";
+		sqlstr += " WHERE TblWznmMBlock.refWznmMVersion = " + to_string(preRefVer) + "";
 		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
 		dbswznm->loadUintBySQL(sqlstr, cnt);
 		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
 		cntsum += cnt;
 
-	} else if (preIxPre == VecWznmVPreset::PREWZNMREFVER) {
 		sqlstr = "SELECT COUNT(TblWznmMBlock.ref)";
-		sqlstr += " FROM TblWznmMBlock";
-		sqlstr += " WHERE TblWznmMBlock.refWznmMVersion = " + to_string(preRefVer) + "";
+		sqlstr += " FROM TblWznmMBlock, TblWznmMOppack";
+		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPK);
+		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMOppack.ref";
+		sqlstr += " AND TblWznmMOppack.refWznmMVersion = " + to_string(preRefVer) + "";
 		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
 		dbswznm->loadUintBySQL(sqlstr, cnt);
 		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
@@ -166,16 +176,6 @@ void QryWznmBlkList::rerun(
 		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPX);
 		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMOp.ref";
 		sqlstr += " AND TblWznmMOp.refWznmMOppack = TblWznmMOppack.ref";
-		sqlstr += " AND TblWznmMOppack.refWznmMVersion = " + to_string(preRefVer) + "";
-		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
-		dbswznm->loadUintBySQL(sqlstr, cnt);
-		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
-		cntsum += cnt;
-
-		sqlstr = "SELECT COUNT(TblWznmMBlock.ref)";
-		sqlstr += " FROM TblWznmMBlock, TblWznmMOppack";
-		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPK);
-		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMOppack.ref";
 		sqlstr += " AND TblWznmMOppack.refWznmMVersion = " + to_string(preRefVer) + "";
 		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
 		dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -239,19 +239,19 @@ void QryWznmBlkList::rerun(
 
 	} else if (preIxPre == VecWznmVPreset::PREWZNMREFOPK) {
 		rerun_baseSQL(sqlstr);
-		sqlstr += " FROM TblWznmMBlock, TblWznmMOp";
-		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPX);
-		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMOp.ref";
-		sqlstr += " AND TblWznmMOp.refWznmMOppack = " + to_string(preRefOpk) + "";
+		sqlstr += " FROM TblWznmMBlock";
+		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPK);
+		sqlstr += " AND TblWznmMBlock.refUref = " + to_string(preRefOpk) + "";
 		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
 		rerun_orderSQL(sqlstr, preIxOrd);
 		sqlstr += " LIMIT " + to_string(lims[0]) + " OFFSET " + to_string(ofss[0]);
 		dbswznm->executeQuery(sqlstr);
 
 		rerun_baseSQL(sqlstr);
-		sqlstr += " FROM TblWznmMBlock";
-		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPK);
-		sqlstr += " AND TblWznmMBlock.refUref = " + to_string(preRefOpk) + "";
+		sqlstr += " FROM TblWznmMBlock, TblWznmMOp";
+		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPX);
+		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMOp.ref";
+		sqlstr += " AND TblWznmMOp.refWznmMOppack = " + to_string(preRefOpk) + "";
 		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
 		rerun_orderSQL(sqlstr, preIxOrd);
 		sqlstr += " LIMIT " + to_string(lims[1]) + " OFFSET " + to_string(ofss[1]);
@@ -267,13 +267,23 @@ void QryWznmBlkList::rerun(
 		dbswznm->executeQuery(sqlstr);
 
 		rerun_baseSQL(sqlstr);
+		sqlstr += " FROM TblWznmMBlock, TblWznmMOppack";
+		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPK);
+		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMOppack.ref";
+		sqlstr += " AND TblWznmMOppack.refWznmMVersion = " + to_string(preRefVer) + "";
+		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
+		rerun_orderSQL(sqlstr, preIxOrd);
+		sqlstr += " LIMIT " + to_string(lims[1]) + " OFFSET " + to_string(ofss[1]);
+		dbswznm->executeQuery(sqlstr);
+
+		rerun_baseSQL(sqlstr);
 		sqlstr += " FROM TblWznmMBlock, TblWznmMJob";
 		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::JOB);
 		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMJob.ref";
 		sqlstr += " AND TblWznmMJob.refWznmMVersion = " + to_string(preRefVer) + "";
 		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
 		rerun_orderSQL(sqlstr, preIxOrd);
-		sqlstr += " LIMIT " + to_string(lims[1]) + " OFFSET " + to_string(ofss[1]);
+		sqlstr += " LIMIT " + to_string(lims[2]) + " OFFSET " + to_string(ofss[2]);
 		dbswznm->executeQuery(sqlstr);
 
 		rerun_baseSQL(sqlstr);
@@ -281,16 +291,6 @@ void QryWznmBlkList::rerun(
 		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPX);
 		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMOp.ref";
 		sqlstr += " AND TblWznmMOp.refWznmMOppack = TblWznmMOppack.ref";
-		sqlstr += " AND TblWznmMOppack.refWznmMVersion = " + to_string(preRefVer) + "";
-		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
-		rerun_orderSQL(sqlstr, preIxOrd);
-		sqlstr += " LIMIT " + to_string(lims[2]) + " OFFSET " + to_string(ofss[2]);
-		dbswznm->executeQuery(sqlstr);
-
-		rerun_baseSQL(sqlstr);
-		sqlstr += " FROM TblWznmMBlock, TblWznmMOppack";
-		sqlstr += " WHERE TblWznmMBlock.refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::OPK);
-		sqlstr += " AND TblWznmMBlock.refUref = TblWznmMOppack.ref";
 		sqlstr += " AND TblWznmMOppack.refWznmMVersion = " + to_string(preRefVer) + "";
 		rerun_filtSQL(sqlstr, preSrf, preTyp, preVer, preRet, preReu, false);
 		rerun_orderSQL(sqlstr, preIxOrd);
@@ -379,8 +379,8 @@ void QryWznmBlkList::rerun_orderSQL(
 	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMBlock.refUref ASC";
 	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMBlock.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMBlock.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMBlock.sref ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMBlock.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMBlock.sref ASC";
 };
 
 void QryWznmBlkList::fetch(
@@ -413,12 +413,12 @@ void QryWznmBlkList::fetch(
 			rec->stubRefWznmMVersion = StubWznm::getStubVerStd(dbswznm, rec->refWznmMVersion, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->srefRefIxVTbl = VecWznmVMBlockRefTbl::getSref(rec->refIxVTbl);
 			rec->titRefIxVTbl = VecWznmVMBlockRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
-			if (rec->refIxVTbl == VecWznmVMBlockRefTbl::OPK) {
-				rec->stubRefUref = StubWznm::getStubOpkStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMBlockRefTbl::OPX) {
+			if (rec->refIxVTbl == VecWznmVMBlockRefTbl::OPX) {
 				rec->stubRefUref = StubWznm::getStubOpxStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMBlockRefTbl::JOB) {
 				rec->stubRefUref = StubWznm::getStubJobStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMBlockRefTbl::OPK) {
+				rec->stubRefUref = StubWznm::getStubOpkStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";
 		};
 

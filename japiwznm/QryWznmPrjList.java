@@ -19,10 +19,10 @@ public class QryWznmPrjList {
 		*/
 	public static class VecVOrd {
 
-		public static final int VER = 1;
-		public static final int TIT = 2;
-		public static final int OWN = 3;
-		public static final int SHO = 4;
+		public static final int TIT = 1;
+		public static final int VER = 2;
+		public static final int SHO = 3;
+		public static final int OWN = 4;
 		public static final int GRP = 5;
 
 		public static int getIx(
@@ -30,10 +30,10 @@ public class QryWznmPrjList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("ver")) return VER;
 			if (s.equals("tit")) return TIT;
-			if (s.equals("own")) return OWN;
+			if (s.equals("ver")) return VER;
 			if (s.equals("sho")) return SHO;
+			if (s.equals("own")) return OWN;
 			if (s.equals("grp")) return GRP;
 
 			return 0;
@@ -42,10 +42,10 @@ public class QryWznmPrjList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == VER) return("ver");
 			if (ix == TIT) return("tit");
-			if (ix == OWN) return("own");
+			if (ix == VER) return("ver");
 			if (ix == SHO) return("sho");
+			if (ix == OWN) return("own");
 			if (ix == GRP) return("grp");
 
 			return "";

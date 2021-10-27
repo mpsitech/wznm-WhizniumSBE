@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmUsgMNUser.h"
 #include "PnlWznmUsgAAccess.h"
+#include "PnlWznmUsgMNUser.h"
 #include "PnlWznmUsgDetail.h"
 
 #define VecVWznmUsgRecDo PnlWznmUsgRec::VecVDo
@@ -177,8 +177,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmUsgMNUser* pnlmnuser;
 	PnlWznmUsgAAccess* pnlaaccess;
+	PnlWznmUsgMNUser* pnlmnuser;
 	PnlWznmUsgDetail* pnldetail;
 
 	WznmMUsergroup recUsg;

@@ -184,10 +184,10 @@ void QryWznmFilList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMFile.refIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMFile.refUref ASC";
-	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMFile.own ASC";
+	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMFile.refUref ASC";
+	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMFile.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::FNM) sqlstr += " ORDER BY TblWznmMFile.Filename ASC";
+	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMFile.own ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMFile.grp ASC";
 };
 
@@ -220,12 +220,12 @@ void QryWznmFilList::fetch(
 			rec->stubOwn = StubWznm::getStubOwner(dbswznm, rec->own, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->srefRefIxVTbl = VecWznmVMFileRefTbl::getSref(rec->refIxVTbl);
 			rec->titRefIxVTbl = VecWznmVMFileRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
-			if (rec->refIxVTbl == VecWznmVMFileRefTbl::APP) {
-				rec->stubRefUref = StubWznm::getStubAppStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMFileRefTbl::LIB) {
+			if (rec->refIxVTbl == VecWznmVMFileRefTbl::LIB) {
 				rec->stubRefUref = StubWznm::getStubLibStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMFileRefTbl::VER) {
 				rec->stubRefUref = StubWznm::getStubVerStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMFileRefTbl::APP) {
+				rec->stubRefUref = StubWznm::getStubAppStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";
 			rec->titOsrefKContent = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKMFILECONTENT, rec->osrefKContent, ixWznmVLocale);
 			rec->titSrefKMimetype = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKMFILEMIMETYPE, rec->srefKMimetype, ixWznmVLocale);

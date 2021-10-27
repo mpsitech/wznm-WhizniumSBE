@@ -406,7 +406,7 @@ void WznmWrsrvQry::writeQryCpp(
 	for (unsigned int i = 0; i < allqcos.nodes.size(); i++) {
 		qco = allqcos.nodes[i];
 
-		if (qco->ixVBasetype == VecWznmVMQuerycolBasetype::QWR) hasqwr = true;
+		if ((qco->ixVBasetype == VecWznmVMQuerycolBasetype::QWR) && (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::QTB)) hasqwr = true;
 
 		if (dbswznm->tblwznmmtablecol->loadRecByRef(qco->refWznmMTablecol, &tco)) alltcos.nodes.push_back(tco);
 		else alltcos.nodes.push_back(NULL); // pushing back a NULL pointer does not create problems during the destruction of alltcos

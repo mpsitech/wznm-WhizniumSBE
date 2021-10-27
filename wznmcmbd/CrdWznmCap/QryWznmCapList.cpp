@@ -222,8 +222,8 @@ void QryWznmCapList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::TPL) sqlstr += " ORDER BY TblWznmMCapability.tplRefWznmMCapability ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMCapability.sref ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMCapability.refWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMCapability.sref ASC";
 };
 
 void QryWznmCapList::fetch(

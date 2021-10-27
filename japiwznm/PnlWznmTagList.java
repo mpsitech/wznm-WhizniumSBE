@@ -146,19 +146,27 @@ public class PnlWznmTagList {
 	  */
 	public class ContInf extends Block {
 
-		public static final int BUTFILTERON = 1;
-		public static final int NUMFCSIQST = 2;
+		public static final int TXTFOR = 1;
+		public static final int TXTPRE = 2;
+		public static final int BUTFILTERON = 3;
+		public static final int NUMFCSIQST = 4;
 
 		public ContInf(
-					boolean ButFilterOn
+					String TxtFor
+					, String TxtPre
+					, boolean ButFilterOn
 					, int numFCsiQst
 				) {
+			this.TxtFor = TxtFor;
+			this.TxtPre = TxtPre;
 			this.ButFilterOn = ButFilterOn;
 			this.numFCsiQst = numFCsiQst;
 
-			mask = new HashSet<Integer>(Arrays.asList(BUTFILTERON, NUMFCSIQST));
+			mask = new HashSet<Integer>(Arrays.asList(TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST));
 		};
 
+		public String TxtFor;
+		public String TxtPre;
 		public boolean ButFilterOn;
 		public int numFCsiQst;
 
@@ -175,6 +183,8 @@ public class PnlWznmTagList {
 			String itemtag = "ContitemInfWznmTagList";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
+				TxtFor = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "TxtFor", mask, TXTFOR);
+				TxtPre = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "TxtPre", mask, TXTPRE);
 				ButFilterOn = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "ButFilterOn", mask, BUTFILTERON);
 				numFCsiQst = Xmlio.extractIntegerAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "numFCsiQst", mask, NUMFCSIQST);
 
@@ -189,6 +199,8 @@ public class PnlWznmTagList {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
+			if (TxtFor.equals(comp.TxtFor)) items.add(TXTFOR);
+			if (TxtPre.equals(comp.TxtPre)) items.add(TXTPRE);
 			if (ButFilterOn == comp.ButFilterOn) items.add(BUTFILTERON);
 			if (numFCsiQst == comp.numFCsiQst) items.add(NUMFCSIQST);
 
@@ -203,7 +215,7 @@ public class PnlWznmTagList {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(BUTFILTERON, NUMFCSIQST));
+			diffitems = new HashSet<Integer>(Arrays.asList(TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -395,18 +407,20 @@ public class PnlWznmTagList {
 	public class Tag extends Block {
 
 		public static final int CPT = 1;
-		public static final int TXTRECORD1 = 2;
-		public static final int TXTRECORD2 = 3;
-		public static final int TRS = 4;
-		public static final int TXTSHOWING1 = 5;
-		public static final int TXTSHOWING2 = 6;
-		public static final int TCOSRF = 7;
-		public static final int TCOTIT = 8;
-		public static final int TCOCPB = 9;
-		public static final int TCOGRP = 10;
+		public static final int TXTFOR = 2;
+		public static final int TXTRECORD1 = 3;
+		public static final int TXTRECORD2 = 4;
+		public static final int TRS = 5;
+		public static final int TXTSHOWING1 = 6;
+		public static final int TXTSHOWING2 = 7;
+		public static final int TCOSRF = 8;
+		public static final int TCOTIT = 9;
+		public static final int TCOCPB = 10;
+		public static final int TCOGRP = 11;
 
 		public Tag(
 					String Cpt
+					, String TxtFor
 					, String TxtRecord1
 					, String TxtRecord2
 					, String Trs
@@ -418,6 +432,7 @@ public class PnlWznmTagList {
 					, String TcoGrp
 				) {
 			this.Cpt = Cpt;
+			this.TxtFor = TxtFor;
 			this.TxtRecord1 = TxtRecord1;
 			this.TxtRecord2 = TxtRecord2;
 			this.Trs = Trs;
@@ -428,10 +443,11 @@ public class PnlWznmTagList {
 			this.TcoCpb = TcoCpb;
 			this.TcoGrp = TcoGrp;
 
-			mask = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSRF, TCOTIT, TCOCPB, TCOGRP));
+			mask = new HashSet<Integer>(Arrays.asList(CPT, TXTFOR, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSRF, TCOTIT, TCOCPB, TCOGRP));
 		};
 
 		public String Cpt;
+		public String TxtFor;
 		public String TxtRecord1;
 		public String TxtRecord2;
 		public String Trs;
@@ -456,6 +472,7 @@ public class PnlWznmTagList {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				Cpt = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "Cpt", mask, CPT);
+				TxtFor = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TxtFor", mask, TXTFOR);
 				TxtRecord1 = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TxtRecord1", mask, TXTRECORD1);
 				TxtRecord2 = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "TxtRecord2", mask, TXTRECORD2);
 				Trs = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "Trs", mask, TRS);
@@ -478,6 +495,7 @@ public class PnlWznmTagList {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (Cpt.equals(comp.Cpt)) items.add(CPT);
+			if (TxtFor.equals(comp.TxtFor)) items.add(TXTFOR);
 			if (TxtRecord1.equals(comp.TxtRecord1)) items.add(TXTRECORD1);
 			if (TxtRecord2.equals(comp.TxtRecord2)) items.add(TXTRECORD2);
 			if (Trs.equals(comp.Trs)) items.add(TRS);
@@ -499,7 +517,7 @@ public class PnlWznmTagList {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSRF, TCOTIT, TCOCPB, TCOGRP));
+			diffitems = new HashSet<Integer>(Arrays.asList(CPT, TXTFOR, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSRF, TCOTIT, TCOCPB, TCOGRP));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -651,12 +669,12 @@ public class PnlWznmTagList {
 			super(VecWznmVDpch.DPCHENGWZNMTAGLISTDATA);
 
 			contiac = new ContIac(0);
-			continf = new ContInf(false, 0);
+			continf = new ContInf("", "", false, 0);
 			feedFCsiQst = new Feed("FeedFCsiQst");
 			feedFTos = new Feed("FeedFTos");
 			statshr = new StatShr(0, false);
 			stgiac = new StgIac(0, 0, 0, 0);
-			tag = new Tag("", "", "", "", "", "", "", "", "", "");
+			tag = new Tag("", "", "", "", "", "", "", "", "", "", "");
 			rst = new ListWznmQTagList();
 			statappqry = (new QryWznmTagList()).new StatApp(0, 0, 0, 0);
 			statshrqry = (new QryWznmTagList()).new StatShr(0, 0, 0);
@@ -720,12 +738,12 @@ public class PnlWznmTagList {
 			} else {
 				scrJref = "";
 				contiac = new ContIac(0);
-				continf = new ContInf(false, 0);
+				continf = new ContInf("", "", false, 0);
 				feedFCsiQst = new Feed("FeedFCsiQst");
 				feedFTos = new Feed("FeedFTos");
 				statshr = new StatShr(0, false);
 				stgiac = new StgIac(0, 0, 0, 0);
-				tag = new Tag("", "", "", "", "", "", "", "", "", "");
+				tag = new Tag("", "", "", "", "", "", "", "", "", "", "");
 				statappqry = (new QryWznmTagList()).new StatApp(0, 0, 0, 0);
 				statshrqry = (new QryWznmTagList()).new StatShr(0, 0, 0);
 				stgiacqry = (new QryWznmTagList()).new StgIac(0, 0, 0);

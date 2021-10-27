@@ -495,9 +495,9 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
-	void handleTimerInSgePsgidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeFinidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgePushgit(DbsWznm* dbswznm);
+	void handleTimerInSgePsgidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

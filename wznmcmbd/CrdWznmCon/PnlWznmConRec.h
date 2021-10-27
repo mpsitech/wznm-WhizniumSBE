@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmConFedRef1NRtblock.h"
-#include "PnlWznmConSup1NControl.h"
 #include "PnlWznmConAPar.h"
+#include "PnlWznmConSup1NControl.h"
 #include "PnlWznmConDetail.h"
 
 #define VecVWznmConRecDo PnlWznmConRec::VecVDo
@@ -184,8 +184,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmConFedRef1NRtblock* pnlfedref1nrtblock;
-	PnlWznmConSup1NControl* pnlsup1ncontrol;
 	PnlWznmConAPar* pnlapar;
+	PnlWznmConSup1NControl* pnlsup1ncontrol;
 	PnlWznmConDetail* pnldetail;
 
 	WznmMControl recCon;
@@ -225,10 +225,10 @@ public:
 private:
 	bool handleCallWznmFedUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmConUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmFed_srtEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmFed_sruEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCon_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmCon_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmFed_srtEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmCon_stsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCon_shsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCon_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);

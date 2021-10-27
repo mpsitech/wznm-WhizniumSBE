@@ -80,13 +80,17 @@ public:
 	class ContInf : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint BUTFILTERON = 1;
-		static const Sbecore::uint NUMFCSIQST = 2;
+		static const Sbecore::uint TXTFOR = 1;
+		static const Sbecore::uint TXTPRE = 2;
+		static const Sbecore::uint BUTFILTERON = 3;
+		static const Sbecore::uint NUMFCSIQST = 4;
 
 	public:
-		ContInf(const bool ButFilterOn = false, const Sbecore::uint numFCsiQst = 1);
+		ContInf(const std::string& TxtFor = "", const std::string& TxtPre = "", const bool ButFilterOn = false, const Sbecore::uint numFCsiQst = 1);
 
 	public:
+		std::string TxtFor;
+		std::string TxtPre;
 		bool ButFilterOn;
 		Sbecore::uint numFCsiQst;
 

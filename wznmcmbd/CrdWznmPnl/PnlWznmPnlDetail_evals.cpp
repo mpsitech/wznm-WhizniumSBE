@@ -138,25 +138,13 @@ bool PnlWznmPnlDetail::evalTxtReuActive(
 bool PnlWznmPnlDetail::evalButReuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// pnl.reuEq(0)|((pre.ixCrdaccMdl()&pnl.retEq(mdl)&pre.refVer())|(pre.ixCrdaccTbl()&pnl.retEq(tbl)&pre.refVer())|(pre.ixCrdaccRel()&pnl.retEq(rel)&pre.refVer())|(pre.ixCrdaccVec()&pnl.retEq(vec)&pre.refVer()))
+	// pnl.reuEq(0)|((pre.ixCrdaccTbl()&pnl.retEq(tbl)&pre.refVer())|(pre.ixCrdaccRel()&pnl.retEq(rel)&pre.refVer())|(pre.ixCrdaccVec()&pnl.retEq(vec)&pre.refVer())|(pre.ixCrdaccMdl()&pnl.retEq(mdl)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recPnl.refUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMDL, jref) != 0);
-	args.push_back(a);
-	a = false; a = (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::MDL);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref) != 0);
 	args.push_back(a);
 	a = false; a = (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::TBL);
@@ -184,6 +172,18 @@ bool PnlWznmPnlDetail::evalButReuViewAvail(
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) != 0);
 	args.push_back(a);
 	a = false; a = (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::VEC);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMDL, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::MDL);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);

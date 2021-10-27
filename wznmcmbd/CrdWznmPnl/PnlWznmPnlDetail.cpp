@@ -288,15 +288,9 @@ void PnlWznmPnlDetail::handleDpchAppDoButReuViewClick(
 	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
 
 	if (statshr.ButReuViewAvail && statshr.ButReuViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMDL, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::MDL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-			sref = "CrdWznmMdl";
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::TBL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+			sref = "CrdWznmTbl";
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recPnl.refUref, jrefNew);
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::TBL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmTbl";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recPnl.refUref, jrefNew);
-			};
 		};
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::REL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
@@ -307,6 +301,12 @@ void PnlWznmPnlDetail::handleDpchAppDoButReuViewClick(
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::VEC) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmVec";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recPnl.refUref, jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMDL, jref)) if (recPnl.refIxVTbl == VecWznmVMPanelRefTbl::MDL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmMdl";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recPnl.refUref, jrefNew);
 			};
 		};

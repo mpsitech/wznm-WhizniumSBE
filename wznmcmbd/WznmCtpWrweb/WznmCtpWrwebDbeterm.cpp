@@ -39,11 +39,35 @@ DpchRetWznm* WznmCtpWrwebDbeterm::run(
 
 	// IP run --- IBEGIN
 
-	// modify PnlXxxxYyyTerm.js
-	// cf. webappwzsk/CrdWzskLlv/PnlWzskLlvTerm.js refreshBD
+	// --- modify PnlXxxxYyyTerm.js
+/*
+	outfile << "// IP refreshBD --- RBEGIN" << endl;
+	refreshButicon(hdrdoc, "ButClaim", "icon/claim", ButClaimActive, retrieveCi(srcdoc, "ContInfWzskLlvTerm", "ButClaimOn") == "true");
+	refreshTxt(contcontdoc, "TxtCst", retrieveCi(srcdoc, "ContInfWzskLlvTerm", "TxtCst"));
 
-	// modify PnlXxxxYyyTerm_bcont.xml
-	// cf. webappwzsk/CrdWzskLlv/PnlWzskLlvTerm_bcont.xml trDat
+	refreshPup(contcontdoc, srcdoc, "PupCmd", "", "FeedFPupCmd", retrieveCi(srcdoc, "ContIacWzskLlvTerm", "numFPupCmd"), true, false);
+
+	var myelem;
+
+	myelem = contcontdoc.getElementById("TxtDat");
+	refreshTxtt(contcontdoc, "TxtDat", retrieveCi(srcdoc, "ContInfWzskLlvTerm", "TxtDatLog"));
+	myelem.scrollTop = myelem.scrollHeight;
+	
+	refreshTxft(contcontdoc, "TxfCsq", retrieveCi(srcdoc, "ContIacWzskLlvTerm", "TxfCsq"), true, false, true);
+
+	refreshBut(contcontdoc, "ButSmt", ButSmtActive, false);
+	outfile << "// IP refreshBD --- REND" << endl;
+*/
+
+	// --- modify PnlXxxxYyyTerm_bcont.xml
+/*
+	outfile << "<!-- IP trDat - RBEGIN -->" << endl;
+					<td height="200"></td>
+					<td id="tdDat" colspan="10" height="200">
+						<textarea id="TxtDat" style="resitze:none;font-size:10px;font-family:Monospace;font-weight:normal;width:685px;background-color:#000000;color:#ffffff;border-width:0px;" rows="16" cols="120" type="text" value="TxtDatLog" readonly="readonly"/>
+					</td>
+	outfile << "<!-- IP trDat - REND -->" << endl;
+*/
 
 	// IP run --- IEND
 

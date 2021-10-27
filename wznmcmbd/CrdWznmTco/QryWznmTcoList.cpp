@@ -246,9 +246,9 @@ void QryWznmTcoList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::FCT) sqlstr += " ORDER BY TblWznmMTablecol.fctIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMTablecol.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMTablecol.tblRefWznmMTable ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMTablecol.sref ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMTablecol.ixVBasetype ASC";
 };
 
 void QryWznmTcoList::fetch(

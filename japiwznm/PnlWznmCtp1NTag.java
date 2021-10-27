@@ -20,7 +20,9 @@ public class PnlWznmCtp1NTag {
 	public static class VecVDo {
 
 		public static final int BUTVIEWCLICK = 1;
-		public static final int BUTREFRESHCLICK = 2;
+		public static final int BUTNEWCLICK = 2;
+		public static final int BUTDELETECLICK = 3;
+		public static final int BUTREFRESHCLICK = 4;
 
 		public static int getIx(
 					String sref
@@ -28,6 +30,8 @@ public class PnlWznmCtp1NTag {
 			String s = sref.toLowerCase();
 
 			if (s.equals("butviewclick")) return BUTVIEWCLICK;
+			if (s.equals("butnewclick")) return BUTNEWCLICK;
+			if (s.equals("butdeleteclick")) return BUTDELETECLICK;
 			if (s.equals("butrefreshclick")) return BUTREFRESHCLICK;
 
 			return 0;
@@ -37,6 +41,8 @@ public class PnlWznmCtp1NTag {
 					int ix
 				) {
 			if (ix == BUTVIEWCLICK) return("ButViewClick");
+			if (ix == BUTNEWCLICK) return("ButNewClick");
+			if (ix == BUTDELETECLICK) return("ButDeleteClick");
 			if (ix == BUTREFRESHCLICK) return("ButRefreshClick");
 
 			return "";
@@ -181,19 +187,31 @@ public class PnlWznmCtp1NTag {
 
 		public static final int BUTVIEWAVAIL = 1;
 		public static final int BUTVIEWACTIVE = 2;
+		public static final int BUTNEWAVAIL = 3;
+		public static final int BUTDELETEAVAIL = 4;
+		public static final int BUTDELETEACTIVE = 5;
 
 		public StatShr(
 					boolean ButViewAvail
 					, boolean ButViewActive
+					, boolean ButNewAvail
+					, boolean ButDeleteAvail
+					, boolean ButDeleteActive
 				) {
 			this.ButViewAvail = ButViewAvail;
 			this.ButViewActive = ButViewActive;
+			this.ButNewAvail = ButNewAvail;
+			this.ButDeleteAvail = ButDeleteAvail;
+			this.ButDeleteActive = ButDeleteActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(BUTVIEWAVAIL, BUTVIEWACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(BUTVIEWAVAIL, BUTVIEWACTIVE, BUTNEWAVAIL, BUTDELETEAVAIL, BUTDELETEACTIVE));
 		};
 
 		public boolean ButViewAvail;
 		public boolean ButViewActive;
+		public boolean ButNewAvail;
+		public boolean ButDeleteAvail;
+		public boolean ButDeleteActive;
 
 		public boolean readXML(
 					Document doc
@@ -210,6 +228,9 @@ public class PnlWznmCtp1NTag {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				ButViewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButViewAvail", mask, BUTVIEWAVAIL);
 				ButViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButViewActive", mask, BUTVIEWACTIVE);
+				ButNewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButNewAvail", mask, BUTNEWAVAIL);
+				ButDeleteAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButDeleteAvail", mask, BUTDELETEAVAIL);
+				ButDeleteActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButDeleteActive", mask, BUTDELETEACTIVE);
 
 				return true;
 			};
@@ -224,6 +245,9 @@ public class PnlWznmCtp1NTag {
 
 			if (ButViewAvail == comp.ButViewAvail) items.add(BUTVIEWAVAIL);
 			if (ButViewActive == comp.ButViewActive) items.add(BUTVIEWACTIVE);
+			if (ButNewAvail == comp.ButNewAvail) items.add(BUTNEWAVAIL);
+			if (ButDeleteAvail == comp.ButDeleteAvail) items.add(BUTDELETEAVAIL);
+			if (ButDeleteActive == comp.ButDeleteActive) items.add(BUTDELETEACTIVE);
 
 			return(items);
 		};
@@ -236,7 +260,7 @@ public class PnlWznmCtp1NTag {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(BUTVIEWAVAIL, BUTVIEWACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(BUTVIEWAVAIL, BUTVIEWACTIVE, BUTNEWAVAIL, BUTDELETEAVAIL, BUTDELETEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -568,7 +592,7 @@ public class PnlWznmCtp1NTag {
 			continf = new ContInf(0);
 			feedFCsiQst = new Feed("FeedFCsiQst");
 			statapp = new StatApp(0);
-			statshr = new StatShr(false, false);
+			statshr = new StatShr(false, false, false, false, false);
 			stgiac = new StgIac(0);
 			tag = new Tag("", "", "", "", "", "", "");
 			rst = new ListWznmQCtp1NTag();
@@ -633,7 +657,7 @@ public class PnlWznmCtp1NTag {
 				continf = new ContInf(0);
 				feedFCsiQst = new Feed("FeedFCsiQst");
 				statapp = new StatApp(0);
-				statshr = new StatShr(false, false);
+				statshr = new StatShr(false, false, false, false, false);
 				stgiac = new StgIac(0);
 				tag = new Tag("", "", "", "", "", "", "");
 				statappqry = (new QryWznmCtp1NTag()).new StatApp(0, 0, 0, 0);

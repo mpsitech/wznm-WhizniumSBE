@@ -25,6 +25,14 @@ string SqkWznmCompl::getSquawkBscui(
 	return("complement basic user interface for version '" + StubWznm::getStubVerStd(dbswznm, dpchinv->refWznmMVersion) + "'"); // IP getSquawkBscui --- RLINE
 };
 
+string SqkWznmCompl::getSquawkCtpcpy(
+			DbsWznm* dbswznm
+			, DpchInvWznmComplCtpcpy* dpchinv
+		) {
+	// example: "copy dependencies and parameters from template for capability 'PnlWzskLlaTermIcicle'"
+	return(""); // IP getSquawkCtpcpy --- LINE
+};
+
 string SqkWznmCompl::getSquawkDbs(
 			DbsWznm* dbswznm
 			, DpchInvWznmComplDbs* dpchinv

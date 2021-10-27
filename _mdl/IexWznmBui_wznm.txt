@@ -10,7 +10,7 @@ MdlWznmAdmin	administration module
 MdlWznmGlobal	global data module
 	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
 	tbl	TblWznmMLocale	CrdWznmLoc
-	tbl	TblWznmMTag	CrdWznmTag
+	tbl	TblWznmMTag	CrdWznmTag			pre.refCtp() > pre.void()
 	sbs	SbsWznmBMCapabilityCtp	CrdWznmCtp
 	tbl	TblWznmMMachine	CrdWznmMch
 	tbl	TblWznmMLibrary	CrdWznmLib

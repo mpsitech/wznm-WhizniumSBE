@@ -73,7 +73,7 @@ void WznmWrsrv::writeBlkcontH(
 		bit = bits.nodes[i];
 
 		if ((i != 0) && (bit->refWznmCAMBlockItem != refC)) outfile << endl;
-		wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, 1);
+		wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, bit->Comment, 1);
 		refC = bit->refWznmCAMBlockItem;
 	};
 	outfile << endl;
@@ -391,7 +391,7 @@ void WznmWrsrv::writeBlkdpchH(
 			if (bit->sref != "jref") {
 				if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::VAR) {
 					if (!first && (bit->refWznmCAMBlockItem != refC)) outfile << endl;
-					wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, 1);
+					wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, bit->Comment, 1);
 					refC = bit->refWznmCAMBlockItem;
 					first = false;
 
@@ -497,7 +497,7 @@ void WznmWrsrv::writeBlkdpchH(
 
 			if ((bit->sref != "oref") && (bit->sref != "jref") && (bit->sref != "ixOpVOpres") && (bit->sref != "pdone")) {
 				if (!first && (bit->refWznmCAMBlockItem != refC)) outfile << endl;
-				wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, 0);
+				wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, bit->Comment, 0);
 				refC = bit->refWznmCAMBlockItem;
 				first = false;
 			};
@@ -993,7 +993,7 @@ void WznmWrsrv::writeBlkstatH(
 			bit = bits.nodes[i];
 
 			if ((i != 0) && (bit->refWznmCAMBlockItem != refC)) outfile << endl;
-			wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, 1);
+			wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, bit->Comment, 1);
 			refC = bit->refWznmCAMBlockItem;
 		};
 		outfile << endl;
@@ -1306,8 +1306,8 @@ void WznmWrsrv::writeBlkstgH(
 
 			if ((i != 0) && (bit->refWznmCAMBlockItem != refC)) outfile << endl;
 
-			if (subclass) wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, 1);
-			else wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, 0);
+			if (subclass) wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, bit->Comment, 1);
+			else wrVarDeclH(outfile, bit->ixWznmVVartype, bit->sref, bit->Comment, 0);
 
 			refC = bit->refWznmCAMBlockItem;
 		};
@@ -2399,6 +2399,7 @@ void WznmWrsrv::wrVarDeclH(
 			fstream& outfile
 			, const uint ixWznmVVartype
 			, const string& sref
+			, const string& Comment
 			, const unsigned int il
 		) {
 	outfile << "\t";
@@ -2412,7 +2413,7 @@ void WznmWrsrv::wrVarDeclH(
 	else if (ixWznmVVartype == VecWznmVVartype::STRING) outfile << "std::string";
 	else if (ixWznmVVartype == VecWznmVVartype::BOOLEANVEC) outfile << "std::vector<bool>";
 	else if (ixWznmVVartype == VecWznmVVartype::UTINYINTVEC) outfile << "std::vector<Sbecore::utinyint>";
-	else if (ixWznmVVartype == VecWznmVVartype::USMALLINTVEC) outfile << "std::vector<Sbecore::smallint>";
+	else if (ixWznmVVartype == VecWznmVVartype::USMALLINTVEC) outfile << "std::vector<Sbecore::usmallint>";
 	else if (ixWznmVVartype == VecWznmVVartype::INTVEC) outfile << "std::vector<int>";
 	else if (ixWznmVVartype == VecWznmVVartype::UINTVEC) outfile << "std::vector<Sbecore::uint>";
 	else if (ixWznmVVartype == VecWznmVVartype::UBIGINTVEC) outfile << "std::vector<Sbecore::ubigint>";
@@ -2428,7 +2429,9 @@ void WznmWrsrv::wrVarDeclH(
 		outfile << "Sbecore::" << VecWznmVVartype::getSref(ixWznmVVartype);
 	};
 
-	outfile << " " << sref << ";" << endl;
+	outfile << " " << sref << ";";
+	if (Comment != "") outfile << " // " << Comment;
+	outfile << endl;
 };
 
 void WznmWrsrv::wrBitvarConstrhdrCpp(
@@ -3895,7 +3898,7 @@ void WznmWrsrv::wrAlrCpp(
 					StrMod::srefsToVector(con->srefsWznmMTag, ss);
 					if (ss.size() == 1) {
 						if (ss[0].find("stdalr.") == 0) {
-							if (dbswznm->tblwznmmtag->loadRecBySrfGrp(ss[0].substr(7), "stdalr", &tag)) {
+							if (dbswznm->tblwznmmtag->loadRecByCpbSrfGrp(0, ss[0].substr(7), "stdalr", &tag)) {
 								s = tag->Title;
 								if (!dbswznm->tblwznmjmtagtitle->loadTitByTagLoc(tag->ref, lcl->ref, s)) dbswznm->tblwznmjmtagtitle->loadTitByTagLoc(tag->ref, lcl->ref, s);
 								

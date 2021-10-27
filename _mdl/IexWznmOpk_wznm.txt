@@ -16,6 +16,19 @@ stat	WznmCompl	complement	false
 			StubWznmVerStd
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
+	WznmComplCtpcpy	false	copy dependencies and parameters from template
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMCapability	ubigint
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+			copy dependencies and parameters from template for capability 'PnlWzskLlaTermIcicle'
+			ImeIJMSquawkTitle2.srefX1RefWznmMLocale	Title
+			enus	copy dependencies and parameters from template for capability '&StubWznmCpbStd'
+			ImeIJMSquawkTitle2.end
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmCpbStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
 	WznmComplDbs	false	complement database structure
 		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
 		0	refWznmMVersion	ubigint
@@ -84,6 +97,7 @@ cust	WznmCtpGenjtr	generate capability template-specific job tree	false
 	ImeIMOp.sref	Shrdat	Comment
 	WznmCtpGenjtrAcv	false	prettify file list and add state machine to create file dialog
 	WznmCtpGenjtrClustmgr	false	add state machines to launch dialogs
+	WznmCtpGenjtrDbeterm	false	connect source job to terminal panel
 	WznmCtpGenjtrDlgimp	false	add state machine to import dialog
 	WznmCtpGenjtrDlgloaini	false	add state machine to initialization data load dialog
 	WznmCtpGenjtrPrefs	false	modify slider limits

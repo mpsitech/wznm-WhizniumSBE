@@ -21,8 +21,8 @@ uint QryWznmCarList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "reu") return REU;
-	if (s == "mdl") return MDL;
 	if (s == "ret") return RET;
+	if (s == "mdl") return MDL;
 	if (s == "srf") return SRF;
 
 	return(0);
@@ -32,8 +32,8 @@ string QryWznmCarList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == REU) return("reu");
-	if (ix == MDL) return("mdl");
 	if (ix == RET) return("ret");
+	if (ix == MDL) return("mdl");
 	if (ix == SRF) return("srf");
 
 	return("");

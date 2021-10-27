@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmMchSup1NMachine.h"
-#include "PnlWznmMchAPar.h"
 #include "PnlWznmMch1NRelease.h"
+#include "PnlWznmMchAPar.h"
 #include "PnlWznmMchAMakefile.h"
 #include "PnlWznmMchDetail.h"
 
@@ -184,8 +184,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmMchSup1NMachine* pnlsup1nmachine;
-	PnlWznmMchAPar* pnlapar;
 	PnlWznmMch1NRelease* pnl1nrelease;
+	PnlWznmMchAPar* pnlapar;
 	PnlWznmMchAMakefile* pnlamakefile;
 	PnlWznmMchDetail* pnldetail;
 

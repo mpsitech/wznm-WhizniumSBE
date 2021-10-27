@@ -319,6 +319,9 @@ uint JobWznmIexJob::enterSgeImport(
 	// IP enterSgeImport.prep --- IBEGIN
 	ubigint refWznmMVersion;
 
+	WznmMCapability* cpb2 = NULL;
+	WznmRMCapabilityUniversal* cpbRunv2 = NULL;
+
 	refWznmMVersion = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref);
 	// IP enterSgeImport.prep --- IEND
 
@@ -439,6 +442,43 @@ uint JobWznmIexJob::enterSgeImport(
 						};
 					};
 				};
+			};
+		};
+
+		// -- ImeIMCapability
+		for (unsigned int ix0 = 0; ix0 < imeimcapability.nodes.size(); ix0++) {
+			cpb = imeimcapability.nodes[ix0];
+
+			// retrieve
+			if (dbswznm->tblwznmmcapability->loadRecBySQL("SELECT * FROM TblWznmMCapability WHERE refWznmMVersion = " + to_string(refWznmMVersion) + " AND sref = '" + cpb->sref + "'", &cpb2)) {
+				cpb->ref = cpb2->ref;
+				cpb->tplRefWznmMCapability = cpb2->tplRefWznmMCapability;
+				cpb->ixWArtefact = cpb2->ixWArtefact;
+				cpb->Title = cpb2->Title;
+
+				delete cpb2;
+			} else throw SbeException(SbeException::IEX_RETR, {{"ime","ImeIMCapability"}, {"lineno",to_string(cpb->lineno)}});
+
+			for (unsigned int ix1 = 0; ix1 < cpb->imeirmcapabilityuniversal.nodes.size(); ix1++) {
+				cpbRunv = cpb->imeirmcapabilityuniversal.nodes[ix1];
+
+				// retrieve
+				if (dbswznm->tblwznmrmcapabilityuniversal->loadRecBySQL("SELECT * FROM TblWznmRMCapabilityUniversal WHERE refWznmMCapability = " + to_string(cpb->ref) + " AND srefKKey = '" + cpbRunv->srefKKey + "'", &cpbRunv2)) {
+					cpbRunv->ref = cpbRunv2->ref;
+					cpbRunv->unvIxWznmVMaintable = cpbRunv2->unvIxWznmVMaintable;
+
+					delete cpbRunv2;
+				} else throw SbeException(SbeException::IEX_RETR, {{"ime","ImeIRMCapabilityUniversal"}, {"lineno",to_string(cpbRunv->lineno)}});
+
+				cpbRunv->refWznmMCapability = cpb->ref;
+				//cpbRunv->unvUref: CUSTSQL
+				if (cpbRunv->unvIxWznmVMaintable == VecWznmVMaintable::TBLWZNMMCARD) dbswznm->loadRefBySQL("SELECT TblWznmMCard.ref FROM TblWznmMModule, TblWznmMCard WHERE TblWznmMModule.verRefWznmMVersion = " + to_string(refWznmMVersion)
+							+ " AND TblWznmMCard.mdlRefWznmMModule = TblWznmMModule.ref AND TblWznmMCard.sref = '" + cpbRunv->srefUnvUref + "'", cpbRunv->unvUref);
+				else if (cpbRunv->unvIxWznmVMaintable == VecWznmVMaintable::TBLWZNMMIMPEXPCPLX) dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMImpexpcplx WHERE refWznmMVersion = " + to_string(refWznmMVersion) + " AND sref = '" + cpbRunv->srefUnvUref + "'", cpbRunv->unvUref);
+				else if (cpbRunv->unvIxWznmVMaintable == VecWznmVMaintable::TBLWZNMMJOB) dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMJob WHERE refWznmMVersion = " + to_string(refWznmMVersion) + " AND sref = '" + cpbRunv->srefUnvUref + "'", cpbRunv->unvUref);
+				if (cpbRunv->unvUref == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",cpbRunv->srefUnvUref}, {"iel","srefUnvUref"}, {"lineno",to_string(cpbRunv->lineno)}});
+
+				dbswznm->tblwznmrmcapabilityuniversal->updateRec(cpbRunv);
 			};
 		};
 		// IP enterSgeImport.traverse --- REND

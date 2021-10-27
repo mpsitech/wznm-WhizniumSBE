@@ -254,10 +254,10 @@ void QryWznmPnlList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMPanel.refUref ASC";
-	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMPanel.refIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMPanel.ixVBasetype ASC";
+	if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMPanel.refIxVTbl ASC";
+	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMPanel.refUref ASC";
 	else if (preIxOrd == VecVOrd::CAR) sqlstr += " ORDER BY TblWznmMPanel.carRefWznmMCard ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMPanel.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMPanel.sref ASC";
 };
 
@@ -291,14 +291,14 @@ void QryWznmPnlList::fetch(
 			rec->stubCarRefWznmMCard = StubWznm::getStubCarStd(dbswznm, rec->carRefWznmMCard, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->srefRefIxVTbl = VecWznmVMPanelRefTbl::getSref(rec->refIxVTbl);
 			rec->titRefIxVTbl = VecWznmVMPanelRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
-			if (rec->refIxVTbl == VecWznmVMPanelRefTbl::VEC) {
+			if (rec->refIxVTbl == VecWznmVMPanelRefTbl::MDL) {
+				rec->stubRefUref = StubWznm::getStubMdlStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMPanelRefTbl::VEC) {
 				rec->stubRefUref = StubWznm::getStubVecStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMPanelRefTbl::REL) {
 				rec->stubRefUref = StubWznm::getStubRelStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMPanelRefTbl::TBL) {
 				rec->stubRefUref = StubWznm::getStubTblStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMPanelRefTbl::MDL) {
-				rec->stubRefUref = StubWznm::getStubMdlStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";
 		};
 

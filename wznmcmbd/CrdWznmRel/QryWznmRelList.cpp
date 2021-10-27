@@ -263,8 +263,8 @@ void QryWznmRelList::rerun_orderSQL(
 	else if (preIxOrd == VecVOrd::SRL) sqlstr += " ORDER BY TblWznmMRelation.supIxVSubrole ASC";
 	else if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMRelation.supRefWznmMRelation ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMRelation.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::TOS) sqlstr += " ORDER BY TblWznmMRelation.tosRefWznmMSubset ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMRelation.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::TOS) sqlstr += " ORDER BY TblWznmMRelation.tosRefWznmMSubset ASC";
 	else if (preIxOrd == VecVOrd::TOT) sqlstr += " ORDER BY TblWznmMRelation.toRefWznmMTable ASC";
 	else if (preIxOrd == VecVOrd::FRS) sqlstr += " ORDER BY TblWznmMRelation.frsRefWznmMSubset ASC";
 	else if (preIxOrd == VecVOrd::FRT) sqlstr += " ORDER BY TblWznmMRelation.frRefWznmMTable ASC";

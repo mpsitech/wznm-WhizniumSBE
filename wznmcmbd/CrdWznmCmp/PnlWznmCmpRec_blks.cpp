@@ -109,8 +109,8 @@ void PnlWznmCmpRec::StatApp::writeJSON(
 			, string difftag
 			, const bool initdoneDetail
 			, const bool initdone1NRelease
-			, const bool initdoneMNLibrary
 			, const bool initdoneMNOppack
+			, const bool initdoneMNLibrary
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmCmpRec";
 
@@ -118,8 +118,8 @@ void PnlWznmCmpRec::StatApp::writeJSON(
 
 	me["initdoneDetail"] = initdoneDetail;
 	me["initdone1NRelease"] = initdone1NRelease;
-	me["initdoneMNLibrary"] = initdoneMNLibrary;
 	me["initdoneMNOppack"] = initdoneMNOppack;
+	me["initdoneMNLibrary"] = initdoneMNLibrary;
 };
 
 void PnlWznmCmpRec::StatApp::writeXML(
@@ -128,8 +128,8 @@ void PnlWznmCmpRec::StatApp::writeXML(
 			, bool shorttags
 			, const bool initdoneDetail
 			, const bool initdone1NRelease
-			, const bool initdoneMNLibrary
 			, const bool initdoneMNOppack
+			, const bool initdoneMNLibrary
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmCmpRec";
 
@@ -140,8 +140,8 @@ void PnlWznmCmpRec::StatApp::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NRelease", initdone1NRelease);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneMNLibrary", initdoneMNLibrary);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNOppack", initdoneMNOppack);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneMNLibrary", initdoneMNLibrary);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -153,10 +153,10 @@ PnlWznmCmpRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
 			, const ubigint jref1NRelease
-			, const ubigint jrefMNLibrary
-			, const bool pnlmnlibraryAvail
 			, const ubigint jrefMNOppack
 			, const bool pnlmnoppackAvail
+			, const ubigint jrefMNLibrary
+			, const bool pnlmnlibraryAvail
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -164,13 +164,13 @@ PnlWznmCmpRec::StatShr::StatShr(
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
 	this->jref1NRelease = jref1NRelease;
-	this->jrefMNLibrary = jrefMNLibrary;
-	this->pnlmnlibraryAvail = pnlmnlibraryAvail;
 	this->jrefMNOppack = jrefMNOppack;
 	this->pnlmnoppackAvail = pnlmnoppackAvail;
+	this->jrefMNLibrary = jrefMNLibrary;
+	this->pnlmnlibraryAvail = pnlmnlibraryAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NRELEASE, JREFMNLIBRARY, PNLMNLIBRARYAVAIL, JREFMNOPPACK, PNLMNOPPACKAVAIL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NRELEASE, JREFMNOPPACK, PNLMNOPPACKAVAIL, JREFMNLIBRARY, PNLMNLIBRARYAVAIL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmCmpRec::StatShr::writeJSON(
@@ -184,10 +184,10 @@ void PnlWznmCmpRec::StatShr::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
 	me["scrJref1NRelease"] = Scr::scramble(jref1NRelease);
-	me["scrJrefMNLibrary"] = Scr::scramble(jrefMNLibrary);
-	me["pnlmnlibraryAvail"] = pnlmnlibraryAvail;
 	me["scrJrefMNOppack"] = Scr::scramble(jrefMNOppack);
 	me["pnlmnoppackAvail"] = pnlmnoppackAvail;
+	me["scrJrefMNLibrary"] = Scr::scramble(jrefMNLibrary);
+	me["pnlmnlibraryAvail"] = pnlmnlibraryAvail;
 	me["ButRegularizeActive"] = ButRegularizeActive;
 };
 
@@ -206,10 +206,10 @@ void PnlWznmCmpRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NRelease", Scr::scramble(jref1NRelease));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefMNLibrary", Scr::scramble(jrefMNLibrary));
-		writeBoolAttr(wr, itemtag, "sref", "pnlmnlibraryAvail", pnlmnlibraryAvail);
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNOppack", Scr::scramble(jrefMNOppack));
 		writeBoolAttr(wr, itemtag, "sref", "pnlmnoppackAvail", pnlmnoppackAvail);
+		writeStringAttr(wr, itemtag, "sref", "scrJrefMNLibrary", Scr::scramble(jrefMNLibrary));
+		writeBoolAttr(wr, itemtag, "sref", "pnlmnlibraryAvail", pnlmnlibraryAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -222,10 +222,10 @@ set<uint> PnlWznmCmpRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
 	if (jref1NRelease == comp->jref1NRelease) insert(items, JREF1NRELEASE);
-	if (jrefMNLibrary == comp->jrefMNLibrary) insert(items, JREFMNLIBRARY);
-	if (pnlmnlibraryAvail == comp->pnlmnlibraryAvail) insert(items, PNLMNLIBRARYAVAIL);
 	if (jrefMNOppack == comp->jrefMNOppack) insert(items, JREFMNOPPACK);
 	if (pnlmnoppackAvail == comp->pnlmnoppackAvail) insert(items, PNLMNOPPACKAVAIL);
+	if (jrefMNLibrary == comp->jrefMNLibrary) insert(items, JREFMNLIBRARY);
+	if (pnlmnlibraryAvail == comp->pnlmnlibraryAvail) insert(items, PNLMNLIBRARYAVAIL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -239,7 +239,7 @@ set<uint> PnlWznmCmpRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NRELEASE, JREFMNLIBRARY, PNLMNLIBRARYAVAIL, JREFMNOPPACK, PNLMNOPPACKAVAIL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NRELEASE, JREFMNOPPACK, PNLMNOPPACKAVAIL, JREFMNLIBRARY, PNLMNLIBRARYAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

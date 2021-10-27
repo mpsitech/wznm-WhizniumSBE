@@ -231,11 +231,11 @@ void QryWznmPstList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::ATY) sqlstr += " ORDER BY TblWznmMPreset.ixWznmWArgtype ASC";
-	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMPreset.refUref ASC";
+	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMPreset.refUref ASC";
+	else if (preIxOrd == VecVOrd::ATY) sqlstr += " ORDER BY TblWznmMPreset.ixWznmWArgtype ASC";
 	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMPreset.refIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMPreset.sref ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMPreset.refWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMPreset.sref ASC";
 };
 
 void QryWznmPstList::fetch(

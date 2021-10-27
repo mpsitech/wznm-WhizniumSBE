@@ -527,8 +527,8 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalResDldActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalMrgButRunActive(DbsWznm* dbswznm);
 	bool evalMrgButStoActive(DbsWznm* dbswznm);
 	bool evalTrgUldActive(DbsWznm* dbswznm);

@@ -44,8 +44,8 @@ CrdWznmNav::CrdWznmNav(
 
 	pnlauxfct = NULL;
 	pnlappdev = NULL;
-	pnljob = NULL;
 	pnldeploy = NULL;
+	pnljob = NULL;
 	pnlcomp = NULL;
 	pnluix = NULL;
 	pnldbstr = NULL;
@@ -54,8 +54,8 @@ CrdWznmNav::CrdWznmNav(
 	pnladmin = NULL;
 	pnlpre = NULL;
 	pnlheadbar = NULL;
-	dlgloaini = NULL;
 	dlgmnglic = NULL;
+	dlgloaini = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -64,8 +64,8 @@ CrdWznmNav::CrdWznmNav(
 
 	pnlauxfct = new PnlWznmNavAuxfct(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlappdev = new PnlWznmNavAppdev(xchg, dbswznm, jref, ixWznmVLocale);
-	pnljob = new PnlWznmNavJob(xchg, dbswznm, jref, ixWznmVLocale);
 	pnldeploy = new PnlWznmNavDeploy(xchg, dbswznm, jref, ixWznmVLocale);
+	pnljob = new PnlWznmNavJob(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlcomp = new PnlWznmNavComp(xchg, dbswznm, jref, ixWznmVLocale);
 	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
 	pnldbstr = new PnlWznmNavDbstr(xchg, dbswznm, jref, ixWznmVLocale);

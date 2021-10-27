@@ -22,12 +22,12 @@ uint QryWznmConList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "reu") return REU;
 	if (s == "sup") return SUP;
+	if (s == "reu") return REU;
 	if (s == "ret") return RET;
 	if (s == "sct") return SCT;
-	if (s == "hku") return HKU;
 	if (s == "hkt") return HKT;
+	if (s == "hku") return HKU;
 	if (s == "srf") return SRF;
 	if (s == "typ") return TYP;
 
@@ -37,12 +37,12 @@ uint QryWznmConList::VecVOrd::getIx(
 string QryWznmConList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == REU) return("reu");
 	if (ix == SUP) return("sup");
+	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
 	if (ix == SCT) return("sct");
-	if (ix == HKU) return("hku");
 	if (ix == HKT) return("hkt");
+	if (ix == HKU) return("hku");
 	if (ix == SRF) return("srf");
 	if (ix == TYP) return("typ");
 

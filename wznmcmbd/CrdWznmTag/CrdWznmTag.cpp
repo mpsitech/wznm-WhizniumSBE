@@ -33,6 +33,8 @@ CrdWznmTag::CrdWznmTag(
 			, const ubigint jrefSup
 			, const uint ixWznmVLocale
 			, const ubigint ref
+			, const uint ixWznmVPreset
+			, const ubigint preUref
 		) :
 			JobWznm(xchg, VecWznmVJob::CRDWZNMTAG, jrefSup, ixWznmVLocale)
 		{
@@ -47,6 +49,9 @@ CrdWznmTag::CrdWznmTag(
 	pnlrec = NULL;
 
 	// IP constructor.cust1 --- INSERT
+
+	xchg->addIxPreset(VecWznmVPreset::PREWZNMIXPRE, jref, ixWznmVPreset);
+	if (ixWznmVPreset != VecWznmVPreset::VOID) xchg->addRefPreset(ixWznmVPreset, jref, preUref);
 
 	if ((ref + 1) != 0) xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFTAG, ref);
 
@@ -131,7 +136,9 @@ void CrdWznmTag::changeRef(
 		) {
 	set<uint> moditems;
 
-	if (ref != 0) xchg->triggerIxRefSrefIntvalCall(dbswznm, VecWznmVCall::CALLWZNMLOG, jref, VecWznmVPreset::VOID, 0, "CrdWznmTag", ref);
+	uint ixWznmVPreset = xchg->getIxPreset(VecWznmVPreset::PREWZNMIXPRE, jref);
+
+	if (ref != 0) xchg->triggerIxRefSrefIntvalCall(dbswznm, VecWznmVCall::CALLWZNMLOG, jref, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref), "CrdWznmTag", ref);
 	xchg->addRefPreset(VecWznmVPreset::PREWZNMREFTAG, jref, ref);
 
 	if (pnllist) pnllist->updatePreset(dbswznm, VecWznmVPreset::PREWZNMREFTAG, jrefTrig, notif);

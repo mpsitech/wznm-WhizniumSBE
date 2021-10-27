@@ -566,25 +566,25 @@ void PnlWznmVecDetail::handleDpchAppDoButHkuViewClick(
 	ubigint refPre = ((ixPre) ? xchg->getRefPreset(ixPre, jref) : 0);
 
 	if (statshr.ButHkuViewAvail && statshr.ButHkuViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIME, jref)) if (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IME) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-			sref = "CrdWznmIme";
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref)) if (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IEX) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+			sref = "CrdWznmIex";
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recVec.hkUref, jrefNew);
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref)) if (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IEX) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmIex";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recVec.hkUref, jrefNew);
-			};
-		};
-		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref)) if (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::TBL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmTbl";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIME, jref)) if (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IME) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmIme";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recVec.hkUref, jrefNew);
 			};
 		};
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref)) if (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::JOB) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmJob";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recVec.hkUref, jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref)) if (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::TBL) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmTbl";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recVec.hkUref, jrefNew);
 			};
 		};
@@ -653,10 +653,10 @@ void PnlWznmVecDetail::handleCall(
 		) {
 	if (call->ixVCall == VecWznmVCall::CALLWZNMPSTJTITMOD_PSTEQ) {
 		call->abort = handleCallWznmPstJtitMod_pstEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVECUPD_REFEQ) {
-		call->abort = handleCallWznmVecUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ) {
 		call->abort = handleCallWznmKlsAkeyMod_klsEq(dbswznm, call->jref, call->argInv.ix);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVECUPD_REFEQ) {
+		call->abort = handleCallWznmVecUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPSTUPD_REFEQ) {
 		call->abort = handleCallWznmPstUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVEC_VEREQ) {
@@ -693,15 +693,6 @@ bool PnlWznmVecDetail::handleCallWznmPstJtitMod_pstEq(
 	return retval;
 };
 
-bool PnlWznmVecDetail::handleCallWznmVecUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmVecUpd_refEq --- INSERT
-	return retval;
-};
-
 bool PnlWznmVecDetail::handleCallWznmKlsAkeyMod_klsEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -717,6 +708,15 @@ bool PnlWznmVecDetail::handleCallWznmKlsAkeyMod_klsEq(
 	};
 
 	xchg->submitDpch(getNewDpchEng(moditems));
+	return retval;
+};
+
+bool PnlWznmVecDetail::handleCallWznmVecUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmVecUpd_refEq --- INSERT
 	return retval;
 };
 

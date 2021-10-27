@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmSgeSqkMNStub.h"
-#include "PnlWznmSgeDetail.h"
 #include "PnlWznmSge1NSensitivity.h"
+#include "PnlWznmSgeDetail.h"
 
 #define VecVWznmSgeRecDo PnlWznmSgeRec::VecVDo
 
@@ -181,8 +181,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmSgeSqkMNStub* pnlsqkmnstub;
-	PnlWznmSgeDetail* pnldetail;
 	PnlWznmSge1NSensitivity* pnl1nsensitivity;
+	PnlWznmSgeDetail* pnldetail;
 
 	WznmMStage recSge;
 

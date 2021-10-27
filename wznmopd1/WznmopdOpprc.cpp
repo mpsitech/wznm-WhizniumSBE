@@ -189,6 +189,8 @@ void* WznmopdOpprc::run(
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLBSCUI) {
 				req->dpchret = WznmComplBscui::run(xchg, &dbswznm, (DpchInvWznmComplBscui*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLCTPCPY) {
+				req->dpchret = WznmComplCtpcpy::run(xchg, &dbswznm, (DpchInvWznmComplCtpcpy*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLDBS) {
 				req->dpchret = WznmComplDbs::run(xchg, &dbswznm, (DpchInvWznmComplDbs*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLDEPLOY) {
@@ -212,7 +214,7 @@ void* WznmopdOpprc::run(
 		throw;
 	};
 
-	pthread_cleanup_pop(0);
+	pthread_cleanup_pop(1);
 
 	return(NULL);
 };

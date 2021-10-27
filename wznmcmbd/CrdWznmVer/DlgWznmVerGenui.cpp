@@ -438,7 +438,7 @@ uint DlgWznmVerGenui::enterSgeGenui(
 			, const bool reenter
 		) {
 	uint retval = VecVSge::GENUI;
-	nextIxVSgeSuccess = VecVSge::DONE;
+	nextIxVSgeSuccess = VecVSge::GENCTP;
 
 	clearInvs();
 
@@ -496,11 +496,10 @@ uint DlgWznmVerGenui::enterSgeGenctp(
 	// determine capabilities due for op invocation
 	Wznm::getSrefsCtpCustops(dbswznm, srefsCtpCustops, VecWznmVKeylist::KLSTKWZNMCTPGENUICUSTOP);
 
-	dbswznm->tblwznmmcapability->loadRstBySQL("SELECT * FROM TblWznmMCapability WHERE refWznmMVersion = " + to_string(refWznmMVersion), false, cpbs);
+	dbswznm->tblwznmmcapability->loadRstByVer(refWznmMVersion, false, cpbs);
 
 	for (unsigned int i = 0; i < cpbs.nodes.size(); i++) {
 		cpb = cpbs.nodes[i];
-
 		auto it = srefsCtpCustops.find(cpb->tplRefWznmMCapability);
 
 		if (it != srefsCtpCustops.end()) {

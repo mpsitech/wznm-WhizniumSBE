@@ -226,10 +226,10 @@ void QryWznmStbList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMStub.refWznmMTable ASC";
-	else if (preIxOrd == VecVOrd::SBS) sqlstr += " ORDER BY TblWznmMStub.refWznmMSubset ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMStub.ixVBasetype ASC";
+	if (preIxOrd == VecVOrd::SBS) sqlstr += " ORDER BY TblWznmMStub.refWznmMSubset ASC";
+	else if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMStub.refWznmMTable ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMStub.sref ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMStub.ixVBasetype ASC";
 };
 
 void QryWznmStbList::fetch(

@@ -42,8 +42,8 @@ CrdWznmUtl::CrdWznmUtl(
 	VecVSge::fillFeed(feedFSge);
 
 	pnlheadbar = NULL;
-	dlgextrip = NULL;
 	dlgmrgip = NULL;
+	dlgextrip = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

@@ -1188,6 +1188,7 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchengwznmvitrecdata") return DPCHENGWZNMVITRECDATA;
 	if (s == "dpchinvwznm") return DPCHINVWZNM;
 	if (s == "dpchinvwznmcomplbscui") return DPCHINVWZNMCOMPLBSCUI;
+	if (s == "dpchinvwznmcomplctpcpy") return DPCHINVWZNMCOMPLCTPCPY;
 	if (s == "dpchinvwznmcompldbs") return DPCHINVWZNMCOMPLDBS;
 	if (s == "dpchinvwznmcompldeploy") return DPCHINVWZNMCOMPLDEPLOY;
 	if (s == "dpchinvwznmcompliex") return DPCHINVWZNMCOMPLIEX;
@@ -2431,6 +2432,7 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHENGWZNMVITRECDATA) return("DpchEngWznmVitRecData");
 	if (ix == DPCHINVWZNM) return("DpchInvWznm");
 	if (ix == DPCHINVWZNMCOMPLBSCUI) return("DpchInvWznmComplBscui");
+	if (ix == DPCHINVWZNMCOMPLCTPCPY) return("DpchInvWznmComplCtpcpy");
 	if (ix == DPCHINVWZNMCOMPLDBS) return("DpchInvWznmComplDbs");
 	if (ix == DPCHINVWZNMCOMPLDEPLOY) return("DpchInvWznmComplDeploy");
 	if (ix == DPCHINVWZNMCOMPLIEX) return("DpchInvWznmComplIex");

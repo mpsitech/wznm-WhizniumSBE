@@ -45,10 +45,10 @@ CrdWznmApp::CrdWznmApp(
 
 	pnllist = NULL;
 	pnlheadbar = NULL;
-	pnlrec = NULL;
-	dlgimpstr = NULL;
-	dlgnew = NULL;
 	dlgwrite = NULL;
+	pnlrec = NULL;
+	dlgnew = NULL;
+	dlgimpstr = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

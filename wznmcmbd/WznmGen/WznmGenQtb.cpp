@@ -87,10 +87,7 @@ DpchRetWznm* WznmGenQtb::run(
 			for (unsigned int j = 0; j < qcos.nodes.size(); j++) {
 				qco = qcos.nodes[j];
 
-				// only those base types yield a table column
-				if ((qco->ixVBasetype == VecWznmVMQuerycolBasetype::TBL) || (qco->ixVBasetype == VecWznmVMQuerycolBasetype::QIDREF) || (qco->ixVBasetype == VecWznmVMQuerycolBasetype::QWR)
-						|| (qco->ixVBasetype == VecWznmVMQuerycolBasetype::QJREF) || (qco->ixVBasetype == VecWznmVMQuerycolBasetype::QJENUM) || (qco->ixVBasetype == VecWznmVMQuerycolBasetype::INTVAL)
-						|| (qco->ixVBasetype == VecWznmVMQuerycolBasetype::DBLVAL) || (qco->ixVBasetype == VecWznmVMQuerycolBasetype::BOOLVAL) || (qco->ixVBasetype == VecWznmVMQuerycolBasetype::TXTVAL)) {
+				if (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::QTB) {
 
 					// create entry in TblWznmMTablecol
 					tco = new WznmMTablecol();
@@ -171,7 +168,7 @@ DpchRetWznm* WznmGenQtb::run(
 
 					} else if (qco->ixVBasetype == VecWznmVMQuerycolBasetype::TXTVAL) {
 						tco->ixVBasetype = VecWznmVMTablecolBasetype::TXTVAL;
-						tco->ixVSubtype = VecWznmVMTablecolSubtype::TXT192;
+						tco->ixVSubtype = VecWznmVMTablecolSubtype::TXTLONG;
 					};
 
 					dbswznm->tblwznmmtablecol->insertRec(tco);

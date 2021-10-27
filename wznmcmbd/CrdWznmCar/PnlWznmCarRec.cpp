@@ -38,9 +38,9 @@ PnlWznmCarRec::PnlWznmCarRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnl1ndialog = NULL;
-	pnlhk1ncontrol = NULL;
 	pnlcar1npanel = NULL;
+	pnlhk1ncontrol = NULL;
+	pnl1ndialog = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -104,19 +104,19 @@ void PnlWznmCarRec::refresh(
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
-		if (pnlcar1npanel) {delete pnlcar1npanel; pnlcar1npanel = NULL;};
 		if (pnl1ndialog) {delete pnl1ndialog; pnl1ndialog = NULL;};
+		if (pnlcar1npanel) {delete pnlcar1npanel; pnlcar1npanel = NULL;};
 		if (pnlhk1ncontrol) {delete pnlhk1ncontrol; pnlhk1ncontrol = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmCarDetail(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlcar1npanel) pnlcar1npanel = new PnlWznmCarCar1NPanel(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1ndialog) pnl1ndialog = new PnlWznmCar1NDialog(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlcar1npanel) pnlcar1npanel = new PnlWznmCarCar1NPanel(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlhk1ncontrol) pnlhk1ncontrol = new PnlWznmCarHk1NControl(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
-	statshr.jrefCar1NPanel = ((pnlcar1npanel) ? pnlcar1npanel->jref : 0);
 	statshr.jref1NDialog = ((pnl1ndialog) ? pnl1ndialog->jref : 0);
+	statshr.jrefCar1NPanel = ((pnlcar1npanel) ? pnlcar1npanel->jref : 0);
 	statshr.jrefHk1NControl = ((pnlhk1ncontrol) ? pnlhk1ncontrol->jref : 0);
 
 	// IP refresh --- END
@@ -145,8 +145,8 @@ void PnlWznmCarRec::updatePreset(
 
 		if (recCar.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlcar1npanel) pnlcar1npanel->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1ndialog) pnl1ndialog->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlcar1npanel) pnlcar1npanel->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlhk1ncontrol) pnlhk1ncontrol->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 

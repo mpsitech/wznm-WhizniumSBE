@@ -46,22 +46,22 @@ CrdWznmVer::CrdWznmVer(
 	VecVSge::fillFeed(feedFSge);
 
 	pnllist = NULL;
-	pnlrec = NULL;
 	pnlheadbar = NULL;
-	dlgbscui = NULL;
+	pnlrec = NULL;
 	dlgcustjob = NULL;
+	dlgbscui = NULL;
 	dlgcustjtr = NULL;
 	dlgcustui = NULL;
 	dlgglobal = NULL;
-	dlggenjtr = NULL;
 	dlggenui = NULL;
+	dlggenjtr = NULL;
 	dlgfinmod = NULL;
 	dlgdeploy = NULL;
-	dlgnew = NULL;
-	dlgimpexp = NULL;
-	dlgdbstr = NULL;
 	dlgoppack = NULL;
 	dlgwrinimdl = NULL;
+	dlgdbstr = NULL;
+	dlgnew = NULL;
+	dlgimpexp = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -74,8 +74,8 @@ CrdWznmVer::CrdWznmVer(
 	changeRef(dbswznm, jref, ((ref + 1) == 0) ? 0 : ref, false);
 
 	pnllist = new PnlWznmVerList(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlrec = new PnlWznmVerRec(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlheadbar = new PnlWznmVerHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlrec = new PnlWznmVerRec(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

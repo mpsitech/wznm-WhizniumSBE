@@ -24,8 +24,8 @@ uint QryWznmRtjList::VecVOrd::getIx(
 
 	if (s == "job") return JOB;
 	if (s == "sup") return SUP;
-	if (s == "srf") return SRF;
 	if (s == "app") return APP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -35,8 +35,8 @@ string QryWznmRtjList::VecVOrd::getSref(
 		) {
 	if (ix == JOB) return("job");
 	if (ix == SUP) return("sup");
-	if (ix == SRF) return("srf");
 	if (ix == APP) return("app");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

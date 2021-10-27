@@ -28,8 +28,8 @@ namespace QryWznmQcoList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint QRY = 1;
-		static const Sbecore::uint TCO = 2;
+		static const Sbecore::uint TCO = 1;
+		static const Sbecore::uint QRY = 2;
 		static const Sbecore::uint TYP = 3;
 		static const Sbecore::uint SRF = 4;
 

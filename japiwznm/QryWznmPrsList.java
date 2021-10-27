@@ -20,8 +20,8 @@ public class QryWznmPrsList {
 	public static class VecVOrd {
 
 		public static final int LNM = 1;
-		public static final int GRP = 2;
-		public static final int OWN = 3;
+		public static final int OWN = 2;
+		public static final int GRP = 3;
 
 		public static int getIx(
 					String sref
@@ -29,8 +29,8 @@ public class QryWznmPrsList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("lnm")) return LNM;
-			if (s.equals("grp")) return GRP;
 			if (s.equals("own")) return OWN;
+			if (s.equals("grp")) return GRP;
 
 			return 0;
 		};
@@ -39,8 +39,8 @@ public class QryWznmPrsList {
 					int ix
 				) {
 			if (ix == LNM) return("lnm");
-			if (ix == GRP) return("grp");
 			if (ix == OWN) return("own");
+			if (ix == GRP) return("grp");
 
 			return "";
 		};

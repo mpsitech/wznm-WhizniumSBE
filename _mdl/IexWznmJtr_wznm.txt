@@ -912,7 +912,7 @@ DlgWznmVerGenui
 		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
 		con		lock	void			GuiButRun		chgsge	genui
 		ImeIMSensitivity2.end
-	oppiw	genui		done		idle
+	oppiw	genui		genctp		idle
 		ImeIMSquawk.Title	Example
 		generating detailed user interface
 		ImeIMSquawk.end

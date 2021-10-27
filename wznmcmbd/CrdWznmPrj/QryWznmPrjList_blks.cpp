@@ -20,10 +20,10 @@ uint QryWznmPrjList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ver") return VER;
 	if (s == "tit") return TIT;
-	if (s == "own") return OWN;
+	if (s == "ver") return VER;
 	if (s == "sho") return SHO;
+	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
 
 	return(0);
@@ -32,10 +32,10 @@ uint QryWznmPrjList::VecVOrd::getIx(
 string QryWznmPrjList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == VER) return("ver");
 	if (ix == TIT) return("tit");
-	if (ix == OWN) return("own");
+	if (ix == VER) return("ver");
 	if (ix == SHO) return("sho");
+	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
 
 	return("");

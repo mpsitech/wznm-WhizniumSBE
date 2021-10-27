@@ -2,7 +2,7 @@
 # make file for operation pack WznmCtpGenjtr, release wznmopd2_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 12 Mar 2021
+# date created: 25 Oct 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -17,7 +17,7 @@ INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmopd2/VecWznm -I$(BUILDROOT)/
 INCPATH += -I${WHIZSDKROOT}/build -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
 OBJS = WznmCtpGenjtr_blks.o WznmCtpGenjtr.o
-OBJS += WznmCtpGenjtrAcv.o WznmCtpGenjtrClustmgr.o WznmCtpGenjtrDlgimp.o WznmCtpGenjtrDlgloaini.o WznmCtpGenjtrPrefs.o
+OBJS += WznmCtpGenjtrAcv.o WznmCtpGenjtrClustmgr.o WznmCtpGenjtrDbeterm.o WznmCtpGenjtrDlgimp.o WznmCtpGenjtrDlgloaini.o WznmCtpGenjtrPrefs.o
 
 LIB = libwznmctpgenjtr
 

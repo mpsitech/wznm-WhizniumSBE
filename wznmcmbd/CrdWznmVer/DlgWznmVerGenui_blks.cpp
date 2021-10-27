@@ -40,7 +40,7 @@ string DlgWznmVerGenui::VecVDit::getTitle(
 			, const uint ixWznmVLocale
 		) {
 	if (ixWznmVLocale == 1) {
-		if (ix == GUI) return("Input file");
+		if (ix == GUI) return("Generation");
 		if (ix == LFI) return("Log file");
 		return(getSref(ix));
 	};

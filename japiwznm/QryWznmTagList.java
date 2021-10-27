@@ -20,8 +20,8 @@ public class QryWznmTagList {
 	public static class VecVOrd {
 
 		public static final int GRP = 1;
-		public static final int CPB = 2;
-		public static final int SRF = 3;
+		public static final int SRF = 2;
+		public static final int CPB = 3;
 
 		public static int getIx(
 					String sref
@@ -29,8 +29,8 @@ public class QryWznmTagList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("grp")) return GRP;
-			if (s.equals("cpb")) return CPB;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("cpb")) return CPB;
 
 			return 0;
 		};
@@ -39,8 +39,8 @@ public class QryWznmTagList {
 					int ix
 				) {
 			if (ix == GRP) return("grp");
-			if (ix == CPB) return("cpb");
 			if (ix == SRF) return("srf");
+			if (ix == CPB) return("cpb");
 
 			return "";
 		};

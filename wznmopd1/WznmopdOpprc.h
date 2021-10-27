@@ -62,6 +62,7 @@
 #include "WznmGenQtb.h"
 #include "WznmGenSysvec.h"
 #include "WznmComplBscui.h"
+#include "WznmComplCtpcpy.h"
 #include "WznmComplDbs.h"
 #include "WznmComplDeploy.h"
 #include "WznmComplIex.h"

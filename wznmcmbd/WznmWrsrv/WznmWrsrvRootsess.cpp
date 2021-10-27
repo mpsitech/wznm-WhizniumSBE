@@ -339,9 +339,6 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\tubigint refUsr;" << endl;
 	outfile << endl;
 
-	outfile << "\tSess" << Prjshort << "* sess = NULL;" << endl;
-	outfile << endl;
-
 	outfile << "\tcout << \"\\tuser name: \";" << endl;
 	outfile << "\tcin >> input;" << endl;
 	outfile << "\tcout << \"\\tpassword: \";" << endl;
@@ -350,12 +347,9 @@ void WznmWrsrvRootsess::writeRtCpp(
 
 	outfile << "\t// verify password and create a session" << endl;
 	outfile << "\tif (authenticate(dbs" << prjshort << ", input, input2, refUsr)) {" << endl;
-	outfile << "\t\tsess = new Sess" << Prjshort << "(xchg, dbs" << prjshort << ", jref, refUsr, \"127.0.0.1\");" << endl;
-	outfile << "\t\tsesss.push_back(sess);" << endl;
-	outfile << endl;
 
-	outfile << "\t\tcout << \"\\tjob reference: \" << sess->jref << endl;" << endl;
-	outfile << "\t\txchg->jrefCmd = sess->jref;" << endl;
+	outfile << "\t\txchg->jrefCmd = insertSubjob(sesss, new Sess" << Prjshort << "(xchg, dbs" << prjshort << ", jref, refUsr, \"127.0.0.1\"));" << endl;
+	outfile << "\t\tcout << \"\\tjob reference: \" << xchg->jrefCmd << endl;" << endl;
 	outfile << endl;
 
 	outfile << "\t\tif ((xchg->stg" << prjshort << "appearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * (xchg->stg" << prjshort << "appearance.sesstterm - xchg->stg" << prjshort << "appearance.sesstwarn));" << endl;
@@ -376,11 +370,10 @@ void WznmWrsrvRootsess::writeRtCpp(
 
 	// --- handleEraseSess
 	outfile << "// IP handleEraseSess --- IBEGIN" << endl;
-	outfile << "\tstring input;" << endl;
-	outfile << "\tuint iinput;" << endl;
 	outfile << endl;
 
-	outfile << "\tSess" << Prjshort << "* sess = NULL;" << endl;
+	outfile << "\tstring input;" << endl;
+	outfile << "\tubigint iinput;" << endl;
 	outfile << endl;
 
 	outfile << "\tcout << \"\\tjob reference: \";" << endl;
@@ -388,17 +381,10 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\tiinput = atoi(input.c_str());" << endl;
 	outfile << endl;
 
-	outfile << "\tfor (auto it = sesss.begin(); it != sesss.end();) {" << endl;
-	outfile << "\t\tsess = *it;" << endl;
-	outfile << "\t\tif (sess->jref == iinput) {" << endl;
-	outfile << "\t\t\tit = sesss.erase(it);" << endl;
-	outfile << "\t\t\tdelete sess;" << endl;
-	outfile << "\t\t\tbreak;" << endl;
-	outfile << "\t\t} else it++;" << endl;
-	outfile << "\t};" << endl;
+	outfile << "\tif (!eraseSubjobByJref(sesss, iinput)) cout << \"\\tjob reference doesn't exist!\" << endl;" << endl;
+	outfile << "\telse cout << \"\\tsession erased.\" << endl;" << endl;
 	outfile << endl;
 
-	outfile << "\treturn false;" << endl;
 	outfile << "// IP handleEraseSess --- IEND" << endl;
 
 	// --- handleClearAll
@@ -411,8 +397,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\tubigint refUsr;" << endl;
 	outfile << endl;
 
-	outfile << "\tSess" << Prjshort << "* sess = NULL;" << endl;
-	if (hasm2m) outfile << "\tM2msess" << Prjshort << "* m2msess = NULL;" << endl;
+	outfile << "\tubigint jrefSess;" << endl;
 	outfile << endl;
 
 	outfile << "\tFeed feedFEnsSps(\"FeedFEnsSps\");" << endl;
@@ -425,13 +410,13 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t\t\tif (xchg->stg" << prjshort << "appearance.suspsess && dpchapplogin->chksuspsess) {" << endl;
 	outfile << "\t\t\t\t// look for suspended sessions" << endl;
 	outfile << "\t\t\t\tfor (auto it = sesss.begin(); it != sesss.end(); it++) {" << endl;
-	outfile << "\t\t\t\t\tsess = *it;" << endl;
+	outfile << "\t\t\t\t\tjrefSess = it->second->jref;" << endl;
 	outfile << endl;
 
-	outfile << "\t\t\t\t\tif (xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "OWNER, sess->jref) == refUsr) {" << endl;
-	outfile << "\t\t\t\t\t\tif (xchg->getBoolvalPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "SUSPSESS, sess->jref)) {" << endl;
-	outfile << "\t\t\t\t\t\t\txchg->addTxtvalPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "IP, sess->jref, ip);" << endl;
-	outfile << "\t\t\t\t\t\t\tfeedFEnsSps.appendIxSrefTitles(0, Scr::scramble(sess->jref), Stub" << Prjshort << "::getStubSesStd(dbs" << prjshort << ", xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "SESS, sess->jref)));" << endl;
+	outfile << "\t\t\t\t\tif (xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "OWNER, jrefSess) == refUsr) {" << endl;
+	outfile << "\t\t\t\t\t\tif (xchg->getBoolvalPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "SUSPSESS, jrefSess)) {" << endl;
+	outfile << "\t\t\t\t\t\t\txchg->addTxtvalPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "IP, jrefSess, ip);" << endl;
+	outfile << "\t\t\t\t\t\t\tfeedFEnsSps.appendIxSrefTitles(0, Scr::scramble(jrefSess), Stub" << Prjshort << "::getStubSesStd(dbs" << prjshort << ", xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "SESS, jrefSess)));" << endl;
 	outfile << "\t\t\t\t\t\t};" << endl;
 	outfile << "\t\t\t\t\t};" << endl;
 	outfile << "\t\t\t\t};" << endl;
@@ -440,8 +425,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 
 	outfile << "\t\t\tif (feedFEnsSps.size() == 0) {" << endl;
 	outfile << "\t\t\t\t// start new session" << endl;
-	outfile << "\t\t\t\tsess = new Sess" << Prjshort << "(xchg, dbs" << prjshort << ", jref, refUsr, ip);" << endl;
-	outfile << "\t\t\t\tsesss.push_back(sess);" << endl;
+	outfile << "\t\t\t\tjrefSess = insertSubjob(sesss, new Sess" << Prjshort << "(xchg, dbs" << prjshort << ", jref, refUsr, ip));" << endl;
 	outfile << endl;
 
 	outfile << "\t\t\t\tif ((xchg->stg" << prjshort << "appearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * (xchg->stg" << prjshort << "appearance.sesstterm - xchg->stg" << prjshort << "appearance.sesstwarn));" << endl;
@@ -450,7 +434,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t\t\t\txchg->appendToLogfile(\"session created for user '\" + dpchapplogin->username + \"' from IP \" + ip);" << endl;
 	outfile << endl;
 
-	outfile << "\t\t\t\t*dpcheng = new DpchEng" << Prjshort << "Confirm(true, sess->jref, \"\");" << endl;
+	outfile << "\t\t\t\t*dpcheng = new DpchEng" << Prjshort << "Confirm(true, jrefSess, \"\");" << endl;
 	outfile << endl;
 
 	outfile << "\t\t\t} else {" << endl;
@@ -462,16 +446,13 @@ void WznmWrsrvRootsess::writeRtCpp(
 	if (hasm2m) {
 		outfile << endl;
 		outfile << "\t\t} else {" << endl;
-		outfile << "\t\t\tm2msess = new M2msess" << Prjshort << "(xchg, dbs" << prjshort << ", jref, refUsr, ip);" << endl;
-		outfile << endl;
-
-		outfile << "\t\t\tm2msesss.push_back(m2msess);" << endl;
+		outfile << "\t\t\tjrefSess = insertSubjob(m2msesss, new M2msess" << Prjshort << "(xchg, dbs" << prjshort << ", jref, refUsr, ip));" << endl;
 		outfile << endl;
 
 		outfile << "\t\t\txchg->appendToLogfile(\"M2M session created for user '\" + dpchapplogin->username + \"' from IP \" + ip);" << endl;
 		outfile << endl;
 
-		outfile << "\t\t\t*dpcheng = new DpchEng" << Prjshort << "Confirm(true, m2msess->jref, \"\");" << endl;
+		outfile << "\t\t\t*dpcheng = new DpchEng" << Prjshort << "Confirm(true, jrefSess, \"\");" << endl;
 	};
 
 	outfile << "\t\t};" << endl;
@@ -504,7 +485,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 
 	outfile << "\tif (xchg->stg" << prjshort << "appearance.sesstterm != 0) {" << endl;
 	outfile << "\t\tfor (auto it = sesss.begin(); it != sesss.end();) {" << endl;
-	outfile << "\t\t\tsess = *it;" << endl;
+	outfile << "\t\t\tsess = (Sess" << Prjshort << "*) it->second;" << endl;
 	outfile << endl;
 
 	outfile << "\t\t\tterm = false;" << endl;
@@ -555,25 +536,11 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "// IP handleCall" << Prjshort << "Logout --- IBEGIN" << endl;
 	outfile << endl;
 
-	outfile << "\tSess" << Prjshort << "* sess = NULL;" << endl;
-	if (hasm2m) outfile << "\tM2msess" << Prjshort << "* m2msess = NULL;" << endl;
-	outfile << endl;
-
 	outfile << "\ttime_t rawtime;" << endl;
 	outfile << endl;
 
 	outfile << "\tif (!boolvalInv) {" << endl;
-	outfile << "\t\tfor (auto it = sesss.begin(); it != sesss.end();) {" << endl;
-	outfile << "\t\t\tsess = *it;" << endl;
-	outfile << "\t\t\tif (sess->jref == jrefTrig) {" << endl;
-	outfile << "\t\t\t\tsess->term(dbs" << prjshort << ");" << endl;
-	outfile << "\t\t\t\tit = sesss.erase(it);" << endl;
-	outfile << endl;
-
-	outfile << "\t\t\t\tdelete sess;" << endl;
-	outfile << "\t\t\t\tbreak;" << endl;
-	outfile << "\t\t\t} else it++;" << endl;
-	outfile << "\t\t};" << endl;
+	outfile << "\t\teraseSubjobByJref(sesss, jrefTrig);" << endl;
 	outfile << endl;
 
 	outfile << "\t\tif (xchg->stg" << prjshort << "appearance.roottterm) {" << endl;
@@ -584,17 +551,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 	if (hasm2m) {
 		outfile << endl;
 		outfile << "\t} else {" << endl;
-		outfile << "\t\tfor (auto it = m2msesss.begin(); it != m2msesss.end();) {" << endl;
-		outfile << "\t\t\tm2msess = *it;" << endl;
-		outfile << "\t\t\tif (m2msess->jref == jrefTrig) {" << endl;
-		outfile << "\t\t\t\tm2msess->term(dbs" << prjshort << ");" << endl;
-		outfile << "\t\t\t\tit = m2msesss.erase(it);" << endl;
-		outfile << endl;
-
-		outfile << "\t\t\t\tdelete m2msess;" << endl;
-		outfile << "\t\t\t\tbreak;" << endl;
-		outfile << "\t\t\t} else it++;" << endl;
-		outfile << "\t\t};" << endl;
+		outfile << "\t\teraseSubjobByJref(m2msesss, jrefTrig);" << endl;
 	};
 
 	outfile << "\t};" << endl;
@@ -660,6 +617,9 @@ void WznmWrsrvRootsess::writeSessH(
 	outfile << "\tvoid term(Dbs" << Prjshort << "* dbs" << prjshort << ");" << endl;
 	outfile << endl;
 
+	outfile << "\tvoid eraseCrd(std::map<Sbecore::ubigint, Job" << Prjshort << "*>& subjobs);" << endl;
+	outfile << endl;
+
 	outfile << "\tSbecore::uint checkCrdActive(const Sbecore::uint ix" << Prjshort << "VCard);" << endl;
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
 		car = cars.nodes[i];
@@ -709,7 +669,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 	Expr expr;
 
 	string s;
-	bool first;
+	bool first, found;
 	uint cnt;
 
 	string pre;
@@ -891,6 +851,24 @@ void WznmWrsrvRootsess::writeSessCpp(
 
 	outfile << "\t\tdelete ses;" << endl;
 	outfile << "\t};" << endl;
+	outfile << "};" << endl;
+	outfile << endl;
+
+	// -- eraseCrd
+	outfile << "void Sess" << Prjshort << "::eraseCrd(" << endl;
+	outfile << "\t\t\tmap<ubigint, Job" << Prjshort << "*>& subjobs" << endl;
+	outfile << "\t\t) {" << endl;
+	outfile << "\tstring input;" << endl;
+	outfile << "\tubigint iinput;" << endl;
+	outfile << endl;
+
+	outfile << "\tcout << \"\\tjob reference: \";" << endl;
+	outfile << "\tcin >> input;" << endl;
+	outfile << "\tiinput = atoll(input.c_str());" << endl;
+	outfile << endl;
+
+	outfile << "\tif (!eraseSubjobByJref(subjobs, iinput)) cout << \"\\tjob reference doesn't exist!\" << endl;" << endl;
+	outfile << "\telse cout << \"\\tcard erased.\" << endl;" << endl;
 	outfile << "};" << endl;
 	outfile << endl;
 
@@ -1336,7 +1314,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 
 		if (car->sref.find("Nav") != (3+4)) {
 			outfile << "\tfor (auto it = crd" << StrMod::lc(car->sref.substr(3+4)) << "s.begin(); it != crd" << StrMod::lc(car->sref.substr(3+4))
-						<< "s.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble((*it)->jref), \"" << car->sref << "\");" << endl;
+						<< "s.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), \"" << car->sref << "\");" << endl;
 		};
 	};
 	outfile << endl;
@@ -1350,8 +1328,6 @@ void WznmWrsrvRootsess::writeSessCpp(
 
 		if (car->sref.find("Nav") != (3+4)) {
 			outfile << "// IP handleCreateCrd" << StrMod::lc(car->sref.substr(3+4)) << " --- IBEGIN" << endl;
-
-			outfile << "\t" << car->sref << "* crd" << StrMod::lc(car->sref.substr(3+4)) << " = NULL;" << endl;
 			outfile << endl;
 
 			if (car->Active.length() != 0) {
@@ -1365,45 +1341,20 @@ void WznmWrsrvRootsess::writeSessCpp(
 
 			if (car->Active.length() == 0) pre = "\t"; else pre = "\t\t";
 
-			outfile << pre << "crd" << StrMod::lc(car->sref.substr(3+4)) << " = new " << car->sref << "(xchg, dbs" << prjshort << ", jref, ix" << Prjshort << "VLocale";
+			outfile << pre << "xchg->jrefCmd = insertSubjob(crd" << StrMod::lc(car->sref.substr(3+4)) << "s, new " << car->sref << "(xchg, dbs" << prjshort << ", jref, ix" << Prjshort << "VLocale";
 			if ((car->refIxVTbl == VecWznmVMCardRefTbl::TBL) || (car->refIxVTbl == VecWznmVMCardRefTbl::SBS)) outfile <<  ", 0";
 			if (car->Active.length() != 0) outfile << ", ix" << Prjshort << "VPreset, xchg->getRefPreset(ix" << Prjshort << "VPreset, jref)";
-			outfile << ");" << endl;
-			outfile << pre << "crd" << StrMod::lc(car->sref.substr(3+4)) << "s.push_back(crd" << StrMod::lc(car->sref.substr(3+4)) << ");" << endl;
-
-			outfile << pre << "cout << \"\\tjob reference: \" << crd" << StrMod::lc(car->sref.substr(3+4)) << "->jref << endl;" << endl;
-			outfile << pre << "xchg->jrefCmd = crd" << StrMod::lc(car->sref.substr(3+4)) << "->jref;" << endl;
+			outfile << "));" << endl;
+			outfile << pre << "cout << \"\\tjob reference: \" << xchg->jrefCmd << endl;" << endl;
 
 			if (car->Active.length() != 0) outfile << "\t};" << endl;
 
 			outfile << endl;
 
-			outfile << "\treturn false;" << endl;
 			outfile << "// IP handleCreateCrd" << StrMod::lc(car->sref.substr(3+4)) << " --- IEND" << endl;
 
 			outfile << "// IP handleEraseCrd" << StrMod::lc(car->sref.substr(3+4)) << " --- IBEGIN" << endl;
-			outfile << "\tstring input;" << endl;
-			outfile << "\tuint iinput;" << endl;
-			outfile << endl;
-
-			outfile << "\t" << car->sref << "* crd" << StrMod::lc(car->sref.substr(3+4)) << " = NULL;" << endl;
-			outfile << endl;
-
-			outfile << "\tcout << \"\\tjob reference: \";" << endl;
-			outfile << "\tcin >> input;" << endl;
-			outfile << "\tiinput = atoi(input.c_str());" << endl;
-			outfile << endl;
-
-			outfile << "\tfor (auto it = crd" << StrMod::lc(car->sref.substr(3+4)) << "s.begin(); it != crd" << StrMod::lc(car->sref.substr(3+4)) << "s.end();) {" << endl;
-			outfile << "\t\tcrd" << StrMod::lc(car->sref.substr(3+4)) << " = *it;" << endl;
-			outfile << "\t\tif (crd" << StrMod::lc(car->sref.substr(3+4)) << "->jref == iinput) {" << endl;
-			outfile << "\t\t\tit = crd" << StrMod::lc(car->sref.substr(3+4)) << "s.erase(it);" << endl;
-			outfile << "\t\t\tdelete crd" << StrMod::lc(car->sref.substr(3+4)) << ";" << endl;
-			outfile << "\t\t\tbreak;" << endl;
-			outfile << "\t\t} else it++;" << endl;
-			outfile << "\t};" << endl;
-			outfile << endl;
-
+			outfile << "\teraseCrd(crd" << StrMod::lc(car->sref.substr(3+4)) << "s);" << endl;
 			outfile << "// IP handleEraseCrd" << StrMod::lc(car->sref.substr(3+4)) << " --- IEND" << endl;
 		};
 	};
@@ -1424,14 +1375,19 @@ void WznmWrsrvRootsess::writeSessCpp(
 	outfile << "\tif (jrefNotif == jrefTrig) xchg->removePreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "JREFNOTIFY, jref);" << endl;
 	outfile << endl;
 
+	found = false;
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
 		car = cars.nodes[i];
 
-		outfile << "\t";
-		if (i != 0) outfile << "} else ";
-		outfile << "if (ixInv == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref) << ") {" << endl;
+		if (found) outfile << "\t} " << endl; // concerns previous card
+		else outfile << "\t";
+		if (i != 0) outfile << "else ";
+		outfile << "if (ixInv == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref) << ") ";
 
-		if (car->sref.find("Nav") == (3+4)) {
+		found = (car->sref.find("Nav") == (3+4));
+
+		if (found) {
+			outfile << "{" << endl;
 			outfile << "\t\tif (crdnav) {" << endl;
 			outfile << "\t\t\tdelete crdnav;" << endl;
 			outfile << "\t\t\tcrdnav = NULL;" << endl;
@@ -1440,20 +1396,10 @@ void WznmWrsrvRootsess::writeSessCpp(
 
 		} else {
 			// regular card
-			outfile << "\t\t" << car->sref << "* crd" << StrMod::lc(car->sref.substr(3+4)) << " = NULL;" << endl;
-			outfile << endl;
-
-			outfile << "\t\tfor (auto it = crd" << StrMod::lc(car->sref.substr(3+4)) << "s.begin(); it != crd" << StrMod::lc(car->sref.substr(3+4)) << "s.end();) {" << endl;
-			outfile << "\t\t\tcrd" << StrMod::lc(car->sref.substr(3+4)) << " = *it;" << endl;
-			outfile << "\t\t\tif (crd" << StrMod::lc(car->sref.substr(3+4)) << "->jref == jrefTrig) {" << endl;
-			outfile << "\t\t\t\tit = crd" << StrMod::lc(car->sref.substr(3+4)) << "s.erase(it);" << endl;
-			outfile << "\t\t\t\tdelete crd" << StrMod::lc(car->sref.substr(3+4)) << ";" << endl;
-			outfile << "\t\t\t\tbreak;" << endl;
-			outfile << "\t\t\t} else it++;" << endl;
-			outfile << "\t\t};" << endl;
+			outfile << "eraseSubjobByJref(crd" << StrMod::lc(car->sref.substr(3+4)) << "s, jrefTrig);" << endl;
 		};
 	};
-	if (cars.nodes.size() > 0) outfile << "\t};" << endl;
+	if (found) outfile << "\t};" << endl;
 	outfile << "// IP handleCall" << Prjshort << "CrdClose --- IEND" << endl;
 
 	// --- handleCallXxxxCrdOpen
@@ -1519,30 +1465,22 @@ void WznmWrsrvRootsess::writeSessCpp(
 
 	outfile << "\t} else {" << endl;
 
+	first = true;
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
 		car = cars.nodes[i];
 
-		outfile << "\t\t";
-		if (i != 0) outfile << "} else ";
-		outfile << "if (ix" << Prjshort << "VCard == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref) << ") {" << endl;
-
 		if (car->sref.find("Nav") != (3+4)) {
-			outfile << "\t\t\t" << car->sref << "* crd" << StrMod::lc(car->sref.substr(3+4)) << " = NULL;" << endl;
-			outfile << endl;
+			outfile << "\t\t";
 
-			outfile << "\t\t\tcrd" << StrMod::lc(car->sref.substr(3+4)) << " = new " << car->sref << "(xchg, dbs" << prjshort << ", jref, ix" << Prjshort << "VLocale";
+			if (first) first = false;
+			else outfile << "else ";
+
+			outfile << "if (ix" << Prjshort << "VCard == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref) << ") refRet = insertSubjob(crd" << StrMod::lc(car->sref.substr(3+4)) << "s, new " << car->sref << "(xchg, dbs" << prjshort << ", jref, ix" << Prjshort << "VLocale";
 			if ((car->refIxVTbl == VecWznmVMCardRefTbl::TBL) || (car->refIxVTbl == VecWznmVMCardRefTbl::SBS)) outfile << ", ref";
 			if (car->Active.length() > 0) outfile << ", ix" << Prjshort << "VPreset, preUref";
-			outfile << ");" << endl;
-
-			outfile << "\t\t\tcrd" << StrMod::lc(car->sref.substr(3+4)) << "s.push_back(crd" << StrMod::lc(car->sref.substr(3+4)) << ");" << endl;
-			outfile << endl;
-
-			outfile << "\t\t\trefRet = crd" << StrMod::lc(car->sref.substr(3+4)) << "->jref;" << endl;
-			outfile << endl;
+			outfile << "));" << endl;
 		};
 	};
-	if (cars.nodes.size() > 0) outfile << "\t\t};" << endl;
 
 	outfile << "\t};" << endl;
 	outfile << endl;
@@ -1561,6 +1499,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 
 	// --- handleCallXxxxRefPreSet
 	outfile << "// IP handleCall" << Prjshort << "RefPreSet --- IBEGIN" << endl;
+	outfile << "// IP handleCall" << Prjshort << "RefPreSet --- BEGIN" << endl;
 
 	outfile << "\tif (ixInv == Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "JREFNOTIFY) {" << endl;
 	outfile << "\t\tubigint jrefNotify_old = xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "JREFNOTIFY, jref);" << endl;
@@ -1613,6 +1552,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 		outfile << "\t};" << endl;
 	};
 
+	outfile << "// IP handleCall" << Prjshort << "RefPreSet --- END" << endl;
 	outfile << "// IP handleCall" << Prjshort << "RefPreSet --- IEND" << endl;
 };
 

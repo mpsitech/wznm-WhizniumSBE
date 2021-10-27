@@ -458,6 +458,9 @@ uint WznmopdEngsrv::readDpchInv(
 	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLBSCUI) {
 		req->dpchinv = new DpchInvWznmComplBscui();
 		((DpchInvWznmComplBscui*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLCTPCPY) {
+		req->dpchinv = new DpchInvWznmComplCtpcpy();
+		((DpchInvWznmComplCtpcpy*) (req->dpchinv))->readXML(docctx, "/", true);
 	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLDBS) {
 		req->dpchinv = new DpchInvWznmComplDbs();
 		((DpchInvWznmComplDbs*) (req->dpchinv))->readXML(docctx, "/", true);

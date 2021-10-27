@@ -5,8 +5,8 @@ function updateScrJrefs() {
 	scrJref1NOp = retrieveSi(srcdoc, "StatShrWznmOpkRec", "scrJref1NOp");
 	scrJrefRef1NBlock = retrieveSi(srcdoc, "StatShrWznmOpkRec", "scrJrefRef1NBlock");
 	scrJrefMNJob = retrieveSi(srcdoc, "StatShrWznmOpkRec", "scrJrefMNJob");
-	scrJrefMNComponent = retrieveSi(srcdoc, "StatShrWznmOpkRec", "scrJrefMNComponent");
 	scrJrefMNLibrary = retrieveSi(srcdoc, "StatShrWznmOpkRec", "scrJrefMNLibrary");
+	scrJrefMNComponent = retrieveSi(srcdoc, "StatShrWznmOpkRec", "scrJrefMNComponent");
 	scrJrefSqkMNStub = retrieveSi(srcdoc, "StatShrWznmOpkRec", "scrJrefSqkMNStub");
 };
 
@@ -17,8 +17,8 @@ function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmOpkRec", "initdone1NOp", "false");
 	setSi(srcdoc, "StatAppWznmOpkRec", "initdoneRef1NBlock", "false");
 	setSi(srcdoc, "StatAppWznmOpkRec", "initdoneMNJob", "false");
-	setSi(srcdoc, "StatAppWznmOpkRec", "initdoneMNComponent", "false");
 	setSi(srcdoc, "StatAppWznmOpkRec", "initdoneMNLibrary", "false");
+	setSi(srcdoc, "StatAppWznmOpkRec", "initdoneMNComponent", "false");
 	setSi(srcdoc, "StatAppWznmOpkRec", "initdoneSqkMNStub", "false");
 };
 
@@ -29,8 +29,8 @@ function resetHeights() {
 	height1NOp = 30;
 	heightRef1NBlock = 30;
 	heightMNJob = 30;
-	heightMNComponent = 30;
 	heightMNLibrary = 30;
+	heightMNComponent = 30;
 	heightSqkMNStub = 30;
 };
 
@@ -55,8 +55,8 @@ function checkInitdone() {
 	var initdone1NOp = (retrieveSi(srcdoc, "StatAppWznmOpkRec", "initdone1NOp") == "true");
 	var initdoneRef1NBlock = (retrieveSi(srcdoc, "StatAppWznmOpkRec", "initdoneRef1NBlock") == "true");
 	var initdoneMNJob = (retrieveSi(srcdoc, "StatAppWznmOpkRec", "initdoneMNJob") == "true");
-	var initdoneMNComponent = (retrieveSi(srcdoc, "StatAppWznmOpkRec", "initdoneMNComponent") == "true");
 	var initdoneMNLibrary = (retrieveSi(srcdoc, "StatAppWznmOpkRec", "initdoneMNLibrary") == "true");
+	var initdoneMNComponent = (retrieveSi(srcdoc, "StatAppWznmOpkRec", "initdoneMNComponent") == "true");
 	var initdoneSqkMNStub = (retrieveSi(srcdoc, "StatAppWznmOpkRec", "initdoneSqkMNStub") == "true");
 
 	if (!initdoneDetail) {
@@ -71,10 +71,10 @@ function checkInitdone() {
 		rhsdoc.getElementById("Ref1NBlock").src = "./PnlWznmOpkRef1NBlock.html?scrJref=" + scrJrefRef1NBlock;
 	} else if (!initdoneMNJob) {
 		rhsdoc.getElementById("MNJob").src = "./PnlWznmOpkMNJob.html?scrJref=" + scrJrefMNJob;
-	} else if (!initdoneMNComponent) {
-		rhsdoc.getElementById("MNComponent").src = "./PnlWznmOpkMNComponent.html?scrJref=" + scrJrefMNComponent;
 	} else if (!initdoneMNLibrary) {
 		rhsdoc.getElementById("MNLibrary").src = "./PnlWznmOpkMNLibrary.html?scrJref=" + scrJrefMNLibrary;
+	} else if (!initdoneMNComponent) {
+		rhsdoc.getElementById("MNComponent").src = "./PnlWznmOpkMNComponent.html?scrJref=" + scrJrefMNComponent;
 	} else if (!initdoneSqkMNStub) {
 		rhsdoc.getElementById("SqkMNStub").src = "./PnlWznmOpkSqkMNStub.html?scrJref=" + scrJrefSqkMNStub;
 
@@ -121,8 +121,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "1NOp") height1NOp = height;
 		else if (short == "Ref1NBlock") heightRef1NBlock = height;
 		else if (short == "MNJob") heightMNJob = height;
-		else if (short == "MNComponent") heightMNComponent = height;
 		else if (short == "MNLibrary") heightMNLibrary = height;
+		else if (short == "MNComponent") heightMNComponent = height;
 		else if (short == "SqkMNStub") heightSqkMNStub = height;
 	};
 
@@ -172,8 +172,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "1NOp") height1NOp = height;
 	else if (pnlshort == "Ref1NBlock") heightRef1NBlock = height;
 	else if (pnlshort == "MNJob") heightMNJob = height;
-	else if (pnlshort == "MNComponent") heightMNComponent = height;
 	else if (pnlshort == "MNLibrary") heightMNLibrary = height;
+	else if (pnlshort == "MNComponent") heightMNComponent = height;
 	else if (pnlshort == "SqkMNStub") heightSqkMNStub = height;
 
 	if (update) updateHeight();
@@ -183,7 +183,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + heightAInvarg+13 + heightARetval+13 + 5;
-	heightRhs = height1NOp+13 + heightRef1NBlock+13 + heightMNJob+13 + heightMNComponent+13 + heightMNLibrary+13 + heightSqkMNStub+13 + 5;
+	heightRhs = height1NOp+13 + heightRef1NBlock+13 + heightMNJob+13 + heightMNLibrary+13 + heightMNComponent+13 + heightSqkMNStub+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -390,10 +390,10 @@ function handleDpchEng(dom, dpch) {
 				if (getInitdone("Ref1NBlock")) rhsdoc.getElementById("Ref1NBlock").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNJob) {
 				if (getInitdone("MNJob")) rhsdoc.getElementById("MNJob").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefMNComponent) {
-				if (getInitdone("MNComponent")) rhsdoc.getElementById("MNComponent").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNLibrary) {
 				if (getInitdone("MNLibrary")) rhsdoc.getElementById("MNLibrary").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefMNComponent) {
+				if (getInitdone("MNComponent")) rhsdoc.getElementById("MNComponent").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefSqkMNStub) {
 				if (getInitdone("SqkMNStub")) rhsdoc.getElementById("SqkMNStub").contentWindow.handleDpchEng(dom, dpch);
 			} else {

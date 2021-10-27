@@ -1079,7 +1079,7 @@ CrdWznmVer
 				lin	VecVDlgWznmVerGenjtrDit		filfed
 				ImeIMVector3.end
 			ImeIMFeed3.end
-		4	dit	0	void	void		0	shr	DitGjt	dituld		Input file
+		4	dit	0	void	void		0	shr	DitGjt	ditprg		Generation
 		5	txt	0	cont	void		4	shr	GjtTxtPrg	void							t
 		6	cpt	0	cont	void		5	app	GjtCptPrg	void	progress						cap
 		7	sep	0	cont	void		4	app	GjtSep1	void
@@ -1119,7 +1119,7 @@ CrdWznmVer
 				lin	VecVDlgWznmVerGenuiDit		filfed
 				ImeIMVector3.end
 			ImeIMFeed3.end
-		4	dit	0	void	void		0	shr	DitGui	dituld		Input file
+		4	dit	0	void	void		0	shr	DitGui	ditprg		Generation
 		5	txt	0	cont	void		4	shr	GuiTxtPrg	void							t
 		6	cpt	0	cont	void		5	app	GuiCptPrg	void	progress						cap
 		7	sep	0	cont	void		4	app	GuiSep1	void

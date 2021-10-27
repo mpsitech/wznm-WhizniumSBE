@@ -26,8 +26,8 @@ uint QryWznmRelList::VecVOrd::getIx(
 	if (s == "srl") return SRL;
 	if (s == "sup") return SUP;
 	if (s == "ver") return VER;
-	if (s == "tos") return TOS;
 	if (s == "typ") return TYP;
+	if (s == "tos") return TOS;
 	if (s == "tot") return TOT;
 	if (s == "frs") return FRS;
 	if (s == "frt") return FRT;
@@ -42,8 +42,8 @@ string QryWznmRelList::VecVOrd::getSref(
 	if (ix == SRL) return("srl");
 	if (ix == SUP) return("sup");
 	if (ix == VER) return("ver");
-	if (ix == TOS) return("tos");
 	if (ix == TYP) return("typ");
+	if (ix == TOS) return("tos");
 	if (ix == TOT) return("tot");
 	if (ix == FRS) return("frs");
 	if (ix == FRT) return("frt");

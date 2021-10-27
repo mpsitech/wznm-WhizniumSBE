@@ -107,6 +107,16 @@ void PnlWznmTagList::refresh(
 	// continf
 	continf.numFCsiQst = feedFCsiQst.getNumByIx(qry->ixWznmVQrystate);
 
+	uint ixPre = xchg->getIxPreset(VecWznmVPreset::PREWZNMIXPRE, jref);
+	if ((ixPre != 0) && (ixPre != VecWznmVPreset::VOID)) {
+		continf.TxtFor = VecWznmVPreset::getTitle(ixPre, ixWznmVLocale);
+
+		if (ixPre == VecWznmVPreset::PREWZNMREFCTP) continf.TxtPre = StubWznm::getStubCpbStd(dbswznm, xchg->getRefPreset(ixPre, jref), ixWznmVLocale, Stub::VecVNonetype::FULL);
+
+	} else {
+		continf.TxtFor = "";
+	};
+
 	// contiac
 	contiac.numFTos = xchg->getIxPreset(VecWznmVPreset::PREWZNMIXORD, jref);
 
@@ -247,7 +257,7 @@ void PnlWznmTagList::handleDpchAppDataContiac(
 	diffitems = _contiac->diff(&contiac);
 
 	if (has(diffitems, ContIac::NUMFTOS)) {
-		if ((_contiac->numFTos >= QryWznmTagList::VecVOrd::GRP) && (_contiac->numFTos <= QryWznmTagList::VecVOrd::SRF)) {
+		if ((_contiac->numFTos >= QryWznmTagList::VecVOrd::GRP) && (_contiac->numFTos <= QryWznmTagList::VecVOrd::CPB)) {
 			muteRefresh = true;
 
 			xchg->addIxPreset(VecWznmVPreset::PREWZNMIXORD, jref, _contiac->numFTos);

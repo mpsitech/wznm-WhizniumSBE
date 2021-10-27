@@ -230,8 +230,9 @@ bool TblWznmMTag::loadRecByRef(
 	return false;
 };
 
-bool TblWznmMTag::loadRecBySrfGrp(
-			string sref
+bool TblWznmMTag::loadRecByCpbSrfGrp(
+			ubigint refWznmMCapability
+			, string sref
 			, string osrefWznmKTaggrp
 			, WznmMTag** rec
 		) {
@@ -242,6 +243,14 @@ ubigint TblWznmMTag::loadRefsByCpb(
 			ubigint refWznmMCapability
 			, const bool append
 			, vector<ubigint>& refs
+		) {
+	return 0;
+};
+
+ubigint TblWznmMTag::loadRstByCpb(
+			ubigint refWznmMCapability
+			, const bool append
+			, ListWznmMTag& rst
 		) {
 	return 0;
 };
@@ -501,12 +510,13 @@ bool MyTblWznmMTag::loadRecByRef(
 	return loadRecBySQL("SELECT * FROM TblWznmMTag WHERE ref = " + to_string(ref), rec);
 };
 
-bool MyTblWznmMTag::loadRecBySrfGrp(
-			string sref
+bool MyTblWznmMTag::loadRecByCpbSrfGrp(
+			ubigint refWznmMCapability
+			, string sref
 			, string osrefWznmKTaggrp
 			, WznmMTag** rec
 		) {
-	return loadRecBySQL("SELECT ref, refWznmMCapability, sref, osrefWznmKTaggrp, refJTitle, Title FROM TblWznmMTag WHERE sref = '" + sref + "' AND osrefWznmKTaggrp = '" + osrefWznmKTaggrp + "'", rec);
+	return loadRecBySQL("SELECT ref, refWznmMCapability, sref, osrefWznmKTaggrp, refJTitle, Title FROM TblWznmMTag WHERE refWznmMCapability = " + to_string(refWznmMCapability) + " AND sref = '" + sref + "' AND osrefWznmKTaggrp = '" + osrefWznmKTaggrp + "'", rec);
 };
 
 ubigint MyTblWznmMTag::loadRefsByCpb(
@@ -515,6 +525,14 @@ ubigint MyTblWznmMTag::loadRefsByCpb(
 			, vector<ubigint>& refs
 		) {
 	return loadRefsBySQL("SELECT ref FROM TblWznmMTag WHERE refWznmMCapability = " + to_string(refWznmMCapability) + "", append, refs);
+};
+
+ubigint MyTblWznmMTag::loadRstByCpb(
+			ubigint refWznmMCapability
+			, const bool append
+			, ListWznmMTag& rst
+		) {
+	return loadRstBySQL("SELECT ref, refWznmMCapability, sref, osrefWznmKTaggrp, refJTitle, Title FROM TblWznmMTag WHERE refWznmMCapability = " + to_string(refWznmMCapability) + " ORDER BY sref ASC", append, rst);
 };
 
 ubigint MyTblWznmMTag::loadRstByGrp(
@@ -555,8 +573,9 @@ void PgTblWznmMTag::initStatements() {
 	createStatement("TblWznmMTag_removeRecByRef", "DELETE FROM TblWznmMTag WHERE ref = $1", 1);
 
 	createStatement("TblWznmMTag_loadRecByRef", "SELECT ref, refWznmMCapability, sref, osrefWznmKTaggrp, refJTitle, Title FROM TblWznmMTag WHERE ref = $1", 1);
-	createStatement("TblWznmMTag_loadRecBySrfGrp", "SELECT ref, refWznmMCapability, sref, osrefWznmKTaggrp, refJTitle, Title FROM TblWznmMTag WHERE sref = $1 AND osrefWznmKTaggrp = $2", 2);
+	createStatement("TblWznmMTag_loadRecByCpbSrfGrp", "SELECT ref, refWznmMCapability, sref, osrefWznmKTaggrp, refJTitle, Title FROM TblWznmMTag WHERE refWznmMCapability = $1 AND sref = $2 AND osrefWznmKTaggrp = $3", 3);
 	createStatement("TblWznmMTag_loadRefsByCpb", "SELECT ref FROM TblWznmMTag WHERE refWznmMCapability = $1", 1);
+	createStatement("TblWznmMTag_loadRstByCpb", "SELECT ref, refWznmMCapability, sref, osrefWznmKTaggrp, refJTitle, Title FROM TblWznmMTag WHERE refWznmMCapability = $1 ORDER BY sref ASC", 1);
 	createStatement("TblWznmMTag_loadRstByGrp", "SELECT ref, refWznmMCapability, sref, osrefWznmKTaggrp, refJTitle, Title FROM TblWznmMTag WHERE osrefWznmKTaggrp = $1 ORDER BY sref ASC", 1);
 	createStatement("TblWznmMTag_loadSrfByRef", "SELECT sref FROM TblWznmMTag WHERE ref = $1", 1);
 };
@@ -858,23 +877,27 @@ bool PgTblWznmMTag::loadRecByRef(
 	return loadRecByStmt("TblWznmMTag_loadRecByRef", 1, vals, l, f, rec);
 };
 
-bool PgTblWznmMTag::loadRecBySrfGrp(
-			string sref
+bool PgTblWznmMTag::loadRecByCpbSrfGrp(
+			ubigint refWznmMCapability
+			, string sref
 			, string osrefWznmKTaggrp
 			, WznmMTag** rec
 		) {
+	ubigint _refWznmMCapability = htonl64(refWznmMCapability);
 
 	const char* vals[] = {
+		(char*) &_refWznmMCapability,
 		sref.c_str(),
 		osrefWznmKTaggrp.c_str()
 	};
 	const int l[] = {
+		sizeof(ubigint),
 		0,
 		0
 	};
-	const int f[] = {0,0};
+	const int f[] = {1,0,0};
 
-	return loadRecByStmt("TblWznmMTag_loadRecBySrfGrp", 2, vals, l, f, rec);
+	return loadRecByStmt("TblWznmMTag_loadRecByCpbSrfGrp", 3, vals, l, f, rec);
 };
 
 ubigint PgTblWznmMTag::loadRefsByCpb(
@@ -893,6 +916,24 @@ ubigint PgTblWznmMTag::loadRefsByCpb(
 	const int f[] = {1};
 
 	return loadRefsByStmt("TblWznmMTag_loadRefsByCpb", 1, vals, l, f, append, refs);
+};
+
+ubigint PgTblWznmMTag::loadRstByCpb(
+			ubigint refWznmMCapability
+			, const bool append
+			, ListWznmMTag& rst
+		) {
+	ubigint _refWznmMCapability = htonl64(refWznmMCapability);
+
+	const char* vals[] = {
+		(char*) &_refWznmMCapability
+	};
+	const int l[] = {
+		sizeof(ubigint)
+	};
+	const int f[] = {1};
+
+	return loadRstByStmt("TblWznmMTag_loadRstByCpb", 1, vals, l, f, append, rst);
 };
 
 ubigint PgTblWznmMTag::loadRstByGrp(

@@ -618,8 +618,8 @@ private:
 
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerWithSrefMonInSgeWrite(DbsWznm* dbswznm);
 	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerWithSrefMonInSgeWrite(DbsWznm* dbswznm);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

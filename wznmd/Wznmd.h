@@ -675,6 +675,9 @@ public:
 	ReqWznm* reqCmd;
 
 public:
+	Sbecore::ubigint insertSubjob(std::map<Sbecore::ubigint, JobWznm*>& subjobs, JobWznm* subjob);
+	bool eraseSubjobByJref(std::map<Sbecore::ubigint, JobWznm*>& subjobs, const Sbecore::ubigint _jref);
+
 	virtual DpchEngWznm* getNewDpchEng(std::set<Sbecore::uint> items);
 
 	virtual void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);

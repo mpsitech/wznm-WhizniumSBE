@@ -31,8 +31,8 @@ namespace QryWznmUsrList {
 		static const Sbecore::uint USG = 1;
 		static const Sbecore::uint PRS = 2;
 		static const Sbecore::uint SRF = 3;
-		static const Sbecore::uint GRP = 4;
-		static const Sbecore::uint OWN = 5;
+		static const Sbecore::uint OWN = 4;
+		static const Sbecore::uint GRP = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

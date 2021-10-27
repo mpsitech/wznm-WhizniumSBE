@@ -38,8 +38,8 @@ PnlWznmCmpRec::PnlWznmCmpRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlmnoppack = NULL;
 	pnlmnlibrary = NULL;
+	pnlmnoppack = NULL;
 	pnl1nrelease = NULL;
 	pnldetail = NULL;
 
@@ -99,26 +99,26 @@ void PnlWznmCmpRec::refresh(
 	// statshr
 	if (recCmp.ref == 0) statshr.ixWznmVExpstate = VecWznmVExpstate::MIND;
 
-	statshr.pnlmnlibraryAvail = evalPnlmnlibraryAvail(dbswznm);
 	statshr.pnlmnoppackAvail = evalPnlmnoppackAvail(dbswznm);
+	statshr.pnlmnlibraryAvail = evalPnlmnlibraryAvail(dbswznm);
 	statshr.ButRegularizeActive = evalButRegularizeActive(dbswznm);
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnl1nrelease) {delete pnl1nrelease; pnl1nrelease = NULL;};
-		if (pnlmnlibrary) {delete pnlmnlibrary; pnlmnlibrary = NULL;};
 		if (pnlmnoppack) {delete pnlmnoppack; pnlmnoppack = NULL;};
+		if (pnlmnlibrary) {delete pnlmnlibrary; pnlmnlibrary = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmCmpDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nrelease) pnl1nrelease = new PnlWznmCmp1NRelease(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlmnlibrary) pnlmnlibrary = new PnlWznmCmpMNLibrary(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmnoppack) pnlmnoppack = new PnlWznmCmpMNOppack(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlmnlibrary) pnlmnlibrary = new PnlWznmCmpMNLibrary(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jref1NRelease = ((pnl1nrelease) ? pnl1nrelease->jref : 0);
-	statshr.jrefMNLibrary = ((pnlmnlibrary) ? pnlmnlibrary->jref : 0);
 	statshr.jrefMNOppack = ((pnlmnoppack) ? pnlmnoppack->jref : 0);
+	statshr.jrefMNLibrary = ((pnlmnlibrary) ? pnlmnlibrary->jref : 0);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -151,8 +151,8 @@ void PnlWznmCmpRec::updatePreset(
 		if (recCmp.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nrelease) pnl1nrelease->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlmnlibrary) pnlmnlibrary->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmnoppack) pnlmnoppack->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlmnlibrary) pnlmnlibrary->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
 		refresh(dbswznm, moditems);

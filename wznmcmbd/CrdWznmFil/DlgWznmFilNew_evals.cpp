@@ -30,20 +30,6 @@ bool DlgWznmFilNew::evalButDneActive(
 	return(args.back());
 };
 
-bool DlgWznmFilNew::evalFilUldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(credone)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::CREDONE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool DlgWznmFilNew::evalDetButCreActive(
 			DbsWznm* dbswznm
 		) {
@@ -59,6 +45,20 @@ bool DlgWznmFilNew::evalDetButCreActive(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
+
+	return(args.back());
+};
+
+bool DlgWznmFilNew::evalFilUldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(credone)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::CREDONE);
+	args.push_back(a);
 
 	return(args.back());
 };

@@ -79,9 +79,15 @@ void QryWznmTagList::rerun(
 		) {
 	string sqlstr;
 
-	uint cnt;
+	vector<ubigint> cnts;
+	uint cnt, cntsum;
 
+	vector<ubigint> lims;
+	vector<ubigint> ofss;
+
+	uint preIxPre = xchg->getIxPreset(VecWznmVPreset::PREWZNMIXPRE, jref);
 	uint preIxOrd = xchg->getIxPreset(VecWznmVPreset::PREWZNMIXORD, jref);
+	ubigint preRefCtp = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFCTP, jref);
 	string preSrf = xchg->getSrefPreset(VecWznmVPreset::PREWZNMTAGLIST_SRF, jref);
 	ubigint preCpb = xchg->getRefPreset(VecWznmVPreset::PREWZNMTAGLIST_CPB, jref);
 	string preGrp = xchg->getSrefPreset(VecWznmVPreset::PREWZNMTAGLIST_GRP, jref);
@@ -89,26 +95,69 @@ void QryWznmTagList::rerun(
 	dbswznm->tblwznmqselect->removeRstByJref(jref);
 	dbswznm->tblwznmqtaglist->removeRstByJref(jref);
 
-	sqlstr = "SELECT COUNT(TblWznmMTag.ref)";
-	sqlstr += " FROM TblWznmMTag";
-	rerun_filtSQL(sqlstr, preSrf, preCpb, preGrp, true);
-	dbswznm->loadUintBySQL(sqlstr, cnt);
+	cntsum = 0;
 
-	statshr.ntot = cnt;
+	if (preIxPre == VecWznmVPreset::PREWZNMREFCTP) {
+		sqlstr = "SELECT COUNT(TblWznmMTag.ref)";
+		sqlstr += " FROM TblWznmMTag";
+		sqlstr += " WHERE TblWznmMTag.refWznmMCapability = " + to_string(preRefCtp) + "";
+		rerun_filtSQL(sqlstr, preSrf, preCpb, preGrp, false);
+		dbswznm->loadUintBySQL(sqlstr, cnt);
+		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
+		cntsum += cnt;
+
+	} else {
+		sqlstr = "SELECT COUNT(TblWznmMTag.ref)";
+		sqlstr += " FROM TblWznmMTag";
+		rerun_filtSQL(sqlstr, preSrf, preCpb, preGrp, true);
+		dbswznm->loadUintBySQL(sqlstr, cnt);
+		cnts.push_back(cnt); lims.push_back(0); ofss.push_back(0);
+		cntsum += cnt;
+	};
+
+	statshr.ntot = 0;
 	statshr.nload = 0;
 
-	if (stgiac.jnumFirstload > cnt) {
-		if (cnt >= stgiac.nload) stgiac.jnumFirstload = cnt-stgiac.nload+1;
+	if (stgiac.jnumFirstload > cntsum) {
+		if (cntsum >= stgiac.nload) stgiac.jnumFirstload = cntsum-stgiac.nload+1;
 		else stgiac.jnumFirstload = 1;
 	};
 
-	sqlstr = "INSERT INTO TblWznmQTagList(jref, jnum, ref, sref, Title, refWznmMCapability, osrefWznmKTaggrp)";
-	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMTag.ref, TblWznmMTag.sref, TblWznmMTag.Title, TblWznmMTag.refWznmMCapability, TblWznmMTag.osrefWznmKTaggrp";
-	sqlstr += " FROM TblWznmMTag";
-	rerun_filtSQL(sqlstr, preSrf, preCpb, preGrp, true);
-	rerun_orderSQL(sqlstr, preIxOrd);
-	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
-	dbswznm->executeQuery(sqlstr);
+	for (unsigned int i = 0; i < cnts.size(); i++) {
+		if (statshr.nload < stgiac.nload) {
+			if ((statshr.ntot+cnts[i]) >= stgiac.jnumFirstload) {
+				if (statshr.ntot >= stgiac.jnumFirstload) {
+					ofss[i] = 0;
+				} else {
+					ofss[i] = stgiac.jnumFirstload-statshr.ntot-1;
+				};
+
+				if ((statshr.nload+cnts[i]-ofss[i]) > stgiac.nload) lims[i] = stgiac.nload-statshr.nload;
+				else lims[i] = cnts[i]-ofss[i];
+			};
+		};
+
+		statshr.ntot += cnts[i];
+		statshr.nload += lims[i];
+	};
+
+	if (preIxPre == VecWznmVPreset::PREWZNMREFCTP) {
+		rerun_baseSQL(sqlstr);
+		sqlstr += " FROM TblWznmMTag";
+		sqlstr += " WHERE TblWznmMTag.refWznmMCapability = " + to_string(preRefCtp) + "";
+		rerun_filtSQL(sqlstr, preSrf, preCpb, preGrp, false);
+		rerun_orderSQL(sqlstr, preIxOrd);
+		sqlstr += " LIMIT " + to_string(lims[0]) + " OFFSET " + to_string(ofss[0]);
+		dbswznm->executeQuery(sqlstr);
+
+	} else {
+		rerun_baseSQL(sqlstr);
+		sqlstr += " FROM TblWznmMTag";
+		rerun_filtSQL(sqlstr, preSrf, preCpb, preGrp, true);
+		rerun_orderSQL(sqlstr, preIxOrd);
+		sqlstr += " LIMIT " + to_string(lims[0]) + " OFFSET " + to_string(ofss[0]);
+		dbswznm->executeQuery(sqlstr);
+	};
 
 	sqlstr = "UPDATE TblWznmQTagList SET jnum = qref WHERE jref = " + to_string(jref);
 	dbswznm->executeQuery(sqlstr);
@@ -120,6 +169,13 @@ void QryWznmTagList::rerun(
 
 	if (call) xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 
+};
+
+void QryWznmTagList::rerun_baseSQL(
+			string& sqlstr
+		) {
+	sqlstr = "INSERT INTO TblWznmQTagList(jref, jnum, ref, sref, Title, refWznmMCapability, osrefWznmKTaggrp)";
+	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMTag.ref, TblWznmMTag.sref, TblWznmMTag.Title, TblWznmMTag.refWznmMCapability, TblWznmMTag.osrefWznmKTaggrp";
 };
 
 void QryWznmTagList::rerun_filtSQL(
@@ -162,8 +218,8 @@ void QryWznmTagList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMTag.osrefWznmKTaggrp ASC";
-	else if (preIxOrd == VecVOrd::CPB) sqlstr += " ORDER BY TblWznmMTag.refWznmMCapability ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMTag.sref ASC";
+	else if (preIxOrd == VecVOrd::CPB) sqlstr += " ORDER BY TblWznmMTag.refWznmMCapability ASC";
 };
 
 void QryWznmTagList::fetch(
@@ -329,27 +385,13 @@ void QryWznmTagList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMTAGUPD_REFEQ) {
-		call->abort = handleCallWznmTagUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTAGMOD) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMTAGMOD) {
 		call->abort = handleCallWznmTagMod(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTAGUPD_REFEQ) {
+		call->abort = handleCallWznmTagUpd_refEq(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmTagList::handleCallWznmTagUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
-		ixWznmVQrystate = VecWznmVQrystate::OOD;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmTagList::handleCallWznmTagMod(
@@ -360,6 +402,20 @@ bool QryWznmTagList::handleCallWznmTagMod(
 
 	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
 		ixWznmVQrystate = VecWznmVQrystate::MNR;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWznmTagList::handleCallWznmTagUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
+		ixWznmVQrystate = VecWznmVQrystate::OOD;
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 

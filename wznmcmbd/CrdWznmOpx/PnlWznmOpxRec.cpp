@@ -39,10 +39,10 @@ PnlWznmOpxRec::PnlWznmOpxRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlsqkmnstub = NULL;
-	pnlref1nblock = NULL;
 	pnlmnjob = NULL;
-	pnlainvarg = NULL;
+	pnlref1nblock = NULL;
 	pnlaretval = NULL;
+	pnlainvarg = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT

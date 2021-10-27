@@ -17,24 +17,24 @@
 #include "PnlWznmTblMNQuery.h"
 #include "PnlWznmTblMNVector.h"
 #include "PnlWznmTblPst1NQuerymod.h"
-#include "PnlWznmTblRef1NDialog.h"
 #include "PnlWznmTblSrc1NFeed.h"
-#include "PnlWznmTblRef1NCall.h"
-#include "PnlWznmTblFct1NTablecol.h"
-#include "PnlWznmTblHk1NVector.h"
-#include "PnlWznmTblRef1NQuerymod.h"
 #include "PnlWznmTblRef1NPanel.h"
+#include "PnlWznmTblRef1NCall.h"
+#include "PnlWznmTblHk1NVector.h"
+#include "PnlWznmTblFct1NTablecol.h"
 #include "PnlWznmTblRef1NRtblock.h"
-#include "PnlWznmTbl1NImpexp.h"
+#include "PnlWznmTblRef1NDialog.h"
+#include "PnlWznmTblRef1NQuerymod.h"
 #include "PnlWznmTbl1NCheck.h"
+#include "PnlWznmTbl1NImpexp.h"
 #include "PnlWznmTblTbl1NTablecol.h"
 #include "PnlWznmTbl1NSubset.h"
 #include "PnlWznmTbl1NStub.h"
-#include "PnlWznmTblFr1NRelation.h"
 #include "PnlWznmTblTo1NRelation.h"
-#include "PnlWznmTblDetail.h"
 #include "PnlWznmTblALoadfct.h"
+#include "PnlWznmTblFr1NRelation.h"
 #include "PnlWznmTblATitle.h"
+#include "PnlWznmTblDetail.h"
 
 #define VecVWznmTblRecDo PnlWznmTblRec::VecVDo
 
@@ -92,8 +92,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneALoadfct = false, const bool initdoneATitle = false, const bool initdoneFr1NRelation = false, const bool initdoneTo1NRelation = false, const bool initdone1NStub = false, const bool initdone1NSubset = false, const bool initdoneTbl1NTablecol = false, const bool initdone1NImpexp = false, const bool initdone1NCheck = false, const bool initdoneRef1NRtblock = false, const bool initdoneRef1NPanel = false, const bool initdoneRef1NQuerymod = false, const bool initdoneHk1NVector = false, const bool initdoneFct1NTablecol = false, const bool initdoneSrc1NFeed = false, const bool initdoneRef1NCall = false, const bool initdoneRef1NDialog = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNVector = false, const bool initdoneMNQuery = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneALoadfct = false, const bool initdoneATitle = false, const bool initdoneFr1NRelation = false, const bool initdoneTo1NRelation = false, const bool initdone1NStub = false, const bool initdone1NSubset = false, const bool initdoneTbl1NTablecol = false, const bool initdone1NImpexp = false, const bool initdone1NCheck = false, const bool initdoneRef1NRtblock = false, const bool initdoneRef1NPanel = false, const bool initdoneRef1NQuerymod = false, const bool initdoneHk1NVector = false, const bool initdoneFct1NTablecol = false, const bool initdoneSrc1NFeed = false, const bool initdoneRef1NCall = false, const bool initdoneRef1NDialog = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNVector = false, const bool initdoneMNQuery = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneALoadfct = false, const bool initdoneFr1NRelation = false, const bool initdoneTo1NRelation = false, const bool initdone1NStub = false, const bool initdone1NSubset = false, const bool initdoneTbl1NTablecol = false, const bool initdone1NCheck = false, const bool initdone1NImpexp = false, const bool initdoneRef1NQuerymod = false, const bool initdoneRef1NDialog = false, const bool initdoneRef1NRtblock = false, const bool initdoneFct1NTablecol = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NPanel = false, const bool initdoneRef1NCall = false, const bool initdoneSrc1NFeed = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNVector = false, const bool initdoneMNQuery = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdoneALoadfct = false, const bool initdoneFr1NRelation = false, const bool initdoneTo1NRelation = false, const bool initdone1NStub = false, const bool initdone1NSubset = false, const bool initdoneTbl1NTablecol = false, const bool initdone1NCheck = false, const bool initdone1NImpexp = false, const bool initdoneRef1NQuerymod = false, const bool initdoneRef1NDialog = false, const bool initdoneRef1NRtblock = false, const bool initdoneFct1NTablecol = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NPanel = false, const bool initdoneRef1NCall = false, const bool initdoneSrc1NFeed = false, const bool initdonePst1NQuerymod = false, const bool initdoneMNVector = false, const bool initdoneMNQuery = false);
 	};
 
 	/**
@@ -104,10 +104,10 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFALOADFCT = 3;
-		static const Sbecore::uint PNLALOADFCTAVAIL = 4;
-		static const Sbecore::uint JREFATITLE = 5;
-		static const Sbecore::uint PNLATITLEAVAIL = 6;
+		static const Sbecore::uint JREFATITLE = 3;
+		static const Sbecore::uint PNLATITLEAVAIL = 4;
+		static const Sbecore::uint JREFALOADFCT = 5;
+		static const Sbecore::uint PNLALOADFCTAVAIL = 6;
 		static const Sbecore::uint JREFFR1NRELATION = 7;
 		static const Sbecore::uint PNLFR1NRELATIONAVAIL = 8;
 		static const Sbecore::uint JREFTO1NRELATION = 9;
@@ -117,21 +117,21 @@ public:
 		static const Sbecore::uint JREF1NSUBSET = 13;
 		static const Sbecore::uint PNL1NSUBSETAVAIL = 14;
 		static const Sbecore::uint JREFTBL1NTABLECOL = 15;
-		static const Sbecore::uint JREF1NIMPEXP = 16;
-		static const Sbecore::uint PNL1NIMPEXPAVAIL = 17;
-		static const Sbecore::uint JREF1NCHECK = 18;
-		static const Sbecore::uint PNL1NCHECKAVAIL = 19;
-		static const Sbecore::uint JREFREF1NRTBLOCK = 20;
-		static const Sbecore::uint JREFREF1NPANEL = 21;
-		static const Sbecore::uint JREFREF1NQUERYMOD = 22;
-		static const Sbecore::uint JREFHK1NVECTOR = 23;
+		static const Sbecore::uint JREF1NCHECK = 16;
+		static const Sbecore::uint PNL1NCHECKAVAIL = 17;
+		static const Sbecore::uint JREF1NIMPEXP = 18;
+		static const Sbecore::uint PNL1NIMPEXPAVAIL = 19;
+		static const Sbecore::uint JREFREF1NQUERYMOD = 20;
+		static const Sbecore::uint JREFREF1NDIALOG = 21;
+		static const Sbecore::uint PNLREF1NDIALOGAVAIL = 22;
+		static const Sbecore::uint JREFREF1NRTBLOCK = 23;
 		static const Sbecore::uint JREFFCT1NTABLECOL = 24;
 		static const Sbecore::uint PNLFCT1NTABLECOLAVAIL = 25;
-		static const Sbecore::uint JREFSRC1NFEED = 26;
-		static const Sbecore::uint JREFREF1NCALL = 27;
-		static const Sbecore::uint PNLREF1NCALLAVAIL = 28;
-		static const Sbecore::uint JREFREF1NDIALOG = 29;
-		static const Sbecore::uint PNLREF1NDIALOGAVAIL = 30;
+		static const Sbecore::uint JREFHK1NVECTOR = 26;
+		static const Sbecore::uint JREFREF1NPANEL = 27;
+		static const Sbecore::uint JREFREF1NCALL = 28;
+		static const Sbecore::uint PNLREF1NCALLAVAIL = 29;
+		static const Sbecore::uint JREFSRC1NFEED = 30;
 		static const Sbecore::uint JREFPST1NQUERYMOD = 31;
 		static const Sbecore::uint PNLPST1NQUERYMODAVAIL = 32;
 		static const Sbecore::uint JREFMNVECTOR = 33;
@@ -141,15 +141,15 @@ public:
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 37;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefALoadfct = 0, const bool pnlaloadfctAvail = false, const Sbecore::ubigint jrefATitle = 0, const bool pnlatitleAvail = false, const Sbecore::ubigint jrefFr1NRelation = 0, const bool pnlfr1nrelationAvail = false, const Sbecore::ubigint jrefTo1NRelation = 0, const bool pnlto1nrelationAvail = false, const Sbecore::ubigint jref1NStub = 0, const bool pnl1nstubAvail = false, const Sbecore::ubigint jref1NSubset = 0, const bool pnl1nsubsetAvail = false, const Sbecore::ubigint jrefTbl1NTablecol = 0, const Sbecore::ubigint jref1NImpexp = 0, const bool pnl1nimpexpAvail = false, const Sbecore::ubigint jref1NCheck = 0, const bool pnl1ncheckAvail = false, const Sbecore::ubigint jrefRef1NRtblock = 0, const Sbecore::ubigint jrefRef1NPanel = 0, const Sbecore::ubigint jrefRef1NQuerymod = 0, const Sbecore::ubigint jrefHk1NVector = 0, const Sbecore::ubigint jrefFct1NTablecol = 0, const bool pnlfct1ntablecolAvail = false, const Sbecore::ubigint jrefSrc1NFeed = 0, const Sbecore::ubigint jrefRef1NCall = 0, const bool pnlref1ncallAvail = false, const Sbecore::ubigint jrefRef1NDialog = 0, const bool pnlref1ndialogAvail = false, const Sbecore::ubigint jrefPst1NQuerymod = 0, const bool pnlpst1nquerymodAvail = false, const Sbecore::ubigint jrefMNVector = 0, const bool pnlmnvectorAvail = false, const Sbecore::ubigint jrefMNQuery = 0, const bool pnlmnqueryAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const bool pnlatitleAvail = false, const Sbecore::ubigint jrefALoadfct = 0, const bool pnlaloadfctAvail = false, const Sbecore::ubigint jrefFr1NRelation = 0, const bool pnlfr1nrelationAvail = false, const Sbecore::ubigint jrefTo1NRelation = 0, const bool pnlto1nrelationAvail = false, const Sbecore::ubigint jref1NStub = 0, const bool pnl1nstubAvail = false, const Sbecore::ubigint jref1NSubset = 0, const bool pnl1nsubsetAvail = false, const Sbecore::ubigint jrefTbl1NTablecol = 0, const Sbecore::ubigint jref1NCheck = 0, const bool pnl1ncheckAvail = false, const Sbecore::ubigint jref1NImpexp = 0, const bool pnl1nimpexpAvail = false, const Sbecore::ubigint jrefRef1NQuerymod = 0, const Sbecore::ubigint jrefRef1NDialog = 0, const bool pnlref1ndialogAvail = false, const Sbecore::ubigint jrefRef1NRtblock = 0, const Sbecore::ubigint jrefFct1NTablecol = 0, const bool pnlfct1ntablecolAvail = false, const Sbecore::ubigint jrefHk1NVector = 0, const Sbecore::ubigint jrefRef1NPanel = 0, const Sbecore::ubigint jrefRef1NCall = 0, const bool pnlref1ncallAvail = false, const Sbecore::ubigint jrefSrc1NFeed = 0, const Sbecore::ubigint jrefPst1NQuerymod = 0, const bool pnlpst1nquerymodAvail = false, const Sbecore::ubigint jrefMNVector = 0, const bool pnlmnvectorAvail = false, const Sbecore::ubigint jrefMNQuery = 0, const bool pnlmnqueryAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefALoadfct;
-		bool pnlaloadfctAvail;
 		Sbecore::ubigint jrefATitle;
 		bool pnlatitleAvail;
+		Sbecore::ubigint jrefALoadfct;
+		bool pnlaloadfctAvail;
 		Sbecore::ubigint jrefFr1NRelation;
 		bool pnlfr1nrelationAvail;
 		Sbecore::ubigint jrefTo1NRelation;
@@ -159,21 +159,21 @@ public:
 		Sbecore::ubigint jref1NSubset;
 		bool pnl1nsubsetAvail;
 		Sbecore::ubigint jrefTbl1NTablecol;
-		Sbecore::ubigint jref1NImpexp;
-		bool pnl1nimpexpAvail;
 		Sbecore::ubigint jref1NCheck;
 		bool pnl1ncheckAvail;
-		Sbecore::ubigint jrefRef1NRtblock;
-		Sbecore::ubigint jrefRef1NPanel;
+		Sbecore::ubigint jref1NImpexp;
+		bool pnl1nimpexpAvail;
 		Sbecore::ubigint jrefRef1NQuerymod;
-		Sbecore::ubigint jrefHk1NVector;
-		Sbecore::ubigint jrefFct1NTablecol;
-		bool pnlfct1ntablecolAvail;
-		Sbecore::ubigint jrefSrc1NFeed;
-		Sbecore::ubigint jrefRef1NCall;
-		bool pnlref1ncallAvail;
 		Sbecore::ubigint jrefRef1NDialog;
 		bool pnlref1ndialogAvail;
+		Sbecore::ubigint jrefRef1NRtblock;
+		Sbecore::ubigint jrefFct1NTablecol;
+		bool pnlfct1ntablecolAvail;
+		Sbecore::ubigint jrefHk1NVector;
+		Sbecore::ubigint jrefRef1NPanel;
+		Sbecore::ubigint jrefRef1NCall;
+		bool pnlref1ncallAvail;
+		Sbecore::ubigint jrefSrc1NFeed;
 		Sbecore::ubigint jrefPst1NQuerymod;
 		bool pnlpst1nquerymodAvail;
 		Sbecore::ubigint jrefMNVector;
@@ -249,17 +249,17 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalPnlaloadfctAvail(DbsWznm* dbswznm);
 	bool evalPnlatitleAvail(DbsWznm* dbswznm);
+	bool evalPnlaloadfctAvail(DbsWznm* dbswznm);
 	bool evalPnlfr1nrelationAvail(DbsWznm* dbswznm);
 	bool evalPnlto1nrelationAvail(DbsWznm* dbswznm);
 	bool evalPnl1nstubAvail(DbsWznm* dbswznm);
 	bool evalPnl1nsubsetAvail(DbsWznm* dbswznm);
-	bool evalPnl1nimpexpAvail(DbsWznm* dbswznm);
 	bool evalPnl1ncheckAvail(DbsWznm* dbswznm);
+	bool evalPnl1nimpexpAvail(DbsWznm* dbswznm);
+	bool evalPnlref1ndialogAvail(DbsWznm* dbswznm);
 	bool evalPnlfct1ntablecolAvail(DbsWznm* dbswznm);
 	bool evalPnlref1ncallAvail(DbsWznm* dbswznm);
-	bool evalPnlref1ndialogAvail(DbsWznm* dbswznm);
 	bool evalPnlpst1nquerymodAvail(DbsWznm* dbswznm);
 	bool evalPnlmnvectorAvail(DbsWznm* dbswznm);
 	bool evalPnlmnqueryAvail(DbsWznm* dbswznm);
@@ -276,24 +276,24 @@ public:
 	PnlWznmTblMNQuery* pnlmnquery;
 	PnlWznmTblMNVector* pnlmnvector;
 	PnlWznmTblPst1NQuerymod* pnlpst1nquerymod;
-	PnlWznmTblRef1NDialog* pnlref1ndialog;
 	PnlWznmTblSrc1NFeed* pnlsrc1nfeed;
-	PnlWznmTblRef1NCall* pnlref1ncall;
-	PnlWznmTblFct1NTablecol* pnlfct1ntablecol;
-	PnlWznmTblHk1NVector* pnlhk1nvector;
-	PnlWznmTblRef1NQuerymod* pnlref1nquerymod;
 	PnlWznmTblRef1NPanel* pnlref1npanel;
+	PnlWznmTblRef1NCall* pnlref1ncall;
+	PnlWznmTblHk1NVector* pnlhk1nvector;
+	PnlWznmTblFct1NTablecol* pnlfct1ntablecol;
 	PnlWznmTblRef1NRtblock* pnlref1nrtblock;
-	PnlWznmTbl1NImpexp* pnl1nimpexp;
+	PnlWznmTblRef1NDialog* pnlref1ndialog;
+	PnlWznmTblRef1NQuerymod* pnlref1nquerymod;
 	PnlWznmTbl1NCheck* pnl1ncheck;
+	PnlWznmTbl1NImpexp* pnl1nimpexp;
 	PnlWznmTblTbl1NTablecol* pnltbl1ntablecol;
 	PnlWznmTbl1NSubset* pnl1nsubset;
 	PnlWznmTbl1NStub* pnl1nstub;
-	PnlWznmTblFr1NRelation* pnlfr1nrelation;
 	PnlWznmTblTo1NRelation* pnlto1nrelation;
-	PnlWznmTblDetail* pnldetail;
 	PnlWznmTblALoadfct* pnlaloadfct;
+	PnlWznmTblFr1NRelation* pnlfr1nrelation;
 	PnlWznmTblATitle* pnlatitle;
+	PnlWznmTblDetail* pnldetail;
 
 	WznmMTable recTbl;
 	Sbecore::uint ixWSubsetTbl;

@@ -16,13 +16,13 @@
 
 #include "PnlWznmSbsBsbMNSubset.h"
 #include "PnlWznmSbsAsbMNSubset.h"
-#include "PnlWznmSbsPst1NQuerymod.h"
 #include "PnlWznmSbs1NTablecol.h"
+#include "PnlWznmSbsPst1NQuerymod.h"
 #include "PnlWznmSbsTos1NRelation.h"
 #include "PnlWznmSbsFrs1NRelation.h"
-#include "PnlWznmSbsDetail.h"
 #include "PnlWznmSbs1NStub.h"
 #include "PnlWznmSbsATitle.h"
+#include "PnlWznmSbsDetail.h"
 
 #define VecVWznmSbsRecDo PnlWznmSbsRec::VecVDo
 
@@ -200,13 +200,13 @@ public:
 
 	PnlWznmSbsBsbMNSubset* pnlbsbmnsubset;
 	PnlWznmSbsAsbMNSubset* pnlasbmnsubset;
-	PnlWznmSbsPst1NQuerymod* pnlpst1nquerymod;
 	PnlWznmSbs1NTablecol* pnl1ntablecol;
+	PnlWznmSbsPst1NQuerymod* pnlpst1nquerymod;
 	PnlWznmSbsTos1NRelation* pnltos1nrelation;
 	PnlWznmSbsFrs1NRelation* pnlfrs1nrelation;
-	PnlWznmSbsDetail* pnldetail;
 	PnlWznmSbs1NStub* pnl1nstub;
 	PnlWznmSbsATitle* pnlatitle;
+	PnlWznmSbsDetail* pnldetail;
 
 	WznmMSubset recSbs;
 

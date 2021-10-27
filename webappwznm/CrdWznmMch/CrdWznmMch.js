@@ -340,7 +340,7 @@ function refresh() {
 		if (scrJrefDlg != scrJrefDlgwriniscr) showDlg("DlgWznmMchWriniscr", scrJrefDlgwriniscr);
 	} else if (scrJrefDlg != "") hideDlg();
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmMch", "MtxCrdMch") + " - WhizniumSBE v1.1.5";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmMch", "MtxCrdMch") + " - WhizniumSBE v1.1.6";
 };
 
 // --- event handlers

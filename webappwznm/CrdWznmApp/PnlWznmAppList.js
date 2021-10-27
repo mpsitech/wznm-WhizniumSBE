@@ -116,7 +116,7 @@ function refreshB(chgcol) {
 			} else if (i == 3) {
 				doc.cols.push("TcoSho"); doc.widths.push(TcoShoWidth); doc.fs.push("sho"); doc.tos.push(0); wtot += TcoShoWidth;
 			} else if (i == 4) {
-				doc.cols.push("TcoTit"); doc.widths.push(TcoTitWidth); doc.fs.push("tit"); doc.tos.push(2); wtot += TcoTitWidth;
+				doc.cols.push("TcoTit"); doc.widths.push(TcoTitWidth); doc.fs.push("tit"); doc.tos.push(3); wtot += TcoTitWidth;
 			} else if (i == 5) {
 				doc.cols.push("TcoTrg"); doc.widths.push(TcoTrgWidth); doc.fs.push("trg2"); doc.tos.push(0); wtot += TcoTrgWidth;
 			} else if (i == 6) {

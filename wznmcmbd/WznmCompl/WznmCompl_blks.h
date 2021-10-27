@@ -38,6 +38,29 @@ public:
 };
 
 /**
+	* DpchInvWznmComplCtpcpy
+	*/
+class DpchInvWznmComplCtpcpy : public DpchInvWznm {
+
+public:
+	static const Sbecore::uint SCROREF = 1;
+	static const Sbecore::uint OREF = 1;
+	static const Sbecore::uint SCRJREF = 2;
+	static const Sbecore::uint JREF = 2;
+	static const Sbecore::uint REFWZNMMCAPABILITY = 3;
+
+public:
+	DpchInvWznmComplCtpcpy(const Sbecore::ubigint oref = 0, const Sbecore::ubigint jref = 0, const Sbecore::ubigint refWznmMCapability = 0);
+
+public:
+	Sbecore::ubigint refWznmMCapability;
+
+public:
+	void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+	void writeXML(xmlTextWriter* wr);
+};
+
+/**
 	* DpchInvWznmComplDbs
 	*/
 class DpchInvWznmComplDbs : public DpchInvWznm {

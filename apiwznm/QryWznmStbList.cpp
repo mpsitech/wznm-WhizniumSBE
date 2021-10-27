@@ -22,10 +22,10 @@ uint QryWznmStbList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "tbl") return TBL;
 	if (s == "sbs") return SBS;
-	if (s == "typ") return TYP;
+	if (s == "tbl") return TBL;
 	if (s == "srf") return SRF;
+	if (s == "typ") return TYP;
 
 	return(0);
 };
@@ -33,10 +33,10 @@ uint QryWznmStbList::VecVOrd::getIx(
 string QryWznmStbList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TBL) return("tbl");
 	if (ix == SBS) return("sbs");
-	if (ix == TYP) return("typ");
+	if (ix == TBL) return("tbl");
 	if (ix == SRF) return("srf");
+	if (ix == TYP) return("typ");
 
 	return("");
 };

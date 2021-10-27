@@ -238,12 +238,12 @@ void QryWznmJobList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMJob.refIxVTbl ASC";
+	if (preIxOrd == VecVOrd::GBL) sqlstr += " ORDER BY TblWznmMJob.Global ASC";
 	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMJob.refUref ASC";
-	else if (preIxOrd == VecVOrd::GBL) sqlstr += " ORDER BY TblWznmMJob.Global ASC";
+	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMJob.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMJob.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMJob.sref ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMJob.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMJob.sref ASC";
 };
 
 void QryWznmJobList::fetch(

@@ -277,9 +277,9 @@ void DlgWznmVerGlobal::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
+		if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
+		else if (ixVSge == VecVSge::IMPIDLE) handleTimerInSgeImpidle(dbswznm, req->sref);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::IMPORT)) handleTimerWithSrefMonInSgeImport(dbswznm);
-		else if (ixVSge == VecVSge::PRSIDLE) handleTimerInSgePrsidle(dbswznm, req->sref);
 	};
 };
 
@@ -387,6 +387,13 @@ string DlgWznmVerGlobal::handleDownloadInSgeDone(
 	return(""); // IP handleDownloadInSgeDone --- LINE
 };
 
+void DlgWznmVerGlobal::handleTimerInSgePrsidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
+};
+
 void DlgWznmVerGlobal::handleTimerInSgeImpidle(
 			DbsWznm* dbswznm
 			, const string& sref
@@ -399,13 +406,6 @@ void DlgWznmVerGlobal::handleTimerWithSrefMonInSgeImport(
 		) {
 	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeImport --- ILINE
-};
-
-void DlgWznmVerGlobal::handleTimerInSgePrsidle(
-			DbsWznm* dbswznm
-			, const string& sref
-		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmVerGlobal::changeStage(
@@ -729,6 +729,7 @@ uint DlgWznmVerGlobal::enterSgePostprc(
 	clearInvs();
 
 	// IP enterSgePostprc --- IBEGIN
+	vector<ubigint> refs;
 
 	string Prjshort;
 
@@ -738,6 +739,9 @@ uint DlgWznmVerGlobal::enterSgePostprc(
 
 	addInv(new DpchInvWznmGenBase(0, 0, refWznmMVersion, Prjshort));
 
+	dbswznm->loadRefsBySQL("SELECT ref FROM TblWznmMCapability WHERE refWznmMVersion = " + to_string(refWznmMVersion), false, refs);
+
+	for (unsigned int i = 0; i < refs.size(); i++) addInv(new DpchInvWznmComplCtpcpy(0, 0, refs[i]));
 	// IP enterSgePostprc --- IEND
 
 	submitInvs(dbswznm, retval, retval);

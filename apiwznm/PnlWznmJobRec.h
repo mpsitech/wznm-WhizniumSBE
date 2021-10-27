@@ -68,33 +68,33 @@ namespace PnlWznmJobRec {
 		static const Sbecore::uint INITDONEDETAIL = 1;
 		static const Sbecore::uint INITDONEAVAR = 2;
 		static const Sbecore::uint INITDONEACMD = 3;
-		static const Sbecore::uint INITDONE1NMETHOD = 4;
-		static const Sbecore::uint INITDONE1NRTJOB = 5;
+		static const Sbecore::uint INITDONE1NRTJOB = 4;
+		static const Sbecore::uint INITDONE1NMETHOD = 5;
 		static const Sbecore::uint INITDONEJOB1NSTAGE = 6;
 		static const Sbecore::uint INITDONE1NSENSITIVITY = 7;
 		static const Sbecore::uint INITDONEHK1NVECTOR = 8;
 		static const Sbecore::uint INITDONEREF1NBLOCK = 9;
-		static const Sbecore::uint INITDONEMNOPPACK = 10;
-		static const Sbecore::uint INITDONESUPMNJOB = 11;
-		static const Sbecore::uint INITDONEMNOP = 12;
+		static const Sbecore::uint INITDONEMNOP = 10;
+		static const Sbecore::uint INITDONEMNOPPACK = 11;
+		static const Sbecore::uint INITDONESUPMNJOB = 12;
 		static const Sbecore::uint INITDONESUBMNJOB = 13;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneAVar = false, const bool initdoneACmd = false, const bool initdone1NMethod = false, const bool initdone1NRtjob = false, const bool initdoneJob1NStage = false, const bool initdone1NSensitivity = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NBlock = false, const bool initdoneMNOppack = false, const bool initdoneSupMNJob = false, const bool initdoneMNOp = false, const bool initdoneSubMNJob = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneAVar = false, const bool initdoneACmd = false, const bool initdone1NRtjob = false, const bool initdone1NMethod = false, const bool initdoneJob1NStage = false, const bool initdone1NSensitivity = false, const bool initdoneHk1NVector = false, const bool initdoneRef1NBlock = false, const bool initdoneMNOp = false, const bool initdoneMNOppack = false, const bool initdoneSupMNJob = false, const bool initdoneSubMNJob = false);
 
 	public:
 		bool initdoneDetail;
 		bool initdoneAVar;
 		bool initdoneACmd;
-		bool initdone1NMethod;
 		bool initdone1NRtjob;
+		bool initdone1NMethod;
 		bool initdoneJob1NStage;
 		bool initdone1NSensitivity;
 		bool initdoneHk1NVector;
 		bool initdoneRef1NBlock;
+		bool initdoneMNOp;
 		bool initdoneMNOppack;
 		bool initdoneSupMNJob;
-		bool initdoneMNOp;
 		bool initdoneSubMNJob;
 
 	public:
@@ -113,36 +113,36 @@ namespace PnlWznmJobRec {
 		static const Sbecore::uint SCRJREFDETAIL = 2;
 		static const Sbecore::uint SCRJREFAVAR = 3;
 		static const Sbecore::uint SCRJREFACMD = 4;
-		static const Sbecore::uint SCRJREF1NMETHOD = 5;
-		static const Sbecore::uint SCRJREF1NRTJOB = 6;
+		static const Sbecore::uint SCRJREF1NRTJOB = 5;
+		static const Sbecore::uint SCRJREF1NMETHOD = 6;
 		static const Sbecore::uint SCRJREFJOB1NSTAGE = 7;
 		static const Sbecore::uint SCRJREF1NSENSITIVITY = 8;
 		static const Sbecore::uint SCRJREFHK1NVECTOR = 9;
 		static const Sbecore::uint SCRJREFREF1NBLOCK = 10;
-		static const Sbecore::uint SCRJREFMNOPPACK = 11;
-		static const Sbecore::uint SCRJREFSUPMNJOB = 12;
-		static const Sbecore::uint SCRJREFMNOP = 13;
+		static const Sbecore::uint SCRJREFMNOP = 11;
+		static const Sbecore::uint SCRJREFMNOPPACK = 12;
+		static const Sbecore::uint SCRJREFSUPMNJOB = 13;
 		static const Sbecore::uint SCRJREFSUBMNJOB = 14;
 		static const Sbecore::uint PNLSUBMNJOBAVAIL = 15;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 16;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAVar = "", const std::string& scrJrefACmd = "", const std::string& scrJref1NMethod = "", const std::string& scrJref1NRtjob = "", const std::string& scrJrefJob1NStage = "", const std::string& scrJref1NSensitivity = "", const std::string& scrJrefHk1NVector = "", const std::string& scrJrefRef1NBlock = "", const std::string& scrJrefMNOppack = "", const std::string& scrJrefSupMNJob = "", const std::string& scrJrefMNOp = "", const std::string& scrJrefSubMNJob = "", const bool pnlsubmnjobAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAVar = "", const std::string& scrJrefACmd = "", const std::string& scrJref1NRtjob = "", const std::string& scrJref1NMethod = "", const std::string& scrJrefJob1NStage = "", const std::string& scrJref1NSensitivity = "", const std::string& scrJrefHk1NVector = "", const std::string& scrJrefRef1NBlock = "", const std::string& scrJrefMNOp = "", const std::string& scrJrefMNOppack = "", const std::string& scrJrefSupMNJob = "", const std::string& scrJrefSubMNJob = "", const bool pnlsubmnjobAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
 		std::string scrJrefAVar;
 		std::string scrJrefACmd;
-		std::string scrJref1NMethod;
 		std::string scrJref1NRtjob;
+		std::string scrJref1NMethod;
 		std::string scrJrefJob1NStage;
 		std::string scrJref1NSensitivity;
 		std::string scrJrefHk1NVector;
 		std::string scrJrefRef1NBlock;
+		std::string scrJrefMNOp;
 		std::string scrJrefMNOppack;
 		std::string scrJrefSupMNJob;
-		std::string scrJrefMNOp;
 		std::string scrJrefSubMNJob;
 		bool pnlsubmnjobAvail;
 		bool ButRegularizeActive;

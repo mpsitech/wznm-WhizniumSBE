@@ -38,9 +38,9 @@ PnlWznmCtpRec::PnlWznmCtpRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
+	pnlapar = NULL;
 	pnl1ntag = NULL;
 	pnltpl1ncapability = NULL;
-	pnlapar = NULL;
 	pnlkparkey = NULL;
 	pnlkkey = NULL;
 	pnldetail = NULL;

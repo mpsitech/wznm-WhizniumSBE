@@ -40,13 +40,13 @@ PnlWznmSbsRec::PnlWznmSbsRec(
 
 	pnlbsbmnsubset = NULL;
 	pnlasbmnsubset = NULL;
-	pnlpst1nquerymod = NULL;
 	pnl1ntablecol = NULL;
+	pnlpst1nquerymod = NULL;
 	pnltos1nrelation = NULL;
 	pnlfrs1nrelation = NULL;
-	pnldetail = NULL;
 	pnl1nstub = NULL;
 	pnlatitle = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

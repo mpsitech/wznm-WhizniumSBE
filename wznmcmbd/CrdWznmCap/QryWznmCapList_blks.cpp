@@ -21,8 +21,8 @@ uint QryWznmCapList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "tpl") return TPL;
-	if (s == "srf") return SRF;
 	if (s == "ver") return VER;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -31,8 +31,8 @@ string QryWznmCapList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == TPL) return("tpl");
-	if (ix == SRF) return("srf");
 	if (ix == VER) return("ver");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

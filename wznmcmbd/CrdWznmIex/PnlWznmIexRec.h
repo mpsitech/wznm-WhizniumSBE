@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmIex1NImpexp.h"
 #include "PnlWznmIexRef1NDialog.h"
 #include "PnlWznmIexHk1NVector.h"
+#include "PnlWznmIex1NImpexp.h"
 #include "PnlWznmIexDetail.h"
 
 #define VecVWznmIexRecDo PnlWznmIexRec::VecVDo
@@ -180,9 +180,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmIex1NImpexp* pnl1nimpexp;
 	PnlWznmIexRef1NDialog* pnlref1ndialog;
 	PnlWznmIexHk1NVector* pnlhk1nvector;
+	PnlWznmIex1NImpexp* pnl1nimpexp;
 	PnlWznmIexDetail* pnldetail;
 
 	WznmMImpexpcplx recIex;
@@ -218,8 +218,8 @@ public:
 
 private:
 	bool handleCallWznmIexUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmIex_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmIex_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmIex_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

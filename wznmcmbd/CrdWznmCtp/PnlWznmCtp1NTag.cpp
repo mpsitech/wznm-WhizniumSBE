@@ -106,6 +106,9 @@ void PnlWznmCtp1NTag::refresh(
 	// statshr
 	statshr.ButViewAvail = evalButViewAvail(dbswznm);
 	statshr.ButViewActive = evalButViewActive(dbswznm);
+	statshr.ButNewAvail = evalButNewAvail(dbswznm);
+	statshr.ButDeleteAvail = evalButDeleteAvail(dbswznm);
+	statshr.ButDeleteActive = evalButDeleteActive(dbswznm);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -175,6 +178,10 @@ void PnlWznmCtp1NTag::handleRequest(
 			if (dpchappdo->ixVDo != 0) {
 				if (dpchappdo->ixVDo == VecVDo::BUTVIEWCLICK) {
 					handleDpchAppDoButViewClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::BUTNEWCLICK) {
+					handleDpchAppDoButNewClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::BUTDELETECLICK) {
+					handleDpchAppDoButDeleteClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::BUTREFRESHCLICK) {
 					handleDpchAppDoButRefreshClick(dbswznm, &(req->dpcheng));
 				};
@@ -263,15 +270,44 @@ void PnlWznmCtp1NTag::handleDpchAppDoButViewClick(
 	ubigint jrefNew = 0;
 	string sref;
 
+	ubigint refCtp = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFCTP, jref);
+
 	if (statshr.ButViewAvail && statshr.ButViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTAG, jref)) {
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTAG, jref)) if (refCtp != 0) {
 			sref = "CrdWznmTag";
-			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recTag.ref, jrefNew);
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFCTP, refCtp, sref, recTag.ref, jrefNew);
 		};
 
 		if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
 		else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, sref);
 	};
+};
+
+void PnlWznmCtp1NTag::handleDpchAppDoButNewClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	ubigint jrefNew = 0;
+	string sref;
+
+	ubigint refCtp = xchg->getRefPreset(VecWznmVPreset::PREWZNMREFCTP, jref);
+
+	if (statshr.ButNewAvail) {
+		if ((xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTAG, jref) & VecWznmWAccess::EDIT) != 0) if (refCtp != 0) {
+			sref = "CrdWznmTag";
+			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFCTP, refCtp, sref, -1, jrefNew);
+		};
+
+		if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
+		else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, sref);
+	};
+};
+
+void PnlWznmCtp1NTag::handleDpchAppDoButDeleteClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	// IP handleDpchAppDoButDeleteClick --- INSERT
 };
 
 void PnlWznmCtp1NTag::handleDpchAppDoButRefreshClick(

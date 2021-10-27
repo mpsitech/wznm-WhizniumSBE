@@ -288,15 +288,15 @@ void PnlWznmStbMNSquawk::handleDpchAppDoButViewClick(
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMOppack WHERE refWznmMSquawk = " + to_string(recSqk.ref), ref); return ref;}(), jrefNew);
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSGE, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmSge";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMStage WHERE refWznmMSquawk = " + to_string(recSqk.ref), ref); return ref;}(), jrefNew);
-			};
-		};
-		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPX, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmOpx";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMOp WHERE refWznmMSquawk = " + to_string(recSqk.ref), ref); return ref;}(), jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSGE, jref)) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmSge";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMStage WHERE refWznmMSquawk = " + to_string(recSqk.ref), ref); return ref;}(), jrefNew);
 			};
 		};
 

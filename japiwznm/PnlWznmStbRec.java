@@ -115,30 +115,30 @@ public class PnlWznmStbRec {
 
 		public static final int INITDONEDETAIL = 1;
 		public static final int INITDONESUPMNSTUB = 2;
-		public static final int INITDONEMNSQUAWK = 3;
-		public static final int INITDONESUBMNSTUB = 4;
+		public static final int INITDONESUBMNSTUB = 3;
+		public static final int INITDONEMNSQUAWK = 4;
 		public static final int INITDONEMNCALL = 5;
 
 		public StatApp(
 					boolean initdoneDetail
 					, boolean initdoneSupMNStub
-					, boolean initdoneMNSquawk
 					, boolean initdoneSubMNStub
+					, boolean initdoneMNSquawk
 					, boolean initdoneMNCall
 				) {
 			this.initdoneDetail = initdoneDetail;
 			this.initdoneSupMNStub = initdoneSupMNStub;
-			this.initdoneMNSquawk = initdoneMNSquawk;
 			this.initdoneSubMNStub = initdoneSubMNStub;
+			this.initdoneMNSquawk = initdoneMNSquawk;
 			this.initdoneMNCall = initdoneMNCall;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONESUPMNSTUB, INITDONEMNSQUAWK, INITDONESUBMNSTUB, INITDONEMNCALL));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONESUPMNSTUB, INITDONESUBMNSTUB, INITDONEMNSQUAWK, INITDONEMNCALL));
 		};
 
 		public boolean initdoneDetail;
 		public boolean initdoneSupMNStub;
-		public boolean initdoneMNSquawk;
 		public boolean initdoneSubMNStub;
+		public boolean initdoneMNSquawk;
 		public boolean initdoneMNCall;
 
 		public boolean readXML(
@@ -156,8 +156,8 @@ public class PnlWznmStbRec {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
 				initdoneSupMNStub = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneSupMNStub", mask, INITDONESUPMNSTUB);
-				initdoneMNSquawk = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNSquawk", mask, INITDONEMNSQUAWK);
 				initdoneSubMNStub = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneSubMNStub", mask, INITDONESUBMNSTUB);
+				initdoneMNSquawk = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNSquawk", mask, INITDONEMNSQUAWK);
 				initdoneMNCall = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNCall", mask, INITDONEMNCALL);
 
 				return true;
@@ -173,8 +173,8 @@ public class PnlWznmStbRec {
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
 			if (initdoneSupMNStub == comp.initdoneSupMNStub) items.add(INITDONESUPMNSTUB);
-			if (initdoneMNSquawk == comp.initdoneMNSquawk) items.add(INITDONEMNSQUAWK);
 			if (initdoneSubMNStub == comp.initdoneSubMNStub) items.add(INITDONESUBMNSTUB);
+			if (initdoneMNSquawk == comp.initdoneMNSquawk) items.add(INITDONEMNSQUAWK);
 			if (initdoneMNCall == comp.initdoneMNCall) items.add(INITDONEMNCALL);
 
 			return(items);
@@ -188,7 +188,7 @@ public class PnlWznmStbRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONESUPMNSTUB, INITDONEMNSQUAWK, INITDONESUBMNSTUB, INITDONEMNCALL));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONESUPMNSTUB, INITDONESUBMNSTUB, INITDONEMNSQUAWK, INITDONEMNCALL));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -204,8 +204,8 @@ public class PnlWznmStbRec {
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
 		public static final int SCRJREFSUPMNSTUB = 3;
-		public static final int SCRJREFMNSQUAWK = 4;
-		public static final int SCRJREFSUBMNSTUB = 5;
+		public static final int SCRJREFSUBMNSTUB = 4;
+		public static final int SCRJREFMNSQUAWK = 5;
 		public static final int SCRJREFMNCALL = 6;
 		public static final int BUTREGULARIZEACTIVE = 7;
 
@@ -213,27 +213,27 @@ public class PnlWznmStbRec {
 					int ixWznmVExpstate
 					, String scrJrefDetail
 					, String scrJrefSupMNStub
-					, String scrJrefMNSquawk
 					, String scrJrefSubMNStub
+					, String scrJrefMNSquawk
 					, String scrJrefMNCall
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
 			this.scrJrefSupMNStub = scrJrefSupMNStub;
-			this.scrJrefMNSquawk = scrJrefMNSquawk;
 			this.scrJrefSubMNStub = scrJrefSubMNStub;
+			this.scrJrefMNSquawk = scrJrefMNSquawk;
 			this.scrJrefMNCall = scrJrefMNCall;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFSUPMNSTUB, SCRJREFMNSQUAWK, SCRJREFSUBMNSTUB, SCRJREFMNCALL, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFSUPMNSTUB, SCRJREFSUBMNSTUB, SCRJREFMNSQUAWK, SCRJREFMNCALL, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
 		public String scrJrefSupMNStub;
-		public String scrJrefMNSquawk;
 		public String scrJrefSubMNStub;
+		public String scrJrefMNSquawk;
 		public String scrJrefMNCall;
 		public boolean ButRegularizeActive;
 
@@ -255,8 +255,8 @@ public class PnlWznmStbRec {
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
 				scrJrefSupMNStub = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefSupMNStub", mask, SCRJREFSUPMNSTUB);
-				scrJrefMNSquawk = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNSquawk", mask, SCRJREFMNSQUAWK);
 				scrJrefSubMNStub = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefSubMNStub", mask, SCRJREFSUBMNSTUB);
+				scrJrefMNSquawk = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNSquawk", mask, SCRJREFMNSQUAWK);
 				scrJrefMNCall = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNCall", mask, SCRJREFMNCALL);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
@@ -274,8 +274,8 @@ public class PnlWznmStbRec {
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
 			if (scrJrefSupMNStub.equals(comp.scrJrefSupMNStub)) items.add(SCRJREFSUPMNSTUB);
-			if (scrJrefMNSquawk.equals(comp.scrJrefMNSquawk)) items.add(SCRJREFMNSQUAWK);
 			if (scrJrefSubMNStub.equals(comp.scrJrefSubMNStub)) items.add(SCRJREFSUBMNSTUB);
+			if (scrJrefMNSquawk.equals(comp.scrJrefMNSquawk)) items.add(SCRJREFMNSQUAWK);
 			if (scrJrefMNCall.equals(comp.scrJrefMNCall)) items.add(SCRJREFMNCALL);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
@@ -290,7 +290,7 @@ public class PnlWznmStbRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFSUPMNSTUB, SCRJREFMNSQUAWK, SCRJREFSUBMNSTUB, SCRJREFMNCALL, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFSUPMNSTUB, SCRJREFSUBMNSTUB, SCRJREFMNSQUAWK, SCRJREFMNCALL, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

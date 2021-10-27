@@ -39,8 +39,8 @@ PnlWznmMchRec::PnlWznmMchRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlsup1nmachine = NULL;
-	pnlapar = NULL;
 	pnl1nrelease = NULL;
+	pnlapar = NULL;
 	pnlamakefile = NULL;
 	pnldetail = NULL;
 

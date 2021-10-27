@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCapDetail.h"
 #include "PnlWznmCapAPar.h"
+#include "PnlWznmCapDetail.h"
 
 #define VecVWznmCapRecDo PnlWznmCapRec::VecVDo
 
@@ -174,8 +174,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCapDetail* pnldetail;
 	PnlWznmCapAPar* pnlapar;
+	PnlWznmCapDetail* pnldetail;
 
 	WznmMCapability recCpb;
 	Sbecore::uint ixWSubsetCpb;

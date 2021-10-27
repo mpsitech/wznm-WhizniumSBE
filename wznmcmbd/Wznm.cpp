@@ -605,7 +605,7 @@ void Wznm::getTagtits(
 
 	tagTits.clear();
 
-	if (dbswznm->tblwznmmtag->loadRecBySrfGrp(sref, osrefWznmKTaggrp, &tag)) {
+	if (dbswznm->tblwznmmtag->loadRecByCpbSrfGrp(0, sref, osrefWznmKTaggrp, &tag)) {
 		dbswznm->tblwznmjmtagtitle->loadTitByTagLoc(tag->ref, refLcl, tag->Title);
 		if (prj.length() > 0) tag->Title = StrMod::replacePlh(tag->Title, "prj", prj);
 		if (!iextits.empty()) tag->Title = StrMod::replacePlh(tag->Title, "iextit", iextits.find(refLcl)->second);
@@ -2499,6 +2499,7 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 		) {
 	if (ixWznmVOppack == VecWznmVOppack::WZNMCOMPL) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLBSCUI);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLCTPCPY);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLDBS);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLDEPLOY);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLIEX);

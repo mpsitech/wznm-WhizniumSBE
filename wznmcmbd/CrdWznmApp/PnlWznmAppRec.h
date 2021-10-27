@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmAppRef1NFile.h"
 #include "PnlWznmApp1NEvent.h"
-#include "PnlWznmAppApp1NSequence.h"
+#include "PnlWznmAppRef1NFile.h"
 #include "PnlWznmApp1NRtjob.h"
+#include "PnlWznmAppApp1NSequence.h"
 #include "PnlWznmAppDetail.h"
 
 #define VecVWznmAppRecDo PnlWznmAppRec::VecVDo
@@ -183,10 +183,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmAppRef1NFile* pnlref1nfile;
 	PnlWznmApp1NEvent* pnl1nevent;
-	PnlWznmAppApp1NSequence* pnlapp1nsequence;
+	PnlWznmAppRef1NFile* pnlref1nfile;
 	PnlWznmApp1NRtjob* pnl1nrtjob;
+	PnlWznmAppApp1NSequence* pnlapp1nsequence;
 	PnlWznmAppDetail* pnldetail;
 
 	WznmMApp recApp;

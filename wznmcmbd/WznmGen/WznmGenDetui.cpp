@@ -6245,7 +6245,7 @@ unsigned int WznmGenDetui::getTaglen(
 
 	string s;
 	
-	if (dbswznm->tblwznmmtag->loadRecBySrfGrp(sref, osrefWznmKTaggrp, &tag)) {
+	if (dbswznm->tblwznmmtag->loadRecByCpbSrfGrp(0, sref, osrefWznmKTaggrp, &tag)) {
 		retval = StrMod::getCharcnt(tag->Title);
 		if (dbswznm->tblwznmjmtagtitle->loadTitByTagLoc(tag->ref, refLcl, s)) retval = StrMod::getCharcnt(s);
 

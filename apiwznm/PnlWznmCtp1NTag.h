@@ -39,7 +39,9 @@ namespace PnlWznmCtp1NTag {
 
 	public:
 		static const Sbecore::uint BUTVIEWCLICK = 1;
-		static const Sbecore::uint BUTREFRESHCLICK = 2;
+		static const Sbecore::uint BUTNEWCLICK = 2;
+		static const Sbecore::uint BUTDELETECLICK = 3;
+		static const Sbecore::uint BUTREFRESHCLICK = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -93,13 +95,19 @@ namespace PnlWznmCtp1NTag {
 	public:
 		static const Sbecore::uint BUTVIEWAVAIL = 1;
 		static const Sbecore::uint BUTVIEWACTIVE = 2;
+		static const Sbecore::uint BUTNEWAVAIL = 3;
+		static const Sbecore::uint BUTDELETEAVAIL = 4;
+		static const Sbecore::uint BUTDELETEACTIVE = 5;
 
 	public:
-		StatShr(const bool ButViewAvail = true, const bool ButViewActive = true);
+		StatShr(const bool ButViewAvail = true, const bool ButViewActive = true, const bool ButNewAvail = true, const bool ButDeleteAvail = true, const bool ButDeleteActive = true);
 
 	public:
 		bool ButViewAvail;
 		bool ButViewActive;
+		bool ButNewAvail;
+		bool ButDeleteAvail;
+		bool ButDeleteActive;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);

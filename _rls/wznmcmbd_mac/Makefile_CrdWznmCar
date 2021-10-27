@@ -2,7 +2,7 @@
 # make file for CrdWznmCar card job handler, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 12 Mar 2021
+# date created: 25 Oct 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmCar.o PnlWznmCarHeadbar.o PnlWznmCarList.o QryWznmCarList.o PnlWznmCarRec.o PnlWznmCar1NDialog.o QryWznmCar1NDialog.o PnlWznmCarHk1NControl.o QryWznmCarHk1NControl.o PnlWznmCarCar1NPanel.o QryWznmCarCar1NPanel.o PnlWznmCarDetail.o
+OBJS = CrdWznmCar.o PnlWznmCarList.o QryWznmCarList.o PnlWznmCarRec.o PnlWznmCarCar1NPanel.o QryWznmCarCar1NPanel.o PnlWznmCarHk1NControl.o QryWznmCarHk1NControl.o PnlWznmCar1NDialog.o QryWznmCar1NDialog.o PnlWznmCarDetail.o PnlWznmCarHeadbar.o
 
 LIB = libcrdwznmcar
 

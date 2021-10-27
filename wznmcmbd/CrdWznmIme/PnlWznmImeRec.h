@@ -15,9 +15,9 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmImeHk1NVector.h"
-#include "PnlWznmImeDetail.h"
 #include "PnlWznmImeSup1NImpexp.h"
 #include "PnlWznmImeIme1NImpexpcol.h"
+#include "PnlWznmImeDetail.h"
 
 #define VecVWznmImeRecDo PnlWznmImeRec::VecVDo
 
@@ -181,9 +181,9 @@ public:
 	StatShr statshr;
 
 	PnlWznmImeHk1NVector* pnlhk1nvector;
-	PnlWznmImeDetail* pnldetail;
 	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
 	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
+	PnlWznmImeDetail* pnldetail;
 
 	WznmMImpexp recIme;
 

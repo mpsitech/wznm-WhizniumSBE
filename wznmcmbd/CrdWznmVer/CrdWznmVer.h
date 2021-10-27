@@ -15,22 +15,22 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmVerList.h"
-#include "PnlWznmVerRec.h"
 #include "PnlWznmVerHeadbar.h"
-#include "DlgWznmVerBscui.h"
+#include "PnlWznmVerRec.h"
 #include "DlgWznmVerCustjob.h"
+#include "DlgWznmVerBscui.h"
 #include "DlgWznmVerCustjtr.h"
 #include "DlgWznmVerCustui.h"
 #include "DlgWznmVerGlobal.h"
-#include "DlgWznmVerGenjtr.h"
 #include "DlgWznmVerGenui.h"
+#include "DlgWznmVerGenjtr.h"
 #include "DlgWznmVerFinmod.h"
 #include "DlgWznmVerDeploy.h"
-#include "DlgWznmVerNew.h"
-#include "DlgWznmVerImpexp.h"
-#include "DlgWznmVerDbstr.h"
 #include "DlgWznmVerOppack.h"
 #include "DlgWznmVerWrinimdl.h"
+#include "DlgWznmVerDbstr.h"
+#include "DlgWznmVerNew.h"
+#include "DlgWznmVerImpexp.h"
 
 #define VecVWznmVerDo CrdWznmVer::VecVDo
 #define VecVWznmVerSge CrdWznmVer::VecVSge
@@ -362,22 +362,22 @@ public:
 	Sbecore::Feed feedFSge;
 
 	PnlWznmVerList* pnllist;
-	PnlWznmVerRec* pnlrec;
 	PnlWznmVerHeadbar* pnlheadbar;
-	DlgWznmVerBscui* dlgbscui;
+	PnlWznmVerRec* pnlrec;
 	DlgWznmVerCustjob* dlgcustjob;
+	DlgWznmVerBscui* dlgbscui;
 	DlgWznmVerCustjtr* dlgcustjtr;
 	DlgWznmVerCustui* dlgcustui;
 	DlgWznmVerGlobal* dlgglobal;
-	DlgWznmVerGenjtr* dlggenjtr;
 	DlgWznmVerGenui* dlggenui;
+	DlgWznmVerGenjtr* dlggenjtr;
 	DlgWznmVerFinmod* dlgfinmod;
 	DlgWznmVerDeploy* dlgdeploy;
-	DlgWznmVerNew* dlgnew;
-	DlgWznmVerImpexp* dlgimpexp;
-	DlgWznmVerDbstr* dlgdbstr;
 	DlgWznmVerOppack* dlgoppack;
 	DlgWznmVerWrinimdl* dlgwrinimdl;
+	DlgWznmVerDbstr* dlgdbstr;
+	DlgWznmVerNew* dlgnew;
+	DlgWznmVerImpexp* dlgimpexp;
 
 	// IP vars.cust --- INSERT
 

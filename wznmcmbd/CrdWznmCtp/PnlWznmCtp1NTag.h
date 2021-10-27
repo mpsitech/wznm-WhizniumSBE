@@ -41,7 +41,9 @@ public:
 
 	public:
 		static const Sbecore::uint BUTVIEWCLICK = 1;
-		static const Sbecore::uint BUTREFRESHCLICK = 2;
+		static const Sbecore::uint BUTNEWCLICK = 2;
+		static const Sbecore::uint BUTDELETECLICK = 3;
+		static const Sbecore::uint BUTREFRESHCLICK = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -86,13 +88,19 @@ public:
 	public:
 		static const Sbecore::uint BUTVIEWAVAIL = 1;
 		static const Sbecore::uint BUTVIEWACTIVE = 2;
+		static const Sbecore::uint BUTNEWAVAIL = 3;
+		static const Sbecore::uint BUTDELETEAVAIL = 4;
+		static const Sbecore::uint BUTDELETEACTIVE = 5;
 
 	public:
-		StatShr(const bool ButViewAvail = true, const bool ButViewActive = true);
+		StatShr(const bool ButViewAvail = true, const bool ButViewActive = true, const bool ButNewAvail = true, const bool ButDeleteAvail = true, const bool ButDeleteActive = true);
 
 	public:
 		bool ButViewAvail;
 		bool ButViewActive;
+		bool ButNewAvail;
+		bool ButDeleteAvail;
+		bool ButDeleteActive;
 
 	public:
 		void writeJSON(Json::Value& sup, std::string difftag = "");
@@ -221,6 +229,9 @@ public:
 
 	bool evalButViewAvail(DbsWznm* dbswznm);
 	bool evalButViewActive(DbsWznm* dbswznm);
+	bool evalButNewAvail(DbsWznm* dbswznm);
+	bool evalButDeleteAvail(DbsWznm* dbswznm);
+	bool evalButDeleteActive(DbsWznm* dbswznm);
 
 public:
 	PnlWznmCtp1NTag(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -261,6 +272,8 @@ private:
 	void handleDpchAppDataStgiacqry(DbsWznm* dbswznm, QryWznmCtp1NTag::StgIac* _stgiacqry, DpchEngWznm** dpcheng);
 
 	void handleDpchAppDoButViewClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoButNewClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoButDeleteClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoButRefreshClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 
 public:

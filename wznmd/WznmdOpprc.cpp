@@ -166,7 +166,7 @@ void* WznmdOpprc::run(
 	// notify opengcli of troubled state of node ; arrive here only if communication error was detected by this thread
 	xchg->setNodeState(node, NodeWznm::VecVState::ERROR);
 
-	pthread_cleanup_pop(0);
+	pthread_cleanup_pop(1);
 
 	return(NULL);
 };
@@ -240,7 +240,7 @@ void WznmdOpprc::writeDpchInv(
 		req->dpchinv->writeXML(wr);
 	closewriteBuffer(wr);
 
-	// string to be sent is "xml=<xbuf>"
+	// string to be sent is "xml=<xbuf (URI encoded)>"
 	buflen = xbuf->use + 4;
 	buf = new char[buflen];
 

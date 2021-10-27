@@ -1,7 +1,8 @@
-IexWznmIni v1.1.5
+IexWznmIni v1.1.6
 ImeIAVKeylistKey1.srefKlsIxWznmVKeylist	sref	Avail	Implied	Title	Comment
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrAcv			prettify file list and add state machine to create file dialog	
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrClustmgr			add state machines to launch dialogs	
+KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDbeterm			connect source job to terminal panel	
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgimp			add state machine to import dialog	
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrDlgloaini			add state machine to initialization data load dialog	
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrPrefs			modify slider limits	

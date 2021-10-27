@@ -16,8 +16,8 @@
 
 #include "PnlWznmNavAuxfct.h"
 #include "PnlWznmNavAppdev.h"
-#include "PnlWznmNavJob.h"
 #include "PnlWznmNavDeploy.h"
+#include "PnlWznmNavJob.h"
 #include "PnlWznmNavComp.h"
 #include "PnlWznmNavUix.h"
 #include "PnlWznmNavDbstr.h"
@@ -26,8 +26,8 @@
 #include "PnlWznmNavAdmin.h"
 #include "PnlWznmNavPre.h"
 #include "PnlWznmNavHeadbar.h"
-#include "DlgWznmNavLoaini.h"
 #include "DlgWznmNavMnglic.h"
+#include "DlgWznmNavLoaini.h"
 
 #define VecVWznmNavDo CrdWznmNav::VecVDo
 #define VecVWznmNavSge CrdWznmNav::VecVSge
@@ -603,8 +603,8 @@ public:
 
 	PnlWznmNavAuxfct* pnlauxfct;
 	PnlWznmNavAppdev* pnlappdev;
-	PnlWznmNavJob* pnljob;
 	PnlWznmNavDeploy* pnldeploy;
+	PnlWznmNavJob* pnljob;
 	PnlWznmNavComp* pnlcomp;
 	PnlWznmNavUix* pnluix;
 	PnlWznmNavDbstr* pnldbstr;
@@ -613,8 +613,8 @@ public:
 	PnlWznmNavAdmin* pnladmin;
 	PnlWznmNavPre* pnlpre;
 	PnlWznmNavHeadbar* pnlheadbar;
-	DlgWznmNavLoaini* dlgloaini;
 	DlgWznmNavMnglic* dlgmnglic;
+	DlgWznmNavLoaini* dlgloaini;
 
 	// IP vars.cust --- INSERT
 

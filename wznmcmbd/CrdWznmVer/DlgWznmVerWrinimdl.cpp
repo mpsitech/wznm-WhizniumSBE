@@ -43,17 +43,17 @@ DlgWznmVerWrinimdl::DlgWznmVerWrinimdl(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	iexgbl = NULL;
 	iexprj = NULL;
 	iexdpl = NULL;
+	iexgbl = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	ixVDit = VecVDit::WRI;
 
-	iexgbl = new JobWznmIexGbl(xchg, dbswznm, jref, ixWznmVLocale);
 	iexprj = new JobWznmIexPrj(xchg, dbswznm, jref, ixWznmVLocale);
 	iexdpl = new JobWznmIexDpl(xchg, dbswznm, jref, ixWznmVLocale);
+	iexgbl = new JobWznmIexGbl(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

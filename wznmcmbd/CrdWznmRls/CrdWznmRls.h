@@ -17,9 +17,9 @@
 #include "PnlWznmRlsList.h"
 #include "PnlWznmRlsHeadbar.h"
 #include "PnlWznmRlsRec.h"
-#include "DlgWznmRlsFinreptr.h"
-#include "DlgWznmRlsStareptr.h"
 #include "DlgWznmRlsWrite.h"
+#include "DlgWznmRlsStareptr.h"
+#include "DlgWznmRlsFinreptr.h"
 
 #define VecVWznmRlsDo CrdWznmRls::VecVDo
 #define VecVWznmRlsSge CrdWznmRls::VecVSge
@@ -240,9 +240,9 @@ public:
 	PnlWznmRlsList* pnllist;
 	PnlWznmRlsHeadbar* pnlheadbar;
 	PnlWznmRlsRec* pnlrec;
-	DlgWznmRlsFinreptr* dlgfinreptr;
-	DlgWznmRlsStareptr* dlgstareptr;
 	DlgWznmRlsWrite* dlgwrite;
+	DlgWznmRlsStareptr* dlgstareptr;
+	DlgWznmRlsFinreptr* dlgfinreptr;
 
 	// IP vars.cust --- INSERT
 

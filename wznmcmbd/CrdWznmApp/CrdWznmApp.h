@@ -16,10 +16,10 @@
 
 #include "PnlWznmAppList.h"
 #include "PnlWznmAppHeadbar.h"
-#include "PnlWznmAppRec.h"
-#include "DlgWznmAppImpstr.h"
-#include "DlgWznmAppNew.h"
 #include "DlgWznmAppWrite.h"
+#include "PnlWznmAppRec.h"
+#include "DlgWznmAppNew.h"
+#include "DlgWznmAppImpstr.h"
 
 #define VecVWznmAppDo CrdWznmApp::VecVDo
 #define VecVWznmAppSge CrdWznmApp::VecVSge
@@ -229,10 +229,10 @@ public:
 
 	PnlWznmAppList* pnllist;
 	PnlWznmAppHeadbar* pnlheadbar;
-	PnlWznmAppRec* pnlrec;
-	DlgWznmAppImpstr* dlgimpstr;
-	DlgWznmAppNew* dlgnew;
 	DlgWznmAppWrite* dlgwrite;
+	PnlWznmAppRec* pnlrec;
+	DlgWznmAppNew* dlgnew;
+	DlgWznmAppImpstr* dlgimpstr;
 
 	// IP vars.cust --- INSERT
 

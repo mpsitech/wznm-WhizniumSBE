@@ -483,19 +483,19 @@ void PnlWznmFilDetail::handleDpchAppDoButReuViewClick(
 	string sref;
 
 	if (statshr.ButReuViewAvail && statshr.ButReuViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER) {
-			sref = "CrdWznmVer";
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCAPP, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::APP) {
+			sref = "CrdWznmApp";
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recFil.refUref, jrefNew);
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::LIB) {
-				sref = "CrdWznmLib";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER) {
+				sref = "CrdWznmVer";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recFil.refUref, jrefNew);
 			};
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCAPP, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::APP) {
-				sref = "CrdWznmApp";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::LIB) {
+				sref = "CrdWznmLib";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recFil.refUref, jrefNew);
 			};
 		};

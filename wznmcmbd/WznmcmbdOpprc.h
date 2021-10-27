@@ -11,12 +11,14 @@
 #define WZNMCMBDOPPRC_H
 
 #include "WznmComplBscui.h"
+#include "WznmComplCtpcpy.h"
 #include "WznmComplDbs.h"
 #include "WznmComplDeploy.h"
 #include "WznmComplIex.h"
 #include "WznmComplJtr.h"
 #include "WznmCtpGenjtrAcv.h"
 #include "WznmCtpGenjtrClustmgr.h"
+#include "WznmCtpGenjtrDbeterm.h"
 #include "WznmCtpGenjtrDlgimp.h"
 #include "WznmCtpGenjtrDlgloaini.h"
 #include "WznmCtpGenjtrPrefs.h"

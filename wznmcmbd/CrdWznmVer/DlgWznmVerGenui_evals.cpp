@@ -35,6 +35,20 @@ bool DlgWznmVerGenui::evalButDneActive(
 	return(args.back());
 };
 
+bool DlgWznmVerGenui::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(fail)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::FAIL);
+	args.push_back(a);
+
+	return(args.back());
+};
+
 bool DlgWznmVerGenui::evalGuiButRunActive(
 			DbsWznm* dbswznm
 		) {
@@ -64,20 +78,6 @@ bool DlgWznmVerGenui::evalGuiButStoActive(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
-
-	return(args.back());
-};
-
-bool DlgWznmVerGenui::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(fail)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::FAIL);
-	args.push_back(a);
 
 	return(args.back());
 };

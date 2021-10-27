@@ -33,8 +33,8 @@ public:
 
 	public:
 		static const Sbecore::uint GRP = 1;
-		static const Sbecore::uint CPB = 2;
-		static const Sbecore::uint SRF = 3;
+		static const Sbecore::uint SRF = 2;
+		static const Sbecore::uint CPB = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -125,6 +125,7 @@ public:
 	void refreshJnum();
 
 	void rerun(DbsWznm* dbswznm, const bool call = false);
+	void rerun_baseSQL(std::string& sqlstr);
 	void rerun_filtSQL(std::string& sqlstr, const std::string& preSrf, const Sbecore::ubigint preCpb, const std::string& preGrp, const bool addwhere);
 	void rerun_filtSQL_append(std::string& sqlstr, bool& first);
 	void rerun_orderSQL(std::string& sqlstr, const Sbecore::uint preIxOrd);
@@ -148,8 +149,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmTagUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmTagMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmTagUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };

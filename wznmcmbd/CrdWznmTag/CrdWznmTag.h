@@ -186,7 +186,7 @@ public:
 	};
 
 public:
-	CrdWznmTag(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale, const Sbecore::ubigint ref = 0);
+	CrdWznmTag(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale, const Sbecore::ubigint ref = 0, const Sbecore::uint ixWznmVPreset = VecWznmVPreset::VOID, const Sbecore::ubigint preUref = 0);
 	~CrdWznmTag();
 
 public:
