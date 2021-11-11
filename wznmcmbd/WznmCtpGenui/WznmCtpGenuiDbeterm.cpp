@@ -95,6 +95,7 @@ DpchRetWznmCtpGenui* WznmCtpGenuiDbeterm::run(
 
 			refSup = dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::CUS, 0, VecWznmVMControlHkTbl::PNL, refWznmMPanel, hkNum++, VecWznmVMControlHkSection::CONT, VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0,
 						VecWznmVMControlScope::SHR, 0, "CusDat", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "");
+			dbswznm->tblwznmamcontrolpar->insertNewRec(NULL, refSup, "height", 0, "200");
 			dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXT, 0, VecWznmVMControlHkTbl::PNL, refWznmMPanel, hkNum++, VecWznmVMControlHkSection::CONT, VecWznmVMControlRefTbl::VOID, 0, refSup, 1, 1,
 						VecWznmVMControlScope::SHR, 0, "TxtDatLog", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "");
 
