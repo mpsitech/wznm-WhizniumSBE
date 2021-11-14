@@ -40,8 +40,8 @@ PnlWznmUsrRec::PnlWznmUsrRec(
 
 	pnlmnusergroup = NULL;
 	pnl1nsession = NULL;
-	pnldetail = NULL;
 	pnlaaccess = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

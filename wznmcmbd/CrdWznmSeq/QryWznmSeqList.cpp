@@ -210,8 +210,8 @@ void QryWznmSeqList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::APP) sqlstr += " ORDER BY TblWznmMSequence.appRefWznmMApp ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMSequence.sref ASC";
+	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMSequence.sref ASC";
+	else if (preIxOrd == VecVOrd::APP) sqlstr += " ORDER BY TblWznmMSequence.appRefWznmMApp ASC";
 };
 
 void QryWznmSeqList::fetch(

@@ -19,8 +19,8 @@ public class QryWznmImeList {
 		*/
 	public static class VecVOrd {
 
-		public static final int SUP = 1;
-		public static final int TBL = 2;
+		public static final int TBL = 1;
+		public static final int SUP = 2;
 		public static final int IEX = 3;
 		public static final int SRF = 4;
 
@@ -29,8 +29,8 @@ public class QryWznmImeList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("sup")) return SUP;
 			if (s.equals("tbl")) return TBL;
+			if (s.equals("sup")) return SUP;
 			if (s.equals("iex")) return IEX;
 			if (s.equals("srf")) return SRF;
 
@@ -40,8 +40,8 @@ public class QryWznmImeList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == SUP) return("sup");
 			if (ix == TBL) return("tbl");
+			if (ix == SUP) return("sup");
 			if (ix == IEX) return("iex");
 			if (ix == SRF) return("srf");
 

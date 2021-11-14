@@ -30,8 +30,8 @@ namespace QryWznmCarList {
 	public:
 		static const Sbecore::uint REU = 1;
 		static const Sbecore::uint RET = 2;
-		static const Sbecore::uint MDL = 3;
-		static const Sbecore::uint SRF = 4;
+		static const Sbecore::uint SRF = 3;
+		static const Sbecore::uint MDL = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

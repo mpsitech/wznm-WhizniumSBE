@@ -44,22 +44,22 @@ PnlWznmJobRec::PnlWznmJobRec(
 	pnlmnop = NULL;
 	pnlref1nblock = NULL;
 	pnlhk1nvector = NULL;
-	pnl1nsensitivity = NULL;
+	pnl1nrtjob = NULL;
 	pnljob1nstage = NULL;
 	pnl1nmethod = NULL;
-	pnl1nrtjob = NULL;
-	pnlacmd = NULL;
+	pnl1nsensitivity = NULL;
 	pnlavar = NULL;
+	pnlacmd = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMJOB_VEREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMJOB_TYPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMJOB_REUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMJOB_RETEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMJOB_REUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMJOB_TYPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMJOB_VEREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -116,28 +116,28 @@ void PnlWznmJobRec::refresh(
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
 		if (pnlavar) {delete pnlavar; pnlavar = NULL;};
 		if (pnlacmd) {delete pnlacmd; pnlacmd = NULL;};
-		if (pnl1nrtjob) {delete pnl1nrtjob; pnl1nrtjob = NULL;};
 		if (pnl1nmethod) {delete pnl1nmethod; pnl1nmethod = NULL;};
-		if (pnljob1nstage) {delete pnljob1nstage; pnljob1nstage = NULL;};
 		if (pnl1nsensitivity) {delete pnl1nsensitivity; pnl1nsensitivity = NULL;};
+		if (pnljob1nstage) {delete pnljob1nstage; pnljob1nstage = NULL;};
+		if (pnl1nrtjob) {delete pnl1nrtjob; pnl1nrtjob = NULL;};
 		if (pnlhk1nvector) {delete pnlhk1nvector; pnlhk1nvector = NULL;};
 		if (pnlref1nblock) {delete pnlref1nblock; pnlref1nblock = NULL;};
-		if (pnlmnop) {delete pnlmnop; pnlmnop = NULL;};
 		if (pnlmnoppack) {delete pnlmnoppack; pnlmnoppack = NULL;};
+		if (pnlmnop) {delete pnlmnop; pnlmnop = NULL;};
 		if (pnlsupmnjob) {delete pnlsupmnjob; pnlsupmnjob = NULL;};
 		if (pnlsubmnjob) {delete pnlsubmnjob; pnlsubmnjob = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmJobDetail(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlavar) pnlavar = new PnlWznmJobAVar(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlacmd) pnlacmd = new PnlWznmJobACmd(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnl1nrtjob) pnl1nrtjob = new PnlWznmJob1NRtjob(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nmethod) pnl1nmethod = new PnlWznmJob1NMethod(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnljob1nstage) pnljob1nstage = new PnlWznmJobJob1NStage(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nsensitivity) pnl1nsensitivity = new PnlWznmJob1NSensitivity(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnljob1nstage) pnljob1nstage = new PnlWznmJobJob1NStage(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnl1nrtjob) pnl1nrtjob = new PnlWznmJob1NRtjob(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlhk1nvector) pnlhk1nvector = new PnlWznmJobHk1NVector(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1nblock) pnlref1nblock = new PnlWznmJobRef1NBlock(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlmnop) pnlmnop = new PnlWznmJobMNOp(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmnoppack) pnlmnoppack = new PnlWznmJobMNOppack(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlmnop) pnlmnop = new PnlWznmJobMNOp(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlsupmnjob) pnlsupmnjob = new PnlWznmJobSupMNJob(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlsubmnjob) pnlsubmnjob = new PnlWznmJobSubMNJob(xchg, dbswznm, jref, ixWznmVLocale);
 	};
@@ -145,14 +145,14 @@ void PnlWznmJobRec::refresh(
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
 	statshr.jrefAVar = ((pnlavar) ? pnlavar->jref : 0);
 	statshr.jrefACmd = ((pnlacmd) ? pnlacmd->jref : 0);
-	statshr.jref1NRtjob = ((pnl1nrtjob) ? pnl1nrtjob->jref : 0);
 	statshr.jref1NMethod = ((pnl1nmethod) ? pnl1nmethod->jref : 0);
-	statshr.jrefJob1NStage = ((pnljob1nstage) ? pnljob1nstage->jref : 0);
 	statshr.jref1NSensitivity = ((pnl1nsensitivity) ? pnl1nsensitivity->jref : 0);
+	statshr.jrefJob1NStage = ((pnljob1nstage) ? pnljob1nstage->jref : 0);
+	statshr.jref1NRtjob = ((pnl1nrtjob) ? pnl1nrtjob->jref : 0);
 	statshr.jrefHk1NVector = ((pnlhk1nvector) ? pnlhk1nvector->jref : 0);
 	statshr.jrefRef1NBlock = ((pnlref1nblock) ? pnlref1nblock->jref : 0);
-	statshr.jrefMNOp = ((pnlmnop) ? pnlmnop->jref : 0);
 	statshr.jrefMNOppack = ((pnlmnoppack) ? pnlmnoppack->jref : 0);
+	statshr.jrefMNOp = ((pnlmnop) ? pnlmnop->jref : 0);
 	statshr.jrefSupMNJob = ((pnlsupmnjob) ? pnlsupmnjob->jref : 0);
 	statshr.jrefSubMNJob = ((pnlsubmnjob) ? pnlsubmnjob->jref : 0);
 
@@ -184,14 +184,14 @@ void PnlWznmJobRec::updatePreset(
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlavar) pnlavar->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlacmd) pnlacmd->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnl1nrtjob) pnl1nrtjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nmethod) pnl1nmethod->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnljob1nstage) pnljob1nstage->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nsensitivity) pnl1nsensitivity->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnljob1nstage) pnljob1nstage->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnl1nrtjob) pnl1nrtjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlhk1nvector) pnlhk1nvector->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1nblock) pnlref1nblock->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlmnop) pnlmnop->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmnoppack) pnlmnoppack->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlmnop) pnlmnop->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlsupmnjob) pnlsupmnjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlsubmnjob) pnlsubmnjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
@@ -305,14 +305,14 @@ void PnlWznmJobRec::handleCall(
 		) {
 	if (call->ixVCall == VecWznmVCall::CALLWZNMJOBUPD_REFEQ) {
 		call->abort = handleCallWznmJobUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_VEREQ) {
-		call->abort = handleCallWznmJob_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_TYPEQ) {
-		call->abort = handleCallWznmJob_typEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_REUEQ) {
-		call->abort = handleCallWznmJob_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_RETEQ) {
 		call->abort = handleCallWznmJob_retEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_REUEQ) {
+		call->abort = handleCallWznmJob_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_TYPEQ) {
+		call->abort = handleCallWznmJob_typEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOB_VEREQ) {
+		call->abort = handleCallWznmJob_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -325,25 +325,14 @@ bool PnlWznmJobRec::handleCallWznmJobUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmJobRec::handleCallWznmJob_verEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recJob.refWznmMVersion == refInv); // IP handleCallWznmJob_verEq --- LINE
-	return retval;
-};
-
-bool PnlWznmJobRec::handleCallWznmJob_typEq(
+bool PnlWznmJobRec::handleCallWznmJob_retEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 			, const uint ixInv
 			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recJob.ixVBasetype == ixInv); // IP handleCallWznmJob_typEq --- LINE
+	boolvalRet = (recJob.refIxVTbl == ixInv); // IP handleCallWznmJob_retEq --- LINE
 	return retval;
 };
 
@@ -358,13 +347,24 @@ bool PnlWznmJobRec::handleCallWznmJob_reuEq(
 	return retval;
 };
 
-bool PnlWznmJobRec::handleCallWznmJob_retEq(
+bool PnlWznmJobRec::handleCallWznmJob_typEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 			, const uint ixInv
 			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recJob.refIxVTbl == ixInv); // IP handleCallWznmJob_retEq --- LINE
+	boolvalRet = (recJob.ixVBasetype == ixInv); // IP handleCallWznmJob_typEq --- LINE
+	return retval;
+};
+
+bool PnlWznmJobRec::handleCallWznmJob_verEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recJob.refWznmMVersion == refInv); // IP handleCallWznmJob_verEq --- LINE
 	return retval;
 };

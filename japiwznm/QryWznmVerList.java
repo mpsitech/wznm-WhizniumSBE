@@ -19,11 +19,11 @@ public class QryWznmVerList {
 		*/
 	public static class VecVOrd {
 
-		public static final int STE = 1;
-		public static final int BVR = 2;
-		public static final int LOC = 3;
-		public static final int PRJ = 4;
-		public static final int OWN = 5;
+		public static final int LOC = 1;
+		public static final int STE = 2;
+		public static final int BVR = 3;
+		public static final int OWN = 4;
+		public static final int PRJ = 5;
 		public static final int GRP = 6;
 
 		public static int getIx(
@@ -31,11 +31,11 @@ public class QryWznmVerList {
 				) {
 			String s = sref.toLowerCase();
 
+			if (s.equals("loc")) return LOC;
 			if (s.equals("ste")) return STE;
 			if (s.equals("bvr")) return BVR;
-			if (s.equals("loc")) return LOC;
-			if (s.equals("prj")) return PRJ;
 			if (s.equals("own")) return OWN;
+			if (s.equals("prj")) return PRJ;
 			if (s.equals("grp")) return GRP;
 
 			return 0;
@@ -44,11 +44,11 @@ public class QryWznmVerList {
 		public static String getSref(
 					int ix
 				) {
+			if (ix == LOC) return("loc");
 			if (ix == STE) return("ste");
 			if (ix == BVR) return("bvr");
-			if (ix == LOC) return("loc");
-			if (ix == PRJ) return("prj");
 			if (ix == OWN) return("own");
+			if (ix == PRJ) return("prj");
 			if (ix == GRP) return("grp");
 
 			return "";

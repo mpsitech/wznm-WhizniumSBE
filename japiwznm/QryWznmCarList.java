@@ -21,8 +21,8 @@ public class QryWznmCarList {
 
 		public static final int REU = 1;
 		public static final int RET = 2;
-		public static final int MDL = 3;
-		public static final int SRF = 4;
+		public static final int SRF = 3;
+		public static final int MDL = 4;
 
 		public static int getIx(
 					String sref
@@ -31,8 +31,8 @@ public class QryWznmCarList {
 
 			if (s.equals("reu")) return REU;
 			if (s.equals("ret")) return RET;
-			if (s.equals("mdl")) return MDL;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("mdl")) return MDL;
 
 			return 0;
 		};
@@ -42,8 +42,8 @@ public class QryWznmCarList {
 				) {
 			if (ix == REU) return("reu");
 			if (ix == RET) return("ret");
-			if (ix == MDL) return("mdl");
 			if (ix == SRF) return("srf");
+			if (ix == MDL) return("mdl");
 
 			return "";
 		};

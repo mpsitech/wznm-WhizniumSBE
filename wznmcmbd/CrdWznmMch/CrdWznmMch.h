@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmMchHeadbar.h"
 #include "PnlWznmMchList.h"
+#include "PnlWznmMchHeadbar.h"
 #include "PnlWznmMchRec.h"
 #include "DlgWznmMchWriniscr.h"
 
@@ -207,8 +207,8 @@ public:
 	Sbecore::Feed feedFMcbAlert;
 	Sbecore::Feed feedFSge;
 
-	PnlWznmMchHeadbar* pnlheadbar;
 	PnlWznmMchList* pnllist;
+	PnlWznmMchHeadbar* pnlheadbar;
 	PnlWznmMchRec* pnlrec;
 	DlgWznmMchWriniscr* dlgwriniscr;
 

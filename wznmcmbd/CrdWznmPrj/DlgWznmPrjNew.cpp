@@ -140,24 +140,24 @@ void DlgWznmPrjNew::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	ContIac oldContiac(contiac);
 	StatShr oldStatshr(statshr);
+	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
 
 	// IP refresh --- BEGIN
-	// contiac
-
 	// statshr
 	statshr.DetButAutActive = evalDetButAutActive(dbswznm);
 	statshr.ButCncActive = evalButCncActive(dbswznm);
 	statshr.ButCreActive = evalButCreActive(dbswznm);
 
+	// contiac
+
 	// continf
 	continf.numFSge = ixVSge;
 
 	// IP refresh --- END
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	muteRefresh = false;

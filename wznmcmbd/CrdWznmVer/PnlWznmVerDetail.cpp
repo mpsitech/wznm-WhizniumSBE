@@ -193,13 +193,13 @@ void PnlWznmVerDetail::refreshRecVer(
 
 	dirty = false;
 
-	recVerJ.ref = recVer.refJ;
-	if (recVer.ref == 0) xchg->removeClstns(VecWznmVCall::CALLWZNMVERJMOD_VEREQ, jref);
-	else xchg->addRefClstn(VecWznmVCall::CALLWZNMVERJMOD_VEREQ, jref, Clstn::VecVJobmask::ALL, 0, true, recVer.ref);
-
 	recVerJste.ref = recVer.refJState;
 	if (recVer.ref == 0) xchg->removeClstns(VecWznmVCall::CALLWZNMVERJSTEMOD_VEREQ, jref);
 	else xchg->addRefClstn(VecWznmVCall::CALLWZNMVERJSTEMOD_VEREQ, jref, Clstn::VecVJobmask::ALL, 0, true, recVer.ref);
+
+	recVerJ.ref = recVer.refJ;
+	if (recVer.ref == 0) xchg->removeClstns(VecWznmVCall::CALLWZNMVERJMOD_VEREQ, jref);
+	else xchg->addRefClstn(VecWznmVCall::CALLWZNMVERJMOD_VEREQ, jref, Clstn::VecVJobmask::ALL, 0, true, recVer.ref);
 
 	continf.TxtPrj = StubWznm::getStubPrjStd(dbswznm, recVer.prjRefWznmMProject, ixWznmVLocale, Stub::VecVNonetype::FULL);
 	contiac.TxfMaj = to_string(recVer.Major);
@@ -241,6 +241,35 @@ void PnlWznmVerDetail::refreshRecVer(
 
 };
 
+void PnlWznmVerDetail::refreshRecVerJste(
+			DbsWznm* dbswznm
+			, set<uint>& moditems
+		) {
+	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
+	StatShr oldStatshr(statshr);
+
+	set<uint> ics;
+
+	WznmJMVersionState* _recVerJste = NULL;
+
+	if (dbswznm->tblwznmjmversionstate->loadRecByRef(recVerJste.ref, &_recVerJste)) {
+		recVerJste = *_recVerJste;
+		delete _recVerJste;
+	} else recVerJste = WznmJMVersionState();
+
+	contiac.numFPupJst = feedFPupJst.getNumByRef(recVerJste.ref);
+	contiac.numFPupSte = feedFPupSte.getNumByIx(recVerJste.ixVState);
+
+	statshr.PupJstActive = evalPupJstActive(dbswznm);
+	statshr.ButJstEditAvail = evalButJstEditAvail(dbswznm);
+	statshr.PupSteActive = evalPupSteActive(dbswznm);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+
+};
+
 void PnlWznmVerDetail::refreshRecVerJ(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
@@ -268,35 +297,6 @@ void PnlWznmVerDetail::refreshRecVerJ(
 	statshr.TxtAb1Active = evalTxtAb1Active(dbswznm);
 	statshr.TxtAb2Active = evalTxtAb2Active(dbswznm);
 	statshr.TxtAb3Active = evalTxtAb3Active(dbswznm);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-
-};
-
-void PnlWznmVerDetail::refreshRecVerJste(
-			DbsWznm* dbswznm
-			, set<uint>& moditems
-		) {
-	ContIac oldContiac(contiac);
-	ContInf oldContinf(continf);
-	StatShr oldStatshr(statshr);
-
-	set<uint> ics;
-
-	WznmJMVersionState* _recVerJste = NULL;
-
-	if (dbswznm->tblwznmjmversionstate->loadRecByRef(recVerJste.ref, &_recVerJste)) {
-		recVerJste = *_recVerJste;
-		delete _recVerJste;
-	} else recVerJste = WznmJMVersionState();
-
-	contiac.numFPupJst = feedFPupJst.getNumByRef(recVerJste.ref);
-	contiac.numFPupSte = feedFPupSte.getNumByIx(recVerJste.ixVState);
-
-	statshr.PupJstActive = evalPupJstActive(dbswznm);
-	statshr.ButJstEditAvail = evalButJstEditAvail(dbswznm);
-	statshr.PupSteActive = evalPupSteActive(dbswznm);
 	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);

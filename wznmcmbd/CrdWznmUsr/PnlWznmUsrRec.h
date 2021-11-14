@@ -16,8 +16,8 @@
 
 #include "PnlWznmUsrMNUsergroup.h"
 #include "PnlWznmUsr1NSession.h"
-#include "PnlWznmUsrDetail.h"
 #include "PnlWznmUsrAAccess.h"
+#include "PnlWznmUsrDetail.h"
 
 #define VecVWznmUsrRecDo PnlWznmUsrRec::VecVDo
 
@@ -182,8 +182,8 @@ public:
 
 	PnlWznmUsrMNUsergroup* pnlmnusergroup;
 	PnlWznmUsr1NSession* pnl1nsession;
-	PnlWznmUsrDetail* pnldetail;
 	PnlWznmUsrAAccess* pnlaaccess;
+	PnlWznmUsrDetail* pnldetail;
 
 	WznmMUser recUsr;
 

@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmRtj1NRtblock.h"
 #include "PnlWznmRtjSup1NRtjob.h"
-#include "PnlWznmRtjDetail.h"
+#include "PnlWznmRtj1NRtblock.h"
 #include "PnlWznmRtj1NRtdpch.h"
+#include "PnlWznmRtjDetail.h"
 
 #define VecVWznmRtjRecDo PnlWznmRtjRec::VecVDo
 
@@ -180,10 +180,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmRtj1NRtblock* pnl1nrtblock;
 	PnlWznmRtjSup1NRtjob* pnlsup1nrtjob;
-	PnlWznmRtjDetail* pnldetail;
+	PnlWznmRtj1NRtblock* pnl1nrtblock;
 	PnlWznmRtj1NRtdpch* pnl1nrtdpch;
+	PnlWznmRtjDetail* pnldetail;
 
 	WznmMRtjob recRtj;
 

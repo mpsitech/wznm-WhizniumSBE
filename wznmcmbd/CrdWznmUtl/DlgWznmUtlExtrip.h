@@ -490,9 +490,9 @@ public:
 
 	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalResDldActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalExtButRunActive(DbsWznm* dbswznm);
 	bool evalExtButStoActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalSrcUldActive(DbsWznm* dbswznm);
 
 public:

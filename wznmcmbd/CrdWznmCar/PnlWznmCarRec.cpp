@@ -38,8 +38,8 @@ PnlWznmCarRec::PnlWznmCarRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlcar1npanel = NULL;
 	pnlhk1ncontrol = NULL;
+	pnlcar1npanel = NULL;
 	pnl1ndialog = NULL;
 	pnldetail = NULL;
 

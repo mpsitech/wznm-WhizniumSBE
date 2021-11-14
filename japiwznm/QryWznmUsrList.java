@@ -20,9 +20,9 @@ public class QryWznmUsrList {
 	public static class VecVOrd {
 
 		public static final int USG = 1;
-		public static final int PRS = 2;
-		public static final int SRF = 3;
-		public static final int OWN = 4;
+		public static final int SRF = 2;
+		public static final int OWN = 3;
+		public static final int PRS = 4;
 		public static final int GRP = 5;
 
 		public static int getIx(
@@ -31,9 +31,9 @@ public class QryWznmUsrList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("usg")) return USG;
-			if (s.equals("prs")) return PRS;
 			if (s.equals("srf")) return SRF;
 			if (s.equals("own")) return OWN;
+			if (s.equals("prs")) return PRS;
 			if (s.equals("grp")) return GRP;
 
 			return 0;
@@ -43,9 +43,9 @@ public class QryWznmUsrList {
 					int ix
 				) {
 			if (ix == USG) return("usg");
-			if (ix == PRS) return("prs");
 			if (ix == SRF) return("srf");
 			if (ix == OWN) return("own");
+			if (ix == PRS) return("prs");
 			if (ix == GRP) return("grp");
 
 			return "";

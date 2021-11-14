@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCarCar1NPanel.h"
 #include "PnlWznmCarHk1NControl.h"
+#include "PnlWznmCarCar1NPanel.h"
 #include "PnlWznmCar1NDialog.h"
 #include "PnlWznmCarDetail.h"
 
@@ -180,8 +180,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCarCar1NPanel* pnlcar1npanel;
 	PnlWznmCarHk1NControl* pnlhk1ncontrol;
+	PnlWznmCarCar1NPanel* pnlcar1npanel;
 	PnlWznmCar1NDialog* pnl1ndialog;
 	PnlWznmCarDetail* pnldetail;
 

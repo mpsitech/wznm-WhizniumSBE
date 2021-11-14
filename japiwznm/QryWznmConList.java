@@ -23,10 +23,10 @@ public class QryWznmConList {
 		public static final int REU = 2;
 		public static final int RET = 3;
 		public static final int SCT = 4;
-		public static final int HKT = 5;
-		public static final int HKU = 6;
-		public static final int SRF = 7;
-		public static final int TYP = 8;
+		public static final int HKU = 5;
+		public static final int HKT = 6;
+		public static final int TYP = 7;
+		public static final int SRF = 8;
 
 		public static int getIx(
 					String sref
@@ -37,10 +37,10 @@ public class QryWznmConList {
 			if (s.equals("reu")) return REU;
 			if (s.equals("ret")) return RET;
 			if (s.equals("sct")) return SCT;
-			if (s.equals("hkt")) return HKT;
 			if (s.equals("hku")) return HKU;
-			if (s.equals("srf")) return SRF;
+			if (s.equals("hkt")) return HKT;
 			if (s.equals("typ")) return TYP;
+			if (s.equals("srf")) return SRF;
 
 			return 0;
 		};
@@ -52,10 +52,10 @@ public class QryWznmConList {
 			if (ix == REU) return("reu");
 			if (ix == RET) return("ret");
 			if (ix == SCT) return("sct");
-			if (ix == HKT) return("hkt");
 			if (ix == HKU) return("hku");
-			if (ix == SRF) return("srf");
+			if (ix == HKT) return("hkt");
 			if (ix == TYP) return("typ");
+			if (ix == SRF) return("srf");
 
 			return "";
 		};

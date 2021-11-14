@@ -20,8 +20,8 @@ uint QryWznmImeList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "sup") return SUP;
 	if (s == "tbl") return TBL;
+	if (s == "sup") return SUP;
 	if (s == "iex") return IEX;
 	if (s == "srf") return SRF;
 
@@ -31,8 +31,8 @@ uint QryWznmImeList::VecVOrd::getIx(
 string QryWznmImeList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SUP) return("sup");
 	if (ix == TBL) return("tbl");
+	if (ix == SUP) return("sup");
 	if (ix == IEX) return("iex");
 	if (ix == SRF) return("srf");
 

@@ -26,10 +26,10 @@ uint QryWznmConList::VecVOrd::getIx(
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
 	if (s == "sct") return SCT;
-	if (s == "hkt") return HKT;
 	if (s == "hku") return HKU;
-	if (s == "srf") return SRF;
+	if (s == "hkt") return HKT;
 	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -41,10 +41,10 @@ string QryWznmConList::VecVOrd::getSref(
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
 	if (ix == SCT) return("sct");
-	if (ix == HKT) return("hkt");
 	if (ix == HKU) return("hku");
-	if (ix == SRF) return("srf");
+	if (ix == HKT) return("hkt");
 	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

@@ -1,4 +1,4 @@
-IexWznmGbl v0.9.29
+IexWznmGbl v1.1.7
 ImeIMError.sref	Title
 lic.auth	&srvmsg;
 lic.ctwarn	Last contact with licensing server was on &lastAttempt;. WhizniumSBE will cease to function unless contact is re-established by &finalAttempt;.
@@ -18,7 +18,7 @@ lin	VecWznmVBasereptype		filfed
 ImeIMVector.end
 ImeIMBlock.srefsReaIxWznmWScope	srefsWriIxWznmWScope	sref	Comment
 cmbeng;eng	cmbeng;eng	StgWznmTenant
-	ImeIAMBlockItem.irefRefWznmCAMBlockItem	srefIxVBasetype	sref	srefIxWznmVVartype	Defval	Comment
+	ImeIAMBlockItem.irefRefWznmCAMBlockItem	srefIxVBasetype	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
 	0	var	orgname	string
 	0	var	orgweb	string
 	ImeIAMBlockItem.end

@@ -10,10 +10,10 @@
 #ifndef DBSWZNM_H
 #define DBSWZNM_H
 
-#define WZNM_VERSION "1.1.6"
+#define WZNM_VERSION "1.1.7"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 1
-#define WZNM_VERSION_SUB 6
+#define WZNM_VERSION_SUB 7
 
 #include <sbecore/Types.h>
 
@@ -434,11 +434,11 @@ public:
 	class VecVCard {
 
 	public:
-		static const Sbecore::uint CRDWZNMNAV = 1;
-		static const Sbecore::uint CRDWZNMUSG = 2;
-		static const Sbecore::uint CRDWZNMUSR = 3;
-		static const Sbecore::uint CRDWZNMPRS = 4;
-		static const Sbecore::uint CRDWZNMFIL = 5;
+		static const Sbecore::uint CRDWZNMUSG = 1;
+		static const Sbecore::uint CRDWZNMUSR = 2;
+		static const Sbecore::uint CRDWZNMPRS = 3;
+		static const Sbecore::uint CRDWZNMFIL = 4;
+		static const Sbecore::uint CRDWZNMNAV = 5;
 		static const Sbecore::uint CRDWZNMLOC = 6;
 		static const Sbecore::uint CRDWZNMTAG = 7;
 		static const Sbecore::uint CRDWZNMCTP = 8;
@@ -581,11 +581,11 @@ public:
 		static const Sbecore::uint PNLWZNMLIBLIST_TCOTIT = 81;
 		static const Sbecore::uint PNLWZNMLIBLIST_TCOVER = 82;
 		static const Sbecore::uint PNLWZNMLIBLIST_TCOLTY = 83;
-		static const Sbecore::uint PNLWZNMLIBAPKGLIST_TCOMCH = 84;
-		static const Sbecore::uint PNLWZNMLIBAPKGLIST_TCOPKL = 85;
-		static const Sbecore::uint PNLWZNMLIBAMAKEFILE_TCOMCH = 86;
-		static const Sbecore::uint PNLWZNMLIBAMAKEFILE_TCOTAG = 87;
-		static const Sbecore::uint PNLWZNMLIBAMAKEFILE_TCOVAL = 88;
+		static const Sbecore::uint PNLWZNMLIBAMAKEFILE_TCOMCH = 84;
+		static const Sbecore::uint PNLWZNMLIBAMAKEFILE_TCOTAG = 85;
+		static const Sbecore::uint PNLWZNMLIBAMAKEFILE_TCOVAL = 86;
+		static const Sbecore::uint PNLWZNMLIBAPKGLIST_TCOMCH = 87;
+		static const Sbecore::uint PNLWZNMLIBAPKGLIST_TCOPKL = 88;
 		static const Sbecore::uint PNLWZNMLIBREF1NFILE_TCOREF = 89;
 		static const Sbecore::uint PNLWZNMLIBMNOPPACK_TCOMREF = 90;
 		static const Sbecore::uint PNLWZNMLIBMNCOMPONENT_TCOMREF = 91;
@@ -610,22 +610,22 @@ public:
 		static const Sbecore::uint PNLWZNMVERLIST_TCOLOC = 110;
 		static const Sbecore::uint PNLWZNMVERLIST_TCOSTE = 111;
 		static const Sbecore::uint PNLWZNMVERLIST_TCODTY = 112;
-		static const Sbecore::uint PNLWZNMVER1NCAPABILITY_TCOREF = 113;
-		static const Sbecore::uint PNLWZNMVERVER1NAPP_TCOREF = 114;
-		static const Sbecore::uint PNLWZNMVERVER1NERROR_TCOREF = 115;
-		static const Sbecore::uint PNLWZNMVERBVR1NVERSION_TCOREF = 116;
-		static const Sbecore::uint PNLWZNMVER1NQUERY_TCOREF = 117;
-		static const Sbecore::uint PNLWZNMVER1NRELATION_TCOREF = 118;
-		static const Sbecore::uint PNLWZNMVER1NTABLE_TCOREF = 119;
-		static const Sbecore::uint PNLWZNMVER1NVECTOR_TCOREF = 120;
-		static const Sbecore::uint PNLWZNMVER1NPRESET_TCOREF = 121;
-		static const Sbecore::uint PNLWZNMVERVER1NMODULE_TCOREF = 122;
-		static const Sbecore::uint PNLWZNMVER1NOPPACK_TCOREF = 123;
-		static const Sbecore::uint PNLWZNMVER1NIMPEXPCPLX_TCOREF = 124;
-		static const Sbecore::uint PNLWZNMVER1NCOMPONENT_TCOREF = 125;
-		static const Sbecore::uint PNLWZNMVER1NCALL_TCOREF = 126;
-		static const Sbecore::uint PNLWZNMVER1NBLOCK_TCOREF = 127;
-		static const Sbecore::uint PNLWZNMVER1NJOB_TCOREF = 128;
+		static const Sbecore::uint PNLWZNMVERVER1NERROR_TCOREF = 113;
+		static const Sbecore::uint PNLWZNMVER1NCOMPONENT_TCOREF = 114;
+		static const Sbecore::uint PNLWZNMVER1NCALL_TCOREF = 115;
+		static const Sbecore::uint PNLWZNMVER1NIMPEXPCPLX_TCOREF = 116;
+		static const Sbecore::uint PNLWZNMVER1NJOB_TCOREF = 117;
+		static const Sbecore::uint PNLWZNMVER1NOPPACK_TCOREF = 118;
+		static const Sbecore::uint PNLWZNMVERVER1NMODULE_TCOREF = 119;
+		static const Sbecore::uint PNLWZNMVER1NPRESET_TCOREF = 120;
+		static const Sbecore::uint PNLWZNMVER1NQUERY_TCOREF = 121;
+		static const Sbecore::uint PNLWZNMVER1NRELATION_TCOREF = 122;
+		static const Sbecore::uint PNLWZNMVER1NTABLE_TCOREF = 123;
+		static const Sbecore::uint PNLWZNMVER1NVECTOR_TCOREF = 124;
+		static const Sbecore::uint PNLWZNMVERVER1NAPP_TCOREF = 125;
+		static const Sbecore::uint PNLWZNMVER1NCAPABILITY_TCOREF = 126;
+		static const Sbecore::uint PNLWZNMVERBVR1NVERSION_TCOREF = 127;
+		static const Sbecore::uint PNLWZNMVER1NBLOCK_TCOREF = 128;
 		static const Sbecore::uint PNLWZNMVERREF1NFILE_TCOREF = 129;
 		static const Sbecore::uint PNLWZNMVERMNLOCALE_TCOMREF = 130;
 		static const Sbecore::uint PNLWZNMCAPLIST_TCOSRF = 131;
@@ -644,31 +644,31 @@ public:
 		static const Sbecore::uint PNLWZNMTBLLIST_TCOVER = 144;
 		static const Sbecore::uint PNLWZNMTBLLIST_TCORET = 145;
 		static const Sbecore::uint PNLWZNMTBLLIST_TCOREU = 146;
-		static const Sbecore::uint PNLWZNMTBLATITLE_TCOTYP = 147;
-		static const Sbecore::uint PNLWZNMTBLATITLE_TCOLOC = 148;
-		static const Sbecore::uint PNLWZNMTBLATITLE_TCOGND = 149;
-		static const Sbecore::uint PNLWZNMTBLATITLE_TCOTIT = 150;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLOT = 151;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOFNA = 152;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLDX = 153;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLBY = 154;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOORD = 155;
-		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLIT = 156;
-		static const Sbecore::uint PNLWZNMTBLFR1NRELATION_TCOREF = 157;
-		static const Sbecore::uint PNLWZNMTBLTO1NRELATION_TCOREF = 158;
-		static const Sbecore::uint PNLWZNMTBL1NSTUB_TCOREF = 159;
-		static const Sbecore::uint PNLWZNMTBL1NSUBSET_TCOREF = 160;
-		static const Sbecore::uint PNLWZNMTBLTBL1NTABLECOL_TCOREF = 161;
-		static const Sbecore::uint PNLWZNMTBL1NCHECK_TCOREF = 162;
-		static const Sbecore::uint PNLWZNMTBL1NIMPEXP_TCOREF = 163;
-		static const Sbecore::uint PNLWZNMTBLREF1NQUERYMOD_TCOREF = 164;
-		static const Sbecore::uint PNLWZNMTBLREF1NDIALOG_TCOREF = 165;
-		static const Sbecore::uint PNLWZNMTBLREF1NRTBLOCK_TCOREF = 166;
-		static const Sbecore::uint PNLWZNMTBLFCT1NTABLECOL_TCOREF = 167;
-		static const Sbecore::uint PNLWZNMTBLHK1NVECTOR_TCOREF = 168;
-		static const Sbecore::uint PNLWZNMTBLREF1NPANEL_TCOREF = 169;
-		static const Sbecore::uint PNLWZNMTBLREF1NCALL_TCOREF = 170;
-		static const Sbecore::uint PNLWZNMTBLSRC1NFEED_TCOREF = 171;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLOT = 147;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOFNA = 148;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLDX = 149;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLBY = 150;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOORD = 151;
+		static const Sbecore::uint PNLWZNMTBLALOADFCT_TCOLIT = 152;
+		static const Sbecore::uint PNLWZNMTBLATITLE_TCOTYP = 153;
+		static const Sbecore::uint PNLWZNMTBLATITLE_TCOLOC = 154;
+		static const Sbecore::uint PNLWZNMTBLATITLE_TCOGND = 155;
+		static const Sbecore::uint PNLWZNMTBLATITLE_TCOTIT = 156;
+		static const Sbecore::uint PNLWZNMTBL1NIMPEXP_TCOREF = 157;
+		static const Sbecore::uint PNLWZNMTBL1NCHECK_TCOREF = 158;
+		static const Sbecore::uint PNLWZNMTBLFR1NRELATION_TCOREF = 159;
+		static const Sbecore::uint PNLWZNMTBLTO1NRELATION_TCOREF = 160;
+		static const Sbecore::uint PNLWZNMTBL1NSTUB_TCOREF = 161;
+		static const Sbecore::uint PNLWZNMTBL1NSUBSET_TCOREF = 162;
+		static const Sbecore::uint PNLWZNMTBLTBL1NTABLECOL_TCOREF = 163;
+		static const Sbecore::uint PNLWZNMTBLREF1NDIALOG_TCOREF = 164;
+		static const Sbecore::uint PNLWZNMTBLREF1NCALL_TCOREF = 165;
+		static const Sbecore::uint PNLWZNMTBLSRC1NFEED_TCOREF = 166;
+		static const Sbecore::uint PNLWZNMTBLREF1NPANEL_TCOREF = 167;
+		static const Sbecore::uint PNLWZNMTBLFCT1NTABLECOL_TCOREF = 168;
+		static const Sbecore::uint PNLWZNMTBLHK1NVECTOR_TCOREF = 169;
+		static const Sbecore::uint PNLWZNMTBLREF1NRTBLOCK_TCOREF = 170;
+		static const Sbecore::uint PNLWZNMTBLREF1NQUERYMOD_TCOREF = 171;
 		static const Sbecore::uint PNLWZNMTBLPST1NQUERYMOD_TCOREF = 172;
 		static const Sbecore::uint PNLWZNMTBLMNVECTOR_TCOMREF = 173;
 		static const Sbecore::uint PNLWZNMTBLMNVECTOR_TCOSBS = 174;
@@ -686,10 +686,10 @@ public:
 		static const Sbecore::uint PNLWZNMTCOATITLE_TCOTYP = 186;
 		static const Sbecore::uint PNLWZNMTCOATITLE_TCOLOC = 187;
 		static const Sbecore::uint PNLWZNMTCOATITLE_TCOTIT = 188;
-		static const Sbecore::uint PNLWZNMTCO1NQUERYCOL_TCOREF = 189;
-		static const Sbecore::uint PNLWZNMTCO1NIMPEXPCOL_TCOREF = 190;
-		static const Sbecore::uint PNLWZNMTCOREF1NQUERYMOD_TCOREF = 191;
-		static const Sbecore::uint PNLWZNMTCOREF1NCONTROL_TCOREF = 192;
+		static const Sbecore::uint PNLWZNMTCO1NIMPEXPCOL_TCOREF = 189;
+		static const Sbecore::uint PNLWZNMTCO1NQUERYCOL_TCOREF = 190;
+		static const Sbecore::uint PNLWZNMTCOREF1NCONTROL_TCOREF = 191;
+		static const Sbecore::uint PNLWZNMTCOREF1NQUERYMOD_TCOREF = 192;
 		static const Sbecore::uint PNLWZNMTCO1NCHECK_TCOREF = 193;
 		static const Sbecore::uint PNLWZNMSBSLIST_TCOSRF = 194;
 		static const Sbecore::uint PNLWZNMSBSLIST_TCOSHO = 195;
@@ -698,10 +698,10 @@ public:
 		static const Sbecore::uint PNLWZNMSBSATITLE_TCOLOC = 198;
 		static const Sbecore::uint PNLWZNMSBSATITLE_TCOGND = 199;
 		static const Sbecore::uint PNLWZNMSBSATITLE_TCOTIT = 200;
-		static const Sbecore::uint PNLWZNMSBS1NSTUB_TCOREF = 201;
-		static const Sbecore::uint PNLWZNMSBSFRS1NRELATION_TCOREF = 202;
-		static const Sbecore::uint PNLWZNMSBSTOS1NRELATION_TCOREF = 203;
-		static const Sbecore::uint PNLWZNMSBS1NTABLECOL_TCOREF = 204;
+		static const Sbecore::uint PNLWZNMSBSFRS1NRELATION_TCOREF = 201;
+		static const Sbecore::uint PNLWZNMSBSTOS1NRELATION_TCOREF = 202;
+		static const Sbecore::uint PNLWZNMSBS1NTABLECOL_TCOREF = 203;
+		static const Sbecore::uint PNLWZNMSBS1NSTUB_TCOREF = 204;
 		static const Sbecore::uint PNLWZNMSBSPST1NQUERYMOD_TCOREF = 205;
 		static const Sbecore::uint PNLWZNMSBSASBMNSUBSET_TCOMREF = 206;
 		static const Sbecore::uint PNLWZNMSBSASBMNSUBSET_TCORTY = 207;
@@ -723,8 +723,8 @@ public:
 		static const Sbecore::uint PNLWZNMRELSUP1NRELATION_TCOREF = 223;
 		static const Sbecore::uint PNLWZNMREL1NTABLECOL_TCOREF = 224;
 		static const Sbecore::uint PNLWZNMRELREF1NCONTROL_TCOREF = 225;
-		static const Sbecore::uint PNLWZNMRELREF1NPANEL_TCOREF = 226;
-		static const Sbecore::uint PNLWZNMRELREF1NDIALOG_TCOREF = 227;
+		static const Sbecore::uint PNLWZNMRELREF1NDIALOG_TCOREF = 226;
+		static const Sbecore::uint PNLWZNMRELREF1NPANEL_TCOREF = 227;
 		static const Sbecore::uint PNLWZNMVECLIST_TCOSRF = 228;
 		static const Sbecore::uint PNLWZNMVECLIST_TCOTYP = 229;
 		static const Sbecore::uint PNLWZNMVECLIST_TCOVER = 230;
@@ -735,9 +735,9 @@ public:
 		static const Sbecore::uint PNLWZNMVECATITLE_TCOLOC = 235;
 		static const Sbecore::uint PNLWZNMVECATITLE_TCOTIT = 236;
 		static const Sbecore::uint PNLWZNMVECVEC1NVECTORITEM_TCOREF = 237;
-		static const Sbecore::uint PNLWZNMVECFCT1NTABLECOL_TCOREF = 238;
+		static const Sbecore::uint PNLWZNMVECSRC1NFEED_TCOREF = 238;
 		static const Sbecore::uint PNLWZNMVECREF1NPANEL_TCOREF = 239;
-		static const Sbecore::uint PNLWZNMVECSRC1NFEED_TCOREF = 240;
+		static const Sbecore::uint PNLWZNMVECFCT1NTABLECOL_TCOREF = 240;
 		static const Sbecore::uint PNLWZNMVECPST1NQUERYMOD_TCOREF = 241;
 		static const Sbecore::uint PNLWZNMVECMNTABLE_TCOMREF = 242;
 		static const Sbecore::uint PNLWZNMVECMNTABLE_TCOSBS = 243;
@@ -755,8 +755,8 @@ public:
 		static const Sbecore::uint PNLWZNMSTBLIST_TCOSBS = 255;
 		static const Sbecore::uint PNLWZNMSTBLIST_TCOEXA = 256;
 		static const Sbecore::uint PNLWZNMSTBSUPMNSTUB_TCOMREF = 257;
-		static const Sbecore::uint PNLWZNMSTBSUBMNSTUB_TCOMREF = 258;
-		static const Sbecore::uint PNLWZNMSTBMNSQUAWK_TCOMREF = 259;
+		static const Sbecore::uint PNLWZNMSTBMNSQUAWK_TCOMREF = 258;
+		static const Sbecore::uint PNLWZNMSTBSUBMNSTUB_TCOMREF = 259;
 		static const Sbecore::uint PNLWZNMSTBMNCALL_TCOMREF = 260;
 		static const Sbecore::uint PNLWZNMIEXLIST_TCOSRF = 261;
 		static const Sbecore::uint PNLWZNMIEXLIST_TCOSHO = 262;
@@ -804,8 +804,8 @@ public:
 		static const Sbecore::uint PNLWZNMDLGLIST_TCOCAR = 304;
 		static const Sbecore::uint PNLWZNMDLGLIST_TCORET = 305;
 		static const Sbecore::uint PNLWZNMDLGLIST_TCOREU = 306;
-		static const Sbecore::uint PNLWZNMDLGHK1NCONTROL_TCOREF = 307;
-		static const Sbecore::uint PNLWZNMDLGREF1NCONTROL_TCOREF = 308;
+		static const Sbecore::uint PNLWZNMDLGREF1NCONTROL_TCOREF = 307;
+		static const Sbecore::uint PNLWZNMDLGHK1NCONTROL_TCOREF = 308;
 		static const Sbecore::uint PNLWZNMDLGMNQUERY_TCOMREF = 309;
 		static const Sbecore::uint PNLWZNMPNLLIST_TCOSRF = 310;
 		static const Sbecore::uint PNLWZNMPNLLIST_TCOTYP = 311;
@@ -821,23 +821,23 @@ public:
 		static const Sbecore::uint PNLWZNMQRYLIST_TCOSRL = 321;
 		static const Sbecore::uint PNLWZNMQRYLIST_TCOTBL = 322;
 		static const Sbecore::uint PNLWZNMQRYLIST_TCOQTB = 323;
-		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOQMD = 324;
-		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOTYP = 325;
-		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOCSE = 326;
-		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOPST = 327;
-		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOVEC = 328;
-		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOVIT = 329;
-		static const Sbecore::uint PNLWZNMQRYAORDER_TCOSHO = 330;
-		static const Sbecore::uint PNLWZNMQRYAORDER_TCOTCO = 331;
-		static const Sbecore::uint PNLWZNMQRY1NQUERYMOD_TCOREF = 332;
+		static const Sbecore::uint PNLWZNMQRYAORDER_TCOSHO = 324;
+		static const Sbecore::uint PNLWZNMQRYAORDER_TCOTCO = 325;
+		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOQMD = 326;
+		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOTYP = 327;
+		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOCSE = 328;
+		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOPST = 329;
+		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOVEC = 330;
+		static const Sbecore::uint PNLWZNMQRYACLAUSE_TCOVIT = 331;
+		static const Sbecore::uint PNLWZNMQRYSUP1NQUERY_TCOREF = 332;
 		static const Sbecore::uint PNLWZNMQRYQRY1NQUERYCOL_TCOREF = 333;
-		static const Sbecore::uint PNLWZNMQRYSUP1NQUERY_TCOREF = 334;
+		static const Sbecore::uint PNLWZNMQRY1NQUERYMOD_TCOREF = 334;
 		static const Sbecore::uint PNLWZNMQRYMNTABLE_TCOMREF = 335;
 		static const Sbecore::uint PNLWZNMQRYMNTABLE_TCOTQMD = 336;
 		static const Sbecore::uint PNLWZNMQRYMNTABLE_TCOSRC = 337;
 		static const Sbecore::uint PNLWZNMQRYMNTABLE_TCOPFX = 338;
-		static const Sbecore::uint PNLWZNMQRYMNDIALOG_TCOMREF = 339;
-		static const Sbecore::uint PNLWZNMQRYMNPANEL_TCOMREF = 340;
+		static const Sbecore::uint PNLWZNMQRYMNPANEL_TCOMREF = 339;
+		static const Sbecore::uint PNLWZNMQRYMNDIALOG_TCOMREF = 340;
 		static const Sbecore::uint PNLWZNMQCOLIST_TCOSRF = 341;
 		static const Sbecore::uint PNLWZNMQCOLIST_TCOSHO = 342;
 		static const Sbecore::uint PNLWZNMQCOLIST_TCOTYP = 343;
@@ -882,8 +882,8 @@ public:
 		static const Sbecore::uint PNLWZNMOPK1NOP_TCOREF = 382;
 		static const Sbecore::uint PNLWZNMOPKREF1NBLOCK_TCOREF = 383;
 		static const Sbecore::uint PNLWZNMOPKMNJOB_TCOMREF = 384;
-		static const Sbecore::uint PNLWZNMOPKMNLIBRARY_TCOMREF = 385;
-		static const Sbecore::uint PNLWZNMOPKMNCOMPONENT_TCOMREF = 386;
+		static const Sbecore::uint PNLWZNMOPKMNCOMPONENT_TCOMREF = 385;
+		static const Sbecore::uint PNLWZNMOPKMNLIBRARY_TCOMREF = 386;
 		static const Sbecore::uint PNLWZNMOPKSQKMNSTUB_TCOMREF = 387;
 		static const Sbecore::uint PNLWZNMOPXLIST_TCOSRF = 388;
 		static const Sbecore::uint PNLWZNMOPXLIST_TCOOPK = 389;
@@ -917,14 +917,14 @@ public:
 		static const Sbecore::uint PNLWZNMJOBAVAR_TCOCMT = 417;
 		static const Sbecore::uint PNLWZNMJOBACMD_TCOSRF = 418;
 		static const Sbecore::uint PNLWZNMJOBACMD_TCOCMT = 419;
-		static const Sbecore::uint PNLWZNMJOB1NRTJOB_TCOREF = 420;
-		static const Sbecore::uint PNLWZNMJOB1NMETHOD_TCOREF = 421;
+		static const Sbecore::uint PNLWZNMJOB1NMETHOD_TCOREF = 420;
+		static const Sbecore::uint PNLWZNMJOB1NSENSITIVITY_TCOREF = 421;
 		static const Sbecore::uint PNLWZNMJOBJOB1NSTAGE_TCOREF = 422;
-		static const Sbecore::uint PNLWZNMJOB1NSENSITIVITY_TCOREF = 423;
+		static const Sbecore::uint PNLWZNMJOB1NRTJOB_TCOREF = 423;
 		static const Sbecore::uint PNLWZNMJOBHK1NVECTOR_TCOREF = 424;
 		static const Sbecore::uint PNLWZNMJOBREF1NBLOCK_TCOREF = 425;
-		static const Sbecore::uint PNLWZNMJOBMNOP_TCOMREF = 426;
-		static const Sbecore::uint PNLWZNMJOBMNOPPACK_TCOMREF = 427;
+		static const Sbecore::uint PNLWZNMJOBMNOPPACK_TCOMREF = 426;
+		static const Sbecore::uint PNLWZNMJOBMNOP_TCOMREF = 427;
 		static const Sbecore::uint PNLWZNMJOBSUPMNJOB_TCOMREF = 428;
 		static const Sbecore::uint PNLWZNMJOBSUPMNJOB_TCOSHO = 429;
 		static const Sbecore::uint PNLWZNMJOBSUPMNJOB_TCOMLT = 430;
@@ -983,8 +983,8 @@ public:
 		static const Sbecore::uint PNLWZNMCMPLIST_TCOTYP = 483;
 		static const Sbecore::uint PNLWZNMCMPLIST_TCOVER = 484;
 		static const Sbecore::uint PNLWZNMCMP1NRELEASE_TCOREF = 485;
-		static const Sbecore::uint PNLWZNMCMPMNOPPACK_TCOMREF = 486;
-		static const Sbecore::uint PNLWZNMCMPMNLIBRARY_TCOMREF = 487;
+		static const Sbecore::uint PNLWZNMCMPMNLIBRARY_TCOMREF = 486;
+		static const Sbecore::uint PNLWZNMCMPMNOPPACK_TCOMREF = 487;
 		static const Sbecore::uint PNLWZNMRLSLIST_TCOSRF = 488;
 		static const Sbecore::uint PNLWZNMRLSLIST_TCOCMP = 489;
 		static const Sbecore::uint PNLWZNMRLSLIST_TCOMCH = 490;
@@ -994,9 +994,9 @@ public:
 		static const Sbecore::uint PNLWZNMAPPLIST_TCOTIT = 494;
 		static const Sbecore::uint PNLWZNMAPPLIST_TCOTRG = 495;
 		static const Sbecore::uint PNLWZNMAPPLIST_TCOVER = 496;
-		static const Sbecore::uint PNLWZNMAPP1NRTJOB_TCOREF = 497;
+		static const Sbecore::uint PNLWZNMAPP1NEVENT_TCOREF = 497;
 		static const Sbecore::uint PNLWZNMAPPAPP1NSEQUENCE_TCOREF = 498;
-		static const Sbecore::uint PNLWZNMAPP1NEVENT_TCOREF = 499;
+		static const Sbecore::uint PNLWZNMAPP1NRTJOB_TCOREF = 499;
 		static const Sbecore::uint PNLWZNMAPPREF1NFILE_TCOREF = 500;
 		static const Sbecore::uint PNLWZNMRTJLIST_TCOSRF = 501;
 		static const Sbecore::uint PNLWZNMRTJLIST_TCOAPP = 502;

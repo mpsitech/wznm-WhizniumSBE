@@ -32,12 +32,12 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint TBL = 1;
-		static const Sbecore::uint QTB = 2;
+		static const Sbecore::uint QTB = 1;
+		static const Sbecore::uint TBL = 2;
 		static const Sbecore::uint SRL = 3;
 		static const Sbecore::uint SUP = 4;
-		static const Sbecore::uint VER = 5;
-		static const Sbecore::uint TYP = 6;
+		static const Sbecore::uint TYP = 5;
+		static const Sbecore::uint VER = 6;
 		static const Sbecore::uint SRF = 7;
 
 		static Sbecore::uint getIx(const std::string& sref);

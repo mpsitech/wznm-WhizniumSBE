@@ -15,10 +15,10 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmTco1NCheck.h"
-#include "PnlWznmTcoRef1NControl.h"
 #include "PnlWznmTcoRef1NQuerymod.h"
-#include "PnlWznmTco1NImpexpcol.h"
+#include "PnlWznmTcoRef1NControl.h"
 #include "PnlWznmTco1NQuerycol.h"
+#include "PnlWznmTco1NImpexpcol.h"
 #include "PnlWznmTcoATitle.h"
 #include "PnlWznmTcoDetail.h"
 
@@ -78,8 +78,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NQuerycol = false, const bool initdone1NImpexpcol = false, const bool initdoneRef1NQuerymod = false, const bool initdoneRef1NControl = false, const bool initdone1NCheck = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NQuerycol = false, const bool initdone1NImpexpcol = false, const bool initdoneRef1NQuerymod = false, const bool initdoneRef1NControl = false, const bool initdone1NCheck = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NImpexpcol = false, const bool initdone1NQuerycol = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NQuerymod = false, const bool initdone1NCheck = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATitle = false, const bool initdone1NImpexpcol = false, const bool initdone1NQuerycol = false, const bool initdoneRef1NControl = false, const bool initdoneRef1NQuerymod = false, const bool initdone1NCheck = false);
 	};
 
 	/**
@@ -92,33 +92,33 @@ public:
 		static const Sbecore::uint JREFDETAIL = 2;
 		static const Sbecore::uint JREFATITLE = 3;
 		static const Sbecore::uint PNLATITLEAVAIL = 4;
-		static const Sbecore::uint JREF1NQUERYCOL = 5;
-		static const Sbecore::uint PNL1NQUERYCOLAVAIL = 6;
-		static const Sbecore::uint JREF1NIMPEXPCOL = 7;
-		static const Sbecore::uint PNL1NIMPEXPCOLAVAIL = 8;
-		static const Sbecore::uint JREFREF1NQUERYMOD = 9;
-		static const Sbecore::uint PNLREF1NQUERYMODAVAIL = 10;
-		static const Sbecore::uint JREFREF1NCONTROL = 11;
-		static const Sbecore::uint PNLREF1NCONTROLAVAIL = 12;
+		static const Sbecore::uint JREF1NIMPEXPCOL = 5;
+		static const Sbecore::uint PNL1NIMPEXPCOLAVAIL = 6;
+		static const Sbecore::uint JREF1NQUERYCOL = 7;
+		static const Sbecore::uint PNL1NQUERYCOLAVAIL = 8;
+		static const Sbecore::uint JREFREF1NCONTROL = 9;
+		static const Sbecore::uint PNLREF1NCONTROLAVAIL = 10;
+		static const Sbecore::uint JREFREF1NQUERYMOD = 11;
+		static const Sbecore::uint PNLREF1NQUERYMODAVAIL = 12;
 		static const Sbecore::uint JREF1NCHECK = 13;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 14;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const bool pnlatitleAvail = false, const Sbecore::ubigint jref1NQuerycol = 0, const bool pnl1nquerycolAvail = false, const Sbecore::ubigint jref1NImpexpcol = 0, const bool pnl1nimpexpcolAvail = false, const Sbecore::ubigint jrefRef1NQuerymod = 0, const bool pnlref1nquerymodAvail = false, const Sbecore::ubigint jrefRef1NControl = 0, const bool pnlref1ncontrolAvail = false, const Sbecore::ubigint jref1NCheck = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATitle = 0, const bool pnlatitleAvail = false, const Sbecore::ubigint jref1NImpexpcol = 0, const bool pnl1nimpexpcolAvail = false, const Sbecore::ubigint jref1NQuerycol = 0, const bool pnl1nquerycolAvail = false, const Sbecore::ubigint jrefRef1NControl = 0, const bool pnlref1ncontrolAvail = false, const Sbecore::ubigint jrefRef1NQuerymod = 0, const bool pnlref1nquerymodAvail = false, const Sbecore::ubigint jref1NCheck = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
 		Sbecore::ubigint jrefATitle;
 		bool pnlatitleAvail;
-		Sbecore::ubigint jref1NQuerycol;
-		bool pnl1nquerycolAvail;
 		Sbecore::ubigint jref1NImpexpcol;
 		bool pnl1nimpexpcolAvail;
-		Sbecore::ubigint jrefRef1NQuerymod;
-		bool pnlref1nquerymodAvail;
+		Sbecore::ubigint jref1NQuerycol;
+		bool pnl1nquerycolAvail;
 		Sbecore::ubigint jrefRef1NControl;
 		bool pnlref1ncontrolAvail;
+		Sbecore::ubigint jrefRef1NQuerymod;
+		bool pnlref1nquerymodAvail;
 		Sbecore::ubigint jref1NCheck;
 		bool ButRegularizeActive;
 
@@ -190,10 +190,10 @@ public:
 	};
 
 	bool evalPnlatitleAvail(DbsWznm* dbswznm);
-	bool evalPnl1nquerycolAvail(DbsWznm* dbswznm);
 	bool evalPnl1nimpexpcolAvail(DbsWznm* dbswznm);
-	bool evalPnlref1nquerymodAvail(DbsWznm* dbswznm);
+	bool evalPnl1nquerycolAvail(DbsWznm* dbswznm);
 	bool evalPnlref1ncontrolAvail(DbsWznm* dbswznm);
+	bool evalPnlref1nquerymodAvail(DbsWznm* dbswznm);
 	bool evalButRegularizeActive(DbsWznm* dbswznm);
 
 public:
@@ -205,10 +205,10 @@ public:
 	StatShr statshr;
 
 	PnlWznmTco1NCheck* pnl1ncheck;
-	PnlWznmTcoRef1NControl* pnlref1ncontrol;
 	PnlWznmTcoRef1NQuerymod* pnlref1nquerymod;
-	PnlWznmTco1NImpexpcol* pnl1nimpexpcol;
+	PnlWznmTcoRef1NControl* pnlref1ncontrol;
 	PnlWznmTco1NQuerycol* pnl1nquerycol;
+	PnlWznmTco1NImpexpcol* pnl1nimpexpcol;
 	PnlWznmTcoATitle* pnlatitle;
 	PnlWznmTcoDetail* pnldetail;
 

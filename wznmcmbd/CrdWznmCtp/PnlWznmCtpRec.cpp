@@ -38,11 +38,11 @@ PnlWznmCtpRec::PnlWznmCtpRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlapar = NULL;
-	pnl1ntag = NULL;
 	pnltpl1ncapability = NULL;
-	pnlkparkey = NULL;
+	pnl1ntag = NULL;
+	pnlapar = NULL;
 	pnlkkey = NULL;
+	pnlkparkey = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT

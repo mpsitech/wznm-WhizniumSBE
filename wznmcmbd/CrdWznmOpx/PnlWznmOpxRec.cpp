@@ -49,8 +49,8 @@ PnlWznmOpxRec::PnlWznmOpxRec(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMOPX_SQKEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMOPX_OPKEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMOPX_SQKEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -276,10 +276,10 @@ void PnlWznmOpxRec::handleCall(
 		call->abort = handleCallWznmSqkUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPXUPD_REFEQ) {
 		call->abort = handleCallWznmOpxUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPX_SQKEQ) {
-		call->abort = handleCallWznmOpx_sqkEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPX_OPKEQ) {
 		call->abort = handleCallWznmOpx_opkEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPX_SQKEQ) {
+		call->abort = handleCallWznmOpx_sqkEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -301,17 +301,6 @@ bool PnlWznmOpxRec::handleCallWznmOpxUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmOpxRec::handleCallWznmOpx_sqkEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recOpx.refWznmMSquawk == refInv); // IP handleCallWznmOpx_sqkEq --- LINE
-	return retval;
-};
-
 bool PnlWznmOpxRec::handleCallWznmOpx_opkEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -320,5 +309,16 @@ bool PnlWznmOpxRec::handleCallWznmOpx_opkEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recOpx.refWznmMOppack == refInv); // IP handleCallWznmOpx_opkEq --- LINE
+	return retval;
+};
+
+bool PnlWznmOpxRec::handleCallWznmOpx_sqkEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recOpx.refWznmMSquawk == refInv); // IP handleCallWznmOpx_sqkEq --- LINE
 	return retval;
 };

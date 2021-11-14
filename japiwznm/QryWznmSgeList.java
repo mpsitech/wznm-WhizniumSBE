@@ -19,8 +19,8 @@ public class QryWznmSgeList {
 		*/
 	public static class VecVOrd {
 
-		public static final int TYP = 1;
-		public static final int JOB = 2;
+		public static final int JOB = 1;
+		public static final int TYP = 2;
 		public static final int SRF = 3;
 
 		public static int getIx(
@@ -28,8 +28,8 @@ public class QryWznmSgeList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("typ")) return TYP;
 			if (s.equals("job")) return JOB;
+			if (s.equals("typ")) return TYP;
 			if (s.equals("srf")) return SRF;
 
 			return 0;
@@ -38,8 +38,8 @@ public class QryWznmSgeList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == TYP) return("typ");
 			if (ix == JOB) return("job");
+			if (ix == TYP) return("typ");
 			if (ix == SRF) return("srf");
 
 			return "";

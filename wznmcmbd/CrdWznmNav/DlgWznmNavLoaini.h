@@ -536,9 +536,9 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
+	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
-	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:

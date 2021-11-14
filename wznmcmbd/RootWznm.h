@@ -138,8 +138,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
 	bool handleCallWznmSuspsess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
 	bool handleCallWznmLogout(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const bool boolvalInv);
 
 private:

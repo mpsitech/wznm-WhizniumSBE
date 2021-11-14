@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmApp1NEvent.h"
 #include "PnlWznmAppRef1NFile.h"
 #include "PnlWznmApp1NRtjob.h"
 #include "PnlWznmAppApp1NSequence.h"
+#include "PnlWznmApp1NEvent.h"
 #include "PnlWznmAppDetail.h"
 
 #define VecVWznmAppRecDo PnlWznmAppRec::VecVDo
@@ -76,8 +76,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdone1NRtjob = false, const bool initdoneApp1NSequence = false, const bool initdone1NEvent = false, const bool initdoneRef1NFile = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NRtjob = false, const bool initdoneApp1NSequence = false, const bool initdone1NEvent = false, const bool initdoneRef1NFile = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdone1NEvent = false, const bool initdoneApp1NSequence = false, const bool initdone1NRtjob = false, const bool initdoneRef1NFile = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NEvent = false, const bool initdoneApp1NSequence = false, const bool initdone1NRtjob = false, const bool initdoneRef1NFile = false);
 	};
 
 	/**
@@ -88,21 +88,21 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREF1NRTJOB = 3;
+		static const Sbecore::uint JREF1NEVENT = 3;
 		static const Sbecore::uint JREFAPP1NSEQUENCE = 4;
-		static const Sbecore::uint JREF1NEVENT = 5;
+		static const Sbecore::uint JREF1NRTJOB = 5;
 		static const Sbecore::uint JREFREF1NFILE = 6;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 7;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NRtjob = 0, const Sbecore::ubigint jrefApp1NSequence = 0, const Sbecore::ubigint jref1NEvent = 0, const Sbecore::ubigint jrefRef1NFile = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NEvent = 0, const Sbecore::ubigint jrefApp1NSequence = 0, const Sbecore::ubigint jref1NRtjob = 0, const Sbecore::ubigint jrefRef1NFile = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jref1NRtjob;
-		Sbecore::ubigint jrefApp1NSequence;
 		Sbecore::ubigint jref1NEvent;
+		Sbecore::ubigint jrefApp1NSequence;
+		Sbecore::ubigint jref1NRtjob;
 		Sbecore::ubigint jrefRef1NFile;
 		bool ButRegularizeActive;
 
@@ -183,10 +183,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmApp1NEvent* pnl1nevent;
 	PnlWznmAppRef1NFile* pnlref1nfile;
 	PnlWznmApp1NRtjob* pnl1nrtjob;
 	PnlWznmAppApp1NSequence* pnlapp1nsequence;
+	PnlWznmApp1NEvent* pnl1nevent;
 	PnlWznmAppDetail* pnldetail;
 
 	WznmMApp recApp;

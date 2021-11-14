@@ -99,7 +99,7 @@ namespace IexWznmGbl {
 	class ImeitemIJAMBlockItem : public WznmJAMBlockItem {
 
 	public:
-		ImeitemIJAMBlockItem(const std::string& srefX1RefWznmMRelease = "", const std::string& Defval = "");
+		ImeitemIJAMBlockItem(const std::string& srefX1RefWznmMRelease = "", const std::string& Defval = "", const std::string& srefRefWznmMVectoritem = "");
 		ImeitemIJAMBlockItem(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
@@ -107,6 +107,7 @@ namespace IexWznmGbl {
 		Sbecore::uint ixWIelValid;
 
 		std::string srefX1RefWznmMRelease;
+		std::string srefRefWznmMVectoritem;
 
 	public:
 		void readTxt(Sbecore::Txtrd& txtrd);
@@ -130,6 +131,7 @@ namespace IexWznmGbl {
 		public:
 			static const Sbecore::uint SREFX1REFWZNMMRELEASE = 1;
 			static const Sbecore::uint DEFVAL = 2;
+			static const Sbecore::uint SREFREFWZNMMVECTORITEM = 4;
 
 			static Sbecore::uint getIx(const std::string& srefs);
 			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);
@@ -159,7 +161,7 @@ namespace IexWznmGbl {
 	class ImeitemIAMBlockItem : public WznmAMBlockItem {
 
 	public:
-		ImeitemIAMBlockItem(const Sbecore::ubigint irefRefWznmCAMBlockItem = 0, const Sbecore::uint ixVBasetype = 0, const std::string& sref = "", const Sbecore::uint ixWznmVVartype = 0, const std::string& Defval = "", const std::string& Comment = "");
+		ImeitemIAMBlockItem(const Sbecore::ubigint irefRefWznmCAMBlockItem = 0, const Sbecore::uint ixVBasetype = 0, const std::string& sref = "", const Sbecore::uint ixWznmVVartype = 0, const std::string& srefRefWznmMVector = "", const std::string& Defval = "", const std::string& srefRefWznmMVectoritem = "", const std::string& Comment = "");
 		ImeitemIAMBlockItem(DbsWznm* dbswznm, const Sbecore::ubigint ref);
 
 	public:
@@ -169,6 +171,8 @@ namespace IexWznmGbl {
 		Sbecore::ubigint irefRefWznmCAMBlockItem;
 		std::string srefIxVBasetype;
 		std::string srefIxWznmVVartype;
+		std::string srefRefWznmMVector;
+		std::string srefRefWznmMVectoritem;
 
 		ImeIJAMBlockItem imeijamblockitem;
 
@@ -196,8 +200,10 @@ namespace IexWznmGbl {
 			static const Sbecore::uint SREFIXVBASETYPE = 2;
 			static const Sbecore::uint SREF = 4;
 			static const Sbecore::uint SREFIXWZNMVVARTYPE = 8;
-			static const Sbecore::uint DEFVAL = 16;
-			static const Sbecore::uint COMMENT = 32;
+			static const Sbecore::uint SREFREFWZNMMVECTOR = 16;
+			static const Sbecore::uint DEFVAL = 32;
+			static const Sbecore::uint SREFREFWZNMMVECTORITEM = 64;
+			static const Sbecore::uint COMMENT = 128;
 
 			static Sbecore::uint getIx(const std::string& srefs);
 			static void getIcs(const Sbecore::uint ix, std::set<Sbecore::uint>& ics);

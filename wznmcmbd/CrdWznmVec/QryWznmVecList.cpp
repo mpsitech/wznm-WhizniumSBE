@@ -238,12 +238,12 @@ void QryWznmVecList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::HKU) sqlstr += " ORDER BY TblWznmMVector.hkUref ASC";
-	else if (preIxOrd == VecVOrd::TGR) sqlstr += " ORDER BY TblWznmMVector.osrefWznmKTaggrp ASC";
-	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMVector.refWznmMVersion ASC";
+	if (preIxOrd == VecVOrd::TGR) sqlstr += " ORDER BY TblWznmMVector.osrefWznmKTaggrp ASC";
+	else if (preIxOrd == VecVOrd::HKU) sqlstr += " ORDER BY TblWznmMVector.hkUref ASC";
 	else if (preIxOrd == VecVOrd::HKT) sqlstr += " ORDER BY TblWznmMVector.hkIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMVector.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMVector.refWznmMVersion ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMVector.sref ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMVector.ixVBasetype ASC";
 };
 
 void QryWznmVecList::fetch(
@@ -280,10 +280,10 @@ void QryWznmVecList::fetch(
 				rec->stubHkUref = StubWznm::getStubTblStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::JOB) {
 				rec->stubHkUref = StubWznm::getStubJobStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::IME) {
-				rec->stubHkUref = StubWznm::getStubImeStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::IEX) {
 				rec->stubHkUref = StubWznm::getStubIexStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::IME) {
+				rec->stubHkUref = StubWznm::getStubImeStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubHkUref = "-";
 			rec->titOsrefWznmKTaggrp = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKTAGGRP, rec->osrefWznmKTaggrp, ixWznmVLocale);
 		};
@@ -436,27 +436,13 @@ void QryWznmVecList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMVECUPD_REFEQ) {
-		call->abort = handleCallWznmVecUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVECMOD) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMVECMOD) {
 		call->abort = handleCallWznmVecMod(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVECUPD_REFEQ) {
+		call->abort = handleCallWznmVecUpd_refEq(dbswznm, call->jref);
 	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmVecList::handleCallWznmVecUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
-		ixWznmVQrystate = VecWznmVQrystate::OOD;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
-	return retval;
 };
 
 bool QryWznmVecList::handleCallWznmVecMod(
@@ -467,6 +453,20 @@ bool QryWznmVecList::handleCallWznmVecMod(
 
 	if ((ixWznmVQrystate == VecWznmVQrystate::UTD) || (ixWznmVQrystate == VecWznmVQrystate::SLM)) {
 		ixWznmVQrystate = VecWznmVQrystate::MNR;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
+	return retval;
+};
+
+bool QryWznmVecList::handleCallWznmVecUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
+		ixWznmVQrystate = VecWznmVQrystate::OOD;
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 

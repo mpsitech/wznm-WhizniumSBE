@@ -118,8 +118,8 @@ public class PnlWznmRelRec {
 		public static final int INITDONESUP1NRELATION = 3;
 		public static final int INITDONE1NTABLECOL = 4;
 		public static final int INITDONEREF1NCONTROL = 5;
-		public static final int INITDONEREF1NPANEL = 6;
-		public static final int INITDONEREF1NDIALOG = 7;
+		public static final int INITDONEREF1NDIALOG = 6;
+		public static final int INITDONEREF1NPANEL = 7;
 
 		public StatApp(
 					boolean initdoneDetail
@@ -127,18 +127,18 @@ public class PnlWznmRelRec {
 					, boolean initdoneSup1NRelation
 					, boolean initdone1NTablecol
 					, boolean initdoneRef1NControl
-					, boolean initdoneRef1NPanel
 					, boolean initdoneRef1NDialog
+					, boolean initdoneRef1NPanel
 				) {
 			this.initdoneDetail = initdoneDetail;
 			this.initdoneATitle = initdoneATitle;
 			this.initdoneSup1NRelation = initdoneSup1NRelation;
 			this.initdone1NTablecol = initdone1NTablecol;
 			this.initdoneRef1NControl = initdoneRef1NControl;
-			this.initdoneRef1NPanel = initdoneRef1NPanel;
 			this.initdoneRef1NDialog = initdoneRef1NDialog;
+			this.initdoneRef1NPanel = initdoneRef1NPanel;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATITLE, INITDONESUP1NRELATION, INITDONE1NTABLECOL, INITDONEREF1NCONTROL, INITDONEREF1NPANEL, INITDONEREF1NDIALOG));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATITLE, INITDONESUP1NRELATION, INITDONE1NTABLECOL, INITDONEREF1NCONTROL, INITDONEREF1NDIALOG, INITDONEREF1NPANEL));
 		};
 
 		public boolean initdoneDetail;
@@ -146,8 +146,8 @@ public class PnlWznmRelRec {
 		public boolean initdoneSup1NRelation;
 		public boolean initdone1NTablecol;
 		public boolean initdoneRef1NControl;
-		public boolean initdoneRef1NPanel;
 		public boolean initdoneRef1NDialog;
+		public boolean initdoneRef1NPanel;
 
 		public boolean readXML(
 					Document doc
@@ -167,8 +167,8 @@ public class PnlWznmRelRec {
 				initdoneSup1NRelation = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneSup1NRelation", mask, INITDONESUP1NRELATION);
 				initdone1NTablecol = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NTablecol", mask, INITDONE1NTABLECOL);
 				initdoneRef1NControl = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NControl", mask, INITDONEREF1NCONTROL);
-				initdoneRef1NPanel = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NPanel", mask, INITDONEREF1NPANEL);
 				initdoneRef1NDialog = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NDialog", mask, INITDONEREF1NDIALOG);
+				initdoneRef1NPanel = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NPanel", mask, INITDONEREF1NPANEL);
 
 				return true;
 			};
@@ -186,8 +186,8 @@ public class PnlWznmRelRec {
 			if (initdoneSup1NRelation == comp.initdoneSup1NRelation) items.add(INITDONESUP1NRELATION);
 			if (initdone1NTablecol == comp.initdone1NTablecol) items.add(INITDONE1NTABLECOL);
 			if (initdoneRef1NControl == comp.initdoneRef1NControl) items.add(INITDONEREF1NCONTROL);
-			if (initdoneRef1NPanel == comp.initdoneRef1NPanel) items.add(INITDONEREF1NPANEL);
 			if (initdoneRef1NDialog == comp.initdoneRef1NDialog) items.add(INITDONEREF1NDIALOG);
+			if (initdoneRef1NPanel == comp.initdoneRef1NPanel) items.add(INITDONEREF1NPANEL);
 
 			return(items);
 		};
@@ -200,7 +200,7 @@ public class PnlWznmRelRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATITLE, INITDONESUP1NRELATION, INITDONE1NTABLECOL, INITDONEREF1NCONTROL, INITDONEREF1NPANEL, INITDONEREF1NDIALOG));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEATITLE, INITDONESUP1NRELATION, INITDONE1NTABLECOL, INITDONEREF1NCONTROL, INITDONEREF1NDIALOG, INITDONEREF1NPANEL));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -219,8 +219,8 @@ public class PnlWznmRelRec {
 		public static final int SCRJREFSUP1NRELATION = 4;
 		public static final int SCRJREF1NTABLECOL = 5;
 		public static final int SCRJREFREF1NCONTROL = 6;
-		public static final int SCRJREFREF1NPANEL = 7;
-		public static final int SCRJREFREF1NDIALOG = 8;
+		public static final int SCRJREFREF1NDIALOG = 7;
+		public static final int SCRJREFREF1NPANEL = 8;
 		public static final int BUTREGULARIZEACTIVE = 9;
 
 		public StatShr(
@@ -230,8 +230,8 @@ public class PnlWznmRelRec {
 					, String scrJrefSup1NRelation
 					, String scrJref1NTablecol
 					, String scrJrefRef1NControl
-					, String scrJrefRef1NPanel
 					, String scrJrefRef1NDialog
+					, String scrJrefRef1NPanel
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
@@ -240,11 +240,11 @@ public class PnlWznmRelRec {
 			this.scrJrefSup1NRelation = scrJrefSup1NRelation;
 			this.scrJref1NTablecol = scrJref1NTablecol;
 			this.scrJrefRef1NControl = scrJrefRef1NControl;
-			this.scrJrefRef1NPanel = scrJrefRef1NPanel;
 			this.scrJrefRef1NDialog = scrJrefRef1NDialog;
+			this.scrJrefRef1NPanel = scrJrefRef1NPanel;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFSUP1NRELATION, SCRJREF1NTABLECOL, SCRJREFREF1NCONTROL, SCRJREFREF1NPANEL, SCRJREFREF1NDIALOG, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFSUP1NRELATION, SCRJREF1NTABLECOL, SCRJREFREF1NCONTROL, SCRJREFREF1NDIALOG, SCRJREFREF1NPANEL, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
@@ -253,8 +253,8 @@ public class PnlWznmRelRec {
 		public String scrJrefSup1NRelation;
 		public String scrJref1NTablecol;
 		public String scrJrefRef1NControl;
-		public String scrJrefRef1NPanel;
 		public String scrJrefRef1NDialog;
+		public String scrJrefRef1NPanel;
 		public boolean ButRegularizeActive;
 
 		public boolean readXML(
@@ -278,8 +278,8 @@ public class PnlWznmRelRec {
 				scrJrefSup1NRelation = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefSup1NRelation", mask, SCRJREFSUP1NRELATION);
 				scrJref1NTablecol = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NTablecol", mask, SCRJREF1NTABLECOL);
 				scrJrefRef1NControl = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NControl", mask, SCRJREFREF1NCONTROL);
-				scrJrefRef1NPanel = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NPanel", mask, SCRJREFREF1NPANEL);
 				scrJrefRef1NDialog = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NDialog", mask, SCRJREFREF1NDIALOG);
+				scrJrefRef1NPanel = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NPanel", mask, SCRJREFREF1NPANEL);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
 				return true;
@@ -299,8 +299,8 @@ public class PnlWznmRelRec {
 			if (scrJrefSup1NRelation.equals(comp.scrJrefSup1NRelation)) items.add(SCRJREFSUP1NRELATION);
 			if (scrJref1NTablecol.equals(comp.scrJref1NTablecol)) items.add(SCRJREF1NTABLECOL);
 			if (scrJrefRef1NControl.equals(comp.scrJrefRef1NControl)) items.add(SCRJREFREF1NCONTROL);
-			if (scrJrefRef1NPanel.equals(comp.scrJrefRef1NPanel)) items.add(SCRJREFREF1NPANEL);
 			if (scrJrefRef1NDialog.equals(comp.scrJrefRef1NDialog)) items.add(SCRJREFREF1NDIALOG);
+			if (scrJrefRef1NPanel.equals(comp.scrJrefRef1NPanel)) items.add(SCRJREFREF1NPANEL);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
 			return(items);
@@ -314,7 +314,7 @@ public class PnlWznmRelRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFSUP1NRELATION, SCRJREF1NTABLECOL, SCRJREFREF1NCONTROL, SCRJREFREF1NPANEL, SCRJREFREF1NDIALOG, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREFSUP1NRELATION, SCRJREF1NTABLECOL, SCRJREFREF1NCONTROL, SCRJREFREF1NDIALOG, SCRJREFREF1NPANEL, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

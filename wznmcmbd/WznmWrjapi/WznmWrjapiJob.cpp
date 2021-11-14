@@ -1387,7 +1387,7 @@ string WznmWrjapiJob::getVecclass(
 
 	WznmMJob* hostjob = NULL;
 
-	if (vec->hkIxVTbl == VecWznmVMVectorHkTbl::JOB) {
+	if ((vec->hkIxVTbl == VecWznmVMVectorHkTbl::JOB) && (job != NULL)) {
 		if (vec->hkUref == job->ref) {
 			retval = Wznm::getSubsref(job, vec->sref);
 

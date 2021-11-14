@@ -32,10 +32,10 @@ namespace QryWznmConList {
 		static const Sbecore::uint REU = 2;
 		static const Sbecore::uint RET = 3;
 		static const Sbecore::uint SCT = 4;
-		static const Sbecore::uint HKT = 5;
-		static const Sbecore::uint HKU = 6;
-		static const Sbecore::uint SRF = 7;
-		static const Sbecore::uint TYP = 8;
+		static const Sbecore::uint HKU = 5;
+		static const Sbecore::uint HKT = 6;
+		static const Sbecore::uint TYP = 7;
+		static const Sbecore::uint SRF = 8;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

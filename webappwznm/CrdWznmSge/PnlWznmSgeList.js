@@ -129,7 +129,7 @@ function refreshB(chgcol) {
 			} else if (i == 2) {
 				doc.cols.push("TcoTyp"); doc.widths.push(TcoTypWidth); doc.fs.push("typ2"); doc.tos.push(0); wtot += TcoTypWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(2); wtot += TcoJobWidth;
+				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(1); wtot += TcoJobWidth;
 			} else {
 				ix--;
 			};

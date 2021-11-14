@@ -20,8 +20,8 @@ uint QryWznmSbsList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "tbl") return TBL;
 	if (s == "srf") return SRF;
+	if (s == "tbl") return TBL;
 
 	return(0);
 };
@@ -29,8 +29,8 @@ uint QryWznmSbsList::VecVOrd::getIx(
 string QryWznmSbsList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TBL) return("tbl");
 	if (ix == SRF) return("srf");
+	if (ix == TBL) return("tbl");
 
 	return("");
 };

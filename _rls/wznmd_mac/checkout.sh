@@ -3,7 +3,7 @@
 # checkout script for Wznm daemon, release wznmd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 25 Oct 2021
+# date created: 13 Nov 2021
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -20,11 +20,11 @@ export set CMBDBUILDROOT=$REPROOT/wznm/wznmcmbd
 mkdir $BUILDROOT/wznmd
 mkdir $BUILDROOT/wznmd/IexWznm
 mkdir $BUILDROOT/wznmd/VecWznm
-mkdir $BUILDROOT/wznmd/CrdWznmNav
 mkdir $BUILDROOT/wznmd/CrdWznmUsg
 mkdir $BUILDROOT/wznmd/CrdWznmUsr
 mkdir $BUILDROOT/wznmd/CrdWznmPrs
 mkdir $BUILDROOT/wznmd/CrdWznmFil
+mkdir $BUILDROOT/wznmd/CrdWznmNav
 mkdir $BUILDROOT/wznmd/CrdWznmLoc
 mkdir $BUILDROOT/wznmd/CrdWznmTag
 mkdir $BUILDROOT/wznmd/CrdWznmCtp
@@ -126,11 +126,6 @@ cp Makefile_VecWznm $BUILDROOT/wznmd/VecWznm/Makefile
 cp $CMBDBUILDROOT/VecWznm/Vec*.h $BUILDROOT/wznmd/VecWznm/
 cp $CMBDBUILDROOT/VecWznm/Vec*.cpp $BUILDROOT/wznmd/VecWznm/
 
-cp Makefile_CrdWznmNav $BUILDROOT/wznmd/CrdWznmNav/Makefile
-
-cp $CMBDBUILDROOT/CrdWznmNav/*.h $BUILDROOT/wznmd/CrdWznmNav/
-cp $CMBDBUILDROOT/CrdWznmNav/*.cpp $BUILDROOT/wznmd/CrdWznmNav/
-
 cp Makefile_CrdWznmUsg $BUILDROOT/wznmd/CrdWznmUsg/Makefile
 
 cp $CMBDBUILDROOT/CrdWznmUsg/*.h $BUILDROOT/wznmd/CrdWznmUsg/
@@ -150,6 +145,11 @@ cp Makefile_CrdWznmFil $BUILDROOT/wznmd/CrdWznmFil/Makefile
 
 cp $CMBDBUILDROOT/CrdWznmFil/*.h $BUILDROOT/wznmd/CrdWznmFil/
 cp $CMBDBUILDROOT/CrdWznmFil/*.cpp $BUILDROOT/wznmd/CrdWznmFil/
+
+cp Makefile_CrdWznmNav $BUILDROOT/wznmd/CrdWznmNav/Makefile
+
+cp $CMBDBUILDROOT/CrdWznmNav/*.h $BUILDROOT/wznmd/CrdWznmNav/
+cp $CMBDBUILDROOT/CrdWznmNav/*.cpp $BUILDROOT/wznmd/CrdWznmNav/
 
 cp Makefile_CrdWznmLoc $BUILDROOT/wznmd/CrdWznmLoc/Makefile
 
@@ -371,11 +371,6 @@ cp Makefile_CrdWznmUtl $BUILDROOT/wznmd/CrdWznmUtl/Makefile
 cp $CMBDBUILDROOT/CrdWznmUtl/*.h $BUILDROOT/wznmd/CrdWznmUtl/
 cp $CMBDBUILDROOT/CrdWznmUtl/*.cpp $BUILDROOT/wznmd/CrdWznmUtl/
 
-cp $CMBDBUILDROOT/WznmWrweb/WznmWrweb_blks.h $BUILDROOT/wznmd/
-cp $CMBDBUILDROOT/WznmWrweb/WznmWrweb_blks.cpp $BUILDROOT/wznmd/
-cp $CMBDBUILDROOT/WznmWrweb/SqkWznmWrweb.h $BUILDROOT/wznmd/
-cp $CMBDBUILDROOT/WznmWrweb/SqkWznmWrweb.cpp $BUILDROOT/wznmd/
-
 cp $CMBDBUILDROOT/WznmWrjapi/WznmWrjapi_blks.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmWrjapi/WznmWrjapi_blks.cpp $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmWrjapi/SqkWznmWrjapi.h $BUILDROOT/wznmd/
@@ -386,15 +381,15 @@ cp $CMBDBUILDROOT/WznmWrsrv/WznmWrsrv_blks.cpp $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmWrsrv/SqkWznmWrsrv.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmWrsrv/SqkWznmWrsrv.cpp $BUILDROOT/wznmd/
 
+cp $CMBDBUILDROOT/WznmWrweb/WznmWrweb_blks.h $BUILDROOT/wznmd/
+cp $CMBDBUILDROOT/WznmWrweb/WznmWrweb_blks.cpp $BUILDROOT/wznmd/
+cp $CMBDBUILDROOT/WznmWrweb/SqkWznmWrweb.h $BUILDROOT/wznmd/
+cp $CMBDBUILDROOT/WznmWrweb/SqkWznmWrweb.cpp $BUILDROOT/wznmd/
+
 cp $CMBDBUILDROOT/WznmWrdbs/WznmWrdbs_blks.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmWrdbs/WznmWrdbs_blks.cpp $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmWrdbs/SqkWznmWrdbs.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmWrdbs/SqkWznmWrdbs.cpp $BUILDROOT/wznmd/
-
-cp $CMBDBUILDROOT/WznmWrapi/WznmWrapi_blks.h $BUILDROOT/wznmd/
-cp $CMBDBUILDROOT/WznmWrapi/WznmWrapi_blks.cpp $BUILDROOT/wznmd/
-cp $CMBDBUILDROOT/WznmWrapi/SqkWznmWrapi.h $BUILDROOT/wznmd/
-cp $CMBDBUILDROOT/WznmWrapi/SqkWznmWrapi.cpp $BUILDROOT/wznmd/
 
 cp $CMBDBUILDROOT/WznmWrapp/WznmWrapp_blks.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmWrapp/WznmWrapp_blks.cpp $BUILDROOT/wznmd/
@@ -405,6 +400,11 @@ cp $CMBDBUILDROOT/WznmPrctree/WznmPrctree_blks.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmPrctree/WznmPrctree_blks.cpp $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmPrctree/SqkWznmPrctree.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmPrctree/SqkWznmPrctree.cpp $BUILDROOT/wznmd/
+
+cp $CMBDBUILDROOT/WznmWrapi/WznmWrapi_blks.h $BUILDROOT/wznmd/
+cp $CMBDBUILDROOT/WznmWrapi/WznmWrapi_blks.cpp $BUILDROOT/wznmd/
+cp $CMBDBUILDROOT/WznmWrapi/SqkWznmWrapi.h $BUILDROOT/wznmd/
+cp $CMBDBUILDROOT/WznmWrapi/SqkWznmWrapi.cpp $BUILDROOT/wznmd/
 
 cp $CMBDBUILDROOT/WznmGen/WznmGen_blks.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmGen/WznmGen_blks.cpp $BUILDROOT/wznmd/
@@ -436,12 +436,12 @@ cp $CMBDBUILDROOT/WznmCtpGenui/WznmCtpGenui_blks.cpp $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmCtpGenui/SqkWznmCtpGenui.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmCtpGenui/SqkWznmCtpGenui.cpp $BUILDROOT/wznmd/
 
-cp $CMBDBUILDROOT/WznmCompl/WznmCompl_blks.h $BUILDROOT/wznmd/
-cp $CMBDBUILDROOT/WznmCompl/WznmCompl_blks.cpp $BUILDROOT/wznmd/
-cp $CMBDBUILDROOT/WznmCompl/SqkWznmCompl.h $BUILDROOT/wznmd/
-cp $CMBDBUILDROOT/WznmCompl/SqkWznmCompl.cpp $BUILDROOT/wznmd/
-
 cp $CMBDBUILDROOT/WznmCtpGenjtr/WznmCtpGenjtr_blks.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmCtpGenjtr/WznmCtpGenjtr_blks.cpp $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmCtpGenjtr/SqkWznmCtpGenjtr.h $BUILDROOT/wznmd/
 cp $CMBDBUILDROOT/WznmCtpGenjtr/SqkWznmCtpGenjtr.cpp $BUILDROOT/wznmd/
+
+cp $CMBDBUILDROOT/WznmCompl/WznmCompl_blks.h $BUILDROOT/wznmd/
+cp $CMBDBUILDROOT/WznmCompl/WznmCompl_blks.cpp $BUILDROOT/wznmd/
+cp $CMBDBUILDROOT/WznmCompl/SqkWznmCompl.h $BUILDROOT/wznmd/
+cp $CMBDBUILDROOT/WznmCompl/SqkWznmCompl.cpp $BUILDROOT/wznmd/

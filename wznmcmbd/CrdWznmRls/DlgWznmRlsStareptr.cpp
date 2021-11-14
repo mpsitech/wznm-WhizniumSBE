@@ -351,8 +351,8 @@ void DlgWznmRlsStareptr::handleRequest(
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
 		if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::CLGIDLE) handleTimerInSgeClgidle(dbswznm, req->sref);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::CLONEGIT)) handleTimerWithSrefMonInSgeClonegit(dbswznm);
+		else if (ixVSge == VecVSge::CLGIDLE) handleTimerInSgeClgidle(dbswznm, req->sref);
 	};
 };
 
@@ -522,18 +522,18 @@ void DlgWznmRlsStareptr::handleTimerInSgeUpkidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmRlsStareptr::handleTimerInSgeClgidle(
-			DbsWznm* dbswznm
-			, const string& sref
-		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
-};
-
 void DlgWznmRlsStareptr::handleTimerWithSrefMonInSgeClonegit(
 			DbsWznm* dbswznm
 		) {
 	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeClonegit --- ILINE
+};
+
+void DlgWznmRlsStareptr::handleTimerInSgeClgidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsStareptr::changeStage(

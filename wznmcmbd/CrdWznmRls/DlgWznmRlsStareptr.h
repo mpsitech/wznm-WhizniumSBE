@@ -665,8 +665,8 @@ private:
 	void handleDpchRetWznmPrctreeExtract(DbsWznm* dbswznm, DpchRetWznmPrctreeExtract* dpchret);
 
 	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerInSgeClgidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgeClonegit(DbsWznm* dbswznm);
+	void handleTimerInSgeClgidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

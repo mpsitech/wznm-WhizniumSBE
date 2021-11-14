@@ -185,10 +185,10 @@ void QryWznmFilList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMFile.refUref ASC";
-	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMFile.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::FNM) sqlstr += " ORDER BY TblWznmMFile.Filename ASC";
-	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMFile.own ASC";
+	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMFile.refIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMFile.grp ASC";
+	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMFile.own ASC";
 };
 
 void QryWznmFilList::fetch(

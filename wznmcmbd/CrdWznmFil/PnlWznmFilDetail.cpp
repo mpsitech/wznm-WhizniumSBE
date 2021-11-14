@@ -53,9 +53,9 @@ PnlWznmFilDetail::PnlWznmFilDetail(
 	// IP constructor.cust2 --- INSERT
 
 	xchg->addClstn(VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMFIL_REUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMFIL_RETEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMFIL_CLUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMFIL_RETEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMFIL_REUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -529,12 +529,12 @@ void PnlWznmFilDetail::handleCall(
 		call->abort = handleCallWznmKlsAkeyMod_klsEq(dbswznm, call->jref, call->argInv.ix);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILUPD_REFEQ) {
 		call->abort = handleCallWznmFilUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFIL_REUEQ) {
-		call->abort = handleCallWznmFil_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFIL_RETEQ) {
-		call->abort = handleCallWznmFil_retEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFIL_CLUEQ) {
 		call->abort = handleCallWznmFil_cluEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFIL_RETEQ) {
+		call->abort = handleCallWznmFil_retEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFIL_REUEQ) {
+		call->abort = handleCallWznmFil_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -578,14 +578,14 @@ bool PnlWznmFilDetail::handleCallWznmFilUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmFilDetail::handleCallWznmFil_reuEq(
+bool PnlWznmFilDetail::handleCallWznmFil_cluEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 			, const ubigint refInv
 			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recFil.refUref == refInv); // IP handleCallWznmFil_reuEq --- LINE
+	boolvalRet = (recFil.refWznmCFile == refInv); // IP handleCallWznmFil_cluEq --- LINE
 	return retval;
 };
 
@@ -600,13 +600,13 @@ bool PnlWznmFilDetail::handleCallWznmFil_retEq(
 	return retval;
 };
 
-bool PnlWznmFilDetail::handleCallWznmFil_cluEq(
+bool PnlWznmFilDetail::handleCallWznmFil_reuEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 			, const ubigint refInv
 			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recFil.refWznmCFile == refInv); // IP handleCallWznmFil_cluEq --- LINE
+	boolvalRet = (recFil.refUref == refInv); // IP handleCallWznmFil_reuEq --- LINE
 	return retval;
 };

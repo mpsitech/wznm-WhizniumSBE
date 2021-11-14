@@ -15,10 +15,10 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmMchSup1NMachine.h"
-#include "PnlWznmMch1NRelease.h"
 #include "PnlWznmMchAPar.h"
-#include "PnlWznmMchAMakefile.h"
+#include "PnlWznmMch1NRelease.h"
 #include "PnlWznmMchDetail.h"
+#include "PnlWznmMchAMakefile.h"
 
 #define VecVWznmMchRecDo PnlWznmMchRec::VecVDo
 
@@ -184,10 +184,10 @@ public:
 	StatShr statshr;
 
 	PnlWznmMchSup1NMachine* pnlsup1nmachine;
-	PnlWznmMch1NRelease* pnl1nrelease;
 	PnlWznmMchAPar* pnlapar;
-	PnlWznmMchAMakefile* pnlamakefile;
+	PnlWznmMch1NRelease* pnl1nrelease;
 	PnlWznmMchDetail* pnldetail;
+	PnlWznmMchAMakefile* pnlamakefile;
 
 	WznmMMachine recMch;
 
@@ -222,8 +222,8 @@ public:
 
 private:
 	bool handleCallWznmMchUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmMch_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmMch_cchEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmMch_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

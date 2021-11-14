@@ -44,16 +44,16 @@ DlgWznmVerWrinimdl::DlgWznmVerWrinimdl(
 	VecVSge::fillFeed(feedFSge);
 
 	iexprj = NULL;
-	iexdpl = NULL;
 	iexgbl = NULL;
+	iexdpl = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	ixVDit = VecVDit::WRI;
 
 	iexprj = new JobWznmIexPrj(xchg, dbswznm, jref, ixWznmVLocale);
-	iexdpl = new JobWznmIexDpl(xchg, dbswznm, jref, ixWznmVLocale);
 	iexgbl = new JobWznmIexGbl(xchg, dbswznm, jref, ixWznmVLocale);
+	iexdpl = new JobWznmIexDpl(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 
@@ -138,23 +138,23 @@ void DlgWznmVerWrinimdl::refresh(
 	muteRefresh = true;
 
 	StatShr oldStatshr(statshr);
-	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
+	ContIac oldContiac(contiac);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// contiac
-	contiac.numFDse = ixVDit;
-
 	// continf
 	continf.numFSge = ixVSge;
 
+	// contiac
+	contiac.numFDse = ixVDit;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 
 	refreshWri(dbswznm, moditems);
 	refreshFia(dbswznm, moditems);

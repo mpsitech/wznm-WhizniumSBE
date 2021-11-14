@@ -30,8 +30,8 @@ namespace QryWznmRtjList {
 	public:
 		static const Sbecore::uint JOB = 1;
 		static const Sbecore::uint SUP = 2;
-		static const Sbecore::uint APP = 3;
-		static const Sbecore::uint SRF = 4;
+		static const Sbecore::uint SRF = 3;
+		static const Sbecore::uint APP = 4;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

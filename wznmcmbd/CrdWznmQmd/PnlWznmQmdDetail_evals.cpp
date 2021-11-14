@@ -124,7 +124,7 @@ bool PnlWznmQmdDetail::evalTxtPstActive(
 bool PnlWznmQmdDetail::evalButPstViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// qmd.pstEq(0)|((pre.ixCrdaccPst()&pre.refVer())|(pre.ixCrdaccTbl()&pre.refVer())|(pre.ixCrdaccSbs()&pre.refVer())|(pre.ixCrdaccVec()&pre.refVer()))
+	// qmd.pstEq(0)|((pre.ixCrdaccPst()&pre.refVer())|(pre.ixCrdaccVec()&pre.refVer())|(pre.ixCrdaccSbs()&pre.refVer())|(pre.ixCrdaccTbl()&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
@@ -138,7 +138,7 @@ bool PnlWznmQmdDetail::evalButPstViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -152,7 +152,7 @@ bool PnlWznmQmdDetail::evalButPstViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref) != 0);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);

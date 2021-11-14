@@ -39,17 +39,17 @@ PnlWznmMchRec::PnlWznmMchRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlsup1nmachine = NULL;
-	pnl1nrelease = NULL;
 	pnlapar = NULL;
-	pnlamakefile = NULL;
+	pnl1nrelease = NULL;
 	pnldetail = NULL;
+	pnlamakefile = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMMCH_SUPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMMCH_CCHEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMMCH_SUPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -262,10 +262,10 @@ void PnlWznmMchRec::handleCall(
 		) {
 	if (call->ixVCall == VecWznmVCall::CALLWZNMMCHUPD_REFEQ) {
 		call->abort = handleCallWznmMchUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCH_SUPEQ) {
-		call->abort = handleCallWznmMch_supEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCH_CCHEQ) {
 		call->abort = handleCallWznmMch_cchEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCH_SUPEQ) {
+		call->abort = handleCallWznmMch_supEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -278,17 +278,6 @@ bool PnlWznmMchRec::handleCallWznmMchUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmMchRec::handleCallWznmMch_supEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recMch.supRefWznmMMachine == refInv); // IP handleCallWznmMch_supEq --- LINE
-	return retval;
-};
-
 bool PnlWznmMchRec::handleCallWznmMch_cchEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -297,5 +286,16 @@ bool PnlWznmMchRec::handleCallWznmMch_cchEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recMch.cchRefWznmMMachine == refInv); // IP handleCallWznmMch_cchEq --- LINE
+	return retval;
+};
+
+bool PnlWznmMchRec::handleCallWznmMch_supEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recMch.supRefWznmMMachine == refInv); // IP handleCallWznmMch_supEq --- LINE
 	return retval;
 };

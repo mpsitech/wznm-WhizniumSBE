@@ -21,8 +21,8 @@ public class QryWznmRtjList {
 
 		public static final int JOB = 1;
 		public static final int SUP = 2;
-		public static final int APP = 3;
-		public static final int SRF = 4;
+		public static final int SRF = 3;
+		public static final int APP = 4;
 
 		public static int getIx(
 					String sref
@@ -31,8 +31,8 @@ public class QryWznmRtjList {
 
 			if (s.equals("job")) return JOB;
 			if (s.equals("sup")) return SUP;
-			if (s.equals("app")) return APP;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("app")) return APP;
 
 			return 0;
 		};
@@ -42,8 +42,8 @@ public class QryWznmRtjList {
 				) {
 			if (ix == JOB) return("job");
 			if (ix == SUP) return("sup");
-			if (ix == APP) return("app");
 			if (ix == SRF) return("srf");
+			if (ix == APP) return("app");
 
 			return "";
 		};

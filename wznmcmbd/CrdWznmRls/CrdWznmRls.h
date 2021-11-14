@@ -14,12 +14,12 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmRlsList.h"
-#include "PnlWznmRlsHeadbar.h"
 #include "PnlWznmRlsRec.h"
-#include "DlgWznmRlsWrite.h"
-#include "DlgWznmRlsStareptr.h"
+#include "PnlWznmRlsHeadbar.h"
+#include "PnlWznmRlsList.h"
 #include "DlgWznmRlsFinreptr.h"
+#include "DlgWznmRlsStareptr.h"
+#include "DlgWznmRlsWrite.h"
 
 #define VecVWznmRlsDo CrdWznmRls::VecVDo
 #define VecVWznmRlsSge CrdWznmRls::VecVSge
@@ -237,12 +237,12 @@ public:
 	Sbecore::Feed feedFMcbAlert;
 	Sbecore::Feed feedFSge;
 
-	PnlWznmRlsList* pnllist;
-	PnlWznmRlsHeadbar* pnlheadbar;
 	PnlWznmRlsRec* pnlrec;
-	DlgWznmRlsWrite* dlgwrite;
-	DlgWznmRlsStareptr* dlgstareptr;
+	PnlWznmRlsHeadbar* pnlheadbar;
+	PnlWznmRlsList* pnllist;
 	DlgWznmRlsFinreptr* dlgfinreptr;
+	DlgWznmRlsStareptr* dlgstareptr;
+	DlgWznmRlsWrite* dlgwrite;
 
 	// IP vars.cust --- INSERT
 

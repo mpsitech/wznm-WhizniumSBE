@@ -14,11 +14,11 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCtpAPar.h"
-#include "PnlWznmCtp1NTag.h"
 #include "PnlWznmCtpTpl1NCapability.h"
-#include "PnlWznmCtpKParKey.h"
+#include "PnlWznmCtp1NTag.h"
+#include "PnlWznmCtpAPar.h"
 #include "PnlWznmCtpKKey.h"
+#include "PnlWznmCtpKParKey.h"
 #include "PnlWznmCtpDetail.h"
 
 #define VecVWznmCtpRecDo PnlWznmCtpRec::VecVDo
@@ -186,11 +186,11 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCtpAPar* pnlapar;
-	PnlWznmCtp1NTag* pnl1ntag;
 	PnlWznmCtpTpl1NCapability* pnltpl1ncapability;
-	PnlWznmCtpKParKey* pnlkparkey;
+	PnlWznmCtp1NTag* pnl1ntag;
+	PnlWznmCtpAPar* pnlapar;
 	PnlWznmCtpKKey* pnlkkey;
+	PnlWznmCtpKParKey* pnlkparkey;
 	PnlWznmCtpDetail* pnldetail;
 
 	WznmMCapability recCpb;

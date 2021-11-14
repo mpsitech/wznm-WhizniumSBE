@@ -284,10 +284,10 @@ void QryWznmCalList::fetch(
 			rec->stubRefWznmMVersion = StubWznm::getStubVerStd(dbswznm, rec->refWznmMVersion, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->srefRefIxVTbl = VecWznmVMCallRefTbl::getSref(rec->refIxVTbl);
 			rec->titRefIxVTbl = VecWznmVMCallRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
-			if (rec->refIxVTbl == VecWznmVMCallRefTbl::TBL) {
-				rec->stubRefUref = StubWznm::getStubTblStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMCallRefTbl::CHK) {
+			if (rec->refIxVTbl == VecWznmVMCallRefTbl::CHK) {
 				rec->stubRefUref = StubWznm::getStubChkStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMCallRefTbl::TBL) {
+				rec->stubRefUref = StubWznm::getStubTblStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";
 			rec->srefsInvIxWznmWArgtype = VecWznmWArgtype::getSrefs(rec->invIxWznmWArgtype);
 			rec->srefsRetIxWznmWArgtype = VecWznmWArgtype::getSrefs(rec->retIxWznmWArgtype);

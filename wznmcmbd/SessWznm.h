@@ -58,11 +58,11 @@
 #include "CrdWznmCtp.h"
 #include "CrdWznmTag.h"
 #include "CrdWznmLoc.h"
+#include "CrdWznmNav.h"
 #include "CrdWznmFil.h"
 #include "CrdWznmPrs.h"
 #include "CrdWznmUsr.h"
 #include "CrdWznmUsg.h"
-#include "CrdWznmNav.h"
 
 #define StatShrSessWznm SessWznm::StatShr
 
@@ -172,11 +172,11 @@ public:
 	std::map<Sbecore::ubigint, JobWznm*> crdctps;
 	std::map<Sbecore::ubigint, JobWznm*> crdtags;
 	std::map<Sbecore::ubigint, JobWznm*> crdlocs;
+	CrdWznmNav* crdnav;
 	std::map<Sbecore::ubigint, JobWznm*> crdfils;
 	std::map<Sbecore::ubigint, JobWznm*> crdprss;
 	std::map<Sbecore::ubigint, JobWznm*> crdusrs;
 	std::map<Sbecore::ubigint, JobWznm*> crdusgs;
-	CrdWznmNav* crdnav;
 
 	std::map<Sbecore::ubigint,Sbecore::uint> usgaccs;
 

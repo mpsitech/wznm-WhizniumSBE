@@ -19,9 +19,9 @@ public class QryWznmJobList {
 		*/
 	public static class VecVOrd {
 
-		public static final int GBL = 1;
+		public static final int RET = 1;
 		public static final int REU = 2;
-		public static final int RET = 3;
+		public static final int GBL = 3;
 		public static final int VER = 4;
 		public static final int TYP = 5;
 		public static final int SRF = 6;
@@ -31,9 +31,9 @@ public class QryWznmJobList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("gbl")) return GBL;
-			if (s.equals("reu")) return REU;
 			if (s.equals("ret")) return RET;
+			if (s.equals("reu")) return REU;
+			if (s.equals("gbl")) return GBL;
 			if (s.equals("ver")) return VER;
 			if (s.equals("typ")) return TYP;
 			if (s.equals("srf")) return SRF;
@@ -44,9 +44,9 @@ public class QryWznmJobList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == GBL) return("gbl");
-			if (ix == REU) return("reu");
 			if (ix == RET) return("ret");
+			if (ix == REU) return("reu");
+			if (ix == GBL) return("gbl");
 			if (ix == VER) return("ver");
 			if (ix == TYP) return("typ");
 			if (ix == SRF) return("srf");

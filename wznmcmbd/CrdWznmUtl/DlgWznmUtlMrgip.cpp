@@ -154,8 +154,8 @@ void DlgWznmUtlMrgip::refreshRes(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfRes oldContinfres(continfres);
 	StatShrRes oldStatshrres(statshrres);
+	ContInfRes oldContinfres(continfres);
 
 	// IP refreshRes --- RBEGIN
 	// statshrres
@@ -166,8 +166,8 @@ void DlgWznmUtlMrgip::refreshRes(
 	else continfres.Dld = "merged.tgz";
 
 	// IP refreshRes --- REND
-	if (continfres.diff(&oldContinfres).size() != 0) insert(moditems, DpchEngData::CONTINFRES);
 	if (statshrres.diff(&oldStatshrres).size() != 0) insert(moditems, DpchEngData::STATSHRRES);
+	if (continfres.diff(&oldContinfres).size() != 0) insert(moditems, DpchEngData::CONTINFRES);
 };
 
 void DlgWznmUtlMrgip::refresh(
@@ -290,8 +290,8 @@ void DlgWznmUtlMrgip::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::TUPIDLE) handleTimerInSgeTupidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::SUPIDLE) handleTimerInSgeSupidle(dbswznm, req->sref);
+		if (ixVSge == VecVSge::SUPIDLE) handleTimerInSgeSupidle(dbswznm, req->sref);
+		else if (ixVSge == VecVSge::TUPIDLE) handleTimerInSgeTupidle(dbswznm, req->sref);
 	};
 };
 
@@ -414,14 +414,14 @@ string DlgWznmUtlMrgip::handleDownloadInSgeFail(
 	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
-void DlgWznmUtlMrgip::handleTimerInSgeTupidle(
+void DlgWznmUtlMrgip::handleTimerInSgeSupidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmUtlMrgip::handleTimerInSgeSupidle(
+void DlgWznmUtlMrgip::handleTimerInSgeTupidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {

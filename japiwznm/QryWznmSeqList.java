@@ -19,16 +19,16 @@ public class QryWznmSeqList {
 		*/
 	public static class VecVOrd {
 
-		public static final int APP = 1;
-		public static final int SRF = 2;
+		public static final int SRF = 1;
+		public static final int APP = 2;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("app")) return APP;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("app")) return APP;
 
 			return 0;
 		};
@@ -36,8 +36,8 @@ public class QryWznmSeqList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == APP) return("app");
 			if (ix == SRF) return("srf");
+			if (ix == APP) return("app");
 
 			return "";
 		};

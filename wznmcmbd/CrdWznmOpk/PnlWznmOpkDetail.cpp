@@ -48,8 +48,8 @@ PnlWznmOpkDetail::PnlWznmOpkDetail(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMOPK_VEREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMOPK_SQKEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMOPK_VEREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -392,10 +392,10 @@ void PnlWznmOpkDetail::handleCall(
 		call->abort = handleCallWznmSqkUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPKUPD_REFEQ) {
 		call->abort = handleCallWznmOpkUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPK_VEREQ) {
-		call->abort = handleCallWznmOpk_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPK_SQKEQ) {
 		call->abort = handleCallWznmOpk_sqkEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMOPK_VEREQ) {
+		call->abort = handleCallWznmOpk_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -430,17 +430,6 @@ bool PnlWznmOpkDetail::handleCallWznmOpkUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmOpkDetail::handleCallWznmOpk_verEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recOpk.refWznmMVersion == refInv); // IP handleCallWznmOpk_verEq --- LINE
-	return retval;
-};
-
 bool PnlWznmOpkDetail::handleCallWznmOpk_sqkEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -449,5 +438,16 @@ bool PnlWznmOpkDetail::handleCallWznmOpk_sqkEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recOpk.refWznmMSquawk == refInv); // IP handleCallWznmOpk_sqkEq --- LINE
+	return retval;
+};
+
+bool PnlWznmOpkDetail::handleCallWznmOpk_verEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recOpk.refWznmMVersion == refInv); // IP handleCallWznmOpk_verEq --- LINE
 	return retval;
 };

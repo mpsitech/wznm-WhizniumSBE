@@ -112,8 +112,8 @@ void PnlWznmRelRec::StatApp::writeJSON(
 			, const bool initdoneSup1NRelation
 			, const bool initdone1NTablecol
 			, const bool initdoneRef1NControl
-			, const bool initdoneRef1NPanel
 			, const bool initdoneRef1NDialog
+			, const bool initdoneRef1NPanel
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmRelRec";
 
@@ -124,8 +124,8 @@ void PnlWznmRelRec::StatApp::writeJSON(
 	me["initdoneSup1NRelation"] = initdoneSup1NRelation;
 	me["initdone1NTablecol"] = initdone1NTablecol;
 	me["initdoneRef1NControl"] = initdoneRef1NControl;
-	me["initdoneRef1NPanel"] = initdoneRef1NPanel;
 	me["initdoneRef1NDialog"] = initdoneRef1NDialog;
+	me["initdoneRef1NPanel"] = initdoneRef1NPanel;
 };
 
 void PnlWznmRelRec::StatApp::writeXML(
@@ -137,8 +137,8 @@ void PnlWznmRelRec::StatApp::writeXML(
 			, const bool initdoneSup1NRelation
 			, const bool initdone1NTablecol
 			, const bool initdoneRef1NControl
-			, const bool initdoneRef1NPanel
 			, const bool initdoneRef1NDialog
+			, const bool initdoneRef1NPanel
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmRelRec";
 
@@ -152,8 +152,8 @@ void PnlWznmRelRec::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "initdoneSup1NRelation", initdoneSup1NRelation);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NTablecol", initdone1NTablecol);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NControl", initdoneRef1NControl);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NPanel", initdoneRef1NPanel);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NDialog", initdoneRef1NDialog);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NPanel", initdoneRef1NPanel);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -168,8 +168,8 @@ PnlWznmRelRec::StatShr::StatShr(
 			, const ubigint jrefSup1NRelation
 			, const ubigint jref1NTablecol
 			, const ubigint jrefRef1NControl
-			, const ubigint jrefRef1NPanel
 			, const ubigint jrefRef1NDialog
+			, const ubigint jrefRef1NPanel
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -180,11 +180,11 @@ PnlWznmRelRec::StatShr::StatShr(
 	this->jrefSup1NRelation = jrefSup1NRelation;
 	this->jref1NTablecol = jref1NTablecol;
 	this->jrefRef1NControl = jrefRef1NControl;
-	this->jrefRef1NPanel = jrefRef1NPanel;
 	this->jrefRef1NDialog = jrefRef1NDialog;
+	this->jrefRef1NPanel = jrefRef1NPanel;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NCONTROL, JREFREF1NPANEL, JREFREF1NDIALOG, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NCONTROL, JREFREF1NDIALOG, JREFREF1NPANEL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmRelRec::StatShr::writeJSON(
@@ -201,8 +201,8 @@ void PnlWznmRelRec::StatShr::writeJSON(
 	me["scrJrefSup1NRelation"] = Scr::scramble(jrefSup1NRelation);
 	me["scrJref1NTablecol"] = Scr::scramble(jref1NTablecol);
 	me["scrJrefRef1NControl"] = Scr::scramble(jrefRef1NControl);
-	me["scrJrefRef1NPanel"] = Scr::scramble(jrefRef1NPanel);
 	me["scrJrefRef1NDialog"] = Scr::scramble(jrefRef1NDialog);
+	me["scrJrefRef1NPanel"] = Scr::scramble(jrefRef1NPanel);
 	me["ButRegularizeActive"] = ButRegularizeActive;
 };
 
@@ -224,8 +224,8 @@ void PnlWznmRelRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefSup1NRelation", Scr::scramble(jrefSup1NRelation));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NTablecol", Scr::scramble(jref1NTablecol));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NControl", Scr::scramble(jrefRef1NControl));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NPanel", Scr::scramble(jrefRef1NPanel));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NDialog", Scr::scramble(jrefRef1NDialog));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NPanel", Scr::scramble(jrefRef1NPanel));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -241,8 +241,8 @@ set<uint> PnlWznmRelRec::StatShr::comm(
 	if (jrefSup1NRelation == comp->jrefSup1NRelation) insert(items, JREFSUP1NRELATION);
 	if (jref1NTablecol == comp->jref1NTablecol) insert(items, JREF1NTABLECOL);
 	if (jrefRef1NControl == comp->jrefRef1NControl) insert(items, JREFREF1NCONTROL);
-	if (jrefRef1NPanel == comp->jrefRef1NPanel) insert(items, JREFREF1NPANEL);
 	if (jrefRef1NDialog == comp->jrefRef1NDialog) insert(items, JREFREF1NDIALOG);
+	if (jrefRef1NPanel == comp->jrefRef1NPanel) insert(items, JREFREF1NPANEL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -256,7 +256,7 @@ set<uint> PnlWznmRelRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NCONTROL, JREFREF1NPANEL, JREFREF1NDIALOG, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFSUP1NRELATION, JREF1NTABLECOL, JREFREF1NCONTROL, JREFREF1NDIALOG, JREFREF1NPANEL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

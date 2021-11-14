@@ -19,24 +19,24 @@ public class QryWznmVecList {
 		*/
 	public static class VecVOrd {
 
-		public static final int HKU = 1;
-		public static final int TGR = 2;
-		public static final int VER = 3;
-		public static final int HKT = 4;
-		public static final int TYP = 5;
-		public static final int SRF = 6;
+		public static final int TGR = 1;
+		public static final int HKU = 2;
+		public static final int HKT = 3;
+		public static final int VER = 4;
+		public static final int SRF = 5;
+		public static final int TYP = 6;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("hku")) return HKU;
 			if (s.equals("tgr")) return TGR;
-			if (s.equals("ver")) return VER;
+			if (s.equals("hku")) return HKU;
 			if (s.equals("hkt")) return HKT;
-			if (s.equals("typ")) return TYP;
+			if (s.equals("ver")) return VER;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("typ")) return TYP;
 
 			return 0;
 		};
@@ -44,12 +44,12 @@ public class QryWznmVecList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == HKU) return("hku");
 			if (ix == TGR) return("tgr");
-			if (ix == VER) return("ver");
+			if (ix == HKU) return("hku");
 			if (ix == HKT) return("hkt");
-			if (ix == TYP) return("typ");
+			if (ix == VER) return("ver");
 			if (ix == SRF) return("srf");
+			if (ix == TYP) return("typ");
 
 			return "";
 		};

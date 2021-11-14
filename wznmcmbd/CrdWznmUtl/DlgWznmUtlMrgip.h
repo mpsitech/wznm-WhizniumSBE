@@ -609,8 +609,8 @@ private:
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerInSgeTupidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeSupidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeTupidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

@@ -19,12 +19,12 @@ public class QryWznmQryList {
 		*/
 	public static class VecVOrd {
 
-		public static final int TBL = 1;
-		public static final int QTB = 2;
+		public static final int QTB = 1;
+		public static final int TBL = 2;
 		public static final int SRL = 3;
 		public static final int SUP = 4;
-		public static final int VER = 5;
-		public static final int TYP = 6;
+		public static final int TYP = 5;
+		public static final int VER = 6;
 		public static final int SRF = 7;
 
 		public static int getIx(
@@ -32,12 +32,12 @@ public class QryWznmQryList {
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("tbl")) return TBL;
 			if (s.equals("qtb")) return QTB;
+			if (s.equals("tbl")) return TBL;
 			if (s.equals("srl")) return SRL;
 			if (s.equals("sup")) return SUP;
-			if (s.equals("ver")) return VER;
 			if (s.equals("typ")) return TYP;
+			if (s.equals("ver")) return VER;
 			if (s.equals("srf")) return SRF;
 
 			return 0;
@@ -46,12 +46,12 @@ public class QryWznmQryList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == TBL) return("tbl");
 			if (ix == QTB) return("qtb");
+			if (ix == TBL) return("tbl");
 			if (ix == SRL) return("srl");
 			if (ix == SUP) return("sup");
-			if (ix == VER) return("ver");
 			if (ix == TYP) return("typ");
+			if (ix == VER) return("ver");
 			if (ix == SRF) return("srf");
 
 			return "";

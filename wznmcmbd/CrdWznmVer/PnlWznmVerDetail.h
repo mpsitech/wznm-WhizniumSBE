@@ -339,9 +339,9 @@ public:
 
 	WznmMVersion recVer;
 
-	WznmJMVersion recVerJ;
-
 	WznmJMVersionState recVerJste;
+
+	WznmJMVersion recVerJ;
 
 	bool dirty;
 
@@ -359,8 +359,8 @@ public:
 	void refreshJ(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
 	void refreshRecVer(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
-	void refreshRecVerJ(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 	void refreshRecVerJste(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
+	void refreshRecVerJ(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems);
 
 	void refresh(DbsWznm* dbswznm, std::set<Sbecore::uint>& moditems, const bool unmute = false);
 

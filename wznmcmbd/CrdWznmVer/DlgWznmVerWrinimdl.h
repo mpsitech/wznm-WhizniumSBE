@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "JobWznmIexPrj.h"
-#include "JobWznmIexDpl.h"
 #include "JobWznmIexGbl.h"
+#include "JobWznmIexDpl.h"
 
 #define VecVDlgWznmVerWrinimdlDit DlgWznmVerWrinimdl::VecVDit
 #define VecVDlgWznmVerWrinimdlDo DlgWznmVerWrinimdl::VecVDo
@@ -408,8 +408,8 @@ public:
 	Sbecore::Feed feedFSge;
 
 	JobWznmIexPrj* iexprj;
-	JobWznmIexDpl* iexdpl;
 	JobWznmIexGbl* iexgbl;
+	JobWznmIexDpl* iexdpl;
 
 	Sbecore::uint ixVDit;
 

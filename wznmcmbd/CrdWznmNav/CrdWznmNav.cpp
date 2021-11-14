@@ -44,11 +44,11 @@ CrdWznmNav::CrdWznmNav(
 
 	pnlauxfct = NULL;
 	pnlappdev = NULL;
-	pnldeploy = NULL;
 	pnljob = NULL;
+	pnldeploy = NULL;
 	pnlcomp = NULL;
-	pnluix = NULL;
 	pnldbstr = NULL;
+	pnluix = NULL;
 	pnlproject = NULL;
 	pnlglobal = NULL;
 	pnladmin = NULL;
@@ -64,11 +64,11 @@ CrdWznmNav::CrdWznmNav(
 
 	pnlauxfct = new PnlWznmNavAuxfct(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlappdev = new PnlWznmNavAppdev(xchg, dbswznm, jref, ixWznmVLocale);
-	pnldeploy = new PnlWznmNavDeploy(xchg, dbswznm, jref, ixWznmVLocale);
 	pnljob = new PnlWznmNavJob(xchg, dbswznm, jref, ixWznmVLocale);
+	pnldeploy = new PnlWznmNavDeploy(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlcomp = new PnlWznmNavComp(xchg, dbswznm, jref, ixWznmVLocale);
-	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
 	pnldbstr = new PnlWznmNavDbstr(xchg, dbswznm, jref, ixWznmVLocale);
+	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlproject = new PnlWznmNavProject(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlglobal = new PnlWznmNavGlobal(xchg, dbswznm, jref, ixWznmVLocale);
 	pnladmin = new PnlWznmNavAdmin(xchg, dbswznm, jref, ixWznmVLocale);

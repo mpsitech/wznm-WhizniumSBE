@@ -48,8 +48,8 @@ PnlWznmImeDetail::PnlWznmImeDetail(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMIME_SUPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMIME_IEXEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMIME_SUPEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -374,10 +374,10 @@ void PnlWznmImeDetail::handleCall(
 		) {
 	if (call->ixVCall == VecWznmVCall::CALLWZNMIMEUPD_REFEQ) {
 		call->abort = handleCallWznmImeUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIME_SUPEQ) {
-		call->abort = handleCallWznmIme_supEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIME_IEXEQ) {
 		call->abort = handleCallWznmIme_iexEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIME_SUPEQ) {
+		call->abort = handleCallWznmIme_supEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -390,17 +390,6 @@ bool PnlWznmImeDetail::handleCallWznmImeUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmImeDetail::handleCallWznmIme_supEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recIme.supRefWznmMImpexp == refInv); // IP handleCallWznmIme_supEq --- LINE
-	return retval;
-};
-
 bool PnlWznmImeDetail::handleCallWznmIme_iexEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -409,5 +398,16 @@ bool PnlWznmImeDetail::handleCallWznmIme_iexEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recIme.refWznmMImpexpcplx == refInv); // IP handleCallWznmIme_iexEq --- LINE
+	return retval;
+};
+
+bool PnlWznmImeDetail::handleCallWznmIme_supEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recIme.supRefWznmMImpexp == refInv); // IP handleCallWznmIme_supEq --- LINE
 	return retval;
 };

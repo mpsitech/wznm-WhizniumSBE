@@ -531,8 +531,22 @@ uint JobWznmIexGbl::enterSgeImport(
 				//blkAitm->sref: TBL
 				blkAitm->ixWznmVVartype = VecWznmVVartype::getIx(blkAitm->srefIxWznmVVartype);
 				if (blkAitm->ixWznmVVartype == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",blkAitm->srefIxWznmVVartype}, {"iel","srefIxWznmVVartype"}, {"lineno",to_string(blkAitm->lineno)}});
+				//blkAitm->refWznmMVector: PREVIMP
+				if (blkAitm->ixWznmVVartype == VecWznmVVartype::VECSREF) {
+					for (unsigned int i = 0; i < imeimvector.nodes.size(); i++)
+						if (imeimvector.nodes[i]->sref == blkAitm->srefRefWznmMVector) {
+							blkAitm->refWznmMVector = imeimvector.nodes[i]->ref;
+							break;
+						};
+					if (blkAitm->refWznmMVector == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",blkAitm->srefRefWznmMVector}, {"iel","srefRefWznmMVector"}, {"lineno",to_string(blkAitm->lineno)}});
+				};
 				//blkAitm->refJ: SUB
 				//blkAitm->Defval: TBL
+				//blkAitm->refWznmMVectoritem: CUSTSQL
+				if ((blkAitm->refWznmMVector != 0) && (blkAitm->srefRefWznmMVectoritem != "")) {
+					dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVectoritem WHERE vecRefWznmMVector = " + to_string(blkAitm->refWznmMVector) + " AND sref = '" + blkAitm->srefRefWznmMVectoritem + "'", blkAitm->refWznmMVectoritem);
+					if (blkAitm->refWznmMVectoritem == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",blkAitm->srefRefWznmMVectoritem}, {"iel","srefRefWznmMVectoritem"}, {"lineno",to_string(blkAitm->lineno)}});
+				};
 				//blkAitm->Comment: TBL
 
 				dbswznm->tblwznmamblockitem->insertRec(blkAitm);
@@ -544,6 +558,7 @@ uint JobWznmIexGbl::enterSgeImport(
 
 					bitJ->refWznmAMBlockItem = blkAitm->ref;
 					bitJ->Defval = blkAitm->Defval;
+					bitJ->srefRefWznmMVectoritem = blkAitm->srefRefWznmMVectoritem;
 				};
 
 				for (unsigned int ix2 = 0; ix2 < blkAitm->imeijamblockitem.nodes.size(); ix2++) {
@@ -561,6 +576,11 @@ uint JobWznmIexGbl::enterSgeImport(
 						if (bitJ->x1RefWznmMRelease == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",bitJ->srefX1RefWznmMRelease}, {"iel","srefX1RefWznmMRelease"}, {"lineno",to_string(bitJ->lineno)}});
 					};
 					//bitJ->Defval: TBL
+					//bitJ->refWznmMVectoritem: CUSTSQL
+					if ((blkAitm->refWznmMVector != 0) && (bitJ->srefRefWznmMVectoritem != "")) {
+						dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVectoritem WHERE vecRefWznmMVector = " + to_string(blkAitm->refWznmMVector) + " AND sref = '" + bitJ->srefRefWznmMVectoritem + "'", bitJ->refWznmMVectoritem);
+						if (bitJ->refWznmMVectoritem == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",bitJ->srefRefWznmMVectoritem}, {"iel","srefRefWznmMVectoritem"}, {"lineno",to_string(bitJ->lineno)}});
+					};
 
 					dbswznm->tblwznmjamblockitem->insertRec(bitJ);
 					impcnt++;
@@ -568,6 +588,7 @@ uint JobWznmIexGbl::enterSgeImport(
 					if (ix2 == 0) {
 						blkAitm->refJ = bitJ->ref;
 						blkAitm->Defval = bitJ->Defval;
+						blkAitm->refWznmMVectoritem = bitJ->refWznmMVectoritem;
 						dbswznm->tblwznmamblockitem->updateRec(blkAitm);
 					};
 				};
@@ -774,6 +795,8 @@ uint JobWznmIexGbl::enterSgeCollect(
 
 			if (blkAitm->ref != 0) {
 				//blkAitm->irefRefWznmCAMBlockItem: IREF
+				blkAitm->srefRefWznmMVector = StubWznm::getStubVecStd(dbswznm, blkAitm->refWznmMVector, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+				//blkAitm->srefRefWznmMVectoritem: STUB
 			};
 
 			if (getIxWznmVIop(icsWznmVIop, VecVIme::IMEIJAMBLOCKITEM, ixWznmVIop)) {
@@ -786,6 +809,7 @@ uint JobWznmIexGbl::enterSgeCollect(
 
 				if (bitJ->ref != 0) {
 					bitJ->srefX1RefWznmMRelease = StubWznm::getStubRlsStd(dbswznm, bitJ->x1RefWznmMRelease, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
+					bitJ->srefRefWznmMVectoritem = StubWznm::getStubVitSref(dbswznm, bitJ->refWznmMVectoritem, ixWznmVLocale, Stub::VecVNonetype::VOID, stcch);
 				};
 			};
 		};

@@ -2926,18 +2926,18 @@ bool SessWznm::handleCallWznmCrdClose(
 	ubigint jrefNotif = xchg->getRefPreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
 	if (jrefNotif == jrefTrig) xchg->removePreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
 
-	if (ixInv == VecWznmVCard::CRDWZNMNAV) {
+	if (ixInv == VecWznmVCard::CRDWZNMUSG) eraseSubjobByJref(crdusgs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMUSR) eraseSubjobByJref(crdusrs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMPRS) eraseSubjobByJref(crdprss, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMFIL) eraseSubjobByJref(crdfils, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMNAV) {
 		if (crdnav) {
 			delete crdnav;
 			crdnav = NULL;
 		};
 
 	} 
-else if (ixInv == VecWznmVCard::CRDWZNMUSG) eraseSubjobByJref(crdusgs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMUSR) eraseSubjobByJref(crdusrs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMPRS) eraseSubjobByJref(crdprss, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMFIL) eraseSubjobByJref(crdfils, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMLOC) eraseSubjobByJref(crdlocs, jrefTrig);
+else if (ixInv == VecWznmVCard::CRDWZNMLOC) eraseSubjobByJref(crdlocs, jrefTrig);
 	else if (ixInv == VecWznmVCard::CRDWZNMTAG) eraseSubjobByJref(crdtags, jrefTrig);
 	else if (ixInv == VecWznmVCard::CRDWZNMCTP) eraseSubjobByJref(crdctps, jrefTrig);
 	else if (ixInv == VecWznmVCard::CRDWZNMMCH) eraseSubjobByJref(crdmchs, jrefTrig);

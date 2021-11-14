@@ -2584,8 +2584,8 @@ void DlgWznmRlsWrite::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfLfi oldContinflfi(continflfi);
 	StatShrLfi oldStatshrlfi(statshrlfi);
+	ContInfLfi oldContinflfi(continflfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -2595,8 +2595,8 @@ void DlgWznmRlsWrite::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
+	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 };
 
 void DlgWznmRlsWrite::refreshFia(
@@ -2741,10 +2741,10 @@ void DlgWznmRlsWrite::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
-		else if (ixVSge == VecVSge::CREIDLE) handleTimerInSgeCreidle(dbswznm, req->sref);
+		if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
 		else if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
+		else if (ixVSge == VecVSge::CREIDLE) handleTimerInSgeCreidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
 	};
 };
 
@@ -2883,18 +2883,18 @@ string DlgWznmRlsWrite::handleDownloadInSgeFail(
 	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
-void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
-			DbsWznm* dbswznm
-		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
-};
-
 void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
 			DbsWznm* dbswznm
 		) {
 	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeCreate --- ILINE
+};
+
+void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsWrite::handleTimerInSgeCreidle(
@@ -2904,11 +2904,11 @@ void DlgWznmRlsWrite::handleTimerInSgeCreidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
+void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
 };
 
 void DlgWznmRlsWrite::changeStage(

@@ -55,8 +55,8 @@ RootWznm::RootWznm(
 
 	// IP constructor.spec2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMSUSPSESS, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMLOGOUT, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
@@ -945,13 +945,25 @@ void RootWznm::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
-		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSUSPSESS) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMSUSPSESS) {
 		call->abort = handleCallWznmSuspsess(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
+		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOGOUT) {
 		call->abort = handleCallWznmLogout(dbswznm, call->jref, call->argInv.boolval);
 	};
+};
+
+bool RootWznm::handleCallWznmSuspsess(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+
+	xchg->addBoolvalPreset(VecWznmVPreset::PREWZNMSUSPSESS, jrefTrig, true);
+	xchg->removeDcolsByJref(jrefTrig);
+
+	return retval;
 };
 
 bool RootWznm::handleCallWznmRefPreSet(
@@ -965,18 +977,6 @@ bool RootWznm::handleCallWznmRefPreSet(
 	if (ixInv == VecWznmVPreset::PREWZNMTLAST) {
 		xchg->addRefPreset(ixInv, jref, refInv);
 	};
-
-	return retval;
-};
-
-bool RootWznm::handleCallWznmSuspsess(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-
-	xchg->addBoolvalPreset(VecWznmVPreset::PREWZNMSUSPSESS, jrefTrig, true);
-	xchg->removeDcolsByJref(jrefTrig);
 
 	return retval;
 };

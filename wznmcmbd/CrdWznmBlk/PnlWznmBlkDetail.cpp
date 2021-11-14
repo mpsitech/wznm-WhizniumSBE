@@ -331,12 +331,6 @@ void PnlWznmBlkDetail::handleDpchAppDoButReuViewClick(
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recBlk.refUref, jrefNew);
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref)) if (recBlk.refIxVTbl == VecWznmVMBlockRefTbl::JOB) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
-				sref = "CrdWznmJob";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recBlk.refUref, jrefNew);
-			};
-		};
-		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPX, jref)) if (recBlk.refIxVTbl == VecWznmVMBlockRefTbl::OPX) if (ixPre == VecWznmVPreset::PREWZNMREFOPK) {
 				sref = "CrdWznmOpx";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recBlk.refUref, jrefNew);
@@ -345,6 +339,12 @@ void PnlWznmBlkDetail::handleDpchAppDoButReuViewClick(
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPX, jref)) if (recBlk.refIxVTbl == VecWznmVMBlockRefTbl::OPX) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
 				sref = "CrdWznmOpx";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recBlk.refUref, jrefNew);
+			};
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref)) if (recBlk.refIxVTbl == VecWznmVMBlockRefTbl::JOB) if (ixPre == VecWznmVPreset::PREWZNMREFVER) {
+				sref = "CrdWznmJob";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, ixPre, refPre, sref, recBlk.refUref, jrefNew);
 			};
 		};

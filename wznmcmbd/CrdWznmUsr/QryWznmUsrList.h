@@ -33,9 +33,9 @@ public:
 
 	public:
 		static const Sbecore::uint USG = 1;
-		static const Sbecore::uint PRS = 2;
-		static const Sbecore::uint SRF = 3;
-		static const Sbecore::uint OWN = 4;
+		static const Sbecore::uint SRF = 2;
+		static const Sbecore::uint OWN = 3;
+		static const Sbecore::uint PRS = 4;
 		static const Sbecore::uint GRP = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
@@ -150,8 +150,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmUsrUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmUsrMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmUsrUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };

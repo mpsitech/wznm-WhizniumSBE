@@ -48,20 +48,20 @@ CrdWznmVer::CrdWznmVer(
 	pnllist = NULL;
 	pnlheadbar = NULL;
 	pnlrec = NULL;
-	dlgcustjob = NULL;
 	dlgbscui = NULL;
-	dlgcustjtr = NULL;
+	dlgcustjob = NULL;
+	dlgdeploy = NULL;
+	dlgdbstr = NULL;
 	dlgcustui = NULL;
+	dlgcustjtr = NULL;
+	dlgfinmod = NULL;
+	dlgwrinimdl = NULL;
+	dlgoppack = NULL;
+	dlgnew = NULL;
+	dlgimpexp = NULL;
 	dlgglobal = NULL;
 	dlggenui = NULL;
 	dlggenjtr = NULL;
-	dlgfinmod = NULL;
-	dlgdeploy = NULL;
-	dlgoppack = NULL;
-	dlgwrinimdl = NULL;
-	dlgdbstr = NULL;
-	dlgnew = NULL;
-	dlgimpexp = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

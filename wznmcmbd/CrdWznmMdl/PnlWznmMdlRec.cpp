@@ -39,8 +39,8 @@ PnlWznmMdlRec::PnlWznmMdlRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlref1npanel = NULL;
-	pnldetail = NULL;
 	pnlmdl1ncard = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

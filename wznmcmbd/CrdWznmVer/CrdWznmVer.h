@@ -17,20 +17,20 @@
 #include "PnlWznmVerList.h"
 #include "PnlWznmVerHeadbar.h"
 #include "PnlWznmVerRec.h"
-#include "DlgWznmVerCustjob.h"
 #include "DlgWznmVerBscui.h"
-#include "DlgWznmVerCustjtr.h"
+#include "DlgWznmVerCustjob.h"
+#include "DlgWznmVerDeploy.h"
+#include "DlgWznmVerDbstr.h"
 #include "DlgWznmVerCustui.h"
+#include "DlgWznmVerCustjtr.h"
+#include "DlgWznmVerFinmod.h"
+#include "DlgWznmVerWrinimdl.h"
+#include "DlgWznmVerOppack.h"
+#include "DlgWznmVerNew.h"
+#include "DlgWznmVerImpexp.h"
 #include "DlgWznmVerGlobal.h"
 #include "DlgWznmVerGenui.h"
 #include "DlgWznmVerGenjtr.h"
-#include "DlgWznmVerFinmod.h"
-#include "DlgWznmVerDeploy.h"
-#include "DlgWznmVerOppack.h"
-#include "DlgWznmVerWrinimdl.h"
-#include "DlgWznmVerDbstr.h"
-#include "DlgWznmVerNew.h"
-#include "DlgWznmVerImpexp.h"
 
 #define VecVWznmVerDo CrdWznmVer::VecVDo
 #define VecVWznmVerSge CrdWznmVer::VecVSge
@@ -364,20 +364,20 @@ public:
 	PnlWznmVerList* pnllist;
 	PnlWznmVerHeadbar* pnlheadbar;
 	PnlWznmVerRec* pnlrec;
-	DlgWznmVerCustjob* dlgcustjob;
 	DlgWznmVerBscui* dlgbscui;
-	DlgWznmVerCustjtr* dlgcustjtr;
+	DlgWznmVerCustjob* dlgcustjob;
+	DlgWznmVerDeploy* dlgdeploy;
+	DlgWznmVerDbstr* dlgdbstr;
 	DlgWznmVerCustui* dlgcustui;
+	DlgWznmVerCustjtr* dlgcustjtr;
+	DlgWznmVerFinmod* dlgfinmod;
+	DlgWznmVerWrinimdl* dlgwrinimdl;
+	DlgWznmVerOppack* dlgoppack;
+	DlgWznmVerNew* dlgnew;
+	DlgWznmVerImpexp* dlgimpexp;
 	DlgWznmVerGlobal* dlgglobal;
 	DlgWznmVerGenui* dlggenui;
 	DlgWznmVerGenjtr* dlggenjtr;
-	DlgWznmVerFinmod* dlgfinmod;
-	DlgWznmVerDeploy* dlgdeploy;
-	DlgWznmVerOppack* dlgoppack;
-	DlgWznmVerWrinimdl* dlgwrinimdl;
-	DlgWznmVerDbstr* dlgdbstr;
-	DlgWznmVerNew* dlgnew;
-	DlgWznmVerImpexp* dlgimpexp;
 
 	// IP vars.cust --- INSERT
 

@@ -64,12 +64,14 @@ string IexWznmGbl::VecVIme::getSref(
 IexWznmGbl::ImeitemIJAMBlockItem::ImeitemIJAMBlockItem(
 			const string& srefX1RefWznmMRelease
 			, const string& Defval
+			, const string& srefRefWznmMVectoritem
 		) : WznmJAMBlockItem() {
 	lineno = 0;
 	ixWIelValid = 0;
 
 	this->srefX1RefWznmMRelease = srefX1RefWznmMRelease;
 	this->Defval = Defval;
+	this->srefRefWznmMVectoritem = srefRefWznmMVectoritem;
 };
 
 IexWznmGbl::ImeitemIJAMBlockItem::ImeitemIJAMBlockItem(
@@ -86,6 +88,7 @@ IexWznmGbl::ImeitemIJAMBlockItem::ImeitemIJAMBlockItem(
 		refWznmAMBlockItem = rec->refWznmAMBlockItem;
 		x1RefWznmMRelease = rec->x1RefWznmMRelease;
 		Defval = rec->Defval;
+		refWznmMVectoritem = rec->refWznmMVectoritem;
 
 		delete rec;
 	};
@@ -98,6 +101,7 @@ void IexWznmGbl::ImeitemIJAMBlockItem::readTxt(
 
 	if (txtrd.fields.size() > 0) {srefX1RefWznmMRelease = txtrd.fields[0]; ixWIelValid += ImeIJAMBlockItem::VecWIel::SREFX1REFWZNMMRELEASE;};
 	if (txtrd.fields.size() > 1) {Defval = txtrd.fields[1]; ixWIelValid += ImeIJAMBlockItem::VecWIel::DEFVAL;};
+	if (txtrd.fields.size() > 2) {srefRefWznmMVectoritem = txtrd.fields[2]; ixWIelValid += ImeIJAMBlockItem::VecWIel::SREFREFWZNMMVECTORITEM;};
 
 	while (txtrd.readLine()) {
 		switch (txtrd.ixVLinetype) {
@@ -123,13 +127,14 @@ void IexWznmGbl::ImeitemIJAMBlockItem::readXML(
 	if (checkXPath(docctx, basexpath, lineno)) {
 		if (extractStringUclc(docctx, basexpath, "srefX1RefWznmMRelease", "rls", srefX1RefWznmMRelease)) ixWIelValid += ImeIJAMBlockItem::VecWIel::SREFX1REFWZNMMRELEASE;
 		if (extractStringUclc(docctx, basexpath, "Defval", "dfv", Defval)) ixWIelValid += ImeIJAMBlockItem::VecWIel::DEFVAL;
+		if (extractStringUclc(docctx, basexpath, "srefRefWznmMVectoritem", "vit", srefRefWznmMVectoritem)) ixWIelValid += ImeIJAMBlockItem::VecWIel::SREFREFWZNMMVECTORITEM;
 	};
 };
 
 void IexWznmGbl::ImeitemIJAMBlockItem::writeTxt(
 			fstream& outfile
 		) {
-	outfile << "\t\t" << srefX1RefWznmMRelease << "\t" << Defval << endl;
+	outfile << "\t\t" << srefX1RefWznmMRelease << "\t" << Defval << "\t" << srefRefWznmMVectoritem << endl;
 };
 
 void IexWznmGbl::ImeitemIJAMBlockItem::writeXML(
@@ -138,13 +143,14 @@ void IexWznmGbl::ImeitemIJAMBlockItem::writeXML(
 			, const bool shorttags
 		) {
 	vector<string> tags;
-	if (shorttags) tags = {"Ii","rls","dfv"};
-	else tags = {"ImeitemIJAMBlockItem","srefX1RefWznmMRelease","Defval"};
+	if (shorttags) tags = {"Ii","rls","dfv","vit"};
+	else tags = {"ImeitemIJAMBlockItem","srefX1RefWznmMRelease","Defval","srefRefWznmMVectoritem"};
 
 	xmlTextWriterStartElement(wr, BAD_CAST tags[0].c_str());
 		xmlTextWriterWriteAttribute(wr, BAD_CAST "num", BAD_CAST to_string(num).c_str());
 		writeString(wr, tags[1], srefX1RefWznmMRelease);
 		writeString(wr, tags[2], Defval);
+		writeString(wr, tags[3], srefRefWznmMVectoritem);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -163,6 +169,7 @@ uint IexWznmGbl::ImeIJAMBlockItem::VecWIel::getIx(
 	for (unsigned int i = 0; i < ss.size(); i++) {
 		if (ss[i] == "srefx1refwznmmrelease") ix |= SREFX1REFWZNMMRELEASE;
 		else if (ss[i] == "defval") ix |= DEFVAL;
+		else if (ss[i] == "srefrefwznmmvectoritem") ix |= SREFREFWZNMMVECTORITEM;
 	};
 
 	return(ix);
@@ -173,7 +180,7 @@ void IexWznmGbl::ImeIJAMBlockItem::VecWIel::getIcs(
 			, set<uint>& ics
 		) {
 	ics.clear();
-	for (unsigned int i = 1; i < (2*DEFVAL); i *= 2) if (ix & i) ics.insert(i);
+	for (unsigned int i = 1; i < (2*SREFREFWZNMMVECTORITEM); i *= 2) if (ix & i) ics.insert(i);
 };
 
 string IexWznmGbl::ImeIJAMBlockItem::VecWIel::getSrefs(
@@ -184,6 +191,7 @@ string IexWznmGbl::ImeIJAMBlockItem::VecWIel::getSrefs(
 
 	if (ix & SREFX1REFWZNMMRELEASE) ss.push_back("srefX1RefWznmMRelease");
 	if (ix & DEFVAL) ss.push_back("Defval");
+	if (ix & SREFREFWZNMMVECTORITEM) ss.push_back("srefRefWznmMVectoritem");
 
 	StrMod::vectorToString(ss, srefs);
 
@@ -280,7 +288,7 @@ void IexWznmGbl::ImeIJAMBlockItem::writeTxt(
 			fstream& outfile
 		) {
 	if (nodes.size() > 0) {
-		outfile << "\t\tImeIJAMBlockItem." << StrMod::replaceChar(ImeIJAMBlockItem::VecWIel::getSrefs(3), ';', '\t') << endl;
+		outfile << "\t\tImeIJAMBlockItem." << StrMod::replaceChar(ImeIJAMBlockItem::VecWIel::getSrefs(7), ';', '\t') << endl;
 		for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeTxt(outfile);
 		outfile << "\t\tImeIJAMBlockItem.end" << endl;
 	};
@@ -306,7 +314,9 @@ IexWznmGbl::ImeitemIAMBlockItem::ImeitemIAMBlockItem(
 			, const uint ixVBasetype
 			, const string& sref
 			, const uint ixWznmVVartype
+			, const string& srefRefWznmMVector
 			, const string& Defval
+			, const string& srefRefWznmMVectoritem
 			, const string& Comment
 		) : WznmAMBlockItem() {
 	lineno = 0;
@@ -316,7 +326,9 @@ IexWznmGbl::ImeitemIAMBlockItem::ImeitemIAMBlockItem(
 	this->ixVBasetype = ixVBasetype;
 	this->sref = sref;
 	this->ixWznmVVartype = ixWznmVVartype;
+	this->srefRefWznmMVector = srefRefWznmMVector;
 	this->Defval = Defval;
+	this->srefRefWznmMVectoritem = srefRefWznmMVectoritem;
 	this->Comment = Comment;
 };
 
@@ -337,8 +349,10 @@ IexWznmGbl::ImeitemIAMBlockItem::ImeitemIAMBlockItem(
 		ixVBasetype = rec->ixVBasetype;
 		sref = rec->sref;
 		ixWznmVVartype = rec->ixWznmVVartype;
+		refWznmMVector = rec->refWznmMVector;
 		refJ = rec->refJ;
 		Defval = rec->Defval;
+		refWznmMVectoritem = rec->refWznmMVectoritem;
 		Comment = rec->Comment;
 
 		delete rec;
@@ -354,8 +368,10 @@ void IexWznmGbl::ImeitemIAMBlockItem::readTxt(
 	if (txtrd.fields.size() > 1) {srefIxVBasetype = txtrd.fields[1]; ixWIelValid += ImeIAMBlockItem::VecWIel::SREFIXVBASETYPE;};
 	if (txtrd.fields.size() > 2) {sref = txtrd.fields[2]; ixWIelValid += ImeIAMBlockItem::VecWIel::SREF;};
 	if (txtrd.fields.size() > 3) {srefIxWznmVVartype = txtrd.fields[3]; ixWIelValid += ImeIAMBlockItem::VecWIel::SREFIXWZNMVVARTYPE;};
-	if (txtrd.fields.size() > 4) {Defval = txtrd.fields[4]; ixWIelValid += ImeIAMBlockItem::VecWIel::DEFVAL;};
-	if (txtrd.fields.size() > 5) {Comment = txtrd.fields[5]; ixWIelValid += ImeIAMBlockItem::VecWIel::COMMENT;};
+	if (txtrd.fields.size() > 4) {srefRefWznmMVector = txtrd.fields[4]; ixWIelValid += ImeIAMBlockItem::VecWIel::SREFREFWZNMMVECTOR;};
+	if (txtrd.fields.size() > 5) {Defval = txtrd.fields[5]; ixWIelValid += ImeIAMBlockItem::VecWIel::DEFVAL;};
+	if (txtrd.fields.size() > 6) {srefRefWznmMVectoritem = txtrd.fields[6]; ixWIelValid += ImeIAMBlockItem::VecWIel::SREFREFWZNMMVECTORITEM;};
+	if (txtrd.fields.size() > 7) {Comment = txtrd.fields[7]; ixWIelValid += ImeIAMBlockItem::VecWIel::COMMENT;};
 
 	while (txtrd.readLine()) {
 		switch (txtrd.ixVLinetype) {
@@ -392,7 +408,9 @@ void IexWznmGbl::ImeitemIAMBlockItem::readXML(
 		if (extractStringUclc(docctx, basexpath, "srefIxVBasetype", "typ", srefIxVBasetype)) ixWIelValid += ImeIAMBlockItem::VecWIel::SREFIXVBASETYPE;
 		if (extractStringUclc(docctx, basexpath, "sref", "srf", sref)) ixWIelValid += ImeIAMBlockItem::VecWIel::SREF;
 		if (extractStringUclc(docctx, basexpath, "srefIxWznmVVartype", "vty", srefIxWznmVVartype)) ixWIelValid += ImeIAMBlockItem::VecWIel::SREFIXWZNMVVARTYPE;
+		if (extractStringUclc(docctx, basexpath, "srefRefWznmMVector", "vec", srefRefWznmMVector)) ixWIelValid += ImeIAMBlockItem::VecWIel::SREFREFWZNMMVECTOR;
 		if (extractStringUclc(docctx, basexpath, "Defval", "dfv", Defval)) ixWIelValid += ImeIAMBlockItem::VecWIel::DEFVAL;
+		if (extractStringUclc(docctx, basexpath, "srefRefWznmMVectoritem", "vit", srefRefWznmMVectoritem)) ixWIelValid += ImeIAMBlockItem::VecWIel::SREFREFWZNMMVECTORITEM;
 		if (extractStringUclc(docctx, basexpath, "Comment", "cmt", Comment)) ixWIelValid += ImeIAMBlockItem::VecWIel::COMMENT;
 		imeijamblockitem.readXML(docctx, basexpath);
 	};
@@ -401,7 +419,7 @@ void IexWznmGbl::ImeitemIAMBlockItem::readXML(
 void IexWznmGbl::ImeitemIAMBlockItem::writeTxt(
 			fstream& outfile
 		) {
-	outfile << "\t" << irefRefWznmCAMBlockItem << "\t" << VecWznmVAMBlockItemBasetype::getSref(ixVBasetype) << "\t" << sref << "\t" << VecWznmVVartype::getSref(ixWznmVVartype) << "\t" << Defval << "\t" << Comment << endl;
+	outfile << "\t" << irefRefWznmCAMBlockItem << "\t" << VecWznmVAMBlockItemBasetype::getSref(ixVBasetype) << "\t" << sref << "\t" << VecWznmVVartype::getSref(ixWznmVVartype) << "\t" << srefRefWznmMVector << "\t" << Defval << "\t" << srefRefWznmMVectoritem << "\t" << Comment << endl;
 	imeijamblockitem.writeTxt(outfile);
 };
 
@@ -411,8 +429,8 @@ void IexWznmGbl::ImeitemIAMBlockItem::writeXML(
 			, const bool shorttags
 		) {
 	vector<string> tags;
-	if (shorttags) tags = {"Ii","clu","typ","srf","vty","dfv","cmt"};
-	else tags = {"ImeitemIAMBlockItem","irefRefWznmCAMBlockItem","srefIxVBasetype","sref","srefIxWznmVVartype","Defval","Comment"};
+	if (shorttags) tags = {"Ii","clu","typ","srf","vty","vec","dfv","vit","cmt"};
+	else tags = {"ImeitemIAMBlockItem","irefRefWznmCAMBlockItem","srefIxVBasetype","sref","srefIxWznmVVartype","srefRefWznmMVector","Defval","srefRefWznmMVectoritem","Comment"};
 
 	xmlTextWriterStartElement(wr, BAD_CAST tags[0].c_str());
 		xmlTextWriterWriteAttribute(wr, BAD_CAST "num", BAD_CAST to_string(num).c_str());
@@ -420,8 +438,10 @@ void IexWznmGbl::ImeitemIAMBlockItem::writeXML(
 		writeString(wr, tags[2], VecWznmVAMBlockItemBasetype::getSref(ixVBasetype));
 		writeString(wr, tags[3], sref);
 		writeString(wr, tags[4], VecWznmVVartype::getSref(ixWznmVVartype));
-		writeString(wr, tags[5], Defval);
-		writeString(wr, tags[6], Comment);
+		writeString(wr, tags[5], srefRefWznmMVector);
+		writeString(wr, tags[6], Defval);
+		writeString(wr, tags[7], srefRefWznmMVectoritem);
+		writeString(wr, tags[8], Comment);
 		imeijamblockitem.writeXML(wr, shorttags);
 	xmlTextWriterEndElement(wr);
 };
@@ -443,7 +463,9 @@ uint IexWznmGbl::ImeIAMBlockItem::VecWIel::getIx(
 		else if (ss[i] == "srefixvbasetype") ix |= SREFIXVBASETYPE;
 		else if (ss[i] == "sref") ix |= SREF;
 		else if (ss[i] == "srefixwznmvvartype") ix |= SREFIXWZNMVVARTYPE;
+		else if (ss[i] == "srefrefwznmmvector") ix |= SREFREFWZNMMVECTOR;
 		else if (ss[i] == "defval") ix |= DEFVAL;
+		else if (ss[i] == "srefrefwznmmvectoritem") ix |= SREFREFWZNMMVECTORITEM;
 		else if (ss[i] == "comment") ix |= COMMENT;
 	};
 
@@ -468,7 +490,9 @@ string IexWznmGbl::ImeIAMBlockItem::VecWIel::getSrefs(
 	if (ix & SREFIXVBASETYPE) ss.push_back("srefIxVBasetype");
 	if (ix & SREF) ss.push_back("sref");
 	if (ix & SREFIXWZNMVVARTYPE) ss.push_back("srefIxWznmVVartype");
+	if (ix & SREFREFWZNMMVECTOR) ss.push_back("srefRefWznmMVector");
 	if (ix & DEFVAL) ss.push_back("Defval");
+	if (ix & SREFREFWZNMMVECTORITEM) ss.push_back("srefRefWznmMVectoritem");
 	if (ix & COMMENT) ss.push_back("Comment");
 
 	StrMod::vectorToString(ss, srefs);
@@ -566,7 +590,7 @@ void IexWznmGbl::ImeIAMBlockItem::writeTxt(
 			fstream& outfile
 		) {
 	if (nodes.size() > 0) {
-		outfile << "\tImeIAMBlockItem." << StrMod::replaceChar(ImeIAMBlockItem::VecWIel::getSrefs(63), ';', '\t') << endl;
+		outfile << "\tImeIAMBlockItem." << StrMod::replaceChar(ImeIAMBlockItem::VecWIel::getSrefs(255), ';', '\t') << endl;
 		for (unsigned int i = 0; i < nodes.size(); i++) nodes[i]->writeTxt(outfile);
 		outfile << "\tImeIAMBlockItem.end" << endl;
 	};
@@ -3143,7 +3167,7 @@ void IexWznmGbl::parseFromFile(
 		};
 
 	} else {
-			Txtrd rd(fullpath, rectpath, "IexWznmGbl", Version("0.9.29"), VecVIme::getIx);
+			Txtrd rd(fullpath, rectpath, "IexWznmGbl", Version("1.1.7"), VecVIme::getIx);
 			readTxt(rd, imeimblock, imeimcapability, imeimerror, imeimvector);
 	};
 };
@@ -3215,7 +3239,7 @@ void IexWznmGbl::readXML(
 		// validate version
 		if (checkUclcXPaths(docctx, goodxpath, basexpath, "@Version")) {
 			extractString(docctx, goodxpath, version);
-			if (Version(version) < Version("0.9.29")) throw SbeException(SbeException::IEX_VERSION, {{"version",version},{"minversion","0.9.29"}});
+			if (Version(version) < Version("1.1.7")) throw SbeException(SbeException::IEX_VERSION, {{"version",version},{"minversion","1.1.7"}});
 		};
 
 		// look for XML sub-blocks

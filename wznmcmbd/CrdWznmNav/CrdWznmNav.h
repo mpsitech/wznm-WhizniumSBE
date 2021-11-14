@@ -16,11 +16,11 @@
 
 #include "PnlWznmNavAuxfct.h"
 #include "PnlWznmNavAppdev.h"
-#include "PnlWznmNavDeploy.h"
 #include "PnlWznmNavJob.h"
+#include "PnlWznmNavDeploy.h"
 #include "PnlWznmNavComp.h"
-#include "PnlWznmNavUix.h"
 #include "PnlWznmNavDbstr.h"
+#include "PnlWznmNavUix.h"
 #include "PnlWznmNavProject.h"
 #include "PnlWznmNavGlobal.h"
 #include "PnlWznmNavAdmin.h"
@@ -603,11 +603,11 @@ public:
 
 	PnlWznmNavAuxfct* pnlauxfct;
 	PnlWznmNavAppdev* pnlappdev;
-	PnlWznmNavDeploy* pnldeploy;
 	PnlWznmNavJob* pnljob;
+	PnlWznmNavDeploy* pnldeploy;
 	PnlWznmNavComp* pnlcomp;
-	PnlWznmNavUix* pnluix;
 	PnlWznmNavDbstr* pnldbstr;
+	PnlWznmNavUix* pnluix;
 	PnlWznmNavProject* pnlproject;
 	PnlWznmNavGlobal* pnlglobal;
 	PnlWznmNavAdmin* pnladmin;

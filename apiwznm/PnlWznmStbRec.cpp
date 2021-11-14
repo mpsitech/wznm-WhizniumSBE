@@ -105,19 +105,19 @@ set<uint> PnlWznmStbRec::ContInf::diff(
 PnlWznmStbRec::StatApp::StatApp(
 			const bool initdoneDetail
 			, const bool initdoneSupMNStub
-			, const bool initdoneSubMNStub
 			, const bool initdoneMNSquawk
+			, const bool initdoneSubMNStub
 			, const bool initdoneMNCall
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
 	this->initdoneSupMNStub = initdoneSupMNStub;
-	this->initdoneSubMNStub = initdoneSubMNStub;
 	this->initdoneMNSquawk = initdoneMNSquawk;
+	this->initdoneSubMNStub = initdoneSubMNStub;
 	this->initdoneMNCall = initdoneMNCall;
 
-	mask = {INITDONEDETAIL, INITDONESUPMNSTUB, INITDONESUBMNSTUB, INITDONEMNSQUAWK, INITDONEMNCALL};
+	mask = {INITDONEDETAIL, INITDONESUPMNSTUB, INITDONEMNSQUAWK, INITDONESUBMNSTUB, INITDONEMNCALL};
 };
 
 bool PnlWznmStbRec::StatApp::readXML(
@@ -139,8 +139,8 @@ bool PnlWznmStbRec::StatApp::readXML(
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSupMNStub", initdoneSupMNStub)) add(INITDONESUPMNSTUB);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSubMNStub", initdoneSubMNStub)) add(INITDONESUBMNSTUB);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNSquawk", initdoneMNSquawk)) add(INITDONEMNSQUAWK);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneSubMNStub", initdoneSubMNStub)) add(INITDONESUBMNSTUB);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNCall", initdoneMNCall)) add(INITDONEMNCALL);
 	};
 
@@ -154,8 +154,8 @@ set<uint> PnlWznmStbRec::StatApp::comm(
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
 	if (initdoneSupMNStub == comp->initdoneSupMNStub) insert(items, INITDONESUPMNSTUB);
-	if (initdoneSubMNStub == comp->initdoneSubMNStub) insert(items, INITDONESUBMNSTUB);
 	if (initdoneMNSquawk == comp->initdoneMNSquawk) insert(items, INITDONEMNSQUAWK);
+	if (initdoneSubMNStub == comp->initdoneSubMNStub) insert(items, INITDONESUBMNSTUB);
 	if (initdoneMNCall == comp->initdoneMNCall) insert(items, INITDONEMNCALL);
 
 	return(items);
@@ -169,7 +169,7 @@ set<uint> PnlWznmStbRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONESUPMNSTUB, INITDONESUBMNSTUB, INITDONEMNSQUAWK, INITDONEMNCALL};
+	diffitems = {INITDONEDETAIL, INITDONESUPMNSTUB, INITDONEMNSQUAWK, INITDONESUBMNSTUB, INITDONEMNCALL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -183,8 +183,8 @@ PnlWznmStbRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
 			, const string& scrJrefSupMNStub
-			, const string& scrJrefSubMNStub
 			, const string& scrJrefMNSquawk
+			, const string& scrJrefSubMNStub
 			, const string& scrJrefMNCall
 			, const bool ButRegularizeActive
 		) :
@@ -193,12 +193,12 @@ PnlWznmStbRec::StatShr::StatShr(
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
 	this->scrJrefSupMNStub = scrJrefSupMNStub;
-	this->scrJrefSubMNStub = scrJrefSubMNStub;
 	this->scrJrefMNSquawk = scrJrefMNSquawk;
+	this->scrJrefSubMNStub = scrJrefSubMNStub;
 	this->scrJrefMNCall = scrJrefMNCall;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFSUPMNSTUB, SCRJREFSUBMNSTUB, SCRJREFMNSQUAWK, SCRJREFMNCALL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFSUPMNSTUB, SCRJREFMNSQUAWK, SCRJREFSUBMNSTUB, SCRJREFMNCALL, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmStbRec::StatShr::readXML(
@@ -226,8 +226,8 @@ bool PnlWznmStbRec::StatShr::readXML(
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSupMNStub", scrJrefSupMNStub)) add(SCRJREFSUPMNSTUB);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSubMNStub", scrJrefSubMNStub)) add(SCRJREFSUBMNSTUB);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNSquawk", scrJrefMNSquawk)) add(SCRJREFMNSQUAWK);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefSubMNStub", scrJrefSubMNStub)) add(SCRJREFSUBMNSTUB);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNCall", scrJrefMNCall)) add(SCRJREFMNCALL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
@@ -243,8 +243,8 @@ set<uint> PnlWznmStbRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
 	if (scrJrefSupMNStub == comp->scrJrefSupMNStub) insert(items, SCRJREFSUPMNSTUB);
-	if (scrJrefSubMNStub == comp->scrJrefSubMNStub) insert(items, SCRJREFSUBMNSTUB);
 	if (scrJrefMNSquawk == comp->scrJrefMNSquawk) insert(items, SCRJREFMNSQUAWK);
+	if (scrJrefSubMNStub == comp->scrJrefSubMNStub) insert(items, SCRJREFSUBMNSTUB);
 	if (scrJrefMNCall == comp->scrJrefMNCall) insert(items, SCRJREFMNCALL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -259,7 +259,7 @@ set<uint> PnlWznmStbRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFSUPMNSTUB, SCRJREFSUBMNSTUB, SCRJREFMNSQUAWK, SCRJREFMNCALL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFSUPMNSTUB, SCRJREFMNSQUAWK, SCRJREFSUBMNSTUB, SCRJREFMNCALL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

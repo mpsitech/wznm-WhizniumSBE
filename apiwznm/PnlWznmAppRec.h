@@ -66,19 +66,19 @@ namespace PnlWznmAppRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONE1NRTJOB = 2;
+		static const Sbecore::uint INITDONE1NEVENT = 2;
 		static const Sbecore::uint INITDONEAPP1NSEQUENCE = 3;
-		static const Sbecore::uint INITDONE1NEVENT = 4;
+		static const Sbecore::uint INITDONE1NRTJOB = 4;
 		static const Sbecore::uint INITDONEREF1NFILE = 5;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdone1NRtjob = false, const bool initdoneApp1NSequence = false, const bool initdone1NEvent = false, const bool initdoneRef1NFile = false);
+		StatApp(const bool initdoneDetail = false, const bool initdone1NEvent = false, const bool initdoneApp1NSequence = false, const bool initdone1NRtjob = false, const bool initdoneRef1NFile = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdone1NRtjob;
-		bool initdoneApp1NSequence;
 		bool initdone1NEvent;
+		bool initdoneApp1NSequence;
+		bool initdone1NRtjob;
 		bool initdoneRef1NFile;
 
 	public:
@@ -95,21 +95,21 @@ namespace PnlWznmAppRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREF1NRTJOB = 3;
+		static const Sbecore::uint SCRJREF1NEVENT = 3;
 		static const Sbecore::uint SCRJREFAPP1NSEQUENCE = 4;
-		static const Sbecore::uint SCRJREF1NEVENT = 5;
+		static const Sbecore::uint SCRJREF1NRTJOB = 5;
 		static const Sbecore::uint SCRJREFREF1NFILE = 6;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 7;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NRtjob = "", const std::string& scrJrefApp1NSequence = "", const std::string& scrJref1NEvent = "", const std::string& scrJrefRef1NFile = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NEvent = "", const std::string& scrJrefApp1NSequence = "", const std::string& scrJref1NRtjob = "", const std::string& scrJrefRef1NFile = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJref1NRtjob;
-		std::string scrJrefApp1NSequence;
 		std::string scrJref1NEvent;
+		std::string scrJrefApp1NSequence;
+		std::string scrJref1NRtjob;
 		std::string scrJrefRef1NFile;
 		bool ButRegularizeActive;
 

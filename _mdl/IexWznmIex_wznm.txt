@@ -385,7 +385,7 @@ IexWznmDpl	dpl	deployment information	1.0.9	components and releases
 		tsref	fil	refWznmMLibrary	srefRefWznmMLibrary	lib		custsql			StubWznmLibSref
 		ImeIMImpexpcol.end
 	ImeIMImpexp.end
-IexWznmGbl	gbl	global features	0.9.29	capabilities, errors and blocks
+IexWznmGbl	gbl	global features	1.1.7	capabilities, errors and blocks
 	ImeIMImpexp.iref	irefSupRefWznmMImpexp	srefRefWznmMTable	sref	rtrSrefsWznmMImpexpcol	srefsIxWIop	Comment
 	161	0	TblWznmMError	ImeIMError		ins
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
@@ -457,8 +457,10 @@ IexWznmGbl	gbl	global features	0.9.29	capabilities, errors and blocks
 		vsref	fil	ixVBasetype	srefIxVBasetype	typ		ixsref
 		tbl	fil;tbl	sref	sref	srf		void
 		vsref	fil	ixWznmVVartype	srefIxWznmVVartype	vty		ixsref
+		tsref	fil	refWznmMVector	srefRefWznmMVector	vec		previmp			StubWznmVecStd
 		tbl	tbl	refJ	refJ		35	sub
 		tbl	fil;tbl	Defval	Defval	dfv	35	void
+		tsref	fil	refWznmMVectoritem	srefRefWznmMVectoritem	vit	35	custsql
 		tbl	fil;tbl	Comment	Comment	cmt		void
 		ImeIMImpexpcol.end
 	35	34	TblWznmJAMBlockItem	ImeIJAMBlockItem		ins
@@ -466,6 +468,7 @@ IexWznmGbl	gbl	global features	0.9.29	capabilities, errors and blocks
 		tbl	tbl	refWznmAMBlockItem	refWznmAMBlockItem			sup
 		tsref	fil	x1RefWznmMRelease	srefX1RefWznmMRelease	rls		rst			StubWznmRlsStd
 		tbl	fil;tbl	Defval	Defval	dfv		void
+		tsref	fil	refWznmMVectoritem	srefRefWznmMVectoritem	vit		previmp			StubWznmVitSref
 		ImeIMImpexpcol.end
 	174	0	TblWznmMCapability	ImeIMCapability		ins
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem

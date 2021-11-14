@@ -2,7 +2,7 @@
 # make file for CrdWznmApp card job handler, release wznmd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 25 Oct 2021
+# date created: 13 Nov 2021
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmd/VecWznm -I$(BUILDROOT)/wznmd/IexWznm -I$(BUILDROOT)/wznmd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmApp.o PnlWznmAppList.o QryWznmAppList.o PnlWznmAppHeadbar.o DlgWznmAppWrite.o PnlWznmAppRec.o PnlWznmApp1NEvent.o QryWznmApp1NEvent.o PnlWznmAppRef1NFile.o QryWznmAppRef1NFile.o PnlWznmApp1NRtjob.o QryWznmApp1NRtjob.o PnlWznmAppApp1NSequence.o QryWznmAppApp1NSequence.o PnlWznmAppDetail.o DlgWznmAppNew.o DlgWznmAppImpstr.o
+OBJS = CrdWznmApp.o PnlWznmAppList.o QryWznmAppList.o PnlWznmAppHeadbar.o DlgWznmAppWrite.o PnlWznmAppRec.o PnlWznmAppRef1NFile.o QryWznmAppRef1NFile.o PnlWznmApp1NRtjob.o QryWznmApp1NRtjob.o PnlWznmAppApp1NSequence.o QryWznmAppApp1NSequence.o PnlWznmApp1NEvent.o QryWznmApp1NEvent.o PnlWznmAppDetail.o DlgWznmAppNew.o DlgWznmAppImpstr.o
 
 LIB = libcrdwznmapp
 

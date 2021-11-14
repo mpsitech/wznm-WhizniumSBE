@@ -231,8 +231,8 @@ void QryWznmMtdList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMMethod.sref ASC";
-	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWznmMMethod.refWznmMJob ASC";
+	if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWznmMMethod.refWznmMJob ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMMethod.sref ASC";
 };
 
 void QryWznmMtdList::fetch(
