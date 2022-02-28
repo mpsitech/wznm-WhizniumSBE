@@ -20,8 +20,8 @@ uint QryWznmMdlList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ver") return VER;
 	if (s == "srf") return SRF;
+	if (s == "ver") return VER;
 
 	return(0);
 };
@@ -29,8 +29,8 @@ uint QryWznmMdlList::VecVOrd::getIx(
 string QryWznmMdlList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == VER) return("ver");
 	if (ix == SRF) return("srf");
+	if (ix == VER) return("ver");
 
 	return("");
 };

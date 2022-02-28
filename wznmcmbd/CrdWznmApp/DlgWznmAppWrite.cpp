@@ -135,7 +135,7 @@ void DlgWznmAppWrite::createCxx(
 	keys.push_back("Appshort"); vals.push_back(Appshort);
 	keys.push_back("appshort"); vals.push_back(appshort);
 
-	if (ixApptarget == VecWznmVApptarget::COCOA_OBJC) cftpls = {"AppXxxx_Objc.h", "AppXxxx_Objc.mm", "VecXxxxVEvent.h", "VecXxxxVEvent.cpp", "VecXxxxVState.h", "VecXxxxVState.cpp"};
+	if (ixApptarget == VecWznmVApptarget::COCOA_SWIFT) cftpls = {"AppXxxx_Objc.h", "AppXxxx_Objc.mm", "VecXxxxVEvent.h", "VecXxxxVEvent.cpp", "VecXxxxVState.h", "VecXxxxVState.cpp"};
 	else if (ixApptarget == VecWznmVApptarget::DOTNET_CPPCLI) cftpls = {"AppXxxx_Cli.h", "AppXxxx_Cli.cpp", "VecXxxxVEvent.h", "VecXxxxVEvent.cpp", "VecXxxxVState.h", "VecXxxxVState.cpp"};
 	else if (ixApptarget == VecWznmVApptarget::POSIX_CPP) cftpls = {"AppXxxx.h", "AppXxxx.cpp", "VecXxxxVEvent.h", "VecXxxxVEvent.cpp", "VecXxxxVState.h", "VecXxxxVState.cpp"};
 
@@ -268,8 +268,8 @@ void DlgWznmAppWrite::refreshWrc(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrWrc oldStatshrwrc(statshrwrc);
 	ContInfWrc oldContinfwrc(continfwrc);
+	StatShrWrc oldStatshrwrc(statshrwrc);
 
 	// IP refreshWrc --- RBEGIN
 	// continfwrc
@@ -280,16 +280,16 @@ void DlgWznmAppWrite::refreshWrc(
 	statshrwrc.ButStoActive = evalWrcButStoActive(dbswznm);
 
 	// IP refreshWrc --- REND
-	if (statshrwrc.diff(&oldStatshrwrc).size() != 0) insert(moditems, DpchEngData::STATSHRWRC);
 	if (continfwrc.diff(&oldContinfwrc).size() != 0) insert(moditems, DpchEngData::CONTINFWRC);
+	if (statshrwrc.diff(&oldStatshrwrc).size() != 0) insert(moditems, DpchEngData::STATSHRWRC);
 };
 
 void DlgWznmAppWrite::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfLfi oldContinflfi(continflfi);
 	StatShrLfi oldStatshrlfi(statshrlfi);
+	ContInfLfi oldContinflfi(continflfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -299,16 +299,16 @@ void DlgWznmAppWrite::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
+	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 };
 
 void DlgWznmAppWrite::refreshFia(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfFia oldContinffia(continffia);
 	StatShrFia oldStatshrfia(statshrfia);
+	ContInfFia oldContinffia(continffia);
 
 	// IP refreshFia --- RBEGIN
 
@@ -323,8 +323,8 @@ void DlgWznmAppWrite::refreshFia(
 	statshrfia.DldActive = evalFiaDldActive(dbswznm);
 
 	// IP refreshFia --- REND
-	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
 	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
+	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
 };
 
 void DlgWznmAppWrite::refresh(
@@ -335,24 +335,24 @@ void DlgWznmAppWrite::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	StatShr oldStatshr(statshr);
-	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
+	ContIac oldContiac(contiac);
+	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
-	// statshr
-	statshr.ButDneActive = evalButDneActive(dbswznm);
+	// continf
+	continf.numFSge = ixVSge;
 
 	// contiac
 	contiac.numFDse = ixVDit;
 
-	// continf
-	continf.numFSge = ixVSge;
+	// statshr
+	statshr.ButDneActive = evalButDneActive(dbswznm);
 
 	// IP refresh --- END
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
 	refreshDet(dbswznm, moditems);
 	refreshCuc(dbswznm, moditems);
@@ -417,8 +417,8 @@ void DlgWznmAppWrite::handleRequest(
 		if (ixVSge == VecVSge::IDLE) handleUploadInSgeIdle(dbswznm, req->filename);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DOWNLOAD) {
-		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
-		else if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
+		if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
+		else if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DPCHRET) {
 		if (req->dpchret->ixOpVOpres == VecOpVOpres::PROGRESS) {
@@ -555,16 +555,16 @@ void DlgWznmAppWrite::handleUploadInSgeIdle(
 	changeStage(dbswznm, VecVSge::UPKIDLE);
 };
 
-string DlgWznmAppWrite::handleDownloadInSgeDone(
-			DbsWznm* dbswznm
-		) {
-	return(xchg->tmppath + "/" + outfolder + ".tgz"); // IP handleDownloadInSgeDone --- RLINE
-};
-
 string DlgWznmAppWrite::handleDownloadInSgeFail(
 			DbsWznm* dbswznm
 		) {
 	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
+};
+
+string DlgWznmAppWrite::handleDownloadInSgeDone(
+			DbsWznm* dbswznm
+		) {
+	return(xchg->tmppath + "/" + outfolder + ".tgz"); // IP handleDownloadInSgeDone --- RLINE
 };
 
 void DlgWznmAppWrite::handleTimerInSgeUpkidle(
@@ -775,7 +775,7 @@ uint DlgWznmAppWrite::enterSgeWrite(
 
 	// IP enterSgeWrite --- IBEGIN
 
-	if ((ixApptarget == VecWznmVApptarget::COCOA_OBJC) || (ixApptarget == VecWznmVApptarget::DOTNET_CPPCLI) || (ixApptarget == VecWznmVApptarget::POSIX_CPP)) {
+	if ((ixApptarget == VecWznmVApptarget::COCOA_SWIFT) || (ixApptarget == VecWznmVApptarget::DOTNET_CPPCLI) || (ixApptarget == VecWznmVApptarget::POSIX_CPP)) {
 		// create -> outfolder
 		// IP's -> ipfolder -> outfolder
 		// (optional) custom IP's -> custfolder -> outfolder
@@ -813,7 +813,7 @@ uint DlgWznmAppWrite::enterSgeMrggnr(
 
 	// IP enterSgeMrggnr --- IBEGIN
 
-	if ((ixApptarget == VecWznmVApptarget::COCOA_OBJC) || (ixApptarget == VecWznmVApptarget::DOTNET_CPPCLI) || (ixApptarget == VecWznmVApptarget::POSIX_CPP)) {
+	if ((ixApptarget == VecWznmVApptarget::COCOA_SWIFT) || (ixApptarget == VecWznmVApptarget::DOTNET_CPPCLI) || (ixApptarget == VecWznmVApptarget::POSIX_CPP)) {
 		// IP's -> ipfolder -> outfolder
 		addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ipfolder, "", outfolder, true, true));
 
@@ -846,7 +846,7 @@ uint DlgWznmAppWrite::enterSgeMrgcust(
 
 	// IP enterSgeMrgcust --- IBEGIN
 
-	if ((ixApptarget == VecWznmVApptarget::COCOA_OBJC) || (ixApptarget == VecWznmVApptarget::DOTNET_CPPCLI) || (ixApptarget == VecWznmVApptarget::POSIX_CPP)) {
+	if ((ixApptarget == VecWznmVApptarget::COCOA_SWIFT) || (ixApptarget == VecWznmVApptarget::DOTNET_CPPCLI) || (ixApptarget == VecWznmVApptarget::POSIX_CPP)) {
 		// (optional) custom IP's -> custfolder -> outfolder
 		if (custfolder != "") addInv(new DpchInvWznmPrctreeMerge(0, 0, "", custfolder, "", outfolder, false, false));
 

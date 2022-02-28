@@ -22,11 +22,11 @@ uint QryWznmQmdList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "ret") return RET;
-	if (s == "reu") return REU;
-	if (s == "pst") return PST;
 	if (s == "typ") return TYP;
 	if (s == "qry") return QRY;
+	if (s == "pst") return PST;
+	if (s == "ret") return RET;
+	if (s == "reu") return REU;
 
 	return(0);
 };
@@ -34,11 +34,11 @@ uint QryWznmQmdList::VecVOrd::getIx(
 string QryWznmQmdList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == RET) return("ret");
-	if (ix == REU) return("reu");
-	if (ix == PST) return("pst");
 	if (ix == TYP) return("typ");
 	if (ix == QRY) return("qry");
+	if (ix == PST) return("pst");
+	if (ix == RET) return("ret");
+	if (ix == REU) return("reu");
 
 	return("");
 };

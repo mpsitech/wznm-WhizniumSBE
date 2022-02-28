@@ -468,7 +468,7 @@ IexWznmGbl	gbl	global features	1.1.7	capabilities, errors and blocks
 		tbl	tbl	refWznmAMBlockItem	refWznmAMBlockItem			sup
 		tsref	fil	x1RefWznmMRelease	srefX1RefWznmMRelease	rls		rst			StubWznmRlsStd
 		tbl	fil;tbl	Defval	Defval	dfv		void
-		tsref	fil	refWznmMVectoritem	srefRefWznmMVectoritem	vit		previmp			StubWznmVitSref
+		tsref	fil	refWznmMVectoritem	srefRefWznmMVectoritem	vit		custsql			StubWznmVitSref
 		ImeIMImpexpcol.end
 	174	0	TblWznmMCapability	ImeIMCapability		ins
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem

@@ -1225,6 +1225,10 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchinvwznmwrjapijob") return DPCHINVWZNMWRJAPIJOB;
 	if (s == "dpchinvwznmwrjapiqtb") return DPCHINVWZNMWRJAPIQTB;
 	if (s == "dpchinvwznmwrjapivec") return DPCHINVWZNMWRJAPIVEC;
+	if (s == "dpchinvwznmwrsapibase") return DPCHINVWZNMWRSAPIBASE;
+	if (s == "dpchinvwznmwrsapijob") return DPCHINVWZNMWRSAPIJOB;
+	if (s == "dpchinvwznmwrsapiqtb") return DPCHINVWZNMWRSAPIQTB;
+	if (s == "dpchinvwznmwrsapivec") return DPCHINVWZNMWRSAPIVEC;
 	if (s == "dpchinvwznmwrsrvbase") return DPCHINVWZNMWRSRVBASE;
 	if (s == "dpchinvwznmwrsrvcmbengbase") return DPCHINVWZNMWRSRVCMBENGBASE;
 	if (s == "dpchinvwznmwrsrvcrd") return DPCHINVWZNMWRSRVCRD;
@@ -1244,6 +1248,10 @@ uint VecWznmVDpch::getIx(
 	if (s == "dpchinvwznmwrsrvrootsess") return DPCHINVWZNMWRSRVROOTSESS;
 	if (s == "dpchinvwznmwrsrvua") return DPCHINVWZNMWRSRVUA;
 	if (s == "dpchinvwznmwrsrvvec") return DPCHINVWZNMWRSRVVEC;
+	if (s == "dpchinvwznmwrvuebase") return DPCHINVWZNMWRVUEBASE;
+	if (s == "dpchinvwznmwrvuecrd") return DPCHINVWZNMWRVUECRD;
+	if (s == "dpchinvwznmwrvuedlg") return DPCHINVWZNMWRVUEDLG;
+	if (s == "dpchinvwznmwrvuepnl") return DPCHINVWZNMWRVUEPNL;
 	if (s == "dpchinvwznmwrwebbase") return DPCHINVWZNMWRWEBBASE;
 	if (s == "dpchinvwznmwrwebcrd") return DPCHINVWZNMWRWEBCRD;
 	if (s == "dpchinvwznmwrwebdeploy") return DPCHINVWZNMWRWEBDEPLOY;
@@ -2469,6 +2477,10 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHINVWZNMWRJAPIJOB) return("DpchInvWznmWrjapiJob");
 	if (ix == DPCHINVWZNMWRJAPIQTB) return("DpchInvWznmWrjapiQtb");
 	if (ix == DPCHINVWZNMWRJAPIVEC) return("DpchInvWznmWrjapiVec");
+	if (ix == DPCHINVWZNMWRSAPIBASE) return("DpchInvWznmWrsapiBase");
+	if (ix == DPCHINVWZNMWRSAPIJOB) return("DpchInvWznmWrsapiJob");
+	if (ix == DPCHINVWZNMWRSAPIQTB) return("DpchInvWznmWrsapiQtb");
+	if (ix == DPCHINVWZNMWRSAPIVEC) return("DpchInvWznmWrsapiVec");
 	if (ix == DPCHINVWZNMWRSRVBASE) return("DpchInvWznmWrsrvBase");
 	if (ix == DPCHINVWZNMWRSRVCMBENGBASE) return("DpchInvWznmWrsrvCmbengbase");
 	if (ix == DPCHINVWZNMWRSRVCRD) return("DpchInvWznmWrsrvCrd");
@@ -2488,6 +2500,10 @@ string VecWznmVDpch::getSref(
 	if (ix == DPCHINVWZNMWRSRVROOTSESS) return("DpchInvWznmWrsrvRootsess");
 	if (ix == DPCHINVWZNMWRSRVUA) return("DpchInvWznmWrsrvUa");
 	if (ix == DPCHINVWZNMWRSRVVEC) return("DpchInvWznmWrsrvVec");
+	if (ix == DPCHINVWZNMWRVUEBASE) return("DpchInvWznmWrvueBase");
+	if (ix == DPCHINVWZNMWRVUECRD) return("DpchInvWznmWrvueCrd");
+	if (ix == DPCHINVWZNMWRVUEDLG) return("DpchInvWznmWrvueDlg");
+	if (ix == DPCHINVWZNMWRVUEPNL) return("DpchInvWznmWrvuePnl");
 	if (ix == DPCHINVWZNMWRWEBBASE) return("DpchInvWznmWrwebBase");
 	if (ix == DPCHINVWZNMWRWEBCRD) return("DpchInvWznmWrwebCrd");
 	if (ix == DPCHINVWZNMWRWEBDEPLOY) return("DpchInvWznmWrwebDeploy");

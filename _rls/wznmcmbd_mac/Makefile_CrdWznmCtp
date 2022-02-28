@@ -2,7 +2,7 @@
 # make file for CrdWznmCtp card job handler, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 13 Nov 2021
+# date created: 22 Feb 2022
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
 
-OBJS = CrdWznmCtp.o PnlWznmCtpList.o QryWznmCtpList.o PnlWznmCtpHeadbar.o PnlWznmCtpRec.o PnlWznmCtpTpl1NCapability.o QryWznmCtpTpl1NCapability.o PnlWznmCtp1NTag.o QryWznmCtp1NTag.o PnlWznmCtpAPar.o QryWznmCtpAPar.o PnlWznmCtpKKey.o QryWznmCtpKKey.o PnlWznmCtpKParKey.o QryWznmCtpKParKey.o PnlWznmCtpDetail.o
+OBJS = CrdWznmCtp.o PnlWznmCtpRec.o PnlWznmCtpDetail.o PnlWznmCtpKParKey.o QryWznmCtpKParKey.o PnlWznmCtpKKey.o QryWznmCtpKKey.o PnlWznmCtpAPar.o QryWznmCtpAPar.o PnlWznmCtp1NTag.o QryWznmCtp1NTag.o PnlWznmCtpTpl1NCapability.o QryWznmCtpTpl1NCapability.o PnlWznmCtpHeadbar.o PnlWznmCtpList.o QryWznmCtpList.o
 
 LIB = libcrdwznmctp
 

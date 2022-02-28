@@ -324,7 +324,7 @@ function changeHeight(pnlshort, height) {
 // --- view initialization and refresh
 function refresh() {
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmIex", "MtxCrdIex") + " - WhizniumSBE v1.1.7";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmIex", "MtxCrdIex") + " - WhizniumSBE v1.1.8";
 };
 
 // --- event handlers

@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCmpMNOppack.h"
+#include "PnlWznmCmpDetail.h"
 #include "PnlWznmCmp1NRelease.h"
 #include "PnlWznmCmpMNLibrary.h"
-#include "PnlWznmCmpDetail.h"
+#include "PnlWznmCmpMNOppack.h"
 
 #define VecVWznmCmpRecDo PnlWznmCmpRec::VecVDo
 
@@ -186,10 +186,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCmpMNOppack* pnlmnoppack;
+	PnlWznmCmpDetail* pnldetail;
 	PnlWznmCmp1NRelease* pnl1nrelease;
 	PnlWznmCmpMNLibrary* pnlmnlibrary;
-	PnlWznmCmpDetail* pnldetail;
+	PnlWznmCmpMNOppack* pnlmnoppack;
 
 	WznmMComponent recCmp;
 	Sbecore::uint ixWSubsetCmp;
@@ -224,10 +224,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmCmpUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmCmp_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmCmp_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmCmp_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmCmp_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmCmp_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmCmpUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

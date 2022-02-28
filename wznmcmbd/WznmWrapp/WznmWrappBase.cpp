@@ -74,7 +74,7 @@ DpchRetWznm* WznmWrappBase::run(
 		outfile.close();
 
 		// AppXxxx.cpp/.mm
-		if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) s = xchg->tmppath + "/" + folder + "/App" + Appshort + ".mm.ip";
+		if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) s = xchg->tmppath + "/" + folder + "/App" + Appshort + ".mm.ip";
 		else s = xchg->tmppath + "/" + folder + "/App" + Appshort + ".cpp.ip";
 		outfile.open(s.c_str(), ios::out);
 		writeAppCxx(dbswznm, outfile, app, Prjshort, rtjs, evts, seqs, stes, icsSeqs, cntsEnt, cntsReent, cntsLve, ipAllNotSpec);
@@ -137,7 +137,7 @@ void WznmWrappBase::writeAppHcxx(
 
 	string s;
 
-	if (app->ixWznmVApptarget != VecWznmVApptarget::COCOA_OBJC) {
+	if (app->ixWznmVApptarget != VecWznmVApptarget::COCOA_SWIFT) {
 		// --- DOM.summary
 		outfile << "// IP DOM.summary --- IBEGIN" << endl;
 		writeRtjtree(dbswznm, outfile, app->ixWznmVApptarget, rtjs);
@@ -157,17 +157,17 @@ void WznmWrappBase::writeAppHcxx(
 		s = StrMod::cap(StrMod::dotToUsc(ste->sref));
 
 		if (ipAllNotSpec || cntsEnt[i]) {
-			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)enter" << s << ";" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "- (unsigned int)enter" << s << ";" << endl;
 			else outfile << "\tunsigned int enter" << s << "();" << endl;
 		};
 
 		if (ipAllNotSpec || cntsReent[i]) {
-			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)renter" << s << ":(unsigned int)ixVEvent withDpcheng:(DpchEng" << Prjshort << "*)_dpcheng;" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "- (unsigned int)renter" << s << ":(unsigned int)ixVEvent withDpcheng:(DpchEng" << Prjshort << "*)_dpcheng;" << endl;
 			else outfile << "\tunsigned int reenter" << s << "(const unsigned int ixVEvent, DpchEng" << Prjshort << "* _dpcheng);" << endl;
 		};
 
 		if (ipAllNotSpec || cntsLve[i]) {
-			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (void)leave" << s << ";" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "- (void)leave" << s << ";" << endl;
 			else outfile << "\tvoid leave" << s << "();" << endl;
 		};
 
@@ -189,7 +189,7 @@ void WznmWrappBase::writeAppHcxx(
 					rtd = rtds.nodes[j];
 
 					if (dbswznm->tblwznmmblock->loadRecByRef(rtd->refWznmMBlock, &blk)) {
-						if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (bool)merge" << blk->sref << ":(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "*)dpcheng;" << endl;
+						if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "- (bool)merge" << blk->sref << ":(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "*)dpcheng;" << endl;
 						else outfile << "\tbool merge" << blk->sref << "(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "* dpcheng);" << endl;
 
 						delete blk;
@@ -244,7 +244,7 @@ void WznmWrappBase::writeAppCxx(
 
 	getTargetStrs(app->ixWznmVApptarget, dom, indent, subdlm, dpchjref);
 
-	if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) {
+	if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) {
 		// --- DOM.summary
 		outfile << "// IP DOM.summary --- IBEGIN" << endl;
 		writeRtjtree(dbswznm, outfile, app->ixWznmVApptarget, rtjs);
@@ -268,7 +268,7 @@ void WznmWrappBase::writeAppCxx(
 		getSteTrigs(dbswznm, Prjshort, Appshort, app->ixWznmVApptarget, ste->ref, dom, subdlm, trigs);
 
 		if (ipAllNotSpec || cntsEnt[i]) {
-			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)enter" << s << " {" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "- (unsigned int)enter" << s << " {" << endl;
 			else outfile << "unsigned int App" << Appshort << "::enter" << s << "() {" << endl;
 
 			outfile << "\tunsigned int retval = Vec" << Appshort << "VState::" << StrMod::uc(s) << ";" << endl;
@@ -283,7 +283,7 @@ void WznmWrappBase::writeAppCxx(
 		};
 
 		if (ipAllNotSpec || cntsReent[i]) {
-			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)renter" << s << ":(unsigned int)ixVEvent withDpcheng:(DpchEng" << Prjshort << "*)_dpcheng {" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "- (unsigned int)renter" << s << ":(unsigned int)ixVEvent withDpcheng:(DpchEng" << Prjshort << "*)_dpcheng {" << endl;
 			else {
 				outfile << "unsigned int App" << Appshort << "::reenter" << s << "(" << endl;
 				outfile << "\t\t\tconst unsigned int ixVEvent" << endl;
@@ -303,7 +303,7 @@ void WznmWrappBase::writeAppCxx(
 		};
 
 		if (ipAllNotSpec || cntsLve[i]) {
-			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (unsigned int)leave" << s << " {" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "- (unsigned int)leave" << s << " {" << endl;
 			else outfile << "unsigned int App" << Appshort << "::leave" << s << "() {" << endl;
 
 			writeState(dbswznm, outfile, Prjshort, Appshort, app->ixWznmVApptarget, dom, indent, subdlm, dpchjref, ste, trigs, VecWznmVAMStateActionSection::LVE);
@@ -331,7 +331,7 @@ void WznmWrappBase::writeAppCxx(
 					if (dbswznm->tblwznmmblock->loadRecByRef(rtd->refWznmMBlock, &blk)) {
 						dpchsref = job->sref + "::" + Wznm::getSubsref(job, blk->sref);
 
-						if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "- (bool)merge" << blk->sref << ":(" << dpchsref << "*)dpcheng {" << endl;
+						if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "- (bool)merge" << blk->sref << ":(" << dpchsref << "*)dpcheng {" << endl;
 						else {
 							outfile << "bool App" << Appshort << "::merge" << blk->sref << "(" << endl;
 							outfile << "\t\t\t" << dpchsref << "* dpcheng" << endl;

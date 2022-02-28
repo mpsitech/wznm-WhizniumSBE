@@ -14,12 +14,12 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmLibMNComponent.h"
+#include "PnlWznmLibDetail.h"
+#include "PnlWznmLibAMakefile.h"
+#include "PnlWznmLibAPkglist.h"
 #include "PnlWznmLibRef1NFile.h"
 #include "PnlWznmLibMNOppack.h"
-#include "PnlWznmLibAPkglist.h"
-#include "PnlWznmLibAMakefile.h"
-#include "PnlWznmLibDetail.h"
+#include "PnlWznmLibMNComponent.h"
 
 #define VecVWznmLibRecDo PnlWznmLibRec::VecVDo
 
@@ -186,12 +186,12 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmLibMNComponent* pnlmncomponent;
+	PnlWznmLibDetail* pnldetail;
+	PnlWznmLibAMakefile* pnlamakefile;
+	PnlWznmLibAPkglist* pnlapkglist;
 	PnlWznmLibRef1NFile* pnlref1nfile;
 	PnlWznmLibMNOppack* pnlmnoppack;
-	PnlWznmLibAPkglist* pnlapkglist;
-	PnlWznmLibAMakefile* pnlamakefile;
-	PnlWznmLibDetail* pnldetail;
+	PnlWznmLibMNComponent* pnlmncomponent;
 
 	WznmMLibrary recLib;
 

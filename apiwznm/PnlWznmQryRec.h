@@ -72,11 +72,11 @@ namespace PnlWznmQryRec {
 		static const Sbecore::uint INITDONEQRY1NQUERYCOL = 5;
 		static const Sbecore::uint INITDONE1NQUERYMOD = 6;
 		static const Sbecore::uint INITDONEMNTABLE = 7;
-		static const Sbecore::uint INITDONEMNPANEL = 8;
-		static const Sbecore::uint INITDONEMNDIALOG = 9;
+		static const Sbecore::uint INITDONEMNDIALOG = 8;
+		static const Sbecore::uint INITDONEMNPANEL = 9;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneAOrder = false, const bool initdoneAClause = false, const bool initdoneSup1NQuery = false, const bool initdoneQry1NQuerycol = false, const bool initdone1NQuerymod = false, const bool initdoneMNTable = false, const bool initdoneMNPanel = false, const bool initdoneMNDialog = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneAOrder = false, const bool initdoneAClause = false, const bool initdoneSup1NQuery = false, const bool initdoneQry1NQuerycol = false, const bool initdone1NQuerymod = false, const bool initdoneMNTable = false, const bool initdoneMNDialog = false, const bool initdoneMNPanel = false);
 
 	public:
 		bool initdoneDetail;
@@ -86,8 +86,8 @@ namespace PnlWznmQryRec {
 		bool initdoneQry1NQuerycol;
 		bool initdone1NQuerymod;
 		bool initdoneMNTable;
-		bool initdoneMNPanel;
 		bool initdoneMNDialog;
+		bool initdoneMNPanel;
 
 	public:
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
@@ -109,12 +109,12 @@ namespace PnlWznmQryRec {
 		static const Sbecore::uint SCRJREFQRY1NQUERYCOL = 6;
 		static const Sbecore::uint SCRJREF1NQUERYMOD = 7;
 		static const Sbecore::uint SCRJREFMNTABLE = 8;
-		static const Sbecore::uint SCRJREFMNPANEL = 9;
-		static const Sbecore::uint SCRJREFMNDIALOG = 10;
+		static const Sbecore::uint SCRJREFMNDIALOG = 9;
+		static const Sbecore::uint SCRJREFMNPANEL = 10;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 11;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAOrder = "", const std::string& scrJrefAClause = "", const std::string& scrJrefSup1NQuery = "", const std::string& scrJrefQry1NQuerycol = "", const std::string& scrJref1NQuerymod = "", const std::string& scrJrefMNTable = "", const std::string& scrJrefMNPanel = "", const std::string& scrJrefMNDialog = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefAOrder = "", const std::string& scrJrefAClause = "", const std::string& scrJrefSup1NQuery = "", const std::string& scrJrefQry1NQuerycol = "", const std::string& scrJref1NQuerymod = "", const std::string& scrJrefMNTable = "", const std::string& scrJrefMNDialog = "", const std::string& scrJrefMNPanel = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
@@ -125,8 +125,8 @@ namespace PnlWznmQryRec {
 		std::string scrJrefQry1NQuerycol;
 		std::string scrJref1NQuerymod;
 		std::string scrJrefMNTable;
-		std::string scrJrefMNPanel;
 		std::string scrJrefMNDialog;
+		std::string scrJrefMNPanel;
 		bool ButRegularizeActive;
 
 	public:

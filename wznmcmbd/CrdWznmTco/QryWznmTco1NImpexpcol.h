@@ -127,8 +127,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmIelMod_tcoEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
+	bool handleCallWznmIelMod_tcoEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

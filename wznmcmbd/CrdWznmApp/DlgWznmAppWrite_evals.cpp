@@ -11,53 +11,15 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool DlgWznmAppWrite::evalButDneActive(
+bool DlgWznmAppWrite::evalCucUldActive(
 			DbsWznm* dbswznm
 		) {
-	// sge(idle|fail|done)
+	// sge(idle)
 
 	vector<bool> args;
-	bool a, b;
+	bool a;
 
 	a = false; a = (ixVSge == VecVSge::IDLE);
-	args.push_back(a);
-	a = false; a = (ixVSge == VecVSge::FAIL);
-	args.push_back(a);
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a || b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a || b);
-
-	return(args.back());
-};
-
-bool DlgWznmAppWrite::evalFiaDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(done)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool DlgWznmAppWrite::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(fail)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::FAIL);
 	args.push_back(a);
 
 	return(args.back());
@@ -105,16 +67,54 @@ bool DlgWznmAppWrite::evalWrcButStoActive(
 	return(args.back());
 };
 
-bool DlgWznmAppWrite::evalCucUldActive(
+bool DlgWznmAppWrite::evalLfiDldActive(
 			DbsWznm* dbswznm
 		) {
-	// sge(idle)
+	// sge(fail)
 
 	vector<bool> args;
 	bool a;
 
+	a = false; a = (ixVSge == VecVSge::FAIL);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmAppWrite::evalFiaDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(done)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmAppWrite::evalButDneActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(idle|fail|done)
+
+	vector<bool> args;
+	bool a, b;
+
 	a = false; a = (ixVSge == VecVSge::IDLE);
 	args.push_back(a);
+	a = false; a = (ixVSge == VecVSge::FAIL);
+	args.push_back(a);
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 
 	return(args.back());
 };

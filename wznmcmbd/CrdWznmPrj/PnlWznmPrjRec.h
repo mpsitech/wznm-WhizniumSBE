@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmPrjMNPerson.h"
-#include "PnlWznmPrjPrj1NVersion.h"
 #include "PnlWznmPrjDetail.h"
+#include "PnlWznmPrjPrj1NVersion.h"
+#include "PnlWznmPrjMNPerson.h"
 
 #define VecVWznmPrjRecDo PnlWznmPrjRec::VecVDo
 
@@ -177,9 +177,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmPrjMNPerson* pnlmnperson;
-	PnlWznmPrjPrj1NVersion* pnlprj1nversion;
 	PnlWznmPrjDetail* pnldetail;
+	PnlWznmPrjPrj1NVersion* pnlprj1nversion;
+	PnlWznmPrjMNPerson* pnlmnperson;
 
 	WznmMProject recPrj;
 
@@ -213,8 +213,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmPrjUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPrj_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmPrjUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

@@ -109,8 +109,8 @@ void PnlWznmIexRec::StatApp::writeJSON(
 			, string difftag
 			, const bool initdoneDetail
 			, const bool initdone1NImpexp
-			, const bool initdoneHk1NVector
 			, const bool initdoneRef1NDialog
+			, const bool initdoneHk1NVector
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmIexRec";
 
@@ -118,8 +118,8 @@ void PnlWznmIexRec::StatApp::writeJSON(
 
 	me["initdoneDetail"] = initdoneDetail;
 	me["initdone1NImpexp"] = initdone1NImpexp;
-	me["initdoneHk1NVector"] = initdoneHk1NVector;
 	me["initdoneRef1NDialog"] = initdoneRef1NDialog;
+	me["initdoneHk1NVector"] = initdoneHk1NVector;
 };
 
 void PnlWznmIexRec::StatApp::writeXML(
@@ -128,8 +128,8 @@ void PnlWznmIexRec::StatApp::writeXML(
 			, bool shorttags
 			, const bool initdoneDetail
 			, const bool initdone1NImpexp
-			, const bool initdoneHk1NVector
 			, const bool initdoneRef1NDialog
+			, const bool initdoneHk1NVector
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmIexRec";
 
@@ -140,8 +140,8 @@ void PnlWznmIexRec::StatApp::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NImpexp", initdone1NImpexp);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneHk1NVector", initdoneHk1NVector);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NDialog", initdoneRef1NDialog);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneHk1NVector", initdoneHk1NVector);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -153,8 +153,8 @@ PnlWznmIexRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
 			, const ubigint jref1NImpexp
-			, const ubigint jrefHk1NVector
 			, const ubigint jrefRef1NDialog
+			, const ubigint jrefHk1NVector
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -162,11 +162,11 @@ PnlWznmIexRec::StatShr::StatShr(
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->jrefDetail = jrefDetail;
 	this->jref1NImpexp = jref1NImpexp;
-	this->jrefHk1NVector = jrefHk1NVector;
 	this->jrefRef1NDialog = jrefRef1NDialog;
+	this->jrefHk1NVector = jrefHk1NVector;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NIMPEXP, JREFHK1NVECTOR, JREFREF1NDIALOG, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NIMPEXP, JREFREF1NDIALOG, JREFHK1NVECTOR, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmIexRec::StatShr::writeJSON(
@@ -180,8 +180,8 @@ void PnlWznmIexRec::StatShr::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
 	me["scrJref1NImpexp"] = Scr::scramble(jref1NImpexp);
-	me["scrJrefHk1NVector"] = Scr::scramble(jrefHk1NVector);
 	me["scrJrefRef1NDialog"] = Scr::scramble(jrefRef1NDialog);
+	me["scrJrefHk1NVector"] = Scr::scramble(jrefHk1NVector);
 	me["ButRegularizeActive"] = ButRegularizeActive;
 };
 
@@ -200,8 +200,8 @@ void PnlWznmIexRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NImpexp", Scr::scramble(jref1NImpexp));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefHk1NVector", Scr::scramble(jrefHk1NVector));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NDialog", Scr::scramble(jrefRef1NDialog));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefHk1NVector", Scr::scramble(jrefHk1NVector));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -214,8 +214,8 @@ set<uint> PnlWznmIexRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
 	if (jref1NImpexp == comp->jref1NImpexp) insert(items, JREF1NIMPEXP);
-	if (jrefHk1NVector == comp->jrefHk1NVector) insert(items, JREFHK1NVECTOR);
 	if (jrefRef1NDialog == comp->jrefRef1NDialog) insert(items, JREFREF1NDIALOG);
+	if (jrefHk1NVector == comp->jrefHk1NVector) insert(items, JREFHK1NVECTOR);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -229,7 +229,7 @@ set<uint> PnlWznmIexRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NIMPEXP, JREFHK1NVECTOR, JREFREF1NDIALOG, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREF1NIMPEXP, JREFREF1NDIALOG, JREFHK1NVECTOR, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

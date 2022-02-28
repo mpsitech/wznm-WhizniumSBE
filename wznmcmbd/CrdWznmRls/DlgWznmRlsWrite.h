@@ -543,15 +543,15 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalButDneActive(DbsWznm* dbswznm);
-	bool evalFiaDldAvail(DbsWznm* dbswznm);
-	bool evalFiaDldActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalCucUldAvail(DbsWznm* dbswznm);
+	bool evalCucUldActive(DbsWznm* dbswznm);
 	bool evalWrcButAutActive(DbsWznm* dbswznm);
 	bool evalWrcButRunActive(DbsWznm* dbswznm);
 	bool evalWrcButStoActive(DbsWznm* dbswznm);
-	bool evalCucUldAvail(DbsWznm* dbswznm);
-	bool evalCucUldActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
+	bool evalFiaDldAvail(DbsWznm* dbswznm);
+	bool evalFiaDldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmRlsWrite(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -622,9 +622,11 @@ public:
 	void createOpeng(DbsWznm* dbswznm, const bool dplonly);
 	void createCmbeng(DbsWznm* dbswznm, const bool dplonly);
 	void createDbs(DbsWznm* dbswznm, const bool dplonly);
+	void createVueapp(DbsWznm* dbswznm, const bool dplonly);
 	void createWebapp(DbsWznm* dbswznm, const bool dplonly);
 	void createApi(DbsWznm* dbswznm, const bool dplonly);
 	void createJapi(DbsWznm* dbswznm, const bool dplonly);
+	void createSapi(DbsWznm* dbswznm, const bool dplonly);
 	// IP cust --- IEND
 
 public:
@@ -658,15 +660,15 @@ private:
 
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerWithSrefMonInSgeCreate(DbsWznm* dbswznm);
 	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeCreidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerWithSrefMonInSgeCreate(DbsWznm* dbswznm);
 	void handleTimerWithSrefMonInSgeWrite(DbsWznm* dbswznm);
 
 private:

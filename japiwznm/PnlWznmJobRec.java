@@ -114,63 +114,63 @@ public class PnlWznmJobRec {
 	public class StatApp extends Block {
 
 		public static final int INITDONEDETAIL = 1;
-		public static final int INITDONEAVAR = 2;
-		public static final int INITDONEACMD = 3;
-		public static final int INITDONE1NMETHOD = 4;
-		public static final int INITDONE1NSENSITIVITY = 5;
-		public static final int INITDONEJOB1NSTAGE = 6;
-		public static final int INITDONE1NRTJOB = 7;
-		public static final int INITDONEHK1NVECTOR = 8;
-		public static final int INITDONEREF1NBLOCK = 9;
-		public static final int INITDONEMNOPPACK = 10;
+		public static final int INITDONEACMD = 2;
+		public static final int INITDONEAVAR = 3;
+		public static final int INITDONE1NSENSITIVITY = 4;
+		public static final int INITDONEJOB1NSTAGE = 5;
+		public static final int INITDONE1NRTJOB = 6;
+		public static final int INITDONE1NMETHOD = 7;
+		public static final int INITDONEREF1NBLOCK = 8;
+		public static final int INITDONEHK1NVECTOR = 9;
+		public static final int INITDONESUPMNJOB = 10;
 		public static final int INITDONEMNOP = 11;
-		public static final int INITDONESUPMNJOB = 12;
+		public static final int INITDONEMNOPPACK = 12;
 		public static final int INITDONESUBMNJOB = 13;
 
 		public StatApp(
 					boolean initdoneDetail
-					, boolean initdoneAVar
 					, boolean initdoneACmd
-					, boolean initdone1NMethod
+					, boolean initdoneAVar
 					, boolean initdone1NSensitivity
 					, boolean initdoneJob1NStage
 					, boolean initdone1NRtjob
-					, boolean initdoneHk1NVector
+					, boolean initdone1NMethod
 					, boolean initdoneRef1NBlock
-					, boolean initdoneMNOppack
-					, boolean initdoneMNOp
+					, boolean initdoneHk1NVector
 					, boolean initdoneSupMNJob
+					, boolean initdoneMNOp
+					, boolean initdoneMNOppack
 					, boolean initdoneSubMNJob
 				) {
 			this.initdoneDetail = initdoneDetail;
-			this.initdoneAVar = initdoneAVar;
 			this.initdoneACmd = initdoneACmd;
-			this.initdone1NMethod = initdone1NMethod;
+			this.initdoneAVar = initdoneAVar;
 			this.initdone1NSensitivity = initdone1NSensitivity;
 			this.initdoneJob1NStage = initdoneJob1NStage;
 			this.initdone1NRtjob = initdone1NRtjob;
-			this.initdoneHk1NVector = initdoneHk1NVector;
+			this.initdone1NMethod = initdone1NMethod;
 			this.initdoneRef1NBlock = initdoneRef1NBlock;
-			this.initdoneMNOppack = initdoneMNOppack;
-			this.initdoneMNOp = initdoneMNOp;
+			this.initdoneHk1NVector = initdoneHk1NVector;
 			this.initdoneSupMNJob = initdoneSupMNJob;
+			this.initdoneMNOp = initdoneMNOp;
+			this.initdoneMNOppack = initdoneMNOppack;
 			this.initdoneSubMNJob = initdoneSubMNJob;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAVAR, INITDONEACMD, INITDONE1NMETHOD, INITDONE1NSENSITIVITY, INITDONEJOB1NSTAGE, INITDONE1NRTJOB, INITDONEHK1NVECTOR, INITDONEREF1NBLOCK, INITDONEMNOPPACK, INITDONEMNOP, INITDONESUPMNJOB, INITDONESUBMNJOB));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEACMD, INITDONEAVAR, INITDONE1NSENSITIVITY, INITDONEJOB1NSTAGE, INITDONE1NRTJOB, INITDONE1NMETHOD, INITDONEREF1NBLOCK, INITDONEHK1NVECTOR, INITDONESUPMNJOB, INITDONEMNOP, INITDONEMNOPPACK, INITDONESUBMNJOB));
 		};
 
 		public boolean initdoneDetail;
-		public boolean initdoneAVar;
 		public boolean initdoneACmd;
-		public boolean initdone1NMethod;
+		public boolean initdoneAVar;
 		public boolean initdone1NSensitivity;
 		public boolean initdoneJob1NStage;
 		public boolean initdone1NRtjob;
-		public boolean initdoneHk1NVector;
+		public boolean initdone1NMethod;
 		public boolean initdoneRef1NBlock;
-		public boolean initdoneMNOppack;
-		public boolean initdoneMNOp;
+		public boolean initdoneHk1NVector;
 		public boolean initdoneSupMNJob;
+		public boolean initdoneMNOp;
+		public boolean initdoneMNOppack;
 		public boolean initdoneSubMNJob;
 
 		public boolean readXML(
@@ -187,17 +187,17 @@ public class PnlWznmJobRec {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
-				initdoneAVar = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAVar", mask, INITDONEAVAR);
 				initdoneACmd = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneACmd", mask, INITDONEACMD);
-				initdone1NMethod = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NMethod", mask, INITDONE1NMETHOD);
+				initdoneAVar = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAVar", mask, INITDONEAVAR);
 				initdone1NSensitivity = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NSensitivity", mask, INITDONE1NSENSITIVITY);
 				initdoneJob1NStage = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneJob1NStage", mask, INITDONEJOB1NSTAGE);
 				initdone1NRtjob = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NRtjob", mask, INITDONE1NRTJOB);
-				initdoneHk1NVector = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneHk1NVector", mask, INITDONEHK1NVECTOR);
+				initdone1NMethod = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NMethod", mask, INITDONE1NMETHOD);
 				initdoneRef1NBlock = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NBlock", mask, INITDONEREF1NBLOCK);
-				initdoneMNOppack = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNOppack", mask, INITDONEMNOPPACK);
-				initdoneMNOp = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNOp", mask, INITDONEMNOP);
+				initdoneHk1NVector = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneHk1NVector", mask, INITDONEHK1NVECTOR);
 				initdoneSupMNJob = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneSupMNJob", mask, INITDONESUPMNJOB);
+				initdoneMNOp = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNOp", mask, INITDONEMNOP);
+				initdoneMNOppack = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNOppack", mask, INITDONEMNOPPACK);
 				initdoneSubMNJob = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneSubMNJob", mask, INITDONESUBMNJOB);
 
 				return true;
@@ -212,17 +212,17 @@ public class PnlWznmJobRec {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
-			if (initdoneAVar == comp.initdoneAVar) items.add(INITDONEAVAR);
 			if (initdoneACmd == comp.initdoneACmd) items.add(INITDONEACMD);
-			if (initdone1NMethod == comp.initdone1NMethod) items.add(INITDONE1NMETHOD);
+			if (initdoneAVar == comp.initdoneAVar) items.add(INITDONEAVAR);
 			if (initdone1NSensitivity == comp.initdone1NSensitivity) items.add(INITDONE1NSENSITIVITY);
 			if (initdoneJob1NStage == comp.initdoneJob1NStage) items.add(INITDONEJOB1NSTAGE);
 			if (initdone1NRtjob == comp.initdone1NRtjob) items.add(INITDONE1NRTJOB);
-			if (initdoneHk1NVector == comp.initdoneHk1NVector) items.add(INITDONEHK1NVECTOR);
+			if (initdone1NMethod == comp.initdone1NMethod) items.add(INITDONE1NMETHOD);
 			if (initdoneRef1NBlock == comp.initdoneRef1NBlock) items.add(INITDONEREF1NBLOCK);
-			if (initdoneMNOppack == comp.initdoneMNOppack) items.add(INITDONEMNOPPACK);
-			if (initdoneMNOp == comp.initdoneMNOp) items.add(INITDONEMNOP);
+			if (initdoneHk1NVector == comp.initdoneHk1NVector) items.add(INITDONEHK1NVECTOR);
 			if (initdoneSupMNJob == comp.initdoneSupMNJob) items.add(INITDONESUPMNJOB);
+			if (initdoneMNOp == comp.initdoneMNOp) items.add(INITDONEMNOP);
+			if (initdoneMNOppack == comp.initdoneMNOppack) items.add(INITDONEMNOPPACK);
 			if (initdoneSubMNJob == comp.initdoneSubMNJob) items.add(INITDONESUBMNJOB);
 
 			return(items);
@@ -236,7 +236,7 @@ public class PnlWznmJobRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAVAR, INITDONEACMD, INITDONE1NMETHOD, INITDONE1NSENSITIVITY, INITDONEJOB1NSTAGE, INITDONE1NRTJOB, INITDONEHK1NVECTOR, INITDONEREF1NBLOCK, INITDONEMNOPPACK, INITDONEMNOP, INITDONESUPMNJOB, INITDONESUBMNJOB));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEACMD, INITDONEAVAR, INITDONE1NSENSITIVITY, INITDONEJOB1NSTAGE, INITDONE1NRTJOB, INITDONE1NMETHOD, INITDONEREF1NBLOCK, INITDONEHK1NVECTOR, INITDONESUPMNJOB, INITDONEMNOP, INITDONEMNOPPACK, INITDONESUBMNJOB));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -251,17 +251,17 @@ public class PnlWznmJobRec {
 
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
-		public static final int SCRJREFAVAR = 3;
-		public static final int SCRJREFACMD = 4;
-		public static final int SCRJREF1NMETHOD = 5;
-		public static final int SCRJREF1NSENSITIVITY = 6;
-		public static final int SCRJREFJOB1NSTAGE = 7;
-		public static final int SCRJREF1NRTJOB = 8;
-		public static final int SCRJREFHK1NVECTOR = 9;
-		public static final int SCRJREFREF1NBLOCK = 10;
-		public static final int SCRJREFMNOPPACK = 11;
+		public static final int SCRJREFACMD = 3;
+		public static final int SCRJREFAVAR = 4;
+		public static final int SCRJREF1NSENSITIVITY = 5;
+		public static final int SCRJREFJOB1NSTAGE = 6;
+		public static final int SCRJREF1NRTJOB = 7;
+		public static final int SCRJREF1NMETHOD = 8;
+		public static final int SCRJREFREF1NBLOCK = 9;
+		public static final int SCRJREFHK1NVECTOR = 10;
+		public static final int SCRJREFSUPMNJOB = 11;
 		public static final int SCRJREFMNOP = 12;
-		public static final int SCRJREFSUPMNJOB = 13;
+		public static final int SCRJREFMNOPPACK = 13;
 		public static final int SCRJREFSUBMNJOB = 14;
 		public static final int PNLSUBMNJOBAVAIL = 15;
 		public static final int BUTREGULARIZEACTIVE = 16;
@@ -269,54 +269,54 @@ public class PnlWznmJobRec {
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
-					, String scrJrefAVar
 					, String scrJrefACmd
-					, String scrJref1NMethod
+					, String scrJrefAVar
 					, String scrJref1NSensitivity
 					, String scrJrefJob1NStage
 					, String scrJref1NRtjob
-					, String scrJrefHk1NVector
+					, String scrJref1NMethod
 					, String scrJrefRef1NBlock
-					, String scrJrefMNOppack
-					, String scrJrefMNOp
+					, String scrJrefHk1NVector
 					, String scrJrefSupMNJob
+					, String scrJrefMNOp
+					, String scrJrefMNOppack
 					, String scrJrefSubMNJob
 					, boolean pnlsubmnjobAvail
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
-			this.scrJrefAVar = scrJrefAVar;
 			this.scrJrefACmd = scrJrefACmd;
-			this.scrJref1NMethod = scrJref1NMethod;
+			this.scrJrefAVar = scrJrefAVar;
 			this.scrJref1NSensitivity = scrJref1NSensitivity;
 			this.scrJrefJob1NStage = scrJrefJob1NStage;
 			this.scrJref1NRtjob = scrJref1NRtjob;
-			this.scrJrefHk1NVector = scrJrefHk1NVector;
+			this.scrJref1NMethod = scrJref1NMethod;
 			this.scrJrefRef1NBlock = scrJrefRef1NBlock;
-			this.scrJrefMNOppack = scrJrefMNOppack;
-			this.scrJrefMNOp = scrJrefMNOp;
+			this.scrJrefHk1NVector = scrJrefHk1NVector;
 			this.scrJrefSupMNJob = scrJrefSupMNJob;
+			this.scrJrefMNOp = scrJrefMNOp;
+			this.scrJrefMNOppack = scrJrefMNOppack;
 			this.scrJrefSubMNJob = scrJrefSubMNJob;
 			this.pnlsubmnjobAvail = pnlsubmnjobAvail;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAVAR, SCRJREFACMD, SCRJREF1NMETHOD, SCRJREF1NSENSITIVITY, SCRJREFJOB1NSTAGE, SCRJREF1NRTJOB, SCRJREFHK1NVECTOR, SCRJREFREF1NBLOCK, SCRJREFMNOPPACK, SCRJREFMNOP, SCRJREFSUPMNJOB, SCRJREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFACMD, SCRJREFAVAR, SCRJREF1NSENSITIVITY, SCRJREFJOB1NSTAGE, SCRJREF1NRTJOB, SCRJREF1NMETHOD, SCRJREFREF1NBLOCK, SCRJREFHK1NVECTOR, SCRJREFSUPMNJOB, SCRJREFMNOP, SCRJREFMNOPPACK, SCRJREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
-		public String scrJrefAVar;
 		public String scrJrefACmd;
-		public String scrJref1NMethod;
+		public String scrJrefAVar;
 		public String scrJref1NSensitivity;
 		public String scrJrefJob1NStage;
 		public String scrJref1NRtjob;
-		public String scrJrefHk1NVector;
+		public String scrJref1NMethod;
 		public String scrJrefRef1NBlock;
-		public String scrJrefMNOppack;
-		public String scrJrefMNOp;
+		public String scrJrefHk1NVector;
 		public String scrJrefSupMNJob;
+		public String scrJrefMNOp;
+		public String scrJrefMNOppack;
 		public String scrJrefSubMNJob;
 		public boolean pnlsubmnjobAvail;
 		public boolean ButRegularizeActive;
@@ -338,17 +338,17 @@ public class PnlWznmJobRec {
 				srefIxWznmVExpstate = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "srefIxWznmVExpstate", mask, IXWZNMVEXPSTATE);
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
-				scrJrefAVar = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAVar", mask, SCRJREFAVAR);
 				scrJrefACmd = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefACmd", mask, SCRJREFACMD);
-				scrJref1NMethod = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NMethod", mask, SCRJREF1NMETHOD);
+				scrJrefAVar = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAVar", mask, SCRJREFAVAR);
 				scrJref1NSensitivity = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NSensitivity", mask, SCRJREF1NSENSITIVITY);
 				scrJrefJob1NStage = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefJob1NStage", mask, SCRJREFJOB1NSTAGE);
 				scrJref1NRtjob = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NRtjob", mask, SCRJREF1NRTJOB);
-				scrJrefHk1NVector = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefHk1NVector", mask, SCRJREFHK1NVECTOR);
+				scrJref1NMethod = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NMethod", mask, SCRJREF1NMETHOD);
 				scrJrefRef1NBlock = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NBlock", mask, SCRJREFREF1NBLOCK);
-				scrJrefMNOppack = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNOppack", mask, SCRJREFMNOPPACK);
-				scrJrefMNOp = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNOp", mask, SCRJREFMNOP);
+				scrJrefHk1NVector = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefHk1NVector", mask, SCRJREFHK1NVECTOR);
 				scrJrefSupMNJob = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefSupMNJob", mask, SCRJREFSUPMNJOB);
+				scrJrefMNOp = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNOp", mask, SCRJREFMNOP);
+				scrJrefMNOppack = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNOppack", mask, SCRJREFMNOPPACK);
 				scrJrefSubMNJob = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefSubMNJob", mask, SCRJREFSUBMNJOB);
 				pnlsubmnjobAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "pnlsubmnjobAvail", mask, PNLSUBMNJOBAVAIL);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
@@ -366,17 +366,17 @@ public class PnlWznmJobRec {
 
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
-			if (scrJrefAVar.equals(comp.scrJrefAVar)) items.add(SCRJREFAVAR);
 			if (scrJrefACmd.equals(comp.scrJrefACmd)) items.add(SCRJREFACMD);
-			if (scrJref1NMethod.equals(comp.scrJref1NMethod)) items.add(SCRJREF1NMETHOD);
+			if (scrJrefAVar.equals(comp.scrJrefAVar)) items.add(SCRJREFAVAR);
 			if (scrJref1NSensitivity.equals(comp.scrJref1NSensitivity)) items.add(SCRJREF1NSENSITIVITY);
 			if (scrJrefJob1NStage.equals(comp.scrJrefJob1NStage)) items.add(SCRJREFJOB1NSTAGE);
 			if (scrJref1NRtjob.equals(comp.scrJref1NRtjob)) items.add(SCRJREF1NRTJOB);
-			if (scrJrefHk1NVector.equals(comp.scrJrefHk1NVector)) items.add(SCRJREFHK1NVECTOR);
+			if (scrJref1NMethod.equals(comp.scrJref1NMethod)) items.add(SCRJREF1NMETHOD);
 			if (scrJrefRef1NBlock.equals(comp.scrJrefRef1NBlock)) items.add(SCRJREFREF1NBLOCK);
-			if (scrJrefMNOppack.equals(comp.scrJrefMNOppack)) items.add(SCRJREFMNOPPACK);
-			if (scrJrefMNOp.equals(comp.scrJrefMNOp)) items.add(SCRJREFMNOP);
+			if (scrJrefHk1NVector.equals(comp.scrJrefHk1NVector)) items.add(SCRJREFHK1NVECTOR);
 			if (scrJrefSupMNJob.equals(comp.scrJrefSupMNJob)) items.add(SCRJREFSUPMNJOB);
+			if (scrJrefMNOp.equals(comp.scrJrefMNOp)) items.add(SCRJREFMNOP);
+			if (scrJrefMNOppack.equals(comp.scrJrefMNOppack)) items.add(SCRJREFMNOPPACK);
 			if (scrJrefSubMNJob.equals(comp.scrJrefSubMNJob)) items.add(SCRJREFSUBMNJOB);
 			if (pnlsubmnjobAvail == comp.pnlsubmnjobAvail) items.add(PNLSUBMNJOBAVAIL);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
@@ -392,7 +392,7 @@ public class PnlWznmJobRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAVAR, SCRJREFACMD, SCRJREF1NMETHOD, SCRJREF1NSENSITIVITY, SCRJREFJOB1NSTAGE, SCRJREF1NRTJOB, SCRJREFHK1NVECTOR, SCRJREFREF1NBLOCK, SCRJREFMNOPPACK, SCRJREFMNOP, SCRJREFSUPMNJOB, SCRJREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFACMD, SCRJREFAVAR, SCRJREF1NSENSITIVITY, SCRJREFJOB1NSTAGE, SCRJREF1NRTJOB, SCRJREF1NMETHOD, SCRJREFREF1NBLOCK, SCRJREFHK1NVECTOR, SCRJREFSUPMNJOB, SCRJREFMNOP, SCRJREFMNOPPACK, SCRJREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

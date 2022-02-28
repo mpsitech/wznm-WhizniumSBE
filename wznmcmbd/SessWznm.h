@@ -14,55 +14,55 @@
 
 // IP include.cust --- INSERT
 
-#include "CrdWznmUtl.h"
-#include "CrdWznmSte.h"
-#include "CrdWznmSeq.h"
-#include "CrdWznmEvt.h"
-#include "CrdWznmRtj.h"
-#include "CrdWznmApp.h"
-#include "CrdWznmRls.h"
-#include "CrdWznmCmp.h"
-#include "CrdWznmCal.h"
-#include "CrdWznmBlk.h"
-#include "CrdWznmMtd.h"
-#include "CrdWznmSge.h"
-#include "CrdWznmJob.h"
-#include "CrdWznmOpx.h"
-#include "CrdWznmOpk.h"
-#include "CrdWznmCon.h"
-#include "CrdWznmQmd.h"
-#include "CrdWznmQco.h"
-#include "CrdWznmQry.h"
-#include "CrdWznmPnl.h"
-#include "CrdWznmDlg.h"
-#include "CrdWznmCar.h"
-#include "CrdWznmMdl.h"
-#include "CrdWznmPst.h"
-#include "CrdWznmIel.h"
-#include "CrdWznmIme.h"
-#include "CrdWznmIex.h"
-#include "CrdWznmStb.h"
-#include "CrdWznmChk.h"
-#include "CrdWznmVit.h"
-#include "CrdWznmVec.h"
-#include "CrdWznmRel.h"
-#include "CrdWznmSbs.h"
-#include "CrdWznmTco.h"
-#include "CrdWznmTbl.h"
-#include "CrdWznmErr.h"
-#include "CrdWznmCap.h"
-#include "CrdWznmVer.h"
-#include "CrdWznmPrj.h"
-#include "CrdWznmLib.h"
-#include "CrdWznmMch.h"
-#include "CrdWznmCtp.h"
-#include "CrdWznmTag.h"
-#include "CrdWznmLoc.h"
 #include "CrdWznmNav.h"
-#include "CrdWznmFil.h"
-#include "CrdWznmPrs.h"
-#include "CrdWznmUsr.h"
 #include "CrdWznmUsg.h"
+#include "CrdWznmUsr.h"
+#include "CrdWznmPrs.h"
+#include "CrdWznmFil.h"
+#include "CrdWznmLoc.h"
+#include "CrdWznmTag.h"
+#include "CrdWznmCtp.h"
+#include "CrdWznmMch.h"
+#include "CrdWznmLib.h"
+#include "CrdWznmPrj.h"
+#include "CrdWznmVer.h"
+#include "CrdWznmCap.h"
+#include "CrdWznmErr.h"
+#include "CrdWznmTbl.h"
+#include "CrdWznmTco.h"
+#include "CrdWznmSbs.h"
+#include "CrdWznmRel.h"
+#include "CrdWznmVec.h"
+#include "CrdWznmVit.h"
+#include "CrdWznmChk.h"
+#include "CrdWznmStb.h"
+#include "CrdWznmIex.h"
+#include "CrdWznmIme.h"
+#include "CrdWznmIel.h"
+#include "CrdWznmPst.h"
+#include "CrdWznmMdl.h"
+#include "CrdWznmCar.h"
+#include "CrdWznmDlg.h"
+#include "CrdWznmPnl.h"
+#include "CrdWznmQry.h"
+#include "CrdWznmQco.h"
+#include "CrdWznmQmd.h"
+#include "CrdWznmCon.h"
+#include "CrdWznmOpk.h"
+#include "CrdWznmOpx.h"
+#include "CrdWznmJob.h"
+#include "CrdWznmSge.h"
+#include "CrdWznmMtd.h"
+#include "CrdWznmBlk.h"
+#include "CrdWznmCal.h"
+#include "CrdWznmCmp.h"
+#include "CrdWznmRls.h"
+#include "CrdWznmApp.h"
+#include "CrdWznmRtj.h"
+#include "CrdWznmEvt.h"
+#include "CrdWznmSeq.h"
+#include "CrdWznmSte.h"
+#include "CrdWznmUtl.h"
 
 #define StatShrSessWznm SessWznm::StatShr
 
@@ -128,55 +128,55 @@ public:
 public:
 	StatShr statshr;
 
-	std::map<Sbecore::ubigint, JobWznm*> crdutls;
-	std::map<Sbecore::ubigint, JobWznm*> crdstes;
-	std::map<Sbecore::ubigint, JobWznm*> crdseqs;
-	std::map<Sbecore::ubigint, JobWznm*> crdevts;
-	std::map<Sbecore::ubigint, JobWznm*> crdrtjs;
-	std::map<Sbecore::ubigint, JobWznm*> crdapps;
-	std::map<Sbecore::ubigint, JobWznm*> crdrlss;
-	std::map<Sbecore::ubigint, JobWznm*> crdcmps;
-	std::map<Sbecore::ubigint, JobWznm*> crdcals;
-	std::map<Sbecore::ubigint, JobWznm*> crdblks;
-	std::map<Sbecore::ubigint, JobWznm*> crdmtds;
-	std::map<Sbecore::ubigint, JobWznm*> crdsges;
-	std::map<Sbecore::ubigint, JobWznm*> crdjobs;
-	std::map<Sbecore::ubigint, JobWznm*> crdopxs;
-	std::map<Sbecore::ubigint, JobWznm*> crdopks;
-	std::map<Sbecore::ubigint, JobWznm*> crdcons;
-	std::map<Sbecore::ubigint, JobWznm*> crdqmds;
-	std::map<Sbecore::ubigint, JobWznm*> crdqcos;
-	std::map<Sbecore::ubigint, JobWznm*> crdqrys;
-	std::map<Sbecore::ubigint, JobWznm*> crdpnls;
-	std::map<Sbecore::ubigint, JobWznm*> crddlgs;
-	std::map<Sbecore::ubigint, JobWznm*> crdcars;
-	std::map<Sbecore::ubigint, JobWznm*> crdmdls;
-	std::map<Sbecore::ubigint, JobWznm*> crdpsts;
-	std::map<Sbecore::ubigint, JobWznm*> crdiels;
-	std::map<Sbecore::ubigint, JobWznm*> crdimes;
-	std::map<Sbecore::ubigint, JobWznm*> crdiexs;
-	std::map<Sbecore::ubigint, JobWznm*> crdstbs;
-	std::map<Sbecore::ubigint, JobWznm*> crdchks;
-	std::map<Sbecore::ubigint, JobWznm*> crdvits;
-	std::map<Sbecore::ubigint, JobWznm*> crdvecs;
-	std::map<Sbecore::ubigint, JobWznm*> crdrels;
-	std::map<Sbecore::ubigint, JobWznm*> crdsbss;
-	std::map<Sbecore::ubigint, JobWznm*> crdtcos;
-	std::map<Sbecore::ubigint, JobWznm*> crdtbls;
-	std::map<Sbecore::ubigint, JobWznm*> crderrs;
-	std::map<Sbecore::ubigint, JobWznm*> crdcaps;
-	std::map<Sbecore::ubigint, JobWznm*> crdvers;
-	std::map<Sbecore::ubigint, JobWznm*> crdprjs;
-	std::map<Sbecore::ubigint, JobWznm*> crdlibs;
-	std::map<Sbecore::ubigint, JobWznm*> crdmchs;
-	std::map<Sbecore::ubigint, JobWznm*> crdctps;
-	std::map<Sbecore::ubigint, JobWznm*> crdtags;
-	std::map<Sbecore::ubigint, JobWznm*> crdlocs;
 	CrdWznmNav* crdnav;
-	std::map<Sbecore::ubigint, JobWznm*> crdfils;
-	std::map<Sbecore::ubigint, JobWznm*> crdprss;
-	std::map<Sbecore::ubigint, JobWznm*> crdusrs;
 	std::map<Sbecore::ubigint, JobWznm*> crdusgs;
+	std::map<Sbecore::ubigint, JobWznm*> crdusrs;
+	std::map<Sbecore::ubigint, JobWznm*> crdprss;
+	std::map<Sbecore::ubigint, JobWznm*> crdfils;
+	std::map<Sbecore::ubigint, JobWznm*> crdlocs;
+	std::map<Sbecore::ubigint, JobWznm*> crdtags;
+	std::map<Sbecore::ubigint, JobWznm*> crdctps;
+	std::map<Sbecore::ubigint, JobWznm*> crdmchs;
+	std::map<Sbecore::ubigint, JobWznm*> crdlibs;
+	std::map<Sbecore::ubigint, JobWznm*> crdprjs;
+	std::map<Sbecore::ubigint, JobWznm*> crdvers;
+	std::map<Sbecore::ubigint, JobWznm*> crdcaps;
+	std::map<Sbecore::ubigint, JobWznm*> crderrs;
+	std::map<Sbecore::ubigint, JobWznm*> crdtbls;
+	std::map<Sbecore::ubigint, JobWznm*> crdtcos;
+	std::map<Sbecore::ubigint, JobWznm*> crdsbss;
+	std::map<Sbecore::ubigint, JobWznm*> crdrels;
+	std::map<Sbecore::ubigint, JobWznm*> crdvecs;
+	std::map<Sbecore::ubigint, JobWznm*> crdvits;
+	std::map<Sbecore::ubigint, JobWznm*> crdchks;
+	std::map<Sbecore::ubigint, JobWznm*> crdstbs;
+	std::map<Sbecore::ubigint, JobWznm*> crdiexs;
+	std::map<Sbecore::ubigint, JobWznm*> crdimes;
+	std::map<Sbecore::ubigint, JobWznm*> crdiels;
+	std::map<Sbecore::ubigint, JobWznm*> crdpsts;
+	std::map<Sbecore::ubigint, JobWznm*> crdmdls;
+	std::map<Sbecore::ubigint, JobWznm*> crdcars;
+	std::map<Sbecore::ubigint, JobWznm*> crddlgs;
+	std::map<Sbecore::ubigint, JobWznm*> crdpnls;
+	std::map<Sbecore::ubigint, JobWznm*> crdqrys;
+	std::map<Sbecore::ubigint, JobWznm*> crdqcos;
+	std::map<Sbecore::ubigint, JobWznm*> crdqmds;
+	std::map<Sbecore::ubigint, JobWznm*> crdcons;
+	std::map<Sbecore::ubigint, JobWznm*> crdopks;
+	std::map<Sbecore::ubigint, JobWznm*> crdopxs;
+	std::map<Sbecore::ubigint, JobWznm*> crdjobs;
+	std::map<Sbecore::ubigint, JobWznm*> crdsges;
+	std::map<Sbecore::ubigint, JobWznm*> crdmtds;
+	std::map<Sbecore::ubigint, JobWznm*> crdblks;
+	std::map<Sbecore::ubigint, JobWznm*> crdcals;
+	std::map<Sbecore::ubigint, JobWznm*> crdcmps;
+	std::map<Sbecore::ubigint, JobWznm*> crdrlss;
+	std::map<Sbecore::ubigint, JobWznm*> crdapps;
+	std::map<Sbecore::ubigint, JobWznm*> crdrtjs;
+	std::map<Sbecore::ubigint, JobWznm*> crdevts;
+	std::map<Sbecore::ubigint, JobWznm*> crdseqs;
+	std::map<Sbecore::ubigint, JobWznm*> crdstes;
+	std::map<Sbecore::ubigint, JobWznm*> crdutls;
 
 	std::map<Sbecore::ubigint,Sbecore::uint> usgaccs;
 
@@ -353,12 +353,12 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
-	bool handleCallWznmRecaccess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, Sbecore::uint& ixRet);
-	bool handleCallWznmLog(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv);
-	bool handleCallWznmCrdOpen(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv, Sbecore::ubigint& refRet);
-	bool handleCallWznmCrdClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv);
 	bool handleCallWznmCrdActive(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, Sbecore::uint& ixRet);
+	bool handleCallWznmCrdClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv);
+	bool handleCallWznmCrdOpen(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv, Sbecore::ubigint& refRet);
+	bool handleCallWznmLog(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv);
+	bool handleCallWznmRecaccess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, Sbecore::uint& ixRet);
+	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
 
 };
 

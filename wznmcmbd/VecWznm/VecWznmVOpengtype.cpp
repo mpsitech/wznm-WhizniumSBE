@@ -42,7 +42,7 @@ string VecWznmVOpengtype::getTitle(
 			, const uint ixWznmVLocale
 		) {
 	if (ixWznmVLocale == 1) {
-		if (ix == WZNMOPD1) return("wznmopd1 with WznmCompl/WznmGen/WznmPrcfile/WznmPrctree/WznmWrapi/WznmWrapp/WznmWrdbs/WznmWrjapi/WznmWrsrv/WznmWrweb");
+		if (ix == WZNMOPD1) return("wznmopd1 with WznmCompl/WznmGen/WznmPrcfile/WznmPrctree/WznmWrapi/WznmWrapp/WznmWrdbs/WznmWrjapi/WznmWrsapi/WznmWrsrv/WznmWrvue/WznmWrweb");
 		if (ix == WZNMOPD2) return("wznmopd2 with WznmCtpGenjtr/WznmCtpGenui/WznmCtpWrsrv/WznmCtpWrstkit/WznmCtpWrweb");
 		return(getSref(ix));
 	};

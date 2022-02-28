@@ -38,34 +38,34 @@ PnlWznmVerRec::PnlWznmVerRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlmnlocale = NULL;
-	pnlref1nfile = NULL;
+	pnldetail = NULL;
 	pnl1nblock = NULL;
 	pnlbvr1nversion = NULL;
+	pnl1ncomponent = NULL;
+	pnl1ncall = NULL;
+	pnl1nimpexpcplx = NULL;
+	pnl1njob = NULL;
+	pnl1noppack = NULL;
+	pnlver1nmodule = NULL;
+	pnl1npreset = NULL;
+	pnl1nquery = NULL;
+	pnl1nrelation = NULL;
+	pnl1ntable = NULL;
+	pnl1nvector = NULL;
 	pnl1ncapability = NULL;
 	pnlver1napp = NULL;
-	pnl1nvector = NULL;
-	pnl1ntable = NULL;
-	pnl1nrelation = NULL;
-	pnl1nquery = NULL;
-	pnl1npreset = NULL;
-	pnlver1nmodule = NULL;
-	pnl1noppack = NULL;
-	pnl1njob = NULL;
-	pnl1nimpexpcplx = NULL;
-	pnl1ncall = NULL;
-	pnl1ncomponent = NULL;
 	pnlver1nerror = NULL;
-	pnldetail = NULL;
+	pnlref1nfile = NULL;
+	pnlmnlocale = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMVER_STEEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMVER_PRJEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMVER_LOCEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMVER_BVREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMVER_LOCEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMVER_PRJEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMVER_STEEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -119,7 +119,8 @@ void PnlWznmVerRec::refresh(
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
-		if (pnlver1nerror) {delete pnlver1nerror; pnlver1nerror = NULL;};
+		if (pnl1nblock) {delete pnl1nblock; pnl1nblock = NULL;};
+		if (pnlbvr1nversion) {delete pnlbvr1nversion; pnlbvr1nversion = NULL;};
 		if (pnl1ncomponent) {delete pnl1ncomponent; pnl1ncomponent = NULL;};
 		if (pnl1ncall) {delete pnl1ncall; pnl1ncall = NULL;};
 		if (pnl1nimpexpcplx) {delete pnl1nimpexpcplx; pnl1nimpexpcplx = NULL;};
@@ -131,15 +132,15 @@ void PnlWznmVerRec::refresh(
 		if (pnl1nrelation) {delete pnl1nrelation; pnl1nrelation = NULL;};
 		if (pnl1ntable) {delete pnl1ntable; pnl1ntable = NULL;};
 		if (pnl1nvector) {delete pnl1nvector; pnl1nvector = NULL;};
-		if (pnlver1napp) {delete pnlver1napp; pnlver1napp = NULL;};
 		if (pnl1ncapability) {delete pnl1ncapability; pnl1ncapability = NULL;};
-		if (pnlbvr1nversion) {delete pnlbvr1nversion; pnlbvr1nversion = NULL;};
-		if (pnl1nblock) {delete pnl1nblock; pnl1nblock = NULL;};
+		if (pnlver1napp) {delete pnlver1napp; pnlver1napp = NULL;};
+		if (pnlver1nerror) {delete pnlver1nerror; pnlver1nerror = NULL;};
 		if (pnlref1nfile) {delete pnlref1nfile; pnlref1nfile = NULL;};
 		if (pnlmnlocale) {delete pnlmnlocale; pnlmnlocale = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmVerDetail(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlver1nerror) pnlver1nerror = new PnlWznmVerVer1NError(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnl1nblock) pnl1nblock = new PnlWznmVer1NBlock(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlbvr1nversion) pnlbvr1nversion = new PnlWznmVerBvr1NVersion(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1ncomponent) pnl1ncomponent = new PnlWznmVer1NComponent(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1ncall) pnl1ncall = new PnlWznmVer1NCall(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nimpexpcplx) pnl1nimpexpcplx = new PnlWznmVer1NImpexpcplx(xchg, dbswznm, jref, ixWznmVLocale);
@@ -151,16 +152,16 @@ void PnlWznmVerRec::refresh(
 		if (!pnl1nrelation) pnl1nrelation = new PnlWznmVer1NRelation(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1ntable) pnl1ntable = new PnlWznmVer1NTable(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nvector) pnl1nvector = new PnlWznmVer1NVector(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlver1napp) pnlver1napp = new PnlWznmVerVer1NApp(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1ncapability) pnl1ncapability = new PnlWznmVer1NCapability(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlbvr1nversion) pnlbvr1nversion = new PnlWznmVerBvr1NVersion(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnl1nblock) pnl1nblock = new PnlWznmVer1NBlock(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlver1napp) pnlver1napp = new PnlWznmVerVer1NApp(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlver1nerror) pnlver1nerror = new PnlWznmVerVer1NError(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1nfile) pnlref1nfile = new PnlWznmVerRef1NFile(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmnlocale) pnlmnlocale = new PnlWznmVerMNLocale(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
-	statshr.jrefVer1NError = ((pnlver1nerror) ? pnlver1nerror->jref : 0);
+	statshr.jref1NBlock = ((pnl1nblock) ? pnl1nblock->jref : 0);
+	statshr.jrefBvr1NVersion = ((pnlbvr1nversion) ? pnlbvr1nversion->jref : 0);
 	statshr.jref1NComponent = ((pnl1ncomponent) ? pnl1ncomponent->jref : 0);
 	statshr.jref1NCall = ((pnl1ncall) ? pnl1ncall->jref : 0);
 	statshr.jref1NImpexpcplx = ((pnl1nimpexpcplx) ? pnl1nimpexpcplx->jref : 0);
@@ -172,10 +173,9 @@ void PnlWznmVerRec::refresh(
 	statshr.jref1NRelation = ((pnl1nrelation) ? pnl1nrelation->jref : 0);
 	statshr.jref1NTable = ((pnl1ntable) ? pnl1ntable->jref : 0);
 	statshr.jref1NVector = ((pnl1nvector) ? pnl1nvector->jref : 0);
-	statshr.jrefVer1NApp = ((pnlver1napp) ? pnlver1napp->jref : 0);
 	statshr.jref1NCapability = ((pnl1ncapability) ? pnl1ncapability->jref : 0);
-	statshr.jrefBvr1NVersion = ((pnlbvr1nversion) ? pnlbvr1nversion->jref : 0);
-	statshr.jref1NBlock = ((pnl1nblock) ? pnl1nblock->jref : 0);
+	statshr.jrefVer1NApp = ((pnlver1napp) ? pnlver1napp->jref : 0);
+	statshr.jrefVer1NError = ((pnlver1nerror) ? pnlver1nerror->jref : 0);
 	statshr.jrefRef1NFile = ((pnlref1nfile) ? pnlref1nfile->jref : 0);
 	statshr.jrefMNLocale = ((pnlmnlocale) ? pnlmnlocale->jref : 0);
 
@@ -205,7 +205,8 @@ void PnlWznmVerRec::updatePreset(
 
 		if (recVer.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlver1nerror) pnlver1nerror->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnl1nblock) pnl1nblock->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlbvr1nversion) pnlbvr1nversion->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1ncomponent) pnl1ncomponent->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1ncall) pnl1ncall->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nimpexpcplx) pnl1nimpexpcplx->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
@@ -217,10 +218,9 @@ void PnlWznmVerRec::updatePreset(
 			if (pnl1nrelation) pnl1nrelation->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1ntable) pnl1ntable->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nvector) pnl1nvector->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlver1napp) pnlver1napp->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1ncapability) pnl1ncapability->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlbvr1nversion) pnlbvr1nversion->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnl1nblock) pnl1nblock->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlver1napp) pnlver1napp->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlver1nerror) pnlver1nerror->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1nfile) pnlref1nfile->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmnlocale) pnlmnlocale->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
@@ -332,47 +332,27 @@ void PnlWznmVerRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMVERUPD_REFEQ) {
-		call->abort = handleCallWznmVerUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_STEEQ) {
-		call->abort = handleCallWznmVer_steEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_PRJEQ) {
-		call->abort = handleCallWznmVer_prjEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMVER_BVREQ) {
+		call->abort = handleCallWznmVer_bvrEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_LOCEQ) {
 		call->abort = handleCallWznmVer_locEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_BVREQ) {
-		call->abort = handleCallWznmVer_bvrEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_PRJEQ) {
+		call->abort = handleCallWznmVer_prjEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVER_STEEQ) {
+		call->abort = handleCallWznmVer_steEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVERUPD_REFEQ) {
+		call->abort = handleCallWznmVerUpd_refEq(dbswznm, call->jref);
 	};
 };
 
-bool PnlWznmVerRec::handleCallWznmVerUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmVerUpd_refEq --- INSERT
-	return retval;
-};
-
-bool PnlWznmVerRec::handleCallWznmVer_steEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recVer.ixVState == ixInv); // IP handleCallWznmVer_steEq --- LINE
-	return retval;
-};
-
-bool PnlWznmVerRec::handleCallWznmVer_prjEq(
+bool PnlWznmVerRec::handleCallWznmVer_bvrEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 			, const ubigint refInv
 			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recVer.prjRefWznmMProject == refInv); // IP handleCallWznmVer_prjEq --- LINE
+	boolvalRet = (recVer.bvrRefWznmMVersion == refInv); // IP handleCallWznmVer_bvrEq --- LINE
 	return retval;
 };
 
@@ -387,13 +367,33 @@ bool PnlWznmVerRec::handleCallWznmVer_locEq(
 	return retval;
 };
 
-bool PnlWznmVerRec::handleCallWznmVer_bvrEq(
+bool PnlWznmVerRec::handleCallWznmVer_prjEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
 			, const ubigint refInv
 			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recVer.bvrRefWznmMVersion == refInv); // IP handleCallWznmVer_bvrEq --- LINE
+	boolvalRet = (recVer.prjRefWznmMProject == refInv); // IP handleCallWznmVer_prjEq --- LINE
+	return retval;
+};
+
+bool PnlWznmVerRec::handleCallWznmVer_steEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recVer.ixVState == ixInv); // IP handleCallWznmVer_steEq --- LINE
+	return retval;
+};
+
+bool PnlWznmVerRec::handleCallWznmVerUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmVerUpd_refEq --- INSERT
 	return retval;
 };

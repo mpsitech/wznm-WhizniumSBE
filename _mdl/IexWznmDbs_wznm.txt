@@ -42,13 +42,11 @@ lin	VecWznmVApptarget		noloc;filfed
 	short	enus	acc. app target
 	ImeIAMVectorTitle1.end
 	ImeIMVectoritem1.sref	Avail	Implied	Title	Comment
-	cocoa.objc			Cocoa / Objective-C
 	cocoa.swift			Cocoa / Swift
 	dotnet.cppcli			.NET / C++ CLI
 	java			Java
 	js			JavaScript
 	posix.cpp			POSIX / C++
-	winrt.cpp			WinRT / C++
 	ImeIMVectoritem1.end
 or	VecWznmWArgtype		noloc;filfed
 	ImeIAMVectorTitle1.srefX1IxVType	srefX2RefWznmMLocale	Title
@@ -393,7 +391,7 @@ main	void	0	TblWznmMComponent	cmp
 	plfull	enus	n	components
 	ImeIAMTableTitle.end
 	ImeIMSubset.sref	Short	Cond	Comment
-	SbsWznmBMComponentCcp	ccp	!typEq(webapp|japi)
+	SbsWznmBMComponentCcp	ccp	!typEq(vueapp|webapp|japi|sapi)
 		ImeIAMSubsetTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title
 		sngfull	enus	n	compileable component
 		plfull	enus	n	compileable components
@@ -420,9 +418,11 @@ main	void	0	TblWznmMComponent	cmp
 		openg			operation engine
 		cmbeng			combined engine
 		dbs			database access library
+		vueapp			Vue.js app
 		webapp			web app user interface files
 		api			API library
 		japi			Java API package
+		sapi			Swift API package
 		ImeIMVectoritem2.end
 	ImeIMVector2.end
 	ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous

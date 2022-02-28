@@ -270,11 +270,19 @@ void QryWznmVer1NImpexpcplx::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMIEXMOD_VEREQ) {
-		call->abort = handleCallWznmIexMod_verEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEXMOD_VEREQ) {
+		call->abort = handleCallWznmIexMod_verEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmVer1NImpexpcplx::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmVer1NImpexpcplx::handleCallWznmIexMod_verEq(
@@ -288,13 +296,5 @@ bool QryWznmVer1NImpexpcplx::handleCallWznmIexMod_verEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmVer1NImpexpcplx::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

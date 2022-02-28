@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmPrsMNProject.h"
-#include "PnlWznmPrsADetail.h"
 #include "PnlWznmPrsDetail.h"
+#include "PnlWznmPrsADetail.h"
+#include "PnlWznmPrsMNProject.h"
 
 #define VecVWznmPrsRecDo PnlWznmPrsRec::VecVDo
 
@@ -177,9 +177,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmPrsMNProject* pnlmnproject;
-	PnlWznmPrsADetail* pnladetail;
 	PnlWznmPrsDetail* pnldetail;
+	PnlWznmPrsADetail* pnladetail;
+	PnlWznmPrsMNProject* pnlmnproject;
 
 	WznmMPerson recPrs;
 

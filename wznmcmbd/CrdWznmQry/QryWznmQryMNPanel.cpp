@@ -85,7 +85,7 @@ void QryWznmQryMNPanel::rerun(
 	dbswznm->tblwznmqqrymnpanel->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMPanelMQuery.ref)";
-	sqlstr += " FROM TblWznmMPanel, TblWznmRMPanelMQuery";
+	sqlstr += " FROM TblWznmRMPanelMQuery, TblWznmMPanel";
 	sqlstr += " WHERE TblWznmRMPanelMQuery.refWznmMPanel = TblWznmMPanel.ref";
 	sqlstr += " AND TblWznmRMPanelMQuery.refWznmMQuery = " + to_string(preRefQry) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -100,7 +100,7 @@ void QryWznmQryMNPanel::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQQryMNPanel(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMPanel.ref, TblWznmRMPanelMQuery.ref";
-	sqlstr += " FROM TblWznmMPanel, TblWznmRMPanelMQuery";
+	sqlstr += " FROM TblWznmRMPanelMQuery, TblWznmMPanel";
 	sqlstr += " WHERE TblWznmRMPanelMQuery.refWznmMPanel = TblWznmMPanel.ref";
 	sqlstr += " AND TblWznmRMPanelMQuery.refWznmMQuery = " + to_string(preRefQry) + "";
 	sqlstr += " ORDER BY TblWznmMPanel.sref ASC";
@@ -274,11 +274,19 @@ void QryWznmQryMNPanel::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMPNLRQRYMOD_QRYEQ) {
-		call->abort = handleCallWznmPnlRqryMod_qryEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPNLRQRYMOD_QRYEQ) {
+		call->abort = handleCallWznmPnlRqryMod_qryEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmQryMNPanel::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmQryMNPanel::handleCallWznmPnlRqryMod_qryEq(
@@ -292,13 +300,5 @@ bool QryWznmQryMNPanel::handleCallWznmPnlRqryMod_qryEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmQryMNPanel::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

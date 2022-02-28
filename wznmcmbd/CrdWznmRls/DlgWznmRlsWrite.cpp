@@ -1375,6 +1375,204 @@ void DlgWznmRlsWrite::createDbs(
 	delete ver;
 };
 
+void DlgWznmRlsWrite::createVueapp(
+			DbsWznm* dbswznm
+			, const bool dplonly
+		) {
+	vector<ubigint> refs;
+
+	WznmMRelease* rls = NULL;
+	WznmMComponent* cmp = NULL;
+	WznmMVersion* ver = NULL;
+
+	vector<ubigint> hrefsMch;
+
+	string created;
+	string version;
+	string webroot, reproot;
+
+	vector<string> keys;
+	vector<string> vals;
+
+	ListWznmMCard crds;
+	WznmMCard* crd = NULL;
+
+	ListWznmMDialog dlgs;
+	WznmMDialog* dlg = NULL;
+
+	ListWznmMPanel pnls;
+	WznmMPanel* pnl = NULL;
+
+	// --- load basics
+	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
+	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
+
+	dbswznm->tblwznmmmodule->loadRefsByVer(ver->ref, false, refs);
+	for (unsigned int i = 0; i < refs.size(); i++) dbswznm->tblwznmmcard->loadRstByMdl(refs[i], true, crds);
+
+	// --- find template files in archive
+	ubigint refScrGzfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'script_Vue.tgz'", refScrGzfile);
+
+	ubigint refCnVuefile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'CrdXxxxNav.vue'", refCnVuefile);
+	ubigint refCsVuefile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'CrdXxxxStart.vue'", refCsVuefile);
+	ubigint refSessVuefile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'SessXxxx.vue'", refSessVuefile);
+	ubigint refAppVuefile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'AppXxxx.vue'", refAppVuefile);
+	ubigint refMainJsfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'main_Vue.js'", refMainJsfile);
+	ubigint refGblJsfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'Xxxx_Vue.js'", refGblJsfile);
+
+	ubigint refCrdVuefile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'CrdXxxxYyy.vue'", refCrdVuefile);
+
+	ubigint refPfVuefile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'PnlXxxxYyyZzzzz_Form.vue'", refPfVuefile);
+
+	ubigint refChkoutfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'checkout_Vue.sh'", refChkoutfile);
+	ubigint refChkinfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'checkin_Vue.sh'", refChkinfile);
+
+	// --- generate folder structure
+	ipfolder = Tmp::newfolder(xchg->tmppath);
+
+	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
+	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
+
+	createIpoutSubfolder(false, "_rls");
+	createIpoutSubfolder(false, "_rls", rlssref);
+
+	createIpoutSubfolder(false, cmpsref);	
+
+	// -- all cards
+	for (unsigned int i = 0; i < crds.nodes.size(); i++) {
+		crd = crds.nodes[i];
+		createIpoutSubfolder(false, cmpsref, crd->sref);
+	};
+
+	// -- CrdXxxxStart
+	createIpoutSubfolder(false, cmpsref, "Crd" + Prjshort + "Start");
+
+	// -- scripts
+	createIpoutSubfolder(false, cmpsref, "scripts");
+
+	// --- prepare standard key/value pairs
+
+	// -- created/modified date
+	time_t rawtime;
+	time(&rawtime);
+
+	created = StrMod::timetToString(rawtime);
+
+	// -- version
+	version = StubWznm::getStubVerNo(dbswznm, ver->ref);
+
+	// -- directories
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "sysroot", sysroot);
+	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "webroot", webroot);
+
+	// --- deployment scripts (WznmWrvueDeploy)
+	keys.resize(0); vals.resize(0);
+	keys.push_back("author"); vals.push_back(author);
+	keys.push_back("created"); vals.push_back(created);
+	keys.push_back("Prjshort"); vals.push_back(Prjshort);
+	keys.push_back("prjshort"); vals.push_back(prjshort);
+	keys.push_back("rlssref"); vals.push_back(rlssref);
+
+	keys.push_back("sysroot"); vals.push_back(sysroot);
+	keys.push_back("webroot"); vals.push_back(webroot);
+
+	//addInv(new DpchInvWznmWrvueDeploy(0, 0, ver->ref, Prjshort, ipfolder + "/_rls/" + rlssref));
+
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rlssref + "/checkout.sh", keys, vals));
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkinfile, "", outfolder + "/_rls/" + rlssref + "/checkin.sh", keys, vals));
+
+	if (!dplonly) {
+		// --- Vue.js UI globals (WznmWrvueBase)
+		keys.resize(0); vals.resize(0);
+		keys.push_back("author"); vals.push_back(author);
+		keys.push_back("created"); vals.push_back(created);
+		keys.push_back("Prjshort"); vals.push_back(Prjshort);
+		keys.push_back("prjshort"); vals.push_back(prjshort);
+		keys.push_back("Prjtit"); vals.push_back(Prjtit);
+		keys.push_back("version"); vals.push_back(version);
+
+		addInv(new DpchInvWznmWrvueBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmpsref));
+
+		// -- .tgz files
+		Wznm::untgz(xchg->acvpath + "/" + Acv::getfile(dbswznm, refScrGzfile), xchg->tmppath + "/" + outfolder + "/" + cmpsref + "/scripts");
+
+		// -- CrdXxxxNav.vue, CrdXxxxStart.vue, SessXxxx.vue, AppXxxx.vue, main_Vue.js, Xxxx_Vue.js
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCnVuefile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Nav/Crd" + Prjshort + "Nav.vue", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCsVuefile, "", outfolder + "/" + cmpsref + "/Crd" + Prjshort + "Start/Crd" + Prjshort + "Start.vue", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refSessVuefile, "", outfolder + "/" + cmpsref + "/Sess" + Prjshort + ".vue", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refAppVuefile, "", outfolder + "/" + cmpsref + "/App" + Prjshort + ".vue", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refMainJsfile, "", outfolder + "/" + cmpsref + "/main.js", keys, vals));
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblJsfile, "", outfolder + "/" + cmpsref + "/scripts/" + Prjshort + ".js", keys, vals));
+
+		// --- cards
+		keys.resize(0); vals.resize(0);
+		keys.push_back("author"); vals.push_back(author);
+		keys.push_back("created"); vals.push_back(created);
+		keys.push_back("Prjshort"); vals.push_back(Prjshort);
+		keys.push_back("prjshort"); vals.push_back(prjshort);
+
+		keys.push_back("Crdshort"); vals.push_back("Crdshort");
+
+		for (unsigned int i = 0; i < crds.nodes.size(); i++) {
+			crd = crds.nodes[i];
+
+			if (crd->sref.substr(3+4).compare("Nav") != 0) {
+				vals[vals.size()-1] = crd->sref.substr(3 + 4);
+
+				addInv(new DpchInvWznmWrvueCrd(0, 0, crd->ref, Prjshort, ipfolder + "/" + cmpsref + "/" + crd->sref));
+
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCrdVuefile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + crd->sref + ".vue", keys, vals));
+
+				// -- dialogs
+				dbswznm->tblwznmmdialog->loadRstBySQL("SELECT * FROM TblWznmMDialog WHERE refWznmMCard = " + to_string(crd->ref), false, dlgs);
+
+				for (unsigned int j = 0; j < dlgs.nodes.size(); j++) {
+					dlg = dlgs.nodes[j];
+				};
+			};
+		};
+
+		// --- panels
+		keys.resize(0); vals.resize(0);
+		keys.push_back("author"); vals.push_back(author);
+		keys.push_back("created"); vals.push_back(created);
+		keys.push_back("Prjshort"); vals.push_back(Prjshort);
+		keys.push_back("prjshort"); vals.push_back(prjshort);
+
+		keys.push_back("Crdshort"); vals.push_back("Crdshort");
+		keys.push_back("Pnlshort"); vals.push_back("Pnlshort");
+
+		for (unsigned int i = 0; i < crds.nodes.size(); i++) {
+			crd = crds.nodes[i];
+
+			if (crd->sref.substr(3+4).compare("Nav") != 0) {
+				vals[vals.size()-2] = crd->sref.substr(3+4);
+
+				dbswznm->tblwznmmpanel->loadRstByCar(crd->ref, false, pnls);
+				for (unsigned int j = 0; j < pnls.nodes.size(); j++) {
+					pnl = pnls.nodes[j];
+
+					if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) {
+						vals[vals.size()-1] = pnl->sref.substr(3+4+3);
+
+						addInv(new DpchInvWznmWrvuePnl(0, 0, pnl->ref, Prjshort, ipfolder + "/" + cmpsref + "/" + crd->sref));
+
+						addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refPfVuefile, "", outfolder + "/" + cmpsref + "/" + crd->sref + "/" + pnl->sref + ".vue", keys, vals));
+					};
+				};
+			};
+		};
+	};
+
+	// --- clean up
+	delete rls;
+	delete cmp;
+	delete ver;
+};
+
 void DlgWznmRlsWrite::createWebapp(
 			DbsWznm* dbswznm
 			, const bool dplonly
@@ -2514,6 +2712,11 @@ void DlgWznmRlsWrite::createJapi(
 	delete ver;
 };
 
+void DlgWznmRlsWrite::createSapi(
+			DbsWznm* dbswznm
+			, const bool dplonly
+		) {
+};
 // IP cust --- IEND
 
 DpchEngWznm* DlgWznmRlsWrite::getNewDpchEng(
@@ -2563,8 +2766,8 @@ void DlgWznmRlsWrite::refreshWrc(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrWrc oldStatshrwrc(statshrwrc);
 	ContInfWrc oldContinfwrc(continfwrc);
+	StatShrWrc oldStatshrwrc(statshrwrc);
 
 	// IP refreshWrc --- RBEGIN
 	// continfwrc
@@ -2576,8 +2779,8 @@ void DlgWznmRlsWrite::refreshWrc(
 	statshrwrc.ButStoActive = evalWrcButStoActive(dbswznm);
 
 	// IP refreshWrc --- REND
-	if (statshrwrc.diff(&oldStatshrwrc).size() != 0) insert(moditems, DpchEngData::STATSHRWRC);
 	if (continfwrc.diff(&oldContinfwrc).size() != 0) insert(moditems, DpchEngData::CONTINFWRC);
+	if (statshrwrc.diff(&oldStatshrwrc).size() != 0) insert(moditems, DpchEngData::STATSHRWRC);
 };
 
 void DlgWznmRlsWrite::refreshLfi(
@@ -2603,8 +2806,8 @@ void DlgWznmRlsWrite::refreshFia(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfFia oldContinffia(continffia);
 	StatShrFia oldStatshrfia(statshrfia);
+	ContInfFia oldContinffia(continffia);
 
 	// IP refreshFia --- RBEGIN
 	// statshrfia
@@ -2615,8 +2818,8 @@ void DlgWznmRlsWrite::refreshFia(
 	continffia.Dld = StubWznm::getStubRlsStd(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref)) + ".tgz";
 
 	// IP refreshFia --- REND
-	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
 	if (statshrfia.diff(&oldStatshrfia).size() != 0) insert(moditems, DpchEngData::STATSHRFIA);
+	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
 };
 
 void DlgWznmRlsWrite::refresh(
@@ -2627,24 +2830,24 @@ void DlgWznmRlsWrite::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	StatShr oldStatshr(statshr);
-	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
+	ContIac oldContiac(contiac);
+	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
-	// statshr
-	statshr.ButDneActive = evalButDneActive(dbswznm);
+	// continf
+	continf.numFSge = ixVSge;
 
 	// contiac
 	contiac.numFDse = ixVDit;
 
-	// continf
-	continf.numFSge = ixVSge;
+	// statshr
+	statshr.ButDneActive = evalButDneActive(dbswznm);
 
 	// IP refresh --- END
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
 	refreshDet(dbswznm, moditems);
 	refreshCuc(dbswznm, moditems);
@@ -2711,8 +2914,8 @@ void DlgWznmRlsWrite::handleRequest(
 		if (ixVSge == VecVSge::IDLE) handleUploadInSgeIdle(dbswznm, req->filename);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DOWNLOAD) {
-		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
-		else if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
+		if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
+		else if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DPCHRET) {
 		if (req->dpchret->ixOpVOpres == VecOpVOpres::PROGRESS) {
@@ -2741,9 +2944,9 @@ void DlgWznmRlsWrite::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
-		else if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
+		if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
 		else if (ixVSge == VecVSge::CREIDLE) handleTimerInSgeCreidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
 	};
 };
@@ -2871,23 +3074,16 @@ void DlgWznmRlsWrite::handleUploadInSgeIdle(
 	changeStage(dbswznm, VecVSge::UPKIDLE);
 };
 
-string DlgWznmRlsWrite::handleDownloadInSgeDone(
-			DbsWznm* dbswznm
-		) {
-	return(xchg->tmppath + "/" + outfolder + ".tgz"); // IP handleDownloadInSgeDone --- RLINE
-};
-
 string DlgWznmRlsWrite::handleDownloadInSgeFail(
 			DbsWznm* dbswznm
 		) {
 	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
-void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
+string DlgWznmRlsWrite::handleDownloadInSgeDone(
 			DbsWznm* dbswznm
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeCreate --- ILINE
+	return(xchg->tmppath + "/" + outfolder + ".tgz"); // IP handleDownloadInSgeDone --- RLINE
 };
 
 void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
@@ -2902,6 +3098,13 @@ void DlgWznmRlsWrite::handleTimerInSgeCreidle(
 			, const string& sref
 		) {
 	changeStage(dbswznm, nextIxVSgeSuccess);
+};
+
+void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
+			DbsWznm* dbswznm
+		) {
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeCreate --- ILINE
 };
 
 void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
@@ -3243,6 +3446,12 @@ uint DlgWznmRlsWrite::enterSgeCreate(
 		// (optional) custom IP's -> custfolder -> outfolder (concerns header ABOVE IP's only)
 		createDbs(dbswznm, contiacdet.ChkBso);
 
+	} else if (ixCmptype == VecWznmVMComponentBasetype::VUEAPP) {
+		// create -> outfolder
+		// IP's -> ipfolder -> outfolder
+		// (optional) custom IP's -> custfolder -> outfolder
+		createVueapp(dbswznm, contiacdet.ChkBso);
+
 	} else if (ixCmptype == VecWznmVMComponentBasetype::WEBAPP) {
 		// create -> outfolder
 		// IP's -> ipfolder -> outfolder
@@ -3260,6 +3469,12 @@ uint DlgWznmRlsWrite::enterSgeCreate(
 		// IP's -> ipfolder -> outfolder
 		// (optional) custom IP's -> custfolder -> outfolder (concerns header ABOVE IP's only)
 		createJapi(dbswznm, contiacdet.ChkBso);
+
+	} else if (ixCmptype == VecWznmVMComponentBasetype::SAPI) {
+		// create -> outfolder
+		// IP's -> ipfolder -> outfolder
+		// (optional) custom IP's -> custfolder -> outfolder (concerns header ABOVE IP's only)
+		createSapi(dbswznm, contiacdet.ChkBso);
 	};
 
 	// IP enterSgeCreate --- IEND
@@ -3341,9 +3556,11 @@ uint DlgWznmRlsWrite::enterSgeMrgspec(
 		if (!contiacdet.ChkBso) addInv(new DpchInvWznmPrctreeMerge(0, 0, "", specfolder + "/" + cmpsref, "", outfolder + "/" + cmpsref, true, true));
 
 	} else if (ixCmptype == VecWznmVMComponentBasetype::DBS) {
+	} else if (ixCmptype == VecWznmVMComponentBasetype::VUEAPP) {
 	} else if (ixCmptype == VecWznmVMComponentBasetype::WEBAPP) {
 	} else if (ixCmptype == VecWznmVMComponentBasetype::API) {
 	} else if (ixCmptype == VecWznmVMComponentBasetype::JAPI) {
+	} else if (ixCmptype == VecWznmVMComponentBasetype::SAPI) {
 	};
 
 	// IP enterSgeMrgspec --- IEND

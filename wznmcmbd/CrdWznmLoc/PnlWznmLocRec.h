@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmLocMNVersion.h"
 #include "PnlWznmLocDetail.h"
+#include "PnlWznmLocMNVersion.h"
 
 #define VecVWznmLocRecDo PnlWznmLocRec::VecVDo
 
@@ -174,8 +174,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmLocMNVersion* pnlmnversion;
 	PnlWznmLocDetail* pnldetail;
+	PnlWznmLocMNVersion* pnlmnversion;
 
 	WznmMLocale recLoc;
 

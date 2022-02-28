@@ -14,15 +14,15 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSbsBsbMNSubset.h"
-#include "PnlWznmSbsAsbMNSubset.h"
-#include "PnlWznmSbsPst1NQuerymod.h"
-#include "PnlWznmSbs1NStub.h"
-#include "PnlWznmSbs1NTablecol.h"
-#include "PnlWznmSbsTos1NRelation.h"
-#include "PnlWznmSbsFrs1NRelation.h"
-#include "PnlWznmSbsATitle.h"
 #include "PnlWznmSbsDetail.h"
+#include "PnlWznmSbsATitle.h"
+#include "PnlWznmSbsFrs1NRelation.h"
+#include "PnlWznmSbsTos1NRelation.h"
+#include "PnlWznmSbs1NTablecol.h"
+#include "PnlWznmSbs1NStub.h"
+#include "PnlWznmSbsPst1NQuerymod.h"
+#include "PnlWznmSbsAsbMNSubset.h"
+#include "PnlWznmSbsBsbMNSubset.h"
 
 #define VecVWznmSbsRecDo PnlWznmSbsRec::VecVDo
 
@@ -198,15 +198,15 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSbsBsbMNSubset* pnlbsbmnsubset;
-	PnlWznmSbsAsbMNSubset* pnlasbmnsubset;
-	PnlWznmSbsPst1NQuerymod* pnlpst1nquerymod;
-	PnlWznmSbs1NStub* pnl1nstub;
-	PnlWznmSbs1NTablecol* pnl1ntablecol;
-	PnlWznmSbsTos1NRelation* pnltos1nrelation;
-	PnlWznmSbsFrs1NRelation* pnlfrs1nrelation;
-	PnlWznmSbsATitle* pnlatitle;
 	PnlWznmSbsDetail* pnldetail;
+	PnlWznmSbsATitle* pnlatitle;
+	PnlWznmSbsFrs1NRelation* pnlfrs1nrelation;
+	PnlWznmSbsTos1NRelation* pnltos1nrelation;
+	PnlWznmSbs1NTablecol* pnl1ntablecol;
+	PnlWznmSbs1NStub* pnl1nstub;
+	PnlWznmSbsPst1NQuerymod* pnlpst1nquerymod;
+	PnlWznmSbsAsbMNSubset* pnlasbmnsubset;
+	PnlWznmSbsBsbMNSubset* pnlbsbmnsubset;
 
 	WznmMSubset recSbs;
 
@@ -242,13 +242,13 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmSbsUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmPstUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmSbs_pstEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmSbs_carEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmPst_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmSbs_carEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmSbs_pstEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmPstUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmSbsUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

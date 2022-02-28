@@ -71,7 +71,7 @@ void WznmWrapp::writeRtjtree(
 
 	string indent;
 
-	if (ixWznmVApptarget != VecWznmVApptarget::COCOA_OBJC) indent = "\t";
+	if (ixWznmVApptarget != VecWznmVApptarget::COCOA_SWIFT) indent = "\t";
 
 	for (unsigned int i = 0; i < rtjs.nodes.size(); i++) {
 		rtj = rtjs.nodes[i];
@@ -127,7 +127,7 @@ void WznmWrapp::writeRtobjs(
 		subdlm = "::";
 	};
 
-	if (ixWznmVApptarget != VecWznmVApptarget::COCOA_OBJC) indent = "\t";
+	if (ixWznmVApptarget != VecWznmVApptarget::COCOA_SWIFT) indent = "\t";
 
 	for (unsigned int i = 0; i < rtjs.nodes.size(); i++) {
 		rtj = rtjs.nodes[i];
@@ -257,7 +257,7 @@ void WznmWrapp::writeHandleTrigger(
 		if (ipAllNotSpec || (cntsReent[i] > 0)) {
 			outfile << indent << "case Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": _ixVState = ";
 
-			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "[self reenter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << ":ixVEvent withDpcheng:dpcheng]; break;" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "[self reenter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << ":ixVEvent withDpcheng:dpcheng]; break;" << endl;
 			else outfile <<  "reenter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(ixVEvent, dpcheng); break;" << endl;
 		};
 	};
@@ -271,7 +271,7 @@ void WznmWrapp::writeHandleTrigger(
 		if (ipAllNotSpec || (cntsLve[i] > 0)) {
 			outfile << indent << "\t\tcase Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": ";
 
-			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "[self leave" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "[self leave" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
 			else outfile <<  "leave" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(); break;" << endl;
 		};
 	};
@@ -309,7 +309,7 @@ void WznmWrapp::writeHandleTrigger(
 		if (ipAllNotSpec || (cntsEnt[i] > 0)) {
 			outfile << indent << "\t\tcase Vec" << Appshort << "VState" << dlm << StrMod::uc(StrMod::dotToUsc(ste->sref)) << ": _ixVState = ";
 
-			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "[self enter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
+			if (app->ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "[self enter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "]; break;" << endl;
 			else outfile <<  "enter" << StrMod::cap(StrMod::dotToUsc(ste->sref)) << "(); break;" << endl;
 		};
 	};
@@ -406,27 +406,27 @@ string WznmWrapp::getSteTrigs_string(
 
 	} else if ((steAtrg->ixVType == VecWznmVAMStateTrigType::CONFACC) && rtj && job) {
 		if (job->ixVBasetype == VecWznmVMJobBasetype::SESS) {
-			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEngConfirmAccepted:_dpcheng]";
+			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval = "[self dpchEngConfirmAccepted:_dpcheng]";
 			else retval = "dpchEngConfirmAccepted(_dpcheng, \"\", \"\")";
 
 		} else if (steAtrg->xsref != "") {
-			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEngConfirmAccepted:_dpcheng withScrJref:\"\" withSref:\"" + steAtrg->xsref + "\"]";
+			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval = "[self dpchEngConfirmAccepted:_dpcheng withScrJref:\"\" withSref:\"" + steAtrg->xsref + "\"]";
 			else retval = "dpchEngConfirmAccepted(_dpcheng, \"\", \"" + steAtrg->xsref + "\")";
 
 		} else {
-			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEngConfirmAccepted:_dpcheng withScrJref:" + dom + getScrJrefVar(dbswznm, rtj, job) + "]";
+			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval = "[self dpchEngConfirmAccepted:_dpcheng withScrJref:" + dom + getScrJrefVar(dbswznm, rtj, job) + "]";
 			else retval = "dpchEngConfirmAccepted(_dpcheng, " + dom + getScrJrefVar(dbswznm, rtj, job) + ", \"\")";
 		};
 
 	} else if ((steAtrg->ixVType == VecWznmVAMStateTrigType::CONFDNY) && rtj && job) {
 		if (job->ixVBasetype == VecWznmVMJobBasetype::SESS) {
-			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEngConfirmDenied:_dpcheng]";
+			if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval = "[self dpchEngConfirmDenied:_dpcheng]";
 			else if (ixWznmVApptarget == VecWznmVApptarget::JAVA)  retval = "dpchEngConfirmDenied(_dpcheng, \"\")";
 			else retval = "dpchEngConfirmDenied(_dpcheng)";
 		};
 
 	} else if ((steAtrg->ixVType == VecWznmVAMStateTrigType::DPCHRCV) && rtj && job && rtd && blk) {
-		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self dpchEng:_dpcheng isOfType:Vec" + Prjshort + "VDpch::" + StrMod::uc(blk->sref) + " withScrJref:" + dom + getScrJrefVar(dbswznm, rtj, job) + "]";
+		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval = "[self dpchEng:_dpcheng isOfType:Vec" + Prjshort + "VDpch::" + StrMod::uc(blk->sref) + " withScrJref:" + dom + getScrJrefVar(dbswznm, rtj, job) + "]";
 		else retval = "dpchEngIsOfType(_dpcheng, Vec" + Prjshort + "VDpch" + subdlm + StrMod::uc(blk->sref) + ", " + dom + getScrJrefVar(dbswznm, rtj, job) + ")";
 
 		if (steAtrg->srefsMask != "") {
@@ -652,27 +652,27 @@ string WznmWrapp::writeState_action(
 	string prjshort = StrMod::lc(Prjshort);
 
 	if (steAact->ixVType == VecWznmVAMStateActionType::LOGIN) {
-		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self sendDpchApp:";
+		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval = "[self sendDpchApp:";
 		else retval = "sendDpchApp(";
 
-		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += "new Root" + Prjshort + "::DpchAppLogin(\"\", stg" + prjshort + "api.username, stg" + prjshort + "api.password, false, false, {Root" + Prjshort + "::DpchAppLogin::ALL})";
+		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval += "new Root" + Prjshort + "::DpchAppLogin(\"\", stg" + prjshort + "api.username, stg" + prjshort + "api.password, false, false, {Root" + Prjshort + "::DpchAppLogin::ALL})";
 		else if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval += "(new Root" + Prjshort + "()).new DpchAppLogin(\"\", stg" + prjshort + "api.username, stg" + prjshort + "api.password, false, false, new Integer[]{Root" + Prjshort + ".DpchAppLogin.ALL})";
 		else retval += "new Root" + Prjshort + "::DpchAppLogin(\"\", stg" + prjshort + "api->username, stg" + prjshort + "api->password, false, false, {Root" + Prjshort + "::DpchAppLogin::ALL})";
 
-		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += "];";
+		if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval += "];";
 		else retval += ");";
 
 	} else if ((steAact->ixVType == VecWznmVAMStateActionType::INIT) || (steAact->ixVType == VecWznmVAMStateActionType::DO)) {
 		if (dbswznm->tblwznmmrtjob->loadRecByRef(steAact->refWznmMRtjob, &rtj)) {
 			if (dbswznm->tblwznmmjob->loadRecByRef(rtj->refWznmMJob, &job)) {
 				if (steAact->ixVType == VecWznmVAMStateActionType::INIT) {
-					if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self sendDpchApp:";
+					if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval = "[self sendDpchApp:";
 					else retval = "sendDpchApp(";
 
 					if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval += "new DpchApp" + Prjshort + "Init(" + dom + getScrJrefVar(dbswznm, rtj, job) + ")";
 					else retval += "new DpchApp" + Prjshort + "Init(" + dom + getScrJrefVar(dbswznm, rtj, job) + ")";
 
-					if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += "];";
+					if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval += "];";
 					else retval += ");";
 
 				} else if (steAact->ixVType == VecWznmVAMStateActionType::DO) {
@@ -681,7 +681,7 @@ string WznmWrapp::writeState_action(
 							if (dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMBlock WHERE refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::JOB) + " AND refUref = " + to_string(job->ref)
 										+ " AND sref LIKE 'DpchApp%Do'", ref)) {
 
-								if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval = "[self sendDpchApp:";
+								if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval = "[self sendDpchApp:";
 								else retval = "sendDpchApp(";
 
 								if (ixWznmVApptarget == VecWznmVApptarget::JAVA) retval += "(new " + job->sref + "()).new DpchAppDo(";
@@ -711,7 +711,7 @@ string WznmWrapp::writeState_action(
 								else retval += job->sref + subdlm + "DpchAppDo" + subdlm + "SCRJREF, " + job->sref + subdlm + "DpchAppDo" + subdlm + StrMod::uc(s2);
 								retval += "}";
 
-								if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += ")];";
+								if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval += ")];";
 								else retval += "));";
 							};
 
@@ -738,7 +738,7 @@ string WznmWrapp::writeState_action(
 				delete rtj;
 			};
 			if (steAact->ixVType == VecWznmVAMStateActionType::CSJNTFSTEP) {
-				if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) retval += "[self startNotify];\n";
+				if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) retval += "[self startNotify];\n";
 				else retval += "startNotify();\n";
 			};
 		};
@@ -874,10 +874,10 @@ void WznmWrapp::writeDpchEngMerge(
 						if (first) first = false;
 						else outfile << "} else ";
 						
-						if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << "if ([self dpchEng:_dpcheng isOfType:Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << " withScrJref:" << dom << getScrJrefVar(dbswznm, rtj, job) << "]) {" << endl;
+						if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << "if ([self dpchEng:_dpcheng isOfType:Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << " withScrJref:" << dom << getScrJrefVar(dbswznm, rtj, job) << "]) {" << endl;
 						else outfile << "if (dpchEngIsOfType(_dpcheng, Vec" << Prjshort << "VDpch" << subdlm << StrMod::uc(blk->sref) << ", " << dom << getScrJrefVar(dbswznm, rtj, job) << ")) {" << endl;
 
-						if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) outfile << indent << "\t[self merge" << blk->sref << ":(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "*) _dpcheng];" << endl;
+						if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) outfile << indent << "\t[self merge" << blk->sref << ":(" << job->sref << "::" << Wznm::getSubsref(job, blk->sref) << "*) _dpcheng];" << endl;
 						else if (ixWznmVApptarget == VecWznmVApptarget::JAVA) outfile << indent << "\tmerge" << blk->sref << "((" << job->sref << subdlm << Wznm::getSubsref(job, blk->sref) << ") _dpcheng);" << endl;
 						else  outfile << indent << "\tmerge" << blk->sref << "((" << job->sref << subdlm << Wznm::getSubsref(job, blk->sref) << "*) _dpcheng);" << endl;
 					};
@@ -898,7 +898,7 @@ void WznmWrapp::getTargetStrs(
 			, string& subdlm
 			, string& dpchjref
 		) {
-	if (ixWznmVApptarget == VecWznmVApptarget::COCOA_OBJC) dom = "";
+	if (ixWznmVApptarget == VecWznmVApptarget::COCOA_SWIFT) dom = "";
 	else if (ixWznmVApptarget == VecWznmVApptarget::JAVA) dom = "DOM.";
 	else dom = "DOM->";
 

@@ -19,24 +19,24 @@ public class QryWznmVerList {
 		*/
 	public static class VecVOrd {
 
-		public static final int LOC = 1;
-		public static final int STE = 2;
-		public static final int BVR = 3;
-		public static final int OWN = 4;
-		public static final int PRJ = 5;
-		public static final int GRP = 6;
+		public static final int GRP = 1;
+		public static final int OWN = 2;
+		public static final int PRJ = 3;
+		public static final int BVR = 4;
+		public static final int LOC = 5;
+		public static final int STE = 6;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("loc")) return LOC;
-			if (s.equals("ste")) return STE;
-			if (s.equals("bvr")) return BVR;
+			if (s.equals("grp")) return GRP;
 			if (s.equals("own")) return OWN;
 			if (s.equals("prj")) return PRJ;
-			if (s.equals("grp")) return GRP;
+			if (s.equals("bvr")) return BVR;
+			if (s.equals("loc")) return LOC;
+			if (s.equals("ste")) return STE;
 
 			return 0;
 		};
@@ -44,12 +44,12 @@ public class QryWznmVerList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == LOC) return("loc");
-			if (ix == STE) return("ste");
-			if (ix == BVR) return("bvr");
+			if (ix == GRP) return("grp");
 			if (ix == OWN) return("own");
 			if (ix == PRJ) return("prj");
-			if (ix == GRP) return("grp");
+			if (ix == BVR) return("bvr");
+			if (ix == LOC) return("loc");
+			if (ix == STE) return("ste");
 
 			return "";
 		};

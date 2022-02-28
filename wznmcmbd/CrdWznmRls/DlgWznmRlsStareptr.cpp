@@ -145,8 +145,8 @@ void DlgWznmRlsStareptr::refreshDet(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrDet oldStatshrdet(statshrdet);
 	ContIacDet oldContiacdet(contiacdet);
+	StatShrDet oldStatshrdet(statshrdet);
 
 	// IP refreshDet --- RBEGIN
 	// contiacdet
@@ -156,16 +156,16 @@ void DlgWznmRlsStareptr::refreshDet(
 	statshrdet.ButStaActive = evalDetButStaActive(dbswznm);
 
 	// IP refreshDet --- REND
-	if (statshrdet.diff(&oldStatshrdet).size() != 0) insert(moditems, DpchEngData::STATSHRDET);
 	if (contiacdet.diff(&oldContiacdet).size() != 0) insert(moditems, DpchEngData::CONTIACDET);
+	if (statshrdet.diff(&oldStatshrdet).size() != 0) insert(moditems, DpchEngData::STATSHRDET);
 };
 
 void DlgWznmRlsStareptr::refreshIni(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfIni oldContinfini(continfini);
 	StatShrIni oldStatshrini(statshrini);
+	ContInfIni oldContinfini(continfini);
 
 	// IP refreshIni --- RBEGIN
 	// statshrini
@@ -180,16 +180,16 @@ void DlgWznmRlsStareptr::refreshIni(
 	continfini.TxtPrg = getSquawk(dbswznm);
 
 	// IP refreshIni --- REND
-	if (continfini.diff(&oldContinfini).size() != 0) insert(moditems, DpchEngData::CONTINFINI);
 	if (statshrini.diff(&oldStatshrini).size() != 0) insert(moditems, DpchEngData::STATSHRINI);
+	if (continfini.diff(&oldContinfini).size() != 0) insert(moditems, DpchEngData::CONTINFINI);
 };
 
 void DlgWznmRlsStareptr::refreshExt(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrExt oldStatshrext(statshrext);
 	ContInfExt oldContinfext(continfext);
+	StatShrExt oldStatshrext(statshrext);
 
 	// IP refreshExt --- RBEGIN
 	// continfext
@@ -200,16 +200,16 @@ void DlgWznmRlsStareptr::refreshExt(
 	statshrext.ButStoActive = evalExtButStoActive(dbswznm);
 
 	// IP refreshExt --- REND
-	if (statshrext.diff(&oldStatshrext).size() != 0) insert(moditems, DpchEngData::STATSHREXT);
 	if (continfext.diff(&oldContinfext).size() != 0) insert(moditems, DpchEngData::CONTINFEXT);
+	if (statshrext.diff(&oldStatshrext).size() != 0) insert(moditems, DpchEngData::STATSHREXT);
 };
 
 void DlgWznmRlsStareptr::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfLfi oldContinflfi(continflfi);
 	StatShrLfi oldStatshrlfi(statshrlfi);
+	ContInfLfi oldContinflfi(continflfi);
 
 	// IP refreshLfi --- RBEGIN
 	// statshrlfi
@@ -219,8 +219,8 @@ void DlgWznmRlsStareptr::refreshLfi(
 	continflfi.Dld = "log.txt";
 
 	// IP refreshLfi --- REND
-	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
+	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
 };
 
 void DlgWznmRlsStareptr::refresh(
@@ -231,24 +231,24 @@ void DlgWznmRlsStareptr::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	StatShr oldStatshr(statshr);
-	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
+	ContIac oldContiac(contiac);
+	StatShr oldStatshr(statshr);
 
 	// IP refresh --- BEGIN
-	// statshr
-	statshr.ButDneActive = evalButDneActive(dbswznm);
+	// continf
+	continf.numFSge = ixVSge;
 
 	// contiac
 	contiac.numFDse = ixVDit;
 
-	// continf
-	continf.numFSge = ixVSge;
+	// statshr
+	statshr.ButDneActive = evalButDneActive(dbswznm);
 
 	// IP refresh --- END
-	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
 
 	refreshDet(dbswznm, moditems);
 	refreshIni(dbswznm, moditems);
@@ -322,8 +322,8 @@ void DlgWznmRlsStareptr::handleRequest(
 		if (ixVSge == VecVSge::STADONE) handleUploadInSgeStadone(dbswznm, req->filename);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DOWNLOAD) {
-		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
-		else if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
+		if (ixVSge == VecVSge::FAIL) req->filename = handleDownloadInSgeFail(dbswznm);
+		else if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::DPCHRET) {
 		if (req->dpchret->ixOpVOpres == VecOpVOpres::PROGRESS) {
@@ -351,8 +351,8 @@ void DlgWznmRlsStareptr::handleRequest(
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
 		if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::CLONEGIT)) handleTimerWithSrefMonInSgeClonegit(dbswznm);
 		else if (ixVSge == VecVSge::CLGIDLE) handleTimerInSgeClgidle(dbswznm, req->sref);
+		else if ((req->sref == "mon") && (ixVSge == VecVSge::CLONEGIT)) handleTimerWithSrefMonInSgeClonegit(dbswznm);
 	};
 };
 
@@ -503,19 +503,26 @@ void DlgWznmRlsStareptr::handleUploadInSgeStadone(
 	changeStage(dbswznm, VecVSge::UPKIDLE);
 };
 
-string DlgWznmRlsStareptr::handleDownloadInSgeDone(
-			DbsWznm* dbswznm
-		) {
-	return(""); // IP handleDownloadInSgeDone --- LINE
-};
-
 string DlgWznmRlsStareptr::handleDownloadInSgeFail(
 			DbsWznm* dbswznm
 		) {
 	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
+string DlgWznmRlsStareptr::handleDownloadInSgeDone(
+			DbsWznm* dbswznm
+		) {
+	return(""); // IP handleDownloadInSgeDone --- LINE
+};
+
 void DlgWznmRlsStareptr::handleTimerInSgeUpkidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
+};
+
+void DlgWznmRlsStareptr::handleTimerInSgeClgidle(
 			DbsWznm* dbswznm
 			, const string& sref
 		) {
@@ -527,13 +534,6 @@ void DlgWznmRlsStareptr::handleTimerWithSrefMonInSgeClonegit(
 		) {
 	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeClonegit --- ILINE
-};
-
-void DlgWznmRlsStareptr::handleTimerInSgeClgidle(
-			DbsWznm* dbswznm
-			, const string& sref
-		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsStareptr::changeStage(

@@ -125,11 +125,11 @@ function refreshB(chgcol) {
 			ix++;
 
 			if (i == 1) {
-				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(3); wtot += TcoSrfWidth;
+				doc.cols.push("TcoSrf"); doc.widths.push(TcoSrfWidth); doc.fs.push("srf"); doc.tos.push(1); wtot += TcoSrfWidth;
 			} else if (i == 2) {
 				doc.cols.push("TcoTyp"); doc.widths.push(TcoTypWidth); doc.fs.push("typ2"); doc.tos.push(0); wtot += TcoTypWidth;
 			} else if (i == 3) {
-				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(1); wtot += TcoJobWidth;
+				doc.cols.push("TcoJob"); doc.widths.push(TcoJobWidth); doc.fs.push("job"); doc.tos.push(3); wtot += TcoJobWidth;
 			} else {
 				ix--;
 			};

@@ -2482,7 +2482,9 @@ void OpengWznm::getIcsWznmVOppackByIxWznmVOpengtype(
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRAPP);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRDBS);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRJAPI);
+		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRSAPI);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRSRV);
+		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRVUE);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRWEB);
 	} else if (ixWznmVOpengtype == VecWznmVOpengtype::WZNMOPD2) {
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMCTPGENJTR);
@@ -2548,6 +2550,11 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRJAPIJOB);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRJAPIQTB);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRJAPIVEC);
+	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRSAPI) {
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSAPIBASE);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSAPIJOB);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSAPIQTB);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSAPIVEC);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRSRV) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVBASE);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVCMBENGBASE);
@@ -2568,6 +2575,11 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVROOTSESS);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVUA);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVVEC);
+	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRVUE) {
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVUEBASE);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVUECRD);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVUEDLG);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVUEPNL);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRWEB) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRWEBBASE);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRWEBCRD);
@@ -5696,7 +5708,7 @@ void ContInfWznmAlert::writeJSON(
 		) {
 	if (difftag == "") difftag = "ContInfWznmAlert";
 
-	Json::Value& me = sup["DpchEngWznmConfirm"] = Json::Value(Json::objectValue);
+	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["TxtCpt"] = TxtCpt;
 	me["TxtMsg1"] = TxtMsg1;

@@ -6,8 +6,8 @@ function updateScrJrefs() {
 	scrJrefQry1NQuerycol = retrieveSi(srcdoc, "StatShrWznmQryRec", "scrJrefQry1NQuerycol");
 	scrJref1NQuerymod = retrieveSi(srcdoc, "StatShrWznmQryRec", "scrJref1NQuerymod");
 	scrJrefMNTable = retrieveSi(srcdoc, "StatShrWznmQryRec", "scrJrefMNTable");
-	scrJrefMNPanel = retrieveSi(srcdoc, "StatShrWznmQryRec", "scrJrefMNPanel");
 	scrJrefMNDialog = retrieveSi(srcdoc, "StatShrWznmQryRec", "scrJrefMNDialog");
+	scrJrefMNPanel = retrieveSi(srcdoc, "StatShrWznmQryRec", "scrJrefMNPanel");
 };
 
 function resetInitdones() {
@@ -18,8 +18,8 @@ function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmQryRec", "initdoneQry1NQuerycol", "false");
 	setSi(srcdoc, "StatAppWznmQryRec", "initdone1NQuerymod", "false");
 	setSi(srcdoc, "StatAppWznmQryRec", "initdoneMNTable", "false");
-	setSi(srcdoc, "StatAppWznmQryRec", "initdoneMNPanel", "false");
 	setSi(srcdoc, "StatAppWznmQryRec", "initdoneMNDialog", "false");
+	setSi(srcdoc, "StatAppWznmQryRec", "initdoneMNPanel", "false");
 };
 
 function resetHeights() {
@@ -30,8 +30,8 @@ function resetHeights() {
 	heightQry1NQuerycol = 30;
 	height1NQuerymod = 30;
 	heightMNTable = 30;
-	heightMNPanel = 30;
 	heightMNDialog = 30;
+	heightMNPanel = 30;
 };
 
 function getInitdone(pnlshort) {
@@ -56,8 +56,8 @@ function checkInitdone() {
 	var initdoneQry1NQuerycol = (retrieveSi(srcdoc, "StatAppWznmQryRec", "initdoneQry1NQuerycol") == "true");
 	var initdone1NQuerymod = (retrieveSi(srcdoc, "StatAppWznmQryRec", "initdone1NQuerymod") == "true");
 	var initdoneMNTable = (retrieveSi(srcdoc, "StatAppWznmQryRec", "initdoneMNTable") == "true");
-	var initdoneMNPanel = (retrieveSi(srcdoc, "StatAppWznmQryRec", "initdoneMNPanel") == "true");
 	var initdoneMNDialog = (retrieveSi(srcdoc, "StatAppWznmQryRec", "initdoneMNDialog") == "true");
+	var initdoneMNPanel = (retrieveSi(srcdoc, "StatAppWznmQryRec", "initdoneMNPanel") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmQryDetail.html?scrJref=" + scrJrefDetail;
@@ -73,10 +73,10 @@ function checkInitdone() {
 		rhsdoc.getElementById("1NQuerymod").src = "./PnlWznmQry1NQuerymod.html?scrJref=" + scrJref1NQuerymod;
 	} else if (!initdoneMNTable) {
 		rhsdoc.getElementById("MNTable").src = "./PnlWznmQryMNTable.html?scrJref=" + scrJrefMNTable;
-	} else if (!initdoneMNPanel) {
-		rhsdoc.getElementById("MNPanel").src = "./PnlWznmQryMNPanel.html?scrJref=" + scrJrefMNPanel;
 	} else if (!initdoneMNDialog) {
 		rhsdoc.getElementById("MNDialog").src = "./PnlWznmQryMNDialog.html?scrJref=" + scrJrefMNDialog;
+	} else if (!initdoneMNPanel) {
+		rhsdoc.getElementById("MNPanel").src = "./PnlWznmQryMNPanel.html?scrJref=" + scrJrefMNPanel;
 
 	} else {
 		refreshB();
@@ -122,8 +122,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "Qry1NQuerycol") heightQry1NQuerycol = height;
 		else if (short == "1NQuerymod") height1NQuerymod = height;
 		else if (short == "MNTable") heightMNTable = height;
-		else if (short == "MNPanel") heightMNPanel = height;
 		else if (short == "MNDialog") heightMNDialog = height;
+		else if (short == "MNPanel") heightMNPanel = height;
 	};
 
 	return(avail != oldAvail);
@@ -173,8 +173,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "Qry1NQuerycol") heightQry1NQuerycol = height;
 	else if (pnlshort == "1NQuerymod") height1NQuerymod = height;
 	else if (pnlshort == "MNTable") heightMNTable = height;
-	else if (pnlshort == "MNPanel") heightMNPanel = height;
 	else if (pnlshort == "MNDialog") heightMNDialog = height;
+	else if (pnlshort == "MNPanel") heightMNPanel = height;
 
 	if (update) updateHeight();
 };
@@ -183,7 +183,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + heightAOrder+13 + heightAClause+13 + 5;
-	heightRhs = heightSup1NQuery+13 + heightQry1NQuerycol+13 + height1NQuerymod+13 + heightMNTable+13 + heightMNPanel+13 + heightMNDialog+13 + 5;
+	heightRhs = heightSup1NQuery+13 + heightQry1NQuerycol+13 + height1NQuerymod+13 + heightMNTable+13 + heightMNDialog+13 + heightMNPanel+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -386,10 +386,10 @@ function handleDpchEng(dom, dpch) {
 				if (getInitdone("1NQuerymod")) rhsdoc.getElementById("1NQuerymod").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNTable) {
 				if (getInitdone("MNTable")) rhsdoc.getElementById("MNTable").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefMNPanel) {
-				if (getInitdone("MNPanel")) rhsdoc.getElementById("MNPanel").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNDialog) {
 				if (getInitdone("MNDialog")) rhsdoc.getElementById("MNDialog").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefMNPanel) {
+				if (getInitdone("MNPanel")) rhsdoc.getElementById("MNPanel").contentWindow.handleDpchEng(dom, dpch);
 			} else {
 				// alert("got a '" + dpch + "' from job with scrJref " + _scrJref);
 			};

@@ -14,20 +14,20 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmNavAuxfct.h"
-#include "PnlWznmNavAppdev.h"
-#include "PnlWznmNavJob.h"
-#include "PnlWznmNavDeploy.h"
-#include "PnlWznmNavComp.h"
+#include "DlgWznmNavLoaini.h"
+#include "DlgWznmNavMnglic.h"
+#include "PnlWznmNavHeadbar.h"
+#include "PnlWznmNavPre.h"
+#include "PnlWznmNavAdmin.h"
+#include "PnlWznmNavGlobal.h"
+#include "PnlWznmNavProject.h"
 #include "PnlWznmNavDbstr.h"
 #include "PnlWznmNavUix.h"
-#include "PnlWznmNavProject.h"
-#include "PnlWznmNavGlobal.h"
-#include "PnlWznmNavAdmin.h"
-#include "PnlWznmNavPre.h"
-#include "PnlWznmNavHeadbar.h"
-#include "DlgWznmNavMnglic.h"
-#include "DlgWznmNavLoaini.h"
+#include "PnlWznmNavComp.h"
+#include "PnlWznmNavJob.h"
+#include "PnlWznmNavDeploy.h"
+#include "PnlWznmNavAppdev.h"
+#include "PnlWznmNavAuxfct.h"
 
 #define VecVWznmNavDo CrdWznmNav::VecVDo
 #define VecVWznmNavSge CrdWznmNav::VecVSge
@@ -601,20 +601,20 @@ public:
 	Sbecore::Feed feedFMcbAlert;
 	Sbecore::Feed feedFSge;
 
-	PnlWznmNavAuxfct* pnlauxfct;
-	PnlWznmNavAppdev* pnlappdev;
-	PnlWznmNavJob* pnljob;
-	PnlWznmNavDeploy* pnldeploy;
-	PnlWznmNavComp* pnlcomp;
+	DlgWznmNavLoaini* dlgloaini;
+	DlgWznmNavMnglic* dlgmnglic;
+	PnlWznmNavHeadbar* pnlheadbar;
+	PnlWznmNavPre* pnlpre;
+	PnlWznmNavAdmin* pnladmin;
+	PnlWznmNavGlobal* pnlglobal;
+	PnlWznmNavProject* pnlproject;
 	PnlWznmNavDbstr* pnldbstr;
 	PnlWznmNavUix* pnluix;
-	PnlWznmNavProject* pnlproject;
-	PnlWznmNavGlobal* pnlglobal;
-	PnlWznmNavAdmin* pnladmin;
-	PnlWznmNavPre* pnlpre;
-	PnlWznmNavHeadbar* pnlheadbar;
-	DlgWznmNavMnglic* dlgmnglic;
-	DlgWznmNavLoaini* dlgloaini;
+	PnlWznmNavComp* pnlcomp;
+	PnlWznmNavJob* pnljob;
+	PnlWznmNavDeploy* pnldeploy;
+	PnlWznmNavAppdev* pnlappdev;
+	PnlWznmNavAuxfct* pnlauxfct;
 
 	// IP vars.cust --- INSERT
 

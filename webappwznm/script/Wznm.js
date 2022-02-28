@@ -1,7 +1,7 @@
-WZNM_VERSION = "1.1.7";
+WZNM_VERSION = "1.1.8";
 WZNM_VERSION_MAJOR = 1;
 WZNM_VERSION_MINOR = 1;
-WZNM_VERSION_SUB = 7;
+WZNM_VERSION_SUB = 8;
 
 function getCrdwnd() {
 	if (window.name == "Crd") return window;

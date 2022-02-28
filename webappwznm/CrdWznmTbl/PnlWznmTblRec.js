@@ -15,8 +15,8 @@ function updateScrJrefs() {
 	scrJrefRef1NPanel = retrieveSi(srcdoc, "StatShrWznmTblRec", "scrJrefRef1NPanel");
 	scrJrefFct1NTablecol = retrieveSi(srcdoc, "StatShrWznmTblRec", "scrJrefFct1NTablecol");
 	scrJrefHk1NVector = retrieveSi(srcdoc, "StatShrWznmTblRec", "scrJrefHk1NVector");
-	scrJrefRef1NRtblock = retrieveSi(srcdoc, "StatShrWznmTblRec", "scrJrefRef1NRtblock");
 	scrJrefRef1NQuerymod = retrieveSi(srcdoc, "StatShrWznmTblRec", "scrJrefRef1NQuerymod");
+	scrJrefRef1NRtblock = retrieveSi(srcdoc, "StatShrWznmTblRec", "scrJrefRef1NRtblock");
 	scrJrefPst1NQuerymod = retrieveSi(srcdoc, "StatShrWznmTblRec", "scrJrefPst1NQuerymod");
 	scrJrefMNVector = retrieveSi(srcdoc, "StatShrWznmTblRec", "scrJrefMNVector");
 	scrJrefMNQuery = retrieveSi(srcdoc, "StatShrWznmTblRec", "scrJrefMNQuery");
@@ -39,8 +39,8 @@ function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmTblRec", "initdoneRef1NPanel", "false");
 	setSi(srcdoc, "StatAppWznmTblRec", "initdoneFct1NTablecol", "false");
 	setSi(srcdoc, "StatAppWznmTblRec", "initdoneHk1NVector", "false");
-	setSi(srcdoc, "StatAppWznmTblRec", "initdoneRef1NRtblock", "false");
 	setSi(srcdoc, "StatAppWznmTblRec", "initdoneRef1NQuerymod", "false");
+	setSi(srcdoc, "StatAppWznmTblRec", "initdoneRef1NRtblock", "false");
 	setSi(srcdoc, "StatAppWznmTblRec", "initdonePst1NQuerymod", "false");
 	setSi(srcdoc, "StatAppWznmTblRec", "initdoneMNVector", "false");
 	setSi(srcdoc, "StatAppWznmTblRec", "initdoneMNQuery", "false");
@@ -63,8 +63,8 @@ function resetHeights() {
 	heightRef1NPanel = 30;
 	heightFct1NTablecol = 30;
 	heightHk1NVector = 30;
-	heightRef1NRtblock = 30;
 	heightRef1NQuerymod = 30;
+	heightRef1NRtblock = 30;
 	heightPst1NQuerymod = 30;
 	heightMNVector = 30;
 	heightMNQuery = 30;
@@ -101,8 +101,8 @@ function checkInitdone() {
 	var initdoneRef1NPanel = (retrieveSi(srcdoc, "StatAppWznmTblRec", "initdoneRef1NPanel") == "true");
 	var initdoneFct1NTablecol = (retrieveSi(srcdoc, "StatAppWznmTblRec", "initdoneFct1NTablecol") == "true");
 	var initdoneHk1NVector = (retrieveSi(srcdoc, "StatAppWznmTblRec", "initdoneHk1NVector") == "true");
-	var initdoneRef1NRtblock = (retrieveSi(srcdoc, "StatAppWznmTblRec", "initdoneRef1NRtblock") == "true");
 	var initdoneRef1NQuerymod = (retrieveSi(srcdoc, "StatAppWznmTblRec", "initdoneRef1NQuerymod") == "true");
+	var initdoneRef1NRtblock = (retrieveSi(srcdoc, "StatAppWznmTblRec", "initdoneRef1NRtblock") == "true");
 	var initdonePst1NQuerymod = (retrieveSi(srcdoc, "StatAppWznmTblRec", "initdonePst1NQuerymod") == "true");
 	var initdoneMNVector = (retrieveSi(srcdoc, "StatAppWznmTblRec", "initdoneMNVector") == "true");
 	var initdoneMNQuery = (retrieveSi(srcdoc, "StatAppWznmTblRec", "initdoneMNQuery") == "true");
@@ -139,10 +139,10 @@ function checkInitdone() {
 		rhsdoc.getElementById("Fct1NTablecol").src = "./PnlWznmTblFct1NTablecol.html?scrJref=" + scrJrefFct1NTablecol;
 	} else if (!initdoneHk1NVector) {
 		rhsdoc.getElementById("Hk1NVector").src = "./PnlWznmTblHk1NVector.html?scrJref=" + scrJrefHk1NVector;
-	} else if (!initdoneRef1NRtblock) {
-		rhsdoc.getElementById("Ref1NRtblock").src = "./PnlWznmTblRef1NRtblock.html?scrJref=" + scrJrefRef1NRtblock;
 	} else if (!initdoneRef1NQuerymod) {
 		rhsdoc.getElementById("Ref1NQuerymod").src = "./PnlWznmTblRef1NQuerymod.html?scrJref=" + scrJrefRef1NQuerymod;
+	} else if (!initdoneRef1NRtblock) {
+		rhsdoc.getElementById("Ref1NRtblock").src = "./PnlWznmTblRef1NRtblock.html?scrJref=" + scrJrefRef1NRtblock;
 	} else if (!initdonePst1NQuerymod) {
 		rhsdoc.getElementById("Pst1NQuerymod").src = "./PnlWznmTblPst1NQuerymod.html?scrJref=" + scrJrefPst1NQuerymod;
 	} else if (!initdoneMNVector) {
@@ -203,8 +203,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "Ref1NPanel") heightRef1NPanel = height;
 		else if (short == "Fct1NTablecol") heightFct1NTablecol = height;
 		else if (short == "Hk1NVector") heightHk1NVector = height;
-		else if (short == "Ref1NRtblock") heightRef1NRtblock = height;
 		else if (short == "Ref1NQuerymod") heightRef1NQuerymod = height;
+		else if (short == "Ref1NRtblock") heightRef1NRtblock = height;
 		else if (short == "Pst1NQuerymod") heightPst1NQuerymod = height;
 		else if (short == "MNVector") heightMNVector = height;
 		else if (short == "MNQuery") heightMNQuery = height;
@@ -266,8 +266,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "Ref1NPanel") heightRef1NPanel = height;
 	else if (pnlshort == "Fct1NTablecol") heightFct1NTablecol = height;
 	else if (pnlshort == "Hk1NVector") heightHk1NVector = height;
-	else if (pnlshort == "Ref1NRtblock") heightRef1NRtblock = height;
 	else if (pnlshort == "Ref1NQuerymod") heightRef1NQuerymod = height;
+	else if (pnlshort == "Ref1NRtblock") heightRef1NRtblock = height;
 	else if (pnlshort == "Pst1NQuerymod") heightPst1NQuerymod = height;
 	else if (pnlshort == "MNVector") heightMNVector = height;
 	else if (pnlshort == "MNQuery") heightMNQuery = height;
@@ -279,7 +279,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + heightALoadfct+13 + heightATitle+13 + 5;
-	heightRhs = height1NImpexp+13 + height1NCheck+13 + heightFr1NRelation+13 + heightTo1NRelation+13 + height1NStub+13 + height1NSubset+13 + heightTbl1NTablecol+13 + heightRef1NDialog+13 + heightRef1NCall+13 + heightSrc1NFeed+13 + heightRef1NPanel+13 + heightFct1NTablecol+13 + heightHk1NVector+13 + heightRef1NRtblock+13 + heightRef1NQuerymod+13 + heightPst1NQuerymod+13 + heightMNVector+13 + heightMNQuery+13 + 5;
+	heightRhs = height1NImpexp+13 + height1NCheck+13 + heightFr1NRelation+13 + heightTo1NRelation+13 + height1NStub+13 + height1NSubset+13 + heightTbl1NTablecol+13 + heightRef1NDialog+13 + heightRef1NCall+13 + heightSrc1NFeed+13 + heightRef1NPanel+13 + heightFct1NTablecol+13 + heightHk1NVector+13 + heightRef1NQuerymod+13 + heightRef1NRtblock+13 + heightPst1NQuerymod+13 + heightMNVector+13 + heightMNQuery+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -532,10 +532,10 @@ function handleDpchEng(dom, dpch) {
 				if (getInitdone("Fct1NTablecol")) rhsdoc.getElementById("Fct1NTablecol").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefHk1NVector) {
 				if (getInitdone("Hk1NVector")) rhsdoc.getElementById("Hk1NVector").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefRef1NRtblock) {
-				if (getInitdone("Ref1NRtblock")) rhsdoc.getElementById("Ref1NRtblock").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefRef1NQuerymod) {
 				if (getInitdone("Ref1NQuerymod")) rhsdoc.getElementById("Ref1NQuerymod").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefRef1NRtblock) {
+				if (getInitdone("Ref1NRtblock")) rhsdoc.getElementById("Ref1NRtblock").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefPst1NQuerymod) {
 				if (getInitdone("Pst1NQuerymod")) rhsdoc.getElementById("Pst1NQuerymod").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNVector) {

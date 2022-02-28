@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "JobWznmLicense.h"
 #include "JobWznmIexPrj.h"
+#include "JobWznmLicense.h"
 
 #define VecVDlgWznmPrjImpexDit DlgWznmPrjImpex::VecVDit
 #define VecVDlgWznmPrjImpexDo DlgWznmPrjImpex::VecVDo
@@ -433,12 +433,12 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalIfiUldActive(DbsWznm* dbswznm);
 	bool evalImpButAutActive(DbsWznm* dbswznm);
 	bool evalImpButRunActive(DbsWznm* dbswznm);
 	bool evalImpButStoActive(DbsWznm* dbswznm);
 	bool evalLfiDldActive(DbsWznm* dbswznm);
-	bool evalIfiUldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmPrjImpex(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -458,8 +458,8 @@ public:
 	Sbecore::Feed feedFDse;
 	Sbecore::Feed feedFSge;
 
-	JobWznmLicense* license;
 	JobWznmIexPrj* iex;
+	JobWznmLicense* license;
 
 	Sbecore::uint ixVDit;
 
@@ -503,8 +503,8 @@ private:
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
-	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
 
 private:

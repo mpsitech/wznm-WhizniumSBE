@@ -66,17 +66,17 @@ namespace PnlWznmDlgRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEREF1NCONTROL = 2;
-		static const Sbecore::uint INITDONEHK1NCONTROL = 3;
+		static const Sbecore::uint INITDONEHK1NCONTROL = 2;
+		static const Sbecore::uint INITDONEREF1NCONTROL = 3;
 		static const Sbecore::uint INITDONEMNQUERY = 4;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneRef1NControl = false, const bool initdoneHk1NControl = false, const bool initdoneMNQuery = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneHk1NControl = false, const bool initdoneRef1NControl = false, const bool initdoneMNQuery = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdoneRef1NControl;
 		bool initdoneHk1NControl;
+		bool initdoneRef1NControl;
 		bool initdoneMNQuery;
 
 	public:
@@ -93,19 +93,19 @@ namespace PnlWznmDlgRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFREF1NCONTROL = 3;
-		static const Sbecore::uint SCRJREFHK1NCONTROL = 4;
+		static const Sbecore::uint SCRJREFHK1NCONTROL = 3;
+		static const Sbecore::uint SCRJREFREF1NCONTROL = 4;
 		static const Sbecore::uint SCRJREFMNQUERY = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefRef1NControl = "", const std::string& scrJrefHk1NControl = "", const std::string& scrJrefMNQuery = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefHk1NControl = "", const std::string& scrJrefRef1NControl = "", const std::string& scrJrefMNQuery = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJrefRef1NControl;
 		std::string scrJrefHk1NControl;
+		std::string scrJrefRef1NControl;
 		std::string scrJrefMNQuery;
 		bool ButRegularizeActive;
 

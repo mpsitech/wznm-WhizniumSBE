@@ -518,12 +518,14 @@ set<uint> StgWznmAppearance::diff(
 StgWznmAppsrv::StgWznmAppsrv(
 			const usmallint port
 			, const bool https
+			, const string& cors
 		) :
 			Block()
 		{
 	this->port = port;
 	this->https = https;
-	mask = {PORT, HTTPS};
+	this->cors = cors;
+	mask = {PORT, HTTPS, CORS};
 };
 
 bool StgWznmAppsrv::readXML(
@@ -545,6 +547,7 @@ bool StgWznmAppsrv::readXML(
 	if (basefound) {
 		if (extractUsmallintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "port", port)) add(PORT);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "https", https)) add(HTTPS);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "cors", cors)) add(CORS);
 	};
 
 	return basefound;
@@ -564,6 +567,7 @@ void StgWznmAppsrv::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeUsmallintAttr(wr, itemtag, "sref", "port", port);
 		writeBoolAttr(wr, itemtag, "sref", "https", https);
+		writeStringAttr(wr, itemtag, "sref", "cors", cors);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -574,6 +578,7 @@ set<uint> StgWznmAppsrv::comm(
 
 	if (port == comp->port) insert(items, PORT);
 	if (https == comp->https) insert(items, HTTPS);
+	if (cors == comp->cors) insert(items, CORS);
 
 	return(items);
 };
@@ -586,7 +591,7 @@ set<uint> StgWznmAppsrv::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {PORT, HTTPS};
+	diffitems = {PORT, HTTPS, CORS};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -986,7 +991,7 @@ DpchEngWznmAlert* AlrWznm::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE version v1.1.7 released on 13-11-2021";
+		continf.TxtMsg1 = "WhizniumSBE version v1.1.8 released on 22-2-2022";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
 		continf.TxtMsg6 = "libraries: apiwzlm 1.0.0, curl 7.65, git2 0.24.0, jsoncpp 1.8.4 and openssl 1.1.1";
@@ -1566,6 +1571,15 @@ void JobWznm::addOp(
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRJAPIVEC) {
 		squawk = SqkWznmWrjapi::getSquawkVec(dbswznm, (DpchInvWznmWrjapiVec*) inv);
 	};
+	if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIBASE) {
+		squawk = SqkWznmWrsapi::getSquawkBase(dbswznm, (DpchInvWznmWrsapiBase*) inv);
+	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIJOB) {
+		squawk = SqkWznmWrsapi::getSquawkJob(dbswznm, (DpchInvWznmWrsapiJob*) inv);
+	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIQTB) {
+		squawk = SqkWznmWrsapi::getSquawkQtb(dbswznm, (DpchInvWznmWrsapiQtb*) inv);
+	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIVEC) {
+		squawk = SqkWznmWrsapi::getSquawkVec(dbswznm, (DpchInvWznmWrsapiVec*) inv);
+	};
 	if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVBASE) {
 		squawk = SqkWznmWrsrv::getSquawkBase(dbswznm, (DpchInvWznmWrsrvBase*) inv);
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVCMBENGBASE) {
@@ -1604,6 +1618,15 @@ void JobWznm::addOp(
 		squawk = SqkWznmWrsrv::getSquawkUa(dbswznm, (DpchInvWznmWrsrvUa*) inv);
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVVEC) {
 		squawk = SqkWznmWrsrv::getSquawkVec(dbswznm, (DpchInvWznmWrsrvVec*) inv);
+	};
+	if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEBASE) {
+		squawk = SqkWznmWrvue::getSquawkBase(dbswznm, (DpchInvWznmWrvueBase*) inv);
+	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUECRD) {
+		squawk = SqkWznmWrvue::getSquawkCrd(dbswznm, (DpchInvWznmWrvueCrd*) inv);
+	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEDLG) {
+		squawk = SqkWznmWrvue::getSquawkDlg(dbswznm, (DpchInvWznmWrvueDlg*) inv);
+	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEPNL) {
+		squawk = SqkWznmWrvue::getSquawkPnl(dbswznm, (DpchInvWznmWrvuePnl*) inv);
 	};
 	if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRWEBBASE) {
 		squawk = SqkWznmWrweb::getSquawkBase(dbswznm, (DpchInvWznmWrwebBase*) inv);
@@ -1840,18 +1863,18 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPBUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSREF);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCAPSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCAPSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMDLGUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMDLGSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMEVTUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMEVTSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFEDUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSREF);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFILSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIELUPD_REFEQ) {
@@ -1864,8 +1887,8 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOBUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMJOBSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOCUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSREF);
@@ -1943,25 +1966,25 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTBLSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMTCOUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMTCOSREF);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSGUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSGSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMGROUP);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSGSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMUSRUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMOWNER);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMUSRSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVECUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVECSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVERUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERNO);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVITUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSTD);
 	};
 
@@ -2320,7 +2343,7 @@ void XchgWznmcmbd::startMon() {
 	Clstn* clstn = NULL;
 	Preset* preset = NULL;
 
-	mon.start("WhizniumSBE v1.1.7", stgwznmpath.monpath);
+	mon.start("WhizniumSBE v1.1.8", stgwznmpath.monpath);
 
 	rwmJobs.rlock("XchgWznmcmbd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {

@@ -123,8 +123,8 @@ void PnlWznmTblRec::StatApp::writeJSON(
 			, const bool initdoneRef1NPanel
 			, const bool initdoneFct1NTablecol
 			, const bool initdoneHk1NVector
-			, const bool initdoneRef1NRtblock
 			, const bool initdoneRef1NQuerymod
+			, const bool initdoneRef1NRtblock
 			, const bool initdonePst1NQuerymod
 			, const bool initdoneMNVector
 			, const bool initdoneMNQuery
@@ -149,8 +149,8 @@ void PnlWznmTblRec::StatApp::writeJSON(
 	me["initdoneRef1NPanel"] = initdoneRef1NPanel;
 	me["initdoneFct1NTablecol"] = initdoneFct1NTablecol;
 	me["initdoneHk1NVector"] = initdoneHk1NVector;
-	me["initdoneRef1NRtblock"] = initdoneRef1NRtblock;
 	me["initdoneRef1NQuerymod"] = initdoneRef1NQuerymod;
+	me["initdoneRef1NRtblock"] = initdoneRef1NRtblock;
 	me["initdonePst1NQuerymod"] = initdonePst1NQuerymod;
 	me["initdoneMNVector"] = initdoneMNVector;
 	me["initdoneMNQuery"] = initdoneMNQuery;
@@ -176,8 +176,8 @@ void PnlWznmTblRec::StatApp::writeXML(
 			, const bool initdoneRef1NPanel
 			, const bool initdoneFct1NTablecol
 			, const bool initdoneHk1NVector
-			, const bool initdoneRef1NRtblock
 			, const bool initdoneRef1NQuerymod
+			, const bool initdoneRef1NRtblock
 			, const bool initdonePst1NQuerymod
 			, const bool initdoneMNVector
 			, const bool initdoneMNQuery
@@ -205,8 +205,8 @@ void PnlWznmTblRec::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NPanel", initdoneRef1NPanel);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneFct1NTablecol", initdoneFct1NTablecol);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneHk1NVector", initdoneHk1NVector);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NRtblock", initdoneRef1NRtblock);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NQuerymod", initdoneRef1NQuerymod);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NRtblock", initdoneRef1NRtblock);
 		writeBoolAttr(wr, itemtag, "sref", "initdonePst1NQuerymod", initdonePst1NQuerymod);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNVector", initdoneMNVector);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNQuery", initdoneMNQuery);
@@ -246,8 +246,8 @@ PnlWznmTblRec::StatShr::StatShr(
 			, const ubigint jrefFct1NTablecol
 			, const bool pnlfct1ntablecolAvail
 			, const ubigint jrefHk1NVector
-			, const ubigint jrefRef1NRtblock
 			, const ubigint jrefRef1NQuerymod
+			, const ubigint jrefRef1NRtblock
 			, const ubigint jrefPst1NQuerymod
 			, const bool pnlpst1nquerymodAvail
 			, const ubigint jrefMNVector
@@ -286,8 +286,8 @@ PnlWznmTblRec::StatShr::StatShr(
 	this->jrefFct1NTablecol = jrefFct1NTablecol;
 	this->pnlfct1ntablecolAvail = pnlfct1ntablecolAvail;
 	this->jrefHk1NVector = jrefHk1NVector;
-	this->jrefRef1NRtblock = jrefRef1NRtblock;
 	this->jrefRef1NQuerymod = jrefRef1NQuerymod;
+	this->jrefRef1NRtblock = jrefRef1NRtblock;
 	this->jrefPst1NQuerymod = jrefPst1NQuerymod;
 	this->pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
 	this->jrefMNVector = jrefMNVector;
@@ -296,7 +296,7 @@ PnlWznmTblRec::StatShr::StatShr(
 	this->pnlmnqueryAvail = pnlmnqueryAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFALOADFCT, PNLALOADFCTAVAIL, JREFATITLE, PNLATITLEAVAIL, JREF1NIMPEXP, PNL1NIMPEXPAVAIL, JREF1NCHECK, PNL1NCHECKAVAIL, JREFFR1NRELATION, PNLFR1NRELATIONAVAIL, JREFTO1NRELATION, PNLTO1NRELATIONAVAIL, JREF1NSTUB, PNL1NSTUBAVAIL, JREF1NSUBSET, PNL1NSUBSETAVAIL, JREFTBL1NTABLECOL, JREFREF1NDIALOG, PNLREF1NDIALOGAVAIL, JREFREF1NCALL, PNLREF1NCALLAVAIL, JREFSRC1NFEED, JREFREF1NPANEL, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFHK1NVECTOR, JREFREF1NRTBLOCK, JREFREF1NQUERYMOD, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNVECTOR, PNLMNVECTORAVAIL, JREFMNQUERY, PNLMNQUERYAVAIL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFALOADFCT, PNLALOADFCTAVAIL, JREFATITLE, PNLATITLEAVAIL, JREF1NIMPEXP, PNL1NIMPEXPAVAIL, JREF1NCHECK, PNL1NCHECKAVAIL, JREFFR1NRELATION, PNLFR1NRELATIONAVAIL, JREFTO1NRELATION, PNLTO1NRELATIONAVAIL, JREF1NSTUB, PNL1NSTUBAVAIL, JREF1NSUBSET, PNL1NSUBSETAVAIL, JREFTBL1NTABLECOL, JREFREF1NDIALOG, PNLREF1NDIALOGAVAIL, JREFREF1NCALL, PNLREF1NCALLAVAIL, JREFSRC1NFEED, JREFREF1NPANEL, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFHK1NVECTOR, JREFREF1NQUERYMOD, JREFREF1NRTBLOCK, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNVECTOR, PNLMNVECTORAVAIL, JREFMNQUERY, PNLMNQUERYAVAIL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmTblRec::StatShr::writeJSON(
@@ -335,8 +335,8 @@ void PnlWznmTblRec::StatShr::writeJSON(
 	me["scrJrefFct1NTablecol"] = Scr::scramble(jrefFct1NTablecol);
 	me["pnlfct1ntablecolAvail"] = pnlfct1ntablecolAvail;
 	me["scrJrefHk1NVector"] = Scr::scramble(jrefHk1NVector);
-	me["scrJrefRef1NRtblock"] = Scr::scramble(jrefRef1NRtblock);
 	me["scrJrefRef1NQuerymod"] = Scr::scramble(jrefRef1NQuerymod);
+	me["scrJrefRef1NRtblock"] = Scr::scramble(jrefRef1NRtblock);
 	me["scrJrefPst1NQuerymod"] = Scr::scramble(jrefPst1NQuerymod);
 	me["pnlpst1nquerymodAvail"] = pnlpst1nquerymodAvail;
 	me["scrJrefMNVector"] = Scr::scramble(jrefMNVector);
@@ -386,8 +386,8 @@ void PnlWznmTblRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefFct1NTablecol", Scr::scramble(jrefFct1NTablecol));
 		writeBoolAttr(wr, itemtag, "sref", "pnlfct1ntablecolAvail", pnlfct1ntablecolAvail);
 		writeStringAttr(wr, itemtag, "sref", "scrJrefHk1NVector", Scr::scramble(jrefHk1NVector));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NRtblock", Scr::scramble(jrefRef1NRtblock));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NQuerymod", Scr::scramble(jrefRef1NQuerymod));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NRtblock", Scr::scramble(jrefRef1NRtblock));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefPst1NQuerymod", Scr::scramble(jrefPst1NQuerymod));
 		writeBoolAttr(wr, itemtag, "sref", "pnlpst1nquerymodAvail", pnlpst1nquerymodAvail);
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNVector", Scr::scramble(jrefMNVector));
@@ -431,8 +431,8 @@ set<uint> PnlWznmTblRec::StatShr::comm(
 	if (jrefFct1NTablecol == comp->jrefFct1NTablecol) insert(items, JREFFCT1NTABLECOL);
 	if (pnlfct1ntablecolAvail == comp->pnlfct1ntablecolAvail) insert(items, PNLFCT1NTABLECOLAVAIL);
 	if (jrefHk1NVector == comp->jrefHk1NVector) insert(items, JREFHK1NVECTOR);
-	if (jrefRef1NRtblock == comp->jrefRef1NRtblock) insert(items, JREFREF1NRTBLOCK);
 	if (jrefRef1NQuerymod == comp->jrefRef1NQuerymod) insert(items, JREFREF1NQUERYMOD);
+	if (jrefRef1NRtblock == comp->jrefRef1NRtblock) insert(items, JREFREF1NRTBLOCK);
 	if (jrefPst1NQuerymod == comp->jrefPst1NQuerymod) insert(items, JREFPST1NQUERYMOD);
 	if (pnlpst1nquerymodAvail == comp->pnlpst1nquerymodAvail) insert(items, PNLPST1NQUERYMODAVAIL);
 	if (jrefMNVector == comp->jrefMNVector) insert(items, JREFMNVECTOR);
@@ -452,7 +452,7 @@ set<uint> PnlWznmTblRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFALOADFCT, PNLALOADFCTAVAIL, JREFATITLE, PNLATITLEAVAIL, JREF1NIMPEXP, PNL1NIMPEXPAVAIL, JREF1NCHECK, PNL1NCHECKAVAIL, JREFFR1NRELATION, PNLFR1NRELATIONAVAIL, JREFTO1NRELATION, PNLTO1NRELATIONAVAIL, JREF1NSTUB, PNL1NSTUBAVAIL, JREF1NSUBSET, PNL1NSUBSETAVAIL, JREFTBL1NTABLECOL, JREFREF1NDIALOG, PNLREF1NDIALOGAVAIL, JREFREF1NCALL, PNLREF1NCALLAVAIL, JREFSRC1NFEED, JREFREF1NPANEL, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFHK1NVECTOR, JREFREF1NRTBLOCK, JREFREF1NQUERYMOD, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNVECTOR, PNLMNVECTORAVAIL, JREFMNQUERY, PNLMNQUERYAVAIL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFALOADFCT, PNLALOADFCTAVAIL, JREFATITLE, PNLATITLEAVAIL, JREF1NIMPEXP, PNL1NIMPEXPAVAIL, JREF1NCHECK, PNL1NCHECKAVAIL, JREFFR1NRELATION, PNLFR1NRELATIONAVAIL, JREFTO1NRELATION, PNLTO1NRELATIONAVAIL, JREF1NSTUB, PNL1NSTUBAVAIL, JREF1NSUBSET, PNL1NSUBSETAVAIL, JREFTBL1NTABLECOL, JREFREF1NDIALOG, PNLREF1NDIALOGAVAIL, JREFREF1NCALL, PNLREF1NCALLAVAIL, JREFSRC1NFEED, JREFREF1NPANEL, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFHK1NVECTOR, JREFREF1NQUERYMOD, JREFREF1NRTBLOCK, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNVECTOR, PNLMNVECTORAVAIL, JREFMNQUERY, PNLMNQUERYAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

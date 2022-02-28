@@ -10,6 +10,7 @@
 	<StgWznmAppsrv>
 		<Si sref="port">13100</Si>
 		<Si sref="https">false</Si>
+		<Si sref="cors"></Si>
 	</StgWznmAppsrv>
 	<StgWznmcmbd>
 		<Si sref="jobprcn">4</Si>

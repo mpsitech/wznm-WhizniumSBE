@@ -3,7 +3,7 @@
 # re-make script for Wznm operation daemon, release wznmopd2_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 13 Nov 2021
+# date created: 22 Feb 2022
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then

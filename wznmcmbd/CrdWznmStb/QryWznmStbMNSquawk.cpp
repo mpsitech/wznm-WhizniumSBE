@@ -85,7 +85,7 @@ void QryWznmStbMNSquawk::rerun(
 	dbswznm->tblwznmqstbmnsquawk->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMSquawkMStub.ref)";
-	sqlstr += " FROM TblWznmMSquawk, TblWznmRMSquawkMStub";
+	sqlstr += " FROM TblWznmRMSquawkMStub, TblWznmMSquawk";
 	sqlstr += " WHERE TblWznmRMSquawkMStub.refWznmMSquawk = TblWznmMSquawk.ref";
 	sqlstr += " AND TblWznmRMSquawkMStub.refWznmMStub = " + to_string(preRefStb) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -100,7 +100,7 @@ void QryWznmStbMNSquawk::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQStbMNSquawk(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMSquawk.ref, TblWznmRMSquawkMStub.ref";
-	sqlstr += " FROM TblWznmMSquawk, TblWznmRMSquawkMStub";
+	sqlstr += " FROM TblWznmRMSquawkMStub, TblWznmMSquawk";
 	sqlstr += " WHERE TblWznmRMSquawkMStub.refWznmMSquawk = TblWznmMSquawk.ref";
 	sqlstr += " AND TblWznmRMSquawkMStub.refWznmMStub = " + to_string(preRefStb) + "";
 	sqlstr += " LIMIT " + to_string(stgiac.nload) + " OFFSET " + to_string(stgiac.jnumFirstload-1);
@@ -273,11 +273,19 @@ void QryWznmStbMNSquawk::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMSQKRSTBMOD_STBEQ) {
-		call->abort = handleCallWznmSqkRstbMod_stbEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSQKRSTBMOD_STBEQ) {
+		call->abort = handleCallWznmSqkRstbMod_stbEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmStbMNSquawk::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmStbMNSquawk::handleCallWznmSqkRstbMod_stbEq(
@@ -291,13 +299,5 @@ bool QryWznmStbMNSquawk::handleCallWznmSqkRstbMod_stbEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmStbMNSquawk::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

@@ -84,9 +84,11 @@ public:
 		static const Sbecore::uint OPENG = 2;
 		static const Sbecore::uint CMBENG = 3;
 		static const Sbecore::uint DBS = 4;
-		static const Sbecore::uint WEBAPP = 5;
-		static const Sbecore::uint API = 6;
-		static const Sbecore::uint JAPI = 7;
+		static const Sbecore::uint VUEAPP = 5;
+		static const Sbecore::uint WEBAPP = 6;
+		static const Sbecore::uint API = 7;
+		static const Sbecore::uint JAPI = 8;
+		static const Sbecore::uint SAPI = 9;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

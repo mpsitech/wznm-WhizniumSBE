@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "JobWznmLicense.h"
 #include "SessWznm.h"
+#include "JobWznmLicense.h"
 
 #define VecVRootWznmSge RootWznm::VecVSge
 
@@ -101,8 +101,8 @@ public:
 
 public:
 
-	JobWznmLicense* license;
 	std::map<Sbecore::ubigint, JobWznm*> sesss;
+	JobWznmLicense* license;
 
 	// IP vars.spec --- INSERT
 
@@ -131,16 +131,16 @@ private:
 
 	void handleDpchAppLogin(DbsWznm* dbswznm, DpchAppLogin* dpchapplogin, const std::string ip, DpchEngWznm** dpcheng);
 
-	void handleTimerWithSrefMonInSgeIdle(DbsWznm* dbswznm);
 	void handleTimerWithSrefWarnterm(DbsWznm* dbswznm);
+	void handleTimerWithSrefMonInSgeIdle(DbsWznm* dbswznm);
 
 public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
+	bool handleCallWznmLogout(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const bool boolvalInv);
 	bool handleCallWznmSuspsess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
-	bool handleCallWznmLogout(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const bool boolvalInv);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

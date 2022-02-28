@@ -52,10 +52,10 @@ PnlWznmFilDetail::PnlWznmFilDetail(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMFIL_CLUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMFIL_RETEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMFIL_REUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -488,14 +488,14 @@ void PnlWznmFilDetail::handleDpchAppDoButReuViewClick(
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recFil.refUref, jrefNew);
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER) {
-				sref = "CrdWznmVer";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::LIB) {
+				sref = "CrdWznmLib";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recFil.refUref, jrefNew);
 			};
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::LIB) {
-				sref = "CrdWznmLib";
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER) {
+				sref = "CrdWznmVer";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recFil.refUref, jrefNew);
 			};
 		};
@@ -523,59 +523,19 @@ void PnlWznmFilDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMFILMOD_CLUEQ) {
-		call->abort = handleCallWznmFilMod_cluEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ) {
-		call->abort = handleCallWznmKlsAkeyMod_klsEq(dbswznm, call->jref, call->argInv.ix);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILUPD_REFEQ) {
-		call->abort = handleCallWznmFilUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFIL_CLUEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMFIL_CLUEQ) {
 		call->abort = handleCallWznmFil_cluEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFIL_RETEQ) {
 		call->abort = handleCallWznmFil_retEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFIL_REUEQ) {
 		call->abort = handleCallWznmFil_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILUPD_REFEQ) {
+		call->abort = handleCallWznmFilUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMKLSAKEYMOD_KLSEQ) {
+		call->abort = handleCallWznmKlsAkeyMod_klsEq(dbswznm, call->jref, call->argInv.ix);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILMOD_CLUEQ) {
+		call->abort = handleCallWznmFilMod_cluEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmFilDetail::handleCallWznmFilMod_cluEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	set<uint> moditems;
-
-	refreshClu(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
-	return retval;
-};
-
-bool PnlWznmFilDetail::handleCallWznmKlsAkeyMod_klsEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-		) {
-	bool retval = false;
-	set<uint> moditems;
-
-	if (ixInv == VecWznmVKeylist::KLSTWZNMKMFILECONTENT) {
-		refreshCnt(dbswznm, moditems);
-	} else if (ixInv == VecWznmVKeylist::KLSTWZNMKMFILEMIMETYPE) {
-		refreshMim(dbswznm, moditems);
-	};
-
-	xchg->submitDpch(getNewDpchEng(moditems));
-	return retval;
-};
-
-bool PnlWznmFilDetail::handleCallWznmFilUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmFilUpd_refEq --- INSERT
-	return retval;
 };
 
 bool PnlWznmFilDetail::handleCallWznmFil_cluEq(
@@ -608,5 +568,45 @@ bool PnlWznmFilDetail::handleCallWznmFil_reuEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recFil.refUref == refInv); // IP handleCallWznmFil_reuEq --- LINE
+	return retval;
+};
+
+bool PnlWznmFilDetail::handleCallWznmFilUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmFilUpd_refEq --- INSERT
+	return retval;
+};
+
+bool PnlWznmFilDetail::handleCallWznmKlsAkeyMod_klsEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	if (ixInv == VecWznmVKeylist::KLSTWZNMKMFILECONTENT) {
+		refreshCnt(dbswznm, moditems);
+	} else if (ixInv == VecWznmVKeylist::KLSTWZNMKMFILEMIMETYPE) {
+		refreshMim(dbswznm, moditems);
+	};
+
+	xchg->submitDpch(getNewDpchEng(moditems));
+	return retval;
+};
+
+bool PnlWznmFilDetail::handleCallWznmFilMod_cluEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	refreshClu(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };

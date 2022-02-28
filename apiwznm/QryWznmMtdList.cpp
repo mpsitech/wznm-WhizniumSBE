@@ -22,8 +22,8 @@ uint QryWznmMtdList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "job") return JOB;
 	if (s == "srf") return SRF;
+	if (s == "job") return JOB;
 
 	return(0);
 };
@@ -31,8 +31,8 @@ uint QryWznmMtdList::VecVOrd::getIx(
 string QryWznmMtdList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == JOB) return("job");
 	if (ix == SRF) return("srf");
+	if (ix == JOB) return("job");
 
 	return("");
 };

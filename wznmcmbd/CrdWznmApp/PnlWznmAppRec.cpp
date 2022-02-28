@@ -38,11 +38,11 @@ PnlWznmAppRec::PnlWznmAppRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlref1nfile = NULL;
+	pnldetail = NULL;
 	pnl1nrtjob = NULL;
 	pnlapp1nsequence = NULL;
 	pnl1nevent = NULL;
-	pnldetail = NULL;
+	pnlref1nfile = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -102,22 +102,22 @@ void PnlWznmAppRec::refresh(
 
 	if (statshr.ixWznmVExpstate == VecWznmVExpstate::MIND) {
 		if (pnldetail) {delete pnldetail; pnldetail = NULL;};
-		if (pnl1nevent) {delete pnl1nevent; pnl1nevent = NULL;};
-		if (pnlapp1nsequence) {delete pnlapp1nsequence; pnlapp1nsequence = NULL;};
 		if (pnl1nrtjob) {delete pnl1nrtjob; pnl1nrtjob = NULL;};
+		if (pnlapp1nsequence) {delete pnlapp1nsequence; pnlapp1nsequence = NULL;};
+		if (pnl1nevent) {delete pnl1nevent; pnl1nevent = NULL;};
 		if (pnlref1nfile) {delete pnlref1nfile; pnlref1nfile = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmAppDetail(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnl1nevent) pnl1nevent = new PnlWznmApp1NEvent(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlapp1nsequence) pnlapp1nsequence = new PnlWznmAppApp1NSequence(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnl1nrtjob) pnl1nrtjob = new PnlWznmApp1NRtjob(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlapp1nsequence) pnlapp1nsequence = new PnlWznmAppApp1NSequence(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnl1nevent) pnl1nevent = new PnlWznmApp1NEvent(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1nfile) pnlref1nfile = new PnlWznmAppRef1NFile(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
 	statshr.jrefDetail = ((pnldetail) ? pnldetail->jref : 0);
-	statshr.jref1NEvent = ((pnl1nevent) ? pnl1nevent->jref : 0);
-	statshr.jrefApp1NSequence = ((pnlapp1nsequence) ? pnlapp1nsequence->jref : 0);
 	statshr.jref1NRtjob = ((pnl1nrtjob) ? pnl1nrtjob->jref : 0);
+	statshr.jrefApp1NSequence = ((pnlapp1nsequence) ? pnlapp1nsequence->jref : 0);
+	statshr.jref1NEvent = ((pnl1nevent) ? pnl1nevent->jref : 0);
 	statshr.jrefRef1NFile = ((pnlref1nfile) ? pnlref1nfile->jref : 0);
 
 	// IP refresh --- END
@@ -146,9 +146,9 @@ void PnlWznmAppRec::updatePreset(
 
 		if (recApp.ref != 0) {
 			if (pnldetail) pnldetail->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnl1nevent) pnl1nevent->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlapp1nsequence) pnlapp1nsequence->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnl1nrtjob) pnl1nrtjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlapp1nsequence) pnlapp1nsequence->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnl1nevent) pnl1nevent->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1nfile) pnlref1nfile->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 
@@ -259,20 +259,11 @@ void PnlWznmAppRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMAPPUPD_REFEQ) {
-		call->abort = handleCallWznmAppUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMAPP_VEREQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMAPP_VEREQ) {
 		call->abort = handleCallWznmApp_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMAPPUPD_REFEQ) {
+		call->abort = handleCallWznmAppUpd_refEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmAppRec::handleCallWznmAppUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmAppUpd_refEq --- INSERT
-	return retval;
 };
 
 bool PnlWznmAppRec::handleCallWznmApp_verEq(
@@ -283,5 +274,14 @@ bool PnlWznmAppRec::handleCallWznmApp_verEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recApp.verRefWznmMVersion == refInv); // IP handleCallWznmApp_verEq --- LINE
+	return retval;
+};
+
+bool PnlWznmAppRec::handleCallWznmAppUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmAppUpd_refEq --- INSERT
 	return retval;
 };

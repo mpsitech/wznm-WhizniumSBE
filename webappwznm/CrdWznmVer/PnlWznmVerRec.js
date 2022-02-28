@@ -1,6 +1,7 @@
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefDetail");
-	scrJrefVer1NError = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefVer1NError");
+	scrJref1NBlock = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NBlock");
+	scrJrefBvr1NVersion = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefBvr1NVersion");
 	scrJref1NComponent = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NComponent");
 	scrJref1NCall = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NCall");
 	scrJref1NImpexpcplx = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NImpexpcplx");
@@ -12,17 +13,17 @@ function updateScrJrefs() {
 	scrJref1NRelation = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NRelation");
 	scrJref1NTable = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NTable");
 	scrJref1NVector = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NVector");
-	scrJrefVer1NApp = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefVer1NApp");
 	scrJref1NCapability = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NCapability");
-	scrJrefBvr1NVersion = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefBvr1NVersion");
-	scrJref1NBlock = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NBlock");
+	scrJrefVer1NApp = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefVer1NApp");
+	scrJrefVer1NError = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefVer1NError");
 	scrJrefRef1NFile = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefRef1NFile");
 	scrJrefMNLocale = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefMNLocale");
 };
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmVerRec", "initdoneDetail", "false");
-	setSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NError", "false");
+	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NBlock", "false");
+	setSi(srcdoc, "StatAppWznmVerRec", "initdoneBvr1NVersion", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NComponent", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NCall", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NImpexpcplx", "false");
@@ -34,17 +35,17 @@ function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NRelation", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NTable", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NVector", "false");
-	setSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NApp", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NCapability", "false");
-	setSi(srcdoc, "StatAppWznmVerRec", "initdoneBvr1NVersion", "false");
-	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NBlock", "false");
+	setSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NApp", "false");
+	setSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NError", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdoneRef1NFile", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdoneMNLocale", "false");
 };
 
 function resetHeights() {
 	heightDetail = 30;
-	heightVer1NError = 30;
+	height1NBlock = 30;
+	heightBvr1NVersion = 30;
 	height1NComponent = 30;
 	height1NCall = 30;
 	height1NImpexpcplx = 30;
@@ -56,10 +57,9 @@ function resetHeights() {
 	height1NRelation = 30;
 	height1NTable = 30;
 	height1NVector = 30;
-	heightVer1NApp = 30;
 	height1NCapability = 30;
-	heightBvr1NVersion = 30;
-	height1NBlock = 30;
+	heightVer1NApp = 30;
+	heightVer1NError = 30;
 	heightRef1NFile = 30;
 	heightMNLocale = 30;
 };
@@ -80,7 +80,8 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneDetail") == "true");
-	var initdoneVer1NError = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NError") == "true");
+	var initdone1NBlock = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NBlock") == "true");
+	var initdoneBvr1NVersion = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneBvr1NVersion") == "true");
 	var initdone1NComponent = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NComponent") == "true");
 	var initdone1NCall = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NCall") == "true");
 	var initdone1NImpexpcplx = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NImpexpcplx") == "true");
@@ -92,17 +93,18 @@ function checkInitdone() {
 	var initdone1NRelation = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NRelation") == "true");
 	var initdone1NTable = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NTable") == "true");
 	var initdone1NVector = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NVector") == "true");
-	var initdoneVer1NApp = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NApp") == "true");
 	var initdone1NCapability = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NCapability") == "true");
-	var initdoneBvr1NVersion = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneBvr1NVersion") == "true");
-	var initdone1NBlock = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NBlock") == "true");
+	var initdoneVer1NApp = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NApp") == "true");
+	var initdoneVer1NError = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NError") == "true");
 	var initdoneRef1NFile = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneRef1NFile") == "true");
 	var initdoneMNLocale = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneMNLocale") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmVerDetail.html?scrJref=" + scrJrefDetail;
-	} else if (!initdoneVer1NError) {
-		rhsdoc.getElementById("Ver1NError").src = "./PnlWznmVerVer1NError.html?scrJref=" + scrJrefVer1NError;
+	} else if (!initdone1NBlock) {
+		rhsdoc.getElementById("1NBlock").src = "./PnlWznmVer1NBlock.html?scrJref=" + scrJref1NBlock;
+	} else if (!initdoneBvr1NVersion) {
+		rhsdoc.getElementById("Bvr1NVersion").src = "./PnlWznmVerBvr1NVersion.html?scrJref=" + scrJrefBvr1NVersion;
 	} else if (!initdone1NComponent) {
 		rhsdoc.getElementById("1NComponent").src = "./PnlWznmVer1NComponent.html?scrJref=" + scrJref1NComponent;
 	} else if (!initdone1NCall) {
@@ -125,14 +127,12 @@ function checkInitdone() {
 		rhsdoc.getElementById("1NTable").src = "./PnlWznmVer1NTable.html?scrJref=" + scrJref1NTable;
 	} else if (!initdone1NVector) {
 		rhsdoc.getElementById("1NVector").src = "./PnlWznmVer1NVector.html?scrJref=" + scrJref1NVector;
-	} else if (!initdoneVer1NApp) {
-		rhsdoc.getElementById("Ver1NApp").src = "./PnlWznmVerVer1NApp.html?scrJref=" + scrJrefVer1NApp;
 	} else if (!initdone1NCapability) {
 		rhsdoc.getElementById("1NCapability").src = "./PnlWznmVer1NCapability.html?scrJref=" + scrJref1NCapability;
-	} else if (!initdoneBvr1NVersion) {
-		rhsdoc.getElementById("Bvr1NVersion").src = "./PnlWznmVerBvr1NVersion.html?scrJref=" + scrJrefBvr1NVersion;
-	} else if (!initdone1NBlock) {
-		rhsdoc.getElementById("1NBlock").src = "./PnlWznmVer1NBlock.html?scrJref=" + scrJref1NBlock;
+	} else if (!initdoneVer1NApp) {
+		rhsdoc.getElementById("Ver1NApp").src = "./PnlWznmVerVer1NApp.html?scrJref=" + scrJrefVer1NApp;
+	} else if (!initdoneVer1NError) {
+		rhsdoc.getElementById("Ver1NError").src = "./PnlWznmVerVer1NError.html?scrJref=" + scrJrefVer1NError;
 	} else if (!initdoneRef1NFile) {
 		rhsdoc.getElementById("Ref1NFile").src = "./PnlWznmVerRef1NFile.html?scrJref=" + scrJrefRef1NFile;
 	} else if (!initdoneMNLocale) {
@@ -176,7 +176,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
-		else if (short == "Ver1NError") heightVer1NError = height;
+		else if (short == "1NBlock") height1NBlock = height;
+		else if (short == "Bvr1NVersion") heightBvr1NVersion = height;
 		else if (short == "1NComponent") height1NComponent = height;
 		else if (short == "1NCall") height1NCall = height;
 		else if (short == "1NImpexpcplx") height1NImpexpcplx = height;
@@ -188,10 +189,9 @@ function setPnlAvail(short, avail) {
 		else if (short == "1NRelation") height1NRelation = height;
 		else if (short == "1NTable") height1NTable = height;
 		else if (short == "1NVector") height1NVector = height;
-		else if (short == "Ver1NApp") heightVer1NApp = height;
 		else if (short == "1NCapability") height1NCapability = height;
-		else if (short == "Bvr1NVersion") heightBvr1NVersion = height;
-		else if (short == "1NBlock") height1NBlock = height;
+		else if (short == "Ver1NApp") heightVer1NApp = height;
+		else if (short == "Ver1NError") heightVer1NError = height;
 		else if (short == "Ref1NFile") heightRef1NFile = height;
 		else if (short == "MNLocale") heightMNLocale = height;
 	};
@@ -237,7 +237,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
-	else if (pnlshort == "Ver1NError") heightVer1NError = height;
+	else if (pnlshort == "1NBlock") height1NBlock = height;
+	else if (pnlshort == "Bvr1NVersion") heightBvr1NVersion = height;
 	else if (pnlshort == "1NComponent") height1NComponent = height;
 	else if (pnlshort == "1NCall") height1NCall = height;
 	else if (pnlshort == "1NImpexpcplx") height1NImpexpcplx = height;
@@ -249,10 +250,9 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "1NRelation") height1NRelation = height;
 	else if (pnlshort == "1NTable") height1NTable = height;
 	else if (pnlshort == "1NVector") height1NVector = height;
-	else if (pnlshort == "Ver1NApp") heightVer1NApp = height;
 	else if (pnlshort == "1NCapability") height1NCapability = height;
-	else if (pnlshort == "Bvr1NVersion") heightBvr1NVersion = height;
-	else if (pnlshort == "1NBlock") height1NBlock = height;
+	else if (pnlshort == "Ver1NApp") heightVer1NApp = height;
+	else if (pnlshort == "Ver1NError") heightVer1NError = height;
 	else if (pnlshort == "Ref1NFile") heightRef1NFile = height;
 	else if (pnlshort == "MNLocale") heightMNLocale = height;
 
@@ -263,7 +263,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + 5;
-	heightRhs = heightVer1NError+13 + height1NComponent+13 + height1NCall+13 + height1NImpexpcplx+13 + height1NJob+13 + height1NOppack+13 + heightVer1NModule+13 + height1NPreset+13 + height1NQuery+13 + height1NRelation+13 + height1NTable+13 + height1NVector+13 + heightVer1NApp+13 + height1NCapability+13 + heightBvr1NVersion+13 + height1NBlock+13 + heightRef1NFile+13 + heightMNLocale+13 + 5;
+	heightRhs = height1NBlock+13 + heightBvr1NVersion+13 + height1NComponent+13 + height1NCall+13 + height1NImpexpcplx+13 + height1NJob+13 + height1NOppack+13 + heightVer1NModule+13 + height1NPreset+13 + height1NQuery+13 + height1NRelation+13 + height1NTable+13 + height1NVector+13 + height1NCapability+13 + heightVer1NApp+13 + heightVer1NError+13 + heightRef1NFile+13 + heightMNLocale+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -454,8 +454,10 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefVer1NError) {
-				if (getInitdone("Ver1NError")) rhsdoc.getElementById("Ver1NError").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJref1NBlock) {
+				if (getInitdone("1NBlock")) rhsdoc.getElementById("1NBlock").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefBvr1NVersion) {
+				if (getInitdone("Bvr1NVersion")) rhsdoc.getElementById("Bvr1NVersion").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NComponent) {
 				if (getInitdone("1NComponent")) rhsdoc.getElementById("1NComponent").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NCall) {
@@ -478,14 +480,12 @@ function handleDpchEng(dom, dpch) {
 				if (getInitdone("1NTable")) rhsdoc.getElementById("1NTable").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NVector) {
 				if (getInitdone("1NVector")) rhsdoc.getElementById("1NVector").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefVer1NApp) {
-				if (getInitdone("Ver1NApp")) rhsdoc.getElementById("Ver1NApp").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJref1NCapability) {
 				if (getInitdone("1NCapability")) rhsdoc.getElementById("1NCapability").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefBvr1NVersion) {
-				if (getInitdone("Bvr1NVersion")) rhsdoc.getElementById("Bvr1NVersion").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJref1NBlock) {
-				if (getInitdone("1NBlock")) rhsdoc.getElementById("1NBlock").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefVer1NApp) {
+				if (getInitdone("Ver1NApp")) rhsdoc.getElementById("Ver1NApp").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefVer1NError) {
+				if (getInitdone("Ver1NError")) rhsdoc.getElementById("Ver1NError").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefRef1NFile) {
 				if (getInitdone("Ref1NFile")) rhsdoc.getElementById("Ref1NFile").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefMNLocale) {

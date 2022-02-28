@@ -46,8 +46,8 @@ QryWznmFilList::QryWznmFilList(
 
 	rerun(dbswznm);
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMFILMOD, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMSTUBCHG, jref, Clstn::VecVJobmask::SELF, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMFILMOD, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -184,11 +184,11 @@ void QryWznmFilList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMFile.refUref ASC";
+	if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMFile.grp ASC";
+	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMFile.own ASC";
 	else if (preIxOrd == VecVOrd::FNM) sqlstr += " ORDER BY TblWznmMFile.Filename ASC";
 	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMFile.refIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMFile.grp ASC";
-	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMFile.own ASC";
+	else if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMFile.refUref ASC";
 };
 
 void QryWznmFilList::fetch(
@@ -220,12 +220,12 @@ void QryWznmFilList::fetch(
 			rec->stubOwn = StubWznm::getStubOwner(dbswznm, rec->own, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->srefRefIxVTbl = VecWznmVMFileRefTbl::getSref(rec->refIxVTbl);
 			rec->titRefIxVTbl = VecWznmVMFileRefTbl::getTitle(rec->refIxVTbl, ixWznmVLocale);
-			if (rec->refIxVTbl == VecWznmVMFileRefTbl::LIB) {
+			if (rec->refIxVTbl == VecWznmVMFileRefTbl::APP) {
+				rec->stubRefUref = StubWznm::getStubAppStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->refIxVTbl == VecWznmVMFileRefTbl::LIB) {
 				rec->stubRefUref = StubWznm::getStubLibStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->refIxVTbl == VecWznmVMFileRefTbl::VER) {
 				rec->stubRefUref = StubWznm::getStubVerStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->refIxVTbl == VecWznmVMFileRefTbl::APP) {
-				rec->stubRefUref = StubWznm::getStubAppStd(dbswznm, rec->refUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubRefUref = "-";
 			rec->titOsrefKContent = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKMFILECONTENT, rec->osrefKContent, ixWznmVLocale);
 			rec->titSrefKMimetype = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKMFILEMIMETYPE, rec->srefKMimetype, ixWznmVLocale);
@@ -383,26 +383,20 @@ void QryWznmFilList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMFILUPD_REFEQ) {
-		call->abort = handleCallWznmFilUpd_refEq(dbswznm, call->jref);
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILMOD) {
 		call->abort = handleCallWznmFilMod(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILUPD_REFEQ) {
+		call->abort = handleCallWznmFilUpd_refEq(dbswznm, call->jref);
 	};
 };
 
-bool QryWznmFilList::handleCallWznmFilUpd_refEq(
+bool QryWznmFilList::handleCallWznmStubChgFromSelf(
 			DbsWznm* dbswznm
-			, const ubigint jrefTrig
 		) {
 	bool retval = false;
-
-	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
-		ixWznmVQrystate = VecWznmVQrystate::OOD;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
+	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 
@@ -420,10 +414,16 @@ bool QryWznmFilList::handleCallWznmFilMod(
 	return retval;
 };
 
-bool QryWznmFilList::handleCallWznmStubChgFromSelf(
+bool QryWznmFilList::handleCallWznmFilUpd_refEq(
 			DbsWznm* dbswznm
+			, const ubigint jrefTrig
 		) {
 	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
+
+	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
+		ixWznmVQrystate = VecWznmVQrystate::OOD;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
 	return retval;
 };

@@ -29,8 +29,10 @@ namespace VecWznmVOppack {
 	const Sbecore::uint WZNMWRAPP = 11;
 	const Sbecore::uint WZNMWRDBS = 12;
 	const Sbecore::uint WZNMWRJAPI = 13;
-	const Sbecore::uint WZNMWRSRV = 14;
-	const Sbecore::uint WZNMWRWEB = 15;
+	const Sbecore::uint WZNMWRSAPI = 14;
+	const Sbecore::uint WZNMWRSRV = 15;
+	const Sbecore::uint WZNMWRVUE = 16;
+	const Sbecore::uint WZNMWRWEB = 17;
 
 	Sbecore::uint getIx(const std::string& sref);
 	std::string getSref(const Sbecore::uint ix);

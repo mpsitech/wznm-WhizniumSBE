@@ -356,37 +356,15 @@ void PnlWznmIexDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMIEXJTITMOD_IEXEQ) {
-		call->abort = handleCallWznmIexJtitMod_iexEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEXUPD_REFEQ) {
-		call->abort = handleCallWznmIexUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEX_JOBEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMIEX_JOBEQ) {
 		call->abort = handleCallWznmIex_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEX_VEREQ) {
 		call->abort = handleCallWznmIex_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEXUPD_REFEQ) {
+		call->abort = handleCallWznmIexUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMIEXJTITMOD_IEXEQ) {
+		call->abort = handleCallWznmIexJtitMod_iexEq(dbswznm, call->jref);
 	};
-};
-
-bool PnlWznmIexDetail::handleCallWznmIexJtitMod_iexEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	set<uint> moditems;
-
-	refreshJti(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
-	return retval;
-};
-
-bool PnlWznmIexDetail::handleCallWznmIexUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmIexUpd_refEq --- INSERT
-	return retval;
 };
 
 bool PnlWznmIexDetail::handleCallWznmIex_jobEq(
@@ -408,5 +386,27 @@ bool PnlWznmIexDetail::handleCallWznmIex_verEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recIex.refWznmMVersion == refInv); // IP handleCallWznmIex_verEq --- LINE
+	return retval;
+};
+
+bool PnlWznmIexDetail::handleCallWznmIexUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmIexUpd_refEq --- INSERT
+	return retval;
+};
+
+bool PnlWznmIexDetail::handleCallWznmIexJtitMod_iexEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	set<uint> moditems;
+
+	refreshJti(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };

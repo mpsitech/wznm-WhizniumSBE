@@ -11,48 +11,15 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool DlgWznmNavLoaini::evalButDneActive(
+bool DlgWznmNavLoaini::evalIfiUldActive(
 			DbsWznm* dbswznm
 		) {
-	// sge(idle|done)
+	// sge(idle)
 
 	vector<bool> args;
-	bool a, b;
+	bool a;
 
 	a = false; a = (ixVSge == VecVSge::IDLE);
-	args.push_back(a);
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a || b);
-
-	return(args.back());
-};
-
-bool DlgWznmNavLoaini::evalLfiDldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(done)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::DONE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool DlgWznmNavLoaini::evalAcvUldActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(impdone)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::IMPDONE);
 	args.push_back(a);
 
 	return(args.back());
@@ -91,16 +58,49 @@ bool DlgWznmNavLoaini::evalImpButStoActive(
 	return(args.back());
 };
 
-bool DlgWznmNavLoaini::evalIfiUldActive(
+bool DlgWznmNavLoaini::evalAcvUldActive(
 			DbsWznm* dbswznm
 		) {
-	// sge(idle)
+	// sge(impdone)
 
 	vector<bool> args;
 	bool a;
 
+	a = false; a = (ixVSge == VecVSge::IMPDONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmNavLoaini::evalLfiDldActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(done)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmNavLoaini::evalButDneActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(idle|done)
+
+	vector<bool> args;
+	bool a, b;
+
 	a = false; a = (ixVSge == VecVSge::IDLE);
 	args.push_back(a);
+	a = false; a = (ixVSge == VecVSge::DONE);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 
 	return(args.back());
 };

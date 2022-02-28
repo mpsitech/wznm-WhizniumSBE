@@ -114,8 +114,8 @@ void PnlWznmQryRec::StatApp::writeJSON(
 			, const bool initdoneQry1NQuerycol
 			, const bool initdone1NQuerymod
 			, const bool initdoneMNTable
-			, const bool initdoneMNPanel
 			, const bool initdoneMNDialog
+			, const bool initdoneMNPanel
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmQryRec";
 
@@ -128,8 +128,8 @@ void PnlWznmQryRec::StatApp::writeJSON(
 	me["initdoneQry1NQuerycol"] = initdoneQry1NQuerycol;
 	me["initdone1NQuerymod"] = initdone1NQuerymod;
 	me["initdoneMNTable"] = initdoneMNTable;
-	me["initdoneMNPanel"] = initdoneMNPanel;
 	me["initdoneMNDialog"] = initdoneMNDialog;
+	me["initdoneMNPanel"] = initdoneMNPanel;
 };
 
 void PnlWznmQryRec::StatApp::writeXML(
@@ -143,8 +143,8 @@ void PnlWznmQryRec::StatApp::writeXML(
 			, const bool initdoneQry1NQuerycol
 			, const bool initdone1NQuerymod
 			, const bool initdoneMNTable
-			, const bool initdoneMNPanel
 			, const bool initdoneMNDialog
+			, const bool initdoneMNPanel
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmQryRec";
 
@@ -160,8 +160,8 @@ void PnlWznmQryRec::StatApp::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "initdoneQry1NQuerycol", initdoneQry1NQuerycol);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NQuerymod", initdone1NQuerymod);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNTable", initdoneMNTable);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneMNPanel", initdoneMNPanel);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNDialog", initdoneMNDialog);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneMNPanel", initdoneMNPanel);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -178,8 +178,8 @@ PnlWznmQryRec::StatShr::StatShr(
 			, const ubigint jrefQry1NQuerycol
 			, const ubigint jref1NQuerymod
 			, const ubigint jrefMNTable
-			, const ubigint jrefMNPanel
 			, const ubigint jrefMNDialog
+			, const ubigint jrefMNPanel
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -192,11 +192,11 @@ PnlWznmQryRec::StatShr::StatShr(
 	this->jrefQry1NQuerycol = jrefQry1NQuerycol;
 	this->jref1NQuerymod = jref1NQuerymod;
 	this->jrefMNTable = jrefMNTable;
-	this->jrefMNPanel = jrefMNPanel;
 	this->jrefMNDialog = jrefMNDialog;
+	this->jrefMNPanel = jrefMNPanel;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAORDER, JREFACLAUSE, JREFSUP1NQUERY, JREFQRY1NQUERYCOL, JREF1NQUERYMOD, JREFMNTABLE, JREFMNPANEL, JREFMNDIALOG, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAORDER, JREFACLAUSE, JREFSUP1NQUERY, JREFQRY1NQUERYCOL, JREF1NQUERYMOD, JREFMNTABLE, JREFMNDIALOG, JREFMNPANEL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmQryRec::StatShr::writeJSON(
@@ -215,8 +215,8 @@ void PnlWznmQryRec::StatShr::writeJSON(
 	me["scrJrefQry1NQuerycol"] = Scr::scramble(jrefQry1NQuerycol);
 	me["scrJref1NQuerymod"] = Scr::scramble(jref1NQuerymod);
 	me["scrJrefMNTable"] = Scr::scramble(jrefMNTable);
-	me["scrJrefMNPanel"] = Scr::scramble(jrefMNPanel);
 	me["scrJrefMNDialog"] = Scr::scramble(jrefMNDialog);
+	me["scrJrefMNPanel"] = Scr::scramble(jrefMNPanel);
 	me["ButRegularizeActive"] = ButRegularizeActive;
 };
 
@@ -240,8 +240,8 @@ void PnlWznmQryRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefQry1NQuerycol", Scr::scramble(jrefQry1NQuerycol));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NQuerymod", Scr::scramble(jref1NQuerymod));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNTable", Scr::scramble(jrefMNTable));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefMNPanel", Scr::scramble(jrefMNPanel));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNDialog", Scr::scramble(jrefMNDialog));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefMNPanel", Scr::scramble(jrefMNPanel));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
 };
@@ -259,8 +259,8 @@ set<uint> PnlWznmQryRec::StatShr::comm(
 	if (jrefQry1NQuerycol == comp->jrefQry1NQuerycol) insert(items, JREFQRY1NQUERYCOL);
 	if (jref1NQuerymod == comp->jref1NQuerymod) insert(items, JREF1NQUERYMOD);
 	if (jrefMNTable == comp->jrefMNTable) insert(items, JREFMNTABLE);
-	if (jrefMNPanel == comp->jrefMNPanel) insert(items, JREFMNPANEL);
 	if (jrefMNDialog == comp->jrefMNDialog) insert(items, JREFMNDIALOG);
+	if (jrefMNPanel == comp->jrefMNPanel) insert(items, JREFMNPANEL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -274,7 +274,7 @@ set<uint> PnlWznmQryRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAORDER, JREFACLAUSE, JREFSUP1NQUERY, JREFQRY1NQUERYCOL, JREF1NQUERYMOD, JREFMNTABLE, JREFMNPANEL, JREFMNDIALOG, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAORDER, JREFACLAUSE, JREFSUP1NQUERY, JREFQRY1NQUERYCOL, JREF1NQUERYMOD, JREFMNTABLE, JREFMNDIALOG, JREFMNPANEL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

@@ -14,11 +14,11 @@
 	#include <arpa/inet.h>
 #endif
 
-#include "WznmCtpWrweb_blks.h"
-#include "WznmCtpWrstkit_blks.h"
-#include "WznmCtpWrsrv_blks.h"
-#include "WznmCtpGenui_blks.h"
 #include "WznmCtpGenjtr_blks.h"
+#include "WznmCtpGenui_blks.h"
+#include "WznmCtpWrsrv_blks.h"
+#include "WznmCtpWrstkit_blks.h"
+#include "WznmCtpWrweb_blks.h"
 
 /**
 	* WznmopdEngsrv

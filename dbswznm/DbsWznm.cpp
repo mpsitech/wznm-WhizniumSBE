@@ -2115,10 +2115,20 @@ uint DbsWznm::getIxWSubsetByWznmMComponent(
 	bool a, b;
 
 	if ((dneIxWSubset & TblWznmMComponent::VecWSubset::SBSWZNMBMCOMPONENTCCP) == 0) {
+		a = false; a = (rec->ixVBasetype == VecWznmVMComponentBasetype::VUEAPP);
+		args.push_back(a);
 		a = false; a = (rec->ixVBasetype == VecWznmVMComponentBasetype::WEBAPP);
 		args.push_back(a);
 		a = false; a = (rec->ixVBasetype == VecWznmVMComponentBasetype::JAPI);
 		args.push_back(a);
+		a = false; a = (rec->ixVBasetype == VecWznmVMComponentBasetype::SAPI);
+		args.push_back(a);
+		b = args.back(); args.pop_back();
+		a = args.back(); args.pop_back();
+		args.push_back(a || b);
+		b = args.back(); args.pop_back();
+		a = args.back(); args.pop_back();
+		args.push_back(a || b);
 		b = args.back(); args.pop_back();
 		a = args.back(); args.pop_back();
 		args.push_back(a || b);
@@ -2283,10 +2293,10 @@ uint DbsWznm::getIxWSubsetByWznmMTable(
 		args.push_back(a);
 		if (args.back()) {
 			ixWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEMTB;
+			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEQTB;
+			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLERLT;
 			ixWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLESTT;
 			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLESTT;
-			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLERLT;
-			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEQTB;
 		} else {
 		};
 
@@ -2299,8 +2309,8 @@ uint DbsWznm::getIxWSubsetByWznmMTable(
 		args.push_back(a);
 		if (args.back()) {
 			ixWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEQTB;
-			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLERLT;
 			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEMTB;
+			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLERLT;
 		} else {
 			ixWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLESTT;
 		};
@@ -2335,10 +2345,10 @@ uint DbsWznm::getIxWSubsetByWznmMTable(
 		args.push_back(a || b);
 		if (args.back()) {
 			ixWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLERLT;
+			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEMTB;
+			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEQTB;
 			ixWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLESTT;
 			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLESTT;
-			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEQTB;
-			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEMTB;
 		} else {
 		};
 
@@ -2354,9 +2364,9 @@ uint DbsWznm::getIxWSubsetByWznmMTable(
 		if (args.back()) {
 			ixWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLESTT;
 		} else {
-			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLERLT;
-			ixWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEQTB;
 			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEMTB;
+			ixWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLEQTB;
+			dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLERLT;
 		};
 
 		dneIxWSubset |= TblWznmMTable::VecWSubset::SBSWZNMBMTABLESTT;

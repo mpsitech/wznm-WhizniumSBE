@@ -114,27 +114,27 @@ public class PnlWznmDlgRec {
 	public class StatApp extends Block {
 
 		public static final int INITDONEDETAIL = 1;
-		public static final int INITDONEREF1NCONTROL = 2;
-		public static final int INITDONEHK1NCONTROL = 3;
+		public static final int INITDONEHK1NCONTROL = 2;
+		public static final int INITDONEREF1NCONTROL = 3;
 		public static final int INITDONEMNQUERY = 4;
 
 		public StatApp(
 					boolean initdoneDetail
-					, boolean initdoneRef1NControl
 					, boolean initdoneHk1NControl
+					, boolean initdoneRef1NControl
 					, boolean initdoneMNQuery
 				) {
 			this.initdoneDetail = initdoneDetail;
-			this.initdoneRef1NControl = initdoneRef1NControl;
 			this.initdoneHk1NControl = initdoneHk1NControl;
+			this.initdoneRef1NControl = initdoneRef1NControl;
 			this.initdoneMNQuery = initdoneMNQuery;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEREF1NCONTROL, INITDONEHK1NCONTROL, INITDONEMNQUERY));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEHK1NCONTROL, INITDONEREF1NCONTROL, INITDONEMNQUERY));
 		};
 
 		public boolean initdoneDetail;
-		public boolean initdoneRef1NControl;
 		public boolean initdoneHk1NControl;
+		public boolean initdoneRef1NControl;
 		public boolean initdoneMNQuery;
 
 		public boolean readXML(
@@ -151,8 +151,8 @@ public class PnlWznmDlgRec {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
-				initdoneRef1NControl = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NControl", mask, INITDONEREF1NCONTROL);
 				initdoneHk1NControl = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneHk1NControl", mask, INITDONEHK1NCONTROL);
+				initdoneRef1NControl = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NControl", mask, INITDONEREF1NCONTROL);
 				initdoneMNQuery = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNQuery", mask, INITDONEMNQUERY);
 
 				return true;
@@ -167,8 +167,8 @@ public class PnlWznmDlgRec {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
-			if (initdoneRef1NControl == comp.initdoneRef1NControl) items.add(INITDONEREF1NCONTROL);
 			if (initdoneHk1NControl == comp.initdoneHk1NControl) items.add(INITDONEHK1NCONTROL);
+			if (initdoneRef1NControl == comp.initdoneRef1NControl) items.add(INITDONEREF1NCONTROL);
 			if (initdoneMNQuery == comp.initdoneMNQuery) items.add(INITDONEMNQUERY);
 
 			return(items);
@@ -182,7 +182,7 @@ public class PnlWznmDlgRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEREF1NCONTROL, INITDONEHK1NCONTROL, INITDONEMNQUERY));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEHK1NCONTROL, INITDONEREF1NCONTROL, INITDONEMNQUERY));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -197,33 +197,33 @@ public class PnlWznmDlgRec {
 
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
-		public static final int SCRJREFREF1NCONTROL = 3;
-		public static final int SCRJREFHK1NCONTROL = 4;
+		public static final int SCRJREFHK1NCONTROL = 3;
+		public static final int SCRJREFREF1NCONTROL = 4;
 		public static final int SCRJREFMNQUERY = 5;
 		public static final int BUTREGULARIZEACTIVE = 6;
 
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
-					, String scrJrefRef1NControl
 					, String scrJrefHk1NControl
+					, String scrJrefRef1NControl
 					, String scrJrefMNQuery
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
-			this.scrJrefRef1NControl = scrJrefRef1NControl;
 			this.scrJrefHk1NControl = scrJrefHk1NControl;
+			this.scrJrefRef1NControl = scrJrefRef1NControl;
 			this.scrJrefMNQuery = scrJrefMNQuery;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFREF1NCONTROL, SCRJREFHK1NCONTROL, SCRJREFMNQUERY, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFHK1NCONTROL, SCRJREFREF1NCONTROL, SCRJREFMNQUERY, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
-		public String scrJrefRef1NControl;
 		public String scrJrefHk1NControl;
+		public String scrJrefRef1NControl;
 		public String scrJrefMNQuery;
 		public boolean ButRegularizeActive;
 
@@ -244,8 +244,8 @@ public class PnlWznmDlgRec {
 				srefIxWznmVExpstate = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "srefIxWznmVExpstate", mask, IXWZNMVEXPSTATE);
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
-				scrJrefRef1NControl = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NControl", mask, SCRJREFREF1NCONTROL);
 				scrJrefHk1NControl = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefHk1NControl", mask, SCRJREFHK1NCONTROL);
+				scrJrefRef1NControl = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NControl", mask, SCRJREFREF1NCONTROL);
 				scrJrefMNQuery = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNQuery", mask, SCRJREFMNQUERY);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
@@ -262,8 +262,8 @@ public class PnlWznmDlgRec {
 
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
-			if (scrJrefRef1NControl.equals(comp.scrJrefRef1NControl)) items.add(SCRJREFREF1NCONTROL);
 			if (scrJrefHk1NControl.equals(comp.scrJrefHk1NControl)) items.add(SCRJREFHK1NCONTROL);
+			if (scrJrefRef1NControl.equals(comp.scrJrefRef1NControl)) items.add(SCRJREFREF1NCONTROL);
 			if (scrJrefMNQuery.equals(comp.scrJrefMNQuery)) items.add(SCRJREFMNQUERY);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
@@ -278,7 +278,7 @@ public class PnlWznmDlgRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFREF1NCONTROL, SCRJREFHK1NCONTROL, SCRJREFMNQUERY, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFHK1NCONTROL, SCRJREFREF1NCONTROL, SCRJREFMNQUERY, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

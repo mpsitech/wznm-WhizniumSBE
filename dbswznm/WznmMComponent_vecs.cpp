@@ -24,9 +24,11 @@ uint TblWznmMComponent::VecVBasetype::getIx(
 	if (s == "openg") return OPENG;
 	if (s == "cmbeng") return CMBENG;
 	if (s == "dbs") return DBS;
+	if (s == "vueapp") return VUEAPP;
 	if (s == "webapp") return WEBAPP;
 	if (s == "api") return API;
 	if (s == "japi") return JAPI;
+	if (s == "sapi") return SAPI;
 
 	return(0);
 };
@@ -38,9 +40,11 @@ string TblWznmMComponent::VecVBasetype::getSref(
 	if (ix == OPENG) return("openg");
 	if (ix == CMBENG) return("cmbeng");
 	if (ix == DBS) return("dbs");
+	if (ix == VUEAPP) return("vueapp");
 	if (ix == WEBAPP) return("webapp");
 	if (ix == API) return("api");
 	if (ix == JAPI) return("japi");
+	if (ix == SAPI) return("sapi");
 
 	return("");
 };
@@ -54,9 +58,11 @@ string TblWznmMComponent::VecVBasetype::getTitle(
 		if (ix == OPENG) return("operation engine");
 		if (ix == CMBENG) return("combined engine");
 		if (ix == DBS) return("database access library");
+		if (ix == VUEAPP) return("Vue.js app");
 		if (ix == WEBAPP) return("web app user interface files");
 		if (ix == API) return("API library");
 		if (ix == JAPI) return("Java API package");
+		if (ix == SAPI) return("Swift API package");
 		return(getSref(ix));
 	};
 
@@ -69,7 +75,7 @@ void TblWznmMComponent::VecVBasetype::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 7; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
+	for (unsigned int i = 1; i <= 9; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
 
 /******************************************************************************

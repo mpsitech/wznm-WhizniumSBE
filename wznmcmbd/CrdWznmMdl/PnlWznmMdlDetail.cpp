@@ -318,25 +318,23 @@ void PnlWznmMdlDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMMDLJMOD_MDLEQ) {
-		call->abort = handleCallWznmMdlJMod_mdlEq(dbswznm, call->jref);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMMDL_VEREQ) {
+		call->abort = handleCallWznmMdl_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMDLUPD_REFEQ) {
 		call->abort = handleCallWznmMdlUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMDL_VEREQ) {
-		call->abort = handleCallWznmMdl_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMDLJMOD_MDLEQ) {
+		call->abort = handleCallWznmMdlJMod_mdlEq(dbswznm, call->jref);
 	};
 };
 
-bool PnlWznmMdlDetail::handleCallWznmMdlJMod_mdlEq(
+bool PnlWznmMdlDetail::handleCallWznmMdl_verEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
 		) {
 	bool retval = false;
-	set<uint> moditems;
-
-	refreshJ(dbswznm, moditems);
-
-	xchg->submitDpch(getNewDpchEng(moditems));
+	boolvalRet = (recMdl.verRefWznmMVersion == refInv); // IP handleCallWznmMdl_verEq --- LINE
 	return retval;
 };
 
@@ -349,13 +347,15 @@ bool PnlWznmMdlDetail::handleCallWznmMdlUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmMdlDetail::handleCallWznmMdl_verEq(
+bool PnlWznmMdlDetail::handleCallWznmMdlJMod_mdlEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recMdl.verRefWznmMVersion == refInv); // IP handleCallWznmMdl_verEq --- LINE
+	set<uint> moditems;
+
+	refreshJ(dbswznm, moditems);
+
+	xchg->submitDpch(getNewDpchEng(moditems));
 	return retval;
 };

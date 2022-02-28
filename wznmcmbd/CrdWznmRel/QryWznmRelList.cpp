@@ -46,8 +46,8 @@ QryWznmRelList::QryWznmRelList(
 
 	rerun(dbswznm);
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMRELMOD, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMSTUBCHG, jref, Clstn::VecVJobmask::SELF, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMRELMOD, jref, Clstn::VecVJobmask::ALL, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -259,15 +259,15 @@ void QryWznmRelList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMRelation.refWznmMTable ASC";
-	else if (preIxOrd == VecVOrd::SRL) sqlstr += " ORDER BY TblWznmMRelation.supIxVSubrole ASC";
-	else if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMRelation.supRefWznmMRelation ASC";
-	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMRelation.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMRelation.ixVBasetype ASC";
-	else if (preIxOrd == VecVOrd::TOS) sqlstr += " ORDER BY TblWznmMRelation.tosRefWznmMSubset ASC";
-	else if (preIxOrd == VecVOrd::TOT) sqlstr += " ORDER BY TblWznmMRelation.toRefWznmMTable ASC";
+	if (preIxOrd == VecVOrd::FRT) sqlstr += " ORDER BY TblWznmMRelation.frRefWznmMTable ASC";
 	else if (preIxOrd == VecVOrd::FRS) sqlstr += " ORDER BY TblWznmMRelation.frsRefWznmMSubset ASC";
-	else if (preIxOrd == VecVOrd::FRT) sqlstr += " ORDER BY TblWznmMRelation.frRefWznmMTable ASC";
+	else if (preIxOrd == VecVOrd::TOT) sqlstr += " ORDER BY TblWznmMRelation.toRefWznmMTable ASC";
+	else if (preIxOrd == VecVOrd::TOS) sqlstr += " ORDER BY TblWznmMRelation.tosRefWznmMSubset ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMRelation.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMRelation.refWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMRelation.supRefWznmMRelation ASC";
+	else if (preIxOrd == VecVOrd::SRL) sqlstr += " ORDER BY TblWznmMRelation.supIxVSubrole ASC";
+	else if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMRelation.refWznmMTable ASC";
 };
 
 void QryWznmRelList::fetch(
@@ -472,26 +472,20 @@ void QryWznmRelList::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMRELUPD_REFEQ) {
-		call->abort = handleCallWznmRelUpd_refEq(dbswznm, call->jref);
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMRELMOD) {
 		call->abort = handleCallWznmRelMod(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMRELUPD_REFEQ) {
+		call->abort = handleCallWznmRelUpd_refEq(dbswznm, call->jref);
 	};
 };
 
-bool QryWznmRelList::handleCallWznmRelUpd_refEq(
+bool QryWznmRelList::handleCallWznmStubChgFromSelf(
 			DbsWznm* dbswznm
-			, const ubigint jrefTrig
 		) {
 	bool retval = false;
-
-	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
-		ixWznmVQrystate = VecWznmVQrystate::OOD;
-		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
-	};
-
+	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };
 
@@ -509,10 +503,16 @@ bool QryWznmRelList::handleCallWznmRelMod(
 	return retval;
 };
 
-bool QryWznmRelList::handleCallWznmStubChgFromSelf(
+bool QryWznmRelList::handleCallWznmRelUpd_refEq(
 			DbsWznm* dbswznm
+			, const ubigint jrefTrig
 		) {
 	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
+
+	if (ixWznmVQrystate != VecWznmVQrystate::OOD) {
+		ixWznmVQrystate = VecWznmVQrystate::OOD;
+		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
+	};
+
 	return retval;
 };

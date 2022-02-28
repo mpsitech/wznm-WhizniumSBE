@@ -572,6 +572,61 @@ stat	WznmWrjapi	write Java API code	false
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
 	ImeIMOp.end
+stat	WznmWrsapi	write Swift API code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrsapiBase	false	write Swift API code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Swift API code basics for version '&StubWznmVerStd;'	write Swift API code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsapiJob	false	write Swift API code for job
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMComponent	ubigint
+		0	refWznmMJob	ubigint
+		0	orgweb	string
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Swift API code for job '&StubWznmJobStd;'	write Swift API code for job 'JobBrlyLocCalc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsapiQtb	false	write Swift API code for query table
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMTable	ubigint
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Swift API code for query table '&StubWznmTblStd;'	write Swift API code for query table 'TblBrlyQLocList'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmTblStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrsapiVec	false	write Swift code for vector
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVector	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Swift code for vector '&StubWznmVecStd;'	write Swift code for vector 'VecBrlyVMLocationBasetype'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVecStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
 stat	WznmWrsrv	write server code	false
 	ImeIRMComponentMOppack.srefRefWznmMComponent
 	wznmopd1
@@ -809,6 +864,60 @@ stat	WznmWrsrv	write server code	false
 		write C++ code for vector '&StubWznmVecStd;'	write C++ code for vector 'VecBrlyVMLocationBasetype'
 			ImeIRMSquawkMStub2.srefRefWznmMStub
 			StubWznmVecStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrvue	write Vue.js UI code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrvueBase	false	write Vue.js UI Vue code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Vue.js UI Vue code basics for version '&StubWznmVerStd;'	write Vue.js UI Vue code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrvueCrd	false	write Vue.js UI Vue code for card
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMCard	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Vue.js UI Vue code for card '&StubWznmCarStd;'	write Vue.js UI Vue code for card 'CrdBrlyLoc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmCarStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrvueDlg	false	write Vue.js UI Vue code for dialog
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMDialog	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Vue.js UI Vue code for dialog '&StubWznmDlgStd;'	write Vue.js UI Vue code for dialog 'DlgBrlyNavLoaini'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmDlgStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrvuePnl	false	write Vue.js UI Vue code for panel
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMPanel	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Vue.js UI Vue code for panel '&StubWznmPnlStd;'	write Vue.js UI Vue code for panel 'PnlBrlyLocMap'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmPnlStd
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
 	ImeIMOp.end

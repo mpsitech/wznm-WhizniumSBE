@@ -238,6 +238,7 @@ DpchRetWznm* WznmComplDeploy::run(
 
 					icsBitsAppsrv["port"] = bits.nodes.size(); dbswznm->tblwznmamblockitem->appendNewRecToRst(bits, NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "port", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, getMchparAny(dbswznm, refMchAny, "appsrvport"), 0, "");
 					dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "https", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "false", 0, "");
+					dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "cors", VecWznmVVartype::STRING, 0, 0, 0, 0, 0, 0, "", 0, "");
 
 					delete blk;
 				};

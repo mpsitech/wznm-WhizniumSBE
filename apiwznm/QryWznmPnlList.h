@@ -28,11 +28,11 @@ namespace QryWznmPnlList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint REU = 1;
-		static const Sbecore::uint RET = 2;
+		static const Sbecore::uint SRF = 1;
+		static const Sbecore::uint TYP = 2;
 		static const Sbecore::uint CAR = 3;
-		static const Sbecore::uint TYP = 4;
-		static const Sbecore::uint SRF = 5;
+		static const Sbecore::uint RET = 4;
+		static const Sbecore::uint REU = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

@@ -188,6 +188,15 @@ void* WznmcmbdOpprc::run(
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRJAPIVEC) {
 				req->dpchret = WznmWrjapiVec::run(xchg, &dbswznm, (DpchInvWznmWrjapiVec*) req->dpchinv);
 			};
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIBASE) {
+				req->dpchret = WznmWrsapiBase::run(xchg, &dbswznm, (DpchInvWznmWrsapiBase*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIJOB) {
+				req->dpchret = WznmWrsapiJob::run(xchg, &dbswznm, (DpchInvWznmWrsapiJob*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIQTB) {
+				req->dpchret = WznmWrsapiQtb::run(xchg, &dbswznm, (DpchInvWznmWrsapiQtb*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIVEC) {
+				req->dpchret = WznmWrsapiVec::run(xchg, &dbswznm, (DpchInvWznmWrsapiVec*) req->dpchinv);
+			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVBASE) {
 				req->dpchret = WznmWrsrvBase::run(xchg, &dbswznm, (DpchInvWznmWrsrvBase*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVCMBENGBASE) {
@@ -226,6 +235,15 @@ void* WznmcmbdOpprc::run(
 				req->dpchret = WznmWrsrvUa::run(xchg, &dbswznm, (DpchInvWznmWrsrvUa*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVVEC) {
 				req->dpchret = WznmWrsrvVec::run(xchg, &dbswznm, (DpchInvWznmWrsrvVec*) req->dpchinv);
+			};
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEBASE) {
+				req->dpchret = WznmWrvueBase::run(xchg, &dbswznm, (DpchInvWznmWrvueBase*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUECRD) {
+				req->dpchret = WznmWrvueCrd::run(xchg, &dbswznm, (DpchInvWznmWrvueCrd*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEDLG) {
+				req->dpchret = WznmWrvueDlg::run(xchg, &dbswznm, (DpchInvWznmWrvueDlg*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEPNL) {
+				req->dpchret = WznmWrvuePnl::run(xchg, &dbswznm, (DpchInvWznmWrvuePnl*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRWEBBASE) {
 				req->dpchret = WznmWrwebBase::run(xchg, &dbswznm, (DpchInvWznmWrwebBase*) req->dpchinv);

@@ -19,22 +19,22 @@ public class QryWznmTblList {
 		*/
 	public static class VecVOrd {
 
-		public static final int REU = 1;
-		public static final int RET = 2;
+		public static final int SRF = 1;
+		public static final int TYP = 2;
 		public static final int VER = 3;
-		public static final int TYP = 4;
-		public static final int SRF = 5;
+		public static final int RET = 4;
+		public static final int REU = 5;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("reu")) return REU;
-			if (s.equals("ret")) return RET;
-			if (s.equals("ver")) return VER;
-			if (s.equals("typ")) return TYP;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("typ")) return TYP;
+			if (s.equals("ver")) return VER;
+			if (s.equals("ret")) return RET;
+			if (s.equals("reu")) return REU;
 
 			return 0;
 		};
@@ -42,11 +42,11 @@ public class QryWznmTblList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == REU) return("reu");
-			if (ix == RET) return("ret");
-			if (ix == VER) return("ver");
-			if (ix == TYP) return("typ");
 			if (ix == SRF) return("srf");
+			if (ix == TYP) return("typ");
+			if (ix == VER) return("ver");
+			if (ix == RET) return("ret");
+			if (ix == REU) return("reu");
 
 			return "";
 		};

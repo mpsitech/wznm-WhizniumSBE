@@ -20,10 +20,10 @@ uint QryWznmChkList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "tco") return TCO;
-	if (s == "tbl") return TBL;
-	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
+	if (s == "typ") return TYP;
+	if (s == "tbl") return TBL;
+	if (s == "tco") return TCO;
 
 	return(0);
 };
@@ -31,10 +31,10 @@ uint QryWznmChkList::VecVOrd::getIx(
 string QryWznmChkList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TCO) return("tco");
-	if (ix == TBL) return("tbl");
-	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
+	if (ix == TYP) return("typ");
+	if (ix == TBL) return("tbl");
+	if (ix == TCO) return("tco");
 
 	return("");
 };

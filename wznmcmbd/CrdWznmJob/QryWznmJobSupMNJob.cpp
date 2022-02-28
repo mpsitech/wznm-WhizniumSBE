@@ -85,7 +85,7 @@ void QryWznmJobSupMNJob::rerun(
 	dbswznm->tblwznmqjobsupmnjob->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMJobMJob.ref)";
-	sqlstr += " FROM TblWznmMJob, TblWznmRMJobMJob";
+	sqlstr += " FROM TblWznmRMJobMJob, TblWznmMJob";
 	sqlstr += " WHERE TblWznmRMJobMJob.subRefWznmMJob = TblWznmMJob.ref";
 	sqlstr += " AND TblWznmRMJobMJob.supRefWznmMJob = " + to_string(preRefJob) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -100,7 +100,7 @@ void QryWznmJobSupMNJob::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQJobSupMNJob(jref, jnum, mref, ref, Short, Multi, ixVConstract)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMJob.ref, TblWznmRMJobMJob.ref, TblWznmRMJobMJob.Short, TblWznmRMJobMJob.Multi, TblWznmRMJobMJob.ixVConstract";
-	sqlstr += " FROM TblWznmMJob, TblWznmRMJobMJob";
+	sqlstr += " FROM TblWznmRMJobMJob, TblWznmMJob";
 	sqlstr += " WHERE TblWznmRMJobMJob.subRefWznmMJob = TblWznmMJob.ref";
 	sqlstr += " AND TblWznmRMJobMJob.supRefWznmMJob = " + to_string(preRefJob) + "";
 	sqlstr += " ORDER BY TblWznmMJob.sref ASC";
@@ -289,11 +289,19 @@ void QryWznmJobSupMNJob::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMJOBRJOBMOD_SUPEQ) {
-		call->abort = handleCallWznmJobRjobMod_supEq(dbswznm, call->jref);
-	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
 		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOBRJOBMOD_SUPEQ) {
+		call->abort = handleCallWznmJobRjobMod_supEq(dbswznm, call->jref);
 	};
+};
+
+bool QryWznmJobSupMNJob::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
+	return retval;
 };
 
 bool QryWznmJobSupMNJob::handleCallWznmJobRjobMod_supEq(
@@ -307,13 +315,5 @@ bool QryWznmJobSupMNJob::handleCallWznmJobRjobMod_supEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
-	return retval;
-};
-
-bool QryWznmJobSupMNJob::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

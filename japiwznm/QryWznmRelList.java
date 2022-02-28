@@ -19,30 +19,30 @@ public class QryWznmRelList {
 		*/
 	public static class VecVOrd {
 
-		public static final int TBL = 1;
-		public static final int SRL = 2;
-		public static final int SUP = 3;
-		public static final int VER = 4;
+		public static final int FRT = 1;
+		public static final int FRS = 2;
+		public static final int TOT = 3;
+		public static final int TOS = 4;
 		public static final int TYP = 5;
-		public static final int TOS = 6;
-		public static final int TOT = 7;
-		public static final int FRS = 8;
-		public static final int FRT = 9;
+		public static final int VER = 6;
+		public static final int SUP = 7;
+		public static final int SRL = 8;
+		public static final int TBL = 9;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("tbl")) return TBL;
-			if (s.equals("srl")) return SRL;
-			if (s.equals("sup")) return SUP;
-			if (s.equals("ver")) return VER;
-			if (s.equals("typ")) return TYP;
-			if (s.equals("tos")) return TOS;
-			if (s.equals("tot")) return TOT;
-			if (s.equals("frs")) return FRS;
 			if (s.equals("frt")) return FRT;
+			if (s.equals("frs")) return FRS;
+			if (s.equals("tot")) return TOT;
+			if (s.equals("tos")) return TOS;
+			if (s.equals("typ")) return TYP;
+			if (s.equals("ver")) return VER;
+			if (s.equals("sup")) return SUP;
+			if (s.equals("srl")) return SRL;
+			if (s.equals("tbl")) return TBL;
 
 			return 0;
 		};
@@ -50,15 +50,15 @@ public class QryWznmRelList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == TBL) return("tbl");
-			if (ix == SRL) return("srl");
-			if (ix == SUP) return("sup");
-			if (ix == VER) return("ver");
-			if (ix == TYP) return("typ");
-			if (ix == TOS) return("tos");
-			if (ix == TOT) return("tot");
-			if (ix == FRS) return("frs");
 			if (ix == FRT) return("frt");
+			if (ix == FRS) return("frs");
+			if (ix == TOT) return("tot");
+			if (ix == TOS) return("tos");
+			if (ix == TYP) return("typ");
+			if (ix == VER) return("ver");
+			if (ix == SUP) return("sup");
+			if (ix == SRL) return("srl");
+			if (ix == TBL) return("tbl");
 
 			return "";
 		};
