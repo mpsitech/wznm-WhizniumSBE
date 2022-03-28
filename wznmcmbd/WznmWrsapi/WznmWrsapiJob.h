@@ -17,7 +17,26 @@
 namespace WznmWrsapiJob {
 
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmWrsapiJob* dpchinv);
-	// IP cust --- INSERT
+	// IP cust --- IBEGIN
+
+	void writeJobSw(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, const ListWznmMVector& vecs, const ListWznmMBlock& blks, const std::string& orgweb, const std::string& Prjshort);
+  void writeBlkcontSw(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmMBlock* blk, const std::string& subsref, ListWznmAMBlockItem bits);
+  void writeBlkdpchSw(DbsWznm* dbswznm, const std::string& orgweb, const std::string& Prjshort, std::fstream& outfile, WznmMJob* job, WznmMBlock* blk, const std::string& subsref, ListWznmAMBlockItem bits);
+  void writeBlkstatSw(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmMBlock* blk, const std::string& subsref, ListWznmAMBlockItem bits);
+  void writeBlkstgSw(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmMBlock* blk, const std::string& subsref, ListWznmAMBlockItem bits);
+  void writeBlktagSw(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, WznmMBlock* blk, const std::string& subsref, ListWznmAMBlockItem bits);
+
+	void wrBitvarConstrhdrSw(std::fstream& outfile, WznmAMBlockItem* bit);
+	void wrBitvarConstrSw(std::fstream& outfile, WznmAMBlockItem* bit);
+	void wrBitvarReadxmlSw(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, const std::string& subsref, WznmAMBlockItem* bit, const bool attr, const std::string& shorttag);
+	void wrBitvarWritexmlSw(DbsWznm* dbswznm, std::fstream& outfile, WznmMJob* job, const std::string& subsref, WznmAMBlockItem* bit, const bool mask, const bool attr);
+	void wrBitvarCompareSw(std::fstream& outfile, const std::string& subsref, WznmAMBlockItem* bit);
+	std::string getBlkclass(DbsWznm* dbswznm, WznmMJob* job, WznmMBlock* blk);
+  std::string getBlknew(DbsWznm* dbswznm, WznmMJob* job, WznmMBlock* blk);
+	std::string getBitSwType(WznmAMBlockItem* bit);
+	std::string getBitXMLType(WznmAMBlockItem* bit);
+	std::string getVecclass(DbsWznm* dbswznm, WznmMJob* job, WznmMVector* vec);
+	// IP cust --- IEND
 };
 
 #endif

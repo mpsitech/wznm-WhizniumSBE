@@ -1,8 +1,8 @@
 # file Makefile
 # make file for Wznm database access library, release dbswznm_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# author: Emily Johnson (auto-generation)
+# date created: 28 Mar 2022
 # IP header --- ABOVE
 
 LIBROOT = ${WHIZSDKROOT}/lib
@@ -13,7 +13,7 @@ CPPFLAGS = -std=c++11 -g -Wall -Os -pthread
 STATLIB = ar
 STATLIBFLAGS = rcs
 
-INCPATH = -I${WHIZSDKROOT}/build -I/usr/local/include -I/usr/local/include/libxml2 -I/usr/local/mysql/include
+INCPATH = -I${WHIZSDKROOT}/build -I/opt/homebrew/include -I/opt/homebrew/opt/libxml2/include -I/usr/local/mysql/include
 
 PCHS = DbsWznm.h.gch
 

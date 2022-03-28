@@ -16,7 +16,11 @@
 
 namespace WznmWrsapi {
 
-	// IP cust --- INSERT
+	// IP cust --- IBEGIN
+	void writeVecSw(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, WznmMVector* vec, const bool subclass, const std::string& supsref, const std::string& subsref);
+
+  std::string getSwDefault(const std::string& swtype);
+	// IP cust --- IEND
 };
 
 #endif

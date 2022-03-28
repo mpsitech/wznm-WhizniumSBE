@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmMdl card job handler, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# author: Emily Johnson (auto-generation)
+# date created: 28 Mar 2022
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -14,9 +14,9 @@ STATLIB = ar
 STATLIBFLAGS = rcs
 
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
-INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
+INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/opt/homebrew/include -I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/libgit2/include -I/opt/homebrew/opt/libmicrohttpd/include -I/opt/homebrew/opt/libxml2/include -I/opt/homebrew/opt/openssl@3/include -I/usr/local/mysql/include
 
-OBJS = CrdWznmMdl.o PnlWznmMdlRec.o PnlWznmMdlDetail.o PnlWznmMdlMdl1NCard.o QryWznmMdlMdl1NCard.o PnlWznmMdlRef1NPanel.o QryWznmMdlRef1NPanel.o PnlWznmMdlHeadbar.o PnlWznmMdlList.o QryWznmMdlList.o
+OBJS = CrdWznmMdl.o PnlWznmMdlList.o QryWznmMdlList.o PnlWznmMdlHeadbar.o PnlWznmMdlRec.o PnlWznmMdlRef1NPanel.o QryWznmMdlRef1NPanel.o PnlWznmMdlMdl1NCard.o QryWznmMdlMdl1NCard.o PnlWznmMdlDetail.o
 
 LIB = libcrdwznmmdl
 

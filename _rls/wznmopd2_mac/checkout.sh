@@ -2,8 +2,8 @@
 # file checkout.sh
 # checkout script for Wznm operation daemon, release wznmopd2_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# author: Emily Johnson (auto-generation)
+# date created: 28 Mar 2022
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -20,11 +20,11 @@ export set CMBDBUILDROOT=$REPROOT/wznm/wznmcmbd
 mkdir $BUILDROOT/wznmopd2
 mkdir $BUILDROOT/wznmopd2/IexWznm
 mkdir $BUILDROOT/wznmopd2/VecWznm
-mkdir $BUILDROOT/wznmopd2/WznmCtpGenjtr
-mkdir $BUILDROOT/wznmopd2/WznmCtpGenui
-mkdir $BUILDROOT/wznmopd2/WznmCtpWrsrv
-mkdir $BUILDROOT/wznmopd2/WznmCtpWrstkit
 mkdir $BUILDROOT/wznmopd2/WznmCtpWrweb
+mkdir $BUILDROOT/wznmopd2/WznmCtpWrstkit
+mkdir $BUILDROOT/wznmopd2/WznmCtpWrsrv
+mkdir $BUILDROOT/wznmopd2/WznmCtpGenui
+mkdir $BUILDROOT/wznmopd2/WznmCtpGenjtr
 
 mkdir $LIBROOT/wznmopd2
 
@@ -61,27 +61,27 @@ cp Makefile_VecWznm $BUILDROOT/wznmopd2/VecWznm/Makefile
 cp $CMBDBUILDROOT/VecWznm/Vec*.h $BUILDROOT/wznmopd2/VecWznm/
 cp $CMBDBUILDROOT/VecWznm/Vec*.cpp $BUILDROOT/wznmopd2/VecWznm/
 
-cp Makefile_WznmCtpGenjtr $BUILDROOT/wznmopd2/WznmCtpGenjtr/Makefile
+cp Makefile_WznmCtpWrweb $BUILDROOT/wznmopd2/WznmCtpWrweb/Makefile
 
-cp $CMBDBUILDROOT/WznmCtpGenjtr/WznmCtpGenjtr*.h $BUILDROOT/wznmopd2/WznmCtpGenjtr/
-cp $CMBDBUILDROOT/WznmCtpGenjtr/WznmCtpGenjtr*.cpp $BUILDROOT/wznmopd2/WznmCtpGenjtr/
-
-cp Makefile_WznmCtpGenui $BUILDROOT/wznmopd2/WznmCtpGenui/Makefile
-
-cp $CMBDBUILDROOT/WznmCtpGenui/WznmCtpGenui*.h $BUILDROOT/wznmopd2/WznmCtpGenui/
-cp $CMBDBUILDROOT/WznmCtpGenui/WznmCtpGenui*.cpp $BUILDROOT/wznmopd2/WznmCtpGenui/
-
-cp Makefile_WznmCtpWrsrv $BUILDROOT/wznmopd2/WznmCtpWrsrv/Makefile
-
-cp $CMBDBUILDROOT/WznmCtpWrsrv/WznmCtpWrsrv*.h $BUILDROOT/wznmopd2/WznmCtpWrsrv/
-cp $CMBDBUILDROOT/WznmCtpWrsrv/WznmCtpWrsrv*.cpp $BUILDROOT/wznmopd2/WznmCtpWrsrv/
+cp $CMBDBUILDROOT/WznmCtpWrweb/WznmCtpWrweb*.h $BUILDROOT/wznmopd2/WznmCtpWrweb/
+cp $CMBDBUILDROOT/WznmCtpWrweb/WznmCtpWrweb*.cpp $BUILDROOT/wznmopd2/WznmCtpWrweb/
 
 cp Makefile_WznmCtpWrstkit $BUILDROOT/wznmopd2/WznmCtpWrstkit/Makefile
 
 cp $CMBDBUILDROOT/WznmCtpWrstkit/WznmCtpWrstkit*.h $BUILDROOT/wznmopd2/WznmCtpWrstkit/
 cp $CMBDBUILDROOT/WznmCtpWrstkit/WznmCtpWrstkit*.cpp $BUILDROOT/wznmopd2/WznmCtpWrstkit/
 
-cp Makefile_WznmCtpWrweb $BUILDROOT/wznmopd2/WznmCtpWrweb/Makefile
+cp Makefile_WznmCtpWrsrv $BUILDROOT/wznmopd2/WznmCtpWrsrv/Makefile
 
-cp $CMBDBUILDROOT/WznmCtpWrweb/WznmCtpWrweb*.h $BUILDROOT/wznmopd2/WznmCtpWrweb/
-cp $CMBDBUILDROOT/WznmCtpWrweb/WznmCtpWrweb*.cpp $BUILDROOT/wznmopd2/WznmCtpWrweb/
+cp $CMBDBUILDROOT/WznmCtpWrsrv/WznmCtpWrsrv*.h $BUILDROOT/wznmopd2/WznmCtpWrsrv/
+cp $CMBDBUILDROOT/WznmCtpWrsrv/WznmCtpWrsrv*.cpp $BUILDROOT/wznmopd2/WznmCtpWrsrv/
+
+cp Makefile_WznmCtpGenui $BUILDROOT/wznmopd2/WznmCtpGenui/Makefile
+
+cp $CMBDBUILDROOT/WznmCtpGenui/WznmCtpGenui*.h $BUILDROOT/wznmopd2/WznmCtpGenui/
+cp $CMBDBUILDROOT/WznmCtpGenui/WznmCtpGenui*.cpp $BUILDROOT/wznmopd2/WznmCtpGenui/
+
+cp Makefile_WznmCtpGenjtr $BUILDROOT/wznmopd2/WznmCtpGenjtr/Makefile
+
+cp $CMBDBUILDROOT/WznmCtpGenjtr/WznmCtpGenjtr*.h $BUILDROOT/wznmopd2/WznmCtpGenjtr/
+cp $CMBDBUILDROOT/WznmCtpGenjtr/WznmCtpGenjtr*.cpp $BUILDROOT/wznmopd2/WznmCtpGenjtr/

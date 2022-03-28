@@ -96,7 +96,7 @@ void WznmWrvueCrd::writeCrdVue(
 	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
 		pnl = pnls.nodes[i];
 
-		if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) outfile << "\timport " << pnl->sref << " from '" << pnl->sref << "';" << endl;
+		if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) outfile << "\timport " << pnl->sref << " from './" << pnl->sref << "';" << endl;
 	};
 
 	outfile << "\t/*" << endl;

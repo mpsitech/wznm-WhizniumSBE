@@ -111,17 +111,17 @@ void WznmWrvueBase::writeCsVue(
 
 	string s;
 
-	// --- FeedFPupLocale
-	outfile << "<!-- IP FeedFPupLocale - IBEGIN -->" << endl;
+	// --- feedFPupLocale
+	outfile << "<!-- IP feedFPupLocale - IBEGIN -->" << endl;
 	outfile << "\t\t\t\t*/" << endl;
 
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];
-		outfile << "\t\t\t\tif (this.numFPupLocale == " << (i+1) << ") return this.FeedFPupLocales." << lcl->sref << ";" << endl;
+		outfile << "\t\t\t\tif (this.numFPupLocale == " << (i+1) << ") return this.feedFPupLocales." << lcl->sref << ";" << endl;
 	};
 
 	outfile << "\t\t\t\t/*" << endl;
-	outfile << "<!-- IP FeedFPupLocale - IEND -->" << endl;
+	outfile << "<!-- IP feedFPupLocale - IEND -->" << endl;
 
 	// --- tag
 	outfile << "<!-- IP tag - IBEGIN -->" << endl;
@@ -150,7 +150,7 @@ void WznmWrvueBase::writeCsVue(
 		outfile << endl;
 	};
 
-	outfile << "\t\t\tFeedFPupLocales: {" << endl;
+	outfile << "\t\t\tfeedFPupLocales: {" << endl;
 
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];

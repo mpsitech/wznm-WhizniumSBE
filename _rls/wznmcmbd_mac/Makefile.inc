@@ -1,8 +1,8 @@
 # file Makefile.inc
 # make file paths for Wznm combined daemon, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# author: Emily Johnson (auto-generation)
+# date created: 28 Mar 2022
 # IP header --- ABOVE
 
 BUILDROOT = ${WHIZSDKROOT}/build

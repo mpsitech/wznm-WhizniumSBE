@@ -116,6 +116,7 @@ void WznmWrsrvRootsess::writeRtH(
 	outfile << endl;
 	
 	outfile << "\tbool authenticate(Dbs" << Prjshort << "* dbs" << prjshort << ", const std::string& username, const std::string& password, Sbecore::ubigint& ref" << Prjshort << "MUser);" << endl;
+	outfile << "\tvoid termSess(Dbs" << Prjshort << "* dbs" << prjshort << ", const Sbecore::ubigint jref);" << endl;
 	outfile << "// IP spec --- IEND" << endl;
 };
 
@@ -327,6 +328,24 @@ void WznmWrsrvRootsess::writeRtCpp(
 
 	outfile << "\treturn valid;" << endl;
 	outfile << "};" << endl;
+	outfile << endl;
+
+	outfile << "bool Root" << Prjshort << "::termSess(" << endl;
+	outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
+	outfile << "\t\t\t, const ubigint jref" << endl;
+	outfile << "\t\t) {" << endl;
+
+	outfile << "\tJob" << Prjshort << "* job = NULL;" << endl;
+	outfile << endl;
+
+	outfile << "\tjob = xchg->getJobByJref(jref);" << endl;
+	outfile << endl;
+
+	outfile << "\tif (job) {" << endl;
+	outfile << "\t\tif (job->ix" << Prjshort << "VJob == Vec" << Prjshort << "VJob::SESS" << PRJSHORT << ") ((Sess" << Prjshort << "*) job)->term(dbs" << prjshort << ");" << endl;
+	if (hasm2m) outfile << "\t\telse if (job->ix" << Prjshort << "VJob == Vec" << Prjshort << "VJob::M2MSESS" << PRJSHORT << ") ((M2msess" << Prjshort << "*) job)->term(dbs" << prjshort << ");" << endl;
+	outfile << "\t};" << endl;
+	outfile << "};" << endl;
 
 	outfile << "// IP spec --- IEND" << endl;
 
@@ -379,6 +398,9 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\tcout << \"\\tjob reference: \";" << endl;
 	outfile << "\tcin >> input;" << endl;
 	outfile << "\tiinput = atoi(input.c_str());" << endl;
+	outfile << endl;
+
+	outfile << "\ttermSess(dbs" << prjshort << ", iinput);" << endl;
 	outfile << endl;
 
 	outfile << "\tif (!eraseSubjobByJref(sesss, iinput)) cout << \"\\tjob reference doesn't exist!\" << endl;" << endl;
@@ -537,6 +559,9 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << endl;
 
 	outfile << "\ttime_t rawtime;" << endl;
+	outfile << endl;
+
+	outfile << "\ttermSess(dbs" << prjshort << ", jrefTrig);" << endl;
 	outfile << endl;
 
 	outfile << "\tif (!boolvalInv) {" << endl;

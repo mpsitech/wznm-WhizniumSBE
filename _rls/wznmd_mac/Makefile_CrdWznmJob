@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmJob card job handler, release wznmd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# author: Emily Johnson (auto-generation)
+# date created: 28 Mar 2022
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -14,9 +14,9 @@ STATLIB = ar
 STATLIBFLAGS = rcs
 
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmd/VecWznm -I$(BUILDROOT)/wznmd/IexWznm -I$(BUILDROOT)/wznmd
-INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
+INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/opt/homebrew/include -I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/libgit2/include -I/opt/homebrew/opt/libmicrohttpd/include -I/opt/homebrew/opt/libxml2/include -I/opt/homebrew/opt/openssl@3/include -I/usr/local/mysql/include
 
-OBJS = CrdWznmJob.o PnlWznmJobRec.o PnlWznmJobDetail.o PnlWznmJobACmd.o QryWznmJobACmd.o PnlWznmJobAVar.o QryWznmJobAVar.o PnlWznmJob1NSensitivity.o QryWznmJob1NSensitivity.o PnlWznmJobJob1NStage.o QryWznmJobJob1NStage.o PnlWznmJob1NRtjob.o QryWznmJob1NRtjob.o PnlWznmJob1NMethod.o QryWznmJob1NMethod.o PnlWznmJobRef1NBlock.o QryWznmJobRef1NBlock.o PnlWznmJobHk1NVector.o QryWznmJobHk1NVector.o PnlWznmJobSupMNJob.o QryWznmJobSupMNJob.o PnlWznmJobMNOp.o QryWznmJobMNOp.o PnlWznmJobMNOppack.o QryWznmJobMNOppack.o PnlWznmJobSubMNJob.o QryWznmJobSubMNJob.o PnlWznmJobHeadbar.o PnlWznmJobList.o QryWznmJobList.o
+OBJS = CrdWznmJob.o PnlWznmJobList.o QryWznmJobList.o PnlWznmJobHeadbar.o PnlWznmJobRec.o PnlWznmJobSubMNJob.o QryWznmJobSubMNJob.o PnlWznmJobSupMNJob.o QryWznmJobSupMNJob.o PnlWznmJobMNOp.o QryWznmJobMNOp.o PnlWznmJobMNOppack.o QryWznmJobMNOppack.o PnlWznmJobRef1NBlock.o QryWznmJobRef1NBlock.o PnlWznmJobJob1NStage.o QryWznmJobJob1NStage.o PnlWznmJobHk1NVector.o QryWznmJobHk1NVector.o PnlWznmJob1NSensitivity.o QryWznmJob1NSensitivity.o PnlWznmJob1NRtjob.o QryWznmJob1NRtjob.o PnlWznmJob1NMethod.o QryWznmJob1NMethod.o PnlWznmJobACmd.o QryWznmJobACmd.o PnlWznmJobAVar.o QryWznmJobAVar.o PnlWznmJobDetail.o
 
 LIB = libcrdwznmjob
 

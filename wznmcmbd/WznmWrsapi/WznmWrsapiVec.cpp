@@ -37,7 +37,28 @@ DpchRetWznm* WznmWrsapiVec::run(
 
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
-	// IP run --- INSERT
+	// IP run --- IBEGIN
+	fstream swfile;
+
+	WznmMVector* vec = NULL;
+
+	string s;
+
+	dbswznm->tblwznmmvector->loadRecByRef(refWznmMVector, &vec);
+
+	// create files
+	s = xchg->tmppath + "/" + folder + "/" + vec->sref + ".swift.ip";
+	swfile.open(s.c_str(), ios::out);
+
+	// --- vec
+	swfile << "// IP vec --- IBEGIN" << endl;
+	writeVecSw(dbswznm, Prjshort, swfile, vec, false, "", "");
+	swfile << "// IP vec --- IEND" << endl;
+
+	swfile.close();
+
+	delete vec;
+	// IP run --- IEND
 
 	return(new DpchRetWznm(VecWznmVDpch::DPCHRETWZNM, "", "", ixOpVOpres, 100));
 };

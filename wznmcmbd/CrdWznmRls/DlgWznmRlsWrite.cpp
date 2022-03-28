@@ -1515,12 +1515,14 @@ void DlgWznmRlsWrite::createVueapp(
 		keys.push_back("prjshort"); vals.push_back(prjshort);
 
 		keys.push_back("Crdshort"); vals.push_back("Crdshort");
+		keys.push_back("Crdtit"); vals.push_back("Crdtit");
 
 		for (unsigned int i = 0; i < crds.nodes.size(); i++) {
 			crd = crds.nodes[i];
 
 			if (crd->sref.substr(3+4).compare("Nav") != 0) {
-				vals[vals.size()-1] = crd->sref.substr(3 + 4);
+				vals[vals.size()-2] = crd->sref.substr(3 + 4);
+				vals[vals.size()-1] = StrMod::cap(crd->Title);
 
 				addInv(new DpchInvWznmWrvueCrd(0, 0, crd->ref, Prjshort, ipfolder + "/" + cmpsref + "/" + crd->sref));
 
@@ -2595,7 +2597,7 @@ void DlgWznmRlsWrite::createJapi(
 
 	// -- directories
 
-	// --- deployment scripts (WznmWrjapiDeploy)
+	// --- deployment scripts
 	keys.resize(0); vals.resize(0);
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
@@ -2716,6 +2718,193 @@ void DlgWznmRlsWrite::createSapi(
 			DbsWznm* dbswznm
 			, const bool dplonly
 		) {
+	vector<ubigint> refs;
+
+	WznmMRelease* rls = NULL;
+	WznmMComponent* cmp = NULL;
+	WznmMVersion* ver = NULL;
+
+	vector<ubigint> hrefsMch;
+
+	string created;
+	string vermajor, verminor, versub;
+
+	vector<string> keys;
+	vector<string> vals;
+
+	ListWznmMVector vecs;
+	WznmMVector* vec = NULL;
+
+	ListWznmMJob jobs;
+	WznmMJob* job = NULL;
+
+	ListWznmMTable qtbs;
+	WznmMTable* qtb = NULL;
+
+	string tblshort;
+
+	uint cnt;
+
+	// --- load basics
+	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
+	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
+
+	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
+
+	// --- find template files in archive
+	ubigint refGblswfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'ApiXxxx_blks.swift'", refGblswfile);
+
+	ubigint refApiswfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'ApiXxxx.swift'", refApiswfile);
+
+	ubigint refVecdpswfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'VecXxxxVDpch.swift'", refVecdpswfile);
+
+	ubigint refVecswfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'VecXxxxYZzzzz.swift'", refVecswfile);
+
+	ubigint refJobswfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'JobXxxxYyyZzzzz.swift'", refJobswfile);
+
+	ubigint refQtbswfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'TblXxxxQYyyyy.swift'", refQtbswfile);
+
+	ubigint refChkoutfile; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = 'checkout_Sapi.sh'", refChkoutfile);
+
+	// --- generate folder structure
+	ipfolder = Tmp::newfolder(xchg->tmppath);
+
+	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
+	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
+
+	createIpoutSubfolder(false, "_rls");
+	createIpoutSubfolder(false, "_rls", rlssref);
+
+	createIpoutSubfolder(false, "_ini");
+	createIpoutSubfolder(false, "_ini", cmpsref);
+
+	createIpoutSubfolder(true, cmpsref);
+
+	// --- prepare standard key/value pairs
+
+	// -- created/modified date
+	time_t rawtime;
+	time(&rawtime);
+
+	created = StrMod::timetToString(rawtime);
+
+	// -- version
+	vermajor = to_string(ver->Major);
+	verminor = to_string(ver->Minor);
+	versub = to_string(ver->Sub);
+
+	// -- directories
+
+	// --- deployment scripts
+	keys.resize(0); vals.resize(0);
+	keys.push_back("author"); vals.push_back(author);
+	keys.push_back("created"); vals.push_back(created);
+	keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
+	keys.push_back("Prjshort"); vals.push_back(Prjshort);
+	keys.push_back("prjshort"); vals.push_back(prjshort);
+	keys.push_back("rlssref"); vals.push_back(rlssref);
+
+	addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refChkoutfile, "", outfolder + "/_rls/" + rlssref + "/checkout.sh", keys, vals));
+
+	if (!dplonly) {
+		// --- Swift API globals (WznmWrsapiBase)
+		keys.resize(0); vals.resize(0);
+		keys.push_back("author"); vals.push_back(author);
+		keys.push_back("created"); vals.push_back(created);
+		keys.push_back("orgweb"); vals.push_back(xchg->stgwznmtenant.orgweb);
+		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
+		keys.push_back("Prjshort"); vals.push_back(Prjshort);
+		keys.push_back("prjshort"); vals.push_back(prjshort);
+		keys.push_back("vermajor"); vals.push_back(vermajor);
+		keys.push_back("verminor"); vals.push_back(verminor);
+		keys.push_back("versub"); vals.push_back(versub);
+
+		addInv(new DpchInvWznmWrsapiBase(0, 0, ver->ref, Prjshort, ipfolder + "/" + cmpsref));
+
+		// -- ApiXxxx_blks
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refGblswfile, "", outfolder + "/" + cmpsref + "/Api" + Prjshort + "_blks.swift", keys, vals));
+
+		// -- ApiXxxx
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refApiswfile, "", outfolder + "/" + cmpsref + "/Api" + Prjshort + ".swift", keys, vals));
+
+		// -- global vectors
+		dbswznm->tblwznmmvector->loadRstBySQL("SELECT * FROM TblWznmMVector WHERE refWznmMVersion = " + to_string(ver->ref) + " AND hkIxVTbl = " + to_string(VecWznmVMVectorHkTbl::JOB) + " AND hkUref = 0", false, vecs);
+
+		keys.push_back("VECSREF"); vals.push_back("VECSREF");
+		keys.push_back("Vecsref"); vals.push_back("Vecsref");
+
+		for (unsigned int i = 0; i < vecs.nodes.size(); i++) {
+			vec = vecs.nodes[i];
+
+			vals[vals.size()-2] = StrMod::uc(vec->sref);
+			vals[vals.size()-1] = vec->sref;
+
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecswfile, "", outfolder + "/" + cmpsref + "/" + vec->sref + ".swift", keys, vals));
+		};
+
+		// -- VecXxxxVDpch
+		addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refVecdpswfile, "", outfolder + "/" + cmpsref + "/Vec" + Prjshort + "VDpch.swift", keys, vals));
+
+		// --- jobs (WznmWrsapiJob)
+		keys.resize(0); vals.resize(0);
+		keys.push_back("author"); vals.push_back(author);
+		keys.push_back("created"); vals.push_back(created);
+		keys.push_back("Prjshort"); vals.push_back(Prjshort);
+
+		keys.push_back("JOBSREF"); vals.push_back("JOBSREF");
+		keys.push_back("Jobsref"); vals.push_back("Jobsref");
+
+		dbswznm->tblwznmmjob->loadRstBySQL("SELECT * FROM TblWznmMJob WHERE refWznmMVersion = " + to_string(ver->ref) + " ORDER BY sref ASC", false, jobs);
+
+		for (unsigned int i = 0; i < jobs.nodes.size(); i++) {
+			job = jobs.nodes[i];
+
+			// count shared blocks
+			dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMBlock WHERE refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::JOB) + " AND refUref = " + to_string(job->ref)
+						+ " AND (((reaIxWznmWScope & " + to_string(VecWznmWScope::APP) + ") <> 0) OR ((wriIxWznmWScope & " + to_string(VecWznmWScope::APP) + ") <> 0))", cnt);
+		
+			if (cnt > 0) {
+				vals[vals.size()-2] = StrMod::uc(job->sref);
+				vals[vals.size()-1] = job->sref;
+
+				addInv(new DpchInvWznmWrsapiJob(0, 0, cmp->ref, job->ref, xchg->stgwznmtenant.orgweb, Prjshort, ipfolder + "/" + cmpsref));
+
+				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refJobswfile, "", outfolder + "/" + cmpsref + "/" + job->sref + ".swift", keys, vals));
+			};
+		};
+
+		// --- query tables (WznmWrsapiQtb)
+		keys.resize(0); vals.resize(0);
+		keys.push_back("author"); vals.push_back(author);
+		keys.push_back("created"); vals.push_back(created);
+		keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
+		keys.push_back("Prjshort"); vals.push_back(Prjshort);
+
+		keys.push_back("TBLSHORT"); vals.push_back("TBLSHORT");
+		keys.push_back("Tblshort"); vals.push_back("Tblshort");
+
+		dbswznm->tblwznmmtable->loadRstBySQL("SELECT TblWznmMTable.* FROM TblWznmMQuery, TblWznmMTable WHERE TblWznmMTable.ref = TblWznmMQuery.qtbRefWznmMTable AND TblWznmMQuery.refWznmMVersion = "
+					+ to_string(ver->ref) + " ORDER BY TblWznmMTable.sref ASC", false, qtbs);
+
+		for (unsigned int i = 0; i < qtbs.nodes.size(); i++) {
+			qtb = qtbs.nodes[i];
+
+			tblshort = qtb->sref.substr(3+4+1);
+
+			vals[vals.size()-2] = StrMod::uc(tblshort);
+			vals[vals.size()-1] = tblshort;
+
+			addInv(new DpchInvWznmWrsapiQtb(0, 0, qtb->ref, ipfolder + "/" + cmpsref));
+
+			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refQtbswfile, "", outfolder + "/" + cmpsref + "/" + qtb->sref.substr(3) + ".swift", keys, vals));
+		};
+	};
+
+	// --- clean up
+	delete rls;
+	delete cmp;
+	delete ver;
 };
 // IP cust --- IEND
 

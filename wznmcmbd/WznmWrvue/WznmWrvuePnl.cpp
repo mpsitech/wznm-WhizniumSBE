@@ -193,12 +193,12 @@ void WznmWrvuePnl::writePnlVue(
 
 		} else if (cplxtype == Concplxtype::CHK) {
 			outfile << "\t\t\t<v-checkbox" << endl;
-			if (con->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
+			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
 			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
 			outfile << "\t\t\t\tv-model=\"contiac." << baseconsref << "\"" << endl;
 			outfile << "\t\t\t\tv-on:change='updateEng([\"contiac\"])'" << endl;
-			outfile << "\t\t\t\t:label=\"tag." << baseconsref << "\"" << endl;
-			if (con->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
+			outfile << "\t\t\t\t:label=\"tag.Cpt" << baseconshort << "\"" << endl;
+			if (basecon->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
 			outfile << "\t\t\t/>" << endl;
 			outfile << endl;
 
@@ -207,7 +207,7 @@ void WznmWrvuePnl::writePnlVue(
 			dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(basecon->ref, "height", 0, s);
 
 			outfile << "\t\t\t<div" << endl;
-			if (con->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
+			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
 			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
 			outfile << "\t\t\t\tstyle=\"height:" << s << "px\"" << endl;
 			outfile << "\t\t\t>" << endl;
@@ -220,7 +220,7 @@ void WznmWrvuePnl::writePnlVue(
 
 		} else if (cplxtype == Concplxtype::HDG) {
 			outfile << "\t\t\t<h3" << endl;
-			if (con->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
+			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
 			outfile << "\t\t\t\tclass=\"text-5 my-2\"" << endl;
 			outfile << "\t\t\t>" << endl;
 			outfile << "\t\t\t\t{{tag." << baseconsref << "}}" << endl;
@@ -241,13 +241,13 @@ void WznmWrvuePnl::writePnlVue(
 
 		} else if (cplxtype == Concplxtype::PUP) {
 			outfile << "\t\t\t<v-select" << endl;
-			if (con->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
+			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
 			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
 			outfile << "\t\t\t\tv-model=\"contapp.fiF" << baseconsref << "\"" << endl;
-			outfile << "\t\t\t\t:items=\"FeedF" << baseconsref << "\"" << endl;
+			outfile << "\t\t\t\t:items=\"feedF" << baseconsref << "\"" << endl;
 			outfile << "\t\t\t\t:label='tag.Cpt" << baseconshort << "'" << endl;
-			outfile << "\t\t\t\tv-on:change=\"handlePupChange('numF" << baseconsref << "', fiF" << baseconsref << ")\"" << endl;
-			if (con->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
+			outfile << "\t\t\t\tv-on:change=\"handlePupChange('numF" << baseconsref << "', contapp.fiF" << baseconsref << ")\"" << endl;
+			if (basecon->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
 			outfile << "\t\t\t>" << endl;
 			outfile << "\t\t\t\t<template v-slot:selection=\"{item}\">{{item.tit1}}</template>" << endl;
 			outfile << "\t\t\t\t<template v-slot:item=\"{item}\">{{item.tit1}}</template>" << endl;
@@ -265,20 +265,20 @@ void WznmWrvuePnl::writePnlVue(
 
 		} else if (cplxtype == Concplxtype::SEP) {
 			outfile << "\t\t\t<v-divider";
-			if (con->Avail != "") outfile << " v-if\"statshr." << baseconsref << "Avail\"";
+			if (basecon->Avail != "") outfile << " v-if\"statshr." << baseconsref << "Avail\"";
 			outfile << "/>" << endl;
 			outfile << endl;
 
 		} else if (cplxtype == Concplxtype::SLD) {
 			outfile << "\t\t\t<v-slider" << endl;
-			if (con->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
+			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
 			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
 			outfile << "\t\t\t\tv-model=\"contiac." << baseconsref << "\"" << endl;
 			outfile << "\t\t\t\tv-on:end='updateEng([\"contiac\"])'" << endl;
 			outfile << "\t\t\t\t:label=\"tag.Cpt" << baseconshort << "\"" << endl;
 			outfile << "\t\t\t\t:min=\"statshr." << baseconsref << "Min\"" << endl;
 			outfile << "\t\t\t\t:max=\"statshr." << baseconsref << "Max\"" << endl;
-			if (con->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
+			if (basecon->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
 			outfile << "\t\t\t>" << endl;
 			outfile << "\t\t\t\t<template v-slot:append>" << endl;
 			outfile << "\t\t\t\t\t<v-text-field" << endl;
@@ -299,17 +299,17 @@ void WznmWrvuePnl::writePnlVue(
 
 		} else if (cplxtype == Concplxtype::TXF) {
 			outfile << "\t\t\t<v-text-field" << endl;
-			if (con->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
+			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
 			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
-			outfile << "\t\t\t\tv-model=\"" << baseconsref << "\"" << endl;
+			outfile << "\t\t\t\tv-model=\"contiac." << baseconsref << "\"" << endl;
 			outfile << "\t\t\t\t:label=\"tag.Cpt" << baseconshort << "\"" << endl;
-			if (con->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
+			if (basecon->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
 			outfile << "\t\t\t/>" << endl;
 			outfile << endl;
 
 		} else if (cplxtype == Concplxtype::TXT) {
 			outfile << "\t\t\t<v-text-field" << endl;
-			if (con->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
+			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
 			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
 			outfile << "\t\t\t\treadonly" << endl;
 			outfile << "\t\t\t\toutlined" << endl;
@@ -334,7 +334,7 @@ void WznmWrvuePnl::writePnlVue(
 		if (other) {
 			// preliminary: manual implementation
 			outfile << "\t\t\t<div" << endl;
-			if (con->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
+			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
 			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
 			outfile << "\t\t\t>" << endl;
 			outfile << "\t\t\t\t<!-- IP div" << baseconshort << " - INSERT -->" << endl;
@@ -347,6 +347,7 @@ void WznmWrvuePnl::writePnlVue(
 
 	// --- mergeDpchEngData
 	outfile << "<!-- IP mergeDpchEngData - IBEGIN -->" << endl;
+	outfile << "\t\t\t\t<!-- IP mergeDpchEngData - BEGIN -->" << endl;
 	outfile << "\t\t\t\t*/" << endl;
 
 	// cf. WznmWrweb::wrSrcblksJs
@@ -379,7 +380,7 @@ void WznmWrvuePnl::writePnlVue(
 		bit = bits.nodes[i];
 
 		if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
-			outfile << "\t\t\t\tif (dpcheng." << bit->sref << ") this." << bit->sref << " = dpcheng." << bit->sref << ";" << endl;
+			outfile << "\t\t\t\tif (dpcheng." << bit->sref << ") this." << StrMod::uncap(bit->sref) << " = dpcheng." << bit->sref << ";" << endl;
 
 		} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) {
 			if (dbswznm->tblwznmmtable->loadRecByRef(bit->refWznmMTable, &tbl)) {
@@ -393,7 +394,7 @@ void WznmWrvuePnl::writePnlVue(
 					outfile << "\t\t\t\tif (dpcheng." << blk->sref << ") {" << endl;
 					outfile << "\t\t\t\t\t" << Prjshort << ".unescapeBlock(dpcheng." << blk->sref << ");" << endl;
 					outfile << "\t\t\t\t\tthis." << bit->sref << " = dpcheng." << blk->sref << ";" << endl;
-					outfile << "\t\t\t\t};" << endl;
+					outfile << "\t\t\t\t}" << endl;
 
 				} else outfile << "\t\t\t\tif (dpcheng." << blk->sref << ") this." << bit->sref << " = dpcheng." << blk->sref << ";" << endl;
 
@@ -436,9 +437,9 @@ void WznmWrvuePnl::writePnlVue(
 		outfile << "\t\t\t\tif (dpcheng.ContIac" << pnl->sref.substr(3) << ") {" << endl;
 
 		for (auto it = srefFis.begin(); it != srefFis.end(); it++) {
-			outfile << "\t\t\t\t\tfor (var i = 0; i < this.Feed" << (*it).substr(3) << ".length; i++)" << endl;
-			outfile << "\t\t\t\t\t\tif (this.Feed" << (*it).substr(3) << "[i].num == this.contiac." << (*it) << ") {" << endl;
-			outfile << "\t\t\t\t\t\t\tthis.contapp.fi" << (*it).substr(3) << " = this.Feed" << (*it).substr(3) << "[i];" << endl;
+			outfile << "\t\t\t\t\tfor (var i = 0; i < this.feed" << (*it).substr(3) << ".length; i++)" << endl;
+			outfile << "\t\t\t\t\t\tif (this.feed" << (*it).substr(3) << "[i].num == this.contiac." << (*it) << ") {" << endl;
+			outfile << "\t\t\t\t\t\t\tthis.contapp.fi" << (*it).substr(3) << " = this.feed" << (*it).substr(3) << "[i];" << endl;
 			outfile << "\t\t\t\t\t\t\tbreak;" << endl;
 			outfile << "\t\t\t\t\t\t}" << endl;
 		};
@@ -460,6 +461,7 @@ void WznmWrvuePnl::writePnlVue(
 	};
 
 	outfile << "\t\t\t\t/*" << endl;
+	outfile << "\t\t\t\t<!-- IP mergeDpchEngData - END -->" << endl;
 	outfile << "<!-- IP mergeDpchEngData - IEND -->" << endl;
 
 	// --- dpchhdls
@@ -474,7 +476,11 @@ void WznmWrvuePnl::writePnlVue(
 
 			outfile << "\t\t\thandleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length()) << ": function(dpcheng) {" << endl;
 			outfile << "\t\t\t\t/*" << endl;
-			outfile << "\t\t\t\t<!-- IP handleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length()) << " - INSERT -->" << endl;
+			outfile << "\t\t\t\t<!-- IP handleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length()) << " - BEGIN -->" << endl;
+			outfile << "\t\t\t\t*/" << endl;
+			outfile << "\t\t\t\tconsole.log(\"" << pnl->sref << ".handleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length()) << "()\" + dpcheng);" << endl;
+			outfile << "\t\t\t\t/*" << endl;
+			outfile << "\t\t\t\t<!-- IP handleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length()) << " - END -->" << endl;
 			outfile << "\t\t\t\t*/" << endl;
 			outfile << "\t\t\t}," << endl;
 		};

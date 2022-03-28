@@ -17,7 +17,11 @@
 namespace WznmWrsapiBase {
 
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmWrsapiBase* dpchinv);
-	// IP cust --- INSERT
+	// IP cust --- IBEGIN
+
+	void writeApiSw(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion);
+	void writeVecdpchSw(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMBlock& blks);
+	// IP cust --- IEND
 };
 
 #endif

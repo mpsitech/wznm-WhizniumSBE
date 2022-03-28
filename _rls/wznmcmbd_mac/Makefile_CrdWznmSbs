@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmSbs card job handler, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# author: Emily Johnson (auto-generation)
+# date created: 28 Mar 2022
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -14,9 +14,9 @@ STATLIB = ar
 STATLIBFLAGS = rcs
 
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
-INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/local/include -I/usr/local/include/curl -I/usr/local/include/libxml2 -I/usr/local/mysql/include
+INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/opt/homebrew/include -I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/libgit2/include -I/opt/homebrew/opt/libmicrohttpd/include -I/opt/homebrew/opt/libxml2/include -I/opt/homebrew/opt/openssl@3/include -I/usr/local/mysql/include
 
-OBJS = CrdWznmSbs.o PnlWznmSbsRec.o PnlWznmSbsDetail.o PnlWznmSbsATitle.o QryWznmSbsATitle.o PnlWznmSbsFrs1NRelation.o QryWznmSbsFrs1NRelation.o PnlWznmSbsTos1NRelation.o QryWznmSbsTos1NRelation.o PnlWznmSbs1NTablecol.o QryWznmSbs1NTablecol.o PnlWznmSbs1NStub.o QryWznmSbs1NStub.o PnlWznmSbsPst1NQuerymod.o QryWznmSbsPst1NQuerymod.o PnlWznmSbsAsbMNSubset.o QryWznmSbsAsbMNSubset.o PnlWznmSbsBsbMNSubset.o QryWznmSbsBsbMNSubset.o PnlWznmSbsHeadbar.o PnlWznmSbsList.o QryWznmSbsList.o
+OBJS = CrdWznmSbs.o PnlWznmSbsList.o QryWznmSbsList.o PnlWznmSbsHeadbar.o PnlWznmSbsRec.o PnlWznmSbsBsbMNSubset.o QryWznmSbsBsbMNSubset.o PnlWznmSbsAsbMNSubset.o QryWznmSbsAsbMNSubset.o PnlWznmSbsPst1NQuerymod.o QryWznmSbsPst1NQuerymod.o PnlWznmSbsFrs1NRelation.o QryWznmSbsFrs1NRelation.o PnlWznmSbsTos1NRelation.o QryWznmSbsTos1NRelation.o PnlWznmSbs1NTablecol.o QryWznmSbs1NTablecol.o PnlWznmSbs1NStub.o QryWznmSbs1NStub.o PnlWznmSbsATitle.o QryWznmSbsATitle.o PnlWznmSbsDetail.o
 
 LIB = libcrdwznmsbs
 

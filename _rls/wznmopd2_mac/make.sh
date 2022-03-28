@@ -2,8 +2,8 @@
 # file make.sh
 # make script for Wznm operation daemon, release wznmopd2_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# author: Emily Johnson (auto-generation)
+# date created: 28 Mar 2022
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -17,7 +17,7 @@ if [ $? -ne 0 ]; then
 fi
 
 if [ "$1" = "all" ]; then
-	subs=("IexWznm" "VecWznm" "WznmCtpGenjtr" "WznmCtpGenui" "WznmCtpWrsrv" "WznmCtpWrstkit" "WznmCtpWrweb")
+	subs=("IexWznm" "VecWznm" "WznmCtpWrweb" "WznmCtpWrstkit" "WznmCtpWrsrv" "WznmCtpGenui" "WznmCtpGenjtr")
 else
 	subs=("$@")
 fi
