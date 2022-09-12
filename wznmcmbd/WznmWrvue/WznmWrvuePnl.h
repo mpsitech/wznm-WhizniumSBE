@@ -19,7 +19,16 @@ namespace WznmWrvuePnl {
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmWrvuePnl* dpchinv);
 	// IP cust --- IBEGIN
 
-	void writePnlVue(DbsWznm* dbswznm, std::fstream& outfile, WznmMPanel* pnl, const std::string& Prjshort);
+	// form / recform panel
+	void writePfVuefile(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, WznmMPanel* pnl, ListWznmMControl& cons, std::vector<unsigned int>& icsBasecons, const std::string& estblk, const bool hashdr, const bool hasftr); // PnlXxxxYyyZzzzz_Form.vue
+
+	// list / reclist panel
+	void writePlVuefile(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, WznmMPanel* pnl, ListWznmMControl& cons, const std::string& estblk, const bool haspst); // PnlXxxxYyyZzzzz.vue
+
+	// rec panel
+	void writePrVuefile(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, WznmMPanel* pnl, ListWznmMControl& cons); // PnlXxxxYyyRec.vue
+
+	void wrButs(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, ListWznmMControl& cons, const std::set<Sbecore::uint>& hkIcsVSection, const std::string& estblk);
 	// IP cust --- IEND
 };
 

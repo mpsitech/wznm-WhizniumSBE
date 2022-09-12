@@ -55,9 +55,9 @@ RootWznm::RootWznm(
 
 	// IP constructor.spec2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMLOGOUT, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMSUSPSESS, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMSUSPSESS, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMLOGOUT, jref, Clstn::VecVJobmask::IMM, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -531,6 +531,19 @@ bool RootWznm::authenticate(
 	return valid;
 };
 
+void RootWznm::termSess(
+			DbsWznm* dbswznm
+			, const ubigint jref
+		) {
+	JobWznm* job = NULL;
+
+	job = xchg->getJobByJref(jref);
+
+	if (job) {
+		if (job->ixWznmVJob == VecWznmVJob::SESSWZNM) ((SessWznm*) job)->term(dbswznm);
+	};
+};
+
 void RootWznm::handleRequest(
 			DbsWznm* dbswznm
 			, ReqWznm* req
@@ -572,8 +585,8 @@ void RootWznm::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (req->sref == "warnterm") handleTimerWithSrefWarnterm(dbswznm);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::IDLE)) handleTimerWithSrefMonInSgeIdle(dbswznm);
+		if ((req->sref == "mon") && (ixVSge == VecVSge::IDLE)) handleTimerWithSrefMonInSgeIdle(dbswznm);
+		else if (req->sref == "warnterm") handleTimerWithSrefWarnterm(dbswznm);
 	};
 };
 
@@ -628,6 +641,8 @@ bool RootWznm::handleEraseSess(
 	cout << "\tjob reference: ";
 	cin >> input;
 	iinput = atoi(input.c_str());
+
+	termSess(dbswznm, iinput);
 
 	if (!eraseSubjobByJref(sesss, iinput)) cout << "\tjob reference doesn't exist!" << endl;
 	else cout << "\tsession erased." << endl;
@@ -882,6 +897,13 @@ void RootWznm::handleDpchAppLogin(
 	};
 };
 
+void RootWznm::handleTimerWithSrefMonInSgeIdle(
+			DbsWznm* dbswznm
+		) {
+	wrefLast = xchg->addWakeup(jref, "mon", 240000000, true);
+	changeStage(dbswznm, VecVSge::IDLE); // IP handleTimerWithSrefMonInSgeIdle --- ILINE
+};
+
 void RootWznm::handleTimerWithSrefWarnterm(
 			DbsWznm* dbswznm
 		) {
@@ -934,42 +956,29 @@ void RootWznm::handleTimerWithSrefWarnterm(
 	} else if (tnext != 0) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (tnext - rawtime));
 };
 
-void RootWznm::handleTimerWithSrefMonInSgeIdle(
-			DbsWznm* dbswznm
-		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 240000000, true);
-	changeStage(dbswznm, VecVSge::IDLE); // IP handleTimerWithSrefMonInSgeIdle --- ILINE
-};
-
 void RootWznm::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMLOGOUT) {
-		call->abort = handleCallWznmLogout(dbswznm, call->jref, call->argInv.boolval);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
+		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSUSPSESS) {
 		call->abort = handleCallWznmSuspsess(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMREFPRESET) {
-		call->abort = handleCallWznmRefPreSet(dbswznm, call->jref, call->argInv.ix, call->argInv.ref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOGOUT) {
+		call->abort = handleCallWznmLogout(dbswznm, call->jref, call->argInv.boolval);
 	};
 };
 
-bool RootWznm::handleCallWznmLogout(
+bool RootWznm::handleCallWznmRefPreSet(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
-			, const bool boolvalInv
+			, const uint ixInv
+			, const ubigint refInv
 		) {
 	bool retval = false;
 
-	time_t rawtime;
-
-	if (!boolvalInv) {
-		eraseSubjobByJref(sesss, jrefTrig);
-
-		if (xchg->stgwznmappearance.roottterm) {
-			time(&rawtime);
-			xchg->addRefPreset(VecWznmVPreset::PREWZNMTLAST, jref, rawtime);
-		};
+	if (ixInv == VecWznmVPreset::PREWZNMTLAST) {
+		xchg->addRefPreset(ixInv, jref, refInv);
 	};
 
 	return retval;
@@ -987,16 +996,24 @@ bool RootWznm::handleCallWznmSuspsess(
 	return retval;
 };
 
-bool RootWznm::handleCallWznmRefPreSet(
+bool RootWznm::handleCallWznmLogout(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
-			, const uint ixInv
-			, const ubigint refInv
+			, const bool boolvalInv
 		) {
 	bool retval = false;
 
-	if (ixInv == VecWznmVPreset::PREWZNMTLAST) {
-		xchg->addRefPreset(ixInv, jref, refInv);
+	time_t rawtime;
+
+	termSess(dbswznm, jrefTrig);
+
+	if (!boolvalInv) {
+		eraseSubjobByJref(sesss, jrefTrig);
+
+		if (xchg->stgwznmappearance.roottterm) {
+			time(&rawtime);
+			xchg->addRefPreset(VecWznmVPreset::PREWZNMTLAST, jref, rawtime);
+		};
 	};
 
 	return retval;

@@ -145,15 +145,14 @@ PnlWznmSge1NSensitivity::StgIac::StgIac(
 };
 
 bool PnlWznmSge1NSensitivity::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacWznmSge1NSensitivity"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacWznmSge1NSensitivity"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -310,15 +309,14 @@ string PnlWznmSge1NSensitivity::DpchAppData::getSrefsMask() {
 };
 
 void PnlWznmSge1NSensitivity::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmSge1NSensitivityData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmSge1NSensitivityData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -384,15 +382,14 @@ string PnlWznmSge1NSensitivity::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWznmSge1NSensitivity::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmSge1NSensitivityDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmSge1NSensitivityDo"];}();
 
 	basefound = (me != Json::nullValue);
 

@@ -87,8 +87,10 @@ public:
 		static const Sbecore::uint VUEAPP = 5;
 		static const Sbecore::uint WEBAPP = 6;
 		static const Sbecore::uint API = 7;
-		static const Sbecore::uint JAPI = 8;
-		static const Sbecore::uint SAPI = 9;
+		static const Sbecore::uint CSAPI = 8;
+		static const Sbecore::uint JAPI = 9;
+		static const Sbecore::uint PYAPI = 10;
+		static const Sbecore::uint SWAPI = 11;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

@@ -47,8 +47,8 @@ PnlWznmStbDetail::PnlWznmStbDetail(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMSTB_SBSEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMSTB_TCOEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMSTB_SBSEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -289,23 +289,21 @@ void PnlWznmStbDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMSTB_SBSEQ) {
-		call->abort = handleCallWznmStb_sbsEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMSTBUPD_REFEQ) {
+		call->abort = handleCallWznmStbUpd_refEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTB_TCOEQ) {
 		call->abort = handleCallWznmStb_tcoEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTBUPD_REFEQ) {
-		call->abort = handleCallWznmStbUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTB_SBSEQ) {
+		call->abort = handleCallWznmStb_sbsEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
-bool PnlWznmStbDetail::handleCallWznmStb_sbsEq(
+bool PnlWznmStbDetail::handleCallWznmStbUpd_refEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
 		) {
 	bool retval = false;
-	boolvalRet = (recStb.refWznmMSubset == refInv); // IP handleCallWznmStb_sbsEq --- LINE
+	// IP handleCallWznmStbUpd_refEq --- INSERT
 	return retval;
 };
 
@@ -320,11 +318,13 @@ bool PnlWznmStbDetail::handleCallWznmStb_tcoEq(
 	return retval;
 };
 
-bool PnlWznmStbDetail::handleCallWznmStbUpd_refEq(
+bool PnlWznmStbDetail::handleCallWznmStb_sbsEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
 		) {
 	bool retval = false;
-	// IP handleCallWznmStbUpd_refEq --- INSERT
+	boolvalRet = (recStb.refWznmMSubset == refInv); // IP handleCallWznmStb_sbsEq --- LINE
 	return retval;
 };

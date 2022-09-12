@@ -10,10 +10,10 @@
 #ifndef WZNM_H
 #define WZNM_H
 
-#define WZNM_VERSION "1.1.8"
+#define WZNM_VERSION "1.1.9"
 #define WZNM_VERSION_MAJOR 1
 #define WZNM_VERSION_MINOR 1
-#define WZNM_VERSION_SUB 8
+#define WZNM_VERSION_SUB 9
 
 // IP include.cust --- IBEGIN
 #include <sys/wait.h>
@@ -192,6 +192,9 @@ namespace Wznm {
 	Sbecore::uint getPnlreltype(DbsWznm* dbswznm, WznmMPanel* pnl);
 	bool getPnllhs(DbsWznm* dbswznm, WznmMPanel* pnl);
 	bool getPnlrhs(DbsWznm* dbswznm, WznmMPanel* pnl);
+
+	bool hasAction(DbsWznm* dbswznm, const Sbecore::uint hkIxVTbl, const Sbecore::ubigint hkUref, const std::string& action);
+
 	std::string getConsref(WznmMControl* con, const std::string& ditshort);
 	std::string getConstatblk(WznmMControl* con);
 	unsigned int getConheight(DbsWznm* dbswznm, WznmMControl* con);

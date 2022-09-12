@@ -1,8 +1,8 @@
 # file Makefile
 # make file for CrdWznmQry card job handler, release wznmd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Emily Johnson (auto-generation)
-# date created: 28 Mar 2022
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmd/VecWznm -I$(BUILDROOT)/wznmd/IexWznm -I$(BUILDROOT)/wznmd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/opt/homebrew/include -I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/libgit2/include -I/opt/homebrew/opt/libmicrohttpd/include -I/opt/homebrew/opt/libxml2/include -I/opt/homebrew/opt/openssl@3/include -I/usr/local/mysql/include
 
-OBJS = CrdWznmQry.o PnlWznmQryList.o QryWznmQryList.o PnlWznmQryHeadbar.o PnlWznmQryRec.o PnlWznmQryMNDialog.o QryWznmQryMNDialog.o PnlWznmQryMNPanel.o QryWznmQryMNPanel.o PnlWznmQryMNTable.o QryWznmQryMNTable.o PnlWznmQrySup1NQuery.o QryWznmQrySup1NQuery.o PnlWznmQryQry1NQuerycol.o QryWznmQryQry1NQuerycol.o PnlWznmQry1NQuerymod.o QryWznmQry1NQuerymod.o PnlWznmQryAOrder.o QryWznmQryAOrder.o PnlWznmQryAClause.o QryWznmQryAClause.o PnlWznmQryDetail.o
+OBJS = CrdWznmQry.o PnlWznmQryList.o QryWznmQryList.o PnlWznmQryRec.o PnlWznmQryMNDialog.o QryWznmQryMNDialog.o PnlWznmQryMNPanel.o QryWznmQryMNPanel.o PnlWznmQryMNTable.o QryWznmQryMNTable.o PnlWznmQrySup1NQuery.o QryWznmQrySup1NQuery.o PnlWznmQryQry1NQuerycol.o QryWznmQryQry1NQuerycol.o PnlWznmQry1NQuerymod.o QryWznmQry1NQuerymod.o PnlWznmQryAOrder.o QryWznmQryAOrder.o PnlWznmQryDetail.o PnlWznmQryAClause.o QryWznmQryAClause.o PnlWznmQryHeadbar.o
 
 LIB = libcrdwznmqry
 
@@ -29,7 +29,6 @@ all:	$(LIB)
 
 $(LIB):	$(OBJS)
 	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
-	rm -f *.o
 
 install:
 	mv $(LIB).a $(LIBROOT)/wznmd/

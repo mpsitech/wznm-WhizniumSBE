@@ -20,8 +20,8 @@ uint QryWznmSbsList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
 	if (s == "tbl") return TBL;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -29,8 +29,8 @@ uint QryWznmSbsList::VecVOrd::getIx(
 string QryWznmSbsList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
 	if (ix == TBL) return("tbl");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -181,15 +181,14 @@ QryWznmSbsList::StgIac::StgIac(
 };
 
 bool QryWznmSbsList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmSbsList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmSbsList"];}();
 
 	basefound = (me != Json::nullValue);
 

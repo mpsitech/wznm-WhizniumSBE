@@ -183,15 +183,14 @@ QryWznmRlsList::StgIac::StgIac(
 };
 
 bool QryWznmRlsList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmRlsList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmRlsList"];}();
 
 	basefound = (me != Json::nullValue);
 

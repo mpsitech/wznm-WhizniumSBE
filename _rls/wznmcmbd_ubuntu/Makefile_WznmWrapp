@@ -2,7 +2,7 @@
 # make file for operation pack WznmWrapp, release wznmcmbd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -17,7 +17,7 @@ INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
 
 OBJS = WznmWrapp_blks.o WznmWrapp.o
-OBJS += WznmWrappBase.o WznmWrappJbase.o SqkWznmWrapp.o
+OBJS += WznmWrappDom.o WznmWrappMain.o WznmWrappStdvec.o SqkWznmWrapp.o
 
 LIB = libwznmwrapp
 
@@ -30,7 +30,6 @@ all:	$(LIB)
 
 $(LIB):	$(OBJS)
 	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
-	rm -f *.o
 
 install:
 	mv $(LIB).a $(LIBROOT)/wznmcmbd/

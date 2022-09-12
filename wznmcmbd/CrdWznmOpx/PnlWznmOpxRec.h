@@ -14,12 +14,12 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmOpxDetail.h"
-#include "PnlWznmOpxAInvarg.h"
-#include "PnlWznmOpxARetval.h"
-#include "PnlWznmOpxRef1NBlock.h"
-#include "PnlWznmOpxMNJob.h"
 #include "PnlWznmOpxSqkMNStub.h"
+#include "PnlWznmOpxMNJob.h"
+#include "PnlWznmOpxRef1NBlock.h"
+#include "PnlWznmOpxARetval.h"
+#include "PnlWznmOpxAInvarg.h"
+#include "PnlWznmOpxDetail.h"
 
 #define VecVWznmOpxRecDo PnlWznmOpxRec::VecVDo
 
@@ -146,7 +146,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -189,12 +189,12 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmOpxDetail* pnldetail;
-	PnlWznmOpxAInvarg* pnlainvarg;
-	PnlWznmOpxARetval* pnlaretval;
-	PnlWznmOpxRef1NBlock* pnlref1nblock;
-	PnlWznmOpxMNJob* pnlmnjob;
 	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
+	PnlWznmOpxMNJob* pnlmnjob;
+	PnlWznmOpxRef1NBlock* pnlref1nblock;
+	PnlWznmOpxARetval* pnlaretval;
+	PnlWznmOpxAInvarg* pnlainvarg;
+	PnlWznmOpxDetail* pnldetail;
 
 	WznmMOp recOpx;
 
@@ -230,10 +230,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmOpx_opkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmOpx_sqkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmOpxUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmSqkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmOpxUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmOpx_sqkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmOpx_opkEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

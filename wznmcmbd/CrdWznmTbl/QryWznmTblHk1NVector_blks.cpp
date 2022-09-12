@@ -149,15 +149,14 @@ QryWznmTblHk1NVector::StgIac::StgIac(
 };
 
 bool QryWznmTblHk1NVector::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmTblHk1NVector"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmTblHk1NVector"];}();
 
 	basefound = (me != Json::nullValue);
 

@@ -38,17 +38,75 @@ DpchRetWznm* WznmWrvuePnl::run(
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
 	// IP run --- IBEGIN
-	fstream vuefile;
+
+	// adapted version from WznmWrwebPnl.cpp
+
+	fstream outfile;
 
 	WznmMPanel* pnl = NULL;
+	string estblk;
 
+	WznmMCard* car = NULL;
+	bool haspst = false;
+
+	bool hashdr, hasftr;
+
+	ListWznmMControl cons;
+	WznmMControl* con = NULL;
+
+	vector<unsigned int> icsBasecons;
+
+	uint cnt;
 	string s;
 
 	if (dbswznm->tblwznmmpanel->loadRecByRef(refWznmMPanel, &pnl)) {
-		s = xchg->tmppath + "/" + folder + "/" + pnl->sref + ".vue.ip";
-		vuefile.open(s.c_str(), ios::out);
-		writePnlVue(dbswznm, vuefile, pnl, Prjshort);
-		vuefile.close();
+		dbswznm->tblwznmmcontrol->loadRstByHktHku(VecWznmVMControlHkTbl::PNL, pnl->ref, false, cons);
+		for (unsigned int i = 0; i < cons.nodes.size(); i++) {
+			con = cons.nodes[i];
+
+			if ((con->ixVBasetype == VecWznmVMControlBasetype::BUT) && (con->sref == "ButRegularize")) {
+				if (con->ixVScope == VecWznmVMControlScope::APP) estblk = "statapp";
+				else estblk = "statshr";
+
+				break;
+			};
+		};
+
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::RECFORM)) {
+			Wznm::getBasecons(dbswznm, cons, {VecWznmVMControlHkSection::CONT, VecWznmVMControlHkSection::CONTREGD}, 0, icsBasecons);
+
+			// even detail panel has cpt in header
+			hashdr = !((pnl->ixVBasetype == VecWznmVMPanelBasetype::RECFORM) && (pnl->sref.find("Detail") != string::npos));
+
+			hasftr = false;
+			if (dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL) + " AND hkUref = " + to_string(pnl->ref) + " AND hkIxVSection = "
+						+ to_string(VecWznmVMControlHkSection::FTR) + " AND supRefWznmMControl = 0", cnt)) hasftr = (cnt > 0);
+
+			// PnlXxxxYyyZzzzz_Form.vue
+			s = xchg->tmppath + "/" + folder + "/" + pnl->sref + ".vue.ip";
+			outfile.open(s.c_str(), ios::out);
+			writePfVuefile(dbswznm, Prjshort, outfile, pnl, cons, icsBasecons, estblk, hashdr, hasftr);
+			outfile.close();
+
+		} else if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::LIST) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::RECLIST)) {
+			if (dbswznm->tblwznmmcard->loadRecByRef(pnl->carRefWznmMCard, &car)) {
+				haspst = ((pnl->ixVBasetype == VecWznmVMPanelBasetype::LIST) && (car->Active.length() > 0));
+				delete car;
+			};
+
+			// PnlXxxxYyyZzzzz.vue
+			s = xchg->tmppath + "/" + folder + "/" + pnl->sref + ".vue.ip";
+			outfile.open(s.c_str(), ios::out);
+			writePlVuefile(dbswznm, Prjshort, outfile, pnl, cons, estblk, haspst);
+			outfile.close();
+
+		} else if (pnl->ixVBasetype == VecWznmVMPanelBasetype::REC) {
+			// PnlXxxxYyyRec.vue
+			s = xchg->tmppath + "/" + folder + "/" + pnl->sref + ".vue.ip";
+			outfile.open(s.c_str(), ios::out);
+			writePrVuefile(dbswznm, Prjshort, outfile, pnl, cons);
+			outfile.close();
+		};
 
 		delete pnl;
 	};
@@ -58,415 +116,68 @@ DpchRetWznm* WznmWrvuePnl::run(
 };
 
 // IP cust --- IBEGIN
-void WznmWrvuePnl::writePnlVue(
+void WznmWrvuePnl::writePfVuefile(
 			DbsWznm* dbswznm
+			, const string& Prjshort
 			, fstream& outfile
 			, WznmMPanel* pnl
-			, const string& Prjshort
+			, ListWznmMControl& cons
+			, vector<unsigned int>& icsBasecons
+			, const string& estblk
+			, const bool hashdr
+			, const bool hasftr
 		) {
-	ListWznmMControl cons;
-	WznmMControl* con = NULL;
-
-	vector<unsigned int> icsBasecons;
-
-	unsigned int cplxtype;
-	string baseconsref, baseconshort;
-	bool ldyn, dyn, rdyn, vbar;
-	unsigned int ix0, ix1;
-	unsigned int ixBut, ixButCollapse, ixButEdit, ixButExpand, ixButToggle, ixButView;
-	vector<unsigned int> icsButs;
-	unsigned int ixChk, ixCpt, ixHdg, ixLsb, ixPup, ixTxf, ixTxt;
-	vector<unsigned int> icsVbarcons;
-
-	WznmMControl* basecon = NULL;
-
-	string consref;
-
-	unsigned int w;
-	string s, s2;
-
-	bool found, other;
-
-	// --- hdr
-	outfile << "<!-- IP hdr - IBEGIN -->" << endl;
-
-	// preliminary: consider special case of ButClaim
-	dbswznm->tblwznmmcontrol->loadRstByHktHku(VecWznmVMControlHkTbl::PNL, pnl->ref, false, cons);
-
-	found = false;
-
-	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
-		con = cons.nodes[i];
-
-		if ((con->ixVBasetype == VecWznmVMControlBasetype::BUT) && ((con->hkIxVSection == VecWznmVMControlHkSection::HDR) || (con->hkIxVSection == VecWznmVMControlHkSection::HDRDETD) || (con->hkIxVSection == VecWznmVMControlHkSection::HDRREGD))) {
-			if (con->sref == "ButClaim") {
-				found = true;
-				break;
-			};
-		};
-	};
-
-	outfile << "\t\t\t\t<v-col cols=\"";
-	if (!found) outfile << 12;
-	else outfile << 11;
-	outfile << "\">" << endl;
-	outfile << "\t\t\t\t\t<div>{{tag.Cpt}}</div>" << endl;
-	outfile << "\t\t\t\t</v-col>" << endl;
-
-	if (found) {
-		outfile << "\t\t\t\t<v-col align=\"end\">" << endl;
-		outfile << "\t\t\t\t\t<v-btn-toggle v-model=\"contapp." << con->sref << "On\">" << endl;
-		outfile << "\t\t\t\t\t\t<v-btn" << endl;
-		outfile << "\t\t\t\t\t\t\tfab" << endl;
-		outfile << "\t\t\t\t\t\t\tsmall" << endl;
-		outfile << "\t\t\t\t\t\t\tlight" << endl;
-		outfile << "\t\t\t\t\t\t\tcolor=\"primary\"" << endl;
-		outfile << "\t\t\t\t\t\t\tv-on:click=\"handleButClick('" << con->sref << "Click')\"" << endl;
-		outfile << "\t\t\t\t\t\t\t:value=\"1\"" << endl;
-		if (con->Active != "") outfile << "\t\t\t\t\t\t\t:disabled=\"!statshr." << con->sref << "Active\"" << endl;
-		outfile << "\t\t\t\t\t\t>" << endl;
-		outfile << "\t\t\t\t\t\t\t<v-icon color=\"white\">{{contapp." << con->sref << "On ? 'mdi-cog' : 'mdi-cog-off'}}</v-icon>" << endl;
-		outfile << "\t\t\t\t\t\t</v-btn>" << endl;
-		outfile << "\t\t\t\t\t</v-btn-toggle>" << endl;
-		outfile << "\t\t\t\t</v-col>" << endl;
-	};
-
-	outfile << "<!-- IP hdr - IEND -->" << endl;
-
-	// --- cont
-	outfile << "<!-- IP cont - IBEGIN -->" << endl;
-
-	Wznm::getBasecons(dbswznm, cons, {VecWznmVMControlHkSection::CONT, VecWznmVMControlHkSection::CONTREGD}, 0, icsBasecons);
-
-	for (unsigned int i = 0; i < icsBasecons.size(); i++) {
-		basecon = cons.nodes[icsBasecons[i]];
-
-		//if (basecon->ixVScope != VecWznmVMControlScope::SHR) continue;
-
-		other = false;
-
-		Wznm::analyzeBasecon(dbswznm, cons, icsBasecons, i, "", cplxtype, baseconsref, baseconshort, ldyn, dyn, rdyn, vbar, ix0, ix1, ixBut, ixButCollapse, ixButEdit, ixButExpand, ixButToggle, ixButView,
-					icsButs, ixChk, ixCpt, ixHdg, ixLsb, ixPup, ixTxf, ixTxt, icsVbarcons);
-
-		if (cplxtype == Concplxtype::INVALID) {
-
-		} else if (cplxtype == Concplxtype::BUT_CLUST) {
-			outfile << "\t\t\t<v-row class=\"my-2\">" << endl;
-			outfile << "\t\t\t\t<v-col>" << endl;
-
-			for (unsigned int i = 0; i < icsButs.size(); i++) {
-				con = cons.nodes[icsButs[i]];
-				consref = Wznm::getConsref(con, "");
-
-				if (i != 0) outfile << "\t\t\t\t\t&#160;" << endl;
-
-				if (StrMod::srefInSrefs(con->srefsKOption, "icon")) {
-					if (!dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con->ref, "icon", 0, s))
-								dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con->ref, "stdicon", 0, s);
-
-					outfile << "\t\t\t\t\t<v-btn" << endl;
-					outfile << "\t\t\t\t\t\tfab" << endl;
-					outfile << "\t\t\t\t\t\tsmall" << endl;
-					outfile << "\t\t\t\t\t\tlight" << endl;
-					outfile << "\t\t\t\t\t\tcolor=\"primary\"" << endl;
-					outfile << "\t\t\t\t\t\tv-on:click=\"handleButClick('" << consref << "Click')\"" << endl;
-					if (con->Active != "") outfile << "\t\t\t\t\t\t:disabled=\"!statshr." << consref << "Active\"" << endl;
-					outfile << "\t\t\t\t\t>" << endl;
-					outfile << "\t\t\t\t\t\t<v-icon color=\"white\">mdi-" << s << "</v-icon>" << endl;
-					outfile << "\t\t\t\t\t</v-btn>" << endl;
-
-				} else {
-					outfile << "\t\t\t\t\t<v-btn" << endl;
-					outfile << "\t\t\t\t\t\tclass=\"my-2\"" << endl;
-					outfile << "\t\t\t\t\t\tcolor=\"primary\"" << endl;
-					outfile << "\t\t\t\t\t\tv-on:click=\"handleButClick('" << consref << "Click')\"" << endl;
-					if (con->Active != "") outfile << "\t\t\t\t\t\t:disabled=\"!statshr." << consref << "Active\"" << endl;
-					outfile << "\t\t\t\t\t>" << endl;
-					outfile << "\t\t\t\t\t\t{{tag." << consref << "}}" << endl;
-					outfile << "\t\t\t\t\t</v-btn>" << endl;
-				};
-			};
-
-			outfile << "\t\t\t\t</v-col>" << endl;
-			outfile << "\t\t\t</v-row>" << endl;
-			outfile << endl;
-
-		} else if (cplxtype == Concplxtype::CHK) {
-			outfile << "\t\t\t<v-checkbox" << endl;
-			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
-			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
-			outfile << "\t\t\t\tv-model=\"contiac." << baseconsref << "\"" << endl;
-			outfile << "\t\t\t\tv-on:change='updateEng([\"contiac\"])'" << endl;
-			outfile << "\t\t\t\t:label=\"tag.Cpt" << baseconshort << "\"" << endl;
-			if (basecon->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
-			outfile << "\t\t\t/>" << endl;
-			outfile << endl;
-
-		} else if (cplxtype == Concplxtype::CUS) {
-			s = "100";
-			dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(basecon->ref, "height", 0, s);
-
-			outfile << "\t\t\t<div" << endl;
-			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
-			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
-			outfile << "\t\t\t\tstyle=\"height:" << s << "px\"" << endl;
-			outfile << "\t\t\t>" << endl;
-			outfile << "\t\t\t\t<!-- IP div" << baseconshort << " - INSERT -->" << endl;
-			outfile << "\t\t\t</div>" << endl;
-			outfile << endl;
-
-		} else if (cplxtype == Concplxtype::DLD) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::HDG) {
-			outfile << "\t\t\t<h3" << endl;
-			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
-			outfile << "\t\t\t\tclass=\"text-5 my-2\"" << endl;
-			outfile << "\t\t\t>" << endl;
-			outfile << "\t\t\t\t{{tag." << baseconsref << "}}" << endl;
-			outfile << "\t\t\t</h3>" << endl;
-			outfile << endl;
-
-		} else if (cplxtype == Concplxtype::LST) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::LST_NOALT) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::LST_TXFALT) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::LST_TXTALT) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::PUP) {
-			outfile << "\t\t\t<v-select" << endl;
-			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
-			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
-			outfile << "\t\t\t\tv-model=\"contapp.fiF" << baseconsref << "\"" << endl;
-			outfile << "\t\t\t\t:items=\"feedF" << baseconsref << "\"" << endl;
-			outfile << "\t\t\t\t:label='tag.Cpt" << baseconshort << "'" << endl;
-			outfile << "\t\t\t\tv-on:change=\"handlePupChange('numF" << baseconsref << "', contapp.fiF" << baseconsref << ")\"" << endl;
-			if (basecon->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
-			outfile << "\t\t\t>" << endl;
-			outfile << "\t\t\t\t<template v-slot:selection=\"{item}\">{{item.tit1}}</template>" << endl;
-			outfile << "\t\t\t\t<template v-slot:item=\"{item}\">{{item.tit1}}</template>" << endl;
-			outfile << "\t\t\t</v-select>" << endl;
-			outfile << endl;
-
-		} else if (cplxtype == Concplxtype::PUP_PUP) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::PUP_TXFALT) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::PUP_VBAR) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::SEP) {
-			outfile << "\t\t\t<v-divider";
-			if (basecon->Avail != "") outfile << " v-if\"statshr." << baseconsref << "Avail\"";
-			outfile << "/>" << endl;
-			outfile << endl;
-
-		} else if (cplxtype == Concplxtype::SLD) {
-			outfile << "\t\t\t<v-slider" << endl;
-			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
-			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
-			outfile << "\t\t\t\tv-model=\"contiac." << baseconsref << "\"" << endl;
-			outfile << "\t\t\t\tv-on:end='updateEng([\"contiac\"])'" << endl;
-			outfile << "\t\t\t\t:label=\"tag.Cpt" << baseconshort << "\"" << endl;
-			outfile << "\t\t\t\t:min=\"statshr." << baseconsref << "Min\"" << endl;
-			outfile << "\t\t\t\t:max=\"statshr." << baseconsref << "Max\"" << endl;
-			if (basecon->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
-			outfile << "\t\t\t>" << endl;
-			outfile << "\t\t\t\t<template v-slot:append>" << endl;
-			outfile << "\t\t\t\t\t<v-text-field" << endl;
-			outfile << "\t\t\t\t\t\tv-model=\"contiac." << baseconsref << "\"" << endl;
-			outfile << "\t\t\t\t\t\tv-on:change='updateEng([\"contiac\"])'" << endl;
-			outfile << "\t\t\t\t\t\tclass=\"mt-0 pt-0\"" << endl;
-			outfile << "\t\t\t\t\t\thide-details" << endl;
-			outfile << "\t\t\t\t\t\tsingle-line" << endl;
-			outfile << "\t\t\t\t\t\ttype=\"number\"" << endl;
-			outfile << "\t\t\t\t\t\tstyle=\"width: 80px\"" << endl;
-			outfile << "\t\t\t\t\t/>" << endl;
-			outfile << "\t\t\t\t</template>" << endl;
-			outfile << "\t\t\t</v-slider>" << endl;
-			outfile << endl;
-
-		} else if (cplxtype == Concplxtype::SPC) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::TXF) {
-			outfile << "\t\t\t<v-text-field" << endl;
-			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
-			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
-			outfile << "\t\t\t\tv-model=\"contiac." << baseconsref << "\"" << endl;
-			outfile << "\t\t\t\t:label=\"tag.Cpt" << baseconshort << "\"" << endl;
-			if (basecon->Active != "") outfile << "\t\t\t\t:disabled=\"!statshr." << baseconsref << "Active\"" << endl;
-			outfile << "\t\t\t/>" << endl;
-			outfile << endl;
-
-		} else if (cplxtype == Concplxtype::TXT) {
-			outfile << "\t\t\t<v-text-field" << endl;
-			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
-			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
-			outfile << "\t\t\t\treadonly" << endl;
-			outfile << "\t\t\t\toutlined" << endl;
-			outfile << "\t\t\t\tv-model=\"continf." << baseconsref << "\"" << endl;
-			outfile << "\t\t\t\t:label=\"tag.Cpt" << baseconshort << "\"" << endl;
-			outfile << "\t\t\t/>" << endl;
-			outfile << endl;
-
-		} else if (cplxtype == Concplxtype::TXT_PUP) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::TXT_TXFALT) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::ULD) {
-			other = true;
-
-		} else if (cplxtype == Concplxtype::UPD) {
-			other = true;
-		};
-
-		if (other) {
-			// preliminary: manual implementation
-			outfile << "\t\t\t<div" << endl;
-			if (basecon->Avail != "") outfile << "\t\t\t\tv-if=\"statshr." << baseconsref << "Avail\"" << endl;
-			outfile << "\t\t\t\tclass=\"my-2\"" << endl;
-			outfile << "\t\t\t>" << endl;
-			outfile << "\t\t\t\t<!-- IP div" << baseconshort << " - INSERT -->" << endl;
-			outfile << "\t\t\t</div>" << endl;
-			outfile << endl;
-		};
-	};
-
-	outfile << "<!-- IP cont - IEND -->" << endl;
-
-	// --- mergeDpchEngData
-	outfile << "<!-- IP mergeDpchEngData - IBEGIN -->" << endl;
-	outfile << "\t\t\t\t<!-- IP mergeDpchEngData - BEGIN -->" << endl;
-	outfile << "\t\t\t\t*/" << endl;
-
-	// cf. WznmWrweb::wrSrcblksJs
-
-	ubigint ref;
+	set<uint> unqcontypes;
 
 	ListWznmMBlock dpchs;
 	WznmMBlock* dpch = NULL;
 
-	ListWznmAMBlockItem bits;
-	WznmAMBlockItem* bit = NULL;
+	for (unsigned int i = 0; i < cons.nodes.size(); i++) unqcontypes.insert(cons.nodes[i]->ixVBasetype);
 
-	ListWznmAMBlockItem bit2s;
-	WznmAMBlockItem* bit2 = NULL;
+	// --- hdr*
+	if (hashdr) outfile << "<!-- IP hdr - AFFIRM -->" << endl;
+	else outfile << "<!-- IP hdr - REMOVE -->" << endl;
 
-	WznmMTable* tbl = NULL;
-	WznmMBlock* blk = NULL;
+	if (hashdr) {
+		// --- buts
+		outfile << "<!-- IP buts - IBEGIN -->" << endl;
+		wrButs(dbswznm, Prjshort, outfile, cons, {VecWznmVMControlHkSection::HDR, VecWznmVMControlHkSection::HDRDETD, VecWznmVMControlHkSection::HDRREGD}, estblk);
+		outfile << "\t\t\t\t\t&#160;&#160;" << endl;
+		wrButs(dbswznm, Prjshort, outfile, cons, {VecWznmVMControlHkSection::SIDE}, estblk);
+		outfile << "<!-- IP buts - IEND -->" << endl;
+	};
 
-	set<string> srefFis, srefButons;
+	// --- nohdr*
+	if (!hashdr) outfile << "<!-- IP nohdr - AFFIRM -->" << endl;
+	else outfile << "<!-- IP nohdr - REMOVE -->" << endl;
 
-	bool first;
+	// --- cont
+	outfile << "<!-- IP cont - IBEGIN -->" << endl;
+	for (unsigned int i = 0; i < icsBasecons.size(); i++) wrBasecon(dbswznm, Prjshort, outfile, pnl->sref, cons, icsBasecons, i, "");
+	outfile << "<!-- IP cont - IEND -->" << endl;
 
+	// --- handleButClick*
+	if (has(unqcontypes, VecWznmVMControlBasetype::BUT)) outfile << "<!-- IP handleButClick - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleButClick - REMOVE -->" << endl;
+
+	// --- handleButUploadClick*
+	if (has(unqcontypes, VecWznmVMControlBasetype::ULD)) outfile << "<!-- IP handleButUploadClick - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleButUploadClick - REMOVE -->" << endl;
+
+	// --- handlePupChange*
+	if (has(unqcontypes, VecWznmVMControlBasetype::PUP)) outfile << "<!-- IP handlePupChange - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handlePupChange - REMOVE -->" << endl;
+
+	// --- mergeDpchEngData
+	wrIbegin(outfile, 4, "mergeDpchEngData", true);
+	wrMergedpcheng(dbswznm, Prjshort, outfile, pnl->refWznmMJob);
+	wrIend(outfile, 4, "mergeDpchEngData", true);
+
+	// --- dpchhdls
 	dbswznm->tblwznmmblock->loadRstBySQL("SELECT * FROM TblWznmMBlock WHERE ixVBasetype = " + to_string(VecWznmVMBlockBasetype::DPCH) + " AND refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::JOB)
 				+ " AND refUref = " + to_string(pnl->refWznmMJob) + " AND (reaIxWznmWScope & " + to_string(VecWznmWScope::APP) + ") = " + to_string(VecWznmWScope::APP), false, dpchs);
 
-	if (dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMBlock WHERE refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::JOB) + " AND refUref = " + to_string(pnl->refWznmMJob)
-				+ " AND sref = 'DpchEng" + pnl->sref.substr(3) + "Data'", ref)) dbswznm->tblwznmamblockitem->loadRstByBlk(ref, false, bits);
-
-	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
-		bit = bits.nodes[i];
-
-		if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
-			outfile << "\t\t\t\tif (dpcheng." << bit->sref << ") this." << StrMod::uncap(bit->sref) << " = dpcheng." << bit->sref << ";" << endl;
-
-		} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) {
-			if (dbswznm->tblwznmmtable->loadRecByRef(bit->refWznmMTable, &tbl)) {
-				outfile << "\t\t\t\tif (dpcheng.List" << tbl->sref.substr(3) << ") this." << bit->sref << " = dpcheng.List" << tbl->sref.substr(3) << ";" << endl;
-				delete tbl;
-			};
-
-		} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
-			if (dbswznm->tblwznmmblock->loadRecByRef(bit->refWznmMBlock, &blk)) {
-				if (blk->ixVBasetype == VecWznmVMBlockBasetype::TAG) {
-					outfile << "\t\t\t\tif (dpcheng." << blk->sref << ") {" << endl;
-					outfile << "\t\t\t\t\t" << Prjshort << ".unescapeBlock(dpcheng." << blk->sref << ");" << endl;
-					outfile << "\t\t\t\t\tthis." << bit->sref << " = dpcheng." << blk->sref << ";" << endl;
-					outfile << "\t\t\t\t}" << endl;
-
-				} else outfile << "\t\t\t\tif (dpcheng." << blk->sref << ") this." << bit->sref << " = dpcheng." << blk->sref << ";" << endl;
-
-				delete blk;
-			};
-		};
-	};
-
-	// preliminary: analyze contiac and continf for items that mandate special treatment
-	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
-		bit = bits.nodes[i];
-
-		if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
-			if (dbswznm->tblwznmmblock->loadRecByRef(bit->refWznmMBlock, &blk)) {
-				if (blk->ixVBasetype == VecWznmVMBlockBasetype::CONT) {
-					dbswznm->tblwznmamblockitem->loadRstByBlk(blk->ref, false, bit2s);
-
-					if (blk->sref.find("ContIac") == 0) {
-						for (unsigned int j = 0; j < bit2s.nodes.size(); j++) {
-							bit2 = bit2s.nodes[j];
-							if (bit2->sref.find("numFPup") == 0) srefFis.insert(bit2->sref);
-						};
-
-					} else if (blk->sref.find("ContInf") == 0) {
-						for (unsigned int j = 0; j < bit2s.nodes.size(); j++) {
-							bit2 = bit2s.nodes[j];
-							if ((bit2->sref.find("But") == 0) && ((bit2->sref.rfind("On") + 2) == bit2->sref.length())) srefButons.insert(bit2->sref);
-						};
-					};
-				};
-
-				delete blk;
-			};
-		};
-	};
-
-	if (!srefFis.empty()) {
-		outfile << endl;
-
-		outfile << "\t\t\t\tif (dpcheng.ContIac" << pnl->sref.substr(3) << ") {" << endl;
-
-		for (auto it = srefFis.begin(); it != srefFis.end(); it++) {
-			outfile << "\t\t\t\t\tfor (var i = 0; i < this.feed" << (*it).substr(3) << ".length; i++)" << endl;
-			outfile << "\t\t\t\t\t\tif (this.feed" << (*it).substr(3) << "[i].num == this.contiac." << (*it) << ") {" << endl;
-			outfile << "\t\t\t\t\t\t\tthis.contapp.fi" << (*it).substr(3) << " = this.feed" << (*it).substr(3) << "[i];" << endl;
-			outfile << "\t\t\t\t\t\t\tbreak;" << endl;
-			outfile << "\t\t\t\t\t\t}" << endl;
-		};
-
-		outfile << "\t\t\t\t}" << endl;
-	};
-
-	if (!srefButons.empty()) {
-		outfile << endl;
-
-		outfile << "\t\t\t\tif (dpcheng.ContInf" << pnl->sref.substr(3) << ") {" << endl;
-
-		for (auto it = srefButons.begin(); it != srefButons.end(); it++) {
-			outfile << "\t\t\t\t\tif (!this.continf." << (*it) << ") this.contapp." << (*it) << " = 0;" << endl;
-			outfile << "\t\t\t\t\telse this.contapp." << (*it) << " = 1;" << endl;
-		};
-
-		outfile << "\t\t\t\t}" << endl;
-	};
-
-	outfile << "\t\t\t\t/*" << endl;
-	outfile << "\t\t\t\t<!-- IP mergeDpchEngData - END -->" << endl;
-	outfile << "<!-- IP mergeDpchEngData - IEND -->" << endl;
-
-	// --- dpchhdls
-	outfile << "<!-- IP dpchhdls - IBEGIN -->" << endl;
-	outfile << "\t\t\t*/" << endl;
+	wrIbegin(outfile, 3, "dpchhdls");
 
 	for (unsigned int i = 0; i < dpchs.nodes.size(); i++) {
 		dpch = dpchs.nodes[i];
@@ -474,24 +185,18 @@ void WznmWrvuePnl::writePnlVue(
 		if (dpch->sref.compare("DpchEng" + pnl->sref.substr(3) + "Data") != 0) {
 			outfile << endl;
 
-			outfile << "\t\t\thandleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length()) << ": function(dpcheng) {" << endl;
-			outfile << "\t\t\t\t/*" << endl;
-			outfile << "\t\t\t\t<!-- IP handleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length()) << " - BEGIN -->" << endl;
-			outfile << "\t\t\t\t*/" << endl;
-			outfile << "\t\t\t\tconsole.log(\"" << pnl->sref << ".handleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length()) << "()\" + dpcheng);" << endl;
-			outfile << "\t\t\t\t/*" << endl;
-			outfile << "\t\t\t\t<!-- IP handleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length()) << " - END -->" << endl;
-			outfile << "\t\t\t\t*/" << endl;
+			outfile << "\t\t\thandle" << dpch->sref << ": function(dpcheng) {" << endl;
+			wrIp(outfile, 4, "handle" + dpch->sref, "BEGIN");
+			outfile << "\t\t\t\tconsole.log(\"" << pnl->sref << ".handle" << dpch->sref << "()\" + dpcheng);" << endl;
+			wrIp(outfile, 4, "handle" + dpch->sref, "END");
 			outfile << "\t\t\t}," << endl;
 		};
 	};
 
-	outfile << "\t\t\t/*" << endl;
-	outfile << "<!-- IP dpchhdls - IEND -->" << endl;
+	wrIend(outfile, 3, "dpchhdls");
 
 	// --- handleUpdate
-	outfile << "<!-- IP handleUpdate - IBEGIN -->" << endl;
-	outfile << "\t\t\t\t*/" << endl;
+	wrIbegin(outfile, 4, "handleUpdate");
 
 	for (unsigned int i = 0; i < dpchs.nodes.size(); i++) {
 		dpch = dpchs.nodes[i];
@@ -500,52 +205,454 @@ void WznmWrvuePnl::writePnlVue(
 		if (i != 0) outfile << "else ";
 		outfile << "if (obj.srefIx" << Prjshort << "VDpch == \"" << dpch->sref << "\") this.";
 		if (dpch->sref.compare("DpchEng" + pnl->sref.substr(3) + "Data") == 0) outfile << "mergeDpchEngData";
-		else outfile << "handleDpchEng" << dpch->sref.substr(4+3+pnl->sref.substr(3).length());
+		else outfile << "handle" << dpch->sref;
 		outfile << "(obj.dpcheng);" << endl;
 	};
 
-	outfile << "\t\t\t\t/*" << endl;
-	outfile << "<!-- IP handleUpdate - IEND -->" << endl;
+	wrIend(outfile, 4, "handleUpdate");
+
+	// --- hrefDld*
+	if (has(unqcontypes, VecWznmVMControlBasetype::DLD)) outfile << "<!-- IP hrefDld - AFFIRM -->" << endl;
+	else outfile << "<!-- IP hrefDld - REMOVE -->" << endl;
 
 	// --- data
-	outfile << "<!-- IP data - IBEGIN -->" << endl;
-	outfile << "\t\t\t*/" << endl;
+	wrIbegin(outfile, 3, "data");
+	wrData(dbswznm, Prjshort, outfile, pnl->refWznmMJob);
+	wrIend(outfile, 3, "data");
+};
 
-	if (!srefFis.empty() || !srefButons.empty()) {
-		outfile << "\t\t\tcontapp: {" << endl;
+void WznmWrvuePnl::writePlVuefile(
+			DbsWznm* dbswznm
+			, const string& Prjshort
+			, fstream& outfile
+			, WznmMPanel* pnl
+			, ListWznmMControl& cons
+			, const string& estblk
+			, const bool haspst
+		) {
+	ubigint ref;
 
+	WznmMControl* con = NULL;
+
+	ListWznmMQuerycol qcos;
+	WznmMQuerycol* qco = NULL;
+
+	ListWznmMBlock dpchs;
+	WznmMBlock* dpch = NULL;
+
+	string s;
+
+	bool first, found;
+
+	// --- pre1*
+	if (haspst) outfile << "<!-- IP pre1 - AFFIRM -->" << endl;
+	else outfile << "<!-- IP pre1 - REMOVE -->" << endl;
+
+	// --- nopre1*
+	if (!haspst) outfile << "<!-- IP nopre1 - AFFIRM -->" << endl;
+	else outfile << "<!-- IP nopre1 - REMOVE -->" << endl;
+
+	// --- buts
+	outfile << "<!-- IP buts - IBEGIN -->" << endl;
+	wrButs(dbswznm, Prjshort, outfile, cons, {VecWznmVMControlHkSection::HDR, VecWznmVMControlHkSection::HDRDETD, VecWznmVMControlHkSection::HDRREGD}, estblk);
+	outfile << "\t\t\t\t\t&#160;&#160;" << endl;
+	wrButs(dbswznm, Prjshort, outfile, cons, {VecWznmVMControlHkSection::SIDE}, estblk);
+	outfile << "<!-- IP buts - IEND -->" << endl;
+
+	// --- handleButClipboardClick
+	wrIbegin(outfile, 4, "handleButClipboardClick", false);
+
+	// exact copy from WznmWrweb.cpp
+	found = false;
+
+	for (unsigned int j = 0; j < cons.nodes.size(); j++) {
+		con = cons.nodes[j];
+
+		if ((con->ixVBasetype == VecWznmVMControlBasetype::TCO) && (con->refIxVTbl == VecWznmVMControlRefTbl::QCO)) {
+			found = dbswznm->loadRefBySQL("SELECT qryRefWznmMQuery FROM TblWznmMQuerycol WHERE ref = " + to_string(con->refUref), ref);
+			break;
+		};
+	};
+
+	if (found) {
+		dbswznm->tblwznmmquerycol->loadRstByQry(ref, false, qcos);
+
+		outfile << "\t\t\t\t" << Prjshort << ".copyToClipboard(document, this.continf, this.rst, this.statshrqry, this.tag," << endl;
+
+		// tags
+		outfile << "\t\t\t\t\t\t\t[";
 		first = true;
 
-		for (auto it = srefFis.begin(); it != srefFis.end(); it++) {
-			if (first) first = false;
-			else outfile << endl;
-			outfile << "\t\t\t\tfi" << (*it).substr(3) << ": null," << endl;
-		};
+		for (unsigned int j = 0; j < qcos.nodes.size(); j++) {
+			qco = qcos.nodes[j];
 
-		for (auto it = srefButons.begin(); it != srefButons.end(); it++) {
-			if (first) first = false;
-			else outfile << endl;
-			outfile << "\t\t\t\t" << (*it) << ": 0," << endl;
-		};
+			if (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::XML) {
+				if (first) first = false;
+				else outfile << ",";
 
-		outfile << "\t\t\t}," << endl;
-		outfile << endl;
+				outfile << "\"";
+
+				for (unsigned int k = 0; k < cons.nodes.size(); k++) {
+					con = cons.nodes[k];
+
+					if ((con->ixVBasetype == VecWznmVMControlBasetype::TCO) && (con->refUref == qco->ref)) {
+						outfile << con->sref.substr(3);
+						break;
+					};
+				};
+
+				outfile << "\"";
+			};
+		};
+		outfile << "]," << endl;
+
+		// tcos
+		outfile << "\t\t\t\t\t\t\t[";
+		first = true;
+
+		for (unsigned int j = 0; j < qcos.nodes.size(); j++) {
+			qco = qcos.nodes[j];
+
+			if (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::XML) {
+				if (first) first = false;
+				else outfile << ",";
+
+				outfile << "\"" << qco->Short << "\"";
+			};
+		};
+		outfile << "]);" << endl;
+	};
+
+	wrIend(outfile, 4, "handleButClipboardClick", false);
+
+	// --- handleButCrdopenClick*
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "crdopen")) outfile << "<!-- IP handleButCrdopenClick - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleButCrdopenClick - REMOVE -->" << endl;
+
+	// --- mergeDpchEngData
+	wrIbegin(outfile, 4, "mergeDpchEngData", true);
+	wrMergedpcheng(dbswznm, Prjshort, outfile, pnl->refWznmMJob);
+	wrIend(outfile, 4, "mergeDpchEngData", true);
+
+	// --- mergeDpchEngData.tcos
+	wrIbegin(outfile, 5, "mergeDpchEngData.tcos");
+
+	outfile << "\t\t\t\t\ttcos.push({value: \"jnum\", text: \"jnum\"}";
+
+	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
+		con = cons.nodes[i];
+
+		if (con->ixVBasetype == VecWznmVMControlBasetype::TCO) outfile << ", {value: \"" << con->sref << "\", text: this.tag." << con->sref << "}";
+	};
+	
+	outfile << ");" << endl;
+
+	wrIend(outfile, 5, "mergeDpchEngData.tcos");
+
+	// --- mergeDpchEngData.rows
+	wrIbegin(outfile, 6, "mergeDpchEngData.rows");
+
+	outfile << "\t\t\t\t\t\trows.push({jnum: rec[\"jnum\"]";
+
+	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
+		con = cons.nodes[i];
+
+		if (con->ixVBasetype == VecWznmVMControlBasetype::TCO) {
+			outfile << ", " << con->sref << ": rec[\"";
+			if (dbswznm->loadStringBySQL("SELECT Short FROM TblWznmMQuerycol WHERE ref = " + to_string(con->refUref), s)) outfile << s;
+			outfile << "\"]";
+		};
+	};
+
+	outfile << "})" << endl;
+	wrIend(outfile, 6, "mergeDpchEngData.rows");
+
+	// --- handleReply.crdopen*
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "crdopen")) outfile << "<!-- IP handleReply.crdopen - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleReply.crdopen - REMOVE -->" << endl;
+
+	// --- handleDpchAppDoCrdopenReply*
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "crdopen")) outfile << "<!-- IP handleDpchAppDoCrdopenReply - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleDpchAppDoCrdopenReply - REMOVE -->" << endl;
+
+	// --- dpchhdls
+	dbswznm->tblwznmmblock->loadRstBySQL("SELECT * FROM TblWznmMBlock WHERE ixVBasetype = " + to_string(VecWznmVMBlockBasetype::DPCH) + " AND refIxVTbl = " + to_string(VecWznmVMBlockRefTbl::JOB)
+				+ " AND refUref = " + to_string(pnl->refWznmMJob) + " AND (reaIxWznmWScope & " + to_string(VecWznmWScope::APP) + ") = " + to_string(VecWznmWScope::APP), false, dpchs);
+
+	wrIbegin(outfile, 3, "dpchhdls");
+
+	for (unsigned int i = 0; i < dpchs.nodes.size(); i++) {
+		dpch = dpchs.nodes[i];
+
+		if (dpch->sref.compare("DpchEng" + pnl->sref.substr(3) + "Data") != 0) {
+			outfile << endl;
+
+			outfile << "\t\t\thandle" << dpch->sref << ": function(dpcheng) {" << endl;
+			wrIp(outfile, 4, "handle" + dpch->sref, "BEGIN");
+			outfile << "\t\t\t\tconsole.log(\"" << pnl->sref << ".handle" << dpch->sref << "()\" + dpcheng);" << endl;
+			wrIp(outfile, 4, "handle" + dpch->sref, "END");
+			outfile << "\t\t\t}," << endl;
+		};
+	};
+
+	wrIend(outfile, 3, "dpchhdls");
+
+	// --- handleUpdate
+	wrIbegin(outfile, 4, "handleUpdate");
+
+	for (unsigned int i = 0; i < dpchs.nodes.size(); i++) {
+		dpch = dpchs.nodes[i];
+
+		outfile << "\t\t\t\t";
+		if (i != 0) outfile << "else ";
+		outfile << "if (obj.srefIx" << Prjshort << "VDpch == \"" << dpch->sref << "\") this.";
+		if (dpch->sref.compare("DpchEng" + pnl->sref.substr(3) + "Data") == 0) outfile << "mergeDpchEngData";
+		else outfile << "handle" << dpch->sref;
+		outfile << "(obj.dpcheng);" << endl;
+	};
+
+	wrIend(outfile, 4, "handleUpdate");
+
+	// --- pre2*
+	if (haspst) outfile << "<!-- IP pre2 - AFFIRM -->" << endl;
+	else outfile << "<!-- IP pre2 - REMOVE -->" << endl;
+
+	// --- nopre2*
+	if (!haspst) outfile << "<!-- IP nopre2 - AFFIRM -->" << endl;
+	else outfile << "<!-- IP nopre2 - REMOVE -->" << endl;
+
+	// --- data
+	wrIbegin(outfile, 3, "data");
+	wrData(dbswznm, Prjshort, outfile, pnl->refWznmMJob);
+	wrIend(outfile, 3, "data");
+};
+
+void WznmWrvuePnl::writePrVuefile(
+			DbsWznm* dbswznm
+			, const string& Prjshort
+			, fstream& outfile
+			, WznmMPanel* pnl
+			, ListWznmMControl& cons
+		) {
+	ListWznmMPanel crdpnls;
+	WznmMPanel* crdpnl = NULL;
+
+	bool first;
+
+	dbswznm->tblwznmmpanel->loadRstByCar(pnl->carRefWznmMCard, false, crdpnls);
+
+	// --- pnls
+	outfile << "<!-- IP pnls - IBEGIN -->" << endl;
+
+	for (unsigned int i = 0; i < crdpnls.nodes.size(); i++) {
+		crdpnl = crdpnls.nodes[i];
+
+		if (crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECFORM) {
+			outfile << "\t\t\t<v-row";
+			if (crdpnl->Avail != "") outfile << " v-if=\"statshr.pnl" << StrMod::lc(crdpnl->sref.substr(3+4+3)) << "Avail\"";
+			outfile << ">" << endl;
+			outfile << "\t\t\t\t<v-col cols=\"12\" md=\"12\">" << endl;
+			outfile << "\t\t\t\t\t<" << crdpnl->sref << endl;
+			if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, crdpnl->ref, "crdopen")) outfile << "\t\t\t\t\t\tv-on:crdopen=\"handleCrdopen\"" << endl;
+			outfile << "\t\t\t\t\t\tv-on:request=\"handleRequest\"" << endl;
+			outfile << "\t\t\t\t\t\tref=\"" << crdpnl->sref << "\"" << endl;
+			outfile << "\t\t\t\t\t\t:scrJref=statshr.scrJref" << crdpnl->sref.substr(3+4+3) << endl;
+			outfile << "\t\t\t\t\t/>" << endl;
+			outfile << "\t\t\t\t</v-col>" << endl;
+			outfile << "\t\t\t</v-row>" << endl;
+		};
 	};
 
 	first = true;
 
-	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
-		bit = bits.nodes[i];
+	for (unsigned int i = 0; i < crdpnls.nodes.size(); i++) {
+		crdpnl = crdpnls.nodes[i];
 
-		if ((bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) || (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) || (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB)) {
-			if (first) first = false;
-			else outfile << endl;
+		if (Wznm::getPnllhs(dbswznm, crdpnl) && (crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECLIST)) {
+			if (first) {
+				outfile << "\t\t\t<v-row>" << endl;
+				first = false;
+			};
 
-			outfile << "\t\t\t" << bit->sref << ": null," << endl;
+			outfile << "\t\t\t\t<v-col cols=\"12\" md=\"6\">" << endl;
+			outfile << "\t\t\t\t\t<" << crdpnl->sref << endl;
+			if (pnl->Avail != "") outfile << "\t\t\t\t\t\tv-if=\"statshr.pnl" << StrMod::lc(pnl->sref.substr(3+4+3)) << "Avail\"" << endl;
+			if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, crdpnl->ref, "crdopen")) outfile << "\t\t\t\t\t\tv-on:crdopen=\"handleCrdopen\"" << endl;
+			outfile << "\t\t\t\t\t\tv-on:request=\"handleRequest\"" << endl;
+			outfile << "\t\t\t\t\t\tref=\"" << crdpnl->sref << "\"" << endl;
+			outfile << "\t\t\t\t\t\t:scrJref=statshr.scrJref" << crdpnl->sref.substr(3+4+3) << endl;
+			outfile << "\t\t\t\t\t/>" << endl;
+			outfile << "\t\t\t\t</v-col>" << endl;
 		};
 	};
 
-	outfile << "\t\t\t/*" << endl;
-	outfile << "<!-- IP data - IEND -->" << endl;
+	if (!first) outfile << "\t\t\t</v-row>" << endl;
+
+	first = true;
+
+	for (unsigned int i = 0; i < crdpnls.nodes.size(); i++) {
+		crdpnl = crdpnls.nodes[i];
+
+		if (Wznm::getPnlrhs(dbswznm, crdpnl)) {
+			if (first) {
+				outfile << "\t\t\t<v-divider/>" << endl;
+				outfile << "\t\t\t<v-row>" << endl;
+
+				first = false;
+			};
+
+			outfile << "\t\t\t\t<v-col cols=\"12\" md=\"6\">" << endl;
+			outfile << "\t\t\t\t\t<" << crdpnl->sref << endl;
+			if (pnl->Avail != "") outfile << "\t\t\t\t\t\tv-if=\"statshr.pnl" << StrMod::lc(pnl->sref.substr(3+4+3)) << "Avail\"" << endl;
+			if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, crdpnl->ref, "crdopen")) outfile << "\t\t\t\t\t\tv-on:crdopen=\"handleCrdopen\"" << endl;
+			outfile << "\t\t\t\t\t\tv-on:request=\"handleRequest\"" << endl;
+			outfile << "\t\t\t\t\t\tref=\"" << crdpnl->sref << "\"" << endl;
+			outfile << "\t\t\t\t\t\t:scrJref=statshr.scrJref" << crdpnl->sref.substr(3+4+3) << endl;
+			outfile << "\t\t\t\t\t/>" << endl;
+			outfile << "\t\t\t\t</v-col>" << endl;
+		};
+	};
+
+	if (!first) outfile << "\t\t\t</v-row>" << endl;
+
+	outfile << "<!-- IP pnls - IEND -->" << endl;
+
+	// --- import
+	wrIbegin(outfile, 1, "import");
+
+	for (unsigned int i = 0; i < crdpnls.nodes.size(); i++) {
+		crdpnl = crdpnls.nodes[i];
+
+		if ((crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECFORM) || (crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECLIST))
+					outfile << "\timport " << crdpnl->sref << " from './" << crdpnl->sref << "';" << endl;
+	};
+
+	wrIend(outfile, 1, "import");
+
+	// --- components
+	wrIbegin(outfile, 3, "components");
+
+	first = true;
+
+	for (unsigned int i = 0; i < crdpnls.nodes.size(); i++) {
+		crdpnl = crdpnls.nodes[i];
+
+		if ((crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECFORM) || (crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECLIST)) {
+			if (first) first = false;
+			else outfile << "," << endl;
+			outfile << "\t\t\t" << crdpnl->sref;
+		};
+	};
+
+	if (!first) outfile << endl;
+
+	wrIend(outfile, 3, "components");
+
+	// --- handleReply.subs
+	wrIbegin(outfile, 6, "handleReply.subs");
+
+	first = true;
+
+	for (unsigned int i = 0; i < crdpnls.nodes.size(); i++) {
+		crdpnl = crdpnls.nodes[i];
+
+		if ((crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECFORM) || (crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECLIST)) {
+			outfile << "\t\t\t\t\t\t";
+			if (first) first = false;
+			else outfile << "else ";
+			outfile << "if (obj.scrJref == this.statshr.scrJref" << crdpnl->sref.substr(3+4+3) << ") this.$refs." << crdpnl->sref << ".handleReply(obj);" << endl;
+		};
+	};
+
+	wrIend(outfile, 6, "handleReply.subs");
+
+	// --- handleUpdate.subs
+	wrIbegin(outfile, 6, "handleUpdate.subs");
+
+	first = true;
+
+	for (unsigned int i = 0; i < crdpnls.nodes.size(); i++) {
+		crdpnl = crdpnls.nodes[i];
+
+		if ((crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECFORM) || (crdpnl->ixVBasetype == VecWznmVMPanelBasetype::RECLIST)) {
+			outfile << "\t\t\t\t\t\t";
+			if (first) first = false;
+			else outfile << "else ";
+			outfile << "if (obj.dpcheng.scrJref == this.statshr.scrJref" << crdpnl->sref.substr(3+4+3) << ") this.$refs." << crdpnl->sref << ".handleUpdate(obj);" << endl;
+		};
+	};
+
+	wrIend(outfile, 6, "handleUpdate.subs");
+
+	// --- data
+	wrIbegin(outfile, 3, "data");
+	wrData(dbswznm, Prjshort, outfile, pnl->refWznmMJob);
+	wrIend(outfile, 3, "data");
+};
+
+void WznmWrvuePnl::wrButs(
+			DbsWznm* dbswznm
+			, const string& Prjshort
+			, fstream& outfile
+			, ListWznmMControl& cons
+			, const set<uint>& hkIcsVSection
+			, const string& estblk
+		) {
+	ubigint refC;
+
+	WznmMControl* con = NULL;
+
+	string s;
+
+	string indent = string(5, '\t');
+
+	refC = 0;
+
+	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
+		con = cons.nodes[i];
+
+		if ((con->ixVBasetype == VecWznmVMControlBasetype::BUT) && (hkIcsVSection.find(con->hkIxVSection) != hkIcsVSection.end())) {
+			s = "";
+			dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con->ref, "action", 0, s);
+
+			outfile << indent;
+
+			if (i != 0) {
+				if ((con->refWznmCControl != 0) && (con->refWznmCControl != refC)) outfile << "&#160;";
+				outfile << "&#160;" << endl;
+			};
+			refC = con->refWznmCControl;
+
+			outfile << indent << "<v-btn" << endl;
+			outfile << indent << "\tv-if=\"" << estblk << ".srefIx" << Prjshort << "VExpstate=='";
+			if (con->sref == "ButRegularize") outfile << "mind";
+			else outfile << "regd";
+			outfile << "'\"" << endl;
+			outfile << indent << "\tfab" << endl;
+			outfile << indent << "\tsmall" << endl;
+			outfile << indent << "\tlight" << endl;
+			outfile << indent << "\tcolor=\"primary\"" << endl;
+			if ((estblk == "statapp") && (con->sref == "ButMinimize")) outfile << indent << "\tv-on:click=\"statapp.srefIx" << Prjshort << "VExpstate='mind'\"" << endl;
+			else if ((estblk == "statapp") && (con->sref == "ButRegularize")) outfile << indent << "\tv-on:click=\"statapp.srefIx" << Prjshort << "VExpstate='regd'\"" << endl;
+			else if (s == "crdopen") outfile << indent << "\tv-on:click=\"handleButCrdopenClick('" << con->sref << "Click')\"" << endl;
+			else if (con->sref == "ButClipboard") outfile << indent << "\tv-on:click=\"handleButClipboardClick()\"" << endl;
+			else outfile << indent << "\tv-on:click=\"handleButClick('" << con->sref << "Click')\"" << endl;
+			outfile << indent << "\t:value=\"1\"" << endl;
+			if (con->Active != "") outfile << indent << "\t:disabled=\"!statshr." << con->sref << "Active\"" << endl;
+			outfile << indent << ">" << endl;
+
+			if (StrMod::srefInSrefs(con->srefsKOption, "icon")) {
+				s = getButmdi(dbswznm, Prjshort, con);
+
+				if (StrMod::srefInSrefs(con->srefsKOption, "onoff")) outfile << indent << "\t<v-icon color=\"white\">{{contapp." << con->sref << "On ? '" << s << "' : '" << s << "-off'}}</v-icon>" << endl;
+				else outfile << indent << "\t<v-icon color=\"white\">" << s << "</v-icon>" << endl;
+
+			} else {
+				outfile << indent << "\t{{tag." << con->sref << "}}" << endl;
+			};
+
+			outfile << indent << "</v-btn>" << endl;
+		};
+	};
 };
 // IP cust --- IEND

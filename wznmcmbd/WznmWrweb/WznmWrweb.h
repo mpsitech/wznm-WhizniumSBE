@@ -47,7 +47,6 @@ namespace WznmWrweb {
 	std::string getConsize(WznmMControl* con);
 	std::string getButicon(DbsWznm* dbswznm, const std::string& Prjshort, WznmMControl* con);
 	std::string getLstncol(WznmMControl* con);
-	bool hasAction(DbsWznm* dbswznm, const Sbecore::uint hkIxVTbl, const Sbecore::ubigint hkUref, const std::string& action);
 	bool hasStfeed(DbsWznm* dbswznm, WznmMControl* con);
 	// IP cust --- IEND
 };

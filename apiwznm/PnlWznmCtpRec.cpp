@@ -107,8 +107,8 @@ PnlWznmCtpRec::StatApp::StatApp(
 			, const bool initdoneKParKey
 			, const bool initdoneKKey
 			, const bool initdoneAPar
-			, const bool initdone1NTag
 			, const bool initdoneTpl1NCapability
+			, const bool initdone1NTag
 		) :
 			Block()
 		{
@@ -116,10 +116,10 @@ PnlWznmCtpRec::StatApp::StatApp(
 	this->initdoneKParKey = initdoneKParKey;
 	this->initdoneKKey = initdoneKKey;
 	this->initdoneAPar = initdoneAPar;
-	this->initdone1NTag = initdone1NTag;
 	this->initdoneTpl1NCapability = initdoneTpl1NCapability;
+	this->initdone1NTag = initdone1NTag;
 
-	mask = {INITDONEDETAIL, INITDONEKPARKEY, INITDONEKKEY, INITDONEAPAR, INITDONE1NTAG, INITDONETPL1NCAPABILITY};
+	mask = {INITDONEDETAIL, INITDONEKPARKEY, INITDONEKKEY, INITDONEAPAR, INITDONETPL1NCAPABILITY, INITDONE1NTAG};
 };
 
 bool PnlWznmCtpRec::StatApp::readXML(
@@ -143,8 +143,8 @@ bool PnlWznmCtpRec::StatApp::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneKParKey", initdoneKParKey)) add(INITDONEKPARKEY);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneKKey", initdoneKKey)) add(INITDONEKKEY);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneAPar", initdoneAPar)) add(INITDONEAPAR);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NTag", initdone1NTag)) add(INITDONE1NTAG);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneTpl1NCapability", initdoneTpl1NCapability)) add(INITDONETPL1NCAPABILITY);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NTag", initdone1NTag)) add(INITDONE1NTAG);
 	};
 
 	return basefound;
@@ -159,8 +159,8 @@ set<uint> PnlWznmCtpRec::StatApp::comm(
 	if (initdoneKParKey == comp->initdoneKParKey) insert(items, INITDONEKPARKEY);
 	if (initdoneKKey == comp->initdoneKKey) insert(items, INITDONEKKEY);
 	if (initdoneAPar == comp->initdoneAPar) insert(items, INITDONEAPAR);
-	if (initdone1NTag == comp->initdone1NTag) insert(items, INITDONE1NTAG);
 	if (initdoneTpl1NCapability == comp->initdoneTpl1NCapability) insert(items, INITDONETPL1NCAPABILITY);
+	if (initdone1NTag == comp->initdone1NTag) insert(items, INITDONE1NTAG);
 
 	return(items);
 };
@@ -173,7 +173,7 @@ set<uint> PnlWznmCtpRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEKPARKEY, INITDONEKKEY, INITDONEAPAR, INITDONE1NTAG, INITDONETPL1NCAPABILITY};
+	diffitems = {INITDONEDETAIL, INITDONEKPARKEY, INITDONEKKEY, INITDONEAPAR, INITDONETPL1NCAPABILITY, INITDONE1NTAG};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -189,8 +189,8 @@ PnlWznmCtpRec::StatShr::StatShr(
 			, const string& scrJrefKParKey
 			, const string& scrJrefKKey
 			, const string& scrJrefAPar
-			, const string& scrJref1NTag
 			, const string& scrJrefTpl1NCapability
+			, const string& scrJref1NTag
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -200,11 +200,11 @@ PnlWznmCtpRec::StatShr::StatShr(
 	this->scrJrefKParKey = scrJrefKParKey;
 	this->scrJrefKKey = scrJrefKKey;
 	this->scrJrefAPar = scrJrefAPar;
-	this->scrJref1NTag = scrJref1NTag;
 	this->scrJrefTpl1NCapability = scrJrefTpl1NCapability;
+	this->scrJref1NTag = scrJref1NTag;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFKPARKEY, SCRJREFKKEY, SCRJREFAPAR, SCRJREF1NTAG, SCRJREFTPL1NCAPABILITY, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFKPARKEY, SCRJREFKKEY, SCRJREFAPAR, SCRJREFTPL1NCAPABILITY, SCRJREF1NTAG, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmCtpRec::StatShr::readXML(
@@ -234,8 +234,8 @@ bool PnlWznmCtpRec::StatShr::readXML(
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefKParKey", scrJrefKParKey)) add(SCRJREFKPARKEY);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefKKey", scrJrefKKey)) add(SCRJREFKKEY);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefAPar", scrJrefAPar)) add(SCRJREFAPAR);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NTag", scrJref1NTag)) add(SCRJREF1NTAG);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefTpl1NCapability", scrJrefTpl1NCapability)) add(SCRJREFTPL1NCAPABILITY);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NTag", scrJref1NTag)) add(SCRJREF1NTAG);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
 
@@ -252,8 +252,8 @@ set<uint> PnlWznmCtpRec::StatShr::comm(
 	if (scrJrefKParKey == comp->scrJrefKParKey) insert(items, SCRJREFKPARKEY);
 	if (scrJrefKKey == comp->scrJrefKKey) insert(items, SCRJREFKKEY);
 	if (scrJrefAPar == comp->scrJrefAPar) insert(items, SCRJREFAPAR);
-	if (scrJref1NTag == comp->scrJref1NTag) insert(items, SCRJREF1NTAG);
 	if (scrJrefTpl1NCapability == comp->scrJrefTpl1NCapability) insert(items, SCRJREFTPL1NCAPABILITY);
+	if (scrJref1NTag == comp->scrJref1NTag) insert(items, SCRJREF1NTAG);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -267,7 +267,7 @@ set<uint> PnlWznmCtpRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFKPARKEY, SCRJREFKKEY, SCRJREFAPAR, SCRJREF1NTAG, SCRJREFTPL1NCAPABILITY, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFKPARKEY, SCRJREFKKEY, SCRJREFAPAR, SCRJREFTPL1NCAPABILITY, SCRJREF1NTAG, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

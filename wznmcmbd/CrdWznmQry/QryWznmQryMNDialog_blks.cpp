@@ -149,15 +149,14 @@ QryWznmQryMNDialog::StgIac::StgIac(
 };
 
 bool QryWznmQryMNDialog::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmQryMNDialog"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmQryMNDialog"];}();
 
 	basefound = (me != Json::nullValue);
 

@@ -14,11 +14,11 @@
 
 // IP include.cust --- INSERT
 
-#include "DlgWznmFilDownload.h"
-#include "DlgWznmFilNew.h"
-#include "PnlWznmFilRec.h"
-#include "PnlWznmFilHeadbar.h"
 #include "PnlWznmFilList.h"
+#include "PnlWznmFilHeadbar.h"
+#include "PnlWznmFilRec.h"
+#include "DlgWznmFilNew.h"
+#include "DlgWznmFilDownload.h"
 
 #define VecVWznmFilDo CrdWznmFil::VecVDo
 #define VecVWznmFilSge CrdWznmFil::VecVSge
@@ -167,7 +167,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -217,11 +217,11 @@ public:
 	Sbecore::Feed feedFMcbAlert;
 	Sbecore::Feed feedFSge;
 
-	DlgWznmFilDownload* dlgdownload;
-	DlgWznmFilNew* dlgnew;
-	PnlWznmFilRec* pnlrec;
-	PnlWznmFilHeadbar* pnlheadbar;
 	PnlWznmFilList* pnllist;
+	PnlWznmFilHeadbar* pnlheadbar;
+	PnlWznmFilRec* pnlrec;
+	DlgWznmFilNew* dlgnew;
+	DlgWznmFilDownload* dlgdownload;
 
 	// IP vars.cust --- INSERT
 
@@ -253,9 +253,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmDlgClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmStatChg(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
+	bool handleCallWznmStatChg(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmDlgClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

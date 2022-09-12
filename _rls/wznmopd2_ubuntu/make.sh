@@ -3,7 +3,7 @@
 # make script for Wznm operation daemon, release wznmopd2_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -11,33 +11,44 @@ if [ -z ${WHIZROOT+x} ]; then
 	exit 1
 fi
 
-make Wznmopd.h.gch
-if [ $? -ne 0 ]; then
-	exit
-fi
-
-if [ "$1" = "all" ]; then
-	subs=("IexWznm" "VecWznm" "WznmCtpGenjtr" "WznmCtpGenui" "WznmCtpWrsrv" "WznmCtpWrstkit" "WznmCtpWrweb")
+if [ "$1" = "all" ] || [ "$1" = "clean" ]; then
+	subs=("IexWznm" "VecWznm" "WznmCtpWrweb" "WznmCtpWrstkit" "WznmCtpWrsrv" "WznmCtpGenui" "WznmCtpGenjtr")
 else
 	subs=("$@")
 fi
 
-for var in "${subs[@]}"
-do
-	cd "$var"
+if [ "$1" = "clean" ]; then
+	for var in "${subs[@]}"
+	do
+		cd "$var"
+		make clean
+		cd ..
+	done
+
+	make clean
+else
+	make Wznmopd.h.gch
+	if [ $? -ne 0 ]; then
+		exit
+	fi
+
+	for var in "${subs[@]}"
+	do
+		cd "$var"
+		make -j4
+		if [ $? -ne 0 ]; then
+			exit
+		fi
+		make install
+		cd ..
+	done
+
 	make -j4
 	if [ $? -ne 0 ]; then
 		exit
 	fi
+
 	make install
-	cd ..
-done
 
-make -j4
-if [ $? -ne 0 ]; then
-	exit
+	rm Wznmopd.h.gch
 fi
-
-make install
-
-rm Wznmopd.h.gch

@@ -145,7 +145,7 @@ public:
 		Sbecore::uint numFDse;
 
 	public:
-		bool readJSON(Json::Value& sup, bool addbasetag = false);
+		bool readJSON(const Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
@@ -424,7 +424,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -450,7 +450,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -506,13 +506,13 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalIfiUldActive(DbsWznm* dbswznm);
-	bool evalImpButRunActive(DbsWznm* dbswznm);
-	bool evalImpButStoActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
 	bool evalPprButRunActive(DbsWznm* dbswznm);
 	bool evalPprButStoActive(DbsWznm* dbswznm);
 	bool evalLfiDldActive(DbsWznm* dbswznm);
-	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalImpButRunActive(DbsWznm* dbswznm);
+	bool evalImpButStoActive(DbsWznm* dbswznm);
+	bool evalIfiUldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmVerImpexp(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -583,8 +583,8 @@ private:
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
+	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

@@ -105,17 +105,17 @@ set<uint> PnlWznmCmpRec::ContInf::diff(
 PnlWznmCmpRec::StatApp::StatApp(
 			const bool initdoneDetail
 			, const bool initdone1NRelease
-			, const bool initdoneMNLibrary
 			, const bool initdoneMNOppack
+			, const bool initdoneMNLibrary
 		) :
 			Block()
 		{
 	this->initdoneDetail = initdoneDetail;
 	this->initdone1NRelease = initdone1NRelease;
-	this->initdoneMNLibrary = initdoneMNLibrary;
 	this->initdoneMNOppack = initdoneMNOppack;
+	this->initdoneMNLibrary = initdoneMNLibrary;
 
-	mask = {INITDONEDETAIL, INITDONE1NRELEASE, INITDONEMNLIBRARY, INITDONEMNOPPACK};
+	mask = {INITDONEDETAIL, INITDONE1NRELEASE, INITDONEMNOPPACK, INITDONEMNLIBRARY};
 };
 
 bool PnlWznmCmpRec::StatApp::readXML(
@@ -137,8 +137,8 @@ bool PnlWznmCmpRec::StatApp::readXML(
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NRelease", initdone1NRelease)) add(INITDONE1NRELEASE);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNLibrary", initdoneMNLibrary)) add(INITDONEMNLIBRARY);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNOppack", initdoneMNOppack)) add(INITDONEMNOPPACK);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNLibrary", initdoneMNLibrary)) add(INITDONEMNLIBRARY);
 	};
 
 	return basefound;
@@ -151,8 +151,8 @@ set<uint> PnlWznmCmpRec::StatApp::comm(
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
 	if (initdone1NRelease == comp->initdone1NRelease) insert(items, INITDONE1NRELEASE);
-	if (initdoneMNLibrary == comp->initdoneMNLibrary) insert(items, INITDONEMNLIBRARY);
 	if (initdoneMNOppack == comp->initdoneMNOppack) insert(items, INITDONEMNOPPACK);
+	if (initdoneMNLibrary == comp->initdoneMNLibrary) insert(items, INITDONEMNLIBRARY);
 
 	return(items);
 };
@@ -165,7 +165,7 @@ set<uint> PnlWznmCmpRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONE1NRELEASE, INITDONEMNLIBRARY, INITDONEMNOPPACK};
+	diffitems = {INITDONEDETAIL, INITDONE1NRELEASE, INITDONEMNOPPACK, INITDONEMNLIBRARY};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -179,10 +179,10 @@ PnlWznmCmpRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
 			, const string& scrJref1NRelease
-			, const string& scrJrefMNLibrary
-			, const bool pnlmnlibraryAvail
 			, const string& scrJrefMNOppack
 			, const bool pnlmnoppackAvail
+			, const string& scrJrefMNLibrary
+			, const bool pnlmnlibraryAvail
 			, const bool ButRegularizeActive
 		) :
 			Block()
@@ -190,13 +190,13 @@ PnlWznmCmpRec::StatShr::StatShr(
 	this->ixWznmVExpstate = ixWznmVExpstate;
 	this->scrJrefDetail = scrJrefDetail;
 	this->scrJref1NRelease = scrJref1NRelease;
-	this->scrJrefMNLibrary = scrJrefMNLibrary;
-	this->pnlmnlibraryAvail = pnlmnlibraryAvail;
 	this->scrJrefMNOppack = scrJrefMNOppack;
 	this->pnlmnoppackAvail = pnlmnoppackAvail;
+	this->scrJrefMNLibrary = scrJrefMNLibrary;
+	this->pnlmnlibraryAvail = pnlmnlibraryAvail;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRELEASE, SCRJREFMNLIBRARY, PNLMNLIBRARYAVAIL, SCRJREFMNOPPACK, PNLMNOPPACKAVAIL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRELEASE, SCRJREFMNOPPACK, PNLMNOPPACKAVAIL, SCRJREFMNLIBRARY, PNLMNLIBRARYAVAIL, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmCmpRec::StatShr::readXML(
@@ -224,10 +224,10 @@ bool PnlWznmCmpRec::StatShr::readXML(
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NRelease", scrJref1NRelease)) add(SCRJREF1NRELEASE);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNLibrary", scrJrefMNLibrary)) add(SCRJREFMNLIBRARY);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "pnlmnlibraryAvail", pnlmnlibraryAvail)) add(PNLMNLIBRARYAVAIL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNOppack", scrJrefMNOppack)) add(SCRJREFMNOPPACK);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "pnlmnoppackAvail", pnlmnoppackAvail)) add(PNLMNOPPACKAVAIL);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNLibrary", scrJrefMNLibrary)) add(SCRJREFMNLIBRARY);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "pnlmnlibraryAvail", pnlmnlibraryAvail)) add(PNLMNLIBRARYAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
 
@@ -242,10 +242,10 @@ set<uint> PnlWznmCmpRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
 	if (scrJref1NRelease == comp->scrJref1NRelease) insert(items, SCRJREF1NRELEASE);
-	if (scrJrefMNLibrary == comp->scrJrefMNLibrary) insert(items, SCRJREFMNLIBRARY);
-	if (pnlmnlibraryAvail == comp->pnlmnlibraryAvail) insert(items, PNLMNLIBRARYAVAIL);
 	if (scrJrefMNOppack == comp->scrJrefMNOppack) insert(items, SCRJREFMNOPPACK);
 	if (pnlmnoppackAvail == comp->pnlmnoppackAvail) insert(items, PNLMNOPPACKAVAIL);
+	if (scrJrefMNLibrary == comp->scrJrefMNLibrary) insert(items, SCRJREFMNLIBRARY);
+	if (pnlmnlibraryAvail == comp->pnlmnlibraryAvail) insert(items, PNLMNLIBRARYAVAIL);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
 	return(items);
@@ -259,7 +259,7 @@ set<uint> PnlWznmCmpRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRELEASE, SCRJREFMNLIBRARY, PNLMNLIBRARYAVAIL, SCRJREFMNOPPACK, PNLMNOPPACKAVAIL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRELEASE, SCRJREFMNOPPACK, PNLMNOPPACKAVAIL, SCRJREFMNLIBRARY, PNLMNLIBRARYAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

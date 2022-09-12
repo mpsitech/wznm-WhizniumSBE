@@ -80,7 +80,7 @@ void WznmWrsrv::writeBlkcontH(
 	
 	outfile << "\tpublic:" << endl;
 	if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) {
-		outfile << "\t\tbool readJSON(Json::Value& sup, bool addbasetag = false);" << endl;
+		outfile << "\t\tbool readJSON(const Json::Value& sup, bool addbasetag = false);" << endl;
 		outfile << "\t\tbool readXML(xmlXPathContext* docctx, std::string basexpath = \"\", bool addbasetag = false);" << endl;
 	};
 
@@ -146,7 +146,7 @@ void WznmWrsrv::writeBlkcontCpp(
 	if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) {
 		// readJSON
 		outfile << "bool " << job->sref << "::" << subsref << "::readJSON(" << endl;
-		outfile << "\t\t\tJson::Value& sup" << endl;
+		outfile << "\t\t\tconst Json::Value& sup" << endl;
 		outfile << "\t\t\t, bool addbasetag" << endl;
 		outfile << "\t\t) {" << endl;
 		outfile << "\tclear();" << endl;
@@ -155,8 +155,7 @@ void WznmWrsrv::writeBlkcontCpp(
 		outfile << "\tbool basefound;" << endl;
 		outfile << endl;
 
-		outfile << "\tJson::Value& me = sup;" << endl;
-		outfile << "\tif (addbasetag) me = sup[\"" << blk->sref << "\"];" << endl;
+		outfile << "\tconst Json::Value& me = [&]{if (!addbasetag) return sup; return sup[\"" << blk->sref << "\"];}();" << endl;
 		outfile << endl;
 
 		outfile << "\tbasefound = (me != Json::nullValue);" << endl;
@@ -432,7 +431,7 @@ void WznmWrsrv::writeBlkdpchH(
 		outfile << endl;
 
 		if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) {
-			outfile << "\t\tvoid readJSON(Json::Value& sup, bool addbasetag = false);" << endl;
+			outfile << "\t\tvoid readJSON(const Json::Value& sup, bool addbasetag = false);" << endl;
 			outfile << "\t\tvoid readXML(xmlXPathContext* docctx, std::string basexpath = \"\", bool addbasetag = false);" << endl;
 		};
 		if (blk->reaIxWznmWScope & VecWznmWScope::APP) {
@@ -693,7 +692,7 @@ void WznmWrsrv::writeBlkdpchCpp(
 		if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) {
 			// readJSON
 			outfile << "void " << job->sref << "::" << subsref << "::readJSON(" << endl;
-			outfile << "\t\t\tJson::Value& sup" << endl;
+			outfile << "\t\t\tconst Json::Value& sup" << endl;
 			outfile << "\t\t\t, bool addbasetag" << endl;
 			outfile << "\t\t) {" << endl;
 			outfile << "\tclear();" << endl;
@@ -702,8 +701,7 @@ void WznmWrsrv::writeBlkdpchCpp(
 			outfile << "\tbool basefound;" << endl;
 			outfile << endl;
 
-			outfile << "\tJson::Value& me = sup;" << endl;
-			outfile << "\tif (addbasetag) me = sup[\"" << blk->sref << "\"];" << endl;
+			outfile << "\tconst Json::Value& me = [&]{if (!addbasetag) return sup; return sup[\"" << blk->sref << "\"];}();" << endl;
 			outfile << endl;
 
 			outfile << "\tbasefound = (me != Json::nullValue);" << endl;
@@ -1314,7 +1312,7 @@ void WznmWrsrv::writeBlkstgH(
 		outfile << endl;
 
 		outfile << pre << "public:" << endl;
-		if (blk->wriIxWznmWScope & VecWznmWScope::APP) outfile << pre << "\tbool readJSON(Json::Value& sup, bool addbasetag = false);" << endl;
+		if (blk->wriIxWznmWScope & VecWznmWScope::APP) outfile << pre << "\tbool readJSON(const Json::Value& sup, bool addbasetag = false);" << endl;
 		outfile << pre << "\tbool readXML(xmlXPathContext* docctx, std::string basexpath = \"\", bool addbasetag = false);" << endl;
 		if (blk->reaIxWznmWScope & VecWznmWScope::APP) outfile << pre << "\tvoid writeJSON(Json::Value& sup, std::string difftag = \"\");" << endl;
 		outfile << pre << "\tvoid writeXML(xmlTextWriter* wr, std::string difftag = \"\", bool shorttags = true);" << endl;
@@ -1427,7 +1425,7 @@ void WznmWrsrv::writeBlkstgCpp(
 		if (blk->wriIxWznmWScope & VecWznmWScope::APP) {
 			// readJSON
 			outfile << "bool " << supsref << "::" << subsref << "::readJSON(" << endl;
-			outfile << "\t\t\tJson::Value& sup" << endl;
+			outfile << "\t\t\tconst Json::Value& sup" << endl;
 			outfile << "\t\t\t, bool addbasetag" << endl;
 			outfile << "\t\t) {" << endl;
 			outfile << "\tclear();" << endl;
@@ -1436,8 +1434,7 @@ void WznmWrsrv::writeBlkstgCpp(
 			outfile << "\tbool basefound;" << endl;
 			outfile << endl;
 
-			outfile << "\tJson::Value& me = sup;" << endl;
-			outfile << "\tif (addbasetag) me = sup[\"" << blk->sref << "\"];" << endl;
+			outfile << "\tconst Json::Value& me = [&]{if (!addbasetag) return sup; return sup[\"" << blk->sref << "\"];}();" << endl;
 			outfile << endl;
 
 			outfile << "\tbasefound = (me != Json::nullValue);" << endl;

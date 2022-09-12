@@ -11,34 +11,6 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool DlgWznmMchWriniscr::evalWriButRunActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(idle)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::IDLE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
-bool DlgWznmMchWriniscr::evalWriButStoActive(
-			DbsWznm* dbswznm
-		) {
-	// sge(write)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = (ixVSge == VecVSge::WRITE);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool DlgWznmMchWriniscr::evalFiaDldActive(
 			DbsWznm* dbswznm
 		) {
@@ -68,6 +40,34 @@ bool DlgWznmMchWriniscr::evalButDneActive(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
+
+	return(args.back());
+};
+
+bool DlgWznmMchWriniscr::evalWriButRunActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(idle)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::IDLE);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool DlgWznmMchWriniscr::evalWriButStoActive(
+			DbsWznm* dbswznm
+		) {
+	// sge(write)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (ixVSge == VecVSge::WRITE);
+	args.push_back(a);
 
 	return(args.back());
 };

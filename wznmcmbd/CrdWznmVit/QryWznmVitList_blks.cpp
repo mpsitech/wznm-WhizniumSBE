@@ -20,8 +20,8 @@ uint QryWznmVitList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
 	if (s == "vec") return VEC;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -29,8 +29,8 @@ uint QryWznmVitList::VecVOrd::getIx(
 string QryWznmVitList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
 	if (ix == VEC) return("vec");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -181,15 +181,14 @@ QryWznmVitList::StgIac::StgIac(
 };
 
 bool QryWznmVitList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmVitList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmVitList"];}();
 
 	basefound = (me != Json::nullValue);
 

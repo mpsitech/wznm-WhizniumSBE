@@ -117,33 +117,33 @@ public class PnlWznmCtpRec {
 		public static final int INITDONEKPARKEY = 2;
 		public static final int INITDONEKKEY = 3;
 		public static final int INITDONEAPAR = 4;
-		public static final int INITDONE1NTAG = 5;
-		public static final int INITDONETPL1NCAPABILITY = 6;
+		public static final int INITDONETPL1NCAPABILITY = 5;
+		public static final int INITDONE1NTAG = 6;
 
 		public StatApp(
 					boolean initdoneDetail
 					, boolean initdoneKParKey
 					, boolean initdoneKKey
 					, boolean initdoneAPar
-					, boolean initdone1NTag
 					, boolean initdoneTpl1NCapability
+					, boolean initdone1NTag
 				) {
 			this.initdoneDetail = initdoneDetail;
 			this.initdoneKParKey = initdoneKParKey;
 			this.initdoneKKey = initdoneKKey;
 			this.initdoneAPar = initdoneAPar;
-			this.initdone1NTag = initdone1NTag;
 			this.initdoneTpl1NCapability = initdoneTpl1NCapability;
+			this.initdone1NTag = initdone1NTag;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEKPARKEY, INITDONEKKEY, INITDONEAPAR, INITDONE1NTAG, INITDONETPL1NCAPABILITY));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEKPARKEY, INITDONEKKEY, INITDONEAPAR, INITDONETPL1NCAPABILITY, INITDONE1NTAG));
 		};
 
 		public boolean initdoneDetail;
 		public boolean initdoneKParKey;
 		public boolean initdoneKKey;
 		public boolean initdoneAPar;
-		public boolean initdone1NTag;
 		public boolean initdoneTpl1NCapability;
+		public boolean initdone1NTag;
 
 		public boolean readXML(
 					Document doc
@@ -162,8 +162,8 @@ public class PnlWznmCtpRec {
 				initdoneKParKey = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneKParKey", mask, INITDONEKPARKEY);
 				initdoneKKey = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneKKey", mask, INITDONEKKEY);
 				initdoneAPar = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAPar", mask, INITDONEAPAR);
-				initdone1NTag = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NTag", mask, INITDONE1NTAG);
 				initdoneTpl1NCapability = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneTpl1NCapability", mask, INITDONETPL1NCAPABILITY);
+				initdone1NTag = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NTag", mask, INITDONE1NTAG);
 
 				return true;
 			};
@@ -180,8 +180,8 @@ public class PnlWznmCtpRec {
 			if (initdoneKParKey == comp.initdoneKParKey) items.add(INITDONEKPARKEY);
 			if (initdoneKKey == comp.initdoneKKey) items.add(INITDONEKKEY);
 			if (initdoneAPar == comp.initdoneAPar) items.add(INITDONEAPAR);
-			if (initdone1NTag == comp.initdone1NTag) items.add(INITDONE1NTAG);
 			if (initdoneTpl1NCapability == comp.initdoneTpl1NCapability) items.add(INITDONETPL1NCAPABILITY);
+			if (initdone1NTag == comp.initdone1NTag) items.add(INITDONE1NTAG);
 
 			return(items);
 		};
@@ -194,7 +194,7 @@ public class PnlWznmCtpRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEKPARKEY, INITDONEKKEY, INITDONEAPAR, INITDONE1NTAG, INITDONETPL1NCAPABILITY));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEKPARKEY, INITDONEKKEY, INITDONEAPAR, INITDONETPL1NCAPABILITY, INITDONE1NTAG));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -212,8 +212,8 @@ public class PnlWznmCtpRec {
 		public static final int SCRJREFKPARKEY = 3;
 		public static final int SCRJREFKKEY = 4;
 		public static final int SCRJREFAPAR = 5;
-		public static final int SCRJREF1NTAG = 6;
-		public static final int SCRJREFTPL1NCAPABILITY = 7;
+		public static final int SCRJREFTPL1NCAPABILITY = 6;
+		public static final int SCRJREF1NTAG = 7;
 		public static final int BUTREGULARIZEACTIVE = 8;
 
 		public StatShr(
@@ -222,8 +222,8 @@ public class PnlWznmCtpRec {
 					, String scrJrefKParKey
 					, String scrJrefKKey
 					, String scrJrefAPar
-					, String scrJref1NTag
 					, String scrJrefTpl1NCapability
+					, String scrJref1NTag
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
@@ -231,11 +231,11 @@ public class PnlWznmCtpRec {
 			this.scrJrefKParKey = scrJrefKParKey;
 			this.scrJrefKKey = scrJrefKKey;
 			this.scrJrefAPar = scrJrefAPar;
-			this.scrJref1NTag = scrJref1NTag;
 			this.scrJrefTpl1NCapability = scrJrefTpl1NCapability;
+			this.scrJref1NTag = scrJref1NTag;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFKPARKEY, SCRJREFKKEY, SCRJREFAPAR, SCRJREF1NTAG, SCRJREFTPL1NCAPABILITY, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFKPARKEY, SCRJREFKKEY, SCRJREFAPAR, SCRJREFTPL1NCAPABILITY, SCRJREF1NTAG, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
@@ -243,8 +243,8 @@ public class PnlWznmCtpRec {
 		public String scrJrefKParKey;
 		public String scrJrefKKey;
 		public String scrJrefAPar;
-		public String scrJref1NTag;
 		public String scrJrefTpl1NCapability;
+		public String scrJref1NTag;
 		public boolean ButRegularizeActive;
 
 		public boolean readXML(
@@ -267,8 +267,8 @@ public class PnlWznmCtpRec {
 				scrJrefKParKey = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefKParKey", mask, SCRJREFKPARKEY);
 				scrJrefKKey = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefKKey", mask, SCRJREFKKEY);
 				scrJrefAPar = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAPar", mask, SCRJREFAPAR);
-				scrJref1NTag = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NTag", mask, SCRJREF1NTAG);
 				scrJrefTpl1NCapability = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefTpl1NCapability", mask, SCRJREFTPL1NCAPABILITY);
+				scrJref1NTag = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NTag", mask, SCRJREF1NTAG);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
 				return true;
@@ -287,8 +287,8 @@ public class PnlWznmCtpRec {
 			if (scrJrefKParKey.equals(comp.scrJrefKParKey)) items.add(SCRJREFKPARKEY);
 			if (scrJrefKKey.equals(comp.scrJrefKKey)) items.add(SCRJREFKKEY);
 			if (scrJrefAPar.equals(comp.scrJrefAPar)) items.add(SCRJREFAPAR);
-			if (scrJref1NTag.equals(comp.scrJref1NTag)) items.add(SCRJREF1NTAG);
 			if (scrJrefTpl1NCapability.equals(comp.scrJrefTpl1NCapability)) items.add(SCRJREFTPL1NCAPABILITY);
+			if (scrJref1NTag.equals(comp.scrJref1NTag)) items.add(SCRJREF1NTAG);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
 			return(items);
@@ -302,7 +302,7 @@ public class PnlWznmCtpRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFKPARKEY, SCRJREFKKEY, SCRJREFAPAR, SCRJREF1NTAG, SCRJREFTPL1NCAPABILITY, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFKPARKEY, SCRJREFKKEY, SCRJREFAPAR, SCRJREFTPL1NCAPABILITY, SCRJREF1NTAG, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

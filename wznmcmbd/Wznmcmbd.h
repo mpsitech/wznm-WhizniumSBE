@@ -48,10 +48,12 @@
 #include "SqkWznmPrctree.h"
 #include "SqkWznmWrapi.h"
 #include "SqkWznmWrapp.h"
+#include "SqkWznmWrcsapi.h"
 #include "SqkWznmWrdbs.h"
 #include "SqkWznmWrjapi.h"
-#include "SqkWznmWrsapi.h"
+#include "SqkWznmWrpyapi.h"
 #include "SqkWznmWrsrv.h"
+#include "SqkWznmWrswapi.h"
 #include "SqkWznmWrvue.h"
 #include "SqkWznmWrweb.h"
 
@@ -79,7 +81,7 @@ public:
 	static bool all(const std::set<Sbecore::uint>& items);
 	virtual std::string getSrefsMask();
 
-	virtual void readJSON(Json::Value& sup, bool addbasetag = false);
+	virtual void readJSON(const Json::Value& sup, bool addbasetag = false);
 	virtual void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 };
 
@@ -102,7 +104,7 @@ public:
 	static bool all(const std::set<Sbecore::uint>& items);
 	std::string getSrefsMask();
 
-	void readJSON(Json::Value& sup, bool addbasetag = false);
+	void readJSON(const Json::Value& sup, bool addbasetag = false);
 	void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 };
 

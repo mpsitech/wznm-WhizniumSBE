@@ -20,11 +20,11 @@ uint QryWznmPrjList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "grp") return GRP;
-	if (s == "own") return OWN;
-	if (s == "sho") return SHO;
 	if (s == "tit") return TIT;
 	if (s == "ver") return VER;
+	if (s == "sho") return SHO;
+	if (s == "grp") return GRP;
+	if (s == "own") return OWN;
 
 	return(0);
 };
@@ -32,11 +32,11 @@ uint QryWznmPrjList::VecVOrd::getIx(
 string QryWznmPrjList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == GRP) return("grp");
-	if (ix == OWN) return("own");
-	if (ix == SHO) return("sho");
 	if (ix == TIT) return("tit");
 	if (ix == VER) return("ver");
+	if (ix == SHO) return("sho");
+	if (ix == GRP) return("grp");
+	if (ix == OWN) return("own");
 
 	return("");
 };
@@ -187,15 +187,14 @@ QryWznmPrjList::StgIac::StgIac(
 };
 
 bool QryWznmPrjList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmPrjList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmPrjList"];}();
 
 	basefound = (me != Json::nullValue);
 

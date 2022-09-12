@@ -85,7 +85,7 @@ void QryWznmSbsAsbMNSubset::rerun(
 	dbswznm->tblwznmqsbsasbmnsubset->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMSubsetMSubset.ref)";
-	sqlstr += " FROM TblWznmRMSubsetMSubset, TblWznmMSubset";
+	sqlstr += " FROM TblWznmMSubset, TblWznmRMSubsetMSubset";
 	sqlstr += " WHERE TblWznmRMSubsetMSubset.bsbRefWznmMSubset = TblWznmMSubset.ref";
 	sqlstr += " AND TblWznmRMSubsetMSubset.asbRefWznmMSubset = " + to_string(preRefSbs) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -100,7 +100,7 @@ void QryWznmSbsAsbMNSubset::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQSbsAsbMNSubset(jref, jnum, mref, ref, ixVReltype)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMSubset.ref, TblWznmRMSubsetMSubset.ref, TblWznmRMSubsetMSubset.ixVReltype";
-	sqlstr += " FROM TblWznmRMSubsetMSubset, TblWznmMSubset";
+	sqlstr += " FROM TblWznmMSubset, TblWznmRMSubsetMSubset";
 	sqlstr += " WHERE TblWznmRMSubsetMSubset.bsbRefWznmMSubset = TblWznmMSubset.ref";
 	sqlstr += " AND TblWznmRMSubsetMSubset.asbRefWznmMSubset = " + to_string(preRefSbs) + "";
 	sqlstr += " ORDER BY TblWznmMSubset.sref ASC";
@@ -282,19 +282,11 @@ void QryWznmSbsAsbMNSubset::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSBSRSBSMOD_ASBEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMSBSRSBSMOD_ASBEQ) {
 		call->abort = handleCallWznmSbsRsbsMod_asbEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmSbsAsbMNSubset::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmSbsAsbMNSubset::handleCallWznmSbsRsbsMod_asbEq(
@@ -308,5 +300,13 @@ bool QryWznmSbsAsbMNSubset::handleCallWznmSbsRsbsMod_asbEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
+	return retval;
+};
+
+bool QryWznmSbsAsbMNSubset::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

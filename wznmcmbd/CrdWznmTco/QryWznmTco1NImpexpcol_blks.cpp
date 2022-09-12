@@ -149,15 +149,14 @@ QryWznmTco1NImpexpcol::StgIac::StgIac(
 };
 
 bool QryWznmTco1NImpexpcol::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmTco1NImpexpcol"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmTco1NImpexpcol"];}();
 
 	basefound = (me != Json::nullValue);
 

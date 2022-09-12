@@ -149,15 +149,14 @@ QryWznmMchAMakefile::StgIac::StgIac(
 };
 
 bool QryWznmMchAMakefile::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmMchAMakefile"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmMchAMakefile"];}();
 
 	basefound = (me != Json::nullValue);
 

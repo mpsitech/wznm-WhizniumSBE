@@ -198,15 +198,14 @@ DlgWznmVerDbstr::ContIac::ContIac(
 };
 
 bool DlgWznmVerDbstr::ContIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["ContIacDlgWznmVerDbstr"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["ContIacDlgWznmVerDbstr"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -1142,15 +1141,14 @@ string DlgWznmVerDbstr::DpchAppData::getSrefsMask() {
 };
 
 void DlgWznmVerDbstr::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppDlgWznmVerDbstrData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppDlgWznmVerDbstrData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -1216,15 +1214,14 @@ string DlgWznmVerDbstr::DpchAppDo::getSrefsMask() {
 };
 
 void DlgWznmVerDbstr::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppDlgWznmVerDbstrDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppDlgWznmVerDbstrDo"];}();
 
 	basefound = (me != Json::nullValue);
 

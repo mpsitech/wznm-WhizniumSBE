@@ -149,15 +149,14 @@ QryWznmVerMNLocale::StgIac::StgIac(
 };
 
 bool QryWznmVerMNLocale::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmVerMNLocale"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmVerMNLocale"];}();
 
 	basefound = (me != Json::nullValue);
 

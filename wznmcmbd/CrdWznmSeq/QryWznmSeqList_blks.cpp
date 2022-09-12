@@ -181,15 +181,14 @@ QryWznmSeqList::StgIac::StgIac(
 };
 
 bool QryWznmSeqList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmSeqList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmSeqList"];}();
 
 	basefound = (me != Json::nullValue);
 

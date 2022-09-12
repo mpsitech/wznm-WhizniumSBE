@@ -42,38 +42,38 @@ CrdWznmNav::CrdWznmNav(
 	feedFSge.tag = "FeedFSge";
 	VecVSge::fillFeed(feedFSge);
 
-	dlgloaini = NULL;
-	dlgmnglic = NULL;
-	pnlheadbar = NULL;
-	pnlpre = NULL;
-	pnladmin = NULL;
-	pnlglobal = NULL;
-	pnlproject = NULL;
-	pnldbstr = NULL;
-	pnluix = NULL;
-	pnlcomp = NULL;
-	pnljob = NULL;
-	pnldeploy = NULL;
-	pnlappdev = NULL;
 	pnlauxfct = NULL;
+	pnlappdev = NULL;
+	pnldeploy = NULL;
+	pnljob = NULL;
+	pnlcomp = NULL;
+	pnluix = NULL;
+	pnldbstr = NULL;
+	pnlproject = NULL;
+	pnlglobal = NULL;
+	pnladmin = NULL;
+	pnlpre = NULL;
+	pnlheadbar = NULL;
+	dlgmnglic = NULL;
+	dlgloaini = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	set<uint> moditems;
 	refresh(dbswznm, moditems);
 
-	pnlheadbar = new PnlWznmNavHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlpre = new PnlWznmNavPre(xchg, dbswznm, jref, ixWznmVLocale);
-	pnladmin = new PnlWznmNavAdmin(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlglobal = new PnlWznmNavGlobal(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlproject = new PnlWznmNavProject(xchg, dbswznm, jref, ixWznmVLocale);
-	pnldbstr = new PnlWznmNavDbstr(xchg, dbswznm, jref, ixWznmVLocale);
-	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlcomp = new PnlWznmNavComp(xchg, dbswznm, jref, ixWznmVLocale);
-	pnljob = new PnlWznmNavJob(xchg, dbswznm, jref, ixWznmVLocale);
-	pnldeploy = new PnlWznmNavDeploy(xchg, dbswznm, jref, ixWznmVLocale);
-	pnlappdev = new PnlWznmNavAppdev(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlauxfct = new PnlWznmNavAuxfct(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlappdev = new PnlWznmNavAppdev(xchg, dbswznm, jref, ixWznmVLocale);
+	pnldeploy = new PnlWznmNavDeploy(xchg, dbswznm, jref, ixWznmVLocale);
+	pnljob = new PnlWznmNavJob(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlcomp = new PnlWznmNavComp(xchg, dbswznm, jref, ixWznmVLocale);
+	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
+	pnldbstr = new PnlWznmNavDbstr(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlproject = new PnlWznmNavProject(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlglobal = new PnlWznmNavGlobal(xchg, dbswznm, jref, ixWznmVLocale);
+	pnladmin = new PnlWznmNavAdmin(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlpre = new PnlWznmNavPre(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlheadbar = new PnlWznmNavHeadbar(xchg, dbswznm, jref, ixWznmVLocale);
 
 	// IP constructor.cust2 --- INSERT
 

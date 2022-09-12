@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmRtjDetail.h"
+#include "PnlWznmRtjSup1NRtjob.h"
 #include "PnlWznmRtj1NRtblock.h"
 #include "PnlWznmRtj1NRtdpch.h"
-#include "PnlWznmRtjSup1NRtjob.h"
+#include "PnlWznmRtjDetail.h"
 
 #define VecVWznmRtjRecDo PnlWznmRtjRec::VecVDo
 
@@ -75,8 +75,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdone1NRtblock = false, const bool initdone1NRtdpch = false, const bool initdoneSup1NRtjob = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NRtblock = false, const bool initdone1NRtdpch = false, const bool initdoneSup1NRtjob = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdone1NRtdpch = false, const bool initdone1NRtblock = false, const bool initdoneSup1NRtjob = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NRtdpch = false, const bool initdone1NRtblock = false, const bool initdoneSup1NRtjob = false);
 	};
 
 	/**
@@ -87,19 +87,19 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREF1NRTBLOCK = 3;
-		static const Sbecore::uint JREF1NRTDPCH = 4;
+		static const Sbecore::uint JREF1NRTDPCH = 3;
+		static const Sbecore::uint JREF1NRTBLOCK = 4;
 		static const Sbecore::uint JREFSUP1NRTJOB = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NRtblock = 0, const Sbecore::ubigint jref1NRtdpch = 0, const Sbecore::ubigint jrefSup1NRtjob = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NRtdpch = 0, const Sbecore::ubigint jref1NRtblock = 0, const Sbecore::ubigint jrefSup1NRtjob = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jref1NRtblock;
 		Sbecore::ubigint jref1NRtdpch;
+		Sbecore::ubigint jref1NRtblock;
 		Sbecore::ubigint jrefSup1NRtjob;
 		bool ButRegularizeActive;
 
@@ -138,7 +138,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -180,10 +180,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmRtjDetail* pnldetail;
+	PnlWznmRtjSup1NRtjob* pnlsup1nrtjob;
 	PnlWznmRtj1NRtblock* pnl1nrtblock;
 	PnlWznmRtj1NRtdpch* pnl1nrtdpch;
-	PnlWznmRtjSup1NRtjob* pnlsup1nrtjob;
+	PnlWznmRtjDetail* pnldetail;
 
 	WznmMRtjob recRtj;
 
@@ -217,10 +217,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmRtj_appEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmRtj_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmRtj_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmRtjUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmRtj_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmRtj_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmRtj_appEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

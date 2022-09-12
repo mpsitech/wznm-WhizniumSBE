@@ -33,10 +33,12 @@ uint VecWznmVOppack::getIx(
 	if (s == "wznmprctree") return WZNMPRCTREE;
 	if (s == "wznmwrapi") return WZNMWRAPI;
 	if (s == "wznmwrapp") return WZNMWRAPP;
+	if (s == "wznmwrcsapi") return WZNMWRCSAPI;
 	if (s == "wznmwrdbs") return WZNMWRDBS;
 	if (s == "wznmwrjapi") return WZNMWRJAPI;
-	if (s == "wznmwrsapi") return WZNMWRSAPI;
+	if (s == "wznmwrpyapi") return WZNMWRPYAPI;
 	if (s == "wznmwrsrv") return WZNMWRSRV;
+	if (s == "wznmwrswapi") return WZNMWRSWAPI;
 	if (s == "wznmwrvue") return WZNMWRVUE;
 	if (s == "wznmwrweb") return WZNMWRWEB;
 
@@ -57,10 +59,12 @@ string VecWznmVOppack::getSref(
 	if (ix == WZNMPRCTREE) return("WznmPrctree");
 	if (ix == WZNMWRAPI) return("WznmWrapi");
 	if (ix == WZNMWRAPP) return("WznmWrapp");
+	if (ix == WZNMWRCSAPI) return("WznmWrcsapi");
 	if (ix == WZNMWRDBS) return("WznmWrdbs");
 	if (ix == WZNMWRJAPI) return("WznmWrjapi");
-	if (ix == WZNMWRSAPI) return("WznmWrsapi");
+	if (ix == WZNMWRPYAPI) return("WznmWrpyapi");
 	if (ix == WZNMWRSRV) return("WznmWrsrv");
+	if (ix == WZNMWRSWAPI) return("WznmWrswapi");
 	if (ix == WZNMWRVUE) return("WznmWrvue");
 	if (ix == WZNMWRWEB) return("WznmWrweb");
 
@@ -81,10 +85,12 @@ string VecWznmVOppack::getTitle(
 	if (ix == WZNMPRCTREE) return("process file tree");
 	if (ix == WZNMWRAPI) return("write API code");
 	if (ix == WZNMWRAPP) return("write accessor app code");
+	if (ix == WZNMWRCSAPI) return("write C# API code");
 	if (ix == WZNMWRDBS) return("write database access code");
 	if (ix == WZNMWRJAPI) return("write Java API code");
-	if (ix == WZNMWRSAPI) return("write Swift API code");
+	if (ix == WZNMWRPYAPI) return("write Python API code");
 	if (ix == WZNMWRSRV) return("write server code");
+	if (ix == WZNMWRSWAPI) return("write Swift API code");
 	if (ix == WZNMWRVUE) return("write Vue.js UI code");
 	if (ix == WZNMWRWEB) return("write web UI code");
 	return(getSref(ix));
@@ -111,5 +117,5 @@ void VecWznmVOppack::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 17; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i));
+	for (unsigned int i = 1; i <= 19; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i));
 };

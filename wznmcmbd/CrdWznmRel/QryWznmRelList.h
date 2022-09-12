@@ -32,15 +32,15 @@ public:
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint FRT = 1;
-		static const Sbecore::uint FRS = 2;
-		static const Sbecore::uint TOT = 3;
-		static const Sbecore::uint TOS = 4;
+		static const Sbecore::uint TBL = 1;
+		static const Sbecore::uint SRL = 2;
+		static const Sbecore::uint VER = 3;
+		static const Sbecore::uint SUP = 4;
 		static const Sbecore::uint TYP = 5;
-		static const Sbecore::uint VER = 6;
-		static const Sbecore::uint SUP = 7;
-		static const Sbecore::uint SRL = 8;
-		static const Sbecore::uint TBL = 9;
+		static const Sbecore::uint TOS = 6;
+		static const Sbecore::uint TOT = 7;
+		static const Sbecore::uint FRS = 8;
+		static const Sbecore::uint FRT = 9;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -102,7 +102,7 @@ public:
 		Sbecore::uint nload;
 
 	public:
-		bool readJSON(Json::Value& sup, bool addbasetag = false);
+		bool readJSON(const Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
@@ -155,9 +155,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
-	bool handleCallWznmRelMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmRelUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmRelMod(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmStubChgFromSelf(DbsWznm* dbswznm);
 
 };
 

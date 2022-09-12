@@ -1,4 +1,4 @@
-IexWznmIni v1.1.8
+IexWznmIni v1.1.9
 ImeIAVKeylistKey1.srefKlsIxWznmVKeylist	sref	Avail	Implied	Title	Comment
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrAcv			prettify file list and add state machine to create file dialog	
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrClustmgr			add state machines to launch dialogs	

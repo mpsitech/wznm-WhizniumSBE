@@ -2,8 +2,8 @@
 # file checkout.sh
 # checkout script for Wznm operation daemon, release wznmopd1_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Emily Johnson (auto-generation)
-# date created: 28 Mar 2022
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -23,9 +23,11 @@ mkdir $BUILDROOT/wznmopd1/VecWznm
 mkdir $BUILDROOT/wznmopd1/WznmWrweb
 mkdir $BUILDROOT/wznmopd1/WznmWrvue
 mkdir $BUILDROOT/wznmopd1/WznmWrsrv
-mkdir $BUILDROOT/wznmopd1/WznmWrsapi
+mkdir $BUILDROOT/wznmopd1/WznmWrswapi
+mkdir $BUILDROOT/wznmopd1/WznmWrpyapi
 mkdir $BUILDROOT/wznmopd1/WznmWrjapi
 mkdir $BUILDROOT/wznmopd1/WznmWrdbs
+mkdir $BUILDROOT/wznmopd1/WznmWrcsapi
 mkdir $BUILDROOT/wznmopd1/WznmWrapp
 mkdir $BUILDROOT/wznmopd1/WznmWrapi
 mkdir $BUILDROOT/wznmopd1/WznmPrctree
@@ -83,10 +85,15 @@ cp Makefile_WznmWrsrv $BUILDROOT/wznmopd1/WznmWrsrv/Makefile
 cp $CMBDBUILDROOT/WznmWrsrv/WznmWrsrv*.h $BUILDROOT/wznmopd1/WznmWrsrv/
 cp $CMBDBUILDROOT/WznmWrsrv/WznmWrsrv*.cpp $BUILDROOT/wznmopd1/WznmWrsrv/
 
-cp Makefile_WznmWrsapi $BUILDROOT/wznmopd1/WznmWrsapi/Makefile
+cp Makefile_WznmWrswapi $BUILDROOT/wznmopd1/WznmWrswapi/Makefile
 
-cp $CMBDBUILDROOT/WznmWrsapi/WznmWrsapi*.h $BUILDROOT/wznmopd1/WznmWrsapi/
-cp $CMBDBUILDROOT/WznmWrsapi/WznmWrsapi*.cpp $BUILDROOT/wznmopd1/WznmWrsapi/
+cp $CMBDBUILDROOT/WznmWrswapi/WznmWrswapi*.h $BUILDROOT/wznmopd1/WznmWrswapi/
+cp $CMBDBUILDROOT/WznmWrswapi/WznmWrswapi*.cpp $BUILDROOT/wznmopd1/WznmWrswapi/
+
+cp Makefile_WznmWrpyapi $BUILDROOT/wznmopd1/WznmWrpyapi/Makefile
+
+cp $CMBDBUILDROOT/WznmWrpyapi/WznmWrpyapi*.h $BUILDROOT/wznmopd1/WznmWrpyapi/
+cp $CMBDBUILDROOT/WznmWrpyapi/WznmWrpyapi*.cpp $BUILDROOT/wznmopd1/WznmWrpyapi/
 
 cp Makefile_WznmWrjapi $BUILDROOT/wznmopd1/WznmWrjapi/Makefile
 
@@ -97,6 +104,11 @@ cp Makefile_WznmWrdbs $BUILDROOT/wznmopd1/WznmWrdbs/Makefile
 
 cp $CMBDBUILDROOT/WznmWrdbs/WznmWrdbs*.h $BUILDROOT/wznmopd1/WznmWrdbs/
 cp $CMBDBUILDROOT/WznmWrdbs/WznmWrdbs*.cpp $BUILDROOT/wznmopd1/WznmWrdbs/
+
+cp Makefile_WznmWrcsapi $BUILDROOT/wznmopd1/WznmWrcsapi/Makefile
+
+cp $CMBDBUILDROOT/WznmWrcsapi/WznmWrcsapi*.h $BUILDROOT/wznmopd1/WznmWrcsapi/
+cp $CMBDBUILDROOT/WznmWrcsapi/WznmWrcsapi*.cpp $BUILDROOT/wznmopd1/WznmWrcsapi/
 
 cp Makefile_WznmWrapp $BUILDROOT/wznmopd1/WznmWrapp/Makefile
 

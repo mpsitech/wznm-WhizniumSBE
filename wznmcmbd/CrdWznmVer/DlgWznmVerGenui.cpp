@@ -87,8 +87,8 @@ void DlgWznmVerGenui::refreshGui(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfGui oldContinfgui(continfgui);
 	StatShrGui oldStatshrgui(statshrgui);
+	ContInfGui oldContinfgui(continfgui);
 
 	// IP refreshGui --- RBEGIN
 	// continfgui
@@ -99,26 +99,26 @@ void DlgWznmVerGenui::refreshGui(
 	statshrgui.ButStoActive = evalGuiButStoActive(dbswznm);
 
 	// IP refreshGui --- REND
-	if (continfgui.diff(&oldContinfgui).size() != 0) insert(moditems, DpchEngData::CONTINFGUI);
 	if (statshrgui.diff(&oldStatshrgui).size() != 0) insert(moditems, DpchEngData::STATSHRGUI);
+	if (continfgui.diff(&oldContinfgui).size() != 0) insert(moditems, DpchEngData::CONTINFGUI);
 };
 
 void DlgWznmVerGenui::refreshLfi(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrLfi oldStatshrlfi(statshrlfi);
 	ContInfLfi oldContinflfi(continflfi);
+	StatShrLfi oldStatshrlfi(statshrlfi);
 
 	// IP refreshLfi --- BEGIN
+	// continflfi
+
 	// statshrlfi
 	statshrlfi.DldActive = evalLfiDldActive(dbswznm);
 
-	// continflfi
-
 	// IP refreshLfi --- END
-	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 	if (continflfi.diff(&oldContinflfi).size() != 0) insert(moditems, DpchEngData::CONTINFLFI);
+	if (statshrlfi.diff(&oldStatshrlfi).size() != 0) insert(moditems, DpchEngData::STATSHRLFI);
 };
 
 void DlgWznmVerGenui::refresh(
@@ -129,9 +129,9 @@ void DlgWznmVerGenui::refresh(
 	if (muteRefresh && !unmute) return;
 	muteRefresh = true;
 
-	ContInf oldContinf(continf);
-	ContIac oldContiac(contiac);
 	StatShr oldStatshr(statshr);
+	ContIac oldContiac(contiac);
+	ContInf oldContinf(continf);
 
 	// IP refresh --- RBEGIN
 	// continf
@@ -141,9 +141,9 @@ void DlgWznmVerGenui::refresh(
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
 	// IP refresh --- REND
-	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
+	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
 
 	refreshGui(dbswznm, moditems);
 	refreshLfi(dbswznm, moditems);

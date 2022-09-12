@@ -14,18 +14,20 @@
 	#include <arpa/inet.h>
 #endif
 
-#include "WznmCompl_blks.h"
-#include "WznmGen_blks.h"
-#include "WznmPrcfile_blks.h"
-#include "WznmPrctree_blks.h"
-#include "WznmWrapi_blks.h"
-#include "WznmWrapp_blks.h"
-#include "WznmWrdbs_blks.h"
-#include "WznmWrjapi_blks.h"
-#include "WznmWrsapi_blks.h"
-#include "WznmWrsrv_blks.h"
-#include "WznmWrvue_blks.h"
 #include "WznmWrweb_blks.h"
+#include "WznmWrvue_blks.h"
+#include "WznmWrsrv_blks.h"
+#include "WznmWrswapi_blks.h"
+#include "WznmWrpyapi_blks.h"
+#include "WznmWrjapi_blks.h"
+#include "WznmWrdbs_blks.h"
+#include "WznmWrcsapi_blks.h"
+#include "WznmWrapp_blks.h"
+#include "WznmWrapi_blks.h"
+#include "WznmPrctree_blks.h"
+#include "WznmPrcfile_blks.h"
+#include "WznmGen_blks.h"
+#include "WznmCompl_blks.h"
 
 /**
 	* WznmopdEngsrv

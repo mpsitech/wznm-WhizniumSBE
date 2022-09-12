@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmBlkDetail.h"
-#include "PnlWznmBlkAItem.h"
 #include "PnlWznmBlk1NRtdpch.h"
 #include "PnlWznmBlkRef1NRtblock.h"
+#include "PnlWznmBlkAItem.h"
+#include "PnlWznmBlkDetail.h"
 
 #define VecVWznmBlkRecDo PnlWznmBlkRec::VecVDo
 
@@ -138,7 +138,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -180,10 +180,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmBlkDetail* pnldetail;
-	PnlWznmBlkAItem* pnlaitem;
 	PnlWznmBlk1NRtdpch* pnl1nrtdpch;
 	PnlWznmBlkRef1NRtblock* pnlref1nrtblock;
+	PnlWznmBlkAItem* pnlaitem;
+	PnlWznmBlkDetail* pnldetail;
 
 	WznmMBlock recBlk;
 
@@ -217,10 +217,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
+	bool handleCallWznmBlkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmBlk_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmBlk_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmBlk_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmBlk_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmBlkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 };
 

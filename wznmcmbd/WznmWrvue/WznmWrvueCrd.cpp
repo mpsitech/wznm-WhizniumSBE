@@ -71,15 +71,20 @@ void WznmWrvueCrd::writeCrdVue(
 
 	dbswznm->tblwznmmpanel->loadRstByCar(car->ref, false, pnls);
 
+	// --- title*
+	if (car->refIxVTbl == VecWznmVMCardRefTbl::VOID) outfile << "<!-- IP title - AFFIRM -->" << endl;
+	else outfile << "<!-- IP title - REMOVE -->" << endl;
+
 	// --- pnls
 	outfile << "<!-- IP pnls - IBEGIN -->" << endl;
 
 	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
 		pnl = pnls.nodes[i];
 
-		if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) {
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::LIST) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::REC)) {
 			outfile << "\t\t<" << pnl->sref << endl;
 			if (pnl->Avail != "") outfile << "\t\t\tv-if=\"statshr.pnl" << StrMod::lc(pnl->sref.substr(3+4+3)) << "Avail\"" << endl;
+			if (pnl->ixVBasetype == VecWznmVMPanelBasetype::REC) outfile << "\t\t\tv-on:crdopen=\"handleCrdopen\"" << endl;
 			outfile << "\t\t\tv-on:request=\"handleRequest\"" << endl;
 			outfile << "\t\t\tref=\"" << pnl->sref << "\"" << endl;
 			outfile << "\t\t\t:scrJref=statshr.scrJref" << pnl->sref.substr(3+4+3) << endl;
@@ -90,28 +95,26 @@ void WznmWrvueCrd::writeCrdVue(
 	outfile << "<!-- IP pnls - IEND -->" << endl;
 
 	// --- import
-	outfile << "<!-- IP import - IBEGIN -->" << endl;
-	outfile << "\t*/" << endl;
+	wrIbegin(outfile, 1, "import");
 
 	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
 		pnl = pnls.nodes[i];
 
-		if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) outfile << "\timport " << pnl->sref << " from './" << pnl->sref << "';" << endl;
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::LIST) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::REC))
+					outfile << "\timport " << pnl->sref << " from './" << pnl->sref << "';" << endl;
 	};
 
-	outfile << "\t/*" << endl;
-	outfile << "<!-- IP import - IEND -->" << endl;
+	wrIend(outfile, 1, "import");
 
 	// --- components
-	outfile << "<!-- IP components - IBEGIN -->" << endl;
-	outfile << "\t\t\t*/" << endl;
+	wrIbegin(outfile, 3, "components");
 
 	first = true;
 
 	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
 		pnl = pnls.nodes[i];
 
-		if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) {
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::LIST) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::REC)) {
 			if (first) first = false;
 			else outfile << "," << endl;
 			outfile << "\t\t\t" << pnl->sref;
@@ -120,47 +123,73 @@ void WznmWrvueCrd::writeCrdVue(
 
 	if (!first) outfile << endl;
 
-	outfile << "\t\t\t/*" << endl;
-	outfile << "<!-- IP components - IEND -->" << endl;
+	wrIend(outfile, 3, "components");
 
-	// --- handleReply
-	outfile << "<!-- IP handleReply - IBEGIN -->" << endl;
-	outfile << "\t\t\t\t\t*/" << endl;
+	// --- mergeDpchEngData
+	wrIbegin(outfile, 4, "mergeDpchEngData");
+	wrMergedpcheng(dbswznm, Prjshort, outfile, car->refWznmMJob);
+	wrIend(outfile, 4, "mergeDpchEngData");
 
-	first = true;
-
-	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
-		pnl = pnls.nodes[i];
-
-		if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) {
-			outfile << "\t\t\t\t\t";
-			if (first) first = false;
-			else outfile << "else ";
-			outfile << "if (obj.dpcheng.scrJref == this.statshr.scrJref" << pnl->sref.substr(3+4+3) << ") this.$refs." << pnl->sref << ".handleReply(obj);" << endl;
-		};
-	};
-
-	outfile << "\t\t\t\t\t/*" << endl;
-	outfile << "<!-- IP handleReply - IEND -->" << endl;
-
-	// --- handleUpdate
-	outfile << "<!-- IP handleUpdate - IBEGIN -->" << endl;
-	outfile << "\t\t\t\t\t*/" << endl;
+	// --- handleReply.subs
+	wrIbegin(outfile, 5, "handleReply.subs");
 
 	first = true;
 
 	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
 		pnl = pnls.nodes[i];
 
-		if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) {
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::LIST)) {
 			outfile << "\t\t\t\t\t";
 			if (first) first = false;
 			else outfile << "else ";
-			outfile << "if (obj.dpcheng.scrJref == this.statshr.scrJref" << pnl->sref.substr(3+4+3) << ") this.$refs." << pnl->sref << ".handleUpdate(obj);" << endl;
+			outfile << "if (obj.scrJref == this.statshr.scrJref" << pnl->sref.substr(3+4+3) << ") this.$refs." << pnl->sref << ".handleReply(obj);" << endl;
 		};
 	};
 
-	outfile << "\t\t\t\t\t/*" << endl;
-	outfile << "<!-- IP handleUpdate - IEND -->" << endl;
+	outfile << "\t\t\t\t\t";
+	if (!first) outfile << "else ";
+	if (car->refIxVTbl != VecWznmVMCardRefTbl::VOID) outfile << "this.$refs.Pnl" << car->sref.substr(3) << "Rec.handleReply(obj);" << endl;
+	else outfile << "console.log(\"got a '\" + obj.srefIx" << Prjshort << "VDpch + \"' from job with scrJref \" + obj.dpcheng.scrJref);" << endl;
+
+	wrIend(outfile, 5, "handleReply.subs");
+
+	// --- handleUpdate.subs
+	wrIbegin(outfile, 5, "handleUpdate.subs");
+
+	first = true;
+
+	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
+		pnl = pnls.nodes[i];
+
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::LIST)) {
+			outfile << "\t\t\t\t\t";
+			if (first) first = false;
+			else outfile << "} else ";
+			outfile << "if (obj.dpcheng.scrJref == this.statshr.scrJref" << pnl->sref.substr(3+4+3) << ") {" << endl;
+			outfile << "\t\t\t\t\t\tthis.$refs." << pnl->sref << ".handleUpdate(obj);" << endl;
+			outfile << "\t\t\t\t\t\tprocessed = true;" << endl;
+		};
+	};
+
+	outfile << "\t\t\t\t\t";
+	if (!first) outfile << "}";
+	if (car->refIxVTbl != VecWznmVMCardRefTbl::VOID) {
+		if (!first) outfile << " else ";
+		outfile << "processed = this.$refs.Pnl" << car->sref.substr(3) << "Rec.handleUpdate(obj);";
+	};
+	outfile << endl;
+
+	wrIend(outfile, 5, "handleUpdate.subs");
+
+	// --- handleUpdate.rec*
+
+	// --- handleUpdate.norec*
+	if (car->refIxVTbl == VecWznmVMCardRefTbl::VOID) outfile << "<!-- IP handleUpdate.norec - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleUpdate.norec - REMOVE -->" << endl;
+
+	// --- data
+	wrIbegin(outfile, 3, "data");
+	wrData(dbswznm, Prjshort, outfile, car->refWznmMJob);
+	wrIend(outfile, 3, "data");
 };
 // IP cust --- IEND

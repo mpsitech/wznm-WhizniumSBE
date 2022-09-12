@@ -41,7 +41,6 @@ DpchRetWznm* WznmWrwebPnl::run(
 	fstream outfile;
 
 	WznmMPanel* pnl = NULL;
-	uint ixReltype;
 	bool estapp = false;
 
 	WznmMCard* car = NULL;
@@ -58,8 +57,6 @@ DpchRetWznm* WznmWrwebPnl::run(
 	string s;
 
 	if (dbswznm->tblwznmmpanel->loadRecByRef(refWznmMPanel, &pnl)) {
-		ixReltype = Wznm::getPnlreltype(dbswznm, pnl);
-
 		dbswznm->tblwznmmcontrol->loadRstByHktHku(VecWznmVMControlHkTbl::PNL, pnl->ref, false, cons);
 		for (unsigned int i = 0; i < cons.nodes.size(); i++) {
 			con = cons.nodes[i];
@@ -157,7 +154,7 @@ DpchRetWznm* WznmWrwebPnl::run(
 			// PnlXxxxYyyZzzzz_Form/Recform.html
 			s = xchg->tmppath + "/" + folder + "/" + pnl->sref + ".html.ip";
 			outfile.open(s.c_str(), ios::out);
-			writePfHtfile(dbswznm, outfile, pnl);
+			writePfHtfile(dbswznm, outfile, pnl, cons);
 			outfile.close();
 
 			// PnlXxxxYyyZzzzz_Form/Recform.js
@@ -199,7 +196,7 @@ DpchRetWznm* WznmWrwebPnl::run(
 			// PnlXxxxYyyList_bhdr.html
 			s = xchg->tmppath + "/" + folder + "/" + pnl->sref + "_bhdr.html.ip";
 			outfile.open(s.c_str(), ios::out);
-			writePlbhHtfile(dbswznm, outfile, cons, haspst);
+			writePlbhHtfile(dbswznm, outfile, cons, Prjshort, haspst);
 			outfile.close();
 
 			// PnlXxxxYyyList_btbl.xml
@@ -249,7 +246,7 @@ DpchRetWznm* WznmWrwebPnl::run(
 			// PnlXxxxYyyZzzzz_bhdr.html
 			s = xchg->tmppath + "/" + folder + "/" + pnl->sref + "_bhdr.html.ip";
 			outfile.open(s.c_str(), ios::out);
-			writePnlbhHtfile(dbswznm, outfile, pnl, cons, ixReltype);
+			writePnlbhHtfile(dbswznm, outfile, pnl, cons, Prjshort);
 			outfile.close();
 
 			// PnlXxxxYyyZzzzz_bside.html
@@ -525,10 +522,6 @@ void WznmWrwebPnl::writePfbfHtfile(
 			, ListWznmMControl& cons
 			, const string& Prjshort
 		) {
-	WznmMControl* con = NULL;
-
-	string s;
-
 	// --- evthdls
 	outfile << "<!-- IP evthdls - IBEGIN -->" << endl;
 	wrEvthdlsXml(dbswznm, outfile, cons, {VecWznmVMControlHkSection::FTR}, "", 2);
@@ -536,25 +529,7 @@ void WznmWrwebPnl::writePfbfHtfile(
 
 	// --- buts
 	outfile << "<!-- IP buts - IBEGIN -->" << endl;
-	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
-		con = cons.nodes[i];
-
-		if ((con->ixVBasetype == VecWznmVMControlBasetype::BUT) && (con->hkIxVSection == VecWznmVMControlHkSection::FTR)) {
-			if (StrMod::srefInSrefs(con->srefsKOption, "icon")) {
-				s = getButicon(dbswznm, Prjshort, con);
-
-				outfile << "\t\t\t\t\t";
-				if (i != 0) outfile << "&#160;";
-				outfile << "<img id=\"" << con->sref << "\" class=\"ftr_but\" src=\"../" << s << ".png\" width=\"16\" height=\"16\" alt=\"" << con->sref
-							<< "\" onmouseover=\"src='../" << s << "_hlt.png'\" onmouseout=\"src='../" << s << ".png'\" onclick=\"handle" << con->sref << "Click()\"/>" << endl;
-
-			} else {
-				outfile << "\t\t\t\t\t<span id=\"" << con->sref << "\" class=\"ftr_but\" onclick=\"handle" << con->sref << "Click()\">";
-				if (i != 0) outfile << "&#160;&#160;";
-				outfile << con->sref << "</span>" << endl;
-			};
-		};
-	};
+	wrButs(dbswznm, Prjshort, outfile, cons, {VecWznmVMControlHkSection::FTR});
 	outfile << "<!-- IP buts - IEND -->" << endl;
 };
 
@@ -564,10 +539,6 @@ void WznmWrwebPnl::writePfbhHtfile(
 			, ListWznmMControl& cons
 			, const string& Prjshort
 		) {
-	WznmMControl* con = NULL;
-
-	string s;
-
 	// --- evthdls
 	outfile << "<!-- IP evthdls - IBEGIN -->" << endl;
 	wrEvthdlsXml(dbswznm, outfile, cons, {VecWznmVMControlHkSection::HDR, VecWznmVMControlHkSection::HDRDETD, VecWznmVMControlHkSection::HDRREGD}, "", 2);
@@ -575,25 +546,7 @@ void WznmWrwebPnl::writePfbhHtfile(
 
 	// --- buts
 	outfile << "<!-- IP buts - IBEGIN -->" << endl;
-	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
-		con = cons.nodes[i];
-
-		if ((con->ixVBasetype == VecWznmVMControlBasetype::BUT) && ((con->hkIxVSection == VecWznmVMControlHkSection::HDR) || (con->hkIxVSection == VecWznmVMControlHkSection::HDRDETD) || (con->hkIxVSection == VecWznmVMControlHkSection::HDRREGD))) {
-			if (StrMod::srefInSrefs(con->srefsKOption, "icon")) {
-				s = getButicon(dbswznm, Prjshort, con);
-
-				outfile << "\t\t\t\t\t";
-				if (i != 0) outfile << "&#160;";
-				outfile << "<img id=\"" << con->sref << "\" class=\"hdr_but\" src=\"../" << s << ".png\" width=\"16\" height=\"16\" alt=\"" << con->sref
-							<< "\" onmouseover=\"src='../" << s << "_hlt.png'\" onmouseout=\"src='../" << s << ".png'\" onclick=\"handle" << con->sref << "Click()\"/>" << endl;
-
-			} else {
-				outfile << "\t\t\t\t\t<span id=\"" << con->sref << "\" class=\"hdr_but\" onclick=\"handle" << con->sref << "Click()\">";
-				if (i != 0) outfile << "&#160;&#160;";
-				outfile << con->sref << "</span>" << endl;
-			};
-		};
-	};
+	wrButs(dbswznm, Prjshort, outfile, cons, {VecWznmVMControlHkSection::HDR, VecWznmVMControlHkSection::HDRDETD, VecWznmVMControlHkSection::HDRREGD});
 	outfile << "<!-- IP buts - IEND -->" << endl;
 };
 
@@ -601,26 +554,22 @@ void WznmWrwebPnl::writePfHtfile(
 			DbsWznm* dbswznm
 			, fstream& outfile
 			, WznmMPanel* pnl
+			, ListWznmMControl& cons
 		) {
-	uint cnt;
+	set<uint> unqcontypes;
+
+	for (unsigned int i = 0; i < cons.nodes.size(); i++) unqcontypes.insert(cons.nodes[i]->ixVBasetype);
 
 	// --- scrs
 	outfile << "<!-- IP scrs - IBEGIN -->" << endl;
-	if (dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL) + " AND hkUref = " + to_string(pnl->ref) + " AND ixVBasetype = "
-				+ to_string(VecWznmVMControlBasetype::HSB), cnt)) if (cnt > 0) outfile << "\t\t<script src=\"../script/hsb.js\" type=\"text/javascript\"></script>" << endl;
-	if (dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL) + " AND hkUref = " + to_string(pnl->ref) + " AND ixVBasetype = "
-				+ to_string(VecWznmVMControlBasetype::LST), cnt)) if (cnt > 0) outfile << "\t\t<script src=\"../script/lst.js\" type=\"text/javascript\"></script>" << endl;
-	if (dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL) + " AND hkUref = " + to_string(pnl->ref) + " AND ixVBasetype = "
-				+ to_string(VecWznmVMControlBasetype::PUP), cnt)) if (cnt > 0) outfile << "\t\t<script src=\"../script/pup.js\" type=\"text/javascript\"></script>" << endl;
-	if (dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL) + " AND hkUref = " + to_string(pnl->ref) + " AND ixVBasetype = "
-				+ to_string(VecWznmVMControlBasetype::RBU), cnt)) if (cnt > 0) outfile << "\t\t<script src=\"../script/rbu.js\" type=\"text/javascript\"></script>" << endl;
-	if (dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL) + " AND hkUref = " + to_string(pnl->ref) + " AND ixVBasetype = "
-				+ to_string(VecWznmVMControlBasetype::SLD), cnt)) if (cnt > 0) outfile << "\t\t<script src=\"../script/sld.js\" type=\"text/javascript\"></script>" << endl;
-	if (dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL) + " AND hkUref = " + to_string(pnl->ref) + " AND ixVBasetype = "
-				+ to_string(VecWznmVMControlBasetype::UPD), cnt)) if (cnt > 0) outfile << "\t\t<script src=\"../script/upd.js\" type=\"text/javascript\"></script>" << endl;
+	if (has(unqcontypes, VecWznmVMControlBasetype::HSB)) outfile << "\t\t<script src=\"../script/hsb.js\" type=\"text/javascript\"></script>" << endl;
+	if (has(unqcontypes, VecWznmVMControlBasetype::LST)) outfile << "\t\t<script src=\"../script/lst.js\" type=\"text/javascript\"></script>" << endl;
+	if (has(unqcontypes, VecWznmVMControlBasetype::PUP)) outfile << "\t\t<script src=\"../script/pup.js\" type=\"text/javascript\"></script>" << endl;
+	if (has(unqcontypes, VecWznmVMControlBasetype::RBU)) outfile << "\t\t<script src=\"../script/rbu.js\" type=\"text/javascript\"></script>" << endl;
+	if (has(unqcontypes, VecWznmVMControlBasetype::SLD)) outfile << "\t\t<script src=\"../script/sld.js\" type=\"text/javascript\"></script>" << endl;
+	if (has(unqcontypes, VecWznmVMControlBasetype::UPD)) outfile << "\t\t<script src=\"../script/upd.js\" type=\"text/javascript\"></script>" << endl;
 	if (getJobvecio(dbswznm, pnl->refWznmMJob)) outfile << "\t\t<script src=\"../script/vecio.js\" type=\"text/javascript\"></script>" << endl;
-	if (dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::PNL) + " AND hkUref = " + to_string(pnl->ref) + " AND ixVBasetype = "
-				+ to_string(VecWznmVMControlBasetype::VSB), cnt)) if (cnt > 0) outfile << "\t\t<script src=\"../script/vsb.js\" type=\"text/javascript\"></script>" << endl;
+	if (has(unqcontypes, VecWznmVMControlBasetype::VSB)) outfile << "\t\t<script src=\"../script/vsb.js\" type=\"text/javascript\"></script>" << endl;
 	outfile << "<!-- IP scrs - IEND -->" << endl;
 };
 
@@ -843,11 +792,11 @@ void WznmWrwebPnl::writePfJsfile(
 	outfile << "// IP handleDpchAppDataDoReply --- IEND" << endl;
 
 	// --- handleDpchAppDoCrdopenReply*
-	if (hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "crdopen")) outfile << "// IP handleDpchAppDoCrdopenReply --- AFFIRM" << endl;
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "crdopen")) outfile << "// IP handleDpchAppDoCrdopenReply --- AFFIRM" << endl;
 	else outfile << "// IP handleDpchAppDoCrdopenReply --- REMOVE" << endl;
 
 	// --- handleDpchAppDoDlgopenReply*
-	if (hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "dlgopen")) outfile << "// IP handleDpchAppDoDlgopenReply --- AFFIRM" << endl;
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "dlgopen")) outfile << "// IP handleDpchAppDoDlgopenReply --- AFFIRM" << endl;
 	else outfile << "// IP handleDpchAppDoDlgopenReply --- REMOVE" << endl;
 };
 
@@ -876,6 +825,7 @@ void WznmWrwebPnl::writePlbhHtfile(
 			DbsWznm* dbswznm
 			, fstream& outfile
 			, ListWznmMControl& cons
+			, const string& Prjshort
 			, const bool haspst
 		) {
 	// --- evthdls
@@ -886,6 +836,11 @@ void WznmWrwebPnl::writePlbhHtfile(
 	// --- pre*
 	if (haspst) outfile << "<!-- IP pre - AFFIRM -->" << endl;
 	else outfile << "<!-- IP pre - REMOVE -->" << endl;
+
+	// --- buts
+	outfile << "<!-- IP buts - IBEGIN -->" << endl;
+	wrButs(dbswznm, Prjshort, outfile, cons, {VecWznmVMControlHkSection::HDR, VecWznmVMControlHkSection::HDRDETD, VecWznmVMControlHkSection::HDRREGD});
+	outfile << "<!-- IP buts - IEND -->" << endl;
 };
 
 void WznmWrwebPnl::writePlbtXmfile(
@@ -1036,7 +991,7 @@ void WznmWrwebPnl::writePlJsfile(
 	outfile << "// IP mergeDpchEngData --- IEND" << endl;
 
 	// --- handleDpchAppDoDlgopenReply*
-	if (hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "dlgopen")) outfile << "// IP handleDpchAppDoDlgopenReply --- AFFIRM" << endl;
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "dlgopen")) outfile << "// IP handleDpchAppDoDlgopenReply --- AFFIRM" << endl;
 	else outfile << "// IP handleDpchAppDoDlgopenReply --- REMOVE" << endl;
 };
 
@@ -1342,7 +1297,7 @@ void WznmWrwebPnl::writePrJsfile(
 	outfile << "// IP handleDpchEng.subs --- IEND" << endl;
 
 	// --- handleDpchAppDoDlgopenReply*
-	if (hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "dlgopen")) outfile << "// IP handleDpchAppDoDlgopenReply --- AFFIRM" << endl;
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "dlgopen")) outfile << "// IP handleDpchAppDoDlgopenReply --- AFFIRM" << endl;
 	else outfile << "// IP handleDpchAppDoDlgopenReply --- REMOVE" << endl;
 };
 
@@ -1379,54 +1334,17 @@ void WznmWrwebPnl::writePnlbhHtfile(
 			, fstream& outfile
 			, WznmMPanel* pnl
 			, ListWznmMControl& cons
-			, const uint ixReltype
+			, const string& Prjshort
 		) {
-	WznmMControl* con = NULL;
-
-	bool updown = false;
-	bool view = false;
-	bool _new = false;
-	bool duplicate = false;
-	bool _delete = false;
-
-	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
-		con = cons.nodes[i];
-
-		if ((con->hkIxVSection == VecWznmVMControlHkSection::HDR) && (con->sref == "ButUp")) updown = true;
-		if ((con->hkIxVSection == VecWznmVMControlHkSection::HDR) && (con->sref == "ButView")) view = true;
-		if ((con->hkIxVSection == VecWznmVMControlHkSection::HDR) && (con->sref == "ButNew")) _new = true;
-		if ((con->hkIxVSection == VecWznmVMControlHkSection::HDR) && (con->sref == "ButDuplicate")) duplicate = true;
-		if ((con->hkIxVSection == VecWznmVMControlHkSection::HDR) && (con->sref == "ButDelete")) _delete = true;
-	};
-
 	// --- evthdls
 	outfile << "<!-- IP evthdls - IBEGIN -->" << endl;
 	wrEvthdlsXml(dbswznm, outfile, cons, {VecWznmVMControlHkSection::HDR}, "", 2);
 	outfile << "<!-- IP evthdls - IEND -->" << endl;
 
-	// --- ButUpDown*
-	if (updown) outfile << "<!-- IP ButUpDown - AFFIRM -->" << endl;
-	else outfile << "<!-- IP ButUpDown - REMOVE -->" << endl;
-
-	// --- ButView*
-	if (view) outfile << "<!-- IP ButView - AFFIRM -->" << endl;
-	else outfile << "<!-- IP ButView - REMOVE -->" << endl;
-
-	// --- ButAddSub*
-	if (ixReltype == VecWznmVMRelationBasetype::MN) outfile << "<!-- IP ButAddSub - AFFIRM -->" << endl;
-	else outfile << "<!-- IP ButAddSub - REMOVE -->" << endl;
-
-	// --- ButNew*
-	if (_new) outfile << "<!-- IP ButNew - AFFIRM -->" << endl;
-	else outfile << "<!-- IP ButNew - REMOVE -->" << endl;
-
-	// --- ButDuplicate*
-	if (duplicate) outfile << "<!-- IP ButDuplicate - AFFIRM -->" << endl;
-	else outfile << "<!-- IP ButDuplicate - REMOVE -->" << endl;
-
-	// --- ButDelete*
-	if (_delete) outfile << "<!-- IP ButDelete - AFFIRM -->" << endl;
-	else outfile << "<!-- IP ButDelete - REMOVE -->" << endl;
+	// --- buts
+	outfile << "<!-- IP buts - IBEGIN -->" << endl;
+	wrButs(dbswznm, Prjshort, outfile, cons, {VecWznmVMControlHkSection::HDR, VecWznmVMControlHkSection::HDRDETD, VecWznmVMControlHkSection::HDRREGD});
+	outfile << "<!-- IP buts - IEND -->" << endl;
 };
 
 void WznmWrwebPnl::writePnlbsHtfile(
@@ -1586,11 +1504,54 @@ void WznmWrwebPnl::writePnlJsfile(
 	else outfile << "// IP handleDpchAppDataDoReply.estshr --- REMOVE" << endl;
 
 	// --- handleDpchAppDoCrdopenReply*
-	if (hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "crdopen")) outfile << "// IP handleDpchAppDoCrdopenReply --- AFFIRM" << endl;
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "crdopen")) outfile << "// IP handleDpchAppDoCrdopenReply --- AFFIRM" << endl;
 	else outfile << "// IP handleDpchAppDoCrdopenReply --- REMOVE" << endl;
 
 	// --- handleDpchAppDoDlgopenReply*
-	if (hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "dlgopen")) outfile << "// IP handleDpchAppDoDlgopenReply --- AFFIRM" << endl;
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::PNL, pnl->ref, "dlgopen")) outfile << "// IP handleDpchAppDoDlgopenReply --- AFFIRM" << endl;
 	else outfile << "// IP handleDpchAppDoDlgopenReply --- REMOVE" << endl;
+};
+
+void WznmWrwebPnl::wrButs(
+			DbsWznm* dbswznm
+			, const string& Prjshort
+			, fstream& outfile
+			, ListWznmMControl& cons
+			, const set<uint>& hkIcsVSection
+		) {
+	ubigint refC;
+
+	WznmMControl* con = NULL;
+
+	string _class;
+
+	string s;
+
+	refC = 0;
+
+	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
+		con = cons.nodes[i];
+
+		if ((con->ixVBasetype == VecWznmVMControlBasetype::BUT) && (hkIcsVSection.find(con->hkIxVSection) != hkIcsVSection.end())) {
+			if ((con->hkIxVSection == VecWznmVMControlHkSection::HDR) || (con->hkIxVSection == VecWznmVMControlHkSection::HDRREGD) || (con->hkIxVSection == VecWznmVMControlHkSection::HDRDETD)) _class = "hdr_but";
+			else if (con->hkIxVSection == VecWznmVMControlHkSection::FTR) _class = "ftr_but";
+			else _class = "but";
+
+			outfile << "\t\t\t\t\t";
+			if (i != 0) {
+				if ((con->refWznmCControl != 0) && (con->refWznmCControl != refC)) outfile << "&#160;";
+				outfile << "&#160;";
+			};
+			refC = con->refWznmCControl;
+
+			if (StrMod::srefInSrefs(con->srefsKOption, "icon")) {
+				s = getButicon(dbswznm, Prjshort, con);
+
+				outfile << "<img id=\"" << con->sref << "\" class=\"" << _class << "\" src=\"../" << s << ".png\" width=\"16\" height=\"16\" alt=\"" << con->sref
+							<< "\" onmouseover=\"src='../" << s << "_hlt.png'\" onmouseout=\"src='../" << s << ".png'\" onclick=\"handle" << con->sref << "Click()\"/>" << endl;
+
+			} else outfile << "<span id=\"" << con->sref << "\" class=\"" << _class << "\" onclick=\"handle" << con->sref << "Click()\">" << con->sref << "</span>" << endl;
+		};
+	};
 };
 // IP cust --- IEND

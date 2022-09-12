@@ -236,15 +236,14 @@ PnlWznmVerMNLocale::StgIac::StgIac(
 };
 
 bool PnlWznmVerMNLocale::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacWznmVerMNLocale"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacWznmVerMNLocale"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -401,15 +400,14 @@ string PnlWznmVerMNLocale::DpchAppData::getSrefsMask() {
 };
 
 void PnlWznmVerMNLocale::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmVerMNLocaleData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmVerMNLocaleData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -475,15 +473,14 @@ string PnlWznmVerMNLocale::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWznmVerMNLocale::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmVerMNLocaleDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmVerMNLocaleDo"];}();
 
 	basefound = (me != Json::nullValue);
 

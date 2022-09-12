@@ -66,17 +66,17 @@ namespace PnlWznmCarRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONE1NDIALOG = 2;
-		static const Sbecore::uint INITDONECAR1NPANEL = 3;
+		static const Sbecore::uint INITDONECAR1NPANEL = 2;
+		static const Sbecore::uint INITDONE1NDIALOG = 3;
 		static const Sbecore::uint INITDONEHK1NCONTROL = 4;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdone1NDialog = false, const bool initdoneCar1NPanel = false, const bool initdoneHk1NControl = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneCar1NPanel = false, const bool initdone1NDialog = false, const bool initdoneHk1NControl = false);
 
 	public:
 		bool initdoneDetail;
-		bool initdone1NDialog;
 		bool initdoneCar1NPanel;
+		bool initdone1NDialog;
 		bool initdoneHk1NControl;
 
 	public:
@@ -93,19 +93,19 @@ namespace PnlWznmCarRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREF1NDIALOG = 3;
-		static const Sbecore::uint SCRJREFCAR1NPANEL = 4;
+		static const Sbecore::uint SCRJREFCAR1NPANEL = 3;
+		static const Sbecore::uint SCRJREF1NDIALOG = 4;
 		static const Sbecore::uint SCRJREFHK1NCONTROL = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJref1NDialog = "", const std::string& scrJrefCar1NPanel = "", const std::string& scrJrefHk1NControl = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefCar1NPanel = "", const std::string& scrJref1NDialog = "", const std::string& scrJrefHk1NControl = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
-		std::string scrJref1NDialog;
 		std::string scrJrefCar1NPanel;
+		std::string scrJref1NDialog;
 		std::string scrJrefHk1NControl;
 		bool ButRegularizeActive;
 

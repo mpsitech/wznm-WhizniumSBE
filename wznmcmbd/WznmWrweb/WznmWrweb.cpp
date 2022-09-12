@@ -3685,10 +3685,10 @@ string WznmWrweb::getButicon(
 	} else {
 		if (!dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con->ref, "stdicon", 0, retval)) {
 			if (con->sref != "") {
-				for (unsigned int i=con->sref.length();i>0;i--) {
+				for (unsigned int i = con->sref.length(); i > 0; i--) {
 					c = con->sref[i-1];
 					if ((c >= 'A') && (c <= 'Z')) {
-						retval = StrMod::uncap(con->sref.substr(i-1));
+						retval = StrMod::uncap(con->sref.substr(i - 1));
 						break;
 					};
 				};
@@ -3707,42 +3707,6 @@ string WznmWrweb::getLstncol(
 	if (StrMod::srefInSrefs(con->srefsKOption, "bicol")) return("2");
 	else if (StrMod::srefInSrefs(con->srefsKOption, "tricol")) return("3");
 	else return("1");
-};
-
-bool WznmWrweb::hasAction(
-			DbsWznm* dbswznm
-			, const uint hkIxVTbl
-			, const ubigint hkUref
-			, const string& action
-		) {
-	bool found = false;
-
-	ListWznmAMControlPar conApars;
-	WznmAMControlPar* conApar = NULL;
-
-	uint cnt;
-
-	if (action.compare("dlgopen") == 0) {
-		// dialog open implied by control with corresponding reference
-		dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(hkIxVTbl) + " AND hkUref = " + to_string(hkUref) + " AND refIxVTbl = " + to_string(VecWznmVMControlRefTbl::DLG), cnt);
-		found = (cnt > 0);
-	};
-	
-	if (!found) {
-		dbswznm->tblwznmamcontrolpar->loadRstBySQL("SELECT TblWznmAMControlPar.* FROM TblWznmAMControlPar, TblWznmMControl WHERE TblWznmAMControlPar.refWznmMControl = TblWznmMControl.ref AND TblWznmMControl.hkIxVTbl = "
-					+ to_string(hkIxVTbl) + " AND TblWznmMControl.hkUref = " + to_string(hkUref) + " AND TblWznmAMControlPar.x1SrefKKey = 'action'", false, conApars);
-
-		for (unsigned int i = 0; i < conApars.nodes.size(); i++) {
-			conApar = conApars.nodes[i];
-
-			if (conApar->osrefKVal.compare(action) == 0) {
-				found = true;
-				break;
-			};
-		};
-	};
-
-	return(found);
 };
 
 bool WznmWrweb::hasStfeed(

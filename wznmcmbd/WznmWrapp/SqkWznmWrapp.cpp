@@ -17,18 +17,26 @@ using namespace Xmlio;
  namespace SqkWznmWrapp
  ******************************************************************************/
 
-string SqkWznmWrapp::getSquawkBase(
+string SqkWznmWrapp::getSquawkDom(
 			DbsWznm* dbswznm
-			, DpchInvWznmWrappBase* dpchinv
+			, DpchInvWznmWrappDom* dpchinv
 		) {
-	// example: "write code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'"
-	return(""); // IP getSquawkBase --- LINE
+	// example: "write DOM code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'"
+	return(""); // IP getSquawkDom --- LINE
 };
 
-string SqkWznmWrapp::getSquawkJbase(
+string SqkWznmWrapp::getSquawkMain(
 			DbsWznm* dbswznm
-			, DpchInvWznmWrappJbase* dpchinv
+			, DpchInvWznmWrappMain* dpchinv
 		) {
-	// example: "write code for Java accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'"
-	return(""); // IP getSquawkJbase --- LINE
+	// example: "write main state machine code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'"
+	return(""); // IP getSquawkMain --- LINE
+};
+
+string SqkWznmWrapp::getSquawkStdvec(
+			DbsWznm* dbswznm
+			, DpchInvWznmWrappStdvec* dpchinv
+		) {
+	// example: "write standard vector code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'"
+	return(""); // IP getSquawkStdvec --- LINE
 };

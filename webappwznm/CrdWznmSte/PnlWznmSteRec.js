@@ -1,19 +1,19 @@
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmSteRec", "scrJrefDetail");
-	scrJrefATrig = retrieveSi(srcdoc, "StatShrWznmSteRec", "scrJrefATrig");
 	scrJrefAAction = retrieveSi(srcdoc, "StatShrWznmSteRec", "scrJrefAAction");
+	scrJrefATrig = retrieveSi(srcdoc, "StatShrWznmSteRec", "scrJrefATrig");
 };
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmSteRec", "initdoneDetail", "false");
-	setSi(srcdoc, "StatAppWznmSteRec", "initdoneATrig", "false");
 	setSi(srcdoc, "StatAppWznmSteRec", "initdoneAAction", "false");
+	setSi(srcdoc, "StatAppWznmSteRec", "initdoneATrig", "false");
 };
 
 function resetHeights() {
 	heightDetail = 30;
-	heightATrig = 30;
 	heightAAction = 30;
+	heightATrig = 30;
 };
 
 function getInitdone(pnlshort) {
@@ -32,15 +32,15 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmSteRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmSteRec", "initdoneDetail") == "true");
-	var initdoneATrig = (retrieveSi(srcdoc, "StatAppWznmSteRec", "initdoneATrig") == "true");
 	var initdoneAAction = (retrieveSi(srcdoc, "StatAppWznmSteRec", "initdoneAAction") == "true");
+	var initdoneATrig = (retrieveSi(srcdoc, "StatAppWznmSteRec", "initdoneATrig") == "true");
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmSteDetail.html?scrJref=" + scrJrefDetail;
-	} else if (!initdoneATrig) {
-		lhsdoc.getElementById("ATrig").src = "./PnlWznmSteATrig.html?scrJref=" + scrJrefATrig;
 	} else if (!initdoneAAction) {
 		lhsdoc.getElementById("AAction").src = "./PnlWznmSteAAction.html?scrJref=" + scrJrefAAction;
+	} else if (!initdoneATrig) {
+		lhsdoc.getElementById("ATrig").src = "./PnlWznmSteATrig.html?scrJref=" + scrJrefATrig;
 
 	} else {
 		refreshB();
@@ -53,7 +53,7 @@ function reinitPnl(scrJrefPnl) {
 function setPnlAvail(short, avail) {
 	var lhsrhsdoc;
 
-	if ((short == "Detail") || (short == "ATrig") || (short == "AAction")) lhsrhsdoc = lhsdoc;
+	if ((short == "Detail") || (short == "AAction") || (short == "ATrig")) lhsrhsdoc = lhsdoc;
 	else lhsrhsdoc = rhsdoc;
 
 	var oldAvail = (lhsrhsdoc.getElementById("tr" + short).getAttribute("class") == "show");
@@ -80,8 +80,8 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
-		else if (short == "ATrig") heightATrig = height;
 		else if (short == "AAction") heightAAction = height;
+		else if (short == "ATrig") heightATrig = height;
 	};
 
 	return(avail != oldAvail);
@@ -115,7 +115,7 @@ function regularize() {
 function changeHeight(pnlshort, height, update) {
 	var lhsrhsdoc;
 
-	if ((pnlshort == "Detail") || (pnlshort == "ATrig") || (pnlshort == "AAction")) lhsrhsdoc = lhsdoc;
+	if ((pnlshort == "Detail") || (pnlshort == "AAction") || (pnlshort == "ATrig")) lhsrhsdoc = lhsdoc;
 	else lhsrhsdoc = rhsdoc;
 
 	lhsrhsdoc.getElementById("td" + pnlshort).setAttribute("height", "" + height);
@@ -125,8 +125,8 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
-	else if (pnlshort == "ATrig") heightATrig = height;
 	else if (pnlshort == "AAction") heightAAction = height;
+	else if (pnlshort == "ATrig") heightATrig = height;
 
 	if (update) updateHeight();
 };
@@ -134,7 +134,7 @@ function changeHeight(pnlshort, height, update) {
 function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
-	heightLhs = heightDetail+13 + heightATrig+13 + heightAAction+13 + 5;
+	heightLhs = heightDetail+13 + heightAAction+13 + heightATrig+13 + 5;
 	heightRhs = 5;
 
 	if (heightLhs > heightRhs) {
@@ -326,10 +326,10 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
-			} else if (_scrJref == scrJrefATrig) {
-				if (getInitdone("ATrig")) lhsdoc.getElementById("ATrig").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefAAction) {
 				if (getInitdone("AAction")) lhsdoc.getElementById("AAction").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefATrig) {
+				if (getInitdone("ATrig")) lhsdoc.getElementById("ATrig").contentWindow.handleDpchEng(dom, dpch);
 			} else {
 				// alert("got a '" + dpch + "' from job with scrJref " + _scrJref);
 			};

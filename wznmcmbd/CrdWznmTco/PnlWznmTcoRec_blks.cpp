@@ -109,10 +109,10 @@ void PnlWznmTcoRec::StatApp::writeJSON(
 			, string difftag
 			, const bool initdoneDetail
 			, const bool initdoneATitle
-			, const bool initdone1NImpexpcol
 			, const bool initdone1NQuerycol
-			, const bool initdoneRef1NControl
+			, const bool initdone1NImpexpcol
 			, const bool initdoneRef1NQuerymod
+			, const bool initdoneRef1NControl
 			, const bool initdone1NCheck
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmTcoRec";
@@ -121,10 +121,10 @@ void PnlWznmTcoRec::StatApp::writeJSON(
 
 	me["initdoneDetail"] = initdoneDetail;
 	me["initdoneATitle"] = initdoneATitle;
-	me["initdone1NImpexpcol"] = initdone1NImpexpcol;
 	me["initdone1NQuerycol"] = initdone1NQuerycol;
-	me["initdoneRef1NControl"] = initdoneRef1NControl;
+	me["initdone1NImpexpcol"] = initdone1NImpexpcol;
 	me["initdoneRef1NQuerymod"] = initdoneRef1NQuerymod;
+	me["initdoneRef1NControl"] = initdoneRef1NControl;
 	me["initdone1NCheck"] = initdone1NCheck;
 };
 
@@ -134,10 +134,10 @@ void PnlWznmTcoRec::StatApp::writeXML(
 			, bool shorttags
 			, const bool initdoneDetail
 			, const bool initdoneATitle
-			, const bool initdone1NImpexpcol
 			, const bool initdone1NQuerycol
-			, const bool initdoneRef1NControl
+			, const bool initdone1NImpexpcol
 			, const bool initdoneRef1NQuerymod
+			, const bool initdoneRef1NControl
 			, const bool initdone1NCheck
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmTcoRec";
@@ -149,10 +149,10 @@ void PnlWznmTcoRec::StatApp::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneATitle", initdoneATitle);
-		writeBoolAttr(wr, itemtag, "sref", "initdone1NImpexpcol", initdone1NImpexpcol);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NQuerycol", initdone1NQuerycol);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NControl", initdoneRef1NControl);
+		writeBoolAttr(wr, itemtag, "sref", "initdone1NImpexpcol", initdone1NImpexpcol);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NQuerymod", initdoneRef1NQuerymod);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NControl", initdoneRef1NControl);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NCheck", initdone1NCheck);
 	xmlTextWriterEndElement(wr);
 };
@@ -166,14 +166,14 @@ PnlWznmTcoRec::StatShr::StatShr(
 			, const ubigint jrefDetail
 			, const ubigint jrefATitle
 			, const bool pnlatitleAvail
-			, const ubigint jref1NImpexpcol
-			, const bool pnl1nimpexpcolAvail
 			, const ubigint jref1NQuerycol
 			, const bool pnl1nquerycolAvail
-			, const ubigint jrefRef1NControl
-			, const bool pnlref1ncontrolAvail
+			, const ubigint jref1NImpexpcol
+			, const bool pnl1nimpexpcolAvail
 			, const ubigint jrefRef1NQuerymod
 			, const bool pnlref1nquerymodAvail
+			, const ubigint jrefRef1NControl
+			, const bool pnlref1ncontrolAvail
 			, const ubigint jref1NCheck
 			, const bool ButRegularizeActive
 		) :
@@ -183,18 +183,18 @@ PnlWznmTcoRec::StatShr::StatShr(
 	this->jrefDetail = jrefDetail;
 	this->jrefATitle = jrefATitle;
 	this->pnlatitleAvail = pnlatitleAvail;
-	this->jref1NImpexpcol = jref1NImpexpcol;
-	this->pnl1nimpexpcolAvail = pnl1nimpexpcolAvail;
 	this->jref1NQuerycol = jref1NQuerycol;
 	this->pnl1nquerycolAvail = pnl1nquerycolAvail;
-	this->jrefRef1NControl = jrefRef1NControl;
-	this->pnlref1ncontrolAvail = pnlref1ncontrolAvail;
+	this->jref1NImpexpcol = jref1NImpexpcol;
+	this->pnl1nimpexpcolAvail = pnl1nimpexpcolAvail;
 	this->jrefRef1NQuerymod = jrefRef1NQuerymod;
 	this->pnlref1nquerymodAvail = pnlref1nquerymodAvail;
+	this->jrefRef1NControl = jrefRef1NControl;
+	this->pnlref1ncontrolAvail = pnlref1ncontrolAvail;
 	this->jref1NCheck = jref1NCheck;
 	this->ButRegularizeActive = ButRegularizeActive;
 
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, PNLATITLEAVAIL, JREF1NIMPEXPCOL, PNL1NIMPEXPCOLAVAIL, JREF1NQUERYCOL, PNL1NQUERYCOLAVAIL, JREFREF1NCONTROL, PNLREF1NCONTROLAVAIL, JREFREF1NQUERYMOD, PNLREF1NQUERYMODAVAIL, JREF1NCHECK, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, PNLATITLEAVAIL, JREF1NQUERYCOL, PNL1NQUERYCOLAVAIL, JREF1NIMPEXPCOL, PNL1NIMPEXPCOLAVAIL, JREFREF1NQUERYMOD, PNLREF1NQUERYMODAVAIL, JREFREF1NCONTROL, PNLREF1NCONTROLAVAIL, JREF1NCHECK, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmTcoRec::StatShr::writeJSON(
@@ -209,14 +209,14 @@ void PnlWznmTcoRec::StatShr::writeJSON(
 	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
 	me["scrJrefATitle"] = Scr::scramble(jrefATitle);
 	me["pnlatitleAvail"] = pnlatitleAvail;
-	me["scrJref1NImpexpcol"] = Scr::scramble(jref1NImpexpcol);
-	me["pnl1nimpexpcolAvail"] = pnl1nimpexpcolAvail;
 	me["scrJref1NQuerycol"] = Scr::scramble(jref1NQuerycol);
 	me["pnl1nquerycolAvail"] = pnl1nquerycolAvail;
-	me["scrJrefRef1NControl"] = Scr::scramble(jrefRef1NControl);
-	me["pnlref1ncontrolAvail"] = pnlref1ncontrolAvail;
+	me["scrJref1NImpexpcol"] = Scr::scramble(jref1NImpexpcol);
+	me["pnl1nimpexpcolAvail"] = pnl1nimpexpcolAvail;
 	me["scrJrefRef1NQuerymod"] = Scr::scramble(jrefRef1NQuerymod);
 	me["pnlref1nquerymodAvail"] = pnlref1nquerymodAvail;
+	me["scrJrefRef1NControl"] = Scr::scramble(jrefRef1NControl);
+	me["pnlref1ncontrolAvail"] = pnlref1ncontrolAvail;
 	me["scrJref1NCheck"] = Scr::scramble(jref1NCheck);
 	me["ButRegularizeActive"] = ButRegularizeActive;
 };
@@ -237,14 +237,14 @@ void PnlWznmTcoRec::StatShr::writeXML(
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefATitle", Scr::scramble(jrefATitle));
 		writeBoolAttr(wr, itemtag, "sref", "pnlatitleAvail", pnlatitleAvail);
-		writeStringAttr(wr, itemtag, "sref", "scrJref1NImpexpcol", Scr::scramble(jref1NImpexpcol));
-		writeBoolAttr(wr, itemtag, "sref", "pnl1nimpexpcolAvail", pnl1nimpexpcolAvail);
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NQuerycol", Scr::scramble(jref1NQuerycol));
 		writeBoolAttr(wr, itemtag, "sref", "pnl1nquerycolAvail", pnl1nquerycolAvail);
-		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NControl", Scr::scramble(jrefRef1NControl));
-		writeBoolAttr(wr, itemtag, "sref", "pnlref1ncontrolAvail", pnlref1ncontrolAvail);
+		writeStringAttr(wr, itemtag, "sref", "scrJref1NImpexpcol", Scr::scramble(jref1NImpexpcol));
+		writeBoolAttr(wr, itemtag, "sref", "pnl1nimpexpcolAvail", pnl1nimpexpcolAvail);
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NQuerymod", Scr::scramble(jrefRef1NQuerymod));
 		writeBoolAttr(wr, itemtag, "sref", "pnlref1nquerymodAvail", pnlref1nquerymodAvail);
+		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NControl", Scr::scramble(jrefRef1NControl));
+		writeBoolAttr(wr, itemtag, "sref", "pnlref1ncontrolAvail", pnlref1ncontrolAvail);
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NCheck", Scr::scramble(jref1NCheck));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
@@ -259,14 +259,14 @@ set<uint> PnlWznmTcoRec::StatShr::comm(
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
 	if (jrefATitle == comp->jrefATitle) insert(items, JREFATITLE);
 	if (pnlatitleAvail == comp->pnlatitleAvail) insert(items, PNLATITLEAVAIL);
-	if (jref1NImpexpcol == comp->jref1NImpexpcol) insert(items, JREF1NIMPEXPCOL);
-	if (pnl1nimpexpcolAvail == comp->pnl1nimpexpcolAvail) insert(items, PNL1NIMPEXPCOLAVAIL);
 	if (jref1NQuerycol == comp->jref1NQuerycol) insert(items, JREF1NQUERYCOL);
 	if (pnl1nquerycolAvail == comp->pnl1nquerycolAvail) insert(items, PNL1NQUERYCOLAVAIL);
-	if (jrefRef1NControl == comp->jrefRef1NControl) insert(items, JREFREF1NCONTROL);
-	if (pnlref1ncontrolAvail == comp->pnlref1ncontrolAvail) insert(items, PNLREF1NCONTROLAVAIL);
+	if (jref1NImpexpcol == comp->jref1NImpexpcol) insert(items, JREF1NIMPEXPCOL);
+	if (pnl1nimpexpcolAvail == comp->pnl1nimpexpcolAvail) insert(items, PNL1NIMPEXPCOLAVAIL);
 	if (jrefRef1NQuerymod == comp->jrefRef1NQuerymod) insert(items, JREFREF1NQUERYMOD);
 	if (pnlref1nquerymodAvail == comp->pnlref1nquerymodAvail) insert(items, PNLREF1NQUERYMODAVAIL);
+	if (jrefRef1NControl == comp->jrefRef1NControl) insert(items, JREFREF1NCONTROL);
+	if (pnlref1ncontrolAvail == comp->pnlref1ncontrolAvail) insert(items, PNLREF1NCONTROLAVAIL);
 	if (jref1NCheck == comp->jref1NCheck) insert(items, JREF1NCHECK);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -281,7 +281,7 @@ set<uint> PnlWznmTcoRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, PNLATITLEAVAIL, JREF1NIMPEXPCOL, PNL1NIMPEXPCOLAVAIL, JREF1NQUERYCOL, PNL1NQUERYCOLAVAIL, JREFREF1NCONTROL, PNLREF1NCONTROLAVAIL, JREFREF1NQUERYMOD, PNLREF1NQUERYMODAVAIL, JREF1NCHECK, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, PNLATITLEAVAIL, JREF1NQUERYCOL, PNL1NQUERYCOLAVAIL, JREF1NIMPEXPCOL, PNL1NIMPEXPCOLAVAIL, JREFREF1NQUERYMOD, PNLREF1NQUERYMODAVAIL, JREFREF1NCONTROL, PNLREF1NCONTROLAVAIL, JREF1NCHECK, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -347,15 +347,14 @@ string PnlWznmTcoRec::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWznmTcoRec::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmTcoRecDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmTcoRecDo"];}();
 
 	basefound = (me != Json::nullValue);
 

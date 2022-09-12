@@ -17,7 +17,10 @@
 namespace WznmWrvueDlg {
 
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmWrvueDlg* dpchinv);
-	// IP cust --- INSERT
+	// IP cust --- IBEGIN
+
+	void writeDlgVue(DbsWznm* dbswznm, std::fstream& outfile, WznmMDialog* dlg, ListWznmMControl& dits, ListWznmMControl& ftrcons, const std::string& Prjshort);
+	// IP cust --- IEND
 };
 
 #endif

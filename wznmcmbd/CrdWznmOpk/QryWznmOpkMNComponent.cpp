@@ -85,7 +85,7 @@ void QryWznmOpkMNComponent::rerun(
 	dbswznm->tblwznmqopkmncomponent->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMComponentMOppack.ref)";
-	sqlstr += " FROM TblWznmRMComponentMOppack, TblWznmMComponent";
+	sqlstr += " FROM TblWznmMComponent, TblWznmRMComponentMOppack";
 	sqlstr += " WHERE TblWznmRMComponentMOppack.refWznmMComponent = TblWznmMComponent.ref";
 	sqlstr += " AND TblWznmRMComponentMOppack.refWznmMOppack = " + to_string(preRefOpk) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -100,7 +100,7 @@ void QryWznmOpkMNComponent::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQOpkMNComponent(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMComponent.ref, TblWznmRMComponentMOppack.ref";
-	sqlstr += " FROM TblWznmRMComponentMOppack, TblWznmMComponent";
+	sqlstr += " FROM TblWznmMComponent, TblWznmRMComponentMOppack";
 	sqlstr += " WHERE TblWznmRMComponentMOppack.refWznmMComponent = TblWznmMComponent.ref";
 	sqlstr += " AND TblWznmRMComponentMOppack.refWznmMOppack = " + to_string(preRefOpk) + "";
 	sqlstr += " ORDER BY TblWznmMComponent.sref ASC";
@@ -274,19 +274,11 @@ void QryWznmOpkMNComponent::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCMPROPKMOD_OPKEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMCMPROPKMOD_OPKEQ) {
 		call->abort = handleCallWznmCmpRopkMod_opkEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmOpkMNComponent::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmOpkMNComponent::handleCallWznmCmpRopkMod_opkEq(
@@ -300,5 +292,13 @@ bool QryWznmOpkMNComponent::handleCallWznmCmpRopkMod_opkEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
+	return retval;
+};
+
+bool QryWznmOpkMNComponent::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

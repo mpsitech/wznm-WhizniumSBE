@@ -179,15 +179,14 @@ QryWznmLibList::StgIac::StgIac(
 };
 
 bool QryWznmLibList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmLibList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmLibList"];}();
 
 	basefound = (me != Json::nullValue);
 

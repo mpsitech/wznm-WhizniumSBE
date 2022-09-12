@@ -20,10 +20,10 @@ uint QryWznmImeList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
-	if (s == "iex") return IEX;
-	if (s == "sup") return SUP;
 	if (s == "tbl") return TBL;
+	if (s == "sup") return SUP;
+	if (s == "iex") return IEX;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -31,10 +31,10 @@ uint QryWznmImeList::VecVOrd::getIx(
 string QryWznmImeList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
-	if (ix == IEX) return("iex");
-	if (ix == SUP) return("sup");
 	if (ix == TBL) return("tbl");
+	if (ix == SUP) return("sup");
+	if (ix == IEX) return("iex");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -185,15 +185,14 @@ QryWznmImeList::StgIac::StgIac(
 };
 
 bool QryWznmImeList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmImeList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmImeList"];}();
 
 	basefound = (me != Json::nullValue);
 

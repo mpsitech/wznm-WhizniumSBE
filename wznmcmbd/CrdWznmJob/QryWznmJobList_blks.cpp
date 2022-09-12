@@ -20,12 +20,12 @@ uint QryWznmJobList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
-	if (s == "typ") return TYP;
-	if (s == "ver") return VER;
-	if (s == "ret") return RET;
-	if (s == "reu") return REU;
 	if (s == "gbl") return GBL;
+	if (s == "reu") return REU;
+	if (s == "ret") return RET;
+	if (s == "ver") return VER;
+	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -33,12 +33,12 @@ uint QryWznmJobList::VecVOrd::getIx(
 string QryWznmJobList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
-	if (ix == TYP) return("typ");
-	if (ix == VER) return("ver");
-	if (ix == RET) return("ret");
-	if (ix == REU) return("reu");
 	if (ix == GBL) return("gbl");
+	if (ix == REU) return("reu");
+	if (ix == RET) return("ret");
+	if (ix == VER) return("ver");
+	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -189,15 +189,14 @@ QryWznmJobList::StgIac::StgIac(
 };
 
 bool QryWznmJobList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmJobList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmJobList"];}();
 
 	basefound = (me != Json::nullValue);
 

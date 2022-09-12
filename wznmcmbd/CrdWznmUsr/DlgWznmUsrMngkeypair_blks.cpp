@@ -322,15 +322,14 @@ string DlgWznmUsrMngkeypair::DpchAppDo::getSrefsMask() {
 };
 
 void DlgWznmUsrMngkeypair::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppDlgWznmUsrMngkeypairDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppDlgWznmUsrMngkeypairDo"];}();
 
 	basefound = (me != Json::nullValue);
 

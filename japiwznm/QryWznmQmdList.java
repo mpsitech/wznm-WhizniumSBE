@@ -19,22 +19,22 @@ public class QryWznmQmdList {
 		*/
 	public static class VecVOrd {
 
-		public static final int TYP = 1;
-		public static final int QRY = 2;
+		public static final int REU = 1;
+		public static final int RET = 2;
 		public static final int PST = 3;
-		public static final int RET = 4;
-		public static final int REU = 5;
+		public static final int QRY = 4;
+		public static final int TYP = 5;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
-			if (s.equals("typ")) return TYP;
-			if (s.equals("qry")) return QRY;
-			if (s.equals("pst")) return PST;
-			if (s.equals("ret")) return RET;
 			if (s.equals("reu")) return REU;
+			if (s.equals("ret")) return RET;
+			if (s.equals("pst")) return PST;
+			if (s.equals("qry")) return QRY;
+			if (s.equals("typ")) return TYP;
 
 			return 0;
 		};
@@ -42,11 +42,11 @@ public class QryWznmQmdList {
 		public static String getSref(
 					int ix
 				) {
-			if (ix == TYP) return("typ");
-			if (ix == QRY) return("qry");
-			if (ix == PST) return("pst");
-			if (ix == RET) return("ret");
 			if (ix == REU) return("reu");
+			if (ix == RET) return("ret");
+			if (ix == PST) return("pst");
+			if (ix == QRY) return("qry");
+			if (ix == TYP) return("typ");
 
 			return "";
 		};

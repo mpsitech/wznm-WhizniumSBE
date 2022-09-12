@@ -242,15 +242,14 @@ PnlWznmJobSupMNJob::StgIac::StgIac(
 };
 
 bool PnlWznmJobSupMNJob::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacWznmJobSupMNJob"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacWznmJobSupMNJob"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -428,15 +427,14 @@ string PnlWznmJobSupMNJob::DpchAppData::getSrefsMask() {
 };
 
 void PnlWznmJobSupMNJob::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmJobSupMNJobData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmJobSupMNJobData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -502,15 +500,14 @@ string PnlWznmJobSupMNJob::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWznmJobSupMNJob::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmJobSupMNJobDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmJobSupMNJobDo"];}();
 
 	basefound = (me != Json::nullValue);
 

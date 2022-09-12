@@ -20,10 +20,10 @@ uint QryWznmCarList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
+	if (s == "reu") return REU;
+	if (s == "ret") return RET;
 	if (s == "srf") return SRF;
 	if (s == "mdl") return MDL;
-	if (s == "ret") return RET;
-	if (s == "reu") return REU;
 
 	return(0);
 };
@@ -31,10 +31,10 @@ uint QryWznmCarList::VecVOrd::getIx(
 string QryWznmCarList::VecVOrd::getSref(
 			const uint ix
 		) {
+	if (ix == REU) return("reu");
+	if (ix == RET) return("ret");
 	if (ix == SRF) return("srf");
 	if (ix == MDL) return("mdl");
-	if (ix == RET) return("ret");
-	if (ix == REU) return("reu");
 
 	return("");
 };
@@ -185,15 +185,14 @@ QryWznmCarList::StgIac::StgIac(
 };
 
 bool QryWznmCarList::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmCarList"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmCarList"];}();
 
 	basefound = (me != Json::nullValue);
 

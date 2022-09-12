@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "SessWznm.h"
 #include "JobWznmLicense.h"
+#include "SessWznm.h"
 
 #define VecVRootWznmSge RootWznm::VecVSge
 
@@ -67,7 +67,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -101,8 +101,8 @@ public:
 
 public:
 
-	std::map<Sbecore::ubigint, JobWznm*> sesss;
 	JobWznmLicense* license;
+	std::map<Sbecore::ubigint, JobWznm*> sesss;
 
 	// IP vars.spec --- INSERT
 
@@ -116,6 +116,7 @@ public:
 	void clearQtb(DbsWznm* dbswznm);
 
 	bool authenticate(DbsWznm* dbswznm, const std::string& username, const std::string& password, Sbecore::ubigint& refWznmMUser);
+	void termSess(DbsWznm* dbswznm, const Sbecore::ubigint jref);
 
 public:
 
@@ -131,16 +132,16 @@ private:
 
 	void handleDpchAppLogin(DbsWznm* dbswznm, DpchAppLogin* dpchapplogin, const std::string ip, DpchEngWznm** dpcheng);
 
-	void handleTimerWithSrefWarnterm(DbsWznm* dbswznm);
 	void handleTimerWithSrefMonInSgeIdle(DbsWznm* dbswznm);
+	void handleTimerWithSrefWarnterm(DbsWznm* dbswznm);
 
 public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmLogout(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const bool boolvalInv);
-	bool handleCallWznmSuspsess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
+	bool handleCallWznmSuspsess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmLogout(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const bool boolvalInv);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

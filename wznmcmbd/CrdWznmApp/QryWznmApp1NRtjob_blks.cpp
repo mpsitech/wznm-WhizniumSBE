@@ -149,15 +149,14 @@ QryWznmApp1NRtjob::StgIac::StgIac(
 };
 
 bool QryWznmApp1NRtjob::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmApp1NRtjob"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmApp1NRtjob"];}();
 
 	basefound = (me != Json::nullValue);
 

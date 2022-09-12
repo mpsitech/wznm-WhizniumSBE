@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSteDetail.h"
 #include "PnlWznmSteATrig.h"
 #include "PnlWznmSteAAction.h"
+#include "PnlWznmSteDetail.h"
 
 #define VecVWznmSteRecDo PnlWznmSteRec::VecVDo
 
@@ -74,8 +74,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneATrig = false, const bool initdoneAAction = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneATrig = false, const bool initdoneAAction = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneAAction = false, const bool initdoneATrig = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAAction = false, const bool initdoneATrig = false);
 	};
 
 	/**
@@ -86,18 +86,18 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFATRIG = 3;
-		static const Sbecore::uint JREFAACTION = 4;
+		static const Sbecore::uint JREFAACTION = 3;
+		static const Sbecore::uint JREFATRIG = 4;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 5;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefATrig = 0, const Sbecore::ubigint jrefAAction = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAAction = 0, const Sbecore::ubigint jrefATrig = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefATrig;
 		Sbecore::ubigint jrefAAction;
+		Sbecore::ubigint jrefATrig;
 		bool ButRegularizeActive;
 
 	public:
@@ -135,7 +135,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -177,9 +177,9 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSteDetail* pnldetail;
 	PnlWznmSteATrig* pnlatrig;
 	PnlWznmSteAAction* pnlaaction;
+	PnlWznmSteDetail* pnldetail;
 
 	WznmMState recSte;
 
@@ -213,8 +213,8 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmSte_seqEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmSteUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmSte_seqEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

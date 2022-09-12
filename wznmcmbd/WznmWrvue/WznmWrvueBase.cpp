@@ -46,7 +46,6 @@ DpchRetWznm* WznmWrvueBase::run(
 
 	string s;
 
-	//
 	fstream shfile;
 
 	// cards
@@ -229,20 +228,29 @@ void WznmWrvueBase::writeSessVue(
 		) {
 	WznmMCard* car = NULL;
 
+	ListWznmMDialog dlgs;
+	WznmMDialog* dlg = NULL;
+
 	bool first;
 
-	// --- cars
-	outfile << "<!-- IP cars - IBEGIN -->" << endl;
+	// --- import
+	outfile << "<!-- IP import - IBEGIN -->" << endl;
 	outfile << "\t*/" << endl;
 
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
 		car = cars.nodes[i];
 
-		if (car->sref.substr(3+4).compare("Nav") != 0) outfile << "\timport " << car->sref << " from './" << car->sref << "/" << car->sref << "';" << endl;
+		outfile << "\timport " << car->sref << " from './" << car->sref << "/" << car->sref << "';" << endl;
+
+		dbswznm->tblwznmmdialog->loadRstByCar(car->ref, false, dlgs);
+		for (unsigned int j = 0; j < dlgs.nodes.size(); j++) {
+			dlg = dlgs.nodes[j];
+			outfile << "\timport " << dlg->sref << " from './" << car->sref << "/" << dlg->sref << "';" << endl;
+		};
 	};
 
 	outfile << "\t/*" << endl;
-	outfile << "<!-- IP cars - IEND -->" << endl;
+	outfile << "<!-- IP import - IEND -->" << endl;
 
 	// --- components
 	outfile << "<!-- IP components - IBEGIN -->" << endl;
@@ -253,11 +261,19 @@ void WznmWrvueBase::writeSessVue(
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
 		car = cars.nodes[i];
 
-		if (car->sref.substr(3+4).compare("Nav") != 0) {
+		if (first) first = false;
+		else outfile << "," << endl;
+
+		outfile << "\t\t\t" << car->sref;
+
+		dbswznm->tblwznmmdialog->loadRstByCar(car->ref, false, dlgs);
+		for (unsigned int j = 0; j < dlgs.nodes.size(); j++) {
+			dlg = dlgs.nodes[j];
+
 			if (first) first = false;
 			else outfile << "," << endl;
 
-			outfile << "\t\t\t" << car->sref;
+			outfile << "\t\t\t" << dlg->sref;
 		};
 	};
 
@@ -274,99 +290,267 @@ void WznmWrvueBase::writeCrdnavVue(
 			, const string& Prjshort
 			, ListWznmMCard& cars
 		) {
-	map<string, unsigned int> icsCars; // by Crdshort
 	WznmMCard* car = NULL;
+	WznmMCard* carnav = NULL;
+
+	ListWznmMPanel pnls;
+	WznmMPanel* pnl = NULL;
+
+	WznmMPanel* pnlpre = NULL;
 
 	ListWznmMControl cons;
 	WznmMControl* con = NULL;
-
-	ListWznmMControl con2s;
 	WznmMControl* con2 = NULL;
 
-	ubigint refMdl = 0;
-
-	string action;
+	set<string> unqsrefs;
 
 	string s;
 
-	for (unsigned int i = 0; i < cars.nodes.size(); i++) icsCars[cars.nodes[i]->sref.substr(3+4)] = i;
+	bool first, first2, found;
 
-	// --- mits
-	outfile << "<!-- IP mits - IBEGIN -->" << endl;
+	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
+		car = cars.nodes[i];
+		
+		if (car->sref.substr(3 + 4) == "Nav") {
+			carnav = car;
 
-	auto it = icsCars.find("Nav");
-	if (it != icsCars.end()) dbswznm->tblwznmmcontrol->loadRstBySQL("SELECT * FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(VecWznmVMControlHkTbl::CAR) + " AND hkUref = " + to_string(cars.nodes[it->second]->ref)
-			+ " AND ixVBasetype = " + to_string(VecWznmVMControlBasetype::MEN) + " ORDER BY hkNum ASC", false, cons);
+			dbswznm->tblwznmmpanel->loadRstByCar(car->ref, false, pnls);
+			for (unsigned int j = 0; j < pnls.nodes.size(); j++) {
+				pnl = pnls.nodes[j];
 
-	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
-		con = cons.nodes[i];
-
-		if (i != 0) {
-			outfile << "\t\t<v-divider/>" << endl;
-			outfile << endl;
-		};
-
-		dbswznm->tblwznmmcontrol->loadRstBySQL("SELECT * FROM TblWznmMControl WHERE supRefWznmMControl = " + to_string(con->ref) + " ORDER BY hkNum ASC", false, con2s);
-
-		for (unsigned int j = 0; j < con2s.nodes.size(); j++) {
-			con2 = con2s.nodes[j];
-
-			if ((con2->ixVScope == VecWznmVMControlScope::SHR) && (con2->ixVBasetype == VecWznmVMControlBasetype::MIT)) {
-				dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con2->ref, "action", 0, action);
-
-				if (action == "crdopen") {
-					it = icsCars.find(con2->sref.substr(3+3));
-
-					if (it != icsCars.end()) {
-						car = cars.nodes[it->second];
-
-						// preliminary: use principal locale as module header
-						if (car->mdlRefWznmMModule != refMdl) {
-							if (dbswznm->loadStringBySQL("SELECT Title FROM TblWznmMModule WHERE ref = " + to_string(car->mdlRefWznmMModule), s)) {
-								outfile << "\t\t<v-list-item small disabled dense>" << endl;
-								outfile << "\t\t\t<v-list-item-content>" << endl;
-								outfile << "\t\t\t\t<v-list-item-title class=\"overline\">" << StrMod::cap(s) << "</v-list-item-title>" << endl;
-								outfile << "\t\t\t</v-list-item-content>" << endl;
-								outfile << "\t\t</v-list-item>" << endl;
-								outfile << endl;
-							};
-
-							refMdl = car->mdlRefWznmMModule;
-						};
-					};
+				if (pnl->sref.rfind("Pre") == (3 + 4 + 3)) {
+					pnlpre = pnl;
+					break;
 				};
-
-				outfile << "\t\t<v-list-item" << endl;
-				if (con2->Avail != "") outfile << "\t\t\tv-if=\"statshr." << con2->sref << "Avail\"" << endl;
-				outfile << "\t\t\tactive-class=\"primary--text\"" << endl;
-				outfile << "\t\t\tv-on:click=\"";
-				if (action == "crdopen") outfile << "handleMitCrdopenClick";
-				else outfile << "handleMitClick";
-				outfile << "('" << con2->sref << "Click')\"" << endl;
-				if (con2->Active != "") outfile << "\t\t\t:disabled=\"statshr." << con2->sref << "Active\"" << endl;
-				outfile << "\t\t>" << endl;
-				outfile << "\t\t\t<v-list-item-content>" << endl;
-				outfile << "\t\t\t\t<v-list-item-title>{{tag." << con2->sref << "}}</v-list-item-title>" << endl;
-				outfile << "\t\t\t</v-list-item-content>" << endl;
-
-				if (con2->sref == "MitSesTrm") {
-					// preliminary: session information as tooltip
-					outfile << "\t\t\t<v-tooltip right>" << endl;
-					outfile << "\t\t\t\t<template v-slot:activator=\"{on,attrs}\">" << endl;
-					outfile << "\t\t\t\t\t<v-list-item-icon>" << endl;
-					outfile << "\t\t\t\t\t\t<v-icon v-bind=\"attrs\" v-on=\"on\">mdi-information-outline</v-icon>" << endl;
-					outfile << "\t\t\t\t\t</v-list-item-icon>" << endl;
-					outfile << "\t\t\t\t</template>" << endl;
-					outfile << "\t\t\t\t{{continf.MtxSesSes1 + \" \" + continf.MtxSesSes2 + \" \" + continf.MtxSesSes3}}" << endl;
-					outfile << "\t\t\t</v-tooltip>" << endl;
-				};
-
-				outfile << "\t\t</v-list-item>" << endl;
-				outfile << endl;
 			};
 		};
 	};
-	outfile << "<!-- IP mits - IEND -->" << endl;
+
+	// --- pre*
+	if (pnlpre) outfile << "<!-- IP pre - AFFIRM -->" << endl;
+	else outfile << "<!-- IP pre - REMOVE -->" << endl;
+
+	// --- mergeDpchEngData
+	wrIbegin(outfile, 4, "mergeDpchEngData");
+	wrMergedpcheng(dbswznm, Prjshort, outfile, carnav->refWznmMJob);
+	wrIend(outfile, 4, "mergeDpchEngData");
+
+	// --- mergeDpchEngData.pnls
+	wrIbegin(outfile, 3, "mergeDpchEngData.pnls");
+	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
+		pnl = pnls.nodes[i];
+
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADBAR) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADLINE)) {
+			outfile << "\t\t\tmergeDpchEngData_pnl" << StrMod::lc(pnl->sref.substr(3 + 4 + 3)) << ": function(dpcheng) {" << endl;
+			wrMergedpcheng(dbswznm, Prjshort, outfile, pnl->refWznmMJob, "pnl" + StrMod::lc(pnl->sref.substr(3 + 4 + 3)), false);
+			outfile << "\t\t\t}," << endl;
+			outfile << endl;
+		};
+	};
+	wrIend(outfile, 3, "mergeDpchEngData.pnls");
+
+	// --- handleDpchAppInitReply
+	wrIbegin(outfile, 5, "handleDpchAppInitReply");
+
+	first = true;
+
+	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
+		pnl = pnls.nodes[i];
+
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADBAR) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADLINE)) {
+			outfile << "\t\t\t\t\t";
+
+			if (first) first = false;
+			else outfile << "} else ";
+
+			outfile << "if (dpcheng.scrJref == this.statshr.scrJref" << pnl->sref.substr(3 + 4 + 3) << ") {" << endl;
+			outfile << "\t\t\t\t\t\tthis.mergeDpchEngData_pnl" << StrMod::lc(pnl->sref.substr(3 + 4 + 3)) << "(dpcheng);" << endl;
+			outfile << "\t\t\t\t\t\tthis.statapp.initdone" << pnl->sref.substr(3 + 4 + 3) << " = true;" << endl;
+		};
+	};
+
+	outfile << "\t\t\t\t\t";
+	if (!first) outfile << "} else ";
+
+	outfile << "if (dpcheng.scrJref == this.content.scrJref) {" << endl;
+	outfile << "\t\t\t\t\t\tthis.mergeDpchEngData_content(dpcheng);" << endl;
+	outfile << "\t\t\t\t\t\tthis.content.initdone = true;" << endl;
+	outfile << "\t\t\t\t\t}" << endl;
+	outfile << endl;
+
+	first = true;
+
+	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
+		pnl = pnls.nodes[i];
+
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADBAR) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADLINE)) {
+			outfile << "\t\t\t\t\t";
+
+			if (first) first = false;
+			else outfile << "else ";
+
+			outfile << "if (!this.statapp.initdone" << pnl->sref.substr(3 + 4 + 3) << ") this.initOther(this.statshr.scrJref" << pnl->sref.substr(3 + 4 + 3) << ");" << endl;
+		};
+	};
+
+	wrIend(outfile, 5, "handleDpchAppInitReply");
+
+	// --- handleDpchAppDoReply.pre*
+	if (pnlpre) outfile << "<!-- IP handleDpchAppDoReply.pre - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleDpchAppDoReply.pre - REMOVE -->" << endl;
+
+	// --- data
+	wrIbegin(outfile, 3, "data");
+	wrData(dbswznm, Prjshort, outfile, carnav->refWznmMJob);
+	wrIend(outfile, 3, "data");
+
+	// --- data.MenPre
+	wrIbegin(outfile, 3, "data.MenPre");
+	if (pnlpre) {
+		dbswznm->tblwznmmcontrol->loadRstByHktHku(VecWznmVMControlHkTbl::PNL, pnlpre->ref, false, cons);
+
+		outfile << "\t\t\tMenPre: [";
+
+		first = true;
+
+		for (unsigned int i = 0; i < cons.nodes.size(); i++) {
+			con = cons.nodes[i];
+
+			if (con->ixVBasetype == VecWznmVMControlBasetype::TXT) {
+				if (first) first = false;
+				else outfile << ", ";
+
+				outfile << "\"" << con->sref.substr(3, 3) << "\"";
+			};
+		};
+		outfile << "]," << endl;
+	};
+	wrIend(outfile, 3, "data.MenPre");
+
+	// --- data.MenCrd
+	wrIbegin(outfile, 3, "data.MenCrd");
+	outfile << "\t\t\tMenCrd: [" << endl;
+
+	dbswznm->tblwznmmcontrol->loadRstByHktHku(VecWznmVMControlHkTbl::CAR, carnav->ref, false, cons);
+
+	unqsrefs.clear();
+	for (unsigned int i = 0; i < cons.nodes.size(); i++) if (cons.nodes[i]->sref.find("MitCrd") == 0) unqsrefs.insert(cons.nodes[i]->sref); 
+
+	first = true;
+
+	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
+		pnl = pnls.nodes[i];
+
+		if (pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) {
+			if (first) first = false;
+			else outfile << "," << endl;
+
+			outfile << "\t\t\t\t{" << endl;
+			outfile << "\t\t\t\t\tpnlsref: \"pnl" << StrMod::lc(pnl->sref.substr(3 + 4 + 3)) << "\"," << endl;			
+
+			outfile << "\t\t\t\t\tmits: [";
+
+			dbswznm->tblwznmmcontrol->loadRstByHktHku(VecWznmVMControlHkTbl::PNL, pnl->ref, false, cons);
+
+			first2 = true;
+
+			for (unsigned int j = 0; j < cons.nodes.size(); j++) {
+				con = cons.nodes[j];
+
+				if (con->ixVBasetype == VecWznmVMControlBasetype::CPT)
+					if (unqsrefs.find("MitCrd" + con->sref.substr(3)) != unqsrefs.end()) {
+						if (first2) first2 = false;
+						else outfile << ", ";
+
+						outfile << "\"MitCrd" << con->sref.substr(3) << "\"";
+					};
+			};
+
+			outfile << "]" << endl;			
+			outfile << "\t\t\t\t}";
+		};
+	};
+
+	if (!first) outfile << endl;
+	outfile << "\t\t\t]," << endl;
+	wrIend(outfile, 3, "data.MenCrd");
+
+	// --- data.pnls
+	wrIbegin(outfile, 3, "data.pnls");
+	for (unsigned int i = 0; i < pnls.nodes.size(); i++) {
+		pnl = pnls.nodes[i];
+
+		if ((pnl->ixVBasetype == VecWznmVMPanelBasetype::FORM) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADBAR) || (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADLINE)) {
+			outfile << "\t\t\tpnl" << StrMod::lc(pnl->sref.substr(3 + 4 + 3)) << ": {" << endl;
+			if (pnl->ixVBasetype == VecWznmVMPanelBasetype::HEADLINE) outfile << "\t\t\t\tstatshr: null" << endl;
+			outfile << "\t\t\t}," << endl;
+			outfile << endl;
+		};
+	};
+	wrIend(outfile, 3, "data.pnls");
+
+	// --- data.mbars
+	wrIbegin(outfile, 3, "data.mbars");
+	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
+		car = cars.nodes[i];
+
+		if (car->sref.substr(3+4).compare("Nav") != 0) {
+			outfile << "\t\t\tMbar" << car->sref.substr(3 + 4) << ": [" << endl;
+
+			dbswznm->tblwznmmcontrol->loadRstByHktHku(VecWznmVMControlHkTbl::CAR, car->ref, false, cons);
+
+			first = true;
+
+			for (unsigned int j = 0; j < cons.nodes.size(); j++) {
+				con = cons.nodes[j];
+
+				if ((con->ixVBasetype == VecWznmVMControlBasetype::MEN) && (con->sref != "MenApp")) {
+					found = false;
+
+					for (unsigned int k = 0; k < cons.nodes.size(); k++) {
+						con2 = cons.nodes[k];
+
+						if ((con2->supRefWznmMControl == con->ref) && (con2->ixVBasetype == VecWznmVMControlBasetype::MIT)) {
+							found = true;
+							break;
+						};
+					};
+
+					if (found) {
+						if (first) first = false;
+						else outfile << "," << endl;
+
+						outfile << "\t\t\t\t{" << endl;
+						outfile << "\t\t\t\t\tsref: \"" << con->sref << "\"," << endl;
+
+						outfile << "\t\t\t\t\tmits: [";
+
+						first2 = true;
+
+						for (unsigned int k = 0; k < cons.nodes.size(); k++) {
+							con2 = cons.nodes[k];
+
+							if ((con2->supRefWznmMControl == con->ref) && (con2->ixVBasetype == VecWznmVMControlBasetype::MIT)) {
+								if (first2) first2 = false;
+								else outfile << ", ";
+
+								outfile << "\"" << con2->sref << "\"";
+							};
+						};
+
+						outfile << "]" << endl;
+
+						outfile << "\t\t\t\t}";
+					};
+				};
+			};
+
+			if (!first) outfile << endl;
+			outfile << "\t\t\t]," << endl;
+			outfile << endl;
+		};
+	};
+	wrIend(outfile, 3, "data.mbars");
 };
 
 void WznmWrvueBase::writeChkoutSh(
@@ -386,13 +570,11 @@ void WznmWrvueBase::writeChkoutSh(
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
 		car = cars.nodes[i];
 
-		if (car->sref.substr(3+4).compare("Nav") != 0) {
-			outfile << "mkdir $WEBROOT/vueapp" << prjshort << "/src/components/" << car->sref << endl;
-			outfile << endl;
+		outfile << "mkdir $WEBROOT/vueapp" << prjshort << "/src/components/" << car->sref << endl;
+		outfile << endl;
 
-			outfile << "cp ../../vueapp" << prjshort << "/" << car->sref << "/*.vue $WEBROOT/vueapp" << prjshort << "/src/components/" << car->sref << "/" << endl;
-			outfile << endl;
-		};
+		outfile << "cp ../../vueapp" << prjshort << "/" << car->sref << "/*.vue $WEBROOT/vueapp" << prjshort << "/src/components/" << car->sref << "/" << endl;
+		outfile << endl;
 	};
 
 	outfile << "# IP cp.cars --- IEND" << endl;

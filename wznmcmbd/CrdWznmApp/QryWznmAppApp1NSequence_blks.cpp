@@ -149,15 +149,14 @@ QryWznmAppApp1NSequence::StgIac::StgIac(
 };
 
 bool QryWznmAppApp1NSequence::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmAppApp1NSequence"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmAppApp1NSequence"];}();
 
 	basefound = (me != Json::nullValue);
 

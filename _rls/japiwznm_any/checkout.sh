@@ -3,7 +3,7 @@
 # checkout script for Wznm Java API library, release japiwznm_any
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 if [ -z ${JAVAROOT+x} ]; then

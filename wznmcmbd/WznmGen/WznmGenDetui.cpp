@@ -1333,7 +1333,7 @@ void WznmGenDetui::genPnllist(
 	// D jovr for each of the main table's jump tables (added manually in IexWznmUix)
 
 	string sqlstr;
-	ubigint ref;
+	ubigint ref, refC;
 
 	WznmMPanel* pnl = NULL;
 
@@ -1464,19 +1464,20 @@ void WznmGenDetui::genPnllist(
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButRegularize", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
 
 	// header controls
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
-				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
-
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "TxtRecord", VecWznmVMControlSubtype::VOID, "rec;emplong", 0, "", 0, 0, 0, "", "", "cap");
 
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
+
+	refC = dbswznm->tblwznmccontrol->getNewRef();
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButNew", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDelete", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "sel()", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButFilter", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon;onoff");
 
 	// table control
@@ -4112,7 +4113,7 @@ void WznmGenDetui::genPnlklst(
 			, const ubigint refLcl
 			, const vector<ubigint>& refsLcl
 		) {
-	ubigint ref;
+	ubigint ref, refC;
 
 	WznmMPanel* pnl = NULL;
 
@@ -4169,25 +4170,27 @@ void WznmGenDetui::genPnlklst(
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::SIDE,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButRegularize", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
-				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
-
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "TxtRecord", VecWznmVMControlSubtype::VOID, "rec;emplong", 0, "", 0, 0, 0, "", "", "cap");
 
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
+
+	refC = dbswznm->tblwznmccontrol->getNewRef();
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButUp", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "sel()&!sel.first()", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDown", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "sel()&!sel.last()", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	refC = dbswznm->tblwznmccontrol->getNewRef();
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButNew", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDuplicate", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "sel()", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDelete", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "sel()", "icon");
 
 	supref = dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TBL, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::TBL,
@@ -4372,7 +4375,7 @@ void WznmGenDetui::genPnlaux(
 			, const ubigint refLcl
 			, const vector<ubigint>& refsLcl
 		) {
-	ubigint ref, ref2;
+	ubigint ref, ref2, refC;
 
 	WznmMPanel* pnl = NULL;
 
@@ -4466,27 +4469,29 @@ void WznmGenDetui::genPnlaux(
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::SIDE,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButRegularize", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
-				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
-
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "TxtRecord", VecWznmVMControlSubtype::VOID, "rec;emplong", 0, "", 0, 0, 0, "", "", "cap");
 
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
+
 	if (relenum) {
-		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+		refC = dbswznm->tblwznmccontrol->getNewRef();
+		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButUp", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()&!sel.first()", "icon");
 
-		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDown", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()&!sel.last()", "icon");
 	};
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	refC = dbswznm->tblwznmccontrol->getNewRef();
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButNew", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDuplicate", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDelete", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()", "icon");
 
 	supref = dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TBL, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::TBL,
@@ -4919,7 +4924,7 @@ void WznmGenDetui::genPnl1n(
 			, const ubigint refLcl
 			, const vector<ubigint>& refsLcl
 		) {
-	ubigint ref, ref2;
+	ubigint ref, ref2, refC;
 
 	WznmMPanel* pnl = NULL;
 
@@ -5071,19 +5076,22 @@ void WznmGenDetui::genPnl1n(
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::SIDE,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButRegularize", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
-				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
-
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "TxtRecord", VecWznmVMControlSubtype::VOID, "rec;emplong", 0, "", 0, 0, 0, "", "", "cap");
 
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
+
 	if (relenum) {
-		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+		refC = dbswznm->tblwznmccontrol->getNewRef();
+		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 					VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButUp", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()&!sel.first()", "icon");
 
-		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 					VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDown", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()&!sel.last()", "icon");
 	};
+
+	refC = 0;
 
 	if (!trgs.empty()) {
 		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
@@ -5091,14 +5099,16 @@ void WznmGenDetui::genPnl1n(
 		dbswznm->tblwznmamcontrolpar->insertNewRec(NULL, con->ref, "action", 0, "crdopen");
 
 		if (affil) {
-			dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+			refC = dbswznm->tblwznmccontrol->getNewRef();
+
+			dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 						VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButNew", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, getAvail(trgs, true), "", "icon");
 			dbswznm->tblwznmamcontrolpar->insertNewRec(NULL, con->ref, "action", 0, "crdopen");
 		};
 	};
 
 	if (affil) {
-		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 					VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDelete", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()", "icon");
 	};
 
@@ -5388,7 +5398,7 @@ void WznmGenDetui::genPnlmn(
 			, const ubigint refLcl
 			, const vector<ubigint>& refsLcl
 		) {
-	ubigint ref, ref2;
+	ubigint ref, ref2, refC;
 
 	WznmMPanel* pnl = NULL;
 
@@ -5522,17 +5532,18 @@ void WznmGenDetui::genPnlmn(
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::SIDE,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButMinimize", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
-				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
-
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "TxtRecord", VecWznmVMControlSubtype::VOID, "rec;emplong", 0, "", 0, 0, 0, "", "", "cap");
 
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "ButClipboard", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "icon");
+
 	if (relenum) {
-		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+		refC = dbswznm->tblwznmccontrol->getNewRef();
+		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 					VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButUp", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()&!sel.first()", "icon");
 
-		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+		dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 					VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButDown", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()&!sel.last()", "icon");
 	};
 
@@ -5542,10 +5553,11 @@ void WznmGenDetui::genPnlmn(
 		dbswznm->tblwznmamcontrolpar->insertNewRec(NULL, con->ref, "action", 0, "crdopen");
 	};
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	refC = dbswznm->tblwznmccontrol->getNewRef();
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButAdd", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "", "icon");
 
-	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
+	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, refC, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::SHR, 0, "ButSub", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, uaccond, "sel()", "icon");
 
 	supref = dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TBL, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::TBL,

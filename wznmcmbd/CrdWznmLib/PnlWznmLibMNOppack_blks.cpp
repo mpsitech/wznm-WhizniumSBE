@@ -236,15 +236,14 @@ PnlWznmLibMNOppack::StgIac::StgIac(
 };
 
 bool PnlWznmLibMNOppack::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacWznmLibMNOppack"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacWznmLibMNOppack"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -401,15 +400,14 @@ string PnlWznmLibMNOppack::DpchAppData::getSrefsMask() {
 };
 
 void PnlWznmLibMNOppack::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmLibMNOppackData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmLibMNOppackData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -475,15 +473,14 @@ string PnlWznmLibMNOppack::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWznmLibMNOppack::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmLibMNOppackDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmLibMNOppackDo"];}();
 
 	basefound = (me != Json::nullValue);
 

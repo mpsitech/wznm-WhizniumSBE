@@ -22,11 +22,11 @@ uint QryWznmDlgList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "srf") return SRF;
-	if (s == "typ") return TYP;
-	if (s == "car") return CAR;
-	if (s == "ret") return RET;
 	if (s == "reu") return REU;
+	if (s == "ret") return RET;
+	if (s == "car") return CAR;
+	if (s == "typ") return TYP;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -34,11 +34,11 @@ uint QryWznmDlgList::VecVOrd::getIx(
 string QryWznmDlgList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == SRF) return("srf");
-	if (ix == TYP) return("typ");
-	if (ix == CAR) return("car");
-	if (ix == RET) return("ret");
 	if (ix == REU) return("reu");
+	if (ix == RET) return("ret");
+	if (ix == CAR) return("car");
+	if (ix == TYP) return("typ");
+	if (ix == SRF) return("srf");
 
 	return("");
 };

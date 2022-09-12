@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmCarDetail.h"
+#include "PnlWznmCarHk1NControl.h"
 #include "PnlWznmCar1NDialog.h"
 #include "PnlWznmCarCar1NPanel.h"
-#include "PnlWznmCarHk1NControl.h"
+#include "PnlWznmCarDetail.h"
 
 #define VecVWznmCarRecDo PnlWznmCarRec::VecVDo
 
@@ -75,8 +75,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdone1NDialog = false, const bool initdoneCar1NPanel = false, const bool initdoneHk1NControl = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdone1NDialog = false, const bool initdoneCar1NPanel = false, const bool initdoneHk1NControl = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneCar1NPanel = false, const bool initdone1NDialog = false, const bool initdoneHk1NControl = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneCar1NPanel = false, const bool initdone1NDialog = false, const bool initdoneHk1NControl = false);
 	};
 
 	/**
@@ -87,19 +87,19 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREF1NDIALOG = 3;
-		static const Sbecore::uint JREFCAR1NPANEL = 4;
+		static const Sbecore::uint JREFCAR1NPANEL = 3;
+		static const Sbecore::uint JREF1NDIALOG = 4;
 		static const Sbecore::uint JREFHK1NCONTROL = 5;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 6;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jref1NDialog = 0, const Sbecore::ubigint jrefCar1NPanel = 0, const Sbecore::ubigint jrefHk1NControl = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefCar1NPanel = 0, const Sbecore::ubigint jref1NDialog = 0, const Sbecore::ubigint jrefHk1NControl = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jref1NDialog;
 		Sbecore::ubigint jrefCar1NPanel;
+		Sbecore::ubigint jref1NDialog;
 		Sbecore::ubigint jrefHk1NControl;
 		bool ButRegularizeActive;
 
@@ -138,7 +138,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -180,10 +180,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmCarDetail* pnldetail;
+	PnlWznmCarHk1NControl* pnlhk1ncontrol;
 	PnlWznmCar1NDialog* pnl1ndialog;
 	PnlWznmCarCar1NPanel* pnlcar1npanel;
-	PnlWznmCarHk1NControl* pnlhk1ncontrol;
+	PnlWznmCarDetail* pnldetail;
 
 	WznmMCard recCar;
 
@@ -217,11 +217,11 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmCar_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmCar_mdlEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmCarUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmCar_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmCar_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmCarUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmCar_mdlEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmCar_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

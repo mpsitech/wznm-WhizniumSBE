@@ -331,33 +331,13 @@ void PnlWznmVitDetail::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMVIT_VECEQ) {
-		call->abort = handleCallWznmVit_vecEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	if (call->ixVCall == VecWznmVCall::CALLWZNMVITJMOD_VITEQ) {
+		call->abort = handleCallWznmVitJMod_vitEq(dbswznm, call->jref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVITUPD_REFEQ) {
 		call->abort = handleCallWznmVitUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVITJMOD_VITEQ) {
-		call->abort = handleCallWznmVitJMod_vitEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVIT_VECEQ) {
+		call->abort = handleCallWznmVit_vecEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
-};
-
-bool PnlWznmVitDetail::handleCallWznmVit_vecEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recVit.vecRefWznmMVector == refInv); // IP handleCallWznmVit_vecEq --- LINE
-	return retval;
-};
-
-bool PnlWznmVitDetail::handleCallWznmVitUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmVitUpd_refEq --- INSERT
-	return retval;
 };
 
 bool PnlWznmVitDetail::handleCallWznmVitJMod_vitEq(
@@ -370,5 +350,25 @@ bool PnlWznmVitDetail::handleCallWznmVitJMod_vitEq(
 	refreshJ(dbswznm, moditems);
 
 	xchg->submitDpch(getNewDpchEng(moditems));
+	return retval;
+};
+
+bool PnlWznmVitDetail::handleCallWznmVitUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmVitUpd_refEq --- INSERT
+	return retval;
+};
+
+bool PnlWznmVitDetail::handleCallWznmVit_vecEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recVit.vecRefWznmMVector == refInv); // IP handleCallWznmVit_vecEq --- LINE
 	return retval;
 };

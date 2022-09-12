@@ -19,20 +19,20 @@ public class QryWznmCarList {
 		*/
 	public static class VecVOrd {
 
-		public static final int SRF = 1;
-		public static final int MDL = 2;
-		public static final int RET = 3;
-		public static final int REU = 4;
+		public static final int REU = 1;
+		public static final int RET = 2;
+		public static final int SRF = 3;
+		public static final int MDL = 4;
 
 		public static int getIx(
 					String sref
 				) {
 			String s = sref.toLowerCase();
 
+			if (s.equals("reu")) return REU;
+			if (s.equals("ret")) return RET;
 			if (s.equals("srf")) return SRF;
 			if (s.equals("mdl")) return MDL;
-			if (s.equals("ret")) return RET;
-			if (s.equals("reu")) return REU;
 
 			return 0;
 		};
@@ -40,10 +40,10 @@ public class QryWznmCarList {
 		public static String getSref(
 					int ix
 				) {
+			if (ix == REU) return("reu");
+			if (ix == RET) return("ret");
 			if (ix == SRF) return("srf");
 			if (ix == MDL) return("mdl");
-			if (ix == RET) return("ret");
-			if (ix == REU) return("reu");
 
 			return "";
 		};

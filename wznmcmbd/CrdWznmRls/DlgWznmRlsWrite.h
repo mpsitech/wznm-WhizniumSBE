@@ -142,7 +142,7 @@ public:
 		Sbecore::uint numFDse;
 
 	public:
-		bool readJSON(Json::Value& sup, bool addbasetag = false);
+		bool readJSON(const Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
@@ -165,7 +165,7 @@ public:
 		bool ChkBso;
 
 	public:
-		bool readJSON(Json::Value& sup, bool addbasetag = false);
+		bool readJSON(const Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
@@ -460,7 +460,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -484,7 +484,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -543,15 +543,15 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalCucUldAvail(DbsWznm* dbswznm);
-	bool evalCucUldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalFiaDldAvail(DbsWznm* dbswznm);
+	bool evalFiaDldActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalWrcButAutActive(DbsWznm* dbswznm);
 	bool evalWrcButRunActive(DbsWznm* dbswznm);
 	bool evalWrcButStoActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
-	bool evalFiaDldAvail(DbsWznm* dbswznm);
-	bool evalFiaDldActive(DbsWznm* dbswznm);
-	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalCucUldAvail(DbsWznm* dbswznm);
+	bool evalCucUldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmRlsWrite(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -626,7 +626,7 @@ public:
 	void createWebapp(DbsWznm* dbswznm, const bool dplonly);
 	void createApi(DbsWznm* dbswznm, const bool dplonly);
 	void createJapi(DbsWznm* dbswznm, const bool dplonly);
-	void createSapi(DbsWznm* dbswznm, const bool dplonly);
+	void createSwapi(DbsWznm* dbswznm, const bool dplonly);
 	// IP cust --- IEND
 
 public:
@@ -660,8 +660,8 @@ private:
 
 	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
-	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
+	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
 
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);

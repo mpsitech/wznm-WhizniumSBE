@@ -85,7 +85,7 @@ void QryWznmOpkMNLibrary::rerun(
 	dbswznm->tblwznmqopkmnlibrary->removeRstByJref(jref);
 
 	sqlstr = "SELECT COUNT(TblWznmRMLibraryMOppack.ref)";
-	sqlstr += " FROM TblWznmRMLibraryMOppack, TblWznmMLibrary";
+	sqlstr += " FROM TblWznmMLibrary, TblWznmRMLibraryMOppack";
 	sqlstr += " WHERE TblWznmRMLibraryMOppack.refWznmMLibrary = TblWznmMLibrary.ref";
 	sqlstr += " AND TblWznmRMLibraryMOppack.refWznmMOppack = " + to_string(preRefOpk) + "";
 	dbswznm->loadUintBySQL(sqlstr, cnt);
@@ -100,7 +100,7 @@ void QryWznmOpkMNLibrary::rerun(
 
 	sqlstr = "INSERT INTO TblWznmQOpkMNLibrary(jref, jnum, mref, ref)";
 	sqlstr += " SELECT " + to_string(jref) + ", 0, TblWznmMLibrary.ref, TblWznmRMLibraryMOppack.ref";
-	sqlstr += " FROM TblWznmRMLibraryMOppack, TblWznmMLibrary";
+	sqlstr += " FROM TblWznmMLibrary, TblWznmRMLibraryMOppack";
 	sqlstr += " WHERE TblWznmRMLibraryMOppack.refWznmMLibrary = TblWznmMLibrary.ref";
 	sqlstr += " AND TblWznmRMLibraryMOppack.refWznmMOppack = " + to_string(preRefOpk) + "";
 	sqlstr += " ORDER BY TblWznmMLibrary.sref ASC";
@@ -274,19 +274,11 @@ void QryWznmOpkMNLibrary::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
-		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBROPKMOD_OPKEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMLIBROPKMOD_OPKEQ) {
 		call->abort = handleCallWznmLibRopkMod_opkEq(dbswznm, call->jref);
+	} else if ((call->ixVCall == VecWznmVCall::CALLWZNMSTUBCHG) && (call->jref == jref)) {
+		call->abort = handleCallWznmStubChgFromSelf(dbswznm);
 	};
-};
-
-bool QryWznmOpkMNLibrary::handleCallWznmStubChgFromSelf(
-			DbsWznm* dbswznm
-		) {
-	bool retval = false;
-	// IP handleCallWznmStubChgFromSelf --- INSERT
-	return retval;
 };
 
 bool QryWznmOpkMNLibrary::handleCallWznmLibRopkMod_opkEq(
@@ -300,5 +292,13 @@ bool QryWznmOpkMNLibrary::handleCallWznmLibRopkMod_opkEq(
 		xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSTATCHG, jref);
 	};
 
+	return retval;
+};
+
+bool QryWznmOpkMNLibrary::handleCallWznmStubChgFromSelf(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	// IP handleCallWznmStubChgFromSelf --- INSERT
 	return retval;
 };

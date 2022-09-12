@@ -38,6 +38,10 @@ dbs	dbswznm	WhizniumSBE database access library
 	any;mac	dbswznm_mac
 	any;ubuntu	dbswznm_ubuntu
 	ImeIMRelease.end
+vueapp	vueappwznm	WhizniumSBE Vue.js app
+	ImeIMRelease.srefRefWznmMMachine	sref	srefsKOption	Comment
+	any	vueappwznm_any
+	ImeIMRelease.end
 webapp	webappwznm	WhizniumSBE web app user interface files
 	ImeIMRelease.hsrefRefWznmMMachine	sref	srefsKOption	Comment
 	any	webappwznm_any

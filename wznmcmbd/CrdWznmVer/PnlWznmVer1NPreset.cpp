@@ -278,9 +278,9 @@ void PnlWznmVer1NPreset::handleDpchAppDoButViewClick(
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, recPst.ref, jrefNew);
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (refVer != 0) {
-				sref = "CrdWznmVec";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMPreset = " + to_string(recPst.ref), ref); return ref;}(), jrefNew);
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref)) if (refVer != 0) {
+				sref = "CrdWznmSbs";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMSubset WHERE refWznmMPreset = " + to_string(recPst.ref), ref); return ref;}(), jrefNew);
 			};
 		};
 		if (jrefNew == 0) {
@@ -290,9 +290,9 @@ void PnlWznmVer1NPreset::handleDpchAppDoButViewClick(
 			};
 		};
 		if (jrefNew == 0) {
-			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref)) if (refVer != 0) {
-				sref = "CrdWznmSbs";
-				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMSubset WHERE refWznmMPreset = " + to_string(recPst.ref), ref); return ref;}(), jrefNew);
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref)) if (refVer != 0) {
+				sref = "CrdWznmVec";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, [&](){ubigint ref = 0; dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMVector WHERE refWznmMPreset = " + to_string(recPst.ref), ref); return ref;}(), jrefNew);
 			};
 		};
 
@@ -316,8 +316,8 @@ void PnlWznmVer1NPreset::handleDpchAppDoButNewClick(
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, -1, jrefNew);
 		};
 		if (jrefNew == 0) {
-			if ((xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) & VecWznmWAccess::EDIT) != 0) if (refVer != 0) {
-				sref = "CrdWznmVec";
+			if ((xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) & VecWznmWAccess::EDIT) != 0) if (refVer != 0) {
+				sref = "CrdWznmSbs";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, -1, jrefNew);
 			};
 		};
@@ -328,8 +328,8 @@ void PnlWznmVer1NPreset::handleDpchAppDoButNewClick(
 			};
 		};
 		if (jrefNew == 0) {
-			if ((xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref) & VecWznmWAccess::EDIT) != 0) if (refVer != 0) {
-				sref = "CrdWznmSbs";
+			if ((xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref) & VecWznmWAccess::EDIT) != 0) if (refVer != 0) {
+				sref = "CrdWznmVec";
 				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, VecWznmVPreset::PREWZNMREFVER, refVer, sref, -1, jrefNew);
 			};
 		};

@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "JobWznmIexPrj.h"
 #include "JobWznmLicense.h"
+#include "JobWznmIexPrj.h"
 
 #define VecVDlgWznmPrjImpexDit DlgWznmPrjImpex::VecVDit
 #define VecVDlgWznmPrjImpexDo DlgWznmPrjImpex::VecVDo
@@ -131,7 +131,7 @@ public:
 		Sbecore::uint numFDse;
 
 	public:
-		bool readJSON(Json::Value& sup, bool addbasetag = false);
+		bool readJSON(const Json::Value& sup, bool addbasetag = false);
 		bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 		void writeJSON(Json::Value& sup, std::string difftag = "");
 		void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
@@ -358,7 +358,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -382,7 +382,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -433,12 +433,12 @@ public:
 		void writeXML(const Sbecore::uint ixWznmVLocale, xmlTextWriter* wr);
 	};
 
-	bool evalIfiUldActive(DbsWznm* dbswznm);
+	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalImpButAutActive(DbsWznm* dbswznm);
 	bool evalImpButRunActive(DbsWznm* dbswznm);
 	bool evalImpButStoActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
-	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalIfiUldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmPrjImpex(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -458,8 +458,8 @@ public:
 	Sbecore::Feed feedFDse;
 	Sbecore::Feed feedFSge;
 
-	JobWznmIexPrj* iex;
 	JobWznmLicense* license;
+	JobWznmIexPrj* iex;
 
 	Sbecore::uint ixVDit;
 
@@ -504,8 +504,8 @@ private:
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 
 	void handleTimerInSgePrsidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerWithSrefMonInSgeImport(DbsWznm* dbswznm);
+	void handleTimerInSgeImpidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

@@ -217,15 +217,14 @@ PnlWznmMdlRef1NPanel::StgIac::StgIac(
 };
 
 bool PnlWznmMdlRef1NPanel::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacWznmMdlRef1NPanel"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacWznmMdlRef1NPanel"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -382,15 +381,14 @@ string PnlWznmMdlRef1NPanel::DpchAppData::getSrefsMask() {
 };
 
 void PnlWznmMdlRef1NPanel::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmMdlRef1NPanelData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmMdlRef1NPanelData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -456,15 +454,14 @@ string PnlWznmMdlRef1NPanel::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWznmMdlRef1NPanel::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmMdlRef1NPanelDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmMdlRef1NPanelDo"];}();
 
 	basefound = (me != Json::nullValue);
 

@@ -23,10 +23,10 @@ import sbecore.*;
 
 public class ApiWznm {
 
-	public static final String WZNM_VERSION = "1.1.8";
+	public static final String WZNM_VERSION = "1.1.9";
 	public static final int WZNM_VERSION_MAJOR = 1;
 	public static final int WZNM_VERSION_MINOR = 1;
-	public static final int WZNM_VERSION_SUB = 8;
+	public static final int WZNM_VERSION_SUB = 9;
 
 	public static DpchEngWznm readDpchEng(
 				String s

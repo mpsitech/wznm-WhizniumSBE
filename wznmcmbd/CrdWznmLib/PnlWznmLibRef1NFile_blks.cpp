@@ -236,15 +236,14 @@ PnlWznmLibRef1NFile::StgIac::StgIac(
 };
 
 bool PnlWznmLibRef1NFile::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacWznmLibRef1NFile"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacWznmLibRef1NFile"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -401,15 +400,14 @@ string PnlWznmLibRef1NFile::DpchAppData::getSrefsMask() {
 };
 
 void PnlWznmLibRef1NFile::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmLibRef1NFileData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmLibRef1NFileData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -475,15 +473,14 @@ string PnlWznmLibRef1NFile::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWznmLibRef1NFile::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmLibRef1NFileDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmLibRef1NFileDo"];}();
 
 	basefound = (me != Json::nullValue);
 

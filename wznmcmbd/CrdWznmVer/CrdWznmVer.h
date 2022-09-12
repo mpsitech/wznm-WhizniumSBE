@@ -14,23 +14,23 @@
 
 // IP include.cust --- INSERT
 
-#include "DlgWznmVerBscui.h"
-#include "DlgWznmVerCustjob.h"
-#include "DlgWznmVerCustjtr.h"
-#include "DlgWznmVerCustui.h"
-#include "DlgWznmVerDbstr.h"
-#include "DlgWznmVerDeploy.h"
-#include "DlgWznmVerFinmod.h"
-#include "DlgWznmVerGenjtr.h"
-#include "DlgWznmVerGenui.h"
+#include "PnlWznmVerList.h"
+#include "PnlWznmVerHeadbar.h"
+#include "PnlWznmVerRec.h"
+#include "DlgWznmVerWrinimdl.h"
+#include "DlgWznmVerOppack.h"
+#include "DlgWznmVerNew.h"
 #include "DlgWznmVerGlobal.h"
 #include "DlgWznmVerImpexp.h"
-#include "DlgWznmVerNew.h"
-#include "DlgWznmVerOppack.h"
-#include "DlgWznmVerWrinimdl.h"
-#include "PnlWznmVerRec.h"
-#include "PnlWznmVerHeadbar.h"
-#include "PnlWznmVerList.h"
+#include "DlgWznmVerGenui.h"
+#include "DlgWznmVerGenjtr.h"
+#include "DlgWznmVerFinmod.h"
+#include "DlgWznmVerDeploy.h"
+#include "DlgWznmVerDbstr.h"
+#include "DlgWznmVerCustui.h"
+#include "DlgWznmVerCustjtr.h"
+#include "DlgWznmVerCustjob.h"
+#include "DlgWznmVerBscui.h"
 
 #define VecVWznmVerDo CrdWznmVer::VecVDo
 #define VecVWznmVerSge CrdWznmVer::VecVSge
@@ -280,7 +280,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -361,23 +361,23 @@ public:
 	Sbecore::Feed feedFMcbAlert;
 	Sbecore::Feed feedFSge;
 
-	DlgWznmVerBscui* dlgbscui;
-	DlgWznmVerCustjob* dlgcustjob;
-	DlgWznmVerCustjtr* dlgcustjtr;
-	DlgWznmVerCustui* dlgcustui;
-	DlgWznmVerDbstr* dlgdbstr;
-	DlgWznmVerDeploy* dlgdeploy;
-	DlgWznmVerFinmod* dlgfinmod;
-	DlgWznmVerGenjtr* dlggenjtr;
-	DlgWznmVerGenui* dlggenui;
+	PnlWznmVerList* pnllist;
+	PnlWznmVerHeadbar* pnlheadbar;
+	PnlWznmVerRec* pnlrec;
+	DlgWznmVerWrinimdl* dlgwrinimdl;
+	DlgWznmVerOppack* dlgoppack;
+	DlgWznmVerNew* dlgnew;
 	DlgWznmVerGlobal* dlgglobal;
 	DlgWznmVerImpexp* dlgimpexp;
-	DlgWznmVerNew* dlgnew;
-	DlgWznmVerOppack* dlgoppack;
-	DlgWznmVerWrinimdl* dlgwrinimdl;
-	PnlWznmVerRec* pnlrec;
-	PnlWznmVerHeadbar* pnlheadbar;
-	PnlWznmVerList* pnllist;
+	DlgWznmVerGenui* dlggenui;
+	DlgWznmVerGenjtr* dlggenjtr;
+	DlgWznmVerFinmod* dlgfinmod;
+	DlgWznmVerDeploy* dlgdeploy;
+	DlgWznmVerDbstr* dlgdbstr;
+	DlgWznmVerCustui* dlgcustui;
+	DlgWznmVerCustjtr* dlgcustjtr;
+	DlgWznmVerCustjob* dlgcustjob;
+	DlgWznmVerBscui* dlgbscui;
 
 	// IP vars.cust --- INSERT
 
@@ -450,9 +450,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmDlgClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmStatChg(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
+	bool handleCallWznmStatChg(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmDlgClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

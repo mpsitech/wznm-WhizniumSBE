@@ -1501,6 +1501,42 @@ bool Wznm::getPnlrhs(
 	return(retval);
 };
 
+bool Wznm::hasAction(
+			DbsWznm* dbswznm
+			, const uint hkIxVTbl
+			, const ubigint hkUref
+			, const string& action
+		) {
+	bool found = false;
+
+	ListWznmAMControlPar conApars;
+	WznmAMControlPar* conApar = NULL;
+
+	uint cnt;
+
+	if (action.compare("dlgopen") == 0) {
+		// dialog open implied by control with corresponding reference
+		dbswznm->loadUintBySQL("SELECT COUNT(ref) FROM TblWznmMControl WHERE hkIxVTbl = " + to_string(hkIxVTbl) + " AND hkUref = " + to_string(hkUref) + " AND refIxVTbl = " + to_string(VecWznmVMControlRefTbl::DLG), cnt);
+		found = (cnt > 0);
+	};
+	
+	if (!found) {
+		dbswznm->tblwznmamcontrolpar->loadRstBySQL("SELECT TblWznmAMControlPar.* FROM TblWznmAMControlPar, TblWznmMControl WHERE TblWznmAMControlPar.refWznmMControl = TblWznmMControl.ref AND TblWznmMControl.hkIxVTbl = "
+					+ to_string(hkIxVTbl) + " AND TblWznmMControl.hkUref = " + to_string(hkUref) + " AND TblWznmAMControlPar.x1SrefKKey = 'action'", false, conApars);
+
+		for (unsigned int i = 0; i < conApars.nodes.size(); i++) {
+			conApar = conApars.nodes[i];
+
+			if (conApar->osrefKVal.compare(action) == 0) {
+				found = true;
+				break;
+			};
+		};
+	};
+
+	return(found);
+};
+
 string Wznm::getConsref(
 			WznmMControl* con
 			, const string& ditshort
@@ -2480,10 +2516,12 @@ void OpengWznm::getIcsWznmVOppackByIxWznmVOpengtype(
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMPRCTREE);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRAPI);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRAPP);
+		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRCSAPI);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRDBS);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRJAPI);
-		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRSAPI);
+		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRPYAPI);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRSRV);
+		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRSWAPI);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRVUE);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRWEB);
 	} else if (ixWznmVOpengtype == VecWznmVOpengtype::WZNMOPD2) {
@@ -2537,8 +2575,14 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRAPIJOB);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRAPIQTB);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRAPP) {
-		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRAPPBASE);
-		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRAPPJBASE);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRAPPDOM);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRAPPMAIN);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRAPPSTDVEC);
+	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRCSAPI) {
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRCSAPIBASE);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRCSAPIJOB);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRCSAPIQTB);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRCSAPIVEC);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRDBS) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRDBSDBS);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRDBSDEPLOY);
@@ -2550,11 +2594,11 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRJAPIJOB);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRJAPIQTB);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRJAPIVEC);
-	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRSAPI) {
-		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSAPIBASE);
-		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSAPIJOB);
-		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSAPIQTB);
-		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSAPIVEC);
+	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRPYAPI) {
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRPYAPIBASE);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRPYAPIJOB);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRPYAPIQTB);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRPYAPIVEC);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRSRV) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVBASE);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVCMBENGBASE);
@@ -2575,6 +2619,11 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVROOTSESS);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVUA);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSRVVEC);
+	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRSWAPI) {
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSWAPIBASE);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSWAPIJOB);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSWAPIQTB);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSWAPIVEC);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRVUE) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVUEBASE);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVUECRD);

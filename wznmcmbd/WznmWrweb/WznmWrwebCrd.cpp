@@ -296,7 +296,7 @@ void WznmWrwebCrd::writeCrdJsfile(
 	outfile << "};" << endl;
 	outfile << endl;
 
-	if (hasAction(dbswznm, VecWznmVMControlHkTbl::CAR, car->ref, "crdopen")) {
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::CAR, car->ref, "crdopen")) {
 		outfile << "function handleMitCrdopenClick(menshort, consref) {" << endl;
 		outfile << "\tvar str = serializeDpchAppDo(srcdoc, \"DpchApp" << car->sref.substr(3) << "Do\", scrJref, consref + \"Click\");" << endl;
 		outfile << "\tsendReq(str, doc, handleDpchAppDoCrdopenReply);" << endl;
@@ -472,7 +472,7 @@ void WznmWrwebCrd::writeCrdJsfile(
 	outfile << "// IP handleDpchAppInitReply.scrJrefs --- IEND" << endl;
 
 	// --- handleDpchAppDoCrdopenReply*
-	if (hasAction(dbswznm, VecWznmVMControlHkTbl::CAR, car->ref, "crdopen")) outfile << "// IP handleDpchAppDoCrdopenReply --- AFFIRM" << endl;
+	if (Wznm::hasAction(dbswznm, VecWznmVMControlHkTbl::CAR, car->ref, "crdopen")) outfile << "// IP handleDpchAppDoCrdopenReply --- AFFIRM" << endl;
 	else outfile << "// IP handleDpchAppDoCrdopenReply --- REMOVE" << endl;
 
 	// --- terminate*

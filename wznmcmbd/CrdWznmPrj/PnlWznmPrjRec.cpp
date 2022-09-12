@@ -38,9 +38,9 @@ PnlWznmPrjRec::PnlWznmPrjRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnldetail = NULL;
-	pnlprj1nversion = NULL;
 	pnlmnperson = NULL;
+	pnlprj1nversion = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -249,11 +249,20 @@ void PnlWznmPrjRec::handleCall(
 			DbsWznm* dbswznm
 			, Call* call
 		) {
-	if (call->ixVCall == VecWznmVCall::CALLWZNMPRJ_VEREQ) {
-		call->abort = handleCallWznmPrj_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRJUPD_REFEQ) {
+	if (call->ixVCall == VecWznmVCall::CALLWZNMPRJUPD_REFEQ) {
 		call->abort = handleCallWznmPrjUpd_refEq(dbswznm, call->jref);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRJ_VEREQ) {
+		call->abort = handleCallWznmPrj_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
+};
+
+bool PnlWznmPrjRec::handleCallWznmPrjUpd_refEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+		) {
+	bool retval = false;
+	// IP handleCallWznmPrjUpd_refEq --- INSERT
+	return retval;
 };
 
 bool PnlWznmPrjRec::handleCallWznmPrj_verEq(
@@ -264,14 +273,5 @@ bool PnlWznmPrjRec::handleCallWznmPrj_verEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recPrj.refWznmMVersion == refInv); // IP handleCallWznmPrj_verEq --- LINE
-	return retval;
-};
-
-bool PnlWznmPrjRec::handleCallWznmPrjUpd_refEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-		) {
-	bool retval = false;
-	// IP handleCallWznmPrjUpd_refEq --- INSERT
 	return retval;
 };

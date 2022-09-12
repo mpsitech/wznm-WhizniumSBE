@@ -226,15 +226,14 @@ PnlWznmTblMNVector::StgIac::StgIac(
 };
 
 bool PnlWznmTblMNVector::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacWznmTblMNVector"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacWznmTblMNVector"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -398,15 +397,14 @@ string PnlWznmTblMNVector::DpchAppData::getSrefsMask() {
 };
 
 void PnlWznmTblMNVector::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmTblMNVectorData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmTblMNVectorData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -472,15 +470,14 @@ string PnlWznmTblMNVector::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWznmTblMNVector::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmTblMNVectorDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmTblMNVectorDo"];}();
 
 	basefound = (me != Json::nullValue);
 

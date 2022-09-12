@@ -423,28 +423,93 @@ stat	WznmWrapp	write accessor app code	false
 	wznmopd1
 	ImeIRMComponentMOppack.end
 	ImeIMOp.sref	Shrdat	Comment
-	WznmWrappBase	false	write code for accessor app
+	WznmWrappDom	false	write DOM code for accessor app
 		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
 		0	refWznmMApp	ubigint
 		0	folder	string
-		0	ipAllNotSpec	boolean
 		ImeIAMOpInvarg.end
 		ImeIMSquawk2.Title	Example
-		write code for accessor app '&StubWznmAppStd;'	write code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'
+		write DOM code for accessor app '&StubWznmAppStd;'	write DOM code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'
 			ImeIRMSquawkMStub2.srefRefWznmMStub
 			StubWznmAppStd
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
-	WznmWrappJbase	false	write code for Java accessor app
+	WznmWrappMain	false	write main state machine code for accessor app
 		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
 		0	refWznmMApp	ubigint
 		0	folder	string
 		0	ipAllNotSpec	boolean
 		ImeIAMOpInvarg.end
 		ImeIMSquawk2.Title	Example
-		write code for Java accessor app '&StubWznmAppStd;'	write code for Java accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'
+		write main state machine code for accessor app '&StubWznmAppStd;'	write main state machine code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'
 			ImeIRMSquawkMStub2.srefRefWznmMStub
 			StubWznmAppStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrappStdvec	false	write standard vector code for accessor app
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMApp	ubigint
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write standard vector code for accessor app '&StubWznmAppStd;'	write standard vector code for accessor app 'WhizniumSBE Iterator (WhizniumSBE 0.1.8)'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmAppStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrcsapi	write C# API code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrcsapiBase	false	write C# API code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C# API code basics for version '&StubWznmVerStd;'	write C# API code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrcsapiJob	false	write C# API code for job
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMComponent	ubigint
+		0	refWznmMJob	ubigint
+		0	orgweb	string
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C# API code for job '&StubWznmJobStd;'	write C# API code for job 'JobBrlyLocCalc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrcsapiQtb	false	write C# API code for query table
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMTable	ubigint
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C# API code for query table '&StubWznmTblStd;'	write C# API code for query table 'TblBrlyQLocList'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmTblStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrcsapiVec	false	write C# code for vector
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVector	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write C# code for vector '&StubWznmVecStd;'	write C# code for vector 'VecBrlyVMLocationBasetype'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVecStd
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
 	ImeIMOp.end
@@ -572,12 +637,67 @@ stat	WznmWrjapi	write Java API code	false
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
 	ImeIMOp.end
-stat	WznmWrsapi	write Swift API code	false
+stat	WznmWrpyapi	write Python API code	false
 	ImeIRMComponentMOppack.srefRefWznmMComponent
 	wznmopd1
 	ImeIRMComponentMOppack.end
 	ImeIMOp.sref	Shrdat	Comment
-	WznmWrsapiBase	false	write Swift API code basics
+	WznmWrpyapiBase	false	write Python API code basics
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVersion	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Python API code basics for version '&StubWznmVerStd;'	write Python API code basics for version 'BeamRelay 0.1'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVerStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrpyapiJob	false	write Python API code for job
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMComponent	ubigint
+		0	refWznmMJob	ubigint
+		0	orgweb	string
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Python API code for job '&StubWznmJobStd;'	write Python API code for job 'JobBrlyLocCalc'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmJobStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrpyapiQtb	false	write Python API code for query table
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMTable	ubigint
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Python API code for query table '&StubWznmTblStd;'	write Python API code for query table 'TblBrlyQLocList'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmTblStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrpyapiVec	false	write Python code for vector
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVector	ubigint
+		0	Prjshort	string
+		0	folder	string
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write Python code for vector '&StubWznmVecStd;'	write Python code for vector 'VecBrlyVMLocationBasetype'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVecStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrswapi	write Swift API code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrswapiBase	false	write Swift API code basics
 		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
 		0	refWznmMVersion	ubigint
 		0	Prjshort	string
@@ -589,7 +709,7 @@ stat	WznmWrsapi	write Swift API code	false
 			StubWznmVerStd
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
-	WznmWrsapiJob	false	write Swift API code for job
+	WznmWrswapiJob	false	write Swift API code for job
 		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
 		0	refWznmMComponent	ubigint
 		0	refWznmMJob	ubigint
@@ -603,7 +723,7 @@ stat	WznmWrsapi	write Swift API code	false
 			StubWznmJobStd
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
-	WznmWrsapiQtb	false	write Swift API code for query table
+	WznmWrswapiQtb	false	write Swift API code for query table
 		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
 		0	refWznmMTable	ubigint
 		0	folder	string
@@ -614,7 +734,7 @@ stat	WznmWrsapi	write Swift API code	false
 			StubWznmTblStd
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
-	WznmWrsapiVec	false	write Swift code for vector
+	WznmWrswapiVec	false	write Swift code for vector
 		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
 		0	refWznmMVector	ubigint
 		0	Prjshort	string

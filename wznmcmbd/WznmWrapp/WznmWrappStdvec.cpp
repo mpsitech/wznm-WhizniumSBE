@@ -1,0 +1,44 @@
+/**
+	* \file WznmWrappStdvec.cpp
+	* Wznm operation processor - write standard vector code for accessor app (implementation)
+	* \copyright (C) 2016-2020 MPSI Technologies GmbH
+	* \author Alexander Wirthmueller (auto-generation)
+	* \date created: 11 Sep 2022
+  */
+// IP header --- ABOVE
+
+#ifdef WZNMCMBD
+	#include <Wznmcmbd.h>
+#else
+	#include <Wznmopd.h>
+#endif
+
+#include "WznmWrappStdvec.h"
+
+using namespace std;
+using namespace Sbecore;
+using namespace Xmlio;
+using namespace WznmWrapp;
+
+// IP ns.cust --- INSERT
+
+/******************************************************************************
+ namespace WznmWrappStdvec
+ ******************************************************************************/
+
+DpchRetWznm* WznmWrappStdvec::run(
+			XchgWznm* xchg
+			, DbsWznm* dbswznm
+			, DpchInvWznmWrappStdvec* dpchinv
+		) {
+	ubigint refWznmMApp = dpchinv->refWznmMApp;
+	string folder = dpchinv->folder;
+
+	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
+
+	// IP run --- INSERT
+
+	return(new DpchRetWznm(VecWznmVDpch::DPCHRETWZNM, "", "", ixOpVOpres, 100));
+};
+
+// IP cust --- INSERT

@@ -115,27 +115,27 @@ public class PnlWznmCmpRec {
 
 		public static final int INITDONEDETAIL = 1;
 		public static final int INITDONE1NRELEASE = 2;
-		public static final int INITDONEMNLIBRARY = 3;
-		public static final int INITDONEMNOPPACK = 4;
+		public static final int INITDONEMNOPPACK = 3;
+		public static final int INITDONEMNLIBRARY = 4;
 
 		public StatApp(
 					boolean initdoneDetail
 					, boolean initdone1NRelease
-					, boolean initdoneMNLibrary
 					, boolean initdoneMNOppack
+					, boolean initdoneMNLibrary
 				) {
 			this.initdoneDetail = initdoneDetail;
 			this.initdone1NRelease = initdone1NRelease;
-			this.initdoneMNLibrary = initdoneMNLibrary;
 			this.initdoneMNOppack = initdoneMNOppack;
+			this.initdoneMNLibrary = initdoneMNLibrary;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NRELEASE, INITDONEMNLIBRARY, INITDONEMNOPPACK));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NRELEASE, INITDONEMNOPPACK, INITDONEMNLIBRARY));
 		};
 
 		public boolean initdoneDetail;
 		public boolean initdone1NRelease;
-		public boolean initdoneMNLibrary;
 		public boolean initdoneMNOppack;
+		public boolean initdoneMNLibrary;
 
 		public boolean readXML(
 					Document doc
@@ -152,8 +152,8 @@ public class PnlWznmCmpRec {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
 				initdone1NRelease = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NRelease", mask, INITDONE1NRELEASE);
-				initdoneMNLibrary = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNLibrary", mask, INITDONEMNLIBRARY);
 				initdoneMNOppack = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNOppack", mask, INITDONEMNOPPACK);
+				initdoneMNLibrary = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNLibrary", mask, INITDONEMNLIBRARY);
 
 				return true;
 			};
@@ -168,8 +168,8 @@ public class PnlWznmCmpRec {
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
 			if (initdone1NRelease == comp.initdone1NRelease) items.add(INITDONE1NRELEASE);
-			if (initdoneMNLibrary == comp.initdoneMNLibrary) items.add(INITDONEMNLIBRARY);
 			if (initdoneMNOppack == comp.initdoneMNOppack) items.add(INITDONEMNOPPACK);
+			if (initdoneMNLibrary == comp.initdoneMNLibrary) items.add(INITDONEMNLIBRARY);
 
 			return(items);
 		};
@@ -182,7 +182,7 @@ public class PnlWznmCmpRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NRELEASE, INITDONEMNLIBRARY, INITDONEMNOPPACK));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NRELEASE, INITDONEMNOPPACK, INITDONEMNLIBRARY));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -198,41 +198,41 @@ public class PnlWznmCmpRec {
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
 		public static final int SCRJREF1NRELEASE = 3;
-		public static final int SCRJREFMNLIBRARY = 4;
-		public static final int PNLMNLIBRARYAVAIL = 5;
-		public static final int SCRJREFMNOPPACK = 6;
-		public static final int PNLMNOPPACKAVAIL = 7;
+		public static final int SCRJREFMNOPPACK = 4;
+		public static final int PNLMNOPPACKAVAIL = 5;
+		public static final int SCRJREFMNLIBRARY = 6;
+		public static final int PNLMNLIBRARYAVAIL = 7;
 		public static final int BUTREGULARIZEACTIVE = 8;
 
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
 					, String scrJref1NRelease
-					, String scrJrefMNLibrary
-					, boolean pnlmnlibraryAvail
 					, String scrJrefMNOppack
 					, boolean pnlmnoppackAvail
+					, String scrJrefMNLibrary
+					, boolean pnlmnlibraryAvail
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
 			this.scrJref1NRelease = scrJref1NRelease;
-			this.scrJrefMNLibrary = scrJrefMNLibrary;
-			this.pnlmnlibraryAvail = pnlmnlibraryAvail;
 			this.scrJrefMNOppack = scrJrefMNOppack;
 			this.pnlmnoppackAvail = pnlmnoppackAvail;
+			this.scrJrefMNLibrary = scrJrefMNLibrary;
+			this.pnlmnlibraryAvail = pnlmnlibraryAvail;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRELEASE, SCRJREFMNLIBRARY, PNLMNLIBRARYAVAIL, SCRJREFMNOPPACK, PNLMNOPPACKAVAIL, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRELEASE, SCRJREFMNOPPACK, PNLMNOPPACKAVAIL, SCRJREFMNLIBRARY, PNLMNLIBRARYAVAIL, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
 		public String scrJref1NRelease;
-		public String scrJrefMNLibrary;
-		public boolean pnlmnlibraryAvail;
 		public String scrJrefMNOppack;
 		public boolean pnlmnoppackAvail;
+		public String scrJrefMNLibrary;
+		public boolean pnlmnlibraryAvail;
 		public boolean ButRegularizeActive;
 
 		public boolean readXML(
@@ -253,10 +253,10 @@ public class PnlWznmCmpRec {
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
 				scrJref1NRelease = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NRelease", mask, SCRJREF1NRELEASE);
-				scrJrefMNLibrary = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNLibrary", mask, SCRJREFMNLIBRARY);
-				pnlmnlibraryAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "pnlmnlibraryAvail", mask, PNLMNLIBRARYAVAIL);
 				scrJrefMNOppack = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNOppack", mask, SCRJREFMNOPPACK);
 				pnlmnoppackAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "pnlmnoppackAvail", mask, PNLMNOPPACKAVAIL);
+				scrJrefMNLibrary = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNLibrary", mask, SCRJREFMNLIBRARY);
+				pnlmnlibraryAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "pnlmnlibraryAvail", mask, PNLMNLIBRARYAVAIL);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
 				return true;
@@ -273,10 +273,10 @@ public class PnlWznmCmpRec {
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
 			if (scrJref1NRelease.equals(comp.scrJref1NRelease)) items.add(SCRJREF1NRELEASE);
-			if (scrJrefMNLibrary.equals(comp.scrJrefMNLibrary)) items.add(SCRJREFMNLIBRARY);
-			if (pnlmnlibraryAvail == comp.pnlmnlibraryAvail) items.add(PNLMNLIBRARYAVAIL);
 			if (scrJrefMNOppack.equals(comp.scrJrefMNOppack)) items.add(SCRJREFMNOPPACK);
 			if (pnlmnoppackAvail == comp.pnlmnoppackAvail) items.add(PNLMNOPPACKAVAIL);
+			if (scrJrefMNLibrary.equals(comp.scrJrefMNLibrary)) items.add(SCRJREFMNLIBRARY);
+			if (pnlmnlibraryAvail == comp.pnlmnlibraryAvail) items.add(PNLMNLIBRARYAVAIL);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
 			return(items);
@@ -290,7 +290,7 @@ public class PnlWznmCmpRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRELEASE, SCRJREFMNLIBRARY, PNLMNLIBRARYAVAIL, SCRJREFMNOPPACK, PNLMNOPPACKAVAIL, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NRELEASE, SCRJREFMNOPPACK, PNLMNOPPACKAVAIL, SCRJREFMNLIBRARY, PNLMNLIBRARYAVAIL, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

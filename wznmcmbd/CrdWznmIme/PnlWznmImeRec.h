@@ -14,10 +14,10 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmImeDetail.h"
-#include "PnlWznmImeIme1NImpexpcol.h"
-#include "PnlWznmImeSup1NImpexp.h"
 #include "PnlWznmImeHk1NVector.h"
+#include "PnlWznmImeSup1NImpexp.h"
+#include "PnlWznmImeIme1NImpexpcol.h"
+#include "PnlWznmImeDetail.h"
 
 #define VecVWznmImeRecDo PnlWznmImeRec::VecVDo
 
@@ -138,7 +138,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -180,10 +180,10 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmImeDetail* pnldetail;
-	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
-	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
 	PnlWznmImeHk1NVector* pnlhk1nvector;
+	PnlWznmImeSup1NImpexp* pnlsup1nimpexp;
+	PnlWznmImeIme1NImpexpcol* pnlime1nimpexpcol;
+	PnlWznmImeDetail* pnldetail;
 
 	WznmMImpexp recIme;
 
@@ -217,9 +217,9 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmIme_iexEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmIme_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmImeUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmIme_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmIme_iexEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

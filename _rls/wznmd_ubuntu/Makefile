@@ -2,7 +2,7 @@
 # make file for Wznm daemon, release wznmd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 22 Feb 2022
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 include Makefile.inc
@@ -21,7 +21,7 @@ PCHS = Wznmd.h.gch
 
 OBJS = Wznm.o WznmdAppsrv.o WznmdJobprc.o WznmdOpprc.o WznmdOpengcli.o WznmdOpengsrv.o Wznmd.o
 OBJS += RootWznm.o SessWznm.o JobWznmLicense.o
-OBJS += WznmCompl_blks.o SqkWznmCompl.o WznmCtpGenjtr_blks.o SqkWznmCtpGenjtr.o WznmCtpGenui_blks.o SqkWznmCtpGenui.o WznmCtpWrsrv_blks.o SqkWznmCtpWrsrv.o WznmCtpWrstkit_blks.o SqkWznmCtpWrstkit.o WznmCtpWrweb_blks.o SqkWznmCtpWrweb.o WznmGen_blks.o SqkWznmGen.o WznmPrcfile_blks.o SqkWznmPrcfile.o WznmPrctree_blks.o SqkWznmPrctree.o WznmWrapi_blks.o SqkWznmWrapi.o WznmWrapp_blks.o SqkWznmWrapp.o WznmWrdbs_blks.o SqkWznmWrdbs.o WznmWrjapi_blks.o SqkWznmWrjapi.o WznmWrsapi_blks.o SqkWznmWrsapi.o WznmWrsrv_blks.o SqkWznmWrsrv.o WznmWrvue_blks.o SqkWznmWrvue.o WznmWrweb_blks.o SqkWznmWrweb.o
+OBJS += WznmWrvue_blks.o SqkWznmWrvue.o WznmWrweb_blks.o SqkWznmWrweb.o WznmWrswapi_blks.o SqkWznmWrswapi.o WznmWrsrv_blks.o SqkWznmWrsrv.o WznmWrpyapi_blks.o SqkWznmWrpyapi.o WznmWrjapi_blks.o SqkWznmWrjapi.o WznmWrdbs_blks.o SqkWznmWrdbs.o WznmWrapp_blks.o SqkWznmWrapp.o WznmWrcsapi_blks.o SqkWznmWrcsapi.o WznmWrapi_blks.o SqkWznmWrapi.o WznmGen_blks.o SqkWznmGen.o WznmPrcfile_blks.o SqkWznmPrcfile.o WznmPrctree_blks.o SqkWznmPrctree.o WznmCtpWrweb_blks.o SqkWznmCtpWrweb.o WznmCtpWrstkit_blks.o SqkWznmCtpWrstkit.o WznmCtpWrsrv_blks.o SqkWznmCtpWrsrv.o WznmCtpGenui_blks.o SqkWznmCtpGenui.o WznmCtpGenjtr_blks.o SqkWznmCtpGenjtr.o WznmCompl_blks.o SqkWznmCompl.o
 OBJS += Wznmd_exe.o
 
 LIBPATH = -L$(LIBROOT)
@@ -52,7 +52,6 @@ all:	$(PCHS) $(EXE)
 
 $(EXE):	$(OBJS)
 	$(LINK) $(LINKFLAGS) $(OBJS) $(LIBPATH) $(LIBS) -o $(EXE)
-	rm -f *.o
 
 pch:	$(PCHS)
 

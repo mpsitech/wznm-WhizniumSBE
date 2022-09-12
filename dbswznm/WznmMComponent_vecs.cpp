@@ -27,8 +27,10 @@ uint TblWznmMComponent::VecVBasetype::getIx(
 	if (s == "vueapp") return VUEAPP;
 	if (s == "webapp") return WEBAPP;
 	if (s == "api") return API;
+	if (s == "csapi") return CSAPI;
 	if (s == "japi") return JAPI;
-	if (s == "sapi") return SAPI;
+	if (s == "pyapi") return PYAPI;
+	if (s == "swapi") return SWAPI;
 
 	return(0);
 };
@@ -43,8 +45,10 @@ string TblWznmMComponent::VecVBasetype::getSref(
 	if (ix == VUEAPP) return("vueapp");
 	if (ix == WEBAPP) return("webapp");
 	if (ix == API) return("api");
+	if (ix == CSAPI) return("csapi");
 	if (ix == JAPI) return("japi");
-	if (ix == SAPI) return("sapi");
+	if (ix == PYAPI) return("pyapi");
+	if (ix == SWAPI) return("swapi");
 
 	return("");
 };
@@ -61,8 +65,10 @@ string TblWznmMComponent::VecVBasetype::getTitle(
 		if (ix == VUEAPP) return("Vue.js app");
 		if (ix == WEBAPP) return("web app user interface files");
 		if (ix == API) return("API library");
+		if (ix == CSAPI) return("C# API library");
 		if (ix == JAPI) return("Java API package");
-		if (ix == SAPI) return("Swift API package");
+		if (ix == PYAPI) return("Python API package");
+		if (ix == SWAPI) return("Swift API package");
 		return(getSref(ix));
 	};
 
@@ -75,7 +81,7 @@ void TblWznmMComponent::VecVBasetype::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 9; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
+	for (unsigned int i = 1; i <= 11; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };
 
 /******************************************************************************

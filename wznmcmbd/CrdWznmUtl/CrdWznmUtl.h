@@ -14,9 +14,9 @@
 
 // IP include.cust --- INSERT
 
-#include "DlgWznmUtlExtrip.h"
-#include "DlgWznmUtlMrgip.h"
 #include "PnlWznmUtlHeadbar.h"
+#include "DlgWznmUtlMrgip.h"
+#include "DlgWznmUtlExtrip.h"
 
 #define VecVWznmUtlDo CrdWznmUtl::VecVDo
 #define VecVWznmUtlSge CrdWznmUtl::VecVSge
@@ -151,7 +151,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -196,9 +196,9 @@ public:
 	Sbecore::Feed feedFMcbAlert;
 	Sbecore::Feed feedFSge;
 
-	DlgWznmUtlExtrip* dlgextrip;
-	DlgWznmUtlMrgip* dlgmrgip;
 	PnlWznmUtlHeadbar* pnlheadbar;
+	DlgWznmUtlMrgip* dlgmrgip;
+	DlgWznmUtlExtrip* dlgextrip;
 
 	// IP vars.cust --- INSERT
 

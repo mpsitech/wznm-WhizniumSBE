@@ -149,15 +149,14 @@ QryWznmQryQry1NQuerycol::StgIac::StgIac(
 };
 
 bool QryWznmQryQry1NQuerycol::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacQryWznmQryQry1NQuerycol"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacQryWznmQryQry1NQuerycol"];}();
 
 	basefound = (me != Json::nullValue);
 

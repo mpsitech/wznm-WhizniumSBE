@@ -330,7 +330,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "};" << endl;
 	outfile << endl;
 
-	outfile << "bool Root" << Prjshort << "::termSess(" << endl;
+	outfile << "void Root" << Prjshort << "::termSess(" << endl;
 	outfile << "\t\t\tDbs" << Prjshort << "* dbs" << prjshort << endl;
 	outfile << "\t\t\t, const ubigint jref" << endl;
 	outfile << "\t\t) {" << endl;

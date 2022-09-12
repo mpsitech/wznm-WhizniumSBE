@@ -236,15 +236,14 @@ PnlWznmLocMNVersion::StgIac::StgIac(
 };
 
 bool PnlWznmLocMNVersion::StgIac::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["StgIacWznmLocMNVersion"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["StgIacWznmLocMNVersion"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -401,15 +400,14 @@ string PnlWznmLocMNVersion::DpchAppData::getSrefsMask() {
 };
 
 void PnlWznmLocMNVersion::DpchAppData::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmLocMNVersionData"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmLocMNVersionData"];}();
 
 	basefound = (me != Json::nullValue);
 
@@ -475,15 +473,14 @@ string PnlWznmLocMNVersion::DpchAppDo::getSrefsMask() {
 };
 
 void PnlWznmLocMNVersion::DpchAppDo::readJSON(
-			Json::Value& sup
+			const Json::Value& sup
 			, bool addbasetag
 		) {
 	clear();
 
 	bool basefound;
 
-	Json::Value& me = sup;
-	if (addbasetag) me = sup["DpchAppWznmLocMNVersionDo"];
+	const Json::Value& me = [&]{if (!addbasetag) return sup; return sup["DpchAppWznmLocMNVersionDo"];}();
 
 	basefound = (me != Json::nullValue);
 

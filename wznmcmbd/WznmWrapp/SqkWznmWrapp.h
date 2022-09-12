@@ -16,8 +16,9 @@
 	* SqkWznmWrapp
 	*/
 namespace SqkWznmWrapp {
-	std::string getSquawkBase(DbsWznm* dbswznm, DpchInvWznmWrappBase* dpchinv);
-	std::string getSquawkJbase(DbsWznm* dbswznm, DpchInvWznmWrappJbase* dpchinv);
+	std::string getSquawkDom(DbsWznm* dbswznm, DpchInvWznmWrappDom* dpchinv);
+	std::string getSquawkMain(DbsWznm* dbswznm, DpchInvWznmWrappMain* dpchinv);
+	std::string getSquawkStdvec(DbsWznm* dbswznm, DpchInvWznmWrappStdvec* dpchinv);
 };
 
 #endif

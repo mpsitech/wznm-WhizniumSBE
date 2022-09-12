@@ -14,15 +14,15 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmQryDetail.h"
-#include "PnlWznmQryAOrder.h"
-#include "PnlWznmQryAClause.h"
+#include "PnlWznmQryMNDialog.h"
+#include "PnlWznmQryMNPanel.h"
+#include "PnlWznmQryMNTable.h"
 #include "PnlWznmQrySup1NQuery.h"
 #include "PnlWznmQryQry1NQuerycol.h"
 #include "PnlWznmQry1NQuerymod.h"
-#include "PnlWznmQryMNTable.h"
-#include "PnlWznmQryMNDialog.h"
-#include "PnlWznmQryMNPanel.h"
+#include "PnlWznmQryAOrder.h"
+#include "PnlWznmQryDetail.h"
+#include "PnlWznmQryAClause.h"
 
 #define VecVWznmQryRecDo PnlWznmQryRec::VecVDo
 
@@ -80,8 +80,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneAOrder = false, const bool initdoneAClause = false, const bool initdoneSup1NQuery = false, const bool initdoneQry1NQuerycol = false, const bool initdone1NQuerymod = false, const bool initdoneMNTable = false, const bool initdoneMNDialog = false, const bool initdoneMNPanel = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAOrder = false, const bool initdoneAClause = false, const bool initdoneSup1NQuery = false, const bool initdoneQry1NQuerycol = false, const bool initdone1NQuerymod = false, const bool initdoneMNTable = false, const bool initdoneMNDialog = false, const bool initdoneMNPanel = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneAClause = false, const bool initdoneAOrder = false, const bool initdone1NQuerymod = false, const bool initdoneQry1NQuerycol = false, const bool initdoneSup1NQuery = false, const bool initdoneMNTable = false, const bool initdoneMNPanel = false, const bool initdoneMNDialog = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAClause = false, const bool initdoneAOrder = false, const bool initdone1NQuerymod = false, const bool initdoneQry1NQuerycol = false, const bool initdoneSup1NQuery = false, const bool initdoneMNTable = false, const bool initdoneMNPanel = false, const bool initdoneMNDialog = false);
 	};
 
 	/**
@@ -92,30 +92,30 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFAORDER = 3;
-		static const Sbecore::uint JREFACLAUSE = 4;
-		static const Sbecore::uint JREFSUP1NQUERY = 5;
+		static const Sbecore::uint JREFACLAUSE = 3;
+		static const Sbecore::uint JREFAORDER = 4;
+		static const Sbecore::uint JREF1NQUERYMOD = 5;
 		static const Sbecore::uint JREFQRY1NQUERYCOL = 6;
-		static const Sbecore::uint JREF1NQUERYMOD = 7;
+		static const Sbecore::uint JREFSUP1NQUERY = 7;
 		static const Sbecore::uint JREFMNTABLE = 8;
-		static const Sbecore::uint JREFMNDIALOG = 9;
-		static const Sbecore::uint JREFMNPANEL = 10;
+		static const Sbecore::uint JREFMNPANEL = 9;
+		static const Sbecore::uint JREFMNDIALOG = 10;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 11;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAOrder = 0, const Sbecore::ubigint jrefAClause = 0, const Sbecore::ubigint jrefSup1NQuery = 0, const Sbecore::ubigint jrefQry1NQuerycol = 0, const Sbecore::ubigint jref1NQuerymod = 0, const Sbecore::ubigint jrefMNTable = 0, const Sbecore::ubigint jrefMNDialog = 0, const Sbecore::ubigint jrefMNPanel = 0, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAClause = 0, const Sbecore::ubigint jrefAOrder = 0, const Sbecore::ubigint jref1NQuerymod = 0, const Sbecore::ubigint jrefQry1NQuerycol = 0, const Sbecore::ubigint jrefSup1NQuery = 0, const Sbecore::ubigint jrefMNTable = 0, const Sbecore::ubigint jrefMNPanel = 0, const Sbecore::ubigint jrefMNDialog = 0, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefAOrder;
 		Sbecore::ubigint jrefAClause;
-		Sbecore::ubigint jrefSup1NQuery;
-		Sbecore::ubigint jrefQry1NQuerycol;
+		Sbecore::ubigint jrefAOrder;
 		Sbecore::ubigint jref1NQuerymod;
+		Sbecore::ubigint jrefQry1NQuerycol;
+		Sbecore::ubigint jrefSup1NQuery;
 		Sbecore::ubigint jrefMNTable;
-		Sbecore::ubigint jrefMNDialog;
 		Sbecore::ubigint jrefMNPanel;
+		Sbecore::ubigint jrefMNDialog;
 		bool ButRegularizeActive;
 
 	public:
@@ -153,7 +153,7 @@ public:
 	public:
 		std::string getSrefsMask();
 
-		void readJSON(Json::Value& sup, bool addbasetag = false);
+		void readJSON(const Json::Value& sup, bool addbasetag = false);
 		void readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
 	};
 
@@ -195,15 +195,15 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmQryDetail* pnldetail;
-	PnlWznmQryAOrder* pnlaorder;
-	PnlWznmQryAClause* pnlaclause;
+	PnlWznmQryMNDialog* pnlmndialog;
+	PnlWznmQryMNPanel* pnlmnpanel;
+	PnlWznmQryMNTable* pnlmntable;
 	PnlWznmQrySup1NQuery* pnlsup1nquery;
 	PnlWznmQryQry1NQuerycol* pnlqry1nquerycol;
 	PnlWznmQry1NQuerymod* pnl1nquerymod;
-	PnlWznmQryMNTable* pnlmntable;
-	PnlWznmQryMNDialog* pnlmndialog;
-	PnlWznmQryMNPanel* pnlmnpanel;
+	PnlWznmQryAOrder* pnlaorder;
+	PnlWznmQryDetail* pnldetail;
+	PnlWznmQryAClause* pnlaclause;
 
 	WznmMQuery recQry;
 
@@ -237,10 +237,10 @@ public:
 	void handleCall(DbsWznm* dbswznm, Sbecore::Call* call);
 
 private:
-	bool handleCallWznmQry_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmQry_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmQry_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmQryUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmQry_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmQry_supEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmQry_jobEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

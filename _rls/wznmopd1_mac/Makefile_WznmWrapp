@@ -1,8 +1,8 @@
 # file Makefile
 # make file for operation pack WznmWrapp, release wznmopd1_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
-# author: Emily Johnson (auto-generation)
-# date created: 28 Mar 2022
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 11 Sep 2022
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -17,7 +17,7 @@ INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmopd1/VecWznm -I$(BUILDROOT)/
 INCPATH += -I${WHIZSDKROOT}/build -I/opt/homebrew/include -I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/libmicrohttpd/include -I/opt/homebrew/opt/libxml2/include -I/usr/local/mysql/include
 
 OBJS = WznmWrapp_blks.o WznmWrapp.o
-OBJS += WznmWrappBase.o WznmWrappJbase.o
+OBJS += WznmWrappDom.o WznmWrappMain.o WznmWrappStdvec.o
 
 LIB = libwznmwrapp
 
@@ -30,7 +30,6 @@ all:	$(LIB)
 
 $(LIB):	$(OBJS)
 	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
-	rm -f *.o
 
 install:
 	mv $(LIB).a $(LIBROOT)/wznmopd1/

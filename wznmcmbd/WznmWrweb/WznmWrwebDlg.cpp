@@ -213,7 +213,7 @@ void WznmWrwebDlg::writeDlghXmfile(
 
 	// --- dse
 	outfile << "<!-- IP dse - IBEGIN -->" << endl;
-	for (unsigned int i=1;i<dits.nodes.size(); i++) {
+	for (unsigned int i = 1; i < dits.nodes.size(); i++) {
 		outfile << "\t\t\t\t\t\t<line x1=\"" << (i*116-9-56) << "\" y1=\"7.5\" x2=\"" << (i*116-9+56) << "\" y2=\"7.5\" stroke=\"black\"/>" << endl;
 	};
 

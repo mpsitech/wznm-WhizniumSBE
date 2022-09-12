@@ -163,10 +163,21 @@ void* WznmcmbdOpprc::run(
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRAPIQTB) {
 				req->dpchret = WznmWrapiQtb::run(xchg, &dbswznm, (DpchInvWznmWrapiQtb*) req->dpchinv);
 			};
-			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRAPPBASE) {
-				req->dpchret = WznmWrappBase::run(xchg, &dbswznm, (DpchInvWznmWrappBase*) req->dpchinv);
-			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRAPPJBASE) {
-				req->dpchret = WznmWrappJbase::run(xchg, &dbswznm, (DpchInvWznmWrappJbase*) req->dpchinv);
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRAPPDOM) {
+				req->dpchret = WznmWrappDom::run(xchg, &dbswznm, (DpchInvWznmWrappDom*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRAPPMAIN) {
+				req->dpchret = WznmWrappMain::run(xchg, &dbswznm, (DpchInvWznmWrappMain*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRAPPSTDVEC) {
+				req->dpchret = WznmWrappStdvec::run(xchg, &dbswznm, (DpchInvWznmWrappStdvec*) req->dpchinv);
+			};
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRCSAPIBASE) {
+				req->dpchret = WznmWrcsapiBase::run(xchg, &dbswznm, (DpchInvWznmWrcsapiBase*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRCSAPIJOB) {
+				req->dpchret = WznmWrcsapiJob::run(xchg, &dbswznm, (DpchInvWznmWrcsapiJob*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRCSAPIQTB) {
+				req->dpchret = WznmWrcsapiQtb::run(xchg, &dbswznm, (DpchInvWznmWrcsapiQtb*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRCSAPIVEC) {
+				req->dpchret = WznmWrcsapiVec::run(xchg, &dbswznm, (DpchInvWznmWrcsapiVec*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRDBSDBS) {
 				req->dpchret = WznmWrdbsDbs::run(xchg, &dbswznm, (DpchInvWznmWrdbsDbs*) req->dpchinv);
@@ -188,14 +199,14 @@ void* WznmcmbdOpprc::run(
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRJAPIVEC) {
 				req->dpchret = WznmWrjapiVec::run(xchg, &dbswznm, (DpchInvWznmWrjapiVec*) req->dpchinv);
 			};
-			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIBASE) {
-				req->dpchret = WznmWrsapiBase::run(xchg, &dbswznm, (DpchInvWznmWrsapiBase*) req->dpchinv);
-			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIJOB) {
-				req->dpchret = WznmWrsapiJob::run(xchg, &dbswznm, (DpchInvWznmWrsapiJob*) req->dpchinv);
-			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIQTB) {
-				req->dpchret = WznmWrsapiQtb::run(xchg, &dbswznm, (DpchInvWznmWrsapiQtb*) req->dpchinv);
-			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSAPIVEC) {
-				req->dpchret = WznmWrsapiVec::run(xchg, &dbswznm, (DpchInvWznmWrsapiVec*) req->dpchinv);
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRPYAPIBASE) {
+				req->dpchret = WznmWrpyapiBase::run(xchg, &dbswznm, (DpchInvWznmWrpyapiBase*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRPYAPIJOB) {
+				req->dpchret = WznmWrpyapiJob::run(xchg, &dbswznm, (DpchInvWznmWrpyapiJob*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRPYAPIQTB) {
+				req->dpchret = WznmWrpyapiQtb::run(xchg, &dbswznm, (DpchInvWznmWrpyapiQtb*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRPYAPIVEC) {
+				req->dpchret = WznmWrpyapiVec::run(xchg, &dbswznm, (DpchInvWznmWrpyapiVec*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVBASE) {
 				req->dpchret = WznmWrsrvBase::run(xchg, &dbswznm, (DpchInvWznmWrsrvBase*) req->dpchinv);
@@ -235,6 +246,15 @@ void* WznmcmbdOpprc::run(
 				req->dpchret = WznmWrsrvUa::run(xchg, &dbswznm, (DpchInvWznmWrsrvUa*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVVEC) {
 				req->dpchret = WznmWrsrvVec::run(xchg, &dbswznm, (DpchInvWznmWrsrvVec*) req->dpchinv);
+			};
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSWAPIBASE) {
+				req->dpchret = WznmWrswapiBase::run(xchg, &dbswznm, (DpchInvWznmWrswapiBase*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSWAPIJOB) {
+				req->dpchret = WznmWrswapiJob::run(xchg, &dbswznm, (DpchInvWznmWrswapiJob*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSWAPIQTB) {
+				req->dpchret = WznmWrswapiQtb::run(xchg, &dbswznm, (DpchInvWznmWrswapiQtb*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSWAPIVEC) {
+				req->dpchret = WznmWrswapiVec::run(xchg, &dbswznm, (DpchInvWznmWrswapiVec*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEBASE) {
 				req->dpchret = WznmWrvueBase::run(xchg, &dbswznm, (DpchInvWznmWrvueBase*) req->dpchinv);

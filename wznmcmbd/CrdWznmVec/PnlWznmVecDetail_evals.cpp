@@ -133,37 +133,13 @@ bool PnlWznmVecDetail::evalTxtHkuActive(
 bool PnlWznmVecDetail::evalButHkuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// vec.hkuEq(0)|((pre.ixCrdaccJob()&vec.hktEq(job)&pre.refVer())|(pre.ixCrdaccTbl()&vec.hktEq(tbl)&pre.refVer())|(pre.ixCrdaccIex()&vec.hktEq(iex)&pre.refVer())|(pre.ixCrdaccIme()&vec.hktEq(ime)&pre.refVer()))
+	// vec.hkuEq(0)|((pre.ixCrdaccIex()&vec.hktEq(iex)&pre.refVer())|(pre.ixCrdaccIme()&vec.hktEq(ime)&pre.refVer())|(pre.ixCrdaccJob()&vec.hktEq(job)&pre.refVer())|(pre.ixCrdaccTbl()&vec.hktEq(tbl)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recVec.hkUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref) != 0);
-	args.push_back(a);
-	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::JOB);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref) != 0);
-	args.push_back(a);
-	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::TBL);
-	args.push_back(a);
-	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
-	args.push_back(a);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
-	b = args.back(); args.pop_back();
-	a = args.back(); args.pop_back();
-	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref) != 0);
 	args.push_back(a);
 	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IEX);
@@ -179,6 +155,30 @@ bool PnlWznmVecDetail::evalButHkuViewAvail(
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIME, jref) != 0);
 	args.push_back(a);
 	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::IME);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::JOB);
+	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recVec.hkIxVTbl == VecWznmVMVectorHkTbl::TBL);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);

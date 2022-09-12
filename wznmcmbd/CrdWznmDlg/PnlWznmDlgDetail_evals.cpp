@@ -138,16 +138,16 @@ bool PnlWznmDlgDetail::evalTxtReuActive(
 bool PnlWznmDlgDetail::evalButReuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// dlg.reuEq(0)|((pre.ixCrdaccRel()&dlg.retEq(rel)&pre.refVer())|(pre.ixCrdaccIex()&dlg.retEq(iex)&pre.refVer()))
+	// dlg.reuEq(0)|((pre.ixCrdaccIex()&dlg.retEq(iex)&pre.refVer())|(pre.ixCrdaccRel()&dlg.retEq(rel)&pre.refVer()))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recDlg.refUref == 0);
 	args.push_back(a);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recDlg.refIxVTbl == VecWznmVMDialogRefTbl::REL);
+	a = false; a = (recDlg.refIxVTbl == VecWznmVMDialogRefTbl::IEX);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
@@ -157,9 +157,9 @@ bool PnlWznmDlgDetail::evalButReuViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
-	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref) != 0);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref) != 0);
 	args.push_back(a);
-	a = false; a = (recDlg.refIxVTbl == VecWznmVMDialogRefTbl::IEX);
+	a = false; a = (recDlg.refIxVTbl == VecWznmVMDialogRefTbl::REL);
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
