@@ -9,11 +9,17 @@
 				:label="tag.CptSrf"
 			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divJti - INSERT -->
-			</div>
+				v-model="contapp.fiFPupJti"
+				return-object
+				:items="feedFPupJti"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptJti"
+				v-on:change="handleFiChange('numFPupJti', contapp.fiFPupJti)"
+				:disabled="!statshr.PupJtiActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -33,35 +39,37 @@
 				:label="tag.CptVer"
 			/>
 
-			<div
+			<v-text-field
 				class="my-1"
-			>
-				<!-- IP divReu - INSERT -->
-			</div>
+				readonly
+				outlined
+				v-model="continf.TxtReu"
+				:label="tag.CptReu"
+			/>
 
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupSco"
+				return-object
 				:items="feedFPupSco"
-				:label='tag.CptSco'
-				v-on:change="handlePupChange('numFPupSco', contapp.fiFPupSco)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptSco"
+				v-on:change="handleFiChange('numFPupSco', contapp.fiFPupSco)"
 				:disabled="!statshr.PupScoActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupAty"
+				return-object
 				:items="feedFPupAty"
-				:label='tag.CptAty'
-				v-on:change="handlePupChange('numFPupAty', contapp.fiFPupAty)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptAty"
+				v-on:change="handleFiChange('numFPupAty', contapp.fiFPupAty)"
 				:disabled="!statshr.PupAtyActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 		</v-card-text>
 	</v-card>
@@ -109,7 +117,7 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
 
 				this.updateEng(["contiac"]);

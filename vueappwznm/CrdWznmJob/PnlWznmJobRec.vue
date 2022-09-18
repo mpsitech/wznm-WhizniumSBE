@@ -64,6 +64,13 @@
 			<v-divider/>
 			<v-row>
 				<v-col cols="12" md="6">
+					<PnlWznmJob1NSensitivity
+						v-on:request="handleRequest"
+						ref="PnlWznmJob1NSensitivity"
+						:scrJref=statshr.scrJref1NSensitivity
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
 					<PnlWznmJob1NMethod
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
@@ -85,13 +92,6 @@
 						v-on:request="handleRequest"
 						ref="PnlWznmJobJob1NStage"
 						:scrJref=statshr.scrJrefJob1NStage
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
-					<PnlWznmJob1NSensitivity
-						v-on:request="handleRequest"
-						ref="PnlWznmJob1NSensitivity"
-						:scrJref=statshr.scrJref1NSensitivity
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -119,19 +119,19 @@
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
-					<PnlWznmJobMNOp
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmJobMNOp"
-						:scrJref=statshr.scrJrefMNOp
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmJobSupMNJob
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
 						ref="PnlWznmJobSupMNJob"
 						:scrJref=statshr.scrJrefSupMNJob
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmJobMNOp
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmJobMNOp"
+						:scrJref=statshr.scrJrefMNOp
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -155,15 +155,15 @@
 	import PnlWznmJobDetail from './PnlWznmJobDetail';
 	import PnlWznmJobAVar from './PnlWznmJobAVar';
 	import PnlWznmJobACmd from './PnlWznmJobACmd';
+	import PnlWznmJob1NSensitivity from './PnlWznmJob1NSensitivity';
 	import PnlWznmJob1NMethod from './PnlWznmJob1NMethod';
 	import PnlWznmJob1NRtjob from './PnlWznmJob1NRtjob';
 	import PnlWznmJobJob1NStage from './PnlWznmJobJob1NStage';
-	import PnlWznmJob1NSensitivity from './PnlWznmJob1NSensitivity';
 	import PnlWznmJobHk1NVector from './PnlWznmJobHk1NVector';
 	import PnlWznmJobRef1NBlock from './PnlWznmJobRef1NBlock';
 	import PnlWznmJobMNOppack from './PnlWznmJobMNOppack';
-	import PnlWznmJobMNOp from './PnlWznmJobMNOp';
 	import PnlWznmJobSupMNJob from './PnlWznmJobSupMNJob';
+	import PnlWznmJobMNOp from './PnlWznmJobMNOp';
 	import PnlWznmJobSubMNJob from './PnlWznmJobSubMNJob';
 	/*
 	*/
@@ -185,15 +185,15 @@
 			PnlWznmJobDetail,
 			PnlWznmJobAVar,
 			PnlWznmJobACmd,
+			PnlWznmJob1NSensitivity,
 			PnlWznmJob1NMethod,
 			PnlWznmJob1NRtjob,
 			PnlWznmJobJob1NStage,
-			PnlWznmJob1NSensitivity,
 			PnlWznmJobHk1NVector,
 			PnlWznmJobRef1NBlock,
 			PnlWznmJobMNOppack,
-			PnlWznmJobMNOp,
 			PnlWznmJobSupMNJob,
+			PnlWznmJobMNOp,
 			PnlWznmJobSubMNJob
 			/*
 			*/
@@ -258,15 +258,15 @@
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmJobDetail.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefAVar) this.$refs.PnlWznmJobAVar.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefACmd) this.$refs.PnlWznmJobACmd.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NSensitivity) this.$refs.PnlWznmJob1NSensitivity.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NMethod) this.$refs.PnlWznmJob1NMethod.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NRtjob) this.$refs.PnlWznmJob1NRtjob.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefJob1NStage) this.$refs.PnlWznmJobJob1NStage.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NSensitivity) this.$refs.PnlWznmJob1NSensitivity.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefHk1NVector) this.$refs.PnlWznmJobHk1NVector.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefRef1NBlock) this.$refs.PnlWznmJobRef1NBlock.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefMNOppack) this.$refs.PnlWznmJobMNOppack.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefMNOp) this.$refs.PnlWznmJobMNOp.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefSupMNJob) this.$refs.PnlWznmJobSupMNJob.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefMNOp) this.$refs.PnlWznmJobMNOp.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefSubMNJob) this.$refs.PnlWznmJobSubMNJob.handleReply(obj);
 						/*
 						*/
@@ -300,15 +300,15 @@
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmJobDetail.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefAVar) this.$refs.PnlWznmJobAVar.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefACmd) this.$refs.PnlWznmJobACmd.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NSensitivity) this.$refs.PnlWznmJob1NSensitivity.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NMethod) this.$refs.PnlWznmJob1NMethod.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NRtjob) this.$refs.PnlWznmJob1NRtjob.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefJob1NStage) this.$refs.PnlWznmJobJob1NStage.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NSensitivity) this.$refs.PnlWznmJob1NSensitivity.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefHk1NVector) this.$refs.PnlWznmJobHk1NVector.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefRef1NBlock) this.$refs.PnlWznmJobRef1NBlock.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNOppack) this.$refs.PnlWznmJobMNOppack.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNOp) this.$refs.PnlWznmJobMNOp.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSupMNJob) this.$refs.PnlWznmJobSupMNJob.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNOp) this.$refs.PnlWznmJobMNOp.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSubMNJob) this.$refs.PnlWznmJobSubMNJob.handleUpdate(obj);
 						/*
 						*/

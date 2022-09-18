@@ -127,12 +127,26 @@ void WznmWrvuePnl::writePfVuefile(
 			, const bool hashdr
 			, const bool hasftr
 		) {
+	WznmMControl* con = NULL;
+
 	set<uint> unqcontypes;
+	bool hasfi = false;
+	bool hasfis = false;
 
 	ListWznmMBlock dpchs;
 	WznmMBlock* dpch = NULL;
 
-	for (unsigned int i = 0; i < cons.nodes.size(); i++) unqcontypes.insert(cons.nodes[i]->ixVBasetype);
+	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
+		con = cons.nodes[i];
+		
+		if (con->ixVBasetype == VecWznmVMControlBasetype::PUP) hasfi = true;
+		else if (con->ixVBasetype == VecWznmVMControlBasetype::LST) {
+			if (StrMod::srefInSrefs(con->srefsKOption, "multsel")) hasfis = true;
+			else hasfi = true;
+		};
+
+		unqcontypes.insert(cons.nodes[i]->ixVBasetype);
+	};
 
 	// --- hdr*
 	if (hashdr) outfile << "<!-- IP hdr - AFFIRM -->" << endl;
@@ -156,6 +170,10 @@ void WznmWrvuePnl::writePfVuefile(
 	for (unsigned int i = 0; i < icsBasecons.size(); i++) wrBasecon(dbswznm, Prjshort, outfile, pnl->sref, cons, icsBasecons, i, "");
 	outfile << "<!-- IP cont - IEND -->" << endl;
 
+	// --- import.vecio*
+	if (hasfis) outfile << "<!-- IP import.vecio - AFFIRM -->" << endl;
+	else outfile << "<!-- IP import.vecio - REMOVE -->" << endl;
+
 	// --- handleButClick*
 	if (has(unqcontypes, VecWznmVMControlBasetype::BUT)) outfile << "<!-- IP handleButClick - AFFIRM -->" << endl;
 	else outfile << "<!-- IP handleButClick - REMOVE -->" << endl;
@@ -164,9 +182,13 @@ void WznmWrvuePnl::writePfVuefile(
 	if (has(unqcontypes, VecWznmVMControlBasetype::ULD)) outfile << "<!-- IP handleButUploadClick - AFFIRM -->" << endl;
 	else outfile << "<!-- IP handleButUploadClick - REMOVE -->" << endl;
 
-	// --- handlePupChange*
-	if (has(unqcontypes, VecWznmVMControlBasetype::PUP)) outfile << "<!-- IP handlePupChange - AFFIRM -->" << endl;
-	else outfile << "<!-- IP handlePupChange - REMOVE -->" << endl;
+	// --- handleFiChange*
+	if (hasfi) outfile << "<!-- IP handleFiChange - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleFiChange - REMOVE -->" << endl;
+
+	// --- handleFisChange*
+	if (hasfis) outfile << "<!-- IP handleFisChange - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleFisChange - REMOVE -->" << endl;
 
 	// --- mergeDpchEngData
 	wrIbegin(outfile, 4, "mergeDpchEngData", true);
@@ -423,7 +445,7 @@ void WznmWrvuePnl::writePlVuefile(
 
 	// --- data
 	wrIbegin(outfile, 3, "data");
-	wrData(dbswznm, Prjshort, outfile, pnl->refWznmMJob);
+	wrData(dbswznm, Prjshort, outfile, pnl->refWznmMJob, true);
 	wrIend(outfile, 3, "data");
 };
 

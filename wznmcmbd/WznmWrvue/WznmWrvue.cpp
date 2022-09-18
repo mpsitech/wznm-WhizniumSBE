@@ -68,6 +68,7 @@ void WznmWrvue::wrBasecon(
 			, vector<unsigned int>& icsBasecons
 			, const unsigned int ixIcsBasecons
 			, const string& ditshort
+			, const bool ditempty
 		) {
 	WznmMControl* con = NULL;
 
@@ -119,8 +120,7 @@ void WznmWrvue::wrBasecon(
 			outfile << indent << "\t\t<v-btn" << endl;
 			if (s == "crdopen") outfile << indent << "\t\t\tv-on:click=\"handleButCrdopenClick(";
 			else outfile << indent << "\t\t\tv-on:click=\"handleButClick(";
-			if (ditshort != "") outfile << "'" << StrMod::lc(ditshort) << "', ";
-			outfile << "'" << consref << "Click')\"" << endl;
+			outfile << wrBasecon_ditshort(ditshort, ditempty, true) << "'" << consref << "Click')\"" << endl;
 			if (con->Active != "") outfile << indent << "\t\t\t:disabled=\"!statshr" << StrMod::lc(ditshort) << "." << consref << "Active\"" << endl;
 
 			if (StrMod::srefInSrefs(con->srefsKOption, "icon")) {
@@ -177,11 +177,12 @@ void WznmWrvue::wrBasecon(
 		if (basecon->Avail != "") outfile << indent << "\tv-if=\"statshr" << StrMod::lc(ditshort) << "." << baseconsref << "Avail\"" << endl;
 		outfile << indent << "\tdownload" << endl;
 		outfile << indent << "\t:href=\"hrefDld\"" << endl;
-		if (basecon->Active != "") outfile << indent << "\t:disabled=\"!statshr" << StrMod::lc(ditshort) << ".DldActive\"" << endl;
+		outfile << indent << "\ttarget=\"_blank\"" << endl;
+		if (basecon->Active != "") outfile << indent << "\t:disabled=\"!statshr" << StrMod::lc(ditshort) << "." << baseconsref << "Active\"" << endl;
 		outfile << indent << "\tclass=\"my-1\"" << endl;
 		outfile << indent << "\tcolor=\"primary\"" << endl;
 		outfile << indent << ">" << endl;
-		outfile << indent << "\t{{tag" << StrMod::lc(ditshort) << ".Dld}}" << endl;
+		outfile << indent << "\t{{tag" << StrMod::lc(ditshort) << "." << baseconsref << "}}" << endl;
 		outfile << indent << "</v-btn>" << endl;
 
 	} else if (cplxtype == Concplxtype::HDG) {
@@ -193,43 +194,39 @@ void WznmWrvue::wrBasecon(
 		outfile << indent << "</h3>" << endl;
 		outfile << endl;
 
-	} else if (cplxtype == Concplxtype::LST) {
-		other = true;
+	} else if ((cplxtype == Concplxtype::LST) || (cplxtype == Concplxtype::LST_NOALT) || (cplxtype == Concplxtype::LST_TXFALT) || (cplxtype == Concplxtype::LST_TXTALT)) {
+		outfile << indent << "<v-select" << endl;
+		if (basecon->Avail != "") outfile << indent << "\tv-if=\"statshr" << StrMod::lc(ditshort) << "." << baseconsref << "Avail\"" << endl;
+		outfile << indent << "\tclass=\"my-1\"" << endl;
+		if (StrMod::srefInSrefs(basecon->srefsKOption, "multsel")) {
+			outfile << indent << "\tv-model=\"contapp" << StrMod::lc(ditshort) << ".fisF" << baseconsref << "\"" << endl;
+			outfile << indent << "\tmultiple" << endl;
+		} else outfile << indent << "\tv-model=\"contapp" << StrMod::lc(ditshort) << ".fiF" << baseconsref << "\"" << endl;
+		outfile << indent << "\treturn-object" << endl;
+		outfile << indent << "\t:items=\"feedF" << ditshort << baseconsref << "\"" << endl;
+		outfile << indent << "\titem-value=\"num\"" << endl;
+		outfile << indent << "\titem-text=\"tit1\"" << endl;
+		outfile << indent << "\t:label=\"tag" << StrMod::lc(ditshort) << ".Cpt" << baseconshort << "\"" << endl;
+		if (StrMod::srefInSrefs(basecon->srefsKOption, "multsel")) outfile << indent << "\tv-on:change=\"handleFisChange(" << wrBasecon_ditshort(ditshort, ditempty, true) << "'numsF" << baseconsref << "', contapp" << StrMod::lc(ditshort) << ".fisF" << baseconsref << ")\"" << endl;
+		else outfile << indent << "\tv-on:change=\"handleFiChange(" << wrBasecon_ditshort(ditshort, ditempty, true) << "'numF" << baseconsref << "', contapp" << StrMod::lc(ditshort) << ".fiF" << baseconsref << ")\"" << endl;
+		if (basecon->Active != "") outfile << indent << "\t:disabled=\"!statshr" << StrMod::lc(ditshort) << "." << baseconsref << "Active\"" << endl;
+		outfile << indent << "/>" << endl;
+		outfile << endl;
 
-	} else if (cplxtype == Concplxtype::LST_NOALT) {
-		other = true;
-
-	} else if (cplxtype == Concplxtype::LST_TXFALT) {
-		other = true;
-
-	} else if (cplxtype == Concplxtype::LST_TXTALT) {
-		other = true;
-
-	} else if (cplxtype == Concplxtype::PUP) {
+	} else if ((cplxtype == Concplxtype::PUP) || (cplxtype == Concplxtype::PUP_PUP) || (cplxtype == Concplxtype::PUP_TXFALT) || (cplxtype == Concplxtype::PUP_VBAR)) {
 		outfile << indent << "<v-select" << endl;
 		if (basecon->Avail != "") outfile << indent << "\tv-if=\"statshr" << StrMod::lc(ditshort) << "." << baseconsref << "Avail\"" << endl;
 		outfile << indent << "\tclass=\"my-1\"" << endl;
 		outfile << indent << "\tv-model=\"contapp" << StrMod::lc(ditshort) << ".fiF" << baseconsref << "\"" << endl;
+		outfile << indent << "\treturn-object" << endl;
 		outfile << indent << "\t:items=\"feedF" << ditshort << baseconsref << "\"" << endl;
-		outfile << indent << "\t:label='tag" << StrMod::lc(ditshort) << ".Cpt" << baseconshort << "'" << endl;
-		outfile << indent << "\tv-on:change=\"handlePupChange(";
-		if (ditshort != "") outfile << "'" <<  StrMod::lc(ditshort) << "', ";
-		outfile << "'numF" << baseconsref << "', contapp" << StrMod::lc(ditshort) << ".fiF" << baseconsref << ")\"" << endl;
+		outfile << indent << "\titem-value=\"num\"" << endl;
+		outfile << indent << "\titem-text=\"tit1\"" << endl;
+		outfile << indent << "\t:label=\"tag" << StrMod::lc(ditshort) << ".Cpt" << baseconshort << "\"" << endl;
+		outfile << indent << "\tv-on:change=\"handleFiChange(" << wrBasecon_ditshort(ditshort, ditempty, true) << "'numF" << baseconsref << "', contapp" << StrMod::lc(ditshort) << ".fiF" << baseconsref << ")\"" << endl;
 		if (basecon->Active != "") outfile << indent << "\t:disabled=\"!statshr" << StrMod::lc(ditshort) << "." << baseconsref << "Active\"" << endl;
-		outfile << indent << ">" << endl;
-		outfile << indent << "\t<template v-slot:selection=\"{item}\">{{item.tit1}}</template>" << endl;
-		outfile << indent << "\t<template v-slot:item=\"{item}\">{{item.tit1}}</template>" << endl;
-		outfile << indent << "</v-select>" << endl;
+		outfile << indent << "/>" << endl;
 		outfile << endl;
-
-	} else if (cplxtype == Concplxtype::PUP_PUP) {
-		other = true;
-
-	} else if (cplxtype == Concplxtype::PUP_TXFALT) {
-		other = true;
-
-	} else if (cplxtype == Concplxtype::PUP_VBAR) {
-		other = true;
 
 	} else if (cplxtype == Concplxtype::SEP) {
 		outfile << indent << "<v-divider";
@@ -275,7 +272,7 @@ void WznmWrvue::wrBasecon(
 		outfile << indent << "/>" << endl;
 		outfile << endl;
 
-	} else if (cplxtype == Concplxtype::TXT) {
+	} else if ((cplxtype == Concplxtype::TXT) || (cplxtype == Concplxtype::TXT_PUP) || (cplxtype == Concplxtype::TXT_TXFALT)) {
 		outfile << indent << "<v-text-field" << endl;
 		if (basecon->Avail != "") outfile << indent << "\tv-if=\"statshr" << StrMod::lc(ditshort) << "." << baseconsref << "Avail\"" << endl;
 		outfile << indent << "\tclass=\"my-1\"" << endl;
@@ -285,12 +282,6 @@ void WznmWrvue::wrBasecon(
 		outfile << indent << "\t:label=\"tag" << StrMod::lc(ditshort) << ".Cpt" << baseconshort << "\"" << endl;
 		outfile << indent << "/>" << endl;
 		outfile << endl;
-
-	} else if (cplxtype == Concplxtype::TXT_PUP) {
-		other = true;
-
-	} else if (cplxtype == Concplxtype::TXT_TXFALT) {
-		other = true;
 
 	} else if (cplxtype == Concplxtype::ULD) {
 		outfile << indent << "<v-file-input" << endl;
@@ -303,13 +294,11 @@ void WznmWrvue::wrBasecon(
 		outfile << indent << "</v-file-input>" << endl;
 		outfile << indent << "<v-btn" << endl;
 		if (basecon->Avail != "") outfile << indent << "\tv-if=\"statshr" << StrMod::lc(ditshort) << "." << baseconsref << "Avail\"" << endl;
-		outfile << indent << "\tv-on:click=\"handleButUploadClick(";
-		if (ditshort != "") outfile << "'" <<  StrMod::lc(ditshort) << "'";
-		outfile << ")\"" << endl;
+		outfile << indent << "\tv-on:click=\"handleButUploadClick(" << wrBasecon_ditshort(ditshort, ditempty, false) << ")\"" << endl;
 		outfile << indent << "\t:disabled=\"contapp" << StrMod::lc(ditshort) << ".file == null\"" << endl;
 		outfile << indent << "\tcolor=\"primary\"" << endl;
 		outfile << indent << ">" << endl;
-		outfile << indent << "\t{{tag" << StrMod::lc(ditshort) << ".Uld}}" << endl;
+		outfile << indent << "\t{{tag" << StrMod::lc(ditshort) << "." << baseconsref << "}}" << endl;
 		outfile << indent << "</v-btn>" << endl;
 
 	} else if (cplxtype == Concplxtype::UPD) {
@@ -326,6 +315,21 @@ void WznmWrvue::wrBasecon(
 		outfile << indent << "</div>" << endl;
 		outfile << endl;
 	};
+};
+
+string WznmWrvue::wrBasecon_ditshort(
+			const string& ditshort
+			, const bool ditempty
+			, const bool comma
+		) {
+	string retval;
+
+	if ((ditshort != "") || ditempty) {
+		retval = "'" + StrMod::lc(ditshort) + "'";
+		if (comma) retval += ", ";
+	};
+
+	return retval;
 };
 
 void WznmWrvue::wrMergedpcheng(
@@ -498,7 +502,16 @@ void WznmWrvue::wrMergedpcheng(
 										outfile << "\t\t\t\t\t\t}" << endl;
 
 									} else if ((bit2->sref.find("numsF") == 0) && (bit2->sref.find("Lst") != string::npos)) {
-										// ...
+										outfile << "\t\t\t\t\tvar fis" << bit2->sref.substr(4) << " = [];" << endl;
+										outfile << "\t\t\t\t\tvar " << bit2->sref << " = vecio.parseUintvec(this." << bit->sref << "." << bit2->sref << ");" << endl;
+										outfile << endl;
+
+										outfile << "\t\t\t\t\tfor (let i = 0; i < this.feedF" << StrMod::cap(suffix) << bit2->sref.substr(4 + 1) << ".length; i++)" << endl;
+										outfile << "\t\t\t\t\t\tif (" << bit2->sref << ".includes(this.feedF" << StrMod::cap(suffix) << bit2->sref.substr(4 + 1) << "[i].num))" << endl;
+										outfile << "\t\t\t\t\t\t\tfis" << bit2->sref.substr(4) << ".push(this.feedF" << StrMod::cap(suffix) << bit2->sref.substr(4 + 1) << "[i]);" << endl;
+										outfile << endl;
+
+										outfile << "\t\t\t\t\tthis.contapp" << suffix << ".fis" << bit2->sref.substr(4) << " = fis" << bit2->sref.substr(4) << ";" << endl;
 
 									} else if ((bit2->sref.find("But") != string::npos) && ((bit2->sref.rfind("On") + 2) == bit2->sref.length())) {
 										outfile << "\t\t\t\t\tif (!this." << bit->sref << "." << bit2->sref << ") this.contapp" << suffix << "." << bit2->sref << " = 0;" << endl;
@@ -530,6 +543,7 @@ void WznmWrvue::wrData(
 			, const string& Prjshort
 			, fstream& outfile
 			, const ubigint refWznmMJob
+			, const bool hastbl
 		) {
 	ubigint ref;
 
@@ -561,11 +575,11 @@ void WznmWrvue::wrData(
 		};
 	};
 
-	// for contapp, look at existing rst, contiac.numFPup / contiac.numFLst / contiac.numsFLst, continf.But...On
+	// for contapp, look at existing tbl control, contiac.numFPup / contiac.numFLst / contiac.numsFLst, continf.But...On
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
 
-		if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) suffix = "";
+		if (hastbl && (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::RST)) suffix = "";
 		else if ( (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) && ((bit->sref.find("contiac") == 0) || (bit->sref.find("continf") == 0)) ) suffix = bit->sref.substr(7);
 		else if ((bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) && (bit->sref.find("tag") == 0)) suffix = bit->sref.substr(3);
 		else continue;
@@ -576,13 +590,13 @@ void WznmWrvue::wrData(
 			for (unsigned int j = i; j < bits.nodes.size(); j++) {
 				bit2 = bits.nodes[j];
 
-				if (bit2->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) suffix2 = "";
+				if (hastbl && (bit2->ixVBasetype == VecWznmVAMBlockItemBasetype::RST)) suffix2 = "";
 				else if ( (bit2->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) && ((bit2->sref.find("contiac") == 0) || (bit2->sref.find("continf") == 0)) ) suffix2 = bit2->sref.substr(7);
 				else if ((bit2->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) && (bit2->sref.find("tag") == 0)) suffix2 = bit2->sref.substr(3);
 				else continue;
 
 				if (suffix == suffix2) {
-					found = (bit2->ixVBasetype == VecWznmVAMBlockItemBasetype::RST);
+					found = (hastbl && (bit2->ixVBasetype == VecWznmVAMBlockItemBasetype::RST));
 					if (!found) {
 						dbswznm->tblwznmamblockitem->loadRstByBlk(bit2->refWznmMBlock, false, bit3s);
 
@@ -607,7 +621,7 @@ void WznmWrvue::wrData(
 							outfile << "\t\t\tcontapp" << suffix << ": {" << endl;
 						};
 
-						if (bit2->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) {
+						if (hastbl && (bit2->ixVBasetype == VecWznmVAMBlockItemBasetype::RST)) {
 							if (!first2) outfile << endl;
 
 							outfile << "\t\t\t\ttcos: []," << endl;

@@ -44,7 +44,7 @@ DlgWznmUsrMngkeypair::DlgWznmUsrMngkeypair(
 	// IP constructor.cust1 --- IBEGIN
 	dbswznm->loadStringBySQL("SELECT sref FROM TblWznmMUser WHERE ref = " + to_string(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFUSR, jref)), usrsref);
 
-	string s = xchg->stgwznmpath.keypath + "/id_" + usrsref;
+	string s = xchg->stgwznmpath.keypath + "/id_wznm_" + usrsref;
 
 	if (access(s.c_str(), R_OK) == 0) ixVSge = VecVSge::FOUND;
 	else ixVSge = VecVSge::NF;
@@ -169,10 +169,10 @@ void DlgWznmUsrMngkeypair::handleDpchAppDoDetButDelClick(
 	// IP handleDpchAppDoDetButDelClick --- IBEGIN
 	string s;
 
-	s = xchg->stgwznmpath.keypath + "/id_" + usrsref;
+	s = xchg->stgwznmpath.keypath + "/id_wznm_" + usrsref;
 	if (access(s.c_str(), R_OK) == 0) Wznm::run("rm " + s);
 
-	s = xchg->stgwznmpath.keypath + "/id_" + usrsref + ".pub";
+	s = xchg->stgwznmpath.keypath + "/id_wznm_" + usrsref + ".pub";
 	if (access(s.c_str(), R_OK) == 0) Wznm::run("rm " + s);
 
 	changeStage(dbswznm, VecVSge::NF, dpcheng);
@@ -208,7 +208,7 @@ void DlgWznmUsrMngkeypair::handleDpchAppDoButDneClick(
 string DlgWznmUsrMngkeypair::handleDownloadInSgeFound(
 			DbsWznm* dbswznm
 		) {
-	return(xchg->stgwznmpath.keypath + "/id_wdbe_" + usrsref + ".pub"); // IP handleDownloadInSgeFound --- RLINE
+	return(xchg->stgwznmpath.keypath + "/id_wznm_" + usrsref + ".pub"); // IP handleDownloadInSgeFound --- RLINE
 };
 
 void DlgWznmUsrMngkeypair::changeStage(

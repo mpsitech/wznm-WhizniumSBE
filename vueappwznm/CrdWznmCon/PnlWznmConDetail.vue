@@ -9,11 +9,17 @@
 				:label="tag.CptSrf"
 			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divJti - INSERT -->
-			</div>
+				v-model="contapp.fiFPupJti"
+				return-object
+				:items="feedFPupJti"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptJti"
+				v-on:change="handleFiChange('numFPupJti', contapp.fiFPupJti)"
+				:disabled="!statshr.PupJtiActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -28,32 +34,42 @@
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupTyp"
+				return-object
 				:items="feedFPupTyp"
-				:label='tag.CptTyp'
-				v-on:change="handlePupChange('numFPupTyp', contapp.fiFPupTyp)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptTyp"
+				v-on:change="handleFiChange('numFPupTyp', contapp.fiFPupTyp)"
 				:disabled="!statshr.PupTypActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divClu - INSERT -->
-			</div>
+				v-model="contapp.fiFLstClu"
+				return-object
+				:items="feedFLstClu"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptClu"
+				v-on:change="handleFiChange('numFLstClu', contapp.fiFLstClu)"
+				:disabled="!statshr.LstCluActive"
+			/>
 
-			<div
+			<v-text-field
 				class="my-1"
-			>
-				<!-- IP divHku - INSERT -->
-			</div>
+				readonly
+				outlined
+				v-model="continf.TxtHku"
+				:label="tag.CptHku"
+			/>
 
-			<div
+			<v-text-field
 				class="my-1"
-			>
-				<!-- IP divReu - INSERT -->
-			</div>
+				readonly
+				outlined
+				v-model="continf.TxtReu"
+				:label="tag.CptReu"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -66,32 +82,38 @@
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupSco"
+				return-object
 				:items="feedFPupSco"
-				:label='tag.CptSco'
-				v-on:change="handlePupChange('numFPupSco', contapp.fiFPupSco)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptSco"
+				v-on:change="handleFiChange('numFPupSco', contapp.fiFPupSco)"
 				:disabled="!statshr.PupScoActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupSty"
+				return-object
 				:items="feedFPupSty"
-				:label='tag.CptSty'
-				v-on:change="handlePupChange('numFPupSty', contapp.fiFPupSty)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptSty"
+				v-on:change="handleFiChange('numFPupSty', contapp.fiFPupSty)"
 				:disabled="!statshr.PupStyActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divTag - INSERT -->
-			</div>
+				v-model="contapp.fiFLstTag"
+				return-object
+				:items="feedFLstTag"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptTag"
+				v-on:change="handleFiChange('numFLstTag', contapp.fiFLstTag)"
+				:disabled="!statshr.LstTagActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -123,11 +145,18 @@
 				:disabled="!statshr.TxfActActive"
 			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divOpt - INSERT -->
-			</div>
+				v-model="contapp.fisFLstOpt"
+				multiple
+				return-object
+				:items="feedFLstOpt"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptOpt"
+				v-on:change="handleFisChange('numsFLstOpt', contapp.fisFLstOpt)"
+				:disabled="!statshr.LstOptActive"
+			/>
 
 			<v-divider v-if="statshr.SepFedAvail"/>
 
@@ -147,26 +176,40 @@
 				:label="tag.CptFedSrf"
 			/>
 
-			<div
+			<v-text-field
 				v-if="statshr.TxtFedSruAvail"
 				class="my-1"
-			>
-				<!-- IP divFedSru - INSERT -->
-			</div>
+				readonly
+				outlined
+				v-model="continf.TxtFedSru"
+				:label="tag.CptFedSru"
+			/>
 
-			<div
+			<v-select
 				v-if="statshr.LstFedVitAvail"
 				class="my-1"
-			>
-				<!-- IP divFedVit - INSERT -->
-			</div>
+				v-model="contapp.fiFLstFedVit"
+				return-object
+				:items="feedFLstFedVit"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptFedVit"
+				v-on:change="handleFiChange('numFLstFedVit', contapp.fiFLstFedVit)"
+				:disabled="!statshr.LstFedVitActive"
+			/>
 
-			<div
+			<v-select
 				v-if="statshr.LstFedTagAvail"
 				class="my-1"
-			>
-				<!-- IP divFedTag - INSERT -->
-			</div>
+				v-model="contapp.fiFLstFedTag"
+				return-object
+				:items="feedFLstFedTag"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptFedTag"
+				v-on:change="handleFiChange('numFLstFedTag', contapp.fiFLstFedTag)"
+				:disabled="!statshr.LstFedTagActive"
+			/>
 
 			<v-text-field
 				v-if="statshr.TxfFedCmtAvail"
@@ -182,6 +225,7 @@
 
 <script>
 	import Wznm from '../../scripts/Wznm';
+	import vecio from '../../scripts/vecio';
 
 	/*
 	<!-- IP import.cust - INSERT -->
@@ -222,8 +266,17 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
+
+				this.updateEng(["contiac"]);
+			},
+
+			handleFisChange: function(cisref, fis) {
+				var nums = new Uint32Array(fis.length);
+
+				for (let i = 0; i < fis.length; i++) nums[i] = fis[i].num;
+				this.contiac[cisref] = vecio.toBase64(nums);
 
 				this.updateEng(["contiac"]);
 			},
@@ -305,6 +358,14 @@
 							this.contapp.fiFLstTag = this.feedFLstTag[i];
 							break;
 						}
+					var fisFLstOpt = [];
+					var numsFLstOpt = vecio.parseUintvec(this.contiac.numsFLstOpt);
+
+					for (let i = 0; i < this.feedFLstOpt.length; i++)
+						if (numsFLstOpt.includes(this.feedFLstOpt[i].num))
+							fisFLstOpt.push(this.feedFLstOpt[i]);
+
+					this.contapp.fisFLstOpt = fisFLstOpt;
 					for (let i = 0; i < this.feedFPupFedSrt.length; i++)
 						if (this.feedFPupFedSrt[i].num == this.contiac.numFPupFedSrt) {
 							this.contapp.fiFPupFedSrt = this.feedFPupFedSrt[i];

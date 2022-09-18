@@ -56,6 +56,14 @@
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
+					<PnlWznmStbMNCall
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmStbMNCall"
+						:scrJref=statshr.scrJrefMNCall
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
 					<PnlWznmStbSubMNStub
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
@@ -71,14 +79,6 @@
 						:scrJref=statshr.scrJrefMNSquawk
 					/>
 				</v-col>
-				<v-col cols="12" md="6">
-					<PnlWznmStbMNCall
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmStbMNCall"
-						:scrJref=statshr.scrJrefMNCall
-					/>
-				</v-col>
 			</v-row>
 		</v-card-text>
 	</v-card>
@@ -91,9 +91,9 @@
 	*/
 	import PnlWznmStbDetail from './PnlWznmStbDetail';
 	import PnlWznmStbSupMNStub from './PnlWznmStbSupMNStub';
+	import PnlWznmStbMNCall from './PnlWznmStbMNCall';
 	import PnlWznmStbSubMNStub from './PnlWznmStbSubMNStub';
 	import PnlWznmStbMNSquawk from './PnlWznmStbMNSquawk';
-	import PnlWznmStbMNCall from './PnlWznmStbMNCall';
 	/*
 	*/
 
@@ -113,9 +113,9 @@
 			*/
 			PnlWznmStbDetail,
 			PnlWznmStbSupMNStub,
+			PnlWznmStbMNCall,
 			PnlWznmStbSubMNStub,
-			PnlWznmStbMNSquawk,
-			PnlWznmStbMNCall
+			PnlWznmStbMNSquawk
 			/*
 			*/
 		},
@@ -178,9 +178,9 @@
 						*/
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmStbDetail.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefSupMNStub) this.$refs.PnlWznmStbSupMNStub.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefMNCall) this.$refs.PnlWznmStbMNCall.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefSubMNStub) this.$refs.PnlWznmStbSubMNStub.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefMNSquawk) this.$refs.PnlWznmStbMNSquawk.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefMNCall) this.$refs.PnlWznmStbMNCall.handleReply(obj);
 						/*
 						*/
 					}
@@ -212,9 +212,9 @@
 						*/
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmStbDetail.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSupMNStub) this.$refs.PnlWznmStbSupMNStub.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNCall) this.$refs.PnlWznmStbMNCall.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSubMNStub) this.$refs.PnlWznmStbSubMNStub.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNSquawk) this.$refs.PnlWznmStbMNSquawk.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNCall) this.$refs.PnlWznmStbMNCall.handleUpdate(obj);
 						/*
 						*/
 						else processed = false;

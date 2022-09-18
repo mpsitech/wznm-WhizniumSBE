@@ -48,41 +48,67 @@
 				:label="tag.CptLoc"
 			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divJst - INSERT -->
-			</div>
+				v-model="contapp.fiFPupJst"
+				return-object
+				:items="feedFPupJst"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptJst"
+				v-on:change="handleFiChange('numFPupJst', contapp.fiFPupJst)"
+				:disabled="!statshr.PupJstActive"
+			/>
 
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupSte"
+				return-object
 				:items="feedFPupSte"
-				:label='tag.CptSte'
-				v-on:change="handlePupChange('numFPupSte', contapp.fiFPupSte)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptSte"
+				v-on:change="handleFiChange('numFPupSte', contapp.fiFPupSte)"
 				:disabled="!statshr.PupSteActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divDty - INSERT -->
-			</div>
+				v-model="contapp.fisFLstDty"
+				multiple
+				return-object
+				:items="feedFLstDty"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptDty"
+				v-on:change="handleFisChange('numsFLstDty', contapp.fisFLstDty)"
+				:disabled="!statshr.LstDtyActive"
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divOpt - INSERT -->
-			</div>
+				v-model="contapp.fisFLstOpt"
+				multiple
+				return-object
+				:items="feedFLstOpt"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptOpt"
+				v-on:change="handleFisChange('numsFLstOpt', contapp.fisFLstOpt)"
+				:disabled="!statshr.LstOptActive"
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divJ - INSERT -->
-			</div>
+				v-model="contapp.fiFPupJ"
+				return-object
+				:items="feedFPupJ"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptJ"
+				v-on:change="handleFiChange('numFPupJ', contapp.fiFPupJ)"
+				:disabled="!statshr.PupJActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -121,6 +147,7 @@
 
 <script>
 	import Wznm from '../../scripts/Wznm';
+	import vecio from '../../scripts/vecio';
 
 	/*
 	<!-- IP import.cust - INSERT -->
@@ -161,8 +188,17 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
+
+				this.updateEng(["contiac"]);
+			},
+
+			handleFisChange: function(cisref, fis) {
+				var nums = new Uint32Array(fis.length);
+
+				for (let i = 0; i < fis.length; i++) nums[i] = fis[i].num;
+				this.contiac[cisref] = vecio.toBase64(nums);
 
 				this.updateEng(["contiac"]);
 			},
@@ -207,6 +243,22 @@
 							this.contapp.fiFPupSte = this.feedFPupSte[i];
 							break;
 						}
+					var fisFLstDty = [];
+					var numsFLstDty = vecio.parseUintvec(this.contiac.numsFLstDty);
+
+					for (let i = 0; i < this.feedFLstDty.length; i++)
+						if (numsFLstDty.includes(this.feedFLstDty[i].num))
+							fisFLstDty.push(this.feedFLstDty[i]);
+
+					this.contapp.fisFLstDty = fisFLstDty;
+					var fisFLstOpt = [];
+					var numsFLstOpt = vecio.parseUintvec(this.contiac.numsFLstOpt);
+
+					for (let i = 0; i < this.feedFLstOpt.length; i++)
+						if (numsFLstOpt.includes(this.feedFLstOpt[i].num))
+							fisFLstOpt.push(this.feedFLstOpt[i]);
+
+					this.contapp.fisFLstOpt = fisFLstOpt;
 					for (let i = 0; i < this.feedFPupJ.length; i++)
 						if (this.feedFPupJ[i].num == this.contiac.numFPupJ) {
 							this.contapp.fiFPupJ = this.feedFPupJ[i];

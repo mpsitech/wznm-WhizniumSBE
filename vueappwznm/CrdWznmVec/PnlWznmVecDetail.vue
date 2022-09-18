@@ -14,14 +14,14 @@
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupTyp"
+				return-object
 				:items="feedFPupTyp"
-				:label='tag.CptTyp'
-				v-on:change="handlePupChange('numFPupTyp', contapp.fiFPupTyp)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptTyp"
+				v-on:change="handleFiChange('numFPupTyp', contapp.fiFPupTyp)"
 				:disabled="!statshr.PupTypActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -31,23 +31,38 @@
 				:label="tag.CptVer"
 			/>
 
-			<div
+			<v-text-field
 				class="my-1"
-			>
-				<!-- IP divHku - INSERT -->
-			</div>
+				readonly
+				outlined
+				v-model="continf.TxtHku"
+				:label="tag.CptHku"
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divTgr - INSERT -->
-			</div>
+				v-model="contapp.fiFPupTgr"
+				return-object
+				:items="feedFPupTgr"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptTgr"
+				v-on:change="handleFiChange('numFPupTgr', contapp.fiFPupTgr)"
+				:disabled="!statshr.PupTgrActive"
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divOpt - INSERT -->
-			</div>
+				v-model="contapp.fisFLstOpt"
+				multiple
+				return-object
+				:items="feedFLstOpt"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptOpt"
+				v-on:change="handleFisChange('numsFLstOpt', contapp.fisFLstOpt)"
+				:disabled="!statshr.LstOptActive"
+			/>
 
 			<v-divider/>
 
@@ -66,12 +81,18 @@
 				:label="tag.CptPstSrf"
 			/>
 
-			<div
+			<v-select
 				v-if="statshr.PupPstJtiAvail"
 				class="my-1"
-			>
-				<!-- IP divPstJti - INSERT -->
-			</div>
+				v-model="contapp.fiFPupPstJti"
+				return-object
+				:items="feedFPupPstJti"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptPstJti"
+				v-on:change="handleFiChange('numFPupPstJti', contapp.fiFPupPstJti)"
+				:disabled="!statshr.PupPstJtiActive"
+			/>
 
 			<v-text-field
 				v-if="statshr.TxtPstTitAvail"
@@ -95,27 +116,27 @@
 				v-if="statshr.PupPstScoAvail"
 				class="my-1"
 				v-model="contapp.fiFPupPstSco"
+				return-object
 				:items="feedFPupPstSco"
-				:label='tag.CptPstSco'
-				v-on:change="handlePupChange('numFPupPstSco', contapp.fiFPupPstSco)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptPstSco"
+				v-on:change="handleFiChange('numFPupPstSco', contapp.fiFPupPstSco)"
 				:disabled="!statshr.PupPstScoActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 			<v-select
 				v-if="statshr.PupPstAtyAvail"
 				class="my-1"
 				v-model="contapp.fiFPupPstAty"
+				return-object
 				:items="feedFPupPstAty"
-				:label='tag.CptPstAty'
-				v-on:change="handlePupChange('numFPupPstAty', contapp.fiFPupPstAty)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptPstAty"
+				v-on:change="handleFiChange('numFPupPstAty', contapp.fiFPupPstAty)"
 				:disabled="!statshr.PupPstAtyActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 		</v-card-text>
 	</v-card>
@@ -123,6 +144,7 @@
 
 <script>
 	import Wznm from '../../scripts/Wznm';
+	import vecio from '../../scripts/vecio';
 
 	/*
 	<!-- IP import.cust - INSERT -->
@@ -163,8 +185,17 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
+
+				this.updateEng(["contiac"]);
+			},
+
+			handleFisChange: function(cisref, fis) {
+				var nums = new Uint32Array(fis.length);
+
+				for (let i = 0; i < fis.length; i++) nums[i] = fis[i].num;
+				this.contiac[cisref] = vecio.toBase64(nums);
 
 				this.updateEng(["contiac"]);
 			},
@@ -216,6 +247,14 @@
 							this.contapp.fiFPupTgr = this.feedFPupTgr[i];
 							break;
 						}
+					var fisFLstOpt = [];
+					var numsFLstOpt = vecio.parseUintvec(this.contiac.numsFLstOpt);
+
+					for (let i = 0; i < this.feedFLstOpt.length; i++)
+						if (numsFLstOpt.includes(this.feedFLstOpt[i].num))
+							fisFLstOpt.push(this.feedFLstOpt[i]);
+
+					this.contapp.fisFLstOpt = fisFLstOpt;
 					for (let i = 0; i < this.feedFPupPstJti.length; i++)
 						if (this.feedFPupPstJti[i].num == this.contiac.numFPupPstJti) {
 							this.contapp.fiFPupPstJti = this.feedFPupPstJti[i];

@@ -24,7 +24,7 @@
 			<v-row class="my-1">
 				<v-col>
 					<v-btn
-						v-on:click="handleButClick('FnmButRunClick')"
+						v-on:click="handleButClick('', 'FnmButRunClick')"
 						:disabled="!statshr.FnmButRunActive"
 						class="my-1"
 						color="primary"
@@ -33,7 +33,7 @@
 					</v-btn>
 					&#160;
 					<v-btn
-						v-on:click="handleButClick('FnmButStoClick')"
+						v-on:click="handleButClick('', 'FnmButStoClick')"
 						:disabled="!statshr.FnmButStoActive"
 						class="my-1"
 						color="primary"
@@ -88,14 +88,15 @@
 			*/
 
 			handleButClick: function(ditshort, ctlsref) {
-				var dpchapp = {
+				var srefIxVDo = "srefIxVDo";
+				if (ditshort != "") srefIxVDo += ditshort.charAt(0).toUpperCase() + ditshort.slice(1);
+
+				const dpchapp = {
 					"DpchAppDlgWznmVerFinmodDo": {
-						"scrJref": this.scrJref
+						"scrJref": this.scrJref,
+						[srefIxVDo]: ctlsref
 					}
 				};
-
-				if (ditshort != "") ditshort = ditshort.charAt(0).toUpperCase() + ditshort.slice(1);
-				dpchapp["DpchAppDlgWznmVerFinmodDo"]["srefIxVDo" + ditshort] = ctlsref;
 
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},

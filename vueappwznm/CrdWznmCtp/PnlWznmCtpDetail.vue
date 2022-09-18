@@ -26,11 +26,18 @@
 				:label="tag.CptVer"
 			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divAtf - INSERT -->
-			</div>
+				v-model="contapp.fisFLstAtf"
+				multiple
+				return-object
+				:items="feedFLstAtf"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptAtf"
+				v-on:change="handleFisChange('numsFLstAtf', contapp.fisFLstAtf)"
+				:disabled="!statshr.LstAtfActive"
+			/>
 
 		</v-card-text>
 	</v-card>
@@ -38,6 +45,7 @@
 
 <script>
 	import Wznm from '../../scripts/Wznm';
+	import vecio from '../../scripts/vecio';
 
 	/*
 	<!-- IP import.cust - INSERT -->
@@ -78,6 +86,15 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
+			handleFisChange: function(cisref, fis) {
+				var nums = new Uint32Array(fis.length);
+
+				for (let i = 0; i < fis.length; i++) nums[i] = fis[i].num;
+				this.contiac[cisref] = vecio.toBase64(nums);
+
+				this.updateEng(["contiac"]);
+			},
+
 			updateEng: function(mask) {
 				var dpchapp = {
 					"scrJref": this.scrJref
@@ -102,6 +119,16 @@
 				if (dpcheng.TagWznmCtpDetail) {
 					Wznm.unescapeBlock(dpcheng.TagWznmCtpDetail);
 					this.tag = dpcheng.TagWznmCtpDetail;
+				}
+				if (dpcheng.ContIacWznmCtpDetail) {
+					var fisFLstAtf = [];
+					var numsFLstAtf = vecio.parseUintvec(this.contiac.numsFLstAtf);
+
+					for (let i = 0; i < this.feedFLstAtf.length; i++)
+						if (numsFLstAtf.includes(this.feedFLstAtf[i].num))
+							fisFLstAtf.push(this.feedFLstAtf[i]);
+
+					this.contapp.fisFLstAtf = fisFLstAtf;
 				}
 				/*
 				<!-- IP mergeDpchEngData - END -->

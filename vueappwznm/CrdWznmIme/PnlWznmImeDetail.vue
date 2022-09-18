@@ -35,17 +35,30 @@
 				:label="tag.CptTbl"
 			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divIop - INSERT -->
-			</div>
+				v-model="contapp.fisFLstIop"
+				multiple
+				return-object
+				:items="feedFLstIop"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptIop"
+				v-on:change="handleFisChange('numsFLstIop', contapp.fisFLstIop)"
+				:disabled="!statshr.LstIopActive"
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divRtr - INSERT -->
-			</div>
+				v-model="contapp.fiFLstRtr"
+				return-object
+				:items="feedFLstRtr"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptRtr"
+				v-on:change="handleFiChange('numFLstRtr', contapp.fiFLstRtr)"
+				:disabled="!statshr.LstRtrActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -60,6 +73,7 @@
 
 <script>
 	import Wznm from '../../scripts/Wznm';
+	import vecio from '../../scripts/vecio';
 
 	/*
 	<!-- IP import.cust - INSERT -->
@@ -100,6 +114,21 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
+			handleFiChange: function(cisref, fi) {
+				this.contiac[cisref] = fi.num;
+
+				this.updateEng(["contiac"]);
+			},
+
+			handleFisChange: function(cisref, fis) {
+				var nums = new Uint32Array(fis.length);
+
+				for (let i = 0; i < fis.length; i++) nums[i] = fis[i].num;
+				this.contiac[cisref] = vecio.toBase64(nums);
+
+				this.updateEng(["contiac"]);
+			},
+
 			updateEng: function(mask) {
 				var dpchapp = {
 					"scrJref": this.scrJref
@@ -127,6 +156,14 @@
 					this.tag = dpcheng.TagWznmImeDetail;
 				}
 				if (dpcheng.ContIacWznmImeDetail) {
+					var fisFLstIop = [];
+					var numsFLstIop = vecio.parseUintvec(this.contiac.numsFLstIop);
+
+					for (let i = 0; i < this.feedFLstIop.length; i++)
+						if (numsFLstIop.includes(this.feedFLstIop[i].num))
+							fisFLstIop.push(this.feedFLstIop[i]);
+
+					this.contapp.fisFLstIop = fisFLstIop;
 					for (let i = 0; i < this.feedFLstRtr.length; i++)
 						if (this.feedFLstRtr[i].num == this.contiac.numFLstRtr) {
 							this.contapp.fiFLstRtr = this.feedFLstRtr[i];

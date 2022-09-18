@@ -17,7 +17,16 @@
 namespace WznmWrappStdvec {
 
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmWrappStdvec* dpchinv);
-	// IP cust --- INSERT
+	// IP cust --- IBEGIN
+
+	//void writeVecEvtH(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMEvent& evts);
+	//void writeVecEvtCpp(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMEvent& evts);
+	//void writeVecEvtJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMEvent& evts);
+
+	//void writeVecSteH(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs, ListWznmMState& stes, std::vector<unsigned int>& icsSeqs);
+	//void writeVecSteCpp(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs, ListWznmMState& stes);
+	//void writeVecSteJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs, ListWznmMState& stes, std::vector<unsigned int>& icsSeqs);
+	// IP cust --- IEND
 };
 
 #endif

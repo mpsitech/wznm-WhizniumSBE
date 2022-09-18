@@ -21,20 +21,27 @@
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupTyp"
+				return-object
 				:items="feedFPupTyp"
-				:label='tag.CptTyp'
-				v-on:change="handlePupChange('numFPupTyp', contapp.fiFPupTyp)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptTyp"
+				v-on:change="handleFiChange('numFPupTyp', contapp.fiFPupTyp)"
 				:disabled="!statshr.PupTypActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divOcc - INSERT -->
-			</div>
+				v-model="contapp.fisFLstOcc"
+				multiple
+				return-object
+				:items="feedFLstOcc"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptOcc"
+				v-on:change="handleFisChange('numsFLstOcc', contapp.fisFLstOcc)"
+				:disabled="!statshr.LstOccActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -66,6 +73,7 @@
 
 <script>
 	import Wznm from '../../scripts/Wznm';
+	import vecio from '../../scripts/vecio';
 
 	/*
 	<!-- IP import.cust - INSERT -->
@@ -106,8 +114,17 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
+
+				this.updateEng(["contiac"]);
+			},
+
+			handleFisChange: function(cisref, fis) {
+				var nums = new Uint32Array(fis.length);
+
+				for (let i = 0; i < fis.length; i++) nums[i] = fis[i].num;
+				this.contiac[cisref] = vecio.toBase64(nums);
 
 				this.updateEng(["contiac"]);
 			},
@@ -144,6 +161,14 @@
 							this.contapp.fiFPupTyp = this.feedFPupTyp[i];
 							break;
 						}
+					var fisFLstOcc = [];
+					var numsFLstOcc = vecio.parseUintvec(this.contiac.numsFLstOcc);
+
+					for (let i = 0; i < this.feedFLstOcc.length; i++)
+						if (numsFLstOcc.includes(this.feedFLstOcc[i].num))
+							fisFLstOcc.push(this.feedFLstOcc[i]);
+
+					this.contapp.fisFLstOcc = fisFLstOcc;
 				}
 				/*
 				<!-- IP mergeDpchEngData - END -->

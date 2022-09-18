@@ -65,6 +65,14 @@
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
+					<PnlWznmVecSrc1NFeed
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmVecSrc1NFeed"
+						:scrJref=statshr.scrJrefSrc1NFeed
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
 					<PnlWznmVecFct1NTablecol
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
@@ -78,14 +86,6 @@
 						v-on:request="handleRequest"
 						ref="PnlWznmVecRef1NPanel"
 						:scrJref=statshr.scrJrefRef1NPanel
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
-					<PnlWznmVecSrc1NFeed
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmVecSrc1NFeed"
-						:scrJref=statshr.scrJrefSrc1NFeed
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -116,9 +116,9 @@
 	import PnlWznmVecDetail from './PnlWznmVecDetail';
 	import PnlWznmVecATitle from './PnlWznmVecATitle';
 	import PnlWznmVecVec1NVectoritem from './PnlWznmVecVec1NVectoritem';
+	import PnlWznmVecSrc1NFeed from './PnlWznmVecSrc1NFeed';
 	import PnlWznmVecFct1NTablecol from './PnlWznmVecFct1NTablecol';
 	import PnlWznmVecRef1NPanel from './PnlWznmVecRef1NPanel';
-	import PnlWznmVecSrc1NFeed from './PnlWznmVecSrc1NFeed';
 	import PnlWznmVecPst1NQuerymod from './PnlWznmVecPst1NQuerymod';
 	import PnlWznmVecMNTable from './PnlWznmVecMNTable';
 	/*
@@ -141,9 +141,9 @@
 			PnlWznmVecDetail,
 			PnlWznmVecATitle,
 			PnlWznmVecVec1NVectoritem,
+			PnlWznmVecSrc1NFeed,
 			PnlWznmVecFct1NTablecol,
 			PnlWznmVecRef1NPanel,
-			PnlWznmVecSrc1NFeed,
 			PnlWznmVecPst1NQuerymod,
 			PnlWznmVecMNTable
 			/*
@@ -209,9 +209,9 @@
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmVecDetail.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefATitle) this.$refs.PnlWznmVecATitle.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefVec1NVectoritem) this.$refs.PnlWznmVecVec1NVectoritem.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefSrc1NFeed) this.$refs.PnlWznmVecSrc1NFeed.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefFct1NTablecol) this.$refs.PnlWznmVecFct1NTablecol.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefRef1NPanel) this.$refs.PnlWznmVecRef1NPanel.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefSrc1NFeed) this.$refs.PnlWznmVecSrc1NFeed.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefPst1NQuerymod) this.$refs.PnlWznmVecPst1NQuerymod.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefMNTable) this.$refs.PnlWznmVecMNTable.handleReply(obj);
 						/*
@@ -246,9 +246,9 @@
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmVecDetail.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefATitle) this.$refs.PnlWznmVecATitle.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefVec1NVectoritem) this.$refs.PnlWznmVecVec1NVectoritem.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSrc1NFeed) this.$refs.PnlWznmVecSrc1NFeed.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefFct1NTablecol) this.$refs.PnlWznmVecFct1NTablecol.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefRef1NPanel) this.$refs.PnlWznmVecRef1NPanel.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSrc1NFeed) this.$refs.PnlWznmVecSrc1NFeed.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefPst1NQuerymod) this.$refs.PnlWznmVecPst1NQuerymod.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNTable) this.$refs.PnlWznmVecMNTable.handleUpdate(obj);
 						/*

@@ -48,19 +48,19 @@
 			<v-divider/>
 			<v-row>
 				<v-col cols="12" md="6">
-					<PnlWznmCarCar1NPanel
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmCarCar1NPanel"
-						:scrJref=statshr.scrJrefCar1NPanel
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmCar1NDialog
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
 						ref="PnlWznmCar1NDialog"
 						:scrJref=statshr.scrJref1NDialog
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmCarCar1NPanel
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmCarCar1NPanel"
+						:scrJref=statshr.scrJrefCar1NPanel
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -82,8 +82,8 @@
 	/*
 	*/
 	import PnlWznmCarDetail from './PnlWznmCarDetail';
-	import PnlWznmCarCar1NPanel from './PnlWznmCarCar1NPanel';
 	import PnlWznmCar1NDialog from './PnlWznmCar1NDialog';
+	import PnlWznmCarCar1NPanel from './PnlWznmCarCar1NPanel';
 	import PnlWznmCarHk1NControl from './PnlWznmCarHk1NControl';
 	/*
 	*/
@@ -103,8 +103,8 @@
 			/*
 			*/
 			PnlWznmCarDetail,
-			PnlWznmCarCar1NPanel,
 			PnlWznmCar1NDialog,
+			PnlWznmCarCar1NPanel,
 			PnlWznmCarHk1NControl
 			/*
 			*/
@@ -167,8 +167,8 @@
 						/*
 						*/
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmCarDetail.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefCar1NPanel) this.$refs.PnlWznmCarCar1NPanel.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NDialog) this.$refs.PnlWznmCar1NDialog.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefCar1NPanel) this.$refs.PnlWznmCarCar1NPanel.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefHk1NControl) this.$refs.PnlWznmCarHk1NControl.handleReply(obj);
 						/*
 						*/
@@ -200,8 +200,8 @@
 						/*
 						*/
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmCarDetail.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefCar1NPanel) this.$refs.PnlWznmCarCar1NPanel.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NDialog) this.$refs.PnlWznmCar1NDialog.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefCar1NPanel) this.$refs.PnlWznmCarCar1NPanel.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefHk1NControl) this.$refs.PnlWznmCarHk1NControl.handleUpdate(obj);
 						/*
 						*/

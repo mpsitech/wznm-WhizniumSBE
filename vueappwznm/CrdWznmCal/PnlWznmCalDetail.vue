@@ -14,14 +14,14 @@
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupTyp"
+				return-object
 				:items="feedFPupTyp"
-				:label='tag.CptTyp'
-				v-on:change="handlePupChange('numFPupTyp', contapp.fiFPupTyp)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptTyp"
+				v-on:change="handleFiChange('numFPupTyp', contapp.fiFPupTyp)"
 				:disabled="!statshr.PupTypActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -31,23 +31,39 @@
 				:label="tag.CptVer"
 			/>
 
-			<div
+			<v-text-field
 				class="my-1"
-			>
-				<!-- IP divReu - INSERT -->
-			</div>
+				readonly
+				outlined
+				v-model="continf.TxtReu"
+				:label="tag.CptReu"
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divIat - INSERT -->
-			</div>
+				v-model="contapp.fisFLstIat"
+				multiple
+				return-object
+				:items="feedFLstIat"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptIat"
+				v-on:change="handleFisChange('numsFLstIat', contapp.fisFLstIat)"
+				:disabled="!statshr.LstIatActive"
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divRat - INSERT -->
-			</div>
+				v-model="contapp.fisFLstRat"
+				multiple
+				return-object
+				:items="feedFLstRat"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptRat"
+				v-on:change="handleFisChange('numsFLstRat', contapp.fisFLstRat)"
+				:disabled="!statshr.LstRatActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -62,6 +78,7 @@
 
 <script>
 	import Wznm from '../../scripts/Wznm';
+	import vecio from '../../scripts/vecio';
 
 	/*
 	<!-- IP import.cust - INSERT -->
@@ -102,8 +119,17 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
+
+				this.updateEng(["contiac"]);
+			},
+
+			handleFisChange: function(cisref, fis) {
+				var nums = new Uint32Array(fis.length);
+
+				for (let i = 0; i < fis.length; i++) nums[i] = fis[i].num;
+				this.contiac[cisref] = vecio.toBase64(nums);
 
 				this.updateEng(["contiac"]);
 			},
@@ -147,6 +173,22 @@
 							this.contapp.fiFPupRet = this.feedFPupRet[i];
 							break;
 						}
+					var fisFLstIat = [];
+					var numsFLstIat = vecio.parseUintvec(this.contiac.numsFLstIat);
+
+					for (let i = 0; i < this.feedFLstIat.length; i++)
+						if (numsFLstIat.includes(this.feedFLstIat[i].num))
+							fisFLstIat.push(this.feedFLstIat[i]);
+
+					this.contapp.fisFLstIat = fisFLstIat;
+					var fisFLstRat = [];
+					var numsFLstRat = vecio.parseUintvec(this.contiac.numsFLstRat);
+
+					for (let i = 0; i < this.feedFLstRat.length; i++)
+						if (numsFLstRat.includes(this.feedFLstRat[i].num))
+							fisFLstRat.push(this.feedFLstRat[i]);
+
+					this.contapp.fisFLstRat = fisFLstRat;
 				}
 				/*
 				<!-- IP mergeDpchEngData - END -->

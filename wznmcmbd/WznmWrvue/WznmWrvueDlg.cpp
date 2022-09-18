@@ -86,6 +86,8 @@ void WznmWrvueDlg::writeDlgVue(
 	vector<unsigned int> icsBasecons;
 
 	set<uint> unqcontypes;
+	bool hasfi = false;
+	bool hasfis = false;
 
 	string ditshort;
 
@@ -93,7 +95,17 @@ void WznmWrvueDlg::writeDlgVue(
 	WznmMBlock* dpch = NULL;
 
 	dbswznm->tblwznmmcontrol->loadRstByHktHku(VecWznmVMControlHkTbl::DLG, dlg->ref, false, cons);
-	for (unsigned int i = 0; i < cons.nodes.size(); i++) unqcontypes.insert(cons.nodes[i]->ixVBasetype);
+	for (unsigned int i = 0; i < cons.nodes.size(); i++) {
+		con = cons.nodes[i];
+		
+		if (con->ixVBasetype == VecWznmVMControlBasetype::PUP) hasfi = true;
+		else if (con->ixVBasetype == VecWznmVMControlBasetype::LST) {
+			if (StrMod::srefInSrefs(con->srefsKOption, "multsel")) hasfis = true;
+			else hasfi = true;
+		};
+
+		unqcontypes.insert(cons.nodes[i]->ixVBasetype);
+	};
 
 	// --- dse*
 	if (dits.nodes.size() > 0) outfile << "<!-- IP dse - AFFIRM -->" << endl;
@@ -114,7 +126,7 @@ void WznmWrvueDlg::writeDlgVue(
 			outfile << "\t\t\t\t<v-tab-item>" << endl;
 			outfile << "\t\t\t\t\t<v-card flat>" << endl;
 			outfile << "\t\t\t\t\t\t<v-card-text>" << endl;
-			for (unsigned int j = 0; j < icsBasecons.size(); j++) wrBasecon(dbswznm, Prjshort, outfile, dlg->sref, cons, icsBasecons, j, ditshort);
+			for (unsigned int j = 0; j < icsBasecons.size(); j++) wrBasecon(dbswznm, Prjshort, outfile, dlg->sref, cons, icsBasecons, j, ditshort, true);
 			outfile << "\t\t\t\t\t\t</v-card-text>" << endl;
 			outfile << "\t\t\t\t\t</v-card>" << endl;
 			outfile << "\t\t\t\t</v-tab-item>" << endl;
@@ -123,7 +135,7 @@ void WznmWrvueDlg::writeDlgVue(
 	} else {
 		dbswznm->tblwznmmcontrol->loadRstByHktHku(VecWznmVMControlHkTbl::DLG, dlg->ref, false, cons);
 		Wznm::getBasecons(dbswznm, cons, {VecWznmVMControlHkSection::CONT}, 0, icsBasecons);
-		for (unsigned int i = 0; i < icsBasecons.size(); i++) wrBasecon(dbswznm, Prjshort, outfile, dlg->sref, cons, icsBasecons, i, "");
+		for (unsigned int i = 0; i < icsBasecons.size(); i++) wrBasecon(dbswznm, Prjshort, outfile, dlg->sref, cons, icsBasecons, i, "", true);
 	};
 
 	if (dits.nodes.size() > 0) outfile << "\t\t\t</v-tabs-items>" << endl;
@@ -143,6 +155,10 @@ void WznmWrvueDlg::writeDlgVue(
 	};
 	outfile << "<!-- IP ftr - IEND -->" << endl;
 
+	// --- import.vecio*
+	if (hasfis) outfile << "<!-- IP import.vecio - AFFIRM -->" << endl;
+	else outfile << "<!-- IP import.vecio - REMOVE -->" << endl;
+
 	// --- handleButClick*
 	if (has(unqcontypes, VecWznmVMControlBasetype::BUT)) outfile << "<!-- IP handleButClick - AFFIRM -->" << endl;
 	else outfile << "<!-- IP handleButClick - REMOVE -->" << endl;
@@ -151,9 +167,13 @@ void WznmWrvueDlg::writeDlgVue(
 	if (has(unqcontypes, VecWznmVMControlBasetype::ULD)) outfile << "<!-- IP handleButUploadClick - AFFIRM -->" << endl;
 	else outfile << "<!-- IP handleButUploadClick - REMOVE -->" << endl;
 
-	// --- handlePupChange*
-	if (has(unqcontypes, VecWznmVMControlBasetype::PUP)) outfile << "<!-- IP handlePupChange - AFFIRM -->" << endl;
-	else outfile << "<!-- IP handlePupChange - REMOVE -->" << endl;
+	// --- handleFiChange*
+	if (hasfi) outfile << "<!-- IP handleFiChange - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleFiChange - REMOVE -->" << endl;
+
+	// --- handleFisChange*
+	if (hasfis) outfile << "<!-- IP handleFisChange - AFFIRM -->" << endl;
+	else outfile << "<!-- IP handleFisChange - REMOVE -->" << endl;
 
 	// --- updateEng
 	wrIbegin(outfile, 4, "updateEng");

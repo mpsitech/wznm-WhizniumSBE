@@ -21,14 +21,14 @@
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFPupTyp"
+				return-object
 				:items="feedFPupTyp"
-				:label='tag.CptTyp'
-				v-on:change="handlePupChange('numFPupTyp', contapp.fiFPupTyp)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptTyp"
+				v-on:change="handleFiChange('numFPupTyp', contapp.fiFPupTyp)"
 				:disabled="!statshr.PupTypActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -38,11 +38,13 @@
 				:label="tag.CptVer"
 			/>
 
-			<div
+			<v-text-field
 				class="my-1"
-			>
-				<!-- IP divReu - INSERT -->
-			</div>
+				readonly
+				outlined
+				v-model="continf.TxtReu"
+				:label="tag.CptReu"
+			/>
 
 			<v-text-field
 				v-if="statshr.TxtCarAvail"
@@ -53,12 +55,18 @@
 				:label="tag.CptCar"
 			/>
 
-			<div
+			<v-select
 				v-if="statshr.LstUnqAvail"
 				class="my-1"
-			>
-				<!-- IP divUnq - INSERT -->
-			</div>
+				v-model="contapp.fiFLstUnq"
+				return-object
+				:items="feedFLstUnq"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptUnq"
+				v-on:change="handleFiChange('numFLstUnq', contapp.fiFLstUnq)"
+				:disabled="!statshr.LstUnqActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -85,12 +93,18 @@
 				:label="tag.CptPstSrf"
 			/>
 
-			<div
+			<v-select
 				v-if="statshr.PupPstJtiAvail"
 				class="my-1"
-			>
-				<!-- IP divPstJti - INSERT -->
-			</div>
+				v-model="contapp.fiFPupPstJti"
+				return-object
+				:items="feedFPupPstJti"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptPstJti"
+				v-on:change="handleFiChange('numFPupPstJti', contapp.fiFPupPstJti)"
+				:disabled="!statshr.PupPstJtiActive"
+			/>
 
 			<v-text-field
 				v-if="statshr.TxtPstTitAvail"
@@ -114,27 +128,27 @@
 				v-if="statshr.PupPstScoAvail"
 				class="my-1"
 				v-model="contapp.fiFPupPstSco"
+				return-object
 				:items="feedFPupPstSco"
-				:label='tag.CptPstSco'
-				v-on:change="handlePupChange('numFPupPstSco', contapp.fiFPupPstSco)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptPstSco"
+				v-on:change="handleFiChange('numFPupPstSco', contapp.fiFPupPstSco)"
 				:disabled="!statshr.PupPstScoActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 			<v-select
 				v-if="statshr.PupPstAtyAvail"
 				class="my-1"
 				v-model="contapp.fiFPupPstAty"
+				return-object
 				:items="feedFPupPstAty"
-				:label='tag.CptPstAty'
-				v-on:change="handlePupChange('numFPupPstAty', contapp.fiFPupPstAty)"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptPstAty"
+				v-on:change="handleFiChange('numFPupPstAty', contapp.fiFPupPstAty)"
 				:disabled="!statshr.PupPstAtyActive"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+			/>
 
 		</v-card-text>
 	</v-card>
@@ -182,7 +196,7 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
 
 				this.updateEng(["contiac"]);

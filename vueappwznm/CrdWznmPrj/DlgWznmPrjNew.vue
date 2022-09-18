@@ -31,50 +31,62 @@
 
 			<v-divider/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divDetDty - INSERT -->
-			</div>
+				v-model="contapp.fisFDetLstDty"
+				multiple
+				return-object
+				:items="feedFDetLstDty"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptDetDty"
+				v-on:change="handleFisChange('', 'numsFDetLstDty', contapp.fisFDetLstDty)"
+			/>
 
 			<v-divider/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divDetLoc - INSERT -->
-			</div>
+				v-model="contapp.fisFDetLstLoc"
+				multiple
+				return-object
+				:items="feedFDetLstLoc"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptDetLoc"
+				v-on:change="handleFisChange('', 'numsFDetLstLoc', contapp.fisFDetLstLoc)"
+			/>
 
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFDetPupPlc"
+				return-object
 				:items="feedFDetPupPlc"
-				:label='tag.CptDetPlc'
-				v-on:change="handlePupChange('numFDetPupPlc', contapp.fiFDetPupPlc)"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptDetPlc"
+				v-on:change="handleFiChange('', 'numFDetPupPlc', contapp.fiFDetPupPlc)"
+			/>
 
 			<v-divider/>
 
 			<v-select
 				class="my-1"
 				v-model="contapp.fiFDetPupPmc"
+				return-object
 				:items="feedFDetPupPmc"
-				:label='tag.CptDetPmc'
-				v-on:change="handlePupChange('numFDetPupPmc', contapp.fiFDetPupPmc)"
-			>
-				<template v-slot:selection="{item}">{{item.tit1}}</template>
-				<template v-slot:item="{item}">{{item.tit1}}</template>
-			</v-select>
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptDetPmc"
+				v-on:change="handleFiChange('', 'numFDetPupPmc', contapp.fiFDetPupPmc)"
+			/>
 
 			<v-divider/>
 
 			<v-row class="my-1">
 				<v-col>
 					<v-btn
-						v-on:click="handleButClick('DetButAutClick')"
+						v-on:click="handleButClick('', 'DetButAutClick')"
 						:disabled="!statshr.DetButAutActive"
 						class="my-1"
 						color="primary"
@@ -105,6 +117,7 @@
 
 <script>
 	import Wznm from '../../scripts/Wznm';
+	import vecio from '../../scripts/vecio';
 
 	/*
 	<!-- IP import.cust - INSERT -->
@@ -135,20 +148,30 @@
 			*/
 
 			handleButClick: function(ditshort, ctlsref) {
-				var dpchapp = {
+				var srefIxVDo = "srefIxVDo";
+				if (ditshort != "") srefIxVDo += ditshort.charAt(0).toUpperCase() + ditshort.slice(1);
+
+				const dpchapp = {
 					"DpchAppDlgWznmPrjNewDo": {
-						"scrJref": this.scrJref
+						"scrJref": this.scrJref,
+						[srefIxVDo]: ctlsref
 					}
 				};
-
-				if (ditshort != "") ditshort = ditshort.charAt(0).toUpperCase() + ditshort.slice(1);
-				dpchapp["DpchAppDlgWznmPrjNewDo"]["srefIxVDo" + ditshort] = ctlsref;
 
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(ditshort, cisref, fi) {
+			handleFiChange: function(ditshort, cisref, fi) {
 				this["contiac" + ditshort][cisref] = fi.num;
+
+				this.updateEng(["contiac" + ditshort]);
+			},
+
+			handleFisChange: function(cisref, fis) {
+				var nums = new Uint32Array(fis.length);
+
+				for (let i = 0; i < fis.length; i++) nums[i] = fis[i].num;
+				this["contiac" + ditshort][cisref] = vecio.toBase64(nums);
 
 				this.updateEng(["contiac" + ditshort]);
 			},
@@ -186,6 +209,22 @@
 					this.tag = dpcheng.TagDlgWznmPrjNew;
 				}
 				if (dpcheng.ContIacDlgWznmPrjNew) {
+					var fisFDetLstDty = [];
+					var numsFDetLstDty = vecio.parseUintvec(this.contiac.numsFDetLstDty);
+
+					for (let i = 0; i < this.feedFDetLstDty.length; i++)
+						if (numsFDetLstDty.includes(this.feedFDetLstDty[i].num))
+							fisFDetLstDty.push(this.feedFDetLstDty[i]);
+
+					this.contapp.fisFDetLstDty = fisFDetLstDty;
+					var fisFDetLstLoc = [];
+					var numsFDetLstLoc = vecio.parseUintvec(this.contiac.numsFDetLstLoc);
+
+					for (let i = 0; i < this.feedFDetLstLoc.length; i++)
+						if (numsFDetLstLoc.includes(this.feedFDetLstLoc[i].num))
+							fisFDetLstLoc.push(this.feedFDetLstLoc[i]);
+
+					this.contapp.fisFDetLstLoc = fisFDetLstLoc;
 					for (let i = 0; i < this.feedFDetPupPlc.length; i++)
 						if (this.feedFDetPupPlc[i].num == this.contiac.numFDetPupPlc) {
 							this.contapp.fiFDetPupPlc = this.feedFDetPupPlc[i];

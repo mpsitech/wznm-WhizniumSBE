@@ -27,11 +27,17 @@
 				:label="tag.CptCch"
 			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divPkm - INSERT -->
-			</div>
+				v-model="contapp.fiFPupPkm"
+				return-object
+				:items="feedFPupPkm"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptPkm"
+				v-on:change="handleFiChange('numFPupPkm', contapp.fiFPupPkm)"
+				:disabled="!statshr.PupPkmActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -86,7 +92,7 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
 
 				this.updateEng(["contiac"]);

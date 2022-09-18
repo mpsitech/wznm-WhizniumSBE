@@ -42,12 +42,18 @@
 				{{tag.HdgSqk}}
 			</h3>
 
-			<div
+			<v-select
 				v-if="statshr.PupSqkJtiAvail"
 				class="my-1"
-			>
-				<!-- IP divSqkJti - INSERT -->
-			</div>
+				v-model="contapp.fiFPupSqkJti"
+				return-object
+				:items="feedFPupSqkJti"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptSqkJti"
+				v-on:change="handleFiChange('numFPupSqkJti', contapp.fiFPupSqkJti)"
+				:disabled="!statshr.PupSqkJtiActive"
+			/>
 
 			<v-text-field
 				v-if="statshr.TxtSqkTitAvail"
@@ -112,7 +118,7 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
 
 				this.updateEng(["contiac"]);

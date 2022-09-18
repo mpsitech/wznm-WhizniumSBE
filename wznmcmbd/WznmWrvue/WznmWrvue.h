@@ -21,10 +21,11 @@ namespace WznmWrvue {
 	void wrIbegin(std::fstream& outfile, const int indent, const std::string& tag, const bool addbegin = false);
 	void wrIend(std::fstream& outfile, const int indent, const std::string& tag, const bool addend = false);
 
-	void wrBasecon(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, const std::string& hksref, ListWznmMControl& cons, std::vector<unsigned int>& icsBasecons, const unsigned int ixIcsBasecons, const std::string& ditshort);
+	void wrBasecon(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, const std::string& hksref, ListWznmMControl& cons, std::vector<unsigned int>& icsBasecons, const unsigned int ixIcsBasecons, const std::string& ditshort, const bool ditempty = false);
+	std::string wrBasecon_ditshort(const std::string& ditshort, const bool ditempty, const bool comma);
 
 	void wrMergedpcheng(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, const Sbecore::ubigint refWznmMJob, std::string sub = "", const bool postprc = true);
-	void wrData(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, const Sbecore::ubigint refWznmMJob);
+	void wrData(DbsWznm* dbswznm, const std::string& Prjshort, std::fstream& outfile, const Sbecore::ubigint refWznmMJob, const bool hastbl = false);
 
 	std::string getButmdi(DbsWznm* dbswznm, const std::string& Prjshort, WznmMControl* con);
 	// IP cust --- IEND

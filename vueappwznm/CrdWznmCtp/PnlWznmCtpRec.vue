@@ -71,19 +71,19 @@
 			<v-divider/>
 			<v-row>
 				<v-col cols="12" md="6">
-					<PnlWznmCtpTpl1NCapability
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmCtpTpl1NCapability"
-						:scrJref=statshr.scrJrefTpl1NCapability
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmCtp1NTag
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
 						ref="PnlWznmCtp1NTag"
 						:scrJref=statshr.scrJref1NTag
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmCtpTpl1NCapability
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmCtpTpl1NCapability"
+						:scrJref=statshr.scrJrefTpl1NCapability
 					/>
 				</v-col>
 			</v-row>
@@ -100,8 +100,8 @@
 	import PnlWznmCtpKParKey from './PnlWznmCtpKParKey';
 	import PnlWznmCtpKKey from './PnlWznmCtpKKey';
 	import PnlWznmCtpAPar from './PnlWznmCtpAPar';
-	import PnlWznmCtpTpl1NCapability from './PnlWznmCtpTpl1NCapability';
 	import PnlWznmCtp1NTag from './PnlWznmCtp1NTag';
+	import PnlWznmCtpTpl1NCapability from './PnlWznmCtpTpl1NCapability';
 	/*
 	*/
 
@@ -123,8 +123,8 @@
 			PnlWznmCtpKParKey,
 			PnlWznmCtpKKey,
 			PnlWznmCtpAPar,
-			PnlWznmCtpTpl1NCapability,
-			PnlWznmCtp1NTag
+			PnlWznmCtp1NTag,
+			PnlWznmCtpTpl1NCapability
 			/*
 			*/
 		},
@@ -189,8 +189,8 @@
 						else if (obj.scrJref == this.statshr.scrJrefKParKey) this.$refs.PnlWznmCtpKParKey.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefKKey) this.$refs.PnlWznmCtpKKey.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefAPar) this.$refs.PnlWznmCtpAPar.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefTpl1NCapability) this.$refs.PnlWznmCtpTpl1NCapability.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NTag) this.$refs.PnlWznmCtp1NTag.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefTpl1NCapability) this.$refs.PnlWznmCtpTpl1NCapability.handleReply(obj);
 						/*
 						*/
 					}
@@ -224,8 +224,8 @@
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefKParKey) this.$refs.PnlWznmCtpKParKey.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefKKey) this.$refs.PnlWznmCtpKKey.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefAPar) this.$refs.PnlWznmCtpAPar.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefTpl1NCapability) this.$refs.PnlWznmCtpTpl1NCapability.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NTag) this.$refs.PnlWznmCtp1NTag.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefTpl1NCapability) this.$refs.PnlWznmCtpTpl1NCapability.handleUpdate(obj);
 						/*
 						*/
 						else processed = false;

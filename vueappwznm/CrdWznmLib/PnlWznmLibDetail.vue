@@ -25,17 +25,29 @@
 				:disabled="!statshr.TxfVerActive"
 			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divLty - INSERT -->
-			</div>
+				v-model="contapp.fiFPupLty"
+				return-object
+				:items="feedFPupLty"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptLty"
+				v-on:change="handleFiChange('numFPupLty', contapp.fiFPupLty)"
+				:disabled="!statshr.PupLtyActive"
+			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divDep - INSERT -->
-			</div>
+				v-model="contapp.fiFLstDep"
+				return-object
+				:items="feedFLstDep"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptDep"
+				v-on:change="handleFiChange('numFLstDep', contapp.fiFLstDep)"
+				:disabled="!statshr.LstDepActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -90,7 +102,7 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
-			handlePupChange: function(cisref, fi) {
+			handleFiChange: function(cisref, fi) {
 				this.contiac[cisref] = fi.num;
 
 				this.updateEng(["contiac"]);

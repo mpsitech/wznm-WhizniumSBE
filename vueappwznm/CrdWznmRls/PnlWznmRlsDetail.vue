@@ -27,11 +27,18 @@
 				:label="tag.CptMch"
 			/>
 
-			<div
+			<v-select
 				class="my-1"
-			>
-				<!-- IP divOpt - INSERT -->
-			</div>
+				v-model="contapp.fisFLstOpt"
+				multiple
+				return-object
+				:items="feedFLstOpt"
+				item-value="num"
+				item-text="tit1"
+				:label="tag.CptOpt"
+				v-on:change="handleFisChange('numsFLstOpt', contapp.fisFLstOpt)"
+				:disabled="!statshr.LstOptActive"
+			/>
 
 			<v-text-field
 				class="my-1"
@@ -46,6 +53,7 @@
 
 <script>
 	import Wznm from '../../scripts/Wznm';
+	import vecio from '../../scripts/vecio';
 
 	/*
 	<!-- IP import.cust - INSERT -->
@@ -86,6 +94,15 @@
 				this.$emit("request", {scrJref: this.scrJref, dpchapp: dpchapp, then: "handleDpchAppDataDoReply"});
 			},
 
+			handleFisChange: function(cisref, fis) {
+				var nums = new Uint32Array(fis.length);
+
+				for (let i = 0; i < fis.length; i++) nums[i] = fis[i].num;
+				this.contiac[cisref] = vecio.toBase64(nums);
+
+				this.updateEng(["contiac"]);
+			},
+
 			updateEng: function(mask) {
 				var dpchapp = {
 					"scrJref": this.scrJref
@@ -110,6 +127,16 @@
 				if (dpcheng.TagWznmRlsDetail) {
 					Wznm.unescapeBlock(dpcheng.TagWznmRlsDetail);
 					this.tag = dpcheng.TagWznmRlsDetail;
+				}
+				if (dpcheng.ContIacWznmRlsDetail) {
+					var fisFLstOpt = [];
+					var numsFLstOpt = vecio.parseUintvec(this.contiac.numsFLstOpt);
+
+					for (let i = 0; i < this.feedFLstOpt.length; i++)
+						if (numsFLstOpt.includes(this.feedFLstOpt[i].num))
+							fisFLstOpt.push(this.feedFLstOpt[i]);
+
+					this.contapp.fisFLstOpt = fisFLstOpt;
 				}
 				/*
 				<!-- IP mergeDpchEngData - END -->
