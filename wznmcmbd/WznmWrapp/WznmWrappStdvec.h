@@ -19,13 +19,14 @@ namespace WznmWrappStdvec {
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmWrappStdvec* dpchinv);
 	// IP cust --- IBEGIN
 
-	//void writeVecEvtH(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMEvent& evts);
-	//void writeVecEvtCpp(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMEvent& evts);
-	//void writeVecEvtJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMEvent& evts);
+	void writeVecEvtIpVec(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMEvent& evts, const Sbecore::uint ixWznmVApptarget);
+	void writeVecEvtIpGetSref(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMEvent& evts, const Sbecore::uint ixWznmVApptarget);
 
-	//void writeVecSteH(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs, ListWznmMState& stes, std::vector<unsigned int>& icsSeqs);
-	//void writeVecSteCpp(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs, ListWznmMState& stes);
-	//void writeVecSteJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs, ListWznmMState& stes, std::vector<unsigned int>& icsSeqs);
+	void writeVecSteIpVec(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs, ListWznmMState& stes, std::vector<unsigned int>& icsSeqs, const Sbecore::uint ixWznmVApptarget);
+	void writeVecSteIpGetSref(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMSequence& seqs, ListWznmMState& stes, const Sbecore::uint ixWznmVApptarget);
+
+	std::string wrConst(const unsigned int num, const std::string& sref, const Sbecore::uint ixWznmVApptarget);
+	std::string wrGetSref(const std::string& sref, const Sbecore::uint ixWznmVApptarget);
 	// IP cust --- IEND
 };
 
