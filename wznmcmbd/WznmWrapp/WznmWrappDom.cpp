@@ -43,7 +43,7 @@ DpchRetWznm* WznmWrappDom::run(
 
 // IP cust --- IBEGIN
 /*
-void WznmWrappJbase::writeDOMJ(
+void WznmWrappDom::writeDOMJ(
 			DbsWznm* dbswznm
 			, fstream& outfile
 			, ListWznmMRtjob& rtjs

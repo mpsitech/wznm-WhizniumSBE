@@ -87,7 +87,7 @@ DlgWznmAppWrite::~DlgWznmAppWrite() {
 };
 
 // IP cust --- IBEGIN
-void DlgWznmAppWrite::createCxx(
+void DlgWznmAppWrite::create(
 			DbsWznm* dbswznm
 		) {
 	ubigint ref;
@@ -124,7 +124,9 @@ void DlgWznmAppWrite::createCxx(
 	created = StrMod::timetToString(rawtime);
 
 	// --- all files
+	addInv(new DpchInvWznmWrappDom(0, 0, app->ref, ipfolder));
 	addInv(new DpchInvWznmWrappMain(0, 0, app->ref, ipfolder, contiacdet.ChkUsf));
+	addInv(new DpchInvWznmWrappStdvec(0, 0, app->ref, ipfolder));
 
 	keys.push_back("author"); vals.push_back(author);
 	keys.push_back("created"); vals.push_back(created);
@@ -135,8 +137,9 @@ void DlgWznmAppWrite::createCxx(
 	keys.push_back("Appshort"); vals.push_back(Appshort);
 	keys.push_back("appshort"); vals.push_back(appshort);
 
-	if (ixApptarget == VecWznmVApptarget::COCOA_SWIFT) cftpls = {"AppXxxx_Objc.h", "AppXxxx_Objc.mm", "VecXxxxVEvent.h", "VecXxxxVEvent.cpp", "VecXxxxVState.h", "VecXxxxVState.cpp"};
-	else if (ixApptarget == VecWznmVApptarget::DOTNET_CS) cftpls = {"AppXxxx_Cli.h", "AppXxxx_Cli.cpp", "VecXxxxVEvent.h", "VecXxxxVEvent.cpp", "VecXxxxVState.h", "VecXxxxVState.cpp"};
+	if (ixApptarget == VecWznmVApptarget::COCOA_SWIFT) cftpls = {"AppXxxx.swift", "DOMXxxx.swift", "VecXxxxVEvent.swift", "VecXxxxVState.swift"};
+	else if (ixApptarget == VecWznmVApptarget::DOTNET_CS) cftpls = {"AppXxxx.cs", "DOMXxxx.cs", "VecXxxxVEvent.cs", "VecXxxxVState.cs"};
+	else if (ixApptarget == VecWznmVApptarget::JAVA) cftpls = {"AppXxxx.java", "DOMXxxx.java", "VecXxxxVEvent.java", "VecXxxxVState.java"};
 	else if (ixApptarget == VecWznmVApptarget::POSIX_CPP) cftpls = {"AppXxxx.h", "AppXxxx.cpp", "VecXxxxVEvent.h", "VecXxxxVEvent.cpp", "VecXxxxVState.h", "VecXxxxVState.cpp"};
 
 	for (auto it = cftpls.begin(); it != cftpls.end(); it++) {
@@ -157,69 +160,6 @@ void DlgWznmAppWrite::createCxx(
 
 	delete app;
 };
-
-void DlgWznmAppWrite::createJava(
-			DbsWznm* dbswznm
-		) {
-	ubigint ref;
-
-	WznmMApp* app = NULL;
-
-	string author, created;
-
-	vector<string> keys;
-	vector<string> vals;
-
-	set<string> cftpls;
-	ubigint refCftpl;
-
-	string s;
-	size_t ptr;
-
-	dbswznm->tblwznmmapp->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFAPP, jref), &app);
-
-	ipfolder = Tmp::newfolder(xchg->tmppath);
-	outfolder = Tmp::newfolder(xchg->tmppath);
-
-	// --- prepare standard key/value pairs
-
-	// -- author
-	dbswznm->loadRefBySQL("SELECT refWznmMPerson FROM TblWznmMUser WHERE ref = " + to_string(xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref)), ref);
-
-	author = StubWznm::getStubPrsStd(dbswznm, ref);
-
-	// -- created/modified date
-	time_t rawtime;
-	time(&rawtime);
-
-	created = StrMod::timetToString(rawtime);
-
-	// --- all files
-	addInv(new DpchInvWznmWrappMain(0, 0, app->ref, ipfolder, contiacdet.ChkUsf));
-
-	keys.push_back("author"); vals.push_back(author);
-	keys.push_back("created"); vals.push_back(created);
-	keys.push_back("PRJSHORT"); vals.push_back(PRJSHORT);
-	keys.push_back("Prjshort"); vals.push_back(Prjshort);
-	keys.push_back("prjshort"); vals.push_back(prjshort);
-	keys.push_back("Appshort"); vals.push_back(Appshort);
-	keys.push_back("appshort"); vals.push_back(appshort);
-
-	cftpls = {"AppXxxx.java", "DOMXxxx.java", "VecXxxxVEvent.java", "VecXxxxVState.java"};
-
-	for (auto it = cftpls.begin(); it != cftpls.end(); it++) {
-		s = (*it);
-		if (dbswznm->loadRefBySQL("SELECT ref FROM TblWznmMFile WHERE osrefKContent = 'cftpl' AND Filename = '" + s + "'", refCftpl)) {
-			ptr = s.find("Xxxx");
-			if (ptr != string::npos) s = s.replace(ptr, 4, Appshort);
-
-			addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refCftpl, "", outfolder + "/" + s, keys, vals));
-		};
-	};
-
-	delete app;
-};
-
 // IP cust --- IEND
 
 DpchEngWznm* DlgWznmAppWrite::getNewDpchEng(
@@ -775,18 +715,10 @@ uint DlgWznmAppWrite::enterSgeWrite(
 
 	// IP enterSgeWrite --- IBEGIN
 
-	if ((ixApptarget == VecWznmVApptarget::COCOA_SWIFT) || (ixApptarget == VecWznmVApptarget::DOTNET_CS) || (ixApptarget == VecWznmVApptarget::POSIX_CPP)) {
-		// create -> outfolder
-		// IP's -> ipfolder -> outfolder
-		// (optional) custom IP's -> custfolder -> outfolder
-		createCxx(dbswznm);
-
-	} else if (ixApptarget == VecWznmVApptarget::JAVA) {
-		// create -> outfolder
-		// IP's -> ipfolder -> outfolder
-		// (optional) custom IP's -> custfolder -> outfolder
-		createJava(dbswznm);
-	};
+	// create -> outfolder
+	// IP's -> ipfolder -> outfolder
+	// (optional) custom IP's -> custfolder -> outfolder
+	create(dbswznm);
 
 	// IP enterSgeWrite --- IEND
 

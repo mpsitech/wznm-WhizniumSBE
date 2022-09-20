@@ -579,8 +579,7 @@ public:
 
 public:
 	// IP cust --- IBEGIN
-	void createCxx(DbsWznm* dbswznm);
-	void createJava(DbsWznm* dbswznm);
+	void create(DbsWznm* dbswznm);
 	// IP cust --- IEND
 
 public:
