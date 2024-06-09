@@ -395,12 +395,18 @@ uint JobWznmIexOpk::enterSgeImport(
 
 				//opkAinv->refWznmCAMOppackInvarg: PREVIMP
 				if (opkAinv->irefRefWznmCAMOppackInvarg != 0) {
-					for (unsigned int i = 0; i < opk->imeicamoppackinvarg.nodes.size(); i++)
-						if (opk->imeicamoppackinvarg.nodes[i]->iref == opkAinv->irefRefWznmCAMOppackInvarg) {
-							opkAinv->refWznmCAMOppackInvarg = opk->imeicamoppackinvarg.nodes[i]->ref;
-							break;
+					if (irefs1.find(opkAinv->irefRefWznmCAMOppackInvarg) == irefs1.end()) {
+						opkAinvC = new ImeitemICAMOppackInvarg(opkAinv->irefRefWznmCAMOppackInvarg);
+						opkAinvC->ref = dbswznm->tblwznmcamoppackinvarg->getNewRef();
+						opk->imeicamoppackinvarg.nodes.push_back(opkAinvC);
+						irefs1.insert(opkAinvC->iref);
+					} else {
+						for (unsigned int i = 0; i < opk->imeicamoppackinvarg.nodes.size(); i++) {
+							opkAinvC = opk->imeicamoppackinvarg.nodes[i];
+							if (opkAinvC->iref == opkAinv->irefRefWznmCAMOppackInvarg) break;
 						};
-					if (opkAinv->refWznmCAMOppackInvarg == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(opkAinv->irefRefWznmCAMOppackInvarg)}, {"iel","irefRefWznmCAMOppackInvarg"}, {"lineno",to_string(opkAinv->lineno)}});
+					};
+					opkAinv->refWznmCAMOppackInvarg = opkAinvC->ref;
 				};
 				opkAinv->opkRefWznmMOppack = opk->ref;
 				opkAinv->opkNum = num1++;
@@ -443,12 +449,18 @@ uint JobWznmIexOpk::enterSgeImport(
 
 				//opkAret->refWznmCAMOppackRetval: PREVIMP
 				if (opkAret->irefRefWznmCAMOppackRetval != 0) {
-					for (unsigned int i = 0; i < opk->imeicamoppackretval.nodes.size(); i++)
-						if (opk->imeicamoppackretval.nodes[i]->iref == opkAret->irefRefWznmCAMOppackRetval) {
-							opkAret->refWznmCAMOppackRetval = opk->imeicamoppackretval.nodes[i]->ref;
-							break;
+					if (irefs1.find(opkAret->irefRefWznmCAMOppackRetval) == irefs1.end()) {
+						opkAretC = new ImeitemICAMOppackRetval(opkAret->irefRefWznmCAMOppackRetval);
+						opkAretC->ref = dbswznm->tblwznmcamoppackretval->getNewRef();
+						opk->imeicamoppackretval.nodes.push_back(opkAretC);
+						irefs1.insert(opkAretC->iref);
+					} else {
+						for (unsigned int i = 0; i < opk->imeicamoppackretval.nodes.size(); i++) {
+							opkAretC = opk->imeicamoppackretval.nodes[i];
+							if (opkAretC->iref == opkAret->irefRefWznmCAMOppackRetval) break;
 						};
-					if (opkAret->refWznmCAMOppackRetval == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(opkAret->irefRefWznmCAMOppackRetval)}, {"iel","irefRefWznmCAMOppackRetval"}, {"lineno",to_string(opkAret->lineno)}});
+					};
+					opkAret->refWznmCAMOppackRetval = opkAretC->ref;
 				};
 				opkAret->opkRefWznmMOppack = opk->ref;
 				opkAret->opkNum = num1++;
@@ -568,12 +580,18 @@ uint JobWznmIexOpk::enterSgeImport(
 
 					//blkAitm1->refWznmCAMBlockItem: PREVIMP
 					if (blkAitm1->irefRefWznmCAMBlockItem != 0) {
-						for (unsigned int i = 0; i < blk1->imeicamblockitem1.nodes.size(); i++)
-							if (blk1->imeicamblockitem1.nodes[i]->iref == blkAitm1->irefRefWznmCAMBlockItem) {
-								blkAitm1->refWznmCAMBlockItem = blk1->imeicamblockitem1.nodes[i]->ref;
-								break;
+						if (irefs2.find(blkAitm1->irefRefWznmCAMBlockItem) == irefs2.end()) {
+							blkAitmC1 = new ImeitemICAMBlockItem1(blkAitm1->irefRefWznmCAMBlockItem);
+							blkAitmC1->ref = dbswznm->tblwznmcamblockitem->getNewRef();
+							blk1->imeicamblockitem1.nodes.push_back(blkAitmC1);
+							irefs2.insert(blkAitmC1->iref);
+						} else {
+							for (unsigned int i = 0; i < blk1->imeicamblockitem1.nodes.size(); i++) {
+								blkAitmC1 = blk1->imeicamblockitem1.nodes[i];
+								if (blkAitmC1->iref == blkAitm1->irefRefWznmCAMBlockItem) break;
 							};
-						if (blkAitm1->refWznmCAMBlockItem == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(blkAitm1->irefRefWznmCAMBlockItem)}, {"iel","irefRefWznmCAMBlockItem"}, {"lineno",to_string(blkAitm1->lineno)}});
+						};
+						blkAitm1->refWznmCAMBlockItem = blkAitmC1->ref;
 					};
 					blkAitm1->blkRefWznmMBlock = blk1->ref;
 					blkAitm1->blkNum = num2++;
@@ -663,12 +681,18 @@ uint JobWznmIexOpk::enterSgeImport(
 
 					//opxAinv->refWznmCAMOpInvarg: PREVIMP
 					if (opxAinv->irefRefWznmCAMOpInvarg != 0) {
-						for (unsigned int i = 0; i < opx->imeicamopinvarg.nodes.size(); i++)
-							if (opx->imeicamopinvarg.nodes[i]->iref == opxAinv->irefRefWznmCAMOpInvarg) {
-								opxAinv->refWznmCAMOpInvarg = opx->imeicamopinvarg.nodes[i]->ref;
-								break;
+						if (irefs2.find(opxAinv->irefRefWznmCAMOpInvarg) == irefs2.end()) {
+							opxAinvC = new ImeitemICAMOpInvarg(opxAinv->irefRefWznmCAMOpInvarg);
+							opxAinvC->ref = dbswznm->tblwznmcamopinvarg->getNewRef();
+							opx->imeicamopinvarg.nodes.push_back(opxAinvC);
+							irefs2.insert(opxAinvC->iref);
+						} else {
+							for (unsigned int i = 0; i < opx->imeicamopinvarg.nodes.size(); i++) {
+								opxAinvC = opx->imeicamopinvarg.nodes[i];
+								if (opxAinvC->iref == opxAinv->irefRefWznmCAMOpInvarg) break;
 							};
-						if (opxAinv->refWznmCAMOpInvarg == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(opxAinv->irefRefWznmCAMOpInvarg)}, {"iel","irefRefWznmCAMOpInvarg"}, {"lineno",to_string(opxAinv->lineno)}});
+						};
+						opxAinv->refWznmCAMOpInvarg = opxAinvC->ref;
 					};
 					opxAinv->opxRefWznmMOp = opx->ref;
 					opxAinv->opxNum = num2++;
@@ -711,12 +735,18 @@ uint JobWznmIexOpk::enterSgeImport(
 
 					//opxAret->refWznmCAMOpRetval: PREVIMP
 					if (opxAret->irefRefWznmCAMOpRetval != 0) {
-						for (unsigned int i = 0; i < opx->imeicamopretval.nodes.size(); i++)
-							if (opx->imeicamopretval.nodes[i]->iref == opxAret->irefRefWznmCAMOpRetval) {
-								opxAret->refWznmCAMOpRetval = opx->imeicamopretval.nodes[i]->ref;
-								break;
+						if (irefs2.find(opxAret->irefRefWznmCAMOpRetval) == irefs2.end()) {
+							opxAretC = new ImeitemICAMOpRetval(opxAret->irefRefWznmCAMOpRetval);
+							opxAretC->ref = dbswznm->tblwznmcamopretval->getNewRef();
+							opx->imeicamopretval.nodes.push_back(opxAretC);
+							irefs2.insert(opxAretC->iref);
+						} else {
+							for (unsigned int i = 0; i < opx->imeicamopretval.nodes.size(); i++) {
+								opxAretC = opx->imeicamopretval.nodes[i];
+								if (opxAretC->iref == opxAret->irefRefWznmCAMOpRetval) break;
 							};
-						if (opxAret->refWznmCAMOpRetval == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(opxAret->irefRefWznmCAMOpRetval)}, {"iel","irefRefWznmCAMOpRetval"}, {"lineno",to_string(opxAret->lineno)}});
+						};
+						opxAret->refWznmCAMOpRetval = opxAretC->ref;
 					};
 					opxAret->opxRefWznmMOp = opx->ref;
 					opxAret->opxNum = num2++;
@@ -836,12 +866,18 @@ uint JobWznmIexOpk::enterSgeImport(
 
 						//blkAitm2->refWznmCAMBlockItem: PREVIMP
 						if (blkAitm2->irefRefWznmCAMBlockItem != 0) {
-							for (unsigned int i = 0; i < blk2->imeicamblockitem2.nodes.size(); i++)
-								if (blk2->imeicamblockitem2.nodes[i]->iref == blkAitm2->irefRefWznmCAMBlockItem) {
-									blkAitm2->refWznmCAMBlockItem = blk2->imeicamblockitem2.nodes[i]->ref;
-									break;
+							if (irefs3.find(blkAitm2->irefRefWznmCAMBlockItem) == irefs3.end()) {
+								blkAitmC2 = new ImeitemICAMBlockItem2(blkAitm2->irefRefWznmCAMBlockItem);
+								blkAitmC2->ref = dbswznm->tblwznmcamblockitem->getNewRef();
+								blk2->imeicamblockitem2.nodes.push_back(blkAitmC2);
+								irefs3.insert(blkAitmC2->iref);
+							} else {
+								for (unsigned int i = 0; i < blk2->imeicamblockitem2.nodes.size(); i++) {
+									blkAitmC2 = blk2->imeicamblockitem2.nodes[i];
+									if (blkAitmC2->iref == blkAitm2->irefRefWznmCAMBlockItem) break;
 								};
-							if (blkAitm2->refWznmCAMBlockItem == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(blkAitm2->irefRefWznmCAMBlockItem)}, {"iel","irefRefWznmCAMBlockItem"}, {"lineno",to_string(blkAitm2->lineno)}});
+							};
+							blkAitm2->refWznmCAMBlockItem = blkAitmC2->ref;
 						};
 						blkAitm2->blkRefWznmMBlock = blk2->ref;
 						blkAitm2->blkNum = num3++;

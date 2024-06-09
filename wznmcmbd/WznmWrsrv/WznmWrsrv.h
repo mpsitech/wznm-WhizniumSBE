@@ -66,6 +66,7 @@ namespace WznmWrsrv {
 	void getAlrplhs(DbsWznm* dbswznm, const Sbecore::ubigint refAlr, std::set<std::string>& plhs);
 	std::string getBlkclass(DbsWznm* dbswznm, WznmMJob* job, WznmMBlock* blk);
 	std::string getBlkvar(WznmMJob* job, ListWznmMBlock& jobblks, ListWznmRMJobMJob& jrjs, const std::string sref);
+	std::string getBlkvarJsonCppType(const Sbecore::uint ixWznmVVartype);
 	std::string getIparpaCppType(const Sbecore::uint ixWznmVVartype);
 	std::string getVecclass(DbsWznm* dbswznm, WznmMJob* job, WznmMVector* vec);
 	bool hasScrref(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMBlock);

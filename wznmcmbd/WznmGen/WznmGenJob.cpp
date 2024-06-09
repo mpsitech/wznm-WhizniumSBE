@@ -851,7 +851,11 @@ void WznmGenJob::addCon(
 
 	} else if (con->ixVBasetype == VecWznmVMControlBasetype::CUS) {
 		// StatShr
-		if (StrMod::srefInSrefs(con->srefsKOption, "varh")) addBit(dbswznm, job, blks, bitnums, "StatShr", ditshort, VecWznmVAMBlockItemBasetype::CONPAR, consref + "Height", VecWznmVVartype::UINT, con->ref, 0, "100", 0);
+		if (StrMod::srefInSrefs(con->srefsKOption, "varh")) {
+			s = "100";
+			dbswznm->tblwznmamcontrolpar->loadValByConKeyLoc(con->ref, "height", 0, s);
+			addBit(dbswznm, job, blks, bitnums, "StatShr", ditshort, VecWznmVAMBlockItemBasetype::CONPAR, consref + "Height", VecWznmVVartype::UINT, con->ref, 0, s, 0);
+		};
 
 	} else if (con->ixVBasetype == VecWznmVMControlBasetype::DIT) {
 		// Feed, ContIac ; no ditshort ; VecVDit goes separately

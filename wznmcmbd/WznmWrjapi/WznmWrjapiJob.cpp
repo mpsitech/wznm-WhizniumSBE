@@ -154,7 +154,7 @@ void WznmWrjapiJob::writeBlkcontJ(
 
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
-		outfile << "\t\tpublic static final int " << StrMod::uc(bit->sref) << " = " << (i+1) << ";" << endl;
+		outfile << "\t\tpublic static final int " << Wznm::getBitmasksref(bit->sref) << " = " << (i+1) << ";" << endl;
 	};
 	outfile << endl;
 
@@ -179,7 +179,7 @@ void WznmWrjapiJob::writeBlkcontJ(
 		bit = bits.nodes[i];
 
 		if (i != 0) outfile << ", ";
-		outfile << StrMod::uc(bit->sref);
+		outfile << Wznm::getBitmasksref(bit->sref);
 	};
 	outfile << "));" << endl;
 	outfile << "\t\t};" << endl;
@@ -304,7 +304,7 @@ void WznmWrjapiJob::writeBlkcontJ(
 		bit = bits.nodes[i];
 
 		if (i != 0) outfile << ", ";
-		outfile << StrMod::uc(bit->sref);
+		outfile << Wznm::getBitmasksref(bit->sref);
 	};
 	outfile << "));" << endl;
 	outfile << "\t\t\tfor (Integer ci: commitems) diffitems.remove(ci);" << endl;
@@ -354,7 +354,7 @@ void WznmWrjapiJob::writeBlkdpchJ(
 		bit = bits.nodes[i];
 		outfile << "\t\tpublic static final int ";
 		if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "SCR";
-		outfile << StrMod::uc(bit->sref) << " = " << (i+1) << ";" << endl;
+		outfile << Wznm::getBitmasksref(bit->sref) << " = " << (i+1) << ";" << endl;
 	};
 	if (blk->reaIxWznmWScope & VecWznmWScope::CMBENG) outfile << "\t\tpublic static final int ALL = " << (bits.nodes.size()+1) << ";" << endl;
 	outfile << endl;
@@ -427,7 +427,7 @@ void WznmWrjapiJob::writeBlkdpchJ(
 
 			if (i != 0) outfile << ", ";
 			if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "SCR";
-			outfile << StrMod::uc(bit->sref);
+			outfile << Wznm::getBitmasksref(bit->sref);
 		};
 		outfile << "));" << endl;
 		outfile << "\t\t\t\t\tbreak;" << endl;
@@ -442,11 +442,11 @@ void WznmWrjapiJob::writeBlkdpchJ(
 					wrBitvarConstrJ(outfile, bit);
 				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
 					// TBD: deep copy
-					outfile << "\t\t\tif (has(" << StrMod::uc(bit->sref) << ")) this." << bit->sref << " = " << bit->sref << ";" << endl;
+					outfile << "\t\t\tif (has(" << Wznm::getBitmasksref(bit->sref) << ")) this." << bit->sref << " = " << bit->sref << ";" << endl;
 				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
 					if (dbswznm->tblwznmmblock->loadRecByRef(bit->refWznmMBlock, &subblk)) {
 						// TBD: deep copy
-						outfile << "\t\t\tif (has(" << StrMod::uc(bit->sref) << ")) this." << bit->sref << " = " << bit->sref << ";" << endl;
+						outfile << "\t\t\tif (has(" << Wznm::getBitmasksref(bit->sref) << ")) this." << bit->sref << " = " << bit->sref << ";" << endl;
 						delete subblk;
 					};					
 				};
@@ -512,8 +512,8 @@ void WznmWrjapiJob::writeBlkdpchJ(
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
 
-		if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "\t\t\tif (has(SCR" << StrMod::uc(bit->sref) << ")) ss.add(\"scr" << StrMod::cap(bit->sref) << "\");" << endl;
-		else outfile << "\t\t\tif (has(" << StrMod::uc(bit->sref) << ")) ss.add(\"" << bit->sref << "\");" << endl;
+		if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "\t\t\tif (has(SCR" << Wznm::getBitmasksref(bit->sref) << ")) ss.add(\"scr" << StrMod::cap(bit->sref) << "\");" << endl;
+		else outfile << "\t\t\tif (has(" << Wznm::getBitmasksref(bit->sref) << ")) ss.add(\"" << bit->sref << "\");" << endl;
 	};
 	outfile << endl;
 
@@ -549,11 +549,11 @@ void WznmWrjapiJob::writeBlkdpchJ(
 			if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::VAR) {
 				wrBitvarReadxmlJ(dbswznm, outfile, job, bit, false, "");
 			} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
-				outfile << "\t\t\t\tif (" << bit->sref << ".readXML(doc, basexpath, true)) add(" << StrMod::uc(bit->sref) << ");" << endl;
+				outfile << "\t\t\t\tif (" << bit->sref << ".readXML(doc, basexpath, true)) add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 			} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) {
-				outfile << "\t\t\t\tif (" << bit->sref << ".readXML(doc, basexpath, true)) add(" << StrMod::uc(bit->sref) << ");" << endl;
+				outfile << "\t\t\t\tif (" << bit->sref << ".readXML(doc, basexpath, true)) add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 			} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
-				outfile << "\t\t\t\tif (" << StrMod::lc(bit->sref) << ".readXML(doc, basexpath, true)) add(" << StrMod::uc(bit->sref) << ");" << endl;
+				outfile << "\t\t\t\tif (" << StrMod::lc(bit->sref) << ".readXML(doc, basexpath, true)) add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 			};
 		};
 
@@ -607,10 +607,10 @@ void WznmWrjapiJob::writeBlkdpchJ(
 			if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::VAR) {
 				wrBitvarWritexmlJ(dbswznm, outfile, job, bit, true, false);
 			} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
-				outfile << "\t\t\tif (has(" << StrMod::uc(bit->sref) << ")) " << bit->sref << ".writeXML(doc, el, \"\");" << endl;
+				outfile << "\t\t\tif (has(" << Wznm::getBitmasksref(bit->sref) << ")) " << bit->sref << ".writeXML(doc, el, \"\");" << endl;
 			} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
 				if (dbswznm->tblwznmmblock->loadRecByRef(bit->refWznmMBlock, &subblk)) {
-					outfile << "\t\t\tif (has(" << StrMod::uc(bit->sref) << ")) " << StrMod::lc(bit->sref) << ".writeXML(doc, el, \"\", true);" << endl;
+					outfile << "\t\t\tif (has(" << Wznm::getBitmasksref(bit->sref) << ")) " << StrMod::lc(bit->sref) << ".writeXML(doc, el, \"\", true);" << endl;
 					delete subblk;
 				};
 			};
@@ -649,7 +649,7 @@ void WznmWrjapiJob::writeBlkstatJ(
 
 		outfile << "\t\tpublic static final int ";
 		if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "SCR";
-		outfile << StrMod::uc(bit->sref);
+		outfile << Wznm::getBitmasksref(bit->sref);
 		outfile << " = " << (i+1) << ";" << endl;
 	};
 	outfile << endl;
@@ -677,7 +677,7 @@ void WznmWrjapiJob::writeBlkstatJ(
 		if (i != 0) outfile << ", ";
 
 		if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "SCR";
-		outfile << StrMod::uc(bit->sref);
+		outfile << Wznm::getBitmasksref(bit->sref);
 	};
 	outfile << "));" << endl;
 	outfile << "\t\t};" << endl;
@@ -771,7 +771,7 @@ void WznmWrjapiJob::writeBlkstatJ(
 		if (i != 0) outfile << ", ";
 
 		if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "SCR";
-		outfile << StrMod::uc(bit->sref);
+		outfile << Wznm::getBitmasksref(bit->sref);
 	};
 	outfile << "));" << endl;
 	outfile << "\t\t\tfor (Integer ci: commitems) diffitems.remove(ci);" << endl;
@@ -806,7 +806,7 @@ void WznmWrjapiJob::writeBlkstgJ(
 
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
-		outfile << "\t\tpublic static final int " << StrMod::uc(bit->sref) << " = " << (i+1) << ";" << endl;
+		outfile << "\t\tpublic static final int " << Wznm::getBitmasksref(bit->sref) << " = " << (i+1) << ";" << endl;
 	};
 	outfile << endl;
 
@@ -831,7 +831,7 @@ void WznmWrjapiJob::writeBlkstgJ(
 		bit = bits.nodes[i];
 
 		if (i != 0) outfile << ", ";
-		outfile << StrMod::uc(bit->sref);
+		outfile << Wznm::getBitmasksref(bit->sref);
 	};
 	outfile << "));" << endl;
 	outfile << "\t\t};" << endl;
@@ -956,7 +956,7 @@ void WznmWrjapiJob::writeBlkstgJ(
 		bit = bits.nodes[i];
 
 		if (i != 0) outfile << ", ";
-		outfile << StrMod::uc(bit->sref);
+		outfile << Wznm::getBitmasksref(bit->sref);
 	};
 	outfile << "));" << endl;
 	outfile << "\t\t\tfor (Integer ci: commitems) diffitems.remove(ci);" << endl;
@@ -993,7 +993,7 @@ void WznmWrjapiJob::writeBlktagJ(
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
 
-		outfile << "\t\tpublic static final int " << StrMod::uc(bit->sref) << " = " << (i+1) << ";" << endl;
+		outfile << "\t\tpublic static final int " << Wznm::getBitmasksref(bit->sref) << " = " << (i+1) << ";" << endl;
 	};
 	outfile << endl;
 
@@ -1018,7 +1018,7 @@ void WznmWrjapiJob::writeBlktagJ(
 		bit = bits.nodes[i];
 
 		if (i != 0) outfile << ", ";
-		outfile << StrMod::uc(bit->sref);
+		outfile << Wznm::getBitmasksref(bit->sref);
 	};
 	outfile << "));" << endl;
 	outfile << "\t\t};" << endl;
@@ -1110,7 +1110,7 @@ void WznmWrjapiJob::writeBlktagJ(
 		bit = bits.nodes[i];
 		
 		if (i != 0) outfile << ", ";
-		outfile << StrMod::uc(bit->sref);
+		outfile << Wznm::getBitmasksref(bit->sref);
 	};
 	outfile << "));" << endl;
 	outfile << "\t\t\tfor (Integer ci: commitems) diffitems.remove(ci);" << endl;
@@ -1156,20 +1156,20 @@ void WznmWrjapiJob::wrBitvarReadxmlJ(
 
 	if (attr) {
 		if (bit->ixWznmVVartype == VecWznmVVartype::VECSREF) {
-			outfile << "\t\t\t\tsref" << StrMod::cap(bit->sref) << " = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, \"" << shorttag << "\", \"sref\", \"sref" << StrMod::cap(bit->sref) << "\", mask, " << StrMod::uc(bit->sref) << ");" << endl;
+			outfile << "\t\t\t\tsref" << StrMod::cap(bit->sref) << " = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, \"" << shorttag << "\", \"sref\", \"sref" << StrMod::cap(bit->sref) << "\", mask, " << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 		} else if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) {
-			outfile << "\t\t\t\tscr" << StrMod::cap(bit->sref) << " = Xmlio.extract" << getBitXMLType(bit) << "AttrUclc(doc, basexpath, itemtag, \"" << shorttag << "\", \"sref\", \"scr" << StrMod::cap(bit->sref) << "\", mask, SCR" << StrMod::uc(bit->sref) << ");" << endl;
+			outfile << "\t\t\t\tscr" << StrMod::cap(bit->sref) << " = Xmlio.extract" << getBitXMLType(bit) << "AttrUclc(doc, basexpath, itemtag, \"" << shorttag << "\", \"sref\", \"scr" << StrMod::cap(bit->sref) << "\", mask, SCR" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 		} else {
-			outfile << "\t\t\t\t" << bit->sref << " = Xmlio.extract" << getBitXMLType(bit) << "AttrUclc(doc, basexpath, itemtag, \"" << shorttag << "\", \"sref\", \"" << bit->sref << "\", mask, " << StrMod::uc(bit->sref) << ");" << endl;
+			outfile << "\t\t\t\t" << bit->sref << " = Xmlio.extract" << getBitXMLType(bit) << "AttrUclc(doc, basexpath, itemtag, \"" << shorttag << "\", \"sref\", \"" << bit->sref << "\", mask, " << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 		};
 
 	} else {
 		if (bit->ixWznmVVartype == VecWznmVVartype::VECSREF) {
-			outfile << "\t\t\t\tsref" << StrMod::cap(bit->sref) << " = Xmlio.extractStringUclc(doc, basexpath, \"sref" << StrMod::cap(bit->sref) << "\", \"\", mask, " << StrMod::uc(bit->sref) << ");" << endl;
+			outfile << "\t\t\t\tsref" << StrMod::cap(bit->sref) << " = Xmlio.extractStringUclc(doc, basexpath, \"sref" << StrMod::cap(bit->sref) << "\", \"\", mask, " << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 		} else if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) {
-			outfile << "\t\t\t\tscr" << StrMod::cap(bit->sref) << " = Xmlio.extract" << getBitXMLType(bit) << "Uclc(doc, basexpath, \"scr" << StrMod::cap(bit->sref) << "\", \"\", mask, SCR" << StrMod::uc(bit->sref) << ");" << endl;
+			outfile << "\t\t\t\tscr" << StrMod::cap(bit->sref) << " = Xmlio.extract" << getBitXMLType(bit) << "Uclc(doc, basexpath, \"scr" << StrMod::cap(bit->sref) << "\", \"\", mask, SCR" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 		} else {
-			outfile << "\t\t\t\t" << bit->sref << " = Xmlio.extract" << getBitXMLType(bit) << "Uclc(doc, basexpath, \"" << bit->sref << "\", \"\", mask, " << StrMod::uc(bit->sref) << ");" << endl;
+			outfile << "\t\t\t\t" << bit->sref << " = Xmlio.extract" << getBitXMLType(bit) << "Uclc(doc, basexpath, \"" << bit->sref << "\", \"\", mask, " << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 		};
 	};
 
@@ -1198,7 +1198,7 @@ void WznmWrjapiJob::wrBitvarWritexmlJ(
 	if (mask) {
 		outfile << "if (has(";
 		if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "SCR";
-		outfile << StrMod::uc(bit->sref) << ")) ";
+		outfile << Wznm::getBitmasksref(bit->sref) << ")) ";
 	};
 
 	if (attr) {
@@ -1236,32 +1236,32 @@ void WznmWrjapiJob::wrBitvarCompareJ(
 			, WznmAMBlockItem* bit
 		) {
 	if (bit->ixWznmVVartype == VecWznmVVartype::FLOAT) {
-		outfile << "\t\t\tif (Xmlio.compareFloat(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareFloat(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::DOUBLE) {
-		outfile << "\t\t\tif (Xmlio.compareDouble(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareDouble(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::STRING) {
-		outfile << "\t\t\tif (" << bit->sref << ".equals(comp." << bit->sref << ")) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (" << bit->sref << ".equals(comp." << bit->sref << ")) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::BOOLEANVEC) {
-		outfile << "\t\t\tif (Xmlio.compareBooleanvec(" << bit->sref << ", comp." << bit->sref << ")) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareBooleanvec(" << bit->sref << ", comp." << bit->sref << ")) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if ((bit->ixWznmVVartype == VecWznmVVartype::UTINYINTVEC) || (bit->ixWznmVVartype == VecWznmVVartype::USMALLINTVEC) || (bit->ixWznmVVartype == VecWznmVVartype::INTVEC) || (bit->ixWznmVVartype == VecWznmVVartype::UINTVEC)) {
-		outfile << "\t\t\tif (Xmlio.compareIntegervec(" << bit->sref << ", comp." << bit->sref << ")) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareIntegervec(" << bit->sref << ", comp." << bit->sref << ")) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::UBIGINTVEC) {
-		outfile << "\t\t\tif (Xmlio.compareLongvec(" << bit->sref << ", comp." << bit->sref << ")) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareLongvec(" << bit->sref << ", comp." << bit->sref << ")) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::FLOATVEC) {
-		outfile << "\t\t\tif (Xmlio.compareFloatvec(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareFloatvec(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::FLOATMAT) {
-		outfile << "\t\t\tif (Xmlio.compareFloatmat(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareFloatmat(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::DOUBLEVEC) {
-		outfile << "\t\t\tif (Xmlio.compareDoublevec(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareDoublevec(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::DOUBLEMAT) {
-		outfile << "\t\t\tif (Xmlio.compareDoublemat(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareDoublemat(" << bit->sref << ", comp." << bit->sref << ") < 1.0e-4) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::STRINGVEC) {
-		outfile << "\t\t\tif (Xmlio.compareStringvec(" << bit->sref << ", comp." << bit->sref << ")) items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (Xmlio.compareStringvec(" << bit->sref << ", comp." << bit->sref << ")) items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) {
-		outfile << "\t\t\tif (scr" << StrMod::cap(bit->sref) << ".equals(comp.scr" << StrMod::cap(bit->sref) << ")) items.add(SCR" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (scr" << StrMod::cap(bit->sref) << ".equals(comp.scr" << StrMod::cap(bit->sref) << ")) items.add(SCR" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	} else {
 		// VOID, BOOLEAN, TINYINT, UTINYINT, SMALLINT, USMALLINT, INT, UINT, BIGINT, UBIGINT, VECSREF
-		outfile << "\t\t\tif (" << bit->sref << " == comp." << bit->sref << ") items.add(" << StrMod::uc(bit->sref) << ");" << endl;
+		outfile << "\t\t\tif (" << bit->sref << " == comp." << bit->sref << ") items.add(" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 	};
 };
 

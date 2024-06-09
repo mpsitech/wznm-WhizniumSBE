@@ -19,7 +19,7 @@ namespace WznmWrappDom {
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmWrappDom* dpchinv);
 	// IP cust --- IBEGIN
 
-	//void writeDOMJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMRtjob& rtjs);
+	void writeDOMJ(DbsWznm* dbswznm, std::fstream& outfile, ListWznmMRtjob& rtjs);
 	// IP cust --- IEND
 };
 

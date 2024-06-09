@@ -55,7 +55,7 @@ DpchRetWznm* WznmWrapiDeploy::run(
 	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
 
 	// library
-	addLibBySref(dbswznm, "sbecore", rls->refWznmMMachine, hrefsMch, incpaths);
+	Wznm::addLibBySref(dbswznm, "sbecore", rls->refWznmMMachine, hrefsMch, incpaths);
 
 	// write Makefile
 	s = xchg->tmppath + "/" + folder + "/Makefile.ip";
@@ -142,7 +142,7 @@ void WznmWrapiDeploy::writeMake(
 
 	// --- incpath.mchspec
 	outfile << "# IP incpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << pathToPathstr(s, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << Wznm::pathToPathstr(s, false, inclibeq) << endl;
 	outfile << "# IP incpath.mchspec --- IEND" << endl;
 
 	// --- objs
@@ -188,50 +188,5 @@ void WznmWrapiDeploy::writeMake(
 	// --- instdynlib*
 	if (dynlib) outfile << "# IP instdynlib --- AFFIRM" << endl;
 	else outfile << "# IP instdynlib --- REMOVE" << endl;
-};
-
-// stripped down version from WznmWrsrvDeploy.cpp
-void WznmWrapiDeploy::addLibBySref(
-			DbsWznm* dbswznm
-			, const string& srefLib
-			, const ubigint refMch
-			, vector<ubigint>& hrefsMch
-			, set<string>& incpaths
-		) {
-	ubigint refLib;
-	WznmMLibrary* lib = NULL;
-
-	vector<string> ss;
-	string s;
-
-	if (dbswznm->tblwznmmlibrary->loadRefBySrf(srefLib, refLib)) {
-		if (dbswznm->tblwznmmlibrary->loadRecByRef(refLib, &lib)) {
-			if (Wznm::getLibmkf(dbswznm, refLib, refMch, hrefsMch, "incpath", s)) incpaths.insert(s);
-
-			StrMod::srefsToVector(lib->depSrefsWznmMLibrary, ss);
-			for (unsigned int i = 0; i < ss.size(); i++) addLibBySref(dbswznm, ss[i], refMch, hrefsMch, incpaths);
-
-			delete lib;
-		};
-	};
-};
-
-// stripped down version from WznmWrsrvDeploy.cpp
-string WznmWrapiDeploy::pathToPathstr(
-			const string& path
-			, const string& inclibeq
-		) {
-	string pathstr;
-
-	vector<string> ss;
-
-	StrMod::stringToVector(path, ss, ' ');
-
-	for (unsigned int i = 0; i < ss.size(); i++) {
-		if (i != 0) pathstr += " ";
-		pathstr += "-I" + inclibeq + ss[i];
-	};
-
-	return pathstr;
 };
 // IP cust --- IEND

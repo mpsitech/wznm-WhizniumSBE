@@ -1217,7 +1217,7 @@ void WznmWrsrvJob::writeJobCpp(
 						outfile << "\t\t\t";
 						if (first) first = false;
 						else outfile << "} else ";
-						outfile << "if (dpchappdata->has(DpchAppData::" << StrMod::uc(bit->sref) + ")) {" << endl;
+						outfile << "if (dpchappdata->has(DpchAppData::" << Wznm::getBitmasksref(bit->sref) + ")) {" << endl;
 						outfile << "\t\t\t\thandleDpchAppData" << StrMod::cap(bit->sref) << "(dbs" << prjshort << ", &(dpchappdata->" << bit->sref << "), &(req->dpcheng));" << endl;
 
 						delete blk2;
@@ -1484,7 +1484,7 @@ void WznmWrsrvJob::writeJobCpp(
 
 						outfile << "\t// IP handleDpchAppData" << StrMod::cap(bit->sref) << " --- INSERT" << endl;
 
-						outfile << "\tinsert(moditems, DpchEngData::" << StrMod::uc(bit->sref) << ");" << endl;
+						outfile << "\tinsert(moditems, DpchEngData::" << Wznm::getBitmasksref(bit->sref) << ");" << endl;
 						outfile << "\t*dpcheng = getNewDpchEng(moditems);" << endl;
 						outfile << "};" << endl;
 						outfile << endl;

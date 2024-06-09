@@ -36,13 +36,36 @@ DpchRetWznm* WznmWrappDom::run(
 
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
-	// IP run --- INSERT
+	// IP run --- IBEGIN
+	WznmMApp* app = NULL;
+
+	ListWznmMRtjob rtjs;
+
+	string Appshort;
+
+	fstream outfile;
+
+	string s;
+
+	if (dbswznm->tblwznmmapp->loadRecByRef(refWznmMApp, &app)) {
+		loadRtjtree(dbswznm, refWznmMApp, rtjs);
+
+		Appshort = StrMod::cap(app->Short);
+
+		// DOMXxxx.java
+		s = xchg->tmppath + "/" + folder + "/DOM" + Appshort + ".java.ip";
+		outfile.open(s.c_str(), ios::out);
+		writeDOMJ(dbswznm, outfile, rtjs);
+		outfile.close();
+
+		delete app;
+	};
+	// IP run --- IEND
 
 	return(new DpchRetWznm(VecWznmVDpch::DPCHRETWZNM, "", "", ixOpVOpres, 100));
 };
 
 // IP cust --- IBEGIN
-/*
 void WznmWrappDom::writeDOMJ(
 			DbsWznm* dbswznm
 			, fstream& outfile
@@ -83,7 +106,7 @@ void WznmWrappDom::writeDOMJ(
 						if (dbswznm->tblwznmmblock->loadRecByRef(rtb->refUref, &blk)) {
 							if (blk->refIxVTbl == VecWznmVMBlockRefTbl::JOB) {
 								if (dbswznm->tblwznmmjob->loadRecByRef(blk->refUref, &hostjob)) { // hostjob is not necessarily equal to job
-									outfile << "\t\t" << rtb->sref << " = " << getBlknew(dbswznm, hostjob, blk) << ";" << endl;
+									//outfile << "\t\t" << rtb->sref << " = " << getBlknew(dbswznm, hostjob, blk) << ";" << endl;
 									delete hostjob;
 								};
 							};
@@ -115,5 +138,4 @@ void WznmWrappDom::writeDOMJ(
 	writeRtobjs(dbswznm, outfile, VecWznmVApptarget::JAVA, rtjs);
 	outfile << "// IP vars --- IEND" << endl;
 };
-*/
 // IP cust --- IEND

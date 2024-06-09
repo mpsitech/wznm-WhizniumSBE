@@ -874,6 +874,194 @@ bool Wznm::getMchpar(
 	return false;
 };
 
+void Wznm::addLibBySref(
+			DbsWznm* dbswznm
+			, const string& srefLib
+			, const ubigint refMch
+			, vector<ubigint>& hrefsMch
+			, set<string>& incpaths
+		) {
+	ubigint refLib;
+
+	if (dbswznm->tblwznmmlibrary->loadRefBySrf(srefLib, refLib)) addLibByRef(dbswznm, refLib, refMch, hrefsMch, incpaths);
+};
+
+void Wznm::addLibByRef(
+			DbsWznm* dbswznm
+			, const ubigint refLib
+			, const ubigint refMch
+			, vector<ubigint>& hrefsMch
+			, set<string>& incpaths
+		) {
+	set<string> cppflags;
+	set<string> linkflags;
+	set<string> libpaths;
+	vector<string> libss;
+
+	addLibByRef(dbswznm, refLib, refMch, hrefsMch, "", cppflags, linkflags, incpaths, libpaths, libss, 0, true);
+};
+
+void Wznm::addLibBySref(
+			DbsWznm* dbswznm
+			, const string& srefLib
+			, const ubigint refMch
+			, vector<ubigint>& hrefsMch
+			, const string& sbeconfig
+			, set<string>& cppflags
+			, set<string>& linkflags
+			, set<string>& incpaths
+			, set<string>& libpaths
+			, vector<string>& libss
+			, unsigned int ix0
+			, const bool inconly
+		) {
+	ubigint refLib;
+
+	if (dbswznm->tblwznmmlibrary->loadRefBySrf(srefLib, refLib)) addLibByRef(dbswznm, refLib, refMch, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, ix0, inconly);
+};
+
+void Wznm::addLibByRef(
+			DbsWznm* dbswznm
+			, const ubigint refLib
+			, const ubigint refMch
+			, vector<ubigint>& hrefsMch
+			, const string& sbeconfig
+			, set<string>& cppflags
+			, set<string>& linkflags
+			, set<string>& incpaths
+			, set<string>& libpaths
+			, vector<string>& libss
+			, unsigned int ix0
+			, const bool inconly
+		) {
+	WznmMLibrary* lib = NULL;
+
+	vector<string> ss;
+	string s;
+
+	if (dbswznm->tblwznmmlibrary->loadRecByRef(refLib, &lib)) {
+		if ((sbeconfig != "") && !inconly) {
+			if ( ((lib->sref == "sbecore_lite") && !StrMod::srefInSrefs(sbeconfig, "lite")) || ((lib->sref == "sbecore_mar") && !StrMod::srefInSrefs(sbeconfig, "mar")) || ((lib->sref == "sbecore_my") && !StrMod::srefInSrefs(sbeconfig, "my"))
+						|| ((lib->sref == "sbecore_pg") && !StrMod::srefInSrefs(sbeconfig, "pg")) ) {
+				delete lib;
+				return;
+			};
+		};
+
+		if (getLibmkf(dbswznm, refLib, refMch, hrefsMch, "incpath", s)) {
+			StrMod::stringToVector(s, ss, ' ');
+			for (unsigned int i = 0; i < ss.size(); i++) incpaths.insert(ss[i]);
+		};
+
+		if (!inconly) {
+			if (getLibmkf(dbswznm, refLib, refMch, hrefsMch, "cppflags", s)) {
+				StrMod::stringToVector(s, ss, ' ');
+				for (unsigned int i = 0; i < ss.size(); i++) cppflags.insert(ss[i]);
+			};
+
+			if (getLibmkf(dbswznm, refLib, refMch, hrefsMch, "linkflags", s)) {
+				StrMod::stringToVector(s, ss, ' ');
+				for (unsigned int i = 0; i < ss.size(); i++) linkflags.insert(ss[i]);
+			};
+
+			if (getLibmkf(dbswznm, refLib, refMch, hrefsMch, "libpath", s)) {
+				StrMod::stringToVector(s, ss, ' ');
+				for (unsigned int i = 0; i < ss.size(); i++) libpaths.insert(ss[i]);
+			};
+
+			if (getLibmkf(dbswznm, refLib, refMch, hrefsMch, "libs", s)) {
+				StrMod::stringToVector(s, ss, ' ');
+
+				if (libss.size() < (ix0 + ss.size())) libss.resize(ix0 + ss.size());
+
+				for (unsigned int i = 0; i < ss.size(); i++) {
+					if (libss[ix0+i] == "") libss[ix0+i] = ss[i];
+					else libss[ix0+i] += " " + ss[i];
+				};
+
+				ix0 += ss.size();
+			};
+		};
+
+		StrMod::srefsToVector(lib->depSrefsWznmMLibrary, ss);
+		for (unsigned int i = 0; i < ss.size(); i++) addLibBySref(dbswznm, ss[i], refMch, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, ix0, inconly);
+
+		delete lib;
+	};
+};
+
+void Wznm::trimLibss(
+			vector<string>& libss
+		) {
+	set<string> unqlibs;
+
+	vector<string> ss;
+	set<string> unqss;
+
+	string s;
+
+	for (unsigned int i = libss.size(); i > 0; i--) {
+		unqss.clear();
+
+		StrMod::stringToVector(libss[i - 1], ss, ' ');
+		for (unsigned int j = 0; j < ss.size(); j++) {
+			if (unqlibs.find(ss[j]) == unqlibs.end()) {
+				unqlibs.insert(ss[j]);
+				unqss.insert(ss[j]);
+			};
+		};
+
+		s = "";
+		for (auto it = unqss.begin(); it != unqss.end(); it++) {
+			if (it != unqss.begin()) s += " ";
+			s += *it;
+		};
+
+		libss[i-1] = s;
+	};
+};
+
+string Wznm::pathToPathstr(
+			const string& path
+			, const bool libNotInc
+			, const string& inclibeq
+		) {
+	string pathstr;
+
+	vector<string> ss;
+
+	StrMod::stringToVector(path, ss, ' ');
+
+	for (unsigned int i = 0; i < ss.size(); i++) {
+		if (i != 0) pathstr += " ";
+
+		if (libNotInc) pathstr += "-L" + inclibeq + ss[i];
+		else pathstr += "-I" + inclibeq + ss[i];
+	};
+
+	return pathstr;
+};
+
+string Wznm::libsToLibstr(
+			const string& libs
+			, const bool statNotDyn
+		) {
+	string libstr;
+
+	vector<string> ss;
+
+	StrMod::stringToVector(libs, ss, ' ');
+
+	for (unsigned int i = 0; i < ss.size(); i++) {
+		if (i != 0) libstr += " ";
+		
+		if (statNotDyn) libstr += "-l:" + ss[i] + ".a";
+		else libstr += "-l" + ss[i].substr(3);
+	};
+
+	return libstr;
+};
+
 void Wznm::getCarincs(
 			DbsWznm* dbswznm
 			, WznmMCard* car
@@ -2315,6 +2503,16 @@ string Wznm::getSubsref(
 		ptr = sref.find(job->sref);
 		if (ptr != string::npos) retval = sref.substr(0, ptr) + sref.substr(ptr + job->sref.length());
 	};
+
+	return retval;
+};
+
+string Wznm::getBitmasksref(
+			const string& bitsref
+		) {
+	string retval = StrMod::uc(bitsref);
+
+	if (retval == bitsref) retval = "_" + retval;
 
 	return retval;
 };

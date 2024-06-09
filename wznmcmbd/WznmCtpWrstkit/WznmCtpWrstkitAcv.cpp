@@ -165,7 +165,7 @@ void WznmCtpWrstkitAcv::writeIexDbs(
 
 	tbl->imeimtablecol.nodes.push_back(new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::KLREF, "", 0, VecWznmVMTablecolFctTbl::VEC, "Klst" + Prjshort + "KMFileMimetype", "srefKMimetype", "mim", VecWznmVMTablecolSubtype::KLREFSNG, VecWznmVMTablecolAxisfct::VOID, "", true, false));
 
-	tco = new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::INTVAL, "", 0, VecWznmVMTablecolFctTbl::VOID, "", "Size", "siz", VecWznmVMTablecolSubtype::USMALLINT, VecWznmVMTablecolAxisfct::VOID, "", true, false); tbl->imeimtablecol.nodes.push_back(tco);
+	tco = new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::INTVAL, "", 0, VecWznmVMTablecolFctTbl::VOID, "", "Size", "siz", VecWznmVMTablecolSubtype::UINT, VecWznmVMTablecolAxisfct::VOID, "", true, false); tbl->imeimtablecol.nodes.push_back(tco);
 	addIAMTablecolTitles(dbswznm, tco, "fil.siz", VecWznmVAMTablecolTitleType::FULL, "stdtco", refLcl, refsLcl, lcls);
 
 	tco = new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::TXTVAL, "", 0, VecWznmVMTablecolFctTbl::VOID, "", "Comment", "cmt", VecWznmVMTablecolSubtype::TXTLONG, VecWznmVMTablecolAxisfct::VOID, "", false, false); tbl->imeimtablecol.nodes.push_back(tco);

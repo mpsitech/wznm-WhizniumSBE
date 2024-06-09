@@ -542,12 +542,18 @@ uint JobWznmIexJtr::enterSgeImport(
 
 					//blkAitm1->refWznmCAMBlockItem: PREVIMP
 					if (blkAitm1->irefRefWznmCAMBlockItem != 0) {
-						for (unsigned int i = 0; i < blk1->imeicamblockitem1.nodes.size(); i++)
-							if (blk1->imeicamblockitem1.nodes[i]->iref == blkAitm1->irefRefWznmCAMBlockItem) {
-								blkAitm1->refWznmCAMBlockItem = blk1->imeicamblockitem1.nodes[i]->ref;
-								break;
+						if (irefs2.find(blkAitm1->irefRefWznmCAMBlockItem) == irefs2.end()) {
+							blkAitmC1 = new ImeitemICAMBlockItem1(blkAitm1->irefRefWznmCAMBlockItem);
+							blkAitmC1->ref = dbswznm->tblwznmcamblockitem->getNewRef();
+							blk1->imeicamblockitem1.nodes.push_back(blkAitmC1);
+							irefs2.insert(blkAitmC1->iref);
+						} else {
+							for (unsigned int i = 0; i < blk1->imeicamblockitem1.nodes.size(); i++) {
+								blkAitmC1 = blk1->imeicamblockitem1.nodes[i];
+								if (blkAitmC1->iref == blkAitm1->irefRefWznmCAMBlockItem) break;
 							};
-						if (blkAitm1->refWznmCAMBlockItem == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(blkAitm1->irefRefWznmCAMBlockItem)}, {"iel","irefRefWznmCAMBlockItem"}, {"lineno",to_string(blkAitm1->lineno)}});
+						};
+						blkAitm1->refWznmCAMBlockItem = blkAitmC1->ref;
 					};
 					blkAitm1->blkRefWznmMBlock = blk1->ref;
 					//blkAitm1->blkNum: CUST
@@ -924,12 +930,18 @@ uint JobWznmIexJtr::enterSgeImport(
 
 				//jobAvar->refWznmCAMJobVar: PREVIMP
 				if (jobAvar->irefRefWznmCAMJobVar != 0) {
-					for (unsigned int i = 0; i < job->imeicamjobvar.nodes.size(); i++)
-						if (job->imeicamjobvar.nodes[i]->iref == jobAvar->irefRefWznmCAMJobVar) {
-							jobAvar->refWznmCAMJobVar = job->imeicamjobvar.nodes[i]->ref;
-							break;
+					if (irefs1.find(jobAvar->irefRefWznmCAMJobVar) == irefs1.end()) {
+						jobAvarC = new ImeitemICAMJobVar(jobAvar->irefRefWznmCAMJobVar);
+						jobAvarC->ref = dbswznm->tblwznmcamjobvar->getNewRef();
+						job->imeicamjobvar.nodes.push_back(jobAvarC);
+						irefs1.insert(jobAvarC->iref);
+					} else {
+						for (unsigned int i = 0; i < job->imeicamjobvar.nodes.size(); i++) {
+							jobAvarC = job->imeicamjobvar.nodes[i];
+							if (jobAvarC->iref == jobAvar->irefRefWznmCAMJobVar) break;
 						};
-					if (jobAvar->refWznmCAMJobVar == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(jobAvar->irefRefWznmCAMJobVar)}, {"iel","irefRefWznmCAMJobVar"}, {"lineno",to_string(jobAvar->lineno)}});
+					};
+					jobAvar->refWznmCAMJobVar = jobAvarC->ref;
 				};
 				jobAvar->jobRefWznmMJob = job->ref;
 				jobAvar->jobNum = (ix1+1); // TBD
@@ -1063,12 +1075,18 @@ uint JobWznmIexJtr::enterSgeImport(
 
 				//blkAitm2->refWznmCAMBlockItem: PREVIMP
 				if (blkAitm2->irefRefWznmCAMBlockItem != 0) {
-					for (unsigned int i = 0; i < blk2->imeicamblockitem2.nodes.size(); i++)
-						if (blk2->imeicamblockitem2.nodes[i]->iref == blkAitm2->irefRefWznmCAMBlockItem) {
-							blkAitm2->refWznmCAMBlockItem = blk2->imeicamblockitem2.nodes[i]->ref;
-							break;
+					if (irefs1.find(blkAitm2->irefRefWznmCAMBlockItem) == irefs1.end()) {
+						blkAitmC2 = new ImeitemICAMBlockItem2(blkAitm2->irefRefWznmCAMBlockItem);
+						blkAitmC2->ref = dbswznm->tblwznmcamblockitem->getNewRef();
+						blk2->imeicamblockitem2.nodes.push_back(blkAitmC2);
+						irefs1.insert(blkAitmC2->iref);
+					} else {
+						for (unsigned int i = 0; i < blk2->imeicamblockitem2.nodes.size(); i++) {
+							blkAitmC2 = blk2->imeicamblockitem2.nodes[i];
+							if (blkAitmC2->iref == blkAitm2->irefRefWznmCAMBlockItem) break;
 						};
-					if (blkAitm2->refWznmCAMBlockItem == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(blkAitm2->irefRefWznmCAMBlockItem)}, {"iel","irefRefWznmCAMBlockItem"}, {"lineno",to_string(blkAitm2->lineno)}});
+					};
+					blkAitm2->refWznmCAMBlockItem = blkAitmC2->ref;
 				};
 				blkAitm2->blkRefWznmMBlock = blk2->ref;
 				//blkAitm2->blkNum: CUST

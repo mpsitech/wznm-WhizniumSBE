@@ -20,9 +20,6 @@ namespace WznmWrdbsDeploy {
 	// IP cust --- IBEGIN
 
 	void writeMake(DbsWznm* dbswznm, std::fstream& outfile, const Sbecore::ubigint refWznmMVersion, WznmMRelease* rls, std::vector<Sbecore::ubigint>& hrefsMch, std::set<std::string>& incpaths);
-
-	void addLibBySref(DbsWznm* dbswznm, const std::string& srefLib, const Sbecore::ubigint refMch, std::vector<Sbecore::ubigint>& hrefsMch, std::set<std::string>& incpaths);
-	std::string pathToPathstr(const std::string& path, const std::string& inclibeq);
 	// IP cust --- IEND
 };
 

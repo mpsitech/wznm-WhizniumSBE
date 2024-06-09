@@ -734,7 +734,9 @@ void WznmWrwebPnl::writePfJsfile(
 
 	// --- mergeDpchEngData
 	outfile << "// IP mergeDpchEngData --- IBEGIN" << endl;
+	outfile << "\t// IP mergeDpchEngData --- BEGIN" << endl;
 	wrSrcblksJs(dbswznm, outfile, pnl->refWznmMJob, "DpchEng" + pnl->sref.substr(3) + "Data");
+	outfile << "\t// IP mergeDpchEngData --- END" << endl;
 	outfile << "// IP mergeDpchEngData --- IEND" << endl;
 
 	// --- handleDpchEng.estapp*

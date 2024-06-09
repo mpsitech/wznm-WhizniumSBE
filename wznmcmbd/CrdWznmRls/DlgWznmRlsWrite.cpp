@@ -197,7 +197,7 @@ void DlgWznmRlsWrite::createEng(
 	bool hasdds, hasua;
 
 	// --- load basics
-	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
 
@@ -424,7 +424,7 @@ void DlgWznmRlsWrite::createOpeng(
 	WznmMOppack* opk = NULL;
 
 	// --- load basics
-	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
 
@@ -626,7 +626,7 @@ void DlgWznmRlsWrite::createCmbeng(
 	uint cnt;
 
 	// --- load basics
-	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
 
@@ -1162,7 +1162,7 @@ void DlgWznmRlsWrite::createDbs(
 	uint cnt;
 
 	// --- load basics and database types
-	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
 
@@ -1409,7 +1409,7 @@ void DlgWznmRlsWrite::createVueapp(
 	bool estapp;
 
 	// --- load basics
-	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
 
@@ -1685,7 +1685,7 @@ void DlgWznmRlsWrite::createWebapp(
 	unsigned int h, h1, h2;
 
 	// --- load basics
-	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
 
@@ -2387,7 +2387,7 @@ void DlgWznmRlsWrite::createApi(
 	uint cnt;
 
 	// --- load basics
-	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
 
@@ -2608,7 +2608,7 @@ void DlgWznmRlsWrite::createJapi(
 	uint cnt;
 
 	// --- load basics
-	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
 
@@ -2816,7 +2816,7 @@ void DlgWznmRlsWrite::createSwapi(
 	uint cnt;
 
 	// --- load basics
-	dbswznm->tblwznmmrelease->loadRecByRef(xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref), &rls);
+	dbswznm->tblwznmmrelease->loadRecByRef(refWznmMRelease, &rls);
 	dbswznm->tblwznmmcomponent->loadRecByRef(rls->refWznmMComponent, &cmp);
 	dbswznm->tblwznmmversion->loadRecByRef(cmp->refWznmMVersion, &ver);
 
@@ -3074,7 +3074,7 @@ void DlgWznmRlsWrite::refreshFia(
 	statshrfia.DldActive = evalFiaDldActive(dbswznm);
 
 	// continffia
-	continffia.Dld = StubWznm::getStubRlsStd(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref)) + ".tgz";
+	continffia.Dld = StubWznm::getStubRlsStd(dbswznm, refWznmMRelease) + ".tgz";
 
 	// IP refreshFia --- REND
 	if (continffia.diff(&oldContinffia).size() != 0) insert(moditems, DpchEngData::CONTINFFIA);
@@ -3616,7 +3616,7 @@ uint DlgWznmRlsWrite::enterSgeAuth(
 
 	// IP enterSgeAuth --- IBEGIN
 
-	if (!license->authRlsWrite(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFRLS, jref))) retval = nextIxVSgeFailure;
+	if (!license->authRlsWrite(dbswznm, refWznmMRelease)) retval = nextIxVSgeFailure;
 
 	// IP enterSgeAuth --- IEND
 

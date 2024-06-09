@@ -1702,7 +1702,8 @@ void WznmWrweb::wrBconrefrJs(
 	if ((cplxtype == Concplxtype::CUS) && StrMod::srefInSrefs(basecon->srefsKOption, "varh")) {
 		outfile << indent << "mytd = " << doc << ".getElementById(\"td" << baseconshort << "\");" << endl;
 		outfile << indent << "mytd.setAttribute(\"height\", \"\" + " << baseconsref << "Height);" << endl;
-		if (basecon->hkIxVTbl == VecWznmVMControlHkTbl::PNL) outfile << indent << "height += " << baseconsref << "Height-100;" << endl;
+		if (StrMod::srefInSrefs(basecon->srefsKOption, "iframe")) outfile << indent << doc << ".getElementById(\"" << baseconsref << "\").setAttribute(\"height\", \"\" + " << baseconsref << "Height);" << endl;
+		if (basecon->hkIxVTbl == VecWznmVMControlHkTbl::PNL) outfile << indent << "height += " << baseconsref << "Height-" << Wznm::getConheight(dbswznm, basecon) << ";" << endl;
 	};
 
 	// - content

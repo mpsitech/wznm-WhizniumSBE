@@ -663,13 +663,13 @@ void WznmCtpWrstkitArm::writeIexDbs(
 	addIAMRelationTitles(dbswznm, rel, "hist", VecWznmVAMRelationTitleType::TOPLFULL, "stdrel", refLcl, refsLcl, lcls);
 
 	imeimrelation.nodes.push_back(new IexWznmDbs::ImeitemIMRelation(43, VecWznmVMRelationBasetype::UM1N, 0, 41, VecWznmVMRelationSupSubrole::TOUM1N, "", "", "Tbl" + Prjshort + "HistRMUserUniversal", "", "", "unv", ""));
-	imeimrelation.nodes.push_back(new IexWznmDbs::ImeitemIMRelation(15, VecWznmVMRelationBasetype::UM1N, 0, 0, VecWznmVMRelationSupSubrole::VOID, "", "", "Tbl" + Prjshort + "HistRMUserUniversal", "", "", "pre", ""));
-	imeimrelation.nodes.push_back(new IexWznmDbs::ImeitemIMRelation(44, VecWznmVMRelationBasetype::UMN, 0, 0, VecWznmVMRelationSupSubrole::VOID, "Tbl" + Prjshort + "MUsergroup", "", "", "", "Tbl" + Prjshort + "RMUsergroupUniversal", "", ""));
+	imeimrelation.nodes.push_back(new IexWznmDbs::ImeitemIMRelation(44, VecWznmVMRelationBasetype::UM1N, 0, 0, VecWznmVMRelationSupSubrole::VOID, "", "", "Tbl" + Prjshort + "HistRMUserUniversal", "", "", "pre", ""));
+	imeimrelation.nodes.push_back(new IexWznmDbs::ImeitemIMRelation(45, VecWznmVMRelationBasetype::UMN, 0, 0, VecWznmVMRelationSupSubrole::VOID, "Tbl" + Prjshort + "MUsergroup", "", "", "", "Tbl" + Prjshort + "RMUsergroupUniversal", "", ""));
 
-	rel = new IexWznmDbs::ImeitemIMRelation(45, VecWznmVMRelationBasetype::_1N, 0, 44, VecWznmVMRelationSupSubrole::FROM1N, "Tbl" + Prjshort + "MUsergroup", "", "Tbl" + Prjshort + "RMUsergroupUniversal", "", "", "", ""); imeimrelation.nodes.push_back(rel);
+	rel = new IexWznmDbs::ImeitemIMRelation(46, VecWznmVMRelationBasetype::_1N, 0, 45, VecWznmVMRelationSupSubrole::FROM1N, "Tbl" + Prjshort + "MUsergroup", "", "Tbl" + Prjshort + "RMUsergroupUniversal", "", "", "", ""); imeimrelation.nodes.push_back(rel);
 	addIAMRelationTitles(dbswznm, rel, "recacc", VecWznmVAMRelationTitleType::TOPLFULL, "stdrel", refLcl, refsLcl, lcls);
 
-	rel = new IexWznmDbs::ImeitemIMRelation(46, VecWznmVMRelationBasetype::UM1N, 0, 44, VecWznmVMRelationSupSubrole::TOUM1N, "", "", "Tbl" + Prjshort + "RMUsergroupUniversal", "", "", "unv", ""); imeimrelation.nodes.push_back(rel);
+	rel = new IexWznmDbs::ImeitemIMRelation(47, VecWznmVMRelationBasetype::UM1N, 0, 45, VecWznmVMRelationSupSubrole::TOUM1N, "", "", "Tbl" + Prjshort + "RMUsergroupUniversal", "", "", "unv", ""); imeimrelation.nodes.push_back(rel);
 
 	if (adr) {
 		if (org || horg) {

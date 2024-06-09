@@ -175,6 +175,16 @@ namespace Wznm {
 	bool getMchmkf(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMMachine, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& x1SrefKTag, std::string& Val);
 	bool getMchpar(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMMachine, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& x1SrefKKey, std::string& Val);
 
+	void addLibBySref(DbsWznm* dbswznm, const std::string& srefLib, const Sbecore::ubigint refMch, std::vector<Sbecore::ubigint>& hrefsMch, std::set<std::string>& incpaths);
+	void addLibByRef(DbsWznm* dbswznm, const Sbecore::ubigint refLib, const Sbecore::ubigint refMch, std::vector<Sbecore::ubigint>& hrefsMch, std::set<std::string>& incpaths);
+
+	void addLibBySref(DbsWznm* dbswznm, const std::string& srefLib, const Sbecore::ubigint refMch, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& sbeconfig, std::set<std::string>& cppflags, std::set<std::string>& linkflags, std::set<std::string>& incpaths, std::set<std::string>& libpaths, std::vector<std::string>& libss, unsigned int ix0, const bool inconly = false);
+	void addLibByRef(DbsWznm* dbswznm, const Sbecore::ubigint refLib, const Sbecore::ubigint refMch, std::vector<Sbecore::ubigint>& hrefsMch, const std::string& sbeconfig, std::set<std::string>& cppflags, std::set<std::string>& linkflags, std::set<std::string>& incpaths, std::set<std::string>& libpaths, std::vector<std::string>& libss, unsigned int ix0, const bool inconly = false);
+
+	void trimLibss(std::vector<std::string>& libss);
+	std::string pathToPathstr(const std::string& path, const bool libNotInc, const std::string& inclibeq);
+	std::string libsToLibstr(const std::string& libs, const bool statNotDyn);
+
 	void getCarincs(DbsWznm* dbswznm, WznmMCard* car, ListWznmMTable& inctbls, std::map<Sbecore::ubigint,std::string>& incconds, std::map<Sbecore::ubigint,std::string>& incsbsconds);
 	void getCarrecpsts(DbsWznm* dbswznm, WznmMCard* car, std::vector<std::string>& carrecpsts);
 	void getCarpsts(const std::vector<std::string>& sesspsts, WznmMCard* car, std::vector<std::string>& carsesspsts, std::vector<std::string>& carpsts, bool& always, bool& never);
@@ -206,6 +216,8 @@ namespace Wznm {
 	void getJobvars(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMJob, ListWznmAMJobVar& vars, std::vector<std::string>& varsrefs, std::vector<bool>& Shrs, std::vector<unsigned int>& Ns);
 	void getJobevals(DbsWznm* dbswznm, WznmMJob* job, std::vector<std::string>& bitsEval, std::vector<std::string>& rulesEval, std::vector<std::string>& exprsEval);
 	std::string getSubsref(WznmMJob* job, const std::string& sref);
+
+	std::string getBitmasksref(const std::string& bitsref);
 
 	int run(const std::string& cmd);
 	bool tgz(const std::string& infolder, const std::string& tgzfile, const bool verbose = false);

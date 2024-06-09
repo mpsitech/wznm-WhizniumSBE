@@ -358,6 +358,8 @@ uint JobWznmIexUix::enterSgeImport(
 	vector<ubigint> refs;
 	ubigint ref;
 
+	set<ubigint> irefs2_2;
+
 	uint cnt;
 
 	WznmMPanel* pnl_r = NULL;
@@ -576,7 +578,7 @@ uint JobWznmIexUix::enterSgeImport(
 					impcnt++;
 				};
 
-				irefs2.clear();
+				irefs2_2.clear();
 
 				for (unsigned int ix2 = 0; ix2 < pnl->imeimcontrol2.nodes.size(); ix2++) {
 					con2 = pnl->imeimcontrol2.nodes[ix2];
@@ -585,8 +587,8 @@ uint JobWznmIexUix::enterSgeImport(
 					if ((con2->ixWznmVIop != VecWznmVIop::INS) && (con2->ixWznmVIop != VecWznmVIop::RETR) && (con2->ixWznmVIop != VecWznmVIop::RETRUPD) && (con2->ixWznmVIop != VecWznmVIop::RMV)) throw SbeException(SbeException::IEX_IOP, {{"iop",con2->srefIxWznmVIop}, {"ime","ImeIMControl2"}, {"lineno",to_string(con2->lineno)}});
 
 					if (con2->iref != 0) {
-						if (irefs2.find(con2->iref) != irefs2.end()) throw SbeException(SbeException::IEX_IDIREF, {{"idiref",to_string(con2->iref)}, {"ime","ImeIMControl2"}, {"lineno",to_string(con2->lineno)}});
-						irefs2.insert(con2->iref);
+						if (irefs2_2.find(con2->iref) != irefs2_2.end()) throw SbeException(SbeException::IEX_IDIREF, {{"idiref",to_string(con2->iref)}, {"ime","ImeIMControl2"}, {"lineno",to_string(con2->lineno)}});
+						irefs2_2.insert(con2->iref);
 					};
 					if ((con2->ixWznmVIop == VecWznmVIop::INS) || (con2->srefIxVBasetype != "")) {
 						con2->ixVBasetype = VecWznmVMControlBasetype::getIx(con2->srefIxVBasetype);
@@ -594,13 +596,18 @@ uint JobWznmIexUix::enterSgeImport(
 					};
 					//con2->refWznmCControl: PREVIMP
 					if (con2->irefRefWznmCControl != 0) {
-						for (unsigned int i = 0; i < pnl->imeimcontrol2.nodes.size(); i++) {
-							if (pnl->imeimcontrol2.nodes[i]->iref == con2->irefRefWznmCControl) {
-								con2->refWznmCControl = pnl->imeimcontrol2.nodes[i]->ref;
-								break;
+						if (irefs2.find(con2->irefRefWznmCControl) == irefs2.end()) {
+							conC2 = new ImeitemICControl2(con2->irefRefWznmCControl);
+							conC2->ref = dbswznm->tblwznmccontrol->getNewRef();
+							pnl->imeiccontrol2.nodes.push_back(conC2);
+							irefs2.insert(conC2->iref);
+						} else {
+							for (unsigned int i = 0; i < pnl->imeiccontrol2.nodes.size(); i++) {
+								conC2 = pnl->imeiccontrol2.nodes[i];
+								if (conC2->iref == con2->irefRefWznmCControl) break;
 							};
 						};
-						if (con2->refWznmCControl == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(con2->irefRefWznmCControl)}, {"iel","irefRefWznmCControl"}, {"lineno",to_string(con2->lineno)}});
+						con2->refWznmCControl = conC2->ref;
 					};
 					con2->hkIxVTbl = VecWznmVMControlHkTbl::PNL;
 					con2->hkUref = pnl->ref;
@@ -953,27 +960,32 @@ uint JobWznmIexUix::enterSgeImport(
 					impcnt++;
 				};
 
-				irefs2.clear();
+				irefs2_2.clear();
 				num2 = 1;
 
 				for (unsigned int ix2 = 0; ix2 < dlg->imeimcontrol3.nodes.size(); ix2++) {
 					con3 = dlg->imeimcontrol3.nodes[ix2];
 
 					if (con3->iref != 0) {
-						if (irefs2.find(con3->iref) != irefs2.end()) throw SbeException(SbeException::IEX_IDIREF, {{"idiref",to_string(con3->iref)}, {"ime","ImeIMControl3"}, {"lineno",to_string(con3->lineno)}});
-						irefs2.insert(con3->iref);
+						if (irefs2_2.find(con3->iref) != irefs2_2.end()) throw SbeException(SbeException::IEX_IDIREF, {{"idiref",to_string(con3->iref)}, {"ime","ImeIMControl3"}, {"lineno",to_string(con3->lineno)}});
+						irefs2_2.insert(con3->iref);
 					};
 					con3->ixVBasetype = VecWznmVMControlBasetype::getIx(con3->srefIxVBasetype);
 					if (con3->ixVBasetype == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",con3->srefIxVBasetype}, {"iel","srefIxVBasetype"}, {"lineno",to_string(con3->lineno)}});
 					//con3->refWznmCControl: PREVIMP
 					if (con3->irefRefWznmCControl != 0) {
-						for (unsigned int i = 0; i < dlg->imeiccontrol3.nodes.size(); i++) {
-							if (dlg->imeiccontrol3.nodes[i]->iref == con3->irefRefWznmCControl) {
-								con3->refWznmCControl = dlg->imeiccontrol3.nodes[i]->ref;
-								break;
+						if (irefs2.find(con3->irefRefWznmCControl) == irefs2.end()) {
+							conC3 = new ImeitemICControl3(con3->irefRefWznmCControl);
+							conC3->ref = dbswznm->tblwznmccontrol->getNewRef();
+							dlg->imeiccontrol3.nodes.push_back(conC3);
+							irefs2.insert(conC3->iref);
+						} else {
+							for (unsigned int i = 0; i < dlg->imeiccontrol3.nodes.size(); i++) {
+								conC3 = dlg->imeiccontrol3.nodes[i];
+								if (conC3->iref == con3->irefRefWznmCControl) break;
 							};
 						};
-						if (con3->refWznmCControl == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(con3->irefRefWznmCControl)}, {"iel","irefRefWznmCControl"}, {"lineno",to_string(con3->lineno)}});
+						con3->refWznmCControl = conC3->ref;
 					};
 					con3->hkIxVTbl = VecWznmVMControlHkTbl::DLG;
 					con3->hkUref = dlg->ref;

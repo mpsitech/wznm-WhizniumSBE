@@ -344,6 +344,8 @@ uint JobWznmIexDbs::enterSgeImport(
 
 	ubigint ref;
 
+	set<ubigint> irefs0_2;
+
 	ubigint refWznmMVersion;
 	string preflcl;
 
@@ -752,25 +754,31 @@ uint JobWznmIexDbs::enterSgeImport(
 		};
 
 		// -- ImeIMRelation
-		irefs0.clear();
+		irefs0_2.clear();
 
 		for (unsigned int ix0 = 0; ix0 < imeimrelation.nodes.size(); ix0++) {
 			rel = imeimrelation.nodes[ix0];
 
-			if (irefs0.find(rel->iref) != irefs0.end()) throw SbeException(SbeException::IEX_IDIREF, {{"idiref",to_string(rel->iref)}, {"ime","ImeIMRelation"}, {"lineno",to_string(rel->lineno)}});
+			if (rel->iref != 0) {
+				if (irefs0_2.find(rel->iref) != irefs0_2.end()) throw SbeException(SbeException::IEX_IDIREF, {{"idiref",to_string(rel->iref)}, {"ime","ImeIMRelation"}, {"lineno",to_string(rel->lineno)}});
+				irefs0_2.insert(rel->iref);
+			};
 			rel->ixVBasetype = VecWznmVMRelationBasetype::getIx(rel->srefIxVBasetype);
 			if (rel->ixVBasetype == 0) throw SbeException(SbeException::IEX_VSREF, {{"vsref",rel->srefIxVBasetype}, {"iel","srefIxVBasetype"}, {"lineno",to_string(rel->lineno)}});
 			//rel->refWznmCRelation: PREVIMP
 			if (rel->irefRefWznmCRelation != 0) {
-				for (unsigned int ix1 = 0; ix1 < imeicrelation.nodes.size(); ix1++) {
-					relC = imeicrelation.nodes[ix1];
-
-					if (relC->iref == rel->irefRefWznmCRelation) {
-						rel->refWznmCRelation = relC->ref;
-						break;
+				if (irefs0.find(rel->irefRefWznmCRelation) == irefs0.end()) {
+					relC = new ImeitemICRelation(rel->irefRefWznmCRelation);
+					relC->ref = dbswznm->tblwznmcrelation->getNewRef();
+					imeicrelation.nodes.push_back(relC);
+					irefs0.insert(relC->iref);
+				} else {
+					for (unsigned int i = 0; i < imeicrelation.nodes.size(); i++) {
+						relC = imeicrelation.nodes[i];
+						if (relC->iref == rel->irefRefWznmCRelation) break;
 					};
 				};
-				if (rel->refWznmCRelation == 0) throw SbeException(SbeException::IEX_IREF, {{"iref",to_string(rel->irefRefWznmCRelation)}, {"iel","irefRefWznmCRelation"}, {"lineno",to_string(rel->lineno)}});
+				rel->refWznmCRelation = relC->ref;
 			};
 			rel->refWznmMVersion = refWznmMVersion;
 			//rel->supRefWznmMRelation: IMPPP

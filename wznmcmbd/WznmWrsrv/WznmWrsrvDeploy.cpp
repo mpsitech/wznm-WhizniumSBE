@@ -86,29 +86,29 @@ DpchRetWznm* WznmWrsrvDeploy::run(
 	if (Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "sysroot", sysroot)) inclibeq = "=";
 
 	// libraries
-	addLibBySref(dbswznm, "microhttpd", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
-	if (cmp->ixVBasetype != VecWznmVMComponentBasetype::CMBENG) addLibBySref(dbswznm, "curl", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	Wznm::addLibBySref(dbswznm, "microhttpd", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	if (cmp->ixVBasetype != VecWznmVMComponentBasetype::CMBENG) Wznm::addLibBySref(dbswznm, "curl", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
 
-	addLibBySref(dbswznm, "sbecore_plus", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	Wznm::addLibBySref(dbswznm, "sbecore_plus", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
 
-	if (StrMod::srefInSrefs(sbeconfig, "mar") && (ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO))) addLibBySref(dbswznm, "sbecore_mar", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
-	else if (StrMod::srefInSrefs(sbeconfig, "my") && (ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MYINNO + VecWznmWMVersionDbmstype::MYISAM))) addLibBySref(dbswznm, "sbecore_my", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	if (StrMod::srefInSrefs(sbeconfig, "mar") && (ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO))) Wznm::addLibBySref(dbswznm, "sbecore_mar", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	else if (StrMod::srefInSrefs(sbeconfig, "my") && (ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MYINNO + VecWznmWMVersionDbmstype::MYISAM))) Wznm::addLibBySref(dbswznm, "sbecore_my", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
 
-	if (StrMod::srefInSrefs(sbeconfig, "pg") && (ver->ixWDbmstype & VecWznmWMVersionDbmstype::PG)) addLibBySref(dbswznm, "sbecore_pg", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
-	if (StrMod::srefInSrefs(sbeconfig, "lite") && (ver->ixWDbmstype & VecWznmWMVersionDbmstype::LITE)) addLibBySref(dbswznm, "sbecore_lite", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	if (StrMod::srefInSrefs(sbeconfig, "pg") && (ver->ixWDbmstype & VecWznmWMVersionDbmstype::PG)) Wznm::addLibBySref(dbswznm, "sbecore_pg", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	if (StrMod::srefInSrefs(sbeconfig, "lite") && (ver->ixWDbmstype & VecWznmWMVersionDbmstype::LITE)) Wznm::addLibBySref(dbswznm, "sbecore_lite", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
 
 	if ((cmp->ixVBasetype == VecWznmVMComponentBasetype::ENG) || (cmp->ixVBasetype == VecWznmVMComponentBasetype::CMBENG)) {
-		addLibBySref(dbswznm, "sbecore_mon", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+		Wznm::addLibBySref(dbswznm, "sbecore_mon", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
 
-		if (ver->ixWOption & VecWznmWMVersionOption::APIMON) addLibBySref(dbswznm, "sbecore_apimon", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
-		if (ver->ixWOption & VecWznmWMVersionOption::DBSMON) addLibBySref(dbswznm, "sbecore_dbsmon", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+		if (ver->ixWOption & VecWznmWMVersionOption::APIMON) Wznm::addLibBySref(dbswznm, "sbecore_apimon", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+		if (ver->ixWOption & VecWznmWMVersionOption::DBSMON) Wznm::addLibBySref(dbswznm, "sbecore_dbsmon", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
 	};
 
-	if (hasdds && (cmp->ixVBasetype != VecWznmVMComponentBasetype::OPENG)) addLibBySref(dbswznm, "ddspub", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
-	if (hasua && (cmp->ixVBasetype != VecWznmVMComponentBasetype::OPENG)) addLibBySref(dbswznm, "uasrv", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	if (hasdds && (cmp->ixVBasetype != VecWznmVMComponentBasetype::OPENG)) Wznm::addLibBySref(dbswznm, "ddspub", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	if (hasua && (cmp->ixVBasetype != VecWznmVMComponentBasetype::OPENG)) Wznm::addLibBySref(dbswznm, "uasrv", rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
 
 	dbswznm->tblwznmrmcomponentmlibrary->loadLibsByCmp(cmp->ref, false, refs);
-	for (unsigned int i = 0; i < refs.size(); i++) addLibByRef(dbswznm, refs[i], rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+	for (unsigned int i = 0; i < refs.size(); i++) Wznm::addLibByRef(dbswznm, refs[i], rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
 
 	if ((cmp->ixVBasetype == VecWznmVMComponentBasetype::ENG) || (cmp->ixVBasetype == VecWznmVMComponentBasetype::CMBENG)) {
 		// cards
@@ -126,10 +126,10 @@ DpchRetWznm* WznmWrsrvDeploy::run(
 		opk = opks.nodes[i];
 
 		dbswznm->tblwznmrmlibrarymoppack->loadLibsByOpk(opk->ref, false, refs);
-		for (unsigned int j = 0; j < refs.size(); j++) addLibByRef(dbswznm, refs[j], rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
+		for (unsigned int j = 0; j < refs.size(); j++) Wznm::addLibByRef(dbswznm, refs[j], rls->refWznmMMachine, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, 0);
 	};
 
-	trimLibss(libss);
+	Wznm::trimLibss(libss);
 
 	// global jobs
 	if ((cmp->ixVBasetype == VecWznmVMComponentBasetype::ENG) || (cmp->ixVBasetype == VecWznmVMComponentBasetype::CMBENG)) {
@@ -397,7 +397,7 @@ void WznmWrsrvDeploy::writeMake(
 
 	// --- incpath.mchspec
 	outfile << "# IP incpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << pathToPathstr(s, false, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << Wznm::pathToPathstr(s, false, inclibeq) << endl;
 	outfile << "# IP incpath.mchspec --- IEND" << endl;
 
 	// --- objs.ddspub*
@@ -438,7 +438,7 @@ void WznmWrsrvDeploy::writeMake(
 
 	// --- libpath.mchspec
 	outfile << "# IP libpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libpath", s)) outfile << "LIBPATH += " << pathToPathstr(s, true, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libpath", s)) outfile << "LIBPATH += " << Wznm::pathToPathstr(s, true, inclibeq) << endl;
 	outfile << "# IP libpath.mchspec --- IEND" << endl;
 
 	// --- libs.cmpspec
@@ -464,12 +464,12 @@ void WznmWrsrvDeploy::writeMake(
 
 	// --- libs.libspec
 	outfile << "# IP libs.libspec --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < libss.size(); i++) outfile << "LIBS += " << libsToLibstr(libss[i], statNotDyn) << endl;
+	for (unsigned int i = 0; i < libss.size(); i++) outfile << "LIBS += " << Wznm::libsToLibstr(libss[i], statNotDyn) << endl;
 	outfile << "# IP libs.libspec --- IEND" << endl;
 
 	// --- libs.mchspec
 	outfile << "# IP libs.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libs", s)) outfile << "LIBS += " << libsToLibstr(s, statNotDyn) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libs", s)) outfile << "LIBS += " << Wznm::libsToLibstr(s, statNotDyn) << endl;
 	outfile << "# IP libs.mchspec --- IEND" << endl;
 };
 
@@ -543,7 +543,7 @@ void WznmWrsrvDeploy::writeMkcar(
 
 	// --- incpath.mchspec
 	outfile << "# IP incpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, refMch, hrefsMch, "incpath", s)) outfile << "INCPATH += " << pathToPathstr(s, false, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, refMch, hrefsMch, "incpath", s)) outfile << "INCPATH += " << Wznm::pathToPathstr(s, false, inclibeq) << endl;
 	outfile << "# IP incpath.mchspec --- IEND" << endl;
 
 	// --- objs
@@ -616,7 +616,7 @@ void WznmWrsrvDeploy::writeMkiex(
 
 	// --- incpath.mchspec
 	outfile << "# IP incpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, refMch, hrefsMch, "incpath", s)) outfile << "INCPATH += " << pathToPathstr(s, false, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, refMch, hrefsMch, "incpath", s)) outfile << "INCPATH += " << Wznm::pathToPathstr(s, false, inclibeq) << endl;
 	outfile << "# IP incpath.mchspec --- IEND" << endl;
 
 	// --- objs
@@ -683,7 +683,7 @@ void WznmWrsrvDeploy::writeMkvec(
 
 	// --- incpath.mchspec
 	outfile << "# IP incpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, refMch, hrefsMch, "incpath", s)) outfile << "INCPATH += " << pathToPathstr(s, false, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, refMch, hrefsMch, "incpath", s)) outfile << "INCPATH += " << Wznm::pathToPathstr(s, false, inclibeq) << endl;
 	outfile << "# IP incpath.mchspec --- IEND" << endl;
 
 	// --- objs
@@ -802,7 +802,7 @@ void WznmWrsrvDeploy::writeMkop(
 
 	// --- incpath.mchspec
 	outfile << "# IP incpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << pathToPathstr(s, false, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << Wznm::pathToPathstr(s, false, inclibeq) << endl;
 	outfile << "# IP incpath.mchspec --- IEND" << endl;
 
 	// --- libpath.libspec
@@ -814,7 +814,7 @@ void WznmWrsrvDeploy::writeMkop(
 
 	// --- libpath.mchspec
 	outfile << "# IP libpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libpath", s)) outfile << "LIBPATH += " << pathToPathstr(s, true, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libpath", s)) outfile << "LIBPATH += " << Wznm::pathToPathstr(s, true, inclibeq) << endl;
 	outfile << "# IP libpath.mchspec --- IEND" << endl;
 
 	// --- libs.cmpspec
@@ -840,12 +840,12 @@ void WznmWrsrvDeploy::writeMkop(
 
 	// --- libs.libspec
 	outfile << "# IP libs.libspec --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < libss.size(); i++) outfile << "LIBS += " << libsToLibstr(libss[i], statNotDyn) << endl;
+	for (unsigned int i = 0; i < libss.size(); i++) outfile << "LIBS += " << Wznm::libsToLibstr(libss[i], statNotDyn) << endl;
 	outfile << "# IP libs.libspec --- IEND" << endl;
 
 	// --- libs.mchspec
 	outfile << "# IP libs.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libs", s)) outfile << "LIBS += " << libsToLibstr(s, statNotDyn) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libs", s)) outfile << "LIBS += " << Wznm::libsToLibstr(s, statNotDyn) << endl;
 	outfile << "# IP libs.mchspec --- IEND" << endl;
 };
 
@@ -917,7 +917,7 @@ void WznmWrsrvDeploy::writeMkopk(
 
 	// --- incpath.mchspec
 	outfile << "# IP incpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, refMch, hrefsMch, "incpath", s)) outfile << "INCPATH += " << pathToPathstr(s, false, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, refMch, hrefsMch, "incpath", s)) outfile << "INCPATH += " << Wznm::pathToPathstr(s, false, inclibeq) << endl;
 	outfile << "# IP incpath.mchspec --- IEND" << endl;
 
 	// --- objs
@@ -1093,7 +1093,7 @@ void WznmWrsrvDeploy::writeMkcmb(
 
 	// --- incpath.mchspec
 	outfile << "# IP incpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << pathToPathstr(s, false, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << Wznm::pathToPathstr(s, false, inclibeq) << endl;
 	outfile << "# IP incpath.mchspec --- IEND" << endl;
 
 	// --- objs.ddspub*
@@ -1125,7 +1125,7 @@ void WznmWrsrvDeploy::writeMkcmb(
 
 	// --- libpath.mchspec
 	outfile << "# IP libpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libpath", s)) outfile << "LIBPATH += " << pathToPathstr(s, true, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libpath", s)) outfile << "LIBPATH += " << Wznm::pathToPathstr(s, true, inclibeq) << endl;
 	outfile << "# IP libpath.mchspec --- IEND" << endl;
 
 	// --- libs.cmpspec
@@ -1162,12 +1162,12 @@ void WznmWrsrvDeploy::writeMkcmb(
 
 	// --- libs.libspec
 	outfile << "# IP libs.libspec --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < libss.size(); i++) outfile << "LIBS += " << libsToLibstr(libss[i], statNotDyn) << endl;
+	for (unsigned int i = 0; i < libss.size(); i++) outfile << "LIBS += " << Wznm::libsToLibstr(libss[i], statNotDyn) << endl;
 	outfile << "# IP libs.libspec --- IEND" << endl;
 
 	// --- libs.mchspec
 	outfile << "# IP libs.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libs", s)) outfile << "LIBS += " << libsToLibstr(s, statNotDyn) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "libs", s)) outfile << "LIBS += " << Wznm::libsToLibstr(s, statNotDyn) << endl;
 	outfile << "# IP libs.mchspec --- IEND" << endl;
 };
 
@@ -1199,160 +1199,5 @@ void WznmWrsrvDeploy::writeMkcmbSh(
 
 	outfile << ")" << endl;
 	outfile << "# IP all --- IEND" << endl;
-};
-
-void WznmWrsrvDeploy::addLibBySref(
-			DbsWznm* dbswznm
-			, const string& srefLib
-			, const ubigint refMch
-			, vector<ubigint>& hrefsMch
-			, const string& sbeconfig
-			, set<string>& cppflags
-			, set<string>& linkflags
-			, set<string>& incpaths
-			, set<string>& libpaths
-			, vector<string>& libss
-			, unsigned int ix0
-		) {
-	ubigint refLib;
-
-	if (dbswznm->tblwznmmlibrary->loadRefBySrf(srefLib, refLib)) addLibByRef(dbswznm, refLib, refMch, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, ix0);
-};
-
-void WznmWrsrvDeploy::addLibByRef(
-			DbsWznm* dbswznm
-			, const ubigint refLib
-			, const ubigint refMch
-			, vector<ubigint>& hrefsMch
-			, const string& sbeconfig
-			, set<string>& cppflags
-			, set<string>& linkflags
-			, set<string>& incpaths
-			, set<string>& libpaths
-			, vector<string>& libss
-			, unsigned int ix0
-		) {
-	WznmMLibrary* lib = NULL;
-
-	vector<string> ss;
-	string s;
-
-	if (dbswznm->tblwznmmlibrary->loadRecByRef(refLib, &lib)) {
-		if ( ((lib->sref == "sbecore_lite") && !StrMod::srefInSrefs(sbeconfig, "lite")) || ((lib->sref == "sbecore_mar") && !StrMod::srefInSrefs(sbeconfig, "mar")) || ((lib->sref == "sbecore_my") && !StrMod::srefInSrefs(sbeconfig, "my"))
-					|| ((lib->sref == "sbecore_pg") && !StrMod::srefInSrefs(sbeconfig, "pg")) ) {
-			delete lib;
-			return;
-		};
-
-		if (Wznm::getLibmkf(dbswznm, refLib, refMch, hrefsMch, "cppflags", s)) {
-			StrMod::stringToVector(s, ss, ' ');
-			for (unsigned int i = 0; i < ss.size(); i++) cppflags.insert(ss[i]);
-		};
-
-		if (Wznm::getLibmkf(dbswznm, refLib, refMch, hrefsMch, "linkflags", s)) {
-			StrMod::stringToVector(s, ss, ' ');
-			for (unsigned int i = 0; i < ss.size(); i++) linkflags.insert(ss[i]);
-		};
-
-		if (Wznm::getLibmkf(dbswznm, refLib, refMch, hrefsMch, "incpath", s)) {
-			StrMod::stringToVector(s, ss, ' ');
-			for (unsigned int i = 0; i < ss.size(); i++) incpaths.insert(ss[i]);
-		};
-
-		if (Wznm::getLibmkf(dbswznm, refLib, refMch, hrefsMch, "libpath", s)) {
-			StrMod::stringToVector(s, ss, ' ');
-			for (unsigned int i = 0; i < ss.size(); i++) libpaths.insert(ss[i]);
-		};
-
-		if (Wznm::getLibmkf(dbswznm, refLib, refMch, hrefsMch, "libs", s)) {
-			StrMod::stringToVector(s, ss, ' ');
-
-			if (libss.size() < (ix0 + ss.size())) libss.resize(ix0 + ss.size());
-
-			for (unsigned int i = 0; i < ss.size(); i++) {
-				if (libss[ix0+i] == "") libss[ix0+i] = ss[i];
-				else libss[ix0+i] += " " + ss[i];
-			};
-
-			ix0 += ss.size();
-		};
-
-		StrMod::srefsToVector(lib->depSrefsWznmMLibrary, ss);
-		for (unsigned int i = 0; i < ss.size(); i++) addLibBySref(dbswznm, ss[i], refMch, hrefsMch, sbeconfig, cppflags, linkflags, incpaths, libpaths, libss, ix0);
-
-		delete lib;
-	};
-};
-
-void WznmWrsrvDeploy::trimLibss(
-			vector<string>& libss
-		) {
-	set<string> unqlibs;
-
-	vector<string> ss;
-	set<string> unqss;
-
-	string s;
-
-	for (unsigned int i = libss.size(); i > 0; i--) {
-		unqss.clear();
-
-		StrMod::stringToVector(libss[i - 1], ss, ' ');
-		for (unsigned int j = 0; j < ss.size(); j++) {
-			if (unqlibs.find(ss[j]) == unqlibs.end()) {
-				unqlibs.insert(ss[j]);
-				unqss.insert(ss[j]);
-			};
-		};
-
-		s = "";
-		for (auto it = unqss.begin(); it != unqss.end(); it++) {
-			if (it != unqss.begin()) s += " ";
-			s += *it;
-		};
-
-		libss[i-1] = s;
-	};
-};
-
-string WznmWrsrvDeploy::pathToPathstr(
-			const string& path
-			, const bool libNotInc
-			, const string& inclibeq
-		) {
-	string pathstr;
-
-	vector<string> ss;
-
-	StrMod::stringToVector(path, ss, ' ');
-
-	for (unsigned int i = 0; i < ss.size(); i++) {
-		if (i != 0) pathstr += " ";
-
-		if (libNotInc) pathstr += "-L" + inclibeq + ss[i];
-		else pathstr += "-I" + inclibeq + ss[i];
-	};
-
-	return pathstr;
-};
-
-string WznmWrsrvDeploy::libsToLibstr(
-			const string& libs
-			, const bool statNotDyn
-		) {
-	string libstr;
-
-	vector<string> ss;
-
-	StrMod::stringToVector(libs, ss, ' ');
-
-	for (unsigned int i = 0; i < ss.size(); i++) {
-		if (i != 0) libstr += " ";
-		
-		if (statNotDyn) libstr += "-l:" + ss[i] + ".a";
-		else libstr += "-l" + ss[i].substr(3);
-	};
-
-	return libstr;
 };
 // IP cust --- IEND

@@ -58,15 +58,15 @@ DpchRetWznm* WznmWrdbsDeploy::run(
 	dbswznm->tblwznmmmachine->loadHrefsup(rls->refWznmMMachine, hrefsMch);
 
 	// libraries
-	addLibBySref(dbswznm, "sbecore", rls->refWznmMMachine, hrefsMch, incpaths);
+	Wznm::addLibBySref(dbswznm, "sbecore", rls->refWznmMMachine, hrefsMch, incpaths);
 
 	Wznm::getMchpar(dbswznm, rls->refWznmMMachine, hrefsMch, "sbeconfig", sbeconfig);
 
-	if (StrMod::srefInSrefs(sbeconfig, "mar") && (ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO))) addLibBySref(dbswznm, "sbecore_mar", rls->refWznmMMachine, hrefsMch, incpaths);
-	else if (StrMod::srefInSrefs(sbeconfig, "my") && (ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MYINNO + VecWznmWMVersionDbmstype::MYISAM))) addLibBySref(dbswznm, "sbecore_my", rls->refWznmMMachine, hrefsMch, incpaths);
+	if (StrMod::srefInSrefs(sbeconfig, "mar") && (ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MARARIA + VecWznmWMVersionDbmstype::MARINNO))) Wznm::addLibBySref(dbswznm, "sbecore_mar", rls->refWznmMMachine, hrefsMch, incpaths);
+	else if (StrMod::srefInSrefs(sbeconfig, "my") && (ver->ixWDbmstype & (VecWznmWMVersionDbmstype::MYINNO + VecWznmWMVersionDbmstype::MYISAM))) Wznm::addLibBySref(dbswznm, "sbecore_my", rls->refWznmMMachine, hrefsMch, incpaths);
 
-	if (StrMod::srefInSrefs(sbeconfig, "pg") && (ver->ixWDbmstype & VecWznmWMVersionDbmstype::PG)) addLibBySref(dbswznm, "sbecore_pg", rls->refWznmMMachine, hrefsMch, incpaths);
-	if (StrMod::srefInSrefs(sbeconfig, "lite" )&& (ver->ixWDbmstype & VecWznmWMVersionDbmstype::LITE)) addLibBySref(dbswznm, "sbecore_lite", rls->refWznmMMachine, hrefsMch, incpaths);
+	if (StrMod::srefInSrefs(sbeconfig, "pg") && (ver->ixWDbmstype & VecWznmWMVersionDbmstype::PG)) Wznm::addLibBySref(dbswznm, "sbecore_pg", rls->refWznmMMachine, hrefsMch, incpaths);
+	if (StrMod::srefInSrefs(sbeconfig, "lite" )&& (ver->ixWDbmstype & VecWznmWMVersionDbmstype::LITE)) Wznm::addLibBySref(dbswznm, "sbecore_lite", rls->refWznmMMachine, hrefsMch, incpaths);
 
 	// write Makefile
 	s = xchg->tmppath + "/" + folder + "/Makefile.ip";
@@ -145,7 +145,7 @@ void WznmWrdbsDeploy::writeMake(
 
 	// --- incpath.mchspec
 	outfile << "# IP incpath.mchspec --- IBEGIN" << endl;
-	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << pathToPathstr(s, inclibeq) << endl;
+	if (Wznm::getMchmkf(dbswznm, rls->refWznmMMachine, hrefsMch, "incpath", s)) outfile << "INCPATH += " << Wznm::pathToPathstr(s, false, inclibeq) << endl;
 	outfile << "# IP incpath.mchspec --- IEND" << endl;
 
 	// --- objs
@@ -177,50 +177,5 @@ void WznmWrdbsDeploy::writeMake(
 	// --- instdynlib*
 	if (dynlib) outfile << "# IP instdynlib --- AFFIRM" << endl;
 	else outfile << "# IP instdynlib --- REMOVE" << endl;
-};
-
-// stripped down version from WznmWrsrvDeploy.cpp
-void WznmWrdbsDeploy::addLibBySref(
-			DbsWznm* dbswznm
-			, const string& srefLib
-			, const ubigint refMch
-			, vector<ubigint>& hrefsMch
-			, set<string>& incpaths
-		) {
-	ubigint refLib;
-	WznmMLibrary* lib = NULL;
-
-	vector<string> ss;
-	string s;
-
-	if (dbswznm->tblwznmmlibrary->loadRefBySrf(srefLib, refLib)) {
-		if (dbswznm->tblwznmmlibrary->loadRecByRef(refLib, &lib)) {
-			if (Wznm::getLibmkf(dbswznm, refLib, refMch, hrefsMch, "incpath", s)) incpaths.insert(s);
-
-			StrMod::srefsToVector(lib->depSrefsWznmMLibrary, ss);
-			for (unsigned int i = 0; i < ss.size(); i++) addLibBySref(dbswznm, ss[i], refMch, hrefsMch, incpaths);
-
-			delete lib;
-		};
-	};
-};
-
-// stripped down version from WznmWrsrvDeploy.cpp
-string WznmWrdbsDeploy::pathToPathstr(
-			const string& path
-			, const string& inclibeq
-		) {
-	string pathstr;
-
-	vector<string> ss;
-
-	StrMod::stringToVector(path, ss, ' ');
-
-	for (unsigned int i = 0; i < ss.size(); i++) {
-		if (i != 0) pathstr += " ";
-		pathstr += "-I" + inclibeq + ss[i];
-	};
-
-	return pathstr;
 };
 // IP cust --- IEND
