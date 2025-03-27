@@ -549,72 +549,68 @@ public class PnlWznmConDetail {
 	  */
 	public class StatShr extends Block {
 
-		public static final int TXFTAGVALID = 1;
-		public static final int TXFOPTVALID = 2;
-		public static final int TXFFEDVITVALID = 3;
-		public static final int TXFFEDTAGVALID = 4;
-		public static final int BUTSAVEAVAIL = 5;
-		public static final int BUTSAVEACTIVE = 6;
-		public static final int TXTSRFACTIVE = 7;
-		public static final int PUPJTIACTIVE = 8;
-		public static final int BUTJTIEDITAVAIL = 9;
-		public static final int TXTTITACTIVE = 10;
-		public static final int PUPTYPACTIVE = 11;
-		public static final int LSTCLUACTIVE = 12;
-		public static final int BUTCLUVIEWACTIVE = 13;
-		public static final int BUTCLUCLUSTERAVAIL = 14;
-		public static final int BUTCLUUNCLUSTERAVAIL = 15;
-		public static final int TXTHKUACTIVE = 16;
-		public static final int BUTHKUVIEWAVAIL = 17;
-		public static final int BUTHKUVIEWACTIVE = 18;
-		public static final int TXTREUACTIVE = 19;
-		public static final int BUTREUVIEWAVAIL = 20;
-		public static final int BUTREUVIEWACTIVE = 21;
-		public static final int TXTSUPACTIVE = 22;
-		public static final int BUTSUPVIEWAVAIL = 23;
-		public static final int BUTSUPVIEWACTIVE = 24;
-		public static final int PUPSCOACTIVE = 25;
-		public static final int PUPSTYACTIVE = 26;
-		public static final int LSTTAGACTIVE = 27;
-		public static final int BUTTAGVIEWAVAIL = 28;
-		public static final int BUTTAGVIEWACTIVE = 29;
-		public static final int TXTSTSACTIVE = 30;
-		public static final int BUTSTSVIEWAVAIL = 31;
-		public static final int BUTSTSVIEWACTIVE = 32;
-		public static final int TXTSHSACTIVE = 33;
-		public static final int BUTSHSVIEWAVAIL = 34;
-		public static final int BUTSHSVIEWACTIVE = 35;
-		public static final int TXFAVLACTIVE = 36;
-		public static final int TXFACTACTIVE = 37;
-		public static final int LSTOPTACTIVE = 38;
-		public static final int BUTOPTEDITAVAIL = 39;
-		public static final int SEPFEDAVAIL = 40;
-		public static final int HDGFEDAVAIL = 41;
-		public static final int BUTFEDNEWAVAIL = 42;
-		public static final int BUTFEDDELETEAVAIL = 43;
-		public static final int TXTFEDSRFAVAIL = 44;
-		public static final int TXTFEDSRFACTIVE = 45;
-		public static final int TXTFEDSRUAVAIL = 46;
-		public static final int TXTFEDSRUACTIVE = 47;
-		public static final int BUTFEDSRUVIEWAVAIL = 48;
-		public static final int BUTFEDSRUVIEWACTIVE = 49;
-		public static final int LSTFEDVITAVAIL = 50;
-		public static final int LSTFEDVITACTIVE = 51;
-		public static final int BUTFEDVITVIEWAVAIL = 52;
-		public static final int BUTFEDVITVIEWACTIVE = 53;
-		public static final int LSTFEDTAGAVAIL = 54;
-		public static final int LSTFEDTAGACTIVE = 55;
+		public static final int BUTSAVEAVAIL = 1;
+		public static final int BUTSAVEACTIVE = 2;
+		public static final int TXTSRFACTIVE = 3;
+		public static final int PUPJTIACTIVE = 4;
+		public static final int BUTJTIEDITAVAIL = 5;
+		public static final int TXTTITACTIVE = 6;
+		public static final int PUPTYPACTIVE = 7;
+		public static final int LSTCLUACTIVE = 8;
+		public static final int BUTCLUVIEWACTIVE = 9;
+		public static final int BUTCLUCLUSTERAVAIL = 10;
+		public static final int BUTCLUUNCLUSTERAVAIL = 11;
+		public static final int TXTHKUACTIVE = 12;
+		public static final int BUTHKUVIEWAVAIL = 13;
+		public static final int BUTHKUVIEWACTIVE = 14;
+		public static final int TXTREUACTIVE = 15;
+		public static final int BUTREUVIEWAVAIL = 16;
+		public static final int BUTREUVIEWACTIVE = 17;
+		public static final int TXTSUPACTIVE = 18;
+		public static final int BUTSUPVIEWAVAIL = 19;
+		public static final int BUTSUPVIEWACTIVE = 20;
+		public static final int PUPSCOACTIVE = 21;
+		public static final int PUPSTYACTIVE = 22;
+		public static final int LSTTAGACTIVE = 23;
+		public static final int TXFTAGVALID = 24;
+		public static final int BUTTAGVIEWAVAIL = 25;
+		public static final int BUTTAGVIEWACTIVE = 26;
+		public static final int TXTSTSACTIVE = 27;
+		public static final int BUTSTSVIEWAVAIL = 28;
+		public static final int BUTSTSVIEWACTIVE = 29;
+		public static final int TXTSHSACTIVE = 30;
+		public static final int BUTSHSVIEWAVAIL = 31;
+		public static final int BUTSHSVIEWACTIVE = 32;
+		public static final int TXFAVLACTIVE = 33;
+		public static final int TXFACTACTIVE = 34;
+		public static final int LSTOPTACTIVE = 35;
+		public static final int TXFOPTVALID = 36;
+		public static final int BUTOPTEDITAVAIL = 37;
+		public static final int SEPFEDAVAIL = 38;
+		public static final int HDGFEDAVAIL = 39;
+		public static final int BUTFEDNEWAVAIL = 40;
+		public static final int BUTFEDDELETEAVAIL = 41;
+		public static final int TXTFEDSRFAVAIL = 42;
+		public static final int TXTFEDSRFACTIVE = 43;
+		public static final int TXTFEDSRUAVAIL = 44;
+		public static final int TXTFEDSRUACTIVE = 45;
+		public static final int BUTFEDSRUVIEWAVAIL = 46;
+		public static final int BUTFEDSRUVIEWACTIVE = 47;
+		public static final int LSTFEDVITAVAIL = 48;
+		public static final int LSTFEDVITACTIVE = 49;
+		public static final int TXFFEDVITVALID = 50;
+		public static final int BUTFEDVITVIEWAVAIL = 51;
+		public static final int BUTFEDVITVIEWACTIVE = 52;
+		public static final int LSTFEDTAGAVAIL = 53;
+		public static final int LSTFEDTAGACTIVE = 54;
+		public static final int TXFFEDTAGVALID = 55;
 		public static final int BUTFEDTAGVIEWAVAIL = 56;
 		public static final int BUTFEDTAGVIEWACTIVE = 57;
 		public static final int TXFFEDCMTAVAIL = 58;
 		public static final int TXFFEDCMTACTIVE = 59;
 
 		public StatShr(
-					boolean TxfTagValid
-					, boolean TxfOptValid
-					, boolean TxfFedVitValid
-					, boolean TxfFedTagValid
-					, boolean ButSaveAvail
+					boolean ButSaveAvail
 					, boolean ButSaveActive
 					, boolean TxtSrfActive
 					, boolean PupJtiActive
@@ -637,6 +633,7 @@ public class PnlWznmConDetail {
 					, boolean PupScoActive
 					, boolean PupStyActive
 					, boolean LstTagActive
+					, boolean TxfTagValid
 					, boolean ButTagViewAvail
 					, boolean ButTagViewActive
 					, boolean TxtStsActive
@@ -648,6 +645,7 @@ public class PnlWznmConDetail {
 					, boolean TxfAvlActive
 					, boolean TxfActActive
 					, boolean LstOptActive
+					, boolean TxfOptValid
 					, boolean ButOptEditAvail
 					, boolean SepFedAvail
 					, boolean HdgFedAvail
@@ -661,19 +659,17 @@ public class PnlWznmConDetail {
 					, boolean ButFedSruViewActive
 					, boolean LstFedVitAvail
 					, boolean LstFedVitActive
+					, boolean TxfFedVitValid
 					, boolean ButFedVitViewAvail
 					, boolean ButFedVitViewActive
 					, boolean LstFedTagAvail
 					, boolean LstFedTagActive
+					, boolean TxfFedTagValid
 					, boolean ButFedTagViewAvail
 					, boolean ButFedTagViewActive
 					, boolean TxfFedCmtAvail
 					, boolean TxfFedCmtActive
 				) {
-			this.TxfTagValid = TxfTagValid;
-			this.TxfOptValid = TxfOptValid;
-			this.TxfFedVitValid = TxfFedVitValid;
-			this.TxfFedTagValid = TxfFedTagValid;
 			this.ButSaveAvail = ButSaveAvail;
 			this.ButSaveActive = ButSaveActive;
 			this.TxtSrfActive = TxtSrfActive;
@@ -697,6 +693,7 @@ public class PnlWznmConDetail {
 			this.PupScoActive = PupScoActive;
 			this.PupStyActive = PupStyActive;
 			this.LstTagActive = LstTagActive;
+			this.TxfTagValid = TxfTagValid;
 			this.ButTagViewAvail = ButTagViewAvail;
 			this.ButTagViewActive = ButTagViewActive;
 			this.TxtStsActive = TxtStsActive;
@@ -708,6 +705,7 @@ public class PnlWznmConDetail {
 			this.TxfAvlActive = TxfAvlActive;
 			this.TxfActActive = TxfActActive;
 			this.LstOptActive = LstOptActive;
+			this.TxfOptValid = TxfOptValid;
 			this.ButOptEditAvail = ButOptEditAvail;
 			this.SepFedAvail = SepFedAvail;
 			this.HdgFedAvail = HdgFedAvail;
@@ -721,22 +719,20 @@ public class PnlWznmConDetail {
 			this.ButFedSruViewActive = ButFedSruViewActive;
 			this.LstFedVitAvail = LstFedVitAvail;
 			this.LstFedVitActive = LstFedVitActive;
+			this.TxfFedVitValid = TxfFedVitValid;
 			this.ButFedVitViewAvail = ButFedVitViewAvail;
 			this.ButFedVitViewActive = ButFedVitViewActive;
 			this.LstFedTagAvail = LstFedTagAvail;
 			this.LstFedTagActive = LstFedTagActive;
+			this.TxfFedTagValid = TxfFedTagValid;
 			this.ButFedTagViewAvail = ButFedTagViewAvail;
 			this.ButFedTagViewActive = ButFedTagViewActive;
 			this.TxfFedCmtAvail = TxfFedCmtAvail;
 			this.TxfFedCmtActive = TxfFedCmtActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(TXFTAGVALID, TXFOPTVALID, TXFFEDVITVALID, TXFFEDTAGVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, PUPSCOACTIVE, PUPSTYACTIVE, LSTTAGACTIVE, BUTTAGVIEWAVAIL, BUTTAGVIEWACTIVE, TXTSTSACTIVE, BUTSTSVIEWAVAIL, BUTSTSVIEWACTIVE, TXTSHSACTIVE, BUTSHSVIEWAVAIL, BUTSHSVIEWACTIVE, TXFAVLACTIVE, TXFACTACTIVE, LSTOPTACTIVE, BUTOPTEDITAVAIL, SEPFEDAVAIL, HDGFEDAVAIL, BUTFEDNEWAVAIL, BUTFEDDELETEAVAIL, TXTFEDSRFAVAIL, TXTFEDSRFACTIVE, TXTFEDSRUAVAIL, TXTFEDSRUACTIVE, BUTFEDSRUVIEWAVAIL, BUTFEDSRUVIEWACTIVE, LSTFEDVITAVAIL, LSTFEDVITACTIVE, BUTFEDVITVIEWAVAIL, BUTFEDVITVIEWACTIVE, LSTFEDTAGAVAIL, LSTFEDTAGACTIVE, BUTFEDTAGVIEWAVAIL, BUTFEDTAGVIEWACTIVE, TXFFEDCMTAVAIL, TXFFEDCMTACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, PUPSCOACTIVE, PUPSTYACTIVE, LSTTAGACTIVE, TXFTAGVALID, BUTTAGVIEWAVAIL, BUTTAGVIEWACTIVE, TXTSTSACTIVE, BUTSTSVIEWAVAIL, BUTSTSVIEWACTIVE, TXTSHSACTIVE, BUTSHSVIEWAVAIL, BUTSHSVIEWACTIVE, TXFAVLACTIVE, TXFACTACTIVE, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL, SEPFEDAVAIL, HDGFEDAVAIL, BUTFEDNEWAVAIL, BUTFEDDELETEAVAIL, TXTFEDSRFAVAIL, TXTFEDSRFACTIVE, TXTFEDSRUAVAIL, TXTFEDSRUACTIVE, BUTFEDSRUVIEWAVAIL, BUTFEDSRUVIEWACTIVE, LSTFEDVITAVAIL, LSTFEDVITACTIVE, TXFFEDVITVALID, BUTFEDVITVIEWAVAIL, BUTFEDVITVIEWACTIVE, LSTFEDTAGAVAIL, LSTFEDTAGACTIVE, TXFFEDTAGVALID, BUTFEDTAGVIEWAVAIL, BUTFEDTAGVIEWACTIVE, TXFFEDCMTAVAIL, TXFFEDCMTACTIVE));
 		};
 
-		public boolean TxfTagValid;
-		public boolean TxfOptValid;
-		public boolean TxfFedVitValid;
-		public boolean TxfFedTagValid;
 		public boolean ButSaveAvail;
 		public boolean ButSaveActive;
 		public boolean TxtSrfActive;
@@ -760,6 +756,7 @@ public class PnlWznmConDetail {
 		public boolean PupScoActive;
 		public boolean PupStyActive;
 		public boolean LstTagActive;
+		public boolean TxfTagValid;
 		public boolean ButTagViewAvail;
 		public boolean ButTagViewActive;
 		public boolean TxtStsActive;
@@ -771,6 +768,7 @@ public class PnlWznmConDetail {
 		public boolean TxfAvlActive;
 		public boolean TxfActActive;
 		public boolean LstOptActive;
+		public boolean TxfOptValid;
 		public boolean ButOptEditAvail;
 		public boolean SepFedAvail;
 		public boolean HdgFedAvail;
@@ -784,10 +782,12 @@ public class PnlWznmConDetail {
 		public boolean ButFedSruViewActive;
 		public boolean LstFedVitAvail;
 		public boolean LstFedVitActive;
+		public boolean TxfFedVitValid;
 		public boolean ButFedVitViewAvail;
 		public boolean ButFedVitViewActive;
 		public boolean LstFedTagAvail;
 		public boolean LstFedTagActive;
+		public boolean TxfFedTagValid;
 		public boolean ButFedTagViewAvail;
 		public boolean ButFedTagViewActive;
 		public boolean TxfFedCmtAvail;
@@ -806,10 +806,6 @@ public class PnlWznmConDetail {
 			String itemtag = "StatitemShrWznmConDetail";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
-				TxfTagValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfTagValid", mask, TXFTAGVALID);
-				TxfOptValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfOptValid", mask, TXFOPTVALID);
-				TxfFedVitValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfFedVitValid", mask, TXFFEDVITVALID);
-				TxfFedTagValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfFedTagValid", mask, TXFFEDTAGVALID);
 				ButSaveAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveAvail", mask, BUTSAVEAVAIL);
 				ButSaveActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveActive", mask, BUTSAVEACTIVE);
 				TxtSrfActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtSrfActive", mask, TXTSRFACTIVE);
@@ -833,6 +829,7 @@ public class PnlWznmConDetail {
 				PupScoActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "PupScoActive", mask, PUPSCOACTIVE);
 				PupStyActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "PupStyActive", mask, PUPSTYACTIVE);
 				LstTagActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstTagActive", mask, LSTTAGACTIVE);
+				TxfTagValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfTagValid", mask, TXFTAGVALID);
 				ButTagViewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButTagViewAvail", mask, BUTTAGVIEWAVAIL);
 				ButTagViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButTagViewActive", mask, BUTTAGVIEWACTIVE);
 				TxtStsActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtStsActive", mask, TXTSTSACTIVE);
@@ -844,6 +841,7 @@ public class PnlWznmConDetail {
 				TxfAvlActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfAvlActive", mask, TXFAVLACTIVE);
 				TxfActActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfActActive", mask, TXFACTACTIVE);
 				LstOptActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstOptActive", mask, LSTOPTACTIVE);
+				TxfOptValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfOptValid", mask, TXFOPTVALID);
 				ButOptEditAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButOptEditAvail", mask, BUTOPTEDITAVAIL);
 				SepFedAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "SepFedAvail", mask, SEPFEDAVAIL);
 				HdgFedAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "HdgFedAvail", mask, HDGFEDAVAIL);
@@ -857,10 +855,12 @@ public class PnlWznmConDetail {
 				ButFedSruViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButFedSruViewActive", mask, BUTFEDSRUVIEWACTIVE);
 				LstFedVitAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstFedVitAvail", mask, LSTFEDVITAVAIL);
 				LstFedVitActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstFedVitActive", mask, LSTFEDVITACTIVE);
+				TxfFedVitValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfFedVitValid", mask, TXFFEDVITVALID);
 				ButFedVitViewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButFedVitViewAvail", mask, BUTFEDVITVIEWAVAIL);
 				ButFedVitViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButFedVitViewActive", mask, BUTFEDVITVIEWACTIVE);
 				LstFedTagAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstFedTagAvail", mask, LSTFEDTAGAVAIL);
 				LstFedTagActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstFedTagActive", mask, LSTFEDTAGACTIVE);
+				TxfFedTagValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfFedTagValid", mask, TXFFEDTAGVALID);
 				ButFedTagViewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButFedTagViewAvail", mask, BUTFEDTAGVIEWAVAIL);
 				ButFedTagViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButFedTagViewActive", mask, BUTFEDTAGVIEWACTIVE);
 				TxfFedCmtAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfFedCmtAvail", mask, TXFFEDCMTAVAIL);
@@ -877,10 +877,6 @@ public class PnlWznmConDetail {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
-			if (TxfTagValid == comp.TxfTagValid) items.add(TXFTAGVALID);
-			if (TxfOptValid == comp.TxfOptValid) items.add(TXFOPTVALID);
-			if (TxfFedVitValid == comp.TxfFedVitValid) items.add(TXFFEDVITVALID);
-			if (TxfFedTagValid == comp.TxfFedTagValid) items.add(TXFFEDTAGVALID);
 			if (ButSaveAvail == comp.ButSaveAvail) items.add(BUTSAVEAVAIL);
 			if (ButSaveActive == comp.ButSaveActive) items.add(BUTSAVEACTIVE);
 			if (TxtSrfActive == comp.TxtSrfActive) items.add(TXTSRFACTIVE);
@@ -904,6 +900,7 @@ public class PnlWznmConDetail {
 			if (PupScoActive == comp.PupScoActive) items.add(PUPSCOACTIVE);
 			if (PupStyActive == comp.PupStyActive) items.add(PUPSTYACTIVE);
 			if (LstTagActive == comp.LstTagActive) items.add(LSTTAGACTIVE);
+			if (TxfTagValid == comp.TxfTagValid) items.add(TXFTAGVALID);
 			if (ButTagViewAvail == comp.ButTagViewAvail) items.add(BUTTAGVIEWAVAIL);
 			if (ButTagViewActive == comp.ButTagViewActive) items.add(BUTTAGVIEWACTIVE);
 			if (TxtStsActive == comp.TxtStsActive) items.add(TXTSTSACTIVE);
@@ -915,6 +912,7 @@ public class PnlWznmConDetail {
 			if (TxfAvlActive == comp.TxfAvlActive) items.add(TXFAVLACTIVE);
 			if (TxfActActive == comp.TxfActActive) items.add(TXFACTACTIVE);
 			if (LstOptActive == comp.LstOptActive) items.add(LSTOPTACTIVE);
+			if (TxfOptValid == comp.TxfOptValid) items.add(TXFOPTVALID);
 			if (ButOptEditAvail == comp.ButOptEditAvail) items.add(BUTOPTEDITAVAIL);
 			if (SepFedAvail == comp.SepFedAvail) items.add(SEPFEDAVAIL);
 			if (HdgFedAvail == comp.HdgFedAvail) items.add(HDGFEDAVAIL);
@@ -928,10 +926,12 @@ public class PnlWznmConDetail {
 			if (ButFedSruViewActive == comp.ButFedSruViewActive) items.add(BUTFEDSRUVIEWACTIVE);
 			if (LstFedVitAvail == comp.LstFedVitAvail) items.add(LSTFEDVITAVAIL);
 			if (LstFedVitActive == comp.LstFedVitActive) items.add(LSTFEDVITACTIVE);
+			if (TxfFedVitValid == comp.TxfFedVitValid) items.add(TXFFEDVITVALID);
 			if (ButFedVitViewAvail == comp.ButFedVitViewAvail) items.add(BUTFEDVITVIEWAVAIL);
 			if (ButFedVitViewActive == comp.ButFedVitViewActive) items.add(BUTFEDVITVIEWACTIVE);
 			if (LstFedTagAvail == comp.LstFedTagAvail) items.add(LSTFEDTAGAVAIL);
 			if (LstFedTagActive == comp.LstFedTagActive) items.add(LSTFEDTAGACTIVE);
+			if (TxfFedTagValid == comp.TxfFedTagValid) items.add(TXFFEDTAGVALID);
 			if (ButFedTagViewAvail == comp.ButFedTagViewAvail) items.add(BUTFEDTAGVIEWAVAIL);
 			if (ButFedTagViewActive == comp.ButFedTagViewActive) items.add(BUTFEDTAGVIEWACTIVE);
 			if (TxfFedCmtAvail == comp.TxfFedCmtAvail) items.add(TXFFEDCMTAVAIL);
@@ -948,7 +948,7 @@ public class PnlWznmConDetail {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(TXFTAGVALID, TXFOPTVALID, TXFFEDVITVALID, TXFFEDTAGVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, PUPSCOACTIVE, PUPSTYACTIVE, LSTTAGACTIVE, BUTTAGVIEWAVAIL, BUTTAGVIEWACTIVE, TXTSTSACTIVE, BUTSTSVIEWAVAIL, BUTSTSVIEWACTIVE, TXTSHSACTIVE, BUTSHSVIEWAVAIL, BUTSHSVIEWACTIVE, TXFAVLACTIVE, TXFACTACTIVE, LSTOPTACTIVE, BUTOPTEDITAVAIL, SEPFEDAVAIL, HDGFEDAVAIL, BUTFEDNEWAVAIL, BUTFEDDELETEAVAIL, TXTFEDSRFAVAIL, TXTFEDSRFACTIVE, TXTFEDSRUAVAIL, TXTFEDSRUACTIVE, BUTFEDSRUVIEWAVAIL, BUTFEDSRUVIEWACTIVE, LSTFEDVITAVAIL, LSTFEDVITACTIVE, BUTFEDVITVIEWAVAIL, BUTFEDVITVIEWACTIVE, LSTFEDTAGAVAIL, LSTFEDTAGACTIVE, BUTFEDTAGVIEWAVAIL, BUTFEDTAGVIEWACTIVE, TXFFEDCMTAVAIL, TXFFEDCMTACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, PUPSCOACTIVE, PUPSTYACTIVE, LSTTAGACTIVE, TXFTAGVALID, BUTTAGVIEWAVAIL, BUTTAGVIEWACTIVE, TXTSTSACTIVE, BUTSTSVIEWAVAIL, BUTSTSVIEWACTIVE, TXTSHSACTIVE, BUTSHSVIEWAVAIL, BUTSHSVIEWACTIVE, TXFAVLACTIVE, TXFACTACTIVE, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL, SEPFEDAVAIL, HDGFEDAVAIL, BUTFEDNEWAVAIL, BUTFEDDELETEAVAIL, TXTFEDSRFAVAIL, TXTFEDSRFACTIVE, TXTFEDSRUAVAIL, TXTFEDSRUACTIVE, BUTFEDSRUVIEWAVAIL, BUTFEDSRUVIEWACTIVE, LSTFEDVITAVAIL, LSTFEDVITACTIVE, TXFFEDVITVALID, BUTFEDVITVIEWAVAIL, BUTFEDVITVIEWACTIVE, LSTFEDTAGAVAIL, LSTFEDTAGACTIVE, TXFFEDTAGVALID, BUTFEDTAGVIEWAVAIL, BUTFEDTAGVIEWACTIVE, TXFFEDCMTAVAIL, TXFFEDCMTACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

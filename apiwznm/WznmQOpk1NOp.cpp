@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQOpk1NOp::WznmQOpk1NOp(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQOpk1NOp::readXML(

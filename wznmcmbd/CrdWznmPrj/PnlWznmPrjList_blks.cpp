@@ -51,9 +51,8 @@ PnlWznmPrjList::ContIac::ContIac(
 			const uint numFTos
 		) :
 			Block()
+			, numFTos(numFTos)
 		{
-	this->numFTos = numFTos;
-
 	mask = {NUMFTOS};
 };
 
@@ -107,7 +106,7 @@ void PnlWznmPrjList::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFTos"] = numFTos;
+	me["numFTos"] = (Json::Value::UInt) numFTos;
 };
 
 void PnlWznmPrjList::ContIac::writeXML(
@@ -159,10 +158,9 @@ PnlWznmPrjList::ContInf::ContInf(
 			, const uint numFCsiQst
 		) :
 			Block()
+			, ButFilterOn(ButFilterOn)
+			, numFCsiQst(numFCsiQst)
 		{
-	this->ButFilterOn = ButFilterOn;
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {BUTFILTERON, NUMFCSIQST};
 };
 
@@ -175,7 +173,7 @@ void PnlWznmPrjList::ContInf::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["ButFilterOn"] = ButFilterOn;
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmPrjList::ContInf::writeXML(
@@ -229,10 +227,9 @@ PnlWznmPrjList::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {IXWZNMVEXPSTATE, BUTDELETEACTIVE};
 };
 
@@ -303,13 +300,13 @@ PnlWznmPrjList::StgIac::StgIac(
 			, const uint TcoGrlWidth
 		) :
 			Block()
+			, TcoGrpWidth(TcoGrpWidth)
+			, TcoOwnWidth(TcoOwnWidth)
+			, TcoShoWidth(TcoShoWidth)
+			, TcoTitWidth(TcoTitWidth)
+			, TcoVerWidth(TcoVerWidth)
+			, TcoGrlWidth(TcoGrlWidth)
 		{
-	this->TcoGrpWidth = TcoGrpWidth;
-	this->TcoOwnWidth = TcoOwnWidth;
-	this->TcoShoWidth = TcoShoWidth;
-	this->TcoTitWidth = TcoTitWidth;
-	this->TcoVerWidth = TcoVerWidth;
-	this->TcoGrlWidth = TcoGrlWidth;
 	mask = {TCOGRPWIDTH, TCOOWNWIDTH, TCOSHOWIDTH, TCOTITWIDTH, TCOVERWIDTH, TCOGRLWIDTH};
 };
 
@@ -373,12 +370,12 @@ void PnlWznmPrjList::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoGrpWidth"] = TcoGrpWidth;
-	me["TcoOwnWidth"] = TcoOwnWidth;
-	me["TcoShoWidth"] = TcoShoWidth;
-	me["TcoTitWidth"] = TcoTitWidth;
-	me["TcoVerWidth"] = TcoVerWidth;
-	me["TcoGrlWidth"] = TcoGrlWidth;
+	me["TcoGrpWidth"] = (Json::Value::UInt) TcoGrpWidth;
+	me["TcoOwnWidth"] = (Json::Value::UInt) TcoOwnWidth;
+	me["TcoShoWidth"] = (Json::Value::UInt) TcoShoWidth;
+	me["TcoTitWidth"] = (Json::Value::UInt) TcoTitWidth;
+	me["TcoVerWidth"] = (Json::Value::UInt) TcoVerWidth;
+	me["TcoGrlWidth"] = (Json::Value::UInt) TcoGrlWidth;
 };
 
 void PnlWznmPrjList::StgIac::writeXML(

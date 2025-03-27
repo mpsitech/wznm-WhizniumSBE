@@ -34,23 +34,23 @@ WznmMTablecol::WznmMTablecol(
 			, const string srefsKOption
 			, const bool Principal
 			, const bool Eponymous
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->tblRefWznmMTable = tblRefWznmMTable;
-	this->tblNum = tblNum;
-	this->refWznmMSubset = refWznmMSubset;
-	this->refWznmMRelation = refWznmMRelation;
-	this->fctIxVTbl = fctIxVTbl;
-	this->fctUref = fctUref;
-	this->sref = sref;
-	this->Short = Short;
-	this->ixVSubtype = ixVSubtype;
-	this->ixVAxisfct = ixVAxisfct;
-	this->srefsKOption = srefsKOption;
-	this->Principal = Principal;
-	this->Eponymous = Eponymous;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, tblRefWznmMTable(tblRefWznmMTable)
+			, tblNum(tblNum)
+			, refWznmMSubset(refWznmMSubset)
+			, refWznmMRelation(refWznmMRelation)
+			, fctIxVTbl(fctIxVTbl)
+			, fctUref(fctUref)
+			, sref(sref)
+			, Short(Short)
+			, ixVSubtype(ixVSubtype)
+			, ixVAxisfct(ixVAxisfct)
+			, srefsKOption(srefsKOption)
+			, Principal(Principal)
+			, Eponymous(Eponymous)
+		{
 };
 
 bool WznmMTablecol::operator==(

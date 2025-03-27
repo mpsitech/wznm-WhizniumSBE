@@ -39,13 +39,13 @@ PnlWznmOpkRec::PnlWznmOpkRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlsqkmnstub = NULL;
-	pnlmnlibrary = NULL;
 	pnlmncomponent = NULL;
+	pnlmnlibrary = NULL;
 	pnlmnjob = NULL;
-	pnlref1nblock = NULL;
 	pnl1nop = NULL;
-	pnlainvarg = NULL;
 	pnlaretval = NULL;
+	pnlref1nblock = NULL;
+	pnlainvarg = NULL;
 	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
@@ -113,8 +113,8 @@ void PnlWznmOpkRec::refresh(
 		if (pnl1nop) {delete pnl1nop; pnl1nop = NULL;};
 		if (pnlref1nblock) {delete pnlref1nblock; pnlref1nblock = NULL;};
 		if (pnlmnjob) {delete pnlmnjob; pnlmnjob = NULL;};
-		if (pnlmncomponent) {delete pnlmncomponent; pnlmncomponent = NULL;};
 		if (pnlmnlibrary) {delete pnlmnlibrary; pnlmnlibrary = NULL;};
+		if (pnlmncomponent) {delete pnlmncomponent; pnlmncomponent = NULL;};
 		if (pnlsqkmnstub) {delete pnlsqkmnstub; pnlsqkmnstub = NULL;};
 	} else {
 		if (!pnldetail) pnldetail = new PnlWznmOpkDetail(xchg, dbswznm, jref, ixWznmVLocale);
@@ -123,8 +123,8 @@ void PnlWznmOpkRec::refresh(
 		if (!pnl1nop) pnl1nop = new PnlWznmOpk1NOp(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlref1nblock) pnlref1nblock = new PnlWznmOpkRef1NBlock(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmnjob) pnlmnjob = new PnlWznmOpkMNJob(xchg, dbswznm, jref, ixWznmVLocale);
-		if (!pnlmncomponent) pnlmncomponent = new PnlWznmOpkMNComponent(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlmnlibrary) pnlmnlibrary = new PnlWznmOpkMNLibrary(xchg, dbswznm, jref, ixWznmVLocale);
+		if (!pnlmncomponent) pnlmncomponent = new PnlWznmOpkMNComponent(xchg, dbswznm, jref, ixWznmVLocale);
 		if (!pnlsqkmnstub) pnlsqkmnstub = new PnlWznmOpkSqkMNStub(xchg, dbswznm, jref, ixWznmVLocale);
 	};
 
@@ -134,8 +134,8 @@ void PnlWznmOpkRec::refresh(
 	statshr.jref1NOp = ((pnl1nop) ? pnl1nop->jref : 0);
 	statshr.jrefRef1NBlock = ((pnlref1nblock) ? pnlref1nblock->jref : 0);
 	statshr.jrefMNJob = ((pnlmnjob) ? pnlmnjob->jref : 0);
-	statshr.jrefMNComponent = ((pnlmncomponent) ? pnlmncomponent->jref : 0);
 	statshr.jrefMNLibrary = ((pnlmnlibrary) ? pnlmnlibrary->jref : 0);
+	statshr.jrefMNComponent = ((pnlmncomponent) ? pnlmncomponent->jref : 0);
 	statshr.jrefSqkMNStub = ((pnlsqkmnstub) ? pnlsqkmnstub->jref : 0);
 
 	// IP refresh --- END
@@ -175,8 +175,8 @@ void PnlWznmOpkRec::updatePreset(
 			if (pnl1nop) pnl1nop->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlref1nblock) pnlref1nblock->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmnjob) pnlmnjob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
-			if (pnlmncomponent) pnlmncomponent->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlmnlibrary) pnlmnlibrary->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+			if (pnlmncomponent) pnlmncomponent->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 			if (pnlsqkmnstub) pnlsqkmnstub->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 		};
 

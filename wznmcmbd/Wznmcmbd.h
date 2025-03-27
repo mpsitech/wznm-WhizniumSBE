@@ -38,6 +38,7 @@
 #include "Wznm.h"
 
 #include "SqkWznmCompl.h"
+#include "SqkWznmComplvis.h"
 #include "SqkWznmCtpGenjtr.h"
 #include "SqkWznmCtpGenui.h"
 #include "SqkWznmCtpWrsrv.h"
@@ -54,6 +55,7 @@
 #include "SqkWznmWrpyapi.h"
 #include "SqkWznmWrsrv.h"
 #include "SqkWznmWrswapi.h"
+#include "SqkWznmWrvis.h"
 #include "SqkWznmWrvue.h"
 #include "SqkWznmWrweb.h"
 
@@ -223,35 +225,6 @@ public:
 };
 
 /**
-	* StgWznmAppearance
-	*/
-class StgWznmAppearance : public Sbecore::Block {
-
-public:
-	static const Sbecore::uint HISTLENGTH = 1;
-	static const Sbecore::uint SUSPSESS = 2;
-	static const Sbecore::uint SESSTTERM = 3;
-	static const Sbecore::uint SESSTWARN = 4;
-	static const Sbecore::uint ROOTTTERM = 5;
-
-public:
-	StgWznmAppearance(const Sbecore::usmallint histlength = 20, const bool suspsess = true, const Sbecore::uint sesstterm = 0, const Sbecore::uint sesstwarn = 0, const Sbecore::uint roottterm = 0);
-
-public:
-	Sbecore::usmallint histlength;
-	bool suspsess;
-	Sbecore::uint sesstterm;
-	Sbecore::uint sesstwarn;
-	Sbecore::uint roottterm;
-
-public:
-	bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
-	void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
-	std::set<Sbecore::uint> comm(const StgWznmAppearance* comp);
-	std::set<Sbecore::uint> diff(const StgWznmAppearance* comp);
-};
-
-/**
 	* StgWznmAppsrv
 	*/
 class StgWznmAppsrv : public Sbecore::Block {
@@ -274,6 +247,35 @@ public:
 	void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
 	std::set<Sbecore::uint> comm(const StgWznmAppsrv* comp);
 	std::set<Sbecore::uint> diff(const StgWznmAppsrv* comp);
+};
+
+/**
+	* StgWznmBehavior
+	*/
+class StgWznmBehavior : public Sbecore::Block {
+
+public:
+	static const Sbecore::uint HISTLENGTH = 1;
+	static const Sbecore::uint SUSPSESS = 2;
+	static const Sbecore::uint SESSTTERM = 3;
+	static const Sbecore::uint SESSTWARN = 4;
+	static const Sbecore::uint ROOTTTERM = 5;
+
+public:
+	StgWznmBehavior(const Sbecore::usmallint histlength = 20, const bool suspsess = true, const Sbecore::uint sesstterm = 0, const Sbecore::uint sesstwarn = 0, const Sbecore::uint roottterm = 0);
+
+public:
+	Sbecore::usmallint histlength;
+	bool suspsess;
+	Sbecore::uint sesstterm;
+	Sbecore::uint sesstwarn;
+	Sbecore::uint roottterm;
+
+public:
+	bool readXML(xmlXPathContext* docctx, std::string basexpath = "", bool addbasetag = false);
+	void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true);
+	std::set<Sbecore::uint> comm(const StgWznmBehavior* comp);
+	std::set<Sbecore::uint> diff(const StgWznmBehavior* comp);
 };
 
 /**
@@ -774,8 +776,8 @@ public:
 	~XchgWznmcmbd();
 
 public:
-	StgWznmAppearance stgwznmappearance;
 	StgWznmAppsrv stgwznmappsrv;
+	StgWznmBehavior stgwznmbehavior;
 	StgWznmcmbd stgwznmcmbd;
 	StgWznmDatabase stgwznmdatabase;
 	StgWznmPath stgwznmpath;

@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmQcoRef1NControl.h"
 #include "PnlWznmQcoDetail.h"
+#include "PnlWznmQcoRef1NControl.h"
 
 #define VecVWznmQcoRecDo PnlWznmQcoRec::VecVDo
 
@@ -174,8 +174,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmQcoRef1NControl* pnlref1ncontrol;
 	PnlWznmQcoDetail* pnldetail;
+	PnlWznmQcoRef1NControl* pnlref1ncontrol;
 
 	WznmMQuerycol recQco;
 

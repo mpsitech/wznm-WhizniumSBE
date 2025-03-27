@@ -45,9 +45,8 @@ PnlWznmMdlRef1NPanel::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -106,9 +105,8 @@ PnlWznmMdlRef1NPanel::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -173,10 +171,9 @@ PnlWznmMdlRef1NPanel::StatShr::StatShr(
 			, const bool ButViewActive
 		) :
 			Block()
+			, ButViewAvail(ButViewAvail)
+			, ButViewActive(ButViewActive)
 		{
-	this->ButViewAvail = ButViewAvail;
-	this->ButViewActive = ButViewActive;
-
 	mask = {BUTVIEWAVAIL, BUTVIEWACTIVE};
 };
 
@@ -237,9 +234,8 @@ PnlWznmMdlRef1NPanel::StgIac::StgIac(
 			const uint TcoRefWidth
 		) :
 			Block()
+			, TcoRefWidth(TcoRefWidth)
 		{
-	this->TcoRefWidth = TcoRefWidth;
-
 	mask = {TCOREFWIDTH};
 };
 
@@ -320,15 +316,14 @@ PnlWznmMdlRef1NPanel::Tag::Tag(
 			, const string& TcoRef
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoRef(TcoRef)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoRef = TcoRef;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOREF};
 };
 
@@ -414,11 +409,11 @@ PnlWznmMdlRef1NPanel::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMMDLREF1NPANELDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmMdlRef1NPanel::DpchAppDo::getSrefsMask() {

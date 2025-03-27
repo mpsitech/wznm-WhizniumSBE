@@ -25,10 +25,10 @@ DpchInvWznmCtpGenjtr::DpchInvWznmCtpGenjtr(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMCTPGENJTR, oref, jref)
+			, srefKCustop(srefKCustop)
+			, refWznmMCapability(refWznmMCapability)
+			, Prjshort(Prjshort)
 		{
-	this->srefKCustop = srefKCustop;
-	this->refWznmMCapability = refWznmMCapability;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmCtpGenjtr::readXML(
@@ -79,8 +79,8 @@ DpchRetWznmCtpGenjtr::DpchRetWznmCtpGenjtr(
 			, const string& logfile
 		) :
 			DpchRetWznm(VecWznmVDpch::DPCHRETWZNMCTPGENJTR, scrOref, scrJref, ixOpVOpres, pdone)
+			, logfile(logfile)
 		{
-	this->logfile = logfile;
 };
 
 void DpchRetWznmCtpGenjtr::readXML(

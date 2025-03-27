@@ -22,11 +22,12 @@ WznmQErrList::WznmQErrList(
 			, const string sref
 			, const string Title
 			, const string stubVerRefWznmMVersion
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->stubVerRefWznmMVersion = stubVerRefWznmMVersion;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, stubVerRefWznmMVersion(stubVerRefWznmMVersion)
+		{
 };
 
 bool WznmQErrList::readXML(

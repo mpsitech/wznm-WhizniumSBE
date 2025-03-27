@@ -27,16 +27,17 @@ WznmQMtdList::WznmQMtdList(
 			, const string stubRefWznmMJob
 			, const bool Execsrv
 			, const string yesnoExecsrv
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->refWznmMJob = refWznmMJob;
-	this->stubRefWznmMJob = stubRefWznmMJob;
-	this->Execsrv = Execsrv;
-	this->yesnoExecsrv = yesnoExecsrv;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, refWznmMJob(refWznmMJob)
+			, stubRefWznmMJob(stubRefWznmMJob)
+			, Execsrv(Execsrv)
+			, yesnoExecsrv(yesnoExecsrv)
+		{
 };
 
 void WznmQMtdList::writeJSON(

@@ -21,12 +21,12 @@ WznmJMSquawkTitle::WznmJMSquawkTitle(
 			, const ubigint refWznmMSquawk
 			, const ubigint x1RefWznmMLocale
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMSquawk = refWznmMSquawk;
-	this->x1RefWznmMLocale = x1RefWznmMLocale;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMSquawk(refWznmMSquawk)
+			, x1RefWznmMLocale(x1RefWznmMLocale)
+			, Title(Title)
+		{
 };
 
 bool WznmJMSquawkTitle::operator==(

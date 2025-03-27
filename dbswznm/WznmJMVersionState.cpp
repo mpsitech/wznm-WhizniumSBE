@@ -21,12 +21,12 @@ WznmJMVersionState::WznmJMVersionState(
 			, const ubigint refWznmMVersion
 			, const uint x1Start
 			, const uint ixVState
-		) {
-
-	this->ref = ref;
-	this->refWznmMVersion = refWznmMVersion;
-	this->x1Start = x1Start;
-	this->ixVState = ixVState;
+		) :
+			ref(ref)
+			, refWznmMVersion(refWznmMVersion)
+			, x1Start(x1Start)
+			, ixVState(ixVState)
+		{
 };
 
 bool WznmJMVersionState::operator==(

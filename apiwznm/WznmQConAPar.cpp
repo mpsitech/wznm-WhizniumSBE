@@ -24,13 +24,14 @@ WznmQConAPar::WznmQConAPar(
 			, const string stubX2RefWznmMLocale
 			, const string osrefKVal
 			, const string titOsrefKVal
-		) {
-	this->jnum = jnum;
-	this->x1SrefKKey = x1SrefKKey;
-	this->titX1SrefKKey = titX1SrefKKey;
-	this->stubX2RefWznmMLocale = stubX2RefWznmMLocale;
-	this->osrefKVal = osrefKVal;
-	this->titOsrefKVal = titOsrefKVal;
+		) :
+			jnum(jnum)
+			, x1SrefKKey(x1SrefKKey)
+			, titX1SrefKKey(titX1SrefKKey)
+			, stubX2RefWznmMLocale(stubX2RefWznmMLocale)
+			, osrefKVal(osrefKVal)
+			, titOsrefKVal(titOsrefKVal)
+		{
 };
 
 bool WznmQConAPar::readXML(

@@ -28,17 +28,17 @@ WznmMCall::WznmMCall(
 			, const uint retIxWznmWArgtype
 			, const string sref
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->invIxWznmWArgtype = invIxWznmWArgtype;
-	this->retIxWznmWArgtype = retIxWznmWArgtype;
-	this->sref = sref;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, invIxWznmWArgtype(invIxWznmWArgtype)
+			, retIxWznmWArgtype(retIxWznmWArgtype)
+			, sref(sref)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMCall::operator==(

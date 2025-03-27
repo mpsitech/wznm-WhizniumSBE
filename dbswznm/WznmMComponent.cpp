@@ -25,14 +25,14 @@ WznmMComponent::WznmMComponent(
 			, const string sref
 			, const string Title
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->sref = sref;
-	this->Title = Title;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, sref(sref)
+			, Title(Title)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMComponent::operator==(

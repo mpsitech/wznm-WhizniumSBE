@@ -302,22 +302,21 @@ public class PnlWznmTagDetail {
 	  */
 	public class StatShr extends Block {
 
-		public static final int TXFGRPVALID = 1;
-		public static final int BUTSAVEAVAIL = 2;
-		public static final int BUTSAVEACTIVE = 3;
-		public static final int TXTSRFACTIVE = 4;
-		public static final int PUPJTIACTIVE = 5;
-		public static final int BUTJTIEDITAVAIL = 6;
-		public static final int TXTTITACTIVE = 7;
-		public static final int TXTCPBACTIVE = 8;
-		public static final int BUTCPBVIEWAVAIL = 9;
-		public static final int BUTCPBVIEWACTIVE = 10;
-		public static final int PUPGRPACTIVE = 11;
+		public static final int BUTSAVEAVAIL = 1;
+		public static final int BUTSAVEACTIVE = 2;
+		public static final int TXTSRFACTIVE = 3;
+		public static final int PUPJTIACTIVE = 4;
+		public static final int BUTJTIEDITAVAIL = 5;
+		public static final int TXTTITACTIVE = 6;
+		public static final int TXTCPBACTIVE = 7;
+		public static final int BUTCPBVIEWAVAIL = 8;
+		public static final int BUTCPBVIEWACTIVE = 9;
+		public static final int PUPGRPACTIVE = 10;
+		public static final int TXFGRPVALID = 11;
 		public static final int BUTGRPEDITAVAIL = 12;
 
 		public StatShr(
-					boolean TxfGrpValid
-					, boolean ButSaveAvail
+					boolean ButSaveAvail
 					, boolean ButSaveActive
 					, boolean TxtSrfActive
 					, boolean PupJtiActive
@@ -327,9 +326,9 @@ public class PnlWznmTagDetail {
 					, boolean ButCpbViewAvail
 					, boolean ButCpbViewActive
 					, boolean PupGrpActive
+					, boolean TxfGrpValid
 					, boolean ButGrpEditAvail
 				) {
-			this.TxfGrpValid = TxfGrpValid;
 			this.ButSaveAvail = ButSaveAvail;
 			this.ButSaveActive = ButSaveActive;
 			this.TxtSrfActive = TxtSrfActive;
@@ -340,12 +339,12 @@ public class PnlWznmTagDetail {
 			this.ButCpbViewAvail = ButCpbViewAvail;
 			this.ButCpbViewActive = ButCpbViewActive;
 			this.PupGrpActive = PupGrpActive;
+			this.TxfGrpValid = TxfGrpValid;
 			this.ButGrpEditAvail = ButGrpEditAvail;
 
-			mask = new HashSet<Integer>(Arrays.asList(TXFGRPVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTCPBACTIVE, BUTCPBVIEWAVAIL, BUTCPBVIEWACTIVE, PUPGRPACTIVE, BUTGRPEDITAVAIL));
+			mask = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTCPBACTIVE, BUTCPBVIEWAVAIL, BUTCPBVIEWACTIVE, PUPGRPACTIVE, TXFGRPVALID, BUTGRPEDITAVAIL));
 		};
 
-		public boolean TxfGrpValid;
 		public boolean ButSaveAvail;
 		public boolean ButSaveActive;
 		public boolean TxtSrfActive;
@@ -356,6 +355,7 @@ public class PnlWznmTagDetail {
 		public boolean ButCpbViewAvail;
 		public boolean ButCpbViewActive;
 		public boolean PupGrpActive;
+		public boolean TxfGrpValid;
 		public boolean ButGrpEditAvail;
 
 		public boolean readXML(
@@ -371,7 +371,6 @@ public class PnlWznmTagDetail {
 			String itemtag = "StatitemShrWznmTagDetail";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
-				TxfGrpValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfGrpValid", mask, TXFGRPVALID);
 				ButSaveAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveAvail", mask, BUTSAVEAVAIL);
 				ButSaveActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveActive", mask, BUTSAVEACTIVE);
 				TxtSrfActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtSrfActive", mask, TXTSRFACTIVE);
@@ -382,6 +381,7 @@ public class PnlWznmTagDetail {
 				ButCpbViewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButCpbViewAvail", mask, BUTCPBVIEWAVAIL);
 				ButCpbViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButCpbViewActive", mask, BUTCPBVIEWACTIVE);
 				PupGrpActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "PupGrpActive", mask, PUPGRPACTIVE);
+				TxfGrpValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfGrpValid", mask, TXFGRPVALID);
 				ButGrpEditAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButGrpEditAvail", mask, BUTGRPEDITAVAIL);
 
 				return true;
@@ -395,7 +395,6 @@ public class PnlWznmTagDetail {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
-			if (TxfGrpValid == comp.TxfGrpValid) items.add(TXFGRPVALID);
 			if (ButSaveAvail == comp.ButSaveAvail) items.add(BUTSAVEAVAIL);
 			if (ButSaveActive == comp.ButSaveActive) items.add(BUTSAVEACTIVE);
 			if (TxtSrfActive == comp.TxtSrfActive) items.add(TXTSRFACTIVE);
@@ -406,6 +405,7 @@ public class PnlWznmTagDetail {
 			if (ButCpbViewAvail == comp.ButCpbViewAvail) items.add(BUTCPBVIEWAVAIL);
 			if (ButCpbViewActive == comp.ButCpbViewActive) items.add(BUTCPBVIEWACTIVE);
 			if (PupGrpActive == comp.PupGrpActive) items.add(PUPGRPACTIVE);
+			if (TxfGrpValid == comp.TxfGrpValid) items.add(TXFGRPVALID);
 			if (ButGrpEditAvail == comp.ButGrpEditAvail) items.add(BUTGRPEDITAVAIL);
 
 			return(items);
@@ -419,7 +419,7 @@ public class PnlWznmTagDetail {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(TXFGRPVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTCPBACTIVE, BUTCPBVIEWAVAIL, BUTCPBVIEWACTIVE, PUPGRPACTIVE, BUTGRPEDITAVAIL));
+			diffitems = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTCPBACTIVE, BUTCPBVIEWAVAIL, BUTCPBVIEWACTIVE, PUPGRPACTIVE, TXFGRPVALID, BUTGRPEDITAVAIL));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

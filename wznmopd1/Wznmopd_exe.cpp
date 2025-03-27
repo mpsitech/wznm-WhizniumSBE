@@ -44,10 +44,11 @@ Wznmopd::Wznmopd(
 	xchg = new XchgWznmopd();
 	xchg->exedir = exedir;
 
-	// 2. load preferences
+	// 2. load then store preferences
 	loadPref();
 
 	if (engsrvportofs != 0) xchg->stgwznmopd.engsrvportofs = engsrvportofs;
+	else storePref();
 
 	// 3. connect to database
 	dbswznm.init(xchg->stgwznmdatabase.ixDbsVDbstype, xchg->stgwznmdatabase.dbspath, xchg->stgwznmdatabase.dbsname, xchg->stgwznmdatabase.ip
@@ -154,10 +155,7 @@ Wznmopd::~Wznmopd() {
 	// 4. terminate shared data
 	xchg->shrdatOpprc.term(xchg);
 
-	// 5. store preferences
-	if (xchg->stgwznmopd.engsrvportofs == 0) storePref();
-
-	// 6. delete exchange object
+	// 5. delete exchange object
 	delete xchg;
 };
 
@@ -314,6 +312,8 @@ void Wznmopd::storePref() {
 	xmlTextWriter* wr = NULL;
 
 	startwriteFile(xchg->exedir + "/PrefWznmopd.xml", &wr);
+	xmlTextWriterSetIndent(wr, 1);
+	xmlTextWriterSetIndentString(wr, BAD_CAST "\t");
 	xmlTextWriterStartElement(wr, BAD_CAST "PrefWznmopd");
 		xchg->stgwznmdatabase.writeXML(wr);
 		xchg->stgwznmopd.writeXML(wr);

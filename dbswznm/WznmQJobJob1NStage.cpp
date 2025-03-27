@@ -24,13 +24,14 @@ WznmQJobJob1NStage::WznmQJobJob1NStage(
 			, const ubigint ref
 			, const string stubRef
 			, const uint jobNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->jobNum = jobNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, jobNum(jobNum)
+		{
 };
 
 void WznmQJobJob1NStage::writeJSON(

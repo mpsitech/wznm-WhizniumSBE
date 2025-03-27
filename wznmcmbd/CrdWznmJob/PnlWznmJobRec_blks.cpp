@@ -43,9 +43,8 @@ PnlWznmJobRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -204,24 +203,23 @@ PnlWznmJobRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefAVar(jrefAVar)
+			, jrefACmd(jrefACmd)
+			, jref1NMethod(jref1NMethod)
+			, jref1NRtjob(jref1NRtjob)
+			, jrefJob1NStage(jrefJob1NStage)
+			, jref1NSensitivity(jref1NSensitivity)
+			, jrefHk1NVector(jrefHk1NVector)
+			, jrefRef1NBlock(jrefRef1NBlock)
+			, jrefMNOppack(jrefMNOppack)
+			, jrefMNOp(jrefMNOp)
+			, jrefSupMNJob(jrefSupMNJob)
+			, jrefSubMNJob(jrefSubMNJob)
+			, pnlsubmnjobAvail(pnlsubmnjobAvail)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefAVar = jrefAVar;
-	this->jrefACmd = jrefACmd;
-	this->jref1NMethod = jref1NMethod;
-	this->jref1NRtjob = jref1NRtjob;
-	this->jrefJob1NStage = jrefJob1NStage;
-	this->jref1NSensitivity = jref1NSensitivity;
-	this->jrefHk1NVector = jrefHk1NVector;
-	this->jrefRef1NBlock = jrefRef1NBlock;
-	this->jrefMNOppack = jrefMNOppack;
-	this->jrefMNOp = jrefMNOp;
-	this->jrefSupMNJob = jrefSupMNJob;
-	this->jrefSubMNJob = jrefSubMNJob;
-	this->pnlsubmnjobAvail = pnlsubmnjobAvail;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAVAR, JREFACMD, JREF1NMETHOD, JREF1NRTJOB, JREFJOB1NSTAGE, JREF1NSENSITIVITY, JREFHK1NVECTOR, JREFREF1NBLOCK, JREFMNOPPACK, JREFMNOP, JREFSUPMNJOB, JREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE};
 };
 

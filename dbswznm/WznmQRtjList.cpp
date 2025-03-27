@@ -29,18 +29,19 @@ WznmQRtjList::WznmQRtjList(
 			, const string stubSupRefWznmMRtjob
 			, const ubigint refWznmMJob
 			, const string stubRefWznmMJob
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->refWznmMApp = refWznmMApp;
-	this->stubRefWznmMApp = stubRefWznmMApp;
-	this->supRefWznmMRtjob = supRefWznmMRtjob;
-	this->stubSupRefWznmMRtjob = stubSupRefWznmMRtjob;
-	this->refWznmMJob = refWznmMJob;
-	this->stubRefWznmMJob = stubRefWznmMJob;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, refWznmMApp(refWznmMApp)
+			, stubRefWznmMApp(stubRefWznmMApp)
+			, supRefWznmMRtjob(supRefWznmMRtjob)
+			, stubSupRefWznmMRtjob(stubSupRefWznmMRtjob)
+			, refWznmMJob(refWznmMJob)
+			, stubRefWznmMJob(stubRefWznmMJob)
+		{
 };
 
 void WznmQRtjList::writeJSON(

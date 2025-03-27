@@ -20,11 +20,11 @@ WznmTMQuerymodMQuery::WznmTMQuerymodMQuery(
 			const ubigint ref
 			, const ubigint refWznmMQuerymod
 			, const ubigint refR
-		) {
-
-	this->ref = ref;
-	this->refWznmMQuerymod = refWznmMQuerymod;
-	this->refR = refR;
+		) :
+			ref(ref)
+			, refWznmMQuerymod(refWznmMQuerymod)
+			, refR(refR)
+		{
 };
 
 bool WznmTMQuerymodMQuery::operator==(

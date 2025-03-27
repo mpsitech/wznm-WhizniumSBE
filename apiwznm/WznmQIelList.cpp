@@ -27,16 +27,17 @@ WznmQIelList::WznmQIelList(
 			, const string stubRefWznmMTablecol
 			, const string srefIxVConvtype
 			, const string titIxVConvtype
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Short = Short;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubImeRefWznmMImpexp = stubImeRefWznmMImpexp;
-	this->stubRefWznmMTablecol = stubRefWznmMTablecol;
-	this->srefIxVConvtype = srefIxVConvtype;
-	this->titIxVConvtype = titIxVConvtype;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Short(Short)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubImeRefWznmMImpexp(stubImeRefWznmMImpexp)
+			, stubRefWznmMTablecol(stubRefWznmMTablecol)
+			, srefIxVConvtype(srefIxVConvtype)
+			, titIxVConvtype(titIxVConvtype)
+		{
 };
 
 bool WznmQIelList::readXML(

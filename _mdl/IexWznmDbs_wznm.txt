@@ -161,6 +161,7 @@ main	void	0	TblWznmMBlock	blk
 		ImeIMVectoritem2.end
 	lin	VecWznmVMBlockRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -196,6 +197,19 @@ main	void	0	TblWznmMBlock	blk
 	ImeIAMTableLoadfct.srefIxVLoadtype	Fctname	ldSrefWznmMTablecol	lbySrefsWznmMTablecol	ordSrefsWznmMTablecol	srefIxVLimtype
 	rst	loadRstByTypVer		ixVBasetype;refWznmMVersion	sref	void
 	ImeIAMTableLoadfct.end
+main	void	0	TblWznmMBox	box
+	ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title
+	sngfull	enus	n	box
+	plfull	enus	n	boxes
+	ImeIAMTableTitle.end
+	ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	idref			void		ref	ref	void	void		false	false
+	tblref		392	tbl	TblWznmMSheet	refWznmMSheet	sht	trefspec	void		true	false
+	vecref		393	vec	VecWznmVMaintable	unvIxWznmVMaintable	mtb	vreflin	void	idx	true	false
+	tblref		393	tbl		unvUref	unv	trefuniv	void		true	false
+	intval			void		x	x	smallint	void		false	false
+	intval			void		y	y	smallint	void		false	false
+	ImeIMTablecol.end
 main	void	0	TblWznmMCall	cal
 	ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title
 	sngfull	enus	n	call
@@ -223,6 +237,7 @@ main	void	0	TblWznmMCall	cal
 		ImeIMVectoritem2.end
 	lin	VecWznmVMCallRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -317,6 +332,7 @@ main	void	0	TblWznmMCard	car
 	ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
 	lin	VecWznmVMCardRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -514,6 +530,7 @@ main	void	0	TblWznmMControl	con
 		ImeIMVectoritem2.end
 	lin	VecWznmVMControlHkTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	hook ref. table
 		full	enus	hook table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -553,6 +570,7 @@ main	void	0	TblWznmMControl	con
 		ImeIMVectoritem2.end
 	lin	VecWznmVMControlRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -590,6 +608,7 @@ main	void	0	TblWznmMControl	con
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
 		bicol			bi-column
 		cap			capitalized title
+		clean			clean/dirty content state
 		ddd			title complement ' ...'
 		flexh			flexible height
 		icon			icon
@@ -598,7 +617,7 @@ main	void	0	TblWznmMControl	con
 		log			logarithmic scale
 		multsel			multiple item selection
 		mdnup			mouse down/up tracking
-		onoff			on and off states
+		onoff			on/off state
 		pwd			password
 		rast			value raster
 		s			small
@@ -607,6 +626,7 @@ main	void	0	TblWznmMControl	con
 		tmdate			date scale
 		tmtime			time scale
 		tricol			tri-column
+		valid			valid/invalid content state
 		xs			extra small
 		ImeIMVectoritem2.end
 	ImeIMVector2.end
@@ -679,6 +699,7 @@ main	void	0	TblWznmMDialog	dlg
 		ImeIMVectoritem2.end
 	lin	VecWznmVMDialogRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -748,6 +769,7 @@ main	void	0	TblWznmMFeed	fed
 	ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
 	lin	VecWznmVMFeedSrcTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	source ref. Table
 		full	enus	source table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -780,6 +802,7 @@ main	void	0	TblWznmMFile	fil
 	ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
 	lin	VecWznmVMFileRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -787,6 +810,7 @@ main	void	0	TblWznmMFile	fil
 		app			accessor app
 		lib			library
 		ver			version
+		vis			visualization
 		ImeIMVectoritem2.end
 	klst	KlstWznmKMFileContent
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
@@ -829,7 +853,7 @@ main	void	0	TblWznmMFile	fil
 	klref			vec	KlstWznmKMFileMimetype	srefKMimetype	mim	klrefsng	void		true	false
 	intval			void		Size	siz	uint	void		true	false
 		ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
-		full	enus	size [kB]
+		full	enus	size [byte]
 		ImeIAMTablecolTitle.end
 	txtval			void		Comment	cmt	txtlong	void		false	false
 		ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
@@ -1013,6 +1037,7 @@ main	void	0	TblWznmMJob	job
 		ImeIMVectoritem2.end
 	lin	VecWznmVMJobRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -1279,6 +1304,7 @@ main	void	0	TblWznmMPanel	pnl
 		ImeIMVectoritem2.end
 	lin	VecWznmVMPanelRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -1370,6 +1396,7 @@ main	void	0	TblWznmMPreset	pst
 	ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
 	lin	VecWznmVMPresetRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -1574,6 +1601,7 @@ main	void	0	TblWznmMQuerymod	qmd
 		ImeIMVectoritem2.end
 	lin	VecWznmVMQuerymodRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -1752,6 +1780,7 @@ main	void	0	TblWznmMRtblock	rtb
 	ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
 	lin	VecWznmVMRtblockRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -1933,6 +1962,20 @@ main	void	0	TblWznmMSession	ses
 		full	enus	IP address
 		ImeIAMTablecolTitle.end
 	ImeIMTablecol.end
+main	void	0	TblWznmMSheet	sht
+	ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title
+	sngfull	enus	n	sheet
+	plfull	enus	n	sheets
+	ImeIAMTableTitle.end
+	ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	idref			void		ref	ref	void	void		false	false
+	tblref		394	tbl	TblWznmMVisual	visRefWznmMVisual	vis	trefspec	void		true	false
+	enum		394	void		visNum	vin	enauto	void		true	false
+	txtval			void		Title	tit	txt50	void		true	true
+		ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
+		full	enus	title
+		ImeIAMTablecolTitle.end
+	ImeIMTablecol.end
 main	void	0	TblWznmMSquawk	sqk
 	ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title
 	sngfull	enus	n	squawk
@@ -1941,6 +1984,7 @@ main	void	0	TblWznmMSquawk	sqk
 	ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
 	lin	VecWznmVMSquawkRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -2156,6 +2200,7 @@ main	void	0	TblWznmMTable	tbl
 		ImeIMVectoritem2.end
 	lin	VecWznmVMTableRefTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	ref. table
 		full	enus	table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -2230,6 +2275,7 @@ main	void	0	TblWznmMTablecol	tco
 		ImeIMVectoritem2.end
 	lin	VecWznmVMTablecolFctTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		full	enus	function ref. table
 		full	enus	function table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -2443,6 +2489,7 @@ main	void	0	TblWznmMVector	vec
 		ImeIMVectoritem2.end
 	lin	VecWznmVMVectorHkTbl		filfed
 		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		short	enus	hook ref. table
 		full	enus	hook table of reference
 		ImeIAMVectorTitle2.end
 		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
@@ -2617,6 +2664,34 @@ main	void	0	TblWznmMVersion	ver
 		full	enus	about text, part 3
 		short	enus	about 3
 		ImeIAMTablecolTitle.end
+	txtval			void		Comment	cmt	txtlong	void		false	false
+		ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
+		full	enus	comment
+		ImeIAMTablecolTitle.end
+	ImeIMTablecol.end
+main	void	0	TblWznmMVisual	vis
+	ImeIAMTableTitle.srefX1IxVType	srefX2RefWznmMLocale	srefIxWznmVGender	Title
+	sngshort	enus	n	visual.
+	sngfull	enus	n	visualization
+	plfull	enus	n	visualizations
+	ImeIAMTableTitle.end
+	ImeIMVector2.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+	lin	VecWznmVMVisualBasetype		filfed
+		ImeIAMVectorTitle2.srefX1IxVType	srefX2RefWznmMLocale	Title
+		full	enus	type
+		ImeIAMVectorTitle2.end
+		ImeIMVectoritem2.sref	Avail	Implied	Title	Comment
+		dbstr			database structure
+		impexp			import/export structure
+		ImeIMVectoritem2.end
+	ImeIMVector2.end
+	ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	idref			void		ref	ref	void	void		false	false
+	grp		395	tbl	TblWznmMUsergroup	grp	grp	void	void		false	false
+	own		396	tbl	TblWznmMUser	own	own	void	void		false	false
+	vecref			vec	VecWznmVMVisualBasetype	ixVBasetype	typ	vreflin	void	idx	true	false
+	tblref		397	tbl	TblWznmMVersion	verRefWznmMVersion	ver	trefspec	void		true	false
+	enum		397	void		verNum	ven	enauto	void		true	false
 	txtval			void		Comment	cmt	txtlong	void		false	false
 		ImeIAMTablecolTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
 		full	enus	comment
@@ -3828,6 +3903,15 @@ rel	rel	229	TblWznmHistRMUserUniversal	husrRunv
 	rec	loadRecByUsrMtbUnvCrd		refWznmMUser;unvIxWznmVMaintable;unvUref;ixWznmVCard		void
 	refs	loadRefsByUsrMtbCrd	ref	refWznmMUser;unvIxWznmVMaintable;ixWznmVCard	start.desc	limofs
 	ImeIAMTableLoadfct.end
+rel	rel	398	TblWznmRMBoxMBox	boxRbox
+	ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
+	idref			void		ref	ref	void	void		false	false
+	tblref		399	tbl	TblWznmMBox	orgRefWznmMBox	org	trefspec	void		true	false
+	tblref		400	tbl	TblWznmMBox	dstRefWznmMBox	dst	trefspec	void		true	false
+	intval			void		orgClk	ocl	utinyint	void		false	false
+	intval			void		dstClk	dcl	utinyint	void		false	false
+	intval			void		Weight	wgt	utinyint	void		false	false
+	ImeIMTablecol.end
 rel	rel	97	TblWznmRMComponentMLibrary	cmpRlib
 	ImeIMTablecol.srefIxVBasetype	srefRefWznmMSubset	irefRefWznmMRelation	srefFctIxVTbl	srefFctUref	sref	Short	srefIxVSubtype	srefIxVAxisfct	srefsKOption	Principal	Eponymous
 	idref			void		ref	ref	void	void		false	false
@@ -4725,7 +4809,6 @@ ImeIMRelation.iref	srefIxVBasetype	irefRefWznmCRelation	irefSupRefWznmMRelation	
 	ImeIAMRelationTitle.end
 382	um1n	0	380	toum1n			TblWznmRMCapabilityUniversal			unv
 383	u1nsub	0	158	sub	TblWznmMImpexpcplx		TblWznmMVector			iex
-383	u1nsub	0	158	sub	TblWznmMImpexp		TblWznmMVector			ime
 384	_1n	0	0	void	TblWznmMApp		TblWznmMEvent				affil
 385	a1n	0	0	void	TblWznmMEvent		TblWznmAMStateTrig
 386	as1n	0	0	void	TblWznmAMStateTrig		TblWznmAMStateAction			tr1
@@ -4734,10 +4817,28 @@ ImeIMRelation.iref	srefIxVBasetype	irefRefWznmCRelation	irefSupRefWznmMRelation	
 389	as1n	0	0	void	TblWznmAMStateTrig		TblWznmAMStateAction			tr4
 390	j	0	0	void	TblWznmAMStateTrig		TblWznmJAMStateTrigCond
 391	aux	0	0	void	TblWznmMState		TblWznmAMStateAction
+392	_1n	0	0	void	TblWznmMSheet		TblWznmMBox				affil
+393	um1n	0	0	void			TblWznmMBox			unv
+394	_1n	0	0	void	TblWznmMVisual		TblWznmMSheet			vis	enum;affil
+395	grp	0	0	void	TblWznmMUsergroup		TblWznmMVisual
+396	own	0	0	void	TblWznmMUser		TblWznmMVisual
+397	_1n	0	0	void	TblWznmMVersion		TblWznmMVisual			ver	enum;affil
+398	mn	0	0	void	TblWznmMBox		TblWznmMBox		TblWznmRMBoxMBox		self
+399	_1n	0	398	from1n	TblWznmMBox		TblWznmRMBoxMBox			org
+	ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
+	toplfull	enus	origin for linked boxes
+	ImeIAMRelationTitle.end
+400	_1n	0	398	to1n	TblWznmMBox		TblWznmRMBoxMBox			dst
+	ImeIAMRelationTitle.srefX1IxVType	srefX2RefWznmMLocale	Title
+	toplfull	enus	destination for linked boxes
+	ImeIAMRelationTitle.end
+401	u1nsub	0	158	sub	TblWznmMImpexp		TblWznmMVector			ime
+402	u1nsub	0	290	sub	TblWznmMVisual		TblWznmMFile			vis
 ImeIMRelation.end
 ImeIMStub.srefIxVBasetype	srefRefWznmMTable	srefRefWznmMSubset	sref	Hierarch	srefRefWznmMTablecol	Localized	Example
 cust	TblWznmMApp		StubWznmAppStd	false		false	WhizniumDBE Iterator (wdbe v0.1.1) variant 3
 tco	TblWznmMBlock		StubWznmBlkStd	false	sref	false	DpchInvBrlyBaseLocloc
+cust	TblWznmMBox		StubWznmBoxStd	false		false	TblBrlyMLocation (32, 65)
 tco	TblWznmMCall		StubWznmCalStd	false	sref	false	CallBrlyLoc.typEq
 tco	TblWznmMCapability		StubWznmCpbSref	false	sref	false	acv
 cust	TblWznmMCapability		StubWznmCpbStd	false		false	acv (acv - managed file archive) - vs. - acv - managed file archive
@@ -4785,6 +4886,7 @@ tco	TblWznmMSubset		StubWznmSbsStd	false	sref	false	SbstBrlyBMLocationAp
 tco	TblWznmMSequence		StubWznmSeqStd	false	Title	false	select mission
 cust	TblWznmMSession		StubWznmSesMenu	false		false	user fkuntz / Franz Kuntz;logged in from 127.0.0.1;since 01-01-2010 10:34
 cust	TblWznmMSession		StubWznmSesStd	false		false	01-01-2010 10:34 from 127.0.0.1
+tco	TblWznmMSheet		StubWznmShtStd	false	Title	false	fine structure
 cust	TblWznmMStage		StubWznmSgeStd	false		false	JobBrlyLocCalc.run
 cust	TblWznmMSquawk		StubWznmSqkStd	false		false	BrlyBase -vs.- JobBrlyLocCalc.run
 tco	TblWznmMStub		StubWznmStbStd	false	sref	false	StubBrlyLocStd
@@ -4801,6 +4903,7 @@ cust	TblWznmMVersion		StubWznmVerShort	false		false	brly v0.1.1 (77)
 cust	TblWznmMVersion		StubWznmVerStd	false		false	BeamRelay v0.1.1 (s/n 77, abandonned)
 tco	TblWznmMVectoritem		StubWznmVitSref	false	sref	false	ap
 cust	TblWznmMVectoritem		StubWznmVitStd	false		false	VecBrlyVMLocationBasetype.ap
+cust	TblWznmMVisual		StubWznmVisStd	false		false	BeamRelay v0.1.1 database structure variant 3
 ImeIMStub.end
 ImeIRMStubMStub.srefSupRefWznmMStub	srefSubRefWznmMStub
 StubWznmVerShort	StubWznmAppStd
@@ -4825,4 +4928,5 @@ StubWznmPrsStd	StubWznmUsrStd
 StubWznmVecStd	StubWznmVitStd
 StubWznmPrjShort	StubWznmVerShort
 StubWznmPrjStd	StubWznmVerStd
+StubWznmVerStd	StubWznmVisStd
 ImeIRMStubMStub.end

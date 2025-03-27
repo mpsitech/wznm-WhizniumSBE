@@ -49,9 +49,8 @@ PnlWznmQryAOrder::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -110,9 +109,8 @@ PnlWznmQryAOrder::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -180,13 +178,12 @@ PnlWznmQryAOrder::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -254,10 +251,9 @@ PnlWznmQryAOrder::StgIac::StgIac(
 			, const uint TcoTcoWidth
 		) :
 			Block()
+			, TcoShoWidth(TcoShoWidth)
+			, TcoTcoWidth(TcoTcoWidth)
 		{
-	this->TcoShoWidth = TcoShoWidth;
-	this->TcoTcoWidth = TcoTcoWidth;
-
 	mask = {TCOSHOWIDTH, TCOTCOWIDTH};
 };
 
@@ -342,16 +338,15 @@ PnlWznmQryAOrder::Tag::Tag(
 			, const string& TcoTco
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoSho(TcoSho)
+			, TcoTco(TcoTco)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoSho = TcoSho;
-	this->TcoTco = TcoTco;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSHO, TCOTCO};
 };
 
@@ -438,11 +433,11 @@ PnlWznmQryAOrder::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMQRYAORDERDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmQryAOrder::DpchAppDo::getSrefsMask() {

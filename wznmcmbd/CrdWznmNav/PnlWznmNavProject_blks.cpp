@@ -58,12 +58,11 @@ PnlWznmNavProject::ContIac::ContIac(
 			, const uint numFLstErr
 		) :
 			Block()
+			, numFLstPrj(numFLstPrj)
+			, numFLstVer(numFLstVer)
+			, numFLstCap(numFLstCap)
+			, numFLstErr(numFLstErr)
 		{
-	this->numFLstPrj = numFLstPrj;
-	this->numFLstVer = numFLstVer;
-	this->numFLstCap = numFLstCap;
-	this->numFLstErr = numFLstErr;
-
 	mask = {NUMFLSTPRJ, NUMFLSTVER, NUMFLSTCAP, NUMFLSTERR};
 };
 
@@ -123,10 +122,10 @@ void PnlWznmNavProject::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFLstPrj"] = numFLstPrj;
-	me["numFLstVer"] = numFLstVer;
-	me["numFLstCap"] = numFLstCap;
-	me["numFLstErr"] = numFLstErr;
+	me["numFLstPrj"] = (Json::Value::UInt) numFLstPrj;
+	me["numFLstVer"] = (Json::Value::UInt) numFLstVer;
+	me["numFLstCap"] = (Json::Value::UInt) numFLstCap;
+	me["numFLstErr"] = (Json::Value::UInt) numFLstErr;
 };
 
 void PnlWznmNavProject::ContIac::writeXML(
@@ -201,10 +200,10 @@ void PnlWznmNavProject::StatApp::writeJSON(
 	me["LstVerAlt"] = LstVerAlt;
 	me["LstCapAlt"] = LstCapAlt;
 	me["LstErrAlt"] = LstErrAlt;
-	me["LstPrjNumFirstdisp"] = LstPrjNumFirstdisp;
-	me["LstVerNumFirstdisp"] = LstVerNumFirstdisp;
-	me["LstCapNumFirstdisp"] = LstCapNumFirstdisp;
-	me["LstErrNumFirstdisp"] = LstErrNumFirstdisp;
+	me["LstPrjNumFirstdisp"] = (Json::Value::UInt) LstPrjNumFirstdisp;
+	me["LstVerNumFirstdisp"] = (Json::Value::UInt) LstVerNumFirstdisp;
+	me["LstCapNumFirstdisp"] = (Json::Value::UInt) LstCapNumFirstdisp;
+	me["LstErrNumFirstdisp"] = (Json::Value::UInt) LstErrNumFirstdisp;
 };
 
 void PnlWznmNavProject::StatApp::writeXML(
@@ -257,18 +256,17 @@ PnlWznmNavProject::StatShr::StatShr(
 			, const bool ButErrNewcrdActive
 		) :
 			Block()
+			, LstPrjAvail(LstPrjAvail)
+			, ButPrjViewActive(ButPrjViewActive)
+			, LstVerAvail(LstVerAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, LstCapAvail(LstCapAvail)
+			, ButCapViewActive(ButCapViewActive)
+			, ButCapNewcrdActive(ButCapNewcrdActive)
+			, LstErrAvail(LstErrAvail)
+			, ButErrViewActive(ButErrViewActive)
+			, ButErrNewcrdActive(ButErrNewcrdActive)
 		{
-	this->LstPrjAvail = LstPrjAvail;
-	this->ButPrjViewActive = ButPrjViewActive;
-	this->LstVerAvail = LstVerAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->LstCapAvail = LstCapAvail;
-	this->ButCapViewActive = ButCapViewActive;
-	this->ButCapNewcrdActive = ButCapNewcrdActive;
-	this->LstErrAvail = LstErrAvail;
-	this->ButErrViewActive = ButErrViewActive;
-	this->ButErrNewcrdActive = ButErrNewcrdActive;
-
 	mask = {LSTPRJAVAIL, BUTPRJVIEWACTIVE, LSTVERAVAIL, BUTVERVIEWACTIVE, LSTCAPAVAIL, BUTCAPVIEWACTIVE, BUTCAPNEWCRDACTIVE, LSTERRAVAIL, BUTERRVIEWACTIVE, BUTERRNEWCRDACTIVE};
 };
 

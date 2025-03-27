@@ -28,17 +28,17 @@ WznmAMQueryClause::WznmAMQueryClause(
 			, const ubigint refWznmMPreset
 			, const ubigint refWznmMVector
 			, const ubigint refWznmMVectoritem
-		) {
-
-	this->ref = ref;
-	this->qryRefWznmMQuery = qryRefWznmMQuery;
-	this->qryNum = qryNum;
-	this->x1RefWznmMQuerymod = x1RefWznmMQuerymod;
-	this->ixVBasetype = ixVBasetype;
-	this->Clause = Clause;
-	this->refWznmMPreset = refWznmMPreset;
-	this->refWznmMVector = refWznmMVector;
-	this->refWznmMVectoritem = refWznmMVectoritem;
+		) :
+			ref(ref)
+			, qryRefWznmMQuery(qryRefWznmMQuery)
+			, qryNum(qryNum)
+			, x1RefWznmMQuerymod(x1RefWznmMQuerymod)
+			, ixVBasetype(ixVBasetype)
+			, Clause(Clause)
+			, refWznmMPreset(refWznmMPreset)
+			, refWznmMVector(refWznmMVector)
+			, refWznmMVectoritem(refWznmMVectoritem)
+		{
 };
 
 bool WznmAMQueryClause::operator==(

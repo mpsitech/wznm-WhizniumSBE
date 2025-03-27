@@ -50,12 +50,11 @@ PnlWznmPstDetail::ContIac::ContIac(
 			, const uint numFPupAty
 		) :
 			Block()
+			, numFPupJti(numFPupJti)
+			, numFPupRet(numFPupRet)
+			, numFPupSco(numFPupSco)
+			, numFPupAty(numFPupAty)
 		{
-	this->numFPupJti = numFPupJti;
-	this->numFPupRet = numFPupRet;
-	this->numFPupSco = numFPupSco;
-	this->numFPupAty = numFPupAty;
-
 	mask = {NUMFPUPJTI, NUMFPUPRET, NUMFPUPSCO, NUMFPUPATY};
 };
 
@@ -115,10 +114,10 @@ void PnlWznmPstDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupJti"] = numFPupJti;
-	me["numFPupRet"] = numFPupRet;
-	me["numFPupSco"] = numFPupSco;
-	me["numFPupAty"] = numFPupAty;
+	me["numFPupJti"] = (Json::Value::UInt) numFPupJti;
+	me["numFPupRet"] = (Json::Value::UInt) numFPupRet;
+	me["numFPupSco"] = (Json::Value::UInt) numFPupSco;
+	me["numFPupAty"] = (Json::Value::UInt) numFPupAty;
 };
 
 void PnlWznmPstDetail::ContIac::writeXML(
@@ -178,12 +177,11 @@ PnlWznmPstDetail::ContInf::ContInf(
 			, const string& TxtReu
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
+			, TxtVer(TxtVer)
+			, TxtReu(TxtReu)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-	this->TxtVer = TxtVer;
-	this->TxtReu = TxtReu;
-
 	mask = {TXTSRF, TXTTIT, TXTVER, TXTREU};
 };
 
@@ -301,22 +299,21 @@ PnlWznmPstDetail::StatShr::StatShr(
 			, const bool PupAtyActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupJtiActive(PupJtiActive)
+			, ButJtiEditAvail(ButJtiEditAvail)
+			, TxtTitActive(TxtTitActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtReuActive(TxtReuActive)
+			, ButReuViewAvail(ButReuViewAvail)
+			, ButReuViewActive(ButReuViewActive)
+			, PupScoActive(PupScoActive)
+			, PupAtyActive(PupAtyActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupJtiActive = PupJtiActive;
-	this->ButJtiEditAvail = ButJtiEditAvail;
-	this->TxtTitActive = TxtTitActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtReuActive = TxtReuActive;
-	this->ButReuViewAvail = ButReuViewAvail;
-	this->ButReuViewActive = ButReuViewActive;
-	this->PupScoActive = PupScoActive;
-	this->PupAtyActive = PupAtyActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, PUPSCOACTIVE, PUPATYACTIVE};
 };
 

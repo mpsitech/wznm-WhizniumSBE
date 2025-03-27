@@ -46,10 +46,9 @@ PnlWznmCapDetail::ContIac::ContIac(
 			, const vector<uint>& numsFLstAtf
 		) :
 			Block()
+			, TxfTit(TxfTit)
+			, numsFLstAtf(numsFLstAtf)
 		{
-	this->TxfTit = TxfTit;
-	this->numsFLstAtf = numsFLstAtf;
-
 	mask = {TXFTIT, NUMSFLSTATF};
 };
 
@@ -162,12 +161,11 @@ PnlWznmCapDetail::ContInf::ContInf(
 			, const string& TxtAtf
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtTpl(TxtTpl)
+			, TxtAtf(TxtAtf)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtTpl = TxtTpl;
-	this->TxtAtf = TxtAtf;
-
 	mask = {TXTSRF, TXTVER, TXTTPL, TXTATF};
 };
 
@@ -248,7 +246,7 @@ void PnlWznmCapDetail::StatApp::writeJSON(
 
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstAtfAlt"] = LstAtfAlt;
-	me["LstAtfNumFirstdisp"] = LstAtfNumFirstdisp;
+	me["LstAtfNumFirstdisp"] = (Json::Value::UInt) LstAtfNumFirstdisp;
 };
 
 void PnlWznmCapDetail::StatApp::writeXML(
@@ -290,19 +288,18 @@ PnlWznmCapDetail::StatShr::StatShr(
 			, const bool LstAtfActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfTitActive(TxfTitActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtTplActive(TxtTplActive)
+			, ButTplViewAvail(ButTplViewAvail)
+			, ButTplViewActive(ButTplViewActive)
+			, LstAtfActive(LstAtfActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfTitActive = TxfTitActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtTplActive = TxtTplActive;
-	this->ButTplViewAvail = ButTplViewAvail;
-	this->ButTplViewActive = ButTplViewActive;
-	this->LstAtfActive = LstAtfActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTTPLACTIVE, BUTTPLVIEWAVAIL, BUTTPLVIEWACTIVE, LSTATFACTIVE};
 };
 

@@ -51,11 +51,10 @@ PnlWznmTagDetail::ContIac::ContIac(
 			, const string& TxfGrp
 		) :
 			Block()
+			, numFPupJti(numFPupJti)
+			, numFPupGrp(numFPupGrp)
+			, TxfGrp(TxfGrp)
 		{
-	this->numFPupJti = numFPupJti;
-	this->numFPupGrp = numFPupGrp;
-	this->TxfGrp = TxfGrp;
-
 	mask = {NUMFPUPJTI, NUMFPUPGRP, TXFGRP};
 };
 
@@ -138,11 +137,10 @@ PnlWznmTagDetail::ContInf::ContInf(
 			, const string& TxtCpb
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
+			, TxtCpb(TxtCpb)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-	this->TxtCpb = TxtCpb;
-
 	mask = {TXTSRF, TXTTIT, TXTCPB};
 };
 
@@ -206,10 +204,9 @@ PnlWznmTagDetail::StatApp::StatApp(
 			, const bool PupGrpAlt
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, PupGrpAlt(PupGrpAlt)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->PupGrpAlt = PupGrpAlt;
-
 	mask = {IXWZNMVEXPSTATE, PUPGRPALT};
 };
 
@@ -272,8 +269,7 @@ set<uint> PnlWznmTagDetail::StatApp::diff(
  ******************************************************************************/
 
 PnlWznmTagDetail::StatShr::StatShr(
-			const bool TxfGrpValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
 			, const bool PupJtiActive
@@ -283,24 +279,24 @@ PnlWznmTagDetail::StatShr::StatShr(
 			, const bool ButCpbViewAvail
 			, const bool ButCpbViewActive
 			, const bool PupGrpActive
+			, const bool TxfGrpValid
 			, const bool ButGrpEditAvail
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupJtiActive(PupJtiActive)
+			, ButJtiEditAvail(ButJtiEditAvail)
+			, TxtTitActive(TxtTitActive)
+			, TxtCpbActive(TxtCpbActive)
+			, ButCpbViewAvail(ButCpbViewAvail)
+			, ButCpbViewActive(ButCpbViewActive)
+			, PupGrpActive(PupGrpActive)
+			, TxfGrpValid(TxfGrpValid)
+			, ButGrpEditAvail(ButGrpEditAvail)
 		{
-	this->TxfGrpValid = TxfGrpValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupJtiActive = PupJtiActive;
-	this->ButJtiEditAvail = ButJtiEditAvail;
-	this->TxtTitActive = TxtTitActive;
-	this->TxtCpbActive = TxtCpbActive;
-	this->ButCpbViewAvail = ButCpbViewAvail;
-	this->ButCpbViewActive = ButCpbViewActive;
-	this->PupGrpActive = PupGrpActive;
-	this->ButGrpEditAvail = ButGrpEditAvail;
-
-	mask = {TXFGRPVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTCPBACTIVE, BUTCPBVIEWAVAIL, BUTCPBVIEWACTIVE, PUPGRPACTIVE, BUTGRPEDITAVAIL};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTCPBACTIVE, BUTCPBVIEWAVAIL, BUTCPBVIEWACTIVE, PUPGRPACTIVE, TXFGRPVALID, BUTGRPEDITAVAIL};
 };
 
 bool PnlWznmTagDetail::StatShr::readXML(
@@ -320,7 +316,6 @@ bool PnlWznmTagDetail::StatShr::readXML(
 	string itemtag = "StatitemShrWznmTagDetail";
 
 	if (basefound) {
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfGrpValid", TxfGrpValid)) add(TXFGRPVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveAvail", ButSaveAvail)) add(BUTSAVEAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveActive", ButSaveActive)) add(BUTSAVEACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxtSrfActive", TxtSrfActive)) add(TXTSRFACTIVE);
@@ -331,6 +326,7 @@ bool PnlWznmTagDetail::StatShr::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButCpbViewAvail", ButCpbViewAvail)) add(BUTCPBVIEWAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButCpbViewActive", ButCpbViewActive)) add(BUTCPBVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "PupGrpActive", PupGrpActive)) add(PUPGRPACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfGrpValid", TxfGrpValid)) add(TXFGRPVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButGrpEditAvail", ButGrpEditAvail)) add(BUTGRPEDITAVAIL);
 	};
 
@@ -342,7 +338,6 @@ set<uint> PnlWznmTagDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfGrpValid == comp->TxfGrpValid) insert(items, TXFGRPVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
@@ -353,6 +348,7 @@ set<uint> PnlWznmTagDetail::StatShr::comm(
 	if (ButCpbViewAvail == comp->ButCpbViewAvail) insert(items, BUTCPBVIEWAVAIL);
 	if (ButCpbViewActive == comp->ButCpbViewActive) insert(items, BUTCPBVIEWACTIVE);
 	if (PupGrpActive == comp->PupGrpActive) insert(items, PUPGRPACTIVE);
+	if (TxfGrpValid == comp->TxfGrpValid) insert(items, TXFGRPVALID);
 	if (ButGrpEditAvail == comp->ButGrpEditAvail) insert(items, BUTGRPEDITAVAIL);
 
 	return(items);
@@ -366,7 +362,7 @@ set<uint> PnlWznmTagDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFGRPVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTCPBACTIVE, BUTCPBVIEWAVAIL, BUTCPBVIEWACTIVE, PUPGRPACTIVE, BUTGRPEDITAVAIL};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTCPBACTIVE, BUTCPBVIEWAVAIL, BUTCPBVIEWACTIVE, PUPGRPACTIVE, TXFGRPVALID, BUTGRPEDITAVAIL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -384,13 +380,12 @@ PnlWznmTagDetail::Tag::Tag(
 			, const string& CptGrp
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTit(CptTit)
+			, CptCpb(CptCpb)
+			, CptGrp(CptGrp)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTit = CptTit;
-	this->CptCpb = CptCpb;
-	this->CptGrp = CptGrp;
-
 	mask = {CPT, CPTSRF, CPTTIT, CPTCPB, CPTGRP};
 };
 
@@ -470,11 +465,11 @@ PnlWznmTagDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMTAGDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmTagDetail::DpchAppDo::getSrefsMask() {

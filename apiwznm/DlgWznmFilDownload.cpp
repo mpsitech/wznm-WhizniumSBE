@@ -43,9 +43,8 @@ DlgWznmFilDownload::ContInf::ContInf(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -104,9 +103,8 @@ DlgWznmFilDownload::StatApp::StatApp(
 			const string& shortMenu
 		) :
 			Block()
+			, shortMenu(shortMenu)
 		{
-	this->shortMenu = shortMenu;
-
 	mask = {SHORTMENU};
 };
 
@@ -167,11 +165,10 @@ DlgWznmFilDownload::Tag::Tag(
 			, const string& ButDne
 		) :
 			Block()
+			, Cpt(Cpt)
+			, Dld(Dld)
+			, ButDne(ButDne)
 		{
-	this->Cpt = Cpt;
-	this->Dld = Dld;
-	this->ButDne = ButDne;
-
 	mask = {CPT, DLD, BUTDNE};
 };
 
@@ -210,11 +207,11 @@ DlgWznmFilDownload::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMFILDOWNLOADDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string DlgWznmFilDownload::DpchAppDo::getSrefsMask() {

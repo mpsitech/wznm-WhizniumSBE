@@ -80,10 +80,9 @@ CrdWznmUtl::ContInf::ContInf(
 			, const string& MrlAppHlp
 		) :
 			Block()
+			, numFSge(numFSge)
+			, MrlAppHlp(MrlAppHlp)
 		{
-	this->numFSge = numFSge;
-	this->MrlAppHlp = MrlAppHlp;
-
 	mask = {NUMFSGE, MRLAPPHLP};
 };
 
@@ -95,7 +94,7 @@ void CrdWznmUtl::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 	me["MrlAppHlp"] = MrlAppHlp;
 };
 
@@ -161,7 +160,7 @@ void CrdWznmUtl::StatApp::writeJSON(
 	me["srefIxWznmVReqitmode"] = VecWznmVReqitmode::getSref(ixWznmVReqitmode);
 	me["latency"] = latency;
 	me["shortMenu"] = shortMenu;
-	me["widthMenu"] = widthMenu;
+	me["widthMenu"] = (Json::Value::UInt) widthMenu;
 	me["initdoneHeadbar"] = initdoneHeadbar;
 };
 
@@ -200,11 +199,10 @@ CrdWznmUtl::StatShr::StatShr(
 			, const ubigint jrefHeadbar
 		) :
 			Block()
+			, jrefDlgextrip(jrefDlgextrip)
+			, jrefDlgmrgip(jrefDlgmrgip)
+			, jrefHeadbar(jrefHeadbar)
 		{
-	this->jrefDlgextrip = jrefDlgextrip;
-	this->jrefDlgmrgip = jrefDlgmrgip;
-	this->jrefHeadbar = jrefHeadbar;
-
 	mask = {JREFDLGEXTRIP, JREFDLGMRGIP, JREFHEADBAR};
 };
 

@@ -28,17 +28,18 @@ WznmQVecList::WznmQVecList(
 			, const string stubHkUref
 			, const string osrefWznmKTaggrp
 			, const string titOsrefWznmKTaggrp
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->srefHkIxVTbl = srefHkIxVTbl;
-	this->titHkIxVTbl = titHkIxVTbl;
-	this->stubHkUref = stubHkUref;
-	this->osrefWznmKTaggrp = osrefWznmKTaggrp;
-	this->titOsrefWznmKTaggrp = titOsrefWznmKTaggrp;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, srefHkIxVTbl(srefHkIxVTbl)
+			, titHkIxVTbl(titHkIxVTbl)
+			, stubHkUref(stubHkUref)
+			, osrefWznmKTaggrp(osrefWznmKTaggrp)
+			, titOsrefWznmKTaggrp(titOsrefWznmKTaggrp)
+		{
 };
 
 bool WznmQVecList::readXML(

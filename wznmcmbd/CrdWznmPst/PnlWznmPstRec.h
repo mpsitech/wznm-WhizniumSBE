@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmPst1NQuerymod.h"
 #include "PnlWznmPstDetail.h"
+#include "PnlWznmPst1NQuerymod.h"
 
 #define VecVWznmPstRecDo PnlWznmPstRec::VecVDo
 
@@ -174,8 +174,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmPst1NQuerymod* pnl1nquerymod;
 	PnlWznmPstDetail* pnldetail;
+	PnlWznmPst1NQuerymod* pnl1nquerymod;
 
 	WznmMPreset recPst;
 

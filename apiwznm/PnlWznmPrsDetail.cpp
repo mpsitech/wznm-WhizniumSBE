@@ -52,16 +52,15 @@ PnlWznmPrsDetail::ContIac::ContIac(
 			, const string& TxfSal
 		) :
 			Block()
+			, TxfTit(TxfTit)
+			, TxfFnm(TxfFnm)
+			, numFPupJln(numFPupJln)
+			, numsFLstDrv(numsFLstDrv)
+			, numFPupSex(numFPupSex)
+			, TxfTel(TxfTel)
+			, TxfEml(TxfEml)
+			, TxfSal(TxfSal)
 		{
-	this->TxfTit = TxfTit;
-	this->TxfFnm = TxfFnm;
-	this->numFPupJln = numFPupJln;
-	this->numsFLstDrv = numsFLstDrv;
-	this->numFPupSex = numFPupSex;
-	this->TxfTel = TxfTel;
-	this->TxfEml = TxfEml;
-	this->TxfSal = TxfSal;
-
 	mask = {TXFTIT, TXFFNM, NUMFPUPJLN, NUMSFLSTDRV, NUMFPUPSEX, TXFTEL, TXFEML, TXFSAL};
 };
 
@@ -158,10 +157,9 @@ PnlWznmPrsDetail::ContInf::ContInf(
 			, const string& TxtDrv
 		) :
 			Block()
+			, TxtLnm(TxtLnm)
+			, TxtDrv(TxtDrv)
 		{
-	this->TxtLnm = TxtLnm;
-	this->TxtDrv = TxtDrv;
-
 	mask = {TXTLNM, TXTDRV};
 };
 
@@ -224,11 +222,10 @@ PnlWznmPrsDetail::StatApp::StatApp(
 			, const uint LstDrvNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstDrvAlt(LstDrvAlt)
+			, LstDrvNumFirstdisp(LstDrvNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstDrvAlt = LstDrvAlt;
-	this->LstDrvNumFirstdisp = LstDrvNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTDRVALT, LSTDRVNUMFIRSTDISP};
 };
 
@@ -307,20 +304,19 @@ PnlWznmPrsDetail::StatShr::StatShr(
 			, const bool TxfSalActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxfTitActive(TxfTitActive)
+			, TxfFnmActive(TxfFnmActive)
+			, PupJlnActive(PupJlnActive)
+			, ButJlnEditAvail(ButJlnEditAvail)
+			, TxtLnmActive(TxtLnmActive)
+			, LstDrvActive(LstDrvActive)
+			, PupSexActive(PupSexActive)
+			, TxfTelActive(TxfTelActive)
+			, TxfEmlActive(TxfEmlActive)
+			, TxfSalActive(TxfSalActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxfTitActive = TxfTitActive;
-	this->TxfFnmActive = TxfFnmActive;
-	this->PupJlnActive = PupJlnActive;
-	this->ButJlnEditAvail = ButJlnEditAvail;
-	this->TxtLnmActive = TxtLnmActive;
-	this->LstDrvActive = LstDrvActive;
-	this->PupSexActive = PupSexActive;
-	this->TxfTelActive = TxfTelActive;
-	this->TxfEmlActive = TxfEmlActive;
-	this->TxfSalActive = TxfSalActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXFTITACTIVE, TXFFNMACTIVE, PUPJLNACTIVE, BUTJLNEDITAVAIL, TXTLNMACTIVE, LSTDRVACTIVE, PUPSEXACTIVE, TXFTELACTIVE, TXFEMLACTIVE, TXFSALACTIVE};
 };
 
@@ -409,17 +405,16 @@ PnlWznmPrsDetail::Tag::Tag(
 			, const string& CptSal
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptTit(CptTit)
+			, CptFnm(CptFnm)
+			, CptLnm(CptLnm)
+			, CptDrv(CptDrv)
+			, CptSex(CptSex)
+			, CptTel(CptTel)
+			, CptEml(CptEml)
+			, CptSal(CptSal)
 		{
-	this->Cpt = Cpt;
-	this->CptTit = CptTit;
-	this->CptFnm = CptFnm;
-	this->CptLnm = CptLnm;
-	this->CptDrv = CptDrv;
-	this->CptSex = CptSex;
-	this->CptTel = CptTel;
-	this->CptEml = CptEml;
-	this->CptSal = CptSal;
-
 	mask = {CPT, CPTTIT, CPTFNM, CPTLNM, CPTDRV, CPTSEX, CPTTEL, CPTEML, CPTSAL};
 };
 
@@ -503,11 +498,11 @@ PnlWznmPrsDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMPRSDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmPrsDetail::DpchAppDo::getSrefsMask() {

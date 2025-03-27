@@ -245,12 +245,14 @@ function handleTxftChange(_doc, ctlsref) {
 function mergeDpchEngData(dom) {
 	var mask = [];
 
+	// IP mergeDpchEngData --- BEGIN
 	if (updateSrcblock(dom, "DpchEngWznmAppDetailData", "ContIacWznmAppDetail", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmAppDetailData", "ContInfWznmAppDetail", srcdoc)) mask.push("continf");
 	if (updateSrcblock(dom, "DpchEngWznmAppDetailData", "FeedFPupTrg", srcdoc)) mask.push("feedFPupTrg");
 	if (updateSrcblock(dom, "DpchEngWznmAppDetailData", "StatAppWznmAppDetail", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmAppDetailData", "StatShrWznmAppDetail", srcdoc)) mask.push("statshr");
 	if (updateSrcblock(dom, "DpchEngWznmAppDetailData", "TagWznmAppDetail", srcdoc)) mask.push("tag");
+	// IP mergeDpchEngData --- END
 
 	return mask;
 };

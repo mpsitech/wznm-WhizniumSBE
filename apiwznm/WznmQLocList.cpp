@@ -21,10 +21,11 @@ WznmQLocList::WznmQLocList(
 			const uint jnum
 			, const string sref
 			, const string Title
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+		{
 };
 
 bool WznmQLocList::readXML(

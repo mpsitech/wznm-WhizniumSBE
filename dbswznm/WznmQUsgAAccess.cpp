@@ -29,18 +29,19 @@ WznmQUsgAAccess::WznmQUsgAAccess(
 			, const uint ixWznmWAccess
 			, const string srefsIxWznmWAccess
 			, const string titsIxWznmWAccess
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->x1IxWznmVFeatgroup = x1IxWznmVFeatgroup;
-	this->srefX1IxWznmVFeatgroup = srefX1IxWznmVFeatgroup;
-	this->titX1IxWznmVFeatgroup = titX1IxWznmVFeatgroup;
-	this->x2FeaSrefUix = x2FeaSrefUix;
-	this->ixWznmWAccess = ixWznmWAccess;
-	this->srefsIxWznmWAccess = srefsIxWznmWAccess;
-	this->titsIxWznmWAccess = titsIxWznmWAccess;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, x1IxWznmVFeatgroup(x1IxWznmVFeatgroup)
+			, srefX1IxWznmVFeatgroup(srefX1IxWznmVFeatgroup)
+			, titX1IxWznmVFeatgroup(titX1IxWznmVFeatgroup)
+			, x2FeaSrefUix(x2FeaSrefUix)
+			, ixWznmWAccess(ixWznmWAccess)
+			, srefsIxWznmWAccess(srefsIxWznmWAccess)
+			, titsIxWznmWAccess(titsIxWznmWAccess)
+		{
 };
 
 void WznmQUsgAAccess::writeJSON(

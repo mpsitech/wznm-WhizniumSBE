@@ -28,17 +28,18 @@ WznmQConAPar::WznmQConAPar(
 			, const string stubX2RefWznmMLocale
 			, const string osrefKVal
 			, const string titOsrefKVal
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->x1SrefKKey = x1SrefKKey;
-	this->titX1SrefKKey = titX1SrefKKey;
-	this->x2RefWznmMLocale = x2RefWznmMLocale;
-	this->stubX2RefWznmMLocale = stubX2RefWznmMLocale;
-	this->osrefKVal = osrefKVal;
-	this->titOsrefKVal = titOsrefKVal;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, x1SrefKKey(x1SrefKKey)
+			, titX1SrefKKey(titX1SrefKKey)
+			, x2RefWznmMLocale(x2RefWznmMLocale)
+			, stubX2RefWznmMLocale(stubX2RefWznmMLocale)
+			, osrefKVal(osrefKVal)
+			, titOsrefKVal(titOsrefKVal)
+		{
 };
 
 void WznmQConAPar::writeJSON(

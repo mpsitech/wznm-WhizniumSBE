@@ -60,12 +60,11 @@ PnlWznmNavAdmin::ContIac::ContIac(
 			, const uint numFLstFil
 		) :
 			Block()
+			, numFLstUsg(numFLstUsg)
+			, numFLstUsr(numFLstUsr)
+			, numFLstPrs(numFLstPrs)
+			, numFLstFil(numFLstFil)
 		{
-	this->numFLstUsg = numFLstUsg;
-	this->numFLstUsr = numFLstUsr;
-	this->numFLstPrs = numFLstPrs;
-	this->numFLstFil = numFLstFil;
-
 	mask = {NUMFLSTUSG, NUMFLSTUSR, NUMFLSTPRS, NUMFLSTFIL};
 };
 
@@ -157,17 +156,16 @@ PnlWznmNavAdmin::StatApp::StatApp(
 			, const uint LstFilNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstUsgAlt(LstUsgAlt)
+			, LstUsrAlt(LstUsrAlt)
+			, LstPrsAlt(LstPrsAlt)
+			, LstFilAlt(LstFilAlt)
+			, LstUsgNumFirstdisp(LstUsgNumFirstdisp)
+			, LstUsrNumFirstdisp(LstUsrNumFirstdisp)
+			, LstPrsNumFirstdisp(LstPrsNumFirstdisp)
+			, LstFilNumFirstdisp(LstFilNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstUsgAlt = LstUsgAlt;
-	this->LstUsrAlt = LstUsrAlt;
-	this->LstPrsAlt = LstPrsAlt;
-	this->LstFilAlt = LstFilAlt;
-	this->LstUsgNumFirstdisp = LstUsgNumFirstdisp;
-	this->LstUsrNumFirstdisp = LstUsrNumFirstdisp;
-	this->LstPrsNumFirstdisp = LstPrsNumFirstdisp;
-	this->LstFilNumFirstdisp = LstFilNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTUSGALT, LSTUSRALT, LSTPRSALT, LSTFILALT, LSTUSGNUMFIRSTDISP, LSTUSRNUMFIRSTDISP, LSTPRSNUMFIRSTDISP, LSTFILNUMFIRSTDISP};
 };
 
@@ -254,16 +252,15 @@ PnlWznmNavAdmin::StatShr::StatShr(
 			, const bool ButFilViewActive
 		) :
 			Block()
+			, LstUsgAvail(LstUsgAvail)
+			, ButUsgViewActive(ButUsgViewActive)
+			, LstUsrAvail(LstUsrAvail)
+			, ButUsrViewActive(ButUsrViewActive)
+			, LstPrsAvail(LstPrsAvail)
+			, ButPrsViewActive(ButPrsViewActive)
+			, LstFilAvail(LstFilAvail)
+			, ButFilViewActive(ButFilViewActive)
 		{
-	this->LstUsgAvail = LstUsgAvail;
-	this->ButUsgViewActive = ButUsgViewActive;
-	this->LstUsrAvail = LstUsrAvail;
-	this->ButUsrViewActive = ButUsrViewActive;
-	this->LstPrsAvail = LstPrsAvail;
-	this->ButPrsViewActive = ButPrsViewActive;
-	this->LstFilAvail = LstFilAvail;
-	this->ButFilViewActive = ButFilViewActive;
-
 	mask = {LSTUSGAVAIL, BUTUSGVIEWACTIVE, LSTUSRAVAIL, BUTUSRVIEWACTIVE, LSTPRSAVAIL, BUTPRSVIEWACTIVE, LSTFILAVAIL, BUTFILVIEWACTIVE};
 };
 
@@ -340,13 +337,12 @@ PnlWznmNavAdmin::Tag::Tag(
 			, const string& CptFil
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptUsg(CptUsg)
+			, CptUsr(CptUsr)
+			, CptPrs(CptPrs)
+			, CptFil(CptFil)
 		{
-	this->Cpt = Cpt;
-	this->CptUsg = CptUsg;
-	this->CptUsr = CptUsr;
-	this->CptPrs = CptPrs;
-	this->CptFil = CptFil;
-
 	mask = {CPT, CPTUSG, CPTUSR, CPTPRS, CPTFIL};
 };
 
@@ -426,11 +422,11 @@ PnlWznmNavAdmin::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMNAVADMINDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmNavAdmin::DpchAppDo::getSrefsMask() {

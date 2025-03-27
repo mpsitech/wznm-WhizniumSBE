@@ -47,9 +47,8 @@ PnlWznmSbsAsbMNSubset::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -61,7 +60,7 @@ void PnlWznmSbsAsbMNSubset::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmSbsAsbMNSubset::ContInf::writeXML(
@@ -149,13 +148,12 @@ PnlWznmSbsAsbMNSubset::StatShr::StatShr(
 			, const bool ButSubActive
 		) :
 			Block()
+			, ButViewAvail(ButViewAvail)
+			, ButViewActive(ButViewActive)
+			, ButAddAvail(ButAddAvail)
+			, ButSubAvail(ButSubAvail)
+			, ButSubActive(ButSubActive)
 		{
-	this->ButViewAvail = ButViewAvail;
-	this->ButViewActive = ButViewActive;
-	this->ButAddAvail = ButAddAvail;
-	this->ButSubAvail = ButSubAvail;
-	this->ButSubActive = ButSubActive;
-
 	mask = {BUTVIEWAVAIL, BUTVIEWACTIVE, BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
 };
 
@@ -231,9 +229,9 @@ PnlWznmSbsAsbMNSubset::StgIac::StgIac(
 			, const uint TcoRtyWidth
 		) :
 			Block()
+			, TcoMrefWidth(TcoMrefWidth)
+			, TcoRtyWidth(TcoRtyWidth)
 		{
-	this->TcoMrefWidth = TcoMrefWidth;
-	this->TcoRtyWidth = TcoRtyWidth;
 	mask = {TCOMREFWIDTH, TCORTYWIDTH};
 };
 
@@ -289,8 +287,8 @@ void PnlWznmSbsAsbMNSubset::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoMrefWidth"] = TcoMrefWidth;
-	me["TcoRtyWidth"] = TcoRtyWidth;
+	me["TcoMrefWidth"] = (Json::Value::UInt) TcoMrefWidth;
+	me["TcoRtyWidth"] = (Json::Value::UInt) TcoRtyWidth;
 };
 
 void PnlWznmSbsAsbMNSubset::StgIac::writeXML(

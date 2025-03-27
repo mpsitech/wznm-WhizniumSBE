@@ -15,9 +15,9 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmCtp1NTag.h"
-#include "PnlWznmCtpTpl1NCapability.h"
-#include "PnlWznmCtpAPar.h"
 #include "PnlWznmCtpKKey.h"
+#include "PnlWznmCtpAPar.h"
+#include "PnlWznmCtpTpl1NCapability.h"
 #include "PnlWznmCtpKParKey.h"
 #include "PnlWznmCtpDetail.h"
 
@@ -187,9 +187,9 @@ public:
 	StatShr statshr;
 
 	PnlWznmCtp1NTag* pnl1ntag;
-	PnlWznmCtpTpl1NCapability* pnltpl1ncapability;
-	PnlWznmCtpAPar* pnlapar;
 	PnlWznmCtpKKey* pnlkkey;
+	PnlWznmCtpAPar* pnlapar;
+	PnlWznmCtpTpl1NCapability* pnltpl1ncapability;
 	PnlWznmCtpKParKey* pnlkparkey;
 	PnlWznmCtpDetail* pnldetail;
 
@@ -227,8 +227,8 @@ public:
 
 private:
 	bool handleCallWznmCpbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmCpb_tplEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCpb_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmCpb_tplEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmCpb_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 
 };

@@ -40,29 +40,30 @@ WznmQUsrList::WznmQUsrList(
 			, const uint ixWznmVUserlevel
 			, const string srefIxWznmVUserlevel
 			, const string titIxWznmVUserlevel
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->grp = grp;
-	this->stubGrp = stubGrp;
-	this->own = own;
-	this->stubOwn = stubOwn;
-	this->refWznmMPerson = refWznmMPerson;
-	this->stubRefWznmMPerson = stubRefWznmMPerson;
-	this->sref = sref;
-	this->refWznmMUsergroup = refWznmMUsergroup;
-	this->stubRefWznmMUsergroup = stubRefWznmMUsergroup;
-	this->ixVState = ixVState;
-	this->srefIxVState = srefIxVState;
-	this->titIxVState = titIxVState;
-	this->ixWznmVLocale = ixWznmVLocale;
-	this->srefIxWznmVLocale = srefIxWznmVLocale;
-	this->titIxWznmVLocale = titIxWznmVLocale;
-	this->ixWznmVUserlevel = ixWznmVUserlevel;
-	this->srefIxWznmVUserlevel = srefIxWznmVUserlevel;
-	this->titIxWznmVUserlevel = titIxWznmVUserlevel;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, grp(grp)
+			, stubGrp(stubGrp)
+			, own(own)
+			, stubOwn(stubOwn)
+			, refWznmMPerson(refWznmMPerson)
+			, stubRefWznmMPerson(stubRefWznmMPerson)
+			, sref(sref)
+			, refWznmMUsergroup(refWznmMUsergroup)
+			, stubRefWznmMUsergroup(stubRefWznmMUsergroup)
+			, ixVState(ixVState)
+			, srefIxVState(srefIxVState)
+			, titIxVState(titIxVState)
+			, ixWznmVLocale(ixWznmVLocale)
+			, srefIxWznmVLocale(srefIxWznmVLocale)
+			, titIxWznmVLocale(titIxWznmVLocale)
+			, ixWznmVUserlevel(ixWznmVUserlevel)
+			, srefIxWznmVUserlevel(srefIxWznmVUserlevel)
+			, titIxWznmVUserlevel(titIxWznmVUserlevel)
+		{
 };
 
 void WznmQUsrList::writeJSON(

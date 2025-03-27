@@ -78,9 +78,6 @@
 
 	/*
 	*/
-	import CrdWznmNav from './CrdWznmNav/CrdWznmNav';
-	import DlgWznmNavLoaini from './CrdWznmNav/DlgWznmNavLoaini';
-	import DlgWznmNavMnglic from './CrdWznmNav/DlgWznmNavMnglic';
 	import CrdWznmUsg from './CrdWznmUsg/CrdWznmUsg';
 	import CrdWznmUsr from './CrdWznmUsr/CrdWznmUsr';
 	import DlgWznmUsrMngkeypair from './CrdWznmUsr/DlgWznmUsrMngkeypair';
@@ -88,6 +85,9 @@
 	import CrdWznmFil from './CrdWznmFil/CrdWznmFil';
 	import DlgWznmFilDownload from './CrdWznmFil/DlgWznmFilDownload';
 	import DlgWznmFilNew from './CrdWznmFil/DlgWznmFilNew';
+	import CrdWznmNav from './CrdWznmNav/CrdWznmNav';
+	import DlgWznmNavLoaini from './CrdWznmNav/DlgWznmNavLoaini';
+	import DlgWznmNavMnglic from './CrdWznmNav/DlgWznmNavMnglic';
 	import CrdWznmLoc from './CrdWznmLoc/CrdWznmLoc';
 	import CrdWznmTag from './CrdWznmTag/CrdWznmTag';
 	import CrdWznmCtp from './CrdWznmCtp/CrdWznmCtp';
@@ -146,6 +146,14 @@
 	import DlgWznmRlsFinreptr from './CrdWznmRls/DlgWznmRlsFinreptr';
 	import DlgWznmRlsStareptr from './CrdWznmRls/DlgWznmRlsStareptr';
 	import DlgWznmRlsWrite from './CrdWznmRls/DlgWznmRlsWrite';
+	import CrdWznmVis from './CrdWznmVis/CrdWznmVis';
+	import DlgWznmVisExpstr from './CrdWznmVis/DlgWznmVisExpstr';
+	import DlgWznmVisImpstr from './CrdWznmVis/DlgWznmVisImpstr';
+	import DlgWznmVisMissfeat from './CrdWznmVis/DlgWznmVisMissfeat';
+	import DlgWznmVisNew from './CrdWznmVis/DlgWznmVisNew';
+	import DlgWznmVisWrite from './CrdWznmVis/DlgWznmVisWrite';
+	import CrdWznmSht from './CrdWznmSht/CrdWznmSht';
+	import CrdWznmBox from './CrdWznmBox/CrdWznmBox';
 	import CrdWznmApp from './CrdWznmApp/CrdWznmApp';
 	import DlgWznmAppImpstr from './CrdWznmApp/DlgWznmAppImpstr';
 	import DlgWznmAppNew from './CrdWznmApp/DlgWznmAppNew';
@@ -182,9 +190,6 @@
 		components: {
 			/*
 			*/
-			CrdWznmNav,
-			DlgWznmNavLoaini,
-			DlgWznmNavMnglic,
 			CrdWznmUsg,
 			CrdWznmUsr,
 			DlgWznmUsrMngkeypair,
@@ -192,6 +197,9 @@
 			CrdWznmFil,
 			DlgWznmFilDownload,
 			DlgWznmFilNew,
+			CrdWznmNav,
+			DlgWznmNavLoaini,
+			DlgWznmNavMnglic,
 			CrdWznmLoc,
 			CrdWznmTag,
 			CrdWznmCtp,
@@ -250,6 +258,14 @@
 			DlgWznmRlsFinreptr,
 			DlgWznmRlsStareptr,
 			DlgWznmRlsWrite,
+			CrdWznmVis,
+			DlgWznmVisExpstr,
+			DlgWznmVisImpstr,
+			DlgWznmVisMissfeat,
+			DlgWznmVisNew,
+			DlgWznmVisWrite,
+			CrdWznmSht,
+			CrdWznmBox,
 			CrdWznmApp,
 			DlgWznmAppImpstr,
 			DlgWznmAppNew,

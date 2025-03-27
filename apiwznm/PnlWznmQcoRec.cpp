@@ -45,9 +45,8 @@ PnlWznmQcoRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -107,10 +106,9 @@ PnlWznmQcoRec::StatApp::StatApp(
 			, const bool initdoneRef1NControl
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneRef1NControl(initdoneRef1NControl)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneRef1NControl = initdoneRef1NControl;
-
 	mask = {INITDONEDETAIL, INITDONEREF1NCONTROL};
 };
 
@@ -174,12 +172,11 @@ PnlWznmQcoRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefRef1NControl(scrJrefRef1NControl)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefRef1NControl = scrJrefRef1NControl;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFREF1NCONTROL, BUTREGULARIZEACTIVE};
 };
 
@@ -249,9 +246,8 @@ PnlWznmQcoRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -288,11 +284,11 @@ PnlWznmQcoRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMQCORECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmQcoRec::DpchAppDo::getSrefsMask() {

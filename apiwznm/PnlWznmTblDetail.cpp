@@ -67,17 +67,16 @@ PnlWznmTblDetail::ContIac::ContIac(
 			, const uint numFPupPstAty
 		) :
 			Block()
+			, TxfSho(TxfSho)
+			, numFPupTyp(numFPupTyp)
+			, numFPupRet(numFPupRet)
+			, numFLstUnq(numFLstUnq)
+			, TxfUnq(TxfUnq)
+			, TxfCmt(TxfCmt)
+			, numFPupPstJti(numFPupPstJti)
+			, numFPupPstSco(numFPupPstSco)
+			, numFPupPstAty(numFPupPstAty)
 		{
-	this->TxfSho = TxfSho;
-	this->numFPupTyp = numFPupTyp;
-	this->numFPupRet = numFPupRet;
-	this->numFLstUnq = numFLstUnq;
-	this->TxfUnq = TxfUnq;
-	this->TxfCmt = TxfCmt;
-	this->numFPupPstJti = numFPupPstJti;
-	this->numFPupPstSco = numFPupPstSco;
-	this->numFPupPstAty = numFPupPstAty;
-
 	mask = {TXFSHO, NUMFPUPTYP, NUMFPUPRET, NUMFLSTUNQ, TXFUNQ, TXFCMT, NUMFPUPPSTJTI, NUMFPUPPSTSCO, NUMFPUPPSTATY};
 };
 
@@ -182,15 +181,14 @@ PnlWznmTblDetail::ContInf::ContInf(
 			, const string& TxtPstVer
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtReu(TxtReu)
+			, TxtCar(TxtCar)
+			, TxtPstSrf(TxtPstSrf)
+			, TxtPstTit(TxtPstTit)
+			, TxtPstVer(TxtPstVer)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtReu = TxtReu;
-	this->TxtCar = TxtCar;
-	this->TxtPstSrf = TxtPstSrf;
-	this->TxtPstTit = TxtPstTit;
-	this->TxtPstVer = TxtPstVer;
-
 	mask = {TXTSRF, TXTVER, TXTREU, TXTCAR, TXTPSTSRF, TXTPSTTIT, TXTPSTVER};
 };
 
@@ -263,11 +261,10 @@ PnlWznmTblDetail::StatApp::StatApp(
 			, const uint LstUnqNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstUnqAlt(LstUnqAlt)
+			, LstUnqNumFirstdisp(LstUnqNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstUnqAlt = LstUnqAlt;
-	this->LstUnqNumFirstdisp = LstUnqNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTUNQALT, LSTUNQNUMFIRSTDISP};
 };
 
@@ -332,8 +329,7 @@ set<uint> PnlWznmTblDetail::StatApp::diff(
  ******************************************************************************/
 
 PnlWznmTblDetail::StatShr::StatShr(
-			const bool TxfUnqValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
 			, const bool TxfShoActive
@@ -350,6 +346,7 @@ PnlWznmTblDetail::StatShr::StatShr(
 			, const bool ButCarViewActive
 			, const bool LstUnqAvail
 			, const bool LstUnqActive
+			, const bool TxfUnqValid
 			, const bool ButUnqViewAvail
 			, const bool ButUnqViewActive
 			, const bool TxfCmtActive
@@ -374,49 +371,48 @@ PnlWznmTblDetail::StatShr::StatShr(
 			, const bool PupPstAtyActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfShoActive(TxfShoActive)
+			, PupTypActive(PupTypActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtReuActive(TxtReuActive)
+			, ButReuViewAvail(ButReuViewAvail)
+			, ButReuViewActive(ButReuViewActive)
+			, TxtCarAvail(TxtCarAvail)
+			, TxtCarActive(TxtCarActive)
+			, ButCarViewAvail(ButCarViewAvail)
+			, ButCarViewActive(ButCarViewActive)
+			, LstUnqAvail(LstUnqAvail)
+			, LstUnqActive(LstUnqActive)
+			, TxfUnqValid(TxfUnqValid)
+			, ButUnqViewAvail(ButUnqViewAvail)
+			, ButUnqViewActive(ButUnqViewActive)
+			, TxfCmtActive(TxfCmtActive)
+			, SepPstAvail(SepPstAvail)
+			, HdgPstAvail(HdgPstAvail)
+			, ButPstNewAvail(ButPstNewAvail)
+			, ButPstDeleteAvail(ButPstDeleteAvail)
+			, TxtPstSrfAvail(TxtPstSrfAvail)
+			, TxtPstSrfActive(TxtPstSrfActive)
+			, PupPstJtiAvail(PupPstJtiAvail)
+			, PupPstJtiActive(PupPstJtiActive)
+			, ButPstJtiEditAvail(ButPstJtiEditAvail)
+			, TxtPstTitAvail(TxtPstTitAvail)
+			, TxtPstTitActive(TxtPstTitActive)
+			, TxtPstVerAvail(TxtPstVerAvail)
+			, TxtPstVerActive(TxtPstVerActive)
+			, ButPstVerViewAvail(ButPstVerViewAvail)
+			, ButPstVerViewActive(ButPstVerViewActive)
+			, PupPstScoAvail(PupPstScoAvail)
+			, PupPstScoActive(PupPstScoActive)
+			, PupPstAtyAvail(PupPstAtyAvail)
+			, PupPstAtyActive(PupPstAtyActive)
 		{
-	this->TxfUnqValid = TxfUnqValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfShoActive = TxfShoActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtReuActive = TxtReuActive;
-	this->ButReuViewAvail = ButReuViewAvail;
-	this->ButReuViewActive = ButReuViewActive;
-	this->TxtCarAvail = TxtCarAvail;
-	this->TxtCarActive = TxtCarActive;
-	this->ButCarViewAvail = ButCarViewAvail;
-	this->ButCarViewActive = ButCarViewActive;
-	this->LstUnqAvail = LstUnqAvail;
-	this->LstUnqActive = LstUnqActive;
-	this->ButUnqViewAvail = ButUnqViewAvail;
-	this->ButUnqViewActive = ButUnqViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-	this->SepPstAvail = SepPstAvail;
-	this->HdgPstAvail = HdgPstAvail;
-	this->ButPstNewAvail = ButPstNewAvail;
-	this->ButPstDeleteAvail = ButPstDeleteAvail;
-	this->TxtPstSrfAvail = TxtPstSrfAvail;
-	this->TxtPstSrfActive = TxtPstSrfActive;
-	this->PupPstJtiAvail = PupPstJtiAvail;
-	this->PupPstJtiActive = PupPstJtiActive;
-	this->ButPstJtiEditAvail = ButPstJtiEditAvail;
-	this->TxtPstTitAvail = TxtPstTitAvail;
-	this->TxtPstTitActive = TxtPstTitActive;
-	this->TxtPstVerAvail = TxtPstVerAvail;
-	this->TxtPstVerActive = TxtPstVerActive;
-	this->ButPstVerViewAvail = ButPstVerViewAvail;
-	this->ButPstVerViewActive = ButPstVerViewActive;
-	this->PupPstScoAvail = PupPstScoAvail;
-	this->PupPstScoActive = PupPstScoActive;
-	this->PupPstAtyAvail = PupPstAtyAvail;
-	this->PupPstAtyActive = PupPstAtyActive;
-
-	mask = {TXFUNQVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFSHOACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTCARAVAIL, TXTCARACTIVE, BUTCARVIEWAVAIL, BUTCARVIEWACTIVE, LSTUNQAVAIL, LSTUNQACTIVE, BUTUNQVIEWAVAIL, BUTUNQVIEWACTIVE, TXFCMTACTIVE, SEPPSTAVAIL, HDGPSTAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFSHOACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTCARAVAIL, TXTCARACTIVE, BUTCARVIEWAVAIL, BUTCARVIEWACTIVE, LSTUNQAVAIL, LSTUNQACTIVE, TXFUNQVALID, BUTUNQVIEWAVAIL, BUTUNQVIEWACTIVE, TXFCMTACTIVE, SEPPSTAVAIL, HDGPSTAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE};
 };
 
 bool PnlWznmTblDetail::StatShr::readXML(
@@ -436,7 +432,6 @@ bool PnlWznmTblDetail::StatShr::readXML(
 	string itemtag = "StatitemShrWznmTblDetail";
 
 	if (basefound) {
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfUnqValid", TxfUnqValid)) add(TXFUNQVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveAvail", ButSaveAvail)) add(BUTSAVEAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveActive", ButSaveActive)) add(BUTSAVEACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxtSrfActive", TxtSrfActive)) add(TXTSRFACTIVE);
@@ -454,6 +449,7 @@ bool PnlWznmTblDetail::StatShr::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButCarViewActive", ButCarViewActive)) add(BUTCARVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstUnqAvail", LstUnqAvail)) add(LSTUNQAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstUnqActive", LstUnqActive)) add(LSTUNQACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfUnqValid", TxfUnqValid)) add(TXFUNQVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButUnqViewAvail", ButUnqViewAvail)) add(BUTUNQVIEWAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButUnqViewActive", ButUnqViewActive)) add(BUTUNQVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfCmtActive", TxfCmtActive)) add(TXFCMTACTIVE);
@@ -486,7 +482,6 @@ set<uint> PnlWznmTblDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfUnqValid == comp->TxfUnqValid) insert(items, TXFUNQVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
@@ -504,6 +499,7 @@ set<uint> PnlWznmTblDetail::StatShr::comm(
 	if (ButCarViewActive == comp->ButCarViewActive) insert(items, BUTCARVIEWACTIVE);
 	if (LstUnqAvail == comp->LstUnqAvail) insert(items, LSTUNQAVAIL);
 	if (LstUnqActive == comp->LstUnqActive) insert(items, LSTUNQACTIVE);
+	if (TxfUnqValid == comp->TxfUnqValid) insert(items, TXFUNQVALID);
 	if (ButUnqViewAvail == comp->ButUnqViewAvail) insert(items, BUTUNQVIEWAVAIL);
 	if (ButUnqViewActive == comp->ButUnqViewActive) insert(items, BUTUNQVIEWACTIVE);
 	if (TxfCmtActive == comp->TxfCmtActive) insert(items, TXFCMTACTIVE);
@@ -538,7 +534,7 @@ set<uint> PnlWznmTblDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFUNQVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFSHOACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTCARAVAIL, TXTCARACTIVE, BUTCARVIEWAVAIL, BUTCARVIEWACTIVE, LSTUNQAVAIL, LSTUNQACTIVE, BUTUNQVIEWAVAIL, BUTUNQVIEWACTIVE, TXFCMTACTIVE, SEPPSTAVAIL, HDGPSTAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFSHOACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTCARAVAIL, TXTCARACTIVE, BUTCARVIEWAVAIL, BUTCARVIEWACTIVE, LSTUNQAVAIL, LSTUNQACTIVE, TXFUNQVALID, BUTUNQVIEWAVAIL, BUTUNQVIEWACTIVE, TXFCMTACTIVE, SEPPSTAVAIL, HDGPSTAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -566,23 +562,22 @@ PnlWznmTblDetail::Tag::Tag(
 			, const string& CptPstAty
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptSho(CptSho)
+			, CptTyp(CptTyp)
+			, CptVer(CptVer)
+			, CptReu(CptReu)
+			, CptCar(CptCar)
+			, CptUnq(CptUnq)
+			, CptCmt(CptCmt)
+			, HdgPst(HdgPst)
+			, CptPstSrf(CptPstSrf)
+			, CptPstTit(CptPstTit)
+			, CptPstVer(CptPstVer)
+			, CptPstSco(CptPstSco)
+			, CptPstAty(CptPstAty)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptSho = CptSho;
-	this->CptTyp = CptTyp;
-	this->CptVer = CptVer;
-	this->CptReu = CptReu;
-	this->CptCar = CptCar;
-	this->CptUnq = CptUnq;
-	this->CptCmt = CptCmt;
-	this->HdgPst = HdgPst;
-	this->CptPstSrf = CptPstSrf;
-	this->CptPstTit = CptPstTit;
-	this->CptPstVer = CptPstVer;
-	this->CptPstSco = CptPstSco;
-	this->CptPstAty = CptPstAty;
-
 	mask = {CPT, CPTSRF, CPTSHO, CPTTYP, CPTVER, CPTREU, CPTCAR, CPTUNQ, CPTCMT, HDGPST, CPTPSTSRF, CPTPSTTIT, CPTPSTVER, CPTPSTSCO, CPTPSTATY};
 };
 
@@ -672,11 +667,11 @@ PnlWznmTblDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMTBLDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmTblDetail::DpchAppDo::getSrefsMask() {

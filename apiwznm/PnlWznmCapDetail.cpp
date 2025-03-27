@@ -48,10 +48,9 @@ PnlWznmCapDetail::ContIac::ContIac(
 			, const vector<uint>& numsFLstAtf
 		) :
 			Block()
+			, TxfTit(TxfTit)
+			, numsFLstAtf(numsFLstAtf)
 		{
-	this->TxfTit = TxfTit;
-	this->numsFLstAtf = numsFLstAtf;
-
 	mask = {TXFTIT, NUMSFLSTATF};
 };
 
@@ -132,12 +131,11 @@ PnlWznmCapDetail::ContInf::ContInf(
 			, const string& TxtAtf
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtTpl(TxtTpl)
+			, TxtAtf(TxtAtf)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtTpl = TxtTpl;
-	this->TxtAtf = TxtAtf;
-
 	mask = {TXTSRF, TXTVER, TXTTPL, TXTATF};
 };
 
@@ -204,11 +202,10 @@ PnlWznmCapDetail::StatApp::StatApp(
 			, const uint LstAtfNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstAtfAlt(LstAtfAlt)
+			, LstAtfNumFirstdisp(LstAtfNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstAtfAlt = LstAtfAlt;
-	this->LstAtfNumFirstdisp = LstAtfNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTATFALT, LSTATFNUMFIRSTDISP};
 };
 
@@ -286,19 +283,18 @@ PnlWznmCapDetail::StatShr::StatShr(
 			, const bool LstAtfActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfTitActive(TxfTitActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtTplActive(TxtTplActive)
+			, ButTplViewAvail(ButTplViewAvail)
+			, ButTplViewActive(ButTplViewActive)
+			, LstAtfActive(LstAtfActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfTitActive = TxfTitActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtTplActive = TxtTplActive;
-	this->ButTplViewAvail = ButTplViewAvail;
-	this->ButTplViewActive = ButTplViewActive;
-	this->LstAtfActive = LstAtfActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTTPLACTIVE, BUTTPLVIEWAVAIL, BUTTPLVIEWACTIVE, LSTATFACTIVE};
 };
 
@@ -382,14 +378,13 @@ PnlWznmCapDetail::Tag::Tag(
 			, const string& CptAtf
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTit(CptTit)
+			, CptVer(CptVer)
+			, CptTpl(CptTpl)
+			, CptAtf(CptAtf)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTit = CptTit;
-	this->CptVer = CptVer;
-	this->CptTpl = CptTpl;
-	this->CptAtf = CptAtf;
-
 	mask = {CPT, CPTSRF, CPTTIT, CPTVER, CPTTPL, CPTATF};
 };
 
@@ -470,11 +465,11 @@ PnlWznmCapDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMCAPDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmCapDetail::DpchAppDo::getSrefsMask() {

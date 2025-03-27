@@ -184,11 +184,11 @@ void QryWznmPrjList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::TIT) sqlstr += " ORDER BY TblWznmMProject.Title ASC";
-	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMProject.refWznmMVersion ASC";
-	else if (preIxOrd == VecVOrd::SHO) sqlstr += " ORDER BY TblWznmMProject.Short ASC";
+	if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMProject.refWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::TIT) sqlstr += " ORDER BY TblWznmMProject.Title ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMProject.grp ASC";
 	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMProject.own ASC";
+	else if (preIxOrd == VecVOrd::SHO) sqlstr += " ORDER BY TblWznmMProject.Short ASC";
 };
 
 void QryWznmPrjList::fetch(

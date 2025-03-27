@@ -26,15 +26,16 @@ WznmQQryAClause::WznmQQryAClause(
 			, const string stubRefWznmMPreset
 			, const string stubRefWznmMVector
 			, const string stubRefWznmMVectoritem
-		) {
-	this->jnum = jnum;
-	this->stubX1RefWznmMQuerymod = stubX1RefWznmMQuerymod;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->Clause = Clause;
-	this->stubRefWznmMPreset = stubRefWznmMPreset;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
+		) :
+			jnum(jnum)
+			, stubX1RefWznmMQuerymod(stubX1RefWznmMQuerymod)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, Clause(Clause)
+			, stubRefWznmMPreset(stubRefWznmMPreset)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+		{
 };
 
 bool WznmQQryAClause::readXML(

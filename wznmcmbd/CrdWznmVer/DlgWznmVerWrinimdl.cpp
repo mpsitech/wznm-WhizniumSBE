@@ -94,8 +94,8 @@ void DlgWznmVerWrinimdl::refreshWri(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	ContInfWri oldContinfwri(continfwri);
 	StatShrWri oldStatshrwri(statshrwri);
+	ContInfWri oldContinfwri(continfwri);
 
 	// IP refreshWri --- RBEGIN
 	// statshrwri
@@ -106,8 +106,8 @@ void DlgWznmVerWrinimdl::refreshWri(
 	continfwri.TxtPrg = getSquawk(dbswznm);
 
 	// IP refreshWri --- REND
-	if (continfwri.diff(&oldContinfwri).size() != 0) insert(moditems, DpchEngData::CONTINFWRI);
 	if (statshrwri.diff(&oldStatshrwri).size() != 0) insert(moditems, DpchEngData::STATSHRWRI);
+	if (continfwri.diff(&oldContinfwri).size() != 0) insert(moditems, DpchEngData::CONTINFWRI);
 };
 
 void DlgWznmVerWrinimdl::refreshFia(

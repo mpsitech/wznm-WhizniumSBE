@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQRel1NTablecol::WznmQRel1NTablecol(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQRel1NTablecol::readXML(

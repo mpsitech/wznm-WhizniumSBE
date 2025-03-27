@@ -49,9 +49,8 @@ PnlWznmLibAPkglist::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -110,9 +109,8 @@ PnlWznmLibAPkglist::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -180,13 +178,12 @@ PnlWznmLibAPkglist::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -254,10 +251,9 @@ PnlWznmLibAPkglist::StgIac::StgIac(
 			, const uint TcoPklWidth
 		) :
 			Block()
+			, TcoMchWidth(TcoMchWidth)
+			, TcoPklWidth(TcoPklWidth)
 		{
-	this->TcoMchWidth = TcoMchWidth;
-	this->TcoPklWidth = TcoPklWidth;
-
 	mask = {TCOMCHWIDTH, TCOPKLWIDTH};
 };
 
@@ -342,16 +338,15 @@ PnlWznmLibAPkglist::Tag::Tag(
 			, const string& TcoPkl
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoMch(TcoMch)
+			, TcoPkl(TcoPkl)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoMch = TcoMch;
-	this->TcoPkl = TcoPkl;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOMCH, TCOPKL};
 };
 
@@ -438,11 +433,11 @@ PnlWznmLibAPkglist::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMLIBAPKGLISTDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmLibAPkglist::DpchAppDo::getSrefsMask() {

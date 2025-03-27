@@ -47,9 +47,8 @@ PnlWznmTblATitle::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -61,7 +60,7 @@ void PnlWznmTblATitle::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmTblATitle::ContInf::writeXML(
@@ -149,13 +148,12 @@ PnlWznmTblATitle::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -233,11 +231,11 @@ PnlWznmTblATitle::StgIac::StgIac(
 			, const uint TcoTitWidth
 		) :
 			Block()
+			, TcoTypWidth(TcoTypWidth)
+			, TcoLocWidth(TcoLocWidth)
+			, TcoGndWidth(TcoGndWidth)
+			, TcoTitWidth(TcoTitWidth)
 		{
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoLocWidth = TcoLocWidth;
-	this->TcoGndWidth = TcoGndWidth;
-	this->TcoTitWidth = TcoTitWidth;
 	mask = {TCOTYPWIDTH, TCOLOCWIDTH, TCOGNDWIDTH, TCOTITWIDTH};
 };
 
@@ -297,10 +295,10 @@ void PnlWznmTblATitle::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoTypWidth"] = TcoTypWidth;
-	me["TcoLocWidth"] = TcoLocWidth;
-	me["TcoGndWidth"] = TcoGndWidth;
-	me["TcoTitWidth"] = TcoTitWidth;
+	me["TcoTypWidth"] = (Json::Value::UInt) TcoTypWidth;
+	me["TcoLocWidth"] = (Json::Value::UInt) TcoLocWidth;
+	me["TcoGndWidth"] = (Json::Value::UInt) TcoGndWidth;
+	me["TcoTitWidth"] = (Json::Value::UInt) TcoTitWidth;
 };
 
 void PnlWznmTblATitle::StgIac::writeXML(

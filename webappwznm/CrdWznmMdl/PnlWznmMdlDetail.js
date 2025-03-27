@@ -215,12 +215,14 @@ function handlePupChange(_doc, ctlsref, size) {
 function mergeDpchEngData(dom) {
 	var mask = [];
 
+	// IP mergeDpchEngData --- BEGIN
 	if (updateSrcblock(dom, "DpchEngWznmMdlDetailData", "ContIacWznmMdlDetail", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmMdlDetailData", "ContInfWznmMdlDetail", srcdoc)) mask.push("continf");
 	if (updateSrcblock(dom, "DpchEngWznmMdlDetailData", "FeedFPupJ", srcdoc)) mask.push("feedFPupJ");
 	if (updateSrcblock(dom, "DpchEngWznmMdlDetailData", "StatAppWznmMdlDetail", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmMdlDetailData", "StatShrWznmMdlDetail", srcdoc)) mask.push("statshr");
 	if (updateSrcblock(dom, "DpchEngWznmMdlDetailData", "TagWznmMdlDetail", srcdoc)) mask.push("tag");
+	// IP mergeDpchEngData --- END
 
 	return mask;
 };

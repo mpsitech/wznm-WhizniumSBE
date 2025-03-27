@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSbsBsbMNSubset.h"
 #include "PnlWznmSbsAsbMNSubset.h"
+#include "PnlWznmSbsBsbMNSubset.h"
 #include "PnlWznmSbsPst1NQuerymod.h"
 #include "PnlWznmSbsFrs1NRelation.h"
 #include "PnlWznmSbsTos1NRelation.h"
@@ -198,8 +198,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSbsBsbMNSubset* pnlbsbmnsubset;
 	PnlWznmSbsAsbMNSubset* pnlasbmnsubset;
+	PnlWznmSbsBsbMNSubset* pnlbsbmnsubset;
 	PnlWznmSbsPst1NQuerymod* pnlpst1nquerymod;
 	PnlWznmSbsFrs1NRelation* pnlfrs1nrelation;
 	PnlWznmSbsTos1NRelation* pnltos1nrelation;
@@ -244,8 +244,8 @@ public:
 private:
 	bool handleCallWznmSbsUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPstUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmSbs_pstEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmSbs_carEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmSbs_pstEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);

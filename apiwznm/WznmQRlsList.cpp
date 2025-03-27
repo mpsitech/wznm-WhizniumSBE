@@ -22,11 +22,12 @@ WznmQRlsList::WznmQRlsList(
 			, const string sref
 			, const string stubRefWznmMComponent
 			, const string stubRefWznmMMachine
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->stubRefWznmMComponent = stubRefWznmMComponent;
-	this->stubRefWznmMMachine = stubRefWznmMMachine;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, stubRefWznmMComponent(stubRefWznmMComponent)
+			, stubRefWznmMMachine(stubRefWznmMMachine)
+		{
 };
 
 bool WznmQRlsList::readXML(

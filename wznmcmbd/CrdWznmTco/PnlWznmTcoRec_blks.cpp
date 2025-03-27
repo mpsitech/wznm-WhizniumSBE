@@ -43,9 +43,8 @@ PnlWznmTcoRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -178,22 +177,21 @@ PnlWznmTcoRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefATitle(jrefATitle)
+			, pnlatitleAvail(pnlatitleAvail)
+			, jref1NQuerycol(jref1NQuerycol)
+			, pnl1nquerycolAvail(pnl1nquerycolAvail)
+			, jref1NImpexpcol(jref1NImpexpcol)
+			, pnl1nimpexpcolAvail(pnl1nimpexpcolAvail)
+			, jrefRef1NQuerymod(jrefRef1NQuerymod)
+			, pnlref1nquerymodAvail(pnlref1nquerymodAvail)
+			, jrefRef1NControl(jrefRef1NControl)
+			, pnlref1ncontrolAvail(pnlref1ncontrolAvail)
+			, jref1NCheck(jref1NCheck)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefATitle = jrefATitle;
-	this->pnlatitleAvail = pnlatitleAvail;
-	this->jref1NQuerycol = jref1NQuerycol;
-	this->pnl1nquerycolAvail = pnl1nquerycolAvail;
-	this->jref1NImpexpcol = jref1NImpexpcol;
-	this->pnl1nimpexpcolAvail = pnl1nimpexpcolAvail;
-	this->jrefRef1NQuerymod = jrefRef1NQuerymod;
-	this->pnlref1nquerymodAvail = pnlref1nquerymodAvail;
-	this->jrefRef1NControl = jrefRef1NControl;
-	this->pnlref1ncontrolAvail = pnlref1ncontrolAvail;
-	this->jref1NCheck = jref1NCheck;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, PNLATITLEAVAIL, JREF1NQUERYCOL, PNL1NQUERYCOLAVAIL, JREF1NIMPEXPCOL, PNL1NIMPEXPCOLAVAIL, JREFREF1NQUERYMOD, PNLREF1NQUERYMODAVAIL, JREFREF1NCONTROL, PNLREF1NCONTROLAVAIL, JREF1NCHECK, BUTREGULARIZEACTIVE};
 };
 

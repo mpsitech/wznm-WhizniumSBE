@@ -51,11 +51,10 @@ PnlWznmMchDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupPkm(numFPupPkm)
+			, TxfPkm(TxfPkm)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupPkm = numFPupPkm;
-	this->TxfPkm = TxfPkm;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPPKM, TXFPKM, TXFCMT};
 };
 
@@ -138,11 +137,10 @@ PnlWznmMchDetail::ContInf::ContInf(
 			, const string& TxtCch
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtSup(TxtSup)
+			, TxtCch(TxtCch)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtSup = TxtSup;
-	this->TxtCch = TxtCch;
-
 	mask = {TXTSRF, TXTSUP, TXTCCH};
 };
 
@@ -206,10 +204,9 @@ PnlWznmMchDetail::StatApp::StatApp(
 			, const bool PupPkmAlt
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, PupPkmAlt(PupPkmAlt)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->PupPkmAlt = PupPkmAlt;
-
 	mask = {IXWZNMVEXPSTATE, PUPPKMALT};
 };
 
@@ -272,8 +269,7 @@ set<uint> PnlWznmMchDetail::StatApp::diff(
  ******************************************************************************/
 
 PnlWznmMchDetail::StatShr::StatShr(
-			const bool TxfPkmValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
 			, const bool TxtSupActive
@@ -283,26 +279,26 @@ PnlWznmMchDetail::StatShr::StatShr(
 			, const bool ButCchViewAvail
 			, const bool ButCchViewActive
 			, const bool PupPkmActive
+			, const bool TxfPkmValid
 			, const bool ButPkmEditAvail
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxtSupActive(TxtSupActive)
+			, ButSupViewAvail(ButSupViewAvail)
+			, ButSupViewActive(ButSupViewActive)
+			, TxtCchActive(TxtCchActive)
+			, ButCchViewAvail(ButCchViewAvail)
+			, ButCchViewActive(ButCchViewActive)
+			, PupPkmActive(PupPkmActive)
+			, TxfPkmValid(TxfPkmValid)
+			, ButPkmEditAvail(ButPkmEditAvail)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->TxfPkmValid = TxfPkmValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxtSupActive = TxtSupActive;
-	this->ButSupViewAvail = ButSupViewAvail;
-	this->ButSupViewActive = ButSupViewActive;
-	this->TxtCchActive = TxtCchActive;
-	this->ButCchViewAvail = ButCchViewAvail;
-	this->ButCchViewActive = ButCchViewActive;
-	this->PupPkmActive = PupPkmActive;
-	this->ButPkmEditAvail = ButPkmEditAvail;
-	this->TxfCmtActive = TxfCmtActive;
-
-	mask = {TXFPKMVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, BUTPKMEDITAVAIL, TXFCMTACTIVE};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, TXFPKMVALID, BUTPKMEDITAVAIL, TXFCMTACTIVE};
 };
 
 bool PnlWznmMchDetail::StatShr::readXML(
@@ -322,7 +318,6 @@ bool PnlWznmMchDetail::StatShr::readXML(
 	string itemtag = "StatitemShrWznmMchDetail";
 
 	if (basefound) {
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfPkmValid", TxfPkmValid)) add(TXFPKMVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveAvail", ButSaveAvail)) add(BUTSAVEAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveActive", ButSaveActive)) add(BUTSAVEACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxtSrfActive", TxtSrfActive)) add(TXTSRFACTIVE);
@@ -333,6 +328,7 @@ bool PnlWznmMchDetail::StatShr::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButCchViewAvail", ButCchViewAvail)) add(BUTCCHVIEWAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButCchViewActive", ButCchViewActive)) add(BUTCCHVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "PupPkmActive", PupPkmActive)) add(PUPPKMACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfPkmValid", TxfPkmValid)) add(TXFPKMVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButPkmEditAvail", ButPkmEditAvail)) add(BUTPKMEDITAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfCmtActive", TxfCmtActive)) add(TXFCMTACTIVE);
 	};
@@ -345,7 +341,6 @@ set<uint> PnlWznmMchDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfPkmValid == comp->TxfPkmValid) insert(items, TXFPKMVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
@@ -356,6 +351,7 @@ set<uint> PnlWznmMchDetail::StatShr::comm(
 	if (ButCchViewAvail == comp->ButCchViewAvail) insert(items, BUTCCHVIEWAVAIL);
 	if (ButCchViewActive == comp->ButCchViewActive) insert(items, BUTCCHVIEWACTIVE);
 	if (PupPkmActive == comp->PupPkmActive) insert(items, PUPPKMACTIVE);
+	if (TxfPkmValid == comp->TxfPkmValid) insert(items, TXFPKMVALID);
 	if (ButPkmEditAvail == comp->ButPkmEditAvail) insert(items, BUTPKMEDITAVAIL);
 	if (TxfCmtActive == comp->TxfCmtActive) insert(items, TXFCMTACTIVE);
 
@@ -370,7 +366,7 @@ set<uint> PnlWznmMchDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFPKMVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, BUTPKMEDITAVAIL, TXFCMTACTIVE};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, TXFPKMVALID, BUTPKMEDITAVAIL, TXFCMTACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -389,14 +385,13 @@ PnlWznmMchDetail::Tag::Tag(
 			, const string& CptCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptSup(CptSup)
+			, CptCch(CptCch)
+			, CptPkm(CptPkm)
+			, CptCmt(CptCmt)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptSup = CptSup;
-	this->CptCch = CptCch;
-	this->CptPkm = CptPkm;
-	this->CptCmt = CptCmt;
-
 	mask = {CPT, CPTSRF, CPTSUP, CPTCCH, CPTPKM, CPTCMT};
 };
 
@@ -477,11 +472,11 @@ PnlWznmMchDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMMCHDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmMchDetail::DpchAppDo::getSrefsMask() {

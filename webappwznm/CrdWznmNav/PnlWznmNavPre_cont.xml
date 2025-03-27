@@ -6,6 +6,7 @@
 		<script>
 			function handleButAppRemoveClick() {parent.window.handleButClick("ButAppRemove");};
 			function handleButVerRemoveClick() {parent.window.handleButClick("ButVerRemove");};
+			function handleButVisRemoveClick() {parent.window.handleButClick("ButVisRemove");};
 		</script>
 		<link href="../style/pnlHeadline.css" rel="styleSheet" type="text/css"/>
 	</head>

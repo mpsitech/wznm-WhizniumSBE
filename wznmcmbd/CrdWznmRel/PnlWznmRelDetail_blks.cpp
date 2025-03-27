@@ -61,13 +61,12 @@ PnlWznmRelDetail::ContIac::ContIac(
 			, const string& TxfOpt
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, numFLstClu(numFLstClu)
+			, TxfPfx(TxfPfx)
+			, numsFLstOpt(numsFLstOpt)
+			, TxfOpt(TxfOpt)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->numFLstClu = numFLstClu;
-	this->TxfPfx = TxfPfx;
-	this->numsFLstOpt = numsFLstOpt;
-	this->TxfOpt = TxfOpt;
-
 	mask = {NUMFPUPTYP, NUMFLSTCLU, TXFPFX, NUMSFLSTOPT, TXFOPT};
 };
 
@@ -129,8 +128,8 @@ void PnlWznmRelDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupTyp"] = numFPupTyp;
-	me["numFLstClu"] = numFLstClu;
+	me["numFPupTyp"] = (Json::Value::UInt) numFPupTyp;
+	me["numFLstClu"] = (Json::Value::UInt) numFLstClu;
 	me["TxfPfx"] = TxfPfx;
 	Jsonio::writeUintvec(me, "numsFLstOpt", numsFLstOpt);
 	me["TxfOpt"] = TxfOpt;
@@ -199,16 +198,15 @@ PnlWznmRelDetail::ContInf::ContInf(
 			, const string& TxtTbl
 		) :
 			Block()
+			, TxtFrt(TxtFrt)
+			, TxtFrs(TxtFrs)
+			, TxtTot(TxtTot)
+			, TxtTos(TxtTos)
+			, TxtClu(TxtClu)
+			, TxtVer(TxtVer)
+			, TxtSup(TxtSup)
+			, TxtTbl(TxtTbl)
 		{
-	this->TxtFrt = TxtFrt;
-	this->TxtFrs = TxtFrs;
-	this->TxtTot = TxtTot;
-	this->TxtTos = TxtTos;
-	this->TxtClu = TxtClu;
-	this->TxtVer = TxtVer;
-	this->TxtSup = TxtSup;
-	this->TxtTbl = TxtTbl;
-
 	mask = {TXTFRT, TXTFRS, TXTTOT, TXTTOS, TXTCLU, TXTVER, TXTSUP, TXTTBL};
 };
 
@@ -304,8 +302,8 @@ void PnlWznmRelDetail::StatApp::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstCluAlt"] = LstCluAlt;
 	me["LstOptAlt"] = LstOptAlt;
-	me["LstCluNumFirstdisp"] = LstCluNumFirstdisp;
-	me["LstOptNumFirstdisp"] = LstOptNumFirstdisp;
+	me["LstCluNumFirstdisp"] = (Json::Value::UInt) LstCluNumFirstdisp;
+	me["LstOptNumFirstdisp"] = (Json::Value::UInt) LstOptNumFirstdisp;
 };
 
 void PnlWznmRelDetail::StatApp::writeXML(
@@ -338,8 +336,7 @@ void PnlWznmRelDetail::StatApp::writeXML(
  ******************************************************************************/
 
 PnlWznmRelDetail::StatShr::StatShr(
-			const bool TxfOptValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtFrtActive
 			, const bool TxtFrsActive
@@ -363,38 +360,38 @@ PnlWznmRelDetail::StatShr::StatShr(
 			, const bool TxtTblActive
 			, const bool TxfPfxActive
 			, const bool LstOptActive
+			, const bool TxfOptValid
 			, const bool ButOptEditAvail
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtFrtActive(TxtFrtActive)
+			, TxtFrsActive(TxtFrsActive)
+			, ButFrsViewAvail(ButFrsViewAvail)
+			, ButFrsViewActive(ButFrsViewActive)
+			, TxtTotActive(TxtTotActive)
+			, TxtTosActive(TxtTosActive)
+			, ButTosViewAvail(ButTosViewAvail)
+			, ButTosViewActive(ButTosViewActive)
+			, PupTypActive(PupTypActive)
+			, LstCluActive(LstCluActive)
+			, ButCluViewActive(ButCluViewActive)
+			, ButCluClusterAvail(ButCluClusterAvail)
+			, ButCluUnclusterAvail(ButCluUnclusterAvail)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtSupActive(TxtSupActive)
+			, ButSupViewAvail(ButSupViewAvail)
+			, ButSupViewActive(ButSupViewActive)
+			, TxtTblActive(TxtTblActive)
+			, TxfPfxActive(TxfPfxActive)
+			, LstOptActive(LstOptActive)
+			, TxfOptValid(TxfOptValid)
+			, ButOptEditAvail(ButOptEditAvail)
 		{
-	this->TxfOptValid = TxfOptValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtFrtActive = TxtFrtActive;
-	this->TxtFrsActive = TxtFrsActive;
-	this->ButFrsViewAvail = ButFrsViewAvail;
-	this->ButFrsViewActive = ButFrsViewActive;
-	this->TxtTotActive = TxtTotActive;
-	this->TxtTosActive = TxtTosActive;
-	this->ButTosViewAvail = ButTosViewAvail;
-	this->ButTosViewActive = ButTosViewActive;
-	this->PupTypActive = PupTypActive;
-	this->LstCluActive = LstCluActive;
-	this->ButCluViewActive = ButCluViewActive;
-	this->ButCluClusterAvail = ButCluClusterAvail;
-	this->ButCluUnclusterAvail = ButCluUnclusterAvail;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtSupActive = TxtSupActive;
-	this->ButSupViewAvail = ButSupViewAvail;
-	this->ButSupViewActive = ButSupViewActive;
-	this->TxtTblActive = TxtTblActive;
-	this->TxfPfxActive = TxfPfxActive;
-	this->LstOptActive = LstOptActive;
-	this->ButOptEditAvail = ButOptEditAvail;
-
-	mask = {TXFOPTVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTFRTACTIVE, TXTFRSACTIVE, BUTFRSVIEWAVAIL, BUTFRSVIEWACTIVE, TXTTOTACTIVE, TXTTOSACTIVE, BUTTOSVIEWAVAIL, BUTTOSVIEWACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXFPFXACTIVE, LSTOPTACTIVE, BUTOPTEDITAVAIL};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTFRTACTIVE, TXTFRSACTIVE, BUTFRSVIEWAVAIL, BUTFRSVIEWACTIVE, TXTTOTACTIVE, TXTTOSACTIVE, BUTTOSVIEWAVAIL, BUTTOSVIEWACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXFPFXACTIVE, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL};
 };
 
 void PnlWznmRelDetail::StatShr::writeJSON(
@@ -405,7 +402,6 @@ void PnlWznmRelDetail::StatShr::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TxfOptValid"] = TxfOptValid;
 	me["ButSaveAvail"] = ButSaveAvail;
 	me["ButSaveActive"] = ButSaveActive;
 	me["TxtFrtActive"] = TxtFrtActive;
@@ -430,6 +426,7 @@ void PnlWznmRelDetail::StatShr::writeJSON(
 	me["TxtTblActive"] = TxtTblActive;
 	me["TxfPfxActive"] = TxfPfxActive;
 	me["LstOptActive"] = LstOptActive;
+	me["TxfOptValid"] = TxfOptValid;
 	me["ButOptEditAvail"] = ButOptEditAvail;
 };
 
@@ -445,7 +442,6 @@ void PnlWznmRelDetail::StatShr::writeXML(
 	else itemtag = "StatitemShrWznmRelDetail";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeBoolAttr(wr, itemtag, "sref", "TxfOptValid", TxfOptValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveAvail", ButSaveAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveActive", ButSaveActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxtFrtActive", TxtFrtActive);
@@ -470,6 +466,7 @@ void PnlWznmRelDetail::StatShr::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "TxtTblActive", TxtTblActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxfPfxActive", TxfPfxActive);
 		writeBoolAttr(wr, itemtag, "sref", "LstOptActive", LstOptActive);
+		writeBoolAttr(wr, itemtag, "sref", "TxfOptValid", TxfOptValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButOptEditAvail", ButOptEditAvail);
 	xmlTextWriterEndElement(wr);
 };
@@ -479,7 +476,6 @@ set<uint> PnlWznmRelDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfOptValid == comp->TxfOptValid) insert(items, TXFOPTVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtFrtActive == comp->TxtFrtActive) insert(items, TXTFRTACTIVE);
@@ -504,6 +500,7 @@ set<uint> PnlWznmRelDetail::StatShr::comm(
 	if (TxtTblActive == comp->TxtTblActive) insert(items, TXTTBLACTIVE);
 	if (TxfPfxActive == comp->TxfPfxActive) insert(items, TXFPFXACTIVE);
 	if (LstOptActive == comp->LstOptActive) insert(items, LSTOPTACTIVE);
+	if (TxfOptValid == comp->TxfOptValid) insert(items, TXFOPTVALID);
 	if (ButOptEditAvail == comp->ButOptEditAvail) insert(items, BUTOPTEDITAVAIL);
 
 	return(items);
@@ -517,7 +514,7 @@ set<uint> PnlWznmRelDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFOPTVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTFRTACTIVE, TXTFRSACTIVE, BUTFRSVIEWAVAIL, BUTFRSVIEWACTIVE, TXTTOTACTIVE, TXTTOSACTIVE, BUTTOSVIEWAVAIL, BUTTOSVIEWACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXFPFXACTIVE, LSTOPTACTIVE, BUTOPTEDITAVAIL};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTFRTACTIVE, TXTFRSACTIVE, BUTFRSVIEWAVAIL, BUTFRSVIEWACTIVE, TXTTOTACTIVE, TXTTOSACTIVE, BUTTOSVIEWAVAIL, BUTTOSVIEWACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXFPFXACTIVE, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

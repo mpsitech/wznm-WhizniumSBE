@@ -231,8 +231,8 @@ void QryWznmSbsList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMSubset.refWznmMTable ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMSubset.sref ASC";
+	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMSubset.sref ASC";
+	else if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMSubset.refWznmMTable ASC";
 };
 
 void QryWznmSbsList::fetch(

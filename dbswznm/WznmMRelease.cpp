@@ -23,14 +23,14 @@ WznmMRelease::WznmMRelease(
 			, const string sref
 			, const string srefsKOption
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMComponent = refWznmMComponent;
-	this->refWznmMMachine = refWznmMMachine;
-	this->sref = sref;
-	this->srefsKOption = srefsKOption;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMComponent(refWznmMComponent)
+			, refWznmMMachine(refWznmMMachine)
+			, sref(sref)
+			, srefsKOption(srefsKOption)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMRelease::operator==(

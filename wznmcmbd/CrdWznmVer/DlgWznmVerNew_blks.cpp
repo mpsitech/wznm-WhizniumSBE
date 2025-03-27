@@ -134,14 +134,13 @@ DlgWznmVerNew::ContIac::ContIac(
 			, const uint numFDetPupPlc
 		) :
 			Block()
+			, numFDetPupPrj(numFDetPupPrj)
+			, numFDetPupBvr(numFDetPupBvr)
+			, numFDetRbuVni(numFDetRbuVni)
+			, DetTxfCmt(DetTxfCmt)
+			, numsFDetLstLoc(numsFDetLstLoc)
+			, numFDetPupPlc(numFDetPupPlc)
 		{
-	this->numFDetPupPrj = numFDetPupPrj;
-	this->numFDetPupBvr = numFDetPupBvr;
-	this->numFDetRbuVni = numFDetRbuVni;
-	this->DetTxfCmt = DetTxfCmt;
-	this->numsFDetLstLoc = numsFDetLstLoc;
-	this->numFDetPupPlc = numFDetPupPlc;
-
 	mask = {NUMFDETPUPPRJ, NUMFDETPUPBVR, NUMFDETRBUVNI, DETTXFCMT, NUMSFDETLSTLOC, NUMFDETPUPPLC};
 };
 
@@ -205,12 +204,12 @@ void DlgWznmVerNew::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFDetPupPrj"] = numFDetPupPrj;
-	me["numFDetPupBvr"] = numFDetPupBvr;
-	me["numFDetRbuVni"] = numFDetRbuVni;
+	me["numFDetPupPrj"] = (Json::Value::UInt) numFDetPupPrj;
+	me["numFDetPupBvr"] = (Json::Value::UInt) numFDetPupBvr;
+	me["numFDetRbuVni"] = (Json::Value::UInt) numFDetRbuVni;
 	me["DetTxfCmt"] = DetTxfCmt;
 	Jsonio::writeUintvec(me, "numsFDetLstLoc", numsFDetLstLoc);
-	me["numFDetPupPlc"] = numFDetPupPlc;
+	me["numFDetPupPlc"] = (Json::Value::UInt) numFDetPupPlc;
 };
 
 void DlgWznmVerNew::ContIac::writeXML(
@@ -271,9 +270,8 @@ DlgWznmVerNew::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -285,7 +283,7 @@ void DlgWznmVerNew::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 };
 
 void DlgWznmVerNew::ContInf::writeXML(
@@ -343,7 +341,7 @@ void DlgWznmVerNew::StatApp::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["shortMenu"] = shortMenu;
-	me["DetLstLocNumFirstdisp"] = DetLstLocNumFirstdisp;
+	me["DetLstLocNumFirstdisp"] = (Json::Value::UInt) DetLstLocNumFirstdisp;
 };
 
 void DlgWznmVerNew::StatApp::writeXML(
@@ -373,9 +371,8 @@ DlgWznmVerNew::StatShr::StatShr(
 			const bool ButCreActive
 		) :
 			Block()
+			, ButCreActive(ButCreActive)
 		{
-	this->ButCreActive = ButCreActive;
-
 	mask = {BUTCREACTIVE};
 };
 

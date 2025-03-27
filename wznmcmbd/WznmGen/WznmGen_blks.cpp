@@ -24,9 +24,9 @@ DpchInvWznmGenBase::DpchInvWznmGenBase(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMGENBASE, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmGenBase::readXML(
@@ -74,9 +74,9 @@ DpchInvWznmGenCal::DpchInvWznmGenCal(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMGENCAL, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmGenCal::readXML(
@@ -124,9 +124,9 @@ DpchInvWznmGenChk::DpchInvWznmGenChk(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMGENCHK, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmGenChk::readXML(
@@ -174,9 +174,9 @@ DpchInvWznmGenDetui::DpchInvWznmGenDetui(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMGENDETUI, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmGenDetui::readXML(
@@ -224,9 +224,9 @@ DpchInvWznmGenJob::DpchInvWznmGenJob(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMGENJOB, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmGenJob::readXML(
@@ -274,9 +274,9 @@ DpchInvWznmGenQtb::DpchInvWznmGenQtb(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMGENQTB, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmGenQtb::readXML(
@@ -324,9 +324,9 @@ DpchInvWznmGenSysvec::DpchInvWznmGenSysvec(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMGENSYSVEC, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmGenSysvec::readXML(

@@ -29,18 +29,18 @@ WznmMJob::WznmMJob(
 			, const bool Clisrv
 			, const bool Shrdat
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->sref = sref;
-	this->Global = Global;
-	this->Clisrv = Clisrv;
-	this->Shrdat = Shrdat;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, sref(sref)
+			, Global(Global)
+			, Clisrv(Clisrv)
+			, Shrdat(Shrdat)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMJob::operator==(

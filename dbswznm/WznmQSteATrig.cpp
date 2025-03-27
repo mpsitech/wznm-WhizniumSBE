@@ -37,26 +37,27 @@ WznmQSteATrig::WznmQSteATrig(
 			, const string stubRefWznmMRtdpch
 			, const string srefsMask
 			, const string Cond
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->ixVType = ixVType;
-	this->srefIxVType = srefIxVType;
-	this->titIxVType = titIxVType;
-	this->refWznmMEvent = refWznmMEvent;
-	this->stubRefWznmMEvent = stubRefWznmMEvent;
-	this->refWznmMRtjob = refWznmMRtjob;
-	this->stubRefWznmMRtjob = stubRefWznmMRtjob;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
-	this->xsref = xsref;
-	this->refWznmMRtdpch = refWznmMRtdpch;
-	this->stubRefWznmMRtdpch = stubRefWznmMRtdpch;
-	this->srefsMask = srefsMask;
-	this->Cond = Cond;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, ixVType(ixVType)
+			, srefIxVType(srefIxVType)
+			, titIxVType(titIxVType)
+			, refWznmMEvent(refWznmMEvent)
+			, stubRefWznmMEvent(stubRefWznmMEvent)
+			, refWznmMRtjob(refWznmMRtjob)
+			, stubRefWznmMRtjob(stubRefWznmMRtjob)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+			, xsref(xsref)
+			, refWznmMRtdpch(refWznmMRtdpch)
+			, stubRefWznmMRtdpch(stubRefWznmMRtdpch)
+			, srefsMask(srefsMask)
+			, Cond(Cond)
+		{
 };
 
 void WznmQSteATrig::writeJSON(

@@ -43,9 +43,8 @@ PnlWznmSbsRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -184,20 +183,19 @@ PnlWznmSbsRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefATitle(jrefATitle)
+			, jref1NStub(jref1NStub)
+			, jref1NTablecol(jref1NTablecol)
+			, jrefTos1NRelation(jrefTos1NRelation)
+			, jrefFrs1NRelation(jrefFrs1NRelation)
+			, jrefPst1NQuerymod(jrefPst1NQuerymod)
+			, pnlpst1nquerymodAvail(pnlpst1nquerymodAvail)
+			, jrefAsbMNSubset(jrefAsbMNSubset)
+			, jrefBsbMNSubset(jrefBsbMNSubset)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefATitle = jrefATitle;
-	this->jref1NStub = jref1NStub;
-	this->jref1NTablecol = jref1NTablecol;
-	this->jrefTos1NRelation = jrefTos1NRelation;
-	this->jrefFrs1NRelation = jrefFrs1NRelation;
-	this->jrefPst1NQuerymod = jrefPst1NQuerymod;
-	this->pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
-	this->jrefAsbMNSubset = jrefAsbMNSubset;
-	this->jrefBsbMNSubset = jrefBsbMNSubset;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREF1NSTUB, JREF1NTABLECOL, JREFTOS1NRELATION, JREFFRS1NRELATION, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFASBMNSUBSET, JREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
 };
 

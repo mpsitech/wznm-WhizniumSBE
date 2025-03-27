@@ -39,28 +39,29 @@ WznmQJobList::WznmQJobList(
 			, const string yesnoClisrv
 			, const bool Shrdat
 			, const string yesnoShrdat
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->refIxVTbl = refIxVTbl;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->refUref = refUref;
-	this->stubRefUref = stubRefUref;
-	this->Global = Global;
-	this->yesnoGlobal = yesnoGlobal;
-	this->Clisrv = Clisrv;
-	this->yesnoClisrv = yesnoClisrv;
-	this->Shrdat = Shrdat;
-	this->yesnoShrdat = yesnoShrdat;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, refIxVTbl(refIxVTbl)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, refUref(refUref)
+			, stubRefUref(stubRefUref)
+			, Global(Global)
+			, yesnoGlobal(yesnoGlobal)
+			, Clisrv(Clisrv)
+			, yesnoClisrv(yesnoClisrv)
+			, Shrdat(Shrdat)
+			, yesnoShrdat(yesnoShrdat)
+		{
 };
 
 void WznmQJobList::writeJSON(

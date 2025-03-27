@@ -46,10 +46,9 @@ PnlWznmSeqDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, TxfTit(TxfTit)
+			, TxfCmt(TxfCmt)
 		{
-	this->TxfTit = TxfTit;
-	this->TxfCmt = TxfCmt;
-
 	mask = {TXFTIT, TXFCMT};
 };
 
@@ -128,10 +127,9 @@ PnlWznmSeqDetail::ContInf::ContInf(
 			, const string& TxtApp
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtApp(TxtApp)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtApp = TxtApp;
-
 	mask = {TXTSRF, TXTAPP};
 };
 
@@ -192,9 +190,8 @@ PnlWznmSeqDetail::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -265,16 +262,15 @@ PnlWznmSeqDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfTitActive(TxfTitActive)
+			, TxtAppActive(TxtAppActive)
+			, ButAppViewAvail(ButAppViewAvail)
+			, ButAppViewActive(ButAppViewActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfTitActive = TxfTitActive;
-	this->TxtAppActive = TxtAppActive;
-	this->ButAppViewAvail = ButAppViewAvail;
-	this->ButAppViewActive = ButAppViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXTAPPACTIVE, BUTAPPVIEWAVAIL, BUTAPPVIEWACTIVE, TXFCMTACTIVE};
 };
 
@@ -351,13 +347,12 @@ PnlWznmSeqDetail::Tag::Tag(
 			, const string& CptCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTit(CptTit)
+			, CptApp(CptApp)
+			, CptCmt(CptCmt)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTit = CptTit;
-	this->CptApp = CptApp;
-	this->CptCmt = CptCmt;
-
 	mask = {CPT, CPTSRF, CPTTIT, CPTAPP, CPTCMT};
 };
 
@@ -437,11 +432,11 @@ PnlWznmSeqDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMSEQDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmSeqDetail::DpchAppDo::getSrefsMask() {

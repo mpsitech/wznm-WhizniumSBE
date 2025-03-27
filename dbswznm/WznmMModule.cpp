@@ -24,15 +24,15 @@ WznmMModule::WznmMModule(
 			, const ubigint refJ
 			, const string Title
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->verRefWznmMVersion = verRefWznmMVersion;
-	this->verNum = verNum;
-	this->sref = sref;
-	this->refJ = refJ;
-	this->Title = Title;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, verRefWznmMVersion(verRefWznmMVersion)
+			, verNum(verNum)
+			, sref(sref)
+			, refJ(refJ)
+			, Title(Title)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMModule::operator==(

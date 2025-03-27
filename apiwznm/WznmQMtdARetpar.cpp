@@ -25,14 +25,15 @@ WznmQMtdARetpar::WznmQMtdARetpar(
 			, const string stubRefWznmMVector
 			, const uint Length
 			, const string Comment
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxWznmVVartype = srefIxWznmVVartype;
-	this->titIxWznmVVartype = titIxWznmVVartype;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->Length = Length;
-	this->Comment = Comment;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxWznmVVartype(srefIxWznmVVartype)
+			, titIxWznmVVartype(titIxWznmVVartype)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, Length(Length)
+			, Comment(Comment)
+		{
 };
 
 bool WznmQMtdARetpar::readXML(

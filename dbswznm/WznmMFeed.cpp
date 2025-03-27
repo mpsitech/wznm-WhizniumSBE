@@ -27,16 +27,16 @@ WznmMFeed::WznmMFeed(
 			, const string srefsWznmMVectoritem
 			, const string srefsWznmMTag
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMControl = refWznmMControl;
-	this->srcIxVTbl = srcIxVTbl;
-	this->srcUref = srcUref;
-	this->sref = sref;
-	this->srefsWznmMVectoritem = srefsWznmMVectoritem;
-	this->srefsWznmMTag = srefsWznmMTag;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMControl(refWznmMControl)
+			, srcIxVTbl(srcIxVTbl)
+			, srcUref(srcUref)
+			, sref(sref)
+			, srefsWznmMVectoritem(srefsWznmMVectoritem)
+			, srefsWznmMTag(srefsWznmMTag)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMFeed::operator==(

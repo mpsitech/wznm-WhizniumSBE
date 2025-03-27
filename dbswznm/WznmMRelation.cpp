@@ -32,21 +32,21 @@ WznmMRelation::WznmMRelation(
 			, const ubigint refWznmMTable
 			, const string Prefix
 			, const string srefsKOption
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmCRelation = refWznmCRelation;
-	this->refWznmMVersion = refWznmMVersion;
-	this->supRefWznmMRelation = supRefWznmMRelation;
-	this->supIxVSubrole = supIxVSubrole;
-	this->frRefWznmMTable = frRefWznmMTable;
-	this->frsRefWznmMSubset = frsRefWznmMSubset;
-	this->toRefWznmMTable = toRefWznmMTable;
-	this->tosRefWznmMSubset = tosRefWznmMSubset;
-	this->refWznmMTable = refWznmMTable;
-	this->Prefix = Prefix;
-	this->srefsKOption = srefsKOption;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmCRelation(refWznmCRelation)
+			, refWznmMVersion(refWznmMVersion)
+			, supRefWznmMRelation(supRefWznmMRelation)
+			, supIxVSubrole(supIxVSubrole)
+			, frRefWznmMTable(frRefWznmMTable)
+			, frsRefWznmMSubset(frsRefWznmMSubset)
+			, toRefWznmMTable(toRefWznmMTable)
+			, tosRefWznmMSubset(tosRefWznmMSubset)
+			, refWznmMTable(refWznmMTable)
+			, Prefix(Prefix)
+			, srefsKOption(srefsKOption)
+		{
 };
 
 bool WznmMRelation::operator==(

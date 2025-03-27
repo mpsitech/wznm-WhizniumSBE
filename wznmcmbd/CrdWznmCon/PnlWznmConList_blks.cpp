@@ -51,9 +51,8 @@ PnlWznmConList::ContIac::ContIac(
 			const uint numFTos
 		) :
 			Block()
+			, numFTos(numFTos)
 		{
-	this->numFTos = numFTos;
-
 	mask = {NUMFTOS};
 };
 
@@ -107,7 +106,7 @@ void PnlWznmConList::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFTos"] = numFTos;
+	me["numFTos"] = (Json::Value::UInt) numFTos;
 };
 
 void PnlWznmConList::ContIac::writeXML(
@@ -161,12 +160,11 @@ PnlWznmConList::ContInf::ContInf(
 			, const uint numFCsiQst
 		) :
 			Block()
+			, TxtFor(TxtFor)
+			, TxtPre(TxtPre)
+			, ButFilterOn(ButFilterOn)
+			, numFCsiQst(numFCsiQst)
 		{
-	this->TxtFor = TxtFor;
-	this->TxtPre = TxtPre;
-	this->ButFilterOn = ButFilterOn;
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 };
 
@@ -181,7 +179,7 @@ void PnlWznmConList::ContInf::writeJSON(
 	me["TxtFor"] = TxtFor;
 	me["TxtPre"] = TxtPre;
 	me["ButFilterOn"] = ButFilterOn;
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmConList::ContInf::writeXML(
@@ -239,10 +237,9 @@ PnlWznmConList::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {IXWZNMVEXPSTATE, BUTDELETEACTIVE};
 };
 
@@ -317,17 +314,17 @@ PnlWznmConList::StgIac::StgIac(
 			, const uint TcoStyWidth
 		) :
 			Block()
+			, TcoSrfWidth(TcoSrfWidth)
+			, TcoTitWidth(TcoTitWidth)
+			, TcoTypWidth(TcoTypWidth)
+			, TcoHktWidth(TcoHktWidth)
+			, TcoHkuWidth(TcoHkuWidth)
+			, TcoSctWidth(TcoSctWidth)
+			, TcoRetWidth(TcoRetWidth)
+			, TcoReuWidth(TcoReuWidth)
+			, TcoSupWidth(TcoSupWidth)
+			, TcoStyWidth(TcoStyWidth)
 		{
-	this->TcoSrfWidth = TcoSrfWidth;
-	this->TcoTitWidth = TcoTitWidth;
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoHktWidth = TcoHktWidth;
-	this->TcoHkuWidth = TcoHkuWidth;
-	this->TcoSctWidth = TcoSctWidth;
-	this->TcoRetWidth = TcoRetWidth;
-	this->TcoReuWidth = TcoReuWidth;
-	this->TcoSupWidth = TcoSupWidth;
-	this->TcoStyWidth = TcoStyWidth;
 	mask = {TCOSRFWIDTH, TCOTITWIDTH, TCOTYPWIDTH, TCOHKTWIDTH, TCOHKUWIDTH, TCOSCTWIDTH, TCORETWIDTH, TCOREUWIDTH, TCOSUPWIDTH, TCOSTYWIDTH};
 };
 
@@ -399,16 +396,16 @@ void PnlWznmConList::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoSrfWidth"] = TcoSrfWidth;
-	me["TcoTitWidth"] = TcoTitWidth;
-	me["TcoTypWidth"] = TcoTypWidth;
-	me["TcoHktWidth"] = TcoHktWidth;
-	me["TcoHkuWidth"] = TcoHkuWidth;
-	me["TcoSctWidth"] = TcoSctWidth;
-	me["TcoRetWidth"] = TcoRetWidth;
-	me["TcoReuWidth"] = TcoReuWidth;
-	me["TcoSupWidth"] = TcoSupWidth;
-	me["TcoStyWidth"] = TcoStyWidth;
+	me["TcoSrfWidth"] = (Json::Value::UInt) TcoSrfWidth;
+	me["TcoTitWidth"] = (Json::Value::UInt) TcoTitWidth;
+	me["TcoTypWidth"] = (Json::Value::UInt) TcoTypWidth;
+	me["TcoHktWidth"] = (Json::Value::UInt) TcoHktWidth;
+	me["TcoHkuWidth"] = (Json::Value::UInt) TcoHkuWidth;
+	me["TcoSctWidth"] = (Json::Value::UInt) TcoSctWidth;
+	me["TcoRetWidth"] = (Json::Value::UInt) TcoRetWidth;
+	me["TcoReuWidth"] = (Json::Value::UInt) TcoReuWidth;
+	me["TcoSupWidth"] = (Json::Value::UInt) TcoSupWidth;
+	me["TcoStyWidth"] = (Json::Value::UInt) TcoStyWidth;
 };
 
 void PnlWznmConList::StgIac::writeXML(
@@ -487,10 +484,10 @@ void PnlWznmConList::Tag::writeJSON(
 		me["TcoSrf"] = "Identifier";
 		me["TcoTit"] = "Name";
 		me["TcoTyp"] = "Type";
-		me["TcoHkt"] = "Hook table of reference";
+		me["TcoHkt"] = "Hook ref. table";
 		me["TcoHku"] = "Hook";
 		me["TcoSct"] = "Hook section";
-		me["TcoRet"] = "Table of reference";
+		me["TcoRet"] = "Ref. table";
 		me["TcoReu"] = "Reference";
 		me["TcoSup"] = "Super control";
 		me["TcoSty"] = "Subtype";
@@ -521,10 +518,10 @@ void PnlWznmConList::Tag::writeXML(
 			writeStringAttr(wr, itemtag, "sref", "TcoSrf", "Identifier");
 			writeStringAttr(wr, itemtag, "sref", "TcoTit", "Name");
 			writeStringAttr(wr, itemtag, "sref", "TcoTyp", "Type");
-			writeStringAttr(wr, itemtag, "sref", "TcoHkt", "Hook table of reference");
+			writeStringAttr(wr, itemtag, "sref", "TcoHkt", "Hook ref. table");
 			writeStringAttr(wr, itemtag, "sref", "TcoHku", "Hook");
 			writeStringAttr(wr, itemtag, "sref", "TcoSct", "Hook section");
-			writeStringAttr(wr, itemtag, "sref", "TcoRet", "Table of reference");
+			writeStringAttr(wr, itemtag, "sref", "TcoRet", "Ref. table");
 			writeStringAttr(wr, itemtag, "sref", "TcoReu", "Reference");
 			writeStringAttr(wr, itemtag, "sref", "TcoSup", "Super control");
 			writeStringAttr(wr, itemtag, "sref", "TcoSty", "Subtype");

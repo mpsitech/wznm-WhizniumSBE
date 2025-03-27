@@ -22,13 +22,13 @@ WznmJMQuerycolStub::WznmJMQuerycolStub(
 			, const ubigint x1RefWznmMVectoritem
 			, const ubigint x2RefWznmMPreset
 			, const ubigint refWznmMStub
-		) {
-
-	this->ref = ref;
-	this->refWznmMQuerycol = refWznmMQuerycol;
-	this->x1RefWznmMVectoritem = x1RefWznmMVectoritem;
-	this->x2RefWznmMPreset = x2RefWznmMPreset;
-	this->refWznmMStub = refWznmMStub;
+		) :
+			ref(ref)
+			, refWznmMQuerycol(refWznmMQuerycol)
+			, x1RefWznmMVectoritem(x1RefWznmMVectoritem)
+			, x2RefWznmMPreset(x2RefWznmMPreset)
+			, refWznmMStub(refWznmMStub)
+		{
 };
 
 bool WznmJMQuerycolStub::operator==(

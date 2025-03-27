@@ -26,15 +26,16 @@ WznmQSbsList::WznmQSbsList(
 			, const string Short
 			, const ubigint refWznmMTable
 			, const string stubRefWznmMTable
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Short = Short;
-	this->refWznmMTable = refWznmMTable;
-	this->stubRefWznmMTable = stubRefWznmMTable;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Short(Short)
+			, refWznmMTable(refWznmMTable)
+			, stubRefWznmMTable(stubRefWznmMTable)
+		{
 };
 
 void WznmQSbsList::writeJSON(

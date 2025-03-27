@@ -22,13 +22,13 @@ WznmMRtdpch::WznmMRtdpch(
 			, const ubigint refWznmMBlock
 			, const string sref
 			, const bool Merge
-		) {
-
-	this->ref = ref;
-	this->refWznmMRtjob = refWznmMRtjob;
-	this->refWznmMBlock = refWznmMBlock;
-	this->sref = sref;
-	this->Merge = Merge;
+		) :
+			ref(ref)
+			, refWznmMRtjob(refWznmMRtjob)
+			, refWznmMBlock(refWznmMBlock)
+			, sref(sref)
+			, Merge(Merge)
+		{
 };
 
 bool WznmMRtdpch::operator==(

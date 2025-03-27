@@ -33,22 +33,22 @@ WznmMUser::WznmMUser(
 			, const string Password
 			, const string Fullkey
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->grp = grp;
-	this->own = own;
-	this->refRUsergroup = refRUsergroup;
-	this->refWznmMUsergroup = refWznmMUsergroup;
-	this->refWznmMPerson = refWznmMPerson;
-	this->sref = sref;
-	this->refJState = refJState;
-	this->ixVState = ixVState;
-	this->ixWznmVLocale = ixWznmVLocale;
-	this->ixWznmVUserlevel = ixWznmVUserlevel;
-	this->Password = Password;
-	this->Fullkey = Fullkey;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, grp(grp)
+			, own(own)
+			, refRUsergroup(refRUsergroup)
+			, refWznmMUsergroup(refWznmMUsergroup)
+			, refWznmMPerson(refWznmMPerson)
+			, sref(sref)
+			, refJState(refJState)
+			, ixVState(ixVState)
+			, ixWznmVLocale(ixWznmVLocale)
+			, ixWznmVUserlevel(ixWznmVUserlevel)
+			, Password(Password)
+			, Fullkey(Fullkey)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMUser::operator==(

@@ -49,9 +49,8 @@ PnlWznmSteAAction::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -110,9 +109,8 @@ PnlWznmSteAAction::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -180,13 +178,12 @@ PnlWznmSteAAction::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -267,23 +264,22 @@ PnlWznmSteAAction::StgIac::StgIac(
 			, const uint TcoIp4Width
 		) :
 			Block()
+			, TcoSctWidth(TcoSctWidth)
+			, TcoTypWidth(TcoTypWidth)
+			, TcoTrjWidth(TcoTrjWidth)
+			, TcoVecWidth(TcoVecWidth)
+			, TcoVitWidth(TcoVitWidth)
+			, TcoSnxWidth(TcoSnxWidth)
+			, TcoSeqWidth(TcoSeqWidth)
+			, TcoTr1Width(TcoTr1Width)
+			, TcoIp1Width(TcoIp1Width)
+			, TcoTr2Width(TcoTr2Width)
+			, TcoIp2Width(TcoIp2Width)
+			, TcoTr3Width(TcoTr3Width)
+			, TcoIp3Width(TcoIp3Width)
+			, TcoTr4Width(TcoTr4Width)
+			, TcoIp4Width(TcoIp4Width)
 		{
-	this->TcoSctWidth = TcoSctWidth;
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoTrjWidth = TcoTrjWidth;
-	this->TcoVecWidth = TcoVecWidth;
-	this->TcoVitWidth = TcoVitWidth;
-	this->TcoSnxWidth = TcoSnxWidth;
-	this->TcoSeqWidth = TcoSeqWidth;
-	this->TcoTr1Width = TcoTr1Width;
-	this->TcoIp1Width = TcoIp1Width;
-	this->TcoTr2Width = TcoTr2Width;
-	this->TcoIp2Width = TcoIp2Width;
-	this->TcoTr3Width = TcoTr3Width;
-	this->TcoIp3Width = TcoIp3Width;
-	this->TcoTr4Width = TcoTr4Width;
-	this->TcoIp4Width = TcoIp4Width;
-
 	mask = {TCOSCTWIDTH, TCOTYPWIDTH, TCOTRJWIDTH, TCOVECWIDTH, TCOVITWIDTH, TCOSNXWIDTH, TCOSEQWIDTH, TCOTR1WIDTH, TCOIP1WIDTH, TCOTR2WIDTH, TCOIP2WIDTH, TCOTR3WIDTH, TCOIP3WIDTH, TCOTR4WIDTH, TCOIP4WIDTH};
 };
 
@@ -420,29 +416,28 @@ PnlWznmSteAAction::Tag::Tag(
 			, const string& TcoIp4
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoSct(TcoSct)
+			, TcoTyp(TcoTyp)
+			, TcoTrj(TcoTrj)
+			, TcoVec(TcoVec)
+			, TcoVit(TcoVit)
+			, TcoSnx(TcoSnx)
+			, TcoSeq(TcoSeq)
+			, TcoTr1(TcoTr1)
+			, TcoIp1(TcoIp1)
+			, TcoTr2(TcoTr2)
+			, TcoIp2(TcoIp2)
+			, TcoTr3(TcoTr3)
+			, TcoIp3(TcoIp3)
+			, TcoTr4(TcoTr4)
+			, TcoIp4(TcoIp4)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoSct = TcoSct;
-	this->TcoTyp = TcoTyp;
-	this->TcoTrj = TcoTrj;
-	this->TcoVec = TcoVec;
-	this->TcoVit = TcoVit;
-	this->TcoSnx = TcoSnx;
-	this->TcoSeq = TcoSeq;
-	this->TcoTr1 = TcoTr1;
-	this->TcoIp1 = TcoIp1;
-	this->TcoTr2 = TcoTr2;
-	this->TcoIp2 = TcoIp2;
-	this->TcoTr3 = TcoTr3;
-	this->TcoIp3 = TcoIp3;
-	this->TcoTr4 = TcoTr4;
-	this->TcoIp4 = TcoIp4;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSCT, TCOTYP, TCOTRJ, TCOVEC, TCOVIT, TCOSNX, TCOSEQ, TCOTR1, TCOIP1, TCOTR2, TCOIP2, TCOTR3, TCOIP3, TCOTR4, TCOIP4};
 };
 
@@ -542,11 +537,11 @@ PnlWznmSteAAction::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMSTEAACTIONDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmSteAAction::DpchAppDo::getSrefsMask() {

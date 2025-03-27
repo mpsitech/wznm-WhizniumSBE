@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQVerRef1NFile::WznmQVerRef1NFile(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQVerRef1NFile::readXML(

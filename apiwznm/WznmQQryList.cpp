@@ -28,17 +28,18 @@ WznmQQryList::WznmQQryList(
 			, const string titSupIxVSubrole
 			, const string stubRefWznmMTable
 			, const string stubQtbRefWznmMTable
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->stubSupRefWznmMQuery = stubSupRefWznmMQuery;
-	this->srefSupIxVSubrole = srefSupIxVSubrole;
-	this->titSupIxVSubrole = titSupIxVSubrole;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->stubQtbRefWznmMTable = stubQtbRefWznmMTable;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, stubSupRefWznmMQuery(stubSupRefWznmMQuery)
+			, srefSupIxVSubrole(srefSupIxVSubrole)
+			, titSupIxVSubrole(titSupIxVSubrole)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, stubQtbRefWznmMTable(stubQtbRefWznmMTable)
+		{
 };
 
 bool WznmQQryList::readXML(

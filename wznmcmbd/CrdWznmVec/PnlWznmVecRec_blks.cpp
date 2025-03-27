@@ -43,9 +43,8 @@ PnlWznmVecRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -181,21 +180,20 @@ PnlWznmVecRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefATitle(jrefATitle)
+			, jrefVec1NVectoritem(jrefVec1NVectoritem)
+			, jrefFct1NTablecol(jrefFct1NTablecol)
+			, pnlfct1ntablecolAvail(pnlfct1ntablecolAvail)
+			, jrefRef1NPanel(jrefRef1NPanel)
+			, jrefSrc1NFeed(jrefSrc1NFeed)
+			, jrefPst1NQuerymod(jrefPst1NQuerymod)
+			, pnlpst1nquerymodAvail(pnlpst1nquerymodAvail)
+			, jrefMNTable(jrefMNTable)
+			, pnlmntableAvail(pnlmntableAvail)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefATitle = jrefATitle;
-	this->jrefVec1NVectoritem = jrefVec1NVectoritem;
-	this->jrefFct1NTablecol = jrefFct1NTablecol;
-	this->pnlfct1ntablecolAvail = pnlfct1ntablecolAvail;
-	this->jrefRef1NPanel = jrefRef1NPanel;
-	this->jrefSrc1NFeed = jrefSrc1NFeed;
-	this->jrefPst1NQuerymod = jrefPst1NQuerymod;
-	this->pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
-	this->jrefMNTable = jrefMNTable;
-	this->pnlmntableAvail = pnlmntableAvail;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREFVEC1NVECTORITEM, JREFFCT1NTABLECOL, PNLFCT1NTABLECOLAVAIL, JREFREF1NPANEL, JREFSRC1NFEED, JREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, JREFMNTABLE, PNLMNTABLEAVAIL, BUTREGULARIZEACTIVE};
 };
 

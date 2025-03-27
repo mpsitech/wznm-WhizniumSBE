@@ -32,21 +32,22 @@ WznmQTblALoadfct::WznmQTblALoadfct(
 			, const uint ixVLimtype
 			, const string srefIxVLimtype
 			, const string titIxVLimtype
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->ixVLoadtype = ixVLoadtype;
-	this->srefIxVLoadtype = srefIxVLoadtype;
-	this->titIxVLoadtype = titIxVLoadtype;
-	this->Fctname = Fctname;
-	this->ldSrefWznmMTablecol = ldSrefWznmMTablecol;
-	this->lbySrefsWznmMTablecol = lbySrefsWznmMTablecol;
-	this->ordSrefsWznmMTablecol = ordSrefsWznmMTablecol;
-	this->ixVLimtype = ixVLimtype;
-	this->srefIxVLimtype = srefIxVLimtype;
-	this->titIxVLimtype = titIxVLimtype;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, ixVLoadtype(ixVLoadtype)
+			, srefIxVLoadtype(srefIxVLoadtype)
+			, titIxVLoadtype(titIxVLoadtype)
+			, Fctname(Fctname)
+			, ldSrefWznmMTablecol(ldSrefWznmMTablecol)
+			, lbySrefsWznmMTablecol(lbySrefsWznmMTablecol)
+			, ordSrefsWznmMTablecol(ordSrefsWznmMTablecol)
+			, ixVLimtype(ixVLimtype)
+			, srefIxVLimtype(srefIxVLimtype)
+			, titIxVLimtype(titIxVLimtype)
+		{
 };
 
 void WznmQTblALoadfct::writeJSON(

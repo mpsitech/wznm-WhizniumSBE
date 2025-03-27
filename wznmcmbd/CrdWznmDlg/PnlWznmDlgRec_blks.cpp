@@ -43,9 +43,8 @@ PnlWznmDlgRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -108,8 +107,8 @@ void PnlWznmDlgRec::StatApp::writeJSON(
 			Json::Value& sup
 			, string difftag
 			, const bool initdoneDetail
-			, const bool initdoneHk1NControl
 			, const bool initdoneRef1NControl
+			, const bool initdoneHk1NControl
 			, const bool initdoneMNQuery
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmDlgRec";
@@ -117,8 +116,8 @@ void PnlWznmDlgRec::StatApp::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["initdoneDetail"] = initdoneDetail;
-	me["initdoneHk1NControl"] = initdoneHk1NControl;
 	me["initdoneRef1NControl"] = initdoneRef1NControl;
+	me["initdoneHk1NControl"] = initdoneHk1NControl;
 	me["initdoneMNQuery"] = initdoneMNQuery;
 };
 
@@ -127,8 +126,8 @@ void PnlWznmDlgRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdoneHk1NControl
 			, const bool initdoneRef1NControl
+			, const bool initdoneHk1NControl
 			, const bool initdoneMNQuery
 		) {
 	if (difftag.length() == 0) difftag = "StatAppWznmDlgRec";
@@ -139,8 +138,8 @@ void PnlWznmDlgRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneHk1NControl", initdoneHk1NControl);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NControl", initdoneRef1NControl);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneHk1NControl", initdoneHk1NControl);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNQuery", initdoneMNQuery);
 	xmlTextWriterEndElement(wr);
 };
@@ -152,21 +151,20 @@ void PnlWznmDlgRec::StatApp::writeXML(
 PnlWznmDlgRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jrefHk1NControl
 			, const ubigint jrefRef1NControl
+			, const ubigint jrefHk1NControl
 			, const ubigint jrefMNQuery
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefRef1NControl(jrefRef1NControl)
+			, jrefHk1NControl(jrefHk1NControl)
+			, jrefMNQuery(jrefMNQuery)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefHk1NControl = jrefHk1NControl;
-	this->jrefRef1NControl = jrefRef1NControl;
-	this->jrefMNQuery = jrefMNQuery;
-	this->ButRegularizeActive = ButRegularizeActive;
-
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFHK1NCONTROL, JREFREF1NCONTROL, JREFMNQUERY, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFREF1NCONTROL, JREFHK1NCONTROL, JREFMNQUERY, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmDlgRec::StatShr::writeJSON(
@@ -179,8 +177,8 @@ void PnlWznmDlgRec::StatShr::writeJSON(
 
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
-	me["scrJrefHk1NControl"] = Scr::scramble(jrefHk1NControl);
 	me["scrJrefRef1NControl"] = Scr::scramble(jrefRef1NControl);
+	me["scrJrefHk1NControl"] = Scr::scramble(jrefHk1NControl);
 	me["scrJrefMNQuery"] = Scr::scramble(jrefMNQuery);
 	me["ButRegularizeActive"] = ButRegularizeActive;
 };
@@ -199,8 +197,8 @@ void PnlWznmDlgRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefHk1NControl", Scr::scramble(jrefHk1NControl));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NControl", Scr::scramble(jrefRef1NControl));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefHk1NControl", Scr::scramble(jrefHk1NControl));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNQuery", Scr::scramble(jrefMNQuery));
 		writeBoolAttr(wr, itemtag, "sref", "ButRegularizeActive", ButRegularizeActive);
 	xmlTextWriterEndElement(wr);
@@ -213,8 +211,8 @@ set<uint> PnlWznmDlgRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jrefHk1NControl == comp->jrefHk1NControl) insert(items, JREFHK1NCONTROL);
 	if (jrefRef1NControl == comp->jrefRef1NControl) insert(items, JREFREF1NCONTROL);
+	if (jrefHk1NControl == comp->jrefHk1NControl) insert(items, JREFHK1NCONTROL);
 	if (jrefMNQuery == comp->jrefMNQuery) insert(items, JREFMNQUERY);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -229,7 +227,7 @@ set<uint> PnlWznmDlgRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFHK1NCONTROL, JREFREF1NCONTROL, JREFMNQUERY, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFREF1NCONTROL, JREFHK1NCONTROL, JREFMNQUERY, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

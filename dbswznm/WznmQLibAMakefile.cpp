@@ -27,16 +27,17 @@ WznmQLibAMakefile::WznmQLibAMakefile(
 			, const string x2SrefKTag
 			, const string titX2SrefKTag
 			, const string Val
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->x1RefWznmMMachine = x1RefWznmMMachine;
-	this->stubX1RefWznmMMachine = stubX1RefWznmMMachine;
-	this->x2SrefKTag = x2SrefKTag;
-	this->titX2SrefKTag = titX2SrefKTag;
-	this->Val = Val;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, x1RefWznmMMachine(x1RefWznmMMachine)
+			, stubX1RefWznmMMachine(stubX1RefWznmMMachine)
+			, x2SrefKTag(x2SrefKTag)
+			, titX2SrefKTag(titX2SrefKTag)
+			, Val(Val)
+		{
 };
 
 void WznmQLibAMakefile::writeJSON(

@@ -45,9 +45,8 @@ PnlWznmSbsRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -114,17 +113,16 @@ PnlWznmSbsRec::StatApp::StatApp(
 			, const bool initdoneBsbMNSubset
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneATitle(initdoneATitle)
+			, initdone1NStub(initdone1NStub)
+			, initdone1NTablecol(initdone1NTablecol)
+			, initdoneTos1NRelation(initdoneTos1NRelation)
+			, initdoneFrs1NRelation(initdoneFrs1NRelation)
+			, initdonePst1NQuerymod(initdonePst1NQuerymod)
+			, initdoneAsbMNSubset(initdoneAsbMNSubset)
+			, initdoneBsbMNSubset(initdoneBsbMNSubset)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneATitle = initdoneATitle;
-	this->initdone1NStub = initdone1NStub;
-	this->initdone1NTablecol = initdone1NTablecol;
-	this->initdoneTos1NRelation = initdoneTos1NRelation;
-	this->initdoneFrs1NRelation = initdoneFrs1NRelation;
-	this->initdonePst1NQuerymod = initdonePst1NQuerymod;
-	this->initdoneAsbMNSubset = initdoneAsbMNSubset;
-	this->initdoneBsbMNSubset = initdoneBsbMNSubset;
-
 	mask = {INITDONEDETAIL, INITDONEATITLE, INITDONE1NSTUB, INITDONE1NTABLECOL, INITDONETOS1NRELATION, INITDONEFRS1NRELATION, INITDONEPST1NQUERYMOD, INITDONEASBMNSUBSET, INITDONEBSBMNSUBSET};
 };
 
@@ -210,20 +208,19 @@ PnlWznmSbsRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefATitle(scrJrefATitle)
+			, scrJref1NStub(scrJref1NStub)
+			, scrJref1NTablecol(scrJref1NTablecol)
+			, scrJrefTos1NRelation(scrJrefTos1NRelation)
+			, scrJrefFrs1NRelation(scrJrefFrs1NRelation)
+			, scrJrefPst1NQuerymod(scrJrefPst1NQuerymod)
+			, pnlpst1nquerymodAvail(pnlpst1nquerymodAvail)
+			, scrJrefAsbMNSubset(scrJrefAsbMNSubset)
+			, scrJrefBsbMNSubset(scrJrefBsbMNSubset)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefATitle = scrJrefATitle;
-	this->scrJref1NStub = scrJref1NStub;
-	this->scrJref1NTablecol = scrJref1NTablecol;
-	this->scrJrefTos1NRelation = scrJrefTos1NRelation;
-	this->scrJrefFrs1NRelation = scrJrefFrs1NRelation;
-	this->scrJrefPst1NQuerymod = scrJrefPst1NQuerymod;
-	this->pnlpst1nquerymodAvail = pnlpst1nquerymodAvail;
-	this->scrJrefAsbMNSubset = scrJrefAsbMNSubset;
-	this->scrJrefBsbMNSubset = scrJrefBsbMNSubset;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NSTUB, SCRJREF1NTABLECOL, SCRJREFTOS1NRELATION, SCRJREFFRS1NRELATION, SCRJREFPST1NQUERYMOD, PNLPST1NQUERYMODAVAIL, SCRJREFASBMNSUBSET, SCRJREFBSBMNSUBSET, BUTREGULARIZEACTIVE};
 };
 
@@ -309,9 +306,8 @@ PnlWznmSbsRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -348,11 +344,11 @@ PnlWznmSbsRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMSBSRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmSbsRec::DpchAppDo::getSrefsMask() {

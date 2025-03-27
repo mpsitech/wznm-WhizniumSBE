@@ -24,13 +24,14 @@ WznmQImeIme1NImpexpcol::WznmQImeIme1NImpexpcol(
 			, const ubigint ref
 			, const string stubRef
 			, const uint imeNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->imeNum = imeNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, imeNum(imeNum)
+		{
 };
 
 void WznmQImeIme1NImpexpcol::writeJSON(

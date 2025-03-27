@@ -224,10 +224,10 @@ void QryWznmRtjList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMRtjob.sref ASC";
-	else if (preIxOrd == VecVOrd::APP) sqlstr += " ORDER BY TblWznmMRtjob.refWznmMApp ASC";
+	if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWznmMRtjob.refWznmMJob ASC";
 	else if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMRtjob.supRefWznmMRtjob ASC";
-	else if (preIxOrd == VecVOrd::JOB) sqlstr += " ORDER BY TblWznmMRtjob.refWznmMJob ASC";
+	else if (preIxOrd == VecVOrd::APP) sqlstr += " ORDER BY TblWznmMRtjob.refWznmMApp ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMRtjob.sref ASC";
 };
 
 void QryWznmRtjList::fetch(

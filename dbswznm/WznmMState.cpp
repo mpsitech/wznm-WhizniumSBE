@@ -22,13 +22,13 @@ WznmMState::WznmMState(
 			, const uint seqNum
 			, const string sref
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->seqRefWznmMSequence = seqRefWznmMSequence;
-	this->seqNum = seqNum;
-	this->sref = sref;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, seqRefWznmMSequence(seqRefWznmMSequence)
+			, seqNum(seqNum)
+			, sref(sref)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMState::operator==(

@@ -29,8 +29,8 @@ namespace QryWznmFilList {
 
 	public:
 		static const Sbecore::uint REU = 1;
-		static const Sbecore::uint FNM = 2;
-		static const Sbecore::uint RET = 3;
+		static const Sbecore::uint RET = 2;
+		static const Sbecore::uint FNM = 3;
 		static const Sbecore::uint OWN = 4;
 		static const Sbecore::uint GRP = 5;
 

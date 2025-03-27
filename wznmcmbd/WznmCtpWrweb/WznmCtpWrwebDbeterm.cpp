@@ -38,37 +38,66 @@ DpchRetWznm* WznmCtpWrwebDbeterm::run(
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
 	// IP run --- IBEGIN
+	fstream outfile;
 
-	// --- modify PnlXxxxYyyTerm.js
-/*
-	outfile << "// IP refreshBD --- RBEGIN" << endl;
-	refreshButicon(hdrdoc, "ButClaim", "icon/claim", ButClaimActive, retrieveCi(srcdoc, "ContInfWzskLlvTerm", "ButClaimOn") == "true");
-	refreshTxt(contcontdoc, "TxtCst", retrieveCi(srcdoc, "ContInfWzskLlvTerm", "TxtCst"));
+	WznmMCapability* cpb = NULL;
 
-	refreshPup(contcontdoc, srcdoc, "PupCmd", "", "FeedFPupCmd", retrieveCi(srcdoc, "ContIacWzskLlvTerm", "numFPupCmd"), true, false);
+	string hkroot;
 
-	var myelem;
+	string s;
 
-	myelem = contcontdoc.getElementById("TxtDat");
-	refreshTxtt(contcontdoc, "TxtDat", retrieveCi(srcdoc, "ContInfWzskLlvTerm", "TxtDatLog"));
-	myelem.scrollTop = myelem.scrollHeight;
-	
-	refreshTxft(contcontdoc, "TxfCsq", retrieveCi(srcdoc, "ContIacWzskLlvTerm", "TxfCsq"), true, false, true);
+	if (dbswznm->tblwznmmcapability->loadRecByRef(refWznmMCapability, &cpb)) {
+		hkroot = cpb->sref.substr(3);
 
-	refreshBut(contcontdoc, "ButSmt", ButSmtActive, false);
-	outfile << "// IP refreshBD --- REND" << endl;
-*/
+		// --- CrdXxxxYyy/PnlXxxxYyyTerm.js
+		s = xchg->tmppath + "/" + folder + "/Crd" + hkroot.substr(0, 4+3) + "/Pnl" + hkroot + ".js.ip";
+		outfile.open(s.c_str(), ios::out);
 
-	// --- modify PnlXxxxYyyTerm_bcont.xml
-/*
-	outfile << "<!-- IP trDat - RBEGIN -->" << endl;
-					<td height="200"></td>
-					<td id="tdDat" colspan="10" height="200">
-						<textarea id="TxtDat" style="resitze:none;font-size:10px;font-family:Monospace;font-weight:normal;width:685px;background-color:#000000;color:#ffffff;border-width:0px;" rows="16" cols="120" type="text" value="TxtDatLog" readonly="readonly"/>
-					</td>
-	outfile << "<!-- IP trDat - REND -->" << endl;
-*/
+		outfile << "// IP refreshBD --- RBEGIN" << endl;
+		outfile << "// IP refreshBD --- BEGIN" << endl;
 
+		outfile << "\trefreshButicon(hdrdoc, \"ButClaim\", \"icon/claim\", ButClaimActive, retrieveCi(srcdoc, \"ContInf" << hkroot << "\", \"ButClaimOn\") == \"true\");" << endl;
+		outfile << "\trefreshTxt(contcontdoc, \"TxtCst\", retrieveCi(srcdoc, \"ContInf" << hkroot << "\", \"TxtCst\"));" << endl;
+		outfile << endl;
+
+		outfile << "\trefreshPup(contcontdoc, srcdoc, \"PupCmd\", \"\", \"FeedFPupCmd\", retrieveCi(srcdoc, \"ContIac" << hkroot << "\", \"numFPupCmd\"), true, false);" << endl;
+		outfile << endl;
+
+		outfile << "\tvar myelem;" << endl;
+		outfile << endl;
+
+		outfile << "\tmyelem = contcontdoc.getElementById(\"TxtDat\");" << endl;
+		outfile << "\trefreshTxtt(contcontdoc, \"TxtDat\", retrieveCi(srcdoc, \"ContInf" << hkroot << "\", \"TxtDatLog\"));" << endl;
+		outfile << "\tmyelem.scrollTop = myelem.scrollHeight;" << endl;
+		outfile << endl;
+		
+		outfile << "\trefreshTxft(contcontdoc, \"TxfCsq\", retrieveCi(srcdoc, \"ContIac" << hkroot << "\", \"TxfCsq\"), true, false, true);" << endl;
+		outfile << endl;
+
+		outfile << "\trefreshBut(contcontdoc, \"ButSmt\", ButSmtActive, false);" << endl;
+
+		outfile << "// IP refreshBD --- END" << endl;
+		outfile << "// IP refreshBD --- REND" << endl;
+
+		outfile.close();
+
+		// --- CrdXxxxYyy/PnlXxxxYyyTerm_bcont.xml
+		s = xchg->tmppath + "/" + folder + "/Crd" + hkroot.substr(0, 4+3) + "/Pnl" + hkroot + "_bcont.xml.ip";
+		outfile.open(s.c_str(), ios::out);
+
+		outfile << "<!-- IP trDat - RBEGIN -->" << endl;
+		outfile << "<!-- IP trDat - BEGIN -->" << endl;
+
+		outfile << "\t\t\t\t\t<td height=\"200\"></td>" << endl;
+		outfile << "\t\t\t\t\t<td id=\"tdDat\" colspan=\"10\" height=\"200\">" << endl;
+		outfile << "\t\t\t\t\t\t<textarea id=\"TxtDat\" style=\"resitze:none;font-size:10px;font-family:Monospace;font-weight:normal;width:685px;background-color:#000000;color:#ffffff;border-width:0px;\" rows=\"16\" cols=\"120\" type=\"text\" value=\"TxtDatLog\" readonly=\"readonly\"/>" << endl;
+		outfile << "\t\t\t\t\t</td>" << endl;
+
+		outfile << "<!-- IP trDat - END -->" << endl;
+		outfile << "<!-- IP trDat - REND -->" << endl;
+
+		outfile.close();
+	};
 	// IP run --- IEND
 
 	return(new DpchRetWznm(VecWznmVDpch::DPCHRETWZNM, "", "", ixOpVOpres, 100));

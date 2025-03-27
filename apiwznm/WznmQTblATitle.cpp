@@ -25,14 +25,15 @@ WznmQTblATitle::WznmQTblATitle(
 			, const string srefIxWznmVGender
 			, const string titIxWznmVGender
 			, const string Title
-		) {
-	this->jnum = jnum;
-	this->srefX1IxVType = srefX1IxVType;
-	this->titX1IxVType = titX1IxVType;
-	this->stubX2RefWznmMLocale = stubX2RefWznmMLocale;
-	this->srefIxWznmVGender = srefIxWznmVGender;
-	this->titIxWznmVGender = titIxWznmVGender;
-	this->Title = Title;
+		) :
+			jnum(jnum)
+			, srefX1IxVType(srefX1IxVType)
+			, titX1IxVType(titX1IxVType)
+			, stubX2RefWznmMLocale(stubX2RefWznmMLocale)
+			, srefIxWznmVGender(srefIxWznmVGender)
+			, titIxWznmVGender(titIxWznmVGender)
+			, Title(Title)
+		{
 };
 
 bool WznmQTblATitle::readXML(

@@ -89,10 +89,12 @@ void PnlWznmNavPre::refresh(
 	// continf
 	continf.TxtApp = StubWznm::getStubAppStd(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFAPP, jref), ixWznmVLocale);
 	continf.TxtVer = StubWznm::getStubVerStd(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref), ixWznmVLocale);
+	continf.TxtVis = StubWznm::getStubVisStd(dbswznm, xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVIS, jref), ixWznmVLocale);
 
 	// statshr
 	statshr.TxtAppAvail = evalTxtAppAvail(dbswznm);
 	statshr.TxtVerAvail = evalTxtVerAvail(dbswznm);
+	statshr.TxtVisAvail = evalTxtVisAvail(dbswznm);
 
 	// IP refresh --- END
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
@@ -143,6 +145,8 @@ void PnlWznmNavPre::handleRequest(
 					handleDpchAppDoButAppRemoveClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::BUTVERREMOVECLICK) {
 					handleDpchAppDoButVerRemoveClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::BUTVISREMOVECLICK) {
+					handleDpchAppDoButVisRemoveClick(dbswznm, &(req->dpcheng));
 				};
 
 			};
@@ -179,6 +183,19 @@ void PnlWznmNavPre::handleDpchAppDoButVerRemoveClick(
 	set<uint> moditems;
 
 	xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFVER, 0);
+
+	refresh(dbswznm, moditems);
+
+	*dpcheng = getNewDpchEng(moditems);
+};
+
+void PnlWznmNavPre::handleDpchAppDoButVisRemoveClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	set<uint> moditems;
+
+	xchg->triggerIxRefCall(dbswznm, VecWznmVCall::CALLWZNMREFPRESET, jref, VecWznmVPreset::PREWZNMREFVIS, 0);
 
 	refresh(dbswznm, moditems);
 

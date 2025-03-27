@@ -32,21 +32,22 @@ WznmQBlkAItem::WznmQBlkAItem(
 			, const string Defval
 			, const string stubRefWznmMVectoritem
 			, const string Comment
-		) {
-	this->jnum = jnum;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->sref = sref;
-	this->srefIxWznmVVartype = srefIxWznmVVartype;
-	this->titIxWznmVVartype = titIxWznmVVartype;
-	this->stubRefWznmMControl = stubRefWznmMControl;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->stubRefWznmMFeed = stubRefWznmMFeed;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->stubRefWznmMBlock = stubRefWznmMBlock;
-	this->Defval = Defval;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
-	this->Comment = Comment;
+		) :
+			jnum(jnum)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, sref(sref)
+			, srefIxWznmVVartype(srefIxWznmVVartype)
+			, titIxWznmVVartype(titIxWznmVVartype)
+			, stubRefWznmMControl(stubRefWznmMControl)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, stubRefWznmMFeed(stubRefWznmMFeed)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, stubRefWznmMBlock(stubRefWznmMBlock)
+			, Defval(Defval)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+			, Comment(Comment)
+		{
 };
 
 bool WznmQBlkAItem::readXML(

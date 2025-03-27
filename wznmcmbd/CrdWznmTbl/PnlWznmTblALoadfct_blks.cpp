@@ -47,9 +47,8 @@ PnlWznmTblALoadfct::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -61,7 +60,7 @@ void PnlWznmTblALoadfct::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmTblALoadfct::ContInf::writeXML(
@@ -149,13 +148,12 @@ PnlWznmTblALoadfct::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -235,13 +233,13 @@ PnlWznmTblALoadfct::StgIac::StgIac(
 			, const uint TcoLitWidth
 		) :
 			Block()
+			, TcoLotWidth(TcoLotWidth)
+			, TcoFnaWidth(TcoFnaWidth)
+			, TcoLdxWidth(TcoLdxWidth)
+			, TcoLbyWidth(TcoLbyWidth)
+			, TcoOrdWidth(TcoOrdWidth)
+			, TcoLitWidth(TcoLitWidth)
 		{
-	this->TcoLotWidth = TcoLotWidth;
-	this->TcoFnaWidth = TcoFnaWidth;
-	this->TcoLdxWidth = TcoLdxWidth;
-	this->TcoLbyWidth = TcoLbyWidth;
-	this->TcoOrdWidth = TcoOrdWidth;
-	this->TcoLitWidth = TcoLitWidth;
 	mask = {TCOLOTWIDTH, TCOFNAWIDTH, TCOLDXWIDTH, TCOLBYWIDTH, TCOORDWIDTH, TCOLITWIDTH};
 };
 
@@ -305,12 +303,12 @@ void PnlWznmTblALoadfct::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoLotWidth"] = TcoLotWidth;
-	me["TcoFnaWidth"] = TcoFnaWidth;
-	me["TcoLdxWidth"] = TcoLdxWidth;
-	me["TcoLbyWidth"] = TcoLbyWidth;
-	me["TcoOrdWidth"] = TcoOrdWidth;
-	me["TcoLitWidth"] = TcoLitWidth;
+	me["TcoLotWidth"] = (Json::Value::UInt) TcoLotWidth;
+	me["TcoFnaWidth"] = (Json::Value::UInt) TcoFnaWidth;
+	me["TcoLdxWidth"] = (Json::Value::UInt) TcoLdxWidth;
+	me["TcoLbyWidth"] = (Json::Value::UInt) TcoLbyWidth;
+	me["TcoOrdWidth"] = (Json::Value::UInt) TcoOrdWidth;
+	me["TcoLitWidth"] = (Json::Value::UInt) TcoLitWidth;
 };
 
 void PnlWznmTblALoadfct::StgIac::writeXML(

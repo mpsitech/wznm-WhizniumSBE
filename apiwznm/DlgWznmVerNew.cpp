@@ -104,14 +104,13 @@ DlgWznmVerNew::ContIac::ContIac(
 			, const uint numFDetPupPlc
 		) :
 			Block()
+			, numFDetPupPrj(numFDetPupPrj)
+			, numFDetPupBvr(numFDetPupBvr)
+			, numFDetRbuVni(numFDetRbuVni)
+			, DetTxfCmt(DetTxfCmt)
+			, numsFDetLstLoc(numsFDetLstLoc)
+			, numFDetPupPlc(numFDetPupPlc)
 		{
-	this->numFDetPupPrj = numFDetPupPrj;
-	this->numFDetPupBvr = numFDetPupBvr;
-	this->numFDetRbuVni = numFDetRbuVni;
-	this->DetTxfCmt = DetTxfCmt;
-	this->numsFDetLstLoc = numsFDetLstLoc;
-	this->numFDetPupPlc = numFDetPupPlc;
-
 	mask = {NUMFDETPUPPRJ, NUMFDETPUPBVR, NUMFDETRBUVNI, DETTXFCMT, NUMSFDETLSTLOC, NUMFDETPUPPLC};
 };
 
@@ -201,9 +200,8 @@ DlgWznmVerNew::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -263,10 +261,9 @@ DlgWznmVerNew::StatApp::StatApp(
 			, const uint DetLstLocNumFirstdisp
 		) :
 			Block()
+			, shortMenu(shortMenu)
+			, DetLstLocNumFirstdisp(DetLstLocNumFirstdisp)
 		{
-	this->shortMenu = shortMenu;
-	this->DetLstLocNumFirstdisp = DetLstLocNumFirstdisp;
-
 	mask = {SHORTMENU, DETLSTLOCNUMFIRSTDISP};
 };
 
@@ -327,9 +324,8 @@ DlgWznmVerNew::StatShr::StatShr(
 			const bool ButCreActive
 		) :
 			Block()
+			, ButCreActive(ButCreActive)
 		{
-	this->ButCreActive = ButCreActive;
-
 	mask = {BUTCREACTIVE};
 };
 
@@ -396,17 +392,16 @@ DlgWznmVerNew::Tag::Tag(
 			, const string& ButCre
 		) :
 			Block()
+			, Cpt(Cpt)
+			, DetCptPrj(DetCptPrj)
+			, DetCptBvr(DetCptBvr)
+			, DetCptVni(DetCptVni)
+			, DetCptCmt(DetCptCmt)
+			, DetCptLoc(DetCptLoc)
+			, DetCptPlc(DetCptPlc)
+			, ButCnc(ButCnc)
+			, ButCre(ButCre)
 		{
-	this->Cpt = Cpt;
-	this->DetCptPrj = DetCptPrj;
-	this->DetCptBvr = DetCptBvr;
-	this->DetCptVni = DetCptVni;
-	this->DetCptCmt = DetCptCmt;
-	this->DetCptLoc = DetCptLoc;
-	this->DetCptPlc = DetCptPlc;
-	this->ButCnc = ButCnc;
-	this->ButCre = ButCre;
-
 	mask = {CPT, DETCPTPRJ, DETCPTBVR, DETCPTVNI, DETCPTCMT, DETCPTLOC, DETCPTPLC, BUTCNC, BUTCRE};
 };
 
@@ -490,11 +485,11 @@ DlgWznmVerNew::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMVERNEWDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string DlgWznmVerNew::DpchAppDo::getSrefsMask() {

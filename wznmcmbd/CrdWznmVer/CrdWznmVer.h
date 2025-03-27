@@ -20,15 +20,15 @@
 #include "DlgWznmVerWrinimdl.h"
 #include "DlgWznmVerOppack.h"
 #include "DlgWznmVerNew.h"
-#include "DlgWznmVerGlobal.h"
 #include "DlgWznmVerImpexp.h"
 #include "DlgWznmVerGenui.h"
+#include "DlgWznmVerGlobal.h"
 #include "DlgWznmVerGenjtr.h"
 #include "DlgWznmVerFinmod.h"
 #include "DlgWznmVerDeploy.h"
 #include "DlgWznmVerDbstr.h"
-#include "DlgWznmVerCustui.h"
 #include "DlgWznmVerCustjtr.h"
+#include "DlgWznmVerCustui.h"
 #include "DlgWznmVerCustjob.h"
 #include "DlgWznmVerBscui.h"
 
@@ -367,15 +367,15 @@ public:
 	DlgWznmVerWrinimdl* dlgwrinimdl;
 	DlgWznmVerOppack* dlgoppack;
 	DlgWznmVerNew* dlgnew;
-	DlgWznmVerGlobal* dlgglobal;
 	DlgWznmVerImpexp* dlgimpexp;
 	DlgWznmVerGenui* dlggenui;
+	DlgWznmVerGlobal* dlgglobal;
 	DlgWznmVerGenjtr* dlggenjtr;
 	DlgWznmVerFinmod* dlgfinmod;
 	DlgWznmVerDeploy* dlgdeploy;
 	DlgWznmVerDbstr* dlgdbstr;
-	DlgWznmVerCustui* dlgcustui;
 	DlgWznmVerCustjtr* dlgcustjtr;
+	DlgWznmVerCustui* dlgcustui;
 	DlgWznmVerCustjob* dlgcustjob;
 	DlgWznmVerBscui* dlgbscui;
 

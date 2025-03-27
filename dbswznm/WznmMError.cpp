@@ -23,14 +23,14 @@ WznmMError::WznmMError(
 			, const string sref
 			, const ubigint refJTitle
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->verRefWznmMVersion = verRefWznmMVersion;
-	this->verNum = verNum;
-	this->sref = sref;
-	this->refJTitle = refJTitle;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, verRefWznmMVersion(verRefWznmMVersion)
+			, verNum(verNum)
+			, sref(sref)
+			, refJTitle(refJTitle)
+			, Title(Title)
+		{
 };
 
 bool WznmMError::operator==(

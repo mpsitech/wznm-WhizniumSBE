@@ -26,15 +26,16 @@ WznmQVitList::WznmQVitList(
 			, const string Title
 			, const ubigint vecRefWznmMVector
 			, const string stubVecRefWznmMVector
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->vecRefWznmMVector = vecRefWznmMVector;
-	this->stubVecRefWznmMVector = stubVecRefWznmMVector;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, vecRefWznmMVector(vecRefWznmMVector)
+			, stubVecRefWznmMVector(stubVecRefWznmMVector)
+		{
 };
 
 void WznmQVitList::writeJSON(

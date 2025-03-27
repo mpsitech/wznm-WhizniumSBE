@@ -24,13 +24,14 @@ WznmQOpkARetval::WznmQOpkARetval(
 			, const string titIxWznmVVartype
 			, const string stubRefWznmMVector
 			, const string Comment
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxWznmVVartype = srefIxWznmVVartype;
-	this->titIxWznmVVartype = titIxWznmVVartype;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->Comment = Comment;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxWznmVVartype(srefIxWznmVVartype)
+			, titIxWznmVVartype(titIxWznmVVartype)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, Comment(Comment)
+		{
 };
 
 bool WznmQOpkARetval::readXML(

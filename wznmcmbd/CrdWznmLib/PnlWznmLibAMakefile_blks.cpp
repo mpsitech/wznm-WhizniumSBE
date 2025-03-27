@@ -47,9 +47,8 @@ PnlWznmLibAMakefile::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -61,7 +60,7 @@ void PnlWznmLibAMakefile::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmLibAMakefile::ContInf::writeXML(
@@ -149,13 +148,12 @@ PnlWznmLibAMakefile::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -232,10 +230,10 @@ PnlWznmLibAMakefile::StgIac::StgIac(
 			, const uint TcoValWidth
 		) :
 			Block()
+			, TcoMchWidth(TcoMchWidth)
+			, TcoTagWidth(TcoTagWidth)
+			, TcoValWidth(TcoValWidth)
 		{
-	this->TcoMchWidth = TcoMchWidth;
-	this->TcoTagWidth = TcoTagWidth;
-	this->TcoValWidth = TcoValWidth;
 	mask = {TCOMCHWIDTH, TCOTAGWIDTH, TCOVALWIDTH};
 };
 
@@ -293,9 +291,9 @@ void PnlWznmLibAMakefile::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoMchWidth"] = TcoMchWidth;
-	me["TcoTagWidth"] = TcoTagWidth;
-	me["TcoValWidth"] = TcoValWidth;
+	me["TcoMchWidth"] = (Json::Value::UInt) TcoMchWidth;
+	me["TcoTagWidth"] = (Json::Value::UInt) TcoTagWidth;
+	me["TcoValWidth"] = (Json::Value::UInt) TcoValWidth;
 };
 
 void PnlWznmLibAMakefile::StgIac::writeXML(

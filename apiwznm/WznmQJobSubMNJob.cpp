@@ -24,13 +24,14 @@ WznmQJobSubMNJob::WznmQJobSubMNJob(
 			, const string yesnoMulti
 			, const string srefIxVConstract
 			, const string titIxVConstract
-		) {
-	this->jnum = jnum;
-	this->stubMref = stubMref;
-	this->Short = Short;
-	this->yesnoMulti = yesnoMulti;
-	this->srefIxVConstract = srefIxVConstract;
-	this->titIxVConstract = titIxVConstract;
+		) :
+			jnum(jnum)
+			, stubMref(stubMref)
+			, Short(Short)
+			, yesnoMulti(yesnoMulti)
+			, srefIxVConstract(srefIxVConstract)
+			, titIxVConstract(titIxVConstract)
+		{
 };
 
 bool WznmQJobSubMNJob::readXML(

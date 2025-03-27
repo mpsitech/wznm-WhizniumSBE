@@ -80,12 +80,11 @@ DlgWznmAppNew::ContIac::ContIac(
 			, const string& DetTxfTit
 		) :
 			Block()
+			, numFDetPupTrg(numFDetPupTrg)
+			, numFDetPupVer(numFDetPupVer)
+			, DetTxfSho(DetTxfSho)
+			, DetTxfTit(DetTxfTit)
 		{
-	this->numFDetPupTrg = numFDetPupTrg;
-	this->numFDetPupVer = numFDetPupVer;
-	this->DetTxfSho = DetTxfSho;
-	this->DetTxfTit = DetTxfTit;
-
 	mask = {NUMFDETPUPTRG, NUMFDETPUPVER, DETTXFSHO, DETTXFTIT};
 };
 
@@ -145,8 +144,8 @@ void DlgWznmAppNew::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFDetPupTrg"] = numFDetPupTrg;
-	me["numFDetPupVer"] = numFDetPupVer;
+	me["numFDetPupTrg"] = (Json::Value::UInt) numFDetPupTrg;
+	me["numFDetPupVer"] = (Json::Value::UInt) numFDetPupVer;
 	me["DetTxfSho"] = DetTxfSho;
 	me["DetTxfTit"] = DetTxfTit;
 };
@@ -205,9 +204,8 @@ DlgWznmAppNew::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -219,7 +217,7 @@ void DlgWznmAppNew::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 };
 
 void DlgWznmAppNew::ContInf::writeXML(
@@ -304,10 +302,9 @@ DlgWznmAppNew::StatShr::StatShr(
 			, const bool ButCreActive
 		) :
 			Block()
+			, ButCncActive(ButCncActive)
+			, ButCreActive(ButCreActive)
 		{
-	this->ButCncActive = ButCncActive;
-	this->ButCreActive = ButCreActive;
-
 	mask = {BUTCNCACTIVE, BUTCREACTIVE};
 };
 

@@ -22,13 +22,13 @@ WznmMSession::WznmMSession(
 			, const uint start
 			, const uint stop
 			, const string Ip
-		) {
-
-	this->ref = ref;
-	this->refWznmMUser = refWznmMUser;
-	this->start = start;
-	this->stop = stop;
-	this->Ip = Ip;
+		) :
+			ref(ref)
+			, refWznmMUser(refWznmMUser)
+			, start(start)
+			, stop(stop)
+			, Ip(Ip)
+		{
 };
 
 bool WznmMSession::operator==(

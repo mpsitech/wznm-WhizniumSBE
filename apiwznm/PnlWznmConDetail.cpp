@@ -93,27 +93,26 @@ PnlWznmConDetail::ContIac::ContIac(
 			, const string& TxfFedCmt
 		) :
 			Block()
+			, numFPupJti(numFPupJti)
+			, numFPupTyp(numFPupTyp)
+			, numFLstClu(numFLstClu)
+			, numFPupHkt(numFPupHkt)
+			, numFPupRet(numFPupRet)
+			, numFPupSco(numFPupSco)
+			, numFPupSty(numFPupSty)
+			, numFLstTag(numFLstTag)
+			, TxfTag(TxfTag)
+			, TxfAvl(TxfAvl)
+			, TxfAct(TxfAct)
+			, numsFLstOpt(numsFLstOpt)
+			, TxfOpt(TxfOpt)
+			, numFPupFedSrt(numFPupFedSrt)
+			, numFLstFedVit(numFLstFedVit)
+			, TxfFedVit(TxfFedVit)
+			, numFLstFedTag(numFLstFedTag)
+			, TxfFedTag(TxfFedTag)
+			, TxfFedCmt(TxfFedCmt)
 		{
-	this->numFPupJti = numFPupJti;
-	this->numFPupTyp = numFPupTyp;
-	this->numFLstClu = numFLstClu;
-	this->numFPupHkt = numFPupHkt;
-	this->numFPupRet = numFPupRet;
-	this->numFPupSco = numFPupSco;
-	this->numFPupSty = numFPupSty;
-	this->numFLstTag = numFLstTag;
-	this->TxfTag = TxfTag;
-	this->TxfAvl = TxfAvl;
-	this->TxfAct = TxfAct;
-	this->numsFLstOpt = numsFLstOpt;
-	this->TxfOpt = TxfOpt;
-	this->numFPupFedSrt = numFPupFedSrt;
-	this->numFLstFedVit = numFLstFedVit;
-	this->TxfFedVit = TxfFedVit;
-	this->numFLstFedTag = numFLstFedTag;
-	this->TxfFedTag = TxfFedTag;
-	this->TxfFedCmt = TxfFedCmt;
-
 	mask = {NUMFPUPJTI, NUMFPUPTYP, NUMFLSTCLU, NUMFPUPHKT, NUMFPUPRET, NUMFPUPSCO, NUMFPUPSTY, NUMFLSTTAG, TXFTAG, TXFAVL, TXFACT, NUMSFLSTOPT, TXFOPT, NUMFPUPFEDSRT, NUMFLSTFEDVIT, TXFFEDVIT, NUMFLSTFEDTAG, TXFFEDTAG, TXFFEDCMT};
 };
 
@@ -251,18 +250,17 @@ PnlWznmConDetail::ContInf::ContInf(
 			, const string& TxtFedSru
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
+			, TxtClu(TxtClu)
+			, TxtHku(TxtHku)
+			, TxtReu(TxtReu)
+			, TxtSup(TxtSup)
+			, TxtSts(TxtSts)
+			, TxtShs(TxtShs)
+			, TxtFedSrf(TxtFedSrf)
+			, TxtFedSru(TxtFedSru)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-	this->TxtClu = TxtClu;
-	this->TxtHku = TxtHku;
-	this->TxtReu = TxtReu;
-	this->TxtSup = TxtSup;
-	this->TxtSts = TxtSts;
-	this->TxtShs = TxtShs;
-	this->TxtFedSrf = TxtFedSrf;
-	this->TxtFedSru = TxtFedSru;
-
 	mask = {TXTSRF, TXTTIT, TXTCLU, TXTHKU, TXTREU, TXTSUP, TXTSTS, TXTSHS, TXTFEDSRF, TXTFEDSRU};
 };
 
@@ -349,19 +347,18 @@ PnlWznmConDetail::StatApp::StatApp(
 			, const uint LstFedTagNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstCluAlt(LstCluAlt)
+			, LstTagAlt(LstTagAlt)
+			, LstOptAlt(LstOptAlt)
+			, LstFedVitAlt(LstFedVitAlt)
+			, LstFedTagAlt(LstFedTagAlt)
+			, LstCluNumFirstdisp(LstCluNumFirstdisp)
+			, LstTagNumFirstdisp(LstTagNumFirstdisp)
+			, LstOptNumFirstdisp(LstOptNumFirstdisp)
+			, LstFedVitNumFirstdisp(LstFedVitNumFirstdisp)
+			, LstFedTagNumFirstdisp(LstFedTagNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstCluAlt = LstCluAlt;
-	this->LstTagAlt = LstTagAlt;
-	this->LstOptAlt = LstOptAlt;
-	this->LstFedVitAlt = LstFedVitAlt;
-	this->LstFedTagAlt = LstFedTagAlt;
-	this->LstCluNumFirstdisp = LstCluNumFirstdisp;
-	this->LstTagNumFirstdisp = LstTagNumFirstdisp;
-	this->LstOptNumFirstdisp = LstOptNumFirstdisp;
-	this->LstFedVitNumFirstdisp = LstFedVitNumFirstdisp;
-	this->LstFedTagNumFirstdisp = LstFedTagNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTCLUALT, LSTTAGALT, LSTOPTALT, LSTFEDVITALT, LSTFEDTAGALT, LSTCLUNUMFIRSTDISP, LSTTAGNUMFIRSTDISP, LSTOPTNUMFIRSTDISP, LSTFEDVITNUMFIRSTDISP, LSTFEDTAGNUMFIRSTDISP};
 };
 
@@ -442,11 +439,7 @@ set<uint> PnlWznmConDetail::StatApp::diff(
  ******************************************************************************/
 
 PnlWznmConDetail::StatShr::StatShr(
-			const bool TxfTagValid
-			, const bool TxfOptValid
-			, const bool TxfFedVitValid
-			, const bool TxfFedTagValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
 			, const bool PupJtiActive
@@ -469,6 +462,7 @@ PnlWznmConDetail::StatShr::StatShr(
 			, const bool PupScoActive
 			, const bool PupStyActive
 			, const bool LstTagActive
+			, const bool TxfTagValid
 			, const bool ButTagViewAvail
 			, const bool ButTagViewActive
 			, const bool TxtStsActive
@@ -480,6 +474,7 @@ PnlWznmConDetail::StatShr::StatShr(
 			, const bool TxfAvlActive
 			, const bool TxfActActive
 			, const bool LstOptActive
+			, const bool TxfOptValid
 			, const bool ButOptEditAvail
 			, const bool SepFedAvail
 			, const bool HdgFedAvail
@@ -493,78 +488,79 @@ PnlWznmConDetail::StatShr::StatShr(
 			, const bool ButFedSruViewActive
 			, const bool LstFedVitAvail
 			, const bool LstFedVitActive
+			, const bool TxfFedVitValid
 			, const bool ButFedVitViewAvail
 			, const bool ButFedVitViewActive
 			, const bool LstFedTagAvail
 			, const bool LstFedTagActive
+			, const bool TxfFedTagValid
 			, const bool ButFedTagViewAvail
 			, const bool ButFedTagViewActive
 			, const bool TxfFedCmtAvail
 			, const bool TxfFedCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupJtiActive(PupJtiActive)
+			, ButJtiEditAvail(ButJtiEditAvail)
+			, TxtTitActive(TxtTitActive)
+			, PupTypActive(PupTypActive)
+			, LstCluActive(LstCluActive)
+			, ButCluViewActive(ButCluViewActive)
+			, ButCluClusterAvail(ButCluClusterAvail)
+			, ButCluUnclusterAvail(ButCluUnclusterAvail)
+			, TxtHkuActive(TxtHkuActive)
+			, ButHkuViewAvail(ButHkuViewAvail)
+			, ButHkuViewActive(ButHkuViewActive)
+			, TxtReuActive(TxtReuActive)
+			, ButReuViewAvail(ButReuViewAvail)
+			, ButReuViewActive(ButReuViewActive)
+			, TxtSupActive(TxtSupActive)
+			, ButSupViewAvail(ButSupViewAvail)
+			, ButSupViewActive(ButSupViewActive)
+			, PupScoActive(PupScoActive)
+			, PupStyActive(PupStyActive)
+			, LstTagActive(LstTagActive)
+			, TxfTagValid(TxfTagValid)
+			, ButTagViewAvail(ButTagViewAvail)
+			, ButTagViewActive(ButTagViewActive)
+			, TxtStsActive(TxtStsActive)
+			, ButStsViewAvail(ButStsViewAvail)
+			, ButStsViewActive(ButStsViewActive)
+			, TxtShsActive(TxtShsActive)
+			, ButShsViewAvail(ButShsViewAvail)
+			, ButShsViewActive(ButShsViewActive)
+			, TxfAvlActive(TxfAvlActive)
+			, TxfActActive(TxfActActive)
+			, LstOptActive(LstOptActive)
+			, TxfOptValid(TxfOptValid)
+			, ButOptEditAvail(ButOptEditAvail)
+			, SepFedAvail(SepFedAvail)
+			, HdgFedAvail(HdgFedAvail)
+			, ButFedNewAvail(ButFedNewAvail)
+			, ButFedDeleteAvail(ButFedDeleteAvail)
+			, TxtFedSrfAvail(TxtFedSrfAvail)
+			, TxtFedSrfActive(TxtFedSrfActive)
+			, TxtFedSruAvail(TxtFedSruAvail)
+			, TxtFedSruActive(TxtFedSruActive)
+			, ButFedSruViewAvail(ButFedSruViewAvail)
+			, ButFedSruViewActive(ButFedSruViewActive)
+			, LstFedVitAvail(LstFedVitAvail)
+			, LstFedVitActive(LstFedVitActive)
+			, TxfFedVitValid(TxfFedVitValid)
+			, ButFedVitViewAvail(ButFedVitViewAvail)
+			, ButFedVitViewActive(ButFedVitViewActive)
+			, LstFedTagAvail(LstFedTagAvail)
+			, LstFedTagActive(LstFedTagActive)
+			, TxfFedTagValid(TxfFedTagValid)
+			, ButFedTagViewAvail(ButFedTagViewAvail)
+			, ButFedTagViewActive(ButFedTagViewActive)
+			, TxfFedCmtAvail(TxfFedCmtAvail)
+			, TxfFedCmtActive(TxfFedCmtActive)
 		{
-	this->TxfTagValid = TxfTagValid;
-	this->TxfOptValid = TxfOptValid;
-	this->TxfFedVitValid = TxfFedVitValid;
-	this->TxfFedTagValid = TxfFedTagValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupJtiActive = PupJtiActive;
-	this->ButJtiEditAvail = ButJtiEditAvail;
-	this->TxtTitActive = TxtTitActive;
-	this->PupTypActive = PupTypActive;
-	this->LstCluActive = LstCluActive;
-	this->ButCluViewActive = ButCluViewActive;
-	this->ButCluClusterAvail = ButCluClusterAvail;
-	this->ButCluUnclusterAvail = ButCluUnclusterAvail;
-	this->TxtHkuActive = TxtHkuActive;
-	this->ButHkuViewAvail = ButHkuViewAvail;
-	this->ButHkuViewActive = ButHkuViewActive;
-	this->TxtReuActive = TxtReuActive;
-	this->ButReuViewAvail = ButReuViewAvail;
-	this->ButReuViewActive = ButReuViewActive;
-	this->TxtSupActive = TxtSupActive;
-	this->ButSupViewAvail = ButSupViewAvail;
-	this->ButSupViewActive = ButSupViewActive;
-	this->PupScoActive = PupScoActive;
-	this->PupStyActive = PupStyActive;
-	this->LstTagActive = LstTagActive;
-	this->ButTagViewAvail = ButTagViewAvail;
-	this->ButTagViewActive = ButTagViewActive;
-	this->TxtStsActive = TxtStsActive;
-	this->ButStsViewAvail = ButStsViewAvail;
-	this->ButStsViewActive = ButStsViewActive;
-	this->TxtShsActive = TxtShsActive;
-	this->ButShsViewAvail = ButShsViewAvail;
-	this->ButShsViewActive = ButShsViewActive;
-	this->TxfAvlActive = TxfAvlActive;
-	this->TxfActActive = TxfActActive;
-	this->LstOptActive = LstOptActive;
-	this->ButOptEditAvail = ButOptEditAvail;
-	this->SepFedAvail = SepFedAvail;
-	this->HdgFedAvail = HdgFedAvail;
-	this->ButFedNewAvail = ButFedNewAvail;
-	this->ButFedDeleteAvail = ButFedDeleteAvail;
-	this->TxtFedSrfAvail = TxtFedSrfAvail;
-	this->TxtFedSrfActive = TxtFedSrfActive;
-	this->TxtFedSruAvail = TxtFedSruAvail;
-	this->TxtFedSruActive = TxtFedSruActive;
-	this->ButFedSruViewAvail = ButFedSruViewAvail;
-	this->ButFedSruViewActive = ButFedSruViewActive;
-	this->LstFedVitAvail = LstFedVitAvail;
-	this->LstFedVitActive = LstFedVitActive;
-	this->ButFedVitViewAvail = ButFedVitViewAvail;
-	this->ButFedVitViewActive = ButFedVitViewActive;
-	this->LstFedTagAvail = LstFedTagAvail;
-	this->LstFedTagActive = LstFedTagActive;
-	this->ButFedTagViewAvail = ButFedTagViewAvail;
-	this->ButFedTagViewActive = ButFedTagViewActive;
-	this->TxfFedCmtAvail = TxfFedCmtAvail;
-	this->TxfFedCmtActive = TxfFedCmtActive;
-
-	mask = {TXFTAGVALID, TXFOPTVALID, TXFFEDVITVALID, TXFFEDTAGVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, PUPSCOACTIVE, PUPSTYACTIVE, LSTTAGACTIVE, BUTTAGVIEWAVAIL, BUTTAGVIEWACTIVE, TXTSTSACTIVE, BUTSTSVIEWAVAIL, BUTSTSVIEWACTIVE, TXTSHSACTIVE, BUTSHSVIEWAVAIL, BUTSHSVIEWACTIVE, TXFAVLACTIVE, TXFACTACTIVE, LSTOPTACTIVE, BUTOPTEDITAVAIL, SEPFEDAVAIL, HDGFEDAVAIL, BUTFEDNEWAVAIL, BUTFEDDELETEAVAIL, TXTFEDSRFAVAIL, TXTFEDSRFACTIVE, TXTFEDSRUAVAIL, TXTFEDSRUACTIVE, BUTFEDSRUVIEWAVAIL, BUTFEDSRUVIEWACTIVE, LSTFEDVITAVAIL, LSTFEDVITACTIVE, BUTFEDVITVIEWAVAIL, BUTFEDVITVIEWACTIVE, LSTFEDTAGAVAIL, LSTFEDTAGACTIVE, BUTFEDTAGVIEWAVAIL, BUTFEDTAGVIEWACTIVE, TXFFEDCMTAVAIL, TXFFEDCMTACTIVE};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, PUPSCOACTIVE, PUPSTYACTIVE, LSTTAGACTIVE, TXFTAGVALID, BUTTAGVIEWAVAIL, BUTTAGVIEWACTIVE, TXTSTSACTIVE, BUTSTSVIEWAVAIL, BUTSTSVIEWACTIVE, TXTSHSACTIVE, BUTSHSVIEWAVAIL, BUTSHSVIEWACTIVE, TXFAVLACTIVE, TXFACTACTIVE, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL, SEPFEDAVAIL, HDGFEDAVAIL, BUTFEDNEWAVAIL, BUTFEDDELETEAVAIL, TXTFEDSRFAVAIL, TXTFEDSRFACTIVE, TXTFEDSRUAVAIL, TXTFEDSRUACTIVE, BUTFEDSRUVIEWAVAIL, BUTFEDSRUVIEWACTIVE, LSTFEDVITAVAIL, LSTFEDVITACTIVE, TXFFEDVITVALID, BUTFEDVITVIEWAVAIL, BUTFEDVITVIEWACTIVE, LSTFEDTAGAVAIL, LSTFEDTAGACTIVE, TXFFEDTAGVALID, BUTFEDTAGVIEWAVAIL, BUTFEDTAGVIEWACTIVE, TXFFEDCMTAVAIL, TXFFEDCMTACTIVE};
 };
 
 bool PnlWznmConDetail::StatShr::readXML(
@@ -584,10 +580,6 @@ bool PnlWznmConDetail::StatShr::readXML(
 	string itemtag = "StatitemShrWznmConDetail";
 
 	if (basefound) {
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfTagValid", TxfTagValid)) add(TXFTAGVALID);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfOptValid", TxfOptValid)) add(TXFOPTVALID);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfFedVitValid", TxfFedVitValid)) add(TXFFEDVITVALID);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfFedTagValid", TxfFedTagValid)) add(TXFFEDTAGVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveAvail", ButSaveAvail)) add(BUTSAVEAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveActive", ButSaveActive)) add(BUTSAVEACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxtSrfActive", TxtSrfActive)) add(TXTSRFACTIVE);
@@ -611,6 +603,7 @@ bool PnlWznmConDetail::StatShr::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "PupScoActive", PupScoActive)) add(PUPSCOACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "PupStyActive", PupStyActive)) add(PUPSTYACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstTagActive", LstTagActive)) add(LSTTAGACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfTagValid", TxfTagValid)) add(TXFTAGVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButTagViewAvail", ButTagViewAvail)) add(BUTTAGVIEWAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButTagViewActive", ButTagViewActive)) add(BUTTAGVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxtStsActive", TxtStsActive)) add(TXTSTSACTIVE);
@@ -622,6 +615,7 @@ bool PnlWznmConDetail::StatShr::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfAvlActive", TxfAvlActive)) add(TXFAVLACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfActActive", TxfActActive)) add(TXFACTACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstOptActive", LstOptActive)) add(LSTOPTACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfOptValid", TxfOptValid)) add(TXFOPTVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButOptEditAvail", ButOptEditAvail)) add(BUTOPTEDITAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "SepFedAvail", SepFedAvail)) add(SEPFEDAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "HdgFedAvail", HdgFedAvail)) add(HDGFEDAVAIL);
@@ -635,10 +629,12 @@ bool PnlWznmConDetail::StatShr::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButFedSruViewActive", ButFedSruViewActive)) add(BUTFEDSRUVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstFedVitAvail", LstFedVitAvail)) add(LSTFEDVITAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstFedVitActive", LstFedVitActive)) add(LSTFEDVITACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfFedVitValid", TxfFedVitValid)) add(TXFFEDVITVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButFedVitViewAvail", ButFedVitViewAvail)) add(BUTFEDVITVIEWAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButFedVitViewActive", ButFedVitViewActive)) add(BUTFEDVITVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstFedTagAvail", LstFedTagAvail)) add(LSTFEDTAGAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstFedTagActive", LstFedTagActive)) add(LSTFEDTAGACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfFedTagValid", TxfFedTagValid)) add(TXFFEDTAGVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButFedTagViewAvail", ButFedTagViewAvail)) add(BUTFEDTAGVIEWAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButFedTagViewActive", ButFedTagViewActive)) add(BUTFEDTAGVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfFedCmtAvail", TxfFedCmtAvail)) add(TXFFEDCMTAVAIL);
@@ -653,10 +649,6 @@ set<uint> PnlWznmConDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfTagValid == comp->TxfTagValid) insert(items, TXFTAGVALID);
-	if (TxfOptValid == comp->TxfOptValid) insert(items, TXFOPTVALID);
-	if (TxfFedVitValid == comp->TxfFedVitValid) insert(items, TXFFEDVITVALID);
-	if (TxfFedTagValid == comp->TxfFedTagValid) insert(items, TXFFEDTAGVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
@@ -680,6 +672,7 @@ set<uint> PnlWznmConDetail::StatShr::comm(
 	if (PupScoActive == comp->PupScoActive) insert(items, PUPSCOACTIVE);
 	if (PupStyActive == comp->PupStyActive) insert(items, PUPSTYACTIVE);
 	if (LstTagActive == comp->LstTagActive) insert(items, LSTTAGACTIVE);
+	if (TxfTagValid == comp->TxfTagValid) insert(items, TXFTAGVALID);
 	if (ButTagViewAvail == comp->ButTagViewAvail) insert(items, BUTTAGVIEWAVAIL);
 	if (ButTagViewActive == comp->ButTagViewActive) insert(items, BUTTAGVIEWACTIVE);
 	if (TxtStsActive == comp->TxtStsActive) insert(items, TXTSTSACTIVE);
@@ -691,6 +684,7 @@ set<uint> PnlWznmConDetail::StatShr::comm(
 	if (TxfAvlActive == comp->TxfAvlActive) insert(items, TXFAVLACTIVE);
 	if (TxfActActive == comp->TxfActActive) insert(items, TXFACTACTIVE);
 	if (LstOptActive == comp->LstOptActive) insert(items, LSTOPTACTIVE);
+	if (TxfOptValid == comp->TxfOptValid) insert(items, TXFOPTVALID);
 	if (ButOptEditAvail == comp->ButOptEditAvail) insert(items, BUTOPTEDITAVAIL);
 	if (SepFedAvail == comp->SepFedAvail) insert(items, SEPFEDAVAIL);
 	if (HdgFedAvail == comp->HdgFedAvail) insert(items, HDGFEDAVAIL);
@@ -704,10 +698,12 @@ set<uint> PnlWznmConDetail::StatShr::comm(
 	if (ButFedSruViewActive == comp->ButFedSruViewActive) insert(items, BUTFEDSRUVIEWACTIVE);
 	if (LstFedVitAvail == comp->LstFedVitAvail) insert(items, LSTFEDVITAVAIL);
 	if (LstFedVitActive == comp->LstFedVitActive) insert(items, LSTFEDVITACTIVE);
+	if (TxfFedVitValid == comp->TxfFedVitValid) insert(items, TXFFEDVITVALID);
 	if (ButFedVitViewAvail == comp->ButFedVitViewAvail) insert(items, BUTFEDVITVIEWAVAIL);
 	if (ButFedVitViewActive == comp->ButFedVitViewActive) insert(items, BUTFEDVITVIEWACTIVE);
 	if (LstFedTagAvail == comp->LstFedTagAvail) insert(items, LSTFEDTAGAVAIL);
 	if (LstFedTagActive == comp->LstFedTagActive) insert(items, LSTFEDTAGACTIVE);
+	if (TxfFedTagValid == comp->TxfFedTagValid) insert(items, TXFFEDTAGVALID);
 	if (ButFedTagViewAvail == comp->ButFedTagViewAvail) insert(items, BUTFEDTAGVIEWAVAIL);
 	if (ButFedTagViewActive == comp->ButFedTagViewActive) insert(items, BUTFEDTAGVIEWACTIVE);
 	if (TxfFedCmtAvail == comp->TxfFedCmtAvail) insert(items, TXFFEDCMTAVAIL);
@@ -724,7 +720,7 @@ set<uint> PnlWznmConDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFTAGVALID, TXFOPTVALID, TXFFEDVITVALID, TXFFEDTAGVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, PUPSCOACTIVE, PUPSTYACTIVE, LSTTAGACTIVE, BUTTAGVIEWAVAIL, BUTTAGVIEWACTIVE, TXTSTSACTIVE, BUTSTSVIEWAVAIL, BUTSTSVIEWACTIVE, TXTSHSACTIVE, BUTSHSVIEWAVAIL, BUTSHSVIEWACTIVE, TXFAVLACTIVE, TXFACTACTIVE, LSTOPTACTIVE, BUTOPTEDITAVAIL, SEPFEDAVAIL, HDGFEDAVAIL, BUTFEDNEWAVAIL, BUTFEDDELETEAVAIL, TXTFEDSRFAVAIL, TXTFEDSRFACTIVE, TXTFEDSRUAVAIL, TXTFEDSRUACTIVE, BUTFEDSRUVIEWAVAIL, BUTFEDSRUVIEWACTIVE, LSTFEDVITAVAIL, LSTFEDVITACTIVE, BUTFEDVITVIEWAVAIL, BUTFEDVITVIEWACTIVE, LSTFEDTAGAVAIL, LSTFEDTAGACTIVE, BUTFEDTAGVIEWAVAIL, BUTFEDTAGVIEWACTIVE, TXFFEDCMTAVAIL, TXFFEDCMTACTIVE};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, PUPTYPACTIVE, LSTCLUACTIVE, BUTCLUVIEWACTIVE, BUTCLUCLUSTERAVAIL, BUTCLUUNCLUSTERAVAIL, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, PUPSCOACTIVE, PUPSTYACTIVE, LSTTAGACTIVE, TXFTAGVALID, BUTTAGVIEWAVAIL, BUTTAGVIEWACTIVE, TXTSTSACTIVE, BUTSTSVIEWAVAIL, BUTSTSVIEWACTIVE, TXTSHSACTIVE, BUTSHSVIEWAVAIL, BUTSHSVIEWACTIVE, TXFAVLACTIVE, TXFACTACTIVE, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL, SEPFEDAVAIL, HDGFEDAVAIL, BUTFEDNEWAVAIL, BUTFEDDELETEAVAIL, TXTFEDSRFAVAIL, TXTFEDSRFACTIVE, TXTFEDSRUAVAIL, TXTFEDSRUACTIVE, BUTFEDSRUVIEWAVAIL, BUTFEDSRUVIEWACTIVE, LSTFEDVITAVAIL, LSTFEDVITACTIVE, TXFFEDVITVALID, BUTFEDVITVIEWAVAIL, BUTFEDVITVIEWACTIVE, LSTFEDTAGAVAIL, LSTFEDTAGACTIVE, TXFFEDTAGVALID, BUTFEDTAGVIEWAVAIL, BUTFEDTAGVIEWACTIVE, TXFFEDCMTAVAIL, TXFFEDCMTACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -759,30 +755,29 @@ PnlWznmConDetail::Tag::Tag(
 			, const string& CptFedCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTit(CptTit)
+			, CptTyp(CptTyp)
+			, CptClu(CptClu)
+			, CptHku(CptHku)
+			, CptReu(CptReu)
+			, CptSup(CptSup)
+			, CptSco(CptSco)
+			, CptSty(CptSty)
+			, CptTag(CptTag)
+			, CptSts(CptSts)
+			, CptShs(CptShs)
+			, CptAvl(CptAvl)
+			, CptAct(CptAct)
+			, CptOpt(CptOpt)
+			, HdgFed(HdgFed)
+			, CptFedSrf(CptFedSrf)
+			, CptFedSru(CptFedSru)
+			, CptFedVit(CptFedVit)
+			, CptFedTag(CptFedTag)
+			, CptFedCmt(CptFedCmt)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTit = CptTit;
-	this->CptTyp = CptTyp;
-	this->CptClu = CptClu;
-	this->CptHku = CptHku;
-	this->CptReu = CptReu;
-	this->CptSup = CptSup;
-	this->CptSco = CptSco;
-	this->CptSty = CptSty;
-	this->CptTag = CptTag;
-	this->CptSts = CptSts;
-	this->CptShs = CptShs;
-	this->CptAvl = CptAvl;
-	this->CptAct = CptAct;
-	this->CptOpt = CptOpt;
-	this->HdgFed = HdgFed;
-	this->CptFedSrf = CptFedSrf;
-	this->CptFedSru = CptFedSru;
-	this->CptFedVit = CptFedVit;
-	this->CptFedTag = CptFedTag;
-	this->CptFedCmt = CptFedCmt;
-
 	mask = {CPT, CPTSRF, CPTTIT, CPTTYP, CPTCLU, CPTHKU, CPTREU, CPTSUP, CPTSCO, CPTSTY, CPTTAG, CPTSTS, CPTSHS, CPTAVL, CPTACT, CPTOPT, HDGFED, CPTFEDSRF, CPTFEDSRU, CPTFEDVIT, CPTFEDTAG, CPTFEDCMT};
 };
 
@@ -879,11 +874,11 @@ PnlWznmConDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMCONDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmConDetail::DpchAppDo::getSrefsMask() {

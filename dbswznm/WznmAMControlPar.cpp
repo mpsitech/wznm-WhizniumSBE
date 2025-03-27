@@ -22,13 +22,13 @@ WznmAMControlPar::WznmAMControlPar(
 			, const string x1SrefKKey
 			, const ubigint x2RefWznmMLocale
 			, const string osrefKVal
-		) {
-
-	this->ref = ref;
-	this->refWznmMControl = refWznmMControl;
-	this->x1SrefKKey = x1SrefKKey;
-	this->x2RefWznmMLocale = x2RefWznmMLocale;
-	this->osrefKVal = osrefKVal;
+		) :
+			ref(ref)
+			, refWznmMControl(refWznmMControl)
+			, x1SrefKKey(x1SrefKKey)
+			, x2RefWznmMLocale(x2RefWznmMLocale)
+			, osrefKVal(osrefKVal)
+		{
 };
 
 bool WznmAMControlPar::operator==(

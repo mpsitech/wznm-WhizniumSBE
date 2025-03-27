@@ -65,13 +65,12 @@ PnlWznmNavAppdev::ContIac::ContIac(
 			, const uint numFLstSte
 		) :
 			Block()
+			, numFLstApp(numFLstApp)
+			, numFLstRtj(numFLstRtj)
+			, numFLstEvt(numFLstEvt)
+			, numFLstSeq(numFLstSeq)
+			, numFLstSte(numFLstSte)
 		{
-	this->numFLstApp = numFLstApp;
-	this->numFLstRtj = numFLstRtj;
-	this->numFLstEvt = numFLstEvt;
-	this->numFLstSeq = numFLstSeq;
-	this->numFLstSte = numFLstSte;
-
 	mask = {NUMFLSTAPP, NUMFLSTRTJ, NUMFLSTEVT, NUMFLSTSEQ, NUMFLSTSTE};
 };
 
@@ -168,19 +167,18 @@ PnlWznmNavAppdev::StatApp::StatApp(
 			, const uint LstSteNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstAppAlt(LstAppAlt)
+			, LstRtjAlt(LstRtjAlt)
+			, LstEvtAlt(LstEvtAlt)
+			, LstSeqAlt(LstSeqAlt)
+			, LstSteAlt(LstSteAlt)
+			, LstAppNumFirstdisp(LstAppNumFirstdisp)
+			, LstRtjNumFirstdisp(LstRtjNumFirstdisp)
+			, LstEvtNumFirstdisp(LstEvtNumFirstdisp)
+			, LstSeqNumFirstdisp(LstSeqNumFirstdisp)
+			, LstSteNumFirstdisp(LstSteNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstAppAlt = LstAppAlt;
-	this->LstRtjAlt = LstRtjAlt;
-	this->LstEvtAlt = LstEvtAlt;
-	this->LstSeqAlt = LstSeqAlt;
-	this->LstSteAlt = LstSteAlt;
-	this->LstAppNumFirstdisp = LstAppNumFirstdisp;
-	this->LstRtjNumFirstdisp = LstRtjNumFirstdisp;
-	this->LstEvtNumFirstdisp = LstEvtNumFirstdisp;
-	this->LstSeqNumFirstdisp = LstSeqNumFirstdisp;
-	this->LstSteNumFirstdisp = LstSteNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTAPPALT, LSTRTJALT, LSTEVTALT, LSTSEQALT, LSTSTEALT, LSTAPPNUMFIRSTDISP, LSTRTJNUMFIRSTDISP, LSTEVTNUMFIRSTDISP, LSTSEQNUMFIRSTDISP, LSTSTENUMFIRSTDISP};
 };
 
@@ -277,22 +275,21 @@ PnlWznmNavAppdev::StatShr::StatShr(
 			, const bool ButSteNewcrdActive
 		) :
 			Block()
+			, LstAppAvail(LstAppAvail)
+			, ButAppViewActive(ButAppViewActive)
+			, LstRtjAvail(LstRtjAvail)
+			, ButRtjViewActive(ButRtjViewActive)
+			, ButRtjNewcrdActive(ButRtjNewcrdActive)
+			, LstEvtAvail(LstEvtAvail)
+			, ButEvtViewActive(ButEvtViewActive)
+			, ButEvtNewcrdActive(ButEvtNewcrdActive)
+			, LstSeqAvail(LstSeqAvail)
+			, ButSeqViewActive(ButSeqViewActive)
+			, ButSeqNewcrdActive(ButSeqNewcrdActive)
+			, LstSteAvail(LstSteAvail)
+			, ButSteViewActive(ButSteViewActive)
+			, ButSteNewcrdActive(ButSteNewcrdActive)
 		{
-	this->LstAppAvail = LstAppAvail;
-	this->ButAppViewActive = ButAppViewActive;
-	this->LstRtjAvail = LstRtjAvail;
-	this->ButRtjViewActive = ButRtjViewActive;
-	this->ButRtjNewcrdActive = ButRtjNewcrdActive;
-	this->LstEvtAvail = LstEvtAvail;
-	this->ButEvtViewActive = ButEvtViewActive;
-	this->ButEvtNewcrdActive = ButEvtNewcrdActive;
-	this->LstSeqAvail = LstSeqAvail;
-	this->ButSeqViewActive = ButSeqViewActive;
-	this->ButSeqNewcrdActive = ButSeqNewcrdActive;
-	this->LstSteAvail = LstSteAvail;
-	this->ButSteViewActive = ButSteViewActive;
-	this->ButSteNewcrdActive = ButSteNewcrdActive;
-
 	mask = {LSTAPPAVAIL, BUTAPPVIEWACTIVE, LSTRTJAVAIL, BUTRTJVIEWACTIVE, BUTRTJNEWCRDACTIVE, LSTEVTAVAIL, BUTEVTVIEWACTIVE, BUTEVTNEWCRDACTIVE, LSTSEQAVAIL, BUTSEQVIEWACTIVE, BUTSEQNEWCRDACTIVE, LSTSTEAVAIL, BUTSTEVIEWACTIVE, BUTSTENEWCRDACTIVE};
 };
 
@@ -382,14 +379,13 @@ PnlWznmNavAppdev::Tag::Tag(
 			, const string& CptSte
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptApp(CptApp)
+			, CptRtj(CptRtj)
+			, CptEvt(CptEvt)
+			, CptSeq(CptSeq)
+			, CptSte(CptSte)
 		{
-	this->Cpt = Cpt;
-	this->CptApp = CptApp;
-	this->CptRtj = CptRtj;
-	this->CptEvt = CptEvt;
-	this->CptSeq = CptSeq;
-	this->CptSte = CptSte;
-
 	mask = {CPT, CPTAPP, CPTRTJ, CPTEVT, CPTSEQ, CPTSTE};
 };
 
@@ -470,11 +466,11 @@ PnlWznmNavAppdev::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMNAVAPPDEVDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmNavAppdev::DpchAppDo::getSrefsMask() {

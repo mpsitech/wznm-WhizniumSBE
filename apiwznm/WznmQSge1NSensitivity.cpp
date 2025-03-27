@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQSge1NSensitivity::WznmQSge1NSensitivity(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQSge1NSensitivity::readXML(

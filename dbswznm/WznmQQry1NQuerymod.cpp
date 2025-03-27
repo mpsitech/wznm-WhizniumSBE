@@ -24,13 +24,14 @@ WznmQQry1NQuerymod::WznmQQry1NQuerymod(
 			, const ubigint ref
 			, const string stubRef
 			, const uint qryNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->qryNum = qryNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, qryNum(qryNum)
+		{
 };
 
 void WznmQQry1NQuerymod::writeJSON(

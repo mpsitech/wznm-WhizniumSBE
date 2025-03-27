@@ -21,12 +21,12 @@ WznmJMLocaleTitle::WznmJMLocaleTitle(
 			, const ubigint refWznmMLocale
 			, const ubigint x1RefWznmMLocale
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMLocale = refWznmMLocale;
-	this->x1RefWznmMLocale = x1RefWznmMLocale;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMLocale(refWznmMLocale)
+			, x1RefWznmMLocale(x1RefWznmMLocale)
+			, Title(Title)
+		{
 };
 
 bool WznmJMLocaleTitle::operator==(

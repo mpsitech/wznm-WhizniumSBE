@@ -21,10 +21,11 @@ WznmQSteList::WznmQSteList(
 			const uint jnum
 			, const string sref
 			, const string stubSeqRefWznmMSequence
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->stubSeqRefWznmMSequence = stubSeqRefWznmMSequence;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, stubSeqRefWznmMSequence(stubSeqRefWznmMSequence)
+		{
 };
 
 bool WznmQSteList::readXML(

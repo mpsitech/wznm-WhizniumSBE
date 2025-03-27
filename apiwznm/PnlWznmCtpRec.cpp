@@ -45,9 +45,8 @@ PnlWznmCtpRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -111,14 +110,13 @@ PnlWznmCtpRec::StatApp::StatApp(
 			, const bool initdone1NTag
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneKParKey(initdoneKParKey)
+			, initdoneKKey(initdoneKKey)
+			, initdoneAPar(initdoneAPar)
+			, initdoneTpl1NCapability(initdoneTpl1NCapability)
+			, initdone1NTag(initdone1NTag)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneKParKey = initdoneKParKey;
-	this->initdoneKKey = initdoneKKey;
-	this->initdoneAPar = initdoneAPar;
-	this->initdoneTpl1NCapability = initdoneTpl1NCapability;
-	this->initdone1NTag = initdone1NTag;
-
 	mask = {INITDONEDETAIL, INITDONEKPARKEY, INITDONEKKEY, INITDONEAPAR, INITDONETPL1NCAPABILITY, INITDONE1NTAG};
 };
 
@@ -194,16 +192,15 @@ PnlWznmCtpRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefKParKey(scrJrefKParKey)
+			, scrJrefKKey(scrJrefKKey)
+			, scrJrefAPar(scrJrefAPar)
+			, scrJrefTpl1NCapability(scrJrefTpl1NCapability)
+			, scrJref1NTag(scrJref1NTag)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefKParKey = scrJrefKParKey;
-	this->scrJrefKKey = scrJrefKKey;
-	this->scrJrefAPar = scrJrefAPar;
-	this->scrJrefTpl1NCapability = scrJrefTpl1NCapability;
-	this->scrJref1NTag = scrJref1NTag;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFKPARKEY, SCRJREFKKEY, SCRJREFAPAR, SCRJREFTPL1NCAPABILITY, SCRJREF1NTAG, BUTREGULARIZEACTIVE};
 };
 
@@ -281,9 +278,8 @@ PnlWznmCtpRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -320,11 +316,11 @@ PnlWznmCtpRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMCTPRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmCtpRec::DpchAppDo::getSrefsMask() {

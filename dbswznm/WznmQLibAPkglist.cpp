@@ -25,14 +25,15 @@ WznmQLibAPkglist::WznmQLibAPkglist(
 			, const ubigint x1RefWznmMMachine
 			, const string stubX1RefWznmMMachine
 			, const string Pkglist
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->x1RefWznmMMachine = x1RefWznmMMachine;
-	this->stubX1RefWznmMMachine = stubX1RefWznmMMachine;
-	this->Pkglist = Pkglist;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, x1RefWznmMMachine(x1RefWznmMMachine)
+			, stubX1RefWznmMMachine(stubX1RefWznmMMachine)
+			, Pkglist(Pkglist)
+		{
 };
 
 void WznmQLibAPkglist::writeJSON(

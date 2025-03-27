@@ -77,8 +77,8 @@ DpchRetWznm* WznmComplDeploy::run(
 	ubigint refBlkAppsrv = 0;
 	map<string,unsigned int> icsBitsAppsrv;
 
-	ubigint refBlkAppearance = 0;
-	map<string,unsigned int> icsBitsAppearance;
+	ubigint refBlkBehavior = 0;
+	map<string,unsigned int> icsBitsBehavior;
 
 	ubigint refBlkDdspub = 0;
 	ubigint refBlkUasrv = 0;
@@ -245,10 +245,10 @@ DpchRetWznm* WznmComplDeploy::run(
 
 				addBitJ(dbswznm, rls, bits.nodes[icsBitsAppsrv["port"]], hrefsMch, "appsrvport");
 
-				// StgXxxxAppearance
-				if (refBlkAppearance == 0) {
+				// StgXxxxBehavior
+				if (refBlkBehavior == 0) {
 					bitnum = 1;
-					refBlkAppearance = dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG + VecWznmWScope::CMBENG, VecWznmWScope::ENG + VecWznmWScope::CMBENG, "Stg" + Prjshort + "Appearance", "");
+					refBlkBehavior = dbswznm->tblwznmmblock->insertNewRec(&blk, VecWznmVMBlockBasetype::STG, ver->ref, VecWznmVMBlockRefTbl::VOID, 0, VecWznmWScope::ENG + VecWznmWScope::CMBENG, VecWznmWScope::ENG + VecWznmWScope::CMBENG, "Stg" + Prjshort + "Behavior", "");
 
 					dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "histlength", VecWznmVVartype::USMALLINT, 0, 0, 0, 0, 0, 0, "20", 0, "");
 					dbswznm->tblwznmamblockitem->insertNewRec(NULL, 0, blk->ref, bitnum++, VecWznmVAMBlockItemBasetype::VAR, "suspsess", VecWznmVVartype::BOOLEAN, 0, 0, 0, 0, 0, 0, "true", 0, "");

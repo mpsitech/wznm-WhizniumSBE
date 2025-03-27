@@ -65,13 +65,12 @@ PnlWznmNavGlobal::ContIac::ContIac(
 			, const uint numFLstLib
 		) :
 			Block()
+			, numFLstLoc(numFLstLoc)
+			, numFLstTag(numFLstTag)
+			, numFLstCtp(numFLstCtp)
+			, numFLstMch(numFLstMch)
+			, numFLstLib(numFLstLib)
 		{
-	this->numFLstLoc = numFLstLoc;
-	this->numFLstTag = numFLstTag;
-	this->numFLstCtp = numFLstCtp;
-	this->numFLstMch = numFLstMch;
-	this->numFLstLib = numFLstLib;
-
 	mask = {NUMFLSTLOC, NUMFLSTTAG, NUMFLSTCTP, NUMFLSTMCH, NUMFLSTLIB};
 };
 
@@ -168,19 +167,18 @@ PnlWznmNavGlobal::StatApp::StatApp(
 			, const uint LstLibNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstLocAlt(LstLocAlt)
+			, LstTagAlt(LstTagAlt)
+			, LstCtpAlt(LstCtpAlt)
+			, LstMchAlt(LstMchAlt)
+			, LstLibAlt(LstLibAlt)
+			, LstLocNumFirstdisp(LstLocNumFirstdisp)
+			, LstTagNumFirstdisp(LstTagNumFirstdisp)
+			, LstCtpNumFirstdisp(LstCtpNumFirstdisp)
+			, LstMchNumFirstdisp(LstMchNumFirstdisp)
+			, LstLibNumFirstdisp(LstLibNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstLocAlt = LstLocAlt;
-	this->LstTagAlt = LstTagAlt;
-	this->LstCtpAlt = LstCtpAlt;
-	this->LstMchAlt = LstMchAlt;
-	this->LstLibAlt = LstLibAlt;
-	this->LstLocNumFirstdisp = LstLocNumFirstdisp;
-	this->LstTagNumFirstdisp = LstTagNumFirstdisp;
-	this->LstCtpNumFirstdisp = LstCtpNumFirstdisp;
-	this->LstMchNumFirstdisp = LstMchNumFirstdisp;
-	this->LstLibNumFirstdisp = LstLibNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTLOCALT, LSTTAGALT, LSTCTPALT, LSTMCHALT, LSTLIBALT, LSTLOCNUMFIRSTDISP, LSTTAGNUMFIRSTDISP, LSTCTPNUMFIRSTDISP, LSTMCHNUMFIRSTDISP, LSTLIBNUMFIRSTDISP};
 };
 
@@ -273,18 +271,17 @@ PnlWznmNavGlobal::StatShr::StatShr(
 			, const bool ButLibViewActive
 		) :
 			Block()
+			, LstLocAvail(LstLocAvail)
+			, ButLocViewActive(ButLocViewActive)
+			, LstTagAvail(LstTagAvail)
+			, ButTagViewActive(ButTagViewActive)
+			, LstCtpAvail(LstCtpAvail)
+			, ButCtpViewActive(ButCtpViewActive)
+			, LstMchAvail(LstMchAvail)
+			, ButMchViewActive(ButMchViewActive)
+			, LstLibAvail(LstLibAvail)
+			, ButLibViewActive(ButLibViewActive)
 		{
-	this->LstLocAvail = LstLocAvail;
-	this->ButLocViewActive = ButLocViewActive;
-	this->LstTagAvail = LstTagAvail;
-	this->ButTagViewActive = ButTagViewActive;
-	this->LstCtpAvail = LstCtpAvail;
-	this->ButCtpViewActive = ButCtpViewActive;
-	this->LstMchAvail = LstMchAvail;
-	this->ButMchViewActive = ButMchViewActive;
-	this->LstLibAvail = LstLibAvail;
-	this->ButLibViewActive = ButLibViewActive;
-
 	mask = {LSTLOCAVAIL, BUTLOCVIEWACTIVE, LSTTAGAVAIL, BUTTAGVIEWACTIVE, LSTCTPAVAIL, BUTCTPVIEWACTIVE, LSTMCHAVAIL, BUTMCHVIEWACTIVE, LSTLIBAVAIL, BUTLIBVIEWACTIVE};
 };
 
@@ -366,14 +363,13 @@ PnlWznmNavGlobal::Tag::Tag(
 			, const string& CptLib
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptLoc(CptLoc)
+			, CptTag(CptTag)
+			, CptCtp(CptCtp)
+			, CptMch(CptMch)
+			, CptLib(CptLib)
 		{
-	this->Cpt = Cpt;
-	this->CptLoc = CptLoc;
-	this->CptTag = CptTag;
-	this->CptCtp = CptCtp;
-	this->CptMch = CptMch;
-	this->CptLib = CptLib;
-
 	mask = {CPT, CPTLOC, CPTTAG, CPTCTP, CPTMCH, CPTLIB};
 };
 
@@ -454,11 +450,11 @@ PnlWznmNavGlobal::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMNAVGLOBALDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmNavGlobal::DpchAppDo::getSrefsMask() {

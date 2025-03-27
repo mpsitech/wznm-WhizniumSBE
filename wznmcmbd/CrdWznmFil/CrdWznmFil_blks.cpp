@@ -81,11 +81,10 @@ CrdWznmFil::ContInf::ContInf(
 			, const string& MtxCrdFil
 		) :
 			Block()
+			, numFSge(numFSge)
+			, MrlAppHlp(MrlAppHlp)
+			, MtxCrdFil(MtxCrdFil)
 		{
-	this->numFSge = numFSge;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MtxCrdFil = MtxCrdFil;
-
 	mask = {NUMFSGE, MRLAPPHLP, MTXCRDFIL};
 };
 
@@ -97,7 +96,7 @@ void CrdWznmFil::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 	me["MrlAppHlp"] = MrlAppHlp;
 	me["MtxCrdFil"] = MtxCrdFil;
 };
@@ -168,7 +167,7 @@ void CrdWznmFil::StatApp::writeJSON(
 	me["srefIxWznmVReqitmode"] = VecWznmVReqitmode::getSref(ixWznmVReqitmode);
 	me["latency"] = latency;
 	me["shortMenu"] = shortMenu;
-	me["widthMenu"] = widthMenu;
+	me["widthMenu"] = (Json::Value::UInt) widthMenu;
 	me["initdoneHeadbar"] = initdoneHeadbar;
 	me["initdoneList"] = initdoneList;
 	me["initdoneRec"] = initdoneRec;
@@ -219,17 +218,16 @@ CrdWznmFil::StatShr::StatShr(
 			, const bool MitCrdDldActive
 		) :
 			Block()
+			, jrefDlgdownload(jrefDlgdownload)
+			, jrefDlgnew(jrefDlgnew)
+			, jrefHeadbar(jrefHeadbar)
+			, jrefList(jrefList)
+			, jrefRec(jrefRec)
+			, MspCrd1Avail(MspCrd1Avail)
+			, MitCrdNewAvail(MitCrdNewAvail)
+			, MitCrdDldAvail(MitCrdDldAvail)
+			, MitCrdDldActive(MitCrdDldActive)
 		{
-	this->jrefDlgdownload = jrefDlgdownload;
-	this->jrefDlgnew = jrefDlgnew;
-	this->jrefHeadbar = jrefHeadbar;
-	this->jrefList = jrefList;
-	this->jrefRec = jrefRec;
-	this->MspCrd1Avail = MspCrd1Avail;
-	this->MitCrdNewAvail = MitCrdNewAvail;
-	this->MitCrdDldAvail = MitCrdDldAvail;
-	this->MitCrdDldActive = MitCrdDldActive;
-
 	mask = {JREFDLGDOWNLOAD, JREFDLGNEW, JREFHEADBAR, JREFLIST, JREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDDLDAVAIL, MITCRDDLDACTIVE};
 };
 

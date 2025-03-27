@@ -51,11 +51,10 @@ PnlWznmQmdDetail::ContIac::ContIac(
 			, const string& TxfAvl
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, numFPupRet(numFPupRet)
+			, TxfAvl(TxfAvl)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->numFPupRet = numFPupRet;
-	this->TxfAvl = TxfAvl;
-
 	mask = {NUMFPUPTYP, NUMFPUPRET, TXFAVL};
 };
 
@@ -138,11 +137,10 @@ PnlWznmQmdDetail::ContInf::ContInf(
 			, const string& TxtReu
 		) :
 			Block()
+			, TxtQry(TxtQry)
+			, TxtPst(TxtPst)
+			, TxtReu(TxtReu)
 		{
-	this->TxtQry = TxtQry;
-	this->TxtPst = TxtPst;
-	this->TxtReu = TxtReu;
-
 	mask = {TXTQRY, TXTPST, TXTREU};
 };
 
@@ -205,9 +203,8 @@ PnlWznmQmdDetail::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -283,21 +280,20 @@ PnlWznmQmdDetail::StatShr::StatShr(
 			, const bool TxfAvlActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, PupTypActive(PupTypActive)
+			, TxtQryActive(TxtQryActive)
+			, ButQryViewAvail(ButQryViewAvail)
+			, ButQryViewActive(ButQryViewActive)
+			, TxtPstActive(TxtPstActive)
+			, ButPstViewAvail(ButPstViewAvail)
+			, ButPstViewActive(ButPstViewActive)
+			, TxtReuActive(TxtReuActive)
+			, ButReuViewAvail(ButReuViewAvail)
+			, ButReuViewActive(ButReuViewActive)
+			, TxfAvlActive(TxfAvlActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtQryActive = TxtQryActive;
-	this->ButQryViewAvail = ButQryViewAvail;
-	this->ButQryViewActive = ButQryViewActive;
-	this->TxtPstActive = TxtPstActive;
-	this->ButPstViewAvail = ButPstViewAvail;
-	this->ButPstViewActive = ButPstViewActive;
-	this->TxtReuActive = TxtReuActive;
-	this->ButReuViewAvail = ButReuViewAvail;
-	this->ButReuViewActive = ButReuViewActive;
-	this->TxfAvlActive = TxfAvlActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, PUPTYPACTIVE, TXTQRYACTIVE, BUTQRYVIEWAVAIL, BUTQRYVIEWACTIVE, TXTPSTACTIVE, BUTPSTVIEWAVAIL, BUTPSTVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXFAVLACTIVE};
 };
 
@@ -385,14 +381,13 @@ PnlWznmQmdDetail::Tag::Tag(
 			, const string& CptAvl
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptTyp(CptTyp)
+			, CptQry(CptQry)
+			, CptPst(CptPst)
+			, CptReu(CptReu)
+			, CptAvl(CptAvl)
 		{
-	this->Cpt = Cpt;
-	this->CptTyp = CptTyp;
-	this->CptQry = CptQry;
-	this->CptPst = CptPst;
-	this->CptReu = CptReu;
-	this->CptAvl = CptAvl;
-
 	mask = {CPT, CPTTYP, CPTQRY, CPTPST, CPTREU, CPTAVL};
 };
 
@@ -473,11 +468,11 @@ PnlWznmQmdDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMQMDDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmQmdDetail::DpchAppDo::getSrefsMask() {

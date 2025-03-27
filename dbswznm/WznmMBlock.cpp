@@ -28,17 +28,17 @@ WznmMBlock::WznmMBlock(
 			, const uint wriIxWznmWScope
 			, const string sref
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->reaIxWznmWScope = reaIxWznmWScope;
-	this->wriIxWznmWScope = wriIxWznmWScope;
-	this->sref = sref;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, reaIxWznmWScope(reaIxWznmWScope)
+			, wriIxWznmWScope(wriIxWznmWScope)
+			, sref(sref)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMBlock::operator==(

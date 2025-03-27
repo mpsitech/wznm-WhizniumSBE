@@ -20,11 +20,11 @@ WznmRMLibraryMOppack::WznmRMLibraryMOppack(
 			const ubigint ref
 			, const ubigint refWznmMLibrary
 			, const ubigint refWznmMOppack
-		) {
-
-	this->ref = ref;
-	this->refWznmMLibrary = refWznmMLibrary;
-	this->refWznmMOppack = refWznmMOppack;
+		) :
+			ref(ref)
+			, refWznmMLibrary(refWznmMLibrary)
+			, refWznmMOppack(refWznmMOppack)
+		{
 };
 
 bool WznmRMLibraryMOppack::operator==(

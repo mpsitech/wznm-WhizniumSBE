@@ -28,17 +28,17 @@ WznmMImpexp::WznmMImpexp(
 			, const uint ixWIop
 			, const string rtrSrefsWznmMImpexpcol
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMImpexpcplx = refWznmMImpexpcplx;
-	this->supRefWznmMImpexp = supRefWznmMImpexp;
-	this->supLvl = supLvl;
-	this->refWznmMTable = refWznmMTable;
-	this->sref = sref;
-	this->ixWIop = ixWIop;
-	this->rtrSrefsWznmMImpexpcol = rtrSrefsWznmMImpexpcol;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMImpexpcplx(refWznmMImpexpcplx)
+			, supRefWznmMImpexp(supRefWznmMImpexp)
+			, supLvl(supLvl)
+			, refWznmMTable(refWznmMTable)
+			, sref(sref)
+			, ixWIop(ixWIop)
+			, rtrSrefsWznmMImpexpcol(rtrSrefsWznmMImpexpcol)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMImpexp::operator==(

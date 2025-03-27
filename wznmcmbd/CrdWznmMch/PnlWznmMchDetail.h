@@ -115,25 +115,24 @@ public:
 	class StatShr : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint TXFPKMVALID = 1;
-		static const Sbecore::uint BUTSAVEAVAIL = 2;
-		static const Sbecore::uint BUTSAVEACTIVE = 3;
-		static const Sbecore::uint TXTSRFACTIVE = 4;
-		static const Sbecore::uint TXTSUPACTIVE = 5;
-		static const Sbecore::uint BUTSUPVIEWAVAIL = 6;
-		static const Sbecore::uint BUTSUPVIEWACTIVE = 7;
-		static const Sbecore::uint TXTCCHACTIVE = 8;
-		static const Sbecore::uint BUTCCHVIEWAVAIL = 9;
-		static const Sbecore::uint BUTCCHVIEWACTIVE = 10;
-		static const Sbecore::uint PUPPKMACTIVE = 11;
+		static const Sbecore::uint BUTSAVEAVAIL = 1;
+		static const Sbecore::uint BUTSAVEACTIVE = 2;
+		static const Sbecore::uint TXTSRFACTIVE = 3;
+		static const Sbecore::uint TXTSUPACTIVE = 4;
+		static const Sbecore::uint BUTSUPVIEWAVAIL = 5;
+		static const Sbecore::uint BUTSUPVIEWACTIVE = 6;
+		static const Sbecore::uint TXTCCHACTIVE = 7;
+		static const Sbecore::uint BUTCCHVIEWAVAIL = 8;
+		static const Sbecore::uint BUTCCHVIEWACTIVE = 9;
+		static const Sbecore::uint PUPPKMACTIVE = 10;
+		static const Sbecore::uint TXFPKMVALID = 11;
 		static const Sbecore::uint BUTPKMEDITAVAIL = 12;
 		static const Sbecore::uint TXFCMTACTIVE = 13;
 
 	public:
-		StatShr(const bool TxfPkmValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtCchActive = true, const bool ButCchViewAvail = true, const bool ButCchViewActive = true, const bool PupPkmActive = true, const bool ButPkmEditAvail = true, const bool TxfCmtActive = true);
+		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtCchActive = true, const bool ButCchViewAvail = true, const bool ButCchViewActive = true, const bool PupPkmActive = true, const bool TxfPkmValid = false, const bool ButPkmEditAvail = true, const bool TxfCmtActive = true);
 
 	public:
-		bool TxfPkmValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtSrfActive;
@@ -144,6 +143,7 @@ public:
 		bool ButCchViewAvail;
 		bool ButCchViewActive;
 		bool PupPkmActive;
+		bool TxfPkmValid;
 		bool ButPkmEditAvail;
 		bool TxfCmtActive;
 

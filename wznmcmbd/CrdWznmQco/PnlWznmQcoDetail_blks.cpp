@@ -47,11 +47,10 @@ PnlWznmQcoDetail::ContIac::ContIac(
 			, const vector<uint>& numsFLstOcc
 		) :
 			Block()
+			, TxfSho(TxfSho)
+			, numFPupTyp(numFPupTyp)
+			, numsFLstOcc(numsFLstOcc)
 		{
-	this->TxfSho = TxfSho;
-	this->numFPupTyp = numFPupTyp;
-	this->numsFLstOcc = numsFLstOcc;
-
 	mask = {TXFSHO, NUMFPUPTYP, NUMSFLSTOCC};
 };
 
@@ -110,7 +109,7 @@ void PnlWznmQcoDetail::ContIac::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["TxfSho"] = TxfSho;
-	me["numFPupTyp"] = numFPupTyp;
+	me["numFPupTyp"] = (Json::Value::UInt) numFPupTyp;
 	Jsonio::writeUintvec(me, "numsFLstOcc", numsFLstOcc);
 };
 
@@ -170,13 +169,12 @@ PnlWznmQcoDetail::ContInf::ContInf(
 			, const string& TxtStb
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtOcc(TxtOcc)
+			, TxtQry(TxtQry)
+			, TxtTco(TxtTco)
+			, TxtStb(TxtStb)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtOcc = TxtOcc;
-	this->TxtQry = TxtQry;
-	this->TxtTco = TxtTco;
-	this->TxtStb = TxtStb;
-
 	mask = {TXTSRF, TXTOCC, TXTQRY, TXTTCO, TXTSTB};
 };
 
@@ -260,7 +258,7 @@ void PnlWznmQcoDetail::StatApp::writeJSON(
 
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstOccAlt"] = LstOccAlt;
-	me["LstOccNumFirstdisp"] = LstOccNumFirstdisp;
+	me["LstOccNumFirstdisp"] = (Json::Value::UInt) LstOccNumFirstdisp;
 };
 
 void PnlWznmQcoDetail::StatApp::writeXML(
@@ -304,21 +302,20 @@ PnlWznmQcoDetail::StatShr::StatShr(
 			, const bool ButStbViewActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfShoActive(TxfShoActive)
+			, PupTypActive(PupTypActive)
+			, LstOccActive(LstOccActive)
+			, TxtQryActive(TxtQryActive)
+			, ButQryViewAvail(ButQryViewAvail)
+			, ButQryViewActive(ButQryViewActive)
+			, TxtTcoActive(TxtTcoActive)
+			, TxtStbActive(TxtStbActive)
+			, ButStbViewAvail(ButStbViewAvail)
+			, ButStbViewActive(ButStbViewActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfShoActive = TxfShoActive;
-	this->PupTypActive = PupTypActive;
-	this->LstOccActive = LstOccActive;
-	this->TxtQryActive = TxtQryActive;
-	this->ButQryViewAvail = ButQryViewAvail;
-	this->ButQryViewActive = ButQryViewActive;
-	this->TxtTcoActive = TxtTcoActive;
-	this->TxtStbActive = TxtStbActive;
-	this->ButStbViewAvail = ButStbViewAvail;
-	this->ButStbViewActive = ButStbViewActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFSHOACTIVE, PUPTYPACTIVE, LSTOCCACTIVE, TXTQRYACTIVE, BUTQRYVIEWAVAIL, BUTQRYVIEWACTIVE, TXTTCOACTIVE, TXTSTBACTIVE, BUTSTBVIEWAVAIL, BUTSTBVIEWACTIVE};
 };
 

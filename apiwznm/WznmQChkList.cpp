@@ -24,13 +24,14 @@ WznmQChkList::WznmQChkList(
 			, const string titIxVBasetype
 			, const string stubRefWznmMTable
 			, const string stubRefWznmMTablecol
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->stubRefWznmMTablecol = stubRefWznmMTablecol;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, stubRefWznmMTablecol(stubRefWznmMTablecol)
+		{
 };
 
 bool WznmQChkList::readXML(

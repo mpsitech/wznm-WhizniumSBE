@@ -20,11 +20,11 @@ WznmRMCallMStub::WznmRMCallMStub(
 			const ubigint ref
 			, const ubigint refWznmMCall
 			, const ubigint refWznmMStub
-		) {
-
-	this->ref = ref;
-	this->refWznmMCall = refWznmMCall;
-	this->refWznmMStub = refWznmMStub;
+		) :
+			ref(ref)
+			, refWznmMCall(refWznmMCall)
+			, refWznmMStub(refWznmMStub)
+		{
 };
 
 bool WznmRMCallMStub::operator==(

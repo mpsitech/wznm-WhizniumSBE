@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQSbsPst1NQuerymod::WznmQSbsPst1NQuerymod(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQSbsPst1NQuerymod::readXML(

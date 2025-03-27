@@ -17,7 +17,10 @@
 namespace WznmCtpGenuiPrefs {
 
 	DpchRetWznmCtpGenui* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmCtpGenui* dpchinv);
-	// IP cust --- INSERT
+	// IP cust --- IBEGIN
+
+void addBitcons(DbsWznm* dbswznm, ListWznmAMBlockItem& bits, ListWznmMControl& cons, const Sbecore::ubigint refWznmMPanel, Sbecore::uint& hkNum, const std::string& Avail, Sbecore::uint& pnlsectNum, const Sbecore::ubigint refLcl);
+	// IP cust --- IEND
 };
 
 #endif

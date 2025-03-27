@@ -31,20 +31,21 @@ WznmQTblATitle::WznmQTblATitle(
 			, const string srefIxWznmVGender
 			, const string titIxWznmVGender
 			, const string Title
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->x1IxVType = x1IxVType;
-	this->srefX1IxVType = srefX1IxVType;
-	this->titX1IxVType = titX1IxVType;
-	this->x2RefWznmMLocale = x2RefWznmMLocale;
-	this->stubX2RefWznmMLocale = stubX2RefWznmMLocale;
-	this->ixWznmVGender = ixWznmVGender;
-	this->srefIxWznmVGender = srefIxWznmVGender;
-	this->titIxWznmVGender = titIxWznmVGender;
-	this->Title = Title;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, x1IxVType(x1IxVType)
+			, srefX1IxVType(srefX1IxVType)
+			, titX1IxVType(titX1IxVType)
+			, x2RefWznmMLocale(x2RefWznmMLocale)
+			, stubX2RefWznmMLocale(stubX2RefWznmMLocale)
+			, ixWznmVGender(ixWznmVGender)
+			, srefIxWznmVGender(srefIxWznmVGender)
+			, titIxWznmVGender(titIxWznmVGender)
+			, Title(Title)
+		{
 };
 
 void WznmQTblATitle::writeJSON(

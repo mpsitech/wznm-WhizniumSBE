@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQSbsTos1NRelation::WznmQSbsTos1NRelation(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQSbsTos1NRelation::readXML(

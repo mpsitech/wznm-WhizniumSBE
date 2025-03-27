@@ -47,9 +47,8 @@ PnlWznmSteAAction::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -61,7 +60,7 @@ void PnlWznmSteAAction::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmSteAAction::ContInf::writeXML(
@@ -149,13 +148,12 @@ PnlWznmSteAAction::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -244,22 +242,22 @@ PnlWznmSteAAction::StgIac::StgIac(
 			, const uint TcoIp4Width
 		) :
 			Block()
+			, TcoSctWidth(TcoSctWidth)
+			, TcoTypWidth(TcoTypWidth)
+			, TcoTrjWidth(TcoTrjWidth)
+			, TcoVecWidth(TcoVecWidth)
+			, TcoVitWidth(TcoVitWidth)
+			, TcoSnxWidth(TcoSnxWidth)
+			, TcoSeqWidth(TcoSeqWidth)
+			, TcoTr1Width(TcoTr1Width)
+			, TcoIp1Width(TcoIp1Width)
+			, TcoTr2Width(TcoTr2Width)
+			, TcoIp2Width(TcoIp2Width)
+			, TcoTr3Width(TcoTr3Width)
+			, TcoIp3Width(TcoIp3Width)
+			, TcoTr4Width(TcoTr4Width)
+			, TcoIp4Width(TcoIp4Width)
 		{
-	this->TcoSctWidth = TcoSctWidth;
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoTrjWidth = TcoTrjWidth;
-	this->TcoVecWidth = TcoVecWidth;
-	this->TcoVitWidth = TcoVitWidth;
-	this->TcoSnxWidth = TcoSnxWidth;
-	this->TcoSeqWidth = TcoSeqWidth;
-	this->TcoTr1Width = TcoTr1Width;
-	this->TcoIp1Width = TcoIp1Width;
-	this->TcoTr2Width = TcoTr2Width;
-	this->TcoIp2Width = TcoIp2Width;
-	this->TcoTr3Width = TcoTr3Width;
-	this->TcoIp3Width = TcoIp3Width;
-	this->TcoTr4Width = TcoTr4Width;
-	this->TcoIp4Width = TcoIp4Width;
 	mask = {TCOSCTWIDTH, TCOTYPWIDTH, TCOTRJWIDTH, TCOVECWIDTH, TCOVITWIDTH, TCOSNXWIDTH, TCOSEQWIDTH, TCOTR1WIDTH, TCOIP1WIDTH, TCOTR2WIDTH, TCOIP2WIDTH, TCOTR3WIDTH, TCOIP3WIDTH, TCOTR4WIDTH, TCOIP4WIDTH};
 };
 
@@ -341,21 +339,21 @@ void PnlWznmSteAAction::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoSctWidth"] = TcoSctWidth;
-	me["TcoTypWidth"] = TcoTypWidth;
-	me["TcoTrjWidth"] = TcoTrjWidth;
-	me["TcoVecWidth"] = TcoVecWidth;
-	me["TcoVitWidth"] = TcoVitWidth;
-	me["TcoSnxWidth"] = TcoSnxWidth;
-	me["TcoSeqWidth"] = TcoSeqWidth;
-	me["TcoTr1Width"] = TcoTr1Width;
-	me["TcoIp1Width"] = TcoIp1Width;
-	me["TcoTr2Width"] = TcoTr2Width;
-	me["TcoIp2Width"] = TcoIp2Width;
-	me["TcoTr3Width"] = TcoTr3Width;
-	me["TcoIp3Width"] = TcoIp3Width;
-	me["TcoTr4Width"] = TcoTr4Width;
-	me["TcoIp4Width"] = TcoIp4Width;
+	me["TcoSctWidth"] = (Json::Value::UInt) TcoSctWidth;
+	me["TcoTypWidth"] = (Json::Value::UInt) TcoTypWidth;
+	me["TcoTrjWidth"] = (Json::Value::UInt) TcoTrjWidth;
+	me["TcoVecWidth"] = (Json::Value::UInt) TcoVecWidth;
+	me["TcoVitWidth"] = (Json::Value::UInt) TcoVitWidth;
+	me["TcoSnxWidth"] = (Json::Value::UInt) TcoSnxWidth;
+	me["TcoSeqWidth"] = (Json::Value::UInt) TcoSeqWidth;
+	me["TcoTr1Width"] = (Json::Value::UInt) TcoTr1Width;
+	me["TcoIp1Width"] = (Json::Value::UInt) TcoIp1Width;
+	me["TcoTr2Width"] = (Json::Value::UInt) TcoTr2Width;
+	me["TcoIp2Width"] = (Json::Value::UInt) TcoIp2Width;
+	me["TcoTr3Width"] = (Json::Value::UInt) TcoTr3Width;
+	me["TcoIp3Width"] = (Json::Value::UInt) TcoIp3Width;
+	me["TcoTr4Width"] = (Json::Value::UInt) TcoTr4Width;
+	me["TcoIp4Width"] = (Json::Value::UInt) TcoIp4Width;
 };
 
 void PnlWznmSteAAction::StgIac::writeXML(

@@ -256,8 +256,8 @@ void QryWznmDlgList::rerun_orderSQL(
 		) {
 	if (preIxOrd == VecVOrd::REU) sqlstr += " ORDER BY TblWznmMDialog.refUref ASC";
 	else if (preIxOrd == VecVOrd::RET) sqlstr += " ORDER BY TblWznmMDialog.refIxVTbl ASC";
-	else if (preIxOrd == VecVOrd::CAR) sqlstr += " ORDER BY TblWznmMDialog.refWznmMCard ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMDialog.ixVBasetype ASC";
+	else if (preIxOrd == VecVOrd::CAR) sqlstr += " ORDER BY TblWznmMDialog.refWznmMCard ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMDialog.sref ASC";
 };
 

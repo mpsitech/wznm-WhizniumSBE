@@ -28,17 +28,17 @@ WznmMQuerycol::WznmMQuerycol(
 			, const string sref
 			, const string Short
 			, const ubigint refWznmMStub
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->ixWOccurrence = ixWOccurrence;
-	this->qryRefWznmMQuery = qryRefWznmMQuery;
-	this->qryNum = qryNum;
-	this->refWznmMTablecol = refWznmMTablecol;
-	this->sref = sref;
-	this->Short = Short;
-	this->refWznmMStub = refWznmMStub;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, ixWOccurrence(ixWOccurrence)
+			, qryRefWznmMQuery(qryRefWznmMQuery)
+			, qryNum(qryNum)
+			, refWznmMTablecol(refWznmMTablecol)
+			, sref(sref)
+			, Short(Short)
+			, refWznmMStub(refWznmMStub)
+		{
 };
 
 bool WznmMQuerycol::operator==(

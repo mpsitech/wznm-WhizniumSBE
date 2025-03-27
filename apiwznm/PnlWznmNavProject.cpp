@@ -60,12 +60,11 @@ PnlWznmNavProject::ContIac::ContIac(
 			, const uint numFLstErr
 		) :
 			Block()
+			, numFLstPrj(numFLstPrj)
+			, numFLstVer(numFLstVer)
+			, numFLstCap(numFLstCap)
+			, numFLstErr(numFLstErr)
 		{
-	this->numFLstPrj = numFLstPrj;
-	this->numFLstVer = numFLstVer;
-	this->numFLstCap = numFLstCap;
-	this->numFLstErr = numFLstErr;
-
 	mask = {NUMFLSTPRJ, NUMFLSTVER, NUMFLSTCAP, NUMFLSTERR};
 };
 
@@ -157,17 +156,16 @@ PnlWznmNavProject::StatApp::StatApp(
 			, const uint LstErrNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstPrjAlt(LstPrjAlt)
+			, LstVerAlt(LstVerAlt)
+			, LstCapAlt(LstCapAlt)
+			, LstErrAlt(LstErrAlt)
+			, LstPrjNumFirstdisp(LstPrjNumFirstdisp)
+			, LstVerNumFirstdisp(LstVerNumFirstdisp)
+			, LstCapNumFirstdisp(LstCapNumFirstdisp)
+			, LstErrNumFirstdisp(LstErrNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstPrjAlt = LstPrjAlt;
-	this->LstVerAlt = LstVerAlt;
-	this->LstCapAlt = LstCapAlt;
-	this->LstErrAlt = LstErrAlt;
-	this->LstPrjNumFirstdisp = LstPrjNumFirstdisp;
-	this->LstVerNumFirstdisp = LstVerNumFirstdisp;
-	this->LstCapNumFirstdisp = LstCapNumFirstdisp;
-	this->LstErrNumFirstdisp = LstErrNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTPRJALT, LSTVERALT, LSTCAPALT, LSTERRALT, LSTPRJNUMFIRSTDISP, LSTVERNUMFIRSTDISP, LSTCAPNUMFIRSTDISP, LSTERRNUMFIRSTDISP};
 };
 
@@ -256,18 +254,17 @@ PnlWznmNavProject::StatShr::StatShr(
 			, const bool ButErrNewcrdActive
 		) :
 			Block()
+			, LstPrjAvail(LstPrjAvail)
+			, ButPrjViewActive(ButPrjViewActive)
+			, LstVerAvail(LstVerAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, LstCapAvail(LstCapAvail)
+			, ButCapViewActive(ButCapViewActive)
+			, ButCapNewcrdActive(ButCapNewcrdActive)
+			, LstErrAvail(LstErrAvail)
+			, ButErrViewActive(ButErrViewActive)
+			, ButErrNewcrdActive(ButErrNewcrdActive)
 		{
-	this->LstPrjAvail = LstPrjAvail;
-	this->ButPrjViewActive = ButPrjViewActive;
-	this->LstVerAvail = LstVerAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->LstCapAvail = LstCapAvail;
-	this->ButCapViewActive = ButCapViewActive;
-	this->ButCapNewcrdActive = ButCapNewcrdActive;
-	this->LstErrAvail = LstErrAvail;
-	this->ButErrViewActive = ButErrViewActive;
-	this->ButErrNewcrdActive = ButErrNewcrdActive;
-
 	mask = {LSTPRJAVAIL, BUTPRJVIEWACTIVE, LSTVERAVAIL, BUTVERVIEWACTIVE, LSTCAPAVAIL, BUTCAPVIEWACTIVE, BUTCAPNEWCRDACTIVE, LSTERRAVAIL, BUTERRVIEWACTIVE, BUTERRNEWCRDACTIVE};
 };
 
@@ -348,13 +345,12 @@ PnlWznmNavProject::Tag::Tag(
 			, const string& CptErr
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptPrj(CptPrj)
+			, CptVer(CptVer)
+			, CptCap(CptCap)
+			, CptErr(CptErr)
 		{
-	this->Cpt = Cpt;
-	this->CptPrj = CptPrj;
-	this->CptVer = CptVer;
-	this->CptCap = CptCap;
-	this->CptErr = CptErr;
-
 	mask = {CPT, CPTPRJ, CPTVER, CPTCAP, CPTERR};
 };
 
@@ -434,11 +430,11 @@ PnlWznmNavProject::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMNAVPROJECTDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmNavProject::DpchAppDo::getSrefsMask() {

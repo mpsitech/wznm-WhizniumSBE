@@ -21,12 +21,12 @@ WznmAMMachinePar::WznmAMMachinePar(
 			, const ubigint refWznmMMachine
 			, const string x1SrefKKey
 			, const string Val
-		) {
-
-	this->ref = ref;
-	this->refWznmMMachine = refWznmMMachine;
-	this->x1SrefKKey = x1SrefKKey;
-	this->Val = Val;
+		) :
+			ref(ref)
+			, refWznmMMachine(refWznmMMachine)
+			, x1SrefKKey(x1SrefKKey)
+			, Val(Val)
+		{
 };
 
 bool WznmAMMachinePar::operator==(

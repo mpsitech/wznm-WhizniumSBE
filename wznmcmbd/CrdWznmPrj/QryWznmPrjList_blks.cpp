@@ -20,11 +20,11 @@ uint QryWznmPrjList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "tit") return TIT;
 	if (s == "ver") return VER;
-	if (s == "sho") return SHO;
+	if (s == "tit") return TIT;
 	if (s == "grp") return GRP;
 	if (s == "own") return OWN;
+	if (s == "sho") return SHO;
 
 	return(0);
 };
@@ -32,11 +32,11 @@ uint QryWznmPrjList::VecVOrd::getIx(
 string QryWznmPrjList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TIT) return("tit");
 	if (ix == VER) return("ver");
-	if (ix == SHO) return("sho");
+	if (ix == TIT) return("tit");
 	if (ix == GRP) return("grp");
 	if (ix == OWN) return("own");
+	if (ix == SHO) return("sho");
 
 	return("");
 };
@@ -65,10 +65,10 @@ void QryWznmPrjList::StatApp::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["firstcol"] = firstcol;
-	me["jnumFirstdisp"] = jnumFirstdisp;
-	me["ncol"] = ncol;
-	me["ndisp"] = ndisp;
+	me["firstcol"] = (Json::Value::UInt) firstcol;
+	me["jnumFirstdisp"] = (Json::Value::UInt) jnumFirstdisp;
+	me["ncol"] = (Json::Value::UInt) ncol;
+	me["ndisp"] = (Json::Value::UInt) ndisp;
 };
 
 void QryWznmPrjList::StatApp::writeXML(
@@ -104,11 +104,10 @@ QryWznmPrjList::StatShr::StatShr(
 			, const uint nload
 		) :
 			Block()
+			, ntot(ntot)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->ntot = ntot;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -120,9 +119,9 @@ void QryWznmPrjList::StatShr::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["ntot"] = ntot;
-	me["jnumFirstload"] = jnumFirstload;
-	me["nload"] = nload;
+	me["ntot"] = (Json::Value::UInt) ntot;
+	me["jnumFirstload"] = (Json::Value::UInt) jnumFirstload;
+	me["nload"] = (Json::Value::UInt) nload;
 };
 
 void QryWznmPrjList::StatShr::writeXML(
@@ -179,10 +178,10 @@ QryWznmPrjList::StgIac::StgIac(
 			, const uint nload
 		) :
 			Block()
+			, jnum(jnum)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->jnum = jnum;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -240,9 +239,9 @@ void QryWznmPrjList::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["jnum"] = jnum;
-	me["jnumFirstload"] = jnumFirstload;
-	me["nload"] = nload;
+	me["jnum"] = (Json::Value::UInt) jnum;
+	me["jnumFirstload"] = (Json::Value::UInt) jnumFirstload;
+	me["nload"] = (Json::Value::UInt) nload;
 };
 
 void QryWznmPrjList::StgIac::writeXML(

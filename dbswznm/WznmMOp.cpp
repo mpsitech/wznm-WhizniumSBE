@@ -23,14 +23,14 @@ WznmMOp::WznmMOp(
 			, const string sref
 			, const bool Shrdat
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMOppack = refWznmMOppack;
-	this->refWznmMSquawk = refWznmMSquawk;
-	this->sref = sref;
-	this->Shrdat = Shrdat;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMOppack(refWznmMOppack)
+			, refWznmMSquawk(refWznmMSquawk)
+			, sref(sref)
+			, Shrdat(Shrdat)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMOp::operator==(

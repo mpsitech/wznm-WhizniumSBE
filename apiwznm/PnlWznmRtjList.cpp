@@ -53,9 +53,8 @@ PnlWznmRtjList::ContIac::ContIac(
 			const uint numFTos
 		) :
 			Block()
+			, numFTos(numFTos)
 		{
-	this->numFTos = numFTos;
-
 	mask = {NUMFTOS};
 };
 
@@ -133,12 +132,11 @@ PnlWznmRtjList::ContInf::ContInf(
 			, const uint numFCsiQst
 		) :
 			Block()
+			, TxtFor(TxtFor)
+			, TxtPre(TxtPre)
+			, ButFilterOn(ButFilterOn)
+			, numFCsiQst(numFCsiQst)
 		{
-	this->TxtFor = TxtFor;
-	this->TxtPre = TxtPre;
-	this->ButFilterOn = ButFilterOn;
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 };
 
@@ -204,10 +202,9 @@ PnlWznmRtjList::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {IXWZNMVEXPSTATE, BUTDELETEACTIVE};
 };
 
@@ -276,12 +273,11 @@ PnlWznmRtjList::StgIac::StgIac(
 			, const uint TcoJobWidth
 		) :
 			Block()
+			, TcoSrfWidth(TcoSrfWidth)
+			, TcoAppWidth(TcoAppWidth)
+			, TcoSupWidth(TcoSupWidth)
+			, TcoJobWidth(TcoJobWidth)
 		{
-	this->TcoSrfWidth = TcoSrfWidth;
-	this->TcoAppWidth = TcoAppWidth;
-	this->TcoSupWidth = TcoSupWidth;
-	this->TcoJobWidth = TcoJobWidth;
-
 	mask = {TCOSRFWIDTH, TCOAPPWIDTH, TCOSUPWIDTH, TCOJOBWIDTH};
 };
 
@@ -375,19 +371,18 @@ PnlWznmRtjList::Tag::Tag(
 			, const string& TcoJob
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtFor(TxtFor)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoSrf(TcoSrf)
+			, TcoApp(TcoApp)
+			, TcoSup(TcoSup)
+			, TcoJob(TcoJob)
 		{
-	this->Cpt = Cpt;
-	this->TxtFor = TxtFor;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoSrf = TcoSrf;
-	this->TcoApp = TcoApp;
-	this->TcoSup = TcoSup;
-	this->TcoJob = TcoJob;
-
 	mask = {CPT, TXTFOR, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSRF, TCOAPP, TCOSUP, TCOJOB};
 };
 
@@ -481,11 +476,11 @@ PnlWznmRtjList::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMRTJLISTDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmRtjList::DpchAppDo::getSrefsMask() {

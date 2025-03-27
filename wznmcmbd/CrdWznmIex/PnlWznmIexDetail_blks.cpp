@@ -50,12 +50,11 @@ PnlWznmIexDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, TxfSho(TxfSho)
+			, numFPupJti(numFPupJti)
+			, TxfMiv(TxfMiv)
+			, TxfCmt(TxfCmt)
 		{
-	this->TxfSho = TxfSho;
-	this->numFPupJti = numFPupJti;
-	this->TxfMiv = TxfMiv;
-	this->TxfCmt = TxfCmt;
-
 	mask = {TXFSHO, NUMFPUPJTI, TXFMIV, TXFCMT};
 };
 
@@ -116,7 +115,7 @@ void PnlWznmIexDetail::ContIac::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["TxfSho"] = TxfSho;
-	me["numFPupJti"] = numFPupJti;
+	me["numFPupJti"] = (Json::Value::UInt) numFPupJti;
 	me["TxfMiv"] = TxfMiv;
 	me["TxfCmt"] = TxfCmt;
 };
@@ -178,12 +177,11 @@ PnlWznmIexDetail::ContInf::ContInf(
 			, const string& TxtJob
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
+			, TxtVer(TxtVer)
+			, TxtJob(TxtJob)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-	this->TxtVer = TxtVer;
-	this->TxtJob = TxtJob;
-
 	mask = {TXTSRF, TXTTIT, TXTVER, TXTJOB};
 };
 
@@ -302,23 +300,22 @@ PnlWznmIexDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfShoActive(TxfShoActive)
+			, PupJtiActive(PupJtiActive)
+			, ButJtiEditAvail(ButJtiEditAvail)
+			, TxtTitActive(TxtTitActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtJobActive(TxtJobActive)
+			, ButJobViewAvail(ButJobViewAvail)
+			, ButJobViewActive(ButJobViewActive)
+			, TxfMivActive(TxfMivActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfShoActive = TxfShoActive;
-	this->PupJtiActive = PupJtiActive;
-	this->ButJtiEditAvail = ButJtiEditAvail;
-	this->TxtTitActive = TxtTitActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtJobActive = TxtJobActive;
-	this->ButJobViewAvail = ButJobViewAvail;
-	this->ButJobViewActive = ButJobViewActive;
-	this->TxfMivActive = TxfMivActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFSHOACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, TXFMIVACTIVE, TXFCMTACTIVE};
 };
 

@@ -83,11 +83,10 @@ CrdWznmApp::ContInf::ContInf(
 			, const string& MtxCrdApp
 		) :
 			Block()
+			, numFSge(numFSge)
+			, MrlAppHlp(MrlAppHlp)
+			, MtxCrdApp(MtxCrdApp)
 		{
-	this->numFSge = numFSge;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MtxCrdApp = MtxCrdApp;
-
 	mask = {NUMFSGE, MRLAPPHLP, MTXCRDAPP};
 };
 
@@ -99,7 +98,7 @@ void CrdWznmApp::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 	me["MrlAppHlp"] = MrlAppHlp;
 	me["MtxCrdApp"] = MtxCrdApp;
 };
@@ -170,7 +169,7 @@ void CrdWznmApp::StatApp::writeJSON(
 	me["srefIxWznmVReqitmode"] = VecWznmVReqitmode::getSref(ixWznmVReqitmode);
 	me["latency"] = latency;
 	me["shortMenu"] = shortMenu;
-	me["widthMenu"] = widthMenu;
+	me["widthMenu"] = (Json::Value::UInt) widthMenu;
 	me["initdoneHeadbar"] = initdoneHeadbar;
 	me["initdoneList"] = initdoneList;
 	me["initdoneRec"] = initdoneRec;
@@ -224,20 +223,19 @@ CrdWznmApp::StatShr::StatShr(
 			, const bool MitCrdWrcActive
 		) :
 			Block()
+			, jrefDlgimpstr(jrefDlgimpstr)
+			, jrefDlgnew(jrefDlgnew)
+			, jrefDlgwrite(jrefDlgwrite)
+			, jrefHeadbar(jrefHeadbar)
+			, jrefList(jrefList)
+			, jrefRec(jrefRec)
+			, MspCrd1Avail(MspCrd1Avail)
+			, MitCrdNewAvail(MitCrdNewAvail)
+			, MitCrdIstAvail(MitCrdIstAvail)
+			, MitCrdIstActive(MitCrdIstActive)
+			, MitCrdWrcAvail(MitCrdWrcAvail)
+			, MitCrdWrcActive(MitCrdWrcActive)
 		{
-	this->jrefDlgimpstr = jrefDlgimpstr;
-	this->jrefDlgnew = jrefDlgnew;
-	this->jrefDlgwrite = jrefDlgwrite;
-	this->jrefHeadbar = jrefHeadbar;
-	this->jrefList = jrefList;
-	this->jrefRec = jrefRec;
-	this->MspCrd1Avail = MspCrd1Avail;
-	this->MitCrdNewAvail = MitCrdNewAvail;
-	this->MitCrdIstAvail = MitCrdIstAvail;
-	this->MitCrdIstActive = MitCrdIstActive;
-	this->MitCrdWrcAvail = MitCrdWrcAvail;
-	this->MitCrdWrcActive = MitCrdWrcActive;
-
 	mask = {JREFDLGIMPSTR, JREFDLGNEW, JREFDLGWRITE, JREFHEADBAR, JREFLIST, JREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDISTAVAIL, MITCRDISTACTIVE, MITCRDWRCAVAIL, MITCRDWRCACTIVE};
 };
 

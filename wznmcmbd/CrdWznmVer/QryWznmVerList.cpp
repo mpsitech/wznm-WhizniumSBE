@@ -253,10 +253,10 @@ void QryWznmVerList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::LOC) sqlstr += " ORDER BY TblWznmMVersion.refWznmMLocale ASC";
-	else if (preIxOrd == VecVOrd::PRJ) sqlstr += " ORDER BY TblWznmMVersion.prjRefWznmMProject ASC";
-	else if (preIxOrd == VecVOrd::STE) sqlstr += " ORDER BY TblWznmMVersion.ixVState ASC";
+	if (preIxOrd == VecVOrd::STE) sqlstr += " ORDER BY TblWznmMVersion.ixVState ASC";
+	else if (preIxOrd == VecVOrd::LOC) sqlstr += " ORDER BY TblWznmMVersion.refWznmMLocale ASC";
 	else if (preIxOrd == VecVOrd::BVR) sqlstr += " ORDER BY TblWznmMVersion.bvrRefWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::PRJ) sqlstr += " ORDER BY TblWznmMVersion.prjRefWznmMProject ASC";
 	else if (preIxOrd == VecVOrd::OWN) sqlstr += " ORDER BY TblWznmMVersion.own ASC";
 	else if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMVersion.grp ASC";
 };

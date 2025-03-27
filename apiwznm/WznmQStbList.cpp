@@ -25,14 +25,15 @@ WznmQStbList::WznmQStbList(
 			, const string stubRefWznmMTable
 			, const string stubRefWznmMSubset
 			, const string Example
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->stubRefWznmMSubset = stubRefWznmMSubset;
-	this->Example = Example;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, stubRefWznmMSubset(stubRefWznmMSubset)
+			, Example(Example)
+		{
 };
 
 bool WznmQStbList::readXML(

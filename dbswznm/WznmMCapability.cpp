@@ -25,14 +25,14 @@ WznmMCapability::WznmMCapability(
 			, const string sref
 			, const uint ixWArtefact
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMVersion = refWznmMVersion;
-	this->tplRefWznmMCapability = tplRefWznmMCapability;
-	this->sref = sref;
-	this->ixWArtefact = ixWArtefact;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMVersion(refWznmMVersion)
+			, tplRefWznmMCapability(tplRefWznmMCapability)
+			, sref(sref)
+			, ixWArtefact(ixWArtefact)
+			, Title(Title)
+		{
 };
 
 bool WznmMCapability::operator==(

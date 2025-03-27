@@ -45,9 +45,8 @@ PnlWznmPrjRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -108,11 +107,10 @@ PnlWznmPrjRec::StatApp::StatApp(
 			, const bool initdoneMNPerson
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdonePrj1NVersion(initdonePrj1NVersion)
+			, initdoneMNPerson(initdoneMNPerson)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdonePrj1NVersion = initdonePrj1NVersion;
-	this->initdoneMNPerson = initdoneMNPerson;
-
 	mask = {INITDONEDETAIL, INITDONEPRJ1NVERSION, INITDONEMNPERSON};
 };
 
@@ -179,13 +177,12 @@ PnlWznmPrjRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefPrj1NVersion(scrJrefPrj1NVersion)
+			, scrJrefMNPerson(scrJrefMNPerson)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefPrj1NVersion = scrJrefPrj1NVersion;
-	this->scrJrefMNPerson = scrJrefMNPerson;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFPRJ1NVERSION, SCRJREFMNPERSON, BUTREGULARIZEACTIVE};
 };
 
@@ -257,9 +254,8 @@ PnlWznmPrjRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -296,11 +292,11 @@ PnlWznmPrjRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMPRJRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmPrjRec::DpchAppDo::getSrefsMask() {

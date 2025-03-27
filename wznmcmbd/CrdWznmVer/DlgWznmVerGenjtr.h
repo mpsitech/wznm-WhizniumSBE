@@ -387,9 +387,9 @@ public:
 	};
 
 	bool evalButDneActive(DbsWznm* dbswznm);
+	bool evalLfiDldActive(DbsWznm* dbswznm);
 	bool evalGjtButRunActive(DbsWznm* dbswznm);
 	bool evalGjtButStoActive(DbsWznm* dbswznm);
-	bool evalLfiDldActive(DbsWznm* dbswznm);
 
 public:
 	DlgWznmVerGenjtr(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);

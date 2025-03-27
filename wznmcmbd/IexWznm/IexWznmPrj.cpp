@@ -1737,7 +1737,7 @@ void IexWznmPrj::writeXML(
 };
 
 map<uint,uint> IexWznmPrj::icsWznmVIopInsAll() {
-	return {{(uint)VecVIme::IMEIJMVERSION,VecWznmVIop::INS},{(uint)VecVIme::IMEIJMVERSIONSTATE,VecWznmVIop::INS},{(uint)VecVIme::IMEIMPROJECT,VecWznmVIop::RETRINS},{(uint)VecVIme::IMEIMVERSION,VecWznmVIop::INS},{(uint)VecVIme::IMEIRMLOCALEMVERSION,VecWznmVIop::INS},{(uint)VecVIme::IMEIRMPERSONMPROJECT,VecWznmVIop::INS}};
+	return {{(uint)VecVIme::IMEIJMVERSION,VecWznmVIop::INS},{(uint)VecVIme::IMEIJMVERSIONSTATE,VecWznmVIop::INS},{(uint)VecVIme::IMEIMPROJECT,VecWznmVIop::INS},{(uint)VecVIme::IMEIMVERSION,VecWznmVIop::INS},{(uint)VecVIme::IMEIRMLOCALEMVERSION,VecWznmVIop::INS},{(uint)VecVIme::IMEIRMPERSONMPROJECT,VecWznmVIop::INS}};
 };
 
 uint IexWznmPrj::getIxWznmVIop(

@@ -43,9 +43,8 @@ PnlWznmQryRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -183,19 +182,18 @@ PnlWznmQryRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefAClause(jrefAClause)
+			, jrefAOrder(jrefAOrder)
+			, jref1NQuerymod(jref1NQuerymod)
+			, jrefQry1NQuerycol(jrefQry1NQuerycol)
+			, jrefSup1NQuery(jrefSup1NQuery)
+			, jrefMNTable(jrefMNTable)
+			, jrefMNPanel(jrefMNPanel)
+			, jrefMNDialog(jrefMNDialog)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefAClause = jrefAClause;
-	this->jrefAOrder = jrefAOrder;
-	this->jref1NQuerymod = jref1NQuerymod;
-	this->jrefQry1NQuerycol = jrefQry1NQuerycol;
-	this->jrefSup1NQuery = jrefSup1NQuery;
-	this->jrefMNTable = jrefMNTable;
-	this->jrefMNPanel = jrefMNPanel;
-	this->jrefMNDialog = jrefMNDialog;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFACLAUSE, JREFAORDER, JREF1NQUERYMOD, JREFQRY1NQUERYCOL, JREFSUP1NQUERY, JREFMNTABLE, JREFMNPANEL, JREFMNDIALOG, BUTREGULARIZEACTIVE};
 };
 

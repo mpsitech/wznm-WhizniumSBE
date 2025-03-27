@@ -218,8 +218,8 @@ void QryWznmTagList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::GRP) sqlstr += " ORDER BY TblWznmMTag.osrefWznmKTaggrp ASC";
-	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMTag.sref ASC";
 	else if (preIxOrd == VecVOrd::CPB) sqlstr += " ORDER BY TblWznmMTag.refWznmMCapability ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMTag.sref ASC";
 };
 
 void QryWznmTagList::fetch(

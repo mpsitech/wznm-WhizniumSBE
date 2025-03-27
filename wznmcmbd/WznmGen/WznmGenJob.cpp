@@ -785,10 +785,6 @@ void WznmGenJob::addBasecons(
 					addBit(dbswznm, job, blks, bitnums, "StatApp", ditshort, VecWznmVAMBlockItemBasetype::CONPAR, baseconsref + "Alt", VecWznmVVartype::BOOLEAN, basecon->ref, 0, "true", 0);
 		else if ((cplxtype == Concplxtype::PUP_TXFALT) || (cplxtype == Concplxtype::TXT_TXFALT))
 					addBit(dbswznm, job, blks, bitnums, "StatApp", ditshort, VecWznmVAMBlockItemBasetype::CONPAR, baseconsref + "Alt", VecWznmVVartype::BOOLEAN, basecon->ref, 0, "false", 0);
-
-		// StatShr
-		if ((cplxtype == Concplxtype::LST_TXFALT) || (cplxtype == Concplxtype::PUP_TXFALT) || (cplxtype == Concplxtype::TXT_TXFALT))
-					addBit(dbswznm, job, blks, bitnums, "StatShr", ditshort, VecWznmVAMBlockItemBasetype::CONPAR, "Txf" + baseconshort + "Valid", VecWznmVVartype::BOOLEAN, basecon->ref, 0, "false", 0);
 	};
 };
 
@@ -816,9 +812,12 @@ void WznmGenJob::addCon(
 		if (refsAlr.find(con->supRefWznmMControl) != refsAlr.end()) return;
 	};
 
-	// all: StatApp/StatShr if avail/active rule present
+	// all: StatApp/StatShr if avail/active rule or clean/valid options are present
 	if (con->Avail.length() > 0) addBit(dbswznm, job, blks, bitnums, Wznm::getConstatblk(con), ditshort, VecWznmVAMBlockItemBasetype::VAR, consref + "Avail", VecWznmVVartype::BOOLEAN, con->ref, 0, "true", 0);
 	if (con->Active.length() > 0) addBit(dbswznm, job, blks, bitnums, Wznm::getConstatblk(con), ditshort, VecWznmVAMBlockItemBasetype::VAR, consref + "Active", VecWznmVVartype::BOOLEAN, con->ref, 0, "true", 0);
+
+	if (StrMod::srefInSrefs(con->srefsKOption, "clean")) addBit(dbswznm, job, blks, bitnums, Wznm::getConstatblk(con), ditshort, VecWznmVAMBlockItemBasetype::VAR, consref + "Clean", VecWznmVVartype::BOOLEAN, con->ref, 0, "false", 0);
+	if (StrMod::srefInSrefs(con->srefsKOption, "valid")) addBit(dbswznm, job, blks, bitnums, Wznm::getConstatblk(con), ditshort, VecWznmVAMBlockItemBasetype::VAR, consref + "Valid", VecWznmVVartype::BOOLEAN, con->ref, 0, "false", 0);
 
 	if (con->ixVBasetype == VecWznmVMControlBasetype::ALR) {
 		// -
@@ -1453,7 +1452,7 @@ void WznmGenJob::genJobIex_addSqk(
 	sge->refWznmMSquawk = dbswznm->tblwznmmsquawk->insertNewRec(&sqk, VecWznmVMSquawkRefTbl::SGE, sge->ref, 0, "", "");
 	dbswznm->tblwznmmstage->updateRec(sge);
 
-	Wznm::getTagtits(dbswznm, sge->sref, "iexsge", "", iextits, refLcl, refsLcl, tagTits, false);
+	Wznm::getTagtits(dbswznm, 0, sge->sref, "iexsge", "", iextits, refLcl, refsLcl, tagTits, false);
 	for (unsigned int i = 0; i < refsLcl.size(); i++) {
 		ref = dbswznm->tblwznmjmsquawktitle->insertNewRec(NULL, sge->refWznmMSquawk, refsLcl[i], tagTits[refsLcl[i]]);
 

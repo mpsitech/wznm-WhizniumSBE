@@ -23,12 +23,13 @@ WznmQSelect::WznmQSelect(
 			, const uint jnum
 			, const uint ix
 			, const ubigint ref
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ix = ix;
-	this->ref = ref;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ix(ix)
+			, ref(ref)
+		{
 };
 
 void WznmQSelect::writeJSON(

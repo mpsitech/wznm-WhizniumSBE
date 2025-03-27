@@ -53,9 +53,8 @@ PnlWznmQryList::ContIac::ContIac(
 			const uint numFTos
 		) :
 			Block()
+			, numFTos(numFTos)
 		{
-	this->numFTos = numFTos;
-
 	mask = {NUMFTOS};
 };
 
@@ -133,12 +132,11 @@ PnlWznmQryList::ContInf::ContInf(
 			, const uint numFCsiQst
 		) :
 			Block()
+			, TxtFor(TxtFor)
+			, TxtPre(TxtPre)
+			, ButFilterOn(ButFilterOn)
+			, numFCsiQst(numFCsiQst)
 		{
-	this->TxtFor = TxtFor;
-	this->TxtPre = TxtPre;
-	this->ButFilterOn = ButFilterOn;
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 };
 
@@ -204,10 +202,9 @@ PnlWznmQryList::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {IXWZNMVEXPSTATE, BUTDELETEACTIVE};
 };
 
@@ -279,15 +276,14 @@ PnlWznmQryList::StgIac::StgIac(
 			, const uint TcoQtbWidth
 		) :
 			Block()
+			, TcoSrfWidth(TcoSrfWidth)
+			, TcoTypWidth(TcoTypWidth)
+			, TcoVerWidth(TcoVerWidth)
+			, TcoSupWidth(TcoSupWidth)
+			, TcoSrlWidth(TcoSrlWidth)
+			, TcoTblWidth(TcoTblWidth)
+			, TcoQtbWidth(TcoQtbWidth)
 		{
-	this->TcoSrfWidth = TcoSrfWidth;
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoVerWidth = TcoVerWidth;
-	this->TcoSupWidth = TcoSupWidth;
-	this->TcoSrlWidth = TcoSrlWidth;
-	this->TcoTblWidth = TcoTblWidth;
-	this->TcoQtbWidth = TcoQtbWidth;
-
 	mask = {TCOSRFWIDTH, TCOTYPWIDTH, TCOVERWIDTH, TCOSUPWIDTH, TCOSRLWIDTH, TCOTBLWIDTH, TCOQTBWIDTH};
 };
 
@@ -393,22 +389,21 @@ PnlWznmQryList::Tag::Tag(
 			, const string& TcoQtb
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtFor(TxtFor)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoSrf(TcoSrf)
+			, TcoTyp(TcoTyp)
+			, TcoVer(TcoVer)
+			, TcoSup(TcoSup)
+			, TcoSrl(TcoSrl)
+			, TcoTbl(TcoTbl)
+			, TcoQtb(TcoQtb)
 		{
-	this->Cpt = Cpt;
-	this->TxtFor = TxtFor;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoSrf = TcoSrf;
-	this->TcoTyp = TcoTyp;
-	this->TcoVer = TcoVer;
-	this->TcoSup = TcoSup;
-	this->TcoSrl = TcoSrl;
-	this->TcoTbl = TcoTbl;
-	this->TcoQtb = TcoQtb;
-
 	mask = {CPT, TXTFOR, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOSRF, TCOTYP, TCOVER, TCOSUP, TCOSRL, TCOTBL, TCOQTB};
 };
 
@@ -505,11 +500,11 @@ PnlWznmQryList::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMQRYLISTDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmQryList::DpchAppDo::getSrefsMask() {

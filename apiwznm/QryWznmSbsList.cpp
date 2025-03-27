@@ -22,8 +22,8 @@ uint QryWznmSbsList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "tbl") return TBL;
 	if (s == "srf") return SRF;
+	if (s == "tbl") return TBL;
 
 	return(0);
 };
@@ -31,8 +31,8 @@ uint QryWznmSbsList::VecVOrd::getIx(
 string QryWznmSbsList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == TBL) return("tbl");
 	if (ix == SRF) return("srf");
+	if (ix == TBL) return("tbl");
 
 	return("");
 };
@@ -48,12 +48,11 @@ QryWznmSbsList::StatApp::StatApp(
 			, const uint ndisp
 		) :
 			Block()
+			, firstcol(firstcol)
+			, jnumFirstdisp(jnumFirstdisp)
+			, ncol(ncol)
+			, ndisp(ndisp)
 		{
-	this->firstcol = firstcol;
-	this->jnumFirstdisp = jnumFirstdisp;
-	this->ncol = ncol;
-	this->ndisp = ndisp;
-
 	mask = {FIRSTCOL, JNUMFIRSTDISP, NCOL, NDISP};
 };
 
@@ -120,11 +119,10 @@ QryWznmSbsList::StatShr::StatShr(
 			, const uint nload
 		) :
 			Block()
+			, ntot(ntot)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->ntot = ntot;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -189,11 +187,10 @@ QryWznmSbsList::StgIac::StgIac(
 			, const uint nload
 		) :
 			Block()
+			, jnum(jnum)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->jnum = jnum;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 

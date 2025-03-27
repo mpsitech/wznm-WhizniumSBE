@@ -61,17 +61,16 @@ PnlWznmVerDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, TxfMaj(TxfMaj)
+			, TxfMin(TxfMin)
+			, TxfSub(TxfSub)
+			, numFPupJst(numFPupJst)
+			, numFPupSte(numFPupSte)
+			, numsFLstDty(numsFLstDty)
+			, numsFLstOpt(numsFLstOpt)
+			, numFPupJ(numFPupJ)
+			, TxfCmt(TxfCmt)
 		{
-	this->TxfMaj = TxfMaj;
-	this->TxfMin = TxfMin;
-	this->TxfSub = TxfSub;
-	this->numFPupJst = numFPupJst;
-	this->numFPupSte = numFPupSte;
-	this->numsFLstDty = numsFLstDty;
-	this->numsFLstOpt = numsFLstOpt;
-	this->numFPupJ = numFPupJ;
-	this->TxfCmt = TxfCmt;
-
 	mask = {TXFMAJ, TXFMIN, TXFSUB, NUMFPUPJST, NUMFPUPSTE, NUMSFLSTDTY, NUMSFLSTOPT, NUMFPUPJ, TXFCMT};
 };
 
@@ -177,16 +176,15 @@ PnlWznmVerDetail::ContInf::ContInf(
 			, const string& TxtAb3
 		) :
 			Block()
+			, TxtPrj(TxtPrj)
+			, TxtBvr(TxtBvr)
+			, TxtLoc(TxtLoc)
+			, TxtDty(TxtDty)
+			, TxtOpt(TxtOpt)
+			, TxtAb1(TxtAb1)
+			, TxtAb2(TxtAb2)
+			, TxtAb3(TxtAb3)
 		{
-	this->TxtPrj = TxtPrj;
-	this->TxtBvr = TxtBvr;
-	this->TxtLoc = TxtLoc;
-	this->TxtDty = TxtDty;
-	this->TxtOpt = TxtOpt;
-	this->TxtAb1 = TxtAb1;
-	this->TxtAb2 = TxtAb2;
-	this->TxtAb3 = TxtAb3;
-
 	mask = {TXTPRJ, TXTBVR, TXTLOC, TXTDTY, TXTOPT, TXTAB1, TXTAB2, TXTAB3};
 };
 
@@ -263,13 +261,12 @@ PnlWznmVerDetail::StatApp::StatApp(
 			, const uint LstOptNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstDtyAlt(LstDtyAlt)
+			, LstOptAlt(LstOptAlt)
+			, LstDtyNumFirstdisp(LstDtyNumFirstdisp)
+			, LstOptNumFirstdisp(LstOptNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstDtyAlt = LstDtyAlt;
-	this->LstOptAlt = LstOptAlt;
-	this->LstDtyNumFirstdisp = LstDtyNumFirstdisp;
-	this->LstOptNumFirstdisp = LstOptNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTDTYALT, LSTOPTALT, LSTDTYNUMFIRSTDISP, LSTOPTNUMFIRSTDISP};
 };
 
@@ -365,33 +362,32 @@ PnlWznmVerDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtPrjActive(TxtPrjActive)
+			, ButPrjViewAvail(ButPrjViewAvail)
+			, ButPrjViewActive(ButPrjViewActive)
+			, TxfMajActive(TxfMajActive)
+			, TxfMinActive(TxfMinActive)
+			, TxfSubActive(TxfSubActive)
+			, TxtBvrActive(TxtBvrActive)
+			, ButBvrViewAvail(ButBvrViewAvail)
+			, ButBvrViewActive(ButBvrViewActive)
+			, TxtLocActive(TxtLocActive)
+			, ButLocViewAvail(ButLocViewAvail)
+			, ButLocViewActive(ButLocViewActive)
+			, PupJstActive(PupJstActive)
+			, ButJstEditAvail(ButJstEditAvail)
+			, PupSteActive(PupSteActive)
+			, LstDtyActive(LstDtyActive)
+			, LstOptActive(LstOptActive)
+			, PupJActive(PupJActive)
+			, ButJEditAvail(ButJEditAvail)
+			, TxtAb1Active(TxtAb1Active)
+			, TxtAb2Active(TxtAb2Active)
+			, TxtAb3Active(TxtAb3Active)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtPrjActive = TxtPrjActive;
-	this->ButPrjViewAvail = ButPrjViewAvail;
-	this->ButPrjViewActive = ButPrjViewActive;
-	this->TxfMajActive = TxfMajActive;
-	this->TxfMinActive = TxfMinActive;
-	this->TxfSubActive = TxfSubActive;
-	this->TxtBvrActive = TxtBvrActive;
-	this->ButBvrViewAvail = ButBvrViewAvail;
-	this->ButBvrViewActive = ButBvrViewActive;
-	this->TxtLocActive = TxtLocActive;
-	this->ButLocViewAvail = ButLocViewAvail;
-	this->ButLocViewActive = ButLocViewActive;
-	this->PupJstActive = PupJstActive;
-	this->ButJstEditAvail = ButJstEditAvail;
-	this->PupSteActive = PupSteActive;
-	this->LstDtyActive = LstDtyActive;
-	this->LstOptActive = LstOptActive;
-	this->PupJActive = PupJActive;
-	this->ButJEditAvail = ButJEditAvail;
-	this->TxtAb1Active = TxtAb1Active;
-	this->TxtAb2Active = TxtAb2Active;
-	this->TxtAb3Active = TxtAb3Active;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTPRJACTIVE, BUTPRJVIEWAVAIL, BUTPRJVIEWACTIVE, TXFMAJACTIVE, TXFMINACTIVE, TXFSUBACTIVE, TXTBVRACTIVE, BUTBVRVIEWAVAIL, BUTBVRVIEWACTIVE, TXTLOCACTIVE, BUTLOCVIEWAVAIL, BUTLOCVIEWACTIVE, PUPJSTACTIVE, BUTJSTEDITAVAIL, PUPSTEACTIVE, LSTDTYACTIVE, LSTOPTACTIVE, PUPJACTIVE, BUTJEDITAVAIL, TXTAB1ACTIVE, TXTAB2ACTIVE, TXTAB3ACTIVE, TXFCMTACTIVE};
 };
 
@@ -511,22 +507,21 @@ PnlWznmVerDetail::Tag::Tag(
 			, const string& CptCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptPrj(CptPrj)
+			, CptMaj(CptMaj)
+			, CptMin(CptMin)
+			, CptSub(CptSub)
+			, CptBvr(CptBvr)
+			, CptLoc(CptLoc)
+			, CptSte(CptSte)
+			, CptDty(CptDty)
+			, CptOpt(CptOpt)
+			, CptAb1(CptAb1)
+			, CptAb2(CptAb2)
+			, CptAb3(CptAb3)
+			, CptCmt(CptCmt)
 		{
-	this->Cpt = Cpt;
-	this->CptPrj = CptPrj;
-	this->CptMaj = CptMaj;
-	this->CptMin = CptMin;
-	this->CptSub = CptSub;
-	this->CptBvr = CptBvr;
-	this->CptLoc = CptLoc;
-	this->CptSte = CptSte;
-	this->CptDty = CptDty;
-	this->CptOpt = CptOpt;
-	this->CptAb1 = CptAb1;
-	this->CptAb2 = CptAb2;
-	this->CptAb3 = CptAb3;
-	this->CptCmt = CptCmt;
-
 	mask = {CPT, CPTPRJ, CPTMAJ, CPTMIN, CPTSUB, CPTBVR, CPTLOC, CPTSTE, CPTDTY, CPTOPT, CPTAB1, CPTAB2, CPTAB3, CPTCMT};
 };
 
@@ -615,11 +610,11 @@ PnlWznmVerDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMVERDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmVerDetail::DpchAppDo::getSrefsMask() {

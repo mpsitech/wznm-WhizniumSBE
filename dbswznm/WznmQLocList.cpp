@@ -24,13 +24,14 @@ WznmQLocList::WznmQLocList(
 			, const ubigint ref
 			, const string sref
 			, const string Title
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+		{
 };
 
 void WznmQLocList::writeJSON(

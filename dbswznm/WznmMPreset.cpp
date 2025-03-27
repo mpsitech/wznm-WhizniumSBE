@@ -28,17 +28,17 @@ WznmMPreset::WznmMPreset(
 			, const uint ixWznmWArgtype
 			, const ubigint refJTitle
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMVersion = refWznmMVersion;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->ixVScope = ixVScope;
-	this->sref = sref;
-	this->ixWznmWArgtype = ixWznmWArgtype;
-	this->refJTitle = refJTitle;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMVersion(refWznmMVersion)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, ixVScope(ixVScope)
+			, sref(sref)
+			, ixWznmWArgtype(ixWznmWArgtype)
+			, refJTitle(refJTitle)
+			, Title(Title)
+		{
 };
 
 bool WznmMPreset::operator==(

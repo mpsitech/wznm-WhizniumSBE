@@ -22,11 +22,11 @@ uint QryWznmConList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
+	if (s == "hku") return HKU;
 	if (s == "sup") return SUP;
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
 	if (s == "sct") return SCT;
-	if (s == "hku") return HKU;
 	if (s == "hkt") return HKT;
 	if (s == "typ") return TYP;
 	if (s == "srf") return SRF;
@@ -37,11 +37,11 @@ uint QryWznmConList::VecVOrd::getIx(
 string QryWznmConList::VecVOrd::getSref(
 			const uint ix
 		) {
+	if (ix == HKU) return("hku");
 	if (ix == SUP) return("sup");
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
 	if (ix == SCT) return("sct");
-	if (ix == HKU) return("hku");
 	if (ix == HKT) return("hkt");
 	if (ix == TYP) return("typ");
 	if (ix == SRF) return("srf");
@@ -60,12 +60,11 @@ QryWznmConList::StatApp::StatApp(
 			, const uint ndisp
 		) :
 			Block()
+			, firstcol(firstcol)
+			, jnumFirstdisp(jnumFirstdisp)
+			, ncol(ncol)
+			, ndisp(ndisp)
 		{
-	this->firstcol = firstcol;
-	this->jnumFirstdisp = jnumFirstdisp;
-	this->ncol = ncol;
-	this->ndisp = ndisp;
-
 	mask = {FIRSTCOL, JNUMFIRSTDISP, NCOL, NDISP};
 };
 
@@ -132,11 +131,10 @@ QryWznmConList::StatShr::StatShr(
 			, const uint nload
 		) :
 			Block()
+			, ntot(ntot)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->ntot = ntot;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -201,11 +199,10 @@ QryWznmConList::StgIac::StgIac(
 			, const uint nload
 		) :
 			Block()
+			, jnum(jnum)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->jnum = jnum;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 

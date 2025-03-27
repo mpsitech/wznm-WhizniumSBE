@@ -45,9 +45,8 @@ PnlWznmTcoRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -112,15 +111,14 @@ PnlWznmTcoRec::StatApp::StatApp(
 			, const bool initdone1NCheck
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneATitle(initdoneATitle)
+			, initdone1NQuerycol(initdone1NQuerycol)
+			, initdone1NImpexpcol(initdone1NImpexpcol)
+			, initdoneRef1NQuerymod(initdoneRef1NQuerymod)
+			, initdoneRef1NControl(initdoneRef1NControl)
+			, initdone1NCheck(initdone1NCheck)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneATitle = initdoneATitle;
-	this->initdone1NQuerycol = initdone1NQuerycol;
-	this->initdone1NImpexpcol = initdone1NImpexpcol;
-	this->initdoneRef1NQuerymod = initdoneRef1NQuerymod;
-	this->initdoneRef1NControl = initdoneRef1NControl;
-	this->initdone1NCheck = initdone1NCheck;
-
 	mask = {INITDONEDETAIL, INITDONEATITLE, INITDONE1NQUERYCOL, INITDONE1NIMPEXPCOL, INITDONEREF1NQUERYMOD, INITDONEREF1NCONTROL, INITDONE1NCHECK};
 };
 
@@ -204,22 +202,21 @@ PnlWznmTcoRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefATitle(scrJrefATitle)
+			, pnlatitleAvail(pnlatitleAvail)
+			, scrJref1NQuerycol(scrJref1NQuerycol)
+			, pnl1nquerycolAvail(pnl1nquerycolAvail)
+			, scrJref1NImpexpcol(scrJref1NImpexpcol)
+			, pnl1nimpexpcolAvail(pnl1nimpexpcolAvail)
+			, scrJrefRef1NQuerymod(scrJrefRef1NQuerymod)
+			, pnlref1nquerymodAvail(pnlref1nquerymodAvail)
+			, scrJrefRef1NControl(scrJrefRef1NControl)
+			, pnlref1ncontrolAvail(pnlref1ncontrolAvail)
+			, scrJref1NCheck(scrJref1NCheck)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefATitle = scrJrefATitle;
-	this->pnlatitleAvail = pnlatitleAvail;
-	this->scrJref1NQuerycol = scrJref1NQuerycol;
-	this->pnl1nquerycolAvail = pnl1nquerycolAvail;
-	this->scrJref1NImpexpcol = scrJref1NImpexpcol;
-	this->pnl1nimpexpcolAvail = pnl1nimpexpcolAvail;
-	this->scrJrefRef1NQuerymod = scrJrefRef1NQuerymod;
-	this->pnlref1nquerymodAvail = pnlref1nquerymodAvail;
-	this->scrJrefRef1NControl = scrJrefRef1NControl;
-	this->pnlref1ncontrolAvail = pnlref1ncontrolAvail;
-	this->scrJref1NCheck = scrJref1NCheck;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, PNLATITLEAVAIL, SCRJREF1NQUERYCOL, PNL1NQUERYCOLAVAIL, SCRJREF1NIMPEXPCOL, PNL1NIMPEXPCOLAVAIL, SCRJREFREF1NQUERYMOD, PNLREF1NQUERYMODAVAIL, SCRJREFREF1NCONTROL, PNLREF1NCONTROLAVAIL, SCRJREF1NCHECK, BUTREGULARIZEACTIVE};
 };
 
@@ -309,9 +306,8 @@ PnlWznmTcoRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -348,11 +344,11 @@ PnlWznmTcoRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMTCORECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmTcoRec::DpchAppDo::getSrefsMask() {

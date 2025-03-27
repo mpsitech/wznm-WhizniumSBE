@@ -76,10 +76,9 @@ DlgWznmVerFinmod::ContInf::ContInf(
 			, const string& FnmTxtPrg
 		) :
 			Block()
+			, numFSge(numFSge)
+			, FnmTxtPrg(FnmTxtPrg)
 		{
-	this->numFSge = numFSge;
-	this->FnmTxtPrg = FnmTxtPrg;
-
 	mask = {NUMFSGE, FNMTXTPRG};
 };
 
@@ -140,9 +139,8 @@ DlgWznmVerFinmod::StatApp::StatApp(
 			const string& shortMenu
 		) :
 			Block()
+			, shortMenu(shortMenu)
 		{
-	this->shortMenu = shortMenu;
-
 	mask = {SHORTMENU};
 };
 
@@ -203,11 +201,10 @@ DlgWznmVerFinmod::StatShr::StatShr(
 			, const bool ButDneActive
 		) :
 			Block()
+			, FnmButRunActive(FnmButRunActive)
+			, FnmButStoActive(FnmButStoActive)
+			, ButDneActive(ButDneActive)
 		{
-	this->FnmButRunActive = FnmButRunActive;
-	this->FnmButStoActive = FnmButStoActive;
-	this->ButDneActive = ButDneActive;
-
 	mask = {FNMBUTRUNACTIVE, FNMBUTSTOACTIVE, BUTDNEACTIVE};
 };
 
@@ -274,13 +271,12 @@ DlgWznmVerFinmod::Tag::Tag(
 			, const string& ButDne
 		) :
 			Block()
+			, Cpt(Cpt)
+			, FnmCptPrg(FnmCptPrg)
+			, FnmButRun(FnmButRun)
+			, FnmButSto(FnmButSto)
+			, ButDne(ButDne)
 		{
-	this->Cpt = Cpt;
-	this->FnmCptPrg = FnmCptPrg;
-	this->FnmButRun = FnmButRun;
-	this->FnmButSto = FnmButSto;
-	this->ButDne = ButDne;
-
 	mask = {CPT, FNMCPTPRG, FNMBUTRUN, FNMBUTSTO, BUTDNE};
 };
 
@@ -321,11 +317,11 @@ DlgWznmVerFinmod::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMVERFINMODDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string DlgWznmVerFinmod::DpchAppDo::getSrefsMask() {

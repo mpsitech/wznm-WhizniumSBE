@@ -22,13 +22,13 @@ WznmAVValuelistVal::WznmAVValuelistVal(
 			, const uint vlsNum
 			, const uint x1IxWznmVLocale
 			, const string Val
-		) {
-
-	this->ref = ref;
-	this->vlsIxWznmVValuelist = vlsIxWznmVValuelist;
-	this->vlsNum = vlsNum;
-	this->x1IxWznmVLocale = x1IxWznmVLocale;
-	this->Val = Val;
+		) :
+			ref(ref)
+			, vlsIxWznmVValuelist(vlsIxWznmVValuelist)
+			, vlsNum(vlsNum)
+			, x1IxWznmVLocale(x1IxWznmVLocale)
+			, Val(Val)
+		{
 };
 
 bool WznmAVValuelistVal::operator==(

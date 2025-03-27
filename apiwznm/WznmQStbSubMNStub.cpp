@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQStbSubMNStub::WznmQStbSubMNStub(
 			const uint jnum
 			, const string stubMref
-		) {
-	this->jnum = jnum;
-	this->stubMref = stubMref;
+		) :
+			jnum(jnum)
+			, stubMref(stubMref)
+		{
 };
 
 bool WznmQStbSubMNStub::readXML(

@@ -45,9 +45,8 @@ PnlWznmIexRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -109,12 +108,11 @@ PnlWznmIexRec::StatApp::StatApp(
 			, const bool initdoneRef1NDialog
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdone1NImpexp(initdone1NImpexp)
+			, initdoneHk1NVector(initdoneHk1NVector)
+			, initdoneRef1NDialog(initdoneRef1NDialog)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdone1NImpexp = initdone1NImpexp;
-	this->initdoneHk1NVector = initdoneHk1NVector;
-	this->initdoneRef1NDialog = initdoneRef1NDialog;
-
 	mask = {INITDONEDETAIL, INITDONE1NIMPEXP, INITDONEHK1NVECTOR, INITDONEREF1NDIALOG};
 };
 
@@ -184,14 +182,13 @@ PnlWznmIexRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJref1NImpexp(scrJref1NImpexp)
+			, scrJrefHk1NVector(scrJrefHk1NVector)
+			, scrJrefRef1NDialog(scrJrefRef1NDialog)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJref1NImpexp = scrJref1NImpexp;
-	this->scrJrefHk1NVector = scrJrefHk1NVector;
-	this->scrJrefRef1NDialog = scrJrefRef1NDialog;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NIMPEXP, SCRJREFHK1NVECTOR, SCRJREFREF1NDIALOG, BUTREGULARIZEACTIVE};
 };
 
@@ -265,9 +262,8 @@ PnlWznmIexRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -304,11 +300,11 @@ PnlWznmIexRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMIEXRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmIexRec::DpchAppDo::getSrefsMask() {

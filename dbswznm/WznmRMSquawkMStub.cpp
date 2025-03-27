@@ -20,11 +20,11 @@ WznmRMSquawkMStub::WznmRMSquawkMStub(
 			const ubigint ref
 			, const ubigint refWznmMSquawk
 			, const ubigint refWznmMStub
-		) {
-
-	this->ref = ref;
-	this->refWznmMSquawk = refWznmMSquawk;
-	this->refWznmMStub = refWznmMStub;
+		) :
+			ref(ref)
+			, refWznmMSquawk(refWznmMSquawk)
+			, refWznmMStub(refWznmMStub)
+		{
 };
 
 bool WznmRMSquawkMStub::operator==(

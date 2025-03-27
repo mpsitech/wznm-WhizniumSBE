@@ -45,9 +45,8 @@ PnlWznmErrDetail::ContIac::ContIac(
 			const uint numFPupJti
 		) :
 			Block()
+			, numFPupJti(numFPupJti)
 		{
-	this->numFPupJti = numFPupJti;
-
 	mask = {NUMFPUPJTI};
 };
 
@@ -101,7 +100,7 @@ void PnlWznmErrDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupJti"] = numFPupJti;
+	me["numFPupJti"] = (Json::Value::UInt) numFPupJti;
 };
 
 void PnlWznmErrDetail::ContIac::writeXML(
@@ -154,11 +153,10 @@ PnlWznmErrDetail::ContInf::ContInf(
 			, const string& TxtVer
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
+			, TxtVer(TxtVer)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-	this->TxtVer = TxtVer;
-
 	mask = {TXTSRF, TXTTIT, TXTVER};
 };
 
@@ -268,17 +266,16 @@ PnlWznmErrDetail::StatShr::StatShr(
 			, const bool ButVerViewActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupJtiActive(PupJtiActive)
+			, ButJtiEditAvail(ButJtiEditAvail)
+			, TxtTitActive(TxtTitActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupJtiActive = PupJtiActive;
-	this->ButJtiEditAvail = ButJtiEditAvail;
-	this->TxtTitActive = TxtTitActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE};
 };
 

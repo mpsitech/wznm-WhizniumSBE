@@ -22,8 +22,8 @@ uint QryWznmDlgList::VecVOrd::getIx(
 
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
-	if (s == "car") return CAR;
 	if (s == "typ") return TYP;
+	if (s == "car") return CAR;
 	if (s == "srf") return SRF;
 
 	return(0);
@@ -34,8 +34,8 @@ string QryWznmDlgList::VecVOrd::getSref(
 		) {
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
-	if (ix == CAR) return("car");
 	if (ix == TYP) return("typ");
+	if (ix == CAR) return("car");
 	if (ix == SRF) return("srf");
 
 	return("");
@@ -65,10 +65,10 @@ void QryWznmDlgList::StatApp::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["firstcol"] = firstcol;
-	me["jnumFirstdisp"] = jnumFirstdisp;
-	me["ncol"] = ncol;
-	me["ndisp"] = ndisp;
+	me["firstcol"] = (Json::Value::UInt) firstcol;
+	me["jnumFirstdisp"] = (Json::Value::UInt) jnumFirstdisp;
+	me["ncol"] = (Json::Value::UInt) ncol;
+	me["ndisp"] = (Json::Value::UInt) ndisp;
 };
 
 void QryWznmDlgList::StatApp::writeXML(
@@ -104,11 +104,10 @@ QryWznmDlgList::StatShr::StatShr(
 			, const uint nload
 		) :
 			Block()
+			, ntot(ntot)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->ntot = ntot;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -120,9 +119,9 @@ void QryWznmDlgList::StatShr::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["ntot"] = ntot;
-	me["jnumFirstload"] = jnumFirstload;
-	me["nload"] = nload;
+	me["ntot"] = (Json::Value::UInt) ntot;
+	me["jnumFirstload"] = (Json::Value::UInt) jnumFirstload;
+	me["nload"] = (Json::Value::UInt) nload;
 };
 
 void QryWznmDlgList::StatShr::writeXML(
@@ -179,10 +178,10 @@ QryWznmDlgList::StgIac::StgIac(
 			, const uint nload
 		) :
 			Block()
+			, jnum(jnum)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->jnum = jnum;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -240,9 +239,9 @@ void QryWznmDlgList::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["jnum"] = jnum;
-	me["jnumFirstload"] = jnumFirstload;
-	me["nload"] = nload;
+	me["jnum"] = (Json::Value::UInt) jnum;
+	me["jnumFirstload"] = (Json::Value::UInt) jnumFirstload;
+	me["nload"] = (Json::Value::UInt) nload;
 };
 
 void QryWznmDlgList::StgIac::writeXML(

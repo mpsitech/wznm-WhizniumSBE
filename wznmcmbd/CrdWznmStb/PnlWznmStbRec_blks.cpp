@@ -43,9 +43,8 @@ PnlWznmStbRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -163,15 +162,14 @@ PnlWznmStbRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefSupMNStub(jrefSupMNStub)
+			, jrefSubMNStub(jrefSubMNStub)
+			, jrefMNSquawk(jrefMNSquawk)
+			, jrefMNCall(jrefMNCall)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefSupMNStub = jrefSupMNStub;
-	this->jrefSubMNStub = jrefSubMNStub;
-	this->jrefMNSquawk = jrefMNSquawk;
-	this->jrefMNCall = jrefMNCall;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFSUPMNSTUB, JREFSUBMNSTUB, JREFMNSQUAWK, JREFMNCALL, BUTREGULARIZEACTIVE};
 };
 

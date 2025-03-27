@@ -22,10 +22,10 @@ uint QryWznmVerList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "loc") return LOC;
-	if (s == "prj") return PRJ;
 	if (s == "ste") return STE;
+	if (s == "loc") return LOC;
 	if (s == "bvr") return BVR;
+	if (s == "prj") return PRJ;
 	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
 
@@ -35,10 +35,10 @@ uint QryWznmVerList::VecVOrd::getIx(
 string QryWznmVerList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == LOC) return("loc");
-	if (ix == PRJ) return("prj");
 	if (ix == STE) return("ste");
+	if (ix == LOC) return("loc");
 	if (ix == BVR) return("bvr");
+	if (ix == PRJ) return("prj");
 	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
 
@@ -56,12 +56,11 @@ QryWznmVerList::StatApp::StatApp(
 			, const uint ndisp
 		) :
 			Block()
+			, firstcol(firstcol)
+			, jnumFirstdisp(jnumFirstdisp)
+			, ncol(ncol)
+			, ndisp(ndisp)
 		{
-	this->firstcol = firstcol;
-	this->jnumFirstdisp = jnumFirstdisp;
-	this->ncol = ncol;
-	this->ndisp = ndisp;
-
 	mask = {FIRSTCOL, JNUMFIRSTDISP, NCOL, NDISP};
 };
 
@@ -128,11 +127,10 @@ QryWznmVerList::StatShr::StatShr(
 			, const uint nload
 		) :
 			Block()
+			, ntot(ntot)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->ntot = ntot;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -197,11 +195,10 @@ QryWznmVerList::StgIac::StgIac(
 			, const uint nload
 		) :
 			Block()
+			, jnum(jnum)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->jnum = jnum;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 

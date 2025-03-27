@@ -51,9 +51,8 @@ PnlWznmRlsList::ContIac::ContIac(
 			const uint numFTos
 		) :
 			Block()
+			, numFTos(numFTos)
 		{
-	this->numFTos = numFTos;
-
 	mask = {NUMFTOS};
 };
 
@@ -107,7 +106,7 @@ void PnlWznmRlsList::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFTos"] = numFTos;
+	me["numFTos"] = (Json::Value::UInt) numFTos;
 };
 
 void PnlWznmRlsList::ContIac::writeXML(
@@ -161,12 +160,11 @@ PnlWznmRlsList::ContInf::ContInf(
 			, const uint numFCsiQst
 		) :
 			Block()
+			, TxtFor(TxtFor)
+			, TxtPre(TxtPre)
+			, ButFilterOn(ButFilterOn)
+			, numFCsiQst(numFCsiQst)
 		{
-	this->TxtFor = TxtFor;
-	this->TxtPre = TxtPre;
-	this->ButFilterOn = ButFilterOn;
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 };
 
@@ -181,7 +179,7 @@ void PnlWznmRlsList::ContInf::writeJSON(
 	me["TxtFor"] = TxtFor;
 	me["TxtPre"] = TxtPre;
 	me["ButFilterOn"] = ButFilterOn;
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmRlsList::ContInf::writeXML(
@@ -239,10 +237,9 @@ PnlWznmRlsList::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {IXWZNMVEXPSTATE, BUTDELETEACTIVE};
 };
 
@@ -310,10 +307,10 @@ PnlWznmRlsList::StgIac::StgIac(
 			, const uint TcoMchWidth
 		) :
 			Block()
+			, TcoSrfWidth(TcoSrfWidth)
+			, TcoCmpWidth(TcoCmpWidth)
+			, TcoMchWidth(TcoMchWidth)
 		{
-	this->TcoSrfWidth = TcoSrfWidth;
-	this->TcoCmpWidth = TcoCmpWidth;
-	this->TcoMchWidth = TcoMchWidth;
 	mask = {TCOSRFWIDTH, TCOCMPWIDTH, TCOMCHWIDTH};
 };
 
@@ -371,9 +368,9 @@ void PnlWznmRlsList::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoSrfWidth"] = TcoSrfWidth;
-	me["TcoCmpWidth"] = TcoCmpWidth;
-	me["TcoMchWidth"] = TcoMchWidth;
+	me["TcoSrfWidth"] = (Json::Value::UInt) TcoSrfWidth;
+	me["TcoCmpWidth"] = (Json::Value::UInt) TcoCmpWidth;
+	me["TcoMchWidth"] = (Json::Value::UInt) TcoMchWidth;
 };
 
 void PnlWznmRlsList::StgIac::writeXML(

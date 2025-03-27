@@ -74,9 +74,8 @@ PnlWznmNavAuxfct::StatShr::StatShr(
 			const bool ButUtlNewcrdAvail
 		) :
 			Block()
+			, ButUtlNewcrdAvail(ButUtlNewcrdAvail)
 		{
-	this->ButUtlNewcrdAvail = ButUtlNewcrdAvail;
-
 	mask = {BUTUTLNEWCRDAVAIL};
 };
 

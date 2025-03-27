@@ -21,12 +21,12 @@ WznmAMQueryOrder::WznmAMQueryOrder(
 			, const ubigint refWznmMQuery
 			, const string Short
 			, const string srefsWznmMTablecol
-		) {
-
-	this->ref = ref;
-	this->refWznmMQuery = refWznmMQuery;
-	this->Short = Short;
-	this->srefsWznmMTablecol = srefsWznmMTablecol;
+		) :
+			ref(ref)
+			, refWznmMQuery(refWznmMQuery)
+			, Short(Short)
+			, srefsWznmMTablecol(srefsWznmMTablecol)
+		{
 };
 
 bool WznmAMQueryOrder::operator==(

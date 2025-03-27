@@ -188,8 +188,8 @@ void DlgWznmRlsStareptr::refreshExt(
 			DbsWznm* dbswznm
 			, set<uint>& moditems
 		) {
-	StatShrExt oldStatshrext(statshrext);
 	ContInfExt oldContinfext(continfext);
+	StatShrExt oldStatshrext(statshrext);
 
 	// IP refreshExt --- RBEGIN
 	// continfext
@@ -200,8 +200,8 @@ void DlgWznmRlsStareptr::refreshExt(
 	statshrext.ButStoActive = evalExtButStoActive(dbswznm);
 
 	// IP refreshExt --- REND
-	if (statshrext.diff(&oldStatshrext).size() != 0) insert(moditems, DpchEngData::STATSHREXT);
 	if (continfext.diff(&oldContinfext).size() != 0) insert(moditems, DpchEngData::CONTINFEXT);
+	if (statshrext.diff(&oldStatshrext).size() != 0) insert(moditems, DpchEngData::STATSHREXT);
 };
 
 void DlgWznmRlsStareptr::refreshLfi(
@@ -350,9 +350,9 @@ void DlgWznmRlsStareptr::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::CLGIDLE) handleTimerInSgeClgidle(dbswznm, req->sref);
+		if ((req->sref == "mon") && (ixVSge == VecVSge::CLONEGIT)) handleTimerWithSrefMonInSgeClonegit(dbswznm);
+		else if (ixVSge == VecVSge::CLGIDLE) handleTimerInSgeClgidle(dbswznm, req->sref);
 		else if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::CLONEGIT)) handleTimerWithSrefMonInSgeClonegit(dbswznm);
 	};
 };
 
@@ -515,6 +515,13 @@ string DlgWznmRlsStareptr::handleDownloadInSgeFail(
 	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
+void DlgWznmRlsStareptr::handleTimerWithSrefMonInSgeClonegit(
+			DbsWznm* dbswznm
+		) {
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeClonegit --- ILINE
+};
+
 void DlgWznmRlsStareptr::handleTimerInSgeClgidle(
 			DbsWznm* dbswznm
 			, const string& sref
@@ -527,13 +534,6 @@ void DlgWznmRlsStareptr::handleTimerInSgeUpkidle(
 			, const string& sref
 		) {
 	changeStage(dbswznm, nextIxVSgeSuccess);
-};
-
-void DlgWznmRlsStareptr::handleTimerWithSrefMonInSgeClonegit(
-			DbsWznm* dbswznm
-		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeClonegit --- ILINE
 };
 
 void DlgWznmRlsStareptr::changeStage(

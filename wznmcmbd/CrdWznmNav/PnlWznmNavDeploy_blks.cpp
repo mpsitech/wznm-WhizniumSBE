@@ -48,10 +48,9 @@ PnlWznmNavDeploy::ContIac::ContIac(
 			, const uint numFLstRls
 		) :
 			Block()
+			, numFLstCmp(numFLstCmp)
+			, numFLstRls(numFLstRls)
 		{
-	this->numFLstCmp = numFLstCmp;
-	this->numFLstRls = numFLstRls;
-
 	mask = {NUMFLSTCMP, NUMFLSTRLS};
 };
 
@@ -107,8 +106,8 @@ void PnlWznmNavDeploy::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFLstCmp"] = numFLstCmp;
-	me["numFLstRls"] = numFLstRls;
+	me["numFLstCmp"] = (Json::Value::UInt) numFLstCmp;
+	me["numFLstRls"] = (Json::Value::UInt) numFLstRls;
 };
 
 void PnlWznmNavDeploy::ContIac::writeXML(
@@ -173,8 +172,8 @@ void PnlWznmNavDeploy::StatApp::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstCmpAlt"] = LstCmpAlt;
 	me["LstRlsAlt"] = LstRlsAlt;
-	me["LstCmpNumFirstdisp"] = LstCmpNumFirstdisp;
-	me["LstRlsNumFirstdisp"] = LstRlsNumFirstdisp;
+	me["LstCmpNumFirstdisp"] = (Json::Value::UInt) LstCmpNumFirstdisp;
+	me["LstRlsNumFirstdisp"] = (Json::Value::UInt) LstRlsNumFirstdisp;
 };
 
 void PnlWznmNavDeploy::StatApp::writeXML(
@@ -214,13 +213,12 @@ PnlWznmNavDeploy::StatShr::StatShr(
 			, const bool ButRlsNewcrdActive
 		) :
 			Block()
+			, LstCmpAvail(LstCmpAvail)
+			, ButCmpViewActive(ButCmpViewActive)
+			, LstRlsAvail(LstRlsAvail)
+			, ButRlsViewActive(ButRlsViewActive)
+			, ButRlsNewcrdActive(ButRlsNewcrdActive)
 		{
-	this->LstCmpAvail = LstCmpAvail;
-	this->ButCmpViewActive = ButCmpViewActive;
-	this->LstRlsAvail = LstRlsAvail;
-	this->ButRlsViewActive = ButRlsViewActive;
-	this->ButRlsNewcrdActive = ButRlsNewcrdActive;
-
 	mask = {LSTCMPAVAIL, BUTCMPVIEWACTIVE, LSTRLSAVAIL, BUTRLSVIEWACTIVE, BUTRLSNEWCRDACTIVE};
 };
 

@@ -52,14 +52,13 @@ PnlWznmJobDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, numFPupRet(numFPupRet)
+			, ChkGbl(ChkGbl)
+			, ChkCls(ChkCls)
+			, ChkShd(ChkShd)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->numFPupRet = numFPupRet;
-	this->ChkGbl = ChkGbl;
-	this->ChkCls = ChkCls;
-	this->ChkShd = ChkShd;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPTYP, NUMFPUPRET, CHKGBL, CHKCLS, CHKSHD, TXFCMT};
 };
 
@@ -151,11 +150,10 @@ PnlWznmJobDetail::ContInf::ContInf(
 			, const string& TxtReu
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtReu(TxtReu)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtReu = TxtReu;
-
 	mask = {TXTSRF, TXTVER, TXTREU};
 };
 
@@ -218,9 +216,8 @@ PnlWznmJobDetail::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -297,22 +294,21 @@ PnlWznmJobDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupTypActive(PupTypActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtReuActive(TxtReuActive)
+			, ButReuViewAvail(ButReuViewAvail)
+			, ButReuViewActive(ButReuViewActive)
+			, ChkGblActive(ChkGblActive)
+			, ChkClsActive(ChkClsActive)
+			, ChkShdActive(ChkShdActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtReuActive = TxtReuActive;
-	this->ButReuViewAvail = ButReuViewAvail;
-	this->ButReuViewActive = ButReuViewActive;
-	this->ChkGblActive = ChkGblActive;
-	this->ChkClsActive = ChkClsActive;
-	this->ChkShdActive = ChkShdActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, CHKGBLACTIVE, CHKCLSACTIVE, CHKSHDACTIVE, TXFCMTACTIVE};
 };
 
@@ -405,17 +401,16 @@ PnlWznmJobDetail::Tag::Tag(
 			, const string& CptCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTyp(CptTyp)
+			, CptVer(CptVer)
+			, CptReu(CptReu)
+			, CptGbl(CptGbl)
+			, CptCls(CptCls)
+			, CptShd(CptShd)
+			, CptCmt(CptCmt)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTyp = CptTyp;
-	this->CptVer = CptVer;
-	this->CptReu = CptReu;
-	this->CptGbl = CptGbl;
-	this->CptCls = CptCls;
-	this->CptShd = CptShd;
-	this->CptCmt = CptCmt;
-
 	mask = {CPT, CPTSRF, CPTTYP, CPTVER, CPTREU, CPTGBL, CPTCLS, CPTSHD, CPTCMT};
 };
 
@@ -499,11 +494,11 @@ PnlWznmJobDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMJOBDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmJobDetail::DpchAppDo::getSrefsMask() {

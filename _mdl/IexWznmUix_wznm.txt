@@ -123,6 +123,23 @@ CrdWznmApp
 		24	mcb	0	void	void		21	shr	McbMer	void	ok
 		ImeIMControl3.end
 	ImeIMDialog.end
+CrdWznmBox
+	ImeIMPanel.srefIxVIop	srefIxVBasetype	carNum	sref	Detach	Avail	Comment
+	retr			PnlWznmBoxDstMNBox
+		ImeIMControl2.srefIxWznmVIop	iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		retr									TcoMref
+			ImeIAMControlPar2.srefIxWznmVIop	x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			ins	width		200
+			ImeIAMControlPar2.end
+		ImeIMControl2.end
+	retr			PnlWznmBoxOrgMNBox
+		ImeIMControl2.srefIxWznmVIop	iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		retr									TcoMref
+			ImeIAMControlPar2.srefIxWznmVIop	x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			ins	width		200
+			ImeIAMControlPar2.end
+		ImeIMControl2.end
+	ImeIMPanel.end
 CrdWznmFil
 	ImeIMControl1.srefIxVBasetype	srefHkIxVSection	srefRefIxVTbl	srefRefUref	srefSupRefWznmMControl	supNum	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	Avail	Active	srefsKOption
 	msp	mbar	void		MenCrd	1	app	MspCrd1	void			MitCrdNewAvail()
@@ -433,6 +450,16 @@ CrdWznmPrj
 		20	mcb	0	void	void		17	shr	McbAer	void	ok
 		ImeIMControl3.end
 	ImeIMDialog.end
+CrdWznmSht
+	ImeIMPanel.srefIxVIop	srefIxVBasetype	carNum	sref	Detach	Avail	Comment
+	retr			PnlWznmShtList
+		ImeIMControl2.srefIxWznmVIop	iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		retr									TcoTit
+			ImeIAMControlPar2.srefIxWznmVIop	x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			ins	width		250
+			ImeIAMControlPar2.end
+		ImeIMControl2.end
+	ImeIMPanel.end
 CrdWznmRls
 	ImeIMControl1.srefIxVBasetype	srefHkIxVSection	srefRefIxVTbl	srefRefUref	srefSupRefWznmMControl	supNum	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	Avail	Active	srefsKOption
 	msp	mbar	void		MenCrd	1	app	MspCrd1	void			MitCrdSrtAvail()|MitCrdCrtAvail()|MitCrdFrtAvail()
@@ -1349,6 +1376,189 @@ CrdWznmVer
 			ImeIAMControlPar3.end
 		ImeIMControl3.end
 	ImeIMDialog.end
+CrdWznmVis
+	ImeIMControl1.srefIxVBasetype	srefHkIxVSection	srefRefIxVTbl	srefRefUref	srefSupRefWznmMControl	supNum	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	Avail	Active	srefsKOption
+	msp	mbar	void		MenCrd	1	app	MspCrd1	void			MitCrdNewAvail()
+	mit	mbar	dlg	DlgWznmVisNew	MenCrd	2	shr	MitCrdNew	void	new		pre.ixCrdaccVisIncl(edit)		cap;ddd
+	mit	mbar	dlg	DlgWznmVisImpstr	MenCrd	5	shr	MitCrdIst	void		Import structure ...	pre.ixCrdaccVisIncl(edit|exec)	pre.refVis()
+	mit	mbar	dlg	DlgWznmVisMissfeat	MenCrd	6	shr	MitCrdCmf	void		Complement missing features ...	pre.ixCrdaccVisIncl(edit|exec)	pre.refVis()
+	mit	mbar	dlg	DlgWznmVisWrite	MenCrd	6	shr	MitCrdWrc	void		Write code ...	pre.ixCrdaccVisIncl(edit|exec)	pre.refVis()
+	msp	mbar	void		MenCrd	7	app	MspCrd2	void
+	mit	mbar	dlg	DlgWznmVisExpstr	MenCrd	8	shr	MitCrdEst	void		Export structure ...		pre.refVis()
+	ImeIMControl1.end
+	ImeIMPanel.srefIxVIop	srefIxVBasetype	carNum	sref	Detach	Avail	Comment
+	retr			PnlWznmVisList
+		ImeIMControl2.srefIxWznmVIop	iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		retr									TcoTyp
+			ImeIAMControlPar2.srefIxWznmVIop	x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			ins	width		200
+			ImeIAMControlPar2.end
+		ImeIMControl2.end
+	ImeIMPanel.end
+	ImeIMDialog.srefIxVBasetype	srefRefIxVTbl	srefRefUref	sref	Comment
+	import	iex	IexWznmVis	DlgWznmVisImpstr
+		ImeICControl3.iref
+		1
+		ImeICControl3.end
+		ImeIMControl3.iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		1	cpt	0	hdr	void		0	app	Cpt	void		Import structure
+		2	sge	0	void	void		0	shr	Sge	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFSge
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWznmVisImpstrSge		noloc;notit;filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		3	dse	0	hdr	void		0	shr	Dse	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFDse
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWznmVisImpstrDit		filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		4	dit	0	void	void		0	shr	DitIfi	dituld		Input file
+		5	uld	0	cont	void		4	app	IfiUld	void	upload					sge(idle)	cap
+		6	cpt	0	cont	void		5	app	IfiCpt	void	filename						cap
+		7	dit	0	void	void		0	shr	DitImp	ditprg	import						cap
+		8	txt	0	cont	void		7	shr	ImpTxtPrg	void							t
+		9	cpt	0	cont	void		8	app	ImpCptPrg	void	progress						cap
+		10	sep	0	cont	void		7	app	ImpSep1	void
+		11	but	1	cont	void		7	shr	ImpButRun	void	run					sge(prsdone)	cap
+		12	but	1	cont	void		7	shr	ImpButSto	void	stop					sge(impidle|import)	cap
+		13	dit	0	void	void		0	shr	DitLfi	ditdld		Log file
+		14	dld	0	cont	void		13	app	LfiDld	void	download					sge(done)	cap
+		15	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|done)	cap
+			ImeIAMControlPar3.x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			action		dlgclose
+			ImeIAMControlPar3.end
+		ImeIMControl3.end
+	cust	void		DlgWznmVisMissfeat
+		ImeICControl3.iref
+		1
+		ImeICControl3.end
+		ImeIMControl3.iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		1	cpt	0	hdr	void		0	app	Cpt	void		Complement missing features
+		2	sge	0	void	void		0	shr	Sge	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFSge
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWznmVisMissfeatSge		noloc;notit;filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		3	txt	0	cont	void		0	shr	CmfTxtPrg	void							t
+		4	cpt	0	cont	void		3	app	CmfCptPrg	void	progress						cap
+		5	sep	0	cont	void		0	app	CmfSep1	void
+		6	but	1	cont	void		0	shr	CmfButRun	void	run					sge(idle)	cap
+		7	but	1	cont	void		0	shr	CmfButSto	void	stop					sge(!idle&!done)	cap
+		8	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|done)	cap
+			ImeIAMControlPar3.x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			action		dlgclose
+			ImeIAMControlPar3.end
+		ImeIMControl3.end
+	new	tbl	TblWznmMVisual	DlgWznmVisNew
+		ImeIMControl3.iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		1	cpt	0	hdr	void		0	app	Cpt	void		Create new visualization
+		2	sge	0	void	void		0	shr	Sge	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFSge
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWznmVisNewSge		noloc;notit;filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		3	pup	0	cont	void		0	shr	DetPupTyp	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec	VecWznmVMVisualBasetype	FeedFDetPupTyp
+			ImeIMFeed3.end
+		4	cpt	0	cont	void		3	app	DetCptTyp	void		Type
+		5	pup	0	cont	void		0	shr	DetPupVer	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			tbl	TblWznmMVersion	FeedFDetPupVer
+			ImeIMFeed3.end
+		6	cpt	0	cont	void		5	app	DetCptVer	void		Version
+		7	txf	0	cont	void		0	shr	DetTxfCmt	void							t
+		8	cpt	0	cont	void		7	app	DetCptCmt	void		Comment
+		9	but	0	ftr	void		0	shr	ButCnc	void	cancel					!sge(create)	cap
+			ImeIAMControlPar3.x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			action		dlgclose
+			ImeIAMControlPar3.end
+		10	but	0	ftr	void		0	shr	ButCre	void	create					sge(idle)&valid()	cap
+			ImeIAMControlPar3.x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			action		dlgclose
+			ImeIAMControlPar3.end
+		ImeIMControl3.end
+	cust	void		DlgWznmVisWrite
+		ImeICControl3.iref
+		1
+		ImeICControl3.end
+		ImeIMControl3.iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		1	cpt	0	hdr	void		0	app	Cpt	void		Write code
+		2	sge	0	void	void		0	shr	Sge	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFSge
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWznmVisWriteSge		noloc;notit;filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		3	dse	0	hdr	void		0	shr	Dse	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFDse
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWznmVisWriteDit		filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		4	dit	0	void	void		0	shr	DitWrc	ditprg		Writing
+		5	txt	0	cont	void		4	shr	WrcTxtPrg	void							t
+		6	cpt	0	cont	void		5	app	WrcCptPrg	void	progress						cap
+		7	sep	0	cont	void		4	app	WrcSep1	void
+		8	but	1	cont	void		4	shr	WrcButRun	void	run					sge(idle)	cap
+		9	but	1	cont	void		4	shr	WrcButSto	void	stop					sge(!idle&!done)	cap
+		10	dit	0	void	void		0	shr	DitLfi	ditdld		Log file
+		11	dld	0	cont	void		10	app	LfiDld	void	download					sge(fail)	cap
+		12	dit	0	void	void		0	shr	DitFia	ditdld		File archive
+		13	dld	0	cont	void		12	app	FiaDld	void	download					sge(done)	cap
+		14	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|fail|done)	cap
+			ImeIAMControlPar3.x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			action		dlgclose
+			ImeIAMControlPar3.end
+		15	alr	0	void	void		0	shr	AlrMer	void
+		16	txt	0	void	void		15	shr	TxtMerCpt	void	error						cap
+		17	txt	0	void	void		15	shr	TxtMerMsg1	void		Merge error (&aspect;). View log file for details.
+		18	mcb	0	void	void		15	shr	McbMer	void	ok
+		ImeIMControl3.end
+	cust	void		DlgWznmVisExpstr
+		ImeICControl3.iref
+		1
+		ImeICControl3.end
+		ImeIMControl3.iref	srefIxVBasetype	irefRefWznmCControl	srefHkIxVSection	srefRefIxVTbl	srefRefUref	irefSupRefWznmMControl	srefIxVScope	sref	srefIxVSubtype	srefsWznmMTag	Title	srefStdRefWznmMStub	srefShoRefWznmMStub	Avail	Active	srefsKOption
+		1	cpt	0	hdr	void		0	app	Cpt	void		Export structure
+		2	sge	0	void	void		0	shr	Sge	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFSge
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWznmVisExpstrSge		noloc;notit;filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		3	dse	0	hdr	void		0	shr	Dse	void
+			ImeIMFeed3.srefSrcIxVTbl	srefSrcUref	sref	srefsWznmMVectoritem	srefsWznmMTag	Comment
+			vec		FeedFDse
+				ImeIMVector3.srefIxVBasetype	sref	osrefWznmKTaggrp	srefsKOption
+				lin	VecVDlgWznmVisExpstrDit		filfed
+				ImeIMVector3.end
+			ImeIMFeed3.end
+		4	dit	0	void	void		0	shr	DitWri	ditprg		Writing
+		5	txt	0	cont	void		4	shr	WriTxtPrg	void							t
+		6	cpt	0	cont	void		5	app	WriCptPrg	void	progress						cap
+		7	sep	0	cont	void		4	app	WriSep1	void
+		8	but	1	cont	void		4	shr	WriButRun	void	run					sge(idle)	cap
+		9	but	1	cont	void		4	shr	WriButSto	void	stop					sge(export)	cap
+		10	dit	0	void	void		0	shr	DitMfi	ditdld		Model file
+		11	dld	0	cont	void		10	app	MfiDld	void	download					sge(done)	cap
+		12	but	0	ftr	void		0	shr	ButDne	void	done					sge(idle|done)	cap
+			ImeIAMControlPar3.x1SrefKKey	srefX2RefWznmMLocale	osrefKVal
+			action		dlgclose
+			ImeIAMControlPar3.end
+		ImeIMControl3.end
+	ImeIMDialog.end
 ImeIMCard.end
 ImeIMQuery.srefIxWznmVIop	iref	srefIxVBasetype	irefSupRefWznmMQuery	srefSupIxVSubrole	sref	Limofs	Comment
 retr					QryWznmPrjList
@@ -1358,6 +1568,80 @@ retr					QryWznmPrjList
 retr					QryWznmVerList
 	ImeIMQuerycol.srefIxWznmVIop	srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	srefRefWznmMStub
 	retrupd				stubBvrRefWznmMVersion		StubWznmVerNo
+	ImeIMQuerycol.end
+ins	1	std	0	void	QryWznmVisBoxctx	false
+	ImeIRMQueryMTable.srefRefWznmMTable	Source	Prefix
+	TblWznmMBox	true
+	TblWznmMSheet	true	t
+	ImeIRMQueryMTable.end
+	ImeIAMQueryClause.irefX1RefWznmMQuerymod	srefIxVBasetype	Clause	srefRefWznmMPreset	srefRefWznmMVector	srefRefWznmMVectoritem
+	0	pre	TblWznmMSheet.visRefWznmMVisual = &pre;	PreWznmRefVis
+	0	eqn	TblWznmMBox.refWznmMSheet = TblWznmMSheet.ref
+	ImeIAMQueryClause.end
+	ImeIAMQueryOrder.srefIxWznmVIop	Short	srefsWznmMTablecol
+	ins	dft	TblWznmMSheet.visNum;TblWznmMBox.ref
+	ImeIAMQueryOrder.end
+	ImeIMQuerycol.srefIxWznmVIop	srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	srefRefWznmMStub
+	ins	qidref	qtb		qref
+	ins	qwr	qtb		qwr
+	ins	qjref	qtb		jref
+	ins	qjenum	qtb		jnum
+	ins	tbl	qtb;btb	TblWznmMSheet.ref	tref	trf
+	ins	tbl	qtb;btb	TblWznmMBox.ref	ref	ref
+	ins	tbl	qtb;btb	TblWznmMBox.unvIxWznmVMaintable	unvIxWznmVMaintable	mtb
+	ins	tbl	qtb;btb	TblWznmMBox.unvUref	unvUref	unv
+	ins	ustub	xml	TblWznmMBox.unvUref	stubUnvUref	stubUnv
+	ins	tbl	qtb;xml;btb	TblWznmMBox.x	x	x
+	ins	tbl	qtb;xml;btb	TblWznmMBox.y	y	y
+	ins	txtval	xml		jnumsSub	sub
+	ins	txtval	xml		jnumsLink	lnk
+	ins	intval	xml		w	w
+	ins	intval	xml		h	h
+	ins	txtval	xml		Content1	cnt1
+	ins	txtval	xml		Content2	cnt2
+	ImeIMQuerycol.end
+ins	2	std	0	void	QryWznmVisLinkctx	false
+	ImeIRMQueryMTable.srefRefWznmMTable	Source	Prefix
+	TblWznmRMBoxMBox	true
+	TblWznmMSheet	true	t
+	TblWznmMBox	false
+	ImeIRMQueryMTable.end
+	ImeIAMQueryClause.irefX1RefWznmMQuerymod	srefIxVBasetype	Clause	srefRefWznmMPreset	srefRefWznmMVector	srefRefWznmMVectoritem
+	0	pre	TblWznmMSheet.visRefWznmMVisual = &pre;	PreWznmRefVis
+	0	eqn	TblWznmMBox.refWznmMSheet = TblWznmMSheet.ref
+	0	eqn	TblWznmRMBoxMBox.orgRefWznmMBox = TblWznmMBox.ref
+	ImeIAMQueryClause.end
+	ImeIAMQueryOrder.srefIxWznmVIop	Short	srefsWznmMTablecol
+	ins	dft	TblWznmMSheet.visNum;TblWznmMBox.ref;TblWznmRMBoxMBox.dstRefWznmMBox
+	ImeIAMQueryOrder.end
+	ImeIMQuerycol.srefIxWznmVIop	srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	srefRefWznmMStub
+	ins	qidref	qtb		qref
+	ins	qwr	qtb		qwr
+	ins	qjref	qtb		jref
+	ins	qjenum	qtb		jnum
+	ins	tbl	qtb;btb	TblWznmMSheet.ref	tref	trf
+	ins	tbl	qtb;btb	TblWznmRMBoxMBox.ref	ref	ref
+	ins	tbl	qtb;btb	TblWznmRMBoxMBox.orgRefWznmMBox	orgRefWznmMBox	org
+	ins	tbl	qtb;btb	TblWznmRMBoxMBox.dstRefWznmMBox	dstRefWznmMBox	dst
+	ins	tbl	qtb;xml;btb	TblWznmRMBoxMBox.orgClk	orgClk	ocl
+	ins	tbl	qtb;xml;btb	TblWznmRMBoxMBox.dstClk	dstClk	dcl
+	ins	tbl	qtb;xml;btb	TblWznmRMBoxMBox.Weight	Weight	wgt
+	ins	intval	xml		jnumBoxOrg
+	ins	intval	xml		jnumBoxDst
+	ins	txtval	xml		Title	tit
+	ins	txtval	xml		Content1	cnt1
+	ins	txtval	xml		Content2	cnt2
+	ImeIMQuerycol.end
+ins	3	std	0	void	QryWznmVisRowctx	false
+	ImeIMQuerycol.srefIxWznmVIop	srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	srefRefWznmMStub
+	ins	qidref	qtb		qref
+	ins	qwr	qtb		qwr
+	ins	qjref	qtb		jref
+	ins	qjenum	qtb		jnum
+	ins	intval	xml		jnumBox
+	ins	txtval	xml		Content1	cnt1
+	ins	txtval	xml		Content2	cnt2
+	ins	txtval	xml		Content3	cnt3
 	ImeIMQuerycol.end
 ImeIMQuery.end
 ImeIMPreset.srefIxWznmVIop	srefRefIxVTbl	srefRefUref	srefIxVScope	sref	srefIxWznmWArgtype	Title

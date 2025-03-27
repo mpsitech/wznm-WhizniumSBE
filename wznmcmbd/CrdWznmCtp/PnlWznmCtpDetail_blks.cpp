@@ -44,10 +44,9 @@ PnlWznmCtpDetail::ContIac::ContIac(
 			, const vector<uint>& numsFLstAtf
 		) :
 			Block()
+			, TxfTit(TxfTit)
+			, numsFLstAtf(numsFLstAtf)
 		{
-	this->TxfTit = TxfTit;
-	this->numsFLstAtf = numsFLstAtf;
-
 	mask = {TXFTIT, NUMSFLSTATF};
 };
 
@@ -159,11 +158,10 @@ PnlWznmCtpDetail::ContInf::ContInf(
 			, const string& TxtAtf
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtAtf(TxtAtf)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtAtf = TxtAtf;
-
 	mask = {TXTSRF, TXTVER, TXTATF};
 };
 
@@ -241,7 +239,7 @@ void PnlWznmCtpDetail::StatApp::writeJSON(
 
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstAtfAlt"] = LstAtfAlt;
-	me["LstAtfNumFirstdisp"] = LstAtfNumFirstdisp;
+	me["LstAtfNumFirstdisp"] = (Json::Value::UInt) LstAtfNumFirstdisp;
 };
 
 void PnlWznmCtpDetail::StatApp::writeXML(
@@ -280,16 +278,15 @@ PnlWznmCtpDetail::StatShr::StatShr(
 			, const bool LstAtfActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfTitActive(TxfTitActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, LstAtfActive(LstAtfActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfTitActive = TxfTitActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->LstAtfActive = LstAtfActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, LSTATFACTIVE};
 };
 

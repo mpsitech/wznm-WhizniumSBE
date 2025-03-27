@@ -44,10 +44,9 @@ PnlWznmMtdDetail::ContIac::ContIac(
 			, const bool ChkExs
 		) :
 			Block()
+			, TxfCmt(TxfCmt)
+			, ChkExs(ChkExs)
 		{
-	this->TxfCmt = TxfCmt;
-	this->ChkExs = ChkExs;
-
 	mask = {TXFCMT, CHKEXS};
 };
 
@@ -158,10 +157,9 @@ PnlWznmMtdDetail::ContInf::ContInf(
 			, const string& TxtJob
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtJob(TxtJob)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtJob = TxtJob;
-
 	mask = {TXTSRF, TXTJOB};
 };
 
@@ -267,16 +265,15 @@ PnlWznmMtdDetail::StatShr::StatShr(
 			, const bool ChkExsActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfCmtActive(TxfCmtActive)
+			, TxtJobActive(TxtJobActive)
+			, ButJobViewAvail(ButJobViewAvail)
+			, ButJobViewActive(ButJobViewActive)
+			, ChkExsActive(ChkExsActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfCmtActive = TxfCmtActive;
-	this->TxtJobActive = TxtJobActive;
-	this->ButJobViewAvail = ButJobViewAvail;
-	this->ButJobViewActive = ButJobViewActive;
-	this->ChkExsActive = ChkExsActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFCMTACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKEXSACTIVE};
 };
 

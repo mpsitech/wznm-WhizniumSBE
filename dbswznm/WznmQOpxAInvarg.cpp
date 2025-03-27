@@ -33,22 +33,23 @@ WznmQOpxAInvarg::WznmQOpxAInvarg(
 			, const ubigint refWznmMVectoritem
 			, const string stubRefWznmMVectoritem
 			, const string Comment
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->opxNum = opxNum;
-	this->sref = sref;
-	this->ixWznmVVartype = ixWznmVVartype;
-	this->srefIxWznmVVartype = srefIxWznmVVartype;
-	this->titIxWznmVVartype = titIxWznmVVartype;
-	this->refWznmMVector = refWznmMVector;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->Defval = Defval;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
-	this->Comment = Comment;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, opxNum(opxNum)
+			, sref(sref)
+			, ixWznmVVartype(ixWznmVVartype)
+			, srefIxWznmVVartype(srefIxWznmVVartype)
+			, titIxWznmVVartype(titIxWznmVVartype)
+			, refWznmMVector(refWznmMVector)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, Defval(Defval)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+			, Comment(Comment)
+		{
 };
 
 void WznmQOpxAInvarg::writeJSON(

@@ -133,39 +133,38 @@ public:
 	class StatShr : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint TXFOPTVALID = 1;
-		static const Sbecore::uint BUTSAVEAVAIL = 2;
-		static const Sbecore::uint BUTSAVEACTIVE = 3;
-		static const Sbecore::uint TXTSRFACTIVE = 4;
-		static const Sbecore::uint TXFSHOACTIVE = 5;
-		static const Sbecore::uint PUPTYPACTIVE = 6;
-		static const Sbecore::uint TXTTBLACTIVE = 7;
-		static const Sbecore::uint BUTTBLVIEWAVAIL = 8;
-		static const Sbecore::uint BUTTBLVIEWACTIVE = 9;
-		static const Sbecore::uint TXTSBSAVAIL = 10;
-		static const Sbecore::uint TXTSBSACTIVE = 11;
-		static const Sbecore::uint BUTSBSVIEWAVAIL = 12;
-		static const Sbecore::uint BUTSBSVIEWACTIVE = 13;
-		static const Sbecore::uint TXTRELAVAIL = 14;
-		static const Sbecore::uint TXTRELACTIVE = 15;
-		static const Sbecore::uint BUTRELVIEWAVAIL = 16;
-		static const Sbecore::uint BUTRELVIEWACTIVE = 17;
-		static const Sbecore::uint TXTFCUAVAIL = 18;
-		static const Sbecore::uint TXTFCUACTIVE = 19;
-		static const Sbecore::uint BUTFCUVIEWAVAIL = 20;
-		static const Sbecore::uint BUTFCUVIEWACTIVE = 21;
-		static const Sbecore::uint PUPSTYACTIVE = 22;
-		static const Sbecore::uint PUPAXFACTIVE = 23;
-		static const Sbecore::uint LSTOPTACTIVE = 24;
+		static const Sbecore::uint BUTSAVEAVAIL = 1;
+		static const Sbecore::uint BUTSAVEACTIVE = 2;
+		static const Sbecore::uint TXTSRFACTIVE = 3;
+		static const Sbecore::uint TXFSHOACTIVE = 4;
+		static const Sbecore::uint PUPTYPACTIVE = 5;
+		static const Sbecore::uint TXTTBLACTIVE = 6;
+		static const Sbecore::uint BUTTBLVIEWAVAIL = 7;
+		static const Sbecore::uint BUTTBLVIEWACTIVE = 8;
+		static const Sbecore::uint TXTSBSAVAIL = 9;
+		static const Sbecore::uint TXTSBSACTIVE = 10;
+		static const Sbecore::uint BUTSBSVIEWAVAIL = 11;
+		static const Sbecore::uint BUTSBSVIEWACTIVE = 12;
+		static const Sbecore::uint TXTRELAVAIL = 13;
+		static const Sbecore::uint TXTRELACTIVE = 14;
+		static const Sbecore::uint BUTRELVIEWAVAIL = 15;
+		static const Sbecore::uint BUTRELVIEWACTIVE = 16;
+		static const Sbecore::uint TXTFCUAVAIL = 17;
+		static const Sbecore::uint TXTFCUACTIVE = 18;
+		static const Sbecore::uint BUTFCUVIEWAVAIL = 19;
+		static const Sbecore::uint BUTFCUVIEWACTIVE = 20;
+		static const Sbecore::uint PUPSTYACTIVE = 21;
+		static const Sbecore::uint PUPAXFACTIVE = 22;
+		static const Sbecore::uint LSTOPTACTIVE = 23;
+		static const Sbecore::uint TXFOPTVALID = 24;
 		static const Sbecore::uint BUTOPTEDITAVAIL = 25;
 		static const Sbecore::uint CHKPNCACTIVE = 26;
 		static const Sbecore::uint CHKEPOACTIVE = 27;
 
 	public:
-		StatShr(const bool TxfOptValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxfShoActive = true, const bool PupTypActive = true, const bool TxtTblActive = true, const bool ButTblViewAvail = true, const bool ButTblViewActive = true, const bool TxtSbsAvail = true, const bool TxtSbsActive = true, const bool ButSbsViewAvail = true, const bool ButSbsViewActive = true, const bool TxtRelAvail = true, const bool TxtRelActive = true, const bool ButRelViewAvail = true, const bool ButRelViewActive = true, const bool TxtFcuAvail = true, const bool TxtFcuActive = true, const bool ButFcuViewAvail = true, const bool ButFcuViewActive = true, const bool PupStyActive = true, const bool PupAxfActive = true, const bool LstOptActive = true, const bool ButOptEditAvail = true, const bool ChkPncActive = true, const bool ChkEpoActive = true);
+		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxfShoActive = true, const bool PupTypActive = true, const bool TxtTblActive = true, const bool ButTblViewAvail = true, const bool ButTblViewActive = true, const bool TxtSbsAvail = true, const bool TxtSbsActive = true, const bool ButSbsViewAvail = true, const bool ButSbsViewActive = true, const bool TxtRelAvail = true, const bool TxtRelActive = true, const bool ButRelViewAvail = true, const bool ButRelViewActive = true, const bool TxtFcuAvail = true, const bool TxtFcuActive = true, const bool ButFcuViewAvail = true, const bool ButFcuViewActive = true, const bool PupStyActive = true, const bool PupAxfActive = true, const bool LstOptActive = true, const bool TxfOptValid = false, const bool ButOptEditAvail = true, const bool ChkPncActive = true, const bool ChkEpoActive = true);
 
 	public:
-		bool TxfOptValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtSrfActive;
@@ -189,6 +188,7 @@ public:
 		bool PupStyActive;
 		bool PupAxfActive;
 		bool LstOptActive;
+		bool TxfOptValid;
 		bool ButOptEditAvail;
 		bool ChkPncActive;
 		bool ChkEpoActive;
@@ -382,12 +382,12 @@ public:
 private:
 	bool handleCallWznmKlsAkeyMod_klsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv);
 	bool handleCallWznmTcoUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmTco_tblEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmTco_tbl_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmTco_sbsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmTco_relEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmTco_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmTco_fcuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmTco_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmTco_relEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmTco_sbsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmTco_tbl_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmTco_tblEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmTco_fctEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 
 };

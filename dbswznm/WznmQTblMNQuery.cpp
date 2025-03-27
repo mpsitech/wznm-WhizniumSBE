@@ -28,17 +28,18 @@ WznmQTblMNQuery::WznmQTblMNQuery(
 			, const bool Source
 			, const string yesnoSource
 			, const string Prefix
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->mref = mref;
-	this->stubMref = stubMref;
-	this->stubsTrefWznmMQuerymod = stubsTrefWznmMQuerymod;
-	this->ref = ref;
-	this->Source = Source;
-	this->yesnoSource = yesnoSource;
-	this->Prefix = Prefix;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, mref(mref)
+			, stubMref(stubMref)
+			, stubsTrefWznmMQuerymod(stubsTrefWznmMQuerymod)
+			, ref(ref)
+			, Source(Source)
+			, yesnoSource(yesnoSource)
+			, Prefix(Prefix)
+		{
 };
 
 void WznmQTblMNQuery::writeJSON(

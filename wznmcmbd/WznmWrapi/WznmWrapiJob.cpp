@@ -390,13 +390,11 @@ void WznmWrapiJob::writeBlkcontCpp(
 	};
 	outfile << "\t\t) :" << endl;
 	outfile << "\t\t\tBlock()" << endl;
-	outfile << "\t\t{" << endl;
-
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
 		wrBitvarConstrCpp(outfile, bit);
 	};
-	outfile << endl;
+	outfile << "\t\t{" << endl;
 
 	outfile << "\tmask = {";
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
@@ -736,6 +734,10 @@ void WznmWrapiJob::writeBlkdpchCpp(
 		outfile << "\t\t\t, const set<uint>& mask" << endl;
 		outfile << "\t\t) :" << endl;
 		outfile << "\t\t\tDpchApp" << Prjshort << "(Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << ", scrJref)" << endl;
+		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+			bit = bits.nodes[i];
+			if ((bit->sref != "jref") && (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::VAR)) wrBitvarConstrCpp(outfile, bit);
+		};
 		outfile << "\t\t{" << endl;
 
 		outfile << "\tif (find(mask, ALL)) this->mask = {";
@@ -754,9 +756,7 @@ void WznmWrapiJob::writeBlkdpchCpp(
 			bit = bits.nodes[i];
 
 			if (bit->sref != "jref") {
-				if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::VAR) {
-					wrBitvarConstrCpp(outfile, bit);
-				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
+				if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
 					outfile << "\t\tif (find(this->mask, " << Wznm::getBitmasksref(bit->sref) << ") && " << bit->sref << ") this->" << bit->sref << " = *" << bit->sref << ";" << endl;
 				} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::SUB) {
 					if (dbswznm->tblwznmmblock->loadRecByRef(bit->refWznmMBlock, &subblk)) {
@@ -978,13 +978,11 @@ void WznmWrapiJob::writeBlkstatCpp(
 	};
 	outfile << "\t\t) :" << endl;
 	outfile << "\t\t\tBlock()" << endl;
-	outfile << "\t\t{" << endl;
-
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
 		wrBitvarConstrCpp(outfile, bit);
 	};
-	outfile << endl;
+	outfile << "\t\t{" << endl;
 
 	outfile << "\tmask = {";
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
@@ -1181,13 +1179,11 @@ void WznmWrapiJob::writeBlkstgCpp(
 	};
 	outfile << "\t\t) :" << endl;
 	outfile << "\t\t\tBlock()" << endl;
-	outfile << "\t\t{" << endl;
-
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
 		wrBitvarConstrCpp(outfile, bit);
 	};
-	outfile << endl;
+	outfile << "\t\t{" << endl;
 
 	outfile << "\tmask = {";
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
@@ -1402,13 +1398,11 @@ void WznmWrapiJob::writeBlktagCpp(
 	};
 	outfile << "\t\t) :" << endl;
 	outfile << "\t\t\tBlock()" << endl;
-	outfile << "\t\t{" << endl;
-
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
 		wrBitvarConstrCpp(outfile, bit);
 	};
-	outfile << endl;
+	outfile << "\t\t{" << endl;
 
 	outfile << "\tmask = {";
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
@@ -1620,8 +1614,8 @@ void WznmWrapiJob::wrBitvarConstrCpp(
 			fstream& outfile
 			, WznmAMBlockItem* bit
 		) {
-	if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "\tthis->scr" << StrMod::cap(bit->sref) << " = scr" << StrMod::cap(bit->sref) << ";" << endl;
-	else outfile << "\tthis->" << bit->sref << " = " << bit->sref << ";" << endl;
+	if (bit->ixWznmVVartype == VecWznmVVartype::SCRREF) outfile << "\t\t\t, scr" << StrMod::cap(bit->sref) << "(scr" << StrMod::cap(bit->sref) << ")" << endl;
+	else outfile << "\t\t\t, " << bit->sref << "(" << bit->sref << ")" << endl;
 };
 
 // adapted version from WznmWrsrv.cpp

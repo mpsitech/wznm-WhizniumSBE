@@ -1,4 +1,4 @@
-IexWznmIni v1.1.9
+IexWznmIni v1.1.13
 ImeIAVKeylistKey1.srefKlsIxWznmVKeylist	sref	Avail	Implied	Title	Comment
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrAcv			prettify file list and add state machine to create file dialog	
 KlstKWznmCtpGenjtrCustop	WznmCtpGenjtrClustmgr			add state machines to launch dialogs	
@@ -82,6 +82,7 @@ KlstWznmKAMPersonDetailType	mbl			mobile
 KlstWznmKAMPersonDetailType	tel			phone	
 KlstWznmKMControlOption	bicol			bi-column	
 KlstWznmKMControlOption	cap			capitalized title	
+KlstWznmKMControlOption	clean			clean/dirty content state	
 KlstWznmKMControlOption	ddd			title complement ' ...'	
 KlstWznmKMControlOption	flexh			flexible height	
 KlstWznmKMControlOption	icon			icon	
@@ -90,7 +91,7 @@ KlstWznmKMControlOption	live			live data display
 KlstWznmKMControlOption	log			logarithmic scale	
 KlstWznmKMControlOption	multsel			multiple item selection	
 KlstWznmKMControlOption	mdnup			mouse down/up tracking	
-KlstWznmKMControlOption	onoff			on and off states	
+KlstWznmKMControlOption	onoff			on/off state	
 KlstWznmKMControlOption	pwd			password	
 KlstWznmKMControlOption	rast			value raster	
 KlstWznmKMControlOption	s			small	
@@ -99,6 +100,7 @@ KlstWznmKMControlOption	tmstamp			time stamp scale
 KlstWznmKMControlOption	tmdate			date scale	
 KlstWznmKMControlOption	tmtime			time scale	
 KlstWznmKMControlOption	tricol			tri-column	
+KlstWznmKMControlOption	valid			valid/invalid content state	
 KlstWznmKMControlOption	xs			extra small	
 KlstWznmKMFileContent	appstr			accessor app structure data	
 KlstWznmKMFileContent	cftpl			code file template	
@@ -248,6 +250,9 @@ wznmusers
 	VecWznmVCard	CrdWznmCal	edit;exec;view
 	VecWznmVCard	CrdWznmCmp	edit;exec;view
 	VecWznmVCard	CrdWznmRls	edit;exec;view
+	VecWznmVCard	CrdWznmVis	edit;exec;view
+	VecWznmVCard	CrdWznmSht	edit;exec;view
+	VecWznmVCard	CrdWznmBox	edit;exec;view
 	VecWznmVCard	CrdWznmApp	edit;exec;view
 	VecWznmVCard	CrdWznmRtj	edit;exec;view
 	VecWznmVCard	CrdWznmEvt	edit;exec;view

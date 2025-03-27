@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmVecMNTable.h"
-#include "PnlWznmVecPst1NQuerymod.h"
 #include "PnlWznmVecSrc1NFeed.h"
+#include "PnlWznmVecPst1NQuerymod.h"
 #include "PnlWznmVecRef1NPanel.h"
 #include "PnlWznmVecFct1NTablecol.h"
 #include "PnlWznmVecVec1NVectoritem.h"
@@ -202,8 +202,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmVecMNTable* pnlmntable;
-	PnlWznmVecPst1NQuerymod* pnlpst1nquerymod;
 	PnlWznmVecSrc1NFeed* pnlsrc1nfeed;
+	PnlWznmVecPst1NQuerymod* pnlpst1nquerymod;
 	PnlWznmVecRef1NPanel* pnlref1npanel;
 	PnlWznmVecFct1NTablecol* pnlfct1ntablecol;
 	PnlWznmVecVec1NVectoritem* pnlvec1nvectoritem;
@@ -247,12 +247,12 @@ public:
 private:
 	bool handleCallWznmVecUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
 	bool handleCallWznmPstUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmVec_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVec_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmVec_pstEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
-	bool handleCallWznmVec_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmVec_hkuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVec_typEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmVec_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmVec_hktEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
+	bool handleCallWznmVec_hkuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmVec_inSbs(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
 	bool handleCallWznmPst_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmPst_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);

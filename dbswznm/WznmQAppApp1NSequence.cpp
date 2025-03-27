@@ -24,13 +24,14 @@ WznmQAppApp1NSequence::WznmQAppApp1NSequence(
 			, const ubigint ref
 			, const string stubRef
 			, const uint appNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->appNum = appNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, appNum(appNum)
+		{
 };
 
 void WznmQAppApp1NSequence::writeJSON(

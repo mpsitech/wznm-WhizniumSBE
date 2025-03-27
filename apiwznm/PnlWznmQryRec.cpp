@@ -45,9 +45,8 @@ PnlWznmQryRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -114,17 +113,16 @@ PnlWznmQryRec::StatApp::StatApp(
 			, const bool initdoneMNDialog
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneAClause(initdoneAClause)
+			, initdoneAOrder(initdoneAOrder)
+			, initdone1NQuerymod(initdone1NQuerymod)
+			, initdoneQry1NQuerycol(initdoneQry1NQuerycol)
+			, initdoneSup1NQuery(initdoneSup1NQuery)
+			, initdoneMNTable(initdoneMNTable)
+			, initdoneMNPanel(initdoneMNPanel)
+			, initdoneMNDialog(initdoneMNDialog)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneAClause = initdoneAClause;
-	this->initdoneAOrder = initdoneAOrder;
-	this->initdone1NQuerymod = initdone1NQuerymod;
-	this->initdoneQry1NQuerycol = initdoneQry1NQuerycol;
-	this->initdoneSup1NQuery = initdoneSup1NQuery;
-	this->initdoneMNTable = initdoneMNTable;
-	this->initdoneMNPanel = initdoneMNPanel;
-	this->initdoneMNDialog = initdoneMNDialog;
-
 	mask = {INITDONEDETAIL, INITDONEACLAUSE, INITDONEAORDER, INITDONE1NQUERYMOD, INITDONEQRY1NQUERYCOL, INITDONESUP1NQUERY, INITDONEMNTABLE, INITDONEMNPANEL, INITDONEMNDIALOG};
 };
 
@@ -209,19 +207,18 @@ PnlWznmQryRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefAClause(scrJrefAClause)
+			, scrJrefAOrder(scrJrefAOrder)
+			, scrJref1NQuerymod(scrJref1NQuerymod)
+			, scrJrefQry1NQuerycol(scrJrefQry1NQuerycol)
+			, scrJrefSup1NQuery(scrJrefSup1NQuery)
+			, scrJrefMNTable(scrJrefMNTable)
+			, scrJrefMNPanel(scrJrefMNPanel)
+			, scrJrefMNDialog(scrJrefMNDialog)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAClause = scrJrefAClause;
-	this->scrJrefAOrder = scrJrefAOrder;
-	this->scrJref1NQuerymod = scrJref1NQuerymod;
-	this->scrJrefQry1NQuerycol = scrJrefQry1NQuerycol;
-	this->scrJrefSup1NQuery = scrJrefSup1NQuery;
-	this->scrJrefMNTable = scrJrefMNTable;
-	this->scrJrefMNPanel = scrJrefMNPanel;
-	this->scrJrefMNDialog = scrJrefMNDialog;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFACLAUSE, SCRJREFAORDER, SCRJREF1NQUERYMOD, SCRJREFQRY1NQUERYCOL, SCRJREFSUP1NQUERY, SCRJREFMNTABLE, SCRJREFMNPANEL, SCRJREFMNDIALOG, BUTREGULARIZEACTIVE};
 };
 
@@ -305,9 +302,8 @@ PnlWznmQryRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -344,11 +340,11 @@ PnlWznmQryRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMQRYRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmQryRec::DpchAppDo::getSrefsMask() {

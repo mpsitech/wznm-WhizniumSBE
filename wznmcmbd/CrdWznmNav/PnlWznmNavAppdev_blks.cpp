@@ -63,13 +63,12 @@ PnlWznmNavAppdev::ContIac::ContIac(
 			, const uint numFLstSte
 		) :
 			Block()
+			, numFLstApp(numFLstApp)
+			, numFLstRtj(numFLstRtj)
+			, numFLstEvt(numFLstEvt)
+			, numFLstSeq(numFLstSeq)
+			, numFLstSte(numFLstSte)
 		{
-	this->numFLstApp = numFLstApp;
-	this->numFLstRtj = numFLstRtj;
-	this->numFLstEvt = numFLstEvt;
-	this->numFLstSeq = numFLstSeq;
-	this->numFLstSte = numFLstSte;
-
 	mask = {NUMFLSTAPP, NUMFLSTRTJ, NUMFLSTEVT, NUMFLSTSEQ, NUMFLSTSTE};
 };
 
@@ -131,11 +130,11 @@ void PnlWznmNavAppdev::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFLstApp"] = numFLstApp;
-	me["numFLstRtj"] = numFLstRtj;
-	me["numFLstEvt"] = numFLstEvt;
-	me["numFLstSeq"] = numFLstSeq;
-	me["numFLstSte"] = numFLstSte;
+	me["numFLstApp"] = (Json::Value::UInt) numFLstApp;
+	me["numFLstRtj"] = (Json::Value::UInt) numFLstRtj;
+	me["numFLstEvt"] = (Json::Value::UInt) numFLstEvt;
+	me["numFLstSeq"] = (Json::Value::UInt) numFLstSeq;
+	me["numFLstSte"] = (Json::Value::UInt) numFLstSte;
 };
 
 void PnlWznmNavAppdev::ContIac::writeXML(
@@ -215,11 +214,11 @@ void PnlWznmNavAppdev::StatApp::writeJSON(
 	me["LstEvtAlt"] = LstEvtAlt;
 	me["LstSeqAlt"] = LstSeqAlt;
 	me["LstSteAlt"] = LstSteAlt;
-	me["LstAppNumFirstdisp"] = LstAppNumFirstdisp;
-	me["LstRtjNumFirstdisp"] = LstRtjNumFirstdisp;
-	me["LstEvtNumFirstdisp"] = LstEvtNumFirstdisp;
-	me["LstSeqNumFirstdisp"] = LstSeqNumFirstdisp;
-	me["LstSteNumFirstdisp"] = LstSteNumFirstdisp;
+	me["LstAppNumFirstdisp"] = (Json::Value::UInt) LstAppNumFirstdisp;
+	me["LstRtjNumFirstdisp"] = (Json::Value::UInt) LstRtjNumFirstdisp;
+	me["LstEvtNumFirstdisp"] = (Json::Value::UInt) LstEvtNumFirstdisp;
+	me["LstSeqNumFirstdisp"] = (Json::Value::UInt) LstSeqNumFirstdisp;
+	me["LstSteNumFirstdisp"] = (Json::Value::UInt) LstSteNumFirstdisp;
 };
 
 void PnlWznmNavAppdev::StatApp::writeXML(
@@ -280,22 +279,21 @@ PnlWznmNavAppdev::StatShr::StatShr(
 			, const bool ButSteNewcrdActive
 		) :
 			Block()
+			, LstAppAvail(LstAppAvail)
+			, ButAppViewActive(ButAppViewActive)
+			, LstRtjAvail(LstRtjAvail)
+			, ButRtjViewActive(ButRtjViewActive)
+			, ButRtjNewcrdActive(ButRtjNewcrdActive)
+			, LstEvtAvail(LstEvtAvail)
+			, ButEvtViewActive(ButEvtViewActive)
+			, ButEvtNewcrdActive(ButEvtNewcrdActive)
+			, LstSeqAvail(LstSeqAvail)
+			, ButSeqViewActive(ButSeqViewActive)
+			, ButSeqNewcrdActive(ButSeqNewcrdActive)
+			, LstSteAvail(LstSteAvail)
+			, ButSteViewActive(ButSteViewActive)
+			, ButSteNewcrdActive(ButSteNewcrdActive)
 		{
-	this->LstAppAvail = LstAppAvail;
-	this->ButAppViewActive = ButAppViewActive;
-	this->LstRtjAvail = LstRtjAvail;
-	this->ButRtjViewActive = ButRtjViewActive;
-	this->ButRtjNewcrdActive = ButRtjNewcrdActive;
-	this->LstEvtAvail = LstEvtAvail;
-	this->ButEvtViewActive = ButEvtViewActive;
-	this->ButEvtNewcrdActive = ButEvtNewcrdActive;
-	this->LstSeqAvail = LstSeqAvail;
-	this->ButSeqViewActive = ButSeqViewActive;
-	this->ButSeqNewcrdActive = ButSeqNewcrdActive;
-	this->LstSteAvail = LstSteAvail;
-	this->ButSteViewActive = ButSteViewActive;
-	this->ButSteNewcrdActive = ButSteNewcrdActive;
-
 	mask = {LSTAPPAVAIL, BUTAPPVIEWACTIVE, LSTRTJAVAIL, BUTRTJVIEWACTIVE, BUTRTJNEWCRDACTIVE, LSTEVTAVAIL, BUTEVTVIEWACTIVE, BUTEVTNEWCRDACTIVE, LSTSEQAVAIL, BUTSEQVIEWACTIVE, BUTSEQNEWCRDACTIVE, LSTSTEAVAIL, BUTSTEVIEWACTIVE, BUTSTENEWCRDACTIVE};
 };
 

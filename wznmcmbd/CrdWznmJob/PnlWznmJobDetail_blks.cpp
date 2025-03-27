@@ -50,14 +50,13 @@ PnlWznmJobDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, numFPupRet(numFPupRet)
+			, ChkGbl(ChkGbl)
+			, ChkCls(ChkCls)
+			, ChkShd(ChkShd)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->numFPupRet = numFPupRet;
-	this->ChkGbl = ChkGbl;
-	this->ChkCls = ChkCls;
-	this->ChkShd = ChkShd;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPTYP, NUMFPUPRET, CHKGBL, CHKCLS, CHKSHD, TXFCMT};
 };
 
@@ -121,8 +120,8 @@ void PnlWznmJobDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupTyp"] = numFPupTyp;
-	me["numFPupRet"] = numFPupRet;
+	me["numFPupTyp"] = (Json::Value::UInt) numFPupTyp;
+	me["numFPupRet"] = (Json::Value::UInt) numFPupRet;
 	me["ChkGbl"] = ChkGbl;
 	me["ChkCls"] = ChkCls;
 	me["ChkShd"] = ChkShd;
@@ -189,11 +188,10 @@ PnlWznmJobDetail::ContInf::ContInf(
 			, const string& TxtReu
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtReu(TxtReu)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtReu = TxtReu;
-
 	mask = {TXTSRF, TXTVER, TXTREU};
 };
 
@@ -308,22 +306,21 @@ PnlWznmJobDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupTypActive(PupTypActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtReuActive(TxtReuActive)
+			, ButReuViewAvail(ButReuViewAvail)
+			, ButReuViewActive(ButReuViewActive)
+			, ChkGblActive(ChkGblActive)
+			, ChkClsActive(ChkClsActive)
+			, ChkShdActive(ChkShdActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtReuActive = TxtReuActive;
-	this->ButReuViewAvail = ButReuViewAvail;
-	this->ButReuViewActive = ButReuViewActive;
-	this->ChkGblActive = ChkGblActive;
-	this->ChkClsActive = ChkClsActive;
-	this->ChkShdActive = ChkShdActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, CHKGBLACTIVE, CHKCLSACTIVE, CHKSHDACTIVE, TXFCMTACTIVE};
 };
 

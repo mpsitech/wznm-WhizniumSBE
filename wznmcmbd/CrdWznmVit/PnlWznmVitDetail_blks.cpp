@@ -48,12 +48,11 @@ PnlWznmVitDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupJ(numFPupJ)
+			, TxfAvl(TxfAvl)
+			, TxfImp(TxfImp)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupJ = numFPupJ;
-	this->TxfAvl = TxfAvl;
-	this->TxfImp = TxfImp;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPJ, TXFAVL, TXFIMP, TXFCMT};
 };
 
@@ -113,7 +112,7 @@ void PnlWznmVitDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupJ"] = numFPupJ;
+	me["numFPupJ"] = (Json::Value::UInt) numFPupJ;
 	me["TxfAvl"] = TxfAvl;
 	me["TxfImp"] = TxfImp;
 	me["TxfCmt"] = TxfCmt;
@@ -175,11 +174,10 @@ PnlWznmVitDetail::ContInf::ContInf(
 			, const string& TxtVec
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
+			, TxtVec(TxtVec)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-	this->TxtVec = TxtVec;
-
 	mask = {TXTSRF, TXTTIT, TXTVEC};
 };
 
@@ -292,20 +290,19 @@ PnlWznmVitDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupJActive(PupJActive)
+			, ButJEditAvail(ButJEditAvail)
+			, TxtTitActive(TxtTitActive)
+			, TxtVecActive(TxtVecActive)
+			, ButVecViewAvail(ButVecViewAvail)
+			, ButVecViewActive(ButVecViewActive)
+			, TxfAvlActive(TxfAvlActive)
+			, TxfImpActive(TxfImpActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupJActive = PupJActive;
-	this->ButJEditAvail = ButJEditAvail;
-	this->TxtTitActive = TxtTitActive;
-	this->TxtVecActive = TxtVecActive;
-	this->ButVecViewAvail = ButVecViewAvail;
-	this->ButVecViewActive = ButVecViewActive;
-	this->TxfAvlActive = TxfAvlActive;
-	this->TxfImpActive = TxfImpActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJACTIVE, BUTJEDITAVAIL, TXTTITACTIVE, TXTVECACTIVE, BUTVECVIEWAVAIL, BUTVECVIEWACTIVE, TXFAVLACTIVE, TXFIMPACTIVE, TXFCMTACTIVE};
 };
 

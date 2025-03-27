@@ -21,12 +21,12 @@ WznmMEvent::WznmMEvent(
 			, const ubigint refWznmMApp
 			, const string sref
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMApp = refWznmMApp;
-	this->sref = sref;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMApp(refWznmMApp)
+			, sref(sref)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMEvent::operator==(

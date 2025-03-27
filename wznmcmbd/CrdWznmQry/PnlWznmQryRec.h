@@ -21,8 +21,8 @@
 #include "PnlWznmQryQry1NQuerycol.h"
 #include "PnlWznmQry1NQuerymod.h"
 #include "PnlWznmQryAOrder.h"
-#include "PnlWznmQryDetail.h"
 #include "PnlWznmQryAClause.h"
+#include "PnlWznmQryDetail.h"
 
 #define VecVWznmQryRecDo PnlWznmQryRec::VecVDo
 
@@ -202,8 +202,8 @@ public:
 	PnlWznmQryQry1NQuerycol* pnlqry1nquerycol;
 	PnlWznmQry1NQuerymod* pnl1nquerymod;
 	PnlWznmQryAOrder* pnlaorder;
-	PnlWznmQryDetail* pnldetail;
 	PnlWznmQryAClause* pnlaclause;
+	PnlWznmQryDetail* pnldetail;
 
 	WznmMQuery recQry;
 

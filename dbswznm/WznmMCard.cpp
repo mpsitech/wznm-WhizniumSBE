@@ -30,19 +30,19 @@ WznmMCard::WznmMCard(
 			, const string Title
 			, const string Avail
 			, const string Active
-		) {
-
-	this->ref = ref;
-	this->mdlRefWznmMModule = mdlRefWznmMModule;
-	this->mdlNum = mdlNum;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->refWznmMJob = refWznmMJob;
-	this->sref = sref;
-	this->refJTitle = refJTitle;
-	this->Title = Title;
-	this->Avail = Avail;
-	this->Active = Active;
+		) :
+			ref(ref)
+			, mdlRefWznmMModule(mdlRefWznmMModule)
+			, mdlNum(mdlNum)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, refWznmMJob(refWznmMJob)
+			, sref(sref)
+			, refJTitle(refJTitle)
+			, Title(Title)
+			, Avail(Avail)
+			, Active(Active)
+		{
 };
 
 bool WznmMCard::operator==(

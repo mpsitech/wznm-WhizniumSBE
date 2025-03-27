@@ -22,13 +22,13 @@ WznmAMLibraryMakefile::WznmAMLibraryMakefile(
 			, const ubigint x1RefWznmMMachine
 			, const string x2SrefKTag
 			, const string Val
-		) {
-
-	this->ref = ref;
-	this->refWznmMLibrary = refWznmMLibrary;
-	this->x1RefWznmMMachine = x1RefWznmMMachine;
-	this->x2SrefKTag = x2SrefKTag;
-	this->Val = Val;
+		) :
+			ref(ref)
+			, refWznmMLibrary(refWznmMLibrary)
+			, x1RefWznmMMachine(x1RefWznmMMachine)
+			, x2SrefKTag(x2SrefKTag)
+			, Val(Val)
+		{
 };
 
 bool WznmAMLibraryMakefile::operator==(

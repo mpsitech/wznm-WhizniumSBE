@@ -15,13 +15,13 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmOpkSqkMNStub.h"
-#include "PnlWznmOpkMNLibrary.h"
 #include "PnlWznmOpkMNComponent.h"
+#include "PnlWznmOpkMNLibrary.h"
 #include "PnlWznmOpkMNJob.h"
-#include "PnlWznmOpkRef1NBlock.h"
 #include "PnlWznmOpk1NOp.h"
-#include "PnlWznmOpkAInvarg.h"
 #include "PnlWznmOpkARetval.h"
+#include "PnlWznmOpkRef1NBlock.h"
+#include "PnlWznmOpkAInvarg.h"
 #include "PnlWznmOpkDetail.h"
 
 #define VecVWznmOpkRecDo PnlWznmOpkRec::VecVDo
@@ -80,8 +80,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdone1NOp = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneMNComponent = false, const bool initdoneMNLibrary = false, const bool initdoneSqkMNStub = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdone1NOp = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneMNComponent = false, const bool initdoneMNLibrary = false, const bool initdoneSqkMNStub = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdone1NOp = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneMNLibrary = false, const bool initdoneMNComponent = false, const bool initdoneSqkMNStub = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdone1NOp = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneMNLibrary = false, const bool initdoneMNComponent = false, const bool initdoneSqkMNStub = false);
 	};
 
 	/**
@@ -97,14 +97,14 @@ public:
 		static const Sbecore::uint JREF1NOP = 5;
 		static const Sbecore::uint JREFREF1NBLOCK = 6;
 		static const Sbecore::uint JREFMNJOB = 7;
-		static const Sbecore::uint JREFMNCOMPONENT = 8;
-		static const Sbecore::uint JREFMNLIBRARY = 9;
+		static const Sbecore::uint JREFMNLIBRARY = 8;
+		static const Sbecore::uint JREFMNCOMPONENT = 9;
 		static const Sbecore::uint JREFSQKMNSTUB = 10;
 		static const Sbecore::uint PNLSQKMNSTUBAVAIL = 11;
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 12;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefARetval = 0, const Sbecore::ubigint jrefAInvarg = 0, const Sbecore::ubigint jref1NOp = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefMNJob = 0, const Sbecore::ubigint jrefMNComponent = 0, const Sbecore::ubigint jrefMNLibrary = 0, const Sbecore::ubigint jrefSqkMNStub = 0, const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefARetval = 0, const Sbecore::ubigint jrefAInvarg = 0, const Sbecore::ubigint jref1NOp = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefMNJob = 0, const Sbecore::ubigint jrefMNLibrary = 0, const Sbecore::ubigint jrefMNComponent = 0, const Sbecore::ubigint jrefSqkMNStub = 0, const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
@@ -114,8 +114,8 @@ public:
 		Sbecore::ubigint jref1NOp;
 		Sbecore::ubigint jrefRef1NBlock;
 		Sbecore::ubigint jrefMNJob;
-		Sbecore::ubigint jrefMNComponent;
 		Sbecore::ubigint jrefMNLibrary;
+		Sbecore::ubigint jrefMNComponent;
 		Sbecore::ubigint jrefSqkMNStub;
 		bool pnlsqkmnstubAvail;
 		bool ButRegularizeActive;
@@ -199,13 +199,13 @@ public:
 	StatShr statshr;
 
 	PnlWznmOpkSqkMNStub* pnlsqkmnstub;
-	PnlWznmOpkMNLibrary* pnlmnlibrary;
 	PnlWznmOpkMNComponent* pnlmncomponent;
+	PnlWznmOpkMNLibrary* pnlmnlibrary;
 	PnlWznmOpkMNJob* pnlmnjob;
-	PnlWznmOpkRef1NBlock* pnlref1nblock;
 	PnlWznmOpk1NOp* pnl1nop;
-	PnlWznmOpkAInvarg* pnlainvarg;
 	PnlWznmOpkARetval* pnlaretval;
+	PnlWznmOpkRef1NBlock* pnlref1nblock;
+	PnlWznmOpkAInvarg* pnlainvarg;
 	PnlWznmOpkDetail* pnldetail;
 
 	WznmMOppack recOpk;

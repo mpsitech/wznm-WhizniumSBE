@@ -23,14 +23,14 @@ WznmRMPersonMProject::WznmRMPersonMProject(
 			, const ubigint refWznmMPerson
 			, const ubigint refWznmMProject
 			, const string srefKFunction
-		) {
-
-	this->ref = ref;
-	this->x1Startd = x1Startd;
-	this->x1Stopd = x1Stopd;
-	this->refWznmMPerson = refWznmMPerson;
-	this->refWznmMProject = refWznmMProject;
-	this->srefKFunction = srefKFunction;
+		) :
+			ref(ref)
+			, x1Startd(x1Startd)
+			, x1Stopd(x1Stopd)
+			, refWznmMPerson(refWznmMPerson)
+			, refWznmMProject(refWznmMProject)
+			, srefKFunction(srefKFunction)
+		{
 };
 
 bool WznmRMPersonMProject::operator==(

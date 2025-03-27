@@ -114,33 +114,33 @@ public class PnlWznmOpxRec {
 	public class StatApp extends Block {
 
 		public static final int INITDONEDETAIL = 1;
-		public static final int INITDONEAINVARG = 2;
-		public static final int INITDONEARETVAL = 3;
+		public static final int INITDONEARETVAL = 2;
+		public static final int INITDONEAINVARG = 3;
 		public static final int INITDONEREF1NBLOCK = 4;
 		public static final int INITDONEMNJOB = 5;
 		public static final int INITDONESQKMNSTUB = 6;
 
 		public StatApp(
 					boolean initdoneDetail
-					, boolean initdoneAInvarg
 					, boolean initdoneARetval
+					, boolean initdoneAInvarg
 					, boolean initdoneRef1NBlock
 					, boolean initdoneMNJob
 					, boolean initdoneSqkMNStub
 				) {
 			this.initdoneDetail = initdoneDetail;
-			this.initdoneAInvarg = initdoneAInvarg;
 			this.initdoneARetval = initdoneARetval;
+			this.initdoneAInvarg = initdoneAInvarg;
 			this.initdoneRef1NBlock = initdoneRef1NBlock;
 			this.initdoneMNJob = initdoneMNJob;
 			this.initdoneSqkMNStub = initdoneSqkMNStub;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAINVARG, INITDONEARETVAL, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONESQKMNSTUB));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEARETVAL, INITDONEAINVARG, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONESQKMNSTUB));
 		};
 
 		public boolean initdoneDetail;
-		public boolean initdoneAInvarg;
 		public boolean initdoneARetval;
+		public boolean initdoneAInvarg;
 		public boolean initdoneRef1NBlock;
 		public boolean initdoneMNJob;
 		public boolean initdoneSqkMNStub;
@@ -159,8 +159,8 @@ public class PnlWznmOpxRec {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
-				initdoneAInvarg = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAInvarg", mask, INITDONEAINVARG);
 				initdoneARetval = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneARetval", mask, INITDONEARETVAL);
+				initdoneAInvarg = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneAInvarg", mask, INITDONEAINVARG);
 				initdoneRef1NBlock = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NBlock", mask, INITDONEREF1NBLOCK);
 				initdoneMNJob = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneMNJob", mask, INITDONEMNJOB);
 				initdoneSqkMNStub = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneSqkMNStub", mask, INITDONESQKMNSTUB);
@@ -177,8 +177,8 @@ public class PnlWznmOpxRec {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
-			if (initdoneAInvarg == comp.initdoneAInvarg) items.add(INITDONEAINVARG);
 			if (initdoneARetval == comp.initdoneARetval) items.add(INITDONEARETVAL);
+			if (initdoneAInvarg == comp.initdoneAInvarg) items.add(INITDONEAINVARG);
 			if (initdoneRef1NBlock == comp.initdoneRef1NBlock) items.add(INITDONEREF1NBLOCK);
 			if (initdoneMNJob == comp.initdoneMNJob) items.add(INITDONEMNJOB);
 			if (initdoneSqkMNStub == comp.initdoneSqkMNStub) items.add(INITDONESQKMNSTUB);
@@ -194,7 +194,7 @@ public class PnlWznmOpxRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEAINVARG, INITDONEARETVAL, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONESQKMNSTUB));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEARETVAL, INITDONEAINVARG, INITDONEREF1NBLOCK, INITDONEMNJOB, INITDONESQKMNSTUB));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -209,8 +209,8 @@ public class PnlWznmOpxRec {
 
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
-		public static final int SCRJREFAINVARG = 3;
-		public static final int SCRJREFARETVAL = 4;
+		public static final int SCRJREFARETVAL = 3;
+		public static final int SCRJREFAINVARG = 4;
 		public static final int SCRJREFREF1NBLOCK = 5;
 		public static final int SCRJREFMNJOB = 6;
 		public static final int SCRJREFSQKMNSTUB = 7;
@@ -220,8 +220,8 @@ public class PnlWznmOpxRec {
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
-					, String scrJrefAInvarg
 					, String scrJrefARetval
+					, String scrJrefAInvarg
 					, String scrJrefRef1NBlock
 					, String scrJrefMNJob
 					, String scrJrefSqkMNStub
@@ -230,21 +230,21 @@ public class PnlWznmOpxRec {
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
-			this.scrJrefAInvarg = scrJrefAInvarg;
 			this.scrJrefARetval = scrJrefARetval;
+			this.scrJrefAInvarg = scrJrefAInvarg;
 			this.scrJrefRef1NBlock = scrJrefRef1NBlock;
 			this.scrJrefMNJob = scrJrefMNJob;
 			this.scrJrefSqkMNStub = scrJrefSqkMNStub;
 			this.pnlsqkmnstubAvail = pnlsqkmnstubAvail;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAINVARG, SCRJREFARETVAL, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFARETVAL, SCRJREFAINVARG, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
-		public String scrJrefAInvarg;
 		public String scrJrefARetval;
+		public String scrJrefAInvarg;
 		public String scrJrefRef1NBlock;
 		public String scrJrefMNJob;
 		public String scrJrefSqkMNStub;
@@ -268,8 +268,8 @@ public class PnlWznmOpxRec {
 				srefIxWznmVExpstate = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "srefIxWznmVExpstate", mask, IXWZNMVEXPSTATE);
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
-				scrJrefAInvarg = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAInvarg", mask, SCRJREFAINVARG);
 				scrJrefARetval = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefARetval", mask, SCRJREFARETVAL);
+				scrJrefAInvarg = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefAInvarg", mask, SCRJREFAINVARG);
 				scrJrefRef1NBlock = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NBlock", mask, SCRJREFREF1NBLOCK);
 				scrJrefMNJob = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefMNJob", mask, SCRJREFMNJOB);
 				scrJrefSqkMNStub = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefSqkMNStub", mask, SCRJREFSQKMNSTUB);
@@ -289,8 +289,8 @@ public class PnlWznmOpxRec {
 
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
-			if (scrJrefAInvarg.equals(comp.scrJrefAInvarg)) items.add(SCRJREFAINVARG);
 			if (scrJrefARetval.equals(comp.scrJrefARetval)) items.add(SCRJREFARETVAL);
+			if (scrJrefAInvarg.equals(comp.scrJrefAInvarg)) items.add(SCRJREFAINVARG);
 			if (scrJrefRef1NBlock.equals(comp.scrJrefRef1NBlock)) items.add(SCRJREFREF1NBLOCK);
 			if (scrJrefMNJob.equals(comp.scrJrefMNJob)) items.add(SCRJREFMNJOB);
 			if (scrJrefSqkMNStub.equals(comp.scrJrefSqkMNStub)) items.add(SCRJREFSQKMNSTUB);
@@ -308,7 +308,7 @@ public class PnlWznmOpxRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAINVARG, SCRJREFARETVAL, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFARETVAL, SCRJREFAINVARG, SCRJREFREF1NBLOCK, SCRJREFMNJOB, SCRJREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

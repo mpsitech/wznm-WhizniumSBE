@@ -53,9 +53,8 @@ PnlWznmBlkAItem::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -114,9 +113,8 @@ PnlWznmBlkAItem::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -188,17 +186,16 @@ PnlWznmBlkAItem::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButUpAvail(ButUpAvail)
+			, ButUpActive(ButUpActive)
+			, ButDownAvail(ButDownAvail)
+			, ButDownActive(ButDownActive)
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButUpAvail = ButUpAvail;
-	this->ButUpActive = ButUpActive;
-	this->ButDownAvail = ButDownAvail;
-	this->ButDownActive = ButDownActive;
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTUPAVAIL, BUTUPACTIVE, BUTDOWNAVAIL, BUTDOWNACTIVE, BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -283,19 +280,18 @@ PnlWznmBlkAItem::StgIac::StgIac(
 			, const uint TcoCmtWidth
 		) :
 			Block()
+			, TcoTypWidth(TcoTypWidth)
+			, TcoSrfWidth(TcoSrfWidth)
+			, TcoVtyWidth(TcoVtyWidth)
+			, TcoConWidth(TcoConWidth)
+			, TcoVecWidth(TcoVecWidth)
+			, TcoFedWidth(TcoFedWidth)
+			, TcoTblWidth(TcoTblWidth)
+			, TcoBl2Width(TcoBl2Width)
+			, TcoDfvWidth(TcoDfvWidth)
+			, TcoVitWidth(TcoVitWidth)
+			, TcoCmtWidth(TcoCmtWidth)
 		{
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoSrfWidth = TcoSrfWidth;
-	this->TcoVtyWidth = TcoVtyWidth;
-	this->TcoConWidth = TcoConWidth;
-	this->TcoVecWidth = TcoVecWidth;
-	this->TcoFedWidth = TcoFedWidth;
-	this->TcoTblWidth = TcoTblWidth;
-	this->TcoBl2Width = TcoBl2Width;
-	this->TcoDfvWidth = TcoDfvWidth;
-	this->TcoVitWidth = TcoVitWidth;
-	this->TcoCmtWidth = TcoCmtWidth;
-
 	mask = {TCOTYPWIDTH, TCOSRFWIDTH, TCOVTYWIDTH, TCOCONWIDTH, TCOVECWIDTH, TCOFEDWIDTH, TCOTBLWIDTH, TCOBL2WIDTH, TCODFVWIDTH, TCOVITWIDTH, TCOCMTWIDTH};
 };
 
@@ -416,25 +412,24 @@ PnlWznmBlkAItem::Tag::Tag(
 			, const string& TcoCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoTyp(TcoTyp)
+			, TcoSrf(TcoSrf)
+			, TcoVty(TcoVty)
+			, TcoCon(TcoCon)
+			, TcoVec(TcoVec)
+			, TcoFed(TcoFed)
+			, TcoTbl(TcoTbl)
+			, TcoBl2(TcoBl2)
+			, TcoDfv(TcoDfv)
+			, TcoVit(TcoVit)
+			, TcoCmt(TcoCmt)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoTyp = TcoTyp;
-	this->TcoSrf = TcoSrf;
-	this->TcoVty = TcoVty;
-	this->TcoCon = TcoCon;
-	this->TcoVec = TcoVec;
-	this->TcoFed = TcoFed;
-	this->TcoTbl = TcoTbl;
-	this->TcoBl2 = TcoBl2;
-	this->TcoDfv = TcoDfv;
-	this->TcoVit = TcoVit;
-	this->TcoCmt = TcoCmt;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOTYP, TCOSRF, TCOVTY, TCOCON, TCOVEC, TCOFED, TCOTBL, TCOBL2, TCODFV, TCOVIT, TCOCMT};
 };
 
@@ -530,11 +525,11 @@ PnlWznmBlkAItem::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMBLKAITEMDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmBlkAItem::DpchAppDo::getSrefsMask() {

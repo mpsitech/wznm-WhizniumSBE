@@ -20,11 +20,11 @@ WznmRMComponentMOppack::WznmRMComponentMOppack(
 			const ubigint ref
 			, const ubigint refWznmMComponent
 			, const ubigint refWznmMOppack
-		) {
-
-	this->ref = ref;
-	this->refWznmMComponent = refWznmMComponent;
-	this->refWznmMOppack = refWznmMOppack;
+		) :
+			ref(ref)
+			, refWznmMComponent(refWznmMComponent)
+			, refWznmMOppack(refWznmMOppack)
+		{
 };
 
 bool WznmRMComponentMOppack::operator==(

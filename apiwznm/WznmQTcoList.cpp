@@ -30,19 +30,20 @@ WznmQTcoList::WznmQTcoList(
 			, const string titIxVSubtype
 			, const string srefIxVAxisfct
 			, const string titIxVAxisfct
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Short = Short;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubTblRefWznmMTable = stubTblRefWznmMTable;
-	this->srefFctIxVTbl = srefFctIxVTbl;
-	this->titFctIxVTbl = titFctIxVTbl;
-	this->srefIxVSubtype = srefIxVSubtype;
-	this->titIxVSubtype = titIxVSubtype;
-	this->srefIxVAxisfct = srefIxVAxisfct;
-	this->titIxVAxisfct = titIxVAxisfct;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Short(Short)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubTblRefWznmMTable(stubTblRefWznmMTable)
+			, srefFctIxVTbl(srefFctIxVTbl)
+			, titFctIxVTbl(titFctIxVTbl)
+			, srefIxVSubtype(srefIxVSubtype)
+			, titIxVSubtype(titIxVSubtype)
+			, srefIxVAxisfct(srefIxVAxisfct)
+			, titIxVAxisfct(titIxVAxisfct)
+		{
 };
 
 bool WznmQTcoList::readXML(

@@ -27,16 +27,16 @@ WznmMDialog::WznmMDialog(
 			, const ubigint refWznmMJob
 			, const string sref
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMCard = refWznmMCard;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->refWznmMJob = refWznmMJob;
-	this->sref = sref;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMCard(refWznmMCard)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, refWznmMJob(refWznmMJob)
+			, sref(sref)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMDialog::operator==(

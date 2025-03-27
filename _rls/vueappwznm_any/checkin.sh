@@ -3,7 +3,7 @@
 # checkin script for Wznm Vue.js UI, release vueappwznm_any
 # copyright: (C) 2022 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 11 Sep 2022
+# date created: 5 Jan 2025
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then

@@ -32,21 +32,21 @@ WznmMFile::WznmMFile(
 			, const string srefKMimetype
 			, const uint Size
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->grp = grp;
-	this->own = own;
-	this->refWznmCFile = refWznmCFile;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->osrefKContent = osrefKContent;
-	this->Archived = Archived;
-	this->Filename = Filename;
-	this->Archivename = Archivename;
-	this->srefKMimetype = srefKMimetype;
-	this->Size = Size;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, grp(grp)
+			, own(own)
+			, refWznmCFile(refWznmCFile)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, osrefKContent(osrefKContent)
+			, Archived(Archived)
+			, Filename(Filename)
+			, Archivename(Archivename)
+			, srefKMimetype(srefKMimetype)
+			, Size(Size)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMFile::operator==(

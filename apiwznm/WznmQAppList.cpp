@@ -26,15 +26,16 @@ WznmQAppList::WznmQAppList(
 			, const string srefIxWznmVApptarget
 			, const string titIxWznmVApptarget
 			, const string stubVerRefWznmMVersion
-		) {
-	this->jnum = jnum;
-	this->stubGrp = stubGrp;
-	this->stubOwn = stubOwn;
-	this->Short = Short;
-	this->Title = Title;
-	this->srefIxWznmVApptarget = srefIxWznmVApptarget;
-	this->titIxWznmVApptarget = titIxWznmVApptarget;
-	this->stubVerRefWznmMVersion = stubVerRefWznmMVersion;
+		) :
+			jnum(jnum)
+			, stubGrp(stubGrp)
+			, stubOwn(stubOwn)
+			, Short(Short)
+			, Title(Title)
+			, srefIxWznmVApptarget(srefIxWznmVApptarget)
+			, titIxWznmVApptarget(titIxWznmVApptarget)
+			, stubVerRefWznmMVersion(stubVerRefWznmMVersion)
+		{
 };
 
 bool WznmQAppList::readXML(

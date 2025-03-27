@@ -2,7 +2,7 @@
 # make file for Wznm operation daemon, release wznmopd1_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 11 Sep 2022
+# date created: 5 Jan 2025
 # IP header --- ABOVE
 
 include Makefile.inc
@@ -14,7 +14,7 @@ LINK = g++
 LINKFLAGS =
 
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmopd1/VecWznm -I$(BUILDROOT)/wznmopd1/IexWznm -I$(BUILDROOT)/wznmopd1
-INCPATH += -I$(BUILDROOT)/wznmopd1/WznmWrweb -I$(BUILDROOT)/wznmopd1/WznmWrvue -I$(BUILDROOT)/wznmopd1/WznmWrsrv -I$(BUILDROOT)/wznmopd1/WznmWrswapi -I$(BUILDROOT)/wznmopd1/WznmWrpyapi -I$(BUILDROOT)/wznmopd1/WznmWrjapi -I$(BUILDROOT)/wznmopd1/WznmWrdbs -I$(BUILDROOT)/wznmopd1/WznmWrcsapi -I$(BUILDROOT)/wznmopd1/WznmWrapp -I$(BUILDROOT)/wznmopd1/WznmWrapi -I$(BUILDROOT)/wznmopd1/WznmPrctree -I$(BUILDROOT)/wznmopd1/WznmPrcfile -I$(BUILDROOT)/wznmopd1/WznmGen -I$(BUILDROOT)/wznmopd1/WznmCompl
+INCPATH += -I$(BUILDROOT)/wznmopd1/WznmWrweb -I$(BUILDROOT)/wznmopd1/WznmWrvue -I$(BUILDROOT)/wznmopd1/WznmWrvis -I$(BUILDROOT)/wznmopd1/WznmWrsrv -I$(BUILDROOT)/wznmopd1/WznmWrswapi -I$(BUILDROOT)/wznmopd1/WznmWrpyapi -I$(BUILDROOT)/wznmopd1/WznmWrjapi -I$(BUILDROOT)/wznmopd1/WznmWrdbs -I$(BUILDROOT)/wznmopd1/WznmWrcsapi -I$(BUILDROOT)/wznmopd1/WznmWrapp -I$(BUILDROOT)/wznmopd1/WznmWrapi -I$(BUILDROOT)/wznmopd1/WznmPrctree -I$(BUILDROOT)/wznmopd1/WznmPrcfile -I$(BUILDROOT)/wznmopd1/WznmGen -I$(BUILDROOT)/wznmopd1/WznmComplvis -I$(BUILDROOT)/wznmopd1/WznmCompl
 INCPATH += -I${WHIZSDKROOT}/build -I/opt/homebrew/include -I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/libmicrohttpd/include -I/opt/homebrew/opt/libxml2/include -I/usr/local/mysql/include
 
 PCHS = Wznmopd.h.gch
@@ -26,7 +26,7 @@ LIBPATH = -L$(LIBROOT)
 LIBPATH += -L$(LIBROOT)/wznmopd1
 LIBPATH += -L${WHIZSDKROOT}/lib -L/opt/homebrew/lib -L/opt/homebrew/opt/curl/lib -L/opt/homebrew/opt/libmicrohttpd/lib -L/opt/homebrew/opt/libxml2/include -L/usr/local/mysql/lib
 
-LIBS = -lwznmwrweb -lwznmwrvue -lwznmwrsrv -lwznmwrswapi -lwznmwrpyapi -lwznmwrjapi -lwznmwrdbs -lwznmwrcsapi -lwznmwrapp -lwznmwrapi -lwznmprctree -lwznmprcfile -lwznmgen -lwznmcompl
+LIBS = -lwznmwrweb -lwznmwrvue -lwznmwrvis -lwznmwrsrv -lwznmwrswapi -lwznmwrpyapi -lwznmwrjapi -lwznmwrdbs -lwznmwrcsapi -lwznmwrapp -lwznmwrapi -lwznmprctree -lwznmprcfile -lwznmgen -lwznmcomplvis -lwznmcompl
 LIBS += -liexwznm -lvecwznm -ldbswznm
 LIBS += -lcurl -lmicrohttpd -lsbecore_my
 LIBS += -lmysqlclient -lsbecore_plus

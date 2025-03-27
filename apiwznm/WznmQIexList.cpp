@@ -24,13 +24,14 @@ WznmQIexList::WznmQIexList(
 			, const string Title
 			, const string stubRefWznmMVersion
 			, const string Minversion
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Short = Short;
-	this->Title = Title;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->Minversion = Minversion;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Short(Short)
+			, Title(Title)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, Minversion(Minversion)
+		{
 };
 
 bool WznmQIexList::readXML(

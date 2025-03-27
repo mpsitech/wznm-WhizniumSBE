@@ -81,11 +81,10 @@ CrdWznmPrj::ContInf::ContInf(
 			, const string& MtxCrdPrj
 		) :
 			Block()
+			, numFSge(numFSge)
+			, MrlAppHlp(MrlAppHlp)
+			, MtxCrdPrj(MtxCrdPrj)
 		{
-	this->numFSge = numFSge;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MtxCrdPrj = MtxCrdPrj;
-
 	mask = {NUMFSGE, MRLAPPHLP, MTXCRDPRJ};
 };
 
@@ -97,7 +96,7 @@ void CrdWznmPrj::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 	me["MrlAppHlp"] = MrlAppHlp;
 	me["MtxCrdPrj"] = MtxCrdPrj;
 };
@@ -168,7 +167,7 @@ void CrdWznmPrj::StatApp::writeJSON(
 	me["srefIxWznmVReqitmode"] = VecWznmVReqitmode::getSref(ixWznmVReqitmode);
 	me["latency"] = latency;
 	me["shortMenu"] = shortMenu;
-	me["widthMenu"] = widthMenu;
+	me["widthMenu"] = (Json::Value::UInt) widthMenu;
 	me["initdoneHeadbar"] = initdoneHeadbar;
 	me["initdoneList"] = initdoneList;
 	me["initdoneRec"] = initdoneRec;
@@ -218,16 +217,15 @@ CrdWznmPrj::StatShr::StatShr(
 			, const bool MitCrdIpxAvail
 		) :
 			Block()
+			, jrefDlgimpex(jrefDlgimpex)
+			, jrefDlgnew(jrefDlgnew)
+			, jrefHeadbar(jrefHeadbar)
+			, jrefList(jrefList)
+			, jrefRec(jrefRec)
+			, MspCrd1Avail(MspCrd1Avail)
+			, MitCrdNewAvail(MitCrdNewAvail)
+			, MitCrdIpxAvail(MitCrdIpxAvail)
 		{
-	this->jrefDlgimpex = jrefDlgimpex;
-	this->jrefDlgnew = jrefDlgnew;
-	this->jrefHeadbar = jrefHeadbar;
-	this->jrefList = jrefList;
-	this->jrefRec = jrefRec;
-	this->MspCrd1Avail = MspCrd1Avail;
-	this->MitCrdNewAvail = MitCrdNewAvail;
-	this->MitCrdIpxAvail = MitCrdIpxAvail;
-
 	mask = {JREFDLGIMPEX, JREFDLGNEW, JREFHEADBAR, JREFLIST, JREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDIPXAVAIL};
 };
 

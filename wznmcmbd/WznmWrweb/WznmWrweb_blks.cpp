@@ -25,10 +25,10 @@ DpchInvWznmWrwebBase::DpchInvWznmWrwebBase(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRWEBBASE, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrwebBase::readXML(
@@ -79,10 +79,10 @@ DpchInvWznmWrwebCrd::DpchInvWznmWrwebCrd(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRWEBCRD, oref, jref)
+			, refWznmMCard(refWznmMCard)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMCard = refWznmMCard;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrwebCrd::readXML(
@@ -133,10 +133,10 @@ DpchInvWznmWrwebDeploy::DpchInvWznmWrwebDeploy(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRWEBDEPLOY, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrwebDeploy::readXML(
@@ -187,10 +187,10 @@ DpchInvWznmWrwebDlg::DpchInvWznmWrwebDlg(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRWEBDLG, oref, jref)
+			, refWznmMDialog(refWznmMDialog)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMDialog = refWznmMDialog;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrwebDlg::readXML(
@@ -241,10 +241,10 @@ DpchInvWznmWrwebPnl::DpchInvWznmWrwebPnl(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRWEBPNL, oref, jref)
+			, refWznmMPanel(refWznmMPanel)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMPanel = refWznmMPanel;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrwebPnl::readXML(

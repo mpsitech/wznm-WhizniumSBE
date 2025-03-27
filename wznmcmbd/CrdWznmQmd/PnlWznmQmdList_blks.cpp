@@ -51,9 +51,8 @@ PnlWznmQmdList::ContIac::ContIac(
 			const uint numFTos
 		) :
 			Block()
+			, numFTos(numFTos)
 		{
-	this->numFTos = numFTos;
-
 	mask = {NUMFTOS};
 };
 
@@ -107,7 +106,7 @@ void PnlWznmQmdList::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFTos"] = numFTos;
+	me["numFTos"] = (Json::Value::UInt) numFTos;
 };
 
 void PnlWznmQmdList::ContIac::writeXML(
@@ -161,12 +160,11 @@ PnlWznmQmdList::ContInf::ContInf(
 			, const uint numFCsiQst
 		) :
 			Block()
+			, TxtFor(TxtFor)
+			, TxtPre(TxtPre)
+			, ButFilterOn(ButFilterOn)
+			, numFCsiQst(numFCsiQst)
 		{
-	this->TxtFor = TxtFor;
-	this->TxtPre = TxtPre;
-	this->ButFilterOn = ButFilterOn;
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 };
 
@@ -181,7 +179,7 @@ void PnlWznmQmdList::ContInf::writeJSON(
 	me["TxtFor"] = TxtFor;
 	me["TxtPre"] = TxtPre;
 	me["ButFilterOn"] = ButFilterOn;
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmQmdList::ContInf::writeXML(
@@ -239,10 +237,9 @@ PnlWznmQmdList::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {IXWZNMVEXPSTATE, BUTDELETEACTIVE};
 };
 
@@ -312,12 +309,12 @@ PnlWznmQmdList::StgIac::StgIac(
 			, const uint TcoReuWidth
 		) :
 			Block()
+			, TcoTypWidth(TcoTypWidth)
+			, TcoQryWidth(TcoQryWidth)
+			, TcoPstWidth(TcoPstWidth)
+			, TcoRetWidth(TcoRetWidth)
+			, TcoReuWidth(TcoReuWidth)
 		{
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoQryWidth = TcoQryWidth;
-	this->TcoPstWidth = TcoPstWidth;
-	this->TcoRetWidth = TcoRetWidth;
-	this->TcoReuWidth = TcoReuWidth;
 	mask = {TCOTYPWIDTH, TCOQRYWIDTH, TCOPSTWIDTH, TCORETWIDTH, TCOREUWIDTH};
 };
 
@@ -379,11 +376,11 @@ void PnlWznmQmdList::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoTypWidth"] = TcoTypWidth;
-	me["TcoQryWidth"] = TcoQryWidth;
-	me["TcoPstWidth"] = TcoPstWidth;
-	me["TcoRetWidth"] = TcoRetWidth;
-	me["TcoReuWidth"] = TcoReuWidth;
+	me["TcoTypWidth"] = (Json::Value::UInt) TcoTypWidth;
+	me["TcoQryWidth"] = (Json::Value::UInt) TcoQryWidth;
+	me["TcoPstWidth"] = (Json::Value::UInt) TcoPstWidth;
+	me["TcoRetWidth"] = (Json::Value::UInt) TcoRetWidth;
+	me["TcoReuWidth"] = (Json::Value::UInt) TcoReuWidth;
 };
 
 void PnlWznmQmdList::StgIac::writeXML(
@@ -452,7 +449,7 @@ void PnlWznmQmdList::Tag::writeJSON(
 		me["TcoTyp"] = "Type";
 		me["TcoQry"] = "Query";
 		me["TcoPst"] = "Presetting";
-		me["TcoRet"] = "Table of reference";
+		me["TcoRet"] = "Ref. table";
 		me["TcoReu"] = "Reference";
 	};
 	me["TxtFor"] = VecWznmVTag::getTitle(VecWznmVTag::FOR, ixWznmVLocale);
@@ -481,7 +478,7 @@ void PnlWznmQmdList::Tag::writeXML(
 			writeStringAttr(wr, itemtag, "sref", "TcoTyp", "Type");
 			writeStringAttr(wr, itemtag, "sref", "TcoQry", "Query");
 			writeStringAttr(wr, itemtag, "sref", "TcoPst", "Presetting");
-			writeStringAttr(wr, itemtag, "sref", "TcoRet", "Table of reference");
+			writeStringAttr(wr, itemtag, "sref", "TcoRet", "Ref. table");
 			writeStringAttr(wr, itemtag, "sref", "TcoReu", "Reference");
 		};
 		writeStringAttr(wr, itemtag, "sref", "TxtFor", VecWznmVTag::getTitle(VecWznmVTag::FOR, ixWznmVLocale));

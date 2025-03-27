@@ -389,21 +389,21 @@ public class PnlWznmVecDetail {
 	  */
 	public class StatShr extends Block {
 
-		public static final int TXFTGRVALID = 1;
-		public static final int TXFOPTVALID = 2;
-		public static final int BUTSAVEAVAIL = 3;
-		public static final int BUTSAVEACTIVE = 4;
-		public static final int TXTSRFACTIVE = 5;
-		public static final int PUPTYPACTIVE = 6;
-		public static final int TXTVERACTIVE = 7;
-		public static final int BUTVERVIEWAVAIL = 8;
-		public static final int BUTVERVIEWACTIVE = 9;
-		public static final int TXTHKUACTIVE = 10;
-		public static final int BUTHKUVIEWAVAIL = 11;
-		public static final int BUTHKUVIEWACTIVE = 12;
-		public static final int PUPTGRACTIVE = 13;
-		public static final int BUTTGREDITAVAIL = 14;
-		public static final int LSTOPTACTIVE = 15;
+		public static final int BUTSAVEAVAIL = 1;
+		public static final int BUTSAVEACTIVE = 2;
+		public static final int TXTSRFACTIVE = 3;
+		public static final int PUPTYPACTIVE = 4;
+		public static final int TXTVERACTIVE = 5;
+		public static final int BUTVERVIEWAVAIL = 6;
+		public static final int BUTVERVIEWACTIVE = 7;
+		public static final int TXTHKUACTIVE = 8;
+		public static final int BUTHKUVIEWAVAIL = 9;
+		public static final int BUTHKUVIEWACTIVE = 10;
+		public static final int PUPTGRACTIVE = 11;
+		public static final int TXFTGRVALID = 12;
+		public static final int BUTTGREDITAVAIL = 13;
+		public static final int LSTOPTACTIVE = 14;
+		public static final int TXFOPTVALID = 15;
 		public static final int BUTOPTEDITAVAIL = 16;
 		public static final int BUTPSTNEWAVAIL = 17;
 		public static final int BUTPSTDELETEAVAIL = 18;
@@ -424,9 +424,7 @@ public class PnlWznmVecDetail {
 		public static final int PUPPSTATYACTIVE = 33;
 
 		public StatShr(
-					boolean TxfTgrValid
-					, boolean TxfOptValid
-					, boolean ButSaveAvail
+					boolean ButSaveAvail
 					, boolean ButSaveActive
 					, boolean TxtSrfActive
 					, boolean PupTypActive
@@ -437,8 +435,10 @@ public class PnlWznmVecDetail {
 					, boolean ButHkuViewAvail
 					, boolean ButHkuViewActive
 					, boolean PupTgrActive
+					, boolean TxfTgrValid
 					, boolean ButTgrEditAvail
 					, boolean LstOptActive
+					, boolean TxfOptValid
 					, boolean ButOptEditAvail
 					, boolean ButPstNewAvail
 					, boolean ButPstDeleteAvail
@@ -458,8 +458,6 @@ public class PnlWznmVecDetail {
 					, boolean PupPstAtyAvail
 					, boolean PupPstAtyActive
 				) {
-			this.TxfTgrValid = TxfTgrValid;
-			this.TxfOptValid = TxfOptValid;
 			this.ButSaveAvail = ButSaveAvail;
 			this.ButSaveActive = ButSaveActive;
 			this.TxtSrfActive = TxtSrfActive;
@@ -471,8 +469,10 @@ public class PnlWznmVecDetail {
 			this.ButHkuViewAvail = ButHkuViewAvail;
 			this.ButHkuViewActive = ButHkuViewActive;
 			this.PupTgrActive = PupTgrActive;
+			this.TxfTgrValid = TxfTgrValid;
 			this.ButTgrEditAvail = ButTgrEditAvail;
 			this.LstOptActive = LstOptActive;
+			this.TxfOptValid = TxfOptValid;
 			this.ButOptEditAvail = ButOptEditAvail;
 			this.ButPstNewAvail = ButPstNewAvail;
 			this.ButPstDeleteAvail = ButPstDeleteAvail;
@@ -492,11 +492,9 @@ public class PnlWznmVecDetail {
 			this.PupPstAtyAvail = PupPstAtyAvail;
 			this.PupPstAtyActive = PupPstAtyActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(TXFTGRVALID, TXFOPTVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, PUPTGRACTIVE, BUTTGREDITAVAIL, LSTOPTACTIVE, BUTOPTEDITAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, PUPTGRACTIVE, TXFTGRVALID, BUTTGREDITAVAIL, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE));
 		};
 
-		public boolean TxfTgrValid;
-		public boolean TxfOptValid;
 		public boolean ButSaveAvail;
 		public boolean ButSaveActive;
 		public boolean TxtSrfActive;
@@ -508,8 +506,10 @@ public class PnlWznmVecDetail {
 		public boolean ButHkuViewAvail;
 		public boolean ButHkuViewActive;
 		public boolean PupTgrActive;
+		public boolean TxfTgrValid;
 		public boolean ButTgrEditAvail;
 		public boolean LstOptActive;
+		public boolean TxfOptValid;
 		public boolean ButOptEditAvail;
 		public boolean ButPstNewAvail;
 		public boolean ButPstDeleteAvail;
@@ -542,8 +542,6 @@ public class PnlWznmVecDetail {
 			String itemtag = "StatitemShrWznmVecDetail";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
-				TxfTgrValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfTgrValid", mask, TXFTGRVALID);
-				TxfOptValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfOptValid", mask, TXFOPTVALID);
 				ButSaveAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveAvail", mask, BUTSAVEAVAIL);
 				ButSaveActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveActive", mask, BUTSAVEACTIVE);
 				TxtSrfActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtSrfActive", mask, TXTSRFACTIVE);
@@ -555,8 +553,10 @@ public class PnlWznmVecDetail {
 				ButHkuViewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButHkuViewAvail", mask, BUTHKUVIEWAVAIL);
 				ButHkuViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButHkuViewActive", mask, BUTHKUVIEWACTIVE);
 				PupTgrActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "PupTgrActive", mask, PUPTGRACTIVE);
+				TxfTgrValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfTgrValid", mask, TXFTGRVALID);
 				ButTgrEditAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButTgrEditAvail", mask, BUTTGREDITAVAIL);
 				LstOptActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstOptActive", mask, LSTOPTACTIVE);
+				TxfOptValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfOptValid", mask, TXFOPTVALID);
 				ButOptEditAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButOptEditAvail", mask, BUTOPTEDITAVAIL);
 				ButPstNewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButPstNewAvail", mask, BUTPSTNEWAVAIL);
 				ButPstDeleteAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButPstDeleteAvail", mask, BUTPSTDELETEAVAIL);
@@ -587,8 +587,6 @@ public class PnlWznmVecDetail {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
-			if (TxfTgrValid == comp.TxfTgrValid) items.add(TXFTGRVALID);
-			if (TxfOptValid == comp.TxfOptValid) items.add(TXFOPTVALID);
 			if (ButSaveAvail == comp.ButSaveAvail) items.add(BUTSAVEAVAIL);
 			if (ButSaveActive == comp.ButSaveActive) items.add(BUTSAVEACTIVE);
 			if (TxtSrfActive == comp.TxtSrfActive) items.add(TXTSRFACTIVE);
@@ -600,8 +598,10 @@ public class PnlWznmVecDetail {
 			if (ButHkuViewAvail == comp.ButHkuViewAvail) items.add(BUTHKUVIEWAVAIL);
 			if (ButHkuViewActive == comp.ButHkuViewActive) items.add(BUTHKUVIEWACTIVE);
 			if (PupTgrActive == comp.PupTgrActive) items.add(PUPTGRACTIVE);
+			if (TxfTgrValid == comp.TxfTgrValid) items.add(TXFTGRVALID);
 			if (ButTgrEditAvail == comp.ButTgrEditAvail) items.add(BUTTGREDITAVAIL);
 			if (LstOptActive == comp.LstOptActive) items.add(LSTOPTACTIVE);
+			if (TxfOptValid == comp.TxfOptValid) items.add(TXFOPTVALID);
 			if (ButOptEditAvail == comp.ButOptEditAvail) items.add(BUTOPTEDITAVAIL);
 			if (ButPstNewAvail == comp.ButPstNewAvail) items.add(BUTPSTNEWAVAIL);
 			if (ButPstDeleteAvail == comp.ButPstDeleteAvail) items.add(BUTPSTDELETEAVAIL);
@@ -632,7 +632,7 @@ public class PnlWznmVecDetail {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(TXFTGRVALID, TXFOPTVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, PUPTGRACTIVE, BUTTGREDITAVAIL, LSTOPTACTIVE, BUTOPTEDITAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, PUPTGRACTIVE, TXFTGRVALID, BUTTGREDITAVAIL, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

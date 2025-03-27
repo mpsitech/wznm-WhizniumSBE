@@ -22,11 +22,12 @@ WznmQMtdList::WznmQMtdList(
 			, const string sref
 			, const string stubRefWznmMJob
 			, const string yesnoExecsrv
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->stubRefWznmMJob = stubRefWznmMJob;
-	this->yesnoExecsrv = yesnoExecsrv;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, stubRefWznmMJob(stubRefWznmMJob)
+			, yesnoExecsrv(yesnoExecsrv)
+		{
 };
 
 bool WznmQMtdList::readXML(

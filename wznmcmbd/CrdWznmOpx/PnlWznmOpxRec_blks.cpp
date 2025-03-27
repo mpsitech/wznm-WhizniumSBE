@@ -43,9 +43,8 @@ PnlWznmOpxRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -108,8 +107,8 @@ void PnlWznmOpxRec::StatApp::writeJSON(
 			Json::Value& sup
 			, string difftag
 			, const bool initdoneDetail
-			, const bool initdoneAInvarg
 			, const bool initdoneARetval
+			, const bool initdoneAInvarg
 			, const bool initdoneRef1NBlock
 			, const bool initdoneMNJob
 			, const bool initdoneSqkMNStub
@@ -119,8 +118,8 @@ void PnlWznmOpxRec::StatApp::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["initdoneDetail"] = initdoneDetail;
-	me["initdoneAInvarg"] = initdoneAInvarg;
 	me["initdoneARetval"] = initdoneARetval;
+	me["initdoneAInvarg"] = initdoneAInvarg;
 	me["initdoneRef1NBlock"] = initdoneRef1NBlock;
 	me["initdoneMNJob"] = initdoneMNJob;
 	me["initdoneSqkMNStub"] = initdoneSqkMNStub;
@@ -131,8 +130,8 @@ void PnlWznmOpxRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
-			, const bool initdoneAInvarg
 			, const bool initdoneARetval
+			, const bool initdoneAInvarg
 			, const bool initdoneRef1NBlock
 			, const bool initdoneMNJob
 			, const bool initdoneSqkMNStub
@@ -145,8 +144,8 @@ void PnlWznmOpxRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
-		writeBoolAttr(wr, itemtag, "sref", "initdoneAInvarg", initdoneAInvarg);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneARetval", initdoneARetval);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneAInvarg", initdoneAInvarg);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneRef1NBlock", initdoneRef1NBlock);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneMNJob", initdoneMNJob);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneSqkMNStub", initdoneSqkMNStub);
@@ -160,8 +159,8 @@ void PnlWznmOpxRec::StatApp::writeXML(
 PnlWznmOpxRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
-			, const ubigint jrefAInvarg
 			, const ubigint jrefARetval
+			, const ubigint jrefAInvarg
 			, const ubigint jrefRef1NBlock
 			, const ubigint jrefMNJob
 			, const ubigint jrefSqkMNStub
@@ -169,18 +168,17 @@ PnlWznmOpxRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefARetval(jrefARetval)
+			, jrefAInvarg(jrefAInvarg)
+			, jrefRef1NBlock(jrefRef1NBlock)
+			, jrefMNJob(jrefMNJob)
+			, jrefSqkMNStub(jrefSqkMNStub)
+			, pnlsqkmnstubAvail(pnlsqkmnstubAvail)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefAInvarg = jrefAInvarg;
-	this->jrefARetval = jrefARetval;
-	this->jrefRef1NBlock = jrefRef1NBlock;
-	this->jrefMNJob = jrefMNJob;
-	this->jrefSqkMNStub = jrefSqkMNStub;
-	this->pnlsqkmnstubAvail = pnlsqkmnstubAvail;
-	this->ButRegularizeActive = ButRegularizeActive;
-
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAINVARG, JREFARETVAL, JREFREF1NBLOCK, JREFMNJOB, JREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFARETVAL, JREFAINVARG, JREFREF1NBLOCK, JREFMNJOB, JREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmOpxRec::StatShr::writeJSON(
@@ -193,8 +191,8 @@ void PnlWznmOpxRec::StatShr::writeJSON(
 
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
-	me["scrJrefAInvarg"] = Scr::scramble(jrefAInvarg);
 	me["scrJrefARetval"] = Scr::scramble(jrefARetval);
+	me["scrJrefAInvarg"] = Scr::scramble(jrefAInvarg);
 	me["scrJrefRef1NBlock"] = Scr::scramble(jrefRef1NBlock);
 	me["scrJrefMNJob"] = Scr::scramble(jrefMNJob);
 	me["scrJrefSqkMNStub"] = Scr::scramble(jrefSqkMNStub);
@@ -216,8 +214,8 @@ void PnlWznmOpxRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
-		writeStringAttr(wr, itemtag, "sref", "scrJrefAInvarg", Scr::scramble(jrefAInvarg));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefARetval", Scr::scramble(jrefARetval));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefAInvarg", Scr::scramble(jrefAInvarg));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefRef1NBlock", Scr::scramble(jrefRef1NBlock));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefMNJob", Scr::scramble(jrefMNJob));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefSqkMNStub", Scr::scramble(jrefSqkMNStub));
@@ -233,8 +231,8 @@ set<uint> PnlWznmOpxRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
-	if (jrefAInvarg == comp->jrefAInvarg) insert(items, JREFAINVARG);
 	if (jrefARetval == comp->jrefARetval) insert(items, JREFARETVAL);
+	if (jrefAInvarg == comp->jrefAInvarg) insert(items, JREFAINVARG);
 	if (jrefRef1NBlock == comp->jrefRef1NBlock) insert(items, JREFREF1NBLOCK);
 	if (jrefMNJob == comp->jrefMNJob) insert(items, JREFMNJOB);
 	if (jrefSqkMNStub == comp->jrefSqkMNStub) insert(items, JREFSQKMNSTUB);
@@ -252,7 +250,7 @@ set<uint> PnlWznmOpxRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFAINVARG, JREFARETVAL, JREFREF1NBLOCK, JREFMNJOB, JREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFARETVAL, JREFAINVARG, JREFREF1NBLOCK, JREFMNJOB, JREFSQKMNSTUB, PNLSQKMNSTUBAVAIL, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

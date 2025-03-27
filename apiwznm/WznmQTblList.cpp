@@ -27,16 +27,17 @@ WznmQTblList::WznmQTblList(
 			, const string srefRefIxVTbl
 			, const string titRefIxVTbl
 			, const string stubRefUref
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Short = Short;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->stubRefUref = stubRefUref;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Short(Short)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, stubRefUref(stubRefUref)
+		{
 };
 
 bool WznmQTblList::readXML(

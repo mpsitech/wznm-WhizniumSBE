@@ -45,9 +45,8 @@ PnlWznmAppRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -105,19 +104,18 @@ set<uint> PnlWznmAppRec::ContInf::diff(
 PnlWznmAppRec::StatApp::StatApp(
 			const bool initdoneDetail
 			, const bool initdone1NEvent
-			, const bool initdone1NRtjob
 			, const bool initdoneApp1NSequence
+			, const bool initdone1NRtjob
 			, const bool initdoneRef1NFile
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdone1NEvent(initdone1NEvent)
+			, initdoneApp1NSequence(initdoneApp1NSequence)
+			, initdone1NRtjob(initdone1NRtjob)
+			, initdoneRef1NFile(initdoneRef1NFile)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdone1NEvent = initdone1NEvent;
-	this->initdone1NRtjob = initdone1NRtjob;
-	this->initdoneApp1NSequence = initdoneApp1NSequence;
-	this->initdoneRef1NFile = initdoneRef1NFile;
-
-	mask = {INITDONEDETAIL, INITDONE1NEVENT, INITDONE1NRTJOB, INITDONEAPP1NSEQUENCE, INITDONEREF1NFILE};
+	mask = {INITDONEDETAIL, INITDONE1NEVENT, INITDONEAPP1NSEQUENCE, INITDONE1NRTJOB, INITDONEREF1NFILE};
 };
 
 bool PnlWznmAppRec::StatApp::readXML(
@@ -139,8 +137,8 @@ bool PnlWznmAppRec::StatApp::readXML(
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NEvent", initdone1NEvent)) add(INITDONE1NEVENT);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NRtjob", initdone1NRtjob)) add(INITDONE1NRTJOB);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneApp1NSequence", initdoneApp1NSequence)) add(INITDONEAPP1NSEQUENCE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NRtjob", initdone1NRtjob)) add(INITDONE1NRTJOB);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NFile", initdoneRef1NFile)) add(INITDONEREF1NFILE);
 	};
 
@@ -154,8 +152,8 @@ set<uint> PnlWznmAppRec::StatApp::comm(
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
 	if (initdone1NEvent == comp->initdone1NEvent) insert(items, INITDONE1NEVENT);
-	if (initdone1NRtjob == comp->initdone1NRtjob) insert(items, INITDONE1NRTJOB);
 	if (initdoneApp1NSequence == comp->initdoneApp1NSequence) insert(items, INITDONEAPP1NSEQUENCE);
+	if (initdone1NRtjob == comp->initdone1NRtjob) insert(items, INITDONE1NRTJOB);
 	if (initdoneRef1NFile == comp->initdoneRef1NFile) insert(items, INITDONEREF1NFILE);
 
 	return(items);
@@ -169,7 +167,7 @@ set<uint> PnlWznmAppRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONE1NEVENT, INITDONE1NRTJOB, INITDONEAPP1NSEQUENCE, INITDONEREF1NFILE};
+	diffitems = {INITDONEDETAIL, INITDONE1NEVENT, INITDONEAPP1NSEQUENCE, INITDONE1NRTJOB, INITDONEREF1NFILE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -183,22 +181,21 @@ PnlWznmAppRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
 			, const string& scrJref1NEvent
-			, const string& scrJref1NRtjob
 			, const string& scrJrefApp1NSequence
+			, const string& scrJref1NRtjob
 			, const string& scrJrefRef1NFile
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJref1NEvent(scrJref1NEvent)
+			, scrJrefApp1NSequence(scrJrefApp1NSequence)
+			, scrJref1NRtjob(scrJref1NRtjob)
+			, scrJrefRef1NFile(scrJrefRef1NFile)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJref1NEvent = scrJref1NEvent;
-	this->scrJref1NRtjob = scrJref1NRtjob;
-	this->scrJrefApp1NSequence = scrJrefApp1NSequence;
-	this->scrJrefRef1NFile = scrJrefRef1NFile;
-	this->ButRegularizeActive = ButRegularizeActive;
-
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NEVENT, SCRJREF1NRTJOB, SCRJREFAPP1NSEQUENCE, SCRJREFREF1NFILE, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NEVENT, SCRJREFAPP1NSEQUENCE, SCRJREF1NRTJOB, SCRJREFREF1NFILE, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmAppRec::StatShr::readXML(
@@ -226,8 +223,8 @@ bool PnlWznmAppRec::StatShr::readXML(
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NEvent", scrJref1NEvent)) add(SCRJREF1NEVENT);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NRtjob", scrJref1NRtjob)) add(SCRJREF1NRTJOB);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefApp1NSequence", scrJrefApp1NSequence)) add(SCRJREFAPP1NSEQUENCE);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NRtjob", scrJref1NRtjob)) add(SCRJREF1NRTJOB);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NFile", scrJrefRef1NFile)) add(SCRJREFREF1NFILE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
@@ -243,8 +240,8 @@ set<uint> PnlWznmAppRec::StatShr::comm(
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
 	if (scrJref1NEvent == comp->scrJref1NEvent) insert(items, SCRJREF1NEVENT);
-	if (scrJref1NRtjob == comp->scrJref1NRtjob) insert(items, SCRJREF1NRTJOB);
 	if (scrJrefApp1NSequence == comp->scrJrefApp1NSequence) insert(items, SCRJREFAPP1NSEQUENCE);
+	if (scrJref1NRtjob == comp->scrJref1NRtjob) insert(items, SCRJREF1NRTJOB);
 	if (scrJrefRef1NFile == comp->scrJrefRef1NFile) insert(items, SCRJREFREF1NFILE);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -259,7 +256,7 @@ set<uint> PnlWznmAppRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NEVENT, SCRJREF1NRTJOB, SCRJREFAPP1NSEQUENCE, SCRJREFREF1NFILE, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NEVENT, SCRJREFAPP1NSEQUENCE, SCRJREF1NRTJOB, SCRJREFREF1NFILE, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -273,9 +270,8 @@ PnlWznmAppRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -312,11 +308,11 @@ PnlWznmAppRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMAPPRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmAppRec::DpchAppDo::getSrefsMask() {

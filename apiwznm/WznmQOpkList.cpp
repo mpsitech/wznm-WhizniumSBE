@@ -25,14 +25,15 @@ WznmQOpkList::WznmQOpkList(
 			, const string titIxVBasetype
 			, const string stubRefWznmMVersion
 			, const string yesnoShrdat
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->yesnoShrdat = yesnoShrdat;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, yesnoShrdat(yesnoShrdat)
+		{
 };
 
 bool WznmQOpkList::readXML(

@@ -47,9 +47,8 @@ PnlWznmOpkARetval::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -61,7 +60,7 @@ void PnlWznmOpkARetval::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmOpkARetval::ContInf::writeXML(
@@ -149,13 +148,12 @@ PnlWznmOpkARetval::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -233,11 +231,11 @@ PnlWznmOpkARetval::StgIac::StgIac(
 			, const uint TcoCmtWidth
 		) :
 			Block()
+			, TcoSrfWidth(TcoSrfWidth)
+			, TcoVtyWidth(TcoVtyWidth)
+			, TcoVecWidth(TcoVecWidth)
+			, TcoCmtWidth(TcoCmtWidth)
 		{
-	this->TcoSrfWidth = TcoSrfWidth;
-	this->TcoVtyWidth = TcoVtyWidth;
-	this->TcoVecWidth = TcoVecWidth;
-	this->TcoCmtWidth = TcoCmtWidth;
 	mask = {TCOSRFWIDTH, TCOVTYWIDTH, TCOVECWIDTH, TCOCMTWIDTH};
 };
 
@@ -297,10 +295,10 @@ void PnlWznmOpkARetval::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoSrfWidth"] = TcoSrfWidth;
-	me["TcoVtyWidth"] = TcoVtyWidth;
-	me["TcoVecWidth"] = TcoVecWidth;
-	me["TcoCmtWidth"] = TcoCmtWidth;
+	me["TcoSrfWidth"] = (Json::Value::UInt) TcoSrfWidth;
+	me["TcoVtyWidth"] = (Json::Value::UInt) TcoVtyWidth;
+	me["TcoVecWidth"] = (Json::Value::UInt) TcoVecWidth;
+	me["TcoCmtWidth"] = (Json::Value::UInt) TcoCmtWidth;
 };
 
 void PnlWznmOpkARetval::StgIac::writeXML(

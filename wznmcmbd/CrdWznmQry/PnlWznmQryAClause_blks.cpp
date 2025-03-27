@@ -51,9 +51,8 @@ PnlWznmQryAClause::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -65,7 +64,7 @@ void PnlWznmQryAClause::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmQryAClause::ContInf::writeXML(
@@ -157,17 +156,16 @@ PnlWznmQryAClause::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButUpAvail(ButUpAvail)
+			, ButUpActive(ButUpActive)
+			, ButDownAvail(ButDownAvail)
+			, ButDownActive(ButDownActive)
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButUpAvail = ButUpAvail;
-	this->ButUpActive = ButUpActive;
-	this->ButDownAvail = ButDownAvail;
-	this->ButDownActive = ButDownActive;
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTUPAVAIL, BUTUPACTIVE, BUTDOWNAVAIL, BUTDOWNACTIVE, BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -259,13 +257,13 @@ PnlWznmQryAClause::StgIac::StgIac(
 			, const uint TcoVitWidth
 		) :
 			Block()
+			, TcoQmdWidth(TcoQmdWidth)
+			, TcoTypWidth(TcoTypWidth)
+			, TcoCseWidth(TcoCseWidth)
+			, TcoPstWidth(TcoPstWidth)
+			, TcoVecWidth(TcoVecWidth)
+			, TcoVitWidth(TcoVitWidth)
 		{
-	this->TcoQmdWidth = TcoQmdWidth;
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoCseWidth = TcoCseWidth;
-	this->TcoPstWidth = TcoPstWidth;
-	this->TcoVecWidth = TcoVecWidth;
-	this->TcoVitWidth = TcoVitWidth;
 	mask = {TCOQMDWIDTH, TCOTYPWIDTH, TCOCSEWIDTH, TCOPSTWIDTH, TCOVECWIDTH, TCOVITWIDTH};
 };
 
@@ -329,12 +327,12 @@ void PnlWznmQryAClause::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoQmdWidth"] = TcoQmdWidth;
-	me["TcoTypWidth"] = TcoTypWidth;
-	me["TcoCseWidth"] = TcoCseWidth;
-	me["TcoPstWidth"] = TcoPstWidth;
-	me["TcoVecWidth"] = TcoVecWidth;
-	me["TcoVitWidth"] = TcoVitWidth;
+	me["TcoQmdWidth"] = (Json::Value::UInt) TcoQmdWidth;
+	me["TcoTypWidth"] = (Json::Value::UInt) TcoTypWidth;
+	me["TcoCseWidth"] = (Json::Value::UInt) TcoCseWidth;
+	me["TcoPstWidth"] = (Json::Value::UInt) TcoPstWidth;
+	me["TcoVecWidth"] = (Json::Value::UInt) TcoVecWidth;
+	me["TcoVitWidth"] = (Json::Value::UInt) TcoVitWidth;
 };
 
 void PnlWznmQryAClause::StgIac::writeXML(

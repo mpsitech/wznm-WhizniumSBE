@@ -41,15 +41,15 @@ PnlWznmStbRec::PnlWznmStbRec(
 	pnlmncall = NULL;
 	pnlmnsquawk = NULL;
 	pnlsubmnstub = NULL;
-	pnldetail = NULL;
 	pnlsupmnstub = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMSTB_TCOEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMSTB_SBSEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMSTB_TCOEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -262,10 +262,10 @@ void PnlWznmStbRec::handleCall(
 		) {
 	if (call->ixVCall == VecWznmVCall::CALLWZNMSTBUPD_REFEQ) {
 		call->abort = handleCallWznmStbUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTB_TCOEQ) {
-		call->abort = handleCallWznmStb_tcoEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTB_SBSEQ) {
 		call->abort = handleCallWznmStb_sbsEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTB_TCOEQ) {
+		call->abort = handleCallWznmStb_tcoEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -278,17 +278,6 @@ bool PnlWznmStbRec::handleCallWznmStbUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmStbRec::handleCallWznmStb_tcoEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recStb.refWznmMTablecol == refInv); // IP handleCallWznmStb_tcoEq --- LINE
-	return retval;
-};
-
 bool PnlWznmStbRec::handleCallWznmStb_sbsEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -297,5 +286,16 @@ bool PnlWznmStbRec::handleCallWznmStb_sbsEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recStb.refWznmMSubset == refInv); // IP handleCallWznmStb_sbsEq --- LINE
+	return retval;
+};
+
+bool PnlWznmStbRec::handleCallWznmStb_tcoEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recStb.refWznmMTablecol == refInv); // IP handleCallWznmStb_tcoEq --- LINE
 	return retval;
 };

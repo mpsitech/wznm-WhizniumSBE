@@ -47,36 +47,37 @@ WznmQSteAAction::WznmQSteAAction(
 			, const string Ip3
 			, const string tr4SrefATrig
 			, const string Ip4
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->steNum = steNum;
-	this->ixVSection = ixVSection;
-	this->srefIxVSection = srefIxVSection;
-	this->titIxVSection = titIxVSection;
-	this->ixVType = ixVType;
-	this->srefIxVType = srefIxVType;
-	this->titIxVType = titIxVType;
-	this->refWznmMRtjob = refWznmMRtjob;
-	this->stubRefWznmMRtjob = stubRefWznmMRtjob;
-	this->refWznmMVector = refWznmMVector;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
-	this->snxRefWznmMState = snxRefWznmMState;
-	this->stubSnxRefWznmMState = stubSnxRefWznmMState;
-	this->refWznmMSequence = refWznmMSequence;
-	this->stubRefWznmMSequence = stubRefWznmMSequence;
-	this->tr1SrefATrig = tr1SrefATrig;
-	this->Ip1 = Ip1;
-	this->tr2SrefATrig = tr2SrefATrig;
-	this->Ip2 = Ip2;
-	this->tr3SrefATrig = tr3SrefATrig;
-	this->Ip3 = Ip3;
-	this->tr4SrefATrig = tr4SrefATrig;
-	this->Ip4 = Ip4;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, steNum(steNum)
+			, ixVSection(ixVSection)
+			, srefIxVSection(srefIxVSection)
+			, titIxVSection(titIxVSection)
+			, ixVType(ixVType)
+			, srefIxVType(srefIxVType)
+			, titIxVType(titIxVType)
+			, refWznmMRtjob(refWznmMRtjob)
+			, stubRefWznmMRtjob(stubRefWznmMRtjob)
+			, refWznmMVector(refWznmMVector)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+			, snxRefWznmMState(snxRefWznmMState)
+			, stubSnxRefWznmMState(stubSnxRefWznmMState)
+			, refWznmMSequence(refWznmMSequence)
+			, stubRefWznmMSequence(stubRefWznmMSequence)
+			, tr1SrefATrig(tr1SrefATrig)
+			, Ip1(Ip1)
+			, tr2SrefATrig(tr2SrefATrig)
+			, Ip2(Ip2)
+			, tr3SrefATrig(tr3SrefATrig)
+			, Ip3(Ip3)
+			, tr4SrefATrig(tr4SrefATrig)
+			, Ip4(Ip4)
+		{
 };
 
 void WznmQSteAAction::writeJSON(

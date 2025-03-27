@@ -26,15 +26,16 @@ WznmQVecMNTable::WznmQVecMNTable(
 			, const ubigint ref
 			, const ubigint refWznmMSubset
 			, const string stubRefWznmMSubset
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->mref = mref;
-	this->stubMref = stubMref;
-	this->ref = ref;
-	this->refWznmMSubset = refWznmMSubset;
-	this->stubRefWznmMSubset = stubRefWznmMSubset;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, mref(mref)
+			, stubMref(stubMref)
+			, ref(ref)
+			, refWznmMSubset(refWznmMSubset)
+			, stubRefWznmMSubset(stubRefWznmMSubset)
+		{
 };
 
 void WznmQVecMNTable::writeJSON(

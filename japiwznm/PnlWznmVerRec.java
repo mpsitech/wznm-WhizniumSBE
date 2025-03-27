@@ -114,27 +114,29 @@ public class PnlWznmVerRec {
 	public class StatApp extends Block {
 
 		public static final int INITDONEDETAIL = 1;
-		public static final int INITDONEVER1NERROR = 2;
-		public static final int INITDONEVER1NAPP = 3;
-		public static final int INITDONE1NCAPABILITY = 4;
-		public static final int INITDONE1NVECTOR = 5;
-		public static final int INITDONE1NTABLE = 6;
-		public static final int INITDONE1NRELATION = 7;
-		public static final int INITDONE1NQUERY = 8;
-		public static final int INITDONE1NPRESET = 9;
-		public static final int INITDONEVER1NMODULE = 10;
-		public static final int INITDONE1NOPPACK = 11;
-		public static final int INITDONE1NJOB = 12;
-		public static final int INITDONE1NIMPEXPCPLX = 13;
-		public static final int INITDONE1NCALL = 14;
-		public static final int INITDONE1NCOMPONENT = 15;
-		public static final int INITDONEBVR1NVERSION = 16;
-		public static final int INITDONE1NBLOCK = 17;
-		public static final int INITDONEREF1NFILE = 18;
-		public static final int INITDONEMNLOCALE = 19;
+		public static final int INITDONEVER1NVISUAL = 2;
+		public static final int INITDONEVER1NERROR = 3;
+		public static final int INITDONEVER1NAPP = 4;
+		public static final int INITDONE1NCAPABILITY = 5;
+		public static final int INITDONE1NVECTOR = 6;
+		public static final int INITDONE1NTABLE = 7;
+		public static final int INITDONE1NRELATION = 8;
+		public static final int INITDONE1NQUERY = 9;
+		public static final int INITDONE1NPRESET = 10;
+		public static final int INITDONEVER1NMODULE = 11;
+		public static final int INITDONE1NOPPACK = 12;
+		public static final int INITDONE1NJOB = 13;
+		public static final int INITDONE1NIMPEXPCPLX = 14;
+		public static final int INITDONE1NCALL = 15;
+		public static final int INITDONE1NCOMPONENT = 16;
+		public static final int INITDONEBVR1NVERSION = 17;
+		public static final int INITDONE1NBLOCK = 18;
+		public static final int INITDONEREF1NFILE = 19;
+		public static final int INITDONEMNLOCALE = 20;
 
 		public StatApp(
 					boolean initdoneDetail
+					, boolean initdoneVer1NVisual
 					, boolean initdoneVer1NError
 					, boolean initdoneVer1NApp
 					, boolean initdone1NCapability
@@ -155,6 +157,7 @@ public class PnlWznmVerRec {
 					, boolean initdoneMNLocale
 				) {
 			this.initdoneDetail = initdoneDetail;
+			this.initdoneVer1NVisual = initdoneVer1NVisual;
 			this.initdoneVer1NError = initdoneVer1NError;
 			this.initdoneVer1NApp = initdoneVer1NApp;
 			this.initdone1NCapability = initdone1NCapability;
@@ -174,10 +177,11 @@ public class PnlWznmVerRec {
 			this.initdoneRef1NFile = initdoneRef1NFile;
 			this.initdoneMNLocale = initdoneMNLocale;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEVER1NERROR, INITDONEVER1NAPP, INITDONE1NCAPABILITY, INITDONE1NVECTOR, INITDONE1NTABLE, INITDONE1NRELATION, INITDONE1NQUERY, INITDONE1NPRESET, INITDONEVER1NMODULE, INITDONE1NOPPACK, INITDONE1NJOB, INITDONE1NIMPEXPCPLX, INITDONE1NCALL, INITDONE1NCOMPONENT, INITDONEBVR1NVERSION, INITDONE1NBLOCK, INITDONEREF1NFILE, INITDONEMNLOCALE));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEVER1NVISUAL, INITDONEVER1NERROR, INITDONEVER1NAPP, INITDONE1NCAPABILITY, INITDONE1NVECTOR, INITDONE1NTABLE, INITDONE1NRELATION, INITDONE1NQUERY, INITDONE1NPRESET, INITDONEVER1NMODULE, INITDONE1NOPPACK, INITDONE1NJOB, INITDONE1NIMPEXPCPLX, INITDONE1NCALL, INITDONE1NCOMPONENT, INITDONEBVR1NVERSION, INITDONE1NBLOCK, INITDONEREF1NFILE, INITDONEMNLOCALE));
 		};
 
 		public boolean initdoneDetail;
+		public boolean initdoneVer1NVisual;
 		public boolean initdoneVer1NError;
 		public boolean initdoneVer1NApp;
 		public boolean initdone1NCapability;
@@ -211,6 +215,7 @@ public class PnlWznmVerRec {
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
+				initdoneVer1NVisual = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneVer1NVisual", mask, INITDONEVER1NVISUAL);
 				initdoneVer1NError = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneVer1NError", mask, INITDONEVER1NERROR);
 				initdoneVer1NApp = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneVer1NApp", mask, INITDONEVER1NAPP);
 				initdone1NCapability = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NCapability", mask, INITDONE1NCAPABILITY);
@@ -242,6 +247,7 @@ public class PnlWznmVerRec {
 			HashSet<Integer> items = new HashSet<Integer>();
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
+			if (initdoneVer1NVisual == comp.initdoneVer1NVisual) items.add(INITDONEVER1NVISUAL);
 			if (initdoneVer1NError == comp.initdoneVer1NError) items.add(INITDONEVER1NERROR);
 			if (initdoneVer1NApp == comp.initdoneVer1NApp) items.add(INITDONEVER1NAPP);
 			if (initdone1NCapability == comp.initdone1NCapability) items.add(INITDONE1NCAPABILITY);
@@ -272,7 +278,7 @@ public class PnlWznmVerRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEVER1NERROR, INITDONEVER1NAPP, INITDONE1NCAPABILITY, INITDONE1NVECTOR, INITDONE1NTABLE, INITDONE1NRELATION, INITDONE1NQUERY, INITDONE1NPRESET, INITDONEVER1NMODULE, INITDONE1NOPPACK, INITDONE1NJOB, INITDONE1NIMPEXPCPLX, INITDONE1NCALL, INITDONE1NCOMPONENT, INITDONEBVR1NVERSION, INITDONE1NBLOCK, INITDONEREF1NFILE, INITDONEMNLOCALE));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONEVER1NVISUAL, INITDONEVER1NERROR, INITDONEVER1NAPP, INITDONE1NCAPABILITY, INITDONE1NVECTOR, INITDONE1NTABLE, INITDONE1NRELATION, INITDONE1NQUERY, INITDONE1NPRESET, INITDONEVER1NMODULE, INITDONE1NOPPACK, INITDONE1NJOB, INITDONE1NIMPEXPCPLX, INITDONE1NCALL, INITDONE1NCOMPONENT, INITDONEBVR1NVERSION, INITDONE1NBLOCK, INITDONEREF1NFILE, INITDONEMNLOCALE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -287,29 +293,31 @@ public class PnlWznmVerRec {
 
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
-		public static final int SCRJREFVER1NERROR = 3;
-		public static final int SCRJREFVER1NAPP = 4;
-		public static final int SCRJREF1NCAPABILITY = 5;
-		public static final int SCRJREF1NVECTOR = 6;
-		public static final int SCRJREF1NTABLE = 7;
-		public static final int SCRJREF1NRELATION = 8;
-		public static final int SCRJREF1NQUERY = 9;
-		public static final int SCRJREF1NPRESET = 10;
-		public static final int SCRJREFVER1NMODULE = 11;
-		public static final int SCRJREF1NOPPACK = 12;
-		public static final int SCRJREF1NJOB = 13;
-		public static final int SCRJREF1NIMPEXPCPLX = 14;
-		public static final int SCRJREF1NCALL = 15;
-		public static final int SCRJREF1NCOMPONENT = 16;
-		public static final int SCRJREFBVR1NVERSION = 17;
-		public static final int SCRJREF1NBLOCK = 18;
-		public static final int SCRJREFREF1NFILE = 19;
-		public static final int SCRJREFMNLOCALE = 20;
-		public static final int BUTREGULARIZEACTIVE = 21;
+		public static final int SCRJREFVER1NVISUAL = 3;
+		public static final int SCRJREFVER1NERROR = 4;
+		public static final int SCRJREFVER1NAPP = 5;
+		public static final int SCRJREF1NCAPABILITY = 6;
+		public static final int SCRJREF1NVECTOR = 7;
+		public static final int SCRJREF1NTABLE = 8;
+		public static final int SCRJREF1NRELATION = 9;
+		public static final int SCRJREF1NQUERY = 10;
+		public static final int SCRJREF1NPRESET = 11;
+		public static final int SCRJREFVER1NMODULE = 12;
+		public static final int SCRJREF1NOPPACK = 13;
+		public static final int SCRJREF1NJOB = 14;
+		public static final int SCRJREF1NIMPEXPCPLX = 15;
+		public static final int SCRJREF1NCALL = 16;
+		public static final int SCRJREF1NCOMPONENT = 17;
+		public static final int SCRJREFBVR1NVERSION = 18;
+		public static final int SCRJREF1NBLOCK = 19;
+		public static final int SCRJREFREF1NFILE = 20;
+		public static final int SCRJREFMNLOCALE = 21;
+		public static final int BUTREGULARIZEACTIVE = 22;
 
 		public StatShr(
 					int ixWznmVExpstate
 					, String scrJrefDetail
+					, String scrJrefVer1NVisual
 					, String scrJrefVer1NError
 					, String scrJrefVer1NApp
 					, String scrJref1NCapability
@@ -332,6 +340,7 @@ public class PnlWznmVerRec {
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
+			this.scrJrefVer1NVisual = scrJrefVer1NVisual;
 			this.scrJrefVer1NError = scrJrefVer1NError;
 			this.scrJrefVer1NApp = scrJrefVer1NApp;
 			this.scrJref1NCapability = scrJref1NCapability;
@@ -352,11 +361,12 @@ public class PnlWznmVerRec {
 			this.scrJrefMNLocale = scrJrefMNLocale;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFVER1NERROR, SCRJREFVER1NAPP, SCRJREF1NCAPABILITY, SCRJREF1NVECTOR, SCRJREF1NTABLE, SCRJREF1NRELATION, SCRJREF1NQUERY, SCRJREF1NPRESET, SCRJREFVER1NMODULE, SCRJREF1NOPPACK, SCRJREF1NJOB, SCRJREF1NIMPEXPCPLX, SCRJREF1NCALL, SCRJREF1NCOMPONENT, SCRJREFBVR1NVERSION, SCRJREF1NBLOCK, SCRJREFREF1NFILE, SCRJREFMNLOCALE, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFVER1NVISUAL, SCRJREFVER1NERROR, SCRJREFVER1NAPP, SCRJREF1NCAPABILITY, SCRJREF1NVECTOR, SCRJREF1NTABLE, SCRJREF1NRELATION, SCRJREF1NQUERY, SCRJREF1NPRESET, SCRJREFVER1NMODULE, SCRJREF1NOPPACK, SCRJREF1NJOB, SCRJREF1NIMPEXPCPLX, SCRJREF1NCALL, SCRJREF1NCOMPONENT, SCRJREFBVR1NVERSION, SCRJREF1NBLOCK, SCRJREFREF1NFILE, SCRJREFMNLOCALE, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
+		public String scrJrefVer1NVisual;
 		public String scrJrefVer1NError;
 		public String scrJrefVer1NApp;
 		public String scrJref1NCapability;
@@ -394,6 +404,7 @@ public class PnlWznmVerRec {
 				srefIxWznmVExpstate = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "srefIxWznmVExpstate", mask, IXWZNMVEXPSTATE);
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
+				scrJrefVer1NVisual = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefVer1NVisual", mask, SCRJREFVER1NVISUAL);
 				scrJrefVer1NError = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefVer1NError", mask, SCRJREFVER1NERROR);
 				scrJrefVer1NApp = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefVer1NApp", mask, SCRJREFVER1NAPP);
 				scrJref1NCapability = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NCapability", mask, SCRJREF1NCAPABILITY);
@@ -427,6 +438,7 @@ public class PnlWznmVerRec {
 
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
+			if (scrJrefVer1NVisual.equals(comp.scrJrefVer1NVisual)) items.add(SCRJREFVER1NVISUAL);
 			if (scrJrefVer1NError.equals(comp.scrJrefVer1NError)) items.add(SCRJREFVER1NERROR);
 			if (scrJrefVer1NApp.equals(comp.scrJrefVer1NApp)) items.add(SCRJREFVER1NAPP);
 			if (scrJref1NCapability.equals(comp.scrJref1NCapability)) items.add(SCRJREF1NCAPABILITY);
@@ -458,7 +470,7 @@ public class PnlWznmVerRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFVER1NERROR, SCRJREFVER1NAPP, SCRJREF1NCAPABILITY, SCRJREF1NVECTOR, SCRJREF1NTABLE, SCRJREF1NRELATION, SCRJREF1NQUERY, SCRJREF1NPRESET, SCRJREFVER1NMODULE, SCRJREF1NOPPACK, SCRJREF1NJOB, SCRJREF1NIMPEXPCPLX, SCRJREF1NCALL, SCRJREF1NCOMPONENT, SCRJREFBVR1NVERSION, SCRJREF1NBLOCK, SCRJREFREF1NFILE, SCRJREFMNLOCALE, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFVER1NVISUAL, SCRJREFVER1NERROR, SCRJREFVER1NAPP, SCRJREF1NCAPABILITY, SCRJREF1NVECTOR, SCRJREF1NTABLE, SCRJREF1NRELATION, SCRJREF1NQUERY, SCRJREF1NPRESET, SCRJREFVER1NMODULE, SCRJREF1NOPPACK, SCRJREF1NJOB, SCRJREF1NIMPEXPCPLX, SCRJREF1NCALL, SCRJREF1NCOMPONENT, SCRJREFBVR1NVERSION, SCRJREF1NBLOCK, SCRJREFREF1NFILE, SCRJREFMNLOCALE, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -600,8 +612,8 @@ public class PnlWznmVerRec {
 			super(VecWznmVDpch.DPCHENGWZNMVERRECDATA);
 
 			continf = new ContInf("");
-			statapp = new StatApp(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-			statshr = new StatShr(0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", false);
+			statapp = new StatApp(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+			statshr = new StatShr(0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", false);
 			tag = new Tag("");
 		};
 
@@ -641,8 +653,8 @@ public class PnlWznmVerRec {
 			} else {
 				scrJref = "";
 				continf = new ContInf("");
-				statapp = new StatApp(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
-				statshr = new StatShr(0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", false);
+				statapp = new StatApp(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+				statshr = new StatShr(0, "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", false);
 				tag = new Tag("");
 			};
 		};

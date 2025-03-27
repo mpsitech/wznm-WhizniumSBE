@@ -25,14 +25,15 @@ WznmQQcoList::WznmQQcoList(
 			, const string titIxVBasetype
 			, const string stubQryRefWznmMQuery
 			, const string stubRefWznmMTablecol
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Short = Short;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubQryRefWznmMQuery = stubQryRefWznmMQuery;
-	this->stubRefWznmMTablecol = stubRefWznmMTablecol;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Short(Short)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubQryRefWznmMQuery(stubQryRefWznmMQuery)
+			, stubRefWznmMTablecol(stubRefWznmMTablecol)
+		{
 };
 
 bool WznmQQcoList::readXML(

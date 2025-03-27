@@ -169,7 +169,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 
 	// --- constructor.spec3
 	outfile << "// IP constructor.spec3 --- IBEGIN" << endl;
-	outfile << "\tif (xchg->stg" << prjshort << "appearance.roottterm != 0) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * xchg->stg" << prjshort << "appearance.roottterm);" << endl;
+	outfile << "\tif (xchg->stg" << prjshort << "behavior.roottterm != 0) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * xchg->stg" << prjshort << "behavior.roottterm);" << endl;
 	outfile << "// IP constructor.spec3 --- IEND" << endl;
 
 	// --- destructor.spec
@@ -371,7 +371,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t\tcout << \"\\tjob reference: \" << xchg->jrefCmd << endl;" << endl;
 	outfile << endl;
 
-	outfile << "\t\tif ((xchg->stg" << prjshort << "appearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * (xchg->stg" << prjshort << "appearance.sesstterm - xchg->stg" << prjshort << "appearance.sesstwarn));" << endl;
+	outfile << "\t\tif ((xchg->stg" << prjshort << "behavior.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * (xchg->stg" << prjshort << "behavior.sesstterm - xchg->stg" << prjshort << "behavior.sesstwarn));" << endl;
 	outfile << endl;
 
 	outfile << "\t\txchg->appendToLogfile(\"command line session created for user '\" + input + \"'\");" << endl;
@@ -429,7 +429,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\tif (authenticate(dbs" << prjshort << ", StrMod::lc(dpchapplogin->username), dpchapplogin->password, refUsr)) {" << endl;
 
 	outfile << "\t\tif (!(dpchapplogin->m2mNotReg)) {" << endl;
-	outfile << "\t\t\tif (xchg->stg" << prjshort << "appearance.suspsess && dpchapplogin->chksuspsess) {" << endl;
+	outfile << "\t\t\tif (xchg->stg" << prjshort << "behavior.suspsess && dpchapplogin->chksuspsess) {" << endl;
 	outfile << "\t\t\t\t// look for suspended sessions" << endl;
 	outfile << "\t\t\t\tfor (auto it = sesss.begin(); it != sesss.end(); it++) {" << endl;
 	outfile << "\t\t\t\t\tjrefSess = it->second->jref;" << endl;
@@ -450,7 +450,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t\t\t\tjrefSess = insertSubjob(sesss, new Sess" << Prjshort << "(xchg, dbs" << prjshort << ", jref, refUsr, ip));" << endl;
 	outfile << endl;
 
-	outfile << "\t\t\t\tif ((xchg->stg" << prjshort << "appearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * (xchg->stg" << prjshort << "appearance.sesstterm - xchg->stg" << prjshort << "appearance.sesstwarn));" << endl;
+	outfile << "\t\t\t\tif ((xchg->stg" << prjshort << "behavior.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, \"warnterm\", 1e6 * (xchg->stg" << prjshort << "behavior.sesstterm - xchg->stg" << prjshort << "behavior.sesstwarn));" << endl;
 	outfile << endl;
 
 	outfile << "\t\t\t\txchg->appendToLogfile(\"session created for user '\" + dpchapplogin->username + \"' from IP \" + ip);" << endl;
@@ -505,7 +505,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\tbool term;" << endl;
 	outfile << endl;
 
-	outfile << "\tif (xchg->stg" << prjshort << "appearance.sesstterm != 0) {" << endl;
+	outfile << "\tif (xchg->stg" << prjshort << "behavior.sesstterm != 0) {" << endl;
 	outfile << "\t\tfor (auto it = sesss.begin(); it != sesss.end();) {" << endl;
 	outfile << "\t\t\tsess = (Sess" << Prjshort << "*) it->second;" << endl;
 	outfile << endl;
@@ -516,11 +516,11 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t\t\ttlast = xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "TLAST, sess->jref);" << endl;
 	outfile << endl;
 
-	outfile << "\t\t\tif ((tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm)) <= rawtime) term = true;" << endl;
-	outfile << "\t\t\telse if ((tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm) - ((int) xchg->stg" << prjshort << "appearance.sesstwarn)) <= rawtime) {" << endl;
+	outfile << "\t\t\tif ((tlast + ((int) xchg->stg" << prjshort << "behavior.sesstterm)) <= rawtime) term = true;" << endl;
+	outfile << "\t\t\telse if ((tlast + ((int) xchg->stg" << prjshort << "behavior.sesstterm) - ((int) xchg->stg" << prjshort << "behavior.sesstwarn)) <= rawtime) {" << endl;
 	outfile << "\t\t\t\tsess->warnTerm(dbs" << prjshort << ");" << endl;
-	outfile << "\t\t\t\tif ((tnext == 0) || ((tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm)) < tnext)) tnext = tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm);" << endl;
-	outfile << "\t\t\t} else if ((tnext == 0) || ((tlast + ((int) xchg->stg" << prjshort << "appearance.sesstterm) - ((int) xchg->stg" << prjshort << "appearance.sesstwarn)) < tnext)) tnext = tlast + xchg->stg" << prjshort << "appearance.sesstterm - xchg->stg" << prjshort << "appearance.sesstwarn;" << endl;
+	outfile << "\t\t\t\tif ((tnext == 0) || ((tlast + ((int) xchg->stg" << prjshort << "behavior.sesstterm)) < tnext)) tnext = tlast + ((int) xchg->stg" << prjshort << "behavior.sesstterm);" << endl;
+	outfile << "\t\t\t} else if ((tnext == 0) || ((tlast + ((int) xchg->stg" << prjshort << "behavior.sesstterm) - ((int) xchg->stg" << prjshort << "behavior.sesstwarn)) < tnext)) tnext = tlast + xchg->stg" << prjshort << "behavior.sesstterm - xchg->stg" << prjshort << "behavior.sesstwarn;" << endl;
 	outfile << endl;
 	
 	outfile << "\t\t\tif (term) {" << endl;
@@ -539,12 +539,12 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\tterm = false;" << endl;
 	outfile << endl;
 
-	outfile << "\tif (xchg->stg" << prjshort << "appearance.roottterm != 0) {" << endl;
+	outfile << "\tif (xchg->stg" << prjshort << "behavior.roottterm != 0) {" << endl;
 	outfile << "\t\ttlast = xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "TLAST, jref);" << endl;
 	outfile << endl;
 
-	outfile << "\t\tif ((tlast + ((int) xchg->stg" << prjshort << "appearance.roottterm)) <= rawtime) term = true;" << endl;
-	outfile << "\t\telse if ((tnext == 0) || ((tlast + ((int) xchg->stg" << prjshort << "appearance.roottterm)) < tnext)) tnext = tlast + xchg->stg" << prjshort << "appearance.roottterm;" << endl;
+	outfile << "\t\tif ((tlast + ((int) xchg->stg" << prjshort << "behavior.roottterm)) <= rawtime) term = true;" << endl;
+	outfile << "\t\telse if ((tnext == 0) || ((tlast + ((int) xchg->stg" << prjshort << "behavior.roottterm)) < tnext)) tnext = tlast + xchg->stg" << prjshort << "behavior.roottterm;" << endl;
 	outfile << "\t};" << endl;
 	outfile << endl;
 
@@ -568,7 +568,7 @@ void WznmWrsrvRootsess::writeRtCpp(
 	outfile << "\t\teraseSubjobByJref(sesss, jrefTrig);" << endl;
 	outfile << endl;
 
-	outfile << "\t\tif (xchg->stg" << prjshort << "appearance.roottterm) {" << endl;
+	outfile << "\t\tif (xchg->stg" << prjshort << "behavior.roottterm) {" << endl;
 	outfile << "\t\t\ttime(&rawtime);" << endl;
 	outfile << "\t\t\txchg->addRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "TLAST, jref, rawtime);" << endl;
 	outfile << "\t\t};" << endl;
@@ -902,18 +902,11 @@ void WznmWrsrvRootsess::writeSessCpp(
 	outfile << "\t\t\tconst uint ix" << Prjshort << "VCard" << endl;
 	outfile << "\t\t) {" << endl;
 
-	first = true;
-
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
 		car = cars.nodes[i];
 
 		if (car->Active.length() > 0) {
-			outfile << "\t";
-
-			if (first) first = false;
-			else outfile << "else ";
-
-			outfile << "if (ix" << Prjshort << "VCard == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref) << ") return evalCrd" << StrMod::lc(car->sref.substr(3+4)) << "Active();" << endl;
+			outfile << "\tif (ix" << Prjshort << "VCard == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref) << ") return evalCrd" << StrMod::lc(car->sref.substr(3+4)) << "Active();" << endl;
 		};
 	};
 
@@ -960,17 +953,11 @@ void WznmWrsrvRootsess::writeSessCpp(
 	outfile << "\t\t\tconst uint ix" << Prjshort << "VCard" << endl;
 	outfile << "\t\t) {" << endl;
 
-	first = true;
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
 		car = cars.nodes[i];
 
 		if (car->sref.find("Nav") != (3+4)) {
-			outfile << "\t";
-
-			if (first) first = false;
-			else outfile << "else ";
-
-			outfile << "if (ix" << Prjshort << "VCard == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref)
+			outfile << "\tif (ix" << Prjshort << "VCard == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref)
 						<< ") return xchg->getIxPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "IXCRDACC" << StrMod::uc(car->sref.substr(3+4)) << ", jref);" << endl;
 		};
 	};
@@ -1182,7 +1169,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 	outfile << "\t" << Prjshort << "HistRMUserUniversal* husrRunv = NULL;" << endl;
 	outfile << endl;
 
-	outfile << "\tif (xchg->stg" << prjshort << "appearance.histlength > 0) {" << endl;
+	outfile << "\tif (xchg->stg" << prjshort << "behavior.histlength > 0) {" << endl;
 	outfile << "\t\tref" << Prjshort << "MUser = xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "OWNER, jref);" << endl;
 	outfile << "\t\tunvIx" << Prjshort << "VMaintable = crdToMtb(ix" << Prjshort << "VCard);" << endl;
 	outfile << "\t\tpreIx" << Prjshort << "VMaintable = preToMtb(ix" << Prjshort << "VPreset);" << endl;
@@ -1201,7 +1188,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 	outfile << "\t\t\tdbs" << prjshort << "->tbl" << prjshort << "histrmuseruniversal->insertRec(husrRunv);" << endl;
 	outfile << endl;
 
-	outfile << "\t\t\tdbs" << prjshort << "->tbl" << prjshort << "histrmuseruniversal->loadRefsByUsrMtbCrd(ref" << Prjshort << "MUser, unvIx" << Prjshort << "VMaintable, ix" << Prjshort << "VCard, false, refs, 4294967296, xchg->stg" << prjshort << "appearance.histlength);" << endl;
+	outfile << "\t\t\tdbs" << prjshort << "->tbl" << prjshort << "histrmuseruniversal->loadRefsByUsrMtbCrd(ref" << Prjshort << "MUser, unvIx" << Prjshort << "VMaintable, ix" << Prjshort << "VCard, false, refs, 4294967296, xchg->stg" << prjshort << "behavior.histlength);" << endl;
 	outfile << "\t\t\tfor (unsigned int i = 0; i < refs.size(); i++) dbs" << prjshort << "->tbl" << prjshort << "histrmuseruniversal->removeRecByRef(refs[i]);" << endl;
 	outfile << endl;
 
@@ -1220,8 +1207,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 	outfile << "uint Sess" << Prjshort << "::crdToMtb(" << endl;
 	outfile << "\t\t\tconst uint ix" << Prjshort << "VCard" << endl;
 	outfile << "\t\t) {" << endl;
-	
-	first = true;
+
 	for (unsigned int i = 0; i < cars.nodes.size(); i++) {
 		car = cars.nodes[i];
 
@@ -1233,11 +1219,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 			dbswznm->loadStringBySQL("SELECT TblWznmMTable.sref FROM TblWznmMTable, TblWznmMSubset WHERE TblWznmMTable.ref = TblWznmMSubset.refWznmMTable AND TblWznmMSubset.ref = " + to_string(car->refUref), s);
 		};
 
-		if (s.length() > 0) {
-			outfile << "\t";
-			if (first) first = false; else outfile << "else ";
-			outfile << "if (ix" << Prjshort << "VCard == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref) << ") return Vec" << Prjshort << "VMaintable::" << StrMod::uc(s) << ";" << endl;
-		};
+		if (s != "") outfile << "\tif (ix" << Prjshort << "VCard == Vec" << Prjshort << "VCard::" << StrMod::uc(car->sref) << ") return Vec" << Prjshort << "VMaintable::" << StrMod::uc(s) << ";" << endl;
 	};
 	outfile << endl;
 
@@ -1250,7 +1232,6 @@ void WznmWrsrvRootsess::writeSessCpp(
 	outfile << "\t\t\tconst uint ix" << Prjshort << "VPreset" << endl;
 	outfile << "\t\t) {" << endl;
 
-	first = true;
 	for (unsigned int i = 0; i < psts.nodes.size(); i++) {
 		pst = psts.nodes[i];
 
@@ -1263,11 +1244,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 						+ to_string(VecWznmVMTableBasetype::MAIN) + " AND TblWznmMSubset.ref = " + to_string(pst->refUref), s);
 		};
 
-		if (s.length() > 0) {
-			outfile << "\t";
-			if (first) first = false; else outfile << "else ";
-			outfile << "if (ix" << Prjshort << "VPreset == Vec" << Prjshort << "VPreset::" << StrMod::uc(pst->sref) << ") return Vec" << Prjshort << "VMaintable::" << StrMod::uc(s) << ";" << endl;
-		};
+		if (s != "") outfile << "\tif (ix" << Prjshort << "VPreset == Vec" << Prjshort << "VPreset::" << StrMod::uc(pst->sref) << ") return Vec" << Prjshort << "VMaintable::" << StrMod::uc(s) << ";" << endl;
 	};
 	outfile << endl;
 
@@ -1540,7 +1517,7 @@ void WznmWrsrvRootsess::writeSessCpp(
 	outfile << endl;
 
 	outfile << "\t} else if (ixInv == Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "TLAST) {" << endl;
-	outfile << "\t\tif (xchg->stg" << prjshort << "appearance.sesstterm != 0) xchg->addRefPreset(ixInv, jref, refInv);" << endl;
+	outfile << "\t\tif (xchg->stg" << prjshort << "behavior.sesstterm != 0) xchg->addRefPreset(ixInv, jref, refInv);" << endl;
 	outfile << endl;
 
 	first = true;

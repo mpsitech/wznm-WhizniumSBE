@@ -22,13 +22,13 @@ WznmMMethod::WznmMMethod(
 			, const string sref
 			, const bool Execsrv
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMJob = refWznmMJob;
-	this->sref = sref;
-	this->Execsrv = Execsrv;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMJob(refWznmMJob)
+			, sref(sref)
+			, Execsrv(Execsrv)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMMethod::operator==(

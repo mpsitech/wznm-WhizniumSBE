@@ -82,10 +82,9 @@ DlgWznmVerFinmod::ContInf::ContInf(
 			, const string& FnmTxtPrg
 		) :
 			Block()
+			, numFSge(numFSge)
+			, FnmTxtPrg(FnmTxtPrg)
 		{
-	this->numFSge = numFSge;
-	this->FnmTxtPrg = FnmTxtPrg;
-
 	mask = {NUMFSGE, FNMTXTPRG};
 };
 
@@ -97,7 +96,7 @@ void DlgWznmVerFinmod::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 	me["FnmTxtPrg"] = FnmTxtPrg;
 };
 
@@ -186,11 +185,10 @@ DlgWznmVerFinmod::StatShr::StatShr(
 			, const bool ButDneActive
 		) :
 			Block()
+			, FnmButRunActive(FnmButRunActive)
+			, FnmButStoActive(FnmButStoActive)
+			, ButDneActive(ButDneActive)
 		{
-	this->FnmButRunActive = FnmButRunActive;
-	this->FnmButStoActive = FnmButStoActive;
-	this->ButDneActive = ButDneActive;
-
 	mask = {FNMBUTRUNACTIVE, FNMBUTSTOACTIVE, BUTDNEACTIVE};
 };
 

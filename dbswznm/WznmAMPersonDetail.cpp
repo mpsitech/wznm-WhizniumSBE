@@ -21,12 +21,12 @@ WznmAMPersonDetail::WznmAMPersonDetail(
 			, const ubigint refWznmMPerson
 			, const string x1SrefKType
 			, const string Val
-		) {
-
-	this->ref = ref;
-	this->refWznmMPerson = refWznmMPerson;
-	this->x1SrefKType = x1SrefKType;
-	this->Val = Val;
+		) :
+			ref(ref)
+			, refWznmMPerson(refWznmMPerson)
+			, x1SrefKType(x1SrefKType)
+			, Val(Val)
+		{
 };
 
 bool WznmAMPersonDetail::operator==(

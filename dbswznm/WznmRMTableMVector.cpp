@@ -21,12 +21,12 @@ WznmRMTableMVector::WznmRMTableMVector(
 			, const ubigint refWznmMTable
 			, const ubigint refWznmMSubset
 			, const ubigint refWznmMVector
-		) {
-
-	this->ref = ref;
-	this->refWznmMTable = refWznmMTable;
-	this->refWznmMSubset = refWznmMSubset;
-	this->refWznmMVector = refWznmMVector;
+		) :
+			ref(ref)
+			, refWznmMTable(refWznmMTable)
+			, refWznmMSubset(refWznmMSubset)
+			, refWznmMVector(refWznmMVector)
+		{
 };
 
 bool WznmRMTableMVector::operator==(

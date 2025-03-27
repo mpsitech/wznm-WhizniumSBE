@@ -14,11 +14,11 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmOpxSqkMNStub.h"
 #include "PnlWznmOpxMNJob.h"
+#include "PnlWznmOpxSqkMNStub.h"
+#include "PnlWznmOpxAInvarg.h"
 #include "PnlWznmOpxRef1NBlock.h"
 #include "PnlWznmOpxARetval.h"
-#include "PnlWznmOpxAInvarg.h"
 #include "PnlWznmOpxDetail.h"
 
 #define VecVWznmOpxRecDo PnlWznmOpxRec::VecVDo
@@ -77,8 +77,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneAInvarg = false, const bool initdoneARetval = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const bool initdoneDetail = false, const bool initdoneARetval = false, const bool initdoneAInvarg = false, const bool initdoneRef1NBlock = false, const bool initdoneMNJob = false, const bool initdoneSqkMNStub = false);
 	};
 
 	/**
@@ -89,8 +89,8 @@ public:
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint JREFDETAIL = 2;
-		static const Sbecore::uint JREFAINVARG = 3;
-		static const Sbecore::uint JREFARETVAL = 4;
+		static const Sbecore::uint JREFARETVAL = 3;
+		static const Sbecore::uint JREFAINVARG = 4;
 		static const Sbecore::uint JREFREF1NBLOCK = 5;
 		static const Sbecore::uint JREFMNJOB = 6;
 		static const Sbecore::uint JREFSQKMNSTUB = 7;
@@ -98,13 +98,13 @@ public:
 		static const Sbecore::uint BUTREGULARIZEACTIVE = 9;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefAInvarg = 0, const Sbecore::ubigint jrefARetval = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefMNJob = 0, const Sbecore::ubigint jrefSqkMNStub = 0, const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const Sbecore::ubigint jrefDetail = 0, const Sbecore::ubigint jrefARetval = 0, const Sbecore::ubigint jrefAInvarg = 0, const Sbecore::ubigint jrefRef1NBlock = 0, const Sbecore::ubigint jrefMNJob = 0, const Sbecore::ubigint jrefSqkMNStub = 0, const bool pnlsqkmnstubAvail = false, const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		Sbecore::ubigint jrefDetail;
-		Sbecore::ubigint jrefAInvarg;
 		Sbecore::ubigint jrefARetval;
+		Sbecore::ubigint jrefAInvarg;
 		Sbecore::ubigint jrefRef1NBlock;
 		Sbecore::ubigint jrefMNJob;
 		Sbecore::ubigint jrefSqkMNStub;
@@ -189,11 +189,11 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
 	PnlWznmOpxMNJob* pnlmnjob;
+	PnlWznmOpxSqkMNStub* pnlsqkmnstub;
+	PnlWznmOpxAInvarg* pnlainvarg;
 	PnlWznmOpxRef1NBlock* pnlref1nblock;
 	PnlWznmOpxARetval* pnlaretval;
-	PnlWznmOpxAInvarg* pnlainvarg;
 	PnlWznmOpxDetail* pnldetail;
 
 	WznmMOp recOpx;

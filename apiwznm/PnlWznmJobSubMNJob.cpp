@@ -49,9 +49,8 @@ PnlWznmJobSubMNJob::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -110,9 +109,8 @@ PnlWznmJobSubMNJob::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -180,13 +178,12 @@ PnlWznmJobSubMNJob::StatShr::StatShr(
 			, const bool ButSubActive
 		) :
 			Block()
+			, ButViewAvail(ButViewAvail)
+			, ButViewActive(ButViewActive)
+			, ButAddAvail(ButAddAvail)
+			, ButSubAvail(ButSubAvail)
+			, ButSubActive(ButSubActive)
 		{
-	this->ButViewAvail = ButViewAvail;
-	this->ButViewActive = ButViewActive;
-	this->ButAddAvail = ButAddAvail;
-	this->ButSubAvail = ButSubAvail;
-	this->ButSubActive = ButSubActive;
-
 	mask = {BUTVIEWAVAIL, BUTVIEWACTIVE, BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
 };
 
@@ -256,12 +253,11 @@ PnlWznmJobSubMNJob::StgIac::StgIac(
 			, const uint TcoCsaWidth
 		) :
 			Block()
+			, TcoMrefWidth(TcoMrefWidth)
+			, TcoShoWidth(TcoShoWidth)
+			, TcoMltWidth(TcoMltWidth)
+			, TcoCsaWidth(TcoCsaWidth)
 		{
-	this->TcoMrefWidth = TcoMrefWidth;
-	this->TcoShoWidth = TcoShoWidth;
-	this->TcoMltWidth = TcoMltWidth;
-	this->TcoCsaWidth = TcoCsaWidth;
-
 	mask = {TCOMREFWIDTH, TCOSHOWIDTH, TCOMLTWIDTH, TCOCSAWIDTH};
 };
 
@@ -354,18 +350,17 @@ PnlWznmJobSubMNJob::Tag::Tag(
 			, const string& TcoCsa
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoMref(TcoMref)
+			, TcoSho(TcoSho)
+			, TcoMlt(TcoMlt)
+			, TcoCsa(TcoCsa)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoMref = TcoMref;
-	this->TcoSho = TcoSho;
-	this->TcoMlt = TcoMlt;
-	this->TcoCsa = TcoCsa;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOMREF, TCOSHO, TCOMLT, TCOCSA};
 };
 
@@ -454,11 +449,11 @@ PnlWznmJobSubMNJob::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMJOBSUBMNJOBDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmJobSubMNJob::DpchAppDo::getSrefsMask() {

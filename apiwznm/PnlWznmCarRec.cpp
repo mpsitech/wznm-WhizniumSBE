@@ -45,9 +45,8 @@ PnlWznmCarRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -109,12 +108,11 @@ PnlWznmCarRec::StatApp::StatApp(
 			, const bool initdoneHk1NControl
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneCar1NPanel(initdoneCar1NPanel)
+			, initdone1NDialog(initdone1NDialog)
+			, initdoneHk1NControl(initdoneHk1NControl)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneCar1NPanel = initdoneCar1NPanel;
-	this->initdone1NDialog = initdone1NDialog;
-	this->initdoneHk1NControl = initdoneHk1NControl;
-
 	mask = {INITDONEDETAIL, INITDONECAR1NPANEL, INITDONE1NDIALOG, INITDONEHK1NCONTROL};
 };
 
@@ -184,14 +182,13 @@ PnlWznmCarRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefCar1NPanel(scrJrefCar1NPanel)
+			, scrJref1NDialog(scrJref1NDialog)
+			, scrJrefHk1NControl(scrJrefHk1NControl)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefCar1NPanel = scrJrefCar1NPanel;
-	this->scrJref1NDialog = scrJref1NDialog;
-	this->scrJrefHk1NControl = scrJrefHk1NControl;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFCAR1NPANEL, SCRJREF1NDIALOG, SCRJREFHK1NCONTROL, BUTREGULARIZEACTIVE};
 };
 
@@ -265,9 +262,8 @@ PnlWznmCarRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -304,11 +300,11 @@ PnlWznmCarRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMCARRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmCarRec::DpchAppDo::getSrefsMask() {

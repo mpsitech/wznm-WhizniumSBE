@@ -24,8 +24,8 @@ uint QryWznmPnlList::VecVOrd::getIx(
 
 	if (s == "reu") return REU;
 	if (s == "ret") return RET;
-	if (s == "car") return CAR;
 	if (s == "typ") return TYP;
+	if (s == "car") return CAR;
 	if (s == "srf") return SRF;
 
 	return(0);
@@ -36,8 +36,8 @@ string QryWznmPnlList::VecVOrd::getSref(
 		) {
 	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
-	if (ix == CAR) return("car");
 	if (ix == TYP) return("typ");
+	if (ix == CAR) return("car");
 	if (ix == SRF) return("srf");
 
 	return("");
@@ -54,12 +54,11 @@ QryWznmPnlList::StatApp::StatApp(
 			, const uint ndisp
 		) :
 			Block()
+			, firstcol(firstcol)
+			, jnumFirstdisp(jnumFirstdisp)
+			, ncol(ncol)
+			, ndisp(ndisp)
 		{
-	this->firstcol = firstcol;
-	this->jnumFirstdisp = jnumFirstdisp;
-	this->ncol = ncol;
-	this->ndisp = ndisp;
-
 	mask = {FIRSTCOL, JNUMFIRSTDISP, NCOL, NDISP};
 };
 
@@ -126,11 +125,10 @@ QryWznmPnlList::StatShr::StatShr(
 			, const uint nload
 		) :
 			Block()
+			, ntot(ntot)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->ntot = ntot;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -195,11 +193,10 @@ QryWznmPnlList::StgIac::StgIac(
 			, const uint nload
 		) :
 			Block()
+			, jnum(jnum)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->jnum = jnum;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 

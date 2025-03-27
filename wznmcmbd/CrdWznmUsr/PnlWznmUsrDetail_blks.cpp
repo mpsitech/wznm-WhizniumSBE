@@ -53,15 +53,14 @@ PnlWznmUsrDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupJst(numFPupJst)
+			, numFPupSte(numFPupSte)
+			, numFPupLcl(numFPupLcl)
+			, numFPupUlv(numFPupUlv)
+			, TxfPwd(TxfPwd)
+			, TxfFky(TxfFky)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupJst = numFPupJst;
-	this->numFPupSte = numFPupSte;
-	this->numFPupLcl = numFPupLcl;
-	this->numFPupUlv = numFPupUlv;
-	this->TxfPwd = TxfPwd;
-	this->TxfFky = TxfFky;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPJST, NUMFPUPSTE, NUMFPUPLCL, NUMFPUPULV, TXFPWD, TXFFKY, TXFCMT};
 };
 
@@ -127,10 +126,10 @@ void PnlWznmUsrDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupJst"] = numFPupJst;
-	me["numFPupSte"] = numFPupSte;
-	me["numFPupLcl"] = numFPupLcl;
-	me["numFPupUlv"] = numFPupUlv;
+	me["numFPupJst"] = (Json::Value::UInt) numFPupJst;
+	me["numFPupSte"] = (Json::Value::UInt) numFPupSte;
+	me["numFPupLcl"] = (Json::Value::UInt) numFPupLcl;
+	me["numFPupUlv"] = (Json::Value::UInt) numFPupUlv;
 	me["TxfPwd"] = TxfPwd;
 	me["TxfFky"] = TxfFky;
 	me["TxfCmt"] = TxfCmt;
@@ -198,11 +197,10 @@ PnlWznmUsrDetail::ContInf::ContInf(
 			, const string& TxtUsg
 		) :
 			Block()
+			, TxtPrs(TxtPrs)
+			, TxtSrf(TxtSrf)
+			, TxtUsg(TxtUsg)
 		{
-	this->TxtPrs = TxtPrs;
-	this->TxtSrf = TxtSrf;
-	this->TxtUsg = TxtUsg;
-
 	mask = {TXTPRS, TXTSRF, TXTUSG};
 };
 
@@ -320,25 +318,24 @@ PnlWznmUsrDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtPrsActive(TxtPrsActive)
+			, ButPrsViewAvail(ButPrsViewAvail)
+			, ButPrsViewActive(ButPrsViewActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxtUsgActive(TxtUsgActive)
+			, ButUsgViewAvail(ButUsgViewAvail)
+			, ButUsgViewActive(ButUsgViewActive)
+			, PupJstActive(PupJstActive)
+			, ButJstEditAvail(ButJstEditAvail)
+			, PupSteActive(PupSteActive)
+			, PupLclActive(PupLclActive)
+			, PupUlvActive(PupUlvActive)
+			, TxfPwdActive(TxfPwdActive)
+			, TxfFkyActive(TxfFkyActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtPrsActive = TxtPrsActive;
-	this->ButPrsViewAvail = ButPrsViewAvail;
-	this->ButPrsViewActive = ButPrsViewActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxtUsgActive = TxtUsgActive;
-	this->ButUsgViewAvail = ButUsgViewAvail;
-	this->ButUsgViewActive = ButUsgViewActive;
-	this->PupJstActive = PupJstActive;
-	this->ButJstEditAvail = ButJstEditAvail;
-	this->PupSteActive = PupSteActive;
-	this->PupLclActive = PupLclActive;
-	this->PupUlvActive = PupUlvActive;
-	this->TxfPwdActive = TxfPwdActive;
-	this->TxfFkyActive = TxfFkyActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTPRSACTIVE, BUTPRSVIEWAVAIL, BUTPRSVIEWACTIVE, TXTSRFACTIVE, TXTUSGACTIVE, BUTUSGVIEWAVAIL, BUTUSGVIEWACTIVE, PUPJSTACTIVE, BUTJSTEDITAVAIL, PUPSTEACTIVE, PUPLCLACTIVE, PUPULVACTIVE, TXFPWDACTIVE, TXFFKYACTIVE, TXFCMTACTIVE};
 };
 

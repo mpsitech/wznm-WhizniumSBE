@@ -46,10 +46,9 @@ PnlWznmChkDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPTYP, TXFCMT};
 };
 
@@ -105,7 +104,7 @@ void PnlWznmChkDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupTyp"] = numFPupTyp;
+	me["numFPupTyp"] = (Json::Value::UInt) numFPupTyp;
 	me["TxfCmt"] = TxfCmt;
 };
 
@@ -162,12 +161,11 @@ PnlWznmChkDetail::ContInf::ContInf(
 			, const string& TxtCal
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTbl(TxtTbl)
+			, TxtTco(TxtTco)
+			, TxtCal(TxtCal)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTbl = TxtTbl;
-	this->TxtTco = TxtTco;
-	this->TxtCal = TxtCal;
-
 	mask = {TXTSRF, TXTTBL, TXTTCO, TXTCAL};
 };
 
@@ -283,20 +281,19 @@ PnlWznmChkDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupTypActive(PupTypActive)
+			, TxtTblActive(TxtTblActive)
+			, TxtTcoActive(TxtTcoActive)
+			, ButTcoViewAvail(ButTcoViewAvail)
+			, ButTcoViewActive(ButTcoViewActive)
+			, TxtCalActive(TxtCalActive)
+			, ButCalViewAvail(ButCalViewAvail)
+			, ButCalViewActive(ButCalViewActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtTblActive = TxtTblActive;
-	this->TxtTcoActive = TxtTcoActive;
-	this->ButTcoViewAvail = ButTcoViewAvail;
-	this->ButTcoViewActive = ButTcoViewActive;
-	this->TxtCalActive = TxtCalActive;
-	this->ButCalViewAvail = ButCalViewAvail;
-	this->ButCalViewActive = ButCalViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTTBLACTIVE, TXTTCOACTIVE, BUTTCOVIEWAVAIL, BUTTCOVIEWACTIVE, TXTCALACTIVE, BUTCALVIEWAVAIL, BUTCALVIEWACTIVE, TXFCMTACTIVE};
 };
 

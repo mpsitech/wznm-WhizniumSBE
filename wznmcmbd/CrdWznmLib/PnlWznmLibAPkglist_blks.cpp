@@ -47,9 +47,8 @@ PnlWznmLibAPkglist::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -61,7 +60,7 @@ void PnlWznmLibAPkglist::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmLibAPkglist::ContInf::writeXML(
@@ -149,13 +148,12 @@ PnlWznmLibAPkglist::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -231,9 +229,9 @@ PnlWznmLibAPkglist::StgIac::StgIac(
 			, const uint TcoPklWidth
 		) :
 			Block()
+			, TcoMchWidth(TcoMchWidth)
+			, TcoPklWidth(TcoPklWidth)
 		{
-	this->TcoMchWidth = TcoMchWidth;
-	this->TcoPklWidth = TcoPklWidth;
 	mask = {TCOMCHWIDTH, TCOPKLWIDTH};
 };
 
@@ -289,8 +287,8 @@ void PnlWznmLibAPkglist::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoMchWidth"] = TcoMchWidth;
-	me["TcoPklWidth"] = TcoPklWidth;
+	me["TcoMchWidth"] = (Json::Value::UInt) TcoMchWidth;
+	me["TcoPklWidth"] = (Json::Value::UInt) TcoPklWidth;
 };
 
 void PnlWznmLibAPkglist::StgIac::writeXML(

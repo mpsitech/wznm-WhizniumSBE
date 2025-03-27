@@ -33,22 +33,23 @@ WznmQPnlList::WznmQPnlList(
 			, const string titRefIxVTbl
 			, const ubigint refUref
 			, const string stubRefUref
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->carRefWznmMCard = carRefWznmMCard;
-	this->stubCarRefWznmMCard = stubCarRefWznmMCard;
-	this->refIxVTbl = refIxVTbl;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->refUref = refUref;
-	this->stubRefUref = stubRefUref;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, carRefWznmMCard(carRefWznmMCard)
+			, stubCarRefWznmMCard(stubCarRefWznmMCard)
+			, refIxVTbl(refIxVTbl)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, refUref(refUref)
+			, stubRefUref(stubRefUref)
+		{
 };
 
 void WznmQPnlList::writeJSON(

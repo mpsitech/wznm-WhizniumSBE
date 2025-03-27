@@ -27,16 +27,17 @@ WznmQLibList::WznmQLibList(
 			, const string Version
 			, const string srefKLictype
 			, const string titSrefKLictype
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->Version = Version;
-	this->srefKLictype = srefKLictype;
-	this->titSrefKLictype = titSrefKLictype;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, Version(Version)
+			, srefKLictype(srefKLictype)
+			, titSrefKLictype(titSrefKLictype)
+		{
 };
 
 void WznmQLibList::writeJSON(

@@ -27,18 +27,18 @@ WznmAMOpInvarg::WznmAMOpInvarg(
 			, const string Defval
 			, const ubigint refWznmMVectoritem
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmCAMOpInvarg = refWznmCAMOpInvarg;
-	this->opxRefWznmMOp = opxRefWznmMOp;
-	this->opxNum = opxNum;
-	this->sref = sref;
-	this->ixWznmVVartype = ixWznmVVartype;
-	this->refWznmMVector = refWznmMVector;
-	this->Defval = Defval;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmCAMOpInvarg(refWznmCAMOpInvarg)
+			, opxRefWznmMOp(opxRefWznmMOp)
+			, opxNum(opxNum)
+			, sref(sref)
+			, ixWznmVVartype(ixWznmVVartype)
+			, refWznmMVector(refWznmMVector)
+			, Defval(Defval)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, Comment(Comment)
+		{
 };
 
 bool WznmAMOpInvarg::operator==(

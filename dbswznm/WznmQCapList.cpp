@@ -31,20 +31,21 @@ WznmQCapList::WznmQCapList(
 			, const uint ixWArtefact
 			, const string srefsIxWArtefact
 			, const string titsIxWArtefact
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->tplRefWznmMCapability = tplRefWznmMCapability;
-	this->stubTplRefWznmMCapability = stubTplRefWznmMCapability;
-	this->ixWArtefact = ixWArtefact;
-	this->srefsIxWArtefact = srefsIxWArtefact;
-	this->titsIxWArtefact = titsIxWArtefact;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, tplRefWznmMCapability(tplRefWznmMCapability)
+			, stubTplRefWznmMCapability(stubTplRefWznmMCapability)
+			, ixWArtefact(ixWArtefact)
+			, srefsIxWArtefact(srefsIxWArtefact)
+			, titsIxWArtefact(titsIxWArtefact)
+		{
 };
 
 void WznmQCapList::writeJSON(

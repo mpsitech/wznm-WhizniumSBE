@@ -1,0 +1,37 @@
+# file Makefile
+# make file for CrdWznmVis card job handler, release wznmd_mac
+# copyright: (C) 2016-2020 MPSI Technologies GmbH
+# author: Alexander Wirthmueller (auto-generation)
+# date created: 5 Jan 2025
+# IP header --- ABOVE
+
+include ../Makefile.inc
+
+CPP = g++
+CPPFLAGS = -std=c++11 -g -Wall -Os -pthread -DWZNMD
+
+STATLIB = ar
+STATLIBFLAGS = rcs
+
+INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmd/VecWznm -I$(BUILDROOT)/wznmd/IexWznm -I$(BUILDROOT)/wznmd
+INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/opt/homebrew/include -I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/libgit2/include -I/opt/homebrew/opt/libmicrohttpd/include -I/opt/homebrew/opt/libxml2/include -I/opt/homebrew/opt/openssl@3/include -I/usr/local/mysql/include
+
+OBJS = CrdWznmVis.o PnlWznmVisHeadbar.o PnlWznmVisList.o QryWznmVisList.o PnlWznmVisRec.o PnlWznmVisRef1NFile.o QryWznmVisRef1NFile.o PnlWznmVisDetail.o PnlWznmVisVis1NSheet.o QryWznmVisVis1NSheet.o DlgWznmVisWrite.o QryWznmVisBoxctx.o QryWznmVisLinkctx.o QryWznmVisRowctx.o DlgWznmVisExpstr.o DlgWznmVisMissfeat.o DlgWznmVisNew.o DlgWznmVisImpstr.o
+
+LIB = libcrdwznmvis
+
+.SUFFIXES: .cpp
+
+.cpp.o :
+	$(CPP) $(CPPFLAGS) $(INCPATH) -o $@ -c $<
+
+all:	$(LIB)
+
+$(LIB):	$(OBJS)
+	$(STATLIB) $(STATLIBFLAGS) $(LIB).a $(OBJS)
+
+install:
+	mv $(LIB).a $(LIBROOT)/wznmd/
+
+clean:
+	rm -f *.o

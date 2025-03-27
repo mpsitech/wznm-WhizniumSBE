@@ -144,12 +144,16 @@ public:
 	bool evalMitCrdCmpAvail(DbsWznm* dbswznm);
 	bool evalMitCrdRlsAvail(DbsWznm* dbswznm);
 	bool evalMspCrd9Avail(DbsWznm* dbswznm);
+	bool evalMitCrdVisAvail(DbsWznm* dbswznm);
+	bool evalMitCrdShtAvail(DbsWznm* dbswznm);
+	bool evalMitCrdBoxAvail(DbsWznm* dbswznm);
+	bool evalMspCrd10Avail(DbsWznm* dbswznm);
 	bool evalMitCrdAppAvail(DbsWznm* dbswznm);
 	bool evalMitCrdRtjAvail(DbsWznm* dbswznm);
 	bool evalMitCrdEvtAvail(DbsWznm* dbswznm);
 	bool evalMitCrdSeqAvail(DbsWznm* dbswznm);
 	bool evalMitCrdSteAvail(DbsWznm* dbswznm);
-	bool evalMspCrd10Avail(DbsWznm* dbswznm);
+	bool evalMspCrd11Avail(DbsWznm* dbswznm);
 	bool evalMitCrdUtlAvail(DbsWznm* dbswznm);
 
 public:

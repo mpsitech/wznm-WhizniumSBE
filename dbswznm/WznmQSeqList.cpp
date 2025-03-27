@@ -26,15 +26,16 @@ WznmQSeqList::WznmQSeqList(
 			, const string Title
 			, const ubigint appRefWznmMApp
 			, const string stubAppRefWznmMApp
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->appRefWznmMApp = appRefWznmMApp;
-	this->stubAppRefWznmMApp = stubAppRefWznmMApp;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, appRefWznmMApp(appRefWznmMApp)
+			, stubAppRefWznmMApp(stubAppRefWznmMApp)
+		{
 };
 
 void WznmQSeqList::writeJSON(

@@ -1572,7 +1572,7 @@ void WznmWrsrvPnl::writePnlCpp(
 			outfile << "\tif (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);" << endl;
 
 		} else {
-			outfile << "\t// IP refresh --- INSERT" << endl;
+			outfile << "\t// IP refresh --- LINE" << endl;
 		};
 
 	} else if (pnl->ixVBasetype == VecWznmVMPanelBasetype::LIST) {

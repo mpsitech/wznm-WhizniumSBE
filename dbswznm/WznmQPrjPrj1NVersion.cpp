@@ -24,13 +24,14 @@ WznmQPrjPrj1NVersion::WznmQPrjPrj1NVersion(
 			, const ubigint ref
 			, const string stubRef
 			, const uint prjNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->prjNum = prjNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, prjNum(prjNum)
+		{
 };
 
 void WznmQPrjPrj1NVersion::writeJSON(

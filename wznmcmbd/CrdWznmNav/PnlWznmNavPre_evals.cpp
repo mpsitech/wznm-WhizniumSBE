@@ -38,3 +38,17 @@ bool PnlWznmNavPre::evalTxtVerAvail(
 
 	return(args.back());
 };
+
+bool PnlWznmNavPre::evalTxtVisAvail(
+			DbsWznm* dbswznm
+		) {
+	// pre.refVis()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVIS, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};

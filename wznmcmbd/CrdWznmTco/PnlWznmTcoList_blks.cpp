@@ -51,9 +51,8 @@ PnlWznmTcoList::ContIac::ContIac(
 			const uint numFTos
 		) :
 			Block()
+			, numFTos(numFTos)
 		{
-	this->numFTos = numFTos;
-
 	mask = {NUMFTOS};
 };
 
@@ -107,7 +106,7 @@ void PnlWznmTcoList::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFTos"] = numFTos;
+	me["numFTos"] = (Json::Value::UInt) numFTos;
 };
 
 void PnlWznmTcoList::ContIac::writeXML(
@@ -161,12 +160,11 @@ PnlWznmTcoList::ContInf::ContInf(
 			, const uint numFCsiQst
 		) :
 			Block()
+			, TxtFor(TxtFor)
+			, TxtPre(TxtPre)
+			, ButFilterOn(ButFilterOn)
+			, numFCsiQst(numFCsiQst)
 		{
-	this->TxtFor = TxtFor;
-	this->TxtPre = TxtPre;
-	this->ButFilterOn = ButFilterOn;
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {TXTFOR, TXTPRE, BUTFILTERON, NUMFCSIQST};
 };
 
@@ -181,7 +179,7 @@ void PnlWznmTcoList::ContInf::writeJSON(
 	me["TxtFor"] = TxtFor;
 	me["TxtPre"] = TxtPre;
 	me["ButFilterOn"] = ButFilterOn;
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmTcoList::ContInf::writeXML(
@@ -239,10 +237,9 @@ PnlWznmTcoList::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {IXWZNMVEXPSTATE, BUTDELETEACTIVE};
 };
 
@@ -314,14 +311,14 @@ PnlWznmTcoList::StgIac::StgIac(
 			, const uint TcoAxfWidth
 		) :
 			Block()
+			, TcoSrfWidth(TcoSrfWidth)
+			, TcoShoWidth(TcoShoWidth)
+			, TcoTypWidth(TcoTypWidth)
+			, TcoTblWidth(TcoTblWidth)
+			, TcoFctWidth(TcoFctWidth)
+			, TcoStyWidth(TcoStyWidth)
+			, TcoAxfWidth(TcoAxfWidth)
 		{
-	this->TcoSrfWidth = TcoSrfWidth;
-	this->TcoShoWidth = TcoShoWidth;
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoTblWidth = TcoTblWidth;
-	this->TcoFctWidth = TcoFctWidth;
-	this->TcoStyWidth = TcoStyWidth;
-	this->TcoAxfWidth = TcoAxfWidth;
 	mask = {TCOSRFWIDTH, TCOSHOWIDTH, TCOTYPWIDTH, TCOTBLWIDTH, TCOFCTWIDTH, TCOSTYWIDTH, TCOAXFWIDTH};
 };
 
@@ -387,13 +384,13 @@ void PnlWznmTcoList::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoSrfWidth"] = TcoSrfWidth;
-	me["TcoShoWidth"] = TcoShoWidth;
-	me["TcoTypWidth"] = TcoTypWidth;
-	me["TcoTblWidth"] = TcoTblWidth;
-	me["TcoFctWidth"] = TcoFctWidth;
-	me["TcoStyWidth"] = TcoStyWidth;
-	me["TcoAxfWidth"] = TcoAxfWidth;
+	me["TcoSrfWidth"] = (Json::Value::UInt) TcoSrfWidth;
+	me["TcoShoWidth"] = (Json::Value::UInt) TcoShoWidth;
+	me["TcoTypWidth"] = (Json::Value::UInt) TcoTypWidth;
+	me["TcoTblWidth"] = (Json::Value::UInt) TcoTblWidth;
+	me["TcoFctWidth"] = (Json::Value::UInt) TcoFctWidth;
+	me["TcoStyWidth"] = (Json::Value::UInt) TcoStyWidth;
+	me["TcoAxfWidth"] = (Json::Value::UInt) TcoAxfWidth;
 };
 
 void PnlWznmTcoList::StgIac::writeXML(
@@ -467,7 +464,7 @@ void PnlWznmTcoList::Tag::writeJSON(
 		me["TcoSho"] = "Acronym";
 		me["TcoTyp"] = "Type";
 		me["TcoTbl"] = "Table";
-		me["TcoFct"] = "Function table of reference";
+		me["TcoFct"] = "FctIxVTbl";
 		me["TcoSty"] = "Subtype";
 		me["TcoAxf"] = "Axis functionality";
 	};
@@ -498,7 +495,7 @@ void PnlWznmTcoList::Tag::writeXML(
 			writeStringAttr(wr, itemtag, "sref", "TcoSho", "Acronym");
 			writeStringAttr(wr, itemtag, "sref", "TcoTyp", "Type");
 			writeStringAttr(wr, itemtag, "sref", "TcoTbl", "Table");
-			writeStringAttr(wr, itemtag, "sref", "TcoFct", "Function table of reference");
+			writeStringAttr(wr, itemtag, "sref", "TcoFct", "FctIxVTbl");
 			writeStringAttr(wr, itemtag, "sref", "TcoSty", "Subtype");
 			writeStringAttr(wr, itemtag, "sref", "TcoAxf", "Axis functionality");
 		};

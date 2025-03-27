@@ -27,16 +27,16 @@ WznmMQuerymod::WznmMQuerymod(
 			, const uint refIxVTbl
 			, const ubigint refUref
 			, const string Avail
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->qryRefWznmMQuery = qryRefWznmMQuery;
-	this->qryNum = qryNum;
-	this->refWznmMPreset = refWznmMPreset;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->Avail = Avail;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, qryRefWznmMQuery(qryRefWznmMQuery)
+			, qryNum(qryNum)
+			, refWznmMPreset(refWznmMPreset)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, Avail(Avail)
+		{
 };
 
 bool WznmMQuerymod::operator==(

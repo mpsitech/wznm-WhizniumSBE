@@ -25,14 +25,15 @@ WznmQCarList::WznmQCarList(
 			, const string srefRefIxVTbl
 			, const string titRefIxVTbl
 			, const string stubRefUref
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->stubMdlRefWznmMModule = stubMdlRefWznmMModule;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->stubRefUref = stubRefUref;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, stubMdlRefWznmMModule(stubMdlRefWznmMModule)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, stubRefUref(stubRefUref)
+		{
 };
 
 bool WznmQCarList::readXML(

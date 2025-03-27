@@ -61,7 +61,7 @@ RootWznm::RootWznm(
 
 	// IP constructor.cust3 --- INSERT
 
-	if (xchg->stgwznmappearance.roottterm != 0) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * xchg->stgwznmappearance.roottterm);
+	if (xchg->stgwznmbehavior.roottterm != 0) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * xchg->stgwznmbehavior.roottterm);
 };
 
 RootWznm::~RootWznm() {
@@ -161,6 +161,7 @@ void RootWznm::clearAll(
 	dbswznm->executeQuery("DELETE FROM TblWznmJMVersionState");
 	dbswznm->executeQuery("DELETE FROM TblWznmMApp");
 	dbswznm->executeQuery("DELETE FROM TblWznmMBlock");
+	dbswznm->executeQuery("DELETE FROM TblWznmMBox");
 	dbswznm->executeQuery("DELETE FROM TblWznmMCall");
 	dbswznm->executeQuery("DELETE FROM TblWznmMCapability");
 	dbswznm->executeQuery("DELETE FROM TblWznmMCard");
@@ -198,6 +199,7 @@ void RootWznm::clearAll(
 	dbswznm->executeQuery("DELETE FROM TblWznmMSensitivity");
 	dbswznm->executeQuery("DELETE FROM TblWznmMSequence");
 	dbswznm->executeQuery("DELETE FROM TblWznmMSession");
+	dbswznm->executeQuery("DELETE FROM TblWznmMSheet");
 	dbswznm->executeQuery("DELETE FROM TblWznmMSquawk");
 	dbswznm->executeQuery("DELETE FROM TblWznmMStage");
 	dbswznm->executeQuery("DELETE FROM TblWznmMState");
@@ -211,6 +213,8 @@ void RootWznm::clearAll(
 	dbswznm->executeQuery("DELETE FROM TblWznmMVector");
 	dbswznm->executeQuery("DELETE FROM TblWznmMVectoritem");
 	dbswznm->executeQuery("DELETE FROM TblWznmMVersion");
+	dbswznm->executeQuery("DELETE FROM TblWznmMVisual");
+	dbswznm->executeQuery("DELETE FROM TblWznmRMBoxMBox");
 	dbswznm->executeQuery("DELETE FROM TblWznmRMCallMStub");
 	dbswznm->executeQuery("DELETE FROM TblWznmRMCapabilityUniversal");
 	dbswznm->executeQuery("DELETE FROM TblWznmRMComponentMLibrary");
@@ -280,6 +284,9 @@ void RootWznm::clearQtb(
 	dbswznm->executeQuery("DELETE FROM TblWznmQBlkAItem");
 	dbswznm->executeQuery("DELETE FROM TblWznmQBlkList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQBlkRef1NRtblock");
+	dbswznm->executeQuery("DELETE FROM TblWznmQBoxDstMNBox");
+	dbswznm->executeQuery("DELETE FROM TblWznmQBoxList");
+	dbswznm->executeQuery("DELETE FROM TblWznmQBoxOrgMNBox");
 	dbswznm->executeQuery("DELETE FROM TblWznmQCal1NSensitivity");
 	dbswznm->executeQuery("DELETE FROM TblWznmQCalList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQCalMNStub");
@@ -419,6 +426,8 @@ void RootWznm::clearQtb(
 	dbswznm->executeQuery("DELETE FROM TblWznmQSge1NSensitivity");
 	dbswznm->executeQuery("DELETE FROM TblWznmQSgeList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQSgeSqkMNStub");
+	dbswznm->executeQuery("DELETE FROM TblWznmQSht1NBox");
+	dbswznm->executeQuery("DELETE FROM TblWznmQShtList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQStbList");
 	dbswznm->executeQuery("DELETE FROM TblWznmQStbMNCall");
 	dbswznm->executeQuery("DELETE FROM TblWznmQStbMNSquawk");
@@ -490,6 +499,13 @@ void RootWznm::clearQtb(
 	dbswznm->executeQuery("DELETE FROM TblWznmQVerVer1NApp");
 	dbswznm->executeQuery("DELETE FROM TblWznmQVerVer1NError");
 	dbswznm->executeQuery("DELETE FROM TblWznmQVerVer1NModule");
+	dbswznm->executeQuery("DELETE FROM TblWznmQVerVer1NVisual");
+	dbswznm->executeQuery("DELETE FROM TblWznmQVisBoxctx");
+	dbswznm->executeQuery("DELETE FROM TblWznmQVisLinkctx");
+	dbswznm->executeQuery("DELETE FROM TblWznmQVisList");
+	dbswznm->executeQuery("DELETE FROM TblWznmQVisRef1NFile");
+	dbswznm->executeQuery("DELETE FROM TblWznmQVisRowctx");
+	dbswznm->executeQuery("DELETE FROM TblWznmQVisVis1NSheet");
 	dbswznm->executeQuery("DELETE FROM TblWznmQVitList");
 };
 
@@ -617,7 +633,7 @@ bool RootWznm::handleCreateSess(
 		xchg->jrefCmd = insertSubjob(sesss, new SessWznm(xchg, dbswznm, jref, refUsr, "127.0.0.1"));
 		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 
-		if ((xchg->stgwznmappearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwznmappearance.sesstterm - xchg->stgwznmappearance.sesstwarn));
+		if ((xchg->stgwznmbehavior.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwznmbehavior.sesstterm - xchg->stgwznmbehavior.sesstwarn));
 
 		xchg->appendToLogfile("command line session created for user '" + input + "'");
 
@@ -859,7 +875,7 @@ void RootWznm::handleDpchAppLogin(
 	// verify password
 	if (authenticate(dbswznm, StrMod::lc(dpchapplogin->username), dpchapplogin->password, refUsr)) {
 		if (!(dpchapplogin->m2mNotReg)) {
-			if (xchg->stgwznmappearance.suspsess && dpchapplogin->chksuspsess) {
+			if (xchg->stgwznmbehavior.suspsess && dpchapplogin->chksuspsess) {
 				// look for suspended sessions
 				for (auto it = sesss.begin(); it != sesss.end(); it++) {
 					jrefSess = it->second->jref;
@@ -877,7 +893,7 @@ void RootWznm::handleDpchAppLogin(
 				// start new session
 				jrefSess = insertSubjob(sesss, new SessWznm(xchg, dbswznm, jref, refUsr, ip));
 
-				if ((xchg->stgwznmappearance.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwznmappearance.sesstterm - xchg->stgwznmappearance.sesstwarn));
+				if ((xchg->stgwznmbehavior.sesstterm != 0) && (sesss.size() == 1)) wrefLast = xchg->addWakeup(jref, "warnterm", 1e6 * (xchg->stgwznmbehavior.sesstterm - xchg->stgwznmbehavior.sesstwarn));
 
 				xchg->appendToLogfile("session created for user '" + dpchapplogin->username + "' from IP " + ip);
 
@@ -917,7 +933,7 @@ void RootWznm::handleTimerWithSrefWarnterm(
 
 	bool term;
 
-	if (xchg->stgwznmappearance.sesstterm != 0) {
+	if (xchg->stgwznmbehavior.sesstterm != 0) {
 		for (auto it = sesss.begin(); it != sesss.end();) {
 			sess = (SessWznm*) it->second;
 
@@ -925,11 +941,11 @@ void RootWznm::handleTimerWithSrefWarnterm(
 
 			tlast = xchg->getRefPreset(VecWznmVPreset::PREWZNMTLAST, sess->jref);
 
-			if ((tlast + ((int) xchg->stgwznmappearance.sesstterm)) <= rawtime) term = true;
-			else if ((tlast + ((int) xchg->stgwznmappearance.sesstterm) - ((int) xchg->stgwznmappearance.sesstwarn)) <= rawtime) {
+			if ((tlast + ((int) xchg->stgwznmbehavior.sesstterm)) <= rawtime) term = true;
+			else if ((tlast + ((int) xchg->stgwznmbehavior.sesstterm) - ((int) xchg->stgwznmbehavior.sesstwarn)) <= rawtime) {
 				sess->warnTerm(dbswznm);
-				if ((tnext == 0) || ((tlast + ((int) xchg->stgwznmappearance.sesstterm)) < tnext)) tnext = tlast + ((int) xchg->stgwznmappearance.sesstterm);
-			} else if ((tnext == 0) || ((tlast + ((int) xchg->stgwznmappearance.sesstterm) - ((int) xchg->stgwznmappearance.sesstwarn)) < tnext)) tnext = tlast + xchg->stgwznmappearance.sesstterm - xchg->stgwznmappearance.sesstwarn;
+				if ((tnext == 0) || ((tlast + ((int) xchg->stgwznmbehavior.sesstterm)) < tnext)) tnext = tlast + ((int) xchg->stgwznmbehavior.sesstterm);
+			} else if ((tnext == 0) || ((tlast + ((int) xchg->stgwznmbehavior.sesstterm) - ((int) xchg->stgwznmbehavior.sesstwarn)) < tnext)) tnext = tlast + xchg->stgwznmbehavior.sesstterm - xchg->stgwznmbehavior.sesstwarn;
 
 			if (term) {
 				sess->term(dbswznm);
@@ -943,11 +959,11 @@ void RootWznm::handleTimerWithSrefWarnterm(
 
 	term = false;
 
-	if (xchg->stgwznmappearance.roottterm != 0) {
+	if (xchg->stgwznmbehavior.roottterm != 0) {
 		tlast = xchg->getRefPreset(VecWznmVPreset::PREWZNMTLAST, jref);
 
-		if ((tlast + ((int) xchg->stgwznmappearance.roottterm)) <= rawtime) term = true;
-		else if ((tnext == 0) || ((tlast + ((int) xchg->stgwznmappearance.roottterm)) < tnext)) tnext = tlast + xchg->stgwznmappearance.roottterm;
+		if ((tlast + ((int) xchg->stgwznmbehavior.roottterm)) <= rawtime) term = true;
+		else if ((tnext == 0) || ((tlast + ((int) xchg->stgwznmbehavior.roottterm)) < tnext)) tnext = tlast + xchg->stgwznmbehavior.roottterm;
 	};
 
 	if (term) {
@@ -1010,7 +1026,7 @@ bool RootWznm::handleCallWznmLogout(
 	if (!boolvalInv) {
 		eraseSubjobByJref(sesss, jrefTrig);
 
-		if (xchg->stgwznmappearance.roottterm) {
+		if (xchg->stgwznmbehavior.roottterm) {
 			time(&rawtime);
 			xchg->addRefPreset(VecWznmVPreset::PREWZNMTLAST, jref, rawtime);
 		};

@@ -26,11 +26,11 @@ DpchInvWznmPrctreeExtract::DpchInvWznmPrctreeExtract(
 			, const string& extfolder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMPRCTREEEXTRACT, oref, jref)
+			, infile(infile)
+			, infolder(infolder)
+			, extfile(extfile)
+			, extfolder(extfolder)
 		{
-	this->infile = infile;
-	this->infolder = infolder;
-	this->extfile = extfile;
-	this->extfolder = extfolder;
 };
 
 void DpchInvWznmPrctreeExtract::readXML(
@@ -83,8 +83,8 @@ DpchRetWznmPrctreeExtract::DpchRetWznmPrctreeExtract(
 			, const string& logfile
 		) :
 			DpchRetWznm(VecWznmVDpch::DPCHRETWZNMPRCTREEEXTRACT, scrOref, scrJref, ixOpVOpres, pdone)
+			, logfile(logfile)
 		{
-	this->logfile = logfile;
 };
 
 void DpchRetWznmPrctreeExtract::readXML(
@@ -149,13 +149,13 @@ DpchInvWznmPrctreeMerge::DpchInvWznmPrctreeMerge(
 			, const bool skipmultvoid
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMPRCTREEMERGE, oref, jref)
+			, extfile(extfile)
+			, extfolder(extfolder)
+			, tplfile(tplfile)
+			, tplfolder(tplfolder)
+			, notrace(notrace)
+			, skipmultvoid(skipmultvoid)
 		{
-	this->extfile = extfile;
-	this->extfolder = extfolder;
-	this->tplfile = tplfile;
-	this->tplfolder = tplfolder;
-	this->notrace = notrace;
-	this->skipmultvoid = skipmultvoid;
 };
 
 void DpchInvWznmPrctreeMerge::readXML(
@@ -212,8 +212,8 @@ DpchRetWznmPrctreeMerge::DpchRetWznmPrctreeMerge(
 			, const string& logfile
 		) :
 			DpchRetWznm(VecWznmVDpch::DPCHRETWZNMPRCTREEMERGE, scrOref, scrJref, ixOpVOpres, pdone)
+			, logfile(logfile)
 		{
-	this->logfile = logfile;
 };
 
 void DpchRetWznmPrctreeMerge::readXML(

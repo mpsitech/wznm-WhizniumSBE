@@ -27,16 +27,17 @@ WznmQPstList::WznmQPstList(
 			, const string stubRefUref
 			, const string srefIxWznmWArgtype
 			, const string titIxWznmWArgtype
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->stubRefUref = stubRefUref;
-	this->srefIxWznmWArgtype = srefIxWznmWArgtype;
-	this->titIxWznmWArgtype = titIxWznmWArgtype;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, stubRefUref(stubRefUref)
+			, srefIxWznmWArgtype(srefIxWznmWArgtype)
+			, titIxWznmWArgtype(titIxWznmWArgtype)
+		{
 };
 
 bool WznmQPstList::readXML(

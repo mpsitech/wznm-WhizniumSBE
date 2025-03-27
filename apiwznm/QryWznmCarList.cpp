@@ -22,10 +22,10 @@ uint QryWznmCarList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "reu") return REU;
 	if (s == "ret") return RET;
-	if (s == "srf") return SRF;
+	if (s == "reu") return REU;
 	if (s == "mdl") return MDL;
+	if (s == "srf") return SRF;
 
 	return(0);
 };
@@ -33,10 +33,10 @@ uint QryWznmCarList::VecVOrd::getIx(
 string QryWznmCarList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == REU) return("reu");
 	if (ix == RET) return("ret");
-	if (ix == SRF) return("srf");
+	if (ix == REU) return("reu");
 	if (ix == MDL) return("mdl");
+	if (ix == SRF) return("srf");
 
 	return("");
 };
@@ -52,12 +52,11 @@ QryWznmCarList::StatApp::StatApp(
 			, const uint ndisp
 		) :
 			Block()
+			, firstcol(firstcol)
+			, jnumFirstdisp(jnumFirstdisp)
+			, ncol(ncol)
+			, ndisp(ndisp)
 		{
-	this->firstcol = firstcol;
-	this->jnumFirstdisp = jnumFirstdisp;
-	this->ncol = ncol;
-	this->ndisp = ndisp;
-
 	mask = {FIRSTCOL, JNUMFIRSTDISP, NCOL, NDISP};
 };
 
@@ -124,11 +123,10 @@ QryWznmCarList::StatShr::StatShr(
 			, const uint nload
 		) :
 			Block()
+			, ntot(ntot)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->ntot = ntot;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -193,11 +191,10 @@ QryWznmCarList::StgIac::StgIac(
 			, const uint nload
 		) :
 			Block()
+			, jnum(jnum)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->jnum = jnum;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 

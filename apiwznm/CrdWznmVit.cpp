@@ -71,11 +71,10 @@ CrdWznmVit::ContInf::ContInf(
 			, const string& MtxCrdVit
 		) :
 			Block()
+			, numFSge(numFSge)
+			, MrlAppHlp(MrlAppHlp)
+			, MtxCrdVit(MtxCrdVit)
 		{
-	this->numFSge = numFSge;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MtxCrdVit = MtxCrdVit;
-
 	mask = {NUMFSGE, MRLAPPHLP, MTXCRDVIT};
 };
 
@@ -144,15 +143,14 @@ CrdWznmVit::StatApp::StatApp(
 			, const bool initdoneRec
 		) :
 			Block()
+			, ixWznmVReqitmode(ixWznmVReqitmode)
+			, latency(latency)
+			, shortMenu(shortMenu)
+			, widthMenu(widthMenu)
+			, initdoneHeadbar(initdoneHeadbar)
+			, initdoneList(initdoneList)
+			, initdoneRec(initdoneRec)
 		{
-	this->ixWznmVReqitmode = ixWznmVReqitmode;
-	this->latency = latency;
-	this->shortMenu = shortMenu;
-	this->widthMenu = widthMenu;
-	this->initdoneHeadbar = initdoneHeadbar;
-	this->initdoneList = initdoneList;
-	this->initdoneRec = initdoneRec;
-
 	mask = {IXWZNMVREQITMODE, LATENCY, SHORTMENU, WIDTHMENU, INITDONEHEADBAR, INITDONELIST, INITDONEREC};
 };
 
@@ -230,11 +228,10 @@ CrdWznmVit::StatShr::StatShr(
 			, const string& scrJrefRec
 		) :
 			Block()
+			, scrJrefHeadbar(scrJrefHeadbar)
+			, scrJrefList(scrJrefList)
+			, scrJrefRec(scrJrefRec)
 		{
-	this->scrJrefHeadbar = scrJrefHeadbar;
-	this->scrJrefList = scrJrefList;
-	this->scrJrefRec = scrJrefRec;
-
 	mask = {SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC};
 };
 
@@ -298,10 +295,9 @@ CrdWznmVit::Tag::Tag(
 			, const string& MrlAppHlp
 		) :
 			Block()
+			, MitAppAbt(MitAppAbt)
+			, MrlAppHlp(MrlAppHlp)
 		{
-	this->MitAppAbt = MitAppAbt;
-	this->MrlAppHlp = MrlAppHlp;
-
 	mask = {MITAPPABT, MRLAPPHLP};
 };
 
@@ -339,11 +335,11 @@ CrdWznmVit::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMVITDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string CrdWznmVit::DpchAppDo::getSrefsMask() {

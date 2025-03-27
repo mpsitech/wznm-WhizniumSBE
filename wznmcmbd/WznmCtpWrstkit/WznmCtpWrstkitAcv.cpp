@@ -81,7 +81,7 @@ void WznmCtpWrstkitAcv::writeIexBui(
 	IexWznmBui::ImeitemIMCard* car = NULL;
 
 	mdl = new IexWznmBui::ImeitemIMModule("Mdl" + Prjshort + "Admin"); imeimmodule.nodes.push_back(mdl);
-	addIJMModules(dbswznm, mdl, "admmdl", "", refLcl, refsLcl, lcls);
+	addIJMModules(dbswznm, mdl, 0, "admmdl", "", refLcl, refsLcl, lcls);
 
 	car = new IexWznmBui::ImeitemIMCard(VecWznmVMCardRefTbl::TBL, "Tbl" + Prjshort + "MFile", "Crd" + Prjshort + "Fil", "", ""); mdl->imeimcard.nodes.push_back(car);
 
@@ -129,20 +129,20 @@ void WznmCtpWrstkitAcv::writeIexDbs(
 
 	// - TblXxxxMFile
 	tbl = new IexWznmDbs::ImeitemIMTable(VecWznmVMTableBasetype::MAIN, VecWznmVMTableRefTbl::VOID, 0, "Tbl" + Prjshort + "MFile", "fil", "", ""); imeimtable.nodes.push_back(tbl);
-	addIAMTableTitles(dbswznm, tbl, "fil", VecWznmVAMTableTitleType::SNGFULL, "stdtbl", refLcl, refsLcl, lcls);
-	addIAMTableTitles(dbswznm, tbl, "fil", VecWznmVAMTableTitleType::PLFULL, "stdtbl", refLcl, refsLcl, lcls);
+	addIAMTableTitles(dbswznm, tbl, 0, "fil", VecWznmVAMTableTitleType::SNGFULL, "stdtbl", refLcl, refsLcl, lcls);
+	addIAMTableTitles(dbswznm, tbl, 0, "fil", VecWznmVAMTableTitleType::PLFULL, "stdtbl", refLcl, refsLcl, lcls);
 
 	vec2 = new IexWznmDbs::ImeitemIMVector2(VecWznmVMVectorBasetype::LIN, "Vec" + Prjshort + "VMFileRefTbl", "", "filfed"); tbl->imeimvector2.nodes.push_back(vec2);
-	addIAMVectorTitles(dbswznm, vec2, "fil.reftbl", VecWznmVAMVectorTitleType::FULL, "stdvec", refLcl, refsLcl, lcls);
+	addIAMVectorTitles(dbswznm, vec2, 0, "fil.reftbl", VecWznmVAMVectorTitleType::FULL, "stdvec", refLcl, refsLcl, lcls);
 
 	vit2 = new IexWznmDbs::ImeitemIMVectoritem2("void", "", ""); vec2->imeimvectoritem2.nodes.push_back(vit2);
-	addIJMVectoritems(dbswznm, vit2, "void", "", refLcl, refsLcl, lcls);
+	addIJMVectoritems(dbswznm, vit2, 0, "void", "", refLcl, refsLcl, lcls);
 
 	vec2 = new IexWznmDbs::ImeitemIMVector2(VecWznmVMVectorBasetype::KLST, "Klst" + Prjshort + "KMFileContent", "", ""); tbl->imeimvector2.nodes.push_back(vec2);
-	addIAMVectorTitles(dbswznm, vec2, "fil.content", VecWznmVAMVectorTitleType::FULL, "stdvec", refLcl, refsLcl, lcls);
+	addIAMVectorTitles(dbswznm, vec2, 0, "fil.content", VecWznmVAMVectorTitleType::FULL, "stdvec", refLcl, refsLcl, lcls);
 
 	vec2 = new IexWznmDbs::ImeitemIMVector2(VecWznmVMVectorBasetype::KLST, "Klst" + Prjshort + "KMFileMimetype", "mimetype", "noloc"); tbl->imeimvector2.nodes.push_back(vec2);
-	addIAMVectorTitles(dbswznm, vec2, "fil.mimetype", VecWznmVAMVectorTitleType::FULL, "stdvec", refLcl, refsLcl, lcls);
+	addIAMVectorTitles(dbswznm, vec2, 0, "fil.mimetype", VecWznmVAMVectorTitleType::FULL, "stdvec", refLcl, refsLcl, lcls);
 
 	tbl->imeimtablecol.nodes.push_back(new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::IDREF, "", 0, VecWznmVMTablecolFctTbl::VOID, "", "ref", "ref", VecWznmVMTablecolSubtype::VOID, VecWznmVMTablecolAxisfct::VOID, "", false, false));
 	tbl->imeimtablecol.nodes.push_back(new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::GRP, "", 47, VecWznmVMTablecolFctTbl::TBL, "Tbl" + Prjshort + "MUsergroup", "grp", "grp", VecWznmVMTablecolSubtype::VOID, VecWznmVMTablecolAxisfct::VOID, "", true, false));
@@ -153,23 +153,23 @@ void WznmCtpWrstkitAcv::writeIexDbs(
 	tbl->imeimtablecol.nodes.push_back(new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::KLREF, "", 0, VecWznmVMTablecolFctTbl::VEC, "Klst" + Prjshort + "KMFileContent", "osrefKContent", "cnt", VecWznmVMTablecolSubtype::KLREFOPT, VecWznmVMTablecolAxisfct::VOID, "", true, false));
 
 	tco = new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::TIMEVAL, "", 0, VecWznmVMTablecolFctTbl::VOID, "", "Archived", "acv", VecWznmVMTablecolSubtype::TMSTAMP, VecWznmVMTablecolAxisfct::VOID, "", false, false); tbl->imeimtablecol.nodes.push_back(tco);
-	addIAMTablecolTitles(dbswznm, tco, "fil.acv", VecWznmVAMTablecolTitleType::SHORT, "stdtco", refLcl, refsLcl, lcls);
-	addIAMTablecolTitles(dbswznm, tco, "fil.acv", VecWznmVAMTablecolTitleType::FULL, "stdtco", refLcl, refsLcl, lcls);
+	addIAMTablecolTitles(dbswznm, tco, 0, "fil.acv", VecWznmVAMTablecolTitleType::SHORT, "stdtco", refLcl, refsLcl, lcls);
+	addIAMTablecolTitles(dbswznm, tco, 0, "fil.acv", VecWznmVAMTablecolTitleType::FULL, "stdtco", refLcl, refsLcl, lcls);
 
 	tco = new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::TXTVAL, "", 0, VecWznmVMTablecolFctTbl::VOID, "", "Filename", "fnm", VecWznmVMTablecolSubtype::TXT50, VecWznmVMTablecolAxisfct::VOID, "idx", true, true); tbl->imeimtablecol.nodes.push_back(tco);
-	addIAMTablecolTitles(dbswznm, tco, "fil.fnm", VecWznmVAMTablecolTitleType::FULL, "stdtco", refLcl, refsLcl, lcls);
+	addIAMTablecolTitles(dbswznm, tco, 0, "fil.fnm", VecWznmVAMTablecolTitleType::FULL, "stdtco", refLcl, refsLcl, lcls);
 
 	tco = new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::TXTVAL, "", 0, VecWznmVMTablecolFctTbl::VOID, "", "Archivename", "anm", VecWznmVMTablecolSubtype::TXT30, VecWznmVMTablecolAxisfct::VOID, "", false, false); tbl->imeimtablecol.nodes.push_back(tco);
-	addIAMTablecolTitles(dbswznm, tco, "fil.anm", VecWznmVAMTablecolTitleType::SHORT, "stdtco", refLcl, refsLcl, lcls);
-	addIAMTablecolTitles(dbswznm, tco, "fil.anm", VecWznmVAMTablecolTitleType::FULL, "stdtco", refLcl, refsLcl, lcls);
+	addIAMTablecolTitles(dbswznm, tco, 0, "fil.anm", VecWznmVAMTablecolTitleType::SHORT, "stdtco", refLcl, refsLcl, lcls);
+	addIAMTablecolTitles(dbswznm, tco, 0, "fil.anm", VecWznmVAMTablecolTitleType::FULL, "stdtco", refLcl, refsLcl, lcls);
 
 	tbl->imeimtablecol.nodes.push_back(new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::KLREF, "", 0, VecWznmVMTablecolFctTbl::VEC, "Klst" + Prjshort + "KMFileMimetype", "srefKMimetype", "mim", VecWznmVMTablecolSubtype::KLREFSNG, VecWznmVMTablecolAxisfct::VOID, "", true, false));
 
 	tco = new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::INTVAL, "", 0, VecWznmVMTablecolFctTbl::VOID, "", "Size", "siz", VecWznmVMTablecolSubtype::UINT, VecWznmVMTablecolAxisfct::VOID, "", true, false); tbl->imeimtablecol.nodes.push_back(tco);
-	addIAMTablecolTitles(dbswznm, tco, "fil.siz", VecWznmVAMTablecolTitleType::FULL, "stdtco", refLcl, refsLcl, lcls);
+	addIAMTablecolTitles(dbswznm, tco, 0, "fil.siz", VecWznmVAMTablecolTitleType::FULL, "stdtco", refLcl, refsLcl, lcls);
 
 	tco = new IexWznmDbs::ImeitemIMTablecol(VecWznmVMTablecolBasetype::TXTVAL, "", 0, VecWznmVMTablecolFctTbl::VOID, "", "Comment", "cmt", VecWznmVMTablecolSubtype::TXTLONG, VecWznmVMTablecolAxisfct::VOID, "", false, false); tbl->imeimtablecol.nodes.push_back(tco);
-	addIAMTablecolTitles(dbswznm, tco, "comment", VecWznmVAMTablecolTitleType::FULL, "", refLcl, refsLcl, lcls);
+	addIAMTablecolTitles(dbswznm, tco, 0, "comment", VecWznmVAMTablecolTitleType::FULL, "", refLcl, refsLcl, lcls);
 
 	// - TblXxxxCFile
 	tbl = new IexWznmDbs::ImeitemIMTable(VecWznmVMTableBasetype::CLUST, VecWznmVMTableRefTbl::VOID, 0, "Tbl" + Prjshort + "CFile", "filC", "", ""); imeimtable.nodes.push_back(tbl);
@@ -182,7 +182,7 @@ void WznmCtpWrstkitAcv::writeIexDbs(
 	imeimrelation.nodes.push_back(new IexWznmDbs::ImeitemIMRelation(49, VecWznmVMRelationBasetype::CLUST, 0, 0, VecWznmVMRelationSupSubrole::VOID, "Tbl" + Prjshort + "CFile", "", "Tbl" + Prjshort + "MFile", "", "", "", ""));
 
 	rel = new IexWznmDbs::ImeitemIMRelation(50, VecWznmVMRelationBasetype::U1N, 0, 0, VecWznmVMRelationSupSubrole::VOID, "", "", "Tbl" + Prjshort + "MFile", "", "", "ref", "affil"); imeimrelation.nodes.push_back(rel);
-	addIAMRelationTitles(dbswznm, rel, "ref", VecWznmVAMRelationTitleType::FROMSNGFULL, "stdrel", refLcl, refsLcl, lcls);
+	addIAMRelationTitles(dbswznm, rel, 0, "ref", VecWznmVAMRelationTitleType::FROMSNGFULL, "stdrel", refLcl, refsLcl, lcls);
 
 	// - stubs
 	imeimstub.nodes.push_back(new IexWznmDbs::ImeitemIMStub(VecWznmVMStubBasetype::TCO, "Tbl" + Prjshort + "MFile", "", "Stub" + Prjshort + "FilStd", false, "Filename", false, "customers.xlsx"));
@@ -212,7 +212,7 @@ void WznmCtpWrstkitAcv::writeIexIex(
 	IexWznmIex::ImeitemIMImpexp* ime = NULL;
 
 	iex = new IexWznmIex::ImeitemIMImpexpcplx("Iex" + Prjshort + "Ini", "ini", "", "", "tool initialization");
-	addIJMImpexpcplxTitles(dbswznm, iex, "ini", refLcl, refsLcl, lcls);
+	addIJMImpexpcplxTitles(dbswznm, iex, 0, "ini", refLcl, refsLcl, lcls);
 
 	imeimimpexpcplx.nodes.push_back(iex);
 

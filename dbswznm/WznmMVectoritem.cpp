@@ -26,17 +26,17 @@ WznmMVectoritem::WznmMVectoritem(
 			, const ubigint refJ
 			, const string Title
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->vecRefWznmMVector = vecRefWznmMVector;
-	this->vecNum = vecNum;
-	this->sref = sref;
-	this->Avail = Avail;
-	this->Implied = Implied;
-	this->refJ = refJ;
-	this->Title = Title;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, vecRefWznmMVector(vecRefWznmMVector)
+			, vecNum(vecNum)
+			, sref(sref)
+			, Avail(Avail)
+			, Implied(Implied)
+			, refJ(refJ)
+			, Title(Title)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMVectoritem::operator==(

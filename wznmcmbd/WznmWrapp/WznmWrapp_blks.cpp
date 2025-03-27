@@ -24,9 +24,9 @@ DpchInvWznmWrappDom::DpchInvWznmWrappDom(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRAPPDOM, oref, jref)
+			, refWznmMApp(refWznmMApp)
+			, folder(folder)
 		{
-	this->refWznmMApp = refWznmMApp;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrappDom::readXML(
@@ -75,10 +75,10 @@ DpchInvWznmWrappMain::DpchInvWznmWrappMain(
 			, const bool ipAllNotSpec
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRAPPMAIN, oref, jref)
+			, refWznmMApp(refWznmMApp)
+			, folder(folder)
+			, ipAllNotSpec(ipAllNotSpec)
 		{
-	this->refWznmMApp = refWznmMApp;
-	this->folder = folder;
-	this->ipAllNotSpec = ipAllNotSpec;
 };
 
 void DpchInvWznmWrappMain::readXML(
@@ -128,9 +128,9 @@ DpchInvWznmWrappStdvec::DpchInvWznmWrappStdvec(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRAPPSTDVEC, oref, jref)
+			, refWznmMApp(refWznmMApp)
+			, folder(folder)
 		{
-	this->refWznmMApp = refWznmMApp;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrappStdvec::readXML(

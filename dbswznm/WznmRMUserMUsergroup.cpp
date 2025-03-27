@@ -21,12 +21,12 @@ WznmRMUserMUsergroup::WznmRMUserMUsergroup(
 			, const ubigint refWznmMUser
 			, const ubigint refWznmMUsergroup
 			, const uint ixWznmVUserlevel
-		) {
-
-	this->ref = ref;
-	this->refWznmMUser = refWznmMUser;
-	this->refWznmMUsergroup = refWznmMUsergroup;
-	this->ixWznmVUserlevel = ixWznmVUserlevel;
+		) :
+			ref(ref)
+			, refWznmMUser(refWznmMUser)
+			, refWznmMUsergroup(refWznmMUsergroup)
+			, ixWznmVUserlevel(ixWznmVUserlevel)
+		{
 };
 
 bool WznmRMUserMUsergroup::operator==(

@@ -46,10 +46,9 @@ PnlWznmMtdDetail::ContIac::ContIac(
 			, const bool ChkExs
 		) :
 			Block()
+			, TxfCmt(TxfCmt)
+			, ChkExs(ChkExs)
 		{
-	this->TxfCmt = TxfCmt;
-	this->ChkExs = ChkExs;
-
 	mask = {TXFCMT, CHKEXS};
 };
 
@@ -128,10 +127,9 @@ PnlWznmMtdDetail::ContInf::ContInf(
 			, const string& TxtJob
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtJob(TxtJob)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtJob = TxtJob;
-
 	mask = {TXTSRF, TXTJOB};
 };
 
@@ -192,9 +190,8 @@ PnlWznmMtdDetail::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -265,16 +262,15 @@ PnlWznmMtdDetail::StatShr::StatShr(
 			, const bool ChkExsActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfCmtActive(TxfCmtActive)
+			, TxtJobActive(TxtJobActive)
+			, ButJobViewAvail(ButJobViewAvail)
+			, ButJobViewActive(ButJobViewActive)
+			, ChkExsActive(ChkExsActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfCmtActive = TxfCmtActive;
-	this->TxtJobActive = TxtJobActive;
-	this->ButJobViewAvail = ButJobViewAvail;
-	this->ButJobViewActive = ButJobViewActive;
-	this->ChkExsActive = ChkExsActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFCMTACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKEXSACTIVE};
 };
 
@@ -351,13 +347,12 @@ PnlWznmMtdDetail::Tag::Tag(
 			, const string& CptExs
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptCmt(CptCmt)
+			, CptJob(CptJob)
+			, CptExs(CptExs)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptCmt = CptCmt;
-	this->CptJob = CptJob;
-	this->CptExs = CptExs;
-
 	mask = {CPT, CPTSRF, CPTCMT, CPTJOB, CPTEXS};
 };
 
@@ -437,11 +432,11 @@ PnlWznmMtdDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMMTDDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmMtdDetail::DpchAppDo::getSrefsMask() {

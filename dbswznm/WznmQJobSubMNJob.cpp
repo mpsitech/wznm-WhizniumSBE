@@ -30,19 +30,20 @@ WznmQJobSubMNJob::WznmQJobSubMNJob(
 			, const uint ixVConstract
 			, const string srefIxVConstract
 			, const string titIxVConstract
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->mref = mref;
-	this->stubMref = stubMref;
-	this->ref = ref;
-	this->Short = Short;
-	this->Multi = Multi;
-	this->yesnoMulti = yesnoMulti;
-	this->ixVConstract = ixVConstract;
-	this->srefIxVConstract = srefIxVConstract;
-	this->titIxVConstract = titIxVConstract;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, mref(mref)
+			, stubMref(stubMref)
+			, ref(ref)
+			, Short(Short)
+			, Multi(Multi)
+			, yesnoMulti(yesnoMulti)
+			, ixVConstract(ixVConstract)
+			, srefIxVConstract(srefIxVConstract)
+			, titIxVConstract(titIxVConstract)
+		{
 };
 
 void WznmQJobSubMNJob::writeJSON(

@@ -45,9 +45,8 @@ PnlWznmMchRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -110,13 +109,12 @@ PnlWznmMchRec::StatApp::StatApp(
 			, const bool initdoneSup1NMachine
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneAMakefile(initdoneAMakefile)
+			, initdoneAPar(initdoneAPar)
+			, initdone1NRelease(initdone1NRelease)
+			, initdoneSup1NMachine(initdoneSup1NMachine)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneAMakefile = initdoneAMakefile;
-	this->initdoneAPar = initdoneAPar;
-	this->initdone1NRelease = initdone1NRelease;
-	this->initdoneSup1NMachine = initdoneSup1NMachine;
-
 	mask = {INITDONEDETAIL, INITDONEAMAKEFILE, INITDONEAPAR, INITDONE1NRELEASE, INITDONESUP1NMACHINE};
 };
 
@@ -189,15 +187,14 @@ PnlWznmMchRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefAMakefile(scrJrefAMakefile)
+			, scrJrefAPar(scrJrefAPar)
+			, scrJref1NRelease(scrJref1NRelease)
+			, scrJrefSup1NMachine(scrJrefSup1NMachine)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAMakefile = scrJrefAMakefile;
-	this->scrJrefAPar = scrJrefAPar;
-	this->scrJref1NRelease = scrJref1NRelease;
-	this->scrJrefSup1NMachine = scrJrefSup1NMachine;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAMAKEFILE, SCRJREFAPAR, SCRJREF1NRELEASE, SCRJREFSUP1NMACHINE, BUTREGULARIZEACTIVE};
 };
 
@@ -273,9 +270,8 @@ PnlWznmMchRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -312,11 +308,11 @@ PnlWznmMchRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMMCHRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmMchRec::DpchAppDo::getSrefsMask() {

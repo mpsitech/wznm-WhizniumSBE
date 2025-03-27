@@ -45,9 +45,8 @@ PnlWznmLibRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -111,14 +110,13 @@ PnlWznmLibRec::StatApp::StatApp(
 			, const bool initdoneMNComponent
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneAPkglist(initdoneAPkglist)
+			, initdoneAMakefile(initdoneAMakefile)
+			, initdoneRef1NFile(initdoneRef1NFile)
+			, initdoneMNOppack(initdoneMNOppack)
+			, initdoneMNComponent(initdoneMNComponent)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneAPkglist = initdoneAPkglist;
-	this->initdoneAMakefile = initdoneAMakefile;
-	this->initdoneRef1NFile = initdoneRef1NFile;
-	this->initdoneMNOppack = initdoneMNOppack;
-	this->initdoneMNComponent = initdoneMNComponent;
-
 	mask = {INITDONEDETAIL, INITDONEAPKGLIST, INITDONEAMAKEFILE, INITDONEREF1NFILE, INITDONEMNOPPACK, INITDONEMNCOMPONENT};
 };
 
@@ -194,16 +192,15 @@ PnlWznmLibRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefAPkglist(scrJrefAPkglist)
+			, scrJrefAMakefile(scrJrefAMakefile)
+			, scrJrefRef1NFile(scrJrefRef1NFile)
+			, scrJrefMNOppack(scrJrefMNOppack)
+			, scrJrefMNComponent(scrJrefMNComponent)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAPkglist = scrJrefAPkglist;
-	this->scrJrefAMakefile = scrJrefAMakefile;
-	this->scrJrefRef1NFile = scrJrefRef1NFile;
-	this->scrJrefMNOppack = scrJrefMNOppack;
-	this->scrJrefMNComponent = scrJrefMNComponent;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAPKGLIST, SCRJREFAMAKEFILE, SCRJREFREF1NFILE, SCRJREFMNOPPACK, SCRJREFMNCOMPONENT, BUTREGULARIZEACTIVE};
 };
 
@@ -281,9 +278,8 @@ PnlWznmLibRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -320,11 +316,11 @@ PnlWznmLibRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMLIBRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmLibRec::DpchAppDo::getSrefsMask() {

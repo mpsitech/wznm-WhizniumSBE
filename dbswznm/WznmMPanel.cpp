@@ -30,19 +30,19 @@ WznmMPanel::WznmMPanel(
 			, const bool Detach
 			, const string Avail
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->carRefWznmMCard = carRefWznmMCard;
-	this->carNum = carNum;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->refWznmMJob = refWznmMJob;
-	this->sref = sref;
-	this->Detach = Detach;
-	this->Avail = Avail;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, carRefWznmMCard(carRefWznmMCard)
+			, carNum(carNum)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, refWznmMJob(refWznmMJob)
+			, sref(sref)
+			, Detach(Detach)
+			, Avail(Avail)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMPanel::operator==(

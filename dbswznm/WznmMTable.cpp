@@ -30,19 +30,19 @@ WznmMTable::WznmMTable(
 			, const string Short
 			, const string unqSrefsWznmMTablecol
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->refWznmMPreset = refWznmMPreset;
-	this->refWznmMCard = refWznmMCard;
-	this->sref = sref;
-	this->Short = Short;
-	this->unqSrefsWznmMTablecol = unqSrefsWznmMTablecol;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, refWznmMPreset(refWznmMPreset)
+			, refWznmMCard(refWznmMCard)
+			, sref(sref)
+			, Short(Short)
+			, unqSrefsWznmMTablecol(unqSrefsWznmMTablecol)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMTable::operator==(

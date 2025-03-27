@@ -23,12 +23,13 @@ WznmQImeList::WznmQImeList(
 			, const string stubRefWznmMImpexpcplx
 			, const string stubSupRefWznmMImpexp
 			, const string stubRefWznmMTable
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->stubRefWznmMImpexpcplx = stubRefWznmMImpexpcplx;
-	this->stubSupRefWznmMImpexp = stubSupRefWznmMImpexp;
-	this->stubRefWznmMTable = stubRefWznmMTable;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, stubRefWznmMImpexpcplx(stubRefWznmMImpexpcplx)
+			, stubSupRefWznmMImpexp(stubSupRefWznmMImpexp)
+			, stubRefWznmMTable(stubRefWznmMTable)
+		{
 };
 
 bool WznmQImeList::readXML(

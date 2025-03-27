@@ -39,28 +39,28 @@ WznmMVersion::WznmMVersion(
 			, const string About2
 			, const string About3
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->grp = grp;
-	this->own = own;
-	this->prjRefWznmMProject = prjRefWznmMProject;
-	this->prjNum = prjNum;
-	this->bvrRefWznmMVersion = bvrRefWznmMVersion;
-	this->refRLocale = refRLocale;
-	this->refWznmMLocale = refWznmMLocale;
-	this->Major = Major;
-	this->Minor = Minor;
-	this->Sub = Sub;
-	this->refJState = refJState;
-	this->ixVState = ixVState;
-	this->ixWDbmstype = ixWDbmstype;
-	this->ixWOption = ixWOption;
-	this->refJ = refJ;
-	this->About1 = About1;
-	this->About2 = About2;
-	this->About3 = About3;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, grp(grp)
+			, own(own)
+			, prjRefWznmMProject(prjRefWznmMProject)
+			, prjNum(prjNum)
+			, bvrRefWznmMVersion(bvrRefWznmMVersion)
+			, refRLocale(refRLocale)
+			, refWznmMLocale(refWznmMLocale)
+			, Major(Major)
+			, Minor(Minor)
+			, Sub(Sub)
+			, refJState(refJState)
+			, ixVState(ixVState)
+			, ixWDbmstype(ixWDbmstype)
+			, ixWOption(ixWOption)
+			, refJ(refJ)
+			, About1(About1)
+			, About2(About2)
+			, About3(About3)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMVersion::operator==(

@@ -47,9 +47,8 @@ PnlWznmQryMNTable::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -108,9 +107,8 @@ PnlWznmQryMNTable::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -176,11 +174,10 @@ PnlWznmQryMNTable::StatShr::StatShr(
 			, const bool ButSubActive
 		) :
 			Block()
+			, ButAddAvail(ButAddAvail)
+			, ButSubAvail(ButSubAvail)
+			, ButSubActive(ButSubActive)
 		{
-	this->ButAddAvail = ButAddAvail;
-	this->ButSubAvail = ButSubAvail;
-	this->ButSubActive = ButSubActive;
-
 	mask = {BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
 };
 
@@ -246,12 +243,11 @@ PnlWznmQryMNTable::StgIac::StgIac(
 			, const uint TcoPfxWidth
 		) :
 			Block()
+			, TcoMrefWidth(TcoMrefWidth)
+			, TcoTqmdWidth(TcoTqmdWidth)
+			, TcoSrcWidth(TcoSrcWidth)
+			, TcoPfxWidth(TcoPfxWidth)
 		{
-	this->TcoMrefWidth = TcoMrefWidth;
-	this->TcoTqmdWidth = TcoTqmdWidth;
-	this->TcoSrcWidth = TcoSrcWidth;
-	this->TcoPfxWidth = TcoPfxWidth;
-
 	mask = {TCOMREFWIDTH, TCOTQMDWIDTH, TCOSRCWIDTH, TCOPFXWIDTH};
 };
 
@@ -344,18 +340,17 @@ PnlWznmQryMNTable::Tag::Tag(
 			, const string& TcoPfx
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoMref(TcoMref)
+			, TcoTqmd(TcoTqmd)
+			, TcoSrc(TcoSrc)
+			, TcoPfx(TcoPfx)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoMref = TcoMref;
-	this->TcoTqmd = TcoTqmd;
-	this->TcoSrc = TcoSrc;
-	this->TcoPfx = TcoPfx;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOMREF, TCOTQMD, TCOSRC, TCOPFX};
 };
 
@@ -444,11 +439,11 @@ PnlWznmQryMNTable::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMQRYMNTABLEDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmQryMNTable::DpchAppDo::getSrefsMask() {

@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQImeSup1NImpexp::WznmQImeSup1NImpexp(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQImeSup1NImpexp::readXML(

@@ -23,12 +23,13 @@ WznmQQryMNTable::WznmQQryMNTable(
 			, const string stubsTrefWznmMQuerymod
 			, const string yesnoSource
 			, const string Prefix
-		) {
-	this->jnum = jnum;
-	this->stubMref = stubMref;
-	this->stubsTrefWznmMQuerymod = stubsTrefWznmMQuerymod;
-	this->yesnoSource = yesnoSource;
-	this->Prefix = Prefix;
+		) :
+			jnum(jnum)
+			, stubMref(stubMref)
+			, stubsTrefWznmMQuerymod(stubsTrefWznmMQuerymod)
+			, yesnoSource(yesnoSource)
+			, Prefix(Prefix)
+		{
 };
 
 bool WznmQQryMNTable::readXML(

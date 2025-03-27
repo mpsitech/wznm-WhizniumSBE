@@ -38,27 +38,28 @@ WznmQTcoList::WznmQTcoList(
 			, const uint ixVAxisfct
 			, const string srefIxVAxisfct
 			, const string titIxVAxisfct
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Short = Short;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->tblRefWznmMTable = tblRefWznmMTable;
-	this->stubTblRefWznmMTable = stubTblRefWznmMTable;
-	this->fctIxVTbl = fctIxVTbl;
-	this->srefFctIxVTbl = srefFctIxVTbl;
-	this->titFctIxVTbl = titFctIxVTbl;
-	this->ixVSubtype = ixVSubtype;
-	this->srefIxVSubtype = srefIxVSubtype;
-	this->titIxVSubtype = titIxVSubtype;
-	this->ixVAxisfct = ixVAxisfct;
-	this->srefIxVAxisfct = srefIxVAxisfct;
-	this->titIxVAxisfct = titIxVAxisfct;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Short(Short)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, tblRefWznmMTable(tblRefWznmMTable)
+			, stubTblRefWznmMTable(stubTblRefWznmMTable)
+			, fctIxVTbl(fctIxVTbl)
+			, srefFctIxVTbl(srefFctIxVTbl)
+			, titFctIxVTbl(titFctIxVTbl)
+			, ixVSubtype(ixVSubtype)
+			, srefIxVSubtype(srefIxVSubtype)
+			, titIxVSubtype(titIxVSubtype)
+			, ixVAxisfct(ixVAxisfct)
+			, srefIxVAxisfct(srefIxVAxisfct)
+			, titIxVAxisfct(titIxVAxisfct)
+		{
 };
 
 void WznmQTcoList::writeJSON(

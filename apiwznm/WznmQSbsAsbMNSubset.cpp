@@ -22,11 +22,12 @@ WznmQSbsAsbMNSubset::WznmQSbsAsbMNSubset(
 			, const string stubMref
 			, const string srefIxVReltype
 			, const string titIxVReltype
-		) {
-	this->jnum = jnum;
-	this->stubMref = stubMref;
-	this->srefIxVReltype = srefIxVReltype;
-	this->titIxVReltype = titIxVReltype;
+		) :
+			jnum(jnum)
+			, stubMref(stubMref)
+			, srefIxVReltype(srefIxVReltype)
+			, titIxVReltype(titIxVReltype)
+		{
 };
 
 bool WznmQSbsAsbMNSubset::readXML(

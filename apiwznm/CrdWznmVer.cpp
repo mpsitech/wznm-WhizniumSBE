@@ -105,11 +105,10 @@ CrdWznmVer::ContInf::ContInf(
 			, const string& MtxCrdVer
 		) :
 			Block()
+			, numFSge(numFSge)
+			, MrlAppHlp(MrlAppHlp)
+			, MtxCrdVer(MtxCrdVer)
 		{
-	this->numFSge = numFSge;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MtxCrdVer = MtxCrdVer;
-
 	mask = {NUMFSGE, MRLAPPHLP, MTXCRDVER};
 };
 
@@ -178,15 +177,14 @@ CrdWznmVer::StatApp::StatApp(
 			, const bool initdoneRec
 		) :
 			Block()
+			, ixWznmVReqitmode(ixWznmVReqitmode)
+			, latency(latency)
+			, shortMenu(shortMenu)
+			, widthMenu(widthMenu)
+			, initdoneHeadbar(initdoneHeadbar)
+			, initdoneList(initdoneList)
+			, initdoneRec(initdoneRec)
 		{
-	this->ixWznmVReqitmode = ixWznmVReqitmode;
-	this->latency = latency;
-	this->shortMenu = shortMenu;
-	this->widthMenu = widthMenu;
-	this->initdoneHeadbar = initdoneHeadbar;
-	this->initdoneList = initdoneList;
-	this->initdoneRec = initdoneRec;
-
 	mask = {IXWZNMVREQITMODE, LATENCY, SHORTMENU, WIDTHMENU, INITDONEHEADBAR, INITDONELIST, INITDONEREC};
 };
 
@@ -313,60 +311,59 @@ CrdWznmVer::StatShr::StatShr(
 			, const bool MitCrdFnmActive
 		) :
 			Block()
+			, scrJrefDlgbscui(scrJrefDlgbscui)
+			, scrJrefDlgcustjob(scrJrefDlgcustjob)
+			, scrJrefDlgcustjtr(scrJrefDlgcustjtr)
+			, scrJrefDlgcustui(scrJrefDlgcustui)
+			, scrJrefDlgdbstr(scrJrefDlgdbstr)
+			, scrJrefDlgdeploy(scrJrefDlgdeploy)
+			, scrJrefDlgfinmod(scrJrefDlgfinmod)
+			, scrJrefDlggenjtr(scrJrefDlggenjtr)
+			, scrJrefDlggenui(scrJrefDlggenui)
+			, scrJrefDlgglobal(scrJrefDlgglobal)
+			, scrJrefDlgimpexp(scrJrefDlgimpexp)
+			, scrJrefDlgnew(scrJrefDlgnew)
+			, scrJrefDlgoppack(scrJrefDlgoppack)
+			, scrJrefDlgwrinimdl(scrJrefDlgwrinimdl)
+			, scrJrefHeadbar(scrJrefHeadbar)
+			, scrJrefList(scrJrefList)
+			, scrJrefRec(scrJrefRec)
+			, MspCrd1Avail(MspCrd1Avail)
+			, MitCrdNewAvail(MitCrdNewAvail)
+			, MitCrdPcvAvail(MitCrdPcvAvail)
+			, MitCrdPcvActive(MitCrdPcvActive)
+			, MspCrd3Avail(MspCrd3Avail)
+			, MitCrdIdpAvail(MitCrdIdpAvail)
+			, MitCrdIdpActive(MitCrdIdpActive)
+			, MitCrdIgbAvail(MitCrdIgbAvail)
+			, MitCrdIgbActive(MitCrdIgbActive)
+			, MspCrd4Avail(MspCrd4Avail)
+			, MitCrdImdAvail(MitCrdImdAvail)
+			, MitCrdImdActive(MitCrdImdActive)
+			, MspCrd5Avail(MspCrd5Avail)
+			, MitCrdIdbAvail(MitCrdIdbAvail)
+			, MitCrdIdbActive(MitCrdIdbActive)
+			, MitCrdIbuAvail(MitCrdIbuAvail)
+			, MitCrdIbuActive(MitCrdIbuActive)
+			, MitCrdIieAvail(MitCrdIieAvail)
+			, MitCrdIieActive(MitCrdIieActive)
+			, MitCrdIopAvail(MitCrdIopAvail)
+			, MitCrdIopActive(MitCrdIopActive)
+			, MitCrdIcjAvail(MitCrdIcjAvail)
+			, MitCrdIcjActive(MitCrdIcjActive)
+			, MspCrd6Avail(MspCrd6Avail)
+			, MitCrdGuiAvail(MitCrdGuiAvail)
+			, MitCrdGuiActive(MitCrdGuiActive)
+			, MitCrdAuiAvail(MitCrdAuiAvail)
+			, MitCrdAuiActive(MitCrdAuiActive)
+			, MitCrdGjtAvail(MitCrdGjtAvail)
+			, MitCrdGjtActive(MitCrdGjtActive)
+			, MitCrdAjtAvail(MitCrdAjtAvail)
+			, MitCrdAjtActive(MitCrdAjtActive)
+			, MspCrd7Avail(MspCrd7Avail)
+			, MitCrdFnmAvail(MitCrdFnmAvail)
+			, MitCrdFnmActive(MitCrdFnmActive)
 		{
-	this->scrJrefDlgbscui = scrJrefDlgbscui;
-	this->scrJrefDlgcustjob = scrJrefDlgcustjob;
-	this->scrJrefDlgcustjtr = scrJrefDlgcustjtr;
-	this->scrJrefDlgcustui = scrJrefDlgcustui;
-	this->scrJrefDlgdbstr = scrJrefDlgdbstr;
-	this->scrJrefDlgdeploy = scrJrefDlgdeploy;
-	this->scrJrefDlgfinmod = scrJrefDlgfinmod;
-	this->scrJrefDlggenjtr = scrJrefDlggenjtr;
-	this->scrJrefDlggenui = scrJrefDlggenui;
-	this->scrJrefDlgglobal = scrJrefDlgglobal;
-	this->scrJrefDlgimpexp = scrJrefDlgimpexp;
-	this->scrJrefDlgnew = scrJrefDlgnew;
-	this->scrJrefDlgoppack = scrJrefDlgoppack;
-	this->scrJrefDlgwrinimdl = scrJrefDlgwrinimdl;
-	this->scrJrefHeadbar = scrJrefHeadbar;
-	this->scrJrefList = scrJrefList;
-	this->scrJrefRec = scrJrefRec;
-	this->MspCrd1Avail = MspCrd1Avail;
-	this->MitCrdNewAvail = MitCrdNewAvail;
-	this->MitCrdPcvAvail = MitCrdPcvAvail;
-	this->MitCrdPcvActive = MitCrdPcvActive;
-	this->MspCrd3Avail = MspCrd3Avail;
-	this->MitCrdIdpAvail = MitCrdIdpAvail;
-	this->MitCrdIdpActive = MitCrdIdpActive;
-	this->MitCrdIgbAvail = MitCrdIgbAvail;
-	this->MitCrdIgbActive = MitCrdIgbActive;
-	this->MspCrd4Avail = MspCrd4Avail;
-	this->MitCrdImdAvail = MitCrdImdAvail;
-	this->MitCrdImdActive = MitCrdImdActive;
-	this->MspCrd5Avail = MspCrd5Avail;
-	this->MitCrdIdbAvail = MitCrdIdbAvail;
-	this->MitCrdIdbActive = MitCrdIdbActive;
-	this->MitCrdIbuAvail = MitCrdIbuAvail;
-	this->MitCrdIbuActive = MitCrdIbuActive;
-	this->MitCrdIieAvail = MitCrdIieAvail;
-	this->MitCrdIieActive = MitCrdIieActive;
-	this->MitCrdIopAvail = MitCrdIopAvail;
-	this->MitCrdIopActive = MitCrdIopActive;
-	this->MitCrdIcjAvail = MitCrdIcjAvail;
-	this->MitCrdIcjActive = MitCrdIcjActive;
-	this->MspCrd6Avail = MspCrd6Avail;
-	this->MitCrdGuiAvail = MitCrdGuiAvail;
-	this->MitCrdGuiActive = MitCrdGuiActive;
-	this->MitCrdAuiAvail = MitCrdAuiAvail;
-	this->MitCrdAuiActive = MitCrdAuiActive;
-	this->MitCrdGjtAvail = MitCrdGjtAvail;
-	this->MitCrdGjtActive = MitCrdGjtActive;
-	this->MitCrdAjtAvail = MitCrdAjtAvail;
-	this->MitCrdAjtActive = MitCrdAjtActive;
-	this->MspCrd7Avail = MspCrd7Avail;
-	this->MitCrdFnmAvail = MitCrdFnmAvail;
-	this->MitCrdFnmActive = MitCrdFnmActive;
-
 	mask = {SCRJREFDLGBSCUI, SCRJREFDLGCUSTJOB, SCRJREFDLGCUSTJTR, SCRJREFDLGCUSTUI, SCRJREFDLGDBSTR, SCRJREFDLGDEPLOY, SCRJREFDLGFINMOD, SCRJREFDLGGENJTR, SCRJREFDLGGENUI, SCRJREFDLGGLOBAL, SCRJREFDLGIMPEXP, SCRJREFDLGNEW, SCRJREFDLGOPPACK, SCRJREFDLGWRINIMDL, SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDPCVAVAIL, MITCRDPCVACTIVE, MSPCRD3AVAIL, MITCRDIDPAVAIL, MITCRDIDPACTIVE, MITCRDIGBAVAIL, MITCRDIGBACTIVE, MSPCRD4AVAIL, MITCRDIMDAVAIL, MITCRDIMDACTIVE, MSPCRD5AVAIL, MITCRDIDBAVAIL, MITCRDIDBACTIVE, MITCRDIBUAVAIL, MITCRDIBUACTIVE, MITCRDIIEAVAIL, MITCRDIIEACTIVE, MITCRDIOPAVAIL, MITCRDIOPACTIVE, MITCRDICJAVAIL, MITCRDICJACTIVE, MSPCRD6AVAIL, MITCRDGUIAVAIL, MITCRDGUIACTIVE, MITCRDAUIAVAIL, MITCRDAUIACTIVE, MITCRDGJTAVAIL, MITCRDGJTACTIVE, MITCRDAJTAVAIL, MITCRDAJTACTIVE, MSPCRD7AVAIL, MITCRDFNMAVAIL, MITCRDFNMACTIVE};
 };
 
@@ -543,25 +540,24 @@ CrdWznmVer::Tag::Tag(
 			, const string& MitCrdFnm
 		) :
 			Block()
+			, MitAppAbt(MitAppAbt)
+			, MrlAppHlp(MrlAppHlp)
+			, MitCrdNew(MitCrdNew)
+			, MitCrdPcv(MitCrdPcv)
+			, MitCrdIdp(MitCrdIdp)
+			, MitCrdIgb(MitCrdIgb)
+			, MitCrdImd(MitCrdImd)
+			, MitCrdIdb(MitCrdIdb)
+			, MitCrdIbu(MitCrdIbu)
+			, MitCrdIie(MitCrdIie)
+			, MitCrdIop(MitCrdIop)
+			, MitCrdIcj(MitCrdIcj)
+			, MitCrdGui(MitCrdGui)
+			, MitCrdAui(MitCrdAui)
+			, MitCrdGjt(MitCrdGjt)
+			, MitCrdAjt(MitCrdAjt)
+			, MitCrdFnm(MitCrdFnm)
 		{
-	this->MitAppAbt = MitAppAbt;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MitCrdNew = MitCrdNew;
-	this->MitCrdPcv = MitCrdPcv;
-	this->MitCrdIdp = MitCrdIdp;
-	this->MitCrdIgb = MitCrdIgb;
-	this->MitCrdImd = MitCrdImd;
-	this->MitCrdIdb = MitCrdIdb;
-	this->MitCrdIbu = MitCrdIbu;
-	this->MitCrdIie = MitCrdIie;
-	this->MitCrdIop = MitCrdIop;
-	this->MitCrdIcj = MitCrdIcj;
-	this->MitCrdGui = MitCrdGui;
-	this->MitCrdAui = MitCrdAui;
-	this->MitCrdGjt = MitCrdGjt;
-	this->MitCrdAjt = MitCrdAjt;
-	this->MitCrdFnm = MitCrdFnm;
-
 	mask = {MITAPPABT, MRLAPPHLP, MITCRDNEW, MITCRDPCV, MITCRDIDP, MITCRDIGB, MITCRDIMD, MITCRDIDB, MITCRDIBU, MITCRDIIE, MITCRDIOP, MITCRDICJ, MITCRDGUI, MITCRDAUI, MITCRDGJT, MITCRDAJT, MITCRDFNM};
 };
 
@@ -614,11 +610,11 @@ CrdWznmVer::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMVERDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string CrdWznmVer::DpchAppDo::getSrefsMask() {

@@ -22,13 +22,13 @@ WznmJAVKeylistKey::WznmJAVKeylistKey(
 			, const uint x1IxWznmVLocale
 			, const string Title
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmAVKeylistKey = refWznmAVKeylistKey;
-	this->x1IxWznmVLocale = x1IxWznmVLocale;
-	this->Title = Title;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmAVKeylistKey(refWznmAVKeylistKey)
+			, x1IxWznmVLocale(x1IxWznmVLocale)
+			, Title(Title)
+			, Comment(Comment)
+		{
 };
 
 bool WznmJAVKeylistKey::operator==(

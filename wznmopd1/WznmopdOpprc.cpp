@@ -96,6 +96,11 @@ void* WznmopdOpprc::run(
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEPNL) {
 				req->dpchret = WznmWrvuePnl::run(xchg, &dbswznm, (DpchInvWznmWrvuePnl*) req->dpchinv);
 			};
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVISDBSTR) {
+				req->dpchret = WznmWrvisDbstr::run(xchg, &dbswznm, (DpchInvWznmWrvisDbstr*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVISIMPEXP) {
+				req->dpchret = WznmWrvisImpexp::run(xchg, &dbswznm, (DpchInvWznmWrvisImpexp*) req->dpchinv);
+			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVBASE) {
 				req->dpchret = WznmWrsrvBase::run(xchg, &dbswznm, (DpchInvWznmWrsrvBase*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVCMBENGBASE) {
@@ -224,6 +229,11 @@ void* WznmopdOpprc::run(
 				req->dpchret = WznmGenQtb::run(xchg, &dbswznm, (DpchInvWznmGenQtb*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMGENSYSVEC) {
 				req->dpchret = WznmGenSysvec::run(xchg, &dbswznm, (DpchInvWznmGenSysvec*) req->dpchinv);
+			};
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISDBSTR) {
+				req->dpchret = WznmComplvisDbstr::run(xchg, &dbswznm, (DpchInvWznmComplvisDbstr*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISIMPEXP) {
+				req->dpchret = WznmComplvisImpexp::run(xchg, &dbswznm, (DpchInvWznmComplvisImpexp*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLBSCUI) {
 				req->dpchret = WznmComplBscui::run(xchg, &dbswznm, (DpchInvWznmComplBscui*) req->dpchinv);

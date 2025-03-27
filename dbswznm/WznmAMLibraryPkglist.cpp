@@ -21,12 +21,12 @@ WznmAMLibraryPkglist::WznmAMLibraryPkglist(
 			, const ubigint refWznmMLibrary
 			, const ubigint x1RefWznmMMachine
 			, const string Pkglist
-		) {
-
-	this->ref = ref;
-	this->refWznmMLibrary = refWznmMLibrary;
-	this->x1RefWznmMMachine = x1RefWznmMMachine;
-	this->Pkglist = Pkglist;
+		) :
+			ref(ref)
+			, refWznmMLibrary(refWznmMLibrary)
+			, x1RefWznmMMachine(x1RefWznmMMachine)
+			, Pkglist(Pkglist)
+		{
 };
 
 bool WznmAMLibraryPkglist::operator==(

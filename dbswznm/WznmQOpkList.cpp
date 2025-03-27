@@ -31,20 +31,21 @@ WznmQOpkList::WznmQOpkList(
 			, const string stubRefWznmMVersion
 			, const bool Shrdat
 			, const string yesnoShrdat
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->Shrdat = Shrdat;
-	this->yesnoShrdat = yesnoShrdat;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, Shrdat(Shrdat)
+			, yesnoShrdat(yesnoShrdat)
+		{
 };
 
 void WznmQOpkList::writeJSON(

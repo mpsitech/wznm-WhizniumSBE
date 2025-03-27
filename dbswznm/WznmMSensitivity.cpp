@@ -33,22 +33,22 @@ WznmMSensitivity::WznmMSensitivity(
 			, const uint ixVAction
 			, const ubigint csgRefWznmMStage
 			, const bool Custcode
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMJob = refWznmMJob;
-	this->refWznmMStage = refWznmMStage;
-	this->refWznmMCall = refWznmMCall;
-	this->ixVJactype = ixVJactype;
-	this->ixVJobmask = ixVJobmask;
-	this->Jobshort = Jobshort;
-	this->Argpatt = Argpatt;
-	this->refWznmMControl = refWznmMControl;
-	this->Srefmask = Srefmask;
-	this->ixVAction = ixVAction;
-	this->csgRefWznmMStage = csgRefWznmMStage;
-	this->Custcode = Custcode;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMJob(refWznmMJob)
+			, refWznmMStage(refWznmMStage)
+			, refWznmMCall(refWznmMCall)
+			, ixVJactype(ixVJactype)
+			, ixVJobmask(ixVJobmask)
+			, Jobshort(Jobshort)
+			, Argpatt(Argpatt)
+			, refWznmMControl(refWznmMControl)
+			, Srefmask(Srefmask)
+			, ixVAction(ixVAction)
+			, csgRefWznmMStage(csgRefWznmMStage)
+			, Custcode(Custcode)
+		{
 };
 
 bool WznmMSensitivity::operator==(

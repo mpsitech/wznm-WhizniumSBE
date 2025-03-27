@@ -343,31 +343,30 @@ public class PnlWznmQryDetail {
 	  */
 	public class StatShr extends Block {
 
-		public static final int TXFINOVALID = 1;
-		public static final int BUTSAVEAVAIL = 2;
-		public static final int BUTSAVEACTIVE = 3;
-		public static final int TXTSRFACTIVE = 4;
-		public static final int PUPTYPACTIVE = 5;
-		public static final int TXTVERACTIVE = 6;
-		public static final int BUTVERVIEWAVAIL = 7;
-		public static final int BUTVERVIEWACTIVE = 8;
-		public static final int TXTSUPACTIVE = 9;
-		public static final int BUTSUPVIEWAVAIL = 10;
-		public static final int BUTSUPVIEWACTIVE = 11;
-		public static final int TXTTBLACTIVE = 12;
-		public static final int TXTQTBACTIVE = 13;
-		public static final int TXTJOBACTIVE = 14;
-		public static final int BUTJOBVIEWAVAIL = 15;
-		public static final int BUTJOBVIEWACTIVE = 16;
-		public static final int CHKLOFACTIVE = 17;
-		public static final int LSTINOACTIVE = 18;
+		public static final int BUTSAVEAVAIL = 1;
+		public static final int BUTSAVEACTIVE = 2;
+		public static final int TXTSRFACTIVE = 3;
+		public static final int PUPTYPACTIVE = 4;
+		public static final int TXTVERACTIVE = 5;
+		public static final int BUTVERVIEWAVAIL = 6;
+		public static final int BUTVERVIEWACTIVE = 7;
+		public static final int TXTSUPACTIVE = 8;
+		public static final int BUTSUPVIEWAVAIL = 9;
+		public static final int BUTSUPVIEWACTIVE = 10;
+		public static final int TXTTBLACTIVE = 11;
+		public static final int TXTQTBACTIVE = 12;
+		public static final int TXTJOBACTIVE = 13;
+		public static final int BUTJOBVIEWAVAIL = 14;
+		public static final int BUTJOBVIEWACTIVE = 15;
+		public static final int CHKLOFACTIVE = 16;
+		public static final int LSTINOACTIVE = 17;
+		public static final int TXFINOVALID = 18;
 		public static final int BUTINOVIEWAVAIL = 19;
 		public static final int BUTINOVIEWACTIVE = 20;
 		public static final int TXFCMTACTIVE = 21;
 
 		public StatShr(
-					boolean TxfInoValid
-					, boolean ButSaveAvail
+					boolean ButSaveAvail
 					, boolean ButSaveActive
 					, boolean TxtSrfActive
 					, boolean PupTypActive
@@ -384,11 +383,11 @@ public class PnlWznmQryDetail {
 					, boolean ButJobViewActive
 					, boolean ChkLofActive
 					, boolean LstInoActive
+					, boolean TxfInoValid
 					, boolean ButInoViewAvail
 					, boolean ButInoViewActive
 					, boolean TxfCmtActive
 				) {
-			this.TxfInoValid = TxfInoValid;
 			this.ButSaveAvail = ButSaveAvail;
 			this.ButSaveActive = ButSaveActive;
 			this.TxtSrfActive = TxtSrfActive;
@@ -406,14 +405,14 @@ public class PnlWznmQryDetail {
 			this.ButJobViewActive = ButJobViewActive;
 			this.ChkLofActive = ChkLofActive;
 			this.LstInoActive = LstInoActive;
+			this.TxfInoValid = TxfInoValid;
 			this.ButInoViewAvail = ButInoViewAvail;
 			this.ButInoViewActive = ButInoViewActive;
 			this.TxfCmtActive = TxfCmtActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(TXFINOVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXTQTBACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKLOFACTIVE, LSTINOACTIVE, BUTINOVIEWAVAIL, BUTINOVIEWACTIVE, TXFCMTACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXTQTBACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKLOFACTIVE, LSTINOACTIVE, TXFINOVALID, BUTINOVIEWAVAIL, BUTINOVIEWACTIVE, TXFCMTACTIVE));
 		};
 
-		public boolean TxfInoValid;
 		public boolean ButSaveAvail;
 		public boolean ButSaveActive;
 		public boolean TxtSrfActive;
@@ -431,6 +430,7 @@ public class PnlWznmQryDetail {
 		public boolean ButJobViewActive;
 		public boolean ChkLofActive;
 		public boolean LstInoActive;
+		public boolean TxfInoValid;
 		public boolean ButInoViewAvail;
 		public boolean ButInoViewActive;
 		public boolean TxfCmtActive;
@@ -448,7 +448,6 @@ public class PnlWznmQryDetail {
 			String itemtag = "StatitemShrWznmQryDetail";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
-				TxfInoValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfInoValid", mask, TXFINOVALID);
 				ButSaveAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveAvail", mask, BUTSAVEAVAIL);
 				ButSaveActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveActive", mask, BUTSAVEACTIVE);
 				TxtSrfActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtSrfActive", mask, TXTSRFACTIVE);
@@ -466,6 +465,7 @@ public class PnlWznmQryDetail {
 				ButJobViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButJobViewActive", mask, BUTJOBVIEWACTIVE);
 				ChkLofActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ChkLofActive", mask, CHKLOFACTIVE);
 				LstInoActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstInoActive", mask, LSTINOACTIVE);
+				TxfInoValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfInoValid", mask, TXFINOVALID);
 				ButInoViewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButInoViewAvail", mask, BUTINOVIEWAVAIL);
 				ButInoViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButInoViewActive", mask, BUTINOVIEWACTIVE);
 				TxfCmtActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfCmtActive", mask, TXFCMTACTIVE);
@@ -481,7 +481,6 @@ public class PnlWznmQryDetail {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
-			if (TxfInoValid == comp.TxfInoValid) items.add(TXFINOVALID);
 			if (ButSaveAvail == comp.ButSaveAvail) items.add(BUTSAVEAVAIL);
 			if (ButSaveActive == comp.ButSaveActive) items.add(BUTSAVEACTIVE);
 			if (TxtSrfActive == comp.TxtSrfActive) items.add(TXTSRFACTIVE);
@@ -499,6 +498,7 @@ public class PnlWznmQryDetail {
 			if (ButJobViewActive == comp.ButJobViewActive) items.add(BUTJOBVIEWACTIVE);
 			if (ChkLofActive == comp.ChkLofActive) items.add(CHKLOFACTIVE);
 			if (LstInoActive == comp.LstInoActive) items.add(LSTINOACTIVE);
+			if (TxfInoValid == comp.TxfInoValid) items.add(TXFINOVALID);
 			if (ButInoViewAvail == comp.ButInoViewAvail) items.add(BUTINOVIEWAVAIL);
 			if (ButInoViewActive == comp.ButInoViewActive) items.add(BUTINOVIEWACTIVE);
 			if (TxfCmtActive == comp.TxfCmtActive) items.add(TXFCMTACTIVE);
@@ -514,7 +514,7 @@ public class PnlWznmQryDetail {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(TXFINOVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXTQTBACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKLOFACTIVE, LSTINOACTIVE, BUTINOVIEWAVAIL, BUTINOVIEWACTIVE, TXFCMTACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXTQTBACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKLOFACTIVE, LSTINOACTIVE, TXFINOVALID, BUTINOVIEWAVAIL, BUTINOVIEWACTIVE, TXFCMTACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

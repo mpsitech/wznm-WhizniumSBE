@@ -23,14 +23,14 @@ WznmMMachine::WznmMMachine(
 			, const ubigint cchRefWznmMMachine
 			, const string srefKPkgmgr
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->supRefWznmMMachine = supRefWznmMMachine;
-	this->sref = sref;
-	this->cchRefWznmMMachine = cchRefWznmMMachine;
-	this->srefKPkgmgr = srefKPkgmgr;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, supRefWznmMMachine(supRefWznmMMachine)
+			, sref(sref)
+			, cchRefWznmMMachine(cchRefWznmMMachine)
+			, srefKPkgmgr(srefKPkgmgr)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMMachine::operator==(

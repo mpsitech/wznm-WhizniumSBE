@@ -24,13 +24,13 @@ WznmAMVectorTitle::WznmAMVectorTitle(
 			, const uint x1IxVType
 			, const ubigint x2RefWznmMLocale
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMVector = refWznmMVector;
-	this->x1IxVType = x1IxVType;
-	this->x2RefWznmMLocale = x2RefWznmMLocale;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMVector(refWznmMVector)
+			, x1IxVType(x1IxVType)
+			, x2RefWznmMLocale(x2RefWznmMLocale)
+			, Title(Title)
+		{
 };
 
 bool WznmAMVectorTitle::operator==(

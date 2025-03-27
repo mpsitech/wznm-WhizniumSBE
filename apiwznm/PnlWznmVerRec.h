@@ -66,30 +66,32 @@ namespace PnlWznmVerRec {
 
 	public:
 		static const Sbecore::uint INITDONEDETAIL = 1;
-		static const Sbecore::uint INITDONEVER1NERROR = 2;
-		static const Sbecore::uint INITDONEVER1NAPP = 3;
-		static const Sbecore::uint INITDONE1NCAPABILITY = 4;
-		static const Sbecore::uint INITDONE1NVECTOR = 5;
-		static const Sbecore::uint INITDONE1NTABLE = 6;
-		static const Sbecore::uint INITDONE1NRELATION = 7;
-		static const Sbecore::uint INITDONE1NQUERY = 8;
-		static const Sbecore::uint INITDONE1NPRESET = 9;
-		static const Sbecore::uint INITDONEVER1NMODULE = 10;
-		static const Sbecore::uint INITDONE1NOPPACK = 11;
-		static const Sbecore::uint INITDONE1NJOB = 12;
-		static const Sbecore::uint INITDONE1NIMPEXPCPLX = 13;
-		static const Sbecore::uint INITDONE1NCALL = 14;
-		static const Sbecore::uint INITDONE1NCOMPONENT = 15;
-		static const Sbecore::uint INITDONEBVR1NVERSION = 16;
-		static const Sbecore::uint INITDONE1NBLOCK = 17;
-		static const Sbecore::uint INITDONEREF1NFILE = 18;
-		static const Sbecore::uint INITDONEMNLOCALE = 19;
+		static const Sbecore::uint INITDONEVER1NVISUAL = 2;
+		static const Sbecore::uint INITDONEVER1NERROR = 3;
+		static const Sbecore::uint INITDONEVER1NAPP = 4;
+		static const Sbecore::uint INITDONE1NCAPABILITY = 5;
+		static const Sbecore::uint INITDONE1NVECTOR = 6;
+		static const Sbecore::uint INITDONE1NTABLE = 7;
+		static const Sbecore::uint INITDONE1NRELATION = 8;
+		static const Sbecore::uint INITDONE1NQUERY = 9;
+		static const Sbecore::uint INITDONE1NPRESET = 10;
+		static const Sbecore::uint INITDONEVER1NMODULE = 11;
+		static const Sbecore::uint INITDONE1NOPPACK = 12;
+		static const Sbecore::uint INITDONE1NJOB = 13;
+		static const Sbecore::uint INITDONE1NIMPEXPCPLX = 14;
+		static const Sbecore::uint INITDONE1NCALL = 15;
+		static const Sbecore::uint INITDONE1NCOMPONENT = 16;
+		static const Sbecore::uint INITDONEBVR1NVERSION = 17;
+		static const Sbecore::uint INITDONE1NBLOCK = 18;
+		static const Sbecore::uint INITDONEREF1NFILE = 19;
+		static const Sbecore::uint INITDONEMNLOCALE = 20;
 
 	public:
-		StatApp(const bool initdoneDetail = false, const bool initdoneVer1NError = false, const bool initdoneVer1NApp = false, const bool initdone1NCapability = false, const bool initdone1NVector = false, const bool initdone1NTable = false, const bool initdone1NRelation = false, const bool initdone1NQuery = false, const bool initdone1NPreset = false, const bool initdoneVer1NModule = false, const bool initdone1NOppack = false, const bool initdone1NJob = false, const bool initdone1NImpexpcplx = false, const bool initdone1NCall = false, const bool initdone1NComponent = false, const bool initdoneBvr1NVersion = false, const bool initdone1NBlock = false, const bool initdoneRef1NFile = false, const bool initdoneMNLocale = false);
+		StatApp(const bool initdoneDetail = false, const bool initdoneVer1NVisual = false, const bool initdoneVer1NError = false, const bool initdoneVer1NApp = false, const bool initdone1NCapability = false, const bool initdone1NVector = false, const bool initdone1NTable = false, const bool initdone1NRelation = false, const bool initdone1NQuery = false, const bool initdone1NPreset = false, const bool initdoneVer1NModule = false, const bool initdone1NOppack = false, const bool initdone1NJob = false, const bool initdone1NImpexpcplx = false, const bool initdone1NCall = false, const bool initdone1NComponent = false, const bool initdoneBvr1NVersion = false, const bool initdone1NBlock = false, const bool initdoneRef1NFile = false, const bool initdoneMNLocale = false);
 
 	public:
 		bool initdoneDetail;
+		bool initdoneVer1NVisual;
 		bool initdoneVer1NError;
 		bool initdoneVer1NApp;
 		bool initdone1NCapability;
@@ -123,32 +125,34 @@ namespace PnlWznmVerRec {
 	public:
 		static const Sbecore::uint IXWZNMVEXPSTATE = 1;
 		static const Sbecore::uint SCRJREFDETAIL = 2;
-		static const Sbecore::uint SCRJREFVER1NERROR = 3;
-		static const Sbecore::uint SCRJREFVER1NAPP = 4;
-		static const Sbecore::uint SCRJREF1NCAPABILITY = 5;
-		static const Sbecore::uint SCRJREF1NVECTOR = 6;
-		static const Sbecore::uint SCRJREF1NTABLE = 7;
-		static const Sbecore::uint SCRJREF1NRELATION = 8;
-		static const Sbecore::uint SCRJREF1NQUERY = 9;
-		static const Sbecore::uint SCRJREF1NPRESET = 10;
-		static const Sbecore::uint SCRJREFVER1NMODULE = 11;
-		static const Sbecore::uint SCRJREF1NOPPACK = 12;
-		static const Sbecore::uint SCRJREF1NJOB = 13;
-		static const Sbecore::uint SCRJREF1NIMPEXPCPLX = 14;
-		static const Sbecore::uint SCRJREF1NCALL = 15;
-		static const Sbecore::uint SCRJREF1NCOMPONENT = 16;
-		static const Sbecore::uint SCRJREFBVR1NVERSION = 17;
-		static const Sbecore::uint SCRJREF1NBLOCK = 18;
-		static const Sbecore::uint SCRJREFREF1NFILE = 19;
-		static const Sbecore::uint SCRJREFMNLOCALE = 20;
-		static const Sbecore::uint BUTREGULARIZEACTIVE = 21;
+		static const Sbecore::uint SCRJREFVER1NVISUAL = 3;
+		static const Sbecore::uint SCRJREFVER1NERROR = 4;
+		static const Sbecore::uint SCRJREFVER1NAPP = 5;
+		static const Sbecore::uint SCRJREF1NCAPABILITY = 6;
+		static const Sbecore::uint SCRJREF1NVECTOR = 7;
+		static const Sbecore::uint SCRJREF1NTABLE = 8;
+		static const Sbecore::uint SCRJREF1NRELATION = 9;
+		static const Sbecore::uint SCRJREF1NQUERY = 10;
+		static const Sbecore::uint SCRJREF1NPRESET = 11;
+		static const Sbecore::uint SCRJREFVER1NMODULE = 12;
+		static const Sbecore::uint SCRJREF1NOPPACK = 13;
+		static const Sbecore::uint SCRJREF1NJOB = 14;
+		static const Sbecore::uint SCRJREF1NIMPEXPCPLX = 15;
+		static const Sbecore::uint SCRJREF1NCALL = 16;
+		static const Sbecore::uint SCRJREF1NCOMPONENT = 17;
+		static const Sbecore::uint SCRJREFBVR1NVERSION = 18;
+		static const Sbecore::uint SCRJREF1NBLOCK = 19;
+		static const Sbecore::uint SCRJREFREF1NFILE = 20;
+		static const Sbecore::uint SCRJREFMNLOCALE = 21;
+		static const Sbecore::uint BUTREGULARIZEACTIVE = 22;
 
 	public:
-		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefVer1NError = "", const std::string& scrJrefVer1NApp = "", const std::string& scrJref1NCapability = "", const std::string& scrJref1NVector = "", const std::string& scrJref1NTable = "", const std::string& scrJref1NRelation = "", const std::string& scrJref1NQuery = "", const std::string& scrJref1NPreset = "", const std::string& scrJrefVer1NModule = "", const std::string& scrJref1NOppack = "", const std::string& scrJref1NJob = "", const std::string& scrJref1NImpexpcplx = "", const std::string& scrJref1NCall = "", const std::string& scrJref1NComponent = "", const std::string& scrJrefBvr1NVersion = "", const std::string& scrJref1NBlock = "", const std::string& scrJrefRef1NFile = "", const std::string& scrJrefMNLocale = "", const bool ButRegularizeActive = true);
+		StatShr(const Sbecore::uint ixWznmVExpstate = VecWznmVExpstate::REGD, const std::string& scrJrefDetail = "", const std::string& scrJrefVer1NVisual = "", const std::string& scrJrefVer1NError = "", const std::string& scrJrefVer1NApp = "", const std::string& scrJref1NCapability = "", const std::string& scrJref1NVector = "", const std::string& scrJref1NTable = "", const std::string& scrJref1NRelation = "", const std::string& scrJref1NQuery = "", const std::string& scrJref1NPreset = "", const std::string& scrJrefVer1NModule = "", const std::string& scrJref1NOppack = "", const std::string& scrJref1NJob = "", const std::string& scrJref1NImpexpcplx = "", const std::string& scrJref1NCall = "", const std::string& scrJref1NComponent = "", const std::string& scrJrefBvr1NVersion = "", const std::string& scrJref1NBlock = "", const std::string& scrJrefRef1NFile = "", const std::string& scrJrefMNLocale = "", const bool ButRegularizeActive = true);
 
 	public:
 		Sbecore::uint ixWznmVExpstate;
 		std::string scrJrefDetail;
+		std::string scrJrefVer1NVisual;
 		std::string scrJrefVer1NError;
 		std::string scrJrefVer1NApp;
 		std::string scrJref1NCapability;

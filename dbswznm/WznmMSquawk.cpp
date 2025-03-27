@@ -25,14 +25,14 @@ WznmMSquawk::WznmMSquawk(
 			, const ubigint refJTitle
 			, const string Title
 			, const string Example
-		) {
-
-	this->ref = ref;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->refJTitle = refJTitle;
-	this->Title = Title;
-	this->Example = Example;
+		) :
+			ref(ref)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, refJTitle(refJTitle)
+			, Title(Title)
+			, Example(Example)
+		{
 };
 
 bool WznmMSquawk::operator==(

@@ -14,7 +14,7 @@ using namespace Xmlio;
 bool CrdWznmNav::evalPnlpreAvail(
 			DbsWznm* dbswznm
 		) {
-	// pre.refApp()|pre.refVer()
+	// pre.refApp()|pre.refVer()|pre.refVis()
 
 	vector<bool> args;
 	bool a, b;
@@ -23,6 +23,11 @@ bool CrdWznmNav::evalPnlpreAvail(
 	args.push_back(a);
 	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVER, jref) != 0);
 	args.push_back(a);
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVIS, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);
@@ -312,6 +317,30 @@ bool CrdWznmNav::evalPnldeployAvail(
 	return(args.back());
 };
 
+bool CrdWznmNav::evalPnlvisualAvail(
+			DbsWznm* dbswznm
+		) {
+	// pre.ixCrdaccVis()|pre.ixCrdaccSht()|pre.ixCrdaccBox()
+
+	vector<bool> args;
+	bool a, b;
+
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVIS, jref) != 0);
+	args.push_back(a);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSHT, jref) != 0);
+	args.push_back(a);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCBOX, jref) != 0);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
+
+	return(args.back());
+};
+
 bool CrdWznmNav::evalPnlappdevAvail(
 			DbsWznm* dbswznm
 		) {
@@ -363,12 +392,12 @@ bool CrdWznmNav::evalPnlauxfctAvail(
 bool CrdWznmNav::evalMitSesSpsAvail(
 			DbsWznm* dbswznm
 		) {
-	// stgwznmappearance.suspsessEq(true)
+	// stgwznmbehavior.suspsessEq(true)
 
 	vector<bool> args;
 	bool a;
 
-	a = false; a = (xchg->stgwznmappearance.suspsess == true);
+	a = false; a = (xchg->stgwznmbehavior.suspsess == true);
 	args.push_back(a);
 
 	return(args.back());
@@ -1634,6 +1663,100 @@ bool CrdWznmNav::evalMitCrdRlsActive(
 bool CrdWznmNav::evalMspCrd9Avail(
 			DbsWznm* dbswznm
 		) {
+	// MitCrdVisAvail()|MitCrdShtAvail()|MitCrdBoxAvail()
+
+	vector<bool> args;
+	bool a, b;
+
+	a = false; a = evalMitCrdVisAvail(dbswznm);
+	args.push_back(a);
+	a = false; a = evalMitCrdShtAvail(dbswznm);
+	args.push_back(a);
+	a = false; a = evalMitCrdBoxAvail(dbswznm);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
+
+	return(args.back());
+};
+
+bool CrdWznmNav::evalMitCrdVisAvail(
+			DbsWznm* dbswznm
+		) {
+	// pre.ixCrdaccVis()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVIS, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWznmNav::evalMitCrdShtAvail(
+			DbsWznm* dbswznm
+		) {
+	// pre.ixCrdaccSht()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSHT, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWznmNav::evalMitCrdShtActive(
+			DbsWznm* dbswznm
+		) {
+	// pre.refVis()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVIS, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWznmNav::evalMitCrdBoxAvail(
+			DbsWznm* dbswznm
+		) {
+	// pre.ixCrdaccBox()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCBOX, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWznmNav::evalMitCrdBoxActive(
+			DbsWznm* dbswznm
+		) {
+	// pre.refVis()
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = (xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVIS, jref) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool CrdWznmNav::evalMspCrd10Avail(
+			DbsWznm* dbswznm
+		) {
 	// MitCrdAppAvail()|MitCrdRtjAvail()|MitCrdEvtAvail()|MitCrdSeqAvail()|MitCrdSteAvail()
 
 	vector<bool> args;
@@ -1791,7 +1914,7 @@ bool CrdWznmNav::evalMitCrdSteActive(
 	return(args.back());
 };
 
-bool CrdWznmNav::evalMspCrd10Avail(
+bool CrdWznmNav::evalMspCrd11Avail(
 			DbsWznm* dbswznm
 		) {
 	// MitCrdUtlAvail()

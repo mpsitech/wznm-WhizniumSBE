@@ -49,11 +49,10 @@ PnlWznmMchDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupPkm(numFPupPkm)
+			, TxfPkm(TxfPkm)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupPkm = numFPupPkm;
-	this->TxfPkm = TxfPkm;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPPKM, TXFPKM, TXFCMT};
 };
 
@@ -111,7 +110,7 @@ void PnlWznmMchDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupPkm"] = numFPupPkm;
+	me["numFPupPkm"] = (Json::Value::UInt) numFPupPkm;
 	me["TxfPkm"] = TxfPkm;
 	me["TxfCmt"] = TxfCmt;
 };
@@ -170,11 +169,10 @@ PnlWznmMchDetail::ContInf::ContInf(
 			, const string& TxtCch
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtSup(TxtSup)
+			, TxtCch(TxtCch)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtSup = TxtSup;
-	this->TxtCch = TxtCch;
-
 	mask = {TXTSRF, TXTSUP, TXTCCH};
 };
 
@@ -277,8 +275,7 @@ void PnlWznmMchDetail::StatApp::writeXML(
  ******************************************************************************/
 
 PnlWznmMchDetail::StatShr::StatShr(
-			const bool TxfPkmValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
 			, const bool TxtSupActive
@@ -288,26 +285,26 @@ PnlWznmMchDetail::StatShr::StatShr(
 			, const bool ButCchViewAvail
 			, const bool ButCchViewActive
 			, const bool PupPkmActive
+			, const bool TxfPkmValid
 			, const bool ButPkmEditAvail
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxtSupActive(TxtSupActive)
+			, ButSupViewAvail(ButSupViewAvail)
+			, ButSupViewActive(ButSupViewActive)
+			, TxtCchActive(TxtCchActive)
+			, ButCchViewAvail(ButCchViewAvail)
+			, ButCchViewActive(ButCchViewActive)
+			, PupPkmActive(PupPkmActive)
+			, TxfPkmValid(TxfPkmValid)
+			, ButPkmEditAvail(ButPkmEditAvail)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->TxfPkmValid = TxfPkmValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxtSupActive = TxtSupActive;
-	this->ButSupViewAvail = ButSupViewAvail;
-	this->ButSupViewActive = ButSupViewActive;
-	this->TxtCchActive = TxtCchActive;
-	this->ButCchViewAvail = ButCchViewAvail;
-	this->ButCchViewActive = ButCchViewActive;
-	this->PupPkmActive = PupPkmActive;
-	this->ButPkmEditAvail = ButPkmEditAvail;
-	this->TxfCmtActive = TxfCmtActive;
-
-	mask = {TXFPKMVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, BUTPKMEDITAVAIL, TXFCMTACTIVE};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, TXFPKMVALID, BUTPKMEDITAVAIL, TXFCMTACTIVE};
 };
 
 void PnlWznmMchDetail::StatShr::writeJSON(
@@ -318,7 +315,6 @@ void PnlWznmMchDetail::StatShr::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TxfPkmValid"] = TxfPkmValid;
 	me["ButSaveAvail"] = ButSaveAvail;
 	me["ButSaveActive"] = ButSaveActive;
 	me["TxtSrfActive"] = TxtSrfActive;
@@ -329,6 +325,7 @@ void PnlWznmMchDetail::StatShr::writeJSON(
 	me["ButCchViewAvail"] = ButCchViewAvail;
 	me["ButCchViewActive"] = ButCchViewActive;
 	me["PupPkmActive"] = PupPkmActive;
+	me["TxfPkmValid"] = TxfPkmValid;
 	me["ButPkmEditAvail"] = ButPkmEditAvail;
 	me["TxfCmtActive"] = TxfCmtActive;
 };
@@ -345,7 +342,6 @@ void PnlWznmMchDetail::StatShr::writeXML(
 	else itemtag = "StatitemShrWznmMchDetail";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeBoolAttr(wr, itemtag, "sref", "TxfPkmValid", TxfPkmValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveAvail", ButSaveAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveActive", ButSaveActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxtSrfActive", TxtSrfActive);
@@ -356,6 +352,7 @@ void PnlWznmMchDetail::StatShr::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "ButCchViewAvail", ButCchViewAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButCchViewActive", ButCchViewActive);
 		writeBoolAttr(wr, itemtag, "sref", "PupPkmActive", PupPkmActive);
+		writeBoolAttr(wr, itemtag, "sref", "TxfPkmValid", TxfPkmValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButPkmEditAvail", ButPkmEditAvail);
 		writeBoolAttr(wr, itemtag, "sref", "TxfCmtActive", TxfCmtActive);
 	xmlTextWriterEndElement(wr);
@@ -366,7 +363,6 @@ set<uint> PnlWznmMchDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfPkmValid == comp->TxfPkmValid) insert(items, TXFPKMVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
@@ -377,6 +373,7 @@ set<uint> PnlWznmMchDetail::StatShr::comm(
 	if (ButCchViewAvail == comp->ButCchViewAvail) insert(items, BUTCCHVIEWAVAIL);
 	if (ButCchViewActive == comp->ButCchViewActive) insert(items, BUTCCHVIEWACTIVE);
 	if (PupPkmActive == comp->PupPkmActive) insert(items, PUPPKMACTIVE);
+	if (TxfPkmValid == comp->TxfPkmValid) insert(items, TXFPKMVALID);
 	if (ButPkmEditAvail == comp->ButPkmEditAvail) insert(items, BUTPKMEDITAVAIL);
 	if (TxfCmtActive == comp->TxfCmtActive) insert(items, TXFCMTACTIVE);
 
@@ -391,7 +388,7 @@ set<uint> PnlWznmMchDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFPKMVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, BUTPKMEDITAVAIL, TXFCMTACTIVE};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTCCHACTIVE, BUTCCHVIEWAVAIL, BUTCCHVIEWACTIVE, PUPPKMACTIVE, TXFPKMVALID, BUTPKMEDITAVAIL, TXFCMTACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

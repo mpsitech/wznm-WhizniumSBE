@@ -264,6 +264,7 @@ function handleTxftChange(_doc, ctlsref) {
 function mergeDpchEngData(dom) {
 	var mask = [];
 
+	// IP mergeDpchEngData --- BEGIN
 	if (updateSrcblock(dom, "DpchEngWznmJobDetailData", "ContIacWznmJobDetail", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmJobDetailData", "ContInfWznmJobDetail", srcdoc)) mask.push("continf");
 	if (updateSrcblock(dom, "DpchEngWznmJobDetailData", "FeedFPupRet", srcdoc)) mask.push("feedFPupRet");
@@ -271,6 +272,7 @@ function mergeDpchEngData(dom) {
 	if (updateSrcblock(dom, "DpchEngWznmJobDetailData", "StatAppWznmJobDetail", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmJobDetailData", "StatShrWznmJobDetail", srcdoc)) mask.push("statshr");
 	if (updateSrcblock(dom, "DpchEngWznmJobDetailData", "TagWznmJobDetail", srcdoc)) mask.push("tag");
+	// IP mergeDpchEngData --- END
 
 	return mask;
 };

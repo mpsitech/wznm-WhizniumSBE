@@ -41,9 +41,8 @@ DlgWznmFilDownload::ContInf::ContInf(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 

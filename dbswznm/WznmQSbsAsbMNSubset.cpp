@@ -27,16 +27,17 @@ WznmQSbsAsbMNSubset::WznmQSbsAsbMNSubset(
 			, const uint ixVReltype
 			, const string srefIxVReltype
 			, const string titIxVReltype
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->mref = mref;
-	this->stubMref = stubMref;
-	this->ref = ref;
-	this->ixVReltype = ixVReltype;
-	this->srefIxVReltype = srefIxVReltype;
-	this->titIxVReltype = titIxVReltype;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, mref(mref)
+			, stubMref(stubMref)
+			, ref(ref)
+			, ixVReltype(ixVReltype)
+			, srefIxVReltype(srefIxVReltype)
+			, titIxVReltype(titIxVReltype)
+		{
 };
 
 void WznmQSbsAsbMNSubset::writeJSON(

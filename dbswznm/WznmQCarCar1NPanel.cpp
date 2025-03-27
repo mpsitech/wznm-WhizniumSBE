@@ -24,13 +24,14 @@ WznmQCarCar1NPanel::WznmQCarCar1NPanel(
 			, const ubigint ref
 			, const string stubRef
 			, const uint carNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->carNum = carNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, carNum(carNum)
+		{
 };
 
 void WznmQCarCar1NPanel::writeJSON(

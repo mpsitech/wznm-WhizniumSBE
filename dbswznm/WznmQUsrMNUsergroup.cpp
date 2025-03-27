@@ -27,16 +27,17 @@ WznmQUsrMNUsergroup::WznmQUsrMNUsergroup(
 			, const uint ixWznmVUserlevel
 			, const string srefIxWznmVUserlevel
 			, const string titIxWznmVUserlevel
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->mref = mref;
-	this->stubMref = stubMref;
-	this->ref = ref;
-	this->ixWznmVUserlevel = ixWznmVUserlevel;
-	this->srefIxWznmVUserlevel = srefIxWznmVUserlevel;
-	this->titIxWznmVUserlevel = titIxWznmVUserlevel;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, mref(mref)
+			, stubMref(stubMref)
+			, ref(ref)
+			, ixWznmVUserlevel(ixWznmVUserlevel)
+			, srefIxWznmVUserlevel(srefIxWznmVUserlevel)
+			, titIxWznmVUserlevel(titIxWznmVUserlevel)
+		{
 };
 
 void WznmQUsrMNUsergroup::writeJSON(

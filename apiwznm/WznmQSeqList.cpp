@@ -22,11 +22,12 @@ WznmQSeqList::WznmQSeqList(
 			, const string sref
 			, const string Title
 			, const string stubAppRefWznmMApp
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->stubAppRefWznmMApp = stubAppRefWznmMApp;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, stubAppRefWznmMApp(stubAppRefWznmMApp)
+		{
 };
 
 bool WznmQSeqList::readXML(

@@ -210,8 +210,8 @@ void QryWznmEvtList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMEvent.sref ASC";
-	else if (preIxOrd == VecVOrd::APP) sqlstr += " ORDER BY TblWznmMEvent.refWznmMApp ASC";
+	if (preIxOrd == VecVOrd::APP) sqlstr += " ORDER BY TblWznmMEvent.refWznmMApp ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMEvent.sref ASC";
 };
 
 void QryWznmEvtList::fetch(

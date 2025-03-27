@@ -45,9 +45,8 @@ PnlWznmRelRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -112,15 +111,14 @@ PnlWznmRelRec::StatApp::StatApp(
 			, const bool initdoneRef1NControl
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneATitle(initdoneATitle)
+			, initdone1NTablecol(initdone1NTablecol)
+			, initdoneSup1NRelation(initdoneSup1NRelation)
+			, initdoneRef1NPanel(initdoneRef1NPanel)
+			, initdoneRef1NDialog(initdoneRef1NDialog)
+			, initdoneRef1NControl(initdoneRef1NControl)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneATitle = initdoneATitle;
-	this->initdone1NTablecol = initdone1NTablecol;
-	this->initdoneSup1NRelation = initdoneSup1NRelation;
-	this->initdoneRef1NPanel = initdoneRef1NPanel;
-	this->initdoneRef1NDialog = initdoneRef1NDialog;
-	this->initdoneRef1NControl = initdoneRef1NControl;
-
 	mask = {INITDONEDETAIL, INITDONEATITLE, INITDONE1NTABLECOL, INITDONESUP1NRELATION, INITDONEREF1NPANEL, INITDONEREF1NDIALOG, INITDONEREF1NCONTROL};
 };
 
@@ -199,17 +197,16 @@ PnlWznmRelRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefATitle(scrJrefATitle)
+			, scrJref1NTablecol(scrJref1NTablecol)
+			, scrJrefSup1NRelation(scrJrefSup1NRelation)
+			, scrJrefRef1NPanel(scrJrefRef1NPanel)
+			, scrJrefRef1NDialog(scrJrefRef1NDialog)
+			, scrJrefRef1NControl(scrJrefRef1NControl)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefATitle = scrJrefATitle;
-	this->scrJref1NTablecol = scrJref1NTablecol;
-	this->scrJrefSup1NRelation = scrJrefSup1NRelation;
-	this->scrJrefRef1NPanel = scrJrefRef1NPanel;
-	this->scrJrefRef1NDialog = scrJrefRef1NDialog;
-	this->scrJrefRef1NControl = scrJrefRef1NControl;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFATITLE, SCRJREF1NTABLECOL, SCRJREFSUP1NRELATION, SCRJREFREF1NPANEL, SCRJREFREF1NDIALOG, SCRJREFREF1NCONTROL, BUTREGULARIZEACTIVE};
 };
 
@@ -289,9 +286,8 @@ PnlWznmRelRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -328,11 +324,11 @@ PnlWznmRelRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMRELRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmRelRec::DpchAppDo::getSrefsMask() {

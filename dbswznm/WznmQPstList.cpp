@@ -34,23 +34,24 @@ WznmQPstList::WznmQPstList(
 			, const uint ixWznmWArgtype
 			, const string srefIxWznmWArgtype
 			, const string titIxWznmWArgtype
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->refIxVTbl = refIxVTbl;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->refUref = refUref;
-	this->stubRefUref = stubRefUref;
-	this->ixWznmWArgtype = ixWznmWArgtype;
-	this->srefIxWznmWArgtype = srefIxWznmWArgtype;
-	this->titIxWznmWArgtype = titIxWznmWArgtype;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, refIxVTbl(refIxVTbl)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, refUref(refUref)
+			, stubRefUref(stubRefUref)
+			, ixWznmWArgtype(ixWznmWArgtype)
+			, srefIxWznmWArgtype(srefIxWznmWArgtype)
+			, titIxWznmWArgtype(titIxWznmWArgtype)
+		{
 };
 
 void WznmQPstList::writeJSON(

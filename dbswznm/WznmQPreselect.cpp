@@ -22,11 +22,12 @@ WznmQPreselect::WznmQPreselect(
 			, const ubigint jref
 			, const uint jnum
 			, const ubigint ref
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+		{
 };
 
 void WznmQPreselect::writeJSON(

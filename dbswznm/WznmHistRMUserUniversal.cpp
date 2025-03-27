@@ -26,17 +26,17 @@ WznmHistRMUserUniversal::WznmHistRMUserUniversal(
 			, const uint preIxWznmVMaintable
 			, const ubigint preUref
 			, const uint start
-		) {
-
-	this->ref = ref;
-	this->refWznmMUser = refWznmMUser;
-	this->unvIxWznmVMaintable = unvIxWznmVMaintable;
-	this->unvUref = unvUref;
-	this->ixWznmVCard = ixWznmVCard;
-	this->ixWznmVPreset = ixWznmVPreset;
-	this->preIxWznmVMaintable = preIxWznmVMaintable;
-	this->preUref = preUref;
-	this->start = start;
+		) :
+			ref(ref)
+			, refWznmMUser(refWznmMUser)
+			, unvIxWznmVMaintable(unvIxWznmVMaintable)
+			, unvUref(unvUref)
+			, ixWznmVCard(ixWznmVCard)
+			, ixWznmVPreset(ixWznmVPreset)
+			, preIxWznmVMaintable(preIxWznmVMaintable)
+			, preUref(preUref)
+			, start(start)
+		{
 };
 
 bool WznmHistRMUserUniversal::operator==(

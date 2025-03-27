@@ -26,15 +26,16 @@ WznmQOpkAInvarg::WznmQOpkAInvarg(
 			, const string Defval
 			, const string stubRefWznmMVectoritem
 			, const string Comment
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxWznmVVartype = srefIxWznmVVartype;
-	this->titIxWznmVVartype = titIxWznmVVartype;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->Defval = Defval;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
-	this->Comment = Comment;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxWznmVVartype(srefIxWznmVVartype)
+			, titIxWznmVVartype(titIxWznmVVartype)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, Defval(Defval)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+			, Comment(Comment)
+		{
 };
 
 bool WznmQOpkAInvarg::readXML(

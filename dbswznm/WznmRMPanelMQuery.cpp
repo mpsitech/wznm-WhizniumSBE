@@ -20,11 +20,11 @@ WznmRMPanelMQuery::WznmRMPanelMQuery(
 			const ubigint ref
 			, const ubigint refWznmMPanel
 			, const ubigint refWznmMQuery
-		) {
-
-	this->ref = ref;
-	this->refWznmMPanel = refWznmMPanel;
-	this->refWznmMQuery = refWznmMQuery;
+		) :
+			ref(ref)
+			, refWznmMPanel(refWznmMPanel)
+			, refWznmMQuery(refWznmMQuery)
+		{
 };
 
 bool WznmRMPanelMQuery::operator==(

@@ -51,15 +51,15 @@ CrdWznmVer::CrdWznmVer(
 	dlgwrinimdl = NULL;
 	dlgoppack = NULL;
 	dlgnew = NULL;
-	dlgglobal = NULL;
 	dlgimpexp = NULL;
 	dlggenui = NULL;
+	dlgglobal = NULL;
 	dlggenjtr = NULL;
 	dlgfinmod = NULL;
 	dlgdeploy = NULL;
 	dlgdbstr = NULL;
-	dlgcustui = NULL;
 	dlgcustjtr = NULL;
+	dlgcustui = NULL;
 	dlgcustjob = NULL;
 	dlgbscui = NULL;
 

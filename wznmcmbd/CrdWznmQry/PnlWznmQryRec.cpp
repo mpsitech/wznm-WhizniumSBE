@@ -45,8 +45,8 @@ PnlWznmQryRec::PnlWznmQryRec(
 	pnlqry1nquerycol = NULL;
 	pnl1nquerymod = NULL;
 	pnlaorder = NULL;
-	pnldetail = NULL;
 	pnlaclause = NULL;
+	pnldetail = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

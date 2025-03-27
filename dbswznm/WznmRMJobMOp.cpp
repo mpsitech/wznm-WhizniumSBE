@@ -20,11 +20,11 @@ WznmRMJobMOp::WznmRMJobMOp(
 			const ubigint ref
 			, const ubigint refWznmMJob
 			, const ubigint refWznmMOp
-		) {
-
-	this->ref = ref;
-	this->refWznmMJob = refWznmMJob;
-	this->refWznmMOp = refWznmMOp;
+		) :
+			ref(ref)
+			, refWznmMJob(refWznmMJob)
+			, refWznmMOp(refWznmMOp)
+		{
 };
 
 bool WznmRMJobMOp::operator==(

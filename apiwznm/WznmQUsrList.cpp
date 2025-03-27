@@ -30,19 +30,20 @@ WznmQUsrList::WznmQUsrList(
 			, const string titIxWznmVLocale
 			, const string srefIxWznmVUserlevel
 			, const string titIxWznmVUserlevel
-		) {
-	this->jnum = jnum;
-	this->stubGrp = stubGrp;
-	this->stubOwn = stubOwn;
-	this->stubRefWznmMPerson = stubRefWznmMPerson;
-	this->sref = sref;
-	this->stubRefWznmMUsergroup = stubRefWznmMUsergroup;
-	this->srefIxVState = srefIxVState;
-	this->titIxVState = titIxVState;
-	this->srefIxWznmVLocale = srefIxWznmVLocale;
-	this->titIxWznmVLocale = titIxWznmVLocale;
-	this->srefIxWznmVUserlevel = srefIxWznmVUserlevel;
-	this->titIxWznmVUserlevel = titIxWznmVUserlevel;
+		) :
+			jnum(jnum)
+			, stubGrp(stubGrp)
+			, stubOwn(stubOwn)
+			, stubRefWznmMPerson(stubRefWznmMPerson)
+			, sref(sref)
+			, stubRefWznmMUsergroup(stubRefWznmMUsergroup)
+			, srefIxVState(srefIxVState)
+			, titIxVState(titIxVState)
+			, srefIxWznmVLocale(srefIxWznmVLocale)
+			, titIxWznmVLocale(titIxWznmVLocale)
+			, srefIxWznmVUserlevel(srefIxWznmVUserlevel)
+			, titIxWznmVUserlevel(titIxWznmVUserlevel)
+		{
 };
 
 bool WznmQUsrList::readXML(

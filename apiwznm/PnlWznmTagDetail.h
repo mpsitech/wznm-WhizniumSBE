@@ -120,24 +120,23 @@ namespace PnlWznmTagDetail {
 	class StatShr : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint TXFGRPVALID = 1;
-		static const Sbecore::uint BUTSAVEAVAIL = 2;
-		static const Sbecore::uint BUTSAVEACTIVE = 3;
-		static const Sbecore::uint TXTSRFACTIVE = 4;
-		static const Sbecore::uint PUPJTIACTIVE = 5;
-		static const Sbecore::uint BUTJTIEDITAVAIL = 6;
-		static const Sbecore::uint TXTTITACTIVE = 7;
-		static const Sbecore::uint TXTCPBACTIVE = 8;
-		static const Sbecore::uint BUTCPBVIEWAVAIL = 9;
-		static const Sbecore::uint BUTCPBVIEWACTIVE = 10;
-		static const Sbecore::uint PUPGRPACTIVE = 11;
+		static const Sbecore::uint BUTSAVEAVAIL = 1;
+		static const Sbecore::uint BUTSAVEACTIVE = 2;
+		static const Sbecore::uint TXTSRFACTIVE = 3;
+		static const Sbecore::uint PUPJTIACTIVE = 4;
+		static const Sbecore::uint BUTJTIEDITAVAIL = 5;
+		static const Sbecore::uint TXTTITACTIVE = 6;
+		static const Sbecore::uint TXTCPBACTIVE = 7;
+		static const Sbecore::uint BUTCPBVIEWAVAIL = 8;
+		static const Sbecore::uint BUTCPBVIEWACTIVE = 9;
+		static const Sbecore::uint PUPGRPACTIVE = 10;
+		static const Sbecore::uint TXFGRPVALID = 11;
 		static const Sbecore::uint BUTGRPEDITAVAIL = 12;
 
 	public:
-		StatShr(const bool TxfGrpValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool PupJtiActive = true, const bool ButJtiEditAvail = true, const bool TxtTitActive = true, const bool TxtCpbActive = true, const bool ButCpbViewAvail = true, const bool ButCpbViewActive = true, const bool PupGrpActive = true, const bool ButGrpEditAvail = true);
+		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool PupJtiActive = true, const bool ButJtiEditAvail = true, const bool TxtTitActive = true, const bool TxtCpbActive = true, const bool ButCpbViewAvail = true, const bool ButCpbViewActive = true, const bool PupGrpActive = true, const bool TxfGrpValid = false, const bool ButGrpEditAvail = true);
 
 	public:
-		bool TxfGrpValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtSrfActive;
@@ -148,6 +147,7 @@ namespace PnlWznmTagDetail {
 		bool ButCpbViewAvail;
 		bool ButCpbViewActive;
 		bool PupGrpActive;
+		bool TxfGrpValid;
 		bool ButGrpEditAvail;
 
 	public:

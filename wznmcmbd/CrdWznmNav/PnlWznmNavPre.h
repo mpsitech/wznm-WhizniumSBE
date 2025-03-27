@@ -37,6 +37,7 @@ public:
 	public:
 		static const Sbecore::uint BUTAPPREMOVECLICK = 1;
 		static const Sbecore::uint BUTVERREMOVECLICK = 2;
+		static const Sbecore::uint BUTVISREMOVECLICK = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -50,13 +51,15 @@ public:
 	public:
 		static const Sbecore::uint TXTAPP = 1;
 		static const Sbecore::uint TXTVER = 2;
+		static const Sbecore::uint TXTVIS = 3;
 
 	public:
-		ContInf(const std::string& TxtApp = "", const std::string& TxtVer = "");
+		ContInf(const std::string& TxtApp = "", const std::string& TxtVer = "", const std::string& TxtVis = "");
 
 	public:
 		std::string TxtApp;
 		std::string TxtVer;
+		std::string TxtVis;
 
 	public:
 		void writeJSON(Json::Value& sup, std::string difftag = "");
@@ -73,13 +76,15 @@ public:
 	public:
 		static const Sbecore::uint TXTAPPAVAIL = 1;
 		static const Sbecore::uint TXTVERAVAIL = 2;
+		static const Sbecore::uint TXTVISAVAIL = 3;
 
 	public:
-		StatShr(const bool TxtAppAvail = true, const bool TxtVerAvail = true);
+		StatShr(const bool TxtAppAvail = true, const bool TxtVerAvail = true, const bool TxtVisAvail = true);
 
 	public:
 		bool TxtAppAvail;
 		bool TxtVerAvail;
+		bool TxtVisAvail;
 
 	public:
 		void writeJSON(Json::Value& sup, std::string difftag = "");
@@ -149,6 +154,7 @@ public:
 
 	bool evalTxtAppAvail(DbsWznm* dbswznm);
 	bool evalTxtVerAvail(DbsWznm* dbswznm);
+	bool evalTxtVisAvail(DbsWznm* dbswznm);
 
 public:
 	PnlWznmNavPre(XchgWznm* xchg, DbsWznm* dbswznm, const Sbecore::ubigint jrefSup, const Sbecore::uint ixWznmVLocale);
@@ -181,6 +187,7 @@ private:
 
 	void handleDpchAppDoButAppRemoveClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoButVerRemoveClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoButVisRemoveClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 
 };
 

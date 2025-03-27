@@ -47,9 +47,8 @@ PnlWznmMdlDetail::ContIac::ContIac(
 			const uint numFPupJ
 		) :
 			Block()
+			, numFPupJ(numFPupJ)
 		{
-	this->numFPupJ = numFPupJ;
-
 	mask = {NUMFPUPJ};
 };
 
@@ -127,12 +126,11 @@ PnlWznmMdlDetail::ContInf::ContInf(
 			, const string& TxtVer
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
+			, TxtCmt(TxtCmt)
+			, TxtVer(TxtVer)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-	this->TxtCmt = TxtCmt;
-	this->TxtVer = TxtVer;
-
 	mask = {TXTSRF, TXTTIT, TXTCMT, TXTVER};
 };
 
@@ -197,9 +195,8 @@ PnlWznmMdlDetail::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -272,18 +269,17 @@ PnlWznmMdlDetail::StatShr::StatShr(
 			, const bool ButVerViewActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupJActive(PupJActive)
+			, ButJEditAvail(ButJEditAvail)
+			, TxtTitActive(TxtTitActive)
+			, TxtCmtActive(TxtCmtActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupJActive = PupJActive;
-	this->ButJEditAvail = ButJEditAvail;
-	this->TxtTitActive = TxtTitActive;
-	this->TxtCmtActive = TxtCmtActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJACTIVE, BUTJEDITAVAIL, TXTTITACTIVE, TXTCMTACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE};
 };
 
@@ -364,13 +360,12 @@ PnlWznmMdlDetail::Tag::Tag(
 			, const string& CptVer
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTit(CptTit)
+			, CptCmt(CptCmt)
+			, CptVer(CptVer)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTit = CptTit;
-	this->CptCmt = CptCmt;
-	this->CptVer = CptVer;
-
 	mask = {CPT, CPTSRF, CPTTIT, CPTCMT, CPTVER};
 };
 
@@ -450,11 +445,11 @@ PnlWznmMdlDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMMDLDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmMdlDetail::DpchAppDo::getSrefsMask() {

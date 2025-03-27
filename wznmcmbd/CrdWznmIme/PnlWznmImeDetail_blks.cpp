@@ -50,12 +50,11 @@ PnlWznmImeDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numsFLstIop(numsFLstIop)
+			, numFLstRtr(numFLstRtr)
+			, TxfRtr(TxfRtr)
+			, TxfCmt(TxfCmt)
 		{
-	this->numsFLstIop = numsFLstIop;
-	this->numFLstRtr = numFLstRtr;
-	this->TxfRtr = TxfRtr;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMSFLSTIOP, NUMFLSTRTR, TXFRTR, TXFCMT};
 };
 
@@ -116,7 +115,7 @@ void PnlWznmImeDetail::ContIac::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	Jsonio::writeUintvec(me, "numsFLstIop", numsFLstIop);
-	me["numFLstRtr"] = numFLstRtr;
+	me["numFLstRtr"] = (Json::Value::UInt) numFLstRtr;
 	me["TxfRtr"] = TxfRtr;
 	me["TxfCmt"] = TxfCmt;
 };
@@ -179,13 +178,12 @@ PnlWznmImeDetail::ContInf::ContInf(
 			, const string& TxtIop
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtIex(TxtIex)
+			, TxtSup(TxtSup)
+			, TxtTbl(TxtTbl)
+			, TxtIop(TxtIop)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtIex = TxtIex;
-	this->TxtSup = TxtSup;
-	this->TxtTbl = TxtTbl;
-	this->TxtIop = TxtIop;
-
 	mask = {TXTSRF, TXTIEX, TXTSUP, TXTTBL, TXTIOP};
 };
 
@@ -272,8 +270,8 @@ void PnlWznmImeDetail::StatApp::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstIopAlt"] = LstIopAlt;
 	me["LstRtrAlt"] = LstRtrAlt;
-	me["LstIopNumFirstdisp"] = LstIopNumFirstdisp;
-	me["LstRtrNumFirstdisp"] = LstRtrNumFirstdisp;
+	me["LstIopNumFirstdisp"] = (Json::Value::UInt) LstIopNumFirstdisp;
+	me["LstRtrNumFirstdisp"] = (Json::Value::UInt) LstRtrNumFirstdisp;
 };
 
 void PnlWznmImeDetail::StatApp::writeXML(
@@ -306,8 +304,7 @@ void PnlWznmImeDetail::StatApp::writeXML(
  ******************************************************************************/
 
 PnlWznmImeDetail::StatShr::StatShr(
-			const bool TxfRtrValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
 			, const bool TxtIexActive
@@ -319,30 +316,30 @@ PnlWznmImeDetail::StatShr::StatShr(
 			, const bool TxtTblActive
 			, const bool LstIopActive
 			, const bool LstRtrActive
+			, const bool TxfRtrValid
 			, const bool ButRtrViewAvail
 			, const bool ButRtrViewActive
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxtIexActive(TxtIexActive)
+			, ButIexViewAvail(ButIexViewAvail)
+			, ButIexViewActive(ButIexViewActive)
+			, TxtSupActive(TxtSupActive)
+			, ButSupViewAvail(ButSupViewAvail)
+			, ButSupViewActive(ButSupViewActive)
+			, TxtTblActive(TxtTblActive)
+			, LstIopActive(LstIopActive)
+			, LstRtrActive(LstRtrActive)
+			, TxfRtrValid(TxfRtrValid)
+			, ButRtrViewAvail(ButRtrViewAvail)
+			, ButRtrViewActive(ButRtrViewActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->TxfRtrValid = TxfRtrValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxtIexActive = TxtIexActive;
-	this->ButIexViewAvail = ButIexViewAvail;
-	this->ButIexViewActive = ButIexViewActive;
-	this->TxtSupActive = TxtSupActive;
-	this->ButSupViewAvail = ButSupViewAvail;
-	this->ButSupViewActive = ButSupViewActive;
-	this->TxtTblActive = TxtTblActive;
-	this->LstIopActive = LstIopActive;
-	this->LstRtrActive = LstRtrActive;
-	this->ButRtrViewAvail = ButRtrViewAvail;
-	this->ButRtrViewActive = ButRtrViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-
-	mask = {TXFRTRVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTIEXACTIVE, BUTIEXVIEWAVAIL, BUTIEXVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, LSTIOPACTIVE, LSTRTRACTIVE, BUTRTRVIEWAVAIL, BUTRTRVIEWACTIVE, TXFCMTACTIVE};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTIEXACTIVE, BUTIEXVIEWAVAIL, BUTIEXVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, LSTIOPACTIVE, LSTRTRACTIVE, TXFRTRVALID, BUTRTRVIEWAVAIL, BUTRTRVIEWACTIVE, TXFCMTACTIVE};
 };
 
 void PnlWznmImeDetail::StatShr::writeJSON(
@@ -353,7 +350,6 @@ void PnlWznmImeDetail::StatShr::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TxfRtrValid"] = TxfRtrValid;
 	me["ButSaveAvail"] = ButSaveAvail;
 	me["ButSaveActive"] = ButSaveActive;
 	me["TxtSrfActive"] = TxtSrfActive;
@@ -366,6 +362,7 @@ void PnlWznmImeDetail::StatShr::writeJSON(
 	me["TxtTblActive"] = TxtTblActive;
 	me["LstIopActive"] = LstIopActive;
 	me["LstRtrActive"] = LstRtrActive;
+	me["TxfRtrValid"] = TxfRtrValid;
 	me["ButRtrViewAvail"] = ButRtrViewAvail;
 	me["ButRtrViewActive"] = ButRtrViewActive;
 	me["TxfCmtActive"] = TxfCmtActive;
@@ -383,7 +380,6 @@ void PnlWznmImeDetail::StatShr::writeXML(
 	else itemtag = "StatitemShrWznmImeDetail";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeBoolAttr(wr, itemtag, "sref", "TxfRtrValid", TxfRtrValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveAvail", ButSaveAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveActive", ButSaveActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxtSrfActive", TxtSrfActive);
@@ -396,6 +392,7 @@ void PnlWznmImeDetail::StatShr::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "TxtTblActive", TxtTblActive);
 		writeBoolAttr(wr, itemtag, "sref", "LstIopActive", LstIopActive);
 		writeBoolAttr(wr, itemtag, "sref", "LstRtrActive", LstRtrActive);
+		writeBoolAttr(wr, itemtag, "sref", "TxfRtrValid", TxfRtrValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButRtrViewAvail", ButRtrViewAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButRtrViewActive", ButRtrViewActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxfCmtActive", TxfCmtActive);
@@ -407,7 +404,6 @@ set<uint> PnlWznmImeDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfRtrValid == comp->TxfRtrValid) insert(items, TXFRTRVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
@@ -420,6 +416,7 @@ set<uint> PnlWznmImeDetail::StatShr::comm(
 	if (TxtTblActive == comp->TxtTblActive) insert(items, TXTTBLACTIVE);
 	if (LstIopActive == comp->LstIopActive) insert(items, LSTIOPACTIVE);
 	if (LstRtrActive == comp->LstRtrActive) insert(items, LSTRTRACTIVE);
+	if (TxfRtrValid == comp->TxfRtrValid) insert(items, TXFRTRVALID);
 	if (ButRtrViewAvail == comp->ButRtrViewAvail) insert(items, BUTRTRVIEWAVAIL);
 	if (ButRtrViewActive == comp->ButRtrViewActive) insert(items, BUTRTRVIEWACTIVE);
 	if (TxfCmtActive == comp->TxfCmtActive) insert(items, TXFCMTACTIVE);
@@ -435,7 +432,7 @@ set<uint> PnlWznmImeDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFRTRVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTIEXACTIVE, BUTIEXVIEWAVAIL, BUTIEXVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, LSTIOPACTIVE, LSTRTRACTIVE, BUTRTRVIEWAVAIL, BUTRTRVIEWACTIVE, TXFCMTACTIVE};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTIEXACTIVE, BUTIEXVIEWAVAIL, BUTIEXVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, LSTIOPACTIVE, LSTRTRACTIVE, TXFRTRVALID, BUTRTRVIEWAVAIL, BUTRTRVIEWACTIVE, TXFCMTACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

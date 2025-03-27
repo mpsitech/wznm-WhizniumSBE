@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmJobSubMNJob.h"
-#include "PnlWznmJobSupMNJob.h"
 #include "PnlWznmJobMNOp.h"
+#include "PnlWznmJobSupMNJob.h"
 #include "PnlWznmJobMNOppack.h"
 #include "PnlWznmJobRef1NBlock.h"
 #include "PnlWznmJobHk1NVector.h"
@@ -211,8 +211,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmJobSubMNJob* pnlsubmnjob;
-	PnlWznmJobSupMNJob* pnlsupmnjob;
 	PnlWznmJobMNOp* pnlmnop;
+	PnlWznmJobSupMNJob* pnlsupmnjob;
 	PnlWznmJobMNOppack* pnlmnoppack;
 	PnlWznmJobRef1NBlock* pnlref1nblock;
 	PnlWznmJobHk1NVector* pnlhk1nvector;

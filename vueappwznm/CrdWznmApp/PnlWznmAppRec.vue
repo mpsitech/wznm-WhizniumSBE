@@ -56,19 +56,19 @@
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
-					<PnlWznmApp1NRtjob
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmApp1NRtjob"
-						:scrJref=statshr.scrJref1NRtjob
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmAppApp1NSequence
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
 						ref="PnlWznmAppApp1NSequence"
 						:scrJref=statshr.scrJrefApp1NSequence
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmApp1NRtjob
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmApp1NRtjob"
+						:scrJref=statshr.scrJref1NRtjob
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -91,8 +91,8 @@
 	*/
 	import PnlWznmAppDetail from './PnlWznmAppDetail';
 	import PnlWznmApp1NEvent from './PnlWznmApp1NEvent';
-	import PnlWznmApp1NRtjob from './PnlWznmApp1NRtjob';
 	import PnlWznmAppApp1NSequence from './PnlWznmAppApp1NSequence';
+	import PnlWznmApp1NRtjob from './PnlWznmApp1NRtjob';
 	import PnlWznmAppRef1NFile from './PnlWznmAppRef1NFile';
 	/*
 	*/
@@ -113,8 +113,8 @@
 			*/
 			PnlWznmAppDetail,
 			PnlWznmApp1NEvent,
-			PnlWznmApp1NRtjob,
 			PnlWznmAppApp1NSequence,
+			PnlWznmApp1NRtjob,
 			PnlWznmAppRef1NFile
 			/*
 			*/
@@ -178,8 +178,8 @@
 						*/
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmAppDetail.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NEvent) this.$refs.PnlWznmApp1NEvent.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NRtjob) this.$refs.PnlWznmApp1NRtjob.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefApp1NSequence) this.$refs.PnlWznmAppApp1NSequence.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NRtjob) this.$refs.PnlWznmApp1NRtjob.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefRef1NFile) this.$refs.PnlWznmAppRef1NFile.handleReply(obj);
 						/*
 						*/
@@ -212,8 +212,8 @@
 						*/
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmAppDetail.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NEvent) this.$refs.PnlWznmApp1NEvent.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NRtjob) this.$refs.PnlWznmApp1NRtjob.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefApp1NSequence) this.$refs.PnlWznmAppApp1NSequence.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NRtjob) this.$refs.PnlWznmApp1NRtjob.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefRef1NFile) this.$refs.PnlWznmAppRef1NFile.handleUpdate(obj);
 						/*
 						*/

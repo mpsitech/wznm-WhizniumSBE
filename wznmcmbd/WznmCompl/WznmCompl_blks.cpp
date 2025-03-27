@@ -24,9 +24,9 @@ DpchInvWznmComplBscui::DpchInvWznmComplBscui(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMCOMPLBSCUI, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmComplBscui::readXML(
@@ -73,8 +73,8 @@ DpchInvWznmComplCtpcpy::DpchInvWznmComplCtpcpy(
 			, const ubigint refWznmMCapability
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMCOMPLCTPCPY, oref, jref)
+			, refWznmMCapability(refWznmMCapability)
 		{
-	this->refWznmMCapability = refWznmMCapability;
 };
 
 void DpchInvWznmComplCtpcpy::readXML(
@@ -120,9 +120,9 @@ DpchInvWznmComplDbs::DpchInvWznmComplDbs(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMCOMPLDBS, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmComplDbs::readXML(
@@ -171,10 +171,10 @@ DpchInvWznmComplDeploy::DpchInvWznmComplDeploy(
 			, const string& orgweb
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMCOMPLDEPLOY, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
+			, orgweb(orgweb)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
-	this->orgweb = orgweb;
 };
 
 void DpchInvWznmComplDeploy::readXML(
@@ -223,8 +223,8 @@ DpchInvWznmComplIex::DpchInvWznmComplIex(
 			, const ubigint refWznmMVersion
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMCOMPLIEX, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
 		{
-	this->refWznmMVersion = refWznmMVersion;
 };
 
 void DpchInvWznmComplIex::readXML(
@@ -270,9 +270,9 @@ DpchInvWznmComplJtr::DpchInvWznmComplJtr(
 			, const string& Prjshort
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMCOMPLJTR, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
 };
 
 void DpchInvWznmComplJtr::readXML(

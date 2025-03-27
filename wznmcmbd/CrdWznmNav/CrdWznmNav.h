@@ -16,18 +16,19 @@
 
 #include "PnlWznmNavAuxfct.h"
 #include "PnlWznmNavAppdev.h"
+#include "PnlWznmNavVisual.h"
 #include "PnlWznmNavDeploy.h"
-#include "PnlWznmNavJob.h"
 #include "PnlWznmNavComp.h"
-#include "PnlWznmNavUix.h"
+#include "PnlWznmNavJob.h"
 #include "PnlWznmNavDbstr.h"
+#include "PnlWznmNavUix.h"
 #include "PnlWznmNavProject.h"
 #include "PnlWznmNavGlobal.h"
 #include "PnlWznmNavAdmin.h"
 #include "PnlWznmNavPre.h"
 #include "PnlWznmNavHeadbar.h"
-#include "DlgWznmNavMnglic.h"
 #include "DlgWznmNavLoaini.h"
+#include "DlgWznmNavMnglic.h"
 
 #define VecVWznmNavDo CrdWznmNav::VecVDo
 #define VecVWznmNavSge CrdWznmNav::VecVSge
@@ -97,14 +98,17 @@ public:
 		static const Sbecore::uint MITCRDCALCLICK = 43;
 		static const Sbecore::uint MITCRDCMPCLICK = 44;
 		static const Sbecore::uint MITCRDRLSCLICK = 45;
-		static const Sbecore::uint MITCRDAPPCLICK = 46;
-		static const Sbecore::uint MITCRDRTJCLICK = 47;
-		static const Sbecore::uint MITCRDEVTCLICK = 48;
-		static const Sbecore::uint MITCRDSEQCLICK = 49;
-		static const Sbecore::uint MITCRDSTECLICK = 50;
-		static const Sbecore::uint MITCRDUTLCLICK = 51;
-		static const Sbecore::uint MITAPPMLCCLICK = 52;
-		static const Sbecore::uint MITAPPLOICLICK = 53;
+		static const Sbecore::uint MITCRDVISCLICK = 46;
+		static const Sbecore::uint MITCRDSHTCLICK = 47;
+		static const Sbecore::uint MITCRDBOXCLICK = 48;
+		static const Sbecore::uint MITCRDAPPCLICK = 49;
+		static const Sbecore::uint MITCRDRTJCLICK = 50;
+		static const Sbecore::uint MITCRDEVTCLICK = 51;
+		static const Sbecore::uint MITCRDSEQCLICK = 52;
+		static const Sbecore::uint MITCRDSTECLICK = 53;
+		static const Sbecore::uint MITCRDUTLCLICK = 54;
+		static const Sbecore::uint MITAPPMLCCLICK = 55;
+		static const Sbecore::uint MITAPPLOICLICK = 56;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);
@@ -161,8 +165,8 @@ public:
 	class StatApp {
 
 	public:
-		static void writeJSON(Json::Value& sup, std::string difftag = "", const Sbecore::uint ixWznmVReqitmode = VecWznmVReqitmode::IDLE, const Sbecore::usmallint latency = 5, const std::string& shortMenu = "", const Sbecore::uint widthMenu = 0, const bool initdoneHeadbar = false, const bool initdonePre = false, const bool initdoneAdmin = false, const bool initdoneGlobal = false, const bool initdoneProject = false, const bool initdoneDbstr = false, const bool initdoneUix = false, const bool initdoneComp = false, const bool initdoneJob = false, const bool initdoneDeploy = false, const bool initdoneAppdev = false, const bool initdoneAuxfct = false);
-		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint ixWznmVReqitmode = VecWznmVReqitmode::IDLE, const Sbecore::usmallint latency = 5, const std::string& shortMenu = "", const Sbecore::uint widthMenu = 0, const bool initdoneHeadbar = false, const bool initdonePre = false, const bool initdoneAdmin = false, const bool initdoneGlobal = false, const bool initdoneProject = false, const bool initdoneDbstr = false, const bool initdoneUix = false, const bool initdoneComp = false, const bool initdoneJob = false, const bool initdoneDeploy = false, const bool initdoneAppdev = false, const bool initdoneAuxfct = false);
+		static void writeJSON(Json::Value& sup, std::string difftag = "", const Sbecore::uint ixWznmVReqitmode = VecWznmVReqitmode::IDLE, const Sbecore::usmallint latency = 5, const std::string& shortMenu = "", const Sbecore::uint widthMenu = 0, const bool initdoneHeadbar = false, const bool initdonePre = false, const bool initdoneAdmin = false, const bool initdoneGlobal = false, const bool initdoneProject = false, const bool initdoneDbstr = false, const bool initdoneUix = false, const bool initdoneComp = false, const bool initdoneJob = false, const bool initdoneDeploy = false, const bool initdoneVisual = false, const bool initdoneAppdev = false, const bool initdoneAuxfct = false);
+		static void writeXML(xmlTextWriter* wr, std::string difftag = "", bool shorttags = true, const Sbecore::uint ixWznmVReqitmode = VecWznmVReqitmode::IDLE, const Sbecore::usmallint latency = 5, const std::string& shortMenu = "", const Sbecore::uint widthMenu = 0, const bool initdoneHeadbar = false, const bool initdonePre = false, const bool initdoneAdmin = false, const bool initdoneGlobal = false, const bool initdoneProject = false, const bool initdoneDbstr = false, const bool initdoneUix = false, const bool initdoneComp = false, const bool initdoneJob = false, const bool initdoneDeploy = false, const bool initdoneVisual = false, const bool initdoneAppdev = false, const bool initdoneAuxfct = false);
 	};
 
 	/**
@@ -192,107 +196,115 @@ public:
 		static const Sbecore::uint PNLJOBAVAIL = 19;
 		static const Sbecore::uint JREFDEPLOY = 20;
 		static const Sbecore::uint PNLDEPLOYAVAIL = 21;
-		static const Sbecore::uint JREFAPPDEV = 22;
-		static const Sbecore::uint PNLAPPDEVAVAIL = 23;
-		static const Sbecore::uint JREFAUXFCT = 24;
-		static const Sbecore::uint PNLAUXFCTAVAIL = 25;
-		static const Sbecore::uint MITSESSPSAVAIL = 26;
-		static const Sbecore::uint MSPCRD1AVAIL = 27;
-		static const Sbecore::uint MITCRDUSGAVAIL = 28;
-		static const Sbecore::uint MITCRDUSRAVAIL = 29;
-		static const Sbecore::uint MITCRDPRSAVAIL = 30;
-		static const Sbecore::uint MITCRDFILAVAIL = 31;
-		static const Sbecore::uint MSPCRD2AVAIL = 32;
-		static const Sbecore::uint MITCRDLOCAVAIL = 33;
-		static const Sbecore::uint MITCRDTAGAVAIL = 34;
-		static const Sbecore::uint MITCRDCTPAVAIL = 35;
-		static const Sbecore::uint MITCRDMCHAVAIL = 36;
-		static const Sbecore::uint MITCRDLIBAVAIL = 37;
-		static const Sbecore::uint MSPCRD3AVAIL = 38;
-		static const Sbecore::uint MITCRDPRJAVAIL = 39;
-		static const Sbecore::uint MITCRDVERAVAIL = 40;
-		static const Sbecore::uint MITCRDCAPAVAIL = 41;
-		static const Sbecore::uint MITCRDCAPACTIVE = 42;
-		static const Sbecore::uint MITCRDERRAVAIL = 43;
-		static const Sbecore::uint MITCRDERRACTIVE = 44;
-		static const Sbecore::uint MSPCRD4AVAIL = 45;
-		static const Sbecore::uint MITCRDTBLAVAIL = 46;
-		static const Sbecore::uint MITCRDTBLACTIVE = 47;
-		static const Sbecore::uint MITCRDTCOAVAIL = 48;
-		static const Sbecore::uint MITCRDTCOACTIVE = 49;
-		static const Sbecore::uint MITCRDSBSAVAIL = 50;
-		static const Sbecore::uint MITCRDSBSACTIVE = 51;
-		static const Sbecore::uint MITCRDRELAVAIL = 52;
-		static const Sbecore::uint MITCRDRELACTIVE = 53;
-		static const Sbecore::uint MITCRDVECAVAIL = 54;
-		static const Sbecore::uint MITCRDVECACTIVE = 55;
-		static const Sbecore::uint MITCRDVITAVAIL = 56;
-		static const Sbecore::uint MITCRDVITACTIVE = 57;
-		static const Sbecore::uint MITCRDCHKAVAIL = 58;
-		static const Sbecore::uint MITCRDCHKACTIVE = 59;
-		static const Sbecore::uint MITCRDSTBAVAIL = 60;
-		static const Sbecore::uint MITCRDSTBACTIVE = 61;
-		static const Sbecore::uint MITCRDIEXAVAIL = 62;
-		static const Sbecore::uint MITCRDIEXACTIVE = 63;
-		static const Sbecore::uint MITCRDIMEAVAIL = 64;
-		static const Sbecore::uint MITCRDIMEACTIVE = 65;
-		static const Sbecore::uint MSPCRD5AVAIL = 66;
-		static const Sbecore::uint MITCRDPSTAVAIL = 67;
-		static const Sbecore::uint MITCRDPSTACTIVE = 68;
-		static const Sbecore::uint MITCRDMDLAVAIL = 69;
-		static const Sbecore::uint MITCRDMDLACTIVE = 70;
-		static const Sbecore::uint MITCRDCARAVAIL = 71;
-		static const Sbecore::uint MITCRDCARACTIVE = 72;
-		static const Sbecore::uint MITCRDDLGAVAIL = 73;
-		static const Sbecore::uint MITCRDDLGACTIVE = 74;
-		static const Sbecore::uint MITCRDPNLAVAIL = 75;
-		static const Sbecore::uint MITCRDPNLACTIVE = 76;
-		static const Sbecore::uint MITCRDQRYAVAIL = 77;
-		static const Sbecore::uint MITCRDQRYACTIVE = 78;
-		static const Sbecore::uint MITCRDQCOAVAIL = 79;
-		static const Sbecore::uint MITCRDQCOACTIVE = 80;
-		static const Sbecore::uint MITCRDQMDAVAIL = 81;
-		static const Sbecore::uint MITCRDQMDACTIVE = 82;
-		static const Sbecore::uint MITCRDCONAVAIL = 83;
-		static const Sbecore::uint MITCRDCONACTIVE = 84;
-		static const Sbecore::uint MSPCRD6AVAIL = 85;
-		static const Sbecore::uint MITCRDOPKAVAIL = 86;
-		static const Sbecore::uint MITCRDOPKACTIVE = 87;
-		static const Sbecore::uint MITCRDOPXAVAIL = 88;
-		static const Sbecore::uint MITCRDOPXACTIVE = 89;
-		static const Sbecore::uint MSPCRD7AVAIL = 90;
-		static const Sbecore::uint MITCRDJOBAVAIL = 91;
-		static const Sbecore::uint MITCRDJOBACTIVE = 92;
-		static const Sbecore::uint MITCRDSGEAVAIL = 93;
-		static const Sbecore::uint MITCRDSGEACTIVE = 94;
-		static const Sbecore::uint MITCRDMTDAVAIL = 95;
-		static const Sbecore::uint MITCRDMTDACTIVE = 96;
-		static const Sbecore::uint MITCRDBLKAVAIL = 97;
-		static const Sbecore::uint MITCRDBLKACTIVE = 98;
-		static const Sbecore::uint MITCRDCALAVAIL = 99;
-		static const Sbecore::uint MITCRDCALACTIVE = 100;
-		static const Sbecore::uint MSPCRD8AVAIL = 101;
-		static const Sbecore::uint MITCRDCMPAVAIL = 102;
-		static const Sbecore::uint MITCRDRLSAVAIL = 103;
-		static const Sbecore::uint MITCRDRLSACTIVE = 104;
-		static const Sbecore::uint MSPCRD9AVAIL = 105;
-		static const Sbecore::uint MITCRDAPPAVAIL = 106;
-		static const Sbecore::uint MITCRDRTJAVAIL = 107;
-		static const Sbecore::uint MITCRDRTJACTIVE = 108;
-		static const Sbecore::uint MITCRDEVTAVAIL = 109;
-		static const Sbecore::uint MITCRDEVTACTIVE = 110;
-		static const Sbecore::uint MITCRDSEQAVAIL = 111;
-		static const Sbecore::uint MITCRDSEQACTIVE = 112;
-		static const Sbecore::uint MITCRDSTEAVAIL = 113;
-		static const Sbecore::uint MITCRDSTEACTIVE = 114;
-		static const Sbecore::uint MSPCRD10AVAIL = 115;
-		static const Sbecore::uint MITCRDUTLAVAIL = 116;
-		static const Sbecore::uint MSPAPP2AVAIL = 117;
-		static const Sbecore::uint MITAPPMLCAVAIL = 118;
-		static const Sbecore::uint MITAPPLOIAVAIL = 119;
+		static const Sbecore::uint JREFVISUAL = 22;
+		static const Sbecore::uint PNLVISUALAVAIL = 23;
+		static const Sbecore::uint JREFAPPDEV = 24;
+		static const Sbecore::uint PNLAPPDEVAVAIL = 25;
+		static const Sbecore::uint JREFAUXFCT = 26;
+		static const Sbecore::uint PNLAUXFCTAVAIL = 27;
+		static const Sbecore::uint MITSESSPSAVAIL = 28;
+		static const Sbecore::uint MSPCRD1AVAIL = 29;
+		static const Sbecore::uint MITCRDUSGAVAIL = 30;
+		static const Sbecore::uint MITCRDUSRAVAIL = 31;
+		static const Sbecore::uint MITCRDPRSAVAIL = 32;
+		static const Sbecore::uint MITCRDFILAVAIL = 33;
+		static const Sbecore::uint MSPCRD2AVAIL = 34;
+		static const Sbecore::uint MITCRDLOCAVAIL = 35;
+		static const Sbecore::uint MITCRDTAGAVAIL = 36;
+		static const Sbecore::uint MITCRDCTPAVAIL = 37;
+		static const Sbecore::uint MITCRDMCHAVAIL = 38;
+		static const Sbecore::uint MITCRDLIBAVAIL = 39;
+		static const Sbecore::uint MSPCRD3AVAIL = 40;
+		static const Sbecore::uint MITCRDPRJAVAIL = 41;
+		static const Sbecore::uint MITCRDVERAVAIL = 42;
+		static const Sbecore::uint MITCRDCAPAVAIL = 43;
+		static const Sbecore::uint MITCRDCAPACTIVE = 44;
+		static const Sbecore::uint MITCRDERRAVAIL = 45;
+		static const Sbecore::uint MITCRDERRACTIVE = 46;
+		static const Sbecore::uint MSPCRD4AVAIL = 47;
+		static const Sbecore::uint MITCRDTBLAVAIL = 48;
+		static const Sbecore::uint MITCRDTBLACTIVE = 49;
+		static const Sbecore::uint MITCRDTCOAVAIL = 50;
+		static const Sbecore::uint MITCRDTCOACTIVE = 51;
+		static const Sbecore::uint MITCRDSBSAVAIL = 52;
+		static const Sbecore::uint MITCRDSBSACTIVE = 53;
+		static const Sbecore::uint MITCRDRELAVAIL = 54;
+		static const Sbecore::uint MITCRDRELACTIVE = 55;
+		static const Sbecore::uint MITCRDVECAVAIL = 56;
+		static const Sbecore::uint MITCRDVECACTIVE = 57;
+		static const Sbecore::uint MITCRDVITAVAIL = 58;
+		static const Sbecore::uint MITCRDVITACTIVE = 59;
+		static const Sbecore::uint MITCRDCHKAVAIL = 60;
+		static const Sbecore::uint MITCRDCHKACTIVE = 61;
+		static const Sbecore::uint MITCRDSTBAVAIL = 62;
+		static const Sbecore::uint MITCRDSTBACTIVE = 63;
+		static const Sbecore::uint MITCRDIEXAVAIL = 64;
+		static const Sbecore::uint MITCRDIEXACTIVE = 65;
+		static const Sbecore::uint MITCRDIMEAVAIL = 66;
+		static const Sbecore::uint MITCRDIMEACTIVE = 67;
+		static const Sbecore::uint MSPCRD5AVAIL = 68;
+		static const Sbecore::uint MITCRDPSTAVAIL = 69;
+		static const Sbecore::uint MITCRDPSTACTIVE = 70;
+		static const Sbecore::uint MITCRDMDLAVAIL = 71;
+		static const Sbecore::uint MITCRDMDLACTIVE = 72;
+		static const Sbecore::uint MITCRDCARAVAIL = 73;
+		static const Sbecore::uint MITCRDCARACTIVE = 74;
+		static const Sbecore::uint MITCRDDLGAVAIL = 75;
+		static const Sbecore::uint MITCRDDLGACTIVE = 76;
+		static const Sbecore::uint MITCRDPNLAVAIL = 77;
+		static const Sbecore::uint MITCRDPNLACTIVE = 78;
+		static const Sbecore::uint MITCRDQRYAVAIL = 79;
+		static const Sbecore::uint MITCRDQRYACTIVE = 80;
+		static const Sbecore::uint MITCRDQCOAVAIL = 81;
+		static const Sbecore::uint MITCRDQCOACTIVE = 82;
+		static const Sbecore::uint MITCRDQMDAVAIL = 83;
+		static const Sbecore::uint MITCRDQMDACTIVE = 84;
+		static const Sbecore::uint MITCRDCONAVAIL = 85;
+		static const Sbecore::uint MITCRDCONACTIVE = 86;
+		static const Sbecore::uint MSPCRD6AVAIL = 87;
+		static const Sbecore::uint MITCRDOPKAVAIL = 88;
+		static const Sbecore::uint MITCRDOPKACTIVE = 89;
+		static const Sbecore::uint MITCRDOPXAVAIL = 90;
+		static const Sbecore::uint MITCRDOPXACTIVE = 91;
+		static const Sbecore::uint MSPCRD7AVAIL = 92;
+		static const Sbecore::uint MITCRDJOBAVAIL = 93;
+		static const Sbecore::uint MITCRDJOBACTIVE = 94;
+		static const Sbecore::uint MITCRDSGEAVAIL = 95;
+		static const Sbecore::uint MITCRDSGEACTIVE = 96;
+		static const Sbecore::uint MITCRDMTDAVAIL = 97;
+		static const Sbecore::uint MITCRDMTDACTIVE = 98;
+		static const Sbecore::uint MITCRDBLKAVAIL = 99;
+		static const Sbecore::uint MITCRDBLKACTIVE = 100;
+		static const Sbecore::uint MITCRDCALAVAIL = 101;
+		static const Sbecore::uint MITCRDCALACTIVE = 102;
+		static const Sbecore::uint MSPCRD8AVAIL = 103;
+		static const Sbecore::uint MITCRDCMPAVAIL = 104;
+		static const Sbecore::uint MITCRDRLSAVAIL = 105;
+		static const Sbecore::uint MITCRDRLSACTIVE = 106;
+		static const Sbecore::uint MSPCRD9AVAIL = 107;
+		static const Sbecore::uint MITCRDVISAVAIL = 108;
+		static const Sbecore::uint MITCRDSHTAVAIL = 109;
+		static const Sbecore::uint MITCRDSHTACTIVE = 110;
+		static const Sbecore::uint MITCRDBOXAVAIL = 111;
+		static const Sbecore::uint MITCRDBOXACTIVE = 112;
+		static const Sbecore::uint MSPCRD10AVAIL = 113;
+		static const Sbecore::uint MITCRDAPPAVAIL = 114;
+		static const Sbecore::uint MITCRDRTJAVAIL = 115;
+		static const Sbecore::uint MITCRDRTJACTIVE = 116;
+		static const Sbecore::uint MITCRDEVTAVAIL = 117;
+		static const Sbecore::uint MITCRDEVTACTIVE = 118;
+		static const Sbecore::uint MITCRDSEQAVAIL = 119;
+		static const Sbecore::uint MITCRDSEQACTIVE = 120;
+		static const Sbecore::uint MITCRDSTEAVAIL = 121;
+		static const Sbecore::uint MITCRDSTEACTIVE = 122;
+		static const Sbecore::uint MSPCRD11AVAIL = 123;
+		static const Sbecore::uint MITCRDUTLAVAIL = 124;
+		static const Sbecore::uint MSPAPP2AVAIL = 125;
+		static const Sbecore::uint MITAPPMLCAVAIL = 126;
+		static const Sbecore::uint MITAPPLOIAVAIL = 127;
 
 	public:
-		StatShr(const Sbecore::ubigint jrefDlgloaini = 0, const Sbecore::ubigint jrefDlgmnglic = 0, const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefPre = 0, const bool pnlpreAvail = false, const Sbecore::ubigint jrefAdmin = 0, const bool pnladminAvail = false, const Sbecore::ubigint jrefGlobal = 0, const bool pnlglobalAvail = false, const Sbecore::ubigint jrefProject = 0, const bool pnlprojectAvail = false, const Sbecore::ubigint jrefDbstr = 0, const bool pnldbstrAvail = false, const Sbecore::ubigint jrefUix = 0, const bool pnluixAvail = false, const Sbecore::ubigint jrefComp = 0, const bool pnlcompAvail = false, const Sbecore::ubigint jrefJob = 0, const bool pnljobAvail = false, const Sbecore::ubigint jrefDeploy = 0, const bool pnldeployAvail = false, const Sbecore::ubigint jrefAppdev = 0, const bool pnlappdevAvail = false, const Sbecore::ubigint jrefAuxfct = 0, const bool pnlauxfctAvail = false, const bool MitSesSpsAvail = true, const bool MspCrd1Avail = true, const bool MitCrdUsgAvail = true, const bool MitCrdUsrAvail = true, const bool MitCrdPrsAvail = true, const bool MitCrdFilAvail = true, const bool MspCrd2Avail = true, const bool MitCrdLocAvail = true, const bool MitCrdTagAvail = true, const bool MitCrdCtpAvail = true, const bool MitCrdMchAvail = true, const bool MitCrdLibAvail = true, const bool MspCrd3Avail = true, const bool MitCrdPrjAvail = true, const bool MitCrdVerAvail = true, const bool MitCrdCapAvail = true, const bool MitCrdCapActive = true, const bool MitCrdErrAvail = true, const bool MitCrdErrActive = true, const bool MspCrd4Avail = true, const bool MitCrdTblAvail = true, const bool MitCrdTblActive = true, const bool MitCrdTcoAvail = true, const bool MitCrdTcoActive = true, const bool MitCrdSbsAvail = true, const bool MitCrdSbsActive = true, const bool MitCrdRelAvail = true, const bool MitCrdRelActive = true, const bool MitCrdVecAvail = true, const bool MitCrdVecActive = true, const bool MitCrdVitAvail = true, const bool MitCrdVitActive = true, const bool MitCrdChkAvail = true, const bool MitCrdChkActive = true, const bool MitCrdStbAvail = true, const bool MitCrdStbActive = true, const bool MitCrdIexAvail = true, const bool MitCrdIexActive = true, const bool MitCrdImeAvail = true, const bool MitCrdImeActive = true, const bool MspCrd5Avail = true, const bool MitCrdPstAvail = true, const bool MitCrdPstActive = true, const bool MitCrdMdlAvail = true, const bool MitCrdMdlActive = true, const bool MitCrdCarAvail = true, const bool MitCrdCarActive = true, const bool MitCrdDlgAvail = true, const bool MitCrdDlgActive = true, const bool MitCrdPnlAvail = true, const bool MitCrdPnlActive = true, const bool MitCrdQryAvail = true, const bool MitCrdQryActive = true, const bool MitCrdQcoAvail = true, const bool MitCrdQcoActive = true, const bool MitCrdQmdAvail = true, const bool MitCrdQmdActive = true, const bool MitCrdConAvail = true, const bool MitCrdConActive = true, const bool MspCrd6Avail = true, const bool MitCrdOpkAvail = true, const bool MitCrdOpkActive = true, const bool MitCrdOpxAvail = true, const bool MitCrdOpxActive = true, const bool MspCrd7Avail = true, const bool MitCrdJobAvail = true, const bool MitCrdJobActive = true, const bool MitCrdSgeAvail = true, const bool MitCrdSgeActive = true, const bool MitCrdMtdAvail = true, const bool MitCrdMtdActive = true, const bool MitCrdBlkAvail = true, const bool MitCrdBlkActive = true, const bool MitCrdCalAvail = true, const bool MitCrdCalActive = true, const bool MspCrd8Avail = true, const bool MitCrdCmpAvail = true, const bool MitCrdRlsAvail = true, const bool MitCrdRlsActive = true, const bool MspCrd9Avail = true, const bool MitCrdAppAvail = true, const bool MitCrdRtjAvail = true, const bool MitCrdRtjActive = true, const bool MitCrdEvtAvail = true, const bool MitCrdEvtActive = true, const bool MitCrdSeqAvail = true, const bool MitCrdSeqActive = true, const bool MitCrdSteAvail = true, const bool MitCrdSteActive = true, const bool MspCrd10Avail = true, const bool MitCrdUtlAvail = true, const bool MspApp2Avail = true, const bool MitAppMlcAvail = true, const bool MitAppLoiAvail = true);
+		StatShr(const Sbecore::ubigint jrefDlgloaini = 0, const Sbecore::ubigint jrefDlgmnglic = 0, const Sbecore::ubigint jrefHeadbar = 0, const Sbecore::ubigint jrefPre = 0, const bool pnlpreAvail = false, const Sbecore::ubigint jrefAdmin = 0, const bool pnladminAvail = false, const Sbecore::ubigint jrefGlobal = 0, const bool pnlglobalAvail = false, const Sbecore::ubigint jrefProject = 0, const bool pnlprojectAvail = false, const Sbecore::ubigint jrefDbstr = 0, const bool pnldbstrAvail = false, const Sbecore::ubigint jrefUix = 0, const bool pnluixAvail = false, const Sbecore::ubigint jrefComp = 0, const bool pnlcompAvail = false, const Sbecore::ubigint jrefJob = 0, const bool pnljobAvail = false, const Sbecore::ubigint jrefDeploy = 0, const bool pnldeployAvail = false, const Sbecore::ubigint jrefVisual = 0, const bool pnlvisualAvail = false, const Sbecore::ubigint jrefAppdev = 0, const bool pnlappdevAvail = false, const Sbecore::ubigint jrefAuxfct = 0, const bool pnlauxfctAvail = false, const bool MitSesSpsAvail = true, const bool MspCrd1Avail = true, const bool MitCrdUsgAvail = true, const bool MitCrdUsrAvail = true, const bool MitCrdPrsAvail = true, const bool MitCrdFilAvail = true, const bool MspCrd2Avail = true, const bool MitCrdLocAvail = true, const bool MitCrdTagAvail = true, const bool MitCrdCtpAvail = true, const bool MitCrdMchAvail = true, const bool MitCrdLibAvail = true, const bool MspCrd3Avail = true, const bool MitCrdPrjAvail = true, const bool MitCrdVerAvail = true, const bool MitCrdCapAvail = true, const bool MitCrdCapActive = true, const bool MitCrdErrAvail = true, const bool MitCrdErrActive = true, const bool MspCrd4Avail = true, const bool MitCrdTblAvail = true, const bool MitCrdTblActive = true, const bool MitCrdTcoAvail = true, const bool MitCrdTcoActive = true, const bool MitCrdSbsAvail = true, const bool MitCrdSbsActive = true, const bool MitCrdRelAvail = true, const bool MitCrdRelActive = true, const bool MitCrdVecAvail = true, const bool MitCrdVecActive = true, const bool MitCrdVitAvail = true, const bool MitCrdVitActive = true, const bool MitCrdChkAvail = true, const bool MitCrdChkActive = true, const bool MitCrdStbAvail = true, const bool MitCrdStbActive = true, const bool MitCrdIexAvail = true, const bool MitCrdIexActive = true, const bool MitCrdImeAvail = true, const bool MitCrdImeActive = true, const bool MspCrd5Avail = true, const bool MitCrdPstAvail = true, const bool MitCrdPstActive = true, const bool MitCrdMdlAvail = true, const bool MitCrdMdlActive = true, const bool MitCrdCarAvail = true, const bool MitCrdCarActive = true, const bool MitCrdDlgAvail = true, const bool MitCrdDlgActive = true, const bool MitCrdPnlAvail = true, const bool MitCrdPnlActive = true, const bool MitCrdQryAvail = true, const bool MitCrdQryActive = true, const bool MitCrdQcoAvail = true, const bool MitCrdQcoActive = true, const bool MitCrdQmdAvail = true, const bool MitCrdQmdActive = true, const bool MitCrdConAvail = true, const bool MitCrdConActive = true, const bool MspCrd6Avail = true, const bool MitCrdOpkAvail = true, const bool MitCrdOpkActive = true, const bool MitCrdOpxAvail = true, const bool MitCrdOpxActive = true, const bool MspCrd7Avail = true, const bool MitCrdJobAvail = true, const bool MitCrdJobActive = true, const bool MitCrdSgeAvail = true, const bool MitCrdSgeActive = true, const bool MitCrdMtdAvail = true, const bool MitCrdMtdActive = true, const bool MitCrdBlkAvail = true, const bool MitCrdBlkActive = true, const bool MitCrdCalAvail = true, const bool MitCrdCalActive = true, const bool MspCrd8Avail = true, const bool MitCrdCmpAvail = true, const bool MitCrdRlsAvail = true, const bool MitCrdRlsActive = true, const bool MspCrd9Avail = true, const bool MitCrdVisAvail = true, const bool MitCrdShtAvail = true, const bool MitCrdShtActive = true, const bool MitCrdBoxAvail = true, const bool MitCrdBoxActive = true, const bool MspCrd10Avail = true, const bool MitCrdAppAvail = true, const bool MitCrdRtjAvail = true, const bool MitCrdRtjActive = true, const bool MitCrdEvtAvail = true, const bool MitCrdEvtActive = true, const bool MitCrdSeqAvail = true, const bool MitCrdSeqActive = true, const bool MitCrdSteAvail = true, const bool MitCrdSteActive = true, const bool MspCrd11Avail = true, const bool MitCrdUtlAvail = true, const bool MspApp2Avail = true, const bool MitAppMlcAvail = true, const bool MitAppLoiAvail = true);
 
 	public:
 		Sbecore::ubigint jrefDlgloaini;
@@ -316,6 +328,8 @@ public:
 		bool pnljobAvail;
 		Sbecore::ubigint jrefDeploy;
 		bool pnldeployAvail;
+		Sbecore::ubigint jrefVisual;
+		bool pnlvisualAvail;
 		Sbecore::ubigint jrefAppdev;
 		bool pnlappdevAvail;
 		Sbecore::ubigint jrefAuxfct;
@@ -400,6 +414,12 @@ public:
 		bool MitCrdRlsAvail;
 		bool MitCrdRlsActive;
 		bool MspCrd9Avail;
+		bool MitCrdVisAvail;
+		bool MitCrdShtAvail;
+		bool MitCrdShtActive;
+		bool MitCrdBoxAvail;
+		bool MitCrdBoxActive;
+		bool MspCrd10Avail;
 		bool MitCrdAppAvail;
 		bool MitCrdRtjAvail;
 		bool MitCrdRtjActive;
@@ -409,7 +429,7 @@ public:
 		bool MitCrdSeqActive;
 		bool MitCrdSteAvail;
 		bool MitCrdSteActive;
-		bool MspCrd10Avail;
+		bool MspCrd11Avail;
 		bool MitCrdUtlAvail;
 		bool MspApp2Avail;
 		bool MitAppMlcAvail;
@@ -493,6 +513,7 @@ public:
 	bool evalPnlcompAvail(DbsWznm* dbswznm);
 	bool evalPnljobAvail(DbsWznm* dbswznm);
 	bool evalPnldeployAvail(DbsWznm* dbswznm);
+	bool evalPnlvisualAvail(DbsWznm* dbswznm);
 	bool evalPnlappdevAvail(DbsWznm* dbswznm);
 	bool evalPnlauxfctAvail(DbsWznm* dbswznm);
 	bool evalMitSesSpsAvail(DbsWznm* dbswznm);
@@ -575,6 +596,12 @@ public:
 	bool evalMitCrdRlsAvail(DbsWznm* dbswznm);
 	bool evalMitCrdRlsActive(DbsWznm* dbswznm);
 	bool evalMspCrd9Avail(DbsWznm* dbswznm);
+	bool evalMitCrdVisAvail(DbsWznm* dbswznm);
+	bool evalMitCrdShtAvail(DbsWznm* dbswznm);
+	bool evalMitCrdShtActive(DbsWznm* dbswznm);
+	bool evalMitCrdBoxAvail(DbsWznm* dbswznm);
+	bool evalMitCrdBoxActive(DbsWznm* dbswznm);
+	bool evalMspCrd10Avail(DbsWznm* dbswznm);
 	bool evalMitCrdAppAvail(DbsWznm* dbswznm);
 	bool evalMitCrdRtjAvail(DbsWznm* dbswznm);
 	bool evalMitCrdRtjActive(DbsWznm* dbswznm);
@@ -584,7 +611,7 @@ public:
 	bool evalMitCrdSeqActive(DbsWznm* dbswznm);
 	bool evalMitCrdSteAvail(DbsWznm* dbswznm);
 	bool evalMitCrdSteActive(DbsWznm* dbswznm);
-	bool evalMspCrd10Avail(DbsWznm* dbswznm);
+	bool evalMspCrd11Avail(DbsWznm* dbswznm);
 	bool evalMitCrdUtlAvail(DbsWznm* dbswznm);
 	bool evalMspApp2Avail(DbsWznm* dbswznm);
 	bool evalMitAppMlcAvail(DbsWznm* dbswznm);
@@ -603,18 +630,19 @@ public:
 
 	PnlWznmNavAuxfct* pnlauxfct;
 	PnlWznmNavAppdev* pnlappdev;
+	PnlWznmNavVisual* pnlvisual;
 	PnlWznmNavDeploy* pnldeploy;
-	PnlWznmNavJob* pnljob;
 	PnlWznmNavComp* pnlcomp;
-	PnlWznmNavUix* pnluix;
+	PnlWznmNavJob* pnljob;
 	PnlWznmNavDbstr* pnldbstr;
+	PnlWznmNavUix* pnluix;
 	PnlWznmNavProject* pnlproject;
 	PnlWznmNavGlobal* pnlglobal;
 	PnlWznmNavAdmin* pnladmin;
 	PnlWznmNavPre* pnlpre;
 	PnlWznmNavHeadbar* pnlheadbar;
-	DlgWznmNavMnglic* dlgmnglic;
 	DlgWznmNavLoaini* dlgloaini;
+	DlgWznmNavMnglic* dlgmnglic;
 
 	// IP vars.cust --- INSERT
 
@@ -681,6 +709,9 @@ private:
 	void handleDpchAppDoMitCrdCalClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdCmpClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdRlsClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoMitCrdVisClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoMitCrdShtClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
+	void handleDpchAppDoMitCrdBoxClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdAppClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdRtjClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);
 	void handleDpchAppDoMitCrdEvtClick(DbsWznm* dbswznm, DpchEngWznm** dpcheng);

@@ -51,11 +51,10 @@ PnlWznmDlgDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, numFPupRet(numFPupRet)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->numFPupRet = numFPupRet;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPTYP, NUMFPUPRET, TXFCMT};
 };
 
@@ -139,12 +138,11 @@ PnlWznmDlgDetail::ContInf::ContInf(
 			, const string& TxtJob
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtCar(TxtCar)
+			, TxtReu(TxtReu)
+			, TxtJob(TxtJob)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtCar = TxtCar;
-	this->TxtReu = TxtReu;
-	this->TxtJob = TxtJob;
-
 	mask = {TXTSRF, TXTCAR, TXTREU, TXTJOB};
 };
 
@@ -209,9 +207,8 @@ PnlWznmDlgDetail::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -288,22 +285,21 @@ PnlWznmDlgDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupTypActive(PupTypActive)
+			, TxtCarActive(TxtCarActive)
+			, ButCarViewAvail(ButCarViewAvail)
+			, ButCarViewActive(ButCarViewActive)
+			, TxtReuActive(TxtReuActive)
+			, ButReuViewAvail(ButReuViewAvail)
+			, ButReuViewActive(ButReuViewActive)
+			, TxtJobActive(TxtJobActive)
+			, ButJobViewAvail(ButJobViewAvail)
+			, ButJobViewActive(ButJobViewActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtCarActive = TxtCarActive;
-	this->ButCarViewAvail = ButCarViewAvail;
-	this->ButCarViewActive = ButCarViewActive;
-	this->TxtReuActive = TxtReuActive;
-	this->ButReuViewAvail = ButReuViewAvail;
-	this->ButReuViewActive = ButReuViewActive;
-	this->TxtJobActive = TxtJobActive;
-	this->ButJobViewAvail = ButJobViewAvail;
-	this->ButJobViewActive = ButJobViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTCARACTIVE, BUTCARVIEWAVAIL, BUTCARVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, TXFCMTACTIVE};
 };
 
@@ -394,15 +390,14 @@ PnlWznmDlgDetail::Tag::Tag(
 			, const string& CptCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTyp(CptTyp)
+			, CptCar(CptCar)
+			, CptReu(CptReu)
+			, CptJob(CptJob)
+			, CptCmt(CptCmt)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTyp = CptTyp;
-	this->CptCar = CptCar;
-	this->CptReu = CptReu;
-	this->CptJob = CptJob;
-	this->CptCmt = CptCmt;
-
 	mask = {CPT, CPTSRF, CPTTYP, CPTCAR, CPTREU, CPTJOB, CPTCMT};
 };
 
@@ -484,11 +479,11 @@ PnlWznmDlgDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMDLGDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmDlgDetail::DpchAppDo::getSrefsMask() {

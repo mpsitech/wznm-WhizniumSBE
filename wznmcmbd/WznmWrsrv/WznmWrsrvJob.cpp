@@ -2052,7 +2052,7 @@ void WznmWrsrvJob::writeJobCpp(
 				if (stdalr) {
 					outfile << "\txchg->submitDpch(Alr" << Prjshort << "::prepareAlr" << s.substr(3+4) << "(jref, ix" << Prjshort << "VLocale";
 					for (unsigned int j = 0; j < plhs.size(); j++) outfile << ", \"\"";
-					if (con->sref.substr(3+4) == "Trm") outfile << ", xchg->stg" << prjshort << "appearance.sesstterm, xchg->stg" << prjshort << "appearance.sesstwarn";
+					if (con->sref.substr(3+4) == "Trm") outfile << ", xchg->stg" << prjshort << "behavior.sesstterm, xchg->stg" << prjshort << "behavior.sesstwarn";
 					outfile << ", feedFMcbAlert)); // IP enterSge" << StrMod::cap(sge->sref) << " --- LINE" << endl;
 
 				} else {

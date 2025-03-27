@@ -26,11 +26,11 @@ DpchInvWznmCtpWrstkit::DpchInvWznmCtpWrstkit(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMCTPWRSTKIT, oref, jref)
+			, srefKCustop(srefKCustop)
+			, refWznmMCapability(refWznmMCapability)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->srefKCustop = srefKCustop;
-	this->refWznmMCapability = refWznmMCapability;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmCtpWrstkit::readXML(

@@ -133,33 +133,32 @@ namespace PnlWznmQryDetail {
 	class StatShr : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint TXFINOVALID = 1;
-		static const Sbecore::uint BUTSAVEAVAIL = 2;
-		static const Sbecore::uint BUTSAVEACTIVE = 3;
-		static const Sbecore::uint TXTSRFACTIVE = 4;
-		static const Sbecore::uint PUPTYPACTIVE = 5;
-		static const Sbecore::uint TXTVERACTIVE = 6;
-		static const Sbecore::uint BUTVERVIEWAVAIL = 7;
-		static const Sbecore::uint BUTVERVIEWACTIVE = 8;
-		static const Sbecore::uint TXTSUPACTIVE = 9;
-		static const Sbecore::uint BUTSUPVIEWAVAIL = 10;
-		static const Sbecore::uint BUTSUPVIEWACTIVE = 11;
-		static const Sbecore::uint TXTTBLACTIVE = 12;
-		static const Sbecore::uint TXTQTBACTIVE = 13;
-		static const Sbecore::uint TXTJOBACTIVE = 14;
-		static const Sbecore::uint BUTJOBVIEWAVAIL = 15;
-		static const Sbecore::uint BUTJOBVIEWACTIVE = 16;
-		static const Sbecore::uint CHKLOFACTIVE = 17;
-		static const Sbecore::uint LSTINOACTIVE = 18;
+		static const Sbecore::uint BUTSAVEAVAIL = 1;
+		static const Sbecore::uint BUTSAVEACTIVE = 2;
+		static const Sbecore::uint TXTSRFACTIVE = 3;
+		static const Sbecore::uint PUPTYPACTIVE = 4;
+		static const Sbecore::uint TXTVERACTIVE = 5;
+		static const Sbecore::uint BUTVERVIEWAVAIL = 6;
+		static const Sbecore::uint BUTVERVIEWACTIVE = 7;
+		static const Sbecore::uint TXTSUPACTIVE = 8;
+		static const Sbecore::uint BUTSUPVIEWAVAIL = 9;
+		static const Sbecore::uint BUTSUPVIEWACTIVE = 10;
+		static const Sbecore::uint TXTTBLACTIVE = 11;
+		static const Sbecore::uint TXTQTBACTIVE = 12;
+		static const Sbecore::uint TXTJOBACTIVE = 13;
+		static const Sbecore::uint BUTJOBVIEWAVAIL = 14;
+		static const Sbecore::uint BUTJOBVIEWACTIVE = 15;
+		static const Sbecore::uint CHKLOFACTIVE = 16;
+		static const Sbecore::uint LSTINOACTIVE = 17;
+		static const Sbecore::uint TXFINOVALID = 18;
 		static const Sbecore::uint BUTINOVIEWAVAIL = 19;
 		static const Sbecore::uint BUTINOVIEWACTIVE = 20;
 		static const Sbecore::uint TXFCMTACTIVE = 21;
 
 	public:
-		StatShr(const bool TxfInoValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool PupTypActive = true, const bool TxtVerActive = true, const bool ButVerViewAvail = true, const bool ButVerViewActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtTblActive = true, const bool TxtQtbActive = true, const bool TxtJobActive = true, const bool ButJobViewAvail = true, const bool ButJobViewActive = true, const bool ChkLofActive = true, const bool LstInoActive = true, const bool ButInoViewAvail = true, const bool ButInoViewActive = true, const bool TxfCmtActive = true);
+		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool PupTypActive = true, const bool TxtVerActive = true, const bool ButVerViewAvail = true, const bool ButVerViewActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtTblActive = true, const bool TxtQtbActive = true, const bool TxtJobActive = true, const bool ButJobViewAvail = true, const bool ButJobViewActive = true, const bool ChkLofActive = true, const bool LstInoActive = true, const bool TxfInoValid = false, const bool ButInoViewAvail = true, const bool ButInoViewActive = true, const bool TxfCmtActive = true);
 
 	public:
-		bool TxfInoValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtSrfActive;
@@ -177,6 +176,7 @@ namespace PnlWznmQryDetail {
 		bool ButJobViewActive;
 		bool ChkLofActive;
 		bool LstInoActive;
+		bool TxfInoValid;
 		bool ButInoViewAvail;
 		bool ButInoViewActive;
 		bool TxfCmtActive;

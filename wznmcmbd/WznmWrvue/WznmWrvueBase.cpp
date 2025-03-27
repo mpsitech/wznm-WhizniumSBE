@@ -194,7 +194,7 @@ void WznmWrvueBase::writeCsVue(
 		tag = tags.nodes[i];
 
 		lclTits = new map<ubigint,string>;
-		Wznm::getTagtits(dbswznm, tag->sref, "start", "", {}, refLcl, refsLcl, *lclTits, false);
+		Wznm::getTagtits(dbswznm, 0, tag->sref, "start", "", {}, refLcl, refsLcl, *lclTits, false);
 		tagLclTits[tag->ref] = lclTits;
 	};
 

@@ -17,7 +17,9 @@
 namespace WznmCtpGenui {
 
 	// IP cust --- IBEGIN
-	void addCjttag(DbsWznm* dbswznm, WznmMControl* con, const Sbecore::ubigint refWznmMCapability, const std::string& sref, const Sbecore::ubigint refLcl, const std::vector<Sbecore::ubigint>& refsLcl, const bool esc = true);
+	void addCjttag(DbsWznm* dbswznm, WznmMControl* con, const Sbecore::ubigint refWznmMCapability, const std::string& sref, const Sbecore::ubigint refLcl, const std::vector<Sbecore::ubigint>& refsLcl, const std::string& plhstr = "", const std::map<Sbecore::ubigint,std::string>& plhs = std::map<Sbecore::ubigint,std::string>(), const bool esc = true);
+
+	std::string getPlhByLcl(const std::map<Sbecore::ubigint,std::string>& plhs, const Sbecore::ubigint refLcl, const Sbecore::ubigint refLclDefault);
 	// IP cust --- IEND
 };
 

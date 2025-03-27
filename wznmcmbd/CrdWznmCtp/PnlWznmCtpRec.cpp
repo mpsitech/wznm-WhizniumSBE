@@ -39,9 +39,9 @@ PnlWznmCtpRec::PnlWznmCtpRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnl1ntag = NULL;
-	pnltpl1ncapability = NULL;
-	pnlapar = NULL;
 	pnlkkey = NULL;
+	pnlapar = NULL;
+	pnltpl1ncapability = NULL;
 	pnlkparkey = NULL;
 	pnldetail = NULL;
 
@@ -49,8 +49,8 @@ PnlWznmCtpRec::PnlWznmCtpRec(
 
 	// IP constructor.cust2 --- INSERT
 
-	xchg->addClstn(VecWznmVCall::CALLWZNMCPB_TPLEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMCPB_VEREQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMCPB_TPLEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMCPB_INSBS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
@@ -272,10 +272,10 @@ void PnlWznmCtpRec::handleCall(
 		) {
 	if (call->ixVCall == VecWznmVCall::CALLWZNMCPBUPD_REFEQ) {
 		call->abort = handleCallWznmCpbUpd_refEq(dbswznm, call->jref);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPB_TPLEQ) {
-		call->abort = handleCallWznmCpb_tplEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPB_VEREQ) {
 		call->abort = handleCallWznmCpb_verEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPB_TPLEQ) {
+		call->abort = handleCallWznmCpb_tplEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPB_INSBS) {
 		call->abort = handleCallWznmCpb_inSbs(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
 	};
@@ -290,17 +290,6 @@ bool PnlWznmCtpRec::handleCallWznmCpbUpd_refEq(
 	return retval;
 };
 
-bool PnlWznmCtpRec::handleCallWznmCpb_tplEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recCpb.tplRefWznmMCapability == refInv); // IP handleCallWznmCpb_tplEq --- LINE
-	return retval;
-};
-
 bool PnlWznmCtpRec::handleCallWznmCpb_verEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -309,6 +298,17 @@ bool PnlWznmCtpRec::handleCallWznmCpb_verEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recCpb.refWznmMVersion == refInv); // IP handleCallWznmCpb_verEq --- LINE
+	return retval;
+};
+
+bool PnlWznmCtpRec::handleCallWznmCpb_tplEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recCpb.tplRefWznmMCapability == refInv); // IP handleCallWznmCpb_tplEq --- LINE
 	return retval;
 };
 

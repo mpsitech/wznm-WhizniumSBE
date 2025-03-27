@@ -21,12 +21,12 @@ WznmJMUserState::WznmJMUserState(
 			, const ubigint refWznmMUser
 			, const uint x1Start
 			, const uint ixVState
-		) {
-
-	this->ref = ref;
-	this->refWznmMUser = refWznmMUser;
-	this->x1Start = x1Start;
-	this->ixVState = ixVState;
+		) :
+			ref(ref)
+			, refWznmMUser(refWznmMUser)
+			, x1Start(x1Start)
+			, ixVState(ixVState)
+		{
 };
 
 bool WznmJMUserState::operator==(

@@ -65,13 +65,12 @@ PnlWznmNavJob::ContIac::ContIac(
 			, const uint numFLstCal
 		) :
 			Block()
+			, numFLstJob(numFLstJob)
+			, numFLstSge(numFLstSge)
+			, numFLstMtd(numFLstMtd)
+			, numFLstBlk(numFLstBlk)
+			, numFLstCal(numFLstCal)
 		{
-	this->numFLstJob = numFLstJob;
-	this->numFLstSge = numFLstSge;
-	this->numFLstMtd = numFLstMtd;
-	this->numFLstBlk = numFLstBlk;
-	this->numFLstCal = numFLstCal;
-
 	mask = {NUMFLSTJOB, NUMFLSTSGE, NUMFLSTMTD, NUMFLSTBLK, NUMFLSTCAL};
 };
 
@@ -168,19 +167,18 @@ PnlWznmNavJob::StatApp::StatApp(
 			, const uint LstCalNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstJobAlt(LstJobAlt)
+			, LstSgeAlt(LstSgeAlt)
+			, LstMtdAlt(LstMtdAlt)
+			, LstBlkAlt(LstBlkAlt)
+			, LstCalAlt(LstCalAlt)
+			, LstJobNumFirstdisp(LstJobNumFirstdisp)
+			, LstSgeNumFirstdisp(LstSgeNumFirstdisp)
+			, LstMtdNumFirstdisp(LstMtdNumFirstdisp)
+			, LstBlkNumFirstdisp(LstBlkNumFirstdisp)
+			, LstCalNumFirstdisp(LstCalNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstJobAlt = LstJobAlt;
-	this->LstSgeAlt = LstSgeAlt;
-	this->LstMtdAlt = LstMtdAlt;
-	this->LstBlkAlt = LstBlkAlt;
-	this->LstCalAlt = LstCalAlt;
-	this->LstJobNumFirstdisp = LstJobNumFirstdisp;
-	this->LstSgeNumFirstdisp = LstSgeNumFirstdisp;
-	this->LstMtdNumFirstdisp = LstMtdNumFirstdisp;
-	this->LstBlkNumFirstdisp = LstBlkNumFirstdisp;
-	this->LstCalNumFirstdisp = LstCalNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTJOBALT, LSTSGEALT, LSTMTDALT, LSTBLKALT, LSTCALALT, LSTJOBNUMFIRSTDISP, LSTSGENUMFIRSTDISP, LSTMTDNUMFIRSTDISP, LSTBLKNUMFIRSTDISP, LSTCALNUMFIRSTDISP};
 };
 
@@ -278,23 +276,22 @@ PnlWznmNavJob::StatShr::StatShr(
 			, const bool ButCalNewcrdActive
 		) :
 			Block()
+			, LstJobAvail(LstJobAvail)
+			, ButJobViewActive(ButJobViewActive)
+			, ButJobNewcrdActive(ButJobNewcrdActive)
+			, LstSgeAvail(LstSgeAvail)
+			, ButSgeViewActive(ButSgeViewActive)
+			, ButSgeNewcrdActive(ButSgeNewcrdActive)
+			, LstMtdAvail(LstMtdAvail)
+			, ButMtdViewActive(ButMtdViewActive)
+			, ButMtdNewcrdActive(ButMtdNewcrdActive)
+			, LstBlkAvail(LstBlkAvail)
+			, ButBlkViewActive(ButBlkViewActive)
+			, ButBlkNewcrdActive(ButBlkNewcrdActive)
+			, LstCalAvail(LstCalAvail)
+			, ButCalViewActive(ButCalViewActive)
+			, ButCalNewcrdActive(ButCalNewcrdActive)
 		{
-	this->LstJobAvail = LstJobAvail;
-	this->ButJobViewActive = ButJobViewActive;
-	this->ButJobNewcrdActive = ButJobNewcrdActive;
-	this->LstSgeAvail = LstSgeAvail;
-	this->ButSgeViewActive = ButSgeViewActive;
-	this->ButSgeNewcrdActive = ButSgeNewcrdActive;
-	this->LstMtdAvail = LstMtdAvail;
-	this->ButMtdViewActive = ButMtdViewActive;
-	this->ButMtdNewcrdActive = ButMtdNewcrdActive;
-	this->LstBlkAvail = LstBlkAvail;
-	this->ButBlkViewActive = ButBlkViewActive;
-	this->ButBlkNewcrdActive = ButBlkNewcrdActive;
-	this->LstCalAvail = LstCalAvail;
-	this->ButCalViewActive = ButCalViewActive;
-	this->ButCalNewcrdActive = ButCalNewcrdActive;
-
 	mask = {LSTJOBAVAIL, BUTJOBVIEWACTIVE, BUTJOBNEWCRDACTIVE, LSTSGEAVAIL, BUTSGEVIEWACTIVE, BUTSGENEWCRDACTIVE, LSTMTDAVAIL, BUTMTDVIEWACTIVE, BUTMTDNEWCRDACTIVE, LSTBLKAVAIL, BUTBLKVIEWACTIVE, BUTBLKNEWCRDACTIVE, LSTCALAVAIL, BUTCALVIEWACTIVE, BUTCALNEWCRDACTIVE};
 };
 
@@ -386,14 +383,13 @@ PnlWznmNavJob::Tag::Tag(
 			, const string& CptCal
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptJob(CptJob)
+			, CptSge(CptSge)
+			, CptMtd(CptMtd)
+			, CptBlk(CptBlk)
+			, CptCal(CptCal)
 		{
-	this->Cpt = Cpt;
-	this->CptJob = CptJob;
-	this->CptSge = CptSge;
-	this->CptMtd = CptMtd;
-	this->CptBlk = CptBlk;
-	this->CptCal = CptCal;
-
 	mask = {CPT, CPTJOB, CPTSGE, CPTMTD, CPTBLK, CPTCAL};
 };
 
@@ -474,11 +470,11 @@ PnlWznmNavJob::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMNAVJOBDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmNavJob::DpchAppDo::getSrefsMask() {

@@ -24,6 +24,7 @@ uint TblWznmMFile::VecVRefTbl::getIx(
 	if (s == "app") return APP;
 	if (s == "lib") return LIB;
 	if (s == "ver") return VER;
+	if (s == "vis") return VIS;
 
 	return(0);
 };
@@ -35,6 +36,7 @@ string TblWznmMFile::VecVRefTbl::getSref(
 	if (ix == APP) return("app");
 	if (ix == LIB) return("lib");
 	if (ix == VER) return("ver");
+	if (ix == VIS) return("vis");
 
 	return("");
 };
@@ -48,6 +50,7 @@ string TblWznmMFile::VecVRefTbl::getTitle(
 		if (ix == APP) return("accessor app");
 		if (ix == LIB) return("library");
 		if (ix == VER) return("version");
+		if (ix == VIS) return("visualization");
 		return(getSref(ix));
 	};
 
@@ -60,5 +63,5 @@ void TblWznmMFile::VecVRefTbl::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 4; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
+	for (unsigned int i = 1; i <= 5; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i, ixWznmVLocale));
 };

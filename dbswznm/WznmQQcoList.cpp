@@ -31,20 +31,21 @@ WznmQQcoList::WznmQQcoList(
 			, const string stubQryRefWznmMQuery
 			, const ubigint refWznmMTablecol
 			, const string stubRefWznmMTablecol
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Short = Short;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->qryRefWznmMQuery = qryRefWznmMQuery;
-	this->stubQryRefWznmMQuery = stubQryRefWznmMQuery;
-	this->refWznmMTablecol = refWznmMTablecol;
-	this->stubRefWznmMTablecol = stubRefWznmMTablecol;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Short(Short)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, qryRefWznmMQuery(qryRefWznmMQuery)
+			, stubQryRefWznmMQuery(stubQryRefWznmMQuery)
+			, refWznmMTablecol(refWznmMTablecol)
+			, stubRefWznmMTablecol(stubRefWznmMTablecol)
+		{
 };
 
 void WznmQQcoList::writeJSON(

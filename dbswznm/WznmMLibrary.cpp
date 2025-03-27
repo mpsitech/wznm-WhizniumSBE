@@ -24,15 +24,15 @@ WznmMLibrary::WznmMLibrary(
 			, const string srefKLictype
 			, const string depSrefsWznmMLibrary
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->Version = Version;
-	this->srefKLictype = srefKLictype;
-	this->depSrefsWznmMLibrary = depSrefsWznmMLibrary;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, Version(Version)
+			, srefKLictype(srefKLictype)
+			, depSrefsWznmMLibrary(depSrefsWznmMLibrary)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMLibrary::operator==(

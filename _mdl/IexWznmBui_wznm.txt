@@ -66,6 +66,12 @@ MdlWznmDeploy	deployment module
 	tbl	TblWznmMComponent	CrdWznmCmp			pre.refVer() > pre.void()
 	tbl	TblWznmMRelease	CrdWznmRls			pre.refVer()
 	ImeIMCard.end
+MdlWznmVisual	visualization module
+	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
+	tbl	TblWznmMVisual	CrdWznmVis
+	tbl	TblWznmMSheet	CrdWznmSht			pre.refVis()
+	tbl	TblWznmMBox	CrdWznmBox			pre.refSht() > pre.refVis()
+	ImeIMCard.end
 MdlWznmAppdev	app development module
 	ImeIMCard.srefRefIxVTbl	srefRefUref	sref	Title	Avail	Active
 	tbl	TblWznmMApp	CrdWznmApp
@@ -82,4 +88,5 @@ ImeIMModule.end
 ImeIMPreset.srefIxVIop	srefRefIxVTbl	srefRefUref	srefIxVScope	sref	srefIxWznmWArgtype
 retrupd			sess	PreWznmRefApp
 retrupd			sess	PreWznmRefVer
+retrupd			sess	PreWznmRefVis
 ImeIMPreset.end

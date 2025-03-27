@@ -1683,7 +1683,18 @@ uint JobWznmIexUix::enterSgeImport(
 				for (unsigned int ix2 = 0; ix2 < pnl->imeimcontrol2.nodes.size(); ix2++) {
 					con2 = pnl->imeimcontrol2.nodes[ix2];
 
-					//con2->refUref = CUSTSQLPP ... TBD?
+					if ((con2->ixWznmVIop == VecWznmVIop::INS) && (con2->refIxVTbl == VecWznmVMControlRefTbl::QCO)) {
+						// expect format <qrysref>.<qcosref>
+						ptr = con2->srefRefUref.find('.');
+						if (ptr != string::npos) {
+							s = con2->srefRefUref.substr(0, ptr);
+							s2 = con2->srefRefUref.substr(ptr + 1);
+							dbswznm->loadRefBySQL("SELECT TblWznmMQuerycol.ref FROM TblWznmMQuery, TblWznmMQuerycol WHERE TblWznmMQuery.refWznmMVersion = " + to_string(refWznmMVersion)
+										+ " AND TblWznmMQuerycol.qryRefWznmMQuery = TblWznmMQuery.ref AND TblWznmMQuery.sref = '" + s + "' AND TblWznmMQuerycol.sref = '" + s2 + "'", con2->refUref);
+						};
+						if (con2->refUref == 0) throw SbeException(SbeException::IEX_TSREF, {{"tsref",con2->srefRefUref}, {"iel","srefRefUref"}, {"lineno",to_string(con2->lineno)}});
+						else dbswznm->executeQuery("UPDATE TblWznmMControl SET refUref = " + to_string(con2->refUref) + " WHERE ref = " + to_string(con2->ref));
+					};
 					if ((con2->ixWznmVIop == VecWznmVIop::INS) && (con2->irefSupRefWznmMControl != 0)) {
 						for (unsigned int i = 0; i < pnl->imeimcontrol2.nodes.size(); i++) {
 							con22 = pnl->imeimcontrol2.nodes[i];

@@ -24,13 +24,14 @@ WznmQSeqSeq1NState::WznmQSeqSeq1NState(
 			, const ubigint ref
 			, const string stubRef
 			, const uint seqNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->seqNum = seqNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, seqNum(seqNum)
+		{
 };
 
 void WznmQSeqSeq1NState::writeJSON(

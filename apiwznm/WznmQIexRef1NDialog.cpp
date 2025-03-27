@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQIexRef1NDialog::WznmQIexRef1NDialog(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQIexRef1NDialog::readXML(

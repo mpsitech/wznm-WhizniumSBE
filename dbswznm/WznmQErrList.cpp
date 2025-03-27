@@ -26,15 +26,16 @@ WznmQErrList::WznmQErrList(
 			, const string Title
 			, const ubigint verRefWznmMVersion
 			, const string stubVerRefWznmMVersion
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->verRefWznmMVersion = verRefWznmMVersion;
-	this->stubVerRefWznmMVersion = stubVerRefWznmMVersion;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, verRefWznmMVersion(verRefWznmMVersion)
+			, stubVerRefWznmMVersion(stubVerRefWznmMVersion)
+		{
 };
 
 void WznmQErrList::writeJSON(

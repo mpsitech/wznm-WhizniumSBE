@@ -23,12 +23,13 @@ WznmQRtjList::WznmQRtjList(
 			, const string stubRefWznmMApp
 			, const string stubSupRefWznmMRtjob
 			, const string stubRefWznmMJob
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->stubRefWznmMApp = stubRefWznmMApp;
-	this->stubSupRefWznmMRtjob = stubSupRefWznmMRtjob;
-	this->stubRefWznmMJob = stubRefWznmMJob;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, stubRefWznmMApp(stubRefWznmMApp)
+			, stubSupRefWznmMRtjob(stubSupRefWznmMRtjob)
+			, stubRefWznmMJob(stubRefWznmMJob)
+		{
 };
 
 bool WznmQRtjList::readXML(

@@ -25,14 +25,14 @@ WznmAMTableTitle::WznmAMTableTitle(
 			, const ubigint x2RefWznmMLocale
 			, const uint ixWznmVGender
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMTable = refWznmMTable;
-	this->x1IxVType = x1IxVType;
-	this->x2RefWznmMLocale = x2RefWznmMLocale;
-	this->ixWznmVGender = ixWznmVGender;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMTable(refWznmMTable)
+			, x1IxVType(x1IxVType)
+			, x2RefWznmMLocale(x2RefWznmMLocale)
+			, ixWznmVGender(ixWznmVGender)
+			, Title(Title)
+		{
 };
 
 bool WznmAMTableTitle::operator==(

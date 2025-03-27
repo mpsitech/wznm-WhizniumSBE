@@ -45,9 +45,8 @@ PnlWznmJobRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -118,21 +117,20 @@ PnlWznmJobRec::StatApp::StatApp(
 			, const bool initdoneSubMNJob
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneAVar(initdoneAVar)
+			, initdoneACmd(initdoneACmd)
+			, initdone1NMethod(initdone1NMethod)
+			, initdone1NRtjob(initdone1NRtjob)
+			, initdoneJob1NStage(initdoneJob1NStage)
+			, initdone1NSensitivity(initdone1NSensitivity)
+			, initdoneHk1NVector(initdoneHk1NVector)
+			, initdoneRef1NBlock(initdoneRef1NBlock)
+			, initdoneMNOppack(initdoneMNOppack)
+			, initdoneMNOp(initdoneMNOp)
+			, initdoneSupMNJob(initdoneSupMNJob)
+			, initdoneSubMNJob(initdoneSubMNJob)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneAVar = initdoneAVar;
-	this->initdoneACmd = initdoneACmd;
-	this->initdone1NMethod = initdone1NMethod;
-	this->initdone1NRtjob = initdone1NRtjob;
-	this->initdoneJob1NStage = initdoneJob1NStage;
-	this->initdone1NSensitivity = initdone1NSensitivity;
-	this->initdoneHk1NVector = initdoneHk1NVector;
-	this->initdoneRef1NBlock = initdoneRef1NBlock;
-	this->initdoneMNOppack = initdoneMNOppack;
-	this->initdoneMNOp = initdoneMNOp;
-	this->initdoneSupMNJob = initdoneSupMNJob;
-	this->initdoneSubMNJob = initdoneSubMNJob;
-
 	mask = {INITDONEDETAIL, INITDONEAVAR, INITDONEACMD, INITDONE1NMETHOD, INITDONE1NRTJOB, INITDONEJOB1NSTAGE, INITDONE1NSENSITIVITY, INITDONEHK1NVECTOR, INITDONEREF1NBLOCK, INITDONEMNOPPACK, INITDONEMNOP, INITDONESUPMNJOB, INITDONESUBMNJOB};
 };
 
@@ -230,24 +228,23 @@ PnlWznmJobRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefAVar(scrJrefAVar)
+			, scrJrefACmd(scrJrefACmd)
+			, scrJref1NMethod(scrJref1NMethod)
+			, scrJref1NRtjob(scrJref1NRtjob)
+			, scrJrefJob1NStage(scrJrefJob1NStage)
+			, scrJref1NSensitivity(scrJref1NSensitivity)
+			, scrJrefHk1NVector(scrJrefHk1NVector)
+			, scrJrefRef1NBlock(scrJrefRef1NBlock)
+			, scrJrefMNOppack(scrJrefMNOppack)
+			, scrJrefMNOp(scrJrefMNOp)
+			, scrJrefSupMNJob(scrJrefSupMNJob)
+			, scrJrefSubMNJob(scrJrefSubMNJob)
+			, pnlsubmnjobAvail(pnlsubmnjobAvail)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAVar = scrJrefAVar;
-	this->scrJrefACmd = scrJrefACmd;
-	this->scrJref1NMethod = scrJref1NMethod;
-	this->scrJref1NRtjob = scrJref1NRtjob;
-	this->scrJrefJob1NStage = scrJrefJob1NStage;
-	this->scrJref1NSensitivity = scrJref1NSensitivity;
-	this->scrJrefHk1NVector = scrJrefHk1NVector;
-	this->scrJrefRef1NBlock = scrJrefRef1NBlock;
-	this->scrJrefMNOppack = scrJrefMNOppack;
-	this->scrJrefMNOp = scrJrefMNOp;
-	this->scrJrefSupMNJob = scrJrefSupMNJob;
-	this->scrJrefSubMNJob = scrJrefSubMNJob;
-	this->pnlsubmnjobAvail = pnlsubmnjobAvail;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAVAR, SCRJREFACMD, SCRJREF1NMETHOD, SCRJREF1NRTJOB, SCRJREFJOB1NSTAGE, SCRJREF1NSENSITIVITY, SCRJREFHK1NVECTOR, SCRJREFREF1NBLOCK, SCRJREFMNOPPACK, SCRJREFMNOP, SCRJREFSUPMNJOB, SCRJREFSUBMNJOB, PNLSUBMNJOBAVAIL, BUTREGULARIZEACTIVE};
 };
 
@@ -341,9 +338,8 @@ PnlWznmJobRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -380,11 +376,11 @@ PnlWznmJobRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMJOBRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmJobRec::DpchAppDo::getSrefsMask() {

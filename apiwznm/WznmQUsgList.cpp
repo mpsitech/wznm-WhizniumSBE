@@ -22,11 +22,12 @@ WznmQUsgList::WznmQUsgList(
 			, const string stubGrp
 			, const string stubOwn
 			, const string sref
-		) {
-	this->jnum = jnum;
-	this->stubGrp = stubGrp;
-	this->stubOwn = stubOwn;
-	this->sref = sref;
+		) :
+			jnum(jnum)
+			, stubGrp(stubGrp)
+			, stubOwn(stubOwn)
+			, sref(sref)
+		{
 };
 
 bool WznmQUsgList::readXML(

@@ -79,11 +79,10 @@ DlgWznmUsrMngkeypair::ContInf::ContInf(
 			, const string& DetDld
 		) :
 			Block()
+			, numFSge(numFSge)
+			, DetTxtSte(DetTxtSte)
+			, DetDld(DetDld)
 		{
-	this->numFSge = numFSge;
-	this->DetTxtSte = DetTxtSte;
-	this->DetDld = DetDld;
-
 	mask = {NUMFSGE, DETTXTSTE, DETDLD};
 };
 
@@ -95,7 +94,7 @@ void DlgWznmUsrMngkeypair::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 	me["DetTxtSte"] = DetTxtSte;
 	me["DetDld"] = DetDld;
 };
@@ -187,11 +186,10 @@ DlgWznmUsrMngkeypair::StatShr::StatShr(
 			, const bool DetDldActive
 		) :
 			Block()
+			, DetButDelAvail(DetButDelAvail)
+			, DetButGenAvail(DetButGenAvail)
+			, DetDldActive(DetDldActive)
 		{
-	this->DetButDelAvail = DetButDelAvail;
-	this->DetButGenAvail = DetButGenAvail;
-	this->DetDldActive = DetDldActive;
-
 	mask = {DETBUTDELAVAIL, DETBUTGENAVAIL, DETDLDACTIVE};
 };
 

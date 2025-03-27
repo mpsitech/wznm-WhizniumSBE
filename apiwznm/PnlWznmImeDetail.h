@@ -132,28 +132,27 @@ namespace PnlWznmImeDetail {
 	class StatShr : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint TXFRTRVALID = 1;
-		static const Sbecore::uint BUTSAVEAVAIL = 2;
-		static const Sbecore::uint BUTSAVEACTIVE = 3;
-		static const Sbecore::uint TXTSRFACTIVE = 4;
-		static const Sbecore::uint TXTIEXACTIVE = 5;
-		static const Sbecore::uint BUTIEXVIEWAVAIL = 6;
-		static const Sbecore::uint BUTIEXVIEWACTIVE = 7;
-		static const Sbecore::uint TXTSUPACTIVE = 8;
-		static const Sbecore::uint BUTSUPVIEWAVAIL = 9;
-		static const Sbecore::uint BUTSUPVIEWACTIVE = 10;
-		static const Sbecore::uint TXTTBLACTIVE = 11;
-		static const Sbecore::uint LSTIOPACTIVE = 12;
-		static const Sbecore::uint LSTRTRACTIVE = 13;
+		static const Sbecore::uint BUTSAVEAVAIL = 1;
+		static const Sbecore::uint BUTSAVEACTIVE = 2;
+		static const Sbecore::uint TXTSRFACTIVE = 3;
+		static const Sbecore::uint TXTIEXACTIVE = 4;
+		static const Sbecore::uint BUTIEXVIEWAVAIL = 5;
+		static const Sbecore::uint BUTIEXVIEWACTIVE = 6;
+		static const Sbecore::uint TXTSUPACTIVE = 7;
+		static const Sbecore::uint BUTSUPVIEWAVAIL = 8;
+		static const Sbecore::uint BUTSUPVIEWACTIVE = 9;
+		static const Sbecore::uint TXTTBLACTIVE = 10;
+		static const Sbecore::uint LSTIOPACTIVE = 11;
+		static const Sbecore::uint LSTRTRACTIVE = 12;
+		static const Sbecore::uint TXFRTRVALID = 13;
 		static const Sbecore::uint BUTRTRVIEWAVAIL = 14;
 		static const Sbecore::uint BUTRTRVIEWACTIVE = 15;
 		static const Sbecore::uint TXFCMTACTIVE = 16;
 
 	public:
-		StatShr(const bool TxfRtrValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxtIexActive = true, const bool ButIexViewAvail = true, const bool ButIexViewActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtTblActive = true, const bool LstIopActive = true, const bool LstRtrActive = true, const bool ButRtrViewAvail = true, const bool ButRtrViewActive = true, const bool TxfCmtActive = true);
+		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxtIexActive = true, const bool ButIexViewAvail = true, const bool ButIexViewActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtTblActive = true, const bool LstIopActive = true, const bool LstRtrActive = true, const bool TxfRtrValid = false, const bool ButRtrViewAvail = true, const bool ButRtrViewActive = true, const bool TxfCmtActive = true);
 
 	public:
-		bool TxfRtrValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtSrfActive;
@@ -166,6 +165,7 @@ namespace PnlWznmImeDetail {
 		bool TxtTblActive;
 		bool LstIopActive;
 		bool LstRtrActive;
+		bool TxfRtrValid;
 		bool ButRtrViewAvail;
 		bool ButRtrViewActive;
 		bool TxfCmtActive;

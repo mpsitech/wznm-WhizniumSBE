@@ -324,7 +324,7 @@ function changeHeight(pnlshort, height) {
 // --- view initialization and refresh
 function refresh() {
 
-	doc.title = retrieveCi(srcdoc, "ContInfWznmUsg", "MtxCrdUsg") + " - WhizniumSBE v1.1.9";
+	doc.title = retrieveCi(srcdoc, "ContInfWznmUsg", "MtxCrdUsg") + " - WhizniumSBE v1.1.13";
 };
 
 // --- event handlers
@@ -494,7 +494,7 @@ function handleDpchAppResumeReply() {
 	} else if (doc.req.readyState == 4) {
 		dom = doc.req.responseXML;
 
-		blk = retrieveBlock(dom, "//wznm:*");
+		if (dom) blk = retrieveBlock(dom, "//wznm:*");
 
 		if (blk) if (blk.nodeName == "DpchEngWznmAck") restartNotify();
 	};
@@ -505,6 +505,8 @@ function iteratePoll() {
 };
 
 function iterateReqit(ev) {
+	var dom, blk;
+
 	var accepted, _scrJref, mask;
 
 	var news = false;
@@ -526,7 +528,7 @@ function iterateReqit(ev) {
 			dom = doc.reqit.responseXML;
 
 			// check dispatch type
-			blk = retrieveBlock(dom, "//wznm:*");
+			if (dom) blk = retrieveBlock(dom, "//wznm:*");
 
 			if (blk) {
 				if (blk.nodeName == "DpchEngWznmAck") {

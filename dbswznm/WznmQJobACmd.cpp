@@ -24,13 +24,14 @@ WznmQJobACmd::WznmQJobACmd(
 			, const ubigint ref
 			, const string sref
 			, const string Comment
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Comment = Comment;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Comment(Comment)
+		{
 };
 
 void WznmQJobACmd::writeJSON(

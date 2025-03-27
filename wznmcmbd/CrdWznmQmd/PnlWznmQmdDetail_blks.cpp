@@ -49,11 +49,10 @@ PnlWznmQmdDetail::ContIac::ContIac(
 			, const string& TxfAvl
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, numFPupRet(numFPupRet)
+			, TxfAvl(TxfAvl)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->numFPupRet = numFPupRet;
-	this->TxfAvl = TxfAvl;
-
 	mask = {NUMFPUPTYP, NUMFPUPRET, TXFAVL};
 };
 
@@ -111,8 +110,8 @@ void PnlWznmQmdDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupTyp"] = numFPupTyp;
-	me["numFPupRet"] = numFPupRet;
+	me["numFPupTyp"] = (Json::Value::UInt) numFPupTyp;
+	me["numFPupRet"] = (Json::Value::UInt) numFPupRet;
 	me["TxfAvl"] = TxfAvl;
 };
 
@@ -170,11 +169,10 @@ PnlWznmQmdDetail::ContInf::ContInf(
 			, const string& TxtReu
 		) :
 			Block()
+			, TxtQry(TxtQry)
+			, TxtPst(TxtPst)
+			, TxtReu(TxtReu)
 		{
-	this->TxtQry = TxtQry;
-	this->TxtPst = TxtPst;
-	this->TxtReu = TxtReu;
-
 	mask = {TXTQRY, TXTPST, TXTREU};
 };
 
@@ -288,21 +286,20 @@ PnlWznmQmdDetail::StatShr::StatShr(
 			, const bool TxfAvlActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, PupTypActive(PupTypActive)
+			, TxtQryActive(TxtQryActive)
+			, ButQryViewAvail(ButQryViewAvail)
+			, ButQryViewActive(ButQryViewActive)
+			, TxtPstActive(TxtPstActive)
+			, ButPstViewAvail(ButPstViewAvail)
+			, ButPstViewActive(ButPstViewActive)
+			, TxtReuActive(TxtReuActive)
+			, ButReuViewAvail(ButReuViewAvail)
+			, ButReuViewActive(ButReuViewActive)
+			, TxfAvlActive(TxfAvlActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtQryActive = TxtQryActive;
-	this->ButQryViewAvail = ButQryViewAvail;
-	this->ButQryViewActive = ButQryViewActive;
-	this->TxtPstActive = TxtPstActive;
-	this->ButPstViewAvail = ButPstViewAvail;
-	this->ButPstViewActive = ButPstViewActive;
-	this->TxtReuActive = TxtReuActive;
-	this->ButReuViewAvail = ButReuViewAvail;
-	this->ButReuViewActive = ButReuViewActive;
-	this->TxfAvlActive = TxfAvlActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, PUPTYPACTIVE, TXTQRYACTIVE, BUTQRYVIEWAVAIL, BUTQRYVIEWACTIVE, TXTPSTACTIVE, BUTPSTVIEWAVAIL, BUTPSTVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, TXFAVLACTIVE};
 };
 

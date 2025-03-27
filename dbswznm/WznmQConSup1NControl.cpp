@@ -24,13 +24,14 @@ WznmQConSup1NControl::WznmQConSup1NControl(
 			, const ubigint ref
 			, const string stubRef
 			, const uint supNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->supNum = supNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, supNum(supNum)
+		{
 };
 
 void WznmQConSup1NControl::writeJSON(

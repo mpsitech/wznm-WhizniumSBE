@@ -24,13 +24,14 @@ WznmQTagList::WznmQTagList(
 			, const string stubRefWznmMCapability
 			, const string osrefWznmKTaggrp
 			, const string titOsrefWznmKTaggrp
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->stubRefWznmMCapability = stubRefWznmMCapability;
-	this->osrefWznmKTaggrp = osrefWznmKTaggrp;
-	this->titOsrefWznmKTaggrp = titOsrefWznmKTaggrp;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, stubRefWznmMCapability(stubRefWznmMCapability)
+			, osrefWznmKTaggrp(osrefWznmKTaggrp)
+			, titOsrefWznmKTaggrp(titOsrefWznmKTaggrp)
+		{
 };
 
 bool WznmQTagList::readXML(

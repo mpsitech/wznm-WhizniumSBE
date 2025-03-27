@@ -28,17 +28,17 @@ WznmMStub::WznmMStub(
 			, const ubigint refWznmMTablecol
 			, const bool Localized
 			, const string Example
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMTable = refWznmMTable;
-	this->refWznmMSubset = refWznmMSubset;
-	this->sref = sref;
-	this->Hierarch = Hierarch;
-	this->refWznmMTablecol = refWznmMTablecol;
-	this->Localized = Localized;
-	this->Example = Example;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMTable(refWznmMTable)
+			, refWznmMSubset(refWznmMSubset)
+			, sref(sref)
+			, Hierarch(Hierarch)
+			, refWznmMTablecol(refWznmMTablecol)
+			, Localized(Localized)
+			, Example(Example)
+		{
 };
 
 bool WznmMStub::operator==(

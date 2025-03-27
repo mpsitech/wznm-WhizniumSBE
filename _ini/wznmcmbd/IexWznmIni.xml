@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<IexWznmIni version="1.1.9">
+<IexWznmIni version="1.1.13">
 	<ImeIAVKeylistKey1>
 		<Ii num="1">
 			<kls>KlstKWznmCtpGenjtrCustop</kls>
@@ -413,600 +413,610 @@
 		</Ii>
 		<Ii num="83">
 			<kls>KlstWznmKMControlOption</kls>
+			<srf>clean</srf>
+			<tit>clean/dirty content state</tit>
+		</Ii>
+		<Ii num="84">
+			<kls>KlstWznmKMControlOption</kls>
 			<srf>ddd</srf>
 			<tit>title complement ' ...'</tit>
 		</Ii>
-		<Ii num="84">
+		<Ii num="85">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>flexh</srf>
 			<tit>flexible height</tit>
 		</Ii>
-		<Ii num="85">
+		<Ii num="86">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>icon</srf>
 			<tit>icon</tit>
 		</Ii>
-		<Ii num="86">
+		<Ii num="87">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>iframe</srf>
 			<tit>inline frame</tit>
 		</Ii>
-		<Ii num="87">
+		<Ii num="88">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>live</srf>
 			<tit>live data display</tit>
 		</Ii>
-		<Ii num="88">
+		<Ii num="89">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>log</srf>
 			<tit>logarithmic scale</tit>
 		</Ii>
-		<Ii num="89">
+		<Ii num="90">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>multsel</srf>
 			<tit>multiple item selection</tit>
 		</Ii>
-		<Ii num="90">
+		<Ii num="91">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>mdnup</srf>
 			<tit>mouse down/up tracking</tit>
 		</Ii>
-		<Ii num="91">
+		<Ii num="92">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>onoff</srf>
-			<tit>on and off states</tit>
+			<tit>on/off state</tit>
 		</Ii>
-		<Ii num="92">
+		<Ii num="93">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>pwd</srf>
 			<tit>password</tit>
 		</Ii>
-		<Ii num="93">
+		<Ii num="94">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>rast</srf>
 			<tit>value raster</tit>
 		</Ii>
-		<Ii num="94">
+		<Ii num="95">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>s</srf>
 			<tit>small</tit>
 		</Ii>
-		<Ii num="95">
+		<Ii num="96">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>t</srf>
 			<tit>tall</tit>
 		</Ii>
-		<Ii num="96">
+		<Ii num="97">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>tmstamp</srf>
 			<tit>time stamp scale</tit>
 		</Ii>
-		<Ii num="97">
+		<Ii num="98">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>tmdate</srf>
 			<tit>date scale</tit>
 		</Ii>
-		<Ii num="98">
+		<Ii num="99">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>tmtime</srf>
 			<tit>time scale</tit>
 		</Ii>
-		<Ii num="99">
+		<Ii num="100">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>tricol</srf>
 			<tit>tri-column</tit>
 		</Ii>
-		<Ii num="100">
+		<Ii num="101">
+			<kls>KlstWznmKMControlOption</kls>
+			<srf>valid</srf>
+			<tit>valid/invalid content state</tit>
+		</Ii>
+		<Ii num="102">
 			<kls>KlstWznmKMControlOption</kls>
 			<srf>xs</srf>
 			<tit>extra small</tit>
 		</Ii>
-		<Ii num="101">
+		<Ii num="103">
 			<kls>KlstWznmKMFileContent</kls>
 			<srf>appstr</srf>
 			<tit>accessor app structure data</tit>
 		</Ii>
-		<Ii num="102">
+		<Ii num="104">
 			<kls>KlstWznmKMFileContent</kls>
 			<srf>cftpl</srf>
 			<tit>code file template</tit>
 		</Ii>
-		<Ii num="103">
+		<Ii num="105">
 			<kls>KlstWznmKMFileContent</kls>
 			<srf>custip</srf>
 			<tit>custom insertion points</tit>
 		</Ii>
-		<Ii num="104">
+		<Ii num="106">
 			<kls>KlstWznmKMFileContent</kls>
 			<srf>lic</srf>
 			<tit>license</tit>
 		</Ii>
-		<Ii num="105">
+		<Ii num="107">
 			<kls>KlstWznmKMFileContent</kls>
 			<srf>mod</srf>
 			<tit>model data</tit>
 		</Ii>
-		<Ii num="106">
+		<Ii num="108">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>bmp</srf>
 			<tit>image/bmp</tit>
 		</Ii>
-		<Ii num="107">
+		<Ii num="109">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>cpp</srf>
 			<tit>text/x-c</tit>
 		</Ii>
-		<Ii num="108">
+		<Ii num="110">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>css</srf>
 			<tit>text/css</tit>
 		</Ii>
-		<Ii num="109">
+		<Ii num="111">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>csv</srf>
 			<tit>text/comma-separated-values</tit>
 		</Ii>
-		<Ii num="110">
+		<Ii num="112">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>doc</srf>
 			<tit>application/msword</tit>
 		</Ii>
-		<Ii num="111">
+		<Ii num="113">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>docx</srf>
 			<tit>application/vnd.openxmlformats-officedocument.wordprocessingml.document</tit>
 		</Ii>
-		<Ii num="112">
+		<Ii num="114">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>eps</srf>
 			<tit>application/postscript</tit>
 		</Ii>
-		<Ii num="113">
+		<Ii num="115">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>gif</srf>
 			<tit>image/gif</tit>
 		</Ii>
-		<Ii num="114">
+		<Ii num="116">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>h</srf>
 			<tit>text/x-h</tit>
 		</Ii>
-		<Ii num="115">
+		<Ii num="117">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>hdf</srf>
 			<tit>application/x-hdf</tit>
 		</Ii>
-		<Ii num="116">
+		<Ii num="118">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>html</srf>
 			<tit>text/html</tit>
 		</Ii>
-		<Ii num="117">
+		<Ii num="119">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>jpg</srf>
 			<tit>image/jpeg</tit>
 		</Ii>
-		<Ii num="118">
+		<Ii num="120">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>js</srf>
 			<tit>text/javascript</tit>
 		</Ii>
-		<Ii num="119">
+		<Ii num="121">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>make</srf>
 			<tit>text/x-makefile</tit>
 		</Ii>
-		<Ii num="120">
+		<Ii num="122">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>nc</srf>
 			<tit>application/x-netcdf</tit>
 		</Ii>
-		<Ii num="121">
+		<Ii num="123">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>pdf</srf>
 			<tit>application/pdf</tit>
 		</Ii>
-		<Ii num="122">
+		<Ii num="124">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>png</srf>
 			<tit>image/png</tit>
 		</Ii>
-		<Ii num="123">
+		<Ii num="125">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>ppt</srf>
 			<tit>application/mspowerpoint</tit>
 		</Ii>
-		<Ii num="124">
+		<Ii num="126">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>pptx</srf>
 			<tit>application/vnd.openxmlformats-officedocument.presentationml.presentation</tit>
 		</Ii>
-		<Ii num="125">
+		<Ii num="127">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>sh</srf>
 			<tit>application/x-sh</tit>
 		</Ii>
-		<Ii num="126">
+		<Ii num="128">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>sql</srf>
 			<tit>text/x-sql</tit>
 		</Ii>
-		<Ii num="127">
+		<Ii num="129">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>svg</srf>
 			<tit>image/svg+xml</tit>
 		</Ii>
-		<Ii num="128">
+		<Ii num="130">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>tex</srf>
 			<tit>application/x-tex</tit>
 		</Ii>
-		<Ii num="129">
+		<Ii num="131">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>tgz</srf>
 			<tit>application/x-gzip</tit>
 		</Ii>
-		<Ii num="130">
+		<Ii num="132">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>tif</srf>
 			<tit>image/tiff</tit>
 		</Ii>
-		<Ii num="131">
+		<Ii num="133">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>txt</srf>
 			<tit>text/plain</tit>
 		</Ii>
-		<Ii num="132">
+		<Ii num="134">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>xls</srf>
 			<tit>application/msexcel</tit>
 		</Ii>
-		<Ii num="133">
+		<Ii num="135">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>xlsx</srf>
 			<tit>application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</tit>
 		</Ii>
-		<Ii num="134">
+		<Ii num="136">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>xml</srf>
 			<tit>text/xml</tit>
 		</Ii>
-		<Ii num="135">
+		<Ii num="137">
 			<kls>KlstWznmKMFileMimetype</kls>
 			<srf>zip</srf>
 			<tit>application/zip</tit>
 		</Ii>
-		<Ii num="136">
+		<Ii num="138">
 			<kls>KlstWznmKMLibraryLictype</kls>
 			<srf>apch2</srf>
 			<tit>Apache 2.0</tit>
 		</Ii>
-		<Ii num="137">
+		<Ii num="139">
 			<kls>KlstWznmKMLibraryLictype</kls>
 			<srf>bsd2</srf>
 			<tit>BSD 2-clause</tit>
 		</Ii>
-		<Ii num="138">
+		<Ii num="140">
 			<kls>KlstWznmKMLibraryLictype</kls>
 			<srf>bsd3</srf>
 			<tit>BSD 3-clause</tit>
 		</Ii>
-		<Ii num="139">
+		<Ii num="141">
 			<kls>KlstWznmKMLibraryLictype</kls>
 			<srf>gpl</srf>
 			<tit>GNU general public</tit>
 		</Ii>
-		<Ii num="140">
+		<Ii num="142">
 			<kls>KlstWznmKMLibraryLictype</kls>
 			<srf>lgpl</srf>
 			<tit>GNU lesser general public</tit>
 		</Ii>
-		<Ii num="141">
+		<Ii num="143">
 			<kls>KlstWznmKMLibraryLictype</kls>
 			<srf>mit</srf>
 			<tit>MIT</tit>
 		</Ii>
-		<Ii num="142">
+		<Ii num="144">
 			<kls>KlstWznmKMLibraryLictype</kls>
 			<srf>zlib</srf>
 			<tit>zlib/libpng</tit>
 		</Ii>
-		<Ii num="143">
+		<Ii num="145">
 			<kls>KlstWznmKMMachinePkgmgr</kls>
 			<srf>apt</srf>
 			<tit>advanced package manager</tit>
 		</Ii>
-		<Ii num="144">
+		<Ii num="146">
 			<kls>KlstWznmKMMachinePkgmgr</kls>
 			<srf>bb</srf>
 			<tit>BitBake</tit>
 		</Ii>
-		<Ii num="145">
+		<Ii num="147">
 			<kls>KlstWznmKMMachinePkgmgr</kls>
 			<srf>brew</srf>
 			<tit>Homebrew</tit>
 		</Ii>
-		<Ii num="146">
+		<Ii num="148">
 			<kls>KlstWznmKMMachinePkgmgr</kls>
 			<srf>yum</srf>
 			<tit>yum</tit>
 		</Ii>
-		<Ii num="147">
+		<Ii num="149">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>self</srf>
 			<tit>self-reference</tit>
 		</Ii>
-		<Ii num="148">
+		<Ii num="150">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>preffrom</srf>
 			<tit>preferred in from table</tit>
 		</Ii>
-		<Ii num="149">
+		<Ii num="151">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>prefto</srf>
 			<tit>preferred in to table</tit>
 		</Ii>
-		<Ii num="150">
+		<Ii num="152">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>enumfrom</srf>
 			<tit>enum by from table</tit>
 		</Ii>
-		<Ii num="151">
+		<Ii num="153">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>enumto</srf>
 			<tit>enum by to table</tit>
 		</Ii>
-		<Ii num="152">
+		<Ii num="154">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>pref</srf>
 			<tit>preferred in to table</tit>
 		</Ii>
-		<Ii num="153">
+		<Ii num="155">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>enum</srf>
 			<tit>enumerated</tit>
 		</Ii>
-		<Ii num="154">
+		<Ii num="156">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>ins</srf>
 			<tit>insert operation</tit>
 		</Ii>
-		<Ii num="155">
+		<Ii num="157">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>rmv</srf>
 			<tit>remove operation</tit>
 		</Ii>
-		<Ii num="156">
+		<Ii num="158">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>ina</srf>
 			<tit>insert after operation</tit>
 		</Ii>
-		<Ii num="157">
+		<Ii num="159">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>swp</srf>
 			<tit>swap operation</tit>
 		</Ii>
-		<Ii num="158">
+		<Ii num="160">
 			<kls>KlstWznmKMRelationOption</kls>
 			<srf>affil</srf>
 			<tit>affiliation determining</tit>
 		</Ii>
-		<Ii num="159">
+		<Ii num="161">
 			<kls>KlstWznmKMReleaseOption</kls>
 			<srf>linkstat</srf>
 			<tit>link static libraries only</tit>
 		</Ii>
-		<Ii num="160">
+		<Ii num="162">
 			<kls>KlstWznmKMReleaseOption</kls>
 			<srf>dynlib</srf>
 			<tit>generate dynamic link library</tit>
 		</Ii>
-		<Ii num="161">
+		<Ii num="163">
 			<kls>KlstWznmKMReleaseOption</kls>
 			<srf>stripdbg</srf>
 			<tit>strip debug symbols</tit>
 		</Ii>
-		<Ii num="162">
+		<Ii num="164">
 			<kls>KlstWznmKMTablecolOption</kls>
 			<srf>idx</srf>
 			<tit>indexed</tit>
 		</Ii>
-		<Ii num="163">
+		<Ii num="165">
 			<kls>KlstWznmKMVectorOption</kls>
 			<srf>noloc</srf>
 			<tit>non-localized</tit>
 		</Ii>
-		<Ii num="164">
+		<Ii num="166">
 			<kls>KlstWznmKMVectorOption</kls>
 			<srf>notit</srf>
 			<tit>no titles</tit>
 		</Ii>
-		<Ii num="165">
+		<Ii num="167">
 			<kls>KlstWznmKMVectorOption</kls>
 			<srf>cmt</srf>
 			<tit>comments</tit>
 		</Ii>
-		<Ii num="166">
+		<Ii num="168">
 			<kls>KlstWznmKMVectorOption</kls>
 			<srf>apdfed</srf>
 			<tit>append to feed</tit>
 		</Ii>
-		<Ii num="167">
+		<Ii num="169">
 			<kls>KlstWznmKMVectorOption</kls>
 			<srf>filfed</srf>
 			<tit>fill feed</tit>
 		</Ii>
-		<Ii num="168">
+		<Ii num="170">
 			<kls>KlstWznmKRMPersonMProjectFunction</kls>
 			<srf>eng</srf>
 			<tit>software engineer</tit>
 		</Ii>
-		<Ii num="169">
+		<Ii num="171">
 			<kls>KlstWznmKRMPersonMProjectFunction</kls>
 			<srf>mgr</srf>
 			<tit>manager</tit>
 		</Ii>
-		<Ii num="170">
+		<Ii num="172">
 			<kls>KlstWznmKRMPersonMProjectFunction</kls>
 			<srf>pro</srf>
 			<tit>programmer</tit>
 		</Ii>
-		<Ii num="171">
+		<Ii num="173">
 			<kls>KlstWznmKRMPersonMProjectFunction</kls>
 			<srf>tan</srf>
 			<tit>test analyst</tit>
 		</Ii>
-		<Ii num="172">
+		<Ii num="174">
 			<kls>KlstWznmKRMPersonMProjectFunction</kls>
 			<srf>uxd</srf>
 			<tit>user experience designer</tit>
 		</Ii>
-		<Ii num="173">
+		<Ii num="175">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>access</srf>
 			<tit>VecXxxxWAccess item</tit>
 		</Ii>
-		<Ii num="174">
+		<Ii num="176">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>adrtype</srf>
 			<tit>address type</tit>
 		</Ii>
-		<Ii num="175">
+		<Ii num="177">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>ctdet</srf>
 			<tit>contact detail</tit>
 		</Ii>
-		<Ii num="176">
+		<Ii num="178">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>ctry</srf>
 			<tit>country</tit>
 		</Ii>
-		<Ii num="177">
+		<Ii num="179">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>error</srf>
 			<tit>VecXxxxVError item</tit>
 		</Ii>
-		<Ii num="178">
+		<Ii num="180">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>expstate</srf>
 			<tit>VecXxxxVExpstate item</tit>
 		</Ii>
-		<Ii num="179">
+		<Ii num="181">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>iexsge</srf>
 			<tit>import/export complex job stage</tit>
 		</Ii>
-		<Ii num="180">
+		<Ii num="182">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>iop</srf>
 			<tit>VecXxxxVIop item</tit>
 		</Ii>
-		<Ii num="181">
+		<Ii num="183">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>lat</srf>
 			<tit>VecXxxxVLat item</tit>
 		</Ii>
-		<Ii num="182">
+		<Ii num="184">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>lop</srf>
 			<tit>VecXxxxVLop item</tit>
 		</Ii>
-		<Ii num="183">
+		<Ii num="185">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>mimetype</srf>
 			<tit>MIME type</tit>
 		</Ii>
-		<Ii num="184">
+		<Ii num="186">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>no</srf>
 			<tit>no thing</tit>
 		</Ii>
-		<Ii num="185">
+		<Ii num="187">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>none</srf>
 			<tit>none</tit>
 		</Ii>
-		<Ii num="186">
+		<Ii num="188">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>oolop</srf>
 			<tit>VecXxxxVOolop item</tit>
 		</Ii>
-		<Ii num="187">
+		<Ii num="189">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>prs</srf>
 			<tit>default person</tit>
 		</Ii>
-		<Ii num="188">
+		<Ii num="190">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>prstit</srf>
 			<tit>person title</tit>
 		</Ii>
-		<Ii num="189">
+		<Ii num="191">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>qrystate</srf>
 			<tit>VecXxxxVQrystate item</tit>
 		</Ii>
-		<Ii num="190">
+		<Ii num="192">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>recaccess</srf>
 			<tit>VecXxxxVRecaccess item</tit>
 		</Ii>
-		<Ii num="191">
+		<Ii num="193">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>reqitmode</srf>
 			<tit>VecXxxxVReqitmode item</tit>
 		</Ii>
-		<Ii num="192">
+		<Ii num="194">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>sex</srf>
 			<tit>sex</tit>
 		</Ii>
-		<Ii num="193">
+		<Ii num="195">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>start</srf>
 			<tit>login card</tit>
 		</Ii>
-		<Ii num="194">
+		<Ii num="196">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>stdalr</srf>
 			<tit>standard alert message</tit>
 		</Ii>
-		<Ii num="195">
+		<Ii num="197">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>stdiex</srf>
 			<tit>standard import/export complex title</tit>
 		</Ii>
-		<Ii num="196">
+		<Ii num="198">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>stdrel</srf>
 			<tit>standard relation title</tit>
 		</Ii>
-		<Ii num="197">
+		<Ii num="199">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>stdtbl</srf>
 			<tit>standard table title</tit>
 		</Ii>
-		<Ii num="198">
+		<Ii num="200">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>stdtco</srf>
 			<tit>standard table column title</tit>
 		</Ii>
-		<Ii num="199">
+		<Ii num="201">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>stdvec</srf>
 			<tit>standard vector title</tit>
 		</Ii>
-		<Ii num="200">
+		<Ii num="202">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>userlevel</srf>
 			<tit>VecXxxxVUserlevel item</tit>
 		</Ii>
-		<Ii num="201">
+		<Ii num="203">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>usrste</srf>
 			<tit>user state</tit>
 		</Ii>
-		<Ii num="202">
+		<Ii num="204">
 			<kls>KlstWznmKTaggrp</kls>
 			<srf>wkday</srf>
 			<tit>weekday</tit>
@@ -1228,30 +1238,45 @@
 				</Ii>
 				<Ii num="43">
 					<feg>VecWznmVCard</feg>
-					<fea>CrdWznmApp</fea>
+					<fea>CrdWznmVis</fea>
 					<acc>edit;exec;view</acc>
 				</Ii>
 				<Ii num="44">
 					<feg>VecWznmVCard</feg>
-					<fea>CrdWznmRtj</fea>
+					<fea>CrdWznmSht</fea>
 					<acc>edit;exec;view</acc>
 				</Ii>
 				<Ii num="45">
 					<feg>VecWznmVCard</feg>
-					<fea>CrdWznmEvt</fea>
+					<fea>CrdWznmBox</fea>
 					<acc>edit;exec;view</acc>
 				</Ii>
 				<Ii num="46">
 					<feg>VecWznmVCard</feg>
-					<fea>CrdWznmSeq</fea>
+					<fea>CrdWznmApp</fea>
 					<acc>edit;exec;view</acc>
 				</Ii>
 				<Ii num="47">
 					<feg>VecWznmVCard</feg>
-					<fea>CrdWznmSte</fea>
+					<fea>CrdWznmRtj</fea>
 					<acc>edit;exec;view</acc>
 				</Ii>
 				<Ii num="48">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmEvt</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="49">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmSeq</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="50">
+					<feg>VecWznmVCard</feg>
+					<fea>CrdWznmSte</fea>
+					<acc>edit;exec;view</acc>
+				</Ii>
+				<Ii num="51">
 					<feg>VecWznmVCard</feg>
 					<fea>CrdWznmUtl</fea>
 					<acc>edit;exec;view</acc>

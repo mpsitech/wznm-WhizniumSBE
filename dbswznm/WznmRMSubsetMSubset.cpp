@@ -23,12 +23,12 @@ WznmRMSubsetMSubset::WznmRMSubsetMSubset(
 			, const ubigint asbRefWznmMSubset
 			, const ubigint bsbRefWznmMSubset
 			, const uint ixVReltype
-		) {
-
-	this->ref = ref;
-	this->asbRefWznmMSubset = asbRefWznmMSubset;
-	this->bsbRefWznmMSubset = bsbRefWznmMSubset;
-	this->ixVReltype = ixVReltype;
+		) :
+			ref(ref)
+			, asbRefWznmMSubset(asbRefWznmMSubset)
+			, bsbRefWznmMSubset(bsbRefWznmMSubset)
+			, ixVReltype(ixVReltype)
+		{
 };
 
 bool WznmRMSubsetMSubset::operator==(

@@ -511,6 +511,7 @@ function changeLstNumFirstdisp(lstdoc, ctlsref, ncol, multsel, numFirstdisp, dNu
 function mergeDpchEngData(dom) {
 	var mask = [];
 
+	// IP mergeDpchEngData --- BEGIN
 	if (updateSrcblock(dom, "DpchEngWznmNavAdminData", "ContIacWznmNavAdmin", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmNavAdminData", "FeedFLstFil", srcdoc)) mask.push("feedFLstFil");
 	if (updateSrcblock(dom, "DpchEngWznmNavAdminData", "FeedFLstPrs", srcdoc)) mask.push("feedFLstPrs");
@@ -519,6 +520,7 @@ function mergeDpchEngData(dom) {
 	if (updateSrcblock(dom, "DpchEngWznmNavAdminData", "StatAppWznmNavAdmin", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmNavAdminData", "StatShrWznmNavAdmin", srcdoc)) mask.push("statshr");
 	if (updateSrcblock(dom, "DpchEngWznmNavAdminData", "TagWznmNavAdmin", srcdoc)) mask.push("tag");
+	// IP mergeDpchEngData --- END
 
 	return mask;
 };

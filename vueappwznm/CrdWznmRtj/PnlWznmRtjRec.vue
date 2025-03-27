@@ -48,17 +48,17 @@
 			<v-divider/>
 			<v-row>
 				<v-col cols="12" md="6">
-					<PnlWznmRtj1NRtblock
-						v-on:request="handleRequest"
-						ref="PnlWznmRtj1NRtblock"
-						:scrJref=statshr.scrJref1NRtblock
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmRtj1NRtdpch
 						v-on:request="handleRequest"
 						ref="PnlWznmRtj1NRtdpch"
 						:scrJref=statshr.scrJref1NRtdpch
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmRtj1NRtblock
+						v-on:request="handleRequest"
+						ref="PnlWznmRtj1NRtblock"
+						:scrJref=statshr.scrJref1NRtblock
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -80,8 +80,8 @@
 	/*
 	*/
 	import PnlWznmRtjDetail from './PnlWznmRtjDetail';
-	import PnlWznmRtj1NRtblock from './PnlWznmRtj1NRtblock';
 	import PnlWznmRtj1NRtdpch from './PnlWznmRtj1NRtdpch';
+	import PnlWznmRtj1NRtblock from './PnlWznmRtj1NRtblock';
 	import PnlWznmRtjSup1NRtjob from './PnlWznmRtjSup1NRtjob';
 	/*
 	*/
@@ -101,8 +101,8 @@
 			/*
 			*/
 			PnlWznmRtjDetail,
-			PnlWznmRtj1NRtblock,
 			PnlWznmRtj1NRtdpch,
+			PnlWznmRtj1NRtblock,
 			PnlWznmRtjSup1NRtjob
 			/*
 			*/
@@ -165,8 +165,8 @@
 						/*
 						*/
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmRtjDetail.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NRtblock) this.$refs.PnlWznmRtj1NRtblock.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NRtdpch) this.$refs.PnlWznmRtj1NRtdpch.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NRtblock) this.$refs.PnlWznmRtj1NRtblock.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefSup1NRtjob) this.$refs.PnlWznmRtjSup1NRtjob.handleReply(obj);
 						/*
 						*/
@@ -198,8 +198,8 @@
 						/*
 						*/
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmRtjDetail.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NRtblock) this.$refs.PnlWznmRtj1NRtblock.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NRtdpch) this.$refs.PnlWznmRtj1NRtdpch.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NRtblock) this.$refs.PnlWznmRtj1NRtblock.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSup1NRtjob) this.$refs.PnlWznmRtjSup1NRtjob.handleUpdate(obj);
 						/*
 						*/

@@ -265,9 +265,7 @@ void WznmWrsrvBase::writeGblCpp(
 	for (unsigned int i = 0; i < stbs.nodes.size(); i++) {
 		stb = stbs.nodes[i];
 
-		outfile << "\t";
-		if (i != 0) outfile << "else ";
-		outfile << "if (ix" << Prjshort << "VStub == Vec" << Prjshort << "VStub::" << StrMod::uc(stb->sref) << ") return getStub" << stb->sref.substr(4+4) << "(dbs" << prjshort << ", ref, ix" << Prjshort << "VLocale, ixVNonetype, stcch, strefSub, refresh);" << endl;
+		outfile << "\tif (ix" << Prjshort << "VStub == Vec" << Prjshort << "VStub::" << StrMod::uc(stb->sref) << ") return getStub" << stb->sref.substr(4+4) << "(dbs" << prjshort << ", ref, ix" << Prjshort << "VLocale, ixVNonetype, stcch, strefSub, refresh);" << endl;
 	};
 	outfile << "// IP stub.getStub --- IEND" << endl;
 
@@ -275,13 +273,13 @@ void WznmWrsrvBase::writeGblCpp(
 	outfile << "// IP stubs --- IBEGIN" << endl;
 
 	// prepare "none"/"no" strings by locale upfront
-	Wznm::getTagtits(dbswznm, "n", "none", "", {}, refLcl, refsLcl, nonenTits);
-	Wznm::getTagtits(dbswznm, "m", "none", "", {}, refLcl, refsLcl, nonemTits);
-	Wznm::getTagtits(dbswznm, "f", "none", "", {}, refLcl, refsLcl, nonefTits);
+	Wznm::getTagtits(dbswznm, 0, "n", "none", "", {}, refLcl, refsLcl, nonenTits);
+	Wznm::getTagtits(dbswznm, 0, "m", "none", "", {}, refLcl, refsLcl, nonemTits);
+	Wznm::getTagtits(dbswznm, 0, "f", "none", "", {}, refLcl, refsLcl, nonefTits);
 
-	Wznm::getTagtits(dbswznm, "n", "no", "", {}, refLcl, refsLcl, nonTits);
-	Wznm::getTagtits(dbswznm, "m", "no", "", {}, refLcl, refsLcl, nomTits);
-	Wznm::getTagtits(dbswznm, "f", "no", "", {}, refLcl, refsLcl, nofTits);
+	Wznm::getTagtits(dbswznm, 0, "n", "no", "", {}, refLcl, refsLcl, nonTits);
+	Wznm::getTagtits(dbswznm, 0, "m", "no", "", {}, refLcl, refsLcl, nomTits);
+	Wznm::getTagtits(dbswznm, 0, "f", "no", "", {}, refLcl, refsLcl, nofTits);
 
 	for (unsigned int i = 0; i < stbs.nodes.size(); i++) {
 		stb = stbs.nodes[i];
@@ -427,9 +425,9 @@ void WznmWrsrvBase::writeGblCpp(
 				} else if (stb->sref == ("Stub" + Prjshort + "SesMenu")) {
 					outfile << "\t\t\t// IP getStub" << Prjshort << "SesMenu --- BEGIN" << endl;
 
-					Wznm::getTagtits(dbswznm, "usr.sngfull", "stdtbl", "", {}, refLcl, refsLcl, tagTits, false);
-					Wznm::getTagtits(dbswznm, "logfrom", "", "", {}, refLcl, refsLcl, tagTits2, false);
-					Wznm::getTagtits(dbswznm, "since", "", "", {}, refLcl, refsLcl, tagTits3, false);
+					Wznm::getTagtits(dbswznm, 0, "usr.sngfull", "stdtbl", "", {}, refLcl, refsLcl, tagTits, false);
+					Wznm::getTagtits(dbswznm, 0, "logfrom", "", "", {}, refLcl, refsLcl, tagTits2, false);
+					Wznm::getTagtits(dbswznm, 0, "since", "", "", {}, refLcl, refsLcl, tagTits3, false);
 
 					first = true;
 
@@ -456,7 +454,7 @@ void WznmWrsrvBase::writeGblCpp(
 				} else if (stb->sref == ("Stub" + Prjshort + "SesStd")) {
 					outfile << "\t\t\t// IP getStub" << Prjshort << "SesStd --- BEGIN" << endl;
 
-					Wznm::getTagtits(dbswznm, "from", "", "", {}, refLcl, refsLcl, tagTits, false);
+					Wznm::getTagtits(dbswznm, 0, "from", "", "", {}, refLcl, refsLcl, tagTits, false);
 
 					for (unsigned int j = 0; j < lcls.nodes.size(); j++) {
 						lcl = lcls.nodes[j];

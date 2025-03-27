@@ -206,9 +206,9 @@ DpchRetWznm* WznmWrsrvInixml::run(
 	dbswznm->tblwznmmmodule->loadRefsByVer(refWznmMVersion, false, refs);
 	for (unsigned int i = 0; i < refs.size(); i++) dbswznm->tblwznmmcard->loadRstByMdl(refs[i], true, cars);
 
-	Wznm::getTagtits(dbswznm, "mrs", "prstit", "", {}, refLcl, refsLcl, mrsTits);
-	Wznm::getTagtits(dbswznm, "fnm", "prs", "", {}, refLcl, refsLcl, fnmTits);
-	Wznm::getTagtits(dbswznm, "lnm", "prs", "", {}, refLcl, refsLcl, lnmTits);
+	Wznm::getTagtits(dbswznm, 0, "mrs", "prstit", "", {}, refLcl, refsLcl, mrsTits);
+	Wznm::getTagtits(dbswznm, 0, "fnm", "prs", "", {}, refLcl, refsLcl, fnmTits);
+	Wznm::getTagtits(dbswznm, 0, "lnm", "prs", "", {}, refLcl, refsLcl, lnmTits);
 
 	xmlfile << "\t<ImeIMUsergroup>" << endl;
 	xmlfile << "\t\t<Ii num=\"1\">" << endl;

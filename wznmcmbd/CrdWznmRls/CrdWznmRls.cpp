@@ -47,10 +47,10 @@ CrdWznmRls::CrdWznmRls(
 
 	pnllist = NULL;
 	pnlheadbar = NULL;
-	pnlrec = NULL;
-	dlgwrite = NULL;
-	dlgstareptr = NULL;
 	dlgfinreptr = NULL;
+	pnlrec = NULL;
+	dlgstareptr = NULL;
+	dlgwrite = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

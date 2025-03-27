@@ -279,6 +279,7 @@ void PnlWznmFilDetail::refreshRecFil(
 	if (recFil.refIxVTbl == VecWznmVMFileRefTbl::APP) continf.TxtReu = StubWznm::getStubAppStd(dbswznm, recFil.refUref, ixWznmVLocale, Stub::VecVNonetype::FULL);
 	else if (recFil.refIxVTbl == VecWznmVMFileRefTbl::LIB) continf.TxtReu = StubWznm::getStubLibStd(dbswznm, recFil.refUref, ixWznmVLocale, Stub::VecVNonetype::FULL);
 	else if (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER) continf.TxtReu = StubWznm::getStubVerStd(dbswznm, recFil.refUref, ixWznmVLocale, Stub::VecVNonetype::FULL);
+	else if (recFil.refIxVTbl == VecWznmVMFileRefTbl::VIS) continf.TxtReu = StubWznm::getStubVisStd(dbswznm, recFil.refUref, ixWznmVLocale, Stub::VecVNonetype::FULL);
 	else continf.TxtReu = "-";
 	contiac.TxfCnt = recFil.osrefKContent;
 	contiac.TxfAcv = Ftm::stamp(recFil.Archived);
@@ -483,9 +484,15 @@ void PnlWznmFilDetail::handleDpchAppDoButReuViewClick(
 	string sref;
 
 	if (statshr.ButReuViewAvail && statshr.ButReuViewActive) {
-		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER) {
-			sref = "CrdWznmVer";
+		if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVIS, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::VIS) {
+			sref = "CrdWznmVis";
 			xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recFil.refUref, jrefNew);
+		};
+		if (jrefNew == 0) {
+			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER) {
+				sref = "CrdWznmVer";
+				xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, sref, recFil.refUref, jrefNew);
+			};
 		};
 		if (jrefNew == 0) {
 			if (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref)) if (recFil.refIxVTbl == VecWznmVMFileRefTbl::LIB) {

@@ -1119,6 +1119,122 @@ DlgWznmVerWrinimdl
 	ImeIRMJobMOppack.srefRefWznmMOppack
 	WznmCtpWrstkit
 	ImeIRMJobMOppack.end
+DlgWznmVisExpstr
+	ImeIMStage.srefIxVBasetype	sref	Monitvl	srefSnxRefWznmMStage	srefFnxRefWznmMStage	srefEnxRefWznmMStage	Comment
+	other	idle
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		con		lock	void			WriButRun		chgsge	export
+		ImeIMSensitivity2.end
+	other	export		done	idle	done
+		ImeIMSquawk.Title	Example
+		exporting visualization
+		ImeIMSquawk.end
+	other	done
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		dld		lock	void					cust
+		ImeIMSensitivity2.end
+	ImeIMStage.end
+	ImeIRMJobMJob.srefSubRefWznmMJob	Short	Multi	srefIxVConstract
+	JobWznmIexVis	iexvis	false	cre
+	ImeIRMJobMJob.end
+DlgWznmVisImpstr
+	ImeIMStage.srefIxVBasetype	sref	Monitvl	srefSnxRefWznmMStage	srefFnxRefWznmMStage	srefEnxRefWznmMStage	Comment
+	other	idle
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		uld		lock	void					chgsge	prsidle
+		ImeIMSensitivity2.end
+	immcb	prsidle		parse
+	other	parse		prsdone	alrwznmper
+		ImeIMSquawk.Title	Example
+		parsing structure
+		ImeIMSquawk.end
+	alr	alrwznmper		idle
+		ImeIMSquawk.Title	Example
+		parse error
+		ImeIMSquawk.end
+	other	prsdone
+		ImeIMSquawk.Title	Example
+		structure parsed
+		ImeIMSquawk.end
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		con		lock	void			ImpButRun		chgsge	impidle
+		ImeIMSensitivity2.end
+	immcb	impidle		import
+	other	import	250000	done	alrwznmier
+		ImeIMSquawk.Title	Example
+		importing structure (&impcnt; records added)	importing structure (1234 records added)
+		ImeIMSquawk.end
+	alr	alrwznmier		idle
+		ImeIMSquawk.Title	Example
+		import error
+		ImeIMSquawk.end
+	other	done
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		dld		lock	void					cust
+		ImeIMSensitivity2.end
+	ImeIMStage.end
+DlgWznmVisMissfeat
+	ImeIMStage.srefIxVBasetype	sref	Monitvl	srefSnxRefWznmMStage	srefFnxRefWznmMStage	srefEnxRefWznmMStage	Comment
+	other	idle
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		con		lock	void			CmfButRun		chgsge	compl
+		ImeIMSensitivity2.end
+	oppiw	compl		done
+		ImeIMSquawk.Title	Example
+		complementing missing features
+		ImeIMSquawk.end
+	other	done
+	ImeIMStage.end
+	ImeIRMJobMOp.srefRefWznmMOp
+	WznmComplvisDbstr
+	WznmComplvisImpexp
+	ImeIRMJobMOp.end
+DlgWznmVisNew
+	ImeIMStage.srefIxVBasetype	sref	Monitvl	srefSnxRefWznmMStage	srefFnxRefWznmMStage	srefEnxRefWznmMStage	Comment
+	other	idle
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		con		lock	void			ButCre		chgsge	create
+		ImeIMSensitivity2.end
+	other	create		done	idle
+	other	done
+	ImeIMStage.end
+DlgWznmVisWrite
+	ImeIMStage.srefIxVBasetype	sref	Monitvl	srefSnxRefWznmMStage	srefFnxRefWznmMStage	srefEnxRefWznmMStage	Comment
+	other	idle
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		con		lock	void			WrcButRun		chgsge	write
+		ImeIMSensitivity2.end
+	opiw	write	250000	mrggnr		idle
+		ImeIMSquawk.Title	Example
+		writing code (&Ndone;/&N; operations completed)	writing code (123/1234 operations completed)
+		ImeIMSquawk.end
+	oppiw	mrggnr		pack	alrmer	pack
+		ImeIMSquawk.Title	Example
+		merging generated code fragments
+		ImeIMSquawk.end
+	other	pack		done
+		ImeIMSquawk.Title	Example
+		packing code tree
+		ImeIMSquawk.end
+	other	fail
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		dld		lock	void					cust
+		ImeIMSensitivity2.end
+	other	done
+		ImeIMSensitivity2.srefIxVBasetype	srefRefWznmMCall	srefIxVJactype	srefIxVJobmask	Jobshort	Argpatt	srefRefWznmMControl	Srefmask	srefIxVAction	srefCsgRefWznmMStage	Custcode
+		dld		lock	void					cust
+		ImeIMSensitivity2.end
+	ImeIMStage.end
+	ImeIRMJobMJob.srefSubRefWznmMJob	Short	Multi	srefIxVConstract
+	QryWznmVisBoxctx	qryboxctx	false	cre
+	QryWznmVisLinkctx	qrylinkctx	false	cre
+	QryWznmVisRowctx	qryrowctx	false	cre
+	ImeIRMJobMJob.end
+	ImeIRMJobMOp.srefRefWznmMOp
+	WznmPrctreeMerge
+	WznmWrvisDbstr
+	WznmWrvisImpexp
+	ImeIRMJobMOp.end
 JobWznmLicense	true	true
 	ImeIMStage.srefIxVBasetype	sref	Monitvl	srefSnxRefWznmMStage	srefFnxRefWznmMStage	srefEnxRefWznmMStage	Comment
 	other	idle

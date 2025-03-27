@@ -21,12 +21,12 @@ WznmJAMStateTrigCond::WznmJAMStateTrigCond(
 			, const ubigint refWznmAMStateTrig
 			, const uint x1IxWznmVApptarget
 			, const string Cond
-		) {
-
-	this->ref = ref;
-	this->refWznmAMStateTrig = refWznmAMStateTrig;
-	this->x1IxWznmVApptarget = x1IxWznmVApptarget;
-	this->Cond = Cond;
+		) :
+			ref(ref)
+			, refWznmAMStateTrig(refWznmAMStateTrig)
+			, x1IxWznmVApptarget(x1IxWznmVApptarget)
+			, Cond(Cond)
+		{
 };
 
 bool WznmJAMStateTrigCond::operator==(

@@ -39,8 +39,8 @@ PnlWznmJobRec::PnlWznmJobRec(
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
 	pnlsubmnjob = NULL;
-	pnlsupmnjob = NULL;
 	pnlmnop = NULL;
+	pnlsupmnjob = NULL;
 	pnlmnoppack = NULL;
 	pnlref1nblock = NULL;
 	pnlhk1nvector = NULL;

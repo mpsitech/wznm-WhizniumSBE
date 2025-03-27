@@ -183,12 +183,14 @@ function handlePupChange(_doc, ctlsref, size) {
 function mergeDpchEngData(dom) {
 	var mask = [];
 
+	// IP mergeDpchEngData --- BEGIN
 	if (updateSrcblock(dom, "DpchEngWznmLocDetailData", "ContIacWznmLocDetail", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmLocDetailData", "ContInfWznmLocDetail", srcdoc)) mask.push("continf");
 	if (updateSrcblock(dom, "DpchEngWznmLocDetailData", "FeedFPupJti", srcdoc)) mask.push("feedFPupJti");
 	if (updateSrcblock(dom, "DpchEngWznmLocDetailData", "StatAppWznmLocDetail", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmLocDetailData", "StatShrWznmLocDetail", srcdoc)) mask.push("statshr");
 	if (updateSrcblock(dom, "DpchEngWznmLocDetailData", "TagWznmLocDetail", srcdoc)) mask.push("tag");
+	// IP mergeDpchEngData --- END
 
 	return mask;
 };

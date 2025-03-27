@@ -72,19 +72,19 @@
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
-					<PnlWznmRelRef1NDialog
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmRelRef1NDialog"
-						:scrJref=statshr.scrJrefRef1NDialog
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmRelRef1NPanel
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
 						ref="PnlWznmRelRef1NPanel"
 						:scrJref=statshr.scrJrefRef1NPanel
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmRelRef1NDialog
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmRelRef1NDialog"
+						:scrJref=statshr.scrJrefRef1NDialog
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -109,8 +109,8 @@
 	import PnlWznmRelATitle from './PnlWznmRelATitle';
 	import PnlWznmRel1NTablecol from './PnlWznmRel1NTablecol';
 	import PnlWznmRelSup1NRelation from './PnlWznmRelSup1NRelation';
-	import PnlWznmRelRef1NDialog from './PnlWznmRelRef1NDialog';
 	import PnlWznmRelRef1NPanel from './PnlWznmRelRef1NPanel';
+	import PnlWznmRelRef1NDialog from './PnlWznmRelRef1NDialog';
 	import PnlWznmRelRef1NControl from './PnlWznmRelRef1NControl';
 	/*
 	*/
@@ -133,8 +133,8 @@
 			PnlWznmRelATitle,
 			PnlWznmRel1NTablecol,
 			PnlWznmRelSup1NRelation,
-			PnlWznmRelRef1NDialog,
 			PnlWznmRelRef1NPanel,
+			PnlWznmRelRef1NDialog,
 			PnlWznmRelRef1NControl
 			/*
 			*/
@@ -200,8 +200,8 @@
 						else if (obj.scrJref == this.statshr.scrJrefATitle) this.$refs.PnlWznmRelATitle.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NTablecol) this.$refs.PnlWznmRel1NTablecol.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefSup1NRelation) this.$refs.PnlWznmRelSup1NRelation.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefRef1NDialog) this.$refs.PnlWznmRelRef1NDialog.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefRef1NPanel) this.$refs.PnlWznmRelRef1NPanel.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefRef1NDialog) this.$refs.PnlWznmRelRef1NDialog.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefRef1NControl) this.$refs.PnlWznmRelRef1NControl.handleReply(obj);
 						/*
 						*/
@@ -236,8 +236,8 @@
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefATitle) this.$refs.PnlWznmRelATitle.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NTablecol) this.$refs.PnlWznmRel1NTablecol.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSup1NRelation) this.$refs.PnlWznmRelSup1NRelation.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefRef1NDialog) this.$refs.PnlWznmRelRef1NDialog.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefRef1NPanel) this.$refs.PnlWznmRelRef1NPanel.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefRef1NDialog) this.$refs.PnlWznmRelRef1NDialog.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefRef1NControl) this.$refs.PnlWznmRelRef1NControl.handleUpdate(obj);
 						/*
 						*/

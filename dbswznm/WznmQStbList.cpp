@@ -31,20 +31,21 @@ WznmQStbList::WznmQStbList(
 			, const ubigint refWznmMSubset
 			, const string stubRefWznmMSubset
 			, const string Example
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->refWznmMTable = refWznmMTable;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->refWznmMSubset = refWznmMSubset;
-	this->stubRefWznmMSubset = stubRefWznmMSubset;
-	this->Example = Example;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, refWznmMTable(refWznmMTable)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, refWznmMSubset(refWznmMSubset)
+			, stubRefWznmMSubset(stubRefWznmMSubset)
+			, Example(Example)
+		{
 };
 
 void WznmQStbList::writeJSON(

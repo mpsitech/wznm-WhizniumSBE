@@ -47,17 +47,17 @@
 			</v-row>
 			<v-row>
 				<v-col cols="12" md="6">
-					<PnlWznmMtdAInvpar
-						v-on:request="handleRequest"
-						ref="PnlWznmMtdAInvpar"
-						:scrJref=statshr.scrJrefAInvpar
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmMtdARetpar
 						v-on:request="handleRequest"
 						ref="PnlWznmMtdARetpar"
 						:scrJref=statshr.scrJrefARetpar
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmMtdAInvpar
+						v-on:request="handleRequest"
+						ref="PnlWznmMtdAInvpar"
+						:scrJref=statshr.scrJrefAInvpar
 					/>
 				</v-col>
 			</v-row>
@@ -71,8 +71,8 @@
 	/*
 	*/
 	import PnlWznmMtdDetail from './PnlWznmMtdDetail';
-	import PnlWznmMtdAInvpar from './PnlWznmMtdAInvpar';
 	import PnlWznmMtdARetpar from './PnlWznmMtdARetpar';
+	import PnlWznmMtdAInvpar from './PnlWznmMtdAInvpar';
 	/*
 	*/
 
@@ -91,8 +91,8 @@
 			/*
 			*/
 			PnlWznmMtdDetail,
-			PnlWznmMtdAInvpar,
-			PnlWznmMtdARetpar
+			PnlWznmMtdARetpar,
+			PnlWznmMtdAInvpar
 			/*
 			*/
 		},
@@ -154,8 +154,8 @@
 						/*
 						*/
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmMtdDetail.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefAInvpar) this.$refs.PnlWznmMtdAInvpar.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefARetpar) this.$refs.PnlWznmMtdARetpar.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefAInvpar) this.$refs.PnlWznmMtdAInvpar.handleReply(obj);
 						/*
 						*/
 					}
@@ -186,8 +186,8 @@
 						/*
 						*/
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmMtdDetail.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefAInvpar) this.$refs.PnlWznmMtdAInvpar.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefARetpar) this.$refs.PnlWznmMtdARetpar.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefAInvpar) this.$refs.PnlWznmMtdAInvpar.handleUpdate(obj);
 						/*
 						*/
 						else processed = false;

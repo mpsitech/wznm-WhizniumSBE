@@ -34,23 +34,23 @@ WznmMImpexpcol::WznmMImpexpcol(
 			, const ubigint refJStub
 			, const ubigint refWznmMStub
 			, const ubigint refWznmMVectoritem
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->ixWOccurrence = ixWOccurrence;
-	this->imeRefWznmMImpexp = imeRefWznmMImpexp;
-	this->imeNum = imeNum;
-	this->refWznmMTablecol = refWznmMTablecol;
-	this->sref = sref;
-	this->Short = Short;
-	this->refWznmMImpexp = refWznmMImpexp;
-	this->ixVConvtype = ixVConvtype;
-	this->Defval = Defval;
-	this->refWznmMPreset = refWznmMPreset;
-	this->refJStub = refJStub;
-	this->refWznmMStub = refWznmMStub;
-	this->refWznmMVectoritem = refWznmMVectoritem;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, ixWOccurrence(ixWOccurrence)
+			, imeRefWznmMImpexp(imeRefWznmMImpexp)
+			, imeNum(imeNum)
+			, refWznmMTablecol(refWznmMTablecol)
+			, sref(sref)
+			, Short(Short)
+			, refWznmMImpexp(refWznmMImpexp)
+			, ixVConvtype(ixVConvtype)
+			, Defval(Defval)
+			, refWznmMPreset(refWznmMPreset)
+			, refJStub(refJStub)
+			, refWznmMStub(refWznmMStub)
+			, refWznmMVectoritem(refWznmMVectoritem)
+		{
 };
 
 bool WznmMImpexpcol::operator==(

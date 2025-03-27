@@ -24,6 +24,7 @@ uint VecWznmVJob::getIx(
 
 	if (s == "crdwznmapp") return CRDWZNMAPP;
 	if (s == "crdwznmblk") return CRDWZNMBLK;
+	if (s == "crdwznmbox") return CRDWZNMBOX;
 	if (s == "crdwznmcal") return CRDWZNMCAL;
 	if (s == "crdwznmcap") return CRDWZNMCAP;
 	if (s == "crdwznmcar") return CRDWZNMCAR;
@@ -60,6 +61,7 @@ uint VecWznmVJob::getIx(
 	if (s == "crdwznmsbs") return CRDWZNMSBS;
 	if (s == "crdwznmseq") return CRDWZNMSEQ;
 	if (s == "crdwznmsge") return CRDWZNMSGE;
+	if (s == "crdwznmsht") return CRDWZNMSHT;
 	if (s == "crdwznmstb") return CRDWZNMSTB;
 	if (s == "crdwznmste") return CRDWZNMSTE;
 	if (s == "crdwznmtag") return CRDWZNMTAG;
@@ -70,6 +72,7 @@ uint VecWznmVJob::getIx(
 	if (s == "crdwznmutl") return CRDWZNMUTL;
 	if (s == "crdwznmvec") return CRDWZNMVEC;
 	if (s == "crdwznmver") return CRDWZNMVER;
+	if (s == "crdwznmvis") return CRDWZNMVIS;
 	if (s == "crdwznmvit") return CRDWZNMVIT;
 	if (s == "dlgwznmappimpstr") return DLGWZNMAPPIMPSTR;
 	if (s == "dlgwznmappnew") return DLGWZNMAPPNEW;
@@ -101,6 +104,11 @@ uint VecWznmVJob::getIx(
 	if (s == "dlgwznmvernew") return DLGWZNMVERNEW;
 	if (s == "dlgwznmveroppack") return DLGWZNMVEROPPACK;
 	if (s == "dlgwznmverwrinimdl") return DLGWZNMVERWRINIMDL;
+	if (s == "dlgwznmvisexpstr") return DLGWZNMVISEXPSTR;
+	if (s == "dlgwznmvisimpstr") return DLGWZNMVISIMPSTR;
+	if (s == "dlgwznmvismissfeat") return DLGWZNMVISMISSFEAT;
+	if (s == "dlgwznmvisnew") return DLGWZNMVISNEW;
+	if (s == "dlgwznmviswrite") return DLGWZNMVISWRITE;
 	if (s == "jobwznmiexapp") return JOBWZNMIEXAPP;
 	if (s == "jobwznmiexbui") return JOBWZNMIEXBUI;
 	if (s == "jobwznmiexdbs") return JOBWZNMIEXDBS;
@@ -113,6 +121,7 @@ uint VecWznmVJob::getIx(
 	if (s == "jobwznmiexopk") return JOBWZNMIEXOPK;
 	if (s == "jobwznmiexprj") return JOBWZNMIEXPRJ;
 	if (s == "jobwznmiexuix") return JOBWZNMIEXUIX;
+	if (s == "jobwznmiexvis") return JOBWZNMIEXVIS;
 	if (s == "jobwznmlicense") return JOBWZNMLICENSE;
 	if (s == "pnlwznmapp1nevent") return PNLWZNMAPP1NEVENT;
 	if (s == "pnlwznmapp1nrtjob") return PNLWZNMAPP1NRTJOB;
@@ -129,6 +138,12 @@ uint VecWznmVJob::getIx(
 	if (s == "pnlwznmblklist") return PNLWZNMBLKLIST;
 	if (s == "pnlwznmblkrec") return PNLWZNMBLKREC;
 	if (s == "pnlwznmblkref1nrtblock") return PNLWZNMBLKREF1NRTBLOCK;
+	if (s == "pnlwznmboxdetail") return PNLWZNMBOXDETAIL;
+	if (s == "pnlwznmboxdstmnbox") return PNLWZNMBOXDSTMNBOX;
+	if (s == "pnlwznmboxheadbar") return PNLWZNMBOXHEADBAR;
+	if (s == "pnlwznmboxlist") return PNLWZNMBOXLIST;
+	if (s == "pnlwznmboxorgmnbox") return PNLWZNMBOXORGMNBOX;
+	if (s == "pnlwznmboxrec") return PNLWZNMBOXREC;
 	if (s == "pnlwznmcal1nsensitivity") return PNLWZNMCAL1NSENSITIVITY;
 	if (s == "pnlwznmcaldetail") return PNLWZNMCALDETAIL;
 	if (s == "pnlwznmcalheadbar") return PNLWZNMCALHEADBAR;
@@ -274,6 +289,7 @@ uint VecWznmVJob::getIx(
 	if (s == "pnlwznmnavpre") return PNLWZNMNAVPRE;
 	if (s == "pnlwznmnavproject") return PNLWZNMNAVPROJECT;
 	if (s == "pnlwznmnavuix") return PNLWZNMNAVUIX;
+	if (s == "pnlwznmnavvisual") return PNLWZNMNAVVISUAL;
 	if (s == "pnlwznmopk1nop") return PNLWZNMOPK1NOP;
 	if (s == "pnlwznmopkainvarg") return PNLWZNMOPKAINVARG;
 	if (s == "pnlwznmopkaretval") return PNLWZNMOPKARETVAL;
@@ -383,6 +399,11 @@ uint VecWznmVJob::getIx(
 	if (s == "pnlwznmsgelist") return PNLWZNMSGELIST;
 	if (s == "pnlwznmsgerec") return PNLWZNMSGEREC;
 	if (s == "pnlwznmsgesqkmnstub") return PNLWZNMSGESQKMNSTUB;
+	if (s == "pnlwznmsht1nbox") return PNLWZNMSHT1NBOX;
+	if (s == "pnlwznmshtdetail") return PNLWZNMSHTDETAIL;
+	if (s == "pnlwznmshtheadbar") return PNLWZNMSHTHEADBAR;
+	if (s == "pnlwznmshtlist") return PNLWZNMSHTLIST;
+	if (s == "pnlwznmshtrec") return PNLWZNMSHTREC;
 	if (s == "pnlwznmstbdetail") return PNLWZNMSTBDETAIL;
 	if (s == "pnlwznmstbheadbar") return PNLWZNMSTBHEADBAR;
 	if (s == "pnlwznmstblist") return PNLWZNMSTBLIST;
@@ -482,6 +503,13 @@ uint VecWznmVJob::getIx(
 	if (s == "pnlwznmverver1napp") return PNLWZNMVERVER1NAPP;
 	if (s == "pnlwznmverver1nerror") return PNLWZNMVERVER1NERROR;
 	if (s == "pnlwznmverver1nmodule") return PNLWZNMVERVER1NMODULE;
+	if (s == "pnlwznmverver1nvisual") return PNLWZNMVERVER1NVISUAL;
+	if (s == "pnlwznmvisdetail") return PNLWZNMVISDETAIL;
+	if (s == "pnlwznmvisheadbar") return PNLWZNMVISHEADBAR;
+	if (s == "pnlwznmvislist") return PNLWZNMVISLIST;
+	if (s == "pnlwznmvisrec") return PNLWZNMVISREC;
+	if (s == "pnlwznmvisref1nfile") return PNLWZNMVISREF1NFILE;
+	if (s == "pnlwznmvisvis1nsheet") return PNLWZNMVISVIS1NSHEET;
 	if (s == "pnlwznmvitdetail") return PNLWZNMVITDETAIL;
 	if (s == "pnlwznmvitheadbar") return PNLWZNMVITHEADBAR;
 	if (s == "pnlwznmvitlist") return PNLWZNMVITLIST;
@@ -495,6 +523,9 @@ uint VecWznmVJob::getIx(
 	if (s == "qrywznmblkaitem") return QRYWZNMBLKAITEM;
 	if (s == "qrywznmblklist") return QRYWZNMBLKLIST;
 	if (s == "qrywznmblkref1nrtblock") return QRYWZNMBLKREF1NRTBLOCK;
+	if (s == "qrywznmboxdstmnbox") return QRYWZNMBOXDSTMNBOX;
+	if (s == "qrywznmboxlist") return QRYWZNMBOXLIST;
+	if (s == "qrywznmboxorgmnbox") return QRYWZNMBOXORGMNBOX;
 	if (s == "qrywznmcal1nsensitivity") return QRYWZNMCAL1NSENSITIVITY;
 	if (s == "qrywznmcallist") return QRYWZNMCALLIST;
 	if (s == "qrywznmcalmnstub") return QRYWZNMCALMNSTUB;
@@ -632,6 +663,8 @@ uint VecWznmVJob::getIx(
 	if (s == "qrywznmsge1nsensitivity") return QRYWZNMSGE1NSENSITIVITY;
 	if (s == "qrywznmsgelist") return QRYWZNMSGELIST;
 	if (s == "qrywznmsgesqkmnstub") return QRYWZNMSGESQKMNSTUB;
+	if (s == "qrywznmsht1nbox") return QRYWZNMSHT1NBOX;
+	if (s == "qrywznmshtlist") return QRYWZNMSHTLIST;
 	if (s == "qrywznmstblist") return QRYWZNMSTBLIST;
 	if (s == "qrywznmstbmncall") return QRYWZNMSTBMNCALL;
 	if (s == "qrywznmstbmnsquawk") return QRYWZNMSTBMNSQUAWK;
@@ -703,6 +736,13 @@ uint VecWznmVJob::getIx(
 	if (s == "qrywznmverver1napp") return QRYWZNMVERVER1NAPP;
 	if (s == "qrywznmverver1nerror") return QRYWZNMVERVER1NERROR;
 	if (s == "qrywznmverver1nmodule") return QRYWZNMVERVER1NMODULE;
+	if (s == "qrywznmverver1nvisual") return QRYWZNMVERVER1NVISUAL;
+	if (s == "qrywznmvisboxctx") return QRYWZNMVISBOXCTX;
+	if (s == "qrywznmvislinkctx") return QRYWZNMVISLINKCTX;
+	if (s == "qrywznmvislist") return QRYWZNMVISLIST;
+	if (s == "qrywznmvisref1nfile") return QRYWZNMVISREF1NFILE;
+	if (s == "qrywznmvisrowctx") return QRYWZNMVISROWCTX;
+	if (s == "qrywznmvisvis1nsheet") return QRYWZNMVISVIS1NSHEET;
 	if (s == "qrywznmvitlist") return QRYWZNMVITLIST;
 	if (s == "rootwznm") return ROOTWZNM;
 	if (s == "sesswznm") return SESSWZNM;
@@ -715,6 +755,7 @@ string VecWznmVJob::getSref(
 		) {
 	if (ix == CRDWZNMAPP) return("CrdWznmApp");
 	if (ix == CRDWZNMBLK) return("CrdWznmBlk");
+	if (ix == CRDWZNMBOX) return("CrdWznmBox");
 	if (ix == CRDWZNMCAL) return("CrdWznmCal");
 	if (ix == CRDWZNMCAP) return("CrdWznmCap");
 	if (ix == CRDWZNMCAR) return("CrdWznmCar");
@@ -751,6 +792,7 @@ string VecWznmVJob::getSref(
 	if (ix == CRDWZNMSBS) return("CrdWznmSbs");
 	if (ix == CRDWZNMSEQ) return("CrdWznmSeq");
 	if (ix == CRDWZNMSGE) return("CrdWznmSge");
+	if (ix == CRDWZNMSHT) return("CrdWznmSht");
 	if (ix == CRDWZNMSTB) return("CrdWznmStb");
 	if (ix == CRDWZNMSTE) return("CrdWznmSte");
 	if (ix == CRDWZNMTAG) return("CrdWznmTag");
@@ -761,6 +803,7 @@ string VecWznmVJob::getSref(
 	if (ix == CRDWZNMUTL) return("CrdWznmUtl");
 	if (ix == CRDWZNMVEC) return("CrdWznmVec");
 	if (ix == CRDWZNMVER) return("CrdWznmVer");
+	if (ix == CRDWZNMVIS) return("CrdWznmVis");
 	if (ix == CRDWZNMVIT) return("CrdWznmVit");
 	if (ix == DLGWZNMAPPIMPSTR) return("DlgWznmAppImpstr");
 	if (ix == DLGWZNMAPPNEW) return("DlgWznmAppNew");
@@ -792,6 +835,11 @@ string VecWznmVJob::getSref(
 	if (ix == DLGWZNMVERNEW) return("DlgWznmVerNew");
 	if (ix == DLGWZNMVEROPPACK) return("DlgWznmVerOppack");
 	if (ix == DLGWZNMVERWRINIMDL) return("DlgWznmVerWrinimdl");
+	if (ix == DLGWZNMVISEXPSTR) return("DlgWznmVisExpstr");
+	if (ix == DLGWZNMVISIMPSTR) return("DlgWznmVisImpstr");
+	if (ix == DLGWZNMVISMISSFEAT) return("DlgWznmVisMissfeat");
+	if (ix == DLGWZNMVISNEW) return("DlgWznmVisNew");
+	if (ix == DLGWZNMVISWRITE) return("DlgWznmVisWrite");
 	if (ix == JOBWZNMIEXAPP) return("JobWznmIexApp");
 	if (ix == JOBWZNMIEXBUI) return("JobWznmIexBui");
 	if (ix == JOBWZNMIEXDBS) return("JobWznmIexDbs");
@@ -804,6 +852,7 @@ string VecWznmVJob::getSref(
 	if (ix == JOBWZNMIEXOPK) return("JobWznmIexOpk");
 	if (ix == JOBWZNMIEXPRJ) return("JobWznmIexPrj");
 	if (ix == JOBWZNMIEXUIX) return("JobWznmIexUix");
+	if (ix == JOBWZNMIEXVIS) return("JobWznmIexVis");
 	if (ix == JOBWZNMLICENSE) return("JobWznmLicense");
 	if (ix == PNLWZNMAPP1NEVENT) return("PnlWznmApp1NEvent");
 	if (ix == PNLWZNMAPP1NRTJOB) return("PnlWznmApp1NRtjob");
@@ -820,6 +869,12 @@ string VecWznmVJob::getSref(
 	if (ix == PNLWZNMBLKLIST) return("PnlWznmBlkList");
 	if (ix == PNLWZNMBLKREC) return("PnlWznmBlkRec");
 	if (ix == PNLWZNMBLKREF1NRTBLOCK) return("PnlWznmBlkRef1NRtblock");
+	if (ix == PNLWZNMBOXDETAIL) return("PnlWznmBoxDetail");
+	if (ix == PNLWZNMBOXDSTMNBOX) return("PnlWznmBoxDstMNBox");
+	if (ix == PNLWZNMBOXHEADBAR) return("PnlWznmBoxHeadbar");
+	if (ix == PNLWZNMBOXLIST) return("PnlWznmBoxList");
+	if (ix == PNLWZNMBOXORGMNBOX) return("PnlWznmBoxOrgMNBox");
+	if (ix == PNLWZNMBOXREC) return("PnlWznmBoxRec");
 	if (ix == PNLWZNMCAL1NSENSITIVITY) return("PnlWznmCal1NSensitivity");
 	if (ix == PNLWZNMCALDETAIL) return("PnlWznmCalDetail");
 	if (ix == PNLWZNMCALHEADBAR) return("PnlWznmCalHeadbar");
@@ -965,6 +1020,7 @@ string VecWznmVJob::getSref(
 	if (ix == PNLWZNMNAVPRE) return("PnlWznmNavPre");
 	if (ix == PNLWZNMNAVPROJECT) return("PnlWznmNavProject");
 	if (ix == PNLWZNMNAVUIX) return("PnlWznmNavUix");
+	if (ix == PNLWZNMNAVVISUAL) return("PnlWznmNavVisual");
 	if (ix == PNLWZNMOPK1NOP) return("PnlWznmOpk1NOp");
 	if (ix == PNLWZNMOPKAINVARG) return("PnlWznmOpkAInvarg");
 	if (ix == PNLWZNMOPKARETVAL) return("PnlWznmOpkARetval");
@@ -1074,6 +1130,11 @@ string VecWznmVJob::getSref(
 	if (ix == PNLWZNMSGELIST) return("PnlWznmSgeList");
 	if (ix == PNLWZNMSGEREC) return("PnlWznmSgeRec");
 	if (ix == PNLWZNMSGESQKMNSTUB) return("PnlWznmSgeSqkMNStub");
+	if (ix == PNLWZNMSHT1NBOX) return("PnlWznmSht1NBox");
+	if (ix == PNLWZNMSHTDETAIL) return("PnlWznmShtDetail");
+	if (ix == PNLWZNMSHTHEADBAR) return("PnlWznmShtHeadbar");
+	if (ix == PNLWZNMSHTLIST) return("PnlWznmShtList");
+	if (ix == PNLWZNMSHTREC) return("PnlWznmShtRec");
 	if (ix == PNLWZNMSTBDETAIL) return("PnlWznmStbDetail");
 	if (ix == PNLWZNMSTBHEADBAR) return("PnlWznmStbHeadbar");
 	if (ix == PNLWZNMSTBLIST) return("PnlWznmStbList");
@@ -1173,6 +1234,13 @@ string VecWznmVJob::getSref(
 	if (ix == PNLWZNMVERVER1NAPP) return("PnlWznmVerVer1NApp");
 	if (ix == PNLWZNMVERVER1NERROR) return("PnlWznmVerVer1NError");
 	if (ix == PNLWZNMVERVER1NMODULE) return("PnlWznmVerVer1NModule");
+	if (ix == PNLWZNMVERVER1NVISUAL) return("PnlWznmVerVer1NVisual");
+	if (ix == PNLWZNMVISDETAIL) return("PnlWznmVisDetail");
+	if (ix == PNLWZNMVISHEADBAR) return("PnlWznmVisHeadbar");
+	if (ix == PNLWZNMVISLIST) return("PnlWznmVisList");
+	if (ix == PNLWZNMVISREC) return("PnlWznmVisRec");
+	if (ix == PNLWZNMVISREF1NFILE) return("PnlWznmVisRef1NFile");
+	if (ix == PNLWZNMVISVIS1NSHEET) return("PnlWznmVisVis1NSheet");
 	if (ix == PNLWZNMVITDETAIL) return("PnlWznmVitDetail");
 	if (ix == PNLWZNMVITHEADBAR) return("PnlWznmVitHeadbar");
 	if (ix == PNLWZNMVITLIST) return("PnlWznmVitList");
@@ -1186,6 +1254,9 @@ string VecWznmVJob::getSref(
 	if (ix == QRYWZNMBLKAITEM) return("QryWznmBlkAItem");
 	if (ix == QRYWZNMBLKLIST) return("QryWznmBlkList");
 	if (ix == QRYWZNMBLKREF1NRTBLOCK) return("QryWznmBlkRef1NRtblock");
+	if (ix == QRYWZNMBOXDSTMNBOX) return("QryWznmBoxDstMNBox");
+	if (ix == QRYWZNMBOXLIST) return("QryWznmBoxList");
+	if (ix == QRYWZNMBOXORGMNBOX) return("QryWznmBoxOrgMNBox");
 	if (ix == QRYWZNMCAL1NSENSITIVITY) return("QryWznmCal1NSensitivity");
 	if (ix == QRYWZNMCALLIST) return("QryWznmCalList");
 	if (ix == QRYWZNMCALMNSTUB) return("QryWznmCalMNStub");
@@ -1323,6 +1394,8 @@ string VecWznmVJob::getSref(
 	if (ix == QRYWZNMSGE1NSENSITIVITY) return("QryWznmSge1NSensitivity");
 	if (ix == QRYWZNMSGELIST) return("QryWznmSgeList");
 	if (ix == QRYWZNMSGESQKMNSTUB) return("QryWznmSgeSqkMNStub");
+	if (ix == QRYWZNMSHT1NBOX) return("QryWznmSht1NBox");
+	if (ix == QRYWZNMSHTLIST) return("QryWznmShtList");
 	if (ix == QRYWZNMSTBLIST) return("QryWznmStbList");
 	if (ix == QRYWZNMSTBMNCALL) return("QryWznmStbMNCall");
 	if (ix == QRYWZNMSTBMNSQUAWK) return("QryWznmStbMNSquawk");
@@ -1394,6 +1467,13 @@ string VecWznmVJob::getSref(
 	if (ix == QRYWZNMVERVER1NAPP) return("QryWznmVerVer1NApp");
 	if (ix == QRYWZNMVERVER1NERROR) return("QryWznmVerVer1NError");
 	if (ix == QRYWZNMVERVER1NMODULE) return("QryWznmVerVer1NModule");
+	if (ix == QRYWZNMVERVER1NVISUAL) return("QryWznmVerVer1NVisual");
+	if (ix == QRYWZNMVISBOXCTX) return("QryWznmVisBoxctx");
+	if (ix == QRYWZNMVISLINKCTX) return("QryWznmVisLinkctx");
+	if (ix == QRYWZNMVISLIST) return("QryWznmVisList");
+	if (ix == QRYWZNMVISREF1NFILE) return("QryWznmVisRef1NFile");
+	if (ix == QRYWZNMVISROWCTX) return("QryWznmVisRowctx");
+	if (ix == QRYWZNMVISVIS1NSHEET) return("QryWznmVisVis1NSheet");
 	if (ix == QRYWZNMVITLIST) return("QryWznmVitList");
 	if (ix == ROOTWZNM) return("RootWznm");
 	if (ix == SESSWZNM) return("SessWznm");

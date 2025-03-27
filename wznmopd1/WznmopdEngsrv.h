@@ -16,6 +16,7 @@
 
 #include "WznmWrweb_blks.h"
 #include "WznmWrvue_blks.h"
+#include "WznmWrvis_blks.h"
 #include "WznmWrsrv_blks.h"
 #include "WznmWrswapi_blks.h"
 #include "WznmWrpyapi_blks.h"
@@ -27,6 +28,7 @@
 #include "WznmPrctree_blks.h"
 #include "WznmPrcfile_blks.h"
 #include "WznmGen_blks.h"
+#include "WznmComplvis_blks.h"
 #include "WznmCompl_blks.h"
 
 /**

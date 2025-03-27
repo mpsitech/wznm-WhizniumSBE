@@ -33,22 +33,23 @@ WznmQAppList::WznmQAppList(
 			, const string titIxWznmVApptarget
 			, const ubigint verRefWznmMVersion
 			, const string stubVerRefWznmMVersion
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->grp = grp;
-	this->stubGrp = stubGrp;
-	this->own = own;
-	this->stubOwn = stubOwn;
-	this->Short = Short;
-	this->Title = Title;
-	this->ixWznmVApptarget = ixWznmVApptarget;
-	this->srefIxWznmVApptarget = srefIxWznmVApptarget;
-	this->titIxWznmVApptarget = titIxWznmVApptarget;
-	this->verRefWznmMVersion = verRefWznmMVersion;
-	this->stubVerRefWznmMVersion = stubVerRefWznmMVersion;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, grp(grp)
+			, stubGrp(stubGrp)
+			, own(own)
+			, stubOwn(stubOwn)
+			, Short(Short)
+			, Title(Title)
+			, ixWznmVApptarget(ixWznmVApptarget)
+			, srefIxWznmVApptarget(srefIxWznmVApptarget)
+			, titIxWznmVApptarget(titIxWznmVApptarget)
+			, verRefWznmMVersion(verRefWznmMVersion)
+			, stubVerRefWznmMVersion(stubVerRefWznmMVersion)
+		{
 };
 
 void WznmQAppList::writeJSON(

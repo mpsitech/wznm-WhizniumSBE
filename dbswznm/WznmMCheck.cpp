@@ -26,15 +26,15 @@ WznmMCheck::WznmMCheck(
 			, const ubigint refWznmMCall
 			, const string sref
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMTable = refWznmMTable;
-	this->refWznmMTablecol = refWznmMTablecol;
-	this->refWznmMCall = refWznmMCall;
-	this->sref = sref;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMTable(refWznmMTable)
+			, refWznmMTablecol(refWznmMTablecol)
+			, refWznmMCall(refWznmMCall)
+			, sref(sref)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMCheck::operator==(

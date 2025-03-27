@@ -22,13 +22,13 @@ WznmAMUsergroupAccess::WznmAMUsergroupAccess(
 			, const uint x1IxWznmVFeatgroup
 			, const string x2FeaSrefUix
 			, const uint ixWznmWAccess
-		) {
-
-	this->ref = ref;
-	this->refWznmMUsergroup = refWznmMUsergroup;
-	this->x1IxWznmVFeatgroup = x1IxWznmVFeatgroup;
-	this->x2FeaSrefUix = x2FeaSrefUix;
-	this->ixWznmWAccess = ixWznmWAccess;
+		) :
+			ref(ref)
+			, refWznmMUsergroup(refWznmMUsergroup)
+			, x1IxWznmVFeatgroup(x1IxWznmVFeatgroup)
+			, x2FeaSrefUix(x2FeaSrefUix)
+			, ixWznmWAccess(ixWznmWAccess)
+		{
 };
 
 bool WznmAMUsergroupAccess::operator==(

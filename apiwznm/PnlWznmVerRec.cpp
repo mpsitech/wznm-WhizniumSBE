@@ -45,9 +45,8 @@ PnlWznmVerRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -104,6 +103,7 @@ set<uint> PnlWznmVerRec::ContInf::diff(
 
 PnlWznmVerRec::StatApp::StatApp(
 			const bool initdoneDetail
+			, const bool initdoneVer1NVisual
 			, const bool initdoneVer1NError
 			, const bool initdoneVer1NApp
 			, const bool initdone1NCapability
@@ -124,28 +124,28 @@ PnlWznmVerRec::StatApp::StatApp(
 			, const bool initdoneMNLocale
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneVer1NVisual(initdoneVer1NVisual)
+			, initdoneVer1NError(initdoneVer1NError)
+			, initdoneVer1NApp(initdoneVer1NApp)
+			, initdone1NCapability(initdone1NCapability)
+			, initdone1NVector(initdone1NVector)
+			, initdone1NTable(initdone1NTable)
+			, initdone1NRelation(initdone1NRelation)
+			, initdone1NQuery(initdone1NQuery)
+			, initdone1NPreset(initdone1NPreset)
+			, initdoneVer1NModule(initdoneVer1NModule)
+			, initdone1NOppack(initdone1NOppack)
+			, initdone1NJob(initdone1NJob)
+			, initdone1NImpexpcplx(initdone1NImpexpcplx)
+			, initdone1NCall(initdone1NCall)
+			, initdone1NComponent(initdone1NComponent)
+			, initdoneBvr1NVersion(initdoneBvr1NVersion)
+			, initdone1NBlock(initdone1NBlock)
+			, initdoneRef1NFile(initdoneRef1NFile)
+			, initdoneMNLocale(initdoneMNLocale)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneVer1NError = initdoneVer1NError;
-	this->initdoneVer1NApp = initdoneVer1NApp;
-	this->initdone1NCapability = initdone1NCapability;
-	this->initdone1NVector = initdone1NVector;
-	this->initdone1NTable = initdone1NTable;
-	this->initdone1NRelation = initdone1NRelation;
-	this->initdone1NQuery = initdone1NQuery;
-	this->initdone1NPreset = initdone1NPreset;
-	this->initdoneVer1NModule = initdoneVer1NModule;
-	this->initdone1NOppack = initdone1NOppack;
-	this->initdone1NJob = initdone1NJob;
-	this->initdone1NImpexpcplx = initdone1NImpexpcplx;
-	this->initdone1NCall = initdone1NCall;
-	this->initdone1NComponent = initdone1NComponent;
-	this->initdoneBvr1NVersion = initdoneBvr1NVersion;
-	this->initdone1NBlock = initdone1NBlock;
-	this->initdoneRef1NFile = initdoneRef1NFile;
-	this->initdoneMNLocale = initdoneMNLocale;
-
-	mask = {INITDONEDETAIL, INITDONEVER1NERROR, INITDONEVER1NAPP, INITDONE1NCAPABILITY, INITDONE1NVECTOR, INITDONE1NTABLE, INITDONE1NRELATION, INITDONE1NQUERY, INITDONE1NPRESET, INITDONEVER1NMODULE, INITDONE1NOPPACK, INITDONE1NJOB, INITDONE1NIMPEXPCPLX, INITDONE1NCALL, INITDONE1NCOMPONENT, INITDONEBVR1NVERSION, INITDONE1NBLOCK, INITDONEREF1NFILE, INITDONEMNLOCALE};
+	mask = {INITDONEDETAIL, INITDONEVER1NVISUAL, INITDONEVER1NERROR, INITDONEVER1NAPP, INITDONE1NCAPABILITY, INITDONE1NVECTOR, INITDONE1NTABLE, INITDONE1NRELATION, INITDONE1NQUERY, INITDONE1NPRESET, INITDONEVER1NMODULE, INITDONE1NOPPACK, INITDONE1NJOB, INITDONE1NIMPEXPCPLX, INITDONE1NCALL, INITDONE1NCOMPONENT, INITDONEBVR1NVERSION, INITDONE1NBLOCK, INITDONEREF1NFILE, INITDONEMNLOCALE};
 };
 
 bool PnlWznmVerRec::StatApp::readXML(
@@ -166,6 +166,7 @@ bool PnlWznmVerRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneVer1NVisual", initdoneVer1NVisual)) add(INITDONEVER1NVISUAL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneVer1NError", initdoneVer1NError)) add(INITDONEVER1NERROR);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneVer1NApp", initdoneVer1NApp)) add(INITDONEVER1NAPP);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdone1NCapability", initdone1NCapability)) add(INITDONE1NCAPABILITY);
@@ -195,6 +196,7 @@ set<uint> PnlWznmVerRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
+	if (initdoneVer1NVisual == comp->initdoneVer1NVisual) insert(items, INITDONEVER1NVISUAL);
 	if (initdoneVer1NError == comp->initdoneVer1NError) insert(items, INITDONEVER1NERROR);
 	if (initdoneVer1NApp == comp->initdoneVer1NApp) insert(items, INITDONEVER1NAPP);
 	if (initdone1NCapability == comp->initdone1NCapability) insert(items, INITDONE1NCAPABILITY);
@@ -225,7 +227,7 @@ set<uint> PnlWznmVerRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEVER1NERROR, INITDONEVER1NAPP, INITDONE1NCAPABILITY, INITDONE1NVECTOR, INITDONE1NTABLE, INITDONE1NRELATION, INITDONE1NQUERY, INITDONE1NPRESET, INITDONEVER1NMODULE, INITDONE1NOPPACK, INITDONE1NJOB, INITDONE1NIMPEXPCPLX, INITDONE1NCALL, INITDONE1NCOMPONENT, INITDONEBVR1NVERSION, INITDONE1NBLOCK, INITDONEREF1NFILE, INITDONEMNLOCALE};
+	diffitems = {INITDONEDETAIL, INITDONEVER1NVISUAL, INITDONEVER1NERROR, INITDONEVER1NAPP, INITDONE1NCAPABILITY, INITDONE1NVECTOR, INITDONE1NTABLE, INITDONE1NRELATION, INITDONE1NQUERY, INITDONE1NPRESET, INITDONEVER1NMODULE, INITDONE1NOPPACK, INITDONE1NJOB, INITDONE1NIMPEXPCPLX, INITDONE1NCALL, INITDONE1NCOMPONENT, INITDONEBVR1NVERSION, INITDONE1NBLOCK, INITDONEREF1NFILE, INITDONEMNLOCALE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -238,6 +240,7 @@ set<uint> PnlWznmVerRec::StatApp::diff(
 PnlWznmVerRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
+			, const string& scrJrefVer1NVisual
 			, const string& scrJrefVer1NError
 			, const string& scrJrefVer1NApp
 			, const string& scrJref1NCapability
@@ -259,30 +262,30 @@ PnlWznmVerRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefVer1NVisual(scrJrefVer1NVisual)
+			, scrJrefVer1NError(scrJrefVer1NError)
+			, scrJrefVer1NApp(scrJrefVer1NApp)
+			, scrJref1NCapability(scrJref1NCapability)
+			, scrJref1NVector(scrJref1NVector)
+			, scrJref1NTable(scrJref1NTable)
+			, scrJref1NRelation(scrJref1NRelation)
+			, scrJref1NQuery(scrJref1NQuery)
+			, scrJref1NPreset(scrJref1NPreset)
+			, scrJrefVer1NModule(scrJrefVer1NModule)
+			, scrJref1NOppack(scrJref1NOppack)
+			, scrJref1NJob(scrJref1NJob)
+			, scrJref1NImpexpcplx(scrJref1NImpexpcplx)
+			, scrJref1NCall(scrJref1NCall)
+			, scrJref1NComponent(scrJref1NComponent)
+			, scrJrefBvr1NVersion(scrJrefBvr1NVersion)
+			, scrJref1NBlock(scrJref1NBlock)
+			, scrJrefRef1NFile(scrJrefRef1NFile)
+			, scrJrefMNLocale(scrJrefMNLocale)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefVer1NError = scrJrefVer1NError;
-	this->scrJrefVer1NApp = scrJrefVer1NApp;
-	this->scrJref1NCapability = scrJref1NCapability;
-	this->scrJref1NVector = scrJref1NVector;
-	this->scrJref1NTable = scrJref1NTable;
-	this->scrJref1NRelation = scrJref1NRelation;
-	this->scrJref1NQuery = scrJref1NQuery;
-	this->scrJref1NPreset = scrJref1NPreset;
-	this->scrJrefVer1NModule = scrJrefVer1NModule;
-	this->scrJref1NOppack = scrJref1NOppack;
-	this->scrJref1NJob = scrJref1NJob;
-	this->scrJref1NImpexpcplx = scrJref1NImpexpcplx;
-	this->scrJref1NCall = scrJref1NCall;
-	this->scrJref1NComponent = scrJref1NComponent;
-	this->scrJrefBvr1NVersion = scrJrefBvr1NVersion;
-	this->scrJref1NBlock = scrJref1NBlock;
-	this->scrJrefRef1NFile = scrJrefRef1NFile;
-	this->scrJrefMNLocale = scrJrefMNLocale;
-	this->ButRegularizeActive = ButRegularizeActive;
-
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFVER1NERROR, SCRJREFVER1NAPP, SCRJREF1NCAPABILITY, SCRJREF1NVECTOR, SCRJREF1NTABLE, SCRJREF1NRELATION, SCRJREF1NQUERY, SCRJREF1NPRESET, SCRJREFVER1NMODULE, SCRJREF1NOPPACK, SCRJREF1NJOB, SCRJREF1NIMPEXPCPLX, SCRJREF1NCALL, SCRJREF1NCOMPONENT, SCRJREFBVR1NVERSION, SCRJREF1NBLOCK, SCRJREFREF1NFILE, SCRJREFMNLOCALE, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFVER1NVISUAL, SCRJREFVER1NERROR, SCRJREFVER1NAPP, SCRJREF1NCAPABILITY, SCRJREF1NVECTOR, SCRJREF1NTABLE, SCRJREF1NRELATION, SCRJREF1NQUERY, SCRJREF1NPRESET, SCRJREFVER1NMODULE, SCRJREF1NOPPACK, SCRJREF1NJOB, SCRJREF1NIMPEXPCPLX, SCRJREF1NCALL, SCRJREF1NCOMPONENT, SCRJREFBVR1NVERSION, SCRJREF1NBLOCK, SCRJREFREF1NFILE, SCRJREFMNLOCALE, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmVerRec::StatShr::readXML(
@@ -309,6 +312,7 @@ bool PnlWznmVerRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefVer1NVisual", scrJrefVer1NVisual)) add(SCRJREFVER1NVISUAL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefVer1NError", scrJrefVer1NError)) add(SCRJREFVER1NERROR);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefVer1NApp", scrJrefVer1NApp)) add(SCRJREFVER1NAPP);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJref1NCapability", scrJref1NCapability)) add(SCRJREF1NCAPABILITY);
@@ -340,6 +344,7 @@ set<uint> PnlWznmVerRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
+	if (scrJrefVer1NVisual == comp->scrJrefVer1NVisual) insert(items, SCRJREFVER1NVISUAL);
 	if (scrJrefVer1NError == comp->scrJrefVer1NError) insert(items, SCRJREFVER1NERROR);
 	if (scrJrefVer1NApp == comp->scrJrefVer1NApp) insert(items, SCRJREFVER1NAPP);
 	if (scrJref1NCapability == comp->scrJref1NCapability) insert(items, SCRJREF1NCAPABILITY);
@@ -371,7 +376,7 @@ set<uint> PnlWznmVerRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFVER1NERROR, SCRJREFVER1NAPP, SCRJREF1NCAPABILITY, SCRJREF1NVECTOR, SCRJREF1NTABLE, SCRJREF1NRELATION, SCRJREF1NQUERY, SCRJREF1NPRESET, SCRJREFVER1NMODULE, SCRJREF1NOPPACK, SCRJREF1NJOB, SCRJREF1NIMPEXPCPLX, SCRJREF1NCALL, SCRJREF1NCOMPONENT, SCRJREFBVR1NVERSION, SCRJREF1NBLOCK, SCRJREFREF1NFILE, SCRJREFMNLOCALE, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFVER1NVISUAL, SCRJREFVER1NERROR, SCRJREFVER1NAPP, SCRJREF1NCAPABILITY, SCRJREF1NVECTOR, SCRJREF1NTABLE, SCRJREF1NRELATION, SCRJREF1NQUERY, SCRJREF1NPRESET, SCRJREFVER1NMODULE, SCRJREF1NOPPACK, SCRJREF1NJOB, SCRJREF1NIMPEXPCPLX, SCRJREF1NCALL, SCRJREF1NCOMPONENT, SCRJREFBVR1NVERSION, SCRJREF1NBLOCK, SCRJREFREF1NFILE, SCRJREFMNLOCALE, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -385,9 +390,8 @@ PnlWznmVerRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -424,11 +428,11 @@ PnlWznmVerRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMVERRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmVerRec::DpchAppDo::getSrefsMask() {

@@ -45,9 +45,8 @@ PnlWznmUsrRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -109,12 +108,11 @@ PnlWznmUsrRec::StatApp::StatApp(
 			, const bool initdoneMNUsergroup
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneAAccess(initdoneAAccess)
+			, initdone1NSession(initdone1NSession)
+			, initdoneMNUsergroup(initdoneMNUsergroup)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneAAccess = initdoneAAccess;
-	this->initdone1NSession = initdone1NSession;
-	this->initdoneMNUsergroup = initdoneMNUsergroup;
-
 	mask = {INITDONEDETAIL, INITDONEAACCESS, INITDONE1NSESSION, INITDONEMNUSERGROUP};
 };
 
@@ -184,14 +182,13 @@ PnlWznmUsrRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefAAccess(scrJrefAAccess)
+			, scrJref1NSession(scrJref1NSession)
+			, scrJrefMNUsergroup(scrJrefMNUsergroup)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefAAccess = scrJrefAAccess;
-	this->scrJref1NSession = scrJref1NSession;
-	this->scrJrefMNUsergroup = scrJrefMNUsergroup;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFAACCESS, SCRJREF1NSESSION, SCRJREFMNUSERGROUP, BUTREGULARIZEACTIVE};
 };
 
@@ -265,9 +262,8 @@ PnlWznmUsrRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -304,11 +300,11 @@ PnlWznmUsrRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMUSRRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmUsrRec::DpchAppDo::getSrefsMask() {

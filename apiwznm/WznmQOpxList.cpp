@@ -22,11 +22,12 @@ WznmQOpxList::WznmQOpxList(
 			, const string sref
 			, const string stubRefWznmMOppack
 			, const string yesnoShrdat
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->stubRefWznmMOppack = stubRefWznmMOppack;
-	this->yesnoShrdat = yesnoShrdat;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, stubRefWznmMOppack(stubRefWznmMOppack)
+			, yesnoShrdat(yesnoShrdat)
+		{
 };
 
 bool WznmQOpxList::readXML(

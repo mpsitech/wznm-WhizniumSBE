@@ -43,9 +43,8 @@ PnlWznmRelRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -173,17 +172,16 @@ PnlWznmRelRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefATitle(jrefATitle)
+			, jref1NTablecol(jref1NTablecol)
+			, jrefSup1NRelation(jrefSup1NRelation)
+			, jrefRef1NPanel(jrefRef1NPanel)
+			, jrefRef1NDialog(jrefRef1NDialog)
+			, jrefRef1NControl(jrefRef1NControl)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefATitle = jrefATitle;
-	this->jref1NTablecol = jref1NTablecol;
-	this->jrefSup1NRelation = jrefSup1NRelation;
-	this->jrefRef1NPanel = jrefRef1NPanel;
-	this->jrefRef1NDialog = jrefRef1NDialog;
-	this->jrefRef1NControl = jrefRef1NControl;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFATITLE, JREF1NTABLECOL, JREFSUP1NRELATION, JREFREF1NPANEL, JREFREF1NDIALOG, JREFREF1NCONTROL, BUTREGULARIZEACTIVE};
 };
 

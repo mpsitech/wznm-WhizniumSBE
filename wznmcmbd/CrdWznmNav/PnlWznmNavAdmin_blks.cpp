@@ -58,12 +58,11 @@ PnlWznmNavAdmin::ContIac::ContIac(
 			, const uint numFLstFil
 		) :
 			Block()
+			, numFLstUsg(numFLstUsg)
+			, numFLstUsr(numFLstUsr)
+			, numFLstPrs(numFLstPrs)
+			, numFLstFil(numFLstFil)
 		{
-	this->numFLstUsg = numFLstUsg;
-	this->numFLstUsr = numFLstUsr;
-	this->numFLstPrs = numFLstPrs;
-	this->numFLstFil = numFLstFil;
-
 	mask = {NUMFLSTUSG, NUMFLSTUSR, NUMFLSTPRS, NUMFLSTFIL};
 };
 
@@ -123,10 +122,10 @@ void PnlWznmNavAdmin::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFLstUsg"] = numFLstUsg;
-	me["numFLstUsr"] = numFLstUsr;
-	me["numFLstPrs"] = numFLstPrs;
-	me["numFLstFil"] = numFLstFil;
+	me["numFLstUsg"] = (Json::Value::UInt) numFLstUsg;
+	me["numFLstUsr"] = (Json::Value::UInt) numFLstUsr;
+	me["numFLstPrs"] = (Json::Value::UInt) numFLstPrs;
+	me["numFLstFil"] = (Json::Value::UInt) numFLstFil;
 };
 
 void PnlWznmNavAdmin::ContIac::writeXML(
@@ -201,10 +200,10 @@ void PnlWznmNavAdmin::StatApp::writeJSON(
 	me["LstUsrAlt"] = LstUsrAlt;
 	me["LstPrsAlt"] = LstPrsAlt;
 	me["LstFilAlt"] = LstFilAlt;
-	me["LstUsgNumFirstdisp"] = LstUsgNumFirstdisp;
-	me["LstUsrNumFirstdisp"] = LstUsrNumFirstdisp;
-	me["LstPrsNumFirstdisp"] = LstPrsNumFirstdisp;
-	me["LstFilNumFirstdisp"] = LstFilNumFirstdisp;
+	me["LstUsgNumFirstdisp"] = (Json::Value::UInt) LstUsgNumFirstdisp;
+	me["LstUsrNumFirstdisp"] = (Json::Value::UInt) LstUsrNumFirstdisp;
+	me["LstPrsNumFirstdisp"] = (Json::Value::UInt) LstPrsNumFirstdisp;
+	me["LstFilNumFirstdisp"] = (Json::Value::UInt) LstFilNumFirstdisp;
 };
 
 void PnlWznmNavAdmin::StatApp::writeXML(
@@ -255,16 +254,15 @@ PnlWznmNavAdmin::StatShr::StatShr(
 			, const bool ButFilViewActive
 		) :
 			Block()
+			, LstUsgAvail(LstUsgAvail)
+			, ButUsgViewActive(ButUsgViewActive)
+			, LstUsrAvail(LstUsrAvail)
+			, ButUsrViewActive(ButUsrViewActive)
+			, LstPrsAvail(LstPrsAvail)
+			, ButPrsViewActive(ButPrsViewActive)
+			, LstFilAvail(LstFilAvail)
+			, ButFilViewActive(ButFilViewActive)
 		{
-	this->LstUsgAvail = LstUsgAvail;
-	this->ButUsgViewActive = ButUsgViewActive;
-	this->LstUsrAvail = LstUsrAvail;
-	this->ButUsrViewActive = ButUsrViewActive;
-	this->LstPrsAvail = LstPrsAvail;
-	this->ButPrsViewActive = ButPrsViewActive;
-	this->LstFilAvail = LstFilAvail;
-	this->ButFilViewActive = ButFilViewActive;
-
 	mask = {LSTUSGAVAIL, BUTUSGVIEWACTIVE, LSTUSRAVAIL, BUTUSRVIEWACTIVE, LSTPRSAVAIL, BUTPRSVIEWACTIVE, LSTFILAVAIL, BUTFILVIEWACTIVE};
 };
 

@@ -44,33 +44,33 @@ WznmMControl::WznmMControl(
 			, const string Avail
 			, const string Active
 			, const string srefsKOption
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmCControl = refWznmCControl;
-	this->hkIxVTbl = hkIxVTbl;
-	this->hkUref = hkUref;
-	this->hkNum = hkNum;
-	this->hkIxVSection = hkIxVSection;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->supRefWznmMControl = supRefWznmMControl;
-	this->supLvl = supLvl;
-	this->supNum = supNum;
-	this->ixVScope = ixVScope;
-	this->refWznmMFeed = refWznmMFeed;
-	this->sref = sref;
-	this->ixVSubtype = ixVSubtype;
-	this->srefsWznmMTag = srefsWznmMTag;
-	this->refJTitle = refJTitle;
-	this->Title = Title;
-	this->refJ = refJ;
-	this->stdRefWznmMStub = stdRefWznmMStub;
-	this->shoRefWznmMStub = shoRefWznmMStub;
-	this->Avail = Avail;
-	this->Active = Active;
-	this->srefsKOption = srefsKOption;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmCControl(refWznmCControl)
+			, hkIxVTbl(hkIxVTbl)
+			, hkUref(hkUref)
+			, hkNum(hkNum)
+			, hkIxVSection(hkIxVSection)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, supRefWznmMControl(supRefWznmMControl)
+			, supLvl(supLvl)
+			, supNum(supNum)
+			, ixVScope(ixVScope)
+			, refWznmMFeed(refWznmMFeed)
+			, sref(sref)
+			, ixVSubtype(ixVSubtype)
+			, srefsWznmMTag(srefsWznmMTag)
+			, refJTitle(refJTitle)
+			, Title(Title)
+			, refJ(refJ)
+			, stdRefWznmMStub(stdRefWznmMStub)
+			, shoRefWznmMStub(shoRefWznmMStub)
+			, Avail(Avail)
+			, Active(Active)
+			, srefsKOption(srefsKOption)
+		{
 };
 
 bool WznmMControl::operator==(

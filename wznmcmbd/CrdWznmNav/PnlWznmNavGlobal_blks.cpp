@@ -63,13 +63,12 @@ PnlWznmNavGlobal::ContIac::ContIac(
 			, const uint numFLstLib
 		) :
 			Block()
+			, numFLstLoc(numFLstLoc)
+			, numFLstTag(numFLstTag)
+			, numFLstCtp(numFLstCtp)
+			, numFLstMch(numFLstMch)
+			, numFLstLib(numFLstLib)
 		{
-	this->numFLstLoc = numFLstLoc;
-	this->numFLstTag = numFLstTag;
-	this->numFLstCtp = numFLstCtp;
-	this->numFLstMch = numFLstMch;
-	this->numFLstLib = numFLstLib;
-
 	mask = {NUMFLSTLOC, NUMFLSTTAG, NUMFLSTCTP, NUMFLSTMCH, NUMFLSTLIB};
 };
 
@@ -131,11 +130,11 @@ void PnlWznmNavGlobal::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFLstLoc"] = numFLstLoc;
-	me["numFLstTag"] = numFLstTag;
-	me["numFLstCtp"] = numFLstCtp;
-	me["numFLstMch"] = numFLstMch;
-	me["numFLstLib"] = numFLstLib;
+	me["numFLstLoc"] = (Json::Value::UInt) numFLstLoc;
+	me["numFLstTag"] = (Json::Value::UInt) numFLstTag;
+	me["numFLstCtp"] = (Json::Value::UInt) numFLstCtp;
+	me["numFLstMch"] = (Json::Value::UInt) numFLstMch;
+	me["numFLstLib"] = (Json::Value::UInt) numFLstLib;
 };
 
 void PnlWznmNavGlobal::ContIac::writeXML(
@@ -215,11 +214,11 @@ void PnlWznmNavGlobal::StatApp::writeJSON(
 	me["LstCtpAlt"] = LstCtpAlt;
 	me["LstMchAlt"] = LstMchAlt;
 	me["LstLibAlt"] = LstLibAlt;
-	me["LstLocNumFirstdisp"] = LstLocNumFirstdisp;
-	me["LstTagNumFirstdisp"] = LstTagNumFirstdisp;
-	me["LstCtpNumFirstdisp"] = LstCtpNumFirstdisp;
-	me["LstMchNumFirstdisp"] = LstMchNumFirstdisp;
-	me["LstLibNumFirstdisp"] = LstLibNumFirstdisp;
+	me["LstLocNumFirstdisp"] = (Json::Value::UInt) LstLocNumFirstdisp;
+	me["LstTagNumFirstdisp"] = (Json::Value::UInt) LstTagNumFirstdisp;
+	me["LstCtpNumFirstdisp"] = (Json::Value::UInt) LstCtpNumFirstdisp;
+	me["LstMchNumFirstdisp"] = (Json::Value::UInt) LstMchNumFirstdisp;
+	me["LstLibNumFirstdisp"] = (Json::Value::UInt) LstLibNumFirstdisp;
 };
 
 void PnlWznmNavGlobal::StatApp::writeXML(
@@ -276,18 +275,17 @@ PnlWznmNavGlobal::StatShr::StatShr(
 			, const bool ButLibViewActive
 		) :
 			Block()
+			, LstLocAvail(LstLocAvail)
+			, ButLocViewActive(ButLocViewActive)
+			, LstTagAvail(LstTagAvail)
+			, ButTagViewActive(ButTagViewActive)
+			, LstCtpAvail(LstCtpAvail)
+			, ButCtpViewActive(ButCtpViewActive)
+			, LstMchAvail(LstMchAvail)
+			, ButMchViewActive(ButMchViewActive)
+			, LstLibAvail(LstLibAvail)
+			, ButLibViewActive(ButLibViewActive)
 		{
-	this->LstLocAvail = LstLocAvail;
-	this->ButLocViewActive = ButLocViewActive;
-	this->LstTagAvail = LstTagAvail;
-	this->ButTagViewActive = ButTagViewActive;
-	this->LstCtpAvail = LstCtpAvail;
-	this->ButCtpViewActive = ButCtpViewActive;
-	this->LstMchAvail = LstMchAvail;
-	this->ButMchViewActive = ButMchViewActive;
-	this->LstLibAvail = LstLibAvail;
-	this->ButLibViewActive = ButLibViewActive;
-
 	mask = {LSTLOCAVAIL, BUTLOCVIEWACTIVE, LSTTAGAVAIL, BUTTAGVIEWACTIVE, LSTCTPAVAIL, BUTCTPVIEWACTIVE, LSTMCHAVAIL, BUTMCHVIEWACTIVE, LSTLIBAVAIL, BUTLIBVIEWACTIVE};
 };
 

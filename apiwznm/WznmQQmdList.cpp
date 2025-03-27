@@ -26,15 +26,16 @@ WznmQQmdList::WznmQQmdList(
 			, const string srefRefIxVTbl
 			, const string titRefIxVTbl
 			, const string stubRefUref
-		) {
-	this->jnum = jnum;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubQryRefWznmMQuery = stubQryRefWznmMQuery;
-	this->stubRefWznmMPreset = stubRefWznmMPreset;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->stubRefUref = stubRefUref;
+		) :
+			jnum(jnum)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubQryRefWznmMQuery(stubQryRefWznmMQuery)
+			, stubRefWznmMPreset(stubRefWznmMPreset)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, stubRefUref(stubRefUref)
+		{
 };
 
 bool WznmQQmdList::readXML(

@@ -26,17 +26,17 @@ WznmMApp::WznmMApp(
 			, const string Short
 			, const string Title
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->grp = grp;
-	this->own = own;
-	this->ixWznmVApptarget = ixWznmVApptarget;
-	this->verRefWznmMVersion = verRefWznmMVersion;
-	this->verNum = verNum;
-	this->Short = Short;
-	this->Title = Title;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, grp(grp)
+			, own(own)
+			, ixWznmVApptarget(ixWznmVApptarget)
+			, verRefWznmMVersion(verRefWznmMVersion)
+			, verNum(verNum)
+			, Short(Short)
+			, Title(Title)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMApp::operator==(

@@ -28,17 +28,18 @@ WznmQTagList::WznmQTagList(
 			, const string stubRefWznmMCapability
 			, const string osrefWznmKTaggrp
 			, const string titOsrefWznmKTaggrp
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->refWznmMCapability = refWznmMCapability;
-	this->stubRefWznmMCapability = stubRefWznmMCapability;
-	this->osrefWznmKTaggrp = osrefWznmKTaggrp;
-	this->titOsrefWznmKTaggrp = titOsrefWznmKTaggrp;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, refWznmMCapability(refWznmMCapability)
+			, stubRefWznmMCapability(stubRefWznmMCapability)
+			, osrefWznmKTaggrp(osrefWznmKTaggrp)
+			, titOsrefWznmKTaggrp(titOsrefWznmKTaggrp)
+		{
 };
 
 void WznmQTagList::writeJSON(

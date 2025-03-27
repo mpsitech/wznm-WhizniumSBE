@@ -22,13 +22,13 @@ WznmJMVectoritem::WznmJMVectoritem(
 			, const ubigint x1RefWznmMLocale
 			, const string Title
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->x1RefWznmMLocale = x1RefWznmMLocale;
-	this->Title = Title;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, x1RefWznmMLocale(x1RefWznmMLocale)
+			, Title(Title)
+			, Comment(Comment)
+		{
 };
 
 bool WznmJMVectoritem::operator==(

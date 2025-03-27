@@ -31,20 +31,21 @@ WznmQVerList::WznmQVerList(
 			, const string titIxVState
 			, const string srefsIxWDbmstype
 			, const string titsIxWDbmstype
-		) {
-	this->jnum = jnum;
-	this->stubGrp = stubGrp;
-	this->stubOwn = stubOwn;
-	this->stubPrjRefWznmMProject = stubPrjRefWznmMProject;
-	this->Major = Major;
-	this->Minor = Minor;
-	this->Sub = Sub;
-	this->stubBvrRefWznmMVersion = stubBvrRefWznmMVersion;
-	this->stubRefWznmMLocale = stubRefWznmMLocale;
-	this->srefIxVState = srefIxVState;
-	this->titIxVState = titIxVState;
-	this->srefsIxWDbmstype = srefsIxWDbmstype;
-	this->titsIxWDbmstype = titsIxWDbmstype;
+		) :
+			jnum(jnum)
+			, stubGrp(stubGrp)
+			, stubOwn(stubOwn)
+			, stubPrjRefWznmMProject(stubPrjRefWznmMProject)
+			, Major(Major)
+			, Minor(Minor)
+			, Sub(Sub)
+			, stubBvrRefWznmMVersion(stubBvrRefWznmMVersion)
+			, stubRefWznmMLocale(stubRefWznmMLocale)
+			, srefIxVState(srefIxVState)
+			, titIxVState(titIxVState)
+			, srefsIxWDbmstype(srefsIxWDbmstype)
+			, titsIxWDbmstype(titsIxWDbmstype)
+		{
 };
 
 bool WznmQVerList::readXML(

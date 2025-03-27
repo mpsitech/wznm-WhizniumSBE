@@ -23,6 +23,7 @@ uint VecWznmVOppack::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "wznmcompl") return WZNMCOMPL;
+	if (s == "wznmcomplvis") return WZNMCOMPLVIS;
 	if (s == "wznmctpgenjtr") return WZNMCTPGENJTR;
 	if (s == "wznmctpgenui") return WZNMCTPGENUI;
 	if (s == "wznmctpwrsrv") return WZNMCTPWRSRV;
@@ -39,6 +40,7 @@ uint VecWznmVOppack::getIx(
 	if (s == "wznmwrpyapi") return WZNMWRPYAPI;
 	if (s == "wznmwrsrv") return WZNMWRSRV;
 	if (s == "wznmwrswapi") return WZNMWRSWAPI;
+	if (s == "wznmwrvis") return WZNMWRVIS;
 	if (s == "wznmwrvue") return WZNMWRVUE;
 	if (s == "wznmwrweb") return WZNMWRWEB;
 
@@ -49,6 +51,7 @@ string VecWznmVOppack::getSref(
 			const uint ix
 		) {
 	if (ix == WZNMCOMPL) return("WznmCompl");
+	if (ix == WZNMCOMPLVIS) return("WznmComplvis");
 	if (ix == WZNMCTPGENJTR) return("WznmCtpGenjtr");
 	if (ix == WZNMCTPGENUI) return("WznmCtpGenui");
 	if (ix == WZNMCTPWRSRV) return("WznmCtpWrsrv");
@@ -65,6 +68,7 @@ string VecWznmVOppack::getSref(
 	if (ix == WZNMWRPYAPI) return("WznmWrpyapi");
 	if (ix == WZNMWRSRV) return("WznmWrsrv");
 	if (ix == WZNMWRSWAPI) return("WznmWrswapi");
+	if (ix == WZNMWRVIS) return("WznmWrvis");
 	if (ix == WZNMWRVUE) return("WznmWrvue");
 	if (ix == WZNMWRWEB) return("WznmWrweb");
 
@@ -75,6 +79,7 @@ string VecWznmVOppack::getTitle(
 			const uint ix
 		) {
 	if (ix == WZNMCOMPL) return("complement");
+	if (ix == WZNMCOMPLVIS) return("complement visualization features");
 	if (ix == WZNMCTPGENJTR) return("generate capability template-specific job tree");
 	if (ix == WZNMCTPGENUI) return("generate capability template-specific user interface");
 	if (ix == WZNMCTPWRSRV) return("write capability template-specific server code");
@@ -91,6 +96,7 @@ string VecWznmVOppack::getTitle(
 	if (ix == WZNMWRPYAPI) return("write Python API code");
 	if (ix == WZNMWRSRV) return("write server code");
 	if (ix == WZNMWRSWAPI) return("write Swift API code");
+	if (ix == WZNMWRVIS) return("write visualization code");
 	if (ix == WZNMWRVUE) return("write Vue.js UI code");
 	if (ix == WZNMWRWEB) return("write web UI code");
 	return(getSref(ix));
@@ -117,5 +123,5 @@ void VecWznmVOppack::fillFeed(
 		) {
 	feed.clear();
 
-	for (unsigned int i = 1; i <= 19; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i));
+	for (unsigned int i = 1; i <= 21; i++) feed.appendIxSrefTitles(i, getSref(i), getTitle(i));
 };

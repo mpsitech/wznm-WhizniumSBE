@@ -24,13 +24,14 @@ WznmQUsgAAccess::WznmQUsgAAccess(
 			, const string x2FeaSrefUix
 			, const string srefsIxWznmWAccess
 			, const string titsIxWznmWAccess
-		) {
-	this->jnum = jnum;
-	this->srefX1IxWznmVFeatgroup = srefX1IxWznmVFeatgroup;
-	this->titX1IxWznmVFeatgroup = titX1IxWznmVFeatgroup;
-	this->x2FeaSrefUix = x2FeaSrefUix;
-	this->srefsIxWznmWAccess = srefsIxWznmWAccess;
-	this->titsIxWznmWAccess = titsIxWznmWAccess;
+		) :
+			jnum(jnum)
+			, srefX1IxWznmVFeatgroup(srefX1IxWznmVFeatgroup)
+			, titX1IxWznmVFeatgroup(titX1IxWznmVFeatgroup)
+			, x2FeaSrefUix(x2FeaSrefUix)
+			, srefsIxWznmWAccess(srefsIxWznmWAccess)
+			, titsIxWznmWAccess(titsIxWznmWAccess)
+		{
 };
 
 bool WznmQUsgAAccess::readXML(

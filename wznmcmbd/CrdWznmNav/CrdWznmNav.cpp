@@ -44,18 +44,19 @@ CrdWznmNav::CrdWznmNav(
 
 	pnlauxfct = NULL;
 	pnlappdev = NULL;
+	pnlvisual = NULL;
 	pnldeploy = NULL;
-	pnljob = NULL;
 	pnlcomp = NULL;
-	pnluix = NULL;
+	pnljob = NULL;
 	pnldbstr = NULL;
+	pnluix = NULL;
 	pnlproject = NULL;
 	pnlglobal = NULL;
 	pnladmin = NULL;
 	pnlpre = NULL;
 	pnlheadbar = NULL;
-	dlgmnglic = NULL;
 	dlgloaini = NULL;
+	dlgmnglic = NULL;
 
 	// IP constructor.cust1 --- INSERT
 
@@ -64,11 +65,12 @@ CrdWznmNav::CrdWznmNav(
 
 	pnlauxfct = new PnlWznmNavAuxfct(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlappdev = new PnlWznmNavAppdev(xchg, dbswznm, jref, ixWznmVLocale);
+	pnlvisual = new PnlWznmNavVisual(xchg, dbswznm, jref, ixWznmVLocale);
 	pnldeploy = new PnlWznmNavDeploy(xchg, dbswznm, jref, ixWznmVLocale);
-	pnljob = new PnlWznmNavJob(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlcomp = new PnlWznmNavComp(xchg, dbswznm, jref, ixWznmVLocale);
-	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
+	pnljob = new PnlWznmNavJob(xchg, dbswznm, jref, ixWznmVLocale);
 	pnldbstr = new PnlWznmNavDbstr(xchg, dbswznm, jref, ixWznmVLocale);
+	pnluix = new PnlWznmNavUix(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlproject = new PnlWznmNavProject(xchg, dbswznm, jref, ixWznmVLocale);
 	pnlglobal = new PnlWznmNavGlobal(xchg, dbswznm, jref, ixWznmVLocale);
 	pnladmin = new PnlWznmNavAdmin(xchg, dbswznm, jref, ixWznmVLocale);
@@ -87,6 +89,7 @@ CrdWznmNav::CrdWznmNav(
 	statshr.jrefComp = pnlcomp->jref;
 	statshr.jrefJob = pnljob->jref;
 	statshr.jrefDeploy = pnldeploy->jref;
+	statshr.jrefVisual = pnlvisual->jref;
 	statshr.jrefAppdev = pnlappdev->jref;
 	statshr.jrefAuxfct = pnlauxfct->jref;
 
@@ -161,6 +164,7 @@ void CrdWznmNav::refresh(
 	statshr.pnlcompAvail = evalPnlcompAvail(dbswznm);
 	statshr.pnljobAvail = evalPnljobAvail(dbswznm);
 	statshr.pnldeployAvail = evalPnldeployAvail(dbswznm);
+	statshr.pnlvisualAvail = evalPnlvisualAvail(dbswznm);
 	statshr.pnlappdevAvail = evalPnlappdevAvail(dbswznm);
 	statshr.pnlauxfctAvail = evalPnlauxfctAvail(dbswznm);
 	statshr.MitSesSpsAvail = evalMitSesSpsAvail(dbswznm);
@@ -243,6 +247,12 @@ void CrdWznmNav::refresh(
 	statshr.MitCrdRlsAvail = evalMitCrdRlsAvail(dbswznm);
 	statshr.MitCrdRlsActive = evalMitCrdRlsActive(dbswznm);
 	statshr.MspCrd9Avail = evalMspCrd9Avail(dbswznm);
+	statshr.MitCrdVisAvail = evalMitCrdVisAvail(dbswznm);
+	statshr.MitCrdShtAvail = evalMitCrdShtAvail(dbswznm);
+	statshr.MitCrdShtActive = evalMitCrdShtActive(dbswznm);
+	statshr.MitCrdBoxAvail = evalMitCrdBoxAvail(dbswznm);
+	statshr.MitCrdBoxActive = evalMitCrdBoxActive(dbswznm);
+	statshr.MspCrd10Avail = evalMspCrd10Avail(dbswznm);
 	statshr.MitCrdAppAvail = evalMitCrdAppAvail(dbswznm);
 	statshr.MitCrdRtjAvail = evalMitCrdRtjAvail(dbswznm);
 	statshr.MitCrdRtjActive = evalMitCrdRtjActive(dbswznm);
@@ -252,7 +262,7 @@ void CrdWznmNav::refresh(
 	statshr.MitCrdSeqActive = evalMitCrdSeqActive(dbswznm);
 	statshr.MitCrdSteAvail = evalMitCrdSteAvail(dbswznm);
 	statshr.MitCrdSteActive = evalMitCrdSteActive(dbswznm);
-	statshr.MspCrd10Avail = evalMspCrd10Avail(dbswznm);
+	statshr.MspCrd11Avail = evalMspCrd11Avail(dbswznm);
 	statshr.MitCrdUtlAvail = evalMitCrdUtlAvail(dbswznm);
 	statshr.MspApp2Avail = evalMspApp2Avail(dbswznm);
 	statshr.MitAppMlcAvail = evalMitAppMlcAvail(dbswznm);
@@ -286,6 +296,7 @@ void CrdWznmNav::updatePreset(
 	if (pnlcomp) pnlcomp->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 	if (pnljob) pnljob->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 	if (pnldeploy) pnldeploy->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
+	if (pnlvisual) pnlvisual->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 	if (pnlappdev) pnlappdev->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 	if (pnlauxfct) pnlauxfct->updatePreset(dbswznm, ixWznmVPreset, jrefTrig, notif);
 	// IP updatePreset --- END
@@ -410,6 +421,12 @@ void CrdWznmNav::handleRequest(
 					handleDpchAppDoMitCrdCmpClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDRLSCLICK) {
 					handleDpchAppDoMitCrdRlsClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::MITCRDVISCLICK) {
+					handleDpchAppDoMitCrdVisClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::MITCRDSHTCLICK) {
+					handleDpchAppDoMitCrdShtClick(dbswznm, &(req->dpcheng));
+				} else if (dpchappdo->ixVDo == VecVDo::MITCRDBOXCLICK) {
+					handleDpchAppDoMitCrdBoxClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDAPPCLICK) {
 					handleDpchAppDoMitCrdAppClick(dbswznm, &(req->dpcheng));
 				} else if (dpchappdo->ixVDo == VecVDo::MITCRDRTJCLICK) {
@@ -453,7 +470,7 @@ void CrdWznmNav::handleDpchAppDoClose(
 
 	*dpcheng = new DpchEngWznmConfirm(true, jref, "");
 
-	if (xchg->stgwznmappearance.suspsess) xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSUSPSESS, xchg->getRefPreset(VecWznmVPreset::PREWZNMJREFSESS, jref));
+	if (xchg->stgwznmbehavior.suspsess) xchg->triggerCall(dbswznm, VecWznmVCall::CALLWZNMSUSPSESS, xchg->getRefPreset(VecWznmVPreset::PREWZNMJREFSESS, jref));
 	else xchg->triggerBoolvalCall(dbswznm, VecWznmVCall::CALLWZNMLOGOUT, xchg->getRefPreset(VecWznmVPreset::PREWZNMJREFSESS, jref), false);
 };
 
@@ -980,6 +997,42 @@ void CrdWznmNav::handleDpchAppDoMitCrdRlsClick(
 	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmRls");
 };
 
+void CrdWznmNav::handleDpchAppDoMitCrdVisClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	ubigint jrefNew = 0;
+
+	xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, "CrdWznmVis", 0, jrefNew);
+
+	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
+	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmVis");
+};
+
+void CrdWznmNav::handleDpchAppDoMitCrdShtClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	ubigint jrefNew = 0;
+
+	xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, "CrdWznmSht", 0, jrefNew);
+
+	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
+	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmSht");
+};
+
+void CrdWznmNav::handleDpchAppDoMitCrdBoxClick(
+			DbsWznm* dbswznm
+			, DpchEngWznm** dpcheng
+		) {
+	ubigint jrefNew = 0;
+
+	xchg->triggerIxRefSrefIntvalToRefCall(dbswznm, VecWznmVCall::CALLWZNMCRDOPEN, jref, 0, 0, "CrdWznmBox", 0, jrefNew);
+
+	if (jrefNew == 0) *dpcheng = new DpchEngWznmConfirm(false, 0, "");
+	else *dpcheng = new DpchEngWznmConfirm(true, jrefNew, "CrdWznmBox");
+};
+
 void CrdWznmNav::handleDpchAppDoMitCrdAppClick(
 			DbsWznm* dbswznm
 			, DpchEngWznm** dpcheng
@@ -1201,7 +1254,7 @@ uint CrdWznmNav::enterSgeAlrwznmtrm(
 	uint retval = VecVSge::ALRWZNMTRM;
 	nextIxVSgeSuccess = VecVSge::IDLE;
 
-	xchg->submitDpch(AlrWznm::prepareAlrTrm(jref, ixWznmVLocale, xchg->stgwznmappearance.sesstterm, xchg->stgwznmappearance.sesstwarn, feedFMcbAlert)); // IP enterSgeAlrwznmtrm --- LINE
+	xchg->submitDpch(AlrWznm::prepareAlrTrm(jref, ixWznmVLocale, xchg->stgwznmbehavior.sesstterm, xchg->stgwznmbehavior.sesstwarn, feedFMcbAlert)); // IP enterSgeAlrwznmtrm --- LINE
 
 	return retval;
 };

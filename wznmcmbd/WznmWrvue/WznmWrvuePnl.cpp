@@ -339,7 +339,7 @@ void WznmWrvuePnl::writePlVuefile(
 				if (first) first = false;
 				else outfile << ",";
 
-				outfile << "\"" << qco->Short << "\"";
+				outfile << "\"" << ((qco->Short != "") ? qco->Short : qco->sref) << "\"";
 			};
 		};
 		outfile << "]);" << endl;

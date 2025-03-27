@@ -186,9 +186,8 @@ DlgWznmRlsWrite::ContIac::ContIac(
 			const uint numFDse
 		) :
 			Block()
+			, numFDse(numFDse)
 		{
-	this->numFDse = numFDse;
-
 	mask = {NUMFDSE};
 };
 
@@ -242,7 +241,7 @@ void DlgWznmRlsWrite::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFDse"] = numFDse;
+	me["numFDse"] = (Json::Value::UInt) numFDse;
 };
 
 void DlgWznmRlsWrite::ContIac::writeXML(
@@ -293,9 +292,8 @@ DlgWznmRlsWrite::ContIacDet::ContIacDet(
 			const bool ChkBso
 		) :
 			Block()
+			, ChkBso(ChkBso)
 		{
-	this->ChkBso = ChkBso;
-
 	mask = {CHKBSO};
 };
 
@@ -400,9 +398,8 @@ DlgWznmRlsWrite::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -414,7 +411,7 @@ void DlgWznmRlsWrite::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 };
 
 void DlgWznmRlsWrite::ContInf::writeXML(
@@ -465,9 +462,8 @@ DlgWznmRlsWrite::ContInfFia::ContInfFia(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -530,9 +526,8 @@ DlgWznmRlsWrite::ContInfLfi::ContInfLfi(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -595,9 +590,8 @@ DlgWznmRlsWrite::ContInfWrc::ContInfWrc(
 			const string& TxtPrg
 		) :
 			Block()
+			, TxtPrg(TxtPrg)
 		{
-	this->TxtPrg = TxtPrg;
-
 	mask = {TXTPRG};
 };
 
@@ -697,9 +691,8 @@ DlgWznmRlsWrite::StatShr::StatShr(
 			const bool ButDneActive
 		) :
 			Block()
+			, ButDneActive(ButDneActive)
 		{
-	this->ButDneActive = ButDneActive;
-
 	mask = {BUTDNEACTIVE};
 };
 
@@ -763,10 +756,9 @@ DlgWznmRlsWrite::StatShrCuc::StatShrCuc(
 			, const bool UldActive
 		) :
 			Block()
+			, UldAvail(UldAvail)
+			, UldActive(UldActive)
 		{
-	this->UldAvail = UldAvail;
-	this->UldActive = UldActive;
-
 	mask = {ULDAVAIL, ULDACTIVE};
 };
 
@@ -833,10 +825,9 @@ DlgWznmRlsWrite::StatShrFia::StatShrFia(
 			, const bool DldActive
 		) :
 			Block()
+			, DldAvail(DldAvail)
+			, DldActive(DldActive)
 		{
-	this->DldAvail = DldAvail;
-	this->DldActive = DldActive;
-
 	mask = {DLDAVAIL, DLDACTIVE};
 };
 
@@ -902,9 +893,8 @@ DlgWznmRlsWrite::StatShrLfi::StatShrLfi(
 			const bool DldActive
 		) :
 			Block()
+			, DldActive(DldActive)
 		{
-	this->DldActive = DldActive;
-
 	mask = {DLDACTIVE};
 };
 
@@ -969,11 +959,10 @@ DlgWznmRlsWrite::StatShrWrc::StatShrWrc(
 			, const bool ButStoActive
 		) :
 			Block()
+			, ButAutActive(ButAutActive)
+			, ButRunActive(ButRunActive)
+			, ButStoActive(ButStoActive)
 		{
-	this->ButAutActive = ButAutActive;
-	this->ButRunActive = ButRunActive;
-	this->ButStoActive = ButStoActive;
-
 	mask = {BUTAUTACTIVE, BUTRUNACTIVE, BUTSTOACTIVE};
 };
 

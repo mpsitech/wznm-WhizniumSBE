@@ -22,11 +22,12 @@ WznmQUsrMNUsergroup::WznmQUsrMNUsergroup(
 			, const string stubMref
 			, const string srefIxWznmVUserlevel
 			, const string titIxWznmVUserlevel
-		) {
-	this->jnum = jnum;
-	this->stubMref = stubMref;
-	this->srefIxWznmVUserlevel = srefIxWznmVUserlevel;
-	this->titIxWznmVUserlevel = titIxWznmVUserlevel;
+		) :
+			jnum(jnum)
+			, stubMref(stubMref)
+			, srefIxWznmVUserlevel(srefIxWznmVUserlevel)
+			, titIxWznmVUserlevel(titIxWznmVUserlevel)
+		{
 };
 
 bool WznmQUsrMNUsergroup::readXML(

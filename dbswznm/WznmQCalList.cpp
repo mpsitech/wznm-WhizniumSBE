@@ -39,28 +39,29 @@ WznmQCalList::WznmQCalList(
 			, const uint retIxWznmWArgtype
 			, const string srefsRetIxWznmWArgtype
 			, const string titsRetIxWznmWArgtype
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->refIxVTbl = refIxVTbl;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->refUref = refUref;
-	this->stubRefUref = stubRefUref;
-	this->invIxWznmWArgtype = invIxWznmWArgtype;
-	this->srefsInvIxWznmWArgtype = srefsInvIxWznmWArgtype;
-	this->titsInvIxWznmWArgtype = titsInvIxWznmWArgtype;
-	this->retIxWznmWArgtype = retIxWznmWArgtype;
-	this->srefsRetIxWznmWArgtype = srefsRetIxWznmWArgtype;
-	this->titsRetIxWznmWArgtype = titsRetIxWznmWArgtype;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, refIxVTbl(refIxVTbl)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, refUref(refUref)
+			, stubRefUref(stubRefUref)
+			, invIxWznmWArgtype(invIxWznmWArgtype)
+			, srefsInvIxWznmWArgtype(srefsInvIxWznmWArgtype)
+			, titsInvIxWznmWArgtype(titsInvIxWznmWArgtype)
+			, retIxWznmWArgtype(retIxWznmWArgtype)
+			, srefsRetIxWznmWArgtype(srefsRetIxWznmWArgtype)
+			, titsRetIxWznmWArgtype(titsRetIxWznmWArgtype)
+		{
 };
 
 void WznmQCalList::writeJSON(

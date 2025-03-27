@@ -118,34 +118,34 @@ public:
 	class StatShr : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint TXFLTYVALID = 1;
-		static const Sbecore::uint TXFDEPVALID = 2;
-		static const Sbecore::uint BUTSAVEAVAIL = 3;
-		static const Sbecore::uint BUTSAVEACTIVE = 4;
-		static const Sbecore::uint TXTSRFACTIVE = 5;
-		static const Sbecore::uint TXFTITACTIVE = 6;
-		static const Sbecore::uint TXFVERACTIVE = 7;
-		static const Sbecore::uint PUPLTYACTIVE = 8;
-		static const Sbecore::uint BUTLTYEDITAVAIL = 9;
-		static const Sbecore::uint LSTDEPACTIVE = 10;
+		static const Sbecore::uint BUTSAVEAVAIL = 1;
+		static const Sbecore::uint BUTSAVEACTIVE = 2;
+		static const Sbecore::uint TXTSRFACTIVE = 3;
+		static const Sbecore::uint TXFTITACTIVE = 4;
+		static const Sbecore::uint TXFVERACTIVE = 5;
+		static const Sbecore::uint PUPLTYACTIVE = 6;
+		static const Sbecore::uint TXFLTYVALID = 7;
+		static const Sbecore::uint BUTLTYEDITAVAIL = 8;
+		static const Sbecore::uint LSTDEPACTIVE = 9;
+		static const Sbecore::uint TXFDEPVALID = 10;
 		static const Sbecore::uint BUTDEPVIEWAVAIL = 11;
 		static const Sbecore::uint BUTDEPVIEWACTIVE = 12;
 		static const Sbecore::uint TXFCMTACTIVE = 13;
 
 	public:
-		StatShr(const bool TxfLtyValid = false, const bool TxfDepValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxfTitActive = true, const bool TxfVerActive = true, const bool PupLtyActive = true, const bool ButLtyEditAvail = true, const bool LstDepActive = true, const bool ButDepViewAvail = true, const bool ButDepViewActive = true, const bool TxfCmtActive = true);
+		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool TxfTitActive = true, const bool TxfVerActive = true, const bool PupLtyActive = true, const bool TxfLtyValid = false, const bool ButLtyEditAvail = true, const bool LstDepActive = true, const bool TxfDepValid = false, const bool ButDepViewAvail = true, const bool ButDepViewActive = true, const bool TxfCmtActive = true);
 
 	public:
-		bool TxfLtyValid;
-		bool TxfDepValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtSrfActive;
 		bool TxfTitActive;
 		bool TxfVerActive;
 		bool PupLtyActive;
+		bool TxfLtyValid;
 		bool ButLtyEditAvail;
 		bool LstDepActive;
+		bool TxfDepValid;
 		bool ButDepViewAvail;
 		bool ButDepViewActive;
 		bool TxfCmtActive;

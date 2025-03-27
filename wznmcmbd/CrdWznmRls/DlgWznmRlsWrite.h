@@ -605,6 +605,7 @@ public:
 	std::string outfolder; // working directory
 	std::string ipfolder; // IP's
 	std::string specfolder; // job-type specific IP's
+	std::string ctpspecfolder; // capability template specific IP's
 	std::string custfolder; // custom IP's
 
 	std::string logaspect;
@@ -615,7 +616,7 @@ public:
 	// IP cust --- IBEGIN
 	void untgz(const std::string& tgzpath, const std::string& outfoder, const bool verbose = false);
 
-	void createIpoutSubfolder(const bool spec, const std::string& sub1, const std::string& sub2 = "");
+	void createIpoutSubfolder(const bool spec, const bool ctpspec, const std::string& sub1, const std::string& sub2 = "");
 	void copyAcvtmp(DbsWznm* dbswznm, const Sbecore::ubigint refWznmMFile, const std::string& tmpfile);
 
 	void createEng(DbsWznm* dbswznm, const bool dplonly);
@@ -666,10 +667,10 @@ private:
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerInSgeCreidle(DbsWznm* dbswznm, const std::string& sref);
-	void handleTimerWithSrefMonInSgeCreate(DbsWznm* dbswznm);
 	void handleTimerWithSrefMonInSgeWrite(DbsWznm* dbswznm);
+	void handleTimerWithSrefMonInSgeCreate(DbsWznm* dbswznm);
+	void handleTimerInSgeCreidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeUpkidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

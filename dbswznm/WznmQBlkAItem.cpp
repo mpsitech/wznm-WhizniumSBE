@@ -45,34 +45,35 @@ WznmQBlkAItem::WznmQBlkAItem(
 			, const ubigint refWznmMVectoritem
 			, const string stubRefWznmMVectoritem
 			, const string Comment
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->blkNum = blkNum;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->sref = sref;
-	this->ixWznmVVartype = ixWznmVVartype;
-	this->srefIxWznmVVartype = srefIxWznmVVartype;
-	this->titIxWznmVVartype = titIxWznmVVartype;
-	this->refWznmMControl = refWznmMControl;
-	this->stubRefWznmMControl = stubRefWznmMControl;
-	this->refWznmMVector = refWznmMVector;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->refWznmMFeed = refWznmMFeed;
-	this->stubRefWznmMFeed = stubRefWznmMFeed;
-	this->refWznmMTable = refWznmMTable;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->refWznmMBlock = refWznmMBlock;
-	this->stubRefWznmMBlock = stubRefWznmMBlock;
-	this->refJ = refJ;
-	this->Defval = Defval;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
-	this->Comment = Comment;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, blkNum(blkNum)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, sref(sref)
+			, ixWznmVVartype(ixWznmVVartype)
+			, srefIxWznmVVartype(srefIxWznmVVartype)
+			, titIxWznmVVartype(titIxWznmVVartype)
+			, refWznmMControl(refWznmMControl)
+			, stubRefWznmMControl(stubRefWznmMControl)
+			, refWznmMVector(refWznmMVector)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, refWznmMFeed(refWznmMFeed)
+			, stubRefWznmMFeed(stubRefWznmMFeed)
+			, refWznmMTable(refWznmMTable)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, refWznmMBlock(refWznmMBlock)
+			, stubRefWznmMBlock(stubRefWznmMBlock)
+			, refJ(refJ)
+			, Defval(Defval)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+			, Comment(Comment)
+		{
 };
 
 void WznmQBlkAItem::writeJSON(

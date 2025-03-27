@@ -25,14 +25,15 @@ WznmQCapList::WznmQCapList(
 			, const string stubTplRefWznmMCapability
 			, const string srefsIxWArtefact
 			, const string titsIxWArtefact
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->stubTplRefWznmMCapability = stubTplRefWznmMCapability;
-	this->srefsIxWArtefact = srefsIxWArtefact;
-	this->titsIxWArtefact = titsIxWArtefact;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, stubTplRefWznmMCapability(stubTplRefWznmMCapability)
+			, srefsIxWArtefact(srefsIxWArtefact)
+			, titsIxWArtefact(titsIxWArtefact)
+		{
 };
 
 bool WznmQCapList::readXML(

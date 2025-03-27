@@ -246,11 +246,11 @@ void QryWznmQryList::rerun_orderSQL(
 			, const uint preIxOrd
 		) {
 	if (preIxOrd == VecVOrd::QTB) sqlstr += " ORDER BY TblWznmMQuery.qtbRefWznmMTable ASC";
-	else if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMQuery.refWznmMTable ASC";
 	else if (preIxOrd == VecVOrd::SRL) sqlstr += " ORDER BY TblWznmMQuery.supIxVSubrole ASC";
+	else if (preIxOrd == VecVOrd::TBL) sqlstr += " ORDER BY TblWznmMQuery.refWznmMTable ASC";
 	else if (preIxOrd == VecVOrd::SUP) sqlstr += " ORDER BY TblWznmMQuery.supRefWznmMQuery ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMQuery.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMQuery.refWznmMVersion ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMQuery.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMQuery.sref ASC";
 };
 

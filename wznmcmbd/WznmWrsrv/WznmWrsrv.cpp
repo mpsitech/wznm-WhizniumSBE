@@ -123,13 +123,11 @@ void WznmWrsrv::writeBlkcontCpp(
 	};
 	outfile << "\t\t) :" << endl;
 	outfile << "\t\t\tBlock()" << endl;
-	outfile << "\t\t{" << endl;
-
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 		bit = bits.nodes[i];
 		wrBitvarConstrCpp(outfile, bit);
 	};
-	outfile << endl;
+	outfile << "\t\t{" << endl;
 
 	outfile << "\tmask = {";
 	for (unsigned int i = 0; i < bits.nodes.size(); i++) {
@@ -573,6 +571,10 @@ void WznmWrsrv::writeBlkdpchCpp(
 			outfile << "\t\t\t, const set<uint>& mask" << endl;
 			outfile << "\t\t) :" << endl;
 			outfile << "\t\t\tDpchEng" << Prjshort << "(Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << ", jref)" << endl;
+			for (unsigned int i = 0; i < bits.nodes.size(); i++) {
+				bit = bits.nodes[i];
+				if ((bit->sref != "jref") && (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::VAR)) wrBitvarConstrCpp(outfile, bit);
+			};
 			outfile << "\t\t{" << endl;
 
 			outfile << "\tif (find(mask, ALL)) this->mask = {";
@@ -590,9 +592,7 @@ void WznmWrsrv::writeBlkdpchCpp(
 				bit = bits.nodes[i];
 
 				if (bit->sref != "jref") {
-					if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::VAR) {
-						wrBitvarConstrCpp(outfile, bit);
-					} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
+					if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::FEED) {
 						outfile << "\tif (find(this->mask, " << Wznm::getBitmasksref(bit->sref) << ") && " << bit->sref << ") this->" << bit->sref << " = *" << bit->sref << ";" << endl;
 					} else if (bit->ixVBasetype == VecWznmVAMBlockItemBasetype::RST) {
 						outfile << "\tif (find(this->mask, " << Wznm::getBitmasksref(bit->sref) << ") && " << bit->sref << ") this->" << bit->sref << " = *" << bit->sref << ";" << endl;
@@ -877,11 +877,9 @@ void WznmWrsrv::writeBlkdpchCpp(
 		if (blk->reaIxWznmWScope & VecWznmWScope::OPENG) {
 			outfile << "\t\t) :" << endl;
 			outfile << "\t\t\tDpchInv" << Prjshort << "(Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << ", oref, jref)" << endl;
-			outfile << "\t\t{" << endl;
 		} else {
 			outfile << "\t\t) :" << endl;
 			outfile << "\t\t\tDpchRet" << Prjshort << "(Vec" << Prjshort << "VDpch::" << StrMod::uc(blk->sref) << ", scrOref, scrJref, ixOpVOpres, pdone)" << endl;
-			outfile << "\t\t{" << endl;
 		};
 
 		for (unsigned int j = 0; j < bits.nodes.size(); j++) {
@@ -889,6 +887,7 @@ void WznmWrsrv::writeBlkdpchCpp(
 			if ((bit->sref != "oref") && (bit->sref != "jref") && (bit->sref != "ixOpVOpres") && (bit->sref != "pdone")) wrBitvarConstrCpp(outfile, bit);
 		};
 
+		outfile << "\t\t{" << endl;
 		outfile << "};" << endl;
 		outfile << endl;
 
@@ -1072,13 +1071,11 @@ void WznmWrsrv::writeBlkstatCpp(
 		};
 		outfile << "\t\t) :" << endl;
 		outfile << "\t\t\tBlock()" << endl;
-		outfile << "\t\t{" << endl;
-
 		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 			bit = bits.nodes[i];
 			wrBitvarConstrCpp(outfile, bit);
 		};
-		outfile << endl;
+		outfile << "\t\t{" << endl;
 
 		outfile << "\tmask = {";
 		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
@@ -1403,12 +1400,11 @@ void WznmWrsrv::writeBlkstgCpp(
 		};
 		outfile << "\t\t) :" << endl;
 		outfile << "\t\t\tBlock()" << endl;
-		outfile << "\t\t{" << endl;
-
 		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
 			bit = bits.nodes[i];
 			wrBitvarConstrCpp(outfile, bit);
 		};
+		outfile << "\t\t{" << endl;
 
 		outfile << "\tmask = {";
 		for (unsigned int i = 0; i < bits.nodes.size(); i++) {
@@ -2477,7 +2473,7 @@ void WznmWrsrv::wrBitvarConstrCpp(
 			fstream& outfile
 			, WznmAMBlockItem* bit
 		) {
-	outfile << "\tthis->" << bit->sref << " = " << bit->sref << ";" << endl;
+	outfile << "\t\t\t, " << bit->sref << "(" << bit->sref << ")" << endl;
 };
 
 void WznmWrsrv::wrBitvarReadjsonCpp(
@@ -2964,6 +2960,7 @@ void WznmWrsrv::writeBooleval(
 		// vocabulary:
 		// custom() - custom rule, implemented e.g. in panel refresh()
 		//
+		// cmbdNotD() - combined daemon not daemon
 		// sge() - stage equals
 		// pre.xxx() - presence of preset
 		// pre.xxxEq() - equivalence of preset
@@ -2983,6 +2980,12 @@ void WznmWrsrv::writeBooleval(
 		outfile << "\ta = false;";
 
 		if (node->key == "custom") {
+
+		} else if (node->key == "cmbdNotD") {
+			outfile << endl;
+			outfile << "#ifdef " << PRJSHORT << "CMBD" << endl;
+			outfile << "\ta = true;" << endl;
+			outfile << "#endif";
 
 		} else if ((node->key == "sge") && (node->subs.size() == 1)) {
 			outfile << " a = (ixVSge == VecVSge::" << StrMod::uc(node->subs[0]->key) << ");";
@@ -3901,12 +3904,12 @@ void WznmWrsrv::wrAlrCpp(
 	// - message text
 	if (conroot == "Abt") {
 		// special treatment for about alert
-		Wznm::getTagtits(dbswznm, "and", "", "", {}, refLcl, refsLcl, andTits);
-		Wznm::getTagtits(dbswznm, "version", "", "", {}, refLcl, refsLcl, versionTits);
-		Wznm::getTagtits(dbswznm, "rlsdate", "", "", {}, refLcl, refsLcl, rlsdateTits);
-		Wznm::getTagtits(dbswznm, "ctbs", "", "", {}, refLcl, refsLcl, ctbsTits);
-		Wznm::getTagtits(dbswznm, "pctbs", "", "", {}, refLcl, refsLcl, pctbsTits);
-		Wznm::getTagtits(dbswznm, "libs", "", "", {}, refLcl, refsLcl, libsTits);
+		Wznm::getTagtits(dbswznm, 0, "and", "", "", {}, refLcl, refsLcl, andTits);
+		Wznm::getTagtits(dbswznm, 0, "version", "", "", {}, refLcl, refsLcl, versionTits);
+		Wznm::getTagtits(dbswznm, 0, "rlsdate", "", "", {}, refLcl, refsLcl, rlsdateTits);
+		Wznm::getTagtits(dbswznm, 0, "ctbs", "", "", {}, refLcl, refsLcl, ctbsTits);
+		Wznm::getTagtits(dbswznm, 0, "pctbs", "", "", {}, refLcl, refsLcl, pctbsTits);
+		Wznm::getTagtits(dbswznm, 0, "libs", "", "", {}, refLcl, refsLcl, libsTits);
 
 		wrAlrCpp_abtctbini(dbswznm, refWznmMVersion, refsCtb, refsPctb);
 		wrAlrCpp_abtlibini(dbswznm, refWznmMVersion, refsLib);
@@ -3945,7 +3948,7 @@ void WznmWrsrv::wrAlrCpp(
 
 	} else if (conroot == "Trm") {
 		// special treatment for termination alert
-		Wznm::getTagtits(dbswznm, "warnterm", "", "", {}, refLcl, refsLcl, warntermTits);
+		Wznm::getTagtits(dbswznm, 0, "warnterm", "", "", {}, refLcl, refsLcl, warntermTits);
 
 		for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 			lcl = lcls.nodes[i];

@@ -131,7 +131,7 @@ IexWznmBui	bui	basic user interface structure	0.9.23	modules and cards
 		tsref	fil	x1RefWznmMLocale	srefX1RefWznmMLocale	loc		rst	&custom;		StubWznmLocSref
 		tbl	fil;tbl	Title	Title	tit		void
 		ImeIMImpexpcol.end
-	113	0	TblWznmMPreset	ImeIMPreset	refWznmMVersion;sref	retrupd
+	113	0	TblWznmMPreset	ImeIMPreset	sref	retrupd
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		tbl	tbl	refWznmMVersion	refWznmMVersion			preset		PreWznmRefVer
@@ -818,7 +818,7 @@ IexWznmJtr	jtr	custom job tree features	0.9.29	updates to jobs, calls and blocks
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		tbl	fil;tbl	sref	sref	srf		void
 		ImeIMImpexpcol.end
-	104	95	TblWznmMVector	ImeIMVector	refWznmMVersion;hkIxVTbl;sref	ins;retrupd
+	104	95	TblWznmMVector	ImeIMVector	sref	ins;retrupd
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		vsref	fil	ixVBasetype	srefIxVBasetype	typ		ixsref
@@ -845,7 +845,7 @@ IexWznmJtr	jtr	custom job tree features	0.9.29	updates to jobs, calls and blocks
 		tbl	fil;tbl	Title	Title	tit		void
 		tbl	fil;tbl	Comment	Comment	cmt		void
 		ImeIMImpexpcol.end
-	99	95	TblWznmMBlock	ImeIMBlock1	refIxVTbl;refUref;sref	ins;retr;retrupd
+	99	95	TblWznmMBlock	ImeIMBlock1	sref	ins;retr;retrupd
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		vsref	fil	ixVBasetype	srefIxVBasetype	typ		ixsref
@@ -861,7 +861,7 @@ IexWznmJtr	jtr	custom job tree features	0.9.29	updates to jobs, calls and blocks
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		idiref	fil	ref	iref	irf		void
 		ImeIMImpexpcol.end
-	100	99	TblWznmAMBlockItem	ImeIAMBlockItem1	blkRefWznmMBlock;sref	ins;retrupd
+	100	99	TblWznmAMBlockItem	ImeIAMBlockItem1	sref	ins;retrupd
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		iref	fil	refWznmCAMBlockItem	irefRefWznmCAMBlockItem	clu	140	previmp
@@ -1039,7 +1039,7 @@ IexWznmJtr	jtr	custom job tree features	0.9.29	updates to jobs, calls and blocks
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		idiref	fil	ref	iref	irf		void
 		ImeIMImpexpcol.end
-	124	122	TblWznmAMBlockItem	ImeIAMBlockItem2	blkRefWznmMBlock;sref	ins;retr;retrupd
+	124	122	TblWznmAMBlockItem	ImeIAMBlockItem2	sref	ins;retr;retrupd
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		iref	fil	refWznmCAMBlockItem	irefRefWznmCAMBlockItem	clu	123	previmp
@@ -1262,7 +1262,7 @@ IexWznmOpk	opk	operation pack structure	0.9.23	operation packs
 	ImeIMImpexp.end
 IexWznmPrj	prj	projects and versions	0.9.29
 	ImeIMImpexp.iref	irefSupRefWznmMImpexp	srefRefWznmMTable	sref	rtrSrefsWznmMImpexpcol	srefsIxWIop	Comment
-	123	0	TblWznmMProject	ImeIMProject	Short	retrins
+	123	0	TblWznmMProject	ImeIMProject		ins
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		tbl	tbl	grp	grp			preset		PreWznmGroup
 		tbl	tbl	own	own			preset		PreWznmOwner
@@ -1362,7 +1362,7 @@ IexWznmUix	uix	custom user interface features	0.9.23	updates to dialogs, panels,
 		tsref	fil	x2RefWznmMLocale	srefX2RefWznmMLocale	loc		rst			StubWznmLocSref
 		tbl	fil;tbl	osrefKVal	osrefKVal	val		void
 		ImeIMImpexpcol.end
-	79	76	TblWznmMPanel	ImeIMPanel	carRefWznmMCard;sref	ins;retr;retrupd;rmv
+	79	76	TblWznmMPanel	ImeIMPanel	sref	ins;retr;retrupd;rmv
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		vsref	fil	ixVBasetype	srefIxVBasetype	typ		ixsref
@@ -1378,7 +1378,7 @@ IexWznmUix	uix	custom user interface features	0.9.23	updates to dialogs, panels,
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		idiref	fil	ref	iref	irf		void
 		ImeIMImpexpcol.end
-	81	79	TblWznmMControl	ImeIMControl2	hkIxVTbl;hkUref;sref	ins;retr;retrupd;rmv
+	81	79	TblWznmMControl	ImeIMControl2	sref	ins;retr;retrupd;rmv
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		idiref	fil	ref	iref	irf		void
@@ -1408,14 +1408,14 @@ IexWznmUix	uix	custom user interface features	0.9.23	updates to dialogs, panels,
 		tbl	fil;tbl	Active	Active	act		void
 		tbl	fil;tbl	srefsKOption	srefsKOption	opt		void
 		ImeIMImpexpcol.end
-	82	81	TblWznmJMControlTitle	ImeIJMControlTitle2	refWznmMControl;srefX1RefWznmMLocale	ins;retrupd
+	82	81	TblWznmJMControlTitle	ImeIJMControlTitle2	srefX1RefWznmMLocale	ins;retrupd
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		tbl	tbl	refWznmMControl	refWznmMControl		81	sup
 		tsref	fil	x1RefWznmMLocale	srefX1RefWznmMLocale	loc		rst	&custom;		StubWznmLocSref
 		tbl	fil;tbl	Title	Title	tit		void
 		ImeIMImpexpcol.end
-	4	81	TblWznmJMControl	ImeIJMControl2	refWznmMControl;srefX1RefWznmMVectoritem	ins;retrupd
+	4	81	TblWznmJMControl	ImeIJMControl2	srefX1RefWznmMVectoritem	ins;retrupd
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		tbl	tbl	refWznmMControl	refWznmMControl		81	sup
@@ -1423,7 +1423,7 @@ IexWznmUix	uix	custom user interface features	0.9.23	updates to dialogs, panels,
 		tsref	fil	stdRefWznmMStub	srefStdRefWznmMStub	sts		rst			StubWznmStbStd
 		tsref	fil	shoRefWznmMStub	srefShoRefWznmMStub	shs		rst			StubWznmStbStd
 		ImeIMImpexpcol.end
-	83	81	TblWznmAMControlPar	ImeIAMControlPar2	refWznmMControl;x1SrefKKey;srefX2RefWznmMLocale	ins;retrupd
+	83	81	TblWznmAMControlPar	ImeIAMControlPar2	x1SrefKKey;srefX2RefWznmMLocale	ins;retrupd
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		tbl	tbl	refWznmMControl	refWznmMControl		81	sup
@@ -1563,7 +1563,7 @@ IexWznmUix	uix	custom user interface features	0.9.23	updates to dialogs, panels,
 		tsref	fil	x1RefWznmMLocale	srefX1RefWznmMLocale	loc		rst	&custom;		StubWznmLocSref
 		tbl	fil;tbl	Title	Title	tit		void
 		ImeIMImpexpcol.end
-	88	0	TblWznmMQuery	ImeIMQuery	refWznmMVersion;sref	ins;retr;rmv
+	88	0	TblWznmMQuery	ImeIMQuery	sref	ins;retr;rmv
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		idiref	fil	ref	iref	irf		void
@@ -1590,7 +1590,7 @@ IexWznmUix	uix	custom user interface features	0.9.23	updates to dialogs, panels,
 		idiref	fil	refWznmMQuerymod	irefRefWznmMQuerymod	qmd		imppp
 		tbl	tbl	refR	refR		89	sup
 		ImeIMImpexpcol.end
-	7	88	TblWznmMQuerymod	ImeIMQuerymod	qryRefWznmMQuery;srefRefIxVTbl;srefRefUref	ins;retrupd;rmv
+	7	88	TblWznmMQuerymod	ImeIMQuerymod	srefRefIxVTbl;srefRefUref	ins;retrupd;rmv
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		idiref	fil	ref	iref	irf		void
@@ -1616,14 +1616,14 @@ IexWznmUix	uix	custom user interface features	0.9.23	updates to dialogs, panels,
 		tsref	fil	refWznmMVector	srefRefWznmMVector	vec		custsql			StubWznmVecStd
 		tsref	fil	refWznmMVectoritem	srefRefWznmMVectoritem	vit		custsql			StubWznmVitSref
 		ImeIMImpexpcol.end
-	63	88	TblWznmAMQueryOrder	ImeIAMQueryOrder		ins;rmv
+	63	88	TblWznmAMQueryOrder	ImeIAMQueryOrder	Short	ins;rmv
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		tbl	tbl	refWznmMQuery	refWznmMQuery		88	sup
 		tbl	fil;tbl	Short	Short	tco		void
 		tbl	fil;tbl	srefsWznmMTablecol	srefsWznmMTablecol	tco		void
 		ImeIMImpexpcol.end
-	91	88	TblWznmMQuerycol	ImeIMQuerycol	qryRefWznmMQuery;sref	ins;retr;retrupd;rmv
+	91	88	TblWznmMQuerycol	ImeIMQuerycol	sref	ins;retr;retrupd;rmv
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		vsref	fil	ixVBasetype	srefIxVBasetype	typ		ixsref
@@ -1635,7 +1635,7 @@ IexWznmUix	uix	custom user interface features	0.9.23	updates to dialogs, panels,
 		tbl	fil;tbl	Short	Short	sho		void
 		tsref	fil	refWznmMStub	srefRefWznmMStub	stb		rst			StubWznmStbStd
 		ImeIMImpexpcol.end
-	92	91	TblWznmJMQuerycolStub	ImeIJMQuerycolStub	refWznmMQuery;srefX1RefWznmMVectoritem;srefX2RefWznmMPreset	ins;retrupd
+	92	91	TblWznmJMQuerycolStub	ImeIJMQuerycolStub	srefX1RefWznmMVectoritem;srefX2RefWznmMPreset	ins;retrupd
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		iop	fil		srefIxWznmVIop	iop		ixsref
 		tbl	tbl	refWznmMQuerycol	refWznmMQuerycol		91	sup
@@ -1647,6 +1647,32 @@ IexWznmUix	uix	custom user interface features	0.9.23	updates to dialogs, panels,
 		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
 		tsref	fil	refWznmMPanel	srefRefWznmMPanel	pnl		previmp			StubWznmPnlStd
 		tsref	fil	refWznmMQuery	srefRefWznmMQuery	qry		previmp			StubWznmQryStd
+		ImeIMImpexpcol.end
+	ImeIMImpexp.end
+IexWznmVis	vis	visualization features	1.1.13
+	ImeIMImpexp.iref	irefSupRefWznmMImpexp	srefRefWznmMTable	sref	rtrSrefsWznmMImpexpcol	srefsIxWIop	Comment
+	188	0	TblWznmMSheet	ImeIMSheet		ins
+		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
+		tbl	tbl	visRefWznmMVisual	visRefWznmMVisual			preset		PreWznmRefVis
+		tbl	tbl	visNum	visNum			incr
+		tbl	fil;tbl	Title	Title	tit		void
+		ImeIMImpexpcol.end
+	189	188	TblWznmMBox	ImeIMBox		ins
+		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
+		idiref	fil	ref	iref	irf		void
+		tbl	tbl	refWznmMSheet	refWznmMSheet		188	sup
+		vsref	fil	unvIxWznmVMaintable	srefUnvIxWznmVMaintable	mtb		ixsref
+		tsref	fil	unvUref	srefUnvUref	unv		custsql
+		tbl	fil;tbl	x	x	x		void
+		tbl	fil;tbl	y	y	y		void
+		ImeIMImpexpcol.end
+	190	189	TblWznmRMBoxMBox	ImeIRMBoxMBox		ins
+		ImeIMImpexpcol.srefIxVBasetype	srefsIxWOccurrence	srefRefWznmMTablecol	sref	Short	irefRefWznmMImpexp	srefIxVConvtype	Defval	srefRefWznmMPreset	srefRefWznmMStub	srefRefWznmMVectoritem
+		tbl	tbl	orgRefWznmMBox	orgRefWznmMBox		189	sup
+		iref	fil	dstRefWznmMBox	irefDstRefWznmMBox	dst		imppp
+		tbl	fil;tbl	orgClk	orgClk	ocl		void
+		tbl	fil;tbl	dstClk	dstClk	dcl		void
+		tbl	fil;tbl	Weight	Weight	wgt		void
 		ImeIMImpexpcol.end
 	ImeIMImpexp.end
 ImeIMImpexpcplx.end

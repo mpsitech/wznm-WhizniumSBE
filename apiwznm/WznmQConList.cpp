@@ -34,23 +34,24 @@ WznmQConList::WznmQConList(
 			, const string stubSupRefWznmMControl
 			, const string srefIxVSubtype
 			, const string titIxVSubtype
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->srefHkIxVTbl = srefHkIxVTbl;
-	this->titHkIxVTbl = titHkIxVTbl;
-	this->stubHkUref = stubHkUref;
-	this->srefHkIxVSection = srefHkIxVSection;
-	this->titHkIxVSection = titHkIxVSection;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->stubRefUref = stubRefUref;
-	this->stubSupRefWznmMControl = stubSupRefWznmMControl;
-	this->srefIxVSubtype = srefIxVSubtype;
-	this->titIxVSubtype = titIxVSubtype;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, srefHkIxVTbl(srefHkIxVTbl)
+			, titHkIxVTbl(titHkIxVTbl)
+			, stubHkUref(stubHkUref)
+			, srefHkIxVSection(srefHkIxVSection)
+			, titHkIxVSection(titHkIxVSection)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, stubRefUref(stubRefUref)
+			, stubSupRefWznmMControl(stubSupRefWznmMControl)
+			, srefIxVSubtype(srefIxVSubtype)
+			, titIxVSubtype(titIxVSubtype)
+		{
 };
 
 bool WznmQConList::readXML(

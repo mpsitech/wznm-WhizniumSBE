@@ -23,6 +23,7 @@ function refresh() {
 
 	var TxtAppAvail = (retrieveSi(srcdoc, "StatShrWznmNavPre", "TxtAppAvail") == "true"); if (TxtAppAvail) n++;
 	var TxtVerAvail = (retrieveSi(srcdoc, "StatShrWznmNavPre", "TxtVerAvail") == "true"); if (TxtVerAvail) n++;
+	var TxtVisAvail = (retrieveSi(srcdoc, "StatShrWznmNavPre", "TxtVisAvail") == "true"); if (TxtVisAvail) n++;
 
 	line = contdoc.getElementById("line");
 	while (line.firstChild) line.removeChild(line.firstChild);
@@ -43,6 +44,14 @@ function refresh() {
 		line.appendChild(makeImgBut("ButVerRemove", "icon/close"));
 		if (i == n) line.appendChild(makeSpanCpt("\u00a0" + retrieveTi(srcdoc,  "TagWznmNavPre", "CptVer") + ": " + retrieveCi(srcdoc, "ContInfWznmNavPre", "TxtVer")));
 		else line.appendChild(makeSpanCpt("\u00a0" + retrieveTi(srcdoc, "TagWznmNavPre", "CptVer") + ": " + retrieveCi(srcdoc, "ContInfWznmNavPre", "TxtVer") + ",\u00a0\u00a0"));
+	};
+
+	if (TxtVisAvail) {
+		i++;
+
+		line.appendChild(makeImgBut("ButVisRemove", "icon/close"));
+		if (i == n) line.appendChild(makeSpanCpt("\u00a0" + retrieveTi(srcdoc,  "TagWznmNavPre", "CptVis") + ": " + retrieveCi(srcdoc, "ContInfWznmNavPre", "TxtVis")));
+		else line.appendChild(makeSpanCpt("\u00a0" + retrieveTi(srcdoc, "TagWznmNavPre", "CptVis") + ": " + retrieveCi(srcdoc, "ContInfWznmNavPre", "TxtVis") + ",\u00a0\u00a0"));
 	};
 
 };

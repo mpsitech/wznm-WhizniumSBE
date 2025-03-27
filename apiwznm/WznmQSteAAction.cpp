@@ -36,25 +36,26 @@ WznmQSteAAction::WznmQSteAAction(
 			, const string Ip3
 			, const string tr4SrefATrig
 			, const string Ip4
-		) {
-	this->jnum = jnum;
-	this->srefIxVSection = srefIxVSection;
-	this->titIxVSection = titIxVSection;
-	this->srefIxVType = srefIxVType;
-	this->titIxVType = titIxVType;
-	this->stubRefWznmMRtjob = stubRefWznmMRtjob;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
-	this->stubSnxRefWznmMState = stubSnxRefWznmMState;
-	this->stubRefWznmMSequence = stubRefWznmMSequence;
-	this->tr1SrefATrig = tr1SrefATrig;
-	this->Ip1 = Ip1;
-	this->tr2SrefATrig = tr2SrefATrig;
-	this->Ip2 = Ip2;
-	this->tr3SrefATrig = tr3SrefATrig;
-	this->Ip3 = Ip3;
-	this->tr4SrefATrig = tr4SrefATrig;
-	this->Ip4 = Ip4;
+		) :
+			jnum(jnum)
+			, srefIxVSection(srefIxVSection)
+			, titIxVSection(titIxVSection)
+			, srefIxVType(srefIxVType)
+			, titIxVType(titIxVType)
+			, stubRefWznmMRtjob(stubRefWznmMRtjob)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+			, stubSnxRefWznmMState(stubSnxRefWznmMState)
+			, stubRefWznmMSequence(stubRefWznmMSequence)
+			, tr1SrefATrig(tr1SrefATrig)
+			, Ip1(Ip1)
+			, tr2SrefATrig(tr2SrefATrig)
+			, Ip2(Ip2)
+			, tr3SrefATrig(tr3SrefATrig)
+			, Ip3(Ip3)
+			, tr4SrefATrig(tr4SrefATrig)
+			, Ip4(Ip4)
+		{
 };
 
 bool WznmQSteAAction::readXML(

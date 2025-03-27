@@ -24,6 +24,7 @@ uint PnlWznmNavPre::VecVDo::getIx(
 
 	if (s == "butappremoveclick") return BUTAPPREMOVECLICK;
 	if (s == "butverremoveclick") return BUTVERREMOVECLICK;
+	if (s == "butvisremoveclick") return BUTVISREMOVECLICK;
 
 	return(0);
 };
@@ -33,6 +34,7 @@ string PnlWznmNavPre::VecVDo::getSref(
 		) {
 	if (ix == BUTAPPREMOVECLICK) return("ButAppRemoveClick");
 	if (ix == BUTVERREMOVECLICK) return("ButVerRemoveClick");
+	if (ix == BUTVISREMOVECLICK) return("ButVisRemoveClick");
 
 	return("");
 };
@@ -44,13 +46,14 @@ string PnlWznmNavPre::VecVDo::getSref(
 PnlWznmNavPre::ContInf::ContInf(
 			const string& TxtApp
 			, const string& TxtVer
+			, const string& TxtVis
 		) :
 			Block()
+			, TxtApp(TxtApp)
+			, TxtVer(TxtVer)
+			, TxtVis(TxtVis)
 		{
-	this->TxtApp = TxtApp;
-	this->TxtVer = TxtVer;
-
-	mask = {TXTAPP, TXTVER};
+	mask = {TXTAPP, TXTVER, TXTVIS};
 };
 
 bool PnlWznmNavPre::ContInf::readXML(
@@ -72,6 +75,7 @@ bool PnlWznmNavPre::ContInf::readXML(
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "TxtApp", TxtApp)) add(TXTAPP);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "TxtVer", TxtVer)) add(TXTVER);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ci", "sref", "TxtVis", TxtVis)) add(TXTVIS);
 	};
 
 	return basefound;
@@ -84,6 +88,7 @@ set<uint> PnlWznmNavPre::ContInf::comm(
 
 	if (TxtApp == comp->TxtApp) insert(items, TXTAPP);
 	if (TxtVer == comp->TxtVer) insert(items, TXTVER);
+	if (TxtVis == comp->TxtVis) insert(items, TXTVIS);
 
 	return(items);
 };
@@ -96,7 +101,7 @@ set<uint> PnlWznmNavPre::ContInf::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXTAPP, TXTVER};
+	diffitems = {TXTAPP, TXTVER, TXTVIS};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -109,13 +114,14 @@ set<uint> PnlWznmNavPre::ContInf::diff(
 PnlWznmNavPre::StatShr::StatShr(
 			const bool TxtAppAvail
 			, const bool TxtVerAvail
+			, const bool TxtVisAvail
 		) :
 			Block()
+			, TxtAppAvail(TxtAppAvail)
+			, TxtVerAvail(TxtVerAvail)
+			, TxtVisAvail(TxtVisAvail)
 		{
-	this->TxtAppAvail = TxtAppAvail;
-	this->TxtVerAvail = TxtVerAvail;
-
-	mask = {TXTAPPAVAIL, TXTVERAVAIL};
+	mask = {TXTAPPAVAIL, TXTVERAVAIL, TXTVISAVAIL};
 };
 
 bool PnlWznmNavPre::StatShr::readXML(
@@ -137,6 +143,7 @@ bool PnlWznmNavPre::StatShr::readXML(
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxtAppAvail", TxtAppAvail)) add(TXTAPPAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxtVerAvail", TxtVerAvail)) add(TXTVERAVAIL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxtVisAvail", TxtVisAvail)) add(TXTVISAVAIL);
 	};
 
 	return basefound;
@@ -149,6 +156,7 @@ set<uint> PnlWznmNavPre::StatShr::comm(
 
 	if (TxtAppAvail == comp->TxtAppAvail) insert(items, TXTAPPAVAIL);
 	if (TxtVerAvail == comp->TxtVerAvail) insert(items, TXTVERAVAIL);
+	if (TxtVisAvail == comp->TxtVisAvail) insert(items, TXTVISAVAIL);
 
 	return(items);
 };
@@ -161,7 +169,7 @@ set<uint> PnlWznmNavPre::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXTAPPAVAIL, TXTVERAVAIL};
+	diffitems = {TXTAPPAVAIL, TXTVERAVAIL, TXTVISAVAIL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -174,13 +182,14 @@ set<uint> PnlWznmNavPre::StatShr::diff(
 PnlWznmNavPre::Tag::Tag(
 			const string& CptApp
 			, const string& CptVer
+			, const string& CptVis
 		) :
 			Block()
+			, CptApp(CptApp)
+			, CptVer(CptVer)
+			, CptVis(CptVis)
 		{
-	this->CptApp = CptApp;
-	this->CptVer = CptVer;
-
-	mask = {CPTAPP, CPTVER};
+	mask = {CPTAPP, CPTVER, CPTVIS};
 };
 
 bool PnlWznmNavPre::Tag::readXML(
@@ -202,6 +211,7 @@ bool PnlWznmNavPre::Tag::readXML(
 	if (basefound) {
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "CptApp", CptApp)) add(CPTAPP);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "CptVer", CptVer)) add(CPTVER);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Ti", "sref", "CptVis", CptVis)) add(CPTVIS);
 	};
 
 	return basefound;
@@ -217,11 +227,11 @@ PnlWznmNavPre::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMNAVPREDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmNavPre::DpchAppDo::getSrefsMask() {

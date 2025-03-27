@@ -59,17 +59,16 @@ PnlWznmVerDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, TxfMaj(TxfMaj)
+			, TxfMin(TxfMin)
+			, TxfSub(TxfSub)
+			, numFPupJst(numFPupJst)
+			, numFPupSte(numFPupSte)
+			, numsFLstDty(numsFLstDty)
+			, numsFLstOpt(numsFLstOpt)
+			, numFPupJ(numFPupJ)
+			, TxfCmt(TxfCmt)
 		{
-	this->TxfMaj = TxfMaj;
-	this->TxfMin = TxfMin;
-	this->TxfSub = TxfSub;
-	this->numFPupJst = numFPupJst;
-	this->numFPupSte = numFPupSte;
-	this->numsFLstDty = numsFLstDty;
-	this->numsFLstOpt = numsFLstOpt;
-	this->numFPupJ = numFPupJ;
-	this->TxfCmt = TxfCmt;
-
 	mask = {TXFMAJ, TXFMIN, TXFSUB, NUMFPUPJST, NUMFPUPSTE, NUMSFLSTDTY, NUMSFLSTOPT, NUMFPUPJ, TXFCMT};
 };
 
@@ -142,11 +141,11 @@ void PnlWznmVerDetail::ContIac::writeJSON(
 	me["TxfMaj"] = TxfMaj;
 	me["TxfMin"] = TxfMin;
 	me["TxfSub"] = TxfSub;
-	me["numFPupJst"] = numFPupJst;
-	me["numFPupSte"] = numFPupSte;
+	me["numFPupJst"] = (Json::Value::UInt) numFPupJst;
+	me["numFPupSte"] = (Json::Value::UInt) numFPupSte;
 	Jsonio::writeUintvec(me, "numsFLstDty", numsFLstDty);
 	Jsonio::writeUintvec(me, "numsFLstOpt", numsFLstOpt);
-	me["numFPupJ"] = numFPupJ;
+	me["numFPupJ"] = (Json::Value::UInt) numFPupJ;
 	me["TxfCmt"] = TxfCmt;
 };
 
@@ -221,16 +220,15 @@ PnlWznmVerDetail::ContInf::ContInf(
 			, const string& TxtAb3
 		) :
 			Block()
+			, TxtPrj(TxtPrj)
+			, TxtBvr(TxtBvr)
+			, TxtLoc(TxtLoc)
+			, TxtDty(TxtDty)
+			, TxtOpt(TxtOpt)
+			, TxtAb1(TxtAb1)
+			, TxtAb2(TxtAb2)
+			, TxtAb3(TxtAb3)
 		{
-	this->TxtPrj = TxtPrj;
-	this->TxtBvr = TxtBvr;
-	this->TxtLoc = TxtLoc;
-	this->TxtDty = TxtDty;
-	this->TxtOpt = TxtOpt;
-	this->TxtAb1 = TxtAb1;
-	this->TxtAb2 = TxtAb2;
-	this->TxtAb3 = TxtAb3;
-
 	mask = {TXTPRJ, TXTBVR, TXTLOC, TXTDTY, TXTOPT, TXTAB1, TXTAB2, TXTAB3};
 };
 
@@ -326,8 +324,8 @@ void PnlWznmVerDetail::StatApp::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstDtyAlt"] = LstDtyAlt;
 	me["LstOptAlt"] = LstOptAlt;
-	me["LstDtyNumFirstdisp"] = LstDtyNumFirstdisp;
-	me["LstOptNumFirstdisp"] = LstOptNumFirstdisp;
+	me["LstDtyNumFirstdisp"] = (Json::Value::UInt) LstDtyNumFirstdisp;
+	me["LstOptNumFirstdisp"] = (Json::Value::UInt) LstOptNumFirstdisp;
 };
 
 void PnlWznmVerDetail::StatApp::writeXML(
@@ -387,33 +385,32 @@ PnlWznmVerDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtPrjActive(TxtPrjActive)
+			, ButPrjViewAvail(ButPrjViewAvail)
+			, ButPrjViewActive(ButPrjViewActive)
+			, TxfMajActive(TxfMajActive)
+			, TxfMinActive(TxfMinActive)
+			, TxfSubActive(TxfSubActive)
+			, TxtBvrActive(TxtBvrActive)
+			, ButBvrViewAvail(ButBvrViewAvail)
+			, ButBvrViewActive(ButBvrViewActive)
+			, TxtLocActive(TxtLocActive)
+			, ButLocViewAvail(ButLocViewAvail)
+			, ButLocViewActive(ButLocViewActive)
+			, PupJstActive(PupJstActive)
+			, ButJstEditAvail(ButJstEditAvail)
+			, PupSteActive(PupSteActive)
+			, LstDtyActive(LstDtyActive)
+			, LstOptActive(LstOptActive)
+			, PupJActive(PupJActive)
+			, ButJEditAvail(ButJEditAvail)
+			, TxtAb1Active(TxtAb1Active)
+			, TxtAb2Active(TxtAb2Active)
+			, TxtAb3Active(TxtAb3Active)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtPrjActive = TxtPrjActive;
-	this->ButPrjViewAvail = ButPrjViewAvail;
-	this->ButPrjViewActive = ButPrjViewActive;
-	this->TxfMajActive = TxfMajActive;
-	this->TxfMinActive = TxfMinActive;
-	this->TxfSubActive = TxfSubActive;
-	this->TxtBvrActive = TxtBvrActive;
-	this->ButBvrViewAvail = ButBvrViewAvail;
-	this->ButBvrViewActive = ButBvrViewActive;
-	this->TxtLocActive = TxtLocActive;
-	this->ButLocViewAvail = ButLocViewAvail;
-	this->ButLocViewActive = ButLocViewActive;
-	this->PupJstActive = PupJstActive;
-	this->ButJstEditAvail = ButJstEditAvail;
-	this->PupSteActive = PupSteActive;
-	this->LstDtyActive = LstDtyActive;
-	this->LstOptActive = LstOptActive;
-	this->PupJActive = PupJActive;
-	this->ButJEditAvail = ButJEditAvail;
-	this->TxtAb1Active = TxtAb1Active;
-	this->TxtAb2Active = TxtAb2Active;
-	this->TxtAb3Active = TxtAb3Active;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTPRJACTIVE, BUTPRJVIEWAVAIL, BUTPRJVIEWACTIVE, TXFMAJACTIVE, TXFMINACTIVE, TXFSUBACTIVE, TXTBVRACTIVE, BUTBVRVIEWAVAIL, BUTBVRVIEWACTIVE, TXTLOCACTIVE, BUTLOCVIEWAVAIL, BUTLOCVIEWACTIVE, PUPJSTACTIVE, BUTJSTEDITAVAIL, PUPSTEACTIVE, LSTDTYACTIVE, LSTOPTACTIVE, PUPJACTIVE, BUTJEDITAVAIL, TXTAB1ACTIVE, TXTAB2ACTIVE, TXTAB3ACTIVE, TXFCMTACTIVE};
 };
 

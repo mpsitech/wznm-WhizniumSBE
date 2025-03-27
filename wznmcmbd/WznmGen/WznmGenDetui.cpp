@@ -851,7 +851,7 @@ void WznmGenDetui::genCarnav(
 				VecWznmVMControlRefTbl::VOID, 0, supref, 1, supnum++, VecWznmVMControlScope::APP, 0, "MspSes2", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "");
 
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::MIT, 0, VecWznmVMControlHkTbl::CAR, car->ref, connum++, VecWznmVMControlHkSection::MBAR,
-				VecWznmVMControlRefTbl::VOID, 0, supref, 1, supnum++, VecWznmVMControlScope::SHR, 0, "MitSesSps", VecWznmVMControlSubtype::VOID, "suspsess", 0, "", 0, 0, 0, "stg" + StrMod::lc(Prjshort) + "appearance.suspsessEq(true)", "", "cap");
+				VecWznmVMControlRefTbl::VOID, 0, supref, 1, supnum++, VecWznmVMControlScope::SHR, 0, "MitSesSps", VecWznmVMControlSubtype::VOID, "suspsess", 0, "", 0, 0, 0, "stg" + StrMod::lc(Prjshort) + "behavior.suspsessEq(true)", "", "cap");
 
 	for (unsigned int i = 0; i < refsLcl.size(); i++) {
 		len = getTaglen(dbswznm, "suspsess", "", refsLcl[i]);
@@ -2647,7 +2647,7 @@ void WznmGenDetui::genPnl_cjttag(
 
 	// 1st try: tag title with matching locale; 2nd try: default tag title; 3rd try: tco sref
 
-	Wznm::getTagtits(dbswznm, srefTag, "", "", {}, refLcl, refsLcl, tagTits, false);
+	Wznm::getTagtits(dbswznm, 0, srefTag, "", "", {}, refLcl, refsLcl, tagTits, false);
 
 	if (!tagTits.empty()) {
 		for (unsigned int i = 0; i < refsLcl.size(); i++) {
@@ -2787,7 +2787,7 @@ void WznmGenDetui::genPnlprerec(
 	dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::CPT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::HDR,
 				VecWznmVMControlRefTbl::VOID, 0, 0, 0, 0, VecWznmVMControlScope::APP, 0, "Cpt", VecWznmVMControlSubtype::VOID, "", 0, "", 0, 0, 0, "", "", "");
 
-	Wznm::getTagtits(dbswznm, "and", "", "", {}, refLcl, refsLcl, andTits, false);
+	Wznm::getTagtits(dbswznm, 0, "and", "", "", {}, refLcl, refsLcl, andTits, false);
 
 	for (unsigned int i = 0; i < refsLcl.size(); i++) {
 		s = "";
@@ -3064,7 +3064,7 @@ void WznmGenDetui::genPnldetail(
 
 					dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXF, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::CONT,
 								VecWznmVMControlRefTbl::TCO, refTco, supcon->ref, 1, supnum++, VecWznmVMControlScope::SHR, 0, "Txf" + prefix + StrMod::cap(tco->Short), VecWznmVMControlSubtype::VOID,
-								"", 0, "", 0, 0, 0, "", "", "");
+								"", 0, "", 0, 0, 0, "", "", "valid");
 
 					dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::CONT,
 								VecWznmVMControlRefTbl::VOID, 0, supcon->ref, 1, supnum++, VecWznmVMControlScope::SHR, 0, "But" + prefix + StrMod::cap(tco->Short) + "Edit", VecWznmVMControlSubtype::VOID,
@@ -3118,7 +3118,7 @@ void WznmGenDetui::genPnldetail(
 
 					dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXF, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::CONT,
 								VecWznmVMControlRefTbl::TCO, refTco, supcon->ref, 1, supnum++, VecWznmVMControlScope::SHR, 0, "Txf" + prefix + StrMod::cap(tco->Short), VecWznmVMControlSubtype::VOID,
-								"", 0, "", 0, 0, 0, "", "", "");
+								"", 0, "", 0, 0, 0, "", "", "valid");
 
 					dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::BUT, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::CONT,
 								VecWznmVMControlRefTbl::VOID, 0, supcon->ref, 1, supnum++, VecWznmVMControlScope::SHR, 0, "But" + prefix + StrMod::cap(tco->Short) + "Edit", VecWznmVMControlSubtype::VOID,
@@ -3462,7 +3462,6 @@ void WznmGenDetui::genPnldetail(
 
 						// TXT_TXFALT: Txt {Cpt {ButToggle}, Txf, ButView}
 						// Txt {Cpt} for jump override
-
 						dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &supcon, VecWznmVMControlBasetype::TXT, jcref, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::CONT,
 									VecWznmVMControlRefTbl::TCO, refTco, jpupref, jpuplvl, jpupnum, VecWznmVMControlScope::SHR, 0, "Txt" + prefix + StrMod::cap(tco->Short), VecWznmVMControlSubtype::VOID,
 									"", 0, "", 0, 0, 0, andConds(inccond, sbscond), uaccond, "");
@@ -3485,7 +3484,7 @@ void WznmGenDetui::genPnldetail(
 
 							dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXF, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::CONT,
 										VecWznmVMControlRefTbl::TCO, refTco, supcon->ref, jpuplvl+1, supnum++, VecWznmVMControlScope::SHR, 0, "Txf" + prefix + StrMod::cap(tco->Short), VecWznmVMControlSubtype::VOID,
-										"", 0, "", 0, 0, 0, "", "", "");
+										"", 0, "", 0, 0, 0, "", "", "valid");
 
 							if (dbswznm->tblwznmmcard->loadRecByRef(tbl2->refWznmMCard, &car2)) {
 // HERE: needs sref->ref
@@ -3537,7 +3536,7 @@ void WznmGenDetui::genPnldetail(
 
 							dbswznm->tblwznmmcontrol->appendNewRecToRst(cons, &con, VecWznmVMControlBasetype::TXF, 0, VecWznmVMControlHkTbl::PNL, pnl->ref, connum++, VecWznmVMControlHkSection::CONT,
 										VecWznmVMControlRefTbl::TCO, refTco, supcon->ref, 1, supnum++, VecWznmVMControlScope::SHR, 0, "Txf" + prefix + StrMod::cap(tco->Short), VecWznmVMControlSubtype::VOID,
-										"", 0, "", 0, 0, 0, "", "", "");
+										"", 0, "", 0, 0, 0, "", "", "valid");
 
 							if (dbswznm->tblwznmmcard->loadRecByRef(tbl2->refWznmMCard, &car2)) {
 								// view possible only if there is a corresponding card

@@ -27,16 +27,17 @@ WznmQTblALoadfct::WznmQTblALoadfct(
 			, const string ordSrefsWznmMTablecol
 			, const string srefIxVLimtype
 			, const string titIxVLimtype
-		) {
-	this->jnum = jnum;
-	this->srefIxVLoadtype = srefIxVLoadtype;
-	this->titIxVLoadtype = titIxVLoadtype;
-	this->Fctname = Fctname;
-	this->ldSrefWznmMTablecol = ldSrefWznmMTablecol;
-	this->lbySrefsWznmMTablecol = lbySrefsWznmMTablecol;
-	this->ordSrefsWznmMTablecol = ordSrefsWznmMTablecol;
-	this->srefIxVLimtype = srefIxVLimtype;
-	this->titIxVLimtype = titIxVLimtype;
+		) :
+			jnum(jnum)
+			, srefIxVLoadtype(srefIxVLoadtype)
+			, titIxVLoadtype(titIxVLoadtype)
+			, Fctname(Fctname)
+			, ldSrefWznmMTablecol(ldSrefWznmMTablecol)
+			, lbySrefsWznmMTablecol(lbySrefsWznmMTablecol)
+			, ordSrefsWznmMTablecol(ordSrefsWznmMTablecol)
+			, srefIxVLimtype(srefIxVLimtype)
+			, titIxVLimtype(titIxVLimtype)
+		{
 };
 
 bool WznmQTblALoadfct::readXML(

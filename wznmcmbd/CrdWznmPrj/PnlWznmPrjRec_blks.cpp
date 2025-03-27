@@ -43,9 +43,8 @@ PnlWznmPrjRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -153,13 +152,12 @@ PnlWznmPrjRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefPrj1NVersion(jrefPrj1NVersion)
+			, jrefMNPerson(jrefMNPerson)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefPrj1NVersion = jrefPrj1NVersion;
-	this->jrefMNPerson = jrefMNPerson;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFPRJ1NVERSION, JREFMNPERSON, BUTREGULARIZEACTIVE};
 };
 

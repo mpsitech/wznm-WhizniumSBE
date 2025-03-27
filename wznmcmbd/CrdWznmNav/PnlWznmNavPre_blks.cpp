@@ -22,6 +22,7 @@ uint PnlWznmNavPre::VecVDo::getIx(
 
 	if (s == "butappremoveclick") return BUTAPPREMOVECLICK;
 	if (s == "butverremoveclick") return BUTVERREMOVECLICK;
+	if (s == "butvisremoveclick") return BUTVISREMOVECLICK;
 
 	return(0);
 };
@@ -31,6 +32,7 @@ string PnlWznmNavPre::VecVDo::getSref(
 		) {
 	if (ix == BUTAPPREMOVECLICK) return("ButAppRemoveClick");
 	if (ix == BUTVERREMOVECLICK) return("ButVerRemoveClick");
+	if (ix == BUTVISREMOVECLICK) return("ButVisRemoveClick");
 
 	return("");
 };
@@ -42,13 +44,14 @@ string PnlWznmNavPre::VecVDo::getSref(
 PnlWznmNavPre::ContInf::ContInf(
 			const string& TxtApp
 			, const string& TxtVer
+			, const string& TxtVis
 		) :
 			Block()
+			, TxtApp(TxtApp)
+			, TxtVer(TxtVer)
+			, TxtVis(TxtVis)
 		{
-	this->TxtApp = TxtApp;
-	this->TxtVer = TxtVer;
-
-	mask = {TXTAPP, TXTVER};
+	mask = {TXTAPP, TXTVER, TXTVIS};
 };
 
 void PnlWznmNavPre::ContInf::writeJSON(
@@ -61,6 +64,7 @@ void PnlWznmNavPre::ContInf::writeJSON(
 
 	me["TxtApp"] = TxtApp;
 	me["TxtVer"] = TxtVer;
+	me["TxtVis"] = TxtVis;
 };
 
 void PnlWznmNavPre::ContInf::writeXML(
@@ -77,6 +81,7 @@ void PnlWznmNavPre::ContInf::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "TxtApp", TxtApp);
 		writeStringAttr(wr, itemtag, "sref", "TxtVer", TxtVer);
+		writeStringAttr(wr, itemtag, "sref", "TxtVis", TxtVis);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -87,6 +92,7 @@ set<uint> PnlWznmNavPre::ContInf::comm(
 
 	if (TxtApp == comp->TxtApp) insert(items, TXTAPP);
 	if (TxtVer == comp->TxtVer) insert(items, TXTVER);
+	if (TxtVis == comp->TxtVis) insert(items, TXTVIS);
 
 	return(items);
 };
@@ -99,7 +105,7 @@ set<uint> PnlWznmNavPre::ContInf::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXTAPP, TXTVER};
+	diffitems = {TXTAPP, TXTVER, TXTVIS};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -112,13 +118,14 @@ set<uint> PnlWznmNavPre::ContInf::diff(
 PnlWznmNavPre::StatShr::StatShr(
 			const bool TxtAppAvail
 			, const bool TxtVerAvail
+			, const bool TxtVisAvail
 		) :
 			Block()
+			, TxtAppAvail(TxtAppAvail)
+			, TxtVerAvail(TxtVerAvail)
+			, TxtVisAvail(TxtVisAvail)
 		{
-	this->TxtAppAvail = TxtAppAvail;
-	this->TxtVerAvail = TxtVerAvail;
-
-	mask = {TXTAPPAVAIL, TXTVERAVAIL};
+	mask = {TXTAPPAVAIL, TXTVERAVAIL, TXTVISAVAIL};
 };
 
 void PnlWznmNavPre::StatShr::writeJSON(
@@ -131,6 +138,7 @@ void PnlWznmNavPre::StatShr::writeJSON(
 
 	me["TxtAppAvail"] = TxtAppAvail;
 	me["TxtVerAvail"] = TxtVerAvail;
+	me["TxtVisAvail"] = TxtVisAvail;
 };
 
 void PnlWznmNavPre::StatShr::writeXML(
@@ -147,6 +155,7 @@ void PnlWznmNavPre::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "TxtAppAvail", TxtAppAvail);
 		writeBoolAttr(wr, itemtag, "sref", "TxtVerAvail", TxtVerAvail);
+		writeBoolAttr(wr, itemtag, "sref", "TxtVisAvail", TxtVisAvail);
 	xmlTextWriterEndElement(wr);
 };
 
@@ -157,6 +166,7 @@ set<uint> PnlWznmNavPre::StatShr::comm(
 
 	if (TxtAppAvail == comp->TxtAppAvail) insert(items, TXTAPPAVAIL);
 	if (TxtVerAvail == comp->TxtVerAvail) insert(items, TXTVERAVAIL);
+	if (TxtVisAvail == comp->TxtVisAvail) insert(items, TXTVISAVAIL);
 
 	return(items);
 };
@@ -169,7 +179,7 @@ set<uint> PnlWznmNavPre::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXTAPPAVAIL, TXTVERAVAIL};
+	diffitems = {TXTAPPAVAIL, TXTVERAVAIL, TXTVISAVAIL};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -191,6 +201,7 @@ void PnlWznmNavPre::Tag::writeJSON(
 	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 		me["CptApp"] = "accessor app";
 		me["CptVer"] = "version";
+		me["CptVis"] = "visualization";
 	};
 };
 
@@ -210,6 +221,7 @@ void PnlWznmNavPre::Tag::writeXML(
 		if (ixWznmVLocale == VecWznmVLocale::ENUS) {
 			writeStringAttr(wr, itemtag, "sref", "CptApp", "accessor app");
 			writeStringAttr(wr, itemtag, "sref", "CptVer", "version");
+			writeStringAttr(wr, itemtag, "sref", "CptVis", "visualization");
 		};
 	xmlTextWriterEndElement(wr);
 };

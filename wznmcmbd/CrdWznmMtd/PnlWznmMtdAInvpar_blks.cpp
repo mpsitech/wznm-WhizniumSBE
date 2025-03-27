@@ -51,9 +51,8 @@ PnlWznmMtdAInvpar::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -65,7 +64,7 @@ void PnlWznmMtdAInvpar::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmMtdAInvpar::ContInf::writeXML(
@@ -157,17 +156,16 @@ PnlWznmMtdAInvpar::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButUpAvail(ButUpAvail)
+			, ButUpActive(ButUpActive)
+			, ButDownAvail(ButDownAvail)
+			, ButDownActive(ButDownActive)
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButUpAvail = ButUpAvail;
-	this->ButUpActive = ButUpActive;
-	this->ButDownAvail = ButDownAvail;
-	this->ButDownActive = ButDownActive;
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTUPAVAIL, BUTUPACTIVE, BUTDOWNAVAIL, BUTDOWNACTIVE, BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -258,12 +256,12 @@ PnlWznmMtdAInvpar::StgIac::StgIac(
 			, const uint TcoCmtWidth
 		) :
 			Block()
+			, TcoSrfWidth(TcoSrfWidth)
+			, TcoVtyWidth(TcoVtyWidth)
+			, TcoVecWidth(TcoVecWidth)
+			, TcoLenWidth(TcoLenWidth)
+			, TcoCmtWidth(TcoCmtWidth)
 		{
-	this->TcoSrfWidth = TcoSrfWidth;
-	this->TcoVtyWidth = TcoVtyWidth;
-	this->TcoVecWidth = TcoVecWidth;
-	this->TcoLenWidth = TcoLenWidth;
-	this->TcoCmtWidth = TcoCmtWidth;
 	mask = {TCOSRFWIDTH, TCOVTYWIDTH, TCOVECWIDTH, TCOLENWIDTH, TCOCMTWIDTH};
 };
 
@@ -325,11 +323,11 @@ void PnlWznmMtdAInvpar::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoSrfWidth"] = TcoSrfWidth;
-	me["TcoVtyWidth"] = TcoVtyWidth;
-	me["TcoVecWidth"] = TcoVecWidth;
-	me["TcoLenWidth"] = TcoLenWidth;
-	me["TcoCmtWidth"] = TcoCmtWidth;
+	me["TcoSrfWidth"] = (Json::Value::UInt) TcoSrfWidth;
+	me["TcoVtyWidth"] = (Json::Value::UInt) TcoVtyWidth;
+	me["TcoVecWidth"] = (Json::Value::UInt) TcoVecWidth;
+	me["TcoLenWidth"] = (Json::Value::UInt) TcoLenWidth;
+	me["TcoCmtWidth"] = (Json::Value::UInt) TcoCmtWidth;
 };
 
 void PnlWznmMtdAInvpar::StgIac::writeXML(

@@ -25,14 +25,14 @@ WznmRMJobMJob::WznmRMJobMJob(
 			, const string Short
 			, const bool Multi
 			, const uint ixVConstract
-		) {
-
-	this->ref = ref;
-	this->supRefWznmMJob = supRefWznmMJob;
-	this->subRefWznmMJob = subRefWznmMJob;
-	this->Short = Short;
-	this->Multi = Multi;
-	this->ixVConstract = ixVConstract;
+		) :
+			ref(ref)
+			, supRefWznmMJob(supRefWznmMJob)
+			, subRefWznmMJob(subRefWznmMJob)
+			, Short(Short)
+			, Multi(Multi)
+			, ixVConstract(ixVConstract)
+		{
 };
 
 bool WznmRMJobMJob::operator==(

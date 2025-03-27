@@ -17,8 +17,8 @@
 #include "PnlWznmStbMNCall.h"
 #include "PnlWznmStbMNSquawk.h"
 #include "PnlWznmStbSubMNStub.h"
-#include "PnlWznmStbDetail.h"
 #include "PnlWznmStbSupMNStub.h"
+#include "PnlWznmStbDetail.h"
 
 #define VecVWznmStbRecDo PnlWznmStbRec::VecVDo
 
@@ -186,8 +186,8 @@ public:
 	PnlWznmStbMNCall* pnlmncall;
 	PnlWznmStbMNSquawk* pnlmnsquawk;
 	PnlWznmStbSubMNStub* pnlsubmnstub;
-	PnlWznmStbDetail* pnldetail;
 	PnlWznmStbSupMNStub* pnlsupmnstub;
+	PnlWznmStbDetail* pnldetail;
 
 	WznmMStub recStb;
 
@@ -222,8 +222,8 @@ public:
 
 private:
 	bool handleCallWznmStbUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
-	bool handleCallWznmStb_tcoEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmStb_sbsEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
+	bool handleCallWznmStb_tcoEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

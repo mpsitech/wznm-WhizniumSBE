@@ -28,17 +28,17 @@ WznmMVector::WznmMVector(
 			, const string sref
 			, const string osrefWznmKTaggrp
 			, const string srefsKOption
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->hkIxVTbl = hkIxVTbl;
-	this->hkUref = hkUref;
-	this->refWznmMPreset = refWznmMPreset;
-	this->sref = sref;
-	this->osrefWznmKTaggrp = osrefWznmKTaggrp;
-	this->srefsKOption = srefsKOption;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, hkIxVTbl(hkIxVTbl)
+			, hkUref(hkUref)
+			, refWznmMPreset(refWznmMPreset)
+			, sref(sref)
+			, osrefWznmKTaggrp(osrefWznmKTaggrp)
+			, srefsKOption(srefsKOption)
+		{
 };
 
 bool WznmMVector::operator==(

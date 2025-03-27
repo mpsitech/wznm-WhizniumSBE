@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmIexRef1NDialog.h"
-#include "PnlWznmIexHk1NVector.h"
 #include "PnlWznmIex1NImpexp.h"
+#include "PnlWznmIexHk1NVector.h"
 #include "PnlWznmIexDetail.h"
 
 #define VecVWznmIexRecDo PnlWznmIexRec::VecVDo
@@ -181,8 +181,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmIexRef1NDialog* pnlref1ndialog;
-	PnlWznmIexHk1NVector* pnlhk1nvector;
 	PnlWznmIex1NImpexp* pnl1nimpexp;
+	PnlWznmIexHk1NVector* pnlhk1nvector;
 	PnlWznmIexDetail* pnldetail;
 
 	WznmMImpexpcplx recIex;

@@ -246,6 +246,7 @@ function handlePupChange(_doc, ctlsref, size) {
 function mergeDpchEngData(dom) {
 	var mask = [];
 
+	// IP mergeDpchEngData --- BEGIN
 	if (updateSrcblock(dom, "DpchEngWznmPstDetailData", "ContIacWznmPstDetail", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmPstDetailData", "ContInfWznmPstDetail", srcdoc)) mask.push("continf");
 	if (updateSrcblock(dom, "DpchEngWznmPstDetailData", "FeedFPupAty", srcdoc)) mask.push("feedFPupAty");
@@ -255,6 +256,7 @@ function mergeDpchEngData(dom) {
 	if (updateSrcblock(dom, "DpchEngWznmPstDetailData", "StatAppWznmPstDetail", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmPstDetailData", "StatShrWznmPstDetail", srcdoc)) mask.push("statshr");
 	if (updateSrcblock(dom, "DpchEngWznmPstDetailData", "TagWznmPstDetail", srcdoc)) mask.push("tag");
+	// IP mergeDpchEngData --- END
 
 	return mask;
 };

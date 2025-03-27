@@ -50,12 +50,11 @@ PnlWznmVitDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupJ(numFPupJ)
+			, TxfAvl(TxfAvl)
+			, TxfImp(TxfImp)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupJ = numFPupJ;
-	this->TxfAvl = TxfAvl;
-	this->TxfImp = TxfImp;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPJ, TXFAVL, TXFIMP, TXFCMT};
 };
 
@@ -141,11 +140,10 @@ PnlWznmVitDetail::ContInf::ContInf(
 			, const string& TxtVec
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
+			, TxtVec(TxtVec)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-	this->TxtVec = TxtVec;
-
 	mask = {TXTSRF, TXTTIT, TXTVEC};
 };
 
@@ -208,9 +206,8 @@ PnlWznmVitDetail::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -285,20 +282,19 @@ PnlWznmVitDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupJActive(PupJActive)
+			, ButJEditAvail(ButJEditAvail)
+			, TxtTitActive(TxtTitActive)
+			, TxtVecActive(TxtVecActive)
+			, ButVecViewAvail(ButVecViewAvail)
+			, ButVecViewActive(ButVecViewActive)
+			, TxfAvlActive(TxfAvlActive)
+			, TxfImpActive(TxfImpActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupJActive = PupJActive;
-	this->ButJEditAvail = ButJEditAvail;
-	this->TxtTitActive = TxtTitActive;
-	this->TxtVecActive = TxtVecActive;
-	this->ButVecViewAvail = ButVecViewAvail;
-	this->ButVecViewActive = ButVecViewActive;
-	this->TxfAvlActive = TxfAvlActive;
-	this->TxfImpActive = TxfImpActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJACTIVE, BUTJEDITAVAIL, TXTTITACTIVE, TXTVECACTIVE, BUTVECVIEWAVAIL, BUTVECVIEWACTIVE, TXFAVLACTIVE, TXFIMPACTIVE, TXFCMTACTIVE};
 };
 
@@ -385,15 +381,14 @@ PnlWznmVitDetail::Tag::Tag(
 			, const string& CptCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTit(CptTit)
+			, CptVec(CptVec)
+			, CptAvl(CptAvl)
+			, CptImp(CptImp)
+			, CptCmt(CptCmt)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTit = CptTit;
-	this->CptVec = CptVec;
-	this->CptAvl = CptAvl;
-	this->CptImp = CptImp;
-	this->CptCmt = CptCmt;
-
 	mask = {CPT, CPTSRF, CPTTIT, CPTVEC, CPTAVL, CPTIMP, CPTCMT};
 };
 
@@ -475,11 +470,11 @@ PnlWznmVitDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMVITDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmVitDetail::DpchAppDo::getSrefsMask() {

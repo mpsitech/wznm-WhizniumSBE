@@ -17,7 +17,10 @@
 namespace WznmCtpWrsrvDbeterm {
 
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmCtpWrsrv* dpchinv);
-	// IP cust --- INSERT
+	// IP cust --- IBEGIN
+	void writeCpbH(std::fstream& outfile, const std::string& Untsref);
+	void writeCpbCpp(std::fstream& outfile, const std::string& Prjshort, const std::string& Cpbsref, const std::string& Untsref, const std::string& srcjobshort);
+	// IP cust --- IEND
 };
 
 #endif

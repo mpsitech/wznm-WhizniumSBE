@@ -23,12 +23,13 @@ WznmQTbl1NStub::WznmQTbl1NStub(
 			, const uint jnum
 			, const ubigint ref
 			, const string stubRef
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+		{
 };
 
 void WznmQTbl1NStub::writeJSON(

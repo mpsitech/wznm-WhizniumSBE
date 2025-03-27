@@ -65,17 +65,16 @@ PnlWznmVecDetail::ContIac::ContIac(
 			, const uint numFPupPstAty
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, numFPupHkt(numFPupHkt)
+			, numFPupTgr(numFPupTgr)
+			, TxfTgr(TxfTgr)
+			, numsFLstOpt(numsFLstOpt)
+			, TxfOpt(TxfOpt)
+			, numFPupPstJti(numFPupPstJti)
+			, numFPupPstSco(numFPupPstSco)
+			, numFPupPstAty(numFPupPstAty)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->numFPupHkt = numFPupHkt;
-	this->numFPupTgr = numFPupTgr;
-	this->TxfTgr = TxfTgr;
-	this->numsFLstOpt = numsFLstOpt;
-	this->TxfOpt = TxfOpt;
-	this->numFPupPstJti = numFPupPstJti;
-	this->numFPupPstSco = numFPupPstSco;
-	this->numFPupPstAty = numFPupPstAty;
-
 	mask = {NUMFPUPTYP, NUMFPUPHKT, NUMFPUPTGR, TXFTGR, NUMSFLSTOPT, TXFOPT, NUMFPUPPSTJTI, NUMFPUPPSTSCO, NUMFPUPPSTATY};
 };
 
@@ -145,15 +144,15 @@ void PnlWznmVecDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupTyp"] = numFPupTyp;
-	me["numFPupHkt"] = numFPupHkt;
-	me["numFPupTgr"] = numFPupTgr;
+	me["numFPupTyp"] = (Json::Value::UInt) numFPupTyp;
+	me["numFPupHkt"] = (Json::Value::UInt) numFPupHkt;
+	me["numFPupTgr"] = (Json::Value::UInt) numFPupTgr;
 	me["TxfTgr"] = TxfTgr;
 	Jsonio::writeUintvec(me, "numsFLstOpt", numsFLstOpt);
 	me["TxfOpt"] = TxfOpt;
-	me["numFPupPstJti"] = numFPupPstJti;
-	me["numFPupPstSco"] = numFPupPstSco;
-	me["numFPupPstAty"] = numFPupPstAty;
+	me["numFPupPstJti"] = (Json::Value::UInt) numFPupPstJti;
+	me["numFPupPstSco"] = (Json::Value::UInt) numFPupPstSco;
+	me["numFPupPstAty"] = (Json::Value::UInt) numFPupPstAty;
 };
 
 void PnlWznmVecDetail::ContIac::writeXML(
@@ -225,14 +224,13 @@ PnlWznmVecDetail::ContInf::ContInf(
 			, const string& TxtPstVer
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtHku(TxtHku)
+			, TxtPstSrf(TxtPstSrf)
+			, TxtPstTit(TxtPstTit)
+			, TxtPstVer(TxtPstVer)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtHku = TxtHku;
-	this->TxtPstSrf = TxtPstSrf;
-	this->TxtPstTit = TxtPstTit;
-	this->TxtPstVer = TxtPstVer;
-
 	mask = {TXTSRF, TXTVER, TXTHKU, TXTPSTSRF, TXTPSTTIT, TXTPSTVER};
 };
 
@@ -321,7 +319,7 @@ void PnlWznmVecDetail::StatApp::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["PupTgrAlt"] = PupTgrAlt;
 	me["LstOptAlt"] = LstOptAlt;
-	me["LstOptNumFirstdisp"] = LstOptNumFirstdisp;
+	me["LstOptNumFirstdisp"] = (Json::Value::UInt) LstOptNumFirstdisp;
 };
 
 void PnlWznmVecDetail::StatApp::writeXML(
@@ -352,9 +350,7 @@ void PnlWznmVecDetail::StatApp::writeXML(
  ******************************************************************************/
 
 PnlWznmVecDetail::StatShr::StatShr(
-			const bool TxfTgrValid
-			, const bool TxfOptValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
 			, const bool PupTypActive
@@ -365,8 +361,10 @@ PnlWznmVecDetail::StatShr::StatShr(
 			, const bool ButHkuViewAvail
 			, const bool ButHkuViewActive
 			, const bool PupTgrActive
+			, const bool TxfTgrValid
 			, const bool ButTgrEditAvail
 			, const bool LstOptActive
+			, const bool TxfOptValid
 			, const bool ButOptEditAvail
 			, const bool ButPstNewAvail
 			, const bool ButPstDeleteAvail
@@ -387,42 +385,41 @@ PnlWznmVecDetail::StatShr::StatShr(
 			, const bool PupPstAtyActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupTypActive(PupTypActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtHkuActive(TxtHkuActive)
+			, ButHkuViewAvail(ButHkuViewAvail)
+			, ButHkuViewActive(ButHkuViewActive)
+			, PupTgrActive(PupTgrActive)
+			, TxfTgrValid(TxfTgrValid)
+			, ButTgrEditAvail(ButTgrEditAvail)
+			, LstOptActive(LstOptActive)
+			, TxfOptValid(TxfOptValid)
+			, ButOptEditAvail(ButOptEditAvail)
+			, ButPstNewAvail(ButPstNewAvail)
+			, ButPstDeleteAvail(ButPstDeleteAvail)
+			, TxtPstSrfAvail(TxtPstSrfAvail)
+			, TxtPstSrfActive(TxtPstSrfActive)
+			, PupPstJtiAvail(PupPstJtiAvail)
+			, PupPstJtiActive(PupPstJtiActive)
+			, ButPstJtiEditAvail(ButPstJtiEditAvail)
+			, TxtPstTitAvail(TxtPstTitAvail)
+			, TxtPstTitActive(TxtPstTitActive)
+			, TxtPstVerAvail(TxtPstVerAvail)
+			, TxtPstVerActive(TxtPstVerActive)
+			, ButPstVerViewAvail(ButPstVerViewAvail)
+			, ButPstVerViewActive(ButPstVerViewActive)
+			, PupPstScoAvail(PupPstScoAvail)
+			, PupPstScoActive(PupPstScoActive)
+			, PupPstAtyAvail(PupPstAtyAvail)
+			, PupPstAtyActive(PupPstAtyActive)
 		{
-	this->TxfTgrValid = TxfTgrValid;
-	this->TxfOptValid = TxfOptValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtHkuActive = TxtHkuActive;
-	this->ButHkuViewAvail = ButHkuViewAvail;
-	this->ButHkuViewActive = ButHkuViewActive;
-	this->PupTgrActive = PupTgrActive;
-	this->ButTgrEditAvail = ButTgrEditAvail;
-	this->LstOptActive = LstOptActive;
-	this->ButOptEditAvail = ButOptEditAvail;
-	this->ButPstNewAvail = ButPstNewAvail;
-	this->ButPstDeleteAvail = ButPstDeleteAvail;
-	this->TxtPstSrfAvail = TxtPstSrfAvail;
-	this->TxtPstSrfActive = TxtPstSrfActive;
-	this->PupPstJtiAvail = PupPstJtiAvail;
-	this->PupPstJtiActive = PupPstJtiActive;
-	this->ButPstJtiEditAvail = ButPstJtiEditAvail;
-	this->TxtPstTitAvail = TxtPstTitAvail;
-	this->TxtPstTitActive = TxtPstTitActive;
-	this->TxtPstVerAvail = TxtPstVerAvail;
-	this->TxtPstVerActive = TxtPstVerActive;
-	this->ButPstVerViewAvail = ButPstVerViewAvail;
-	this->ButPstVerViewActive = ButPstVerViewActive;
-	this->PupPstScoAvail = PupPstScoAvail;
-	this->PupPstScoActive = PupPstScoActive;
-	this->PupPstAtyAvail = PupPstAtyAvail;
-	this->PupPstAtyActive = PupPstAtyActive;
-
-	mask = {TXFTGRVALID, TXFOPTVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, PUPTGRACTIVE, BUTTGREDITAVAIL, LSTOPTACTIVE, BUTOPTEDITAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, PUPTGRACTIVE, TXFTGRVALID, BUTTGREDITAVAIL, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE};
 };
 
 void PnlWznmVecDetail::StatShr::writeJSON(
@@ -433,8 +430,6 @@ void PnlWznmVecDetail::StatShr::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TxfTgrValid"] = TxfTgrValid;
-	me["TxfOptValid"] = TxfOptValid;
 	me["ButSaveAvail"] = ButSaveAvail;
 	me["ButSaveActive"] = ButSaveActive;
 	me["TxtSrfActive"] = TxtSrfActive;
@@ -446,8 +441,10 @@ void PnlWznmVecDetail::StatShr::writeJSON(
 	me["ButHkuViewAvail"] = ButHkuViewAvail;
 	me["ButHkuViewActive"] = ButHkuViewActive;
 	me["PupTgrActive"] = PupTgrActive;
+	me["TxfTgrValid"] = TxfTgrValid;
 	me["ButTgrEditAvail"] = ButTgrEditAvail;
 	me["LstOptActive"] = LstOptActive;
+	me["TxfOptValid"] = TxfOptValid;
 	me["ButOptEditAvail"] = ButOptEditAvail;
 	me["ButPstNewAvail"] = ButPstNewAvail;
 	me["ButPstDeleteAvail"] = ButPstDeleteAvail;
@@ -480,8 +477,6 @@ void PnlWznmVecDetail::StatShr::writeXML(
 	else itemtag = "StatitemShrWznmVecDetail";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeBoolAttr(wr, itemtag, "sref", "TxfTgrValid", TxfTgrValid);
-		writeBoolAttr(wr, itemtag, "sref", "TxfOptValid", TxfOptValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveAvail", ButSaveAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveActive", ButSaveActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxtSrfActive", TxtSrfActive);
@@ -493,8 +488,10 @@ void PnlWznmVecDetail::StatShr::writeXML(
 		writeBoolAttr(wr, itemtag, "sref", "ButHkuViewAvail", ButHkuViewAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButHkuViewActive", ButHkuViewActive);
 		writeBoolAttr(wr, itemtag, "sref", "PupTgrActive", PupTgrActive);
+		writeBoolAttr(wr, itemtag, "sref", "TxfTgrValid", TxfTgrValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButTgrEditAvail", ButTgrEditAvail);
 		writeBoolAttr(wr, itemtag, "sref", "LstOptActive", LstOptActive);
+		writeBoolAttr(wr, itemtag, "sref", "TxfOptValid", TxfOptValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButOptEditAvail", ButOptEditAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButPstNewAvail", ButPstNewAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButPstDeleteAvail", ButPstDeleteAvail);
@@ -521,8 +518,6 @@ set<uint> PnlWznmVecDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfTgrValid == comp->TxfTgrValid) insert(items, TXFTGRVALID);
-	if (TxfOptValid == comp->TxfOptValid) insert(items, TXFOPTVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
@@ -534,8 +529,10 @@ set<uint> PnlWznmVecDetail::StatShr::comm(
 	if (ButHkuViewAvail == comp->ButHkuViewAvail) insert(items, BUTHKUVIEWAVAIL);
 	if (ButHkuViewActive == comp->ButHkuViewActive) insert(items, BUTHKUVIEWACTIVE);
 	if (PupTgrActive == comp->PupTgrActive) insert(items, PUPTGRACTIVE);
+	if (TxfTgrValid == comp->TxfTgrValid) insert(items, TXFTGRVALID);
 	if (ButTgrEditAvail == comp->ButTgrEditAvail) insert(items, BUTTGREDITAVAIL);
 	if (LstOptActive == comp->LstOptActive) insert(items, LSTOPTACTIVE);
+	if (TxfOptValid == comp->TxfOptValid) insert(items, TXFOPTVALID);
 	if (ButOptEditAvail == comp->ButOptEditAvail) insert(items, BUTOPTEDITAVAIL);
 	if (ButPstNewAvail == comp->ButPstNewAvail) insert(items, BUTPSTNEWAVAIL);
 	if (ButPstDeleteAvail == comp->ButPstDeleteAvail) insert(items, BUTPSTDELETEAVAIL);
@@ -566,7 +563,7 @@ set<uint> PnlWznmVecDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFTGRVALID, TXFOPTVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, PUPTGRACTIVE, BUTTGREDITAVAIL, LSTOPTACTIVE, BUTOPTEDITAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTHKUACTIVE, BUTHKUVIEWAVAIL, BUTHKUVIEWACTIVE, PUPTGRACTIVE, TXFTGRVALID, BUTTGREDITAVAIL, LSTOPTACTIVE, TXFOPTVALID, BUTOPTEDITAVAIL, BUTPSTNEWAVAIL, BUTPSTDELETEAVAIL, TXTPSTSRFAVAIL, TXTPSTSRFACTIVE, PUPPSTJTIAVAIL, PUPPSTJTIACTIVE, BUTPSTJTIEDITAVAIL, TXTPSTTITAVAIL, TXTPSTTITACTIVE, TXTPSTVERAVAIL, TXTPSTVERACTIVE, BUTPSTVERVIEWAVAIL, BUTPSTVERVIEWACTIVE, PUPPSTSCOAVAIL, PUPPSTSCOACTIVE, PUPPSTATYAVAIL, PUPPSTATYACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

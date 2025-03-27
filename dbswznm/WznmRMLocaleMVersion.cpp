@@ -20,11 +20,11 @@ WznmRMLocaleMVersion::WznmRMLocaleMVersion(
 			const ubigint ref
 			, const ubigint refWznmMLocale
 			, const ubigint refWznmMVersion
-		) {
-
-	this->ref = ref;
-	this->refWznmMLocale = refWznmMLocale;
-	this->refWznmMVersion = refWznmMVersion;
+		) :
+			ref(ref)
+			, refWznmMLocale(refWznmMLocale)
+			, refWznmMVersion(refWznmMVersion)
+		{
 };
 
 bool WznmRMLocaleMVersion::operator==(

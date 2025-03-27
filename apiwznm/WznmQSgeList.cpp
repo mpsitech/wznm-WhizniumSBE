@@ -23,12 +23,13 @@ WznmQSgeList::WznmQSgeList(
 			, const string srefIxVBasetype
 			, const string titIxVBasetype
 			, const string stubJobRefWznmMJob
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubJobRefWznmMJob = stubJobRefWznmMJob;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubJobRefWznmMJob(stubJobRefWznmMJob)
+		{
 };
 
 bool WznmQSgeList::readXML(

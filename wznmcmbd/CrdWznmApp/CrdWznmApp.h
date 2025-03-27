@@ -15,10 +15,10 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmAppList.h"
-#include "PnlWznmAppHeadbar.h"
 #include "PnlWznmAppRec.h"
-#include "DlgWznmAppImpstr.h"
+#include "PnlWznmAppHeadbar.h"
 #include "DlgWznmAppNew.h"
+#include "DlgWznmAppImpstr.h"
 #include "DlgWznmAppWrite.h"
 
 #define VecVWznmAppDo CrdWznmApp::VecVDo
@@ -228,10 +228,10 @@ public:
 	Sbecore::Feed feedFSge;
 
 	PnlWznmAppList* pnllist;
-	PnlWznmAppHeadbar* pnlheadbar;
 	PnlWznmAppRec* pnlrec;
-	DlgWznmAppImpstr* dlgimpstr;
+	PnlWznmAppHeadbar* pnlheadbar;
 	DlgWznmAppNew* dlgnew;
+	DlgWznmAppImpstr* dlgimpstr;
 	DlgWznmAppWrite* dlgwrite;
 
 	// IP vars.cust --- INSERT

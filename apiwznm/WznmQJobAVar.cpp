@@ -26,15 +26,16 @@ WznmQJobAVar::WznmQJobAVar(
 			, const uint Length
 			, const string yesnoShr
 			, const string Comment
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxWznmVVartype = srefIxWznmVVartype;
-	this->titIxWznmVVartype = titIxWznmVVartype;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->Length = Length;
-	this->yesnoShr = yesnoShr;
-	this->Comment = Comment;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxWznmVVartype(srefIxWznmVVartype)
+			, titIxWznmVVartype(titIxWznmVVartype)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, Length(Length)
+			, yesnoShr(yesnoShr)
+			, Comment(Comment)
+		{
 };
 
 bool WznmQJobAVar::readXML(

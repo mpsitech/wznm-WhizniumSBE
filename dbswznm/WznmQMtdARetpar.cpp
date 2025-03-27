@@ -31,20 +31,21 @@ WznmQMtdARetpar::WznmQMtdARetpar(
 			, const string stubRefWznmMVector
 			, const uint Length
 			, const string Comment
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->mtdNum = mtdNum;
-	this->sref = sref;
-	this->ixWznmVVartype = ixWznmVVartype;
-	this->srefIxWznmVVartype = srefIxWznmVVartype;
-	this->titIxWznmVVartype = titIxWznmVVartype;
-	this->refWznmMVector = refWznmMVector;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->Length = Length;
-	this->Comment = Comment;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, mtdNum(mtdNum)
+			, sref(sref)
+			, ixWznmVVartype(ixWznmVVartype)
+			, srefIxWznmVVartype(srefIxWznmVVartype)
+			, titIxWznmVVartype(titIxWznmVVartype)
+			, refWznmMVector(refWznmMVector)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, Length(Length)
+			, Comment(Comment)
+		{
 };
 
 void WznmQMtdARetpar::writeJSON(

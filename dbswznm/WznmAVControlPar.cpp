@@ -23,14 +23,14 @@ WznmAVControlPar::WznmAVControlPar(
 			, const uint x2IxWznmVLocale
 			, const string Par
 			, const string Val
-		) {
-
-	this->ref = ref;
-	this->ixWznmVControl = ixWznmVControl;
-	this->x1RefWznmMUser = x1RefWznmMUser;
-	this->x2IxWznmVLocale = x2IxWznmVLocale;
-	this->Par = Par;
-	this->Val = Val;
+		) :
+			ref(ref)
+			, ixWznmVControl(ixWznmVControl)
+			, x1RefWznmMUser(x1RefWznmMUser)
+			, x2IxWznmVLocale(x2IxWznmVLocale)
+			, Par(Par)
+			, Val(Val)
+		{
 };
 
 bool WznmAVControlPar::operator==(

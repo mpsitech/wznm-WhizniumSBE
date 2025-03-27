@@ -45,9 +45,8 @@ PnlWznmDlgRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -104,18 +103,17 @@ set<uint> PnlWznmDlgRec::ContInf::diff(
 
 PnlWznmDlgRec::StatApp::StatApp(
 			const bool initdoneDetail
-			, const bool initdoneHk1NControl
 			, const bool initdoneRef1NControl
+			, const bool initdoneHk1NControl
 			, const bool initdoneMNQuery
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneRef1NControl(initdoneRef1NControl)
+			, initdoneHk1NControl(initdoneHk1NControl)
+			, initdoneMNQuery(initdoneMNQuery)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneHk1NControl = initdoneHk1NControl;
-	this->initdoneRef1NControl = initdoneRef1NControl;
-	this->initdoneMNQuery = initdoneMNQuery;
-
-	mask = {INITDONEDETAIL, INITDONEHK1NCONTROL, INITDONEREF1NCONTROL, INITDONEMNQUERY};
+	mask = {INITDONEDETAIL, INITDONEREF1NCONTROL, INITDONEHK1NCONTROL, INITDONEMNQUERY};
 };
 
 bool PnlWznmDlgRec::StatApp::readXML(
@@ -136,8 +134,8 @@ bool PnlWznmDlgRec::StatApp::readXML(
 
 	if (basefound) {
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneDetail", initdoneDetail)) add(INITDONEDETAIL);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneHk1NControl", initdoneHk1NControl)) add(INITDONEHK1NCONTROL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneRef1NControl", initdoneRef1NControl)) add(INITDONEREF1NCONTROL);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneHk1NControl", initdoneHk1NControl)) add(INITDONEHK1NCONTROL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "initdoneMNQuery", initdoneMNQuery)) add(INITDONEMNQUERY);
 	};
 
@@ -150,8 +148,8 @@ set<uint> PnlWznmDlgRec::StatApp::comm(
 	set<uint> items;
 
 	if (initdoneDetail == comp->initdoneDetail) insert(items, INITDONEDETAIL);
-	if (initdoneHk1NControl == comp->initdoneHk1NControl) insert(items, INITDONEHK1NCONTROL);
 	if (initdoneRef1NControl == comp->initdoneRef1NControl) insert(items, INITDONEREF1NCONTROL);
+	if (initdoneHk1NControl == comp->initdoneHk1NControl) insert(items, INITDONEHK1NCONTROL);
 	if (initdoneMNQuery == comp->initdoneMNQuery) insert(items, INITDONEMNQUERY);
 
 	return(items);
@@ -165,7 +163,7 @@ set<uint> PnlWznmDlgRec::StatApp::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {INITDONEDETAIL, INITDONEHK1NCONTROL, INITDONEREF1NCONTROL, INITDONEMNQUERY};
+	diffitems = {INITDONEDETAIL, INITDONEREF1NCONTROL, INITDONEHK1NCONTROL, INITDONEMNQUERY};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -178,21 +176,20 @@ set<uint> PnlWznmDlgRec::StatApp::diff(
 PnlWznmDlgRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const string& scrJrefDetail
-			, const string& scrJrefHk1NControl
 			, const string& scrJrefRef1NControl
+			, const string& scrJrefHk1NControl
 			, const string& scrJrefMNQuery
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefRef1NControl(scrJrefRef1NControl)
+			, scrJrefHk1NControl(scrJrefHk1NControl)
+			, scrJrefMNQuery(scrJrefMNQuery)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefHk1NControl = scrJrefHk1NControl;
-	this->scrJrefRef1NControl = scrJrefRef1NControl;
-	this->scrJrefMNQuery = scrJrefMNQuery;
-	this->ButRegularizeActive = ButRegularizeActive;
-
-	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFHK1NCONTROL, SCRJREFREF1NCONTROL, SCRJREFMNQUERY, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFREF1NCONTROL, SCRJREFHK1NCONTROL, SCRJREFMNQUERY, BUTREGULARIZEACTIVE};
 };
 
 bool PnlWznmDlgRec::StatShr::readXML(
@@ -219,8 +216,8 @@ bool PnlWznmDlgRec::StatShr::readXML(
 			add(IXWZNMVEXPSTATE);
 		};
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefDetail", scrJrefDetail)) add(SCRJREFDETAIL);
-		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefHk1NControl", scrJrefHk1NControl)) add(SCRJREFHK1NCONTROL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefRef1NControl", scrJrefRef1NControl)) add(SCRJREFREF1NCONTROL);
+		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefHk1NControl", scrJrefHk1NControl)) add(SCRJREFHK1NCONTROL);
 		if (extractStringAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "scrJrefMNQuery", scrJrefMNQuery)) add(SCRJREFMNQUERY);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", ButRegularizeActive)) add(BUTREGULARIZEACTIVE);
 	};
@@ -235,8 +232,8 @@ set<uint> PnlWznmDlgRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (scrJrefDetail == comp->scrJrefDetail) insert(items, SCRJREFDETAIL);
-	if (scrJrefHk1NControl == comp->scrJrefHk1NControl) insert(items, SCRJREFHK1NCONTROL);
 	if (scrJrefRef1NControl == comp->scrJrefRef1NControl) insert(items, SCRJREFREF1NCONTROL);
+	if (scrJrefHk1NControl == comp->scrJrefHk1NControl) insert(items, SCRJREFHK1NCONTROL);
 	if (scrJrefMNQuery == comp->scrJrefMNQuery) insert(items, SCRJREFMNQUERY);
 	if (ButRegularizeActive == comp->ButRegularizeActive) insert(items, BUTREGULARIZEACTIVE);
 
@@ -251,7 +248,7 @@ set<uint> PnlWznmDlgRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFHK1NCONTROL, SCRJREFREF1NCONTROL, SCRJREFMNQUERY, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFREF1NCONTROL, SCRJREFHK1NCONTROL, SCRJREFMNQUERY, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -265,9 +262,8 @@ PnlWznmDlgRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -304,11 +300,11 @@ PnlWznmDlgRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMDLGRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmDlgRec::DpchAppDo::getSrefsMask() {

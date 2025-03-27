@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQCtp1NTag::WznmQCtp1NTag(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQCtp1NTag::readXML(

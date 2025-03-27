@@ -23,14 +23,14 @@ WznmJMControl::WznmJMControl(
 			, const ubigint x2RefWznmMPreset
 			, const ubigint stdRefWznmMStub
 			, const ubigint shoRefWznmMStub
-		) {
-
-	this->ref = ref;
-	this->refWznmMControl = refWznmMControl;
-	this->x1RefWznmMVectoritem = x1RefWznmMVectoritem;
-	this->x2RefWznmMPreset = x2RefWznmMPreset;
-	this->stdRefWznmMStub = stdRefWznmMStub;
-	this->shoRefWznmMStub = shoRefWznmMStub;
+		) :
+			ref(ref)
+			, refWznmMControl(refWznmMControl)
+			, x1RefWznmMVectoritem(x1RefWznmMVectoritem)
+			, x2RefWznmMPreset(x2RefWznmMPreset)
+			, stdRefWznmMStub(stdRefWznmMStub)
+			, shoRefWznmMStub(shoRefWznmMStub)
+		{
 };
 
 bool WznmJMControl::operator==(

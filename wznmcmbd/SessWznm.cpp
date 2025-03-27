@@ -152,6 +152,9 @@ SessWznm::SessWznm(
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMCAL, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAL, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMCMP, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCMP, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMRLS, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCRLS, jref, ixWznmWAccess);
+	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMVIS, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVIS, jref, ixWznmWAccess);
+	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMSHT, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSHT, jref, ixWznmWAccess);
+	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMBOX, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCBOX, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMAPP, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCAPP, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMRTJ, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCRTJ, jref, ixWznmWAccess);
 	ixWznmWAccess = ixWznmWAccessBase; if (!adm) getIxCrdacc(dbswznm, VecWznmVCard::CRDWZNMEVT, adm, urus, refWznmMUser, ixWznmWAccess); xchg->addIxPreset(VecWznmVPreset::PREWZNMIXCRDACCEVT, jref, ixWznmWAccess);
@@ -168,9 +171,9 @@ SessWznm::SessWznm(
 	xchg->addClstn(VecWznmVCall::CALLWZNMREFPRESET, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMRECACCESS, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMLOG, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMCRDOPEN, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMCRDACTIVE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMCRDCLOSE, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMCRDOPEN, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -229,42 +232,44 @@ uint SessWznm::checkCrdActive(
 			const uint ixWznmVCard
 		) {
 	if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) return evalCrdtagActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) return evalCrdverActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) return evalCrdcapActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMERR) return evalCrderrActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) return evalCrdtblActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) return evalCrdtcoActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) return evalCrdsbsActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMREL) return evalCrdrelActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) return evalCrdvecActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) return evalCrdvitActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) return evalCrdchkActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) return evalCrdstbActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) return evalCrdiexActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMIME) return evalCrdimeActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) return evalCrdielActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPST) return evalCrdpstActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) return evalCrdmdlActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) return evalCrdcarActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) return evalCrddlgActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) return evalCrdpnlActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) return evalCrdqryActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) return evalCrdqcoActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) return evalCrdqmdActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCON) return evalCrdconActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) return evalCrdopkActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) return evalCrdopxActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) return evalCrdjobActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) return evalCrdsgeActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) return evalCrdmtdActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) return evalCrdblkActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) return evalCrdcalActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) return evalCrdcmpActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) return evalCrdrlsActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) return evalCrdrtjActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) return evalCrdevtActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) return evalCrdseqActive();
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTE) return evalCrdsteActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) return evalCrdverActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) return evalCrdcapActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMERR) return evalCrderrActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) return evalCrdtblActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) return evalCrdtcoActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) return evalCrdsbsActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMREL) return evalCrdrelActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) return evalCrdvecActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) return evalCrdvitActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) return evalCrdchkActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) return evalCrdstbActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) return evalCrdiexActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMIME) return evalCrdimeActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) return evalCrdielActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPST) return evalCrdpstActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) return evalCrdmdlActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) return evalCrdcarActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) return evalCrddlgActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) return evalCrdpnlActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) return evalCrdqryActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) return evalCrdqcoActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) return evalCrdqmdActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCON) return evalCrdconActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) return evalCrdopkActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) return evalCrdopxActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) return evalCrdjobActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) return evalCrdsgeActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) return evalCrdmtdActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) return evalCrdblkActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) return evalCrdcalActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) return evalCrdcmpActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) return evalCrdrlsActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSHT) return evalCrdshtActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMBOX) return evalCrdboxActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) return evalCrdrtjActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) return evalCrdevtActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) return evalCrdseqActive();
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSTE) return evalCrdsteActive();
 
 	return 0;
 };
@@ -727,6 +732,32 @@ uint SessWznm::evalCrdrlsActive() {
 	return(args.back());
 };
 
+uint SessWznm::evalCrdshtActive() {
+	// pre.refVis()
+
+	vector<uint> args;
+
+	args.push_back((xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVIS, jref)) ? VecWznmVPreset::PREWZNMREFVIS : 0);
+
+	return(args.back());
+};
+
+uint SessWznm::evalCrdboxActive() {
+	// pre.refSht() > pre.refVis()
+
+	vector<uint> args;
+	uint a, b;
+
+	args.push_back((xchg->getRefPreset(VecWznmVPreset::PREWZNMREFSHT, jref)) ? VecWznmVPreset::PREWZNMREFSHT : 0);
+	args.push_back((xchg->getRefPreset(VecWznmVPreset::PREWZNMREFVIS, jref)) ? VecWznmVPreset::PREWZNMREFVIS : 0);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	if (a != 0) args.push_back(a);
+	else args.push_back(b);
+
+	return(args.back());
+};
+
 uint SessWznm::evalCrdrtjActive() {
 	// pre.refApp()
 
@@ -771,53 +802,56 @@ uint SessWznm::checkCrdaccess(
 			const uint ixWznmVCard
 		) {
 	if (ixWznmVCard == VecWznmVCard::CRDWZNMUSG) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCUSG, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMUSR) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCUSR, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRS) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPRS, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMFIL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCFIL, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLOC, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTAG, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCTP) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCTP, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMCH) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMCH, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMLIB) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRJ) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPRJ, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAP, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMERR) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCERR, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTCO, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMREL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVIT, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCHK, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSTB, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMIME) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIME, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEL, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPST) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPST, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMDL, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCQRY, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCQCO, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCQMD, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCON) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCON, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPK, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPX, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSGE, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMTD, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCBLK, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAL, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCMP, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCRLS, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMAPP) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCAPP, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCRTJ, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCEVT, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSEQ, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTE) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSTE, jref);
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMUTL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCUTL, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMUSR) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCUSR, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPRS) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPRS, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMFIL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCFIL, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLOC, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTAG, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCTP) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCTP, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMMCH) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMCH, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMLIB) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCLIB, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPRJ) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPRJ, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAP, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMERR) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCERR, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTBL, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCTCO, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSBS, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMREL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCREL, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVEC, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVIT, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCHK, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSTB, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEX, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMIME) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIME, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCIEL, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPST) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPST, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMDL, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAR, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCDLG, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCPNL, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCQRY, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCQCO, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCQMD, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCON) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCON, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPK, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCOPX, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCJOB, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSGE, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCMTD, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCBLK, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCAL, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCCMP, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCRLS, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVIS) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVIS, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSHT) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSHT, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMBOX) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCBOX, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMAPP) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCAPP, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCRTJ, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCEVT, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSEQ, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSTE) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCSTE, jref);
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMUTL) return xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCUTL, jref);
 
 	return 0;
 };
@@ -962,7 +996,7 @@ void SessWznm::logRecaccess(
 
 	WznmHistRMUserUniversal* husrRunv = NULL;
 
-	if (xchg->stgwznmappearance.histlength > 0) {
+	if (xchg->stgwznmbehavior.histlength > 0) {
 		refWznmMUser = xchg->getRefPreset(VecWznmVPreset::PREWZNMOWNER, jref);
 		unvIxWznmVMaintable = crdToMtb(ixWznmVCard);
 		preIxWznmVMaintable = preToMtb(ixWznmVPreset);
@@ -976,7 +1010,7 @@ void SessWznm::logRecaccess(
 		if (husrRunv->ref == 0) {
 			dbswznm->tblwznmhistrmuseruniversal->insertRec(husrRunv);
 
-			dbswznm->tblwznmhistrmuseruniversal->loadRefsByUsrMtbCrd(refWznmMUser, unvIxWznmVMaintable, ixWznmVCard, false, refs, 4294967296, xchg->stgwznmappearance.histlength);
+			dbswznm->tblwznmhistrmuseruniversal->loadRefsByUsrMtbCrd(refWznmMUser, unvIxWznmVMaintable, ixWznmVCard, false, refs, 4294967296, xchg->stgwznmbehavior.histlength);
 			for (unsigned int i = 0; i < refs.size(); i++) dbswznm->tblwznmhistrmuseruniversal->removeRecByRef(refs[i]);
 
 		} else dbswznm->tblwznmhistrmuseruniversal->updateRec(husrRunv);
@@ -991,52 +1025,55 @@ uint SessWznm::crdToMtb(
 			const uint ixWznmVCard
 		) {
 	if (ixWznmVCard == VecWznmVCard::CRDWZNMUSG) return VecWznmVMaintable::TBLWZNMMUSERGROUP;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMUSR) return VecWznmVMaintable::TBLWZNMMUSER;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRS) return VecWznmVMaintable::TBLWZNMMPERSON;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMFIL) return VecWznmVMaintable::TBLWZNMMFILE;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) return VecWznmVMaintable::TBLWZNMMLOCALE;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) return VecWznmVMaintable::TBLWZNMMTAG;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCTP) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMCH) return VecWznmVMaintable::TBLWZNMMMACHINE;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMLIB) return VecWznmVMaintable::TBLWZNMMLIBRARY;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPRJ) return VecWznmVMaintable::TBLWZNMMPROJECT;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) return VecWznmVMaintable::TBLWZNMMVERSION;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMERR) return VecWznmVMaintable::TBLWZNMMERROR;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) return VecWznmVMaintable::TBLWZNMMTABLE;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) return VecWznmVMaintable::TBLWZNMMTABLECOL;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) return VecWznmVMaintable::TBLWZNMMSUBSET;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMREL) return VecWznmVMaintable::TBLWZNMMRELATION;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) return VecWznmVMaintable::TBLWZNMMVECTOR;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) return VecWznmVMaintable::TBLWZNMMVECTORITEM;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) return VecWznmVMaintable::TBLWZNMMCHECK;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) return VecWznmVMaintable::TBLWZNMMSTUB;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) return VecWznmVMaintable::TBLWZNMMIMPEXPCPLX;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMIME) return VecWznmVMaintable::TBLWZNMMIMPEXP;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) return VecWznmVMaintable::TBLWZNMMIMPEXPCOL;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPST) return VecWznmVMaintable::TBLWZNMMPRESET;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) return VecWznmVMaintable::TBLWZNMMMODULE;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) return VecWznmVMaintable::TBLWZNMMCARD;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) return VecWznmVMaintable::TBLWZNMMDIALOG;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) return VecWznmVMaintable::TBLWZNMMPANEL;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) return VecWznmVMaintable::TBLWZNMMQUERY;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) return VecWznmVMaintable::TBLWZNMMQUERYCOL;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) return VecWznmVMaintable::TBLWZNMMQUERYMOD;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCON) return VecWznmVMaintable::TBLWZNMMCONTROL;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) return VecWznmVMaintable::TBLWZNMMOPPACK;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) return VecWznmVMaintable::TBLWZNMMOP;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) return VecWznmVMaintable::TBLWZNMMJOB;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) return VecWznmVMaintable::TBLWZNMMSTAGE;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) return VecWznmVMaintable::TBLWZNMMMETHOD;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) return VecWznmVMaintable::TBLWZNMMBLOCK;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) return VecWznmVMaintable::TBLWZNMMCALL;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) return VecWznmVMaintable::TBLWZNMMCOMPONENT;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) return VecWznmVMaintable::TBLWZNMMRELEASE;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMAPP) return VecWznmVMaintable::TBLWZNMMAPP;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) return VecWznmVMaintable::TBLWZNMMRTJOB;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) return VecWznmVMaintable::TBLWZNMMEVENT;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) return VecWznmVMaintable::TBLWZNMMSEQUENCE;
-	else if (ixWznmVCard == VecWznmVCard::CRDWZNMSTE) return VecWznmVMaintable::TBLWZNMMSTATE;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMUSR) return VecWznmVMaintable::TBLWZNMMUSER;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPRS) return VecWznmVMaintable::TBLWZNMMPERSON;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMFIL) return VecWznmVMaintable::TBLWZNMMFILE;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMLOC) return VecWznmVMaintable::TBLWZNMMLOCALE;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMTAG) return VecWznmVMaintable::TBLWZNMMTAG;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCTP) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMMCH) return VecWznmVMaintable::TBLWZNMMMACHINE;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMLIB) return VecWznmVMaintable::TBLWZNMMLIBRARY;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPRJ) return VecWznmVMaintable::TBLWZNMMPROJECT;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVER) return VecWznmVMaintable::TBLWZNMMVERSION;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMERR) return VecWznmVMaintable::TBLWZNMMERROR;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) return VecWznmVMaintable::TBLWZNMMTABLE;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) return VecWznmVMaintable::TBLWZNMMTABLECOL;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) return VecWznmVMaintable::TBLWZNMMSUBSET;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMREL) return VecWznmVMaintable::TBLWZNMMRELATION;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) return VecWznmVMaintable::TBLWZNMMVECTOR;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) return VecWznmVMaintable::TBLWZNMMVECTORITEM;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) return VecWznmVMaintable::TBLWZNMMCHECK;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) return VecWznmVMaintable::TBLWZNMMSTUB;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) return VecWznmVMaintable::TBLWZNMMIMPEXPCPLX;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMIME) return VecWznmVMaintable::TBLWZNMMIMPEXP;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) return VecWznmVMaintable::TBLWZNMMIMPEXPCOL;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPST) return VecWznmVMaintable::TBLWZNMMPRESET;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) return VecWznmVMaintable::TBLWZNMMMODULE;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) return VecWznmVMaintable::TBLWZNMMCARD;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) return VecWznmVMaintable::TBLWZNMMDIALOG;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) return VecWznmVMaintable::TBLWZNMMPANEL;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) return VecWznmVMaintable::TBLWZNMMQUERY;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) return VecWznmVMaintable::TBLWZNMMQUERYCOL;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) return VecWznmVMaintable::TBLWZNMMQUERYMOD;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCON) return VecWznmVMaintable::TBLWZNMMCONTROL;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) return VecWznmVMaintable::TBLWZNMMOPPACK;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) return VecWznmVMaintable::TBLWZNMMOP;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) return VecWznmVMaintable::TBLWZNMMJOB;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) return VecWznmVMaintable::TBLWZNMMSTAGE;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) return VecWznmVMaintable::TBLWZNMMMETHOD;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) return VecWznmVMaintable::TBLWZNMMBLOCK;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) return VecWznmVMaintable::TBLWZNMMCALL;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) return VecWznmVMaintable::TBLWZNMMCOMPONENT;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) return VecWznmVMaintable::TBLWZNMMRELEASE;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMVIS) return VecWznmVMaintable::TBLWZNMMVISUAL;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSHT) return VecWznmVMaintable::TBLWZNMMSHEET;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMBOX) return VecWznmVMaintable::TBLWZNMMBOX;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMAPP) return VecWznmVMaintable::TBLWZNMMAPP;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) return VecWznmVMaintable::TBLWZNMMRTJOB;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) return VecWznmVMaintable::TBLWZNMMEVENT;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) return VecWznmVMaintable::TBLWZNMMSEQUENCE;
+	if (ixWznmVCard == VecWznmVCard::CRDWZNMSTE) return VecWznmVMaintable::TBLWZNMMSTATE;
 
 	return VecWznmVMaintable::VOID;
 };
@@ -1045,70 +1082,73 @@ uint SessWznm::preToMtb(
 			const uint ixWznmVPreset
 		) {
 	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFAPP) return VecWznmVMaintable::TBLWZNMMAPP;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFBLK) return VecWznmVMaintable::TBLWZNMMBLOCK;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCAI) return VecWznmVMaintable::TBLWZNMMCONTROL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCAL) return VecWznmVMaintable::TBLWZNMMCALL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCAP) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCAR) return VecWznmVMaintable::TBLWZNMMCARD;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCCP) return VecWznmVMaintable::TBLWZNMMCOMPONENT;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCDC) return VecWznmVMaintable::TBLWZNMMCALL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCFB) return VecWznmVMaintable::TBLWZNMMCONTROL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCHK) return VecWznmVMaintable::TBLWZNMMCHECK;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCMP) return VecWznmVMaintable::TBLWZNMMCOMPONENT;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCON) return VecWznmVMaintable::TBLWZNMMCONTROL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCPB) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCTP) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFDLG) return VecWznmVMaintable::TBLWZNMMDIALOG;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFERR) return VecWznmVMaintable::TBLWZNMMERROR;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFEVT) return VecWznmVMaintable::TBLWZNMMEVENT;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFFED) return VecWznmVMaintable::TBLWZNMMFEED;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFFIL) return VecWznmVMaintable::TBLWZNMMFILE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFIEL) return VecWznmVMaintable::TBLWZNMMIMPEXPCOL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFIEX) return VecWznmVMaintable::TBLWZNMMIMPEXPCPLX;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFIME) return VecWznmVMaintable::TBLWZNMMIMPEXP;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFJOB) return VecWznmVMaintable::TBLWZNMMJOB;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFKLS) return VecWznmVMaintable::TBLWZNMMVECTOR;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFLIB) return VecWznmVMaintable::TBLWZNMMLIBRARY;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFLOC) return VecWznmVMaintable::TBLWZNMMLOCALE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMCH) return VecWznmVMaintable::TBLWZNMMMACHINE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMDL) return VecWznmVMaintable::TBLWZNMMMODULE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMTB) return VecWznmVMaintable::TBLWZNMMTABLE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMTD) return VecWznmVMaintable::TBLWZNMMMETHOD;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFOEN) return VecWznmVMaintable::TBLWZNMMCOMPONENT;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFOPK) return VecWznmVMaintable::TBLWZNMMOPPACK;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFOPX) return VecWznmVMaintable::TBLWZNMMOP;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFPNL) return VecWznmVMaintable::TBLWZNMMPANEL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFPRJ) return VecWznmVMaintable::TBLWZNMMPROJECT;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFPRS) return VecWznmVMaintable::TBLWZNMMPERSON;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFPST) return VecWznmVMaintable::TBLWZNMMPRESET;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFQCO) return VecWznmVMaintable::TBLWZNMMQUERYCOL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFQMD) return VecWznmVMaintable::TBLWZNMMQUERYMOD;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFQRY) return VecWznmVMaintable::TBLWZNMMQUERY;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFQTB) return VecWznmVMaintable::TBLWZNMMTABLE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFREL) return VecWznmVMaintable::TBLWZNMMRELATION;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRLS) return VecWznmVMaintable::TBLWZNMMRELEASE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRLT) return VecWznmVMaintable::TBLWZNMMTABLE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRTB) return VecWznmVMaintable::TBLWZNMMRTBLOCK;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRTD) return VecWznmVMaintable::TBLWZNMMRTDPCH;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRTJ) return VecWznmVMaintable::TBLWZNMMRTJOB;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSBS) return VecWznmVMaintable::TBLWZNMMSUBSET;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSEQ) return VecWznmVMaintable::TBLWZNMMSEQUENCE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSES) return VecWznmVMaintable::TBLWZNMMSESSION;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSGE) return VecWznmVMaintable::TBLWZNMMSTAGE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSNS) return VecWznmVMaintable::TBLWZNMMSENSITIVITY;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSQK) return VecWznmVMaintable::TBLWZNMMSQUAWK;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSTB) return VecWznmVMaintable::TBLWZNMMSTUB;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSTC) return VecWznmVMaintable::TBLWZNMMTABLECOL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSTE) return VecWznmVMaintable::TBLWZNMMSTATE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSTT) return VecWznmVMaintable::TBLWZNMMTABLE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFTAG) return VecWznmVMaintable::TBLWZNMMTAG;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFTBL) return VecWznmVMaintable::TBLWZNMMTABLE;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFTCO) return VecWznmVMaintable::TBLWZNMMTABLECOL;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFUSG) return VecWznmVMaintable::TBLWZNMMUSERGROUP;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFUSR) return VecWznmVMaintable::TBLWZNMMUSER;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFVEC) return VecWznmVMaintable::TBLWZNMMVECTOR;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFVER) return VecWznmVMaintable::TBLWZNMMVERSION;
-	else if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFVIT) return VecWznmVMaintable::TBLWZNMMVECTORITEM;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFBLK) return VecWznmVMaintable::TBLWZNMMBLOCK;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFBOX) return VecWznmVMaintable::TBLWZNMMBOX;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCAI) return VecWznmVMaintable::TBLWZNMMCONTROL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCAL) return VecWznmVMaintable::TBLWZNMMCALL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCAP) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCAR) return VecWznmVMaintable::TBLWZNMMCARD;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCCP) return VecWznmVMaintable::TBLWZNMMCOMPONENT;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCDC) return VecWznmVMaintable::TBLWZNMMCALL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCFB) return VecWznmVMaintable::TBLWZNMMCONTROL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCHK) return VecWznmVMaintable::TBLWZNMMCHECK;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCMP) return VecWznmVMaintable::TBLWZNMMCOMPONENT;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCON) return VecWznmVMaintable::TBLWZNMMCONTROL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCPB) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFCTP) return VecWznmVMaintable::TBLWZNMMCAPABILITY;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFDLG) return VecWznmVMaintable::TBLWZNMMDIALOG;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFERR) return VecWznmVMaintable::TBLWZNMMERROR;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFEVT) return VecWznmVMaintable::TBLWZNMMEVENT;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFFED) return VecWznmVMaintable::TBLWZNMMFEED;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFFIL) return VecWznmVMaintable::TBLWZNMMFILE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFIEL) return VecWznmVMaintable::TBLWZNMMIMPEXPCOL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFIEX) return VecWznmVMaintable::TBLWZNMMIMPEXPCPLX;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFIME) return VecWznmVMaintable::TBLWZNMMIMPEXP;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFJOB) return VecWznmVMaintable::TBLWZNMMJOB;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFKLS) return VecWznmVMaintable::TBLWZNMMVECTOR;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFLIB) return VecWznmVMaintable::TBLWZNMMLIBRARY;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFLOC) return VecWznmVMaintable::TBLWZNMMLOCALE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMCH) return VecWznmVMaintable::TBLWZNMMMACHINE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMDL) return VecWznmVMaintable::TBLWZNMMMODULE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMTB) return VecWznmVMaintable::TBLWZNMMTABLE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFMTD) return VecWznmVMaintable::TBLWZNMMMETHOD;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFOEN) return VecWznmVMaintable::TBLWZNMMCOMPONENT;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFOPK) return VecWznmVMaintable::TBLWZNMMOPPACK;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFOPX) return VecWznmVMaintable::TBLWZNMMOP;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFPNL) return VecWznmVMaintable::TBLWZNMMPANEL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFPRJ) return VecWznmVMaintable::TBLWZNMMPROJECT;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFPRS) return VecWznmVMaintable::TBLWZNMMPERSON;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFPST) return VecWznmVMaintable::TBLWZNMMPRESET;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFQCO) return VecWznmVMaintable::TBLWZNMMQUERYCOL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFQMD) return VecWznmVMaintable::TBLWZNMMQUERYMOD;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFQRY) return VecWznmVMaintable::TBLWZNMMQUERY;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFQTB) return VecWznmVMaintable::TBLWZNMMTABLE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFREL) return VecWznmVMaintable::TBLWZNMMRELATION;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRLS) return VecWznmVMaintable::TBLWZNMMRELEASE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRLT) return VecWznmVMaintable::TBLWZNMMTABLE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRTB) return VecWznmVMaintable::TBLWZNMMRTBLOCK;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRTD) return VecWznmVMaintable::TBLWZNMMRTDPCH;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFRTJ) return VecWznmVMaintable::TBLWZNMMRTJOB;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSBS) return VecWznmVMaintable::TBLWZNMMSUBSET;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSEQ) return VecWznmVMaintable::TBLWZNMMSEQUENCE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSES) return VecWznmVMaintable::TBLWZNMMSESSION;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSGE) return VecWznmVMaintable::TBLWZNMMSTAGE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSHT) return VecWznmVMaintable::TBLWZNMMSHEET;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSNS) return VecWznmVMaintable::TBLWZNMMSENSITIVITY;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSQK) return VecWznmVMaintable::TBLWZNMMSQUAWK;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSTB) return VecWznmVMaintable::TBLWZNMMSTUB;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSTC) return VecWznmVMaintable::TBLWZNMMTABLECOL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSTE) return VecWznmVMaintable::TBLWZNMMSTATE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFSTT) return VecWznmVMaintable::TBLWZNMMTABLE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFTAG) return VecWznmVMaintable::TBLWZNMMTAG;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFTBL) return VecWznmVMaintable::TBLWZNMMTABLE;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFTCO) return VecWznmVMaintable::TBLWZNMMTABLECOL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFUSG) return VecWznmVMaintable::TBLWZNMMUSERGROUP;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFUSR) return VecWznmVMaintable::TBLWZNMMUSER;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFVEC) return VecWznmVMaintable::TBLWZNMMVECTOR;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFVER) return VecWznmVMaintable::TBLWZNMMVERSION;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFVIS) return VecWznmVMaintable::TBLWZNMMVISUAL;
+	if (ixWznmVPreset == VecWznmVPreset::PREWZNMREFVIT) return VecWznmVMaintable::TBLWZNMMVECTORITEM;
 
 	return VecWznmVMaintable::VOID;
 };
@@ -1116,13 +1156,13 @@ uint SessWznm::preToMtb(
 bool SessWznm::hasActive(
 			const uint ixWznmVCard
 		) {
-	return((ixWznmVCard == VecWznmVCard::CRDWZNMTAG) || (ixWznmVCard == VecWznmVCard::CRDWZNMVER) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) || (ixWznmVCard == VecWznmVCard::CRDWZNMERR) || (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) || (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) || (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) || (ixWznmVCard == VecWznmVCard::CRDWZNMREL) || (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) || (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) || (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) || (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) || (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) || (ixWznmVCard == VecWznmVCard::CRDWZNMIME) || (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) || (ixWznmVCard == VecWznmVCard::CRDWZNMPST) || (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) || (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) || (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) || (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) || (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) || (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) || (ixWznmVCard == VecWznmVCard::CRDWZNMCON) || (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) || (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) || (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) || (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) || (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) || (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) || (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) || (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) || (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) || (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) || (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) || (ixWznmVCard == VecWznmVCard::CRDWZNMSTE));
+	return((ixWznmVCard == VecWznmVCard::CRDWZNMTAG) || (ixWznmVCard == VecWznmVCard::CRDWZNMVER) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAP) || (ixWznmVCard == VecWznmVCard::CRDWZNMERR) || (ixWznmVCard == VecWznmVCard::CRDWZNMTBL) || (ixWznmVCard == VecWznmVCard::CRDWZNMTCO) || (ixWznmVCard == VecWznmVCard::CRDWZNMSBS) || (ixWznmVCard == VecWznmVCard::CRDWZNMREL) || (ixWznmVCard == VecWznmVCard::CRDWZNMVEC) || (ixWznmVCard == VecWznmVCard::CRDWZNMVIT) || (ixWznmVCard == VecWznmVCard::CRDWZNMCHK) || (ixWznmVCard == VecWznmVCard::CRDWZNMSTB) || (ixWznmVCard == VecWznmVCard::CRDWZNMIEX) || (ixWznmVCard == VecWznmVCard::CRDWZNMIME) || (ixWznmVCard == VecWznmVCard::CRDWZNMIEL) || (ixWznmVCard == VecWznmVCard::CRDWZNMPST) || (ixWznmVCard == VecWznmVCard::CRDWZNMMDL) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAR) || (ixWznmVCard == VecWznmVCard::CRDWZNMDLG) || (ixWznmVCard == VecWznmVCard::CRDWZNMPNL) || (ixWznmVCard == VecWznmVCard::CRDWZNMQRY) || (ixWznmVCard == VecWznmVCard::CRDWZNMQCO) || (ixWznmVCard == VecWznmVCard::CRDWZNMQMD) || (ixWznmVCard == VecWznmVCard::CRDWZNMCON) || (ixWznmVCard == VecWznmVCard::CRDWZNMOPK) || (ixWznmVCard == VecWznmVCard::CRDWZNMOPX) || (ixWznmVCard == VecWznmVCard::CRDWZNMJOB) || (ixWznmVCard == VecWznmVCard::CRDWZNMSGE) || (ixWznmVCard == VecWznmVCard::CRDWZNMMTD) || (ixWznmVCard == VecWznmVCard::CRDWZNMBLK) || (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) || (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) || (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) || (ixWznmVCard == VecWznmVCard::CRDWZNMSHT) || (ixWznmVCard == VecWznmVCard::CRDWZNMBOX) || (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) || (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) || (ixWznmVCard == VecWznmVCard::CRDWZNMSEQ) || (ixWznmVCard == VecWznmVCard::CRDWZNMSTE));
 };
 
 bool SessWznm::hasGrpown(
 			const uint ixWznmVMaintable
 		) {
-	return((ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMAPP) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMFILE) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMPERSON) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMPROJECT) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMUSER) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMUSERGROUP) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMVERSION));
+	return((ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMAPP) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMFILE) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMPERSON) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMPROJECT) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMUSER) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMUSERGROUP) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMVERSION) || (ixWznmVMaintable == VecWznmVMaintable::TBLWZNMMVISUAL));
 };
 
 void SessWznm::handleRequest(
@@ -1135,6 +1175,7 @@ void SessWznm::handleRequest(
 		if (req->cmd == "cmdset") {
 			cout << "\tcreateCrdapp" << endl;
 			cout << "\tcreateCrdblk" << endl;
+			cout << "\tcreateCrdbox" << endl;
 			cout << "\tcreateCrdcal" << endl;
 			cout << "\tcreateCrdcap" << endl;
 			cout << "\tcreateCrdcar" << endl;
@@ -1170,6 +1211,7 @@ void SessWznm::handleRequest(
 			cout << "\tcreateCrdsbs" << endl;
 			cout << "\tcreateCrdseq" << endl;
 			cout << "\tcreateCrdsge" << endl;
+			cout << "\tcreateCrdsht" << endl;
 			cout << "\tcreateCrdstb" << endl;
 			cout << "\tcreateCrdste" << endl;
 			cout << "\tcreateCrdtag" << endl;
@@ -1180,9 +1222,11 @@ void SessWznm::handleRequest(
 			cout << "\tcreateCrdutl" << endl;
 			cout << "\tcreateCrdvec" << endl;
 			cout << "\tcreateCrdver" << endl;
+			cout << "\tcreateCrdvis" << endl;
 			cout << "\tcreateCrdvit" << endl;
 			cout << "\teraseCrdapp" << endl;
 			cout << "\teraseCrdblk" << endl;
+			cout << "\teraseCrdbox" << endl;
 			cout << "\teraseCrdcal" << endl;
 			cout << "\teraseCrdcap" << endl;
 			cout << "\teraseCrdcar" << endl;
@@ -1218,6 +1262,7 @@ void SessWznm::handleRequest(
 			cout << "\teraseCrdsbs" << endl;
 			cout << "\teraseCrdseq" << endl;
 			cout << "\teraseCrdsge" << endl;
+			cout << "\teraseCrdsht" << endl;
 			cout << "\teraseCrdstb" << endl;
 			cout << "\teraseCrdste" << endl;
 			cout << "\teraseCrdtag" << endl;
@@ -1228,12 +1273,16 @@ void SessWznm::handleRequest(
 			cout << "\teraseCrdutl" << endl;
 			cout << "\teraseCrdvec" << endl;
 			cout << "\teraseCrdver" << endl;
+			cout << "\teraseCrdvis" << endl;
 			cout << "\teraseCrdvit" << endl;
 		} else if (req->cmd == "createCrdapp") {
 			req->retain = handleCreateCrdapp(dbswznm);
 
 		} else if (req->cmd == "createCrdblk") {
 			req->retain = handleCreateCrdblk(dbswznm);
+
+		} else if (req->cmd == "createCrdbox") {
+			req->retain = handleCreateCrdbox(dbswznm);
 
 		} else if (req->cmd == "createCrdcal") {
 			req->retain = handleCreateCrdcal(dbswznm);
@@ -1340,6 +1389,9 @@ void SessWznm::handleRequest(
 		} else if (req->cmd == "createCrdsge") {
 			req->retain = handleCreateCrdsge(dbswznm);
 
+		} else if (req->cmd == "createCrdsht") {
+			req->retain = handleCreateCrdsht(dbswznm);
+
 		} else if (req->cmd == "createCrdstb") {
 			req->retain = handleCreateCrdstb(dbswznm);
 
@@ -1370,6 +1422,9 @@ void SessWznm::handleRequest(
 		} else if (req->cmd == "createCrdver") {
 			req->retain = handleCreateCrdver(dbswznm);
 
+		} else if (req->cmd == "createCrdvis") {
+			req->retain = handleCreateCrdvis(dbswznm);
+
 		} else if (req->cmd == "createCrdvit") {
 			req->retain = handleCreateCrdvit(dbswznm);
 
@@ -1378,6 +1433,9 @@ void SessWznm::handleRequest(
 
 		} else if (req->cmd == "eraseCrdblk") {
 			req->retain = handleEraseCrdblk(dbswznm);
+
+		} else if (req->cmd == "eraseCrdbox") {
+			req->retain = handleEraseCrdbox(dbswznm);
 
 		} else if (req->cmd == "eraseCrdcal") {
 			req->retain = handleEraseCrdcal(dbswznm);
@@ -1484,6 +1542,9 @@ void SessWznm::handleRequest(
 		} else if (req->cmd == "eraseCrdsge") {
 			req->retain = handleEraseCrdsge(dbswznm);
 
+		} else if (req->cmd == "eraseCrdsht") {
+			req->retain = handleEraseCrdsht(dbswznm);
+
 		} else if (req->cmd == "eraseCrdstb") {
 			req->retain = handleEraseCrdstb(dbswznm);
 
@@ -1513,6 +1574,9 @@ void SessWznm::handleRequest(
 
 		} else if (req->cmd == "eraseCrdver") {
 			req->retain = handleEraseCrdver(dbswznm);
+
+		} else if (req->cmd == "eraseCrdvis") {
+			req->retain = handleEraseCrdvis(dbswznm);
 
 		} else if (req->cmd == "eraseCrdvit") {
 			req->retain = handleEraseCrdvit(dbswznm);
@@ -1553,6 +1617,23 @@ bool SessWznm::handleCreateCrdblk(
 		cout << "\tcard is not activated!" << endl;
 	} else {
 		xchg->jrefCmd = insertSubjob(crdblks, new CrdWznmBlk(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
+	return retval;
+};
+
+bool SessWznm::handleCreateCrdbox(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+
+	uint ixWznmVPreset = evalCrdboxActive();
+
+	if (ixWznmVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdboxs, new CrdWznmBox(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
 		cout << "\tjob reference: " << xchg->jrefCmd << endl;
 	};
 
@@ -2112,6 +2193,23 @@ bool SessWznm::handleCreateCrdsge(
 	return retval;
 };
 
+bool SessWznm::handleCreateCrdsht(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+
+	uint ixWznmVPreset = evalCrdshtActive();
+
+	if (ixWznmVPreset == 0) {
+		cout << "\tcard is not activated!" << endl;
+	} else {
+		xchg->jrefCmd = insertSubjob(crdshts, new CrdWznmSht(xchg, dbswznm, jref, ixWznmVLocale, 0, ixWznmVPreset, xchg->getRefPreset(ixWznmVPreset, jref)));
+		cout << "\tjob reference: " << xchg->jrefCmd << endl;
+	};
+
+	return retval;
+};
+
 bool SessWznm::handleCreateCrdstb(
 			DbsWznm* dbswznm
 		) {
@@ -2264,6 +2362,17 @@ bool SessWznm::handleCreateCrdver(
 	return retval;
 };
 
+bool SessWznm::handleCreateCrdvis(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+
+	xchg->jrefCmd = insertSubjob(crdviss, new CrdWznmVis(xchg, dbswznm, jref, ixWznmVLocale, 0));
+	cout << "\tjob reference: " << xchg->jrefCmd << endl;
+
+	return retval;
+};
+
 bool SessWznm::handleCreateCrdvit(
 			DbsWznm* dbswznm
 		) {
@@ -2294,6 +2403,14 @@ bool SessWznm::handleEraseCrdblk(
 		) {
 	bool retval = false;
 	eraseCrd(crdblks);
+	return retval;
+};
+
+bool SessWznm::handleEraseCrdbox(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	eraseCrd(crdboxs);
 	return retval;
 };
 
@@ -2577,6 +2694,14 @@ bool SessWznm::handleEraseCrdsge(
 	return retval;
 };
 
+bool SessWznm::handleEraseCrdsht(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	eraseCrd(crdshts);
+	return retval;
+};
+
 bool SessWznm::handleEraseCrdstb(
 			DbsWznm* dbswznm
 		) {
@@ -2657,6 +2782,14 @@ bool SessWznm::handleEraseCrdver(
 	return retval;
 };
 
+bool SessWznm::handleEraseCrdvis(
+			DbsWznm* dbswznm
+		) {
+	bool retval = false;
+	eraseCrd(crdviss);
+	return retval;
+};
+
 bool SessWznm::handleEraseCrdvit(
 			DbsWznm* dbswznm
 		) {
@@ -2717,6 +2850,9 @@ void SessWznm::handleDpchAppWznmInit(
 	for (auto it = crdcals.begin(); it != crdcals.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmCal");
 	for (auto it = crdcmps.begin(); it != crdcmps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmCmp");
 	for (auto it = crdrlss.begin(); it != crdrlss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmRls");
+	for (auto it = crdviss.begin(); it != crdviss.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmVis");
+	for (auto it = crdshts.begin(); it != crdshts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmSht");
+	for (auto it = crdboxs.begin(); it != crdboxs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmBox");
 	for (auto it = crdapps.begin(); it != crdapps.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmApp");
 	for (auto it = crdrtjs.begin(); it != crdrtjs.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmRtj");
 	for (auto it = crdevts.begin(); it != crdevts.end(); it++) feedFEnsSec.appendIxSrefTitles(0, Scr::scramble(it->second->jref), "CrdWznmEvt");
@@ -2737,12 +2873,12 @@ void SessWznm::handleCall(
 		call->abort = handleCallWznmRecaccess(dbswznm, call->jref, call->argInv.ix, call->argInv.ref, call->argRet.ix);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOG) {
 		call->abort = handleCallWznmLog(dbswznm, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCRDOPEN) {
-		call->abort = handleCallWznmCrdOpen(dbswznm, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval, call->argRet.ref);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCRDACTIVE) {
 		call->abort = handleCallWznmCrdActive(dbswznm, call->jref, call->argInv.ix, call->argRet.ix);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCRDCLOSE) {
 		call->abort = handleCallWznmCrdClose(dbswznm, call->jref, call->argInv.ix);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCRDOPEN) {
+		call->abort = handleCallWznmCrdOpen(dbswznm, call->jref, call->argInv.ix, call->argInv.ref, call->argInv.sref, call->argInv.intval, call->argRet.ref);
 	};
 };
 
@@ -2765,9 +2901,9 @@ bool SessWznm::handleCallWznmRefPreSet(
 		};
 
 	} else if (ixInv == VecWznmVPreset::PREWZNMTLAST) {
-		if (xchg->stgwznmappearance.sesstterm != 0) xchg->addRefPreset(ixInv, jref, refInv);
+		if (xchg->stgwznmbehavior.sesstterm != 0) xchg->addRefPreset(ixInv, jref, refInv);
 
-	} else if ((ixInv == VecWznmVPreset::PREWZNMREFAPP) || (ixInv == VecWznmVPreset::PREWZNMREFVER)) {
+	} else if ((ixInv == VecWznmVPreset::PREWZNMREFAPP) || (ixInv == VecWznmVPreset::PREWZNMREFVER) || (ixInv == VecWznmVPreset::PREWZNMREFVIS)) {
 		if (refInv == 0) xchg->removePreset(ixInv, jref);
 		else xchg->addRefPreset(ixInv, jref, refInv);
 
@@ -2799,6 +2935,90 @@ bool SessWznm::handleCallWznmLog(
 		) {
 	bool retval = false;
 	logRecaccess(dbswznm, ixInv, refInv, VecWznmVCard::getIx(srefInv), intvalInv);
+	return retval;
+};
+
+bool SessWznm::handleCallWznmCrdActive(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+			, uint& ixRet
+		) {
+	bool retval = false;
+	ixRet = checkCrdActive(ixInv);
+	return retval;
+};
+
+bool SessWznm::handleCallWznmCrdClose(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const uint ixInv
+		) {
+	bool retval = false;
+	// delete only if card is not part of a suspended session
+	if (xchg->getBoolvalPreset(VecWznmVPreset::PREWZNMSUSPSESS, jrefTrig)) return retval;
+
+	ubigint jrefNotif = xchg->getRefPreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
+	if (jrefNotif == jrefTrig) xchg->removePreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
+
+	if (ixInv == VecWznmVCard::CRDWZNMUSG) eraseSubjobByJref(crdusgs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMUSR) eraseSubjobByJref(crdusrs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMPRS) eraseSubjobByJref(crdprss, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMFIL) eraseSubjobByJref(crdfils, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMNAV) {
+		if (crdnav) {
+			delete crdnav;
+			crdnav = NULL;
+		};
+
+	} 
+else if (ixInv == VecWznmVCard::CRDWZNMLOC) eraseSubjobByJref(crdlocs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMTAG) eraseSubjobByJref(crdtags, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCTP) eraseSubjobByJref(crdctps, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMMCH) eraseSubjobByJref(crdmchs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMLIB) eraseSubjobByJref(crdlibs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMPRJ) eraseSubjobByJref(crdprjs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMVER) eraseSubjobByJref(crdvers, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCAP) eraseSubjobByJref(crdcaps, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMERR) eraseSubjobByJref(crderrs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMTBL) eraseSubjobByJref(crdtbls, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMTCO) eraseSubjobByJref(crdtcos, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSBS) eraseSubjobByJref(crdsbss, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMREL) eraseSubjobByJref(crdrels, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMVEC) eraseSubjobByJref(crdvecs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMVIT) eraseSubjobByJref(crdvits, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCHK) eraseSubjobByJref(crdchks, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSTB) eraseSubjobByJref(crdstbs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMIEX) eraseSubjobByJref(crdiexs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMIME) eraseSubjobByJref(crdimes, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMIEL) eraseSubjobByJref(crdiels, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMPST) eraseSubjobByJref(crdpsts, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMMDL) eraseSubjobByJref(crdmdls, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCAR) eraseSubjobByJref(crdcars, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMDLG) eraseSubjobByJref(crddlgs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMPNL) eraseSubjobByJref(crdpnls, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMQRY) eraseSubjobByJref(crdqrys, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMQCO) eraseSubjobByJref(crdqcos, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMQMD) eraseSubjobByJref(crdqmds, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCON) eraseSubjobByJref(crdcons, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMOPK) eraseSubjobByJref(crdopks, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMOPX) eraseSubjobByJref(crdopxs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMJOB) eraseSubjobByJref(crdjobs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSGE) eraseSubjobByJref(crdsges, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMMTD) eraseSubjobByJref(crdmtds, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMBLK) eraseSubjobByJref(crdblks, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCAL) eraseSubjobByJref(crdcals, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMCMP) eraseSubjobByJref(crdcmps, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMRLS) eraseSubjobByJref(crdrlss, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMVIS) eraseSubjobByJref(crdviss, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSHT) eraseSubjobByJref(crdshts, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMBOX) eraseSubjobByJref(crdboxs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMAPP) eraseSubjobByJref(crdapps, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMRTJ) eraseSubjobByJref(crdrtjs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMEVT) eraseSubjobByJref(crdevts, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSEQ) eraseSubjobByJref(crdseqs, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMSTE) eraseSubjobByJref(crdstes, jrefTrig);
+	else if (ixInv == VecWznmVCard::CRDWZNMUTL) eraseSubjobByJref(crdutls, jrefTrig);
 	return retval;
 };
 
@@ -2903,6 +3123,9 @@ bool SessWznm::handleCallWznmCrdOpen(
 		else if (ixWznmVCard == VecWznmVCard::CRDWZNMCAL) refRet = insertSubjob(crdcals, new CrdWznmCal(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
 		else if (ixWznmVCard == VecWznmVCard::CRDWZNMCMP) refRet = insertSubjob(crdcmps, new CrdWznmCmp(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
 		else if (ixWznmVCard == VecWznmVCard::CRDWZNMRLS) refRet = insertSubjob(crdrlss, new CrdWznmRls(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMVIS) refRet = insertSubjob(crdviss, new CrdWznmVis(xchg, dbswznm, jref, ixWznmVLocale, ref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMSHT) refRet = insertSubjob(crdshts, new CrdWznmSht(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
+		else if (ixWznmVCard == VecWznmVCard::CRDWZNMBOX) refRet = insertSubjob(crdboxs, new CrdWznmBox(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
 		else if (ixWznmVCard == VecWznmVCard::CRDWZNMAPP) refRet = insertSubjob(crdapps, new CrdWznmApp(xchg, dbswznm, jref, ixWznmVLocale, ref));
 		else if (ixWznmVCard == VecWznmVCard::CRDWZNMRTJ) refRet = insertSubjob(crdrtjs, new CrdWznmRtj(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
 		else if (ixWznmVCard == VecWznmVCard::CRDWZNMEVT) refRet = insertSubjob(crdevts, new CrdWznmEvt(xchg, dbswznm, jref, ixWznmVLocale, ref, ixWznmVPreset, preUref));
@@ -2911,86 +3134,5 @@ bool SessWznm::handleCallWznmCrdOpen(
 		else if (ixWznmVCard == VecWznmVCard::CRDWZNMUTL) refRet = insertSubjob(crdutls, new CrdWznmUtl(xchg, dbswznm, jref, ixWznmVLocale));
 	};
 
-	return retval;
-};
-
-bool SessWznm::handleCallWznmCrdActive(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-			, uint& ixRet
-		) {
-	bool retval = false;
-	ixRet = checkCrdActive(ixInv);
-	return retval;
-};
-
-bool SessWznm::handleCallWznmCrdClose(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const uint ixInv
-		) {
-	bool retval = false;
-	// delete only if card is not part of a suspended session
-	if (xchg->getBoolvalPreset(VecWznmVPreset::PREWZNMSUSPSESS, jrefTrig)) return retval;
-
-	ubigint jrefNotif = xchg->getRefPreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
-	if (jrefNotif == jrefTrig) xchg->removePreset(VecWznmVPreset::PREWZNMJREFNOTIFY, jref);
-
-	if (ixInv == VecWznmVCard::CRDWZNMNAV) {
-		if (crdnav) {
-			delete crdnav;
-			crdnav = NULL;
-		};
-
-	} 
-else if (ixInv == VecWznmVCard::CRDWZNMUSG) eraseSubjobByJref(crdusgs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMUSR) eraseSubjobByJref(crdusrs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMPRS) eraseSubjobByJref(crdprss, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMFIL) eraseSubjobByJref(crdfils, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMLOC) eraseSubjobByJref(crdlocs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMTAG) eraseSubjobByJref(crdtags, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMCTP) eraseSubjobByJref(crdctps, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMMCH) eraseSubjobByJref(crdmchs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMLIB) eraseSubjobByJref(crdlibs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMPRJ) eraseSubjobByJref(crdprjs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMVER) eraseSubjobByJref(crdvers, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMCAP) eraseSubjobByJref(crdcaps, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMERR) eraseSubjobByJref(crderrs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMTBL) eraseSubjobByJref(crdtbls, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMTCO) eraseSubjobByJref(crdtcos, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMSBS) eraseSubjobByJref(crdsbss, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMREL) eraseSubjobByJref(crdrels, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMVEC) eraseSubjobByJref(crdvecs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMVIT) eraseSubjobByJref(crdvits, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMCHK) eraseSubjobByJref(crdchks, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMSTB) eraseSubjobByJref(crdstbs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMIEX) eraseSubjobByJref(crdiexs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMIME) eraseSubjobByJref(crdimes, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMIEL) eraseSubjobByJref(crdiels, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMPST) eraseSubjobByJref(crdpsts, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMMDL) eraseSubjobByJref(crdmdls, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMCAR) eraseSubjobByJref(crdcars, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMDLG) eraseSubjobByJref(crddlgs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMPNL) eraseSubjobByJref(crdpnls, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMQRY) eraseSubjobByJref(crdqrys, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMQCO) eraseSubjobByJref(crdqcos, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMQMD) eraseSubjobByJref(crdqmds, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMCON) eraseSubjobByJref(crdcons, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMOPK) eraseSubjobByJref(crdopks, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMOPX) eraseSubjobByJref(crdopxs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMJOB) eraseSubjobByJref(crdjobs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMSGE) eraseSubjobByJref(crdsges, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMMTD) eraseSubjobByJref(crdmtds, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMBLK) eraseSubjobByJref(crdblks, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMCAL) eraseSubjobByJref(crdcals, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMCMP) eraseSubjobByJref(crdcmps, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMRLS) eraseSubjobByJref(crdrlss, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMAPP) eraseSubjobByJref(crdapps, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMRTJ) eraseSubjobByJref(crdrtjs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMEVT) eraseSubjobByJref(crdevts, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMSEQ) eraseSubjobByJref(crdseqs, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMSTE) eraseSubjobByJref(crdstes, jrefTrig);
-	else if (ixInv == VecWznmVCard::CRDWZNMUTL) eraseSubjobByJref(crdutls, jrefTrig);
 	return retval;
 };

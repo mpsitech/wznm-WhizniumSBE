@@ -20,11 +20,11 @@ WznmRMStubMStub::WznmRMStubMStub(
 			const ubigint ref
 			, const ubigint supRefWznmMStub
 			, const ubigint subRefWznmMStub
-		) {
-
-	this->ref = ref;
-	this->supRefWznmMStub = supRefWznmMStub;
-	this->subRefWznmMStub = subRefWznmMStub;
+		) :
+			ref(ref)
+			, supRefWznmMStub(supRefWznmMStub)
+			, subRefWznmMStub(subRefWznmMStub)
+		{
 };
 
 bool WznmRMStubMStub::operator==(

@@ -24,13 +24,13 @@ WznmAMTablecolTitle::WznmAMTablecolTitle(
 			, const uint x1IxVType
 			, const ubigint x2RefWznmMLocale
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMTablecol = refWznmMTablecol;
-	this->x1IxVType = x1IxVType;
-	this->x2RefWznmMLocale = x2RefWznmMLocale;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMTablecol(refWznmMTablecol)
+			, x1IxVType(x1IxVType)
+			, x2RefWznmMLocale(x2RefWznmMLocale)
+			, Title(Title)
+		{
 };
 
 bool WznmAMTablecolTitle::operator==(

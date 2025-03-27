@@ -20,11 +20,11 @@ WznmRMDialogMQuery::WznmRMDialogMQuery(
 			const ubigint ref
 			, const ubigint refWznmMDialog
 			, const ubigint refWznmMQuery
-		) {
-
-	this->ref = ref;
-	this->refWznmMDialog = refWznmMDialog;
-	this->refWznmMQuery = refWznmMQuery;
+		) :
+			ref(ref)
+			, refWznmMDialog(refWznmMDialog)
+			, refWznmMQuery(refWznmMQuery)
+		{
 };
 
 bool WznmRMDialogMQuery::operator==(

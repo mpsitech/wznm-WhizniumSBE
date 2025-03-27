@@ -33,8 +33,8 @@ public:
 
 	public:
 		static const Sbecore::uint GRP = 1;
-		static const Sbecore::uint SRF = 2;
-		static const Sbecore::uint CPB = 3;
+		static const Sbecore::uint CPB = 2;
+		static const Sbecore::uint SRF = 3;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

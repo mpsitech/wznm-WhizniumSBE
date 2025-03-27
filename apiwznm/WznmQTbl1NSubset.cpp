@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQTbl1NSubset::WznmQTbl1NSubset(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQTbl1NSubset::readXML(

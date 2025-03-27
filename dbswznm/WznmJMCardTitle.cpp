@@ -21,12 +21,12 @@ WznmJMCardTitle::WznmJMCardTitle(
 			, const ubigint refWznmMCard
 			, const ubigint x1RefWznmMLocale
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMCard = refWznmMCard;
-	this->x1RefWznmMLocale = x1RefWznmMLocale;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMCard(refWznmMCard)
+			, x1RefWznmMLocale(x1RefWznmMLocale)
+			, Title(Title)
+		{
 };
 
 bool WznmJMCardTitle::operator==(

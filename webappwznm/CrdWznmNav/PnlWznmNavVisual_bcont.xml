@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<head>
+		<title>Visual_bcont</title>
+		<script>
+			function handleButVisExpandClick() {parent.parent.window.handleButExpandClick("LstVis");};
+			function handleButVisCollapseClick() {parent.parent.window.handleButCollapseClick("LstVis");};
+			function handleButVisViewClick() {parent.parent.window.handleButCrdopenClick("ButVisView");};
+			function handleButVisNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButVisNewcrd");};
+			function handleButShtExpandClick() {parent.parent.window.handleButExpandClick("LstSht");};
+			function handleButShtCollapseClick() {parent.parent.window.handleButCollapseClick("LstSht");};
+			function handleButShtViewClick() {parent.parent.window.handleButCrdopenClick("ButShtView");};
+			function handleButShtNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButShtNewcrd");};
+			function handleButBoxExpandClick() {parent.parent.window.handleButExpandClick("LstBox");};
+			function handleButBoxCollapseClick() {parent.parent.window.handleButCollapseClick("LstBox");};
+			function handleButBoxViewClick() {parent.parent.window.handleButCrdopenClick("ButBoxView");};
+			function handleButBoxNewcrdClick() {parent.parent.window.handleButCrdopenClick("ButBoxNewcrd");};
+			<!-- IP custScript - INSERT -->
+		</script>
+		<link href="../style/pnlDetail3_2.css" rel="styleSheet" type="text/css"/>
+		<!-- IP custStyle - INSERT -->
+	</head>
+	<body marginwidth="0" marginheight="0">
+		<table cellspacing="0" border="0" cellpadding="0"><form action="">
+			<colgroup>
+				<col width="5"/>
+				<col width="215"/>
+				<col width="5"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="68"/>
+				<col width="2"/>
+				<col width="138"/>
+				<col width="2"/>
+				<col width="1"/>
+				<col width="114"/>
+			</colgroup>
+			<tbody id="tbl">
+				<tr><td colspan="11" height="5"></td></tr>
+				<tr id="trVis" class="show">
+					<td height="25"></td>
+					<td id="ldynVis" align="right">
+					</td>
+					<td></td>
+					<td id="dynVis" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynVis" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trVis2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trSht" class="show">
+					<td height="25"></td>
+					<td id="ldynSht" align="right">
+					</td>
+					<td></td>
+					<td id="dynSht" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynSht" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trSht2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr id="trBox" class="show">
+					<td height="25"></td>
+					<td id="ldynBox" align="right">
+					</td>
+					<td></td>
+					<td id="dynBox" rowspan="1" colspan="5">
+					</td>
+					<td></td>
+					<td id="rdynBox" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trBox2" class="hide">
+					<td colspan="3" height="67"></td>
+					<td colspan="3"></td>
+				</tr>
+				<tr><td colspan="11" height="4"></td></tr>
+			</tbody>
+		</form></table>
+	</body>
+</html>

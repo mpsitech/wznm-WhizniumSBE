@@ -20,6 +20,9 @@
 #include "CrdWznmEvt.h"
 #include "CrdWznmRtj.h"
 #include "CrdWznmApp.h"
+#include "CrdWznmBox.h"
+#include "CrdWznmSht.h"
+#include "CrdWznmVis.h"
 #include "CrdWznmRls.h"
 #include "CrdWznmCmp.h"
 #include "CrdWznmCal.h"
@@ -58,11 +61,11 @@
 #include "CrdWznmCtp.h"
 #include "CrdWznmTag.h"
 #include "CrdWznmLoc.h"
+#include "CrdWznmNav.h"
 #include "CrdWznmFil.h"
 #include "CrdWznmPrs.h"
 #include "CrdWznmUsr.h"
 #include "CrdWznmUsg.h"
-#include "CrdWznmNav.h"
 
 #define StatShrSessWznm SessWznm::StatShr
 
@@ -134,6 +137,9 @@ public:
 	std::map<Sbecore::ubigint, JobWznm*> crdevts;
 	std::map<Sbecore::ubigint, JobWznm*> crdrtjs;
 	std::map<Sbecore::ubigint, JobWznm*> crdapps;
+	std::map<Sbecore::ubigint, JobWznm*> crdboxs;
+	std::map<Sbecore::ubigint, JobWznm*> crdshts;
+	std::map<Sbecore::ubigint, JobWznm*> crdviss;
 	std::map<Sbecore::ubigint, JobWznm*> crdrlss;
 	std::map<Sbecore::ubigint, JobWznm*> crdcmps;
 	std::map<Sbecore::ubigint, JobWznm*> crdcals;
@@ -172,11 +178,11 @@ public:
 	std::map<Sbecore::ubigint, JobWznm*> crdctps;
 	std::map<Sbecore::ubigint, JobWznm*> crdtags;
 	std::map<Sbecore::ubigint, JobWznm*> crdlocs;
+	CrdWznmNav* crdnav;
 	std::map<Sbecore::ubigint, JobWznm*> crdfils;
 	std::map<Sbecore::ubigint, JobWznm*> crdprss;
 	std::map<Sbecore::ubigint, JobWznm*> crdusrs;
 	std::map<Sbecore::ubigint, JobWznm*> crdusgs;
-	CrdWznmNav* crdnav;
 
 	std::map<Sbecore::ubigint,Sbecore::uint> usgaccs;
 
@@ -228,6 +234,8 @@ public:
 	Sbecore::uint evalCrdcalActive();
 	Sbecore::uint evalCrdcmpActive();
 	Sbecore::uint evalCrdrlsActive();
+	Sbecore::uint evalCrdshtActive();
+	Sbecore::uint evalCrdboxActive();
 	Sbecore::uint evalCrdrtjActive();
 	Sbecore::uint evalCrdevtActive();
 	Sbecore::uint evalCrdseqActive();
@@ -252,6 +260,7 @@ public:
 private:
 	bool handleCreateCrdapp(DbsWznm* dbswznm);
 	bool handleCreateCrdblk(DbsWznm* dbswznm);
+	bool handleCreateCrdbox(DbsWznm* dbswznm);
 	bool handleCreateCrdcal(DbsWznm* dbswznm);
 	bool handleCreateCrdcap(DbsWznm* dbswznm);
 	bool handleCreateCrdcar(DbsWznm* dbswznm);
@@ -287,6 +296,7 @@ private:
 	bool handleCreateCrdsbs(DbsWznm* dbswznm);
 	bool handleCreateCrdseq(DbsWznm* dbswznm);
 	bool handleCreateCrdsge(DbsWznm* dbswznm);
+	bool handleCreateCrdsht(DbsWznm* dbswznm);
 	bool handleCreateCrdstb(DbsWznm* dbswznm);
 	bool handleCreateCrdste(DbsWznm* dbswznm);
 	bool handleCreateCrdtag(DbsWznm* dbswznm);
@@ -297,9 +307,11 @@ private:
 	bool handleCreateCrdutl(DbsWznm* dbswznm);
 	bool handleCreateCrdvec(DbsWznm* dbswznm);
 	bool handleCreateCrdver(DbsWznm* dbswznm);
+	bool handleCreateCrdvis(DbsWznm* dbswznm);
 	bool handleCreateCrdvit(DbsWznm* dbswznm);
 	bool handleEraseCrdapp(DbsWznm* dbswznm);
 	bool handleEraseCrdblk(DbsWznm* dbswznm);
+	bool handleEraseCrdbox(DbsWznm* dbswznm);
 	bool handleEraseCrdcal(DbsWznm* dbswznm);
 	bool handleEraseCrdcap(DbsWznm* dbswznm);
 	bool handleEraseCrdcar(DbsWznm* dbswznm);
@@ -335,6 +347,7 @@ private:
 	bool handleEraseCrdsbs(DbsWznm* dbswznm);
 	bool handleEraseCrdseq(DbsWznm* dbswznm);
 	bool handleEraseCrdsge(DbsWznm* dbswznm);
+	bool handleEraseCrdsht(DbsWznm* dbswznm);
 	bool handleEraseCrdstb(DbsWznm* dbswznm);
 	bool handleEraseCrdste(DbsWznm* dbswznm);
 	bool handleEraseCrdtag(DbsWznm* dbswznm);
@@ -345,6 +358,7 @@ private:
 	bool handleEraseCrdutl(DbsWznm* dbswznm);
 	bool handleEraseCrdvec(DbsWznm* dbswznm);
 	bool handleEraseCrdver(DbsWznm* dbswznm);
+	bool handleEraseCrdvis(DbsWznm* dbswznm);
 	bool handleEraseCrdvit(DbsWznm* dbswznm);
 
 	void handleDpchAppWznmInit(DbsWznm* dbswznm, DpchAppWznmInit* dpchappwznminit, DpchEngWznm** dpcheng);
@@ -356,9 +370,9 @@ private:
 	bool handleCallWznmRefPreSet(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv);
 	bool handleCallWznmRecaccess(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, Sbecore::uint& ixRet);
 	bool handleCallWznmLog(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv);
-	bool handleCallWznmCrdOpen(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv, Sbecore::ubigint& refRet);
 	bool handleCallWznmCrdActive(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, Sbecore::uint& ixRet);
 	bool handleCallWznmCrdClose(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv);
+	bool handleCallWznmCrdOpen(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, const Sbecore::ubigint refInv, const std::string& srefInv, const int intvalInv, Sbecore::ubigint& refRet);
 
 };
 

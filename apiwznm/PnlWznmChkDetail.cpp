@@ -48,10 +48,9 @@ PnlWznmChkDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPTYP, TXFCMT};
 };
 
@@ -132,12 +131,11 @@ PnlWznmChkDetail::ContInf::ContInf(
 			, const string& TxtCal
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTbl(TxtTbl)
+			, TxtTco(TxtTco)
+			, TxtCal(TxtCal)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTbl = TxtTbl;
-	this->TxtTco = TxtTco;
-	this->TxtCal = TxtCal;
-
 	mask = {TXTSRF, TXTTBL, TXTTCO, TXTCAL};
 };
 
@@ -202,9 +200,8 @@ PnlWznmChkDetail::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -279,20 +276,19 @@ PnlWznmChkDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupTypActive(PupTypActive)
+			, TxtTblActive(TxtTblActive)
+			, TxtTcoActive(TxtTcoActive)
+			, ButTcoViewAvail(ButTcoViewAvail)
+			, ButTcoViewActive(ButTcoViewActive)
+			, TxtCalActive(TxtCalActive)
+			, ButCalViewAvail(ButCalViewAvail)
+			, ButCalViewActive(ButCalViewActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtTblActive = TxtTblActive;
-	this->TxtTcoActive = TxtTcoActive;
-	this->ButTcoViewAvail = ButTcoViewAvail;
-	this->ButTcoViewActive = ButTcoViewActive;
-	this->TxtCalActive = TxtCalActive;
-	this->ButCalViewAvail = ButCalViewAvail;
-	this->ButCalViewActive = ButCalViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTTBLACTIVE, TXTTCOACTIVE, BUTTCOVIEWAVAIL, BUTTCOVIEWACTIVE, TXTCALACTIVE, BUTCALVIEWAVAIL, BUTCALVIEWACTIVE, TXFCMTACTIVE};
 };
 
@@ -379,15 +375,14 @@ PnlWznmChkDetail::Tag::Tag(
 			, const string& CptCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTyp(CptTyp)
+			, CptTbl(CptTbl)
+			, CptTco(CptTco)
+			, CptCal(CptCal)
+			, CptCmt(CptCmt)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTyp = CptTyp;
-	this->CptTbl = CptTbl;
-	this->CptTco = CptTco;
-	this->CptCal = CptCal;
-	this->CptCmt = CptCmt;
-
 	mask = {CPT, CPTSRF, CPTTYP, CPTTBL, CPTTCO, CPTCAL, CPTCMT};
 };
 
@@ -469,11 +464,11 @@ PnlWznmChkDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMCHKDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmChkDetail::DpchAppDo::getSrefsMask() {

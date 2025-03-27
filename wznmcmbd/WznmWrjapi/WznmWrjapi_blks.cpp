@@ -25,10 +25,10 @@ DpchInvWznmWrjapiBase::DpchInvWznmWrjapiBase(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRJAPIBASE, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrjapiBase::readXML(
@@ -81,12 +81,12 @@ DpchInvWznmWrjapiJob::DpchInvWznmWrjapiJob(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRJAPIJOB, oref, jref)
+			, refWznmMComponent(refWznmMComponent)
+			, refWznmMJob(refWznmMJob)
+			, orgweb(orgweb)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMComponent = refWznmMComponent;
-	this->refWznmMJob = refWznmMJob;
-	this->orgweb = orgweb;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrjapiJob::readXML(
@@ -140,9 +140,9 @@ DpchInvWznmWrjapiQtb::DpchInvWznmWrjapiQtb(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRJAPIQTB, oref, jref)
+			, refWznmMTable(refWznmMTable)
+			, folder(folder)
 		{
-	this->refWznmMTable = refWznmMTable;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrjapiQtb::readXML(
@@ -191,10 +191,10 @@ DpchInvWznmWrjapiVec::DpchInvWznmWrjapiVec(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRJAPIVEC, oref, jref)
+			, refWznmMVector(refWznmMVector)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMVector = refWznmMVector;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrjapiVec::readXML(

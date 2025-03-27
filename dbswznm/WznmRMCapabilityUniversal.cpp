@@ -22,13 +22,13 @@ WznmRMCapabilityUniversal::WznmRMCapabilityUniversal(
 			, const uint unvIxWznmVMaintable
 			, const ubigint unvUref
 			, const string srefKKey
-		) {
-
-	this->ref = ref;
-	this->refWznmMCapability = refWznmMCapability;
-	this->unvIxWznmVMaintable = unvIxWznmVMaintable;
-	this->unvUref = unvUref;
-	this->srefKKey = srefKKey;
+		) :
+			ref(ref)
+			, refWznmMCapability(refWznmMCapability)
+			, unvIxWznmVMaintable(unvIxWznmVMaintable)
+			, unvUref(unvUref)
+			, srefKKey(srefKKey)
+		{
 };
 
 bool WznmRMCapabilityUniversal::operator==(

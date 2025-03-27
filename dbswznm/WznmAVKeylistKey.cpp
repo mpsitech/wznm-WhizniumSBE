@@ -29,20 +29,20 @@ WznmAVKeylistKey::WznmAVKeylistKey(
 			, const ubigint refJ
 			, const string Title
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->klsIxWznmVKeylist = klsIxWznmVKeylist;
-	this->klsNum = klsNum;
-	this->x1IxWznmVMaintable = x1IxWznmVMaintable;
-	this->x1Uref = x1Uref;
-	this->Fixed = Fixed;
-	this->sref = sref;
-	this->Avail = Avail;
-	this->Implied = Implied;
-	this->refJ = refJ;
-	this->Title = Title;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, klsIxWznmVKeylist(klsIxWznmVKeylist)
+			, klsNum(klsNum)
+			, x1IxWznmVMaintable(x1IxWznmVMaintable)
+			, x1Uref(x1Uref)
+			, Fixed(Fixed)
+			, sref(sref)
+			, Avail(Avail)
+			, Implied(Implied)
+			, refJ(refJ)
+			, Title(Title)
+			, Comment(Comment)
+		{
 };
 
 bool WznmAVKeylistKey::operator==(

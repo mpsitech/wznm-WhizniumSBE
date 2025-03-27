@@ -20,11 +20,11 @@ WznmRMJobMOppack::WznmRMJobMOppack(
 			const ubigint ref
 			, const ubigint refWznmMJob
 			, const ubigint refWznmMOppack
-		) {
-
-	this->ref = ref;
-	this->refWznmMJob = refWznmMJob;
-	this->refWznmMOppack = refWznmMOppack;
+		) :
+			ref(ref)
+			, refWznmMJob(refWznmMJob)
+			, refWznmMOppack(refWznmMOppack)
+		{
 };
 
 bool WznmRMJobMOppack::operator==(

@@ -46,12 +46,11 @@ PnlWznmPrjDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, TxfSho(TxfSho)
+			, TxfTit(TxfTit)
+			, TxfGrl(TxfGrl)
+			, TxfCmt(TxfCmt)
 		{
-	this->TxfSho = TxfSho;
-	this->TxfTit = TxfTit;
-	this->TxfGrl = TxfGrl;
-	this->TxfCmt = TxfCmt;
-
 	mask = {TXFSHO, TXFTIT, TXFGRL, TXFCMT};
 };
 
@@ -171,9 +170,8 @@ PnlWznmPrjDetail::ContInf::ContInf(
 			const string& TxtVer
 		) :
 			Block()
+			, TxtVer(TxtVer)
 		{
-	this->TxtVer = TxtVer;
-
 	mask = {TXTVER};
 };
 
@@ -277,17 +275,16 @@ PnlWznmPrjDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxfShoActive(TxfShoActive)
+			, TxfTitActive(TxfTitActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxfGrlActive(TxfGrlActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxfShoActive = TxfShoActive;
-	this->TxfTitActive = TxfTitActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxfGrlActive = TxfGrlActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXFSHOACTIVE, TXFTITACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXFGRLACTIVE, TXFCMTACTIVE};
 };
 

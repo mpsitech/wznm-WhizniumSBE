@@ -45,9 +45,8 @@ PnlWznmLocDetail::ContIac::ContIac(
 			const uint numFPupJti
 		) :
 			Block()
+			, numFPupJti(numFPupJti)
 		{
-	this->numFPupJti = numFPupJti;
-
 	mask = {NUMFPUPJTI};
 };
 
@@ -123,10 +122,9 @@ PnlWznmLocDetail::ContInf::ContInf(
 			, const string& TxtTit
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-
 	mask = {TXTSRF, TXTTIT};
 };
 
@@ -187,9 +185,8 @@ PnlWznmLocDetail::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -258,14 +255,13 @@ PnlWznmLocDetail::StatShr::StatShr(
 			, const bool TxtTitActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupJtiActive(PupJtiActive)
+			, ButJtiEditAvail(ButJtiEditAvail)
+			, TxtTitActive(TxtTitActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupJtiActive = PupJtiActive;
-	this->ButJtiEditAvail = ButJtiEditAvail;
-	this->TxtTitActive = TxtTitActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE};
 };
 
@@ -336,11 +332,10 @@ PnlWznmLocDetail::Tag::Tag(
 			, const string& CptTit
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTit(CptTit)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTit = CptTit;
-
 	mask = {CPT, CPTSRF, CPTTIT};
 };
 
@@ -418,11 +413,11 @@ PnlWznmLocDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMLOCDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmLocDetail::DpchAppDo::getSrefsMask() {

@@ -143,6 +143,7 @@ DlgWznmRlsWrite::~DlgWznmRlsWrite() {
 // IP cust --- IBEGIN
 void DlgWznmRlsWrite::createIpoutSubfolder(
 			const bool spec
+			, const bool ctpspec
 			, const string& sub1
 			, const string& sub2
 		) {
@@ -154,6 +155,12 @@ void DlgWznmRlsWrite::createIpoutSubfolder(
 
 	if (spec) {
 		s = xchg->tmppath + "/" + specfolder + "/" + sub1;
+		if (sub2 != "") s = s + "/" + sub2;
+		mkdir(s.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
+	};
+
+	if (ctpspec) {
+		s = xchg->tmppath + "/" + ctpspecfolder + "/" + sub1;
 		if (sub2 != "") s = s + "/" + sub2;
 		mkdir(s.c_str(), S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
 	};
@@ -250,13 +257,13 @@ void DlgWznmRlsWrite::createEng(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rlssref);
+	createIpoutSubfolder(false, false, "_rls");
+	createIpoutSubfolder(false, false, "_rls", rlssref);
 
-	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", rlssref);
+	createIpoutSubfolder(false, false, "_ini");
+	createIpoutSubfolder(false, false, "_ini", rlssref);
 
-	createIpoutSubfolder(true, cmpsref);
+	createIpoutSubfolder(false, false, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -461,13 +468,13 @@ void DlgWznmRlsWrite::createOpeng(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rlssref);
+	createIpoutSubfolder(false, false, "_rls");
+	createIpoutSubfolder(false, false, "_rls", rlssref);
 
-	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", rlssref);
+	createIpoutSubfolder(false, false, "_ini");
+	createIpoutSubfolder(false, false, "_ini", rlssref);
 
-	createIpoutSubfolder(false, cmpsref);
+	createIpoutSubfolder(false, false, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -623,6 +630,11 @@ void DlgWznmRlsWrite::createCmbeng(
 	ListWznmMOp ops;
 	WznmMOp* op = NULL;
 
+	ListWznmMCapability cpbs;
+	WznmMCapability* cpb = NULL;
+
+	map<ubigint,string> srefsCtpCustops;
+
 	uint cnt;
 
 	// --- load basics
@@ -698,26 +710,27 @@ void DlgWznmRlsWrite::createCmbeng(
 	// --- generate folder structure
 	ipfolder = Tmp::newfolder(xchg->tmppath);
 	specfolder = Tmp::newfolder(xchg->tmppath);
+	ctpspecfolder = Tmp::newfolder(xchg->tmppath);
 
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rlssref);
+	createIpoutSubfolder(false, false, "_rls");
+	createIpoutSubfolder(false, false, "_rls", rlssref);
 
-	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", prjshort);
-	createIpoutSubfolder(false, "_ini", cmpsref);
-	createIpoutSubfolder(false, "_ini", rlssref);
+	createIpoutSubfolder(false, false, "_ini");
+	createIpoutSubfolder(false, false, "_ini", prjshort);
+	createIpoutSubfolder(false, false, "_ini", cmpsref);
+	createIpoutSubfolder(false, false, "_ini", rlssref);
 
-	createIpoutSubfolder(true, cmpsref);
+	createIpoutSubfolder(true, true, cmpsref);
 
-	createIpoutSubfolder(true, cmpsref, "gbl");
+	createIpoutSubfolder(true, true, cmpsref, "gbl");
 
 	// -- all cards
 	for (unsigned int i = 0; i < crds.nodes.size(); i++) {
 		crd = crds.nodes[i];
-		createIpoutSubfolder(true, cmpsref, crd->sref);
+		createIpoutSubfolder(true, true, cmpsref, crd->sref);
 	};
 
 	// -- all operation packs
@@ -725,12 +738,12 @@ void DlgWznmRlsWrite::createCmbeng(
 
 	for (unsigned int i = 0; i < opks.nodes.size(); i++) {
 		opk = opks.nodes[i];
-		createIpoutSubfolder(false, cmpsref, opk->sref);
+		createIpoutSubfolder(false, false, cmpsref, opk->sref);
 	};
 
 	// -- IexXxxx, VecXxxx
-	createIpoutSubfolder(true, cmpsref, "Iex" + Prjshort);
-	createIpoutSubfolder(false, cmpsref, "Vec" + Prjshort);
+	createIpoutSubfolder(true, false, cmpsref, "Iex" + Prjshort);
+	createIpoutSubfolder(false, false, cmpsref, "Vec" + Prjshort);
 
 	// --- prepare standard key/value pairs
 
@@ -1121,6 +1134,18 @@ void DlgWznmRlsWrite::createCmbeng(
 				addInv(new DpchInvWznmPrcfilePlhrpl(0, 0, refOpcppfile, "", outfolder + "/" + cmpsref + "/" + opk->sref + "/" + op->sref + ".cpp", keys, vals));
 			};
 		};
+
+		// determine capabilities due for op invocation
+		Wznm::getSrefsCtpCustops(dbswznm, srefsCtpCustops, VecWznmVKeylist::KLSTKWZNMCTPWRSRVCUSTOP);
+
+		dbswznm->tblwznmmcapability->loadRstByVer(ver->ref, false, cpbs);
+
+		for (unsigned int i = 0; i < cpbs.nodes.size(); i++) {
+			cpb = cpbs.nodes[i];
+			auto it = srefsCtpCustops.find(cpb->tplRefWznmMCapability);
+
+			if (it != srefsCtpCustops.end()) addInv(new DpchInvWznmCtpWrsrv(0, it->second, 0, cpb->ref, Prjshort, ctpspecfolder + "/" + cmpsref));
+		};
 	};
 
 	// --- clean up
@@ -1204,14 +1229,14 @@ void DlgWznmRlsWrite::createDbs(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rlssref);
+	createIpoutSubfolder(false, false, "_rls");
+	createIpoutSubfolder(false, false, "_rls", rlssref);
 
-	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", cmpsref);
-	if (StrMod::srefInSrefs(sbeconfig, "my") || StrMod::srefInSrefs(sbeconfig, "mar") || StrMod::srefInSrefs(sbeconfig, "pg")) createIpoutSubfolder(false, "_ini", rlssref);
+	createIpoutSubfolder(false, false, "_ini");
+	createIpoutSubfolder(false, false, "_ini", cmpsref);
+	if (StrMod::srefInSrefs(sbeconfig, "my") || StrMod::srefInSrefs(sbeconfig, "mar") || StrMod::srefInSrefs(sbeconfig, "pg")) createIpoutSubfolder(false, false, "_ini", rlssref);
 
-	createIpoutSubfolder(false, cmpsref);
+	createIpoutSubfolder(false, false, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -1447,23 +1472,23 @@ void DlgWznmRlsWrite::createVueapp(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rlssref);
+	createIpoutSubfolder(false, false, "_rls");
+	createIpoutSubfolder(false, false, "_rls", rlssref);
 
-	createIpoutSubfolder(false, cmpsref);	
+	createIpoutSubfolder(false, false, cmpsref);	
 
 	// -- all cards
 	for (unsigned int i = 0; i < crds.nodes.size(); i++) {
 		crd = crds.nodes[i];
-		createIpoutSubfolder(false, cmpsref, crd->sref);
+		createIpoutSubfolder(false, false, cmpsref, crd->sref);
 	};
 
 	// -- CrdXxxxStart
-	createIpoutSubfolder(false, cmpsref, "Crd" + Prjshort + "Start");
+	createIpoutSubfolder(false, false, cmpsref, "Crd" + Prjshort + "Start");
 
 	// -- assets, scripts
-	createIpoutSubfolder(false, cmpsref, "assets");
-	createIpoutSubfolder(false, cmpsref, "scripts");
+	createIpoutSubfolder(false, false, cmpsref, "assets");
+	createIpoutSubfolder(false, false, cmpsref, "scripts");
 
 	// --- prepare standard key/value pairs
 
@@ -1673,6 +1698,11 @@ void DlgWznmRlsWrite::createWebapp(
 	WznmMPanel* pnl = NULL;
 	WznmMPanel* pnl2 = NULL;
 
+	ListWznmMCapability cpbs;
+	WznmMCapability* cpb = NULL;
+
+	map<ubigint,string> srefsCtpCustops;
+
 	bool hashdr, hasftr, hasdse;
 
 	ListWznmMControl cons;
@@ -1794,30 +1824,31 @@ void DlgWznmRlsWrite::createWebapp(
 
 	// --- generate folder structure
 	ipfolder = Tmp::newfolder(xchg->tmppath);
+	ctpspecfolder = Tmp::newfolder(xchg->tmppath);
 
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rlssref);
+	createIpoutSubfolder(false, false, "_rls");
+	createIpoutSubfolder(false, false, "_rls", rlssref);
 
-	createIpoutSubfolder(false, cmpsref);
+	createIpoutSubfolder(false, true, cmpsref);
 	
 	// -- all cards
 	for (unsigned int i = 0; i < crds.nodes.size(); i++) {
 		crd = crds.nodes[i];
-		createIpoutSubfolder(false, cmpsref, crd->sref);
+		createIpoutSubfolder(false, true, cmpsref, crd->sref);
 	};
 
 	// -- CrdXxxxStart
-	createIpoutSubfolder(false, cmpsref, "Crd" + Prjshort + "Start");
+	createIpoutSubfolder(false, false, cmpsref, "Crd" + Prjshort + "Start");
 
 	// -- iframe, icon, iconxxxx, script and style
-	createIpoutSubfolder(false, cmpsref, "iframe");
-	createIpoutSubfolder(false, cmpsref, "icon");
-	createIpoutSubfolder(false, cmpsref, "icon" + prjshort);
-	createIpoutSubfolder(false, cmpsref, "script");
-	createIpoutSubfolder(false, cmpsref, "style");
+	createIpoutSubfolder(false, false, cmpsref, "iframe");
+	createIpoutSubfolder(false, false, cmpsref, "icon");
+	createIpoutSubfolder(false, false, cmpsref, "icon" + prjshort);
+	createIpoutSubfolder(false, false, cmpsref, "script");
+	createIpoutSubfolder(false, false, cmpsref, "style");
 
 	// --- prepare standard key/value pairs
 
@@ -2346,6 +2377,18 @@ void DlgWznmRlsWrite::createWebapp(
 				};
 			};
 		};
+
+		// determine capabilities due for op invocation
+		Wznm::getSrefsCtpCustops(dbswznm, srefsCtpCustops, VecWznmVKeylist::KLSTKWZNMCTPWRWEBCUSTOP);
+
+		dbswznm->tblwznmmcapability->loadRstByVer(ver->ref, false, cpbs);
+
+		for (unsigned int i = 0; i < cpbs.nodes.size(); i++) {
+			cpb = cpbs.nodes[i];
+			auto it = srefsCtpCustops.find(cpb->tplRefWznmMCapability);
+
+			if (it != srefsCtpCustops.end()) addInv(new DpchInvWznmCtpWrweb(0, it->second, 0, cpb->ref, Prjshort, ctpspecfolder + "/" + cmpsref));
+		};
 	};
 
 	// --- clean up
@@ -2422,13 +2465,13 @@ void DlgWznmRlsWrite::createApi(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rlssref);
+	createIpoutSubfolder(false, false, "_rls");
+	createIpoutSubfolder(false, false, "_rls", rlssref);
 
-	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", cmpsref);
+	createIpoutSubfolder(false, false, "_ini");
+	createIpoutSubfolder(false, false, "_ini", cmpsref);
 
-	createIpoutSubfolder(true, cmpsref);
+	createIpoutSubfolder(false, false, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -2647,10 +2690,10 @@ void DlgWznmRlsWrite::createJapi(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rlssref);
+	createIpoutSubfolder(false, false, "_rls");
+	createIpoutSubfolder(false, false, "_rls", rlssref);
 
-	createIpoutSubfolder(true, cmpsref);
+	createIpoutSubfolder(false, false, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -2843,13 +2886,13 @@ void DlgWznmRlsWrite::createSwapi(
 	outfolder = xchg->getTxtvalPreset(VecWznmVPreset::PREWZNMREPFOLDER, jref);
 	if (outfolder == "") outfolder = Tmp::newfolder(xchg->tmppath);
 
-	createIpoutSubfolder(false, "_rls");
-	createIpoutSubfolder(false, "_rls", rlssref);
+	createIpoutSubfolder(false, false, "_rls");
+	createIpoutSubfolder(false, false, "_rls", rlssref);
 
-	createIpoutSubfolder(false, "_ini");
-	createIpoutSubfolder(false, "_ini", cmpsref);
+	createIpoutSubfolder(false, false, "_ini");
+	createIpoutSubfolder(false, false, "_ini", cmpsref);
 
-	createIpoutSubfolder(true, cmpsref);
+	createIpoutSubfolder(false, false, cmpsref);
 
 	// --- prepare standard key/value pairs
 
@@ -3203,10 +3246,10 @@ void DlgWznmRlsWrite::handleRequest(
 		};
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
-		else if (ixVSge == VecVSge::CREIDLE) handleTimerInSgeCreidle(dbswznm, req->sref);
+		if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
 		else if ((req->sref == "mon") && (ixVSge == VecVSge::CREATE)) handleTimerWithSrefMonInSgeCreate(dbswznm);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::WRITE)) handleTimerWithSrefMonInSgeWrite(dbswznm);
+		else if (ixVSge == VecVSge::CREIDLE) handleTimerInSgeCreidle(dbswznm, req->sref);
+		else if (ixVSge == VecVSge::UPKIDLE) handleTimerInSgeUpkidle(dbswznm, req->sref);
 	};
 };
 
@@ -3345,18 +3388,11 @@ string DlgWznmRlsWrite::handleDownloadInSgeFail(
 	return(xchg->tmppath + "/" + logfile); // IP handleDownloadInSgeFail --- RLINE
 };
 
-void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
+void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
-};
-
-void DlgWznmRlsWrite::handleTimerInSgeCreidle(
-			DbsWznm* dbswznm
-			, const string& sref
-		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
 };
 
 void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
@@ -3366,11 +3402,18 @@ void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeCreate(
 	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeCreate --- ILINE
 };
 
-void DlgWznmRlsWrite::handleTimerWithSrefMonInSgeWrite(
+void DlgWznmRlsWrite::handleTimerInSgeCreidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgeWrite --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
+};
+
+void DlgWznmRlsWrite::handleTimerInSgeUpkidle(
+			DbsWznm* dbswznm
+			, const string& sref
+		) {
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsWrite::changeStage(
@@ -3696,6 +3739,7 @@ uint DlgWznmRlsWrite::enterSgeCreate(
 		// create -> outfolder
 		// IP's -> ipfolder -> outfolder
 		// job-type specific IP's -> specfolder -> outfolder
+		// capability template specific IP's -> ctpspecfolder -> outfolder
 		// (optional) custom IP's -> custfolder -> outfolder
 		createCmbeng(dbswznm, contiacdet.ChkBso);
 
@@ -3714,6 +3758,7 @@ uint DlgWznmRlsWrite::enterSgeCreate(
 	} else if (ixCmptype == VecWznmVMComponentBasetype::WEBAPP) {
 		// create -> outfolder
 		// IP's -> ipfolder -> outfolder
+		// capability template specific IP's -> ctpspecfolder -> outfolder
 		// (optional) custom IP's -> custfolder -> outfolder
 		createWebapp(dbswznm, contiacdet.ChkBso);
 
@@ -3844,7 +3889,26 @@ uint DlgWznmRlsWrite::enterSgeMrgctp(
 
 	clearInvs();
 
-	// IP enterSgeMrgctp --- INSERT
+	// IP enterSgeMrgctp --- IBEGIN
+
+	if (ixCmptype == VecWznmVMComponentBasetype::ENG) {
+	} else if (ixCmptype == VecWznmVMComponentBasetype::OPENG) {
+	} else if (ixCmptype == VecWznmVMComponentBasetype::CMBENG) {
+		// capability template specific IP's -> ctpspecfolder -> outfolder
+		if (!contiacdet.ChkBso) addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ctpspecfolder + "/" + cmpsref, "", outfolder + "/" + cmpsref, true, true));
+
+	} else if (ixCmptype == VecWznmVMComponentBasetype::DBS) {
+	} else if (ixCmptype == VecWznmVMComponentBasetype::VUEAPP) {
+	} else if (ixCmptype == VecWznmVMComponentBasetype::WEBAPP) {
+		// capability template specific IP's -> ctpspecfolder -> outfolder
+		if (!contiacdet.ChkBso) addInv(new DpchInvWznmPrctreeMerge(0, 0, "", ctpspecfolder + "/" + cmpsref, "", outfolder + "/" + cmpsref, true, true));
+
+	} else if (ixCmptype == VecWznmVMComponentBasetype::API) {
+	} else if (ixCmptype == VecWznmVMComponentBasetype::JAPI) {
+	} else if (ixCmptype == VecWznmVMComponentBasetype::SWAPI) {
+	};
+
+	// IP enterSgeMrgctp --- IEND
 
 	submitInvs(dbswznm, VecVSge::MRGCUST, retval);
 	return retval;

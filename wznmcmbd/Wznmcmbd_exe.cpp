@@ -38,8 +38,9 @@ Wznmcmbd::Wznmcmbd(
 	xchg = new XchgWznmcmbd();
 	xchg->exedir = exedir;
 
-	// 2. load preferences and SSL key/certificate
+	// 2. load then store preferences, load SSL key/certificate
 	loadPref();
+	storePref();
 	if (xchg->stgwznmappsrv.https) loadKeycert();
 
 	// 3. connect to database
@@ -138,10 +139,7 @@ Wznmcmbd::~Wznmcmbd() {
 
 	xchg->shrdatJobprc.term(xchg);
 
-	// 8. store preferences
-	storePref();
-
-	// 9. delete exchange object
+	// 8. delete exchange object
 	delete xchg;
 };
 
@@ -154,8 +152,8 @@ void Wznmcmbd::loadPref() {
 	parseFile(xchg->exedir + "/PrefWznmcmbd.xml", &doc, &docctx);
 
 	if (checkUclcXPaths(docctx, basexpath, "/", "PrefWznmcmbd")) {
-		xchg->stgwznmappearance.readXML(docctx, basexpath, true);
 		xchg->stgwznmappsrv.readXML(docctx, basexpath, true);
+		xchg->stgwznmbehavior.readXML(docctx, basexpath, true);
 		xchg->stgwznmcmbd.readXML(docctx, basexpath, true);
 		xchg->stgwznmdatabase.readXML(docctx, basexpath, true);
 		xchg->stgwznmpath.readXML(docctx, basexpath, true);
@@ -186,9 +184,11 @@ void Wznmcmbd::storePref() {
 	xmlTextWriter* wr = NULL;
 
 	startwriteFile(xchg->exedir + "/PrefWznmcmbd.xml", &wr);
+	xmlTextWriterSetIndent(wr, 1);
+	xmlTextWriterSetIndentString(wr, BAD_CAST "\t");
 	xmlTextWriterStartElement(wr, BAD_CAST "PrefWznmcmbd");
-		xchg->stgwznmappearance.writeXML(wr);
 		xchg->stgwznmappsrv.writeXML(wr);
+		xchg->stgwznmbehavior.writeXML(wr);
 		xchg->stgwznmcmbd.writeXML(wr);
 		xchg->stgwznmdatabase.writeXML(wr);
 		xchg->stgwznmpath.writeXML(wr);
@@ -492,7 +492,7 @@ int main(
 
 	try {
 		// welcome message
-		cout << "Welcome to WhizniumSBE v1.1.9!" << endl;
+		cout << "Welcome to WhizniumSBE v1.1.13!" << endl;
 
 		// calls wznmcmbd.init()
 		wznmcmbd = new Wznmcmbd(exedir, clearAll, startMon);

@@ -35,24 +35,25 @@ WznmQQryAClause::WznmQQryAClause(
 			, const string stubRefWznmMVector
 			, const ubigint refWznmMVectoritem
 			, const string stubRefWznmMVectoritem
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->qryNum = qryNum;
-	this->x1RefWznmMQuerymod = x1RefWznmMQuerymod;
-	this->stubX1RefWznmMQuerymod = stubX1RefWznmMQuerymod;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->Clause = Clause;
-	this->refWznmMPreset = refWznmMPreset;
-	this->stubRefWznmMPreset = stubRefWznmMPreset;
-	this->refWznmMVector = refWznmMVector;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, qryNum(qryNum)
+			, x1RefWznmMQuerymod(x1RefWznmMQuerymod)
+			, stubX1RefWznmMQuerymod(stubX1RefWznmMQuerymod)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, Clause(Clause)
+			, refWznmMPreset(refWznmMPreset)
+			, stubRefWznmMPreset(stubRefWznmMPreset)
+			, refWznmMVector(refWznmMVector)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+		{
 };
 
 void WznmQQryAClause::writeJSON(

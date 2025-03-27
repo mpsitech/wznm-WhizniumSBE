@@ -2,7 +2,7 @@
 # make file for CrdWznmDlg card job handler, release wznmcmbd_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 11 Sep 2022
+# date created: 5 Jan 2025
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmcmbd/VecWznm -I$(BUILDROOT)/wznmcmbd/IexWznm -I$(BUILDROOT)/wznmcmbd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/opt/homebrew/include -I/opt/homebrew/opt/curl/include -I/opt/homebrew/opt/libgit2/include -I/opt/homebrew/opt/libmicrohttpd/include -I/opt/homebrew/opt/libxml2/include -I/opt/homebrew/opt/openssl@3/include -I/usr/local/mysql/include
 
-OBJS = CrdWznmDlg.o PnlWznmDlgList.o QryWznmDlgList.o PnlWznmDlgHeadbar.o PnlWznmDlgRec.o PnlWznmDlgMNQuery.o QryWznmDlgMNQuery.o PnlWznmDlgRef1NControl.o QryWznmDlgRef1NControl.o PnlWznmDlgHk1NControl.o QryWznmDlgHk1NControl.o PnlWznmDlgDetail.o
+OBJS = CrdWznmDlg.o PnlWznmDlgList.o QryWznmDlgList.o PnlWznmDlgHeadbar.o PnlWznmDlgRec.o PnlWznmDlgRef1NControl.o QryWznmDlgRef1NControl.o PnlWznmDlgMNQuery.o QryWznmDlgMNQuery.o PnlWznmDlgHk1NControl.o QryWznmDlgHk1NControl.o PnlWznmDlgDetail.o
 
 LIB = libcrdwznmdlg
 

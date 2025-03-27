@@ -20,8 +20,8 @@ public class QryWznmFilList {
 	public static class VecVOrd {
 
 		public static final int REU = 1;
-		public static final int FNM = 2;
-		public static final int RET = 3;
+		public static final int RET = 2;
+		public static final int FNM = 3;
 		public static final int OWN = 4;
 		public static final int GRP = 5;
 
@@ -31,8 +31,8 @@ public class QryWznmFilList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("reu")) return REU;
-			if (s.equals("fnm")) return FNM;
 			if (s.equals("ret")) return RET;
+			if (s.equals("fnm")) return FNM;
 			if (s.equals("own")) return OWN;
 			if (s.equals("grp")) return GRP;
 
@@ -43,8 +43,8 @@ public class QryWznmFilList {
 					int ix
 				) {
 			if (ix == REU) return("reu");
-			if (ix == FNM) return("fnm");
 			if (ix == RET) return("ret");
+			if (ix == FNM) return("fnm");
 			if (ix == OWN) return("own");
 			if (ix == GRP) return("grp");
 

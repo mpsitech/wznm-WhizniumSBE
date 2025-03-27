@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmSeqSeq1NState.h"
 #include "PnlWznmSeqDetail.h"
+#include "PnlWznmSeqSeq1NState.h"
 
 #define VecVWznmSeqRecDo PnlWznmSeqRec::VecVDo
 
@@ -174,8 +174,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmSeqSeq1NState* pnlseq1nstate;
 	PnlWznmSeqDetail* pnldetail;
+	PnlWznmSeqSeq1NState* pnlseq1nstate;
 
 	WznmMSequence recSeq;
 

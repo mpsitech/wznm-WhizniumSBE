@@ -27,16 +27,17 @@ WznmQOpxList::WznmQOpxList(
 			, const string stubRefWznmMOppack
 			, const bool Shrdat
 			, const string yesnoShrdat
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->refWznmMOppack = refWznmMOppack;
-	this->stubRefWznmMOppack = stubRefWznmMOppack;
-	this->Shrdat = Shrdat;
-	this->yesnoShrdat = yesnoShrdat;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, refWznmMOppack(refWznmMOppack)
+			, stubRefWznmMOppack(stubRefWznmMOppack)
+			, Shrdat(Shrdat)
+			, yesnoShrdat(yesnoShrdat)
+		{
 };
 
 void WznmQOpxList::writeJSON(

@@ -45,9 +45,8 @@ PnlWznmLibMNComponent::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -59,7 +58,7 @@ void PnlWznmLibMNComponent::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmLibMNComponent::ContInf::writeXML(
@@ -145,11 +144,10 @@ PnlWznmLibMNComponent::StatShr::StatShr(
 			, const bool ButSubActive
 		) :
 			Block()
+			, ButAddAvail(ButAddAvail)
+			, ButSubAvail(ButSubAvail)
+			, ButSubActive(ButSubActive)
 		{
-	this->ButAddAvail = ButAddAvail;
-	this->ButSubAvail = ButSubAvail;
-	this->ButSubActive = ButSubActive;
-
 	mask = {BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
 };
 
@@ -218,8 +216,8 @@ PnlWznmLibMNComponent::StgIac::StgIac(
 			const uint TcoMrefWidth
 		) :
 			Block()
+			, TcoMrefWidth(TcoMrefWidth)
 		{
-	this->TcoMrefWidth = TcoMrefWidth;
 	mask = {TCOMREFWIDTH};
 };
 
@@ -273,7 +271,7 @@ void PnlWznmLibMNComponent::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoMrefWidth"] = TcoMrefWidth;
+	me["TcoMrefWidth"] = (Json::Value::UInt) TcoMrefWidth;
 };
 
 void PnlWznmLibMNComponent::StgIac::writeXML(

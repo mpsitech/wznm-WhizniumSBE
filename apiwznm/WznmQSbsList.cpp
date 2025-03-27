@@ -22,11 +22,12 @@ WznmQSbsList::WznmQSbsList(
 			, const string sref
 			, const string Short
 			, const string stubRefWznmMTable
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Short = Short;
-	this->stubRefWznmMTable = stubRefWznmMTable;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Short(Short)
+			, stubRefWznmMTable(stubRefWznmMTable)
+		{
 };
 
 bool WznmQSbsList::readXML(

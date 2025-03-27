@@ -22,13 +22,13 @@ WznmAMCapabilityPar::WznmAMCapabilityPar(
 			, const uint cpbNum
 			, const string x1SrefKKey
 			, const string Val
-		) {
-
-	this->ref = ref;
-	this->cpbRefWznmMCapability = cpbRefWznmMCapability;
-	this->cpbNum = cpbNum;
-	this->x1SrefKKey = x1SrefKKey;
-	this->Val = Val;
+		) :
+			ref(ref)
+			, cpbRefWznmMCapability(cpbRefWznmMCapability)
+			, cpbNum(cpbNum)
+			, x1SrefKKey(x1SrefKKey)
+			, Val(Val)
+		{
 };
 
 bool WznmAMCapabilityPar::operator==(

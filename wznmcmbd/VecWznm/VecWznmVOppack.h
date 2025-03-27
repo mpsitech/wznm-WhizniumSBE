@@ -17,24 +17,26 @@
 	*/
 namespace VecWznmVOppack {
 	const Sbecore::uint WZNMCOMPL = 1;
-	const Sbecore::uint WZNMCTPGENJTR = 2;
-	const Sbecore::uint WZNMCTPGENUI = 3;
-	const Sbecore::uint WZNMCTPWRSRV = 4;
-	const Sbecore::uint WZNMCTPWRSTKIT = 5;
-	const Sbecore::uint WZNMCTPWRWEB = 6;
-	const Sbecore::uint WZNMGEN = 7;
-	const Sbecore::uint WZNMPRCFILE = 8;
-	const Sbecore::uint WZNMPRCTREE = 9;
-	const Sbecore::uint WZNMWRAPI = 10;
-	const Sbecore::uint WZNMWRAPP = 11;
-	const Sbecore::uint WZNMWRCSAPI = 12;
-	const Sbecore::uint WZNMWRDBS = 13;
-	const Sbecore::uint WZNMWRJAPI = 14;
-	const Sbecore::uint WZNMWRPYAPI = 15;
-	const Sbecore::uint WZNMWRSRV = 16;
-	const Sbecore::uint WZNMWRSWAPI = 17;
-	const Sbecore::uint WZNMWRVUE = 18;
-	const Sbecore::uint WZNMWRWEB = 19;
+	const Sbecore::uint WZNMCOMPLVIS = 2;
+	const Sbecore::uint WZNMCTPGENJTR = 3;
+	const Sbecore::uint WZNMCTPGENUI = 4;
+	const Sbecore::uint WZNMCTPWRSRV = 5;
+	const Sbecore::uint WZNMCTPWRSTKIT = 6;
+	const Sbecore::uint WZNMCTPWRWEB = 7;
+	const Sbecore::uint WZNMGEN = 8;
+	const Sbecore::uint WZNMPRCFILE = 9;
+	const Sbecore::uint WZNMPRCTREE = 10;
+	const Sbecore::uint WZNMWRAPI = 11;
+	const Sbecore::uint WZNMWRAPP = 12;
+	const Sbecore::uint WZNMWRCSAPI = 13;
+	const Sbecore::uint WZNMWRDBS = 14;
+	const Sbecore::uint WZNMWRJAPI = 15;
+	const Sbecore::uint WZNMWRPYAPI = 16;
+	const Sbecore::uint WZNMWRSRV = 17;
+	const Sbecore::uint WZNMWRSWAPI = 18;
+	const Sbecore::uint WZNMWRVIS = 19;
+	const Sbecore::uint WZNMWRVUE = 20;
+	const Sbecore::uint WZNMWRWEB = 21;
 
 	Sbecore::uint getIx(const std::string& sref);
 	std::string getSref(const Sbecore::uint ix);

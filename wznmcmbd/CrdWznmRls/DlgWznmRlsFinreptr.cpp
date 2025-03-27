@@ -220,23 +220,23 @@ void DlgWznmRlsFinreptr::refresh(
 	muteRefresh = true;
 
 	StatShr oldStatshr(statshr);
-	ContIac oldContiac(contiac);
 	ContInf oldContinf(continf);
+	ContIac oldContiac(contiac);
 
 	// IP refresh --- BEGIN
 	// statshr
 	statshr.ButDneActive = evalButDneActive(dbswznm);
 
-	// contiac
-	contiac.numFDse = ixVDit;
-
 	// continf
 	continf.numFSge = ixVSge;
 
+	// contiac
+	contiac.numFDse = ixVDit;
+
 	// IP refresh --- END
 	if (statshr.diff(&oldStatshr).size() != 0) insert(moditems, DpchEngData::STATSHR);
-	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 	if (continf.diff(&oldContinf).size() != 0) insert(moditems, DpchEngData::CONTINF);
+	if (contiac.diff(&oldContiac).size() != 0) insert(moditems, DpchEngData::CONTIAC);
 
 	refreshFin(dbswznm, moditems);
 	refreshRes(dbswznm, moditems);
@@ -301,9 +301,9 @@ void DlgWznmRlsFinreptr::handleRequest(
 		if (ixVSge == VecVSge::DONE) req->filename = handleDownloadInSgeDone(dbswznm);
 
 	} else if (req->ixVBasetype == ReqWznm::VecVBasetype::TIMER) {
-		if (ixVSge == VecVSge::FINIDLE) handleTimerInSgeFinidle(dbswznm, req->sref);
+		if ((req->sref == "mon") && (ixVSge == VecVSge::PUSHGIT)) handleTimerWithSrefMonInSgePushgit(dbswznm);
 		else if (ixVSge == VecVSge::PSGIDLE) handleTimerInSgePsgidle(dbswznm, req->sref);
-		else if ((req->sref == "mon") && (ixVSge == VecVSge::PUSHGIT)) handleTimerWithSrefMonInSgePushgit(dbswznm);
+		else if (ixVSge == VecVSge::FINIDLE) handleTimerInSgeFinidle(dbswznm, req->sref);
 	};
 };
 
@@ -393,11 +393,11 @@ string DlgWznmRlsFinreptr::handleDownloadInSgeDone(
 	return(xchg->tmppath + "/" + tgzfile); // IP handleDownloadInSgeDone --- RLINE
 };
 
-void DlgWznmRlsFinreptr::handleTimerInSgeFinidle(
+void DlgWznmRlsFinreptr::handleTimerWithSrefMonInSgePushgit(
 			DbsWznm* dbswznm
-			, const string& sref
 		) {
-	changeStage(dbswznm, nextIxVSgeSuccess);
+	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
+	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgePushgit --- ILINE
 };
 
 void DlgWznmRlsFinreptr::handleTimerInSgePsgidle(
@@ -407,11 +407,11 @@ void DlgWznmRlsFinreptr::handleTimerInSgePsgidle(
 	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
-void DlgWznmRlsFinreptr::handleTimerWithSrefMonInSgePushgit(
+void DlgWznmRlsFinreptr::handleTimerInSgeFinidle(
 			DbsWznm* dbswznm
+			, const string& sref
 		) {
-	wrefLast = xchg->addWakeup(jref, "mon", 250000, true);
-	refreshWithDpchEng(dbswznm); // IP handleTimerWithSrefMonInSgePushgit --- ILINE
+	changeStage(dbswznm, nextIxVSgeSuccess);
 };
 
 void DlgWznmRlsFinreptr::changeStage(

@@ -21,12 +21,12 @@ WznmJMErrorTitle::WznmJMErrorTitle(
 			, const ubigint refWznmMError
 			, const ubigint x1RefWznmMLocale
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMError = refWznmMError;
-	this->x1RefWznmMLocale = x1RefWznmMLocale;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMError(refWznmMError)
+			, x1RefWznmMLocale(x1RefWznmMLocale)
+			, Title(Title)
+		{
 };
 
 bool WznmJMErrorTitle::operator==(

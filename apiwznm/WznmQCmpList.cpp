@@ -24,13 +24,14 @@ WznmQCmpList::WznmQCmpList(
 			, const string srefIxVBasetype
 			, const string titIxVBasetype
 			, const string stubRefWznmMVersion
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+		{
 };
 
 bool WznmQCmpList::readXML(

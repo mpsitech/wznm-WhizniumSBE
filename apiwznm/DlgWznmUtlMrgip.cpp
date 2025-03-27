@@ -145,9 +145,8 @@ DlgWznmUtlMrgip::ContIac::ContIac(
 			const uint numFDse
 		) :
 			Block()
+			, numFDse(numFDse)
 		{
-	this->numFDse = numFDse;
-
 	mask = {NUMFDSE};
 };
 
@@ -222,9 +221,8 @@ DlgWznmUtlMrgip::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -283,9 +281,8 @@ DlgWznmUtlMrgip::ContInfLfi::ContInfLfi(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -344,9 +341,8 @@ DlgWznmUtlMrgip::ContInfMrg::ContInfMrg(
 			const string& TxtPrg
 		) :
 			Block()
+			, TxtPrg(TxtPrg)
 		{
-	this->TxtPrg = TxtPrg;
-
 	mask = {TXTPRG};
 };
 
@@ -405,9 +401,8 @@ DlgWznmUtlMrgip::ContInfRes::ContInfRes(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -467,10 +462,9 @@ DlgWznmUtlMrgip::StatApp::StatApp(
 			, const string& shortMenu
 		) :
 			Block()
+			, initdone(initdone)
+			, shortMenu(shortMenu)
 		{
-	this->initdone = initdone;
-	this->shortMenu = shortMenu;
-
 	mask = {INITDONE, SHORTMENU};
 };
 
@@ -531,9 +525,8 @@ DlgWznmUtlMrgip::StatShr::StatShr(
 			const bool ButDneActive
 		) :
 			Block()
+			, ButDneActive(ButDneActive)
 		{
-	this->ButDneActive = ButDneActive;
-
 	mask = {BUTDNEACTIVE};
 };
 
@@ -592,9 +585,8 @@ DlgWznmUtlMrgip::StatShrLfi::StatShrLfi(
 			const bool DldActive
 		) :
 			Block()
+			, DldActive(DldActive)
 		{
-	this->DldActive = DldActive;
-
 	mask = {DLDACTIVE};
 };
 
@@ -654,10 +646,9 @@ DlgWznmUtlMrgip::StatShrMrg::StatShrMrg(
 			, const bool ButStoActive
 		) :
 			Block()
+			, ButRunActive(ButRunActive)
+			, ButStoActive(ButStoActive)
 		{
-	this->ButRunActive = ButRunActive;
-	this->ButStoActive = ButStoActive;
-
 	mask = {BUTRUNACTIVE, BUTSTOACTIVE};
 };
 
@@ -718,9 +709,8 @@ DlgWznmUtlMrgip::StatShrRes::StatShrRes(
 			const bool DldActive
 		) :
 			Block()
+			, DldActive(DldActive)
 		{
-	this->DldActive = DldActive;
-
 	mask = {DLDACTIVE};
 };
 
@@ -779,9 +769,8 @@ DlgWznmUtlMrgip::StatShrSrc::StatShrSrc(
 			const bool UldActive
 		) :
 			Block()
+			, UldActive(UldActive)
 		{
-	this->UldActive = UldActive;
-
 	mask = {ULDACTIVE};
 };
 
@@ -840,9 +829,8 @@ DlgWznmUtlMrgip::StatShrTrg::StatShrTrg(
 			const bool UldActive
 		) :
 			Block()
+			, UldActive(UldActive)
 		{
-	this->UldActive = UldActive;
-
 	mask = {ULDACTIVE};
 };
 
@@ -902,10 +890,9 @@ DlgWznmUtlMrgip::Tag::Tag(
 			, const string& ButDne
 		) :
 			Block()
+			, Cpt(Cpt)
+			, ButDne(ButDne)
 		{
-	this->Cpt = Cpt;
-	this->ButDne = ButDne;
-
 	mask = {CPT, BUTDNE};
 };
 
@@ -941,9 +928,8 @@ DlgWznmUtlMrgip::TagLfi::TagLfi(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -980,11 +966,10 @@ DlgWznmUtlMrgip::TagMrg::TagMrg(
 			, const string& ButSto
 		) :
 			Block()
+			, CptPrg(CptPrg)
+			, ButRun(ButRun)
+			, ButSto(ButSto)
 		{
-	this->CptPrg = CptPrg;
-	this->ButRun = ButRun;
-	this->ButSto = ButSto;
-
 	mask = {CPTPRG, BUTRUN, BUTSTO};
 };
 
@@ -1021,9 +1006,8 @@ DlgWznmUtlMrgip::TagRes::TagRes(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -1059,10 +1043,9 @@ DlgWznmUtlMrgip::TagSrc::TagSrc(
 			, const string& Cpt
 		) :
 			Block()
+			, Uld(Uld)
+			, Cpt(Cpt)
 		{
-	this->Uld = Uld;
-	this->Cpt = Cpt;
-
 	mask = {ULD, CPT};
 };
 
@@ -1099,10 +1082,9 @@ DlgWznmUtlMrgip::TagTrg::TagTrg(
 			, const string& Cpt
 		) :
 			Block()
+			, Uld(Uld)
+			, Cpt(Cpt)
 		{
-	this->Uld = Uld;
-	this->Cpt = Cpt;
-
 	mask = {ULD, CPT};
 };
 
@@ -1180,12 +1162,12 @@ DlgWznmUtlMrgip::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMUTLMRGIPDO, scrJref)
+			, ixVDo(ixVDo)
+			, ixVDoMrg(ixVDoMrg)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO, IXVDOMRG};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
-	this->ixVDoMrg = ixVDoMrg;
 };
 
 string DlgWznmUtlMrgip::DpchAppDo::getSrefsMask() {

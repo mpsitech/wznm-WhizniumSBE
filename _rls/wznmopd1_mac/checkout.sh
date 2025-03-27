@@ -3,7 +3,7 @@
 # checkout script for Wznm operation daemon, release wznmopd1_mac
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 11 Sep 2022
+# date created: 5 Jan 2025
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -22,6 +22,7 @@ mkdir $BUILDROOT/wznmopd1/IexWznm
 mkdir $BUILDROOT/wznmopd1/VecWznm
 mkdir $BUILDROOT/wznmopd1/WznmWrweb
 mkdir $BUILDROOT/wznmopd1/WznmWrvue
+mkdir $BUILDROOT/wznmopd1/WznmWrvis
 mkdir $BUILDROOT/wznmopd1/WznmWrsrv
 mkdir $BUILDROOT/wznmopd1/WznmWrswapi
 mkdir $BUILDROOT/wznmopd1/WznmWrpyapi
@@ -33,6 +34,7 @@ mkdir $BUILDROOT/wznmopd1/WznmWrapi
 mkdir $BUILDROOT/wznmopd1/WznmPrctree
 mkdir $BUILDROOT/wznmopd1/WznmPrcfile
 mkdir $BUILDROOT/wznmopd1/WznmGen
+mkdir $BUILDROOT/wznmopd1/WznmComplvis
 mkdir $BUILDROOT/wznmopd1/WznmCompl
 
 mkdir $LIBROOT/wznmopd1
@@ -79,6 +81,11 @@ cp Makefile_WznmWrvue $BUILDROOT/wznmopd1/WznmWrvue/Makefile
 
 cp $CMBDBUILDROOT/WznmWrvue/WznmWrvue*.h $BUILDROOT/wznmopd1/WznmWrvue/
 cp $CMBDBUILDROOT/WznmWrvue/WznmWrvue*.cpp $BUILDROOT/wznmopd1/WznmWrvue/
+
+cp Makefile_WznmWrvis $BUILDROOT/wznmopd1/WznmWrvis/Makefile
+
+cp $CMBDBUILDROOT/WznmWrvis/WznmWrvis*.h $BUILDROOT/wznmopd1/WznmWrvis/
+cp $CMBDBUILDROOT/WznmWrvis/WznmWrvis*.cpp $BUILDROOT/wznmopd1/WznmWrvis/
 
 cp Makefile_WznmWrsrv $BUILDROOT/wznmopd1/WznmWrsrv/Makefile
 
@@ -134,6 +141,11 @@ cp Makefile_WznmGen $BUILDROOT/wznmopd1/WznmGen/Makefile
 
 cp $CMBDBUILDROOT/WznmGen/WznmGen*.h $BUILDROOT/wznmopd1/WznmGen/
 cp $CMBDBUILDROOT/WznmGen/WznmGen*.cpp $BUILDROOT/wznmopd1/WznmGen/
+
+cp Makefile_WznmComplvis $BUILDROOT/wznmopd1/WznmComplvis/Makefile
+
+cp $CMBDBUILDROOT/WznmComplvis/WznmComplvis*.h $BUILDROOT/wznmopd1/WznmComplvis/
+cp $CMBDBUILDROOT/WznmComplvis/WznmComplvis*.cpp $BUILDROOT/wznmopd1/WznmComplvis/
 
 cp Makefile_WznmCompl $BUILDROOT/wznmopd1/WznmCompl/Makefile
 

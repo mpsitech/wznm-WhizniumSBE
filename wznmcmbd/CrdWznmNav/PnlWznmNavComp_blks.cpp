@@ -48,10 +48,9 @@ PnlWznmNavComp::ContIac::ContIac(
 			, const uint numFLstOpx
 		) :
 			Block()
+			, numFLstOpk(numFLstOpk)
+			, numFLstOpx(numFLstOpx)
 		{
-	this->numFLstOpk = numFLstOpk;
-	this->numFLstOpx = numFLstOpx;
-
 	mask = {NUMFLSTOPK, NUMFLSTOPX};
 };
 
@@ -107,8 +106,8 @@ void PnlWznmNavComp::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFLstOpk"] = numFLstOpk;
-	me["numFLstOpx"] = numFLstOpx;
+	me["numFLstOpk"] = (Json::Value::UInt) numFLstOpk;
+	me["numFLstOpx"] = (Json::Value::UInt) numFLstOpx;
 };
 
 void PnlWznmNavComp::ContIac::writeXML(
@@ -173,8 +172,8 @@ void PnlWznmNavComp::StatApp::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstOpkAlt"] = LstOpkAlt;
 	me["LstOpxAlt"] = LstOpxAlt;
-	me["LstOpkNumFirstdisp"] = LstOpkNumFirstdisp;
-	me["LstOpxNumFirstdisp"] = LstOpxNumFirstdisp;
+	me["LstOpkNumFirstdisp"] = (Json::Value::UInt) LstOpkNumFirstdisp;
+	me["LstOpxNumFirstdisp"] = (Json::Value::UInt) LstOpxNumFirstdisp;
 };
 
 void PnlWznmNavComp::StatApp::writeXML(
@@ -215,14 +214,13 @@ PnlWznmNavComp::StatShr::StatShr(
 			, const bool ButOpxNewcrdActive
 		) :
 			Block()
+			, LstOpkAvail(LstOpkAvail)
+			, ButOpkViewActive(ButOpkViewActive)
+			, ButOpkNewcrdActive(ButOpkNewcrdActive)
+			, LstOpxAvail(LstOpxAvail)
+			, ButOpxViewActive(ButOpxViewActive)
+			, ButOpxNewcrdActive(ButOpxNewcrdActive)
 		{
-	this->LstOpkAvail = LstOpkAvail;
-	this->ButOpkViewActive = ButOpkViewActive;
-	this->ButOpkNewcrdActive = ButOpkNewcrdActive;
-	this->LstOpxAvail = LstOpxAvail;
-	this->ButOpxViewActive = ButOpxViewActive;
-	this->ButOpxNewcrdActive = ButOpxNewcrdActive;
-
 	mask = {LSTOPKAVAIL, BUTOPKVIEWACTIVE, BUTOPKNEWCRDACTIVE, LSTOPXAVAIL, BUTOPXVIEWACTIVE, BUTOPXNEWCRDACTIVE};
 };
 

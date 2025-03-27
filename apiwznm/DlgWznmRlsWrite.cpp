@@ -155,9 +155,8 @@ DlgWznmRlsWrite::ContIac::ContIac(
 			const uint numFDse
 		) :
 			Block()
+			, numFDse(numFDse)
 		{
-	this->numFDse = numFDse;
-
 	mask = {NUMFDSE};
 };
 
@@ -232,9 +231,8 @@ DlgWznmRlsWrite::ContIacDet::ContIacDet(
 			const bool ChkBso
 		) :
 			Block()
+			, ChkBso(ChkBso)
 		{
-	this->ChkBso = ChkBso;
-
 	mask = {CHKBSO};
 };
 
@@ -309,9 +307,8 @@ DlgWznmRlsWrite::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -370,9 +367,8 @@ DlgWznmRlsWrite::ContInfFia::ContInfFia(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -431,9 +427,8 @@ DlgWznmRlsWrite::ContInfLfi::ContInfLfi(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -492,9 +487,8 @@ DlgWznmRlsWrite::ContInfWrc::ContInfWrc(
 			const string& TxtPrg
 		) :
 			Block()
+			, TxtPrg(TxtPrg)
 		{
-	this->TxtPrg = TxtPrg;
-
 	mask = {TXTPRG};
 };
 
@@ -554,10 +548,9 @@ DlgWznmRlsWrite::StatApp::StatApp(
 			, const string& shortMenu
 		) :
 			Block()
+			, initdone(initdone)
+			, shortMenu(shortMenu)
 		{
-	this->initdone = initdone;
-	this->shortMenu = shortMenu;
-
 	mask = {INITDONE, SHORTMENU};
 };
 
@@ -618,9 +611,8 @@ DlgWznmRlsWrite::StatShr::StatShr(
 			const bool ButDneActive
 		) :
 			Block()
+			, ButDneActive(ButDneActive)
 		{
-	this->ButDneActive = ButDneActive;
-
 	mask = {BUTDNEACTIVE};
 };
 
@@ -680,10 +672,9 @@ DlgWznmRlsWrite::StatShrCuc::StatShrCuc(
 			, const bool UldActive
 		) :
 			Block()
+			, UldAvail(UldAvail)
+			, UldActive(UldActive)
 		{
-	this->UldAvail = UldAvail;
-	this->UldActive = UldActive;
-
 	mask = {ULDAVAIL, ULDACTIVE};
 };
 
@@ -745,10 +736,9 @@ DlgWznmRlsWrite::StatShrFia::StatShrFia(
 			, const bool DldActive
 		) :
 			Block()
+			, DldAvail(DldAvail)
+			, DldActive(DldActive)
 		{
-	this->DldAvail = DldAvail;
-	this->DldActive = DldActive;
-
 	mask = {DLDAVAIL, DLDACTIVE};
 };
 
@@ -809,9 +799,8 @@ DlgWznmRlsWrite::StatShrLfi::StatShrLfi(
 			const bool DldActive
 		) :
 			Block()
+			, DldActive(DldActive)
 		{
-	this->DldActive = DldActive;
-
 	mask = {DLDACTIVE};
 };
 
@@ -872,11 +861,10 @@ DlgWznmRlsWrite::StatShrWrc::StatShrWrc(
 			, const bool ButStoActive
 		) :
 			Block()
+			, ButAutActive(ButAutActive)
+			, ButRunActive(ButRunActive)
+			, ButStoActive(ButStoActive)
 		{
-	this->ButAutActive = ButAutActive;
-	this->ButRunActive = ButRunActive;
-	this->ButStoActive = ButStoActive;
-
 	mask = {BUTAUTACTIVE, BUTRUNACTIVE, BUTSTOACTIVE};
 };
 
@@ -940,10 +928,9 @@ DlgWznmRlsWrite::Tag::Tag(
 			, const string& ButDne
 		) :
 			Block()
+			, Cpt(Cpt)
+			, ButDne(ButDne)
 		{
-	this->Cpt = Cpt;
-	this->ButDne = ButDne;
-
 	mask = {CPT, BUTDNE};
 };
 
@@ -980,10 +967,9 @@ DlgWznmRlsWrite::TagCuc::TagCuc(
 			, const string& Cpt
 		) :
 			Block()
+			, Uld(Uld)
+			, Cpt(Cpt)
 		{
-	this->Uld = Uld;
-	this->Cpt = Cpt;
-
 	mask = {ULD, CPT};
 };
 
@@ -1019,9 +1005,8 @@ DlgWznmRlsWrite::TagDet::TagDet(
 			const string& CptBso
 		) :
 			Block()
+			, CptBso(CptBso)
 		{
-	this->CptBso = CptBso;
-
 	mask = {CPTBSO};
 };
 
@@ -1056,9 +1041,8 @@ DlgWznmRlsWrite::TagFia::TagFia(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -1093,9 +1077,8 @@ DlgWznmRlsWrite::TagLfi::TagLfi(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -1133,12 +1116,11 @@ DlgWznmRlsWrite::TagWrc::TagWrc(
 			, const string& ButSto
 		) :
 			Block()
+			, CptPrg(CptPrg)
+			, ButAut(ButAut)
+			, ButRun(ButRun)
+			, ButSto(ButSto)
 		{
-	this->CptPrg = CptPrg;
-	this->ButAut = ButAut;
-	this->ButRun = ButRun;
-	this->ButSto = ButSto;
-
 	mask = {CPTPRG, BUTAUT, BUTRUN, BUTSTO};
 };
 
@@ -1222,12 +1204,12 @@ DlgWznmRlsWrite::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMRLSWRITEDO, scrJref)
+			, ixVDo(ixVDo)
+			, ixVDoWrc(ixVDoWrc)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO, IXVDOWRC};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
-	this->ixVDoWrc = ixVDoWrc;
 };
 
 string DlgWznmRlsWrite::DpchAppDo::getSrefsMask() {

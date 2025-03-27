@@ -25,14 +25,15 @@ WznmQSteList::WznmQSteList(
 			, const string sref
 			, const ubigint seqRefWznmMSequence
 			, const string stubSeqRefWznmMSequence
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->seqRefWznmMSequence = seqRefWznmMSequence;
-	this->stubSeqRefWznmMSequence = stubSeqRefWznmMSequence;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, seqRefWznmMSequence(seqRefWznmMSequence)
+			, stubSeqRefWznmMSequence(stubSeqRefWznmMSequence)
+		{
 };
 
 void WznmQSteList::writeJSON(

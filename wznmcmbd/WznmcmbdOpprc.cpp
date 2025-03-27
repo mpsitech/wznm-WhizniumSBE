@@ -94,6 +94,11 @@ void* WznmcmbdOpprc::run(
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLJTR) {
 				req->dpchret = WznmComplJtr::run(xchg, &dbswznm, (DpchInvWznmComplJtr*) req->dpchinv);
 			};
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISDBSTR) {
+				req->dpchret = WznmComplvisDbstr::run(xchg, &dbswznm, (DpchInvWznmComplvisDbstr*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISIMPEXP) {
+				req->dpchret = WznmComplvisImpexp::run(xchg, &dbswznm, (DpchInvWznmComplvisImpexp*) req->dpchinv);
+			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPGENJTR) {
 				if (((DpchInvWznmCtpGenjtr*) req->dpchinv)->srefKCustop == "WznmCtpGenjtrAcv") req->dpchret = WznmCtpGenjtrAcv::run(xchg, &dbswznm, (DpchInvWznmCtpGenjtr*) req->dpchinv);
 				else if (((DpchInvWznmCtpGenjtr*) req->dpchinv)->srefKCustop == "WznmCtpGenjtrClustmgr") req->dpchret = WznmCtpGenjtrClustmgr::run(xchg, &dbswznm, (DpchInvWznmCtpGenjtr*) req->dpchinv);
@@ -255,6 +260,11 @@ void* WznmcmbdOpprc::run(
 				req->dpchret = WznmWrswapiQtb::run(xchg, &dbswznm, (DpchInvWznmWrswapiQtb*) req->dpchinv);
 			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSWAPIVEC) {
 				req->dpchret = WznmWrswapiVec::run(xchg, &dbswznm, (DpchInvWznmWrswapiVec*) req->dpchinv);
+			};
+			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVISDBSTR) {
+				req->dpchret = WznmWrvisDbstr::run(xchg, &dbswznm, (DpchInvWznmWrvisDbstr*) req->dpchinv);
+			} else if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVISIMPEXP) {
+				req->dpchret = WznmWrvisImpexp::run(xchg, &dbswznm, (DpchInvWznmWrvisImpexp*) req->dpchinv);
 			};
 			if (req->dpchinv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEBASE) {
 				req->dpchret = WznmWrvueBase::run(xchg, &dbswznm, (DpchInvWznmWrvueBase*) req->dpchinv);

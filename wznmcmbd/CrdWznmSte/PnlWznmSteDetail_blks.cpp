@@ -43,9 +43,8 @@ PnlWznmSteDetail::ContIac::ContIac(
 			const string& TxfCmt
 		) :
 			Block()
+			, TxfCmt(TxfCmt)
 		{
-	this->TxfCmt = TxfCmt;
-
 	mask = {TXFCMT};
 };
 
@@ -151,10 +150,9 @@ PnlWznmSteDetail::ContInf::ContInf(
 			, const string& TxtSeq
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtSeq(TxtSeq)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtSeq = TxtSeq;
-
 	mask = {TXTSRF, TXTSEQ};
 };
 
@@ -259,15 +257,14 @@ PnlWznmSteDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxtSeqActive(TxtSeqActive)
+			, ButSeqViewAvail(ButSeqViewAvail)
+			, ButSeqViewActive(ButSeqViewActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxtSeqActive = TxtSeqActive;
-	this->ButSeqViewAvail = ButSeqViewAvail;
-	this->ButSeqViewActive = ButSeqViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTSEQACTIVE, BUTSEQVIEWAVAIL, BUTSEQVIEWACTIVE, TXFCMTACTIVE};
 };
 

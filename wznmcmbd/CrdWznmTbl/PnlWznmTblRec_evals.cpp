@@ -11,20 +11,6 @@ using namespace std;
 using namespace Sbecore;
 using namespace Xmlio;
 
-bool PnlWznmTblRec::evalPnlaloadfctAvail(
-			DbsWznm* dbswznm
-		) {
-	// tbl.inSbs(stt)
-
-	vector<bool> args;
-	bool a;
-
-	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
-	args.push_back(a);
-
-	return(args.back());
-};
-
 bool PnlWznmTblRec::evalPnlatitleAvail(
 			DbsWznm* dbswznm
 		) {
@@ -39,7 +25,21 @@ bool PnlWznmTblRec::evalPnlatitleAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nstubAvail(
+bool PnlWznmTblRec::evalPnlaloadfctAvail(
+			DbsWznm* dbswznm
+		) {
+	// tbl.inSbs(stt)
+
+	vector<bool> args;
+	bool a;
+
+	a = false; a = ((ixWSubsetTbl & VecWznmWMTableSubset::SBSWZNMBMTABLESTT) != 0);
+	args.push_back(a);
+
+	return(args.back());
+};
+
+bool PnlWznmTblRec::evalPnl1nsubsetAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(mtb)
@@ -53,7 +53,7 @@ bool PnlWznmTblRec::evalPnl1nstubAvail(
 	return(args.back());
 };
 
-bool PnlWznmTblRec::evalPnl1nsubsetAvail(
+bool PnlWznmTblRec::evalPnl1nstubAvail(
 			DbsWznm* dbswznm
 		) {
 	// tbl.inSbs(mtb)

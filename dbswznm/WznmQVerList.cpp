@@ -41,30 +41,31 @@ WznmQVerList::WznmQVerList(
 			, const uint ixWDbmstype
 			, const string srefsIxWDbmstype
 			, const string titsIxWDbmstype
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->grp = grp;
-	this->stubGrp = stubGrp;
-	this->own = own;
-	this->stubOwn = stubOwn;
-	this->prjRefWznmMProject = prjRefWznmMProject;
-	this->stubPrjRefWznmMProject = stubPrjRefWznmMProject;
-	this->Major = Major;
-	this->Minor = Minor;
-	this->Sub = Sub;
-	this->bvrRefWznmMVersion = bvrRefWznmMVersion;
-	this->stubBvrRefWznmMVersion = stubBvrRefWznmMVersion;
-	this->refWznmMLocale = refWznmMLocale;
-	this->stubRefWznmMLocale = stubRefWznmMLocale;
-	this->ixVState = ixVState;
-	this->srefIxVState = srefIxVState;
-	this->titIxVState = titIxVState;
-	this->ixWDbmstype = ixWDbmstype;
-	this->srefsIxWDbmstype = srefsIxWDbmstype;
-	this->titsIxWDbmstype = titsIxWDbmstype;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, grp(grp)
+			, stubGrp(stubGrp)
+			, own(own)
+			, stubOwn(stubOwn)
+			, prjRefWznmMProject(prjRefWznmMProject)
+			, stubPrjRefWznmMProject(stubPrjRefWznmMProject)
+			, Major(Major)
+			, Minor(Minor)
+			, Sub(Sub)
+			, bvrRefWznmMVersion(bvrRefWznmMVersion)
+			, stubBvrRefWznmMVersion(stubBvrRefWznmMVersion)
+			, refWznmMLocale(refWznmMLocale)
+			, stubRefWznmMLocale(stubRefWznmMLocale)
+			, ixVState(ixVState)
+			, srefIxVState(srefIxVState)
+			, titIxVState(titIxVState)
+			, ixWDbmstype(ixWDbmstype)
+			, srefsIxWDbmstype(srefsIxWDbmstype)
+			, titsIxWDbmstype(titsIxWDbmstype)
+		{
 };
 
 void WznmQVerList::writeJSON(

@@ -47,9 +47,8 @@ PnlWznmPrsMNProject::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -61,7 +60,7 @@ void PnlWznmPrsMNProject::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmPrsMNProject::ContInf::writeXML(
@@ -149,13 +148,12 @@ PnlWznmPrsMNProject::StatShr::StatShr(
 			, const bool ButSubActive
 		) :
 			Block()
+			, ButViewAvail(ButViewAvail)
+			, ButViewActive(ButViewActive)
+			, ButAddAvail(ButAddAvail)
+			, ButSubAvail(ButSubAvail)
+			, ButSubActive(ButSubActive)
 		{
-	this->ButViewAvail = ButViewAvail;
-	this->ButViewActive = ButViewActive;
-	this->ButAddAvail = ButAddAvail;
-	this->ButSubAvail = ButSubAvail;
-	this->ButSubActive = ButSubActive;
-
 	mask = {BUTVIEWAVAIL, BUTVIEWACTIVE, BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
 };
 
@@ -233,11 +231,11 @@ PnlWznmPrsMNProject::StgIac::StgIac(
 			, const uint TcoFctWidth
 		) :
 			Block()
+			, TcoMrefWidth(TcoMrefWidth)
+			, TcoStaWidth(TcoStaWidth)
+			, TcoStoWidth(TcoStoWidth)
+			, TcoFctWidth(TcoFctWidth)
 		{
-	this->TcoMrefWidth = TcoMrefWidth;
-	this->TcoStaWidth = TcoStaWidth;
-	this->TcoStoWidth = TcoStoWidth;
-	this->TcoFctWidth = TcoFctWidth;
 	mask = {TCOMREFWIDTH, TCOSTAWIDTH, TCOSTOWIDTH, TCOFCTWIDTH};
 };
 
@@ -297,10 +295,10 @@ void PnlWznmPrsMNProject::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoMrefWidth"] = TcoMrefWidth;
-	me["TcoStaWidth"] = TcoStaWidth;
-	me["TcoStoWidth"] = TcoStoWidth;
-	me["TcoFctWidth"] = TcoFctWidth;
+	me["TcoMrefWidth"] = (Json::Value::UInt) TcoMrefWidth;
+	me["TcoStaWidth"] = (Json::Value::UInt) TcoStaWidth;
+	me["TcoStoWidth"] = (Json::Value::UInt) TcoStoWidth;
+	me["TcoFctWidth"] = (Json::Value::UInt) TcoFctWidth;
 };
 
 void PnlWznmPrsMNProject::StgIac::writeXML(

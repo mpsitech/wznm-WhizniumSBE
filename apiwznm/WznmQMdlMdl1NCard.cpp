@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQMdlMdl1NCard::WznmQMdlMdl1NCard(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQMdlMdl1NCard::readXML(

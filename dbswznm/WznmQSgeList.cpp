@@ -28,17 +28,18 @@ WznmQSgeList::WznmQSgeList(
 			, const string titIxVBasetype
 			, const ubigint jobRefWznmMJob
 			, const string stubJobRefWznmMJob
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->jobRefWznmMJob = jobRefWznmMJob;
-	this->stubJobRefWznmMJob = stubJobRefWznmMJob;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, jobRefWznmMJob(jobRefWznmMJob)
+			, stubJobRefWznmMJob(stubJobRefWznmMJob)
+		{
 };
 
 void WznmQSgeList::writeJSON(

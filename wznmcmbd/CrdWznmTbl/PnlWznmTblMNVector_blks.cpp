@@ -45,9 +45,8 @@ PnlWznmTblMNVector::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -59,7 +58,7 @@ void PnlWznmTblMNVector::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmTblMNVector::ContInf::writeXML(
@@ -145,11 +144,10 @@ PnlWznmTblMNVector::StatShr::StatShr(
 			, const bool ButSubActive
 		) :
 			Block()
+			, ButAddAvail(ButAddAvail)
+			, ButSubAvail(ButSubAvail)
+			, ButSubActive(ButSubActive)
 		{
-	this->ButAddAvail = ButAddAvail;
-	this->ButSubAvail = ButSubAvail;
-	this->ButSubActive = ButSubActive;
-
 	mask = {BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
 };
 
@@ -219,9 +217,9 @@ PnlWznmTblMNVector::StgIac::StgIac(
 			, const uint TcoSbsWidth
 		) :
 			Block()
+			, TcoMrefWidth(TcoMrefWidth)
+			, TcoSbsWidth(TcoSbsWidth)
 		{
-	this->TcoMrefWidth = TcoMrefWidth;
-	this->TcoSbsWidth = TcoSbsWidth;
 	mask = {TCOMREFWIDTH, TCOSBSWIDTH};
 };
 
@@ -277,8 +275,8 @@ void PnlWznmTblMNVector::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoMrefWidth"] = TcoMrefWidth;
-	me["TcoSbsWidth"] = TcoSbsWidth;
+	me["TcoMrefWidth"] = (Json::Value::UInt) TcoMrefWidth;
+	me["TcoSbsWidth"] = (Json::Value::UInt) TcoSbsWidth;
 };
 
 void PnlWznmTblMNVector::StgIac::writeXML(

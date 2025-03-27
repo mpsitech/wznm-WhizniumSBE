@@ -419,6 +419,19 @@
 				}
 			},
 
+			mergeDpchEngData_pnlvisual: function(dpcheng) {
+				if (dpcheng.ContIacWznmNavVisual) this.pnlvisual.contiac = dpcheng.ContIacWznmNavVisual;
+				if (dpcheng.FeedFLstBox) this.pnlvisual.feedFLstBox = dpcheng.FeedFLstBox;
+				if (dpcheng.FeedFLstSht) this.pnlvisual.feedFLstSht = dpcheng.FeedFLstSht;
+				if (dpcheng.FeedFLstVis) this.pnlvisual.feedFLstVis = dpcheng.FeedFLstVis;
+				if (dpcheng.StatAppWznmNavVisual) this.pnlvisual.statapp = dpcheng.StatAppWznmNavVisual;
+				if (dpcheng.StatShrWznmNavVisual) this.pnlvisual.statshr = dpcheng.StatShrWznmNavVisual;
+				if (dpcheng.TagWznmNavVisual) {
+					Wznm.unescapeBlock(dpcheng.TagWznmNavVisual);
+					this.pnlvisual.tag = dpcheng.TagWznmNavVisual;
+				}
+			},
+
 			mergeDpchEngData_pnlappdev: function(dpcheng) {
 				if (dpcheng.ContIacWznmNavAppdev) this.pnlappdev.contiac = dpcheng.ContIacWznmNavAppdev;
 				if (dpcheng.FeedFLstApp) this.pnlappdev.feedFLstApp = dpcheng.FeedFLstApp;
@@ -556,6 +569,9 @@
 					} else if (dpcheng.scrJref == this.statshr.scrJrefDeploy) {
 						this.mergeDpchEngData_pnldeploy(dpcheng);
 						this.statapp.initdoneDeploy = true;
+					} else if (dpcheng.scrJref == this.statshr.scrJrefVisual) {
+						this.mergeDpchEngData_pnlvisual(dpcheng);
+						this.statapp.initdoneVisual = true;
 					} else if (dpcheng.scrJref == this.statshr.scrJrefAppdev) {
 						this.mergeDpchEngData_pnlappdev(dpcheng);
 						this.statapp.initdoneAppdev = true;
@@ -577,6 +593,7 @@
 					else if (!this.statapp.initdoneComp) this.initOther(this.statshr.scrJrefComp);
 					else if (!this.statapp.initdoneJob) this.initOther(this.statshr.scrJrefJob);
 					else if (!this.statapp.initdoneDeploy) this.initOther(this.statshr.scrJrefDeploy);
+					else if (!this.statapp.initdoneVisual) this.initOther(this.statshr.scrJrefVisual);
 					else if (!this.statapp.initdoneAppdev) this.initOther(this.statshr.scrJrefAppdev);
 					else if (!this.statapp.initdoneAuxfct) this.initOther(this.statshr.scrJrefAuxfct);
 					/*
@@ -739,7 +756,7 @@
 
 			/*
 			*/
-			MenPre: ["App", "Ver"],
+			MenPre: ["App", "Ver", "Vis"],
 			/*
 			*/
 
@@ -777,6 +794,10 @@
 				{
 					pnlsref: "pnldeploy",
 					mits: ["MitCrdCmp", "MitCrdRls"]
+				},
+				{
+					pnlsref: "pnlvisual",
+					mits: ["MitCrdVis", "MitCrdSht", "MitCrdBox"]
 				},
 				{
 					pnlsref: "pnlappdev",
@@ -821,6 +842,9 @@
 			},
 
 			pnldeploy: {
+			},
+
+			pnlvisual: {
 			},
 
 			pnlappdev: {
@@ -995,6 +1019,19 @@
 					sref: "MenCrd",
 					mits: ["MitCrdSrt", "MitCrdCrt", "MitCrdFrt", "MitCrdWco"]
 				}
+			],
+
+			MbarVis: [
+				{
+					sref: "MenCrd",
+					mits: ["MitCrdNew", "MitCrdIst", "MitCrdCmf", "MitCrdWrc", "MitCrdEst"]
+				}
+			],
+
+			MbarSht: [
+			],
+
+			MbarBox: [
 			],
 
 			MbarApp: [

@@ -708,7 +708,6 @@ void WznmWrsrvIex::writeIexCpp_ime(
 
 	outfile << "};" << endl;
 	outfile << endl;
-
 	// readTxt
 	outfile << "void " << iex->sref << "::Imeitem" << ime->sref.substr(3) << "::readTxt(" << endl;
 	outfile << "\t\t\tTxtrd& txtrd" << endl;

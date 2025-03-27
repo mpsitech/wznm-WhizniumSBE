@@ -49,13 +49,12 @@ PnlWznmBlkDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, numFPupRet(numFPupRet)
+			, numsFLstRea(numsFLstRea)
+			, numsFLstWri(numsFLstWri)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->numFPupRet = numFPupRet;
-	this->numsFLstRea = numsFLstRea;
-	this->numsFLstWri = numsFLstWri;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPTYP, NUMFPUPRET, NUMSFLSTREA, NUMSFLSTWRI, TXFCMT};
 };
 
@@ -117,8 +116,8 @@ void PnlWznmBlkDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupTyp"] = numFPupTyp;
-	me["numFPupRet"] = numFPupRet;
+	me["numFPupTyp"] = (Json::Value::UInt) numFPupTyp;
+	me["numFPupRet"] = (Json::Value::UInt) numFPupRet;
 	Jsonio::writeUintvec(me, "numsFLstRea", numsFLstRea);
 	Jsonio::writeUintvec(me, "numsFLstWri", numsFLstWri);
 	me["TxfCmt"] = TxfCmt;
@@ -184,13 +183,12 @@ PnlWznmBlkDetail::ContInf::ContInf(
 			, const string& TxtWri
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtReu(TxtReu)
+			, TxtRea(TxtRea)
+			, TxtWri(TxtWri)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtReu = TxtReu;
-	this->TxtRea = TxtRea;
-	this->TxtWri = TxtWri;
-
 	mask = {TXTSRF, TXTVER, TXTREU, TXTREA, TXTWRI};
 };
 
@@ -277,8 +275,8 @@ void PnlWznmBlkDetail::StatApp::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstReaAlt"] = LstReaAlt;
 	me["LstWriAlt"] = LstWriAlt;
-	me["LstReaNumFirstdisp"] = LstReaNumFirstdisp;
-	me["LstWriNumFirstdisp"] = LstWriNumFirstdisp;
+	me["LstReaNumFirstdisp"] = (Json::Value::UInt) LstReaNumFirstdisp;
+	me["LstWriNumFirstdisp"] = (Json::Value::UInt) LstWriNumFirstdisp;
 };
 
 void PnlWznmBlkDetail::StatApp::writeXML(
@@ -326,21 +324,20 @@ PnlWznmBlkDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupTypActive(PupTypActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtReuActive(TxtReuActive)
+			, ButReuViewAvail(ButReuViewAvail)
+			, ButReuViewActive(ButReuViewActive)
+			, LstReaActive(LstReaActive)
+			, LstWriActive(LstWriActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtReuActive = TxtReuActive;
-	this->ButReuViewAvail = ButReuViewAvail;
-	this->ButReuViewActive = ButReuViewActive;
-	this->LstReaActive = LstReaActive;
-	this->LstWriActive = LstWriActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTREUACTIVE, BUTREUVIEWAVAIL, BUTREUVIEWACTIVE, LSTREAACTIVE, LSTWRIACTIVE, TXFCMTACTIVE};
 };
 

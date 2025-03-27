@@ -21,12 +21,12 @@ WznmMLocale::WznmMLocale(
 			, const string sref
 			, const ubigint refJTitle
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->sref = sref;
-	this->refJTitle = refJTitle;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, sref(sref)
+			, refJTitle(refJTitle)
+			, Title(Title)
+		{
 };
 
 bool WznmMLocale::operator==(

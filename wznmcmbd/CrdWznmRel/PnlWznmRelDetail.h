@@ -134,38 +134,37 @@ public:
 	class StatShr : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint TXFOPTVALID = 1;
-		static const Sbecore::uint BUTSAVEAVAIL = 2;
-		static const Sbecore::uint BUTSAVEACTIVE = 3;
-		static const Sbecore::uint TXTFRTACTIVE = 4;
-		static const Sbecore::uint TXTFRSACTIVE = 5;
-		static const Sbecore::uint BUTFRSVIEWAVAIL = 6;
-		static const Sbecore::uint BUTFRSVIEWACTIVE = 7;
-		static const Sbecore::uint TXTTOTACTIVE = 8;
-		static const Sbecore::uint TXTTOSACTIVE = 9;
-		static const Sbecore::uint BUTTOSVIEWAVAIL = 10;
-		static const Sbecore::uint BUTTOSVIEWACTIVE = 11;
-		static const Sbecore::uint PUPTYPACTIVE = 12;
-		static const Sbecore::uint LSTCLUACTIVE = 13;
-		static const Sbecore::uint BUTCLUVIEWACTIVE = 14;
-		static const Sbecore::uint BUTCLUCLUSTERAVAIL = 15;
-		static const Sbecore::uint BUTCLUUNCLUSTERAVAIL = 16;
-		static const Sbecore::uint TXTVERACTIVE = 17;
-		static const Sbecore::uint BUTVERVIEWAVAIL = 18;
-		static const Sbecore::uint BUTVERVIEWACTIVE = 19;
-		static const Sbecore::uint TXTSUPACTIVE = 20;
-		static const Sbecore::uint BUTSUPVIEWAVAIL = 21;
-		static const Sbecore::uint BUTSUPVIEWACTIVE = 22;
-		static const Sbecore::uint TXTTBLACTIVE = 23;
-		static const Sbecore::uint TXFPFXACTIVE = 24;
-		static const Sbecore::uint LSTOPTACTIVE = 25;
+		static const Sbecore::uint BUTSAVEAVAIL = 1;
+		static const Sbecore::uint BUTSAVEACTIVE = 2;
+		static const Sbecore::uint TXTFRTACTIVE = 3;
+		static const Sbecore::uint TXTFRSACTIVE = 4;
+		static const Sbecore::uint BUTFRSVIEWAVAIL = 5;
+		static const Sbecore::uint BUTFRSVIEWACTIVE = 6;
+		static const Sbecore::uint TXTTOTACTIVE = 7;
+		static const Sbecore::uint TXTTOSACTIVE = 8;
+		static const Sbecore::uint BUTTOSVIEWAVAIL = 9;
+		static const Sbecore::uint BUTTOSVIEWACTIVE = 10;
+		static const Sbecore::uint PUPTYPACTIVE = 11;
+		static const Sbecore::uint LSTCLUACTIVE = 12;
+		static const Sbecore::uint BUTCLUVIEWACTIVE = 13;
+		static const Sbecore::uint BUTCLUCLUSTERAVAIL = 14;
+		static const Sbecore::uint BUTCLUUNCLUSTERAVAIL = 15;
+		static const Sbecore::uint TXTVERACTIVE = 16;
+		static const Sbecore::uint BUTVERVIEWAVAIL = 17;
+		static const Sbecore::uint BUTVERVIEWACTIVE = 18;
+		static const Sbecore::uint TXTSUPACTIVE = 19;
+		static const Sbecore::uint BUTSUPVIEWAVAIL = 20;
+		static const Sbecore::uint BUTSUPVIEWACTIVE = 21;
+		static const Sbecore::uint TXTTBLACTIVE = 22;
+		static const Sbecore::uint TXFPFXACTIVE = 23;
+		static const Sbecore::uint LSTOPTACTIVE = 24;
+		static const Sbecore::uint TXFOPTVALID = 25;
 		static const Sbecore::uint BUTOPTEDITAVAIL = 26;
 
 	public:
-		StatShr(const bool TxfOptValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtFrtActive = true, const bool TxtFrsActive = true, const bool ButFrsViewAvail = true, const bool ButFrsViewActive = true, const bool TxtTotActive = true, const bool TxtTosActive = true, const bool ButTosViewAvail = true, const bool ButTosViewActive = true, const bool PupTypActive = true, const bool LstCluActive = true, const bool ButCluViewActive = true, const bool ButCluClusterAvail = true, const bool ButCluUnclusterAvail = true, const bool TxtVerActive = true, const bool ButVerViewAvail = true, const bool ButVerViewActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtTblActive = true, const bool TxfPfxActive = true, const bool LstOptActive = true, const bool ButOptEditAvail = true);
+		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtFrtActive = true, const bool TxtFrsActive = true, const bool ButFrsViewAvail = true, const bool ButFrsViewActive = true, const bool TxtTotActive = true, const bool TxtTosActive = true, const bool ButTosViewAvail = true, const bool ButTosViewActive = true, const bool PupTypActive = true, const bool LstCluActive = true, const bool ButCluViewActive = true, const bool ButCluClusterAvail = true, const bool ButCluUnclusterAvail = true, const bool TxtVerActive = true, const bool ButVerViewAvail = true, const bool ButVerViewActive = true, const bool TxtSupActive = true, const bool ButSupViewAvail = true, const bool ButSupViewActive = true, const bool TxtTblActive = true, const bool TxfPfxActive = true, const bool LstOptActive = true, const bool TxfOptValid = false, const bool ButOptEditAvail = true);
 
 	public:
-		bool TxfOptValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtFrtActive;
@@ -190,6 +189,7 @@ public:
 		bool TxtTblActive;
 		bool TxfPfxActive;
 		bool LstOptActive;
+		bool TxfOptValid;
 		bool ButOptEditAvail;
 
 	public:

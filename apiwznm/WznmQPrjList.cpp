@@ -25,14 +25,15 @@ WznmQPrjList::WznmQPrjList(
 			, const string Title
 			, const string stubRefWznmMVersion
 			, const string Giturl
-		) {
-	this->jnum = jnum;
-	this->stubGrp = stubGrp;
-	this->stubOwn = stubOwn;
-	this->Short = Short;
-	this->Title = Title;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->Giturl = Giturl;
+		) :
+			jnum(jnum)
+			, stubGrp(stubGrp)
+			, stubOwn(stubOwn)
+			, Short(Short)
+			, Title(Title)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, Giturl(Giturl)
+		{
 };
 
 bool WznmQPrjList::readXML(

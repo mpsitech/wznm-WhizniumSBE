@@ -33,22 +33,22 @@ WznmMQuery::WznmMQuery(
 			, const ubigint inoRefAOrder
 			, const string inoSrefsWznmMTablecol
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->supRefWznmMQuery = supRefWznmMQuery;
-	this->supIxVSubrole = supIxVSubrole;
-	this->refRTable = refRTable;
-	this->refWznmMTable = refWznmMTable;
-	this->qtbRefWznmMTable = qtbRefWznmMTable;
-	this->refWznmMJob = refWznmMJob;
-	this->sref = sref;
-	this->Limofs = Limofs;
-	this->inoRefAOrder = inoRefAOrder;
-	this->inoSrefsWznmMTablecol = inoSrefsWznmMTablecol;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, supRefWznmMQuery(supRefWznmMQuery)
+			, supIxVSubrole(supIxVSubrole)
+			, refRTable(refRTable)
+			, refWznmMTable(refWznmMTable)
+			, qtbRefWznmMTable(qtbRefWznmMTable)
+			, refWznmMJob(refWznmMJob)
+			, sref(sref)
+			, Limofs(Limofs)
+			, inoRefAOrder(inoRefAOrder)
+			, inoSrefsWznmMTablecol(inoSrefsWznmMTablecol)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMQuery::operator==(

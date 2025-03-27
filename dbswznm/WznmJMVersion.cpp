@@ -23,14 +23,14 @@ WznmJMVersion::WznmJMVersion(
 			, const string About1
 			, const string About2
 			, const string About3
-		) {
-
-	this->ref = ref;
-	this->refWznmMVersion = refWznmMVersion;
-	this->x1RefWznmMLocale = x1RefWznmMLocale;
-	this->About1 = About1;
-	this->About2 = About2;
-	this->About3 = About3;
+		) :
+			ref(ref)
+			, refWznmMVersion(refWznmMVersion)
+			, x1RefWznmMLocale(x1RefWznmMLocale)
+			, About1(About1)
+			, About2(About2)
+			, About3(About3)
+		{
 };
 
 bool WznmJMVersion::operator==(

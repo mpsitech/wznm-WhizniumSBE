@@ -339,26 +339,25 @@ public class PnlWznmImeDetail {
 	  */
 	public class StatShr extends Block {
 
-		public static final int TXFRTRVALID = 1;
-		public static final int BUTSAVEAVAIL = 2;
-		public static final int BUTSAVEACTIVE = 3;
-		public static final int TXTSRFACTIVE = 4;
-		public static final int TXTIEXACTIVE = 5;
-		public static final int BUTIEXVIEWAVAIL = 6;
-		public static final int BUTIEXVIEWACTIVE = 7;
-		public static final int TXTSUPACTIVE = 8;
-		public static final int BUTSUPVIEWAVAIL = 9;
-		public static final int BUTSUPVIEWACTIVE = 10;
-		public static final int TXTTBLACTIVE = 11;
-		public static final int LSTIOPACTIVE = 12;
-		public static final int LSTRTRACTIVE = 13;
+		public static final int BUTSAVEAVAIL = 1;
+		public static final int BUTSAVEACTIVE = 2;
+		public static final int TXTSRFACTIVE = 3;
+		public static final int TXTIEXACTIVE = 4;
+		public static final int BUTIEXVIEWAVAIL = 5;
+		public static final int BUTIEXVIEWACTIVE = 6;
+		public static final int TXTSUPACTIVE = 7;
+		public static final int BUTSUPVIEWAVAIL = 8;
+		public static final int BUTSUPVIEWACTIVE = 9;
+		public static final int TXTTBLACTIVE = 10;
+		public static final int LSTIOPACTIVE = 11;
+		public static final int LSTRTRACTIVE = 12;
+		public static final int TXFRTRVALID = 13;
 		public static final int BUTRTRVIEWAVAIL = 14;
 		public static final int BUTRTRVIEWACTIVE = 15;
 		public static final int TXFCMTACTIVE = 16;
 
 		public StatShr(
-					boolean TxfRtrValid
-					, boolean ButSaveAvail
+					boolean ButSaveAvail
 					, boolean ButSaveActive
 					, boolean TxtSrfActive
 					, boolean TxtIexActive
@@ -370,11 +369,11 @@ public class PnlWznmImeDetail {
 					, boolean TxtTblActive
 					, boolean LstIopActive
 					, boolean LstRtrActive
+					, boolean TxfRtrValid
 					, boolean ButRtrViewAvail
 					, boolean ButRtrViewActive
 					, boolean TxfCmtActive
 				) {
-			this.TxfRtrValid = TxfRtrValid;
 			this.ButSaveAvail = ButSaveAvail;
 			this.ButSaveActive = ButSaveActive;
 			this.TxtSrfActive = TxtSrfActive;
@@ -387,14 +386,14 @@ public class PnlWznmImeDetail {
 			this.TxtTblActive = TxtTblActive;
 			this.LstIopActive = LstIopActive;
 			this.LstRtrActive = LstRtrActive;
+			this.TxfRtrValid = TxfRtrValid;
 			this.ButRtrViewAvail = ButRtrViewAvail;
 			this.ButRtrViewActive = ButRtrViewActive;
 			this.TxfCmtActive = TxfCmtActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(TXFRTRVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTIEXACTIVE, BUTIEXVIEWAVAIL, BUTIEXVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, LSTIOPACTIVE, LSTRTRACTIVE, BUTRTRVIEWAVAIL, BUTRTRVIEWACTIVE, TXFCMTACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTIEXACTIVE, BUTIEXVIEWAVAIL, BUTIEXVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, LSTIOPACTIVE, LSTRTRACTIVE, TXFRTRVALID, BUTRTRVIEWAVAIL, BUTRTRVIEWACTIVE, TXFCMTACTIVE));
 		};
 
-		public boolean TxfRtrValid;
 		public boolean ButSaveAvail;
 		public boolean ButSaveActive;
 		public boolean TxtSrfActive;
@@ -407,6 +406,7 @@ public class PnlWznmImeDetail {
 		public boolean TxtTblActive;
 		public boolean LstIopActive;
 		public boolean LstRtrActive;
+		public boolean TxfRtrValid;
 		public boolean ButRtrViewAvail;
 		public boolean ButRtrViewActive;
 		public boolean TxfCmtActive;
@@ -424,7 +424,6 @@ public class PnlWznmImeDetail {
 			String itemtag = "StatitemShrWznmImeDetail";
 
 			if (Xmlio.checkXPath(doc, basexpath)) {
-				TxfRtrValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfRtrValid", mask, TXFRTRVALID);
 				ButSaveAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveAvail", mask, BUTSAVEAVAIL);
 				ButSaveActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButSaveActive", mask, BUTSAVEACTIVE);
 				TxtSrfActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtSrfActive", mask, TXTSRFACTIVE);
@@ -437,6 +436,7 @@ public class PnlWznmImeDetail {
 				TxtTblActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtTblActive", mask, TXTTBLACTIVE);
 				LstIopActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstIopActive", mask, LSTIOPACTIVE);
 				LstRtrActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "LstRtrActive", mask, LSTRTRACTIVE);
+				TxfRtrValid = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfRtrValid", mask, TXFRTRVALID);
 				ButRtrViewAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRtrViewAvail", mask, BUTRTRVIEWAVAIL);
 				ButRtrViewActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRtrViewActive", mask, BUTRTRVIEWACTIVE);
 				TxfCmtActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxfCmtActive", mask, TXFCMTACTIVE);
@@ -452,7 +452,6 @@ public class PnlWznmImeDetail {
 				) {
 			HashSet<Integer> items = new HashSet<Integer>();
 
-			if (TxfRtrValid == comp.TxfRtrValid) items.add(TXFRTRVALID);
 			if (ButSaveAvail == comp.ButSaveAvail) items.add(BUTSAVEAVAIL);
 			if (ButSaveActive == comp.ButSaveActive) items.add(BUTSAVEACTIVE);
 			if (TxtSrfActive == comp.TxtSrfActive) items.add(TXTSRFACTIVE);
@@ -465,6 +464,7 @@ public class PnlWznmImeDetail {
 			if (TxtTblActive == comp.TxtTblActive) items.add(TXTTBLACTIVE);
 			if (LstIopActive == comp.LstIopActive) items.add(LSTIOPACTIVE);
 			if (LstRtrActive == comp.LstRtrActive) items.add(LSTRTRACTIVE);
+			if (TxfRtrValid == comp.TxfRtrValid) items.add(TXFRTRVALID);
 			if (ButRtrViewAvail == comp.ButRtrViewAvail) items.add(BUTRTRVIEWAVAIL);
 			if (ButRtrViewActive == comp.ButRtrViewActive) items.add(BUTRTRVIEWACTIVE);
 			if (TxfCmtActive == comp.TxfCmtActive) items.add(TXFCMTACTIVE);
@@ -480,7 +480,7 @@ public class PnlWznmImeDetail {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(TXFRTRVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTIEXACTIVE, BUTIEXVIEWAVAIL, BUTIEXVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, LSTIOPACTIVE, LSTRTRACTIVE, BUTRTRVIEWAVAIL, BUTRTRVIEWACTIVE, TXFCMTACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTIEXACTIVE, BUTIEXVIEWAVAIL, BUTIEXVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, LSTIOPACTIVE, LSTRTRACTIVE, TXFRTRVALID, BUTRTRVIEWAVAIL, BUTRTRVIEWACTIVE, TXFCMTACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

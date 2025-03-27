@@ -20,10 +20,10 @@ public class QryWznmRelList {
 	public static class VecVOrd {
 
 		public static final int TBL = 1;
-		public static final int SRL = 2;
+		public static final int TYP = 2;
 		public static final int VER = 3;
 		public static final int SUP = 4;
-		public static final int TYP = 5;
+		public static final int SRL = 5;
 		public static final int TOS = 6;
 		public static final int TOT = 7;
 		public static final int FRS = 8;
@@ -35,10 +35,10 @@ public class QryWznmRelList {
 			String s = sref.toLowerCase();
 
 			if (s.equals("tbl")) return TBL;
-			if (s.equals("srl")) return SRL;
+			if (s.equals("typ")) return TYP;
 			if (s.equals("ver")) return VER;
 			if (s.equals("sup")) return SUP;
-			if (s.equals("typ")) return TYP;
+			if (s.equals("srl")) return SRL;
 			if (s.equals("tos")) return TOS;
 			if (s.equals("tot")) return TOT;
 			if (s.equals("frs")) return FRS;
@@ -51,10 +51,10 @@ public class QryWznmRelList {
 					int ix
 				) {
 			if (ix == TBL) return("tbl");
-			if (ix == SRL) return("srl");
+			if (ix == TYP) return("typ");
 			if (ix == VER) return("ver");
 			if (ix == SUP) return("sup");
-			if (ix == TYP) return("typ");
+			if (ix == SRL) return("srl");
 			if (ix == TOS) return("tos");
 			if (ix == TOT) return("tot");
 			if (ix == FRS) return("frs");

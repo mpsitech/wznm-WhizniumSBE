@@ -313,9 +313,8 @@ DpchEngWznm::DpchEngWznm(
 			, const ubigint jref
 		) :
 			DpchWznm(ixWznmVDpch)
+			, jref(jref)
 		{
-	this->jref = jref;
-
 	mask = {JREF};
 };
 
@@ -461,11 +460,9 @@ DpchEngWznmConfirm::DpchEngWznmConfirm(
 			, const set<uint>& mask
 		) :
 			DpchEngWznm(VecWznmVDpch::DPCHENGWZNMCONFIRM, jref)
+			, accepted(accepted)
+			, sref(sref)
 		{
-	this->accepted = accepted;
-	this->jref = jref;
-	this->sref = sref;
-
 	if (find(mask, ALL)) this->mask = {ACCEPTED, JREF, SREF};
 	else this->mask = mask;
 };
@@ -538,102 +535,6 @@ DpchEngWznmSuspend::DpchEngWznmSuspend(
 };
 
 /******************************************************************************
- class StgWznmAppearance
- ******************************************************************************/
-
-StgWznmAppearance::StgWznmAppearance(
-			const usmallint histlength
-			, const bool suspsess
-			, const uint sesstterm
-			, const uint sesstwarn
-			, const uint roottterm
-		) :
-			Block()
-		{
-	this->histlength = histlength;
-	this->suspsess = suspsess;
-	this->sesstterm = sesstterm;
-	this->sesstwarn = sesstwarn;
-	this->roottterm = roottterm;
-	mask = {HISTLENGTH, SUSPSESS, SESSTTERM, SESSTWARN, ROOTTTERM};
-};
-
-bool StgWznmAppearance::readXML(
-			xmlXPathContext* docctx
-			, string basexpath
-			, bool addbasetag
-		) {
-	clear();
-
-	bool basefound;
-
-	if (addbasetag)
-		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StgWznmAppearance");
-	else
-		basefound = checkXPath(docctx, basexpath);
-
-	string itemtag = "StgitemWznmAppearance";
-
-	if (basefound) {
-		if (extractUsmallintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "histlength", histlength)) add(HISTLENGTH);
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "suspsess", suspsess)) add(SUSPSESS);
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "sesstterm", sesstterm)) add(SESSTTERM);
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "sesstwarn", sesstwarn)) add(SESSTWARN);
-		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "roottterm", roottterm)) add(ROOTTTERM);
-	};
-
-	return basefound;
-};
-
-void StgWznmAppearance::writeXML(
-			xmlTextWriter* wr
-			, string difftag
-			, bool shorttags
-		) {
-	if (difftag.length() == 0) difftag = "StgWznmAppearance";
-
-	string itemtag;
-	if (shorttags) itemtag = "Si";
-	else itemtag = "StgitemWznmAppearance";
-
-	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeUsmallintAttr(wr, itemtag, "sref", "histlength", histlength);
-		writeBoolAttr(wr, itemtag, "sref", "suspsess", suspsess);
-		writeUintAttr(wr, itemtag, "sref", "sesstterm", sesstterm);
-		writeUintAttr(wr, itemtag, "sref", "sesstwarn", sesstwarn);
-		writeUintAttr(wr, itemtag, "sref", "roottterm", roottterm);
-	xmlTextWriterEndElement(wr);
-};
-
-set<uint> StgWznmAppearance::comm(
-			const StgWznmAppearance* comp
-		) {
-	set<uint> items;
-
-	if (histlength == comp->histlength) insert(items, HISTLENGTH);
-	if (suspsess == comp->suspsess) insert(items, SUSPSESS);
-	if (sesstterm == comp->sesstterm) insert(items, SESSTTERM);
-	if (sesstwarn == comp->sesstwarn) insert(items, SESSTWARN);
-	if (roottterm == comp->roottterm) insert(items, ROOTTTERM);
-
-	return(items);
-};
-
-set<uint> StgWznmAppearance::diff(
-			const StgWznmAppearance* comp
-		) {
-	set<uint> commitems;
-	set<uint> diffitems;
-
-	commitems = comm(comp);
-
-	diffitems = {HISTLENGTH, SUSPSESS, SESSTTERM, SESSTWARN, ROOTTTERM};
-	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
-
-	return(diffitems);
-};
-
-/******************************************************************************
  class StgWznmAppsrv
  ******************************************************************************/
 
@@ -643,10 +544,10 @@ StgWznmAppsrv::StgWznmAppsrv(
 			, const string& cors
 		) :
 			Block()
+			, port(port)
+			, https(https)
+			, cors(cors)
 		{
-	this->port = port;
-	this->https = https;
-	this->cors = cors;
 	mask = {PORT, HTTPS, CORS};
 };
 
@@ -720,6 +621,102 @@ set<uint> StgWznmAppsrv::diff(
 };
 
 /******************************************************************************
+ class StgWznmBehavior
+ ******************************************************************************/
+
+StgWznmBehavior::StgWznmBehavior(
+			const usmallint histlength
+			, const bool suspsess
+			, const uint sesstterm
+			, const uint sesstwarn
+			, const uint roottterm
+		) :
+			Block()
+			, histlength(histlength)
+			, suspsess(suspsess)
+			, sesstterm(sesstterm)
+			, sesstwarn(sesstwarn)
+			, roottterm(roottterm)
+		{
+	mask = {HISTLENGTH, SUSPSESS, SESSTTERM, SESSTWARN, ROOTTTERM};
+};
+
+bool StgWznmBehavior::readXML(
+			xmlXPathContext* docctx
+			, string basexpath
+			, bool addbasetag
+		) {
+	clear();
+
+	bool basefound;
+
+	if (addbasetag)
+		basefound = checkUclcXPaths(docctx, basexpath, basexpath, "StgWznmBehavior");
+	else
+		basefound = checkXPath(docctx, basexpath);
+
+	string itemtag = "StgitemWznmBehavior";
+
+	if (basefound) {
+		if (extractUsmallintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "histlength", histlength)) add(HISTLENGTH);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "suspsess", suspsess)) add(SUSPSESS);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "sesstterm", sesstterm)) add(SESSTTERM);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "sesstwarn", sesstwarn)) add(SESSTWARN);
+		if (extractUintAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "roottterm", roottterm)) add(ROOTTTERM);
+	};
+
+	return basefound;
+};
+
+void StgWznmBehavior::writeXML(
+			xmlTextWriter* wr
+			, string difftag
+			, bool shorttags
+		) {
+	if (difftag.length() == 0) difftag = "StgWznmBehavior";
+
+	string itemtag;
+	if (shorttags) itemtag = "Si";
+	else itemtag = "StgitemWznmBehavior";
+
+	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
+		writeUsmallintAttr(wr, itemtag, "sref", "histlength", histlength);
+		writeBoolAttr(wr, itemtag, "sref", "suspsess", suspsess);
+		writeUintAttr(wr, itemtag, "sref", "sesstterm", sesstterm);
+		writeUintAttr(wr, itemtag, "sref", "sesstwarn", sesstwarn);
+		writeUintAttr(wr, itemtag, "sref", "roottterm", roottterm);
+	xmlTextWriterEndElement(wr);
+};
+
+set<uint> StgWznmBehavior::comm(
+			const StgWznmBehavior* comp
+		) {
+	set<uint> items;
+
+	if (histlength == comp->histlength) insert(items, HISTLENGTH);
+	if (suspsess == comp->suspsess) insert(items, SUSPSESS);
+	if (sesstterm == comp->sesstterm) insert(items, SESSTTERM);
+	if (sesstwarn == comp->sesstwarn) insert(items, SESSTWARN);
+	if (roottterm == comp->roottterm) insert(items, ROOTTTERM);
+
+	return(items);
+};
+
+set<uint> StgWznmBehavior::diff(
+			const StgWznmBehavior* comp
+		) {
+	set<uint> commitems;
+	set<uint> diffitems;
+
+	commitems = comm(comp);
+
+	diffitems = {HISTLENGTH, SUSPSESS, SESSTTERM, SESSTWARN, ROOTTTERM};
+	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
+
+	return(diffitems);
+};
+
+/******************************************************************************
  class StgWznmd
  ******************************************************************************/
 
@@ -729,10 +726,10 @@ StgWznmd::StgWznmd(
 			, const bool appsrv
 		) :
 			Block()
+			, jobprcn(jobprcn)
+			, opengsrvport(opengsrvport)
+			, appsrv(appsrv)
 		{
-	this->jobprcn = jobprcn;
-	this->opengsrvport = opengsrvport;
-	this->appsrv = appsrv;
 	mask = {JOBPRCN, OPENGSRVPORT, APPSRV};
 };
 
@@ -819,14 +816,14 @@ StgWznmDatabase::StgWznmDatabase(
 			, const usmallint port
 		) :
 			Block()
+			, ixDbsVDbstype(ixDbsVDbstype)
+			, dbspath(dbspath)
+			, dbsname(dbsname)
+			, username(username)
+			, password(password)
+			, ip(ip)
+			, port(port)
 		{
-	this->ixDbsVDbstype = ixDbsVDbstype;
-	this->dbspath = dbspath;
-	this->dbsname = dbsname;
-	this->username = username;
-	this->password = password;
-	this->ip = ip;
-	this->port = port;
 	mask = {IXDBSVDBSTYPE, DBSPATH, DBSNAME, USERNAME, PASSWORD, IP, PORT};
 };
 
@@ -929,13 +926,13 @@ StgWznmPath::StgWznmPath(
 			, const string& helpurl
 		) :
 			Block()
+			, acvpath(acvpath)
+			, keypath(keypath)
+			, monpath(monpath)
+			, tmppath(tmppath)
+			, webpath(webpath)
+			, helpurl(helpurl)
 		{
-	this->acvpath = acvpath;
-	this->keypath = keypath;
-	this->monpath = monpath;
-	this->tmppath = tmppath;
-	this->webpath = webpath;
-	this->helpurl = helpurl;
 	mask = {ACVPATH, KEYPATH, MONPATH, TMPPATH, WEBPATH, HELPURL};
 };
 
@@ -1026,9 +1023,9 @@ StgWznmTenant::StgWznmTenant(
 			, const string& orgweb
 		) :
 			Block()
+			, orgname(orgname)
+			, orgweb(orgweb)
 		{
-	this->orgname = orgname;
-	this->orgweb = orgweb;
 	mask = {ORGNAME, ORGWEB};
 };
 
@@ -1113,7 +1110,7 @@ DpchEngWznmAlert* AlrWznm::prepareAlrAbt(
 	continf.TxtCpt = StrMod::cap(continf.TxtCpt);
 
 	if (ixWznmVLocale == VecWznmVLocale::ENUS) {
-		continf.TxtMsg1 = "WhizniumSBE version v1.1.9 released on 11-9-2022";
+		continf.TxtMsg1 = "WhizniumSBE version v1.1.13 released on 5-1-2025";
 		continf.TxtMsg2 = "\\u00a9 MPSI Technologies GmbH";
 		continf.TxtMsg4 = "contributors: Alexander Wirthmueller";
 		continf.TxtMsg6 = "libraries: apiwzlm 1.0.0, curl 7.65, git2 0.24.0, jsoncpp 1.8.4 and openssl 1.1.1";
@@ -1260,12 +1257,11 @@ ReqWznm::ReqWznm(
 			, const uint ixVState
 			, const string& ip
 		) :
-			cReady("cReady", "ReqWznm", "ReqWznm")
+			ixVBasetype(ixVBasetype)
+			, ixVState(ixVState)
+			, ip(ip)
+			, cReady("cReady", "ReqWznm", "ReqWznm")
 		{
-	this->ixVBasetype = ixVBasetype;
-	this->ixVState = ixVState;
-	this->ip = ip;
-
 	pp = NULL;
 
 	retain = !((ixVBasetype == VecVBasetype::CMD) || (ixVBasetype == VecVBasetype::DPCHAPP) || (ixVBasetype == VecVBasetype::NOTIFY)
@@ -1340,10 +1336,10 @@ void ReqWznm::setStateReply() {
 ReqopengconWznm::ReqopengconWznm(
 			const uint ixVState
 			, const string& ip
-		) {
-	this->ixVState = ixVState;
-	this->ip = ip;
-
+		) :
+			ixVState(ixVState)
+			, ip(ip)
+		{
 	pp = NULL;
 
 	request = NULL;
@@ -1373,11 +1369,10 @@ DcolWznm::DcolWznm(
 			const ubigint jref
 			, const uint ixWznmVLocale
 		) :
-			mAccess("dcol.mAccess", "DcolWznm", "DcolWznm", "jref=" + to_string(jref))
+			jref(jref)
+			, ixWznmVLocale(ixWznmVLocale)
+			, mAccess("dcol.mAccess", "DcolWznm", "DcolWznm", "jref=" + to_string(jref))
 		{
-	this->jref = jref;
-	this->ixWznmVLocale = ixWznmVLocale;
-
 	hot = false;
 
 	req = NULL;
@@ -1416,16 +1411,13 @@ JobWznm::JobWznm(
 			, const ubigint jrefSup
 			, const uint ixWznmVLocale
 		) :
-			mAccess("mAccess", VecWznmVJob::getSref(ixWznmVJob), VecWznmVJob::getSref(ixWznmVJob), "jrefSup=" + to_string(jrefSup))
+			xchg(xchg)
+			, ixWznmVJob(ixWznmVJob)
+			, ixWznmVLocale(ixWznmVLocale)
+			, mAccess("mAccess", VecWznmVJob::getSref(ixWznmVJob), VecWznmVJob::getSref(ixWznmVJob), "jrefSup=" + to_string(jrefSup))
 			, mOps("mOps", VecWznmVJob::getSref(ixWznmVJob), VecWznmVJob::getSref(ixWznmVJob), "jrefSup=" + to_string(jrefSup))
 		{
-	this->xchg = xchg;
-
 	jref = 0;
-
-	this->ixWznmVJob = ixWznmVJob;
-
-	this->ixWznmVLocale = ixWznmVLocale;
 
 	muteRefresh = false;
 
@@ -1649,6 +1641,11 @@ void JobWznm::addOp(
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLJTR) {
 		squawk = SqkWznmCompl::getSquawkJtr(dbswznm, (DpchInvWznmComplJtr*) inv);
 	};
+	if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISDBSTR) {
+		squawk = SqkWznmComplvis::getSquawkDbstr(dbswznm, (DpchInvWznmComplvisDbstr*) inv);
+	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISIMPEXP) {
+		squawk = SqkWznmComplvis::getSquawkImpexp(dbswznm, (DpchInvWznmComplvisImpexp*) inv);
+	};
 	if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCTPGENJTR) {
 		squawk = SqkWznmCtpGenjtr::getSquawk(dbswznm, (DpchInvWznmCtpGenjtr*) inv);
 	};
@@ -1793,6 +1790,11 @@ void JobWznm::addOp(
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSWAPIVEC) {
 		squawk = SqkWznmWrswapi::getSquawkVec(dbswznm, (DpchInvWznmWrswapiVec*) inv);
 	};
+	if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVISDBSTR) {
+		squawk = SqkWznmWrvis::getSquawkDbstr(dbswznm, (DpchInvWznmWrvisDbstr*) inv);
+	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVISIMPEXP) {
+		squawk = SqkWznmWrvis::getSquawkImpexp(dbswznm, (DpchInvWznmWrvisImpexp*) inv);
+	};
 	if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEBASE) {
 		squawk = SqkWznmWrvue::getSquawkBase(dbswznm, (DpchInvWznmWrvueBase*) inv);
 	} else if (inv->ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUECRD) {
@@ -1901,10 +1903,10 @@ ShrdatWznm::ShrdatWznm(
 			const string& srefSupclass
 			, const string& srefObject
 		) :
-			rwmAccess("shrdat.mAccess", srefSupclass + "::" + srefObject, srefObject)
+			srefSupclass(srefSupclass)
+			, srefObject(srefObject)
+			, rwmAccess("shrdat.mAccess", srefSupclass + "::" + srefObject, srefObject)
 		{
-	this->srefSupclass = srefSupclass;
-	this->srefObject = srefObject;
 };
 
 ShrdatWznm::~ShrdatWznm() {
@@ -1990,13 +1992,11 @@ StmgrWznm::StmgrWznm(
 			, const ubigint jref
 			, const uint ixVNonetype
 		) :
-			mAccess("stmgr.mAccess", "StmgrWznm", "StmgrWznm", "jref=" + to_string(jref))
+			xchg(xchg)
+			, jref(jref)
+			, ixVNonetype(ixVNonetype)
+			, mAccess("stmgr.mAccess", "StmgrWznm", "StmgrWznm", "jref=" + to_string(jref))
 		{
-	this->xchg = xchg;
-
-	this->jref = jref;
-	this->ixVNonetype = ixVNonetype;
-
 	stcch = new Stcch(true);
 };
 
@@ -2023,6 +2023,8 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMAPPSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMBLKUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMBLKSTD);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMBOXUPD_REFEQ) {
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMBOXSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCALUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCALSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCARUPD_REFEQ) {
@@ -2036,18 +2038,18 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCONSREF);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCPBUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSREF);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCAPSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCPBSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMCTPSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMDLGUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMDLGSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMEVTUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMEVTSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFEDUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFEDSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMFILUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMFILSTD);
@@ -2061,8 +2063,8 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMJOBUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMJOBSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLIBUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSREF);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLIBSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMLOCUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSTD);
@@ -2070,8 +2072,8 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMLOCSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMCHUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSREF);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMCHSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMDLUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMMDLSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMMTDUPD_REFEQ) {
@@ -2083,8 +2085,8 @@ void StmgrWznm::handleCall(
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPNLUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPNLSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRJUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSTD);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSHORT);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRJSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMPRSUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMPRSSTD);
@@ -2120,13 +2122,15 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSEQSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSEQSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSESUPD_REFEQ) {
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESMENU);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSESMENU);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSGEUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSGESTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSGESTD);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSHTUPD_REFEQ) {
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSHTSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSQKUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMSQKSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMSTBUPD_REFEQ) {
@@ -2153,9 +2157,11 @@ void StmgrWznm::handleCall(
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVECSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVERUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
-		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERNO);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSHORT);
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERNO);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVERSTD);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVISUPD_REFEQ) {
+		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVISSTD);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMVITUPD_REFEQ) {
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSTD);
 		insert(icsWznmVStub, VecWznmVStub::STUBWZNMVITSREF);
@@ -2203,6 +2209,8 @@ void StmgrWznm::commit() {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMAPPUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMBLKSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMBLKUPD_REFEQ, jref);
+		} else if (*it == VecWznmVStub::STUBWZNMBOXSTD) {
+			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMBOXUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMCALSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMCALUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMCAPSTD) {
@@ -2322,6 +2330,8 @@ void StmgrWznm::commit() {
 		} else if (*it == VecWznmVStub::STUBWZNMSGESTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMSGEUPD_REFEQ, jref);
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMSGEUPD_REFEQ, jref);
+		} else if (*it == VecWznmVStub::STUBWZNMSHTSTD) {
+			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMSHTUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMSQKSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMSQKUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMSTBSTD) {
@@ -2352,6 +2362,8 @@ void StmgrWznm::commit() {
 		} else if (*it == VecWznmVStub::STUBWZNMVERSTD) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMVERUPD_REFEQ, jref);
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMVERUPD_REFEQ, jref);
+		} else if (*it == VecWznmVStub::STUBWZNMVISSTD) {
+			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMVISUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMVITSREF) {
 			xchg->addClstnStmgr(VecWznmVCall::CALLWZNMVITUPD_REFEQ, jref);
 		} else if (*it == VecWznmVStub::STUBWZNMVITSTD) {
@@ -2388,13 +2400,14 @@ WakeupWznm::WakeupWznm(
 			, const string sref
 			, const uint64_t deltat
 			, const bool weak
-		) {
-	this->xchg = xchg;
-	this->wref = wref;
-	this->jref = jref;
-	this->sref = sref;
-	this->deltat = deltat;
-	this->weak = weak;
+		) :
+			xchg(xchg)
+			, wref(wref)
+			, jref(jref)
+			, sref(sref)
+			, deltat(deltat)
+			, weak(weak)
+		{
 };
 
 /******************************************************************************
@@ -2404,9 +2417,10 @@ WakeupWznm::WakeupWznm(
 ExtcallWznm::ExtcallWznm(
 			XchgWznm* xchg
 			, Call* call
-		) {
-	this->xchg = xchg;
-	this->call = call;
+		) :
+			xchg(xchg)
+			, call(call)
+		{
 };
 
 /******************************************************************************
@@ -2419,13 +2433,13 @@ NodeWznm::NodeWznm(
 			, const uint port
 			, const uint opprcn
 			, const uint ixWznmVOpengtype
-		) {
-	this->nref = nref;
-	this->ip = ip;
-	this->port = port;
-	this->opprcn = opprcn;
-	this->ixWznmVOpengtype = ixWznmVOpengtype;
-
+		) :
+			nref(nref)
+			, ip(ip)
+			, port(port)
+			, opprcn(opprcn)
+			, ixWznmVOpengtype(ixWznmVOpengtype)
+		{
 	vector<uint> icsWznmVOppack;
 	
 	OpengWznm::getIcsWznmVOppackByIxWznmVOpengtype(ixWznmVOpengtype, icsWznmVOppack);
@@ -2528,7 +2542,7 @@ void XchgWznmd::startMon() {
 	Preset* preset = NULL;
 	NodeWznm* node = NULL;
 
-	mon.start("WhizniumSBE v1.1.9", stgwznmpath.monpath);
+	mon.start("WhizniumSBE v1.1.13", stgwznmpath.monpath);
 
 	rwmJobs.rlock("XchgWznmd", "startMon");
 	for (auto it = jobs.begin(); it != jobs.end(); it++) {

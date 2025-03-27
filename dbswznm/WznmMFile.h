@@ -90,6 +90,7 @@ public:
 		static const Sbecore::uint APP = 2;
 		static const Sbecore::uint LIB = 3;
 		static const Sbecore::uint VER = 4;
+		static const Sbecore::uint VIS = 5;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

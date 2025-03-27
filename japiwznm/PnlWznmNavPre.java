@@ -21,6 +21,7 @@ public class PnlWznmNavPre {
 
 		public static final int BUTAPPREMOVECLICK = 1;
 		public static final int BUTVERREMOVECLICK = 2;
+		public static final int BUTVISREMOVECLICK = 3;
 
 		public static int getIx(
 					String sref
@@ -29,6 +30,7 @@ public class PnlWznmNavPre {
 
 			if (s.equals("butappremoveclick")) return BUTAPPREMOVECLICK;
 			if (s.equals("butverremoveclick")) return BUTVERREMOVECLICK;
+			if (s.equals("butvisremoveclick")) return BUTVISREMOVECLICK;
 
 			return 0;
 		};
@@ -38,6 +40,7 @@ public class PnlWznmNavPre {
 				) {
 			if (ix == BUTAPPREMOVECLICK) return("ButAppRemoveClick");
 			if (ix == BUTVERREMOVECLICK) return("ButVerRemoveClick");
+			if (ix == BUTVISREMOVECLICK) return("ButVisRemoveClick");
 
 			return "";
 		};
@@ -51,19 +54,23 @@ public class PnlWznmNavPre {
 
 		public static final int TXTAPP = 1;
 		public static final int TXTVER = 2;
+		public static final int TXTVIS = 3;
 
 		public ContInf(
 					String TxtApp
 					, String TxtVer
+					, String TxtVis
 				) {
 			this.TxtApp = TxtApp;
 			this.TxtVer = TxtVer;
+			this.TxtVis = TxtVis;
 
-			mask = new HashSet<Integer>(Arrays.asList(TXTAPP, TXTVER));
+			mask = new HashSet<Integer>(Arrays.asList(TXTAPP, TXTVER, TXTVIS));
 		};
 
 		public String TxtApp;
 		public String TxtVer;
+		public String TxtVis;
 
 		public boolean readXML(
 					Document doc
@@ -80,6 +87,7 @@ public class PnlWznmNavPre {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				TxtApp = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "TxtApp", mask, TXTAPP);
 				TxtVer = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "TxtVer", mask, TXTVER);
+				TxtVis = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ci", "sref", "TxtVis", mask, TXTVIS);
 
 				return true;
 			};
@@ -94,6 +102,7 @@ public class PnlWznmNavPre {
 
 			if (TxtApp.equals(comp.TxtApp)) items.add(TXTAPP);
 			if (TxtVer.equals(comp.TxtVer)) items.add(TXTVER);
+			if (TxtVis.equals(comp.TxtVis)) items.add(TXTVIS);
 
 			return(items);
 		};
@@ -106,7 +115,7 @@ public class PnlWznmNavPre {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(TXTAPP, TXTVER));
+			diffitems = new HashSet<Integer>(Arrays.asList(TXTAPP, TXTVER, TXTVIS));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -121,19 +130,23 @@ public class PnlWznmNavPre {
 
 		public static final int TXTAPPAVAIL = 1;
 		public static final int TXTVERAVAIL = 2;
+		public static final int TXTVISAVAIL = 3;
 
 		public StatShr(
 					boolean TxtAppAvail
 					, boolean TxtVerAvail
+					, boolean TxtVisAvail
 				) {
 			this.TxtAppAvail = TxtAppAvail;
 			this.TxtVerAvail = TxtVerAvail;
+			this.TxtVisAvail = TxtVisAvail;
 
-			mask = new HashSet<Integer>(Arrays.asList(TXTAPPAVAIL, TXTVERAVAIL));
+			mask = new HashSet<Integer>(Arrays.asList(TXTAPPAVAIL, TXTVERAVAIL, TXTVISAVAIL));
 		};
 
 		public boolean TxtAppAvail;
 		public boolean TxtVerAvail;
+		public boolean TxtVisAvail;
 
 		public boolean readXML(
 					Document doc
@@ -150,6 +163,7 @@ public class PnlWznmNavPre {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				TxtAppAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtAppAvail", mask, TXTAPPAVAIL);
 				TxtVerAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtVerAvail", mask, TXTVERAVAIL);
+				TxtVisAvail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "TxtVisAvail", mask, TXTVISAVAIL);
 
 				return true;
 			};
@@ -164,6 +178,7 @@ public class PnlWznmNavPre {
 
 			if (TxtAppAvail == comp.TxtAppAvail) items.add(TXTAPPAVAIL);
 			if (TxtVerAvail == comp.TxtVerAvail) items.add(TXTVERAVAIL);
+			if (TxtVisAvail == comp.TxtVisAvail) items.add(TXTVISAVAIL);
 
 			return(items);
 		};
@@ -176,7 +191,7 @@ public class PnlWznmNavPre {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(TXTAPPAVAIL, TXTVERAVAIL));
+			diffitems = new HashSet<Integer>(Arrays.asList(TXTAPPAVAIL, TXTVERAVAIL, TXTVISAVAIL));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -191,19 +206,23 @@ public class PnlWznmNavPre {
 
 		public static final int CPTAPP = 1;
 		public static final int CPTVER = 2;
+		public static final int CPTVIS = 3;
 
 		public Tag(
 					String CptApp
 					, String CptVer
+					, String CptVis
 				) {
 			this.CptApp = CptApp;
 			this.CptVer = CptVer;
+			this.CptVis = CptVis;
 
-			mask = new HashSet<Integer>(Arrays.asList(CPTAPP, CPTVER));
+			mask = new HashSet<Integer>(Arrays.asList(CPTAPP, CPTVER, CPTVIS));
 		};
 
 		public String CptApp;
 		public String CptVer;
+		public String CptVis;
 
 		public boolean readXML(
 					Document doc
@@ -220,6 +239,7 @@ public class PnlWznmNavPre {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				CptApp = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptApp", mask, CPTAPP);
 				CptVer = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptVer", mask, CPTVER);
+				CptVis = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Ti", "sref", "CptVis", mask, CPTVIS);
 
 				return true;
 			};
@@ -234,6 +254,7 @@ public class PnlWznmNavPre {
 
 			if (CptApp.equals(comp.CptApp)) items.add(CPTAPP);
 			if (CptVer.equals(comp.CptVer)) items.add(CPTVER);
+			if (CptVis.equals(comp.CptVis)) items.add(CPTVIS);
 
 			return(items);
 		};
@@ -246,7 +267,7 @@ public class PnlWznmNavPre {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(CPTAPP, CPTVER));
+			diffitems = new HashSet<Integer>(Arrays.asList(CPTAPP, CPTVER, CPTVIS));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -322,9 +343,9 @@ public class PnlWznmNavPre {
 		public DpchEngData() {
 			super(VecWznmVDpch.DPCHENGWZNMNAVPREDATA);
 
-			continf = new ContInf("", "");
-			statshr = new StatShr(false, false);
-			tag = new Tag("", "");
+			continf = new ContInf("", "", "");
+			statshr = new StatShr(false, false, false);
+			tag = new Tag("", "", "");
 		};
 
 		public ContInf continf;
@@ -359,9 +380,9 @@ public class PnlWznmNavPre {
 				if (tag.readXML(doc, basexpath, true)) add(TAG);
 			} else {
 				scrJref = "";
-				continf = new ContInf("", "");
-				statshr = new StatShr(false, false);
-				tag = new Tag("", "");
+				continf = new ContInf("", "", "");
+				statshr = new StatShr(false, false, false);
+				tag = new Tag("", "", "");
 			};
 		};
 

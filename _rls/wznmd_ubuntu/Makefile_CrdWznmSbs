@@ -2,7 +2,7 @@
 # make file for CrdWznmSbs card job handler, release wznmd_ubuntu
 # copyright: (C) 2016-2020 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 11 Sep 2022
+# date created: 5 Jan 2025
 # IP header --- ABOVE
 
 include ../Makefile.inc
@@ -16,7 +16,7 @@ STATLIBFLAGS = rcs
 INCPATH = -I$(BUILDROOT)/dbswznm -I$(BUILDROOT)/wznmd/VecWznm -I$(BUILDROOT)/wznmd/IexWznm -I$(BUILDROOT)/wznmd
 INCPATH += -I${WHIZSDKROOT}/build -I${WHIZSDKROOT}/build/apiwzlm -I/usr/include -I/usr/include/jsoncpp -I/usr/include/libxml2 -I/usr/include/mariadb
 
-OBJS = CrdWznmSbs.o PnlWznmSbsList.o QryWznmSbsList.o PnlWznmSbsHeadbar.o PnlWznmSbsRec.o PnlWznmSbsBsbMNSubset.o QryWznmSbsBsbMNSubset.o PnlWznmSbsAsbMNSubset.o QryWznmSbsAsbMNSubset.o PnlWznmSbsPst1NQuerymod.o QryWznmSbsPst1NQuerymod.o PnlWznmSbsFrs1NRelation.o QryWznmSbsFrs1NRelation.o PnlWznmSbsTos1NRelation.o QryWznmSbsTos1NRelation.o PnlWznmSbs1NTablecol.o QryWznmSbs1NTablecol.o PnlWznmSbs1NStub.o QryWznmSbs1NStub.o PnlWznmSbsATitle.o QryWznmSbsATitle.o PnlWznmSbsDetail.o
+OBJS = CrdWznmSbs.o PnlWznmSbsList.o QryWznmSbsList.o PnlWznmSbsHeadbar.o PnlWznmSbsRec.o PnlWznmSbsAsbMNSubset.o QryWznmSbsAsbMNSubset.o PnlWznmSbsBsbMNSubset.o QryWznmSbsBsbMNSubset.o PnlWznmSbsPst1NQuerymod.o QryWznmSbsPst1NQuerymod.o PnlWznmSbsFrs1NRelation.o QryWznmSbsFrs1NRelation.o PnlWznmSbsTos1NRelation.o QryWznmSbsTos1NRelation.o PnlWznmSbs1NTablecol.o QryWznmSbs1NTablecol.o PnlWznmSbs1NStub.o QryWznmSbs1NStub.o PnlWznmSbsATitle.o QryWznmSbsATitle.o PnlWznmSbsDetail.o
 
 LIB = libcrdwznmsbs
 

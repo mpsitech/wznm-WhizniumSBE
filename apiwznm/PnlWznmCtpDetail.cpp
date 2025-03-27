@@ -46,10 +46,9 @@ PnlWznmCtpDetail::ContIac::ContIac(
 			, const vector<uint>& numsFLstAtf
 		) :
 			Block()
+			, TxfTit(TxfTit)
+			, numsFLstAtf(numsFLstAtf)
 		{
-	this->TxfTit = TxfTit;
-	this->numsFLstAtf = numsFLstAtf;
-
 	mask = {TXFTIT, NUMSFLSTATF};
 };
 
@@ -129,11 +128,10 @@ PnlWznmCtpDetail::ContInf::ContInf(
 			, const string& TxtAtf
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtAtf(TxtAtf)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtAtf = TxtAtf;
-
 	mask = {TXTSRF, TXTVER, TXTATF};
 };
 
@@ -198,11 +196,10 @@ PnlWznmCtpDetail::StatApp::StatApp(
 			, const uint LstAtfNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstAtfAlt(LstAtfAlt)
+			, LstAtfNumFirstdisp(LstAtfNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstAtfAlt = LstAtfAlt;
-	this->LstAtfNumFirstdisp = LstAtfNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTATFALT, LSTATFNUMFIRSTDISP};
 };
 
@@ -277,16 +274,15 @@ PnlWznmCtpDetail::StatShr::StatShr(
 			, const bool LstAtfActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfTitActive(TxfTitActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, LstAtfActive(LstAtfActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfTitActive = TxfTitActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->LstAtfActive = LstAtfActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, LSTATFACTIVE};
 };
 
@@ -363,13 +359,12 @@ PnlWznmCtpDetail::Tag::Tag(
 			, const string& CptAtf
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTit(CptTit)
+			, CptVer(CptVer)
+			, CptAtf(CptAtf)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTit = CptTit;
-	this->CptVer = CptVer;
-	this->CptAtf = CptAtf;
-
 	mask = {CPT, CPTSRF, CPTTIT, CPTVER, CPTATF};
 };
 
@@ -449,11 +444,11 @@ PnlWznmCtpDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMCTPDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmCtpDetail::DpchAppDo::getSrefsMask() {

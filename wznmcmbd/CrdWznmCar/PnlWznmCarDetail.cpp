@@ -50,8 +50,8 @@ PnlWznmCarDetail::PnlWznmCarDetail(
 
 	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_REUEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_RETEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
-	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_JOBEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_MDLEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
+	xchg->addClstn(VecWznmVCall::CALLWZNMCAR_JOBEQ, jref, Clstn::VecVJobmask::TREE, 0, false, Arg(), 0, Clstn::VecVJactype::LOCK);
 
 	// IP constructor.cust3 --- INSERT
 
@@ -395,10 +395,10 @@ void PnlWznmCarDetail::handleCall(
 		call->abort = handleCallWznmCar_reuEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_RETEQ) {
 		call->abort = handleCallWznmCar_retEq(dbswznm, call->jref, call->argInv.ix, call->argRet.boolval);
-	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_JOBEQ) {
-		call->abort = handleCallWznmCar_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_MDLEQ) {
 		call->abort = handleCallWznmCar_mdlEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
+	} else if (call->ixVCall == VecWznmVCall::CALLWZNMCAR_JOBEQ) {
+		call->abort = handleCallWznmCar_jobEq(dbswznm, call->jref, call->argInv.ref, call->argRet.boolval);
 	};
 };
 
@@ -446,17 +446,6 @@ bool PnlWznmCarDetail::handleCallWznmCar_retEq(
 	return retval;
 };
 
-bool PnlWznmCarDetail::handleCallWznmCar_jobEq(
-			DbsWznm* dbswznm
-			, const ubigint jrefTrig
-			, const ubigint refInv
-			, bool& boolvalRet
-		) {
-	bool retval = false;
-	boolvalRet = (recCar.refWznmMJob == refInv); // IP handleCallWznmCar_jobEq --- LINE
-	return retval;
-};
-
 bool PnlWznmCarDetail::handleCallWznmCar_mdlEq(
 			DbsWznm* dbswznm
 			, const ubigint jrefTrig
@@ -465,5 +454,16 @@ bool PnlWznmCarDetail::handleCallWznmCar_mdlEq(
 		) {
 	bool retval = false;
 	boolvalRet = (recCar.mdlRefWznmMModule == refInv); // IP handleCallWznmCar_mdlEq --- LINE
+	return retval;
+};
+
+bool PnlWznmCarDetail::handleCallWznmCar_jobEq(
+			DbsWznm* dbswznm
+			, const ubigint jrefTrig
+			, const ubigint refInv
+			, bool& boolvalRet
+		) {
+	bool retval = false;
+	boolvalRet = (recCar.refWznmMJob == refInv); // IP handleCallWznmCar_jobEq --- LINE
 	return retval;
 };

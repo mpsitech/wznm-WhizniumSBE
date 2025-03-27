@@ -63,13 +63,12 @@ PnlWznmNavJob::ContIac::ContIac(
 			, const uint numFLstCal
 		) :
 			Block()
+			, numFLstJob(numFLstJob)
+			, numFLstSge(numFLstSge)
+			, numFLstMtd(numFLstMtd)
+			, numFLstBlk(numFLstBlk)
+			, numFLstCal(numFLstCal)
 		{
-	this->numFLstJob = numFLstJob;
-	this->numFLstSge = numFLstSge;
-	this->numFLstMtd = numFLstMtd;
-	this->numFLstBlk = numFLstBlk;
-	this->numFLstCal = numFLstCal;
-
 	mask = {NUMFLSTJOB, NUMFLSTSGE, NUMFLSTMTD, NUMFLSTBLK, NUMFLSTCAL};
 };
 
@@ -131,11 +130,11 @@ void PnlWznmNavJob::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFLstJob"] = numFLstJob;
-	me["numFLstSge"] = numFLstSge;
-	me["numFLstMtd"] = numFLstMtd;
-	me["numFLstBlk"] = numFLstBlk;
-	me["numFLstCal"] = numFLstCal;
+	me["numFLstJob"] = (Json::Value::UInt) numFLstJob;
+	me["numFLstSge"] = (Json::Value::UInt) numFLstSge;
+	me["numFLstMtd"] = (Json::Value::UInt) numFLstMtd;
+	me["numFLstBlk"] = (Json::Value::UInt) numFLstBlk;
+	me["numFLstCal"] = (Json::Value::UInt) numFLstCal;
 };
 
 void PnlWznmNavJob::ContIac::writeXML(
@@ -215,11 +214,11 @@ void PnlWznmNavJob::StatApp::writeJSON(
 	me["LstMtdAlt"] = LstMtdAlt;
 	me["LstBlkAlt"] = LstBlkAlt;
 	me["LstCalAlt"] = LstCalAlt;
-	me["LstJobNumFirstdisp"] = LstJobNumFirstdisp;
-	me["LstSgeNumFirstdisp"] = LstSgeNumFirstdisp;
-	me["LstMtdNumFirstdisp"] = LstMtdNumFirstdisp;
-	me["LstBlkNumFirstdisp"] = LstBlkNumFirstdisp;
-	me["LstCalNumFirstdisp"] = LstCalNumFirstdisp;
+	me["LstJobNumFirstdisp"] = (Json::Value::UInt) LstJobNumFirstdisp;
+	me["LstSgeNumFirstdisp"] = (Json::Value::UInt) LstSgeNumFirstdisp;
+	me["LstMtdNumFirstdisp"] = (Json::Value::UInt) LstMtdNumFirstdisp;
+	me["LstBlkNumFirstdisp"] = (Json::Value::UInt) LstBlkNumFirstdisp;
+	me["LstCalNumFirstdisp"] = (Json::Value::UInt) LstCalNumFirstdisp;
 };
 
 void PnlWznmNavJob::StatApp::writeXML(
@@ -281,23 +280,22 @@ PnlWznmNavJob::StatShr::StatShr(
 			, const bool ButCalNewcrdActive
 		) :
 			Block()
+			, LstJobAvail(LstJobAvail)
+			, ButJobViewActive(ButJobViewActive)
+			, ButJobNewcrdActive(ButJobNewcrdActive)
+			, LstSgeAvail(LstSgeAvail)
+			, ButSgeViewActive(ButSgeViewActive)
+			, ButSgeNewcrdActive(ButSgeNewcrdActive)
+			, LstMtdAvail(LstMtdAvail)
+			, ButMtdViewActive(ButMtdViewActive)
+			, ButMtdNewcrdActive(ButMtdNewcrdActive)
+			, LstBlkAvail(LstBlkAvail)
+			, ButBlkViewActive(ButBlkViewActive)
+			, ButBlkNewcrdActive(ButBlkNewcrdActive)
+			, LstCalAvail(LstCalAvail)
+			, ButCalViewActive(ButCalViewActive)
+			, ButCalNewcrdActive(ButCalNewcrdActive)
 		{
-	this->LstJobAvail = LstJobAvail;
-	this->ButJobViewActive = ButJobViewActive;
-	this->ButJobNewcrdActive = ButJobNewcrdActive;
-	this->LstSgeAvail = LstSgeAvail;
-	this->ButSgeViewActive = ButSgeViewActive;
-	this->ButSgeNewcrdActive = ButSgeNewcrdActive;
-	this->LstMtdAvail = LstMtdAvail;
-	this->ButMtdViewActive = ButMtdViewActive;
-	this->ButMtdNewcrdActive = ButMtdNewcrdActive;
-	this->LstBlkAvail = LstBlkAvail;
-	this->ButBlkViewActive = ButBlkViewActive;
-	this->ButBlkNewcrdActive = ButBlkNewcrdActive;
-	this->LstCalAvail = LstCalAvail;
-	this->ButCalViewActive = ButCalViewActive;
-	this->ButCalNewcrdActive = ButCalNewcrdActive;
-
 	mask = {LSTJOBAVAIL, BUTJOBVIEWACTIVE, BUTJOBNEWCRDACTIVE, LSTSGEAVAIL, BUTSGEVIEWACTIVE, BUTSGENEWCRDACTIVE, LSTMTDAVAIL, BUTMTDVIEWACTIVE, BUTMTDNEWCRDACTIVE, LSTBLKAVAIL, BUTBLKVIEWACTIVE, BUTBLKNEWCRDACTIVE, LSTCALAVAIL, BUTCALVIEWACTIVE, BUTCALNEWCRDACTIVE};
 };
 

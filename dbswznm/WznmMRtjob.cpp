@@ -24,15 +24,15 @@ WznmMRtjob::WznmMRtjob(
 			, const ubigint refWznmMJob
 			, const string sref
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMApp = refWznmMApp;
-	this->supRefWznmMRtjob = supRefWznmMRtjob;
-	this->supLvl = supLvl;
-	this->refWznmMJob = refWznmMJob;
-	this->sref = sref;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMApp(refWznmMApp)
+			, supRefWznmMRtjob(supRefWznmMRtjob)
+			, supLvl(supLvl)
+			, refWznmMJob(refWznmMJob)
+			, sref(sref)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMRtjob::operator==(

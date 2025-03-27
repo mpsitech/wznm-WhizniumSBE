@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQCmp1NRelease::WznmQCmp1NRelease(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQCmp1NRelease::readXML(

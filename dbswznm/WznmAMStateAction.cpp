@@ -37,26 +37,26 @@ WznmAMStateAction::WznmAMStateAction(
 			, const string Ip3
 			, const string tr4SrefATrig
 			, const string Ip4
-		) {
-
-	this->ref = ref;
-	this->steRefWznmMState = steRefWznmMState;
-	this->steNum = steNum;
-	this->ixVSection = ixVSection;
-	this->ixVType = ixVType;
-	this->refWznmMRtjob = refWznmMRtjob;
-	this->refWznmMVector = refWznmMVector;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->snxRefWznmMState = snxRefWznmMState;
-	this->refWznmMSequence = refWznmMSequence;
-	this->tr1SrefATrig = tr1SrefATrig;
-	this->Ip1 = Ip1;
-	this->tr2SrefATrig = tr2SrefATrig;
-	this->Ip2 = Ip2;
-	this->tr3SrefATrig = tr3SrefATrig;
-	this->Ip3 = Ip3;
-	this->tr4SrefATrig = tr4SrefATrig;
-	this->Ip4 = Ip4;
+		) :
+			ref(ref)
+			, steRefWznmMState(steRefWznmMState)
+			, steNum(steNum)
+			, ixVSection(ixVSection)
+			, ixVType(ixVType)
+			, refWznmMRtjob(refWznmMRtjob)
+			, refWznmMVector(refWznmMVector)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, snxRefWznmMState(snxRefWznmMState)
+			, refWznmMSequence(refWznmMSequence)
+			, tr1SrefATrig(tr1SrefATrig)
+			, Ip1(Ip1)
+			, tr2SrefATrig(tr2SrefATrig)
+			, Ip2(Ip2)
+			, tr3SrefATrig(tr3SrefATrig)
+			, Ip3(Ip3)
+			, tr4SrefATrig(tr4SrefATrig)
+			, Ip4(Ip4)
+		{
 };
 
 bool WznmAMStateAction::operator==(

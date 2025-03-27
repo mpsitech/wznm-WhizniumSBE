@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQApp1NRtjob::WznmQApp1NRtjob(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQApp1NRtjob::readXML(

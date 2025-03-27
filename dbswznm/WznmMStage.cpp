@@ -30,19 +30,19 @@ WznmMStage::WznmMStage(
 			, const ubigint fnxRefWznmMStage
 			, const ubigint enxRefWznmMStage
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->jobRefWznmMJob = jobRefWznmMJob;
-	this->jobNum = jobNum;
-	this->refWznmMSquawk = refWznmMSquawk;
-	this->sref = sref;
-	this->Monitvl = Monitvl;
-	this->snxRefWznmMStage = snxRefWznmMStage;
-	this->fnxRefWznmMStage = fnxRefWznmMStage;
-	this->enxRefWznmMStage = enxRefWznmMStage;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, jobRefWznmMJob(jobRefWznmMJob)
+			, jobNum(jobNum)
+			, refWznmMSquawk(refWznmMSquawk)
+			, sref(sref)
+			, Monitvl(Monitvl)
+			, snxRefWznmMStage(snxRefWznmMStage)
+			, fnxRefWznmMStage(fnxRefWznmMStage)
+			, enxRefWznmMStage(enxRefWznmMStage)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMStage::operator==(

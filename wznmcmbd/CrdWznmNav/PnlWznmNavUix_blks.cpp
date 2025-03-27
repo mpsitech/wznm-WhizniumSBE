@@ -83,17 +83,16 @@ PnlWznmNavUix::ContIac::ContIac(
 			, const uint numFLstCon
 		) :
 			Block()
+			, numFLstPst(numFLstPst)
+			, numFLstMdl(numFLstMdl)
+			, numFLstCar(numFLstCar)
+			, numFLstDlg(numFLstDlg)
+			, numFLstPnl(numFLstPnl)
+			, numFLstQry(numFLstQry)
+			, numFLstQco(numFLstQco)
+			, numFLstQmd(numFLstQmd)
+			, numFLstCon(numFLstCon)
 		{
-	this->numFLstPst = numFLstPst;
-	this->numFLstMdl = numFLstMdl;
-	this->numFLstCar = numFLstCar;
-	this->numFLstDlg = numFLstDlg;
-	this->numFLstPnl = numFLstPnl;
-	this->numFLstQry = numFLstQry;
-	this->numFLstQco = numFLstQco;
-	this->numFLstQmd = numFLstQmd;
-	this->numFLstCon = numFLstCon;
-
 	mask = {NUMFLSTPST, NUMFLSTMDL, NUMFLSTCAR, NUMFLSTDLG, NUMFLSTPNL, NUMFLSTQRY, NUMFLSTQCO, NUMFLSTQMD, NUMFLSTCON};
 };
 
@@ -163,15 +162,15 @@ void PnlWznmNavUix::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFLstPst"] = numFLstPst;
-	me["numFLstMdl"] = numFLstMdl;
-	me["numFLstCar"] = numFLstCar;
-	me["numFLstDlg"] = numFLstDlg;
-	me["numFLstPnl"] = numFLstPnl;
-	me["numFLstQry"] = numFLstQry;
-	me["numFLstQco"] = numFLstQco;
-	me["numFLstQmd"] = numFLstQmd;
-	me["numFLstCon"] = numFLstCon;
+	me["numFLstPst"] = (Json::Value::UInt) numFLstPst;
+	me["numFLstMdl"] = (Json::Value::UInt) numFLstMdl;
+	me["numFLstCar"] = (Json::Value::UInt) numFLstCar;
+	me["numFLstDlg"] = (Json::Value::UInt) numFLstDlg;
+	me["numFLstPnl"] = (Json::Value::UInt) numFLstPnl;
+	me["numFLstQry"] = (Json::Value::UInt) numFLstQry;
+	me["numFLstQco"] = (Json::Value::UInt) numFLstQco;
+	me["numFLstQmd"] = (Json::Value::UInt) numFLstQmd;
+	me["numFLstCon"] = (Json::Value::UInt) numFLstCon;
 };
 
 void PnlWznmNavUix::ContIac::writeXML(
@@ -271,15 +270,15 @@ void PnlWznmNavUix::StatApp::writeJSON(
 	me["LstQcoAlt"] = LstQcoAlt;
 	me["LstQmdAlt"] = LstQmdAlt;
 	me["LstConAlt"] = LstConAlt;
-	me["LstPstNumFirstdisp"] = LstPstNumFirstdisp;
-	me["LstMdlNumFirstdisp"] = LstMdlNumFirstdisp;
-	me["LstCarNumFirstdisp"] = LstCarNumFirstdisp;
-	me["LstDlgNumFirstdisp"] = LstDlgNumFirstdisp;
-	me["LstPnlNumFirstdisp"] = LstPnlNumFirstdisp;
-	me["LstQryNumFirstdisp"] = LstQryNumFirstdisp;
-	me["LstQcoNumFirstdisp"] = LstQcoNumFirstdisp;
-	me["LstQmdNumFirstdisp"] = LstQmdNumFirstdisp;
-	me["LstConNumFirstdisp"] = LstConNumFirstdisp;
+	me["LstPstNumFirstdisp"] = (Json::Value::UInt) LstPstNumFirstdisp;
+	me["LstMdlNumFirstdisp"] = (Json::Value::UInt) LstMdlNumFirstdisp;
+	me["LstCarNumFirstdisp"] = (Json::Value::UInt) LstCarNumFirstdisp;
+	me["LstDlgNumFirstdisp"] = (Json::Value::UInt) LstDlgNumFirstdisp;
+	me["LstPnlNumFirstdisp"] = (Json::Value::UInt) LstPnlNumFirstdisp;
+	me["LstQryNumFirstdisp"] = (Json::Value::UInt) LstQryNumFirstdisp;
+	me["LstQcoNumFirstdisp"] = (Json::Value::UInt) LstQcoNumFirstdisp;
+	me["LstQmdNumFirstdisp"] = (Json::Value::UInt) LstQmdNumFirstdisp;
+	me["LstConNumFirstdisp"] = (Json::Value::UInt) LstConNumFirstdisp;
 };
 
 void PnlWznmNavUix::StatApp::writeXML(
@@ -369,35 +368,34 @@ PnlWznmNavUix::StatShr::StatShr(
 			, const bool ButConNewcrdActive
 		) :
 			Block()
+			, LstPstAvail(LstPstAvail)
+			, ButPstViewActive(ButPstViewActive)
+			, ButPstNewcrdActive(ButPstNewcrdActive)
+			, LstMdlAvail(LstMdlAvail)
+			, ButMdlViewActive(ButMdlViewActive)
+			, ButMdlNewcrdActive(ButMdlNewcrdActive)
+			, LstCarAvail(LstCarAvail)
+			, ButCarViewActive(ButCarViewActive)
+			, ButCarNewcrdActive(ButCarNewcrdActive)
+			, LstDlgAvail(LstDlgAvail)
+			, ButDlgViewActive(ButDlgViewActive)
+			, ButDlgNewcrdActive(ButDlgNewcrdActive)
+			, LstPnlAvail(LstPnlAvail)
+			, ButPnlViewActive(ButPnlViewActive)
+			, ButPnlNewcrdActive(ButPnlNewcrdActive)
+			, LstQryAvail(LstQryAvail)
+			, ButQryViewActive(ButQryViewActive)
+			, ButQryNewcrdActive(ButQryNewcrdActive)
+			, LstQcoAvail(LstQcoAvail)
+			, ButQcoViewActive(ButQcoViewActive)
+			, ButQcoNewcrdActive(ButQcoNewcrdActive)
+			, LstQmdAvail(LstQmdAvail)
+			, ButQmdViewActive(ButQmdViewActive)
+			, ButQmdNewcrdActive(ButQmdNewcrdActive)
+			, LstConAvail(LstConAvail)
+			, ButConViewActive(ButConViewActive)
+			, ButConNewcrdActive(ButConNewcrdActive)
 		{
-	this->LstPstAvail = LstPstAvail;
-	this->ButPstViewActive = ButPstViewActive;
-	this->ButPstNewcrdActive = ButPstNewcrdActive;
-	this->LstMdlAvail = LstMdlAvail;
-	this->ButMdlViewActive = ButMdlViewActive;
-	this->ButMdlNewcrdActive = ButMdlNewcrdActive;
-	this->LstCarAvail = LstCarAvail;
-	this->ButCarViewActive = ButCarViewActive;
-	this->ButCarNewcrdActive = ButCarNewcrdActive;
-	this->LstDlgAvail = LstDlgAvail;
-	this->ButDlgViewActive = ButDlgViewActive;
-	this->ButDlgNewcrdActive = ButDlgNewcrdActive;
-	this->LstPnlAvail = LstPnlAvail;
-	this->ButPnlViewActive = ButPnlViewActive;
-	this->ButPnlNewcrdActive = ButPnlNewcrdActive;
-	this->LstQryAvail = LstQryAvail;
-	this->ButQryViewActive = ButQryViewActive;
-	this->ButQryNewcrdActive = ButQryNewcrdActive;
-	this->LstQcoAvail = LstQcoAvail;
-	this->ButQcoViewActive = ButQcoViewActive;
-	this->ButQcoNewcrdActive = ButQcoNewcrdActive;
-	this->LstQmdAvail = LstQmdAvail;
-	this->ButQmdViewActive = ButQmdViewActive;
-	this->ButQmdNewcrdActive = ButQmdNewcrdActive;
-	this->LstConAvail = LstConAvail;
-	this->ButConViewActive = ButConViewActive;
-	this->ButConNewcrdActive = ButConNewcrdActive;
-
 	mask = {LSTPSTAVAIL, BUTPSTVIEWACTIVE, BUTPSTNEWCRDACTIVE, LSTMDLAVAIL, BUTMDLVIEWACTIVE, BUTMDLNEWCRDACTIVE, LSTCARAVAIL, BUTCARVIEWACTIVE, BUTCARNEWCRDACTIVE, LSTDLGAVAIL, BUTDLGVIEWACTIVE, BUTDLGNEWCRDACTIVE, LSTPNLAVAIL, BUTPNLVIEWACTIVE, BUTPNLNEWCRDACTIVE, LSTQRYAVAIL, BUTQRYVIEWACTIVE, BUTQRYNEWCRDACTIVE, LSTQCOAVAIL, BUTQCOVIEWACTIVE, BUTQCONEWCRDACTIVE, LSTQMDAVAIL, BUTQMDVIEWACTIVE, BUTQMDNEWCRDACTIVE, LSTCONAVAIL, BUTCONVIEWACTIVE, BUTCONNEWCRDACTIVE};
 };
 

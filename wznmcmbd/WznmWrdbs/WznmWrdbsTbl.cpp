@@ -599,10 +599,17 @@ void WznmWrdbsTbl::writeTblCpp(
 
 	// --- constructor
 	outfile << "// IP constructor --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < tcos.nodes.size(); i++) {
-		tco = tcos.nodes[i];
+	if (tcos.nodes.size() == 0) outfile << "\t\t) {" << endl;
+	else {
+		outfile << "\t\t) :" << endl;
+		for (unsigned int i = 0; i < tcos.nodes.size(); i++) {
+			tco = tcos.nodes[i];
 
-		outfile << "\tthis->" << tco->sref << " = " << tco->sref << ";" << endl;
+			outfile << "\t\t\t";
+			if (i != 0) outfile << ", ";
+			outfile << tco->sref << "(" << tco->sref << ")" << endl;
+		};
+		outfile << "\t\t{" << endl;
 	};
 	outfile << "// IP constructor --- IEND" << endl;
 
@@ -1861,6 +1868,8 @@ void WznmWrdbsTbl::writeQtbCpp(
 
 	bool hasqwr = false;
 
+	string s;
+
 	for (unsigned int i = 0; i < qcos.nodes.size(); i++) {
 		qco = qcos.nodes[i];
 
@@ -1885,10 +1894,17 @@ void WznmWrdbsTbl::writeQtbCpp(
 
 	// --- constructor
 	outfile << "// IP constructor --- IBEGIN" << endl;
-	for (unsigned int i = 0; i < qcos.nodes.size(); i++) {
-		qco = qcos.nodes[i];
+	if (qcos.nodes.size() == 0) outfile << "\t\t) {" << endl;
+	else {
+		outfile << "\t\t) :" << endl;
+		for (unsigned int i = 0; i < qcos.nodes.size(); i++) {
+			qco = qcos.nodes[i];
 
-		outfile << "\tthis->" << qco->sref << " = " << qco->sref << ";" << endl;
+			outfile << "\t\t\t";
+			if (i != 0) outfile << ", ";
+			outfile << qco->sref << "(" << qco->sref << ")" << endl;
+		};
+		outfile << "\t\t{" << endl;
 	};
 	outfile << "// IP constructor --- IEND" << endl;
 
@@ -1896,7 +1912,7 @@ void WznmWrdbsTbl::writeQtbCpp(
 	outfile << "// IP writeJSON.shorttags --- IBEGIN" << endl;
 	for (unsigned int i = 0; i < qcos.nodes.size(); i++) {
 		qco = qcos.nodes[i];
-		if (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::XML) outfile << "\t\tme[\"" << qco->Short << "\"] = " << qco->sref << ";" << endl;
+		if (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::XML) outfile << "\t\tme[\"" << ((qco->Short != "") ? qco->Short : qco->sref) << "\"] = " << qco->sref << ";" << endl;
 	};
 	outfile << "// IP writeJSON.shorttags --- IEND" << endl;
 
@@ -1917,7 +1933,7 @@ void WznmWrdbsTbl::writeQtbCpp(
 			qcotype = getQcoCppType(qco->ixVBasetype, false);
 			if (qcotype == "") for (unsigned int k = 0; k < tcos.nodes.size(); k++) if (tcos.nodes[k]->sref == qco->sref) qcotype = getTcoCppType(tcos.nodes[k]->ixVBasetype, tcos.nodes[k]->ixVSubtype, false);
 
-			outfile << "\t\t" << getQcoWrite(qcotype) << "(wr, \"" << qco->Short << "\", " << qco->sref << ");" << endl;
+			outfile << "\t\t" << getQcoWrite(qcotype) << "(wr, \"" << ((qco->Short != "") ? qco->Short : qco->sref) << "\", " << qco->sref << ");" << endl;
 		};
 	};
 	outfile << "// IP writeXML.shorttags --- IEND" << endl;

@@ -50,10 +50,9 @@ PnlWznmNavComp::ContIac::ContIac(
 			, const uint numFLstOpx
 		) :
 			Block()
+			, numFLstOpk(numFLstOpk)
+			, numFLstOpx(numFLstOpx)
 		{
-	this->numFLstOpk = numFLstOpk;
-	this->numFLstOpx = numFLstOpx;
-
 	mask = {NUMFLSTOPK, NUMFLSTOPX};
 };
 
@@ -135,13 +134,12 @@ PnlWznmNavComp::StatApp::StatApp(
 			, const uint LstOpxNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstOpkAlt(LstOpkAlt)
+			, LstOpxAlt(LstOpxAlt)
+			, LstOpkNumFirstdisp(LstOpkNumFirstdisp)
+			, LstOpxNumFirstdisp(LstOpxNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstOpkAlt = LstOpkAlt;
-	this->LstOpxAlt = LstOpxAlt;
-	this->LstOpkNumFirstdisp = LstOpkNumFirstdisp;
-	this->LstOpxNumFirstdisp = LstOpxNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTOPKALT, LSTOPXALT, LSTOPKNUMFIRSTDISP, LSTOPXNUMFIRSTDISP};
 };
 
@@ -218,14 +216,13 @@ PnlWznmNavComp::StatShr::StatShr(
 			, const bool ButOpxNewcrdActive
 		) :
 			Block()
+			, LstOpkAvail(LstOpkAvail)
+			, ButOpkViewActive(ButOpkViewActive)
+			, ButOpkNewcrdActive(ButOpkNewcrdActive)
+			, LstOpxAvail(LstOpxAvail)
+			, ButOpxViewActive(ButOpxViewActive)
+			, ButOpxNewcrdActive(ButOpxNewcrdActive)
 		{
-	this->LstOpkAvail = LstOpkAvail;
-	this->ButOpkViewActive = ButOpkViewActive;
-	this->ButOpkNewcrdActive = ButOpkNewcrdActive;
-	this->LstOpxAvail = LstOpxAvail;
-	this->ButOpxViewActive = ButOpxViewActive;
-	this->ButOpxNewcrdActive = ButOpxNewcrdActive;
-
 	mask = {LSTOPKAVAIL, BUTOPKVIEWACTIVE, BUTOPKNEWCRDACTIVE, LSTOPXAVAIL, BUTOPXVIEWACTIVE, BUTOPXNEWCRDACTIVE};
 };
 
@@ -296,11 +293,10 @@ PnlWznmNavComp::Tag::Tag(
 			, const string& CptOpx
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptOpk(CptOpk)
+			, CptOpx(CptOpx)
 		{
-	this->Cpt = Cpt;
-	this->CptOpk = CptOpk;
-	this->CptOpx = CptOpx;
-
 	mask = {CPT, CPTOPK, CPTOPX};
 };
 
@@ -378,11 +374,11 @@ PnlWznmNavComp::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMNAVCOMPDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmNavComp::DpchAppDo::getSrefsMask() {

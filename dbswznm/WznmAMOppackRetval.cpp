@@ -25,16 +25,16 @@ WznmAMOppackRetval::WznmAMOppackRetval(
 			, const uint ixWznmVVartype
 			, const ubigint refWznmMVector
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmCAMOppackRetval = refWznmCAMOppackRetval;
-	this->opkRefWznmMOppack = opkRefWznmMOppack;
-	this->opkNum = opkNum;
-	this->sref = sref;
-	this->ixWznmVVartype = ixWznmVVartype;
-	this->refWznmMVector = refWznmMVector;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmCAMOppackRetval(refWznmCAMOppackRetval)
+			, opkRefWznmMOppack(opkRefWznmMOppack)
+			, opkNum(opkNum)
+			, sref(sref)
+			, ixWznmVVartype(ixWznmVVartype)
+			, refWznmMVector(refWznmMVector)
+			, Comment(Comment)
+		{
 };
 
 bool WznmAMOppackRetval::operator==(

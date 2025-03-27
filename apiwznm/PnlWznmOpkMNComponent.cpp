@@ -47,9 +47,8 @@ PnlWznmOpkMNComponent::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -108,9 +107,8 @@ PnlWznmOpkMNComponent::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -176,11 +174,10 @@ PnlWznmOpkMNComponent::StatShr::StatShr(
 			, const bool ButSubActive
 		) :
 			Block()
+			, ButAddAvail(ButAddAvail)
+			, ButSubAvail(ButSubAvail)
+			, ButSubActive(ButSubActive)
 		{
-	this->ButAddAvail = ButAddAvail;
-	this->ButSubAvail = ButSubAvail;
-	this->ButSubActive = ButSubActive;
-
 	mask = {BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
 };
 
@@ -243,9 +240,8 @@ PnlWznmOpkMNComponent::StgIac::StgIac(
 			const uint TcoMrefWidth
 		) :
 			Block()
+			, TcoMrefWidth(TcoMrefWidth)
 		{
-	this->TcoMrefWidth = TcoMrefWidth;
-
 	mask = {TCOMREFWIDTH};
 };
 
@@ -326,15 +322,14 @@ PnlWznmOpkMNComponent::Tag::Tag(
 			, const string& TcoMref
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoMref(TcoMref)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoMref = TcoMref;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOMREF};
 };
 
@@ -420,11 +415,11 @@ PnlWznmOpkMNComponent::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMOPKMNCOMPONENTDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmOpkMNComponent::DpchAppDo::getSrefsMask() {

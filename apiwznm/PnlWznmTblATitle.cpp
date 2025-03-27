@@ -49,9 +49,8 @@ PnlWznmTblATitle::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -110,9 +109,8 @@ PnlWznmTblATitle::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -180,13 +178,12 @@ PnlWznmTblATitle::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -256,12 +253,11 @@ PnlWznmTblATitle::StgIac::StgIac(
 			, const uint TcoTitWidth
 		) :
 			Block()
+			, TcoTypWidth(TcoTypWidth)
+			, TcoLocWidth(TcoLocWidth)
+			, TcoGndWidth(TcoGndWidth)
+			, TcoTitWidth(TcoTitWidth)
 		{
-	this->TcoTypWidth = TcoTypWidth;
-	this->TcoLocWidth = TcoLocWidth;
-	this->TcoGndWidth = TcoGndWidth;
-	this->TcoTitWidth = TcoTitWidth;
-
 	mask = {TCOTYPWIDTH, TCOLOCWIDTH, TCOGNDWIDTH, TCOTITWIDTH};
 };
 
@@ -354,18 +350,17 @@ PnlWznmTblATitle::Tag::Tag(
 			, const string& TcoTit
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoTyp(TcoTyp)
+			, TcoLoc(TcoLoc)
+			, TcoGnd(TcoGnd)
+			, TcoTit(TcoTit)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoTyp = TcoTyp;
-	this->TcoLoc = TcoLoc;
-	this->TcoGnd = TcoGnd;
-	this->TcoTit = TcoTit;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOTYP, TCOLOC, TCOGND, TCOTIT};
 };
 
@@ -454,11 +449,11 @@ PnlWznmTblATitle::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMTBLATITLEDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmTblATitle::DpchAppDo::getSrefsMask() {

@@ -74,6 +74,32 @@ stat	WznmCompl	complement	false
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
 	ImeIMOp.end
+stat	WznmComplvis	complement visualization features	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmComplvisDbstr	false	complement visualization features
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVisual	ubigint
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		complement visualization features for database structure '&StubWznmVisStd;'	complement visualization features for database structure 'BeamRelay v0.1.1 database structure'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVisStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmComplvisImpexp	false	complement visualization features
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMVisual	ubigint
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		complement visualization features for import/export structure '&StubWznmVisStd;'	complement visualization features for import/export structure 'BeamRelay v0.1.1 database structure'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmVisStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
 cust	WznmCtpGenjtr	generate capability template-specific job tree	false
 	ImeIAMOppackInvarg.irefRefWznmCAMOppackInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
 	0	refWznmMCapability	ubigint
@@ -984,6 +1010,42 @@ stat	WznmWrsrv	write server code	false
 		write C++ code for vector '&StubWznmVecStd;'	write C++ code for vector 'VecBrlyVMLocationBasetype'
 			ImeIRMSquawkMStub2.srefRefWznmMStub
 			StubWznmVecStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	ImeIMOp.end
+stat	WznmWrvis	write visualization code	false
+	ImeIRMComponentMOppack.srefRefWznmMComponent
+	wznmopd1
+	ImeIRMComponentMOppack.end
+	ImeIMOp.sref	Shrdat	Comment
+	WznmWrvisDbstr	false	write SVG code for database structure sheet
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMSheet	ubigint
+		0	Prjshort	string
+		0	folder	string
+		0	Shtshort	string
+		0	jrefBoxctx	ubigint
+		0	jrefLinkctx	ubigint
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write SVG code for database structure sheet '&StubWznmShtStd;'	write SVG code for database structure sheet 'user interface'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmShtStd
+			ImeIRMSquawkMStub2.end
+		ImeIMSquawk2.end
+	WznmWrvisImpexp	false	write SVG code for import/export structure sheet
+		ImeIAMOpInvarg.irefRefWznmCAMOpInvarg	sref	srefIxWznmVVartype	srefRefWznmMVector	Defval	srefRefWznmMVectoritem	Comment
+		0	refWznmMSheet	ubigint
+		0	Prjshort	string
+		0	folder	string
+		0	Shtshort	string
+		0	jrefBoxctx	ubigint
+		0	jrefLinkctx	ubigint
+		ImeIAMOpInvarg.end
+		ImeIMSquawk2.Title	Example
+		write SVG code for import/export structure sheet '&StubWznmShtStd;'	write SVG code for import/export structure sheet 'custom user interface structure'
+			ImeIRMSquawkMStub2.srefRefWznmMStub
+			StubWznmShtStd
 			ImeIRMSquawkMStub2.end
 		ImeIMSquawk2.end
 	ImeIMOp.end

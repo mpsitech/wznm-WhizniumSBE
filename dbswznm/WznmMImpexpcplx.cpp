@@ -26,17 +26,17 @@ WznmMImpexpcplx::WznmMImpexpcplx(
 			, const string Title
 			, const string Minversion
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMVersion = refWznmMVersion;
-	this->refWznmMJob = refWznmMJob;
-	this->sref = sref;
-	this->Short = Short;
-	this->refJTitle = refJTitle;
-	this->Title = Title;
-	this->Minversion = Minversion;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMVersion(refWznmMVersion)
+			, refWznmMJob(refWznmMJob)
+			, sref(sref)
+			, Short(Short)
+			, refJTitle(refJTitle)
+			, Title(Title)
+			, Minversion(Minversion)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMImpexpcplx::operator==(

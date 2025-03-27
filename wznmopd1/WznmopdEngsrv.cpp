@@ -329,6 +329,12 @@ uint WznmopdEngsrv::readDpchInv(
 	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVUEPNL) {
 		req->dpchinv = new DpchInvWznmWrvuePnl();
 		((DpchInvWznmWrvuePnl*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVISDBSTR) {
+		req->dpchinv = new DpchInvWznmWrvisDbstr();
+		((DpchInvWznmWrvisDbstr*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRVISIMPEXP) {
+		req->dpchinv = new DpchInvWznmWrvisImpexp();
+		((DpchInvWznmWrvisImpexp*) (req->dpchinv))->readXML(docctx, "/", true);
 	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMWRSRVBASE) {
 		req->dpchinv = new DpchInvWznmWrsrvBase();
 		((DpchInvWznmWrsrvBase*) (req->dpchinv))->readXML(docctx, "/", true);
@@ -506,6 +512,12 @@ uint WznmopdEngsrv::readDpchInv(
 	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMGENSYSVEC) {
 		req->dpchinv = new DpchInvWznmGenSysvec();
 		((DpchInvWznmGenSysvec*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISDBSTR) {
+		req->dpchinv = new DpchInvWznmComplvisDbstr();
+		((DpchInvWznmComplvisDbstr*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISIMPEXP) {
+		req->dpchinv = new DpchInvWznmComplvisImpexp();
+		((DpchInvWznmComplvisImpexp*) (req->dpchinv))->readXML(docctx, "/", true);
 	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLBSCUI) {
 		req->dpchinv = new DpchInvWznmComplBscui();
 		((DpchInvWznmComplBscui*) (req->dpchinv))->readXML(docctx, "/", true);
@@ -524,6 +536,12 @@ uint WznmopdEngsrv::readDpchInv(
 	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLJTR) {
 		req->dpchinv = new DpchInvWznmComplJtr();
 		((DpchInvWznmComplJtr*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISDBSTR) {
+		req->dpchinv = new DpchInvWznmComplvisDbstr();
+		((DpchInvWznmComplvisDbstr*) (req->dpchinv))->readXML(docctx, "/", true);
+	} else if (ixWznmVDpch == VecWznmVDpch::DPCHINVWZNMCOMPLVISIMPEXP) {
+		req->dpchinv = new DpchInvWznmComplvisImpexp();
+		((DpchInvWznmComplvisImpexp*) (req->dpchinv))->readXML(docctx, "/", true);
 	};
 
 	if (docctx) xmlXPathFreeContext(docctx);

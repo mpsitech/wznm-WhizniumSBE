@@ -15,8 +15,8 @@
 // IP include.cust --- INSERT
 
 #include "PnlWznmMdlRef1NPanel.h"
-#include "PnlWznmMdlMdl1NCard.h"
 #include "PnlWznmMdlDetail.h"
+#include "PnlWznmMdlMdl1NCard.h"
 
 #define VecVWznmMdlRecDo PnlWznmMdlRec::VecVDo
 
@@ -178,8 +178,8 @@ public:
 	StatShr statshr;
 
 	PnlWznmMdlRef1NPanel* pnlref1npanel;
-	PnlWznmMdlMdl1NCard* pnlmdl1ncard;
 	PnlWznmMdlDetail* pnldetail;
+	PnlWznmMdlMdl1NCard* pnlmdl1ncard;
 
 	WznmMModule recMdl;
 

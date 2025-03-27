@@ -25,16 +25,16 @@ WznmMSubset::WznmMSubset(
 			, const string Short
 			, const string Cond
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMTable = refWznmMTable;
-	this->refWznmMPreset = refWznmMPreset;
-	this->refWznmMCard = refWznmMCard;
-	this->sref = sref;
-	this->Short = Short;
-	this->Cond = Cond;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMTable(refWznmMTable)
+			, refWznmMPreset(refWznmMPreset)
+			, refWznmMCard(refWznmMCard)
+			, sref(sref)
+			, Short(Short)
+			, Cond(Cond)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMSubset::operator==(

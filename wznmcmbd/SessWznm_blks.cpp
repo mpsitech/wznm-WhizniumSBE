@@ -19,9 +19,8 @@ SessWznm::StatShr::StatShr(
 			const ubigint jrefCrdnav
 		) :
 			Block()
+			, jrefCrdnav(jrefCrdnav)
 		{
-	this->jrefCrdnav = jrefCrdnav;
-
 	mask = {JREFCRDNAV};
 };
 

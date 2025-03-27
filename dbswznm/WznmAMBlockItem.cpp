@@ -35,24 +35,24 @@ WznmAMBlockItem::WznmAMBlockItem(
 			, const string Defval
 			, const ubigint refWznmMVectoritem
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmCAMBlockItem = refWznmCAMBlockItem;
-	this->blkRefWznmMBlock = blkRefWznmMBlock;
-	this->blkNum = blkNum;
-	this->ixVBasetype = ixVBasetype;
-	this->sref = sref;
-	this->ixWznmVVartype = ixWznmVVartype;
-	this->refWznmMControl = refWznmMControl;
-	this->refWznmMVector = refWznmMVector;
-	this->refWznmMFeed = refWznmMFeed;
-	this->refWznmMTable = refWznmMTable;
-	this->refWznmMBlock = refWznmMBlock;
-	this->refJ = refJ;
-	this->Defval = Defval;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmCAMBlockItem(refWznmCAMBlockItem)
+			, blkRefWznmMBlock(blkRefWznmMBlock)
+			, blkNum(blkNum)
+			, ixVBasetype(ixVBasetype)
+			, sref(sref)
+			, ixWznmVVartype(ixWznmVVartype)
+			, refWznmMControl(refWznmMControl)
+			, refWznmMVector(refWznmMVector)
+			, refWznmMFeed(refWznmMFeed)
+			, refWznmMTable(refWznmMTable)
+			, refWznmMBlock(refWznmMBlock)
+			, refJ(refJ)
+			, Defval(Defval)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, Comment(Comment)
+		{
 };
 
 bool WznmAMBlockItem::operator==(

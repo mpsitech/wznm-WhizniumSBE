@@ -21,8 +21,8 @@ public class QryWznmIelList {
 
 		public static final int TCO = 1;
 		public static final int IME = 2;
-		public static final int TYP = 3;
-		public static final int SRF = 4;
+		public static final int SRF = 3;
+		public static final int TYP = 4;
 
 		public static int getIx(
 					String sref
@@ -31,8 +31,8 @@ public class QryWznmIelList {
 
 			if (s.equals("tco")) return TCO;
 			if (s.equals("ime")) return IME;
-			if (s.equals("typ")) return TYP;
 			if (s.equals("srf")) return SRF;
+			if (s.equals("typ")) return TYP;
 
 			return 0;
 		};
@@ -42,8 +42,8 @@ public class QryWznmIelList {
 				) {
 			if (ix == TCO) return("tco");
 			if (ix == IME) return("ime");
-			if (ix == TYP) return("typ");
 			if (ix == SRF) return("srf");
+			if (ix == TYP) return("typ");
 
 			return "";
 		};

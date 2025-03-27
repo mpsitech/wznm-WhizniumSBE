@@ -27,16 +27,17 @@ WznmQRlsList::WznmQRlsList(
 			, const string stubRefWznmMComponent
 			, const ubigint refWznmMMachine
 			, const string stubRefWznmMMachine
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->refWznmMComponent = refWznmMComponent;
-	this->stubRefWznmMComponent = stubRefWznmMComponent;
-	this->refWznmMMachine = refWznmMMachine;
-	this->stubRefWznmMMachine = stubRefWznmMMachine;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, refWznmMComponent(refWznmMComponent)
+			, stubRefWznmMComponent(stubRefWznmMComponent)
+			, refWznmMMachine(refWznmMMachine)
+			, stubRefWznmMMachine(stubRefWznmMMachine)
+		{
 };
 
 void WznmQRlsList::writeJSON(

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1 plus MathML 2.0 plus SVG 1.1//EN" "http://www.w3.org/2002/04/xhtml-math-svg/xhtml-math-svg.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:svg="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+	<head>
+		<title>Detail_bcont</title>
+		<script>
+			function handleButShtViewClick() {parent.parent.window.handleButCrdopenClick("ButShtView");};
+			function handlePupYChange() {parent.parent.window.handlePupChange(document,"PupY","xs");};
+			function handleTxfXKey(evt) {return parent.parent.window.handleTxfKey(document,"TxfX","s",evt);};
+			function handleTxfXChange() {parent.parent.window.handleTxfChange(document,"TxfX","s");};
+			function handleTxfYKey(evt) {return parent.parent.window.handleTxfKey(document,"TxfY","s",evt);};
+			function handleTxfYChange() {parent.parent.window.handleTxfChange(document,"TxfY","s");};
+			<!-- IP custScript - INSERT -->
+		</script>
+		<link href="../style/pnlDetail.css" rel="styleSheet" type="text/css"/>
+		<!-- IP custStyle - INSERT -->
+	</head>
+	<body marginwidth="0" marginheight="0">
+		<table cellspacing="0" border="0" cellpadding="0"><form action="">
+			<colgroup>
+				<col width="5"/>
+				<col width="155"/>
+				<col width="5"/>
+				<col width="78"/>
+				<col width="2"/>
+				<col width="38"/>
+				<col width="2"/>
+				<col width="78"/>
+				<col width="2"/>
+				<col width="1"/>
+				<col width="74"/>
+			</colgroup>
+			<tbody id="tbl">
+				<tr><td colspan="11" height="5"></td></tr>
+				<tr id="trSht" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptSht" class="cpt">CptSht</span>
+					</td>
+					<td></td>
+					<td colspan="5" align="left">
+						<input id="TxtSht" class="txfnoed" type="text" readonly="readonly" value="TxtSht"/>
+					</td>
+					<td></td>
+					<td id="rdynSht" colspan="2" align="left">
+					</td>
+				</tr>
+				<tr id="trUnv" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptUnv" class="cpt">CptUnv</span>
+					</td>
+					<td></td>
+					<td colspan="2" align="left">
+						<select id="PupY" class="pupxs" size="1" onchange="handlePupYChange()"/>
+					</td>
+					<td colspan="3" align="left">
+						<input id="TxtUnv" class="txfsnoed" type="text" readonly="readonly" value="TxtUnv"/>
+					</td>
+					<td></td>
+					<td colspan="2"></td>
+				</tr>
+				<tr id="trX" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptX" class="cpt">CptX</span>
+					</td>
+					<td></td>
+					<td colspan="3" align="left">
+						<input id="TxfX" class="txfs" type="text" value="TxfX" onchange="handleTxfXChange()" onkeypress="return handleTxfXKey(event)"/>
+					</td>
+					<td></td>
+					<td colspan="4"></td>
+				</tr>
+				<tr id="trY" class="show">
+					<td height="25"></td>
+					<td align="right">
+						<span id="CptY" class="cpt">CptY</span>
+					</td>
+					<td></td>
+					<td colspan="3" align="left">
+						<input id="TxfY" class="txfs" type="text" value="TxfY" onchange="handleTxfYChange()" onkeypress="return handleTxfYKey(event)"/>
+					</td>
+					<td></td>
+					<td colspan="4"></td>
+				</tr>
+				<tr><td colspan="11" height="4"></td></tr>
+			</tbody>
+		</form></table>
+	</body>
+</html>

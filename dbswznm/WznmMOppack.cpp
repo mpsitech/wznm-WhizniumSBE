@@ -27,16 +27,16 @@ WznmMOppack::WznmMOppack(
 			, const string Title
 			, const bool Shrdat
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->refWznmMSquawk = refWznmMSquawk;
-	this->sref = sref;
-	this->Title = Title;
-	this->Shrdat = Shrdat;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, refWznmMSquawk(refWznmMSquawk)
+			, sref(sref)
+			, Title(Title)
+			, Shrdat(Shrdat)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMOppack::operator==(

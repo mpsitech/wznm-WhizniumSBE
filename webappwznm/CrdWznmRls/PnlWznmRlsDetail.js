@@ -431,12 +431,14 @@ function handleTxftChange(_doc, ctlsref) {
 function mergeDpchEngData(dom) {
 	var mask = [];
 
+	// IP mergeDpchEngData --- BEGIN
 	if (updateSrcblock(dom, "DpchEngWznmRlsDetailData", "ContIacWznmRlsDetail", srcdoc)) mask.push("contiac");
 	if (updateSrcblock(dom, "DpchEngWznmRlsDetailData", "ContInfWznmRlsDetail", srcdoc)) mask.push("continf");
 	if (updateSrcblock(dom, "DpchEngWznmRlsDetailData", "FeedFLstOpt", srcdoc)) mask.push("feedFLstOpt");
 	if (updateSrcblock(dom, "DpchEngWznmRlsDetailData", "StatAppWznmRlsDetail", srcdoc)) mask.push("statapp");
 	if (updateSrcblock(dom, "DpchEngWznmRlsDetailData", "StatShrWznmRlsDetail", srcdoc)) mask.push("statshr");
 	if (updateSrcblock(dom, "DpchEngWznmRlsDetailData", "TagWznmRlsDetail", srcdoc)) mask.push("tag");
+	// IP mergeDpchEngData --- END
 
 	return mask;
 };

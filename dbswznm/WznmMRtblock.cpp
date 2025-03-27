@@ -25,14 +25,14 @@ WznmMRtblock::WznmMRtblock(
 			, const ubigint refUref
 			, const string sref
 			, const string srcSrefsWznmAMBlockItem
-		) {
-
-	this->ref = ref;
-	this->refWznmMRtjob = refWznmMRtjob;
-	this->refIxVTbl = refIxVTbl;
-	this->refUref = refUref;
-	this->sref = sref;
-	this->srcSrefsWznmAMBlockItem = srcSrefsWznmAMBlockItem;
+		) :
+			ref(ref)
+			, refWznmMRtjob(refWznmMRtjob)
+			, refIxVTbl(refIxVTbl)
+			, refUref(refUref)
+			, sref(sref)
+			, srcSrefsWznmAMBlockItem(srcSrefsWznmAMBlockItem)
+		{
 };
 
 bool WznmMRtblock::operator==(

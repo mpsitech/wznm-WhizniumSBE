@@ -91,19 +91,18 @@ PnlWznmNavDbstr::ContIac::ContIac(
 			, const uint numFLstIel
 		) :
 			Block()
+			, numFLstTbl(numFLstTbl)
+			, numFLstTco(numFLstTco)
+			, numFLstSbs(numFLstSbs)
+			, numFLstRel(numFLstRel)
+			, numFLstVec(numFLstVec)
+			, numFLstVit(numFLstVit)
+			, numFLstChk(numFLstChk)
+			, numFLstStb(numFLstStb)
+			, numFLstIex(numFLstIex)
+			, numFLstIme(numFLstIme)
+			, numFLstIel(numFLstIel)
 		{
-	this->numFLstTbl = numFLstTbl;
-	this->numFLstTco = numFLstTco;
-	this->numFLstSbs = numFLstSbs;
-	this->numFLstRel = numFLstRel;
-	this->numFLstVec = numFLstVec;
-	this->numFLstVit = numFLstVit;
-	this->numFLstChk = numFLstChk;
-	this->numFLstStb = numFLstStb;
-	this->numFLstIex = numFLstIex;
-	this->numFLstIme = numFLstIme;
-	this->numFLstIel = numFLstIel;
-
 	mask = {NUMFLSTTBL, NUMFLSTTCO, NUMFLSTSBS, NUMFLSTREL, NUMFLSTVEC, NUMFLSTVIT, NUMFLSTCHK, NUMFLSTSTB, NUMFLSTIEX, NUMFLSTIME, NUMFLSTIEL};
 };
 
@@ -177,17 +176,17 @@ void PnlWznmNavDbstr::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFLstTbl"] = numFLstTbl;
-	me["numFLstTco"] = numFLstTco;
-	me["numFLstSbs"] = numFLstSbs;
-	me["numFLstRel"] = numFLstRel;
-	me["numFLstVec"] = numFLstVec;
-	me["numFLstVit"] = numFLstVit;
-	me["numFLstChk"] = numFLstChk;
-	me["numFLstStb"] = numFLstStb;
-	me["numFLstIex"] = numFLstIex;
-	me["numFLstIme"] = numFLstIme;
-	me["numFLstIel"] = numFLstIel;
+	me["numFLstTbl"] = (Json::Value::UInt) numFLstTbl;
+	me["numFLstTco"] = (Json::Value::UInt) numFLstTco;
+	me["numFLstSbs"] = (Json::Value::UInt) numFLstSbs;
+	me["numFLstRel"] = (Json::Value::UInt) numFLstRel;
+	me["numFLstVec"] = (Json::Value::UInt) numFLstVec;
+	me["numFLstVit"] = (Json::Value::UInt) numFLstVit;
+	me["numFLstChk"] = (Json::Value::UInt) numFLstChk;
+	me["numFLstStb"] = (Json::Value::UInt) numFLstStb;
+	me["numFLstIex"] = (Json::Value::UInt) numFLstIex;
+	me["numFLstIme"] = (Json::Value::UInt) numFLstIme;
+	me["numFLstIel"] = (Json::Value::UInt) numFLstIel;
 };
 
 void PnlWznmNavDbstr::ContIac::writeXML(
@@ -297,17 +296,17 @@ void PnlWznmNavDbstr::StatApp::writeJSON(
 	me["LstIexAlt"] = LstIexAlt;
 	me["LstImeAlt"] = LstImeAlt;
 	me["LstIelAlt"] = LstIelAlt;
-	me["LstTblNumFirstdisp"] = LstTblNumFirstdisp;
-	me["LstTcoNumFirstdisp"] = LstTcoNumFirstdisp;
-	me["LstSbsNumFirstdisp"] = LstSbsNumFirstdisp;
-	me["LstRelNumFirstdisp"] = LstRelNumFirstdisp;
-	me["LstVecNumFirstdisp"] = LstVecNumFirstdisp;
-	me["LstVitNumFirstdisp"] = LstVitNumFirstdisp;
-	me["LstChkNumFirstdisp"] = LstChkNumFirstdisp;
-	me["LstStbNumFirstdisp"] = LstStbNumFirstdisp;
-	me["LstIexNumFirstdisp"] = LstIexNumFirstdisp;
-	me["LstImeNumFirstdisp"] = LstImeNumFirstdisp;
-	me["LstIelNumFirstdisp"] = LstIelNumFirstdisp;
+	me["LstTblNumFirstdisp"] = (Json::Value::UInt) LstTblNumFirstdisp;
+	me["LstTcoNumFirstdisp"] = (Json::Value::UInt) LstTcoNumFirstdisp;
+	me["LstSbsNumFirstdisp"] = (Json::Value::UInt) LstSbsNumFirstdisp;
+	me["LstRelNumFirstdisp"] = (Json::Value::UInt) LstRelNumFirstdisp;
+	me["LstVecNumFirstdisp"] = (Json::Value::UInt) LstVecNumFirstdisp;
+	me["LstVitNumFirstdisp"] = (Json::Value::UInt) LstVitNumFirstdisp;
+	me["LstChkNumFirstdisp"] = (Json::Value::UInt) LstChkNumFirstdisp;
+	me["LstStbNumFirstdisp"] = (Json::Value::UInt) LstStbNumFirstdisp;
+	me["LstIexNumFirstdisp"] = (Json::Value::UInt) LstIexNumFirstdisp;
+	me["LstImeNumFirstdisp"] = (Json::Value::UInt) LstImeNumFirstdisp;
+	me["LstIelNumFirstdisp"] = (Json::Value::UInt) LstIelNumFirstdisp;
 };
 
 void PnlWznmNavDbstr::StatApp::writeXML(
@@ -410,40 +409,39 @@ PnlWznmNavDbstr::StatShr::StatShr(
 			, const bool ButIelViewActive
 		) :
 			Block()
+			, LstTblAvail(LstTblAvail)
+			, ButTblViewActive(ButTblViewActive)
+			, ButTblNewcrdActive(ButTblNewcrdActive)
+			, LstTcoAvail(LstTcoAvail)
+			, ButTcoViewActive(ButTcoViewActive)
+			, ButTcoNewcrdActive(ButTcoNewcrdActive)
+			, LstSbsAvail(LstSbsAvail)
+			, ButSbsViewActive(ButSbsViewActive)
+			, ButSbsNewcrdActive(ButSbsNewcrdActive)
+			, LstRelAvail(LstRelAvail)
+			, ButRelViewActive(ButRelViewActive)
+			, ButRelNewcrdActive(ButRelNewcrdActive)
+			, LstVecAvail(LstVecAvail)
+			, ButVecViewActive(ButVecViewActive)
+			, ButVecNewcrdActive(ButVecNewcrdActive)
+			, LstVitAvail(LstVitAvail)
+			, ButVitViewActive(ButVitViewActive)
+			, ButVitNewcrdActive(ButVitNewcrdActive)
+			, LstChkAvail(LstChkAvail)
+			, ButChkViewActive(ButChkViewActive)
+			, ButChkNewcrdActive(ButChkNewcrdActive)
+			, LstStbAvail(LstStbAvail)
+			, ButStbViewActive(ButStbViewActive)
+			, ButStbNewcrdActive(ButStbNewcrdActive)
+			, LstIexAvail(LstIexAvail)
+			, ButIexViewActive(ButIexViewActive)
+			, ButIexNewcrdActive(ButIexNewcrdActive)
+			, LstImeAvail(LstImeAvail)
+			, ButImeViewActive(ButImeViewActive)
+			, ButImeNewcrdActive(ButImeNewcrdActive)
+			, LstIelAvail(LstIelAvail)
+			, ButIelViewActive(ButIelViewActive)
 		{
-	this->LstTblAvail = LstTblAvail;
-	this->ButTblViewActive = ButTblViewActive;
-	this->ButTblNewcrdActive = ButTblNewcrdActive;
-	this->LstTcoAvail = LstTcoAvail;
-	this->ButTcoViewActive = ButTcoViewActive;
-	this->ButTcoNewcrdActive = ButTcoNewcrdActive;
-	this->LstSbsAvail = LstSbsAvail;
-	this->ButSbsViewActive = ButSbsViewActive;
-	this->ButSbsNewcrdActive = ButSbsNewcrdActive;
-	this->LstRelAvail = LstRelAvail;
-	this->ButRelViewActive = ButRelViewActive;
-	this->ButRelNewcrdActive = ButRelNewcrdActive;
-	this->LstVecAvail = LstVecAvail;
-	this->ButVecViewActive = ButVecViewActive;
-	this->ButVecNewcrdActive = ButVecNewcrdActive;
-	this->LstVitAvail = LstVitAvail;
-	this->ButVitViewActive = ButVitViewActive;
-	this->ButVitNewcrdActive = ButVitNewcrdActive;
-	this->LstChkAvail = LstChkAvail;
-	this->ButChkViewActive = ButChkViewActive;
-	this->ButChkNewcrdActive = ButChkNewcrdActive;
-	this->LstStbAvail = LstStbAvail;
-	this->ButStbViewActive = ButStbViewActive;
-	this->ButStbNewcrdActive = ButStbNewcrdActive;
-	this->LstIexAvail = LstIexAvail;
-	this->ButIexViewActive = ButIexViewActive;
-	this->ButIexNewcrdActive = ButIexNewcrdActive;
-	this->LstImeAvail = LstImeAvail;
-	this->ButImeViewActive = ButImeViewActive;
-	this->ButImeNewcrdActive = ButImeNewcrdActive;
-	this->LstIelAvail = LstIelAvail;
-	this->ButIelViewActive = ButIelViewActive;
-
 	mask = {LSTTBLAVAIL, BUTTBLVIEWACTIVE, BUTTBLNEWCRDACTIVE, LSTTCOAVAIL, BUTTCOVIEWACTIVE, BUTTCONEWCRDACTIVE, LSTSBSAVAIL, BUTSBSVIEWACTIVE, BUTSBSNEWCRDACTIVE, LSTRELAVAIL, BUTRELVIEWACTIVE, BUTRELNEWCRDACTIVE, LSTVECAVAIL, BUTVECVIEWACTIVE, BUTVECNEWCRDACTIVE, LSTVITAVAIL, BUTVITVIEWACTIVE, BUTVITNEWCRDACTIVE, LSTCHKAVAIL, BUTCHKVIEWACTIVE, BUTCHKNEWCRDACTIVE, LSTSTBAVAIL, BUTSTBVIEWACTIVE, BUTSTBNEWCRDACTIVE, LSTIEXAVAIL, BUTIEXVIEWACTIVE, BUTIEXNEWCRDACTIVE, LSTIMEAVAIL, BUTIMEVIEWACTIVE, BUTIMENEWCRDACTIVE, LSTIELAVAIL, BUTIELVIEWACTIVE};
 };
 

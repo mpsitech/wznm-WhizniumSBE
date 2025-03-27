@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmBlk1NRtdpch.h"
 #include "PnlWznmBlkRef1NRtblock.h"
+#include "PnlWznmBlk1NRtdpch.h"
 #include "PnlWznmBlkAItem.h"
 #include "PnlWznmBlkDetail.h"
 
@@ -180,8 +180,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmBlk1NRtdpch* pnl1nrtdpch;
 	PnlWznmBlkRef1NRtblock* pnlref1nrtblock;
+	PnlWznmBlk1NRtdpch* pnl1nrtdpch;
 	PnlWznmBlkAItem* pnlaitem;
 	PnlWznmBlkDetail* pnldetail;
 
@@ -218,9 +218,9 @@ public:
 
 private:
 	bool handleCallWznmBlkUpd_refEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig);
+	bool handleCallWznmBlk_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmBlk_verEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 	bool handleCallWznmBlk_retEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::uint ixInv, bool& boolvalRet);
-	bool handleCallWznmBlk_reuEq(DbsWznm* dbswznm, const Sbecore::ubigint jrefTrig, const Sbecore::ubigint refInv, bool& boolvalRet);
 
 };
 

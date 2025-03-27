@@ -85,17 +85,16 @@ PnlWznmNavUix::ContIac::ContIac(
 			, const uint numFLstCon
 		) :
 			Block()
+			, numFLstPst(numFLstPst)
+			, numFLstMdl(numFLstMdl)
+			, numFLstCar(numFLstCar)
+			, numFLstDlg(numFLstDlg)
+			, numFLstPnl(numFLstPnl)
+			, numFLstQry(numFLstQry)
+			, numFLstQco(numFLstQco)
+			, numFLstQmd(numFLstQmd)
+			, numFLstCon(numFLstCon)
 		{
-	this->numFLstPst = numFLstPst;
-	this->numFLstMdl = numFLstMdl;
-	this->numFLstCar = numFLstCar;
-	this->numFLstDlg = numFLstDlg;
-	this->numFLstPnl = numFLstPnl;
-	this->numFLstQry = numFLstQry;
-	this->numFLstQco = numFLstQco;
-	this->numFLstQmd = numFLstQmd;
-	this->numFLstCon = numFLstCon;
-
 	mask = {NUMFLSTPST, NUMFLSTMDL, NUMFLSTCAR, NUMFLSTDLG, NUMFLSTPNL, NUMFLSTQRY, NUMFLSTQCO, NUMFLSTQMD, NUMFLSTCON};
 };
 
@@ -212,27 +211,26 @@ PnlWznmNavUix::StatApp::StatApp(
 			, const uint LstConNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstPstAlt(LstPstAlt)
+			, LstMdlAlt(LstMdlAlt)
+			, LstCarAlt(LstCarAlt)
+			, LstDlgAlt(LstDlgAlt)
+			, LstPnlAlt(LstPnlAlt)
+			, LstQryAlt(LstQryAlt)
+			, LstQcoAlt(LstQcoAlt)
+			, LstQmdAlt(LstQmdAlt)
+			, LstConAlt(LstConAlt)
+			, LstPstNumFirstdisp(LstPstNumFirstdisp)
+			, LstMdlNumFirstdisp(LstMdlNumFirstdisp)
+			, LstCarNumFirstdisp(LstCarNumFirstdisp)
+			, LstDlgNumFirstdisp(LstDlgNumFirstdisp)
+			, LstPnlNumFirstdisp(LstPnlNumFirstdisp)
+			, LstQryNumFirstdisp(LstQryNumFirstdisp)
+			, LstQcoNumFirstdisp(LstQcoNumFirstdisp)
+			, LstQmdNumFirstdisp(LstQmdNumFirstdisp)
+			, LstConNumFirstdisp(LstConNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstPstAlt = LstPstAlt;
-	this->LstMdlAlt = LstMdlAlt;
-	this->LstCarAlt = LstCarAlt;
-	this->LstDlgAlt = LstDlgAlt;
-	this->LstPnlAlt = LstPnlAlt;
-	this->LstQryAlt = LstQryAlt;
-	this->LstQcoAlt = LstQcoAlt;
-	this->LstQmdAlt = LstQmdAlt;
-	this->LstConAlt = LstConAlt;
-	this->LstPstNumFirstdisp = LstPstNumFirstdisp;
-	this->LstMdlNumFirstdisp = LstMdlNumFirstdisp;
-	this->LstCarNumFirstdisp = LstCarNumFirstdisp;
-	this->LstDlgNumFirstdisp = LstDlgNumFirstdisp;
-	this->LstPnlNumFirstdisp = LstPnlNumFirstdisp;
-	this->LstQryNumFirstdisp = LstQryNumFirstdisp;
-	this->LstQcoNumFirstdisp = LstQcoNumFirstdisp;
-	this->LstQmdNumFirstdisp = LstQmdNumFirstdisp;
-	this->LstConNumFirstdisp = LstConNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTPSTALT, LSTMDLALT, LSTCARALT, LSTDLGALT, LSTPNLALT, LSTQRYALT, LSTQCOALT, LSTQMDALT, LSTCONALT, LSTPSTNUMFIRSTDISP, LSTMDLNUMFIRSTDISP, LSTCARNUMFIRSTDISP, LSTDLGNUMFIRSTDISP, LSTPNLNUMFIRSTDISP, LSTQRYNUMFIRSTDISP, LSTQCONUMFIRSTDISP, LSTQMDNUMFIRSTDISP, LSTCONNUMFIRSTDISP};
 };
 
@@ -358,35 +356,34 @@ PnlWznmNavUix::StatShr::StatShr(
 			, const bool ButConNewcrdActive
 		) :
 			Block()
+			, LstPstAvail(LstPstAvail)
+			, ButPstViewActive(ButPstViewActive)
+			, ButPstNewcrdActive(ButPstNewcrdActive)
+			, LstMdlAvail(LstMdlAvail)
+			, ButMdlViewActive(ButMdlViewActive)
+			, ButMdlNewcrdActive(ButMdlNewcrdActive)
+			, LstCarAvail(LstCarAvail)
+			, ButCarViewActive(ButCarViewActive)
+			, ButCarNewcrdActive(ButCarNewcrdActive)
+			, LstDlgAvail(LstDlgAvail)
+			, ButDlgViewActive(ButDlgViewActive)
+			, ButDlgNewcrdActive(ButDlgNewcrdActive)
+			, LstPnlAvail(LstPnlAvail)
+			, ButPnlViewActive(ButPnlViewActive)
+			, ButPnlNewcrdActive(ButPnlNewcrdActive)
+			, LstQryAvail(LstQryAvail)
+			, ButQryViewActive(ButQryViewActive)
+			, ButQryNewcrdActive(ButQryNewcrdActive)
+			, LstQcoAvail(LstQcoAvail)
+			, ButQcoViewActive(ButQcoViewActive)
+			, ButQcoNewcrdActive(ButQcoNewcrdActive)
+			, LstQmdAvail(LstQmdAvail)
+			, ButQmdViewActive(ButQmdViewActive)
+			, ButQmdNewcrdActive(ButQmdNewcrdActive)
+			, LstConAvail(LstConAvail)
+			, ButConViewActive(ButConViewActive)
+			, ButConNewcrdActive(ButConNewcrdActive)
 		{
-	this->LstPstAvail = LstPstAvail;
-	this->ButPstViewActive = ButPstViewActive;
-	this->ButPstNewcrdActive = ButPstNewcrdActive;
-	this->LstMdlAvail = LstMdlAvail;
-	this->ButMdlViewActive = ButMdlViewActive;
-	this->ButMdlNewcrdActive = ButMdlNewcrdActive;
-	this->LstCarAvail = LstCarAvail;
-	this->ButCarViewActive = ButCarViewActive;
-	this->ButCarNewcrdActive = ButCarNewcrdActive;
-	this->LstDlgAvail = LstDlgAvail;
-	this->ButDlgViewActive = ButDlgViewActive;
-	this->ButDlgNewcrdActive = ButDlgNewcrdActive;
-	this->LstPnlAvail = LstPnlAvail;
-	this->ButPnlViewActive = ButPnlViewActive;
-	this->ButPnlNewcrdActive = ButPnlNewcrdActive;
-	this->LstQryAvail = LstQryAvail;
-	this->ButQryViewActive = ButQryViewActive;
-	this->ButQryNewcrdActive = ButQryNewcrdActive;
-	this->LstQcoAvail = LstQcoAvail;
-	this->ButQcoViewActive = ButQcoViewActive;
-	this->ButQcoNewcrdActive = ButQcoNewcrdActive;
-	this->LstQmdAvail = LstQmdAvail;
-	this->ButQmdViewActive = ButQmdViewActive;
-	this->ButQmdNewcrdActive = ButQmdNewcrdActive;
-	this->LstConAvail = LstConAvail;
-	this->ButConViewActive = ButConViewActive;
-	this->ButConNewcrdActive = ButConNewcrdActive;
-
 	mask = {LSTPSTAVAIL, BUTPSTVIEWACTIVE, BUTPSTNEWCRDACTIVE, LSTMDLAVAIL, BUTMDLVIEWACTIVE, BUTMDLNEWCRDACTIVE, LSTCARAVAIL, BUTCARVIEWACTIVE, BUTCARNEWCRDACTIVE, LSTDLGAVAIL, BUTDLGVIEWACTIVE, BUTDLGNEWCRDACTIVE, LSTPNLAVAIL, BUTPNLVIEWACTIVE, BUTPNLNEWCRDACTIVE, LSTQRYAVAIL, BUTQRYVIEWACTIVE, BUTQRYNEWCRDACTIVE, LSTQCOAVAIL, BUTQCOVIEWACTIVE, BUTQCONEWCRDACTIVE, LSTQMDAVAIL, BUTQMDVIEWACTIVE, BUTQMDNEWCRDACTIVE, LSTCONAVAIL, BUTCONVIEWACTIVE, BUTCONNEWCRDACTIVE};
 };
 
@@ -506,18 +503,17 @@ PnlWznmNavUix::Tag::Tag(
 			, const string& CptCon
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptPst(CptPst)
+			, CptMdl(CptMdl)
+			, CptCar(CptCar)
+			, CptDlg(CptDlg)
+			, CptPnl(CptPnl)
+			, CptQry(CptQry)
+			, CptQco(CptQco)
+			, CptQmd(CptQmd)
+			, CptCon(CptCon)
 		{
-	this->Cpt = Cpt;
-	this->CptPst = CptPst;
-	this->CptMdl = CptMdl;
-	this->CptCar = CptCar;
-	this->CptDlg = CptDlg;
-	this->CptPnl = CptPnl;
-	this->CptQry = CptQry;
-	this->CptQco = CptQco;
-	this->CptQmd = CptQmd;
-	this->CptCon = CptCon;
-
 	mask = {CPT, CPTPST, CPTMDL, CPTCAR, CPTDLG, CPTPNL, CPTQRY, CPTQCO, CPTQMD, CPTCON};
 };
 
@@ -602,11 +598,11 @@ PnlWznmNavUix::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMNAVUIXDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmNavUix::DpchAppDo::getSrefsMask() {

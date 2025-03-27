@@ -37,9 +37,54 @@ DpchRetWznm* WznmCtpWrstkitPrefs::run(
 
 	utinyint ixOpVOpres = VecOpVOpres::SUCCESS;
 
-	// IP run --- INSERT
+	// IP run --- IBEGIN
+	WznmMCapability* cpb = NULL;
+
+	ubigint refLcl;
+	vector<ubigint> refsLcl;
+
+	ListWznmMLocale lcls;
+
+	dbswznm->tblwznmmcapability->loadRecByRef(refWznmMCapability, &cpb);
+
+	Wznm::getVerlcls(dbswznm, cpb->refWznmMVersion, refLcl, refsLcl, lcls);
+
+	writeIexBui(dbswznm, cpb, Prjshort, xchg->tmppath + "/" + folder, refLcl, refsLcl, lcls);
+
+	delete cpb;
+	// IP run --- IEND
 
 	return(new DpchRetWznm(VecWznmVDpch::DPCHRETWZNM, "", "", ixOpVOpres, 100));
 };
 
-// IP cust --- INSERT
+// IP cust --- IBEGIN
+void WznmCtpWrstkitPrefs::writeIexBui(
+			DbsWznm* dbswznm
+			, WznmMCapability* cpb
+			, const string& Prjshort
+			, const string& outfolder
+			, const ubigint refLcl
+			, vector<ubigint>& refsLcl
+			, ListWznmMLocale& lcls
+		) {
+	// -- IexWznmBui
+	// ImeIMModule
+	//  ImeIJMModule
+	//  ImeIMCard
+
+	IexWznmBui::ImeIMModule imeimmodule;
+	IexWznmBui::ImeIMPreset imeimpreset;
+
+	IexWznmBui::ImeitemIMModule* mdl = NULL;
+	IexWznmBui::ImeitemIMCard* car = NULL;
+
+	mdl = new IexWznmBui::ImeitemIMModule("Mdl" + Prjshort + "Admin"); imeimmodule.nodes.push_back(mdl);
+	addIJMModules(dbswznm, mdl, 0, "admmdl", "", refLcl, refsLcl, lcls);
+
+	car = new IexWznmBui::ImeitemIMCard(VecWznmVMCardRefTbl::VOID, "", "Crd" + Prjshort + "Prf", "", ""); mdl->imeimcard.nodes.push_back(car);
+	addIJMCardTitles(dbswznm, car, cpb->tplRefWznmMCapability, "pref", "", refLcl, refsLcl, lcls);
+
+	IexWznmBui::exportToFile(outfolder + "/IexWznmBui_" + StrMod::lc(Prjshort) + ".txt", false, false, imeimmodule, imeimpreset);
+	IexWznmBui::exportToFile(outfolder + "/IexWznmBui_" + StrMod::lc(Prjshort) + ".xml", true, true, imeimmodule, imeimpreset);
+};
+// IP cust --- IEND

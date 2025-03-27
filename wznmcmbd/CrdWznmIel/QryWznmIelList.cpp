@@ -247,8 +247,8 @@ void QryWznmIelList::rerun_orderSQL(
 		) {
 	if (preIxOrd == VecVOrd::TCO) sqlstr += " ORDER BY TblWznmMImpexpcol.refWznmMTablecol ASC";
 	else if (preIxOrd == VecVOrd::IME) sqlstr += " ORDER BY TblWznmMImpexpcol.imeRefWznmMImpexp ASC";
-	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMImpexpcol.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMImpexpcol.sref ASC";
+	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMImpexpcol.ixVBasetype ASC";
 };
 
 void QryWznmIelList::fetch(

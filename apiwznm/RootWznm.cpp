@@ -50,14 +50,14 @@ RootWznm::DpchAppLogin::DpchAppLogin(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPROOTWZNMLOGIN, scrJref)
+			, username(username)
+			, password(password)
+			, m2mNotReg(m2mNotReg)
+			, chksuspsess(chksuspsess)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, USERNAME, PASSWORD, M2MNOTREG, CHKSUSPSESS};
 	else this->mask = mask;
 
-	this->username = username;
-	this->password = password;
-	this->m2mNotReg = m2mNotReg;
-	this->chksuspsess = chksuspsess;
 };
 
 string RootWznm::DpchAppLogin::getSrefsMask() {

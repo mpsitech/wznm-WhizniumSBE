@@ -49,9 +49,8 @@ PnlWznmConAPar::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -110,9 +109,8 @@ PnlWznmConAPar::StatApp::StatApp(
 			const uint ixWznmVExpstate
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-
 	mask = {IXWZNMVEXPSTATE};
 };
 
@@ -180,13 +178,12 @@ PnlWznmConAPar::StatShr::StatShr(
 			, const bool ButDeleteActive
 		) :
 			Block()
+			, ButNewAvail(ButNewAvail)
+			, ButDuplicateAvail(ButDuplicateAvail)
+			, ButDuplicateActive(ButDuplicateActive)
+			, ButDeleteAvail(ButDeleteAvail)
+			, ButDeleteActive(ButDeleteActive)
 		{
-	this->ButNewAvail = ButNewAvail;
-	this->ButDuplicateAvail = ButDuplicateAvail;
-	this->ButDuplicateActive = ButDuplicateActive;
-	this->ButDeleteAvail = ButDeleteAvail;
-	this->ButDeleteActive = ButDeleteActive;
-
 	mask = {BUTNEWAVAIL, BUTDUPLICATEAVAIL, BUTDUPLICATEACTIVE, BUTDELETEAVAIL, BUTDELETEACTIVE};
 };
 
@@ -255,11 +252,10 @@ PnlWznmConAPar::StgIac::StgIac(
 			, const uint TcoValWidth
 		) :
 			Block()
+			, TcoKeyWidth(TcoKeyWidth)
+			, TcoLocWidth(TcoLocWidth)
+			, TcoValWidth(TcoValWidth)
 		{
-	this->TcoKeyWidth = TcoKeyWidth;
-	this->TcoLocWidth = TcoLocWidth;
-	this->TcoValWidth = TcoValWidth;
-
 	mask = {TCOKEYWIDTH, TCOLOCWIDTH, TCOVALWIDTH};
 };
 
@@ -348,17 +344,16 @@ PnlWznmConAPar::Tag::Tag(
 			, const string& TcoVal
 		) :
 			Block()
+			, Cpt(Cpt)
+			, TxtRecord1(TxtRecord1)
+			, TxtRecord2(TxtRecord2)
+			, Trs(Trs)
+			, TxtShowing1(TxtShowing1)
+			, TxtShowing2(TxtShowing2)
+			, TcoKey(TcoKey)
+			, TcoLoc(TcoLoc)
+			, TcoVal(TcoVal)
 		{
-	this->Cpt = Cpt;
-	this->TxtRecord1 = TxtRecord1;
-	this->TxtRecord2 = TxtRecord2;
-	this->Trs = Trs;
-	this->TxtShowing1 = TxtShowing1;
-	this->TxtShowing2 = TxtShowing2;
-	this->TcoKey = TcoKey;
-	this->TcoLoc = TcoLoc;
-	this->TcoVal = TcoVal;
-
 	mask = {CPT, TXTRECORD1, TXTRECORD2, TRS, TXTSHOWING1, TXTSHOWING2, TCOKEY, TCOLOC, TCOVAL};
 };
 
@@ -446,11 +441,11 @@ PnlWznmConAPar::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMCONAPARDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmConAPar::DpchAppDo::getSrefsMask() {

@@ -25,14 +25,15 @@ WznmQMchList::WznmQMchList(
 			, const string sref
 			, const ubigint supRefWznmMMachine
 			, const string stubSupRefWznmMMachine
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->supRefWznmMMachine = supRefWznmMMachine;
-	this->stubSupRefWznmMMachine = stubSupRefWznmMMachine;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, supRefWznmMMachine(supRefWznmMMachine)
+			, stubSupRefWznmMMachine(stubSupRefWznmMMachine)
+		{
 };
 
 void WznmQMchList::writeJSON(

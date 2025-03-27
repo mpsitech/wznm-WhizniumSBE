@@ -21,12 +21,12 @@ WznmAMMachineMakefile::WznmAMMachineMakefile(
 			, const ubigint refWznmMMachine
 			, const string x1SrefKTag
 			, const string Val
-		) {
-
-	this->ref = ref;
-	this->refWznmMMachine = refWznmMMachine;
-	this->x1SrefKTag = x1SrefKTag;
-	this->Val = Val;
+		) :
+			ref(ref)
+			, refWznmMMachine(refWznmMMachine)
+			, x1SrefKTag(x1SrefKTag)
+			, Val(Val)
+		{
 };
 
 bool WznmAMMachineMakefile::operator==(

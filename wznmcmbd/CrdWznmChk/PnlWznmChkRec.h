@@ -14,8 +14,8 @@
 
 // IP include.cust --- INSERT
 
-#include "PnlWznmChkRef1NCall.h"
 #include "PnlWznmChkDetail.h"
+#include "PnlWznmChkRef1NCall.h"
 
 #define VecVWznmChkRecDo PnlWznmChkRec::VecVDo
 
@@ -174,8 +174,8 @@ public:
 	ContInf continf;
 	StatShr statshr;
 
-	PnlWznmChkRef1NCall* pnlref1ncall;
 	PnlWznmChkDetail* pnldetail;
+	PnlWznmChkRef1NCall* pnlref1ncall;
 
 	WznmMCheck recChk;
 

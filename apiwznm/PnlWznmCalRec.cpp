@@ -45,9 +45,8 @@ PnlWznmCalRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -108,11 +107,10 @@ PnlWznmCalRec::StatApp::StatApp(
 			, const bool initdoneMNStub
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdone1NSensitivity(initdone1NSensitivity)
+			, initdoneMNStub(initdoneMNStub)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdone1NSensitivity = initdone1NSensitivity;
-	this->initdoneMNStub = initdoneMNStub;
-
 	mask = {INITDONEDETAIL, INITDONE1NSENSITIVITY, INITDONEMNSTUB};
 };
 
@@ -179,13 +177,12 @@ PnlWznmCalRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJref1NSensitivity(scrJref1NSensitivity)
+			, scrJrefMNStub(scrJrefMNStub)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJref1NSensitivity = scrJref1NSensitivity;
-	this->scrJrefMNStub = scrJrefMNStub;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NSENSITIVITY, SCRJREFMNSTUB, BUTREGULARIZEACTIVE};
 };
 
@@ -257,9 +254,8 @@ PnlWznmCalRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -296,11 +292,11 @@ PnlWznmCalRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMCALRECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmCalRec::DpchAppDo::getSrefsMask() {

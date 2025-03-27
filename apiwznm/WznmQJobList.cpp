@@ -29,18 +29,19 @@ WznmQJobList::WznmQJobList(
 			, const string yesnoGlobal
 			, const string yesnoClisrv
 			, const string yesnoShrdat
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->stubRefUref = stubRefUref;
-	this->yesnoGlobal = yesnoGlobal;
-	this->yesnoClisrv = yesnoClisrv;
-	this->yesnoShrdat = yesnoShrdat;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, stubRefUref(stubRefUref)
+			, yesnoGlobal(yesnoGlobal)
+			, yesnoClisrv(yesnoClisrv)
+			, yesnoShrdat(yesnoShrdat)
+		{
 };
 
 bool WznmQJobList::readXML(

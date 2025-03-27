@@ -43,32 +43,33 @@ WznmQRelList::WznmQRelList(
 			, const ubigint refWznmMTable
 			, const string stubRefWznmMTable
 			, const string Prefix
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->frRefWznmMTable = frRefWznmMTable;
-	this->stubFrRefWznmMTable = stubFrRefWznmMTable;
-	this->frsRefWznmMSubset = frsRefWznmMSubset;
-	this->stubFrsRefWznmMSubset = stubFrsRefWznmMSubset;
-	this->toRefWznmMTable = toRefWznmMTable;
-	this->stubToRefWznmMTable = stubToRefWznmMTable;
-	this->tosRefWznmMSubset = tosRefWznmMSubset;
-	this->stubTosRefWznmMSubset = stubTosRefWznmMSubset;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->supRefWznmMRelation = supRefWznmMRelation;
-	this->stubSupRefWznmMRelation = stubSupRefWznmMRelation;
-	this->supIxVSubrole = supIxVSubrole;
-	this->srefSupIxVSubrole = srefSupIxVSubrole;
-	this->titSupIxVSubrole = titSupIxVSubrole;
-	this->refWznmMTable = refWznmMTable;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->Prefix = Prefix;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, frRefWznmMTable(frRefWznmMTable)
+			, stubFrRefWznmMTable(stubFrRefWznmMTable)
+			, frsRefWznmMSubset(frsRefWznmMSubset)
+			, stubFrsRefWznmMSubset(stubFrsRefWznmMSubset)
+			, toRefWznmMTable(toRefWznmMTable)
+			, stubToRefWznmMTable(stubToRefWznmMTable)
+			, tosRefWznmMSubset(tosRefWznmMSubset)
+			, stubTosRefWznmMSubset(stubTosRefWznmMSubset)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, supRefWznmMRelation(supRefWznmMRelation)
+			, stubSupRefWznmMRelation(stubSupRefWznmMRelation)
+			, supIxVSubrole(supIxVSubrole)
+			, srefSupIxVSubrole(srefSupIxVSubrole)
+			, titSupIxVSubrole(titSupIxVSubrole)
+			, refWznmMTable(refWznmMTable)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, Prefix(Prefix)
+		{
 };
 
 void WznmQRelList::writeJSON(

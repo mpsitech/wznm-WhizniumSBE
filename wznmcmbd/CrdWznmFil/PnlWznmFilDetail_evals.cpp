@@ -138,13 +138,20 @@ bool PnlWznmFilDetail::evalTxtReuActive(
 bool PnlWznmFilDetail::evalButReuViewAvail(
 			DbsWznm* dbswznm
 		) {
-	// fil.reuEq(0)|((pre.ixCrdaccVer()&fil.retEq(ver))|(pre.ixCrdaccLib()&fil.retEq(lib))|(pre.ixCrdaccApp()&fil.retEq(app)))
+	// fil.reuEq(0)|((pre.ixCrdaccVis()&fil.retEq(vis))|(pre.ixCrdaccVer()&fil.retEq(ver))|(pre.ixCrdaccLib()&fil.retEq(lib))|(pre.ixCrdaccApp()&fil.retEq(app)))
 
 	vector<bool> args;
 	bool a, b;
 
 	a = false; a = (recFil.refUref == 0);
 	args.push_back(a);
+	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVIS, jref) != 0);
+	args.push_back(a);
+	a = false; a = (recFil.refIxVTbl == VecWznmVMFileRefTbl::VIS);
+	args.push_back(a);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a && b);
 	a = false; a = (xchg->getIxPreset(VecWznmVPreset::PREWZNMIXCRDACCVER, jref) != 0);
 	args.push_back(a);
 	a = false; a = (recFil.refIxVTbl == VecWznmVMFileRefTbl::VER);
@@ -166,6 +173,9 @@ bool PnlWznmFilDetail::evalButReuViewAvail(
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a && b);
+	b = args.back(); args.pop_back();
+	a = args.back(); args.pop_back();
+	args.push_back(a || b);
 	b = args.back(); args.pop_back();
 	a = args.back(); args.pop_back();
 	args.push_back(a || b);

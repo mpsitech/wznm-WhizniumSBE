@@ -45,9 +45,8 @@ PnlWznmImeRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -109,12 +108,11 @@ PnlWznmImeRec::StatApp::StatApp(
 			, const bool initdoneHk1NVector
 		) :
 			Block()
+			, initdoneDetail(initdoneDetail)
+			, initdoneIme1NImpexpcol(initdoneIme1NImpexpcol)
+			, initdoneSup1NImpexp(initdoneSup1NImpexp)
+			, initdoneHk1NVector(initdoneHk1NVector)
 		{
-	this->initdoneDetail = initdoneDetail;
-	this->initdoneIme1NImpexpcol = initdoneIme1NImpexpcol;
-	this->initdoneSup1NImpexp = initdoneSup1NImpexp;
-	this->initdoneHk1NVector = initdoneHk1NVector;
-
 	mask = {INITDONEDETAIL, INITDONEIME1NIMPEXPCOL, INITDONESUP1NIMPEXP, INITDONEHK1NVECTOR};
 };
 
@@ -184,14 +182,13 @@ PnlWznmImeRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, scrJrefDetail(scrJrefDetail)
+			, scrJrefIme1NImpexpcol(scrJrefIme1NImpexpcol)
+			, scrJrefSup1NImpexp(scrJrefSup1NImpexp)
+			, scrJrefHk1NVector(scrJrefHk1NVector)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->scrJrefDetail = scrJrefDetail;
-	this->scrJrefIme1NImpexpcol = scrJrefIme1NImpexpcol;
-	this->scrJrefSup1NImpexp = scrJrefSup1NImpexp;
-	this->scrJrefHk1NVector = scrJrefHk1NVector;
-	this->ButRegularizeActive = ButRegularizeActive;
-
 	mask = {IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREFIME1NIMPEXPCOL, SCRJREFSUP1NIMPEXP, SCRJREFHK1NVECTOR, BUTREGULARIZEACTIVE};
 };
 
@@ -265,9 +262,8 @@ PnlWznmImeRec::Tag::Tag(
 			const string& Cpt
 		) :
 			Block()
+			, Cpt(Cpt)
 		{
-	this->Cpt = Cpt;
-
 	mask = {CPT};
 };
 
@@ -304,11 +300,11 @@ PnlWznmImeRec::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMIMERECDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmImeRec::DpchAppDo::getSrefsMask() {

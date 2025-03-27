@@ -24,13 +24,14 @@ WznmQTblTbl1NTablecol::WznmQTblTbl1NTablecol(
 			, const ubigint ref
 			, const string stubRef
 			, const uint tblNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->tblNum = tblNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, tblNum(tblNum)
+		{
 };
 
 void WznmQTblTbl1NTablecol::writeJSON(

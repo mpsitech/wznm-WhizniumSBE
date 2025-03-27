@@ -51,15 +51,14 @@ PnlWznmLibDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, TxfTit(TxfTit)
+			, TxfVer(TxfVer)
+			, numFPupLty(numFPupLty)
+			, TxfLty(TxfLty)
+			, numFLstDep(numFLstDep)
+			, TxfDep(TxfDep)
+			, TxfCmt(TxfCmt)
 		{
-	this->TxfTit = TxfTit;
-	this->TxfVer = TxfVer;
-	this->numFPupLty = numFPupLty;
-	this->TxfLty = TxfLty;
-	this->numFLstDep = numFLstDep;
-	this->TxfDep = TxfDep;
-	this->TxfCmt = TxfCmt;
-
 	mask = {TXFTIT, TXFVER, NUMFPUPLTY, TXFLTY, NUMFLSTDEP, TXFDEP, TXFCMT};
 };
 
@@ -127,9 +126,9 @@ void PnlWznmLibDetail::ContIac::writeJSON(
 
 	me["TxfTit"] = TxfTit;
 	me["TxfVer"] = TxfVer;
-	me["numFPupLty"] = numFPupLty;
+	me["numFPupLty"] = (Json::Value::UInt) numFPupLty;
 	me["TxfLty"] = TxfLty;
-	me["numFLstDep"] = numFLstDep;
+	me["numFLstDep"] = (Json::Value::UInt) numFLstDep;
 	me["TxfDep"] = TxfDep;
 	me["TxfCmt"] = TxfCmt;
 };
@@ -194,9 +193,8 @@ PnlWznmLibDetail::ContInf::ContInf(
 			const string& TxtSrf
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
 		{
-	this->TxtSrf = TxtSrf;
-
 	mask = {TXTSRF};
 };
 
@@ -270,7 +268,7 @@ void PnlWznmLibDetail::StatApp::writeJSON(
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["PupLtyAlt"] = PupLtyAlt;
 	me["LstDepAlt"] = LstDepAlt;
-	me["LstDepNumFirstdisp"] = LstDepNumFirstdisp;
+	me["LstDepNumFirstdisp"] = (Json::Value::UInt) LstDepNumFirstdisp;
 };
 
 void PnlWznmLibDetail::StatApp::writeXML(
@@ -301,37 +299,36 @@ void PnlWznmLibDetail::StatApp::writeXML(
  ******************************************************************************/
 
 PnlWznmLibDetail::StatShr::StatShr(
-			const bool TxfLtyValid
-			, const bool TxfDepValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
 			, const bool TxfTitActive
 			, const bool TxfVerActive
 			, const bool PupLtyActive
+			, const bool TxfLtyValid
 			, const bool ButLtyEditAvail
 			, const bool LstDepActive
+			, const bool TxfDepValid
 			, const bool ButDepViewAvail
 			, const bool ButDepViewActive
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfTitActive(TxfTitActive)
+			, TxfVerActive(TxfVerActive)
+			, PupLtyActive(PupLtyActive)
+			, TxfLtyValid(TxfLtyValid)
+			, ButLtyEditAvail(ButLtyEditAvail)
+			, LstDepActive(LstDepActive)
+			, TxfDepValid(TxfDepValid)
+			, ButDepViewAvail(ButDepViewAvail)
+			, ButDepViewActive(ButDepViewActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->TxfLtyValid = TxfLtyValid;
-	this->TxfDepValid = TxfDepValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfTitActive = TxfTitActive;
-	this->TxfVerActive = TxfVerActive;
-	this->PupLtyActive = PupLtyActive;
-	this->ButLtyEditAvail = ButLtyEditAvail;
-	this->LstDepActive = LstDepActive;
-	this->ButDepViewAvail = ButDepViewAvail;
-	this->ButDepViewActive = ButDepViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-
-	mask = {TXFLTYVALID, TXFDEPVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXFVERACTIVE, PUPLTYACTIVE, BUTLTYEDITAVAIL, LSTDEPACTIVE, BUTDEPVIEWAVAIL, BUTDEPVIEWACTIVE, TXFCMTACTIVE};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXFVERACTIVE, PUPLTYACTIVE, TXFLTYVALID, BUTLTYEDITAVAIL, LSTDEPACTIVE, TXFDEPVALID, BUTDEPVIEWAVAIL, BUTDEPVIEWACTIVE, TXFCMTACTIVE};
 };
 
 void PnlWznmLibDetail::StatShr::writeJSON(
@@ -342,16 +339,16 @@ void PnlWznmLibDetail::StatShr::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TxfLtyValid"] = TxfLtyValid;
-	me["TxfDepValid"] = TxfDepValid;
 	me["ButSaveAvail"] = ButSaveAvail;
 	me["ButSaveActive"] = ButSaveActive;
 	me["TxtSrfActive"] = TxtSrfActive;
 	me["TxfTitActive"] = TxfTitActive;
 	me["TxfVerActive"] = TxfVerActive;
 	me["PupLtyActive"] = PupLtyActive;
+	me["TxfLtyValid"] = TxfLtyValid;
 	me["ButLtyEditAvail"] = ButLtyEditAvail;
 	me["LstDepActive"] = LstDepActive;
+	me["TxfDepValid"] = TxfDepValid;
 	me["ButDepViewAvail"] = ButDepViewAvail;
 	me["ButDepViewActive"] = ButDepViewActive;
 	me["TxfCmtActive"] = TxfCmtActive;
@@ -369,16 +366,16 @@ void PnlWznmLibDetail::StatShr::writeXML(
 	else itemtag = "StatitemShrWznmLibDetail";
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
-		writeBoolAttr(wr, itemtag, "sref", "TxfLtyValid", TxfLtyValid);
-		writeBoolAttr(wr, itemtag, "sref", "TxfDepValid", TxfDepValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveAvail", ButSaveAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButSaveActive", ButSaveActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxtSrfActive", TxtSrfActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxfTitActive", TxfTitActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxfVerActive", TxfVerActive);
 		writeBoolAttr(wr, itemtag, "sref", "PupLtyActive", PupLtyActive);
+		writeBoolAttr(wr, itemtag, "sref", "TxfLtyValid", TxfLtyValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButLtyEditAvail", ButLtyEditAvail);
 		writeBoolAttr(wr, itemtag, "sref", "LstDepActive", LstDepActive);
+		writeBoolAttr(wr, itemtag, "sref", "TxfDepValid", TxfDepValid);
 		writeBoolAttr(wr, itemtag, "sref", "ButDepViewAvail", ButDepViewAvail);
 		writeBoolAttr(wr, itemtag, "sref", "ButDepViewActive", ButDepViewActive);
 		writeBoolAttr(wr, itemtag, "sref", "TxfCmtActive", TxfCmtActive);
@@ -390,16 +387,16 @@ set<uint> PnlWznmLibDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfLtyValid == comp->TxfLtyValid) insert(items, TXFLTYVALID);
-	if (TxfDepValid == comp->TxfDepValid) insert(items, TXFDEPVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
 	if (TxfTitActive == comp->TxfTitActive) insert(items, TXFTITACTIVE);
 	if (TxfVerActive == comp->TxfVerActive) insert(items, TXFVERACTIVE);
 	if (PupLtyActive == comp->PupLtyActive) insert(items, PUPLTYACTIVE);
+	if (TxfLtyValid == comp->TxfLtyValid) insert(items, TXFLTYVALID);
 	if (ButLtyEditAvail == comp->ButLtyEditAvail) insert(items, BUTLTYEDITAVAIL);
 	if (LstDepActive == comp->LstDepActive) insert(items, LSTDEPACTIVE);
+	if (TxfDepValid == comp->TxfDepValid) insert(items, TXFDEPVALID);
 	if (ButDepViewAvail == comp->ButDepViewAvail) insert(items, BUTDEPVIEWAVAIL);
 	if (ButDepViewActive == comp->ButDepViewActive) insert(items, BUTDEPVIEWACTIVE);
 	if (TxfCmtActive == comp->TxfCmtActive) insert(items, TXFCMTACTIVE);
@@ -415,7 +412,7 @@ set<uint> PnlWznmLibDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFLTYVALID, TXFDEPVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXFVERACTIVE, PUPLTYACTIVE, BUTLTYEDITAVAIL, LSTDEPACTIVE, BUTDEPVIEWAVAIL, BUTDEPVIEWACTIVE, TXFCMTACTIVE};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFTITACTIVE, TXFVERACTIVE, PUPLTYACTIVE, TXFLTYVALID, BUTLTYEDITAVAIL, LSTDEPACTIVE, TXFDEPVALID, BUTDEPVIEWAVAIL, BUTDEPVIEWACTIVE, TXFCMTACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

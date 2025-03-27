@@ -55,13 +55,12 @@ PnlWznmIelDetail::ContIac::ContIac(
 			, const string& TxfDfv
 		) :
 			Block()
+			, TxfSho(TxfSho)
+			, numFPupTyp(numFPupTyp)
+			, numsFLstOcc(numsFLstOcc)
+			, numFPupCty(numFPupCty)
+			, TxfDfv(TxfDfv)
 		{
-	this->TxfSho = TxfSho;
-	this->numFPupTyp = numFPupTyp;
-	this->numsFLstOcc = numsFLstOcc;
-	this->numFPupCty = numFPupCty;
-	this->TxfDfv = TxfDfv;
-
 	mask = {TXFSHO, NUMFPUPTYP, NUMSFLSTOCC, NUMFPUPCTY, TXFDFV};
 };
 
@@ -124,9 +123,9 @@ void PnlWznmIelDetail::ContIac::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["TxfSho"] = TxfSho;
-	me["numFPupTyp"] = numFPupTyp;
+	me["numFPupTyp"] = (Json::Value::UInt) numFPupTyp;
 	Jsonio::writeUintvec(me, "numsFLstOcc", numsFLstOcc);
-	me["numFPupCty"] = numFPupCty;
+	me["numFPupCty"] = (Json::Value::UInt) numFPupCty;
 	me["TxfDfv"] = TxfDfv;
 };
 
@@ -193,16 +192,15 @@ PnlWznmIelDetail::ContInf::ContInf(
 			, const string& TxtVit
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtOcc(TxtOcc)
+			, TxtIme(TxtIme)
+			, TxtTco(TxtTco)
+			, TxtIm2(TxtIm2)
+			, TxtPst(TxtPst)
+			, TxtStb(TxtStb)
+			, TxtVit(TxtVit)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtOcc = TxtOcc;
-	this->TxtIme = TxtIme;
-	this->TxtTco = TxtTco;
-	this->TxtIm2 = TxtIm2;
-	this->TxtPst = TxtPst;
-	this->TxtStb = TxtStb;
-	this->TxtVit = TxtVit;
-
 	mask = {TXTSRF, TXTOCC, TXTIME, TXTTCO, TXTIM2, TXTPST, TXTSTB, TXTVIT};
 };
 
@@ -295,7 +293,7 @@ void PnlWznmIelDetail::StatApp::writeJSON(
 
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstOccAlt"] = LstOccAlt;
-	me["LstOccNumFirstdisp"] = LstOccNumFirstdisp;
+	me["LstOccNumFirstdisp"] = (Json::Value::UInt) LstOccNumFirstdisp;
 };
 
 void PnlWznmIelDetail::StatApp::writeXML(
@@ -350,32 +348,31 @@ PnlWznmIelDetail::StatShr::StatShr(
 			, const bool ButVitViewActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfShoActive(TxfShoActive)
+			, PupTypActive(PupTypActive)
+			, LstOccActive(LstOccActive)
+			, TxtImeActive(TxtImeActive)
+			, ButImeViewAvail(ButImeViewAvail)
+			, ButImeViewActive(ButImeViewActive)
+			, TxtTcoActive(TxtTcoActive)
+			, TxtIm2Active(TxtIm2Active)
+			, ButIm2ViewAvail(ButIm2ViewAvail)
+			, ButIm2ViewActive(ButIm2ViewActive)
+			, PupCtyActive(PupCtyActive)
+			, TxfDfvActive(TxfDfvActive)
+			, TxtPstActive(TxtPstActive)
+			, ButPstViewAvail(ButPstViewAvail)
+			, ButPstViewActive(ButPstViewActive)
+			, TxtStbActive(TxtStbActive)
+			, ButStbViewAvail(ButStbViewAvail)
+			, ButStbViewActive(ButStbViewActive)
+			, TxtVitActive(TxtVitActive)
+			, ButVitViewAvail(ButVitViewAvail)
+			, ButVitViewActive(ButVitViewActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfShoActive = TxfShoActive;
-	this->PupTypActive = PupTypActive;
-	this->LstOccActive = LstOccActive;
-	this->TxtImeActive = TxtImeActive;
-	this->ButImeViewAvail = ButImeViewAvail;
-	this->ButImeViewActive = ButImeViewActive;
-	this->TxtTcoActive = TxtTcoActive;
-	this->TxtIm2Active = TxtIm2Active;
-	this->ButIm2ViewAvail = ButIm2ViewAvail;
-	this->ButIm2ViewActive = ButIm2ViewActive;
-	this->PupCtyActive = PupCtyActive;
-	this->TxfDfvActive = TxfDfvActive;
-	this->TxtPstActive = TxtPstActive;
-	this->ButPstViewAvail = ButPstViewAvail;
-	this->ButPstViewActive = ButPstViewActive;
-	this->TxtStbActive = TxtStbActive;
-	this->ButStbViewAvail = ButStbViewAvail;
-	this->ButStbViewActive = ButStbViewActive;
-	this->TxtVitActive = TxtVitActive;
-	this->ButVitViewAvail = ButVitViewAvail;
-	this->ButVitViewActive = ButVitViewActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFSHOACTIVE, PUPTYPACTIVE, LSTOCCACTIVE, TXTIMEACTIVE, BUTIMEVIEWAVAIL, BUTIMEVIEWACTIVE, TXTTCOACTIVE, TXTIM2ACTIVE, BUTIM2VIEWAVAIL, BUTIM2VIEWACTIVE, PUPCTYACTIVE, TXFDFVACTIVE, TXTPSTACTIVE, BUTPSTVIEWAVAIL, BUTPSTVIEWACTIVE, TXTSTBACTIVE, BUTSTBVIEWAVAIL, BUTSTBVIEWACTIVE, TXTVITACTIVE, BUTVITVIEWAVAIL, BUTVITVIEWACTIVE};
 };
 

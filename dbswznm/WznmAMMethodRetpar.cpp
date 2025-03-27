@@ -25,16 +25,16 @@ WznmAMMethodRetpar::WznmAMMethodRetpar(
 			, const ubigint refWznmMVector
 			, const uint Length
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->mtdRefWznmMMethod = mtdRefWznmMMethod;
-	this->mtdNum = mtdNum;
-	this->sref = sref;
-	this->ixWznmVVartype = ixWznmVVartype;
-	this->refWznmMVector = refWznmMVector;
-	this->Length = Length;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, mtdRefWznmMMethod(mtdRefWznmMMethod)
+			, mtdNum(mtdNum)
+			, sref(sref)
+			, ixWznmVVartype(ixWznmVVartype)
+			, refWznmMVector(refWznmMVector)
+			, Length(Length)
+			, Comment(Comment)
+		{
 };
 
 bool WznmAMMethodRetpar::operator==(

@@ -48,19 +48,11 @@
 			<v-divider/>
 			<v-row>
 				<v-col cols="12" md="6">
-					<PnlWznmVer1NCall
+					<PnlWznmVerVer1NVisual
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
-						ref="PnlWznmVer1NCall"
-						:scrJref=statshr.scrJref1NCall
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
-					<PnlWznmVer1NComponent
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmVer1NComponent"
-						:scrJref=statshr.scrJref1NComponent
+						ref="PnlWznmVerVer1NVisual"
+						:scrJref=statshr.scrJrefVer1NVisual
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -88,19 +80,19 @@
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
-					<PnlWznmVer1NTable
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmVer1NTable"
-						:scrJref=statshr.scrJref1NTable
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmVer1NVector
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
 						ref="PnlWznmVer1NVector"
 						:scrJref=statshr.scrJref1NVector
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmVer1NTable
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmVer1NTable"
+						:scrJref=statshr.scrJref1NTable
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -160,6 +152,22 @@
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
+					<PnlWznmVer1NCall
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmVer1NCall"
+						:scrJref=statshr.scrJref1NCall
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmVer1NComponent
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmVer1NComponent"
+						:scrJref=statshr.scrJref1NComponent
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
 					<PnlWznmVerBvr1NVersion
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
@@ -202,13 +210,12 @@
 	/*
 	*/
 	import PnlWznmVerDetail from './PnlWznmVerDetail';
-	import PnlWznmVer1NCall from './PnlWznmVer1NCall';
-	import PnlWznmVer1NComponent from './PnlWznmVer1NComponent';
+	import PnlWznmVerVer1NVisual from './PnlWznmVerVer1NVisual';
 	import PnlWznmVerVer1NError from './PnlWznmVerVer1NError';
 	import PnlWznmVerVer1NApp from './PnlWznmVerVer1NApp';
 	import PnlWznmVer1NCapability from './PnlWznmVer1NCapability';
-	import PnlWznmVer1NTable from './PnlWznmVer1NTable';
 	import PnlWznmVer1NVector from './PnlWznmVer1NVector';
+	import PnlWznmVer1NTable from './PnlWznmVer1NTable';
 	import PnlWznmVer1NRelation from './PnlWznmVer1NRelation';
 	import PnlWznmVer1NQuery from './PnlWznmVer1NQuery';
 	import PnlWznmVer1NPreset from './PnlWznmVer1NPreset';
@@ -216,6 +223,8 @@
 	import PnlWznmVer1NOppack from './PnlWznmVer1NOppack';
 	import PnlWznmVer1NJob from './PnlWznmVer1NJob';
 	import PnlWznmVer1NImpexpcplx from './PnlWznmVer1NImpexpcplx';
+	import PnlWznmVer1NCall from './PnlWznmVer1NCall';
+	import PnlWznmVer1NComponent from './PnlWznmVer1NComponent';
 	import PnlWznmVerBvr1NVersion from './PnlWznmVerBvr1NVersion';
 	import PnlWznmVer1NBlock from './PnlWznmVer1NBlock';
 	import PnlWznmVerRef1NFile from './PnlWznmVerRef1NFile';
@@ -238,13 +247,12 @@
 			/*
 			*/
 			PnlWznmVerDetail,
-			PnlWznmVer1NCall,
-			PnlWznmVer1NComponent,
+			PnlWznmVerVer1NVisual,
 			PnlWznmVerVer1NError,
 			PnlWznmVerVer1NApp,
 			PnlWznmVer1NCapability,
-			PnlWznmVer1NTable,
 			PnlWznmVer1NVector,
+			PnlWznmVer1NTable,
 			PnlWznmVer1NRelation,
 			PnlWznmVer1NQuery,
 			PnlWznmVer1NPreset,
@@ -252,6 +260,8 @@
 			PnlWznmVer1NOppack,
 			PnlWznmVer1NJob,
 			PnlWznmVer1NImpexpcplx,
+			PnlWznmVer1NCall,
+			PnlWznmVer1NComponent,
 			PnlWznmVerBvr1NVersion,
 			PnlWznmVer1NBlock,
 			PnlWznmVerRef1NFile,
@@ -317,13 +327,12 @@
 						/*
 						*/
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmVerDetail.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NCall) this.$refs.PnlWznmVer1NCall.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NComponent) this.$refs.PnlWznmVer1NComponent.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefVer1NVisual) this.$refs.PnlWznmVerVer1NVisual.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefVer1NError) this.$refs.PnlWznmVerVer1NError.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefVer1NApp) this.$refs.PnlWznmVerVer1NApp.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NCapability) this.$refs.PnlWznmVer1NCapability.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJref1NTable) this.$refs.PnlWznmVer1NTable.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NVector) this.$refs.PnlWznmVer1NVector.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NTable) this.$refs.PnlWznmVer1NTable.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NRelation) this.$refs.PnlWznmVer1NRelation.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NQuery) this.$refs.PnlWznmVer1NQuery.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NPreset) this.$refs.PnlWznmVer1NPreset.handleReply(obj);
@@ -331,6 +340,8 @@
 						else if (obj.scrJref == this.statshr.scrJref1NOppack) this.$refs.PnlWznmVer1NOppack.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NJob) this.$refs.PnlWznmVer1NJob.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NImpexpcplx) this.$refs.PnlWznmVer1NImpexpcplx.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NCall) this.$refs.PnlWznmVer1NCall.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJref1NComponent) this.$refs.PnlWznmVer1NComponent.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefBvr1NVersion) this.$refs.PnlWznmVerBvr1NVersion.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NBlock) this.$refs.PnlWznmVer1NBlock.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefRef1NFile) this.$refs.PnlWznmVerRef1NFile.handleReply(obj);
@@ -365,13 +376,12 @@
 						/*
 						*/
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmVerDetail.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NCall) this.$refs.PnlWznmVer1NCall.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NComponent) this.$refs.PnlWznmVer1NComponent.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefVer1NVisual) this.$refs.PnlWznmVerVer1NVisual.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefVer1NError) this.$refs.PnlWznmVerVer1NError.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefVer1NApp) this.$refs.PnlWznmVerVer1NApp.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NCapability) this.$refs.PnlWznmVer1NCapability.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NTable) this.$refs.PnlWznmVer1NTable.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NVector) this.$refs.PnlWznmVer1NVector.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NTable) this.$refs.PnlWznmVer1NTable.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NRelation) this.$refs.PnlWznmVer1NRelation.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NQuery) this.$refs.PnlWznmVer1NQuery.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NPreset) this.$refs.PnlWznmVer1NPreset.handleUpdate(obj);
@@ -379,6 +389,8 @@
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NOppack) this.$refs.PnlWznmVer1NOppack.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NJob) this.$refs.PnlWznmVer1NJob.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NImpexpcplx) this.$refs.PnlWznmVer1NImpexpcplx.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NCall) this.$refs.PnlWznmVer1NCall.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NComponent) this.$refs.PnlWznmVer1NComponent.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefBvr1NVersion) this.$refs.PnlWznmVerBvr1NVersion.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NBlock) this.$refs.PnlWznmVer1NBlock.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefRef1NFile) this.$refs.PnlWznmVerRef1NFile.handleUpdate(obj);

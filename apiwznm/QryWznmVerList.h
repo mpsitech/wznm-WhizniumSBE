@@ -28,10 +28,10 @@ namespace QryWznmVerList {
 	class VecVOrd {
 
 	public:
-		static const Sbecore::uint LOC = 1;
-		static const Sbecore::uint PRJ = 2;
-		static const Sbecore::uint STE = 3;
-		static const Sbecore::uint BVR = 4;
+		static const Sbecore::uint STE = 1;
+		static const Sbecore::uint LOC = 2;
+		static const Sbecore::uint BVR = 3;
+		static const Sbecore::uint PRJ = 4;
 		static const Sbecore::uint OWN = 5;
 		static const Sbecore::uint GRP = 6;
 

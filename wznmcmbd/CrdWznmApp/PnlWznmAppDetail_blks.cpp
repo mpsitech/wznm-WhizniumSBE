@@ -46,12 +46,11 @@ PnlWznmAppDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, TxfSho(TxfSho)
+			, TxfTit(TxfTit)
+			, numFPupTrg(numFPupTrg)
+			, TxfCmt(TxfCmt)
 		{
-	this->TxfSho = TxfSho;
-	this->TxfTit = TxfTit;
-	this->numFPupTrg = numFPupTrg;
-	this->TxfCmt = TxfCmt;
-
 	mask = {TXFSHO, TXFTIT, NUMFPUPTRG, TXFCMT};
 };
 
@@ -113,7 +112,7 @@ void PnlWznmAppDetail::ContIac::writeJSON(
 
 	me["TxfSho"] = TxfSho;
 	me["TxfTit"] = TxfTit;
-	me["numFPupTrg"] = numFPupTrg;
+	me["numFPupTrg"] = (Json::Value::UInt) numFPupTrg;
 	me["TxfCmt"] = TxfCmt;
 };
 
@@ -171,9 +170,8 @@ PnlWznmAppDetail::ContInf::ContInf(
 			const string& TxtVer
 		) :
 			Block()
+			, TxtVer(TxtVer)
 		{
-	this->TxtVer = TxtVer;
-
 	mask = {TXTVER};
 };
 
@@ -277,17 +275,16 @@ PnlWznmAppDetail::StatShr::StatShr(
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxfShoActive(TxfShoActive)
+			, TxfTitActive(TxfTitActive)
+			, PupTrgActive(PupTrgActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxfShoActive = TxfShoActive;
-	this->TxfTitActive = TxfTitActive;
-	this->PupTrgActive = PupTrgActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXFSHOACTIVE, TXFTITACTIVE, PUPTRGACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXFCMTACTIVE};
 };
 

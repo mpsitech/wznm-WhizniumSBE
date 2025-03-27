@@ -1,5 +1,6 @@
 function updateScrJrefs() {
 	scrJrefDetail = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefDetail");
+	scrJrefVer1NVisual = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefVer1NVisual");
 	scrJrefVer1NError = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefVer1NError");
 	scrJrefVer1NApp = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJrefVer1NApp");
 	scrJref1NCapability = retrieveSi(srcdoc, "StatShrWznmVerRec", "scrJref1NCapability");
@@ -22,6 +23,7 @@ function updateScrJrefs() {
 
 function resetInitdones() {
 	setSi(srcdoc, "StatAppWznmVerRec", "initdoneDetail", "false");
+	setSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NVisual", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NError", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NApp", "false");
 	setSi(srcdoc, "StatAppWznmVerRec", "initdone1NCapability", "false");
@@ -44,6 +46,7 @@ function resetInitdones() {
 
 function resetHeights() {
 	heightDetail = 30;
+	heightVer1NVisual = 30;
 	heightVer1NError = 30;
 	heightVer1NApp = 30;
 	height1NCapability = 30;
@@ -80,6 +83,7 @@ function checkInitdone() {
 	var initdone1NRelease = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NRelease") == "true");
 
 	var initdoneDetail = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneDetail") == "true");
+	var initdoneVer1NVisual = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NVisual") == "true");
 	var initdoneVer1NError = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NError") == "true");
 	var initdoneVer1NApp = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdoneVer1NApp") == "true");
 	var initdone1NCapability = (retrieveSi(srcdoc, "StatAppWznmVerRec", "initdone1NCapability") == "true");
@@ -101,6 +105,8 @@ function checkInitdone() {
 
 	if (!initdoneDetail) {
 		lhsdoc.getElementById("Detail").src = "./PnlWznmVerDetail.html?scrJref=" + scrJrefDetail;
+	} else if (!initdoneVer1NVisual) {
+		rhsdoc.getElementById("Ver1NVisual").src = "./PnlWznmVerVer1NVisual.html?scrJref=" + scrJrefVer1NVisual;
 	} else if (!initdoneVer1NError) {
 		rhsdoc.getElementById("Ver1NError").src = "./PnlWznmVerVer1NError.html?scrJref=" + scrJrefVer1NError;
 	} else if (!initdoneVer1NApp) {
@@ -176,6 +182,7 @@ function setPnlAvail(short, avail) {
 		else if (short == "List") heightList = height;
 		else if (short == "Rec") heightRec = height;
 		else if (short == "Detail") heightDetail = height;
+		else if (short == "Ver1NVisual") heightVer1NVisual = height;
 		else if (short == "Ver1NError") heightVer1NError = height;
 		else if (short == "Ver1NApp") heightVer1NApp = height;
 		else if (short == "1NCapability") height1NCapability = height;
@@ -215,10 +222,10 @@ function minimize() {
 function regularize() {
 	resetHeights();
 
-	getCrdwnd().changeHeight("Rec", 825);
-	doc.getElementById("tdSide").setAttribute("height", "825");
-	doc.getElementById("Rec_side").setAttribute("height", "825");
-	doc.getElementById("Rec_cont").setAttribute("height", "825");
+	getCrdwnd().changeHeight("Rec", 868);
+	doc.getElementById("tdSide").setAttribute("height", "868");
+	doc.getElementById("Rec_side").setAttribute("height", "868");
+	doc.getElementById("Rec_cont").setAttribute("height", "868");
 
 	doc.getElementById("Rec_side").src = "./PnlWznmVerRec_bside.html";
 	doc.getElementById("Rec_cont").src = "./PnlWznmVerRec_b.html";
@@ -237,6 +244,7 @@ function changeHeight(pnlshort, height, update) {
 	else if (pnlshort == "List") heightList = height;
 	else if (pnlshort == "Rec") heightRec = height;
 	else if (pnlshort == "Detail") heightDetail = height;
+	else if (pnlshort == "Ver1NVisual") heightVer1NVisual = height;
 	else if (pnlshort == "Ver1NError") heightVer1NError = height;
 	else if (pnlshort == "Ver1NApp") heightVer1NApp = height;
 	else if (pnlshort == "1NCapability") height1NCapability = height;
@@ -263,7 +271,7 @@ function updateHeight() {
 	var heightLhs, heightRhs, heightGt;
 
 	heightLhs = heightDetail+13 + 5;
-	heightRhs = heightVer1NError+13 + heightVer1NApp+13 + height1NCapability+13 + height1NVector+13 + height1NTable+13 + height1NRelation+13 + height1NQuery+13 + height1NPreset+13 + heightVer1NModule+13 + height1NOppack+13 + height1NJob+13 + height1NImpexpcplx+13 + height1NCall+13 + height1NComponent+13 + heightBvr1NVersion+13 + height1NBlock+13 + heightRef1NFile+13 + heightMNLocale+13 + 5;
+	heightRhs = heightVer1NVisual+13 + heightVer1NError+13 + heightVer1NApp+13 + height1NCapability+13 + height1NVector+13 + height1NTable+13 + height1NRelation+13 + height1NQuery+13 + height1NPreset+13 + heightVer1NModule+13 + height1NOppack+13 + height1NJob+13 + height1NImpexpcplx+13 + height1NCall+13 + height1NComponent+13 + heightBvr1NVersion+13 + height1NBlock+13 + heightRef1NFile+13 + heightMNLocale+13 + 5;
 
 	if (heightLhs > heightRhs) {
 		lhsdoc.getElementById("tdFill").setAttribute("height", "5");
@@ -454,6 +462,8 @@ function handleDpchEng(dom, dpch) {
 
 			if (_scrJref == scrJrefDetail) {
 				if (getInitdone("Detail")) lhsdoc.getElementById("Detail").contentWindow.handleDpchEng(dom, dpch);
+			} else if (_scrJref == scrJrefVer1NVisual) {
+				if (getInitdone("Ver1NVisual")) rhsdoc.getElementById("Ver1NVisual").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefVer1NError) {
 				if (getInitdone("Ver1NError")) rhsdoc.getElementById("Ver1NError").contentWindow.handleDpchEng(dom, dpch);
 			} else if (_scrJref == scrJrefVer1NApp) {

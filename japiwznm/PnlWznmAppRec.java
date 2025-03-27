@@ -115,30 +115,30 @@ public class PnlWznmAppRec {
 
 		public static final int INITDONEDETAIL = 1;
 		public static final int INITDONE1NEVENT = 2;
-		public static final int INITDONE1NRTJOB = 3;
-		public static final int INITDONEAPP1NSEQUENCE = 4;
+		public static final int INITDONEAPP1NSEQUENCE = 3;
+		public static final int INITDONE1NRTJOB = 4;
 		public static final int INITDONEREF1NFILE = 5;
 
 		public StatApp(
 					boolean initdoneDetail
 					, boolean initdone1NEvent
-					, boolean initdone1NRtjob
 					, boolean initdoneApp1NSequence
+					, boolean initdone1NRtjob
 					, boolean initdoneRef1NFile
 				) {
 			this.initdoneDetail = initdoneDetail;
 			this.initdone1NEvent = initdone1NEvent;
-			this.initdone1NRtjob = initdone1NRtjob;
 			this.initdoneApp1NSequence = initdoneApp1NSequence;
+			this.initdone1NRtjob = initdone1NRtjob;
 			this.initdoneRef1NFile = initdoneRef1NFile;
 
-			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NEVENT, INITDONE1NRTJOB, INITDONEAPP1NSEQUENCE, INITDONEREF1NFILE));
+			mask = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NEVENT, INITDONEAPP1NSEQUENCE, INITDONE1NRTJOB, INITDONEREF1NFILE));
 		};
 
 		public boolean initdoneDetail;
 		public boolean initdone1NEvent;
-		public boolean initdone1NRtjob;
 		public boolean initdoneApp1NSequence;
+		public boolean initdone1NRtjob;
 		public boolean initdoneRef1NFile;
 
 		public boolean readXML(
@@ -156,8 +156,8 @@ public class PnlWznmAppRec {
 			if (Xmlio.checkXPath(doc, basexpath)) {
 				initdoneDetail = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneDetail", mask, INITDONEDETAIL);
 				initdone1NEvent = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NEvent", mask, INITDONE1NEVENT);
-				initdone1NRtjob = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NRtjob", mask, INITDONE1NRTJOB);
 				initdoneApp1NSequence = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneApp1NSequence", mask, INITDONEAPP1NSEQUENCE);
+				initdone1NRtjob = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdone1NRtjob", mask, INITDONE1NRTJOB);
 				initdoneRef1NFile = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "initdoneRef1NFile", mask, INITDONEREF1NFILE);
 
 				return true;
@@ -173,8 +173,8 @@ public class PnlWznmAppRec {
 
 			if (initdoneDetail == comp.initdoneDetail) items.add(INITDONEDETAIL);
 			if (initdone1NEvent == comp.initdone1NEvent) items.add(INITDONE1NEVENT);
-			if (initdone1NRtjob == comp.initdone1NRtjob) items.add(INITDONE1NRTJOB);
 			if (initdoneApp1NSequence == comp.initdoneApp1NSequence) items.add(INITDONEAPP1NSEQUENCE);
+			if (initdone1NRtjob == comp.initdone1NRtjob) items.add(INITDONE1NRTJOB);
 			if (initdoneRef1NFile == comp.initdoneRef1NFile) items.add(INITDONEREF1NFILE);
 
 			return(items);
@@ -188,7 +188,7 @@ public class PnlWznmAppRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NEVENT, INITDONE1NRTJOB, INITDONEAPP1NSEQUENCE, INITDONEREF1NFILE));
+			diffitems = new HashSet<Integer>(Arrays.asList(INITDONEDETAIL, INITDONE1NEVENT, INITDONEAPP1NSEQUENCE, INITDONE1NRTJOB, INITDONEREF1NFILE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);
@@ -204,8 +204,8 @@ public class PnlWznmAppRec {
 		public static final int IXWZNMVEXPSTATE = 1;
 		public static final int SCRJREFDETAIL = 2;
 		public static final int SCRJREF1NEVENT = 3;
-		public static final int SCRJREF1NRTJOB = 4;
-		public static final int SCRJREFAPP1NSEQUENCE = 5;
+		public static final int SCRJREFAPP1NSEQUENCE = 4;
+		public static final int SCRJREF1NRTJOB = 5;
 		public static final int SCRJREFREF1NFILE = 6;
 		public static final int BUTREGULARIZEACTIVE = 7;
 
@@ -213,27 +213,27 @@ public class PnlWznmAppRec {
 					int ixWznmVExpstate
 					, String scrJrefDetail
 					, String scrJref1NEvent
-					, String scrJref1NRtjob
 					, String scrJrefApp1NSequence
+					, String scrJref1NRtjob
 					, String scrJrefRef1NFile
 					, boolean ButRegularizeActive
 				) {
 			this.ixWznmVExpstate = ixWznmVExpstate;
 			this.scrJrefDetail = scrJrefDetail;
 			this.scrJref1NEvent = scrJref1NEvent;
-			this.scrJref1NRtjob = scrJref1NRtjob;
 			this.scrJrefApp1NSequence = scrJrefApp1NSequence;
+			this.scrJref1NRtjob = scrJref1NRtjob;
 			this.scrJrefRef1NFile = scrJrefRef1NFile;
 			this.ButRegularizeActive = ButRegularizeActive;
 
-			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NEVENT, SCRJREF1NRTJOB, SCRJREFAPP1NSEQUENCE, SCRJREFREF1NFILE, BUTREGULARIZEACTIVE));
+			mask = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NEVENT, SCRJREFAPP1NSEQUENCE, SCRJREF1NRTJOB, SCRJREFREF1NFILE, BUTREGULARIZEACTIVE));
 		};
 
 		public int ixWznmVExpstate;
 		public String scrJrefDetail;
 		public String scrJref1NEvent;
-		public String scrJref1NRtjob;
 		public String scrJrefApp1NSequence;
+		public String scrJref1NRtjob;
 		public String scrJrefRef1NFile;
 		public boolean ButRegularizeActive;
 
@@ -255,8 +255,8 @@ public class PnlWznmAppRec {
 				ixWznmVExpstate = VecWznmVExpstate.getIx(srefIxWznmVExpstate);
 				scrJrefDetail = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefDetail", mask, SCRJREFDETAIL);
 				scrJref1NEvent = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NEvent", mask, SCRJREF1NEVENT);
-				scrJref1NRtjob = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NRtjob", mask, SCRJREF1NRTJOB);
 				scrJrefApp1NSequence = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefApp1NSequence", mask, SCRJREFAPP1NSEQUENCE);
+				scrJref1NRtjob = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJref1NRtjob", mask, SCRJREF1NRTJOB);
 				scrJrefRef1NFile = Xmlio.extractStringAttrUclc(doc, basexpath, itemtag, "Si", "sref", "scrJrefRef1NFile", mask, SCRJREFREF1NFILE);
 				ButRegularizeActive = Xmlio.extractBooleanAttrUclc(doc, basexpath, itemtag, "Si", "sref", "ButRegularizeActive", mask, BUTREGULARIZEACTIVE);
 
@@ -274,8 +274,8 @@ public class PnlWznmAppRec {
 			if (ixWznmVExpstate == comp.ixWznmVExpstate) items.add(IXWZNMVEXPSTATE);
 			if (scrJrefDetail.equals(comp.scrJrefDetail)) items.add(SCRJREFDETAIL);
 			if (scrJref1NEvent.equals(comp.scrJref1NEvent)) items.add(SCRJREF1NEVENT);
-			if (scrJref1NRtjob.equals(comp.scrJref1NRtjob)) items.add(SCRJREF1NRTJOB);
 			if (scrJrefApp1NSequence.equals(comp.scrJrefApp1NSequence)) items.add(SCRJREFAPP1NSEQUENCE);
+			if (scrJref1NRtjob.equals(comp.scrJref1NRtjob)) items.add(SCRJREF1NRTJOB);
 			if (scrJrefRef1NFile.equals(comp.scrJrefRef1NFile)) items.add(SCRJREFREF1NFILE);
 			if (ButRegularizeActive == comp.ButRegularizeActive) items.add(BUTREGULARIZEACTIVE);
 
@@ -290,7 +290,7 @@ public class PnlWznmAppRec {
 
 			commitems = comm(comp);
 
-			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NEVENT, SCRJREF1NRTJOB, SCRJREFAPP1NSEQUENCE, SCRJREFREF1NFILE, BUTREGULARIZEACTIVE));
+			diffitems = new HashSet<Integer>(Arrays.asList(IXWZNMVEXPSTATE, SCRJREFDETAIL, SCRJREF1NEVENT, SCRJREFAPP1NSEQUENCE, SCRJREF1NRTJOB, SCRJREFREF1NFILE, BUTREGULARIZEACTIVE));
 			for (Integer ci: commitems) diffitems.remove(ci);
 
 			return(diffitems);

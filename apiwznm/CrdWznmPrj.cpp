@@ -75,11 +75,10 @@ CrdWznmPrj::ContInf::ContInf(
 			, const string& MtxCrdPrj
 		) :
 			Block()
+			, numFSge(numFSge)
+			, MrlAppHlp(MrlAppHlp)
+			, MtxCrdPrj(MtxCrdPrj)
 		{
-	this->numFSge = numFSge;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MtxCrdPrj = MtxCrdPrj;
-
 	mask = {NUMFSGE, MRLAPPHLP, MTXCRDPRJ};
 };
 
@@ -148,15 +147,14 @@ CrdWznmPrj::StatApp::StatApp(
 			, const bool initdoneRec
 		) :
 			Block()
+			, ixWznmVReqitmode(ixWznmVReqitmode)
+			, latency(latency)
+			, shortMenu(shortMenu)
+			, widthMenu(widthMenu)
+			, initdoneHeadbar(initdoneHeadbar)
+			, initdoneList(initdoneList)
+			, initdoneRec(initdoneRec)
 		{
-	this->ixWznmVReqitmode = ixWznmVReqitmode;
-	this->latency = latency;
-	this->shortMenu = shortMenu;
-	this->widthMenu = widthMenu;
-	this->initdoneHeadbar = initdoneHeadbar;
-	this->initdoneList = initdoneList;
-	this->initdoneRec = initdoneRec;
-
 	mask = {IXWZNMVREQITMODE, LATENCY, SHORTMENU, WIDTHMENU, INITDONEHEADBAR, INITDONELIST, INITDONEREC};
 };
 
@@ -239,16 +237,15 @@ CrdWznmPrj::StatShr::StatShr(
 			, const bool MitCrdIpxAvail
 		) :
 			Block()
+			, scrJrefDlgimpex(scrJrefDlgimpex)
+			, scrJrefDlgnew(scrJrefDlgnew)
+			, scrJrefHeadbar(scrJrefHeadbar)
+			, scrJrefList(scrJrefList)
+			, scrJrefRec(scrJrefRec)
+			, MspCrd1Avail(MspCrd1Avail)
+			, MitCrdNewAvail(MitCrdNewAvail)
+			, MitCrdIpxAvail(MitCrdIpxAvail)
 		{
-	this->scrJrefDlgimpex = scrJrefDlgimpex;
-	this->scrJrefDlgnew = scrJrefDlgnew;
-	this->scrJrefHeadbar = scrJrefHeadbar;
-	this->scrJrefList = scrJrefList;
-	this->scrJrefRec = scrJrefRec;
-	this->MspCrd1Avail = MspCrd1Avail;
-	this->MitCrdNewAvail = MitCrdNewAvail;
-	this->MitCrdIpxAvail = MitCrdIpxAvail;
-
 	mask = {SCRJREFDLGIMPEX, SCRJREFDLGNEW, SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDIPXAVAIL};
 };
 
@@ -324,12 +321,11 @@ CrdWznmPrj::Tag::Tag(
 			, const string& MitCrdIpx
 		) :
 			Block()
+			, MitAppAbt(MitAppAbt)
+			, MrlAppHlp(MrlAppHlp)
+			, MitCrdNew(MitCrdNew)
+			, MitCrdIpx(MitCrdIpx)
 		{
-	this->MitAppAbt = MitAppAbt;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MitCrdNew = MitCrdNew;
-	this->MitCrdIpx = MitCrdIpx;
-
 	mask = {MITAPPABT, MRLAPPHLP, MITCRDNEW, MITCRDIPX};
 };
 
@@ -369,11 +365,11 @@ CrdWznmPrj::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMPRJDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string CrdWznmPrj::DpchAppDo::getSrefsMask() {

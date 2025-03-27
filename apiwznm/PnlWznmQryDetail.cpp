@@ -55,13 +55,12 @@ PnlWznmQryDetail::ContIac::ContIac(
 			, const string& TxfCmt
 		) :
 			Block()
+			, numFPupTyp(numFPupTyp)
+			, ChkLof(ChkLof)
+			, numFLstIno(numFLstIno)
+			, TxfIno(TxfIno)
+			, TxfCmt(TxfCmt)
 		{
-	this->numFPupTyp = numFPupTyp;
-	this->ChkLof = ChkLof;
-	this->numFLstIno = numFLstIno;
-	this->TxfIno = TxfIno;
-	this->TxfCmt = TxfCmt;
-
 	mask = {NUMFPUPTYP, CHKLOF, NUMFLSTINO, TXFINO, TXFCMT};
 };
 
@@ -153,14 +152,13 @@ PnlWznmQryDetail::ContInf::ContInf(
 			, const string& TxtJob
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtVer(TxtVer)
+			, TxtSup(TxtSup)
+			, TxtTbl(TxtTbl)
+			, TxtQtb(TxtQtb)
+			, TxtJob(TxtJob)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtVer = TxtVer;
-	this->TxtSup = TxtSup;
-	this->TxtTbl = TxtTbl;
-	this->TxtQtb = TxtQtb;
-	this->TxtJob = TxtJob;
-
 	mask = {TXTSRF, TXTVER, TXTSUP, TXTTBL, TXTQTB, TXTJOB};
 };
 
@@ -231,11 +229,10 @@ PnlWznmQryDetail::StatApp::StatApp(
 			, const uint LstInoNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstInoAlt(LstInoAlt)
+			, LstInoNumFirstdisp(LstInoNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstInoAlt = LstInoAlt;
-	this->LstInoNumFirstdisp = LstInoNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTINOALT, LSTINONUMFIRSTDISP};
 };
 
@@ -300,8 +297,7 @@ set<uint> PnlWznmQryDetail::StatApp::diff(
  ******************************************************************************/
 
 PnlWznmQryDetail::StatShr::StatShr(
-			const bool TxfInoValid
-			, const bool ButSaveAvail
+			const bool ButSaveAvail
 			, const bool ButSaveActive
 			, const bool TxtSrfActive
 			, const bool PupTypActive
@@ -318,35 +314,35 @@ PnlWznmQryDetail::StatShr::StatShr(
 			, const bool ButJobViewActive
 			, const bool ChkLofActive
 			, const bool LstInoActive
+			, const bool TxfInoValid
 			, const bool ButInoViewAvail
 			, const bool ButInoViewActive
 			, const bool TxfCmtActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupTypActive(PupTypActive)
+			, TxtVerActive(TxtVerActive)
+			, ButVerViewAvail(ButVerViewAvail)
+			, ButVerViewActive(ButVerViewActive)
+			, TxtSupActive(TxtSupActive)
+			, ButSupViewAvail(ButSupViewAvail)
+			, ButSupViewActive(ButSupViewActive)
+			, TxtTblActive(TxtTblActive)
+			, TxtQtbActive(TxtQtbActive)
+			, TxtJobActive(TxtJobActive)
+			, ButJobViewAvail(ButJobViewAvail)
+			, ButJobViewActive(ButJobViewActive)
+			, ChkLofActive(ChkLofActive)
+			, LstInoActive(LstInoActive)
+			, TxfInoValid(TxfInoValid)
+			, ButInoViewAvail(ButInoViewAvail)
+			, ButInoViewActive(ButInoViewActive)
+			, TxfCmtActive(TxfCmtActive)
 		{
-	this->TxfInoValid = TxfInoValid;
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupTypActive = PupTypActive;
-	this->TxtVerActive = TxtVerActive;
-	this->ButVerViewAvail = ButVerViewAvail;
-	this->ButVerViewActive = ButVerViewActive;
-	this->TxtSupActive = TxtSupActive;
-	this->ButSupViewAvail = ButSupViewAvail;
-	this->ButSupViewActive = ButSupViewActive;
-	this->TxtTblActive = TxtTblActive;
-	this->TxtQtbActive = TxtQtbActive;
-	this->TxtJobActive = TxtJobActive;
-	this->ButJobViewAvail = ButJobViewAvail;
-	this->ButJobViewActive = ButJobViewActive;
-	this->ChkLofActive = ChkLofActive;
-	this->LstInoActive = LstInoActive;
-	this->ButInoViewAvail = ButInoViewAvail;
-	this->ButInoViewActive = ButInoViewActive;
-	this->TxfCmtActive = TxfCmtActive;
-
-	mask = {TXFINOVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXTQTBACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKLOFACTIVE, LSTINOACTIVE, BUTINOVIEWAVAIL, BUTINOVIEWACTIVE, TXFCMTACTIVE};
+	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXTQTBACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKLOFACTIVE, LSTINOACTIVE, TXFINOVALID, BUTINOVIEWAVAIL, BUTINOVIEWACTIVE, TXFCMTACTIVE};
 };
 
 bool PnlWznmQryDetail::StatShr::readXML(
@@ -366,7 +362,6 @@ bool PnlWznmQryDetail::StatShr::readXML(
 	string itemtag = "StatitemShrWznmQryDetail";
 
 	if (basefound) {
-		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfInoValid", TxfInoValid)) add(TXFINOVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveAvail", ButSaveAvail)) add(BUTSAVEAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButSaveActive", ButSaveActive)) add(BUTSAVEACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxtSrfActive", TxtSrfActive)) add(TXTSRFACTIVE);
@@ -384,6 +379,7 @@ bool PnlWznmQryDetail::StatShr::readXML(
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButJobViewActive", ButJobViewActive)) add(BUTJOBVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ChkLofActive", ChkLofActive)) add(CHKLOFACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "LstInoActive", LstInoActive)) add(LSTINOACTIVE);
+		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfInoValid", TxfInoValid)) add(TXFINOVALID);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButInoViewAvail", ButInoViewAvail)) add(BUTINOVIEWAVAIL);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "ButInoViewActive", ButInoViewActive)) add(BUTINOVIEWACTIVE);
 		if (extractBoolAttrUclc(docctx, basexpath, itemtag, "Si", "sref", "TxfCmtActive", TxfCmtActive)) add(TXFCMTACTIVE);
@@ -397,7 +393,6 @@ set<uint> PnlWznmQryDetail::StatShr::comm(
 		) {
 	set<uint> items;
 
-	if (TxfInoValid == comp->TxfInoValid) insert(items, TXFINOVALID);
 	if (ButSaveAvail == comp->ButSaveAvail) insert(items, BUTSAVEAVAIL);
 	if (ButSaveActive == comp->ButSaveActive) insert(items, BUTSAVEACTIVE);
 	if (TxtSrfActive == comp->TxtSrfActive) insert(items, TXTSRFACTIVE);
@@ -415,6 +410,7 @@ set<uint> PnlWznmQryDetail::StatShr::comm(
 	if (ButJobViewActive == comp->ButJobViewActive) insert(items, BUTJOBVIEWACTIVE);
 	if (ChkLofActive == comp->ChkLofActive) insert(items, CHKLOFACTIVE);
 	if (LstInoActive == comp->LstInoActive) insert(items, LSTINOACTIVE);
+	if (TxfInoValid == comp->TxfInoValid) insert(items, TXFINOVALID);
 	if (ButInoViewAvail == comp->ButInoViewAvail) insert(items, BUTINOVIEWAVAIL);
 	if (ButInoViewActive == comp->ButInoViewActive) insert(items, BUTINOVIEWACTIVE);
 	if (TxfCmtActive == comp->TxfCmtActive) insert(items, TXFCMTACTIVE);
@@ -430,7 +426,7 @@ set<uint> PnlWznmQryDetail::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {TXFINOVALID, BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXTQTBACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKLOFACTIVE, LSTINOACTIVE, BUTINOVIEWAVAIL, BUTINOVIEWACTIVE, TXFCMTACTIVE};
+	diffitems = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPTYPACTIVE, TXTVERACTIVE, BUTVERVIEWAVAIL, BUTVERVIEWACTIVE, TXTSUPACTIVE, BUTSUPVIEWAVAIL, BUTSUPVIEWACTIVE, TXTTBLACTIVE, TXTQTBACTIVE, TXTJOBACTIVE, BUTJOBVIEWAVAIL, BUTJOBVIEWACTIVE, CHKLOFACTIVE, LSTINOACTIVE, TXFINOVALID, BUTINOVIEWAVAIL, BUTINOVIEWACTIVE, TXFCMTACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);
@@ -454,19 +450,18 @@ PnlWznmQryDetail::Tag::Tag(
 			, const string& CptCmt
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptTyp(CptTyp)
+			, CptVer(CptVer)
+			, CptSup(CptSup)
+			, CptTbl(CptTbl)
+			, CptQtb(CptQtb)
+			, CptJob(CptJob)
+			, CptLof(CptLof)
+			, CptIno(CptIno)
+			, CptCmt(CptCmt)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptTyp = CptTyp;
-	this->CptVer = CptVer;
-	this->CptSup = CptSup;
-	this->CptTbl = CptTbl;
-	this->CptQtb = CptQtb;
-	this->CptJob = CptJob;
-	this->CptLof = CptLof;
-	this->CptIno = CptIno;
-	this->CptCmt = CptCmt;
-
 	mask = {CPT, CPTSRF, CPTTYP, CPTVER, CPTSUP, CPTTBL, CPTQTB, CPTJOB, CPTLOF, CPTINO, CPTCMT};
 };
 
@@ -552,11 +547,11 @@ PnlWznmQryDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMQRYDETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmQryDetail::DpchAppDo::getSrefsMask() {

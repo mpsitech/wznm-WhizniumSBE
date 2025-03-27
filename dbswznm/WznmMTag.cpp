@@ -23,14 +23,14 @@ WznmMTag::WznmMTag(
 			, const string osrefWznmKTaggrp
 			, const ubigint refJTitle
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMCapability = refWznmMCapability;
-	this->sref = sref;
-	this->osrefWznmKTaggrp = osrefWznmKTaggrp;
-	this->refJTitle = refJTitle;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMCapability(refWznmMCapability)
+			, sref(sref)
+			, osrefWznmKTaggrp(osrefWznmKTaggrp)
+			, refJTitle(refJTitle)
+			, Title(Title)
+		{
 };
 
 bool WznmMTag::operator==(

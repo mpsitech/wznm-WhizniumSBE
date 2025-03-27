@@ -2093,7 +2093,7 @@ void WznmWrweb::wrEvthdlsJs( // ALL cons
 										if (first) first = false;
 										else outfile << ",";
 
-										outfile << "\"" << qco->Short << "\"";
+										outfile << "\"" << ((qco->Short != "") ? qco->Short : qco->sref) << "\"";
 									};
 								};
 								outfile << "]);" << endl;

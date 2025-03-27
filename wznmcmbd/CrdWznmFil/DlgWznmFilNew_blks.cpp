@@ -145,9 +145,8 @@ DlgWznmFilNew::ContIac::ContIac(
 			const uint numFDse
 		) :
 			Block()
+			, numFDse(numFDse)
 		{
-	this->numFDse = numFDse;
-
 	mask = {NUMFDSE};
 };
 
@@ -201,7 +200,7 @@ void DlgWznmFilNew::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFDse"] = numFDse;
+	me["numFDse"] = (Json::Value::UInt) numFDse;
 };
 
 void DlgWznmFilNew::ContIac::writeXML(
@@ -257,14 +256,13 @@ DlgWznmFilNew::ContIacDet::ContIacDet(
 			, const string& TxfCmt
 		) :
 			Block()
+			, TxfFnm(TxfFnm)
+			, numFPupRet(numFPupRet)
+			, TxfReu(TxfReu)
+			, numFPupCnt(numFPupCnt)
+			, numFPupMim(numFPupMim)
+			, TxfCmt(TxfCmt)
 		{
-	this->TxfFnm = TxfFnm;
-	this->numFPupRet = numFPupRet;
-	this->TxfReu = TxfReu;
-	this->numFPupCnt = numFPupCnt;
-	this->numFPupMim = numFPupMim;
-	this->TxfCmt = TxfCmt;
-
 	mask = {TXFFNM, NUMFPUPRET, TXFREU, NUMFPUPCNT, NUMFPUPMIM, TXFCMT};
 };
 
@@ -329,10 +327,10 @@ void DlgWznmFilNew::ContIacDet::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["TxfFnm"] = TxfFnm;
-	me["numFPupRet"] = numFPupRet;
+	me["numFPupRet"] = (Json::Value::UInt) numFPupRet;
 	me["TxfReu"] = TxfReu;
-	me["numFPupCnt"] = numFPupCnt;
-	me["numFPupMim"] = numFPupMim;
+	me["numFPupCnt"] = (Json::Value::UInt) numFPupCnt;
+	me["numFPupMim"] = (Json::Value::UInt) numFPupMim;
 	me["TxfCmt"] = TxfCmt;
 };
 
@@ -394,9 +392,8 @@ DlgWznmFilNew::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -408,7 +405,7 @@ void DlgWznmFilNew::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 };
 
 void DlgWznmFilNew::ContInf::writeXML(
@@ -496,9 +493,8 @@ DlgWznmFilNew::StatShr::StatShr(
 			const bool ButDneActive
 		) :
 			Block()
+			, ButDneActive(ButDneActive)
 		{
-	this->ButDneActive = ButDneActive;
-
 	mask = {BUTDNEACTIVE};
 };
 
@@ -561,9 +557,8 @@ DlgWznmFilNew::StatShrDet::StatShrDet(
 			const bool ButCreActive
 		) :
 			Block()
+			, ButCreActive(ButCreActive)
 		{
-	this->ButCreActive = ButCreActive;
-
 	mask = {BUTCREACTIVE};
 };
 
@@ -626,9 +621,8 @@ DlgWznmFilNew::StatShrFil::StatShrFil(
 			const bool UldActive
 		) :
 			Block()
+			, UldActive(UldActive)
 		{
-	this->UldActive = UldActive;
-
 	mask = {ULDACTIVE};
 };
 

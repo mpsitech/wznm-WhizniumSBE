@@ -23,14 +23,14 @@ WznmMSequence::WznmMSequence(
 			, const string sref
 			, const string Title
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->appRefWznmMApp = appRefWznmMApp;
-	this->appNum = appNum;
-	this->sref = sref;
-	this->Title = Title;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, appRefWznmMApp(appRefWznmMApp)
+			, appNum(appNum)
+			, sref(sref)
+			, Title(Title)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMSequence::operator==(

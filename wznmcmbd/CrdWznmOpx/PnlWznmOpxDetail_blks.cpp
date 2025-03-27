@@ -52,12 +52,11 @@ PnlWznmOpxDetail::ContIac::ContIac(
 			, const string& TxfSqkExa
 		) :
 			Block()
+			, ChkShd(ChkShd)
+			, TxfCmt(TxfCmt)
+			, numFPupSqkJti(numFPupSqkJti)
+			, TxfSqkExa(TxfSqkExa)
 		{
-	this->ChkShd = ChkShd;
-	this->TxfCmt = TxfCmt;
-	this->numFPupSqkJti = numFPupSqkJti;
-	this->TxfSqkExa = TxfSqkExa;
-
 	mask = {CHKSHD, TXFCMT, NUMFPUPSQKJTI, TXFSQKEXA};
 };
 
@@ -119,7 +118,7 @@ void PnlWznmOpxDetail::ContIac::writeJSON(
 
 	me["ChkShd"] = ChkShd;
 	me["TxfCmt"] = TxfCmt;
-	me["numFPupSqkJti"] = numFPupSqkJti;
+	me["numFPupSqkJti"] = (Json::Value::UInt) numFPupSqkJti;
 	me["TxfSqkExa"] = TxfSqkExa;
 };
 
@@ -179,11 +178,10 @@ PnlWznmOpxDetail::ContInf::ContInf(
 			, const string& TxtSqkTit
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtOpk(TxtOpk)
+			, TxtSqkTit(TxtSqkTit)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtOpk = TxtOpk;
-	this->TxtSqkTit = TxtSqkTit;
-
 	mask = {TXTSRF, TXTOPK, TXTSQKTIT};
 };
 
@@ -301,25 +299,24 @@ PnlWznmOpxDetail::StatShr::StatShr(
 			, const bool TxfSqkExaActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxtOpkActive(TxtOpkActive)
+			, ButOpkViewAvail(ButOpkViewAvail)
+			, ButOpkViewActive(ButOpkViewActive)
+			, ChkShdActive(ChkShdActive)
+			, TxfCmtActive(TxfCmtActive)
+			, ButSqkNewAvail(ButSqkNewAvail)
+			, ButSqkDeleteAvail(ButSqkDeleteAvail)
+			, PupSqkJtiAvail(PupSqkJtiAvail)
+			, PupSqkJtiActive(PupSqkJtiActive)
+			, ButSqkJtiEditAvail(ButSqkJtiEditAvail)
+			, TxtSqkTitAvail(TxtSqkTitAvail)
+			, TxtSqkTitActive(TxtSqkTitActive)
+			, TxfSqkExaAvail(TxfSqkExaAvail)
+			, TxfSqkExaActive(TxfSqkExaActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxtOpkActive = TxtOpkActive;
-	this->ButOpkViewAvail = ButOpkViewAvail;
-	this->ButOpkViewActive = ButOpkViewActive;
-	this->ChkShdActive = ChkShdActive;
-	this->TxfCmtActive = TxfCmtActive;
-	this->ButSqkNewAvail = ButSqkNewAvail;
-	this->ButSqkDeleteAvail = ButSqkDeleteAvail;
-	this->PupSqkJtiAvail = PupSqkJtiAvail;
-	this->PupSqkJtiActive = PupSqkJtiActive;
-	this->ButSqkJtiEditAvail = ButSqkJtiEditAvail;
-	this->TxtSqkTitAvail = TxtSqkTitAvail;
-	this->TxtSqkTitActive = TxtSqkTitActive;
-	this->TxfSqkExaAvail = TxfSqkExaAvail;
-	this->TxfSqkExaActive = TxfSqkExaActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXTOPKACTIVE, BUTOPKVIEWAVAIL, BUTOPKVIEWACTIVE, CHKSHDACTIVE, TXFCMTACTIVE, BUTSQKNEWAVAIL, BUTSQKDELETEAVAIL, PUPSQKJTIAVAIL, PUPSQKJTIACTIVE, BUTSQKJTIEDITAVAIL, TXTSQKTITAVAIL, TXTSQKTITACTIVE, TXFSQKEXAAVAIL, TXFSQKEXAACTIVE};
 };
 

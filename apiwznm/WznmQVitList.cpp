@@ -22,11 +22,12 @@ WznmQVitList::WznmQVitList(
 			, const string sref
 			, const string Title
 			, const string stubVecRefWznmMVector
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->stubVecRefWznmMVector = stubVecRefWznmMVector;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, stubVecRefWznmMVector(stubVecRefWznmMVector)
+		{
 };
 
 bool WznmQVitList::readXML(

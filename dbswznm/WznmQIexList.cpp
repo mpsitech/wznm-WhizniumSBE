@@ -28,17 +28,18 @@ WznmQIexList::WznmQIexList(
 			, const ubigint refWznmMVersion
 			, const string stubRefWznmMVersion
 			, const string Minversion
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Short = Short;
-	this->Title = Title;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->Minversion = Minversion;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Short(Short)
+			, Title(Title)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, Minversion(Minversion)
+		{
 };
 
 void WznmQIexList::writeJSON(

@@ -37,26 +37,27 @@ WznmQQryList::WznmQQryList(
 			, const string stubRefWznmMTable
 			, const ubigint qtbRefWznmMTable
 			, const string stubQtbRefWznmMTable
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->supRefWznmMQuery = supRefWznmMQuery;
-	this->stubSupRefWznmMQuery = stubSupRefWznmMQuery;
-	this->supIxVSubrole = supIxVSubrole;
-	this->srefSupIxVSubrole = srefSupIxVSubrole;
-	this->titSupIxVSubrole = titSupIxVSubrole;
-	this->refWznmMTable = refWznmMTable;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->qtbRefWznmMTable = qtbRefWznmMTable;
-	this->stubQtbRefWznmMTable = stubQtbRefWznmMTable;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, supRefWznmMQuery(supRefWznmMQuery)
+			, stubSupRefWznmMQuery(stubSupRefWznmMQuery)
+			, supIxVSubrole(supIxVSubrole)
+			, srefSupIxVSubrole(srefSupIxVSubrole)
+			, titSupIxVSubrole(titSupIxVSubrole)
+			, refWznmMTable(refWznmMTable)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, qtbRefWznmMTable(qtbRefWznmMTable)
+			, stubQtbRefWznmMTable(stubQtbRefWznmMTable)
+		{
 };
 
 void WznmQQryList::writeJSON(

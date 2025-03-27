@@ -21,12 +21,12 @@ WznmJMImpexpcolStub::WznmJMImpexpcolStub(
 			, const ubigint refWznmMImpexpcol
 			, const ubigint x1RefWznmMVectoritem
 			, const ubigint refWznmMStub
-		) {
-
-	this->ref = ref;
-	this->refWznmMImpexpcol = refWznmMImpexpcol;
-	this->x1RefWznmMVectoritem = x1RefWznmMVectoritem;
-	this->refWznmMStub = refWznmMStub;
+		) :
+			ref(ref)
+			, refWznmMImpexpcol(refWznmMImpexpcol)
+			, x1RefWznmMVectoritem(x1RefWznmMVectoritem)
+			, refWznmMStub(refWznmMStub)
+		{
 };
 
 bool WznmJMImpexpcolStub::operator==(

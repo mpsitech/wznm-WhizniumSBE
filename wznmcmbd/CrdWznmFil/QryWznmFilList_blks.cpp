@@ -21,8 +21,8 @@ uint QryWznmFilList::VecVOrd::getIx(
 	string s = StrMod::lc(sref);
 
 	if (s == "reu") return REU;
-	if (s == "fnm") return FNM;
 	if (s == "ret") return RET;
+	if (s == "fnm") return FNM;
 	if (s == "own") return OWN;
 	if (s == "grp") return GRP;
 
@@ -33,8 +33,8 @@ string QryWznmFilList::VecVOrd::getSref(
 			const uint ix
 		) {
 	if (ix == REU) return("reu");
-	if (ix == FNM) return("fnm");
 	if (ix == RET) return("ret");
+	if (ix == FNM) return("fnm");
 	if (ix == OWN) return("own");
 	if (ix == GRP) return("grp");
 
@@ -65,10 +65,10 @@ void QryWznmFilList::StatApp::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["firstcol"] = firstcol;
-	me["jnumFirstdisp"] = jnumFirstdisp;
-	me["ncol"] = ncol;
-	me["ndisp"] = ndisp;
+	me["firstcol"] = (Json::Value::UInt) firstcol;
+	me["jnumFirstdisp"] = (Json::Value::UInt) jnumFirstdisp;
+	me["ncol"] = (Json::Value::UInt) ncol;
+	me["ndisp"] = (Json::Value::UInt) ndisp;
 };
 
 void QryWznmFilList::StatApp::writeXML(
@@ -104,11 +104,10 @@ QryWznmFilList::StatShr::StatShr(
 			, const uint nload
 		) :
 			Block()
+			, ntot(ntot)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->ntot = ntot;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -120,9 +119,9 @@ void QryWznmFilList::StatShr::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["ntot"] = ntot;
-	me["jnumFirstload"] = jnumFirstload;
-	me["nload"] = nload;
+	me["ntot"] = (Json::Value::UInt) ntot;
+	me["jnumFirstload"] = (Json::Value::UInt) jnumFirstload;
+	me["nload"] = (Json::Value::UInt) nload;
 };
 
 void QryWznmFilList::StatShr::writeXML(
@@ -179,10 +178,10 @@ QryWznmFilList::StgIac::StgIac(
 			, const uint nload
 		) :
 			Block()
+			, jnum(jnum)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->jnum = jnum;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -240,9 +239,9 @@ void QryWznmFilList::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["jnum"] = jnum;
-	me["jnumFirstload"] = jnumFirstload;
-	me["nload"] = nload;
+	me["jnum"] = (Json::Value::UInt) jnum;
+	me["jnumFirstload"] = (Json::Value::UInt) jnumFirstload;
+	me["nload"] = (Json::Value::UInt) nload;
 };
 
 void QryWznmFilList::StgIac::writeXML(

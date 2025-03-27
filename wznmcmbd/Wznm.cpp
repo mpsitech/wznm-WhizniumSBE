@@ -45,10 +45,10 @@ ubigint Acv::addfile(
 	// set archived time to current time
 	Archived = time(NULL);
 
-	// determine file size in kB
+	// determine file size in byte
 	struct stat st;
 	stat(path.c_str(), &st);
-	Size = st.st_size / 1024;
+	Size = st.st_size;
 
 	dbswznm->tblwznmmfile->insertNewRec(&fil, grp, own, 0, refIxVTbl, refUref, osrefKContent, Archived, Filename, "", srefKMimetype, Size, Comment);
 	
@@ -589,6 +589,7 @@ void Wznm::updateVerste(
 
 void Wznm::getTagtits(
 			DbsWznm* dbswznm
+			, const ubigint refWznmMCapability
 			, const string& sref
 			, const string& osrefWznmKTaggrp
 			, const string& prj
@@ -605,7 +606,7 @@ void Wznm::getTagtits(
 
 	tagTits.clear();
 
-	if (dbswznm->tblwznmmtag->loadRecByCpbSrfGrp(0, sref, osrefWznmKTaggrp, &tag)) {
+	if (dbswznm->tblwznmmtag->loadRecByCpbSrfGrp(refWznmMCapability, sref, osrefWznmKTaggrp, &tag)) {
 		dbswznm->tblwznmjmtagtitle->loadTitByTagLoc(tag->ref, refLcl, tag->Title);
 		if (prj.length() > 0) tag->Title = StrMod::replacePlh(tag->Title, "prj", prj);
 		if (!iextits.empty()) tag->Title = StrMod::replacePlh(tag->Title, "iextit", iextits.find(refLcl)->second);
@@ -629,6 +630,7 @@ void Wznm::getTagtits(
 void Wznm::fillVecFromTaggrp(
 			DbsWznm* dbswznm
 			, WznmMVector* vec
+			, const ubigint refWznmMCapability
 			, const string& osrefWznmKTaggrp
 			, const ubigint refLcl
 			, const vector<ubigint>& refsLcl
@@ -651,7 +653,7 @@ void Wznm::fillVecFromTaggrp(
 
 		dbswznm->tblwznmmvectoritem->insertNewRec(&vit, vec->ref, i+1, tag->sref, "", "", 0, "", "");
 
-		getTagtits(dbswznm, tag->sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
+		getTagtits(dbswznm, refWznmMCapability, tag->sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
 
 		if (!tagTits.empty()) {
 			if (noloc) {
@@ -2318,7 +2320,7 @@ void Wznm::getJobvars(
 	WznmAMJobVar* var = NULL;
 
 	string s;
-	bool Shr;
+	bool Shr = false;
 	unsigned int N;
 
 	bool first;
@@ -2709,6 +2711,7 @@ void OpengWznm::getIcsWznmVOppackByIxWznmVOpengtype(
 
 	if (ixWznmVOpengtype == VecWznmVOpengtype::WZNMOPD1) {
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMCOMPL);
+		push_back(icsWznmVOppack, VecWznmVOppack::WZNMCOMPLVIS);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMGEN);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMPRCFILE);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMPRCTREE);
@@ -2720,6 +2723,7 @@ void OpengWznm::getIcsWznmVOppackByIxWznmVOpengtype(
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRPYAPI);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRSRV);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRSWAPI);
+		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRVIS);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRVUE);
 		push_back(icsWznmVOppack, VecWznmVOppack::WZNMWRWEB);
 	} else if (ixWznmVOpengtype == VecWznmVOpengtype::WZNMOPD2) {
@@ -2742,6 +2746,9 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLDEPLOY);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLIEX);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLJTR);
+	} else if (ixWznmVOppack == VecWznmVOppack::WZNMCOMPLVIS) {
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLVISDBSTR);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCOMPLVISIMPEXP);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMCTPGENJTR) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMCTPGENJTR);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMCTPGENUI) {
@@ -2822,6 +2829,9 @@ void OpengWznm::getIcsWznmVDpchByIxWznmVOppack(
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSWAPIJOB);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSWAPIQTB);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRSWAPIVEC);
+	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRVIS) {
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVISDBSTR);
+		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVISIMPEXP);
 	} else if (ixWznmVOppack == VecWznmVOppack::WZNMWRVUE) {
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVUEBASE);
 		insert(icsWznmVDpch, VecWznmVDpch::DPCHINVWZNMWRVUECRD);
@@ -2851,72 +2861,75 @@ string StubWznm::getStub(
 			, const bool refresh
 		) {
 	if (ixWznmVStub == VecWznmVStub::STUBWZNMAPPSTD) return getStubAppStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMBLKSTD) return getStubBlkStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCALSTD) return getStubCalStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCAPSTD) return getStubCapStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCARSTD) return getStubCarStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCHKSTD) return getStubChkStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCMPSTD) return getStubCmpStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCONSREF) return getStubConSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCONSTD) return getStubConStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCPBSREF) return getStubCpbSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCPBSTD) return getStubCpbStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCTPSREF) return getStubCtpSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMCTPSTD) return getStubCtpStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMDLGSTD) return getStubDlgStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMEVTSTD) return getStubEvtStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMFEDSREF) return getStubFedSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMFEDSTD) return getStubFedStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMFILSTD) return getStubFilStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMGROUP) return getStubGroup(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMIELSTD) return getStubIelStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMIEXSTD) return getStubIexStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMIMESTD) return getStubImeStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMJOBSTD) return getStubJobStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMLIBSREF) return getStubLibSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMLIBSTD) return getStubLibStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMLOCSREF) return getStubLocSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMLOCSTD) return getStubLocStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMMCHSREF) return getStubMchSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMMCHSTD) return getStubMchStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMMDLSTD) return getStubMdlStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMMTDSTD) return getStubMtdStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMOPKSTD) return getStubOpkStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMOPXSTD) return getStubOpxStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMOWNER) return getStubOwner(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPNLSTD) return getStubPnlStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPRJSHORT) return getStubPrjShort(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPRJSTD) return getStubPrjStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPRSSTD) return getStubPrsStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMPSTSTD) return getStubPstStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMQCOSTD) return getStubQcoStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMQMDSTD) return getStubQmdStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMQRYSTD) return getStubQryStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMRELSTD) return getStubRelStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMRLSSTD) return getStubRlsStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMRTBSTD) return getStubRtbStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMRTDSTD) return getStubRtdStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMRTJSTD) return getStubRtjStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMSBSSTD) return getStubSbsStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMSEQSTD) return getStubSeqStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMSESMENU) return getStubSesMenu(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMSESSTD) return getStubSesStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMSGESTD) return getStubSgeStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMSQKSTD) return getStubSqkStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMSTBSTD) return getStubStbStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMSTESTD) return getStubSteStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMTAGSTD) return getStubTagStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMTBLSTD) return getStubTblStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMTCOSREF) return getStubTcoSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMTCOSTD) return getStubTcoStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMUSGSTD) return getStubUsgStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMUSRSTD) return getStubUsrStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVECSTD) return getStubVecStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVERNO) return getStubVerNo(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVERSHORT) return getStubVerShort(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVERSTD) return getStubVerStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVITSREF) return getStubVitSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
-	else if (ixWznmVStub == VecWznmVStub::STUBWZNMVITSTD) return getStubVitStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMBLKSTD) return getStubBlkStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMBOXSTD) return getStubBoxStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCALSTD) return getStubCalStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCAPSTD) return getStubCapStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCARSTD) return getStubCarStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCHKSTD) return getStubChkStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCMPSTD) return getStubCmpStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCONSREF) return getStubConSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCONSTD) return getStubConStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCPBSREF) return getStubCpbSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCPBSTD) return getStubCpbStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCTPSREF) return getStubCtpSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMCTPSTD) return getStubCtpStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMDLGSTD) return getStubDlgStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMEVTSTD) return getStubEvtStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMFEDSREF) return getStubFedSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMFEDSTD) return getStubFedStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMFILSTD) return getStubFilStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMGROUP) return getStubGroup(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMIELSTD) return getStubIelStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMIEXSTD) return getStubIexStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMIMESTD) return getStubImeStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMJOBSTD) return getStubJobStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMLIBSREF) return getStubLibSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMLIBSTD) return getStubLibStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMLOCSREF) return getStubLocSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMLOCSTD) return getStubLocStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMMCHSREF) return getStubMchSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMMCHSTD) return getStubMchStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMMDLSTD) return getStubMdlStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMMTDSTD) return getStubMtdStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMOPKSTD) return getStubOpkStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMOPXSTD) return getStubOpxStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMOWNER) return getStubOwner(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMPNLSTD) return getStubPnlStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMPRJSHORT) return getStubPrjShort(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMPRJSTD) return getStubPrjStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMPRSSTD) return getStubPrsStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMPSTSTD) return getStubPstStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMQCOSTD) return getStubQcoStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMQMDSTD) return getStubQmdStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMQRYSTD) return getStubQryStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMRELSTD) return getStubRelStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMRLSSTD) return getStubRlsStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMRTBSTD) return getStubRtbStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMRTDSTD) return getStubRtdStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMRTJSTD) return getStubRtjStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMSBSSTD) return getStubSbsStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMSEQSTD) return getStubSeqStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMSESMENU) return getStubSesMenu(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMSESSTD) return getStubSesStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMSGESTD) return getStubSgeStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMSHTSTD) return getStubShtStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMSQKSTD) return getStubSqkStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMSTBSTD) return getStubStbStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMSTESTD) return getStubSteStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMTAGSTD) return getStubTagStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMTBLSTD) return getStubTblStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMTCOSREF) return getStubTcoSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMTCOSTD) return getStubTcoStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMUSGSTD) return getStubUsgStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMUSRSTD) return getStubUsrStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMVECSTD) return getStubVecStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMVERNO) return getStubVerNo(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMVERSHORT) return getStubVerShort(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMVERSTD) return getStubVerStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMVISSTD) return getStubVisStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMVITSREF) return getStubVitSref(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
+	if (ixWznmVStub == VecWznmVStub::STUBWZNMVITSTD) return getStubVitStd(dbswznm, ref, ixWznmVLocale, ixVNonetype, stcch, strefSub, refresh);
 
 	return("");
 };
@@ -3003,6 +3016,55 @@ string StubWznm::getStubBlkStd(
 				if (!stit) stit = stcch->addStit(stref);
 				stit->stub = stub;
 			};
+		};
+	};
+
+	return stub;
+};
+
+string StubWznm::getStubBoxStd(
+			DbsWznm* dbswznm
+			, const ubigint ref
+			, const uint ixWznmVLocale
+			, const uint ixVNonetype
+			, Stcch* stcch
+			, stcchitemref_t* strefSub
+			, const bool refresh
+		) {
+	// example: "TblBrlyMLocation (32, 65)"
+	string stub;
+
+	WznmMBox* rec = NULL;
+
+	stcchitemref_t stref(VecWznmVStub::STUBWZNMBOXSTD, ref, ixWznmVLocale);
+	Stcchitem* stit = NULL;
+
+	if (stcch) {
+		stit = stcch->getStitByStref(stref);
+		if (stit && !refresh) {
+			if (strefSub) stcch->link(stref, *strefSub);
+			return stit->stub;
+		};
+	};
+
+	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
+	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
+	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no box)";
+	};
+
+	if (ref != 0) {
+		if (dbswznm->tblwznmmbox->loadRecByRef(ref, &rec)) {
+			if (stcch && !stit) stit = stcch->addStit(stref);
+			// IP getStubBoxStd --- IBEGIN
+			if (rec->unvIxWznmVMaintable == VecWznmVMaintable::TBLWZNMMIMPEXP) stub = getStubImeStd(dbswznm, rec->unvUref, ixWznmVLocale, ixVNonetype, stcch, &stref);
+			else if (rec->unvIxWznmVMaintable == VecWznmVMaintable::TBLWZNMMTABLE) stub = getStubTblStd(dbswznm, rec->unvUref, ixWznmVLocale, ixVNonetype, stcch, &stref);
+			else if (rec->unvIxWznmVMaintable == VecWznmVMaintable::TBLWZNMMVECTOR) stub = getStubVecStd(dbswznm, rec->unvUref, ixWznmVLocale, ixVNonetype, stcch, &stref);
+			stub += " (" + to_string(rec->x) + ", " + to_string(rec->y) + ")";
+			// IP getStubBoxStd --- IEND
+			if (stit) stit->stub = stub;
+			delete rec;
 		};
 	};
 
@@ -5203,6 +5265,48 @@ string StubWznm::getStubSgeStd(
 	return stub;
 };
 
+string StubWznm::getStubShtStd(
+			DbsWznm* dbswznm
+			, const ubigint ref
+			, const uint ixWznmVLocale
+			, const uint ixVNonetype
+			, Stcch* stcch
+			, stcchitemref_t* strefSub
+			, const bool refresh
+		) {
+	// example: "fine structure"
+	string stub;
+
+	stcchitemref_t stref(VecWznmVStub::STUBWZNMSHTSTD, ref, ixWznmVLocale);
+	Stcchitem* stit = NULL;
+
+	if (stcch) {
+		stit = stcch->getStitByStref(stref);
+		if (stit && !refresh) {
+			if (strefSub) stcch->link(stref, *strefSub);
+			return stit->stub;
+		};
+	};
+
+	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
+	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
+	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no sheet)";
+	};
+
+	if (ref != 0) {
+		if (dbswznm->tblwznmmsheet->loadTitByRef(ref, stub)) {
+			if (stcch) {
+				if (!stit) stit = stcch->addStit(stref);
+				stit->stub = stub;
+			};
+		};
+	};
+
+	return stub;
+};
+
 string StubWznm::getStubSqkStd(
 			DbsWznm* dbswznm
 			, const ubigint ref
@@ -5780,6 +5884,52 @@ string StubWznm::getStubVerStd(
 	return stub;
 };
 
+string StubWznm::getStubVisStd(
+			DbsWznm* dbswznm
+			, const ubigint ref
+			, const uint ixWznmVLocale
+			, const uint ixVNonetype
+			, Stcch* stcch
+			, stcchitemref_t* strefSub
+			, const bool refresh
+		) {
+	// example: "BeamRelay v0.1.1 database structure variant 3"
+	string stub;
+
+	WznmMVisual* rec = NULL;
+
+	stcchitemref_t stref(VecWznmVStub::STUBWZNMVISSTD, ref, ixWznmVLocale);
+	Stcchitem* stit = NULL;
+
+	if (stcch) {
+		stit = stcch->getStitByStref(stref);
+		if (stit && !refresh) {
+			if (strefSub) stcch->link(stref, *strefSub);
+			return stit->stub;
+		};
+	};
+
+	if (ixVNonetype == Stub::VecVNonetype::DASH) stub = "-";
+	else if (ixVNonetype == Stub::VecVNonetype::SHORT) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(none)";
+	} else if (ixVNonetype == Stub::VecVNonetype::FULL) {
+		if (ixWznmVLocale == VecWznmVLocale::ENUS) stub = "(no visualization)";
+	};
+
+	if (ref != 0) {
+		if (dbswznm->tblwznmmvisual->loadRecByRef(ref, &rec)) {
+			if (stcch && !stit) stit = stcch->addStit(stref);
+			// IP getStubVisStd --- IBEGIN
+			stub = getStubVerStd(dbswznm, rec->verRefWznmMVersion, ixWznmVLocale, ixVNonetype, stcch, &stref) + " " + VecWznmVMVisualBasetype::getTitle(rec->ixVBasetype, ixWznmVLocale) + " variant " + to_string(rec->verNum);
+			// IP getStubVisStd --- IEND
+			if (stit) stit->stub = stub;
+			delete rec;
+		};
+	};
+
+	return stub;
+};
+
 string StubWznm::getStubVitSref(
 			DbsWznm* dbswznm
 			, const ubigint ref
@@ -5911,20 +6061,20 @@ ContInfWznmAlert::ContInfWznmAlert(
 			, const string& TxtMsg12
 		) :
 			Block()
+			, TxtCpt(TxtCpt)
+			, TxtMsg1(TxtMsg1)
+			, TxtMsg2(TxtMsg2)
+			, TxtMsg3(TxtMsg3)
+			, TxtMsg4(TxtMsg4)
+			, TxtMsg5(TxtMsg5)
+			, TxtMsg6(TxtMsg6)
+			, TxtMsg7(TxtMsg7)
+			, TxtMsg8(TxtMsg8)
+			, TxtMsg9(TxtMsg9)
+			, TxtMsg10(TxtMsg10)
+			, TxtMsg11(TxtMsg11)
+			, TxtMsg12(TxtMsg12)
 		{
-	this->TxtCpt = TxtCpt;
-	this->TxtMsg1 = TxtMsg1;
-	this->TxtMsg2 = TxtMsg2;
-	this->TxtMsg3 = TxtMsg3;
-	this->TxtMsg4 = TxtMsg4;
-	this->TxtMsg5 = TxtMsg5;
-	this->TxtMsg6 = TxtMsg6;
-	this->TxtMsg7 = TxtMsg7;
-	this->TxtMsg8 = TxtMsg8;
-	this->TxtMsg9 = TxtMsg9;
-	this->TxtMsg10 = TxtMsg10;
-	this->TxtMsg11 = TxtMsg11;
-	this->TxtMsg12 = TxtMsg12;
 
 	mask = {TXTCPT, TXTMSG1, TXTMSG2, TXTMSG3, TXTMSG4, TXTMSG5, TXTMSG6, TXTMSG7, TXTMSG8, TXTMSG9, TXTMSG10, TXTMSG11, TXTMSG12};
 };
@@ -6030,8 +6180,9 @@ set<uint> ContInfWznmAlert::compare(
 
 DpchWznm::DpchWznm(
 			const uint ixWznmVDpch
-		) {
-	this->ixWznmVDpch = ixWznmVDpch;
+		) :
+			ixWznmVDpch(ixWznmVDpch)
+		{
 };
 
 DpchWznm::~DpchWznm() {
@@ -6047,9 +6198,9 @@ DpchInvWznm::DpchInvWznm(
 			, const ubigint jref
 		) :
 			DpchWznm(ixWznmVDpch)
+			, oref(oref)
+			, jref(jref)
 		{
-	this->oref = oref;
-	this->jref = jref;
 };
 
 DpchInvWznm::~DpchInvWznm() {
@@ -6097,11 +6248,11 @@ DpchRetWznm::DpchRetWznm(
 			, const utinyint pdone
 		) :
 			DpchWznm(ixWznmVDpch)
+			, scrOref(scrOref)
+			, scrJref(scrJref)
+			, ixOpVOpres(ixOpVOpres)
+			, pdone(pdone)
 		{
-	this->scrOref = scrOref;
-	this->scrJref = scrJref;
-	this->ixOpVOpres = ixOpVOpres;
-	this->pdone = pdone;
 };
 
 DpchRetWznm::~DpchRetWznm() {

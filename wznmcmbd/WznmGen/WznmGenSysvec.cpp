@@ -208,7 +208,7 @@ void WznmGenSysvec::fillVecDit(
 				dbswznm->tblwznmmvectoritem->insertNewRec(&vit, vec->ref, i+1, ditcon->sref.substr(3), "", "", 0, ditcon->Title, "");
 
 				if (ditcon->srefsWznmMTag.length() > 0) {
-					Wznm::getTagtits(dbswznm, ditcon->srefsWznmMTag, "", "", {}, refLcl, refsLcl, tagTits, false);
+					Wznm::getTagtits(dbswznm, 0, ditcon->srefsWznmMTag, "", "", {}, refLcl, refsLcl, tagTits, false);
 
 					if (!tagTits.empty()) {
 						for (unsigned int j = 0; j < refsLcl.size(); j++) {
@@ -538,8 +538,8 @@ void WznmGenSysvec::fillVecFeatgroup(
 
 	string Jobsref;
 
-	Wznm::getTagtits(dbswznm, "method", "", "", {}, refLcl, refsLcl, methodTits, false);
-	Wznm::getTagtits(dbswznm, "var", "", "", {}, refLcl, refsLcl, varTits, false);
+	Wznm::getTagtits(dbswznm, 0, "method", "", "", {}, refLcl, refsLcl, methodTits, false);
+	Wznm::getTagtits(dbswznm, 0, "var", "", "", {}, refLcl, refsLcl, varTits, false);
 
 	// find VecXxxxVFeatgroup
 	if (dbswznm->tblwznmmvector->loadRefByVerSrf(refWznmMVersion, "Vec" + Prjshort + "VFeatgroup", refVec)) {
@@ -638,7 +638,7 @@ void WznmGenSysvec::fillVecOpengtype(
 
 	// find VecXxxxVOpengtype
 	if (dbswznm->tblwznmmvector->loadRefByVerSrf(refWznmMVersion, "Vec" + Prjshort + "VOpengtype", refVec)) {
-		Wznm::getTagtits(dbswznm, "with", "", "", {}, refLcl, refsLcl, tagTits, false);
+		Wznm::getTagtits(dbswznm, 0, "with", "", "", {}, refLcl, refsLcl, tagTits, false);
 
 		// one vector item for each operation engine
 		dbswznm->tblwznmmcomponent->loadRstBySQL("SELECT * FROM TblWznmMComponent WHERE refWznmMVersion = " + to_string(refWznmMVersion) + " AND ixVBasetype = " + to_string(VecWznmVMComponentBasetype::OPENG)
@@ -880,7 +880,7 @@ void WznmGenSysvec::fillVecTag(
 			if ((*it).find('.') == string::npos) {
 				dbswznm->tblwznmmvectoritem->appendNewRecToRst(vits, &vit, refVec, vitcnt++, *it, "", "", 0, "", "");
 
-				Wznm::getTagtits(dbswznm, *it, "", prj, {}, refLcl, refsLcl, tagTits, false);
+				Wznm::getTagtits(dbswznm, 0, *it, "", prj, {}, refLcl, refsLcl, tagTits, false);
 
 				if (!tagTits.empty()) {
 					for (unsigned int j = 0; j < refsLcl.size(); j++) {

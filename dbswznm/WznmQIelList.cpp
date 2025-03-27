@@ -34,23 +34,24 @@ WznmQIelList::WznmQIelList(
 			, const uint ixVConvtype
 			, const string srefIxVConvtype
 			, const string titIxVConvtype
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Short = Short;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->imeRefWznmMImpexp = imeRefWznmMImpexp;
-	this->stubImeRefWznmMImpexp = stubImeRefWznmMImpexp;
-	this->refWznmMTablecol = refWznmMTablecol;
-	this->stubRefWznmMTablecol = stubRefWznmMTablecol;
-	this->ixVConvtype = ixVConvtype;
-	this->srefIxVConvtype = srefIxVConvtype;
-	this->titIxVConvtype = titIxVConvtype;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Short(Short)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, imeRefWznmMImpexp(imeRefWznmMImpexp)
+			, stubImeRefWznmMImpexp(stubImeRefWznmMImpexp)
+			, refWznmMTablecol(refWznmMTablecol)
+			, stubRefWznmMTablecol(stubRefWznmMTablecol)
+			, ixVConvtype(ixVConvtype)
+			, srefIxVConvtype(srefIxVConvtype)
+			, titIxVConvtype(titIxVConvtype)
+		{
 };
 
 void WznmQIelList::writeJSON(

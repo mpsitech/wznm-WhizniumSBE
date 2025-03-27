@@ -22,13 +22,13 @@ WznmAccRMUserUniversal::WznmAccRMUserUniversal(
 			, const uint unvIxWznmVMaintable
 			, const ubigint unvUref
 			, const uint ixWznmVRecaccess
-		) {
-
-	this->ref = ref;
-	this->refWznmMUser = refWznmMUser;
-	this->unvIxWznmVMaintable = unvIxWznmVMaintable;
-	this->unvUref = unvUref;
-	this->ixWznmVRecaccess = ixWznmVRecaccess;
+		) :
+			ref(ref)
+			, refWznmMUser(refWznmMUser)
+			, unvIxWznmVMaintable(unvIxWznmVMaintable)
+			, unvUref(unvUref)
+			, ixWznmVRecaccess(ixWznmVRecaccess)
+		{
 };
 
 bool WznmAccRMUserUniversal::operator==(

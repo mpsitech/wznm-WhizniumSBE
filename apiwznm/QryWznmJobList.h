@@ -29,11 +29,11 @@ namespace QryWznmJobList {
 
 	public:
 		static const Sbecore::uint GBL = 1;
-		static const Sbecore::uint REU = 2;
-		static const Sbecore::uint RET = 3;
+		static const Sbecore::uint SRF = 2;
+		static const Sbecore::uint TYP = 3;
 		static const Sbecore::uint VER = 4;
-		static const Sbecore::uint TYP = 5;
-		static const Sbecore::uint SRF = 6;
+		static const Sbecore::uint RET = 5;
+		static const Sbecore::uint REU = 6;
 
 		static Sbecore::uint getIx(const std::string& sref);
 		static std::string getSref(const Sbecore::uint ix);

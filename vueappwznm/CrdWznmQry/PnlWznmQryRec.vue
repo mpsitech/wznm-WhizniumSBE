@@ -47,30 +47,22 @@
 			</v-row>
 			<v-row>
 				<v-col cols="12" md="6">
-					<PnlWznmQryAOrder
-						v-on:request="handleRequest"
-						ref="PnlWznmQryAOrder"
-						:scrJref=statshr.scrJrefAOrder
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmQryAClause
 						v-on:request="handleRequest"
 						ref="PnlWznmQryAClause"
 						:scrJref=statshr.scrJrefAClause
 					/>
 				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmQryAOrder
+						v-on:request="handleRequest"
+						ref="PnlWznmQryAOrder"
+						:scrJref=statshr.scrJrefAOrder
+					/>
+				</v-col>
 			</v-row>
 			<v-divider/>
 			<v-row>
-				<v-col cols="12" md="6">
-					<PnlWznmQrySup1NQuery
-						v-on:crdopen="handleCrdopen"
-						v-on:request="handleRequest"
-						ref="PnlWznmQrySup1NQuery"
-						:scrJref=statshr.scrJrefSup1NQuery
-					/>
-				</v-col>
 				<v-col cols="12" md="6">
 					<PnlWznmQry1NQuerymod
 						v-on:crdopen="handleCrdopen"
@@ -85,6 +77,14 @@
 						v-on:request="handleRequest"
 						ref="PnlWznmQryQry1NQuerycol"
 						:scrJref=statshr.scrJrefQry1NQuerycol
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmQrySup1NQuery
+						v-on:crdopen="handleCrdopen"
+						v-on:request="handleRequest"
+						ref="PnlWznmQrySup1NQuery"
+						:scrJref=statshr.scrJrefSup1NQuery
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -121,11 +121,11 @@
 	/*
 	*/
 	import PnlWznmQryDetail from './PnlWznmQryDetail';
-	import PnlWznmQryAOrder from './PnlWznmQryAOrder';
 	import PnlWznmQryAClause from './PnlWznmQryAClause';
-	import PnlWznmQrySup1NQuery from './PnlWznmQrySup1NQuery';
+	import PnlWznmQryAOrder from './PnlWznmQryAOrder';
 	import PnlWznmQry1NQuerymod from './PnlWznmQry1NQuerymod';
 	import PnlWznmQryQry1NQuerycol from './PnlWznmQryQry1NQuerycol';
+	import PnlWznmQrySup1NQuery from './PnlWznmQrySup1NQuery';
 	import PnlWznmQryMNTable from './PnlWznmQryMNTable';
 	import PnlWznmQryMNPanel from './PnlWznmQryMNPanel';
 	import PnlWznmQryMNDialog from './PnlWznmQryMNDialog';
@@ -147,11 +147,11 @@
 			/*
 			*/
 			PnlWznmQryDetail,
-			PnlWznmQryAOrder,
 			PnlWznmQryAClause,
-			PnlWznmQrySup1NQuery,
+			PnlWznmQryAOrder,
 			PnlWznmQry1NQuerymod,
 			PnlWznmQryQry1NQuerycol,
+			PnlWznmQrySup1NQuery,
 			PnlWznmQryMNTable,
 			PnlWznmQryMNPanel,
 			PnlWznmQryMNDialog
@@ -216,11 +216,11 @@
 						/*
 						*/
 						if (obj.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmQryDetail.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefAOrder) this.$refs.PnlWznmQryAOrder.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefAClause) this.$refs.PnlWznmQryAClause.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefSup1NQuery) this.$refs.PnlWznmQrySup1NQuery.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefAOrder) this.$refs.PnlWznmQryAOrder.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJref1NQuerymod) this.$refs.PnlWznmQry1NQuerymod.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefQry1NQuerycol) this.$refs.PnlWznmQryQry1NQuerycol.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefSup1NQuery) this.$refs.PnlWznmQrySup1NQuery.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefMNTable) this.$refs.PnlWznmQryMNTable.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefMNPanel) this.$refs.PnlWznmQryMNPanel.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefMNDialog) this.$refs.PnlWznmQryMNDialog.handleReply(obj);
@@ -254,11 +254,11 @@
 						/*
 						*/
 						if (obj.dpcheng.scrJref == this.statshr.scrJrefDetail) this.$refs.PnlWznmQryDetail.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefAOrder) this.$refs.PnlWznmQryAOrder.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefAClause) this.$refs.PnlWznmQryAClause.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSup1NQuery) this.$refs.PnlWznmQrySup1NQuery.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefAOrder) this.$refs.PnlWznmQryAOrder.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NQuerymod) this.$refs.PnlWznmQry1NQuerymod.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefQry1NQuerycol) this.$refs.PnlWznmQryQry1NQuerycol.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSup1NQuery) this.$refs.PnlWznmQrySup1NQuery.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNTable) this.$refs.PnlWznmQryMNTable.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNPanel) this.$refs.PnlWznmQryMNPanel.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNDialog) this.$refs.PnlWznmQryMNDialog.handleUpdate(obj);

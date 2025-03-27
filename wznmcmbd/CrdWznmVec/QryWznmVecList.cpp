@@ -238,9 +238,9 @@ void QryWznmVecList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::TGR) sqlstr += " ORDER BY TblWznmMVector.osrefWznmKTaggrp ASC";
+	if (preIxOrd == VecVOrd::HKT) sqlstr += " ORDER BY TblWznmMVector.hkIxVTbl ASC";
 	else if (preIxOrd == VecVOrd::HKU) sqlstr += " ORDER BY TblWznmMVector.hkUref ASC";
-	else if (preIxOrd == VecVOrd::HKT) sqlstr += " ORDER BY TblWznmMVector.hkIxVTbl ASC";
+	else if (preIxOrd == VecVOrd::TGR) sqlstr += " ORDER BY TblWznmMVector.osrefWznmKTaggrp ASC";
 	else if (preIxOrd == VecVOrd::VER) sqlstr += " ORDER BY TblWznmMVector.refWznmMVersion ASC";
 	else if (preIxOrd == VecVOrd::TYP) sqlstr += " ORDER BY TblWznmMVector.ixVBasetype ASC";
 	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMVector.sref ASC";
@@ -276,14 +276,14 @@ void QryWznmVecList::fetch(
 			rec->stubRefWznmMVersion = StubWznm::getStubVerStd(dbswznm, rec->refWznmMVersion, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			rec->srefHkIxVTbl = VecWznmVMVectorHkTbl::getSref(rec->hkIxVTbl);
 			rec->titHkIxVTbl = VecWznmVMVectorHkTbl::getTitle(rec->hkIxVTbl, ixWznmVLocale);
-			if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::TBL) {
-				rec->stubHkUref = StubWznm::getStubTblStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::JOB) {
+			if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::JOB) {
 				rec->stubHkUref = StubWznm::getStubJobStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
-			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::IME) {
-				rec->stubHkUref = StubWznm::getStubImeStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::TBL) {
+				rec->stubHkUref = StubWznm::getStubTblStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::IEX) {
 				rec->stubHkUref = StubWznm::getStubIexStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
+			} else if (rec->hkIxVTbl == VecWznmVMVectorHkTbl::IME) {
+				rec->stubHkUref = StubWznm::getStubImeStd(dbswznm, rec->hkUref, ixWznmVLocale, Stub::VecVNonetype::SHORT, stcch);
 			} else rec->stubHkUref = "-";
 			rec->titOsrefWznmKTaggrp = dbswznm->getKlstTitleBySref(VecWznmVKeylist::KLSTWZNMKTAGGRP, rec->osrefWznmKTaggrp, ixWznmVLocale);
 		};

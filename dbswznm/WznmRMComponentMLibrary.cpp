@@ -20,11 +20,11 @@ WznmRMComponentMLibrary::WznmRMComponentMLibrary(
 			const ubigint ref
 			, const ubigint refWznmMComponent
 			, const ubigint refWznmMLibrary
-		) {
-
-	this->ref = ref;
-	this->refWznmMComponent = refWznmMComponent;
-	this->refWznmMLibrary = refWznmMLibrary;
+		) :
+			ref(ref)
+			, refWznmMComponent(refWznmMComponent)
+			, refWznmMLibrary(refWznmMLibrary)
+		{
 };
 
 bool WznmRMComponentMLibrary::operator==(

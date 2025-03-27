@@ -21,12 +21,12 @@ WznmAMJobCmd::WznmAMJobCmd(
 			, const ubigint refWznmMJob
 			, const string sref
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmMJob = refWznmMJob;
-	this->sref = sref;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmMJob(refWznmMJob)
+			, sref(sref)
+			, Comment(Comment)
+		{
 };
 
 bool WznmAMJobCmd::operator==(

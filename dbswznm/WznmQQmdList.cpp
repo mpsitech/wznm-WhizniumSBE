@@ -34,23 +34,24 @@ WznmQQmdList::WznmQQmdList(
 			, const string titRefIxVTbl
 			, const ubigint refUref
 			, const string stubRefUref
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->qryRefWznmMQuery = qryRefWznmMQuery;
-	this->stubQryRefWznmMQuery = stubQryRefWznmMQuery;
-	this->refWznmMPreset = refWznmMPreset;
-	this->stubRefWznmMPreset = stubRefWznmMPreset;
-	this->refIxVTbl = refIxVTbl;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->refUref = refUref;
-	this->stubRefUref = stubRefUref;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, qryRefWznmMQuery(qryRefWznmMQuery)
+			, stubQryRefWznmMQuery(stubQryRefWznmMQuery)
+			, refWznmMPreset(refWznmMPreset)
+			, stubRefWznmMPreset(stubRefWznmMPreset)
+			, refIxVTbl(refIxVTbl)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, refUref(refUref)
+			, stubRefUref(stubRefUref)
+		{
 };
 
 void WznmQQmdList::writeJSON(

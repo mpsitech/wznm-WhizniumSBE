@@ -25,16 +25,16 @@ WznmMProject::WznmMProject(
 			, const string Title
 			, const string Giturl
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->grp = grp;
-	this->own = own;
-	this->refWznmMVersion = refWznmMVersion;
-	this->Short = Short;
-	this->Title = Title;
-	this->Giturl = Giturl;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, grp(grp)
+			, own(own)
+			, refWznmMVersion(refWznmMVersion)
+			, Short(Short)
+			, Title(Title)
+			, Giturl(Giturl)
+			, Comment(Comment)
+		{
 };
 
 bool WznmMProject::operator==(

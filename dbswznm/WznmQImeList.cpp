@@ -29,18 +29,19 @@ WznmQImeList::WznmQImeList(
 			, const string stubSupRefWznmMImpexp
 			, const ubigint refWznmMTable
 			, const string stubRefWznmMTable
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->refWznmMImpexpcplx = refWznmMImpexpcplx;
-	this->stubRefWznmMImpexpcplx = stubRefWznmMImpexpcplx;
-	this->supRefWznmMImpexp = supRefWznmMImpexp;
-	this->stubSupRefWznmMImpexp = stubSupRefWznmMImpexp;
-	this->refWznmMTable = refWznmMTable;
-	this->stubRefWznmMTable = stubRefWznmMTable;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, refWznmMImpexpcplx(refWznmMImpexpcplx)
+			, stubRefWznmMImpexpcplx(stubRefWznmMImpexpcplx)
+			, supRefWznmMImpexp(supRefWznmMImpexp)
+			, stubSupRefWznmMImpexp(stubSupRefWznmMImpexp)
+			, refWznmMTable(refWznmMTable)
+			, stubRefWznmMTable(stubRefWznmMTable)
+		{
 };
 
 void WznmQImeList::writeJSON(

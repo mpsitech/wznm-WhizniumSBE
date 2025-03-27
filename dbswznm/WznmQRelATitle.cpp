@@ -28,17 +28,18 @@ WznmQRelATitle::WznmQRelATitle(
 			, const ubigint x2RefWznmMLocale
 			, const string stubX2RefWznmMLocale
 			, const string Title
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->x1IxVType = x1IxVType;
-	this->srefX1IxVType = srefX1IxVType;
-	this->titX1IxVType = titX1IxVType;
-	this->x2RefWznmMLocale = x2RefWznmMLocale;
-	this->stubX2RefWznmMLocale = stubX2RefWznmMLocale;
-	this->Title = Title;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, x1IxVType(x1IxVType)
+			, srefX1IxVType(srefX1IxVType)
+			, titX1IxVType(titX1IxVType)
+			, x2RefWznmMLocale(x2RefWznmMLocale)
+			, stubX2RefWznmMLocale(stubX2RefWznmMLocale)
+			, Title(Title)
+		{
 };
 
 void WznmQRelATitle::writeJSON(

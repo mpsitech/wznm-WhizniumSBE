@@ -30,19 +30,20 @@ WznmQChkList::WznmQChkList(
 			, const string stubRefWznmMTable
 			, const ubigint refWznmMTablecol
 			, const string stubRefWznmMTablecol
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->refWznmMTable = refWznmMTable;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->refWznmMTablecol = refWznmMTablecol;
-	this->stubRefWznmMTablecol = stubRefWznmMTablecol;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, refWznmMTable(refWznmMTable)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, refWznmMTablecol(refWznmMTablecol)
+			, stubRefWznmMTablecol(stubRefWznmMTablecol)
+		{
 };
 
 void WznmQChkList::writeJSON(

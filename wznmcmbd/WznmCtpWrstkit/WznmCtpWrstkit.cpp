@@ -29,6 +29,7 @@ using namespace Xmlio;
 void WznmCtpWrstkit::addIJMModules(
 			DbsWznm* dbswznm
 			, IexWznmBui::ImeitemIMModule* mdl
+			, const ubigint refWznmMCapability
 			, const string& sref
 			, const string& osrefWznmKTaggrp
 			, const ubigint refLcl
@@ -39,7 +40,7 @@ void WznmCtpWrstkit::addIJMModules(
 
 	WznmMLocale* lcl = NULL;
 
-	Wznm::getTagtits(dbswznm, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
+	Wznm::getTagtits(dbswznm, refWznmMCapability, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
 
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];
@@ -47,9 +48,32 @@ void WznmCtpWrstkit::addIJMModules(
 	};
 };
 
+void WznmCtpWrstkit::addIJMCardTitles(
+			DbsWznm* dbswznm
+			, IexWznmBui::ImeitemIMCard* car
+			, const ubigint refWznmMCapability
+			, const string& sref
+			, const string& osrefWznmKTaggrp
+			, const ubigint refLcl
+			, const vector<ubigint>& refsLcl
+			, ListWznmMLocale& lcls
+		) {
+	map<ubigint,string> tagTits;
+
+	WznmMLocale* lcl = NULL;
+
+	Wznm::getTagtits(dbswznm, refWznmMCapability, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
+
+	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
+		lcl = lcls.nodes[i];
+		car->imeijmcardtitle.nodes.push_back(new IexWznmBui::ImeitemIJMCardTitle(lcl->sref, tagTits[lcl->ref]));
+	};
+};
+
 void WznmCtpWrstkit::addIAMTableTitles(
 			DbsWznm* dbswznm
 			, IexWznmDbs::ImeitemIMTable* tbl
+			, const ubigint refWznmMCapability
 			, const string& sref
 			, const uint ixVType
 			, const string& osrefWznmKTaggrp
@@ -63,7 +87,7 @@ void WznmCtpWrstkit::addIAMTableTitles(
 
 	vector<string> ss;
 
-	Wznm::getTagtits(dbswznm, sref + "." + VecWznmVAMTableTitleType::getSref(ixVType), osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
+	Wznm::getTagtits(dbswznm, refWznmMCapability, sref + "." + VecWznmVAMTableTitleType::getSref(ixVType), osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
 
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];
@@ -76,6 +100,7 @@ void WznmCtpWrstkit::addIAMTableTitles(
 void WznmCtpWrstkit::addIAMTablecolTitles(
 			DbsWznm* dbswznm
 			, IexWznmDbs::ImeitemIMTablecol* tco
+			, const ubigint refWznmMCapability
 			, const string& sref
 			, const uint ixVType
 			, const string& osrefWznmKTaggrp
@@ -87,8 +112,8 @@ void WznmCtpWrstkit::addIAMTablecolTitles(
 
 	WznmMLocale* lcl = NULL;
 
-	if (osrefWznmKTaggrp == "stdtco") Wznm::getTagtits(dbswznm, sref + "." + VecWznmVAMTablecolTitleType::getSref(ixVType), "stdtco", "", {}, refLcl, refsLcl, tagTits, false);
-	else Wznm::getTagtits(dbswznm, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
+	if (osrefWznmKTaggrp == "stdtco") Wznm::getTagtits(dbswznm, refWznmMCapability, sref + "." + VecWznmVAMTablecolTitleType::getSref(ixVType), "stdtco", "", {}, refLcl, refsLcl, tagTits, false);
+	else Wznm::getTagtits(dbswznm, refWznmMCapability, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
 
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];
@@ -99,6 +124,7 @@ void WznmCtpWrstkit::addIAMTablecolTitles(
 void WznmCtpWrstkit::addIAMVectorTitles(
 			DbsWznm* dbswznm
 			, IexWznmDbs::ImeitemIMVector2* vec
+			, const ubigint refWznmMCapability
 			, const string& sref
 			, const uint ixVType
 			, const string& osrefWznmKTaggrp
@@ -110,7 +136,7 @@ void WznmCtpWrstkit::addIAMVectorTitles(
 
 	WznmMLocale* lcl = NULL;
 
-	Wznm::getTagtits(dbswznm, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
+	Wznm::getTagtits(dbswznm, refWznmMCapability, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
 
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];
@@ -121,6 +147,7 @@ void WznmCtpWrstkit::addIAMVectorTitles(
 void WznmCtpWrstkit::addIJMVectoritems(
 			DbsWznm* dbswznm
 			, IexWznmDbs::ImeitemIMVectoritem2* vit
+			, const ubigint refWznmMCapability
 			, const string& sref
 			, const string& osrefWznmKTaggrp
 			, const ubigint refLcl
@@ -133,7 +160,7 @@ void WznmCtpWrstkit::addIJMVectoritems(
 
 	vector<string> ss;
 
-	Wznm::getTagtits(dbswznm, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
+	Wznm::getTagtits(dbswznm, refWznmMCapability, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
 
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];
@@ -146,6 +173,7 @@ void WznmCtpWrstkit::addIJMVectoritems(
 void WznmCtpWrstkit::addIAMRelationTitles(
 			DbsWznm* dbswznm
 			, IexWznmDbs::ImeitemIMRelation* rel
+			, const ubigint refWznmMCapability
 			, const string& sref
 			, const uint ixVType
 			, const string& osrefWznmKTaggrp
@@ -157,8 +185,8 @@ void WznmCtpWrstkit::addIAMRelationTitles(
 
 	WznmMLocale* lcl = NULL;
 
-	if (osrefWznmKTaggrp == "stdrel") Wznm::getTagtits(dbswznm, sref + "." + VecWznmVAMRelationTitleType::getSref(ixVType), "stdrel", "", {}, refLcl, refsLcl, tagTits, false);
-	else Wznm::getTagtits(dbswznm, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
+	if (osrefWznmKTaggrp == "stdrel") Wznm::getTagtits(dbswznm, refWznmMCapability, sref + "." + VecWznmVAMRelationTitleType::getSref(ixVType), "stdrel", "", {}, refLcl, refsLcl, tagTits, false);
+	else Wznm::getTagtits(dbswznm, refWznmMCapability, sref, osrefWznmKTaggrp, "", {}, refLcl, refsLcl, tagTits, false);
 
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];
@@ -169,6 +197,7 @@ void WznmCtpWrstkit::addIAMRelationTitles(
 void WznmCtpWrstkit::addIJMImpexpcplxTitles(
 			DbsWznm* dbswznm
 			, IexWznmIex::ImeitemIMImpexpcplx* iex
+			, const ubigint refWznmMCapability
 			, const string& sref
 			, const ubigint refLcl
 			, const vector<ubigint>& refsLcl
@@ -178,7 +207,7 @@ void WznmCtpWrstkit::addIJMImpexpcplxTitles(
 
 	WznmMLocale* lcl = NULL;
 
-	Wznm::getTagtits(dbswznm, sref, "stdiex", "", {}, refLcl, refsLcl, tagTits, false);
+	Wznm::getTagtits(dbswznm, refWznmMCapability, sref, "stdiex", "", {}, refLcl, refsLcl, tagTits, false);
 
 	for (unsigned int i = 0; i < lcls.nodes.size(); i++) {
 		lcl = lcls.nodes[i];

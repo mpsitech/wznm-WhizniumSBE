@@ -146,8 +146,7 @@ void WznmWrapiQtb::writeQtbCpp(
 	outfile << "// IP constructor --- IBEGIN" << endl;
 	for (unsigned int i = 0; i < qcos.nodes.size(); i++) {
 		qco = qcos.nodes[i];
-
-		if (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::XML) outfile << "\tthis->" << qco->sref << " = " << qco->sref << ";" << endl;
+		if (qco->ixWOccurrence & VecWznmWMQuerycolOccurrence::XML) outfile << "\t\t\t, " << qco->sref << "(" << qco->sref << ")" << endl;
 	};
 	outfile << "// IP constructor --- IEND" << endl;
 

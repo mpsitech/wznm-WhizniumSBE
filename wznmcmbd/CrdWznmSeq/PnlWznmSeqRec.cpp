@@ -38,8 +38,8 @@ PnlWznmSeqRec::PnlWznmSeqRec(
 		{
 	jref = xchg->addJob(dbswznm, this, jrefSup);
 
-	pnlseq1nstate = NULL;
 	pnldetail = NULL;
+	pnlseq1nstate = NULL;
 
 	// IP constructor.cust1 --- INSERT
 

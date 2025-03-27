@@ -24,13 +24,14 @@ WznmQPnlHk1NControl::WznmQPnlHk1NControl(
 			, const ubigint ref
 			, const string stubRef
 			, const uint hkNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->hkNum = hkNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, hkNum(hkNum)
+		{
 };
 
 void WznmQPnlHk1NControl::writeJSON(

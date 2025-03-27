@@ -93,15 +93,14 @@ DlgWznmPrjNew::ContIac::ContIac(
 			, const uint numFDetPupPmc
 		) :
 			Block()
+			, DetTxfSho(DetTxfSho)
+			, DetTxfTit(DetTxfTit)
+			, DetTxfAbt(DetTxfAbt)
+			, numsFDetLstDty(numsFDetLstDty)
+			, numsFDetLstLoc(numsFDetLstLoc)
+			, numFDetPupPlc(numFDetPupPlc)
+			, numFDetPupPmc(numFDetPupPmc)
 		{
-	this->DetTxfSho = DetTxfSho;
-	this->DetTxfTit = DetTxfTit;
-	this->DetTxfAbt = DetTxfAbt;
-	this->numsFDetLstDty = numsFDetLstDty;
-	this->numsFDetLstLoc = numsFDetLstLoc;
-	this->numFDetPupPlc = numFDetPupPlc;
-	this->numFDetPupPmc = numFDetPupPmc;
-
 	mask = {DETTXFSHO, DETTXFTIT, DETTXFABT, NUMSFDETLSTDTY, NUMSFDETLSTLOC, NUMFDETPUPPLC, NUMFDETPUPPMC};
 };
 
@@ -172,8 +171,8 @@ void DlgWznmPrjNew::ContIac::writeJSON(
 	me["DetTxfAbt"] = DetTxfAbt;
 	Jsonio::writeUintvec(me, "numsFDetLstDty", numsFDetLstDty);
 	Jsonio::writeUintvec(me, "numsFDetLstLoc", numsFDetLstLoc);
-	me["numFDetPupPlc"] = numFDetPupPlc;
-	me["numFDetPupPmc"] = numFDetPupPmc;
+	me["numFDetPupPlc"] = (Json::Value::UInt) numFDetPupPlc;
+	me["numFDetPupPmc"] = (Json::Value::UInt) numFDetPupPmc;
 };
 
 void DlgWznmPrjNew::ContIac::writeXML(
@@ -236,9 +235,8 @@ DlgWznmPrjNew::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -250,7 +248,7 @@ void DlgWznmPrjNew::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 };
 
 void DlgWznmPrjNew::ContInf::writeXML(
@@ -309,8 +307,8 @@ void DlgWznmPrjNew::StatApp::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["shortMenu"] = shortMenu;
-	me["DetLstDtyNumFirstdisp"] = DetLstDtyNumFirstdisp;
-	me["DetLstLocNumFirstdisp"] = DetLstLocNumFirstdisp;
+	me["DetLstDtyNumFirstdisp"] = (Json::Value::UInt) DetLstDtyNumFirstdisp;
+	me["DetLstLocNumFirstdisp"] = (Json::Value::UInt) DetLstLocNumFirstdisp;
 };
 
 void DlgWznmPrjNew::StatApp::writeXML(
@@ -344,11 +342,10 @@ DlgWznmPrjNew::StatShr::StatShr(
 			, const bool ButCreActive
 		) :
 			Block()
+			, DetButAutActive(DetButAutActive)
+			, ButCncActive(ButCncActive)
+			, ButCreActive(ButCreActive)
 		{
-	this->DetButAutActive = DetButAutActive;
-	this->ButCncActive = ButCncActive;
-	this->ButCreActive = ButCreActive;
-
 	mask = {DETBUTAUTACTIVE, BUTCNCACTIVE, BUTCREACTIVE};
 };
 

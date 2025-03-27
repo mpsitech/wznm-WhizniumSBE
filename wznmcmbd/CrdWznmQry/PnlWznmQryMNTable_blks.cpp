@@ -45,9 +45,8 @@ PnlWznmQryMNTable::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -59,7 +58,7 @@ void PnlWznmQryMNTable::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmQryMNTable::ContInf::writeXML(
@@ -145,11 +144,10 @@ PnlWznmQryMNTable::StatShr::StatShr(
 			, const bool ButSubActive
 		) :
 			Block()
+			, ButAddAvail(ButAddAvail)
+			, ButSubAvail(ButSubAvail)
+			, ButSubActive(ButSubActive)
 		{
-	this->ButAddAvail = ButAddAvail;
-	this->ButSubAvail = ButSubAvail;
-	this->ButSubActive = ButSubActive;
-
 	mask = {BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
 };
 
@@ -221,11 +219,11 @@ PnlWznmQryMNTable::StgIac::StgIac(
 			, const uint TcoPfxWidth
 		) :
 			Block()
+			, TcoMrefWidth(TcoMrefWidth)
+			, TcoTqmdWidth(TcoTqmdWidth)
+			, TcoSrcWidth(TcoSrcWidth)
+			, TcoPfxWidth(TcoPfxWidth)
 		{
-	this->TcoMrefWidth = TcoMrefWidth;
-	this->TcoTqmdWidth = TcoTqmdWidth;
-	this->TcoSrcWidth = TcoSrcWidth;
-	this->TcoPfxWidth = TcoPfxWidth;
 	mask = {TCOMREFWIDTH, TCOTQMDWIDTH, TCOSRCWIDTH, TCOPFXWIDTH};
 };
 
@@ -285,10 +283,10 @@ void PnlWznmQryMNTable::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoMrefWidth"] = TcoMrefWidth;
-	me["TcoTqmdWidth"] = TcoTqmdWidth;
-	me["TcoSrcWidth"] = TcoSrcWidth;
-	me["TcoPfxWidth"] = TcoPfxWidth;
+	me["TcoMrefWidth"] = (Json::Value::UInt) TcoMrefWidth;
+	me["TcoTqmdWidth"] = (Json::Value::UInt) TcoTqmdWidth;
+	me["TcoSrcWidth"] = (Json::Value::UInt) TcoSrcWidth;
+	me["TcoPfxWidth"] = (Json::Value::UInt) TcoPfxWidth;
 };
 
 void PnlWznmQryMNTable::StgIac::writeXML(

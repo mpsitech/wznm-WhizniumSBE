@@ -27,16 +27,16 @@ WznmAMTableLoadfct::WznmAMTableLoadfct(
 			, const string lbySrefsWznmMTablecol
 			, const string ordSrefsWznmMTablecol
 			, const uint ixVLimtype
-		) {
-
-	this->ref = ref;
-	this->refWznmMTable = refWznmMTable;
-	this->ixVLoadtype = ixVLoadtype;
-	this->Fctname = Fctname;
-	this->ldSrefWznmMTablecol = ldSrefWznmMTablecol;
-	this->lbySrefsWznmMTablecol = lbySrefsWznmMTablecol;
-	this->ordSrefsWznmMTablecol = ordSrefsWznmMTablecol;
-	this->ixVLimtype = ixVLimtype;
+		) :
+			ref(ref)
+			, refWznmMTable(refWznmMTable)
+			, ixVLoadtype(ixVLoadtype)
+			, Fctname(Fctname)
+			, ldSrefWznmMTablecol(ldSrefWznmMTablecol)
+			, lbySrefsWznmMTablecol(lbySrefsWznmMTablecol)
+			, ordSrefsWznmMTablecol(ordSrefsWznmMTablecol)
+			, ixVLimtype(ixVLimtype)
+		{
 };
 
 bool WznmAMTableLoadfct::operator==(

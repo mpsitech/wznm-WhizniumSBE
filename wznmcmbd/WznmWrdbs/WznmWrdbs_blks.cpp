@@ -25,10 +25,10 @@ DpchInvWznmWrdbsDbs::DpchInvWznmWrdbsDbs(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRDBSDBS, oref, jref)
+			, refWznmMVersion(refWznmMVersion)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMVersion = refWznmMVersion;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrdbsDbs::readXML(
@@ -78,9 +78,9 @@ DpchInvWznmWrdbsDeploy::DpchInvWznmWrdbsDeploy(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRDBSDEPLOY, oref, jref)
+			, refWznmMRelease(refWznmMRelease)
+			, folder(folder)
 		{
-	this->refWznmMRelease = refWznmMRelease;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrdbsDeploy::readXML(
@@ -130,11 +130,11 @@ DpchInvWznmWrdbsDiffsql::DpchInvWznmWrdbsDiffsql(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRDBSDIFFSQL, oref, jref)
+			, frRefWznmMVersion(frRefWznmMVersion)
+			, toRefWznmMVersion(toRefWznmMVersion)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->frRefWznmMVersion = frRefWznmMVersion;
-	this->toRefWznmMVersion = toRefWznmMVersion;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrdbsDiffsql::readXML(
@@ -187,10 +187,10 @@ DpchInvWznmWrdbsSql::DpchInvWznmWrdbsSql(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRDBSSQL, oref, jref)
+			, refWznmMRelease(refWznmMRelease)
+			, Prjshort(Prjshort)
+			, folder(folder)
 		{
-	this->refWznmMRelease = refWznmMRelease;
-	this->Prjshort = Prjshort;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrdbsSql::readXML(
@@ -244,13 +244,13 @@ DpchInvWznmWrdbsTbl::DpchInvWznmWrdbsTbl(
 			, const string& folder
 		) :
 			DpchInvWznm(VecWznmVDpch::DPCHINVWZNMWRDBSTBL, oref, jref)
+			, refWznmMTable(refWznmMTable)
+			, Prjshort(Prjshort)
+			, dbsmy(dbsmy)
+			, dbspg(dbspg)
+			, dbslite(dbslite)
+			, folder(folder)
 		{
-	this->refWznmMTable = refWznmMTable;
-	this->Prjshort = Prjshort;
-	this->dbsmy = dbsmy;
-	this->dbspg = dbspg;
-	this->dbslite = dbslite;
-	this->folder = folder;
 };
 
 void DpchInvWznmWrdbsTbl::readXML(

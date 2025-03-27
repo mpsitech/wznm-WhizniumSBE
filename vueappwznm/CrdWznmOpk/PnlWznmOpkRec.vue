@@ -88,18 +88,18 @@
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
-					<PnlWznmOpkMNComponent
-						v-on:request="handleRequest"
-						ref="PnlWznmOpkMNComponent"
-						:scrJref=statshr.scrJrefMNComponent
-					/>
-				</v-col>
-				<v-col cols="12" md="6">
 					<PnlWznmOpkMNLibrary
 						v-on:crdopen="handleCrdopen"
 						v-on:request="handleRequest"
 						ref="PnlWznmOpkMNLibrary"
 						:scrJref=statshr.scrJrefMNLibrary
+					/>
+				</v-col>
+				<v-col cols="12" md="6">
+					<PnlWznmOpkMNComponent
+						v-on:request="handleRequest"
+						ref="PnlWznmOpkMNComponent"
+						:scrJref=statshr.scrJrefMNComponent
 					/>
 				</v-col>
 				<v-col cols="12" md="6">
@@ -126,8 +126,8 @@
 	import PnlWznmOpk1NOp from './PnlWznmOpk1NOp';
 	import PnlWznmOpkRef1NBlock from './PnlWznmOpkRef1NBlock';
 	import PnlWznmOpkMNJob from './PnlWznmOpkMNJob';
-	import PnlWznmOpkMNComponent from './PnlWznmOpkMNComponent';
 	import PnlWznmOpkMNLibrary from './PnlWznmOpkMNLibrary';
+	import PnlWznmOpkMNComponent from './PnlWznmOpkMNComponent';
 	import PnlWznmOpkSqkMNStub from './PnlWznmOpkSqkMNStub';
 	/*
 	*/
@@ -152,8 +152,8 @@
 			PnlWznmOpk1NOp,
 			PnlWznmOpkRef1NBlock,
 			PnlWznmOpkMNJob,
-			PnlWznmOpkMNComponent,
 			PnlWznmOpkMNLibrary,
+			PnlWznmOpkMNComponent,
 			PnlWznmOpkSqkMNStub
 			/*
 			*/
@@ -221,8 +221,8 @@
 						else if (obj.scrJref == this.statshr.scrJref1NOp) this.$refs.PnlWznmOpk1NOp.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefRef1NBlock) this.$refs.PnlWznmOpkRef1NBlock.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefMNJob) this.$refs.PnlWznmOpkMNJob.handleReply(obj);
-						else if (obj.scrJref == this.statshr.scrJrefMNComponent) this.$refs.PnlWznmOpkMNComponent.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefMNLibrary) this.$refs.PnlWznmOpkMNLibrary.handleReply(obj);
+						else if (obj.scrJref == this.statshr.scrJrefMNComponent) this.$refs.PnlWznmOpkMNComponent.handleReply(obj);
 						else if (obj.scrJref == this.statshr.scrJrefSqkMNStub) this.$refs.PnlWznmOpkSqkMNStub.handleReply(obj);
 						/*
 						*/
@@ -259,8 +259,8 @@
 						else if (obj.dpcheng.scrJref == this.statshr.scrJref1NOp) this.$refs.PnlWznmOpk1NOp.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefRef1NBlock) this.$refs.PnlWznmOpkRef1NBlock.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNJob) this.$refs.PnlWznmOpkMNJob.handleUpdate(obj);
-						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNComponent) this.$refs.PnlWznmOpkMNComponent.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNLibrary) this.$refs.PnlWznmOpkMNLibrary.handleUpdate(obj);
+						else if (obj.dpcheng.scrJref == this.statshr.scrJrefMNComponent) this.$refs.PnlWznmOpkMNComponent.handleUpdate(obj);
 						else if (obj.dpcheng.scrJref == this.statshr.scrJrefSqkMNStub) this.$refs.PnlWznmOpkSqkMNStub.handleUpdate(obj);
 						/*
 						*/

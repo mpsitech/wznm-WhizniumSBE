@@ -27,18 +27,18 @@ WznmAMJobVar::WznmAMJobVar(
 			, const uint Length
 			, const bool Shr
 			, const string Comment
-		) {
-
-	this->ref = ref;
-	this->refWznmCAMJobVar = refWznmCAMJobVar;
-	this->jobRefWznmMJob = jobRefWznmMJob;
-	this->jobNum = jobNum;
-	this->sref = sref;
-	this->ixWznmVVartype = ixWznmVVartype;
-	this->refWznmMVector = refWznmMVector;
-	this->Length = Length;
-	this->Shr = Shr;
-	this->Comment = Comment;
+		) :
+			ref(ref)
+			, refWznmCAMJobVar(refWznmCAMJobVar)
+			, jobRefWznmMJob(jobRefWznmMJob)
+			, jobNum(jobNum)
+			, sref(sref)
+			, ixWznmVVartype(ixWznmVVartype)
+			, refWznmMVector(refWznmMVector)
+			, Length(Length)
+			, Shr(Shr)
+			, Comment(Comment)
+		{
 };
 
 bool WznmAMJobVar::operator==(

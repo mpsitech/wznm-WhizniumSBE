@@ -22,8 +22,8 @@ uint QryWznmOpxList::VecVOrd::getIx(
 		) {
 	string s = StrMod::lc(sref);
 
-	if (s == "opk") return OPK;
 	if (s == "srf") return SRF;
+	if (s == "opk") return OPK;
 
 	return(0);
 };
@@ -31,8 +31,8 @@ uint QryWznmOpxList::VecVOrd::getIx(
 string QryWznmOpxList::VecVOrd::getSref(
 			const uint ix
 		) {
-	if (ix == OPK) return("opk");
 	if (ix == SRF) return("srf");
+	if (ix == OPK) return("opk");
 
 	return("");
 };
@@ -48,12 +48,11 @@ QryWznmOpxList::StatApp::StatApp(
 			, const uint ndisp
 		) :
 			Block()
+			, firstcol(firstcol)
+			, jnumFirstdisp(jnumFirstdisp)
+			, ncol(ncol)
+			, ndisp(ndisp)
 		{
-	this->firstcol = firstcol;
-	this->jnumFirstdisp = jnumFirstdisp;
-	this->ncol = ncol;
-	this->ndisp = ndisp;
-
 	mask = {FIRSTCOL, JNUMFIRSTDISP, NCOL, NDISP};
 };
 
@@ -120,11 +119,10 @@ QryWznmOpxList::StatShr::StatShr(
 			, const uint nload
 		) :
 			Block()
+			, ntot(ntot)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->ntot = ntot;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {NTOT, JNUMFIRSTLOAD, NLOAD};
 };
 
@@ -189,11 +187,10 @@ QryWznmOpxList::StgIac::StgIac(
 			, const uint nload
 		) :
 			Block()
+			, jnum(jnum)
+			, jnumFirstload(jnumFirstload)
+			, nload(nload)
 		{
-	this->jnum = jnum;
-	this->jnumFirstload = jnumFirstload;
-	this->nload = nload;
-
 	mask = {JNUM, JNUMFIRSTLOAD, NLOAD};
 };
 

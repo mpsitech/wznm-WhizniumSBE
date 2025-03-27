@@ -31,20 +31,21 @@ WznmQRelList::WznmQRelList(
 			, const string titSupIxVSubrole
 			, const string stubRefWznmMTable
 			, const string Prefix
-		) {
-	this->jnum = jnum;
-	this->stubFrRefWznmMTable = stubFrRefWznmMTable;
-	this->stubFrsRefWznmMSubset = stubFrsRefWznmMSubset;
-	this->stubToRefWznmMTable = stubToRefWznmMTable;
-	this->stubTosRefWznmMSubset = stubTosRefWznmMSubset;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->stubSupRefWznmMRelation = stubSupRefWznmMRelation;
-	this->srefSupIxVSubrole = srefSupIxVSubrole;
-	this->titSupIxVSubrole = titSupIxVSubrole;
-	this->stubRefWznmMTable = stubRefWznmMTable;
-	this->Prefix = Prefix;
+		) :
+			jnum(jnum)
+			, stubFrRefWznmMTable(stubFrRefWznmMTable)
+			, stubFrsRefWznmMSubset(stubFrsRefWznmMSubset)
+			, stubToRefWznmMTable(stubToRefWznmMTable)
+			, stubTosRefWznmMSubset(stubTosRefWznmMSubset)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, stubSupRefWznmMRelation(stubSupRefWznmMRelation)
+			, srefSupIxVSubrole(srefSupIxVSubrole)
+			, titSupIxVSubrole(titSupIxVSubrole)
+			, stubRefWznmMTable(stubRefWznmMTable)
+			, Prefix(Prefix)
+		{
 };
 
 bool WznmQRelList::readXML(

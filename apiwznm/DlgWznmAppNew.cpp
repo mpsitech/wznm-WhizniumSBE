@@ -74,12 +74,11 @@ DlgWznmAppNew::ContIac::ContIac(
 			, const string& DetTxfTit
 		) :
 			Block()
+			, numFDetPupTrg(numFDetPupTrg)
+			, numFDetPupVer(numFDetPupVer)
+			, DetTxfSho(DetTxfSho)
+			, DetTxfTit(DetTxfTit)
 		{
-	this->numFDetPupTrg = numFDetPupTrg;
-	this->numFDetPupVer = numFDetPupVer;
-	this->DetTxfSho = DetTxfSho;
-	this->DetTxfTit = DetTxfTit;
-
 	mask = {NUMFDETPUPTRG, NUMFDETPUPVER, DETTXFSHO, DETTXFTIT};
 };
 
@@ -163,9 +162,8 @@ DlgWznmAppNew::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -224,9 +222,8 @@ DlgWznmAppNew::StatApp::StatApp(
 			const string& shortMenu
 		) :
 			Block()
+			, shortMenu(shortMenu)
 		{
-	this->shortMenu = shortMenu;
-
 	mask = {SHORTMENU};
 };
 
@@ -286,10 +283,9 @@ DlgWznmAppNew::StatShr::StatShr(
 			, const bool ButCreActive
 		) :
 			Block()
+			, ButCncActive(ButCncActive)
+			, ButCreActive(ButCreActive)
 		{
-	this->ButCncActive = ButCncActive;
-	this->ButCreActive = ButCreActive;
-
 	mask = {BUTCNCACTIVE, BUTCREACTIVE};
 };
 
@@ -356,15 +352,14 @@ DlgWznmAppNew::Tag::Tag(
 			, const string& ButCre
 		) :
 			Block()
+			, Cpt(Cpt)
+			, DetCptTrg(DetCptTrg)
+			, DetCptVer(DetCptVer)
+			, DetCptSho(DetCptSho)
+			, DetCptTit(DetCptTit)
+			, ButCnc(ButCnc)
+			, ButCre(ButCre)
 		{
-	this->Cpt = Cpt;
-	this->DetCptTrg = DetCptTrg;
-	this->DetCptVer = DetCptVer;
-	this->DetCptSho = DetCptSho;
-	this->DetCptTit = DetCptTit;
-	this->ButCnc = ButCnc;
-	this->ButCre = ButCre;
-
 	mask = {CPT, DETCPTTRG, DETCPTVER, DETCPTSHO, DETCPTTIT, BUTCNC, BUTCRE};
 };
 
@@ -446,11 +441,11 @@ DlgWznmAppNew::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMAPPNEWDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string DlgWznmAppNew::DpchAppDo::getSrefsMask() {

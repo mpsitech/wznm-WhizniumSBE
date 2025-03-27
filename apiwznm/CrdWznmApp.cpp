@@ -77,11 +77,10 @@ CrdWznmApp::ContInf::ContInf(
 			, const string& MtxCrdApp
 		) :
 			Block()
+			, numFSge(numFSge)
+			, MrlAppHlp(MrlAppHlp)
+			, MtxCrdApp(MtxCrdApp)
 		{
-	this->numFSge = numFSge;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MtxCrdApp = MtxCrdApp;
-
 	mask = {NUMFSGE, MRLAPPHLP, MTXCRDAPP};
 };
 
@@ -150,15 +149,14 @@ CrdWznmApp::StatApp::StatApp(
 			, const bool initdoneRec
 		) :
 			Block()
+			, ixWznmVReqitmode(ixWznmVReqitmode)
+			, latency(latency)
+			, shortMenu(shortMenu)
+			, widthMenu(widthMenu)
+			, initdoneHeadbar(initdoneHeadbar)
+			, initdoneList(initdoneList)
+			, initdoneRec(initdoneRec)
 		{
-	this->ixWznmVReqitmode = ixWznmVReqitmode;
-	this->latency = latency;
-	this->shortMenu = shortMenu;
-	this->widthMenu = widthMenu;
-	this->initdoneHeadbar = initdoneHeadbar;
-	this->initdoneList = initdoneList;
-	this->initdoneRec = initdoneRec;
-
 	mask = {IXWZNMVREQITMODE, LATENCY, SHORTMENU, WIDTHMENU, INITDONEHEADBAR, INITDONELIST, INITDONEREC};
 };
 
@@ -245,20 +243,19 @@ CrdWznmApp::StatShr::StatShr(
 			, const bool MitCrdWrcActive
 		) :
 			Block()
+			, scrJrefDlgimpstr(scrJrefDlgimpstr)
+			, scrJrefDlgnew(scrJrefDlgnew)
+			, scrJrefDlgwrite(scrJrefDlgwrite)
+			, scrJrefHeadbar(scrJrefHeadbar)
+			, scrJrefList(scrJrefList)
+			, scrJrefRec(scrJrefRec)
+			, MspCrd1Avail(MspCrd1Avail)
+			, MitCrdNewAvail(MitCrdNewAvail)
+			, MitCrdIstAvail(MitCrdIstAvail)
+			, MitCrdIstActive(MitCrdIstActive)
+			, MitCrdWrcAvail(MitCrdWrcAvail)
+			, MitCrdWrcActive(MitCrdWrcActive)
 		{
-	this->scrJrefDlgimpstr = scrJrefDlgimpstr;
-	this->scrJrefDlgnew = scrJrefDlgnew;
-	this->scrJrefDlgwrite = scrJrefDlgwrite;
-	this->scrJrefHeadbar = scrJrefHeadbar;
-	this->scrJrefList = scrJrefList;
-	this->scrJrefRec = scrJrefRec;
-	this->MspCrd1Avail = MspCrd1Avail;
-	this->MitCrdNewAvail = MitCrdNewAvail;
-	this->MitCrdIstAvail = MitCrdIstAvail;
-	this->MitCrdIstActive = MitCrdIstActive;
-	this->MitCrdWrcAvail = MitCrdWrcAvail;
-	this->MitCrdWrcActive = MitCrdWrcActive;
-
 	mask = {SCRJREFDLGIMPSTR, SCRJREFDLGNEW, SCRJREFDLGWRITE, SCRJREFHEADBAR, SCRJREFLIST, SCRJREFREC, MSPCRD1AVAIL, MITCRDNEWAVAIL, MITCRDISTAVAIL, MITCRDISTACTIVE, MITCRDWRCAVAIL, MITCRDWRCACTIVE};
 };
 
@@ -343,13 +340,12 @@ CrdWznmApp::Tag::Tag(
 			, const string& MitCrdWrc
 		) :
 			Block()
+			, MitAppAbt(MitAppAbt)
+			, MrlAppHlp(MrlAppHlp)
+			, MitCrdNew(MitCrdNew)
+			, MitCrdIst(MitCrdIst)
+			, MitCrdWrc(MitCrdWrc)
 		{
-	this->MitAppAbt = MitAppAbt;
-	this->MrlAppHlp = MrlAppHlp;
-	this->MitCrdNew = MitCrdNew;
-	this->MitCrdIst = MitCrdIst;
-	this->MitCrdWrc = MitCrdWrc;
-
 	mask = {MITAPPABT, MRLAPPHLP, MITCRDNEW, MITCRDIST, MITCRDWRC};
 };
 
@@ -390,11 +386,11 @@ CrdWznmApp::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMAPPDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string CrdWznmApp::DpchAppDo::getSrefsMask() {

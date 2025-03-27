@@ -22,13 +22,13 @@ WznmRMQueryMTable::WznmRMQueryMTable(
 			, const ubigint refWznmMTable
 			, const bool Source
 			, const string Prefix
-		) {
-
-	this->ref = ref;
-	this->refWznmMQuery = refWznmMQuery;
-	this->refWznmMTable = refWznmMTable;
-	this->Source = Source;
-	this->Prefix = Prefix;
+		) :
+			ref(ref)
+			, refWznmMQuery(refWznmMQuery)
+			, refWznmMTable(refWznmMTable)
+			, Source(Source)
+			, Prefix(Prefix)
+		{
 };
 
 bool WznmRMQueryMTable::operator==(

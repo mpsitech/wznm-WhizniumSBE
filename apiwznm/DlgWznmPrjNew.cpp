@@ -87,15 +87,14 @@ DlgWznmPrjNew::ContIac::ContIac(
 			, const uint numFDetPupPmc
 		) :
 			Block()
+			, DetTxfSho(DetTxfSho)
+			, DetTxfTit(DetTxfTit)
+			, DetTxfAbt(DetTxfAbt)
+			, numsFDetLstDty(numsFDetLstDty)
+			, numsFDetLstLoc(numsFDetLstLoc)
+			, numFDetPupPlc(numFDetPupPlc)
+			, numFDetPupPmc(numFDetPupPmc)
 		{
-	this->DetTxfSho = DetTxfSho;
-	this->DetTxfTit = DetTxfTit;
-	this->DetTxfAbt = DetTxfAbt;
-	this->numsFDetLstDty = numsFDetLstDty;
-	this->numsFDetLstLoc = numsFDetLstLoc;
-	this->numFDetPupPlc = numFDetPupPlc;
-	this->numFDetPupPmc = numFDetPupPmc;
-
 	mask = {DETTXFSHO, DETTXFTIT, DETTXFABT, NUMSFDETLSTDTY, NUMSFDETLSTLOC, NUMFDETPUPPLC, NUMFDETPUPPMC};
 };
 
@@ -188,9 +187,8 @@ DlgWznmPrjNew::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -251,11 +249,10 @@ DlgWznmPrjNew::StatApp::StatApp(
 			, const uint DetLstLocNumFirstdisp
 		) :
 			Block()
+			, shortMenu(shortMenu)
+			, DetLstDtyNumFirstdisp(DetLstDtyNumFirstdisp)
+			, DetLstLocNumFirstdisp(DetLstLocNumFirstdisp)
 		{
-	this->shortMenu = shortMenu;
-	this->DetLstDtyNumFirstdisp = DetLstDtyNumFirstdisp;
-	this->DetLstLocNumFirstdisp = DetLstLocNumFirstdisp;
-
 	mask = {SHORTMENU, DETLSTDTYNUMFIRSTDISP, DETLSTLOCNUMFIRSTDISP};
 };
 
@@ -320,11 +317,10 @@ DlgWznmPrjNew::StatShr::StatShr(
 			, const bool ButCreActive
 		) :
 			Block()
+			, DetButAutActive(DetButAutActive)
+			, ButCncActive(ButCncActive)
+			, ButCreActive(ButCreActive)
 		{
-	this->DetButAutActive = DetButAutActive;
-	this->ButCncActive = ButCncActive;
-	this->ButCreActive = ButCreActive;
-
 	mask = {DETBUTAUTACTIVE, BUTCNCACTIVE, BUTCREACTIVE};
 };
 
@@ -397,19 +393,18 @@ DlgWznmPrjNew::Tag::Tag(
 			, const string& ButCre
 		) :
 			Block()
+			, Cpt(Cpt)
+			, DetCptSho(DetCptSho)
+			, DetCptTit(DetCptTit)
+			, DetCptAbt(DetCptAbt)
+			, DetCptDty(DetCptDty)
+			, DetCptLoc(DetCptLoc)
+			, DetCptPlc(DetCptPlc)
+			, DetCptTmc(DetCptTmc)
+			, DetButAut(DetButAut)
+			, ButCnc(ButCnc)
+			, ButCre(ButCre)
 		{
-	this->Cpt = Cpt;
-	this->DetCptSho = DetCptSho;
-	this->DetCptTit = DetCptTit;
-	this->DetCptAbt = DetCptAbt;
-	this->DetCptDty = DetCptDty;
-	this->DetCptLoc = DetCptLoc;
-	this->DetCptPlc = DetCptPlc;
-	this->DetCptTmc = DetCptTmc;
-	this->DetButAut = DetButAut;
-	this->ButCnc = ButCnc;
-	this->ButCre = ButCre;
-
 	mask = {CPT, DETCPTSHO, DETCPTTIT, DETCPTABT, DETCPTDTY, DETCPTLOC, DETCPTPLC, DETCPTTMC, DETBUTAUT, BUTCNC, BUTCRE};
 };
 
@@ -495,11 +490,11 @@ DlgWznmPrjNew::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPDLGWZNMPRJNEWDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string DlgWznmPrjNew::DpchAppDo::getSrefsMask() {

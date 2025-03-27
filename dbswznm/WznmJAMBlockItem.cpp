@@ -22,13 +22,13 @@ WznmJAMBlockItem::WznmJAMBlockItem(
 			, const ubigint x1RefWznmMRelease
 			, const string Defval
 			, const ubigint refWznmMVectoritem
-		) {
-
-	this->ref = ref;
-	this->refWznmAMBlockItem = refWznmAMBlockItem;
-	this->x1RefWznmMRelease = x1RefWznmMRelease;
-	this->Defval = Defval;
-	this->refWznmMVectoritem = refWznmMVectoritem;
+		) :
+			ref(ref)
+			, refWznmAMBlockItem(refWznmAMBlockItem)
+			, x1RefWznmMRelease(x1RefWznmMRelease)
+			, Defval(Defval)
+			, refWznmMVectoritem(refWznmMVectoritem)
+		{
 };
 
 bool WznmJAMBlockItem::operator==(

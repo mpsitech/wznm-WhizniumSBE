@@ -31,20 +31,21 @@ WznmQPrjList::WznmQPrjList(
 			, const ubigint refWznmMVersion
 			, const string stubRefWznmMVersion
 			, const string Giturl
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->grp = grp;
-	this->stubGrp = stubGrp;
-	this->own = own;
-	this->stubOwn = stubOwn;
-	this->Short = Short;
-	this->Title = Title;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->Giturl = Giturl;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, grp(grp)
+			, stubGrp(stubGrp)
+			, own(own)
+			, stubOwn(stubOwn)
+			, Short(Short)
+			, Title(Title)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, Giturl(Giturl)
+		{
 };
 
 void WznmQPrjList::writeJSON(

@@ -20,9 +20,10 @@ using namespace Xmlio;
 WznmQVecRef1NPanel::WznmQVecRef1NPanel(
 			const uint jnum
 			, const string stubRef
-		) {
-	this->jnum = jnum;
-	this->stubRef = stubRef;
+		) :
+			jnum(jnum)
+			, stubRef(stubRef)
+		{
 };
 
 bool WznmQVecRef1NPanel::readXML(

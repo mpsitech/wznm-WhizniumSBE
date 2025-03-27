@@ -50,16 +50,15 @@ PnlWznmPrsDetail::ContIac::ContIac(
 			, const string& TxfSal
 		) :
 			Block()
+			, TxfTit(TxfTit)
+			, TxfFnm(TxfFnm)
+			, numFPupJln(numFPupJln)
+			, numsFLstDrv(numsFLstDrv)
+			, numFPupSex(numFPupSex)
+			, TxfTel(TxfTel)
+			, TxfEml(TxfEml)
+			, TxfSal(TxfSal)
 		{
-	this->TxfTit = TxfTit;
-	this->TxfFnm = TxfFnm;
-	this->numFPupJln = numFPupJln;
-	this->numsFLstDrv = numsFLstDrv;
-	this->numFPupSex = numFPupSex;
-	this->TxfTel = TxfTel;
-	this->TxfEml = TxfEml;
-	this->TxfSal = TxfSal;
-
 	mask = {TXFTIT, TXFFNM, NUMFPUPJLN, NUMSFLSTDRV, NUMFPUPSEX, TXFTEL, TXFEML, TXFSAL};
 };
 
@@ -129,9 +128,9 @@ void PnlWznmPrsDetail::ContIac::writeJSON(
 
 	me["TxfTit"] = TxfTit;
 	me["TxfFnm"] = TxfFnm;
-	me["numFPupJln"] = numFPupJln;
+	me["numFPupJln"] = (Json::Value::UInt) numFPupJln;
 	Jsonio::writeUintvec(me, "numsFLstDrv", numsFLstDrv);
-	me["numFPupSex"] = numFPupSex;
+	me["numFPupSex"] = (Json::Value::UInt) numFPupSex;
 	me["TxfTel"] = TxfTel;
 	me["TxfEml"] = TxfEml;
 	me["TxfSal"] = TxfSal;
@@ -200,10 +199,9 @@ PnlWznmPrsDetail::ContInf::ContInf(
 			, const string& TxtDrv
 		) :
 			Block()
+			, TxtLnm(TxtLnm)
+			, TxtDrv(TxtDrv)
 		{
-	this->TxtLnm = TxtLnm;
-	this->TxtDrv = TxtDrv;
-
 	mask = {TXTLNM, TXTDRV};
 };
 
@@ -278,7 +276,7 @@ void PnlWznmPrsDetail::StatApp::writeJSON(
 
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["LstDrvAlt"] = LstDrvAlt;
-	me["LstDrvNumFirstdisp"] = LstDrvNumFirstdisp;
+	me["LstDrvNumFirstdisp"] = (Json::Value::UInt) LstDrvNumFirstdisp;
 };
 
 void PnlWznmPrsDetail::StatApp::writeXML(
@@ -321,20 +319,19 @@ PnlWznmPrsDetail::StatShr::StatShr(
 			, const bool TxfSalActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxfTitActive(TxfTitActive)
+			, TxfFnmActive(TxfFnmActive)
+			, PupJlnActive(PupJlnActive)
+			, ButJlnEditAvail(ButJlnEditAvail)
+			, TxtLnmActive(TxtLnmActive)
+			, LstDrvActive(LstDrvActive)
+			, PupSexActive(PupSexActive)
+			, TxfTelActive(TxfTelActive)
+			, TxfEmlActive(TxfEmlActive)
+			, TxfSalActive(TxfSalActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxfTitActive = TxfTitActive;
-	this->TxfFnmActive = TxfFnmActive;
-	this->PupJlnActive = PupJlnActive;
-	this->ButJlnEditAvail = ButJlnEditAvail;
-	this->TxtLnmActive = TxtLnmActive;
-	this->LstDrvActive = LstDrvActive;
-	this->PupSexActive = PupSexActive;
-	this->TxfTelActive = TxfTelActive;
-	this->TxfEmlActive = TxfEmlActive;
-	this->TxfSalActive = TxfSalActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXFTITACTIVE, TXFFNMACTIVE, PUPJLNACTIVE, BUTJLNEDITAVAIL, TXTLNMACTIVE, LSTDRVACTIVE, PUPSEXACTIVE, TXFTELACTIVE, TXFEMLACTIVE, TXFSALACTIVE};
 };
 

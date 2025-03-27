@@ -45,34 +45,35 @@ WznmQConList::WznmQConList(
 			, const uint ixVSubtype
 			, const string srefIxVSubtype
 			, const string titIxVSubtype
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->Title = Title;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->hkIxVTbl = hkIxVTbl;
-	this->srefHkIxVTbl = srefHkIxVTbl;
-	this->titHkIxVTbl = titHkIxVTbl;
-	this->hkUref = hkUref;
-	this->stubHkUref = stubHkUref;
-	this->hkIxVSection = hkIxVSection;
-	this->srefHkIxVSection = srefHkIxVSection;
-	this->titHkIxVSection = titHkIxVSection;
-	this->refIxVTbl = refIxVTbl;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->refUref = refUref;
-	this->stubRefUref = stubRefUref;
-	this->supRefWznmMControl = supRefWznmMControl;
-	this->stubSupRefWznmMControl = stubSupRefWznmMControl;
-	this->ixVSubtype = ixVSubtype;
-	this->srefIxVSubtype = srefIxVSubtype;
-	this->titIxVSubtype = titIxVSubtype;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, Title(Title)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, hkIxVTbl(hkIxVTbl)
+			, srefHkIxVTbl(srefHkIxVTbl)
+			, titHkIxVTbl(titHkIxVTbl)
+			, hkUref(hkUref)
+			, stubHkUref(stubHkUref)
+			, hkIxVSection(hkIxVSection)
+			, srefHkIxVSection(srefHkIxVSection)
+			, titHkIxVSection(titHkIxVSection)
+			, refIxVTbl(refIxVTbl)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, refUref(refUref)
+			, stubRefUref(stubRefUref)
+			, supRefWznmMControl(supRefWznmMControl)
+			, stubSupRefWznmMControl(stubSupRefWznmMControl)
+			, ixVSubtype(ixVSubtype)
+			, srefIxVSubtype(srefIxVSubtype)
+			, titIxVSubtype(titIxVSubtype)
+		{
 };
 
 void WznmQConList::writeJSON(

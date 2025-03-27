@@ -24,13 +24,14 @@ WznmQVerVer1NModule::WznmQVerVer1NModule(
 			, const ubigint ref
 			, const string stubRef
 			, const uint verNum
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->stubRef = stubRef;
-	this->verNum = verNum;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, stubRef(stubRef)
+			, verNum(verNum)
+		{
 };
 
 void WznmQVerVer1NModule::writeJSON(

@@ -25,14 +25,14 @@ WznmAMSubsetTitle::WznmAMSubsetTitle(
 			, const ubigint x2RefWznmMLocale
 			, const uint ixWznmVGender
 			, const string Title
-		) {
-
-	this->ref = ref;
-	this->refWznmMSubset = refWznmMSubset;
-	this->x1IxVType = x1IxVType;
-	this->x2RefWznmMLocale = x2RefWznmMLocale;
-	this->ixWznmVGender = ixWznmVGender;
-	this->Title = Title;
+		) :
+			ref(ref)
+			, refWznmMSubset(refWznmMSubset)
+			, x1IxVType(x1IxVType)
+			, x2RefWznmMLocale(x2RefWznmMLocale)
+			, ixWznmVGender(ixWznmVGender)
+			, Title(Title)
+		{
 };
 
 bool WznmAMSubsetTitle::operator==(

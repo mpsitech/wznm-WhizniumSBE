@@ -3,7 +3,7 @@
 # checkout script for Wznm Vue.js UI, release vueappwznm_any
 # copyright: (C) 2022 MPSI Technologies GmbH
 # author: Alexander Wirthmueller (auto-generation)
-# date created: 11 Sep 2022
+# date created: 5 Jan 2025
 # IP header --- ABOVE
 
 if [ -z ${WHIZROOT+x} ]; then
@@ -33,10 +33,6 @@ mkdir $WEBROOT/vueappwznm/src/components/CrdWznmStart
 
 cp ../../vueappwznm/CrdWznmStart/CrdWznmStart.vue $WEBROOT/vueappwznm/src/components/CrdWznmStart/
 
-mkdir $WEBROOT/vueappwznm/src/components/CrdWznmNav
-
-cp ../../vueappwznm/CrdWznmNav/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmNav/
-
 mkdir $WEBROOT/vueappwznm/src/components/CrdWznmUsg
 
 cp ../../vueappwznm/CrdWznmUsg/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmUsg/
@@ -52,6 +48,10 @@ cp ../../vueappwznm/CrdWznmPrs/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmP
 mkdir $WEBROOT/vueappwznm/src/components/CrdWznmFil
 
 cp ../../vueappwznm/CrdWznmFil/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmFil/
+
+mkdir $WEBROOT/vueappwznm/src/components/CrdWznmNav
+
+cp ../../vueappwznm/CrdWznmNav/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmNav/
 
 mkdir $WEBROOT/vueappwznm/src/components/CrdWznmLoc
 
@@ -204,6 +204,18 @@ cp ../../vueappwznm/CrdWznmCmp/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmC
 mkdir $WEBROOT/vueappwznm/src/components/CrdWznmRls
 
 cp ../../vueappwznm/CrdWznmRls/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmRls/
+
+mkdir $WEBROOT/vueappwznm/src/components/CrdWznmVis
+
+cp ../../vueappwznm/CrdWznmVis/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmVis/
+
+mkdir $WEBROOT/vueappwznm/src/components/CrdWznmSht
+
+cp ../../vueappwznm/CrdWznmSht/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmSht/
+
+mkdir $WEBROOT/vueappwznm/src/components/CrdWznmBox
+
+cp ../../vueappwznm/CrdWznmBox/*.vue $WEBROOT/vueappwznm/src/components/CrdWznmBox/
 
 mkdir $WEBROOT/vueappwznm/src/components/CrdWznmApp
 

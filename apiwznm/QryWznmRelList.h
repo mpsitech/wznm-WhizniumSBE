@@ -29,10 +29,10 @@ namespace QryWznmRelList {
 
 	public:
 		static const Sbecore::uint TBL = 1;
-		static const Sbecore::uint SRL = 2;
+		static const Sbecore::uint TYP = 2;
 		static const Sbecore::uint VER = 3;
 		static const Sbecore::uint SUP = 4;
-		static const Sbecore::uint TYP = 5;
+		static const Sbecore::uint SRL = 5;
 		static const Sbecore::uint TOS = 6;
 		static const Sbecore::uint TOT = 7;
 		static const Sbecore::uint FRS = 8;

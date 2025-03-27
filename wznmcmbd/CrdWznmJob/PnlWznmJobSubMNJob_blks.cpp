@@ -47,9 +47,8 @@ PnlWznmJobSubMNJob::ContInf::ContInf(
 			const uint numFCsiQst
 		) :
 			Block()
+			, numFCsiQst(numFCsiQst)
 		{
-	this->numFCsiQst = numFCsiQst;
-
 	mask = {NUMFCSIQST};
 };
 
@@ -61,7 +60,7 @@ void PnlWznmJobSubMNJob::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFCsiQst"] = numFCsiQst;
+	me["numFCsiQst"] = (Json::Value::UInt) numFCsiQst;
 };
 
 void PnlWznmJobSubMNJob::ContInf::writeXML(
@@ -149,13 +148,12 @@ PnlWznmJobSubMNJob::StatShr::StatShr(
 			, const bool ButSubActive
 		) :
 			Block()
+			, ButViewAvail(ButViewAvail)
+			, ButViewActive(ButViewActive)
+			, ButAddAvail(ButAddAvail)
+			, ButSubAvail(ButSubAvail)
+			, ButSubActive(ButSubActive)
 		{
-	this->ButViewAvail = ButViewAvail;
-	this->ButViewActive = ButViewActive;
-	this->ButAddAvail = ButAddAvail;
-	this->ButSubAvail = ButSubAvail;
-	this->ButSubActive = ButSubActive;
-
 	mask = {BUTVIEWAVAIL, BUTVIEWACTIVE, BUTADDAVAIL, BUTSUBAVAIL, BUTSUBACTIVE};
 };
 
@@ -233,11 +231,11 @@ PnlWznmJobSubMNJob::StgIac::StgIac(
 			, const uint TcoCsaWidth
 		) :
 			Block()
+			, TcoMrefWidth(TcoMrefWidth)
+			, TcoShoWidth(TcoShoWidth)
+			, TcoMltWidth(TcoMltWidth)
+			, TcoCsaWidth(TcoCsaWidth)
 		{
-	this->TcoMrefWidth = TcoMrefWidth;
-	this->TcoShoWidth = TcoShoWidth;
-	this->TcoMltWidth = TcoMltWidth;
-	this->TcoCsaWidth = TcoCsaWidth;
 	mask = {TCOMREFWIDTH, TCOSHOWIDTH, TCOMLTWIDTH, TCOCSAWIDTH};
 };
 
@@ -297,10 +295,10 @@ void PnlWznmJobSubMNJob::StgIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["TcoMrefWidth"] = TcoMrefWidth;
-	me["TcoShoWidth"] = TcoShoWidth;
-	me["TcoMltWidth"] = TcoMltWidth;
-	me["TcoCsaWidth"] = TcoCsaWidth;
+	me["TcoMrefWidth"] = (Json::Value::UInt) TcoMrefWidth;
+	me["TcoShoWidth"] = (Json::Value::UInt) TcoShoWidth;
+	me["TcoMltWidth"] = (Json::Value::UInt) TcoMltWidth;
+	me["TcoCsaWidth"] = (Json::Value::UInt) TcoCsaWidth;
 };
 
 void PnlWznmJobSubMNJob::StgIac::writeXML(

@@ -29,18 +29,19 @@ WznmQSteATrig::WznmQSteATrig(
 			, const string stubRefWznmMRtdpch
 			, const string srefsMask
 			, const string Cond
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxVType = srefIxVType;
-	this->titIxVType = titIxVType;
-	this->stubRefWznmMEvent = stubRefWznmMEvent;
-	this->stubRefWznmMRtjob = stubRefWznmMRtjob;
-	this->stubRefWznmMVectoritem = stubRefWznmMVectoritem;
-	this->xsref = xsref;
-	this->stubRefWznmMRtdpch = stubRefWznmMRtdpch;
-	this->srefsMask = srefsMask;
-	this->Cond = Cond;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxVType(srefIxVType)
+			, titIxVType(titIxVType)
+			, stubRefWznmMEvent(stubRefWznmMEvent)
+			, stubRefWznmMRtjob(stubRefWznmMRtjob)
+			, stubRefWznmMVectoritem(stubRefWznmMVectoritem)
+			, xsref(xsref)
+			, stubRefWznmMRtdpch(stubRefWznmMRtdpch)
+			, srefsMask(srefsMask)
+			, Cond(Cond)
+		{
 };
 
 bool WznmQSteATrig::readXML(

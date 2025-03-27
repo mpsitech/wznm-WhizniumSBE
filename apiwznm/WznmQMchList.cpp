@@ -21,10 +21,11 @@ WznmQMchList::WznmQMchList(
 			const uint jnum
 			, const string sref
 			, const string stubSupRefWznmMMachine
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->stubSupRefWznmMMachine = stubSupRefWznmMMachine;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, stubSupRefWznmMMachine(stubSupRefWznmMMachine)
+		{
 };
 
 bool WznmQMchList::readXML(

@@ -30,19 +30,20 @@ WznmQCalList::WznmQCalList(
 			, const string titsInvIxWznmWArgtype
 			, const string srefsRetIxWznmWArgtype
 			, const string titsRetIxWznmWArgtype
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->srefRefIxVTbl = srefRefIxVTbl;
-	this->titRefIxVTbl = titRefIxVTbl;
-	this->stubRefUref = stubRefUref;
-	this->srefsInvIxWznmWArgtype = srefsInvIxWznmWArgtype;
-	this->titsInvIxWznmWArgtype = titsInvIxWznmWArgtype;
-	this->srefsRetIxWznmWArgtype = srefsRetIxWznmWArgtype;
-	this->titsRetIxWznmWArgtype = titsRetIxWznmWArgtype;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, srefRefIxVTbl(srefRefIxVTbl)
+			, titRefIxVTbl(titRefIxVTbl)
+			, stubRefUref(stubRefUref)
+			, srefsInvIxWznmWArgtype(srefsInvIxWznmWArgtype)
+			, titsInvIxWznmWArgtype(titsInvIxWznmWArgtype)
+			, srefsRetIxWznmWArgtype(srefsRetIxWznmWArgtype)
+			, titsRetIxWznmWArgtype(titsRetIxWznmWArgtype)
+		{
 };
 
 bool WznmQCalList::readXML(

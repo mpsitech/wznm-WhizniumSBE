@@ -35,24 +35,25 @@ WznmQVecList::WznmQVecList(
 			, const string stubHkUref
 			, const string osrefWznmKTaggrp
 			, const string titOsrefWznmKTaggrp
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->sref = sref;
-	this->ixVBasetype = ixVBasetype;
-	this->srefIxVBasetype = srefIxVBasetype;
-	this->titIxVBasetype = titIxVBasetype;
-	this->refWznmMVersion = refWznmMVersion;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->hkIxVTbl = hkIxVTbl;
-	this->srefHkIxVTbl = srefHkIxVTbl;
-	this->titHkIxVTbl = titHkIxVTbl;
-	this->hkUref = hkUref;
-	this->stubHkUref = stubHkUref;
-	this->osrefWznmKTaggrp = osrefWznmKTaggrp;
-	this->titOsrefWznmKTaggrp = titOsrefWznmKTaggrp;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, sref(sref)
+			, ixVBasetype(ixVBasetype)
+			, srefIxVBasetype(srefIxVBasetype)
+			, titIxVBasetype(titIxVBasetype)
+			, refWznmMVersion(refWznmMVersion)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, hkIxVTbl(hkIxVTbl)
+			, srefHkIxVTbl(srefHkIxVTbl)
+			, titHkIxVTbl(titHkIxVTbl)
+			, hkUref(hkUref)
+			, stubHkUref(stubHkUref)
+			, osrefWznmKTaggrp(osrefWznmKTaggrp)
+			, titOsrefWznmKTaggrp(titOsrefWznmKTaggrp)
+		{
 };
 
 void WznmQVecList::writeJSON(

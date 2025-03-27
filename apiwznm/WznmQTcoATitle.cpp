@@ -23,12 +23,13 @@ WznmQTcoATitle::WznmQTcoATitle(
 			, const string titX1IxVType
 			, const string stubX2RefWznmMLocale
 			, const string Title
-		) {
-	this->jnum = jnum;
-	this->srefX1IxVType = srefX1IxVType;
-	this->titX1IxVType = titX1IxVType;
-	this->stubX2RefWznmMLocale = stubX2RefWznmMLocale;
-	this->Title = Title;
+		) :
+			jnum(jnum)
+			, srefX1IxVType(srefX1IxVType)
+			, titX1IxVType(titX1IxVType)
+			, stubX2RefWznmMLocale(stubX2RefWznmMLocale)
+			, Title(Title)
+		{
 };
 
 bool WznmQTcoATitle::readXML(

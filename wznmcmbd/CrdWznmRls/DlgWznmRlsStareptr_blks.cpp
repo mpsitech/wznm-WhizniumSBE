@@ -221,9 +221,8 @@ DlgWznmRlsStareptr::ContIac::ContIac(
 			const uint numFDse
 		) :
 			Block()
+			, numFDse(numFDse)
 		{
-	this->numFDse = numFDse;
-
 	mask = {NUMFDSE};
 };
 
@@ -277,7 +276,7 @@ void DlgWznmRlsStareptr::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFDse"] = numFDse;
+	me["numFDse"] = (Json::Value::UInt) numFDse;
 };
 
 void DlgWznmRlsStareptr::ContIac::writeXML(
@@ -329,10 +328,9 @@ DlgWznmRlsStareptr::ContIacDet::ContIacDet(
 			, const string& TxfGrl
 		) :
 			Block()
+			, numFRbuBrt(numFRbuBrt)
+			, TxfGrl(TxfGrl)
 		{
-	this->numFRbuBrt = numFRbuBrt;
-	this->TxfGrl = TxfGrl;
-
 	mask = {NUMFRBUBRT, TXFGRL};
 };
 
@@ -388,7 +386,7 @@ void DlgWznmRlsStareptr::ContIacDet::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFRbuBrt"] = numFRbuBrt;
+	me["numFRbuBrt"] = (Json::Value::UInt) numFRbuBrt;
 	me["TxfGrl"] = TxfGrl;
 };
 
@@ -442,9 +440,8 @@ DlgWznmRlsStareptr::ContInf::ContInf(
 			const uint numFSge
 		) :
 			Block()
+			, numFSge(numFSge)
 		{
-	this->numFSge = numFSge;
-
 	mask = {NUMFSGE};
 };
 
@@ -456,7 +453,7 @@ void DlgWznmRlsStareptr::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 };
 
 void DlgWznmRlsStareptr::ContInf::writeXML(
@@ -507,9 +504,8 @@ DlgWznmRlsStareptr::ContInfExt::ContInfExt(
 			const string& TxtPrg
 		) :
 			Block()
+			, TxtPrg(TxtPrg)
 		{
-	this->TxtPrg = TxtPrg;
-
 	mask = {TXTPRG};
 };
 
@@ -572,9 +568,8 @@ DlgWznmRlsStareptr::ContInfIni::ContInfIni(
 			const string& TxtPrg
 		) :
 			Block()
+			, TxtPrg(TxtPrg)
 		{
-	this->TxtPrg = TxtPrg;
-
 	mask = {TXTPRG};
 };
 
@@ -637,9 +632,8 @@ DlgWznmRlsStareptr::ContInfLfi::ContInfLfi(
 			const string& Dld
 		) :
 			Block()
+			, Dld(Dld)
 		{
-	this->Dld = Dld;
-
 	mask = {DLD};
 };
 
@@ -739,9 +733,8 @@ DlgWznmRlsStareptr::StatShr::StatShr(
 			const bool ButDneActive
 		) :
 			Block()
+			, ButDneActive(ButDneActive)
 		{
-	this->ButDneActive = ButDneActive;
-
 	mask = {BUTDNEACTIVE};
 };
 
@@ -805,10 +798,9 @@ DlgWznmRlsStareptr::StatShrDet::StatShrDet(
 			, const bool ButStaActive
 		) :
 			Block()
+			, TxfGrlAvail(TxfGrlAvail)
+			, ButStaActive(ButStaActive)
 		{
-	this->TxfGrlAvail = TxfGrlAvail;
-	this->ButStaActive = ButStaActive;
-
 	mask = {TXFGRLAVAIL, BUTSTAACTIVE};
 };
 
@@ -875,10 +867,9 @@ DlgWznmRlsStareptr::StatShrExt::StatShrExt(
 			, const bool ButStoActive
 		) :
 			Block()
+			, ButRunActive(ButRunActive)
+			, ButStoActive(ButStoActive)
 		{
-	this->ButRunActive = ButRunActive;
-	this->ButStoActive = ButStoActive;
-
 	mask = {BUTRUNACTIVE, BUTSTOACTIVE};
 };
 
@@ -949,14 +940,13 @@ DlgWznmRlsStareptr::StatShrIni::StatShrIni(
 			, const bool ButClgActive
 		) :
 			Block()
+			, UldAvail(UldAvail)
+			, UldActive(UldActive)
+			, TxtPrgAvail(TxtPrgAvail)
+			, Sep1Avail(Sep1Avail)
+			, ButClgAvail(ButClgAvail)
+			, ButClgActive(ButClgActive)
 		{
-	this->UldAvail = UldAvail;
-	this->UldActive = UldActive;
-	this->TxtPrgAvail = TxtPrgAvail;
-	this->Sep1Avail = Sep1Avail;
-	this->ButClgAvail = ButClgAvail;
-	this->ButClgActive = ButClgActive;
-
 	mask = {ULDAVAIL, ULDACTIVE, TXTPRGAVAIL, SEP1AVAIL, BUTCLGAVAIL, BUTCLGACTIVE};
 };
 
@@ -1034,9 +1024,8 @@ DlgWznmRlsStareptr::StatShrLfi::StatShrLfi(
 			const bool DldActive
 		) :
 			Block()
+			, DldActive(DldActive)
 		{
-	this->DldActive = DldActive;
-
 	mask = {DLDACTIVE};
 };
 

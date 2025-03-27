@@ -30,19 +30,20 @@ WznmQOpkARetval::WznmQOpkARetval(
 			, const ubigint refWznmMVector
 			, const string stubRefWznmMVector
 			, const string Comment
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->opkNum = opkNum;
-	this->sref = sref;
-	this->ixWznmVVartype = ixWznmVVartype;
-	this->srefIxWznmVVartype = srefIxWznmVVartype;
-	this->titIxWznmVVartype = titIxWznmVVartype;
-	this->refWznmMVector = refWznmMVector;
-	this->stubRefWznmMVector = stubRefWznmMVector;
-	this->Comment = Comment;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, opkNum(opkNum)
+			, sref(sref)
+			, ixWznmVVartype(ixWznmVVartype)
+			, srefIxWznmVVartype(srefIxWznmVVartype)
+			, titIxWznmVVartype(titIxWznmVVartype)
+			, refWznmMVector(refWznmMVector)
+			, stubRefWznmMVector(stubRefWznmMVector)
+			, Comment(Comment)
+		{
 };
 
 void WznmQOpkARetval::writeJSON(

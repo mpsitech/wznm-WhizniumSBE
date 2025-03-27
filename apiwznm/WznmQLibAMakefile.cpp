@@ -23,12 +23,13 @@ WznmQLibAMakefile::WznmQLibAMakefile(
 			, const string x2SrefKTag
 			, const string titX2SrefKTag
 			, const string Val
-		) {
-	this->jnum = jnum;
-	this->stubX1RefWznmMMachine = stubX1RefWznmMMachine;
-	this->x2SrefKTag = x2SrefKTag;
-	this->titX2SrefKTag = titX2SrefKTag;
-	this->Val = Val;
+		) :
+			jnum(jnum)
+			, stubX1RefWznmMMachine(stubX1RefWznmMMachine)
+			, x2SrefKTag(x2SrefKTag)
+			, titX2SrefKTag(titX2SrefKTag)
+			, Val(Val)
+		{
 };
 
 bool WznmQLibAMakefile::readXML(

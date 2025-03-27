@@ -21,10 +21,11 @@ WznmQQryAOrder::WznmQQryAOrder(
 			const uint jnum
 			, const string Short
 			, const string srefsWznmMTablecol
-		) {
-	this->jnum = jnum;
-	this->Short = Short;
-	this->srefsWznmMTablecol = srefsWznmMTablecol;
+		) :
+			jnum(jnum)
+			, Short(Short)
+			, srefsWznmMTablecol(srefsWznmMTablecol)
+		{
 };
 
 bool WznmQQryAOrder::readXML(

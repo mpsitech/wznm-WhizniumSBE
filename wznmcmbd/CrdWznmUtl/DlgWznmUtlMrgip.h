@@ -600,8 +600,8 @@ private:
 	void handleDpchAppWznmAlert(DbsWznm* dbswznm, DpchAppWznmAlert* dpchappwznmalert, DpchEngWznm** dpcheng);
 
 	void handleUploadInSgeSuldone(DbsWznm* dbswznm, const std::string& filename);
-	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 	void handleUploadInSgeSupdone(DbsWznm* dbswznm, const std::string& filename);
+	void handleUploadInSgeIdle(DbsWznm* dbswznm, const std::string& filename);
 
 	std::string handleDownloadInSgeDone(DbsWznm* dbswznm);
 	std::string handleDownloadInSgeFail(DbsWznm* dbswznm);
@@ -609,8 +609,8 @@ private:
 	void handleDpchRetWznm(DbsWznm* dbswznm, DpchRetWznm* dpchret);
 	void handleDpchRetWznmPrctreeMerge(DbsWznm* dbswznm, DpchRetWznmPrctreeMerge* dpchret);
 
-	void handleTimerInSgeSupidle(DbsWznm* dbswznm, const std::string& sref);
 	void handleTimerInSgeTupidle(DbsWznm* dbswznm, const std::string& sref);
+	void handleTimerInSgeSupidle(DbsWznm* dbswznm, const std::string& sref);
 
 private:
 	void changeStage(DbsWznm* dbswznm, Sbecore::uint _ixVSge, DpchEngWznm** dpcheng = NULL);

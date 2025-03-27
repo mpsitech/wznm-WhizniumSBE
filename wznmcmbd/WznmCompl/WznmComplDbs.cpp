@@ -79,7 +79,7 @@ DpchRetWznm* WznmComplDbs::run(
 		for (unsigned int j = 0; j < vecs.nodes.size(); j++) {
 			vec = vecs.nodes[j];
 
-			Wznm::fillVecFromTaggrp(dbswznm, vec, klk->sref, refLcl, refsLcl);
+			Wznm::fillVecFromTaggrp(dbswznm, vec, 0, klk->sref, refLcl, refsLcl);
 		};
 	};
 

@@ -33,6 +33,8 @@ void WznmCtpGenui::addCjttag(
 			, const string& sref
 			, const ubigint refLcl
 			, const vector<ubigint>& refsLcl
+			, const string& plhstr // ex. "&tag; &plh;"
+			, const map<ubigint,string>& plhs
 			, const bool esc
 		) {
 	// if the tag can be found, it is ensured that tagTits receives one entry for each ref in refsLcl
@@ -44,14 +46,18 @@ void WznmCtpGenui::addCjttag(
 
 	string s;
 
-	//if (dbswznm->tblwznmmtag->loadRecByCpbSrf(refWznmMCapability, sref, &tag)) {
-	if (dbswznm->tblwznmmtag->loadRecBySQL("SELECT * FROM TblWznmMTag WHERE refWznmMCapability = " + to_string(refWznmMCapability) + " AND sref = '" + sref + "'", &tag)) {
+	if (dbswznm->tblwznmmtag->loadRecByCpbSrfGrp(refWznmMCapability, sref, "", &tag)) {
 		dbswznm->tblwznmjmtagtitle->loadTitByTagLoc(tag->ref, refLcl, tag->Title);
 
 		for (unsigned int i = 0; i < refsLcl.size(); i++) {
 			s = tag->Title;
 
 			dbswznm->tblwznmjmtagtitle->loadTitByTagLoc(tag->ref, refsLcl[i], s);
+
+			if (plhstr != "") {
+				s = StrMod::replacePlh(plhstr, "tag", s);
+				s = StrMod::replacePlh(s, "plh", getPlhByLcl(plhs, refsLcl[i], refLcl));
+			};
 
 			if (esc) tagTits[refsLcl[i]] = StrMod::esc(s);
 			else tagTits[refsLcl[i]] = s;
@@ -79,5 +85,19 @@ void WznmCtpGenui::addCjttag(
 		con->Title = sref;
 		dbswznm->tblwznmmcontrol->updateRec(con);
 	};
+};
+
+string WznmCtpGenui::getPlhByLcl(
+			const map<ubigint,string>& plhs // by refLcl
+			, const ubigint refLcl
+			, const ubigint refLclDefault
+		) {
+	auto it = plhs.find(refLcl);
+	if (it != plhs.end()) return it->second;
+
+	it = plhs.find(refLclDefault);
+	if (it != plhs.end()) return it->second;
+
+	return "";
 };
 // IP cust --- IEND

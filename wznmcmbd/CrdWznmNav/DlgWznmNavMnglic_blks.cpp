@@ -81,11 +81,10 @@ DlgWznmNavMnglic::ContIac::ContIac(
 			, const uint numFDetLstLcs
 		) :
 			Block()
+			, numFDetPupFis(numFDetPupFis)
+			, DetChkFis(DetChkFis)
+			, numFDetLstLcs(numFDetLstLcs)
 		{
-	this->numFDetPupFis = numFDetPupFis;
-	this->DetChkFis = DetChkFis;
-	this->numFDetLstLcs = numFDetLstLcs;
-
 	mask = {NUMFDETPUPFIS, DETCHKFIS, NUMFDETLSTLCS};
 };
 
@@ -143,9 +142,9 @@ void DlgWznmNavMnglic::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFDetPupFis"] = numFDetPupFis;
+	me["numFDetPupFis"] = (Json::Value::UInt) numFDetPupFis;
 	me["DetChkFis"] = DetChkFis;
-	me["numFDetLstLcs"] = numFDetLstLcs;
+	me["numFDetLstLcs"] = (Json::Value::UInt) numFDetLstLcs;
 };
 
 void DlgWznmNavMnglic::ContIac::writeXML(
@@ -206,15 +205,14 @@ DlgWznmNavMnglic::ContInf::ContInf(
 			, const string& DetTxtLex
 		) :
 			Block()
+			, numFSge(numFSge)
+			, DetTxtSip(DetTxtSip)
+			, DetTxtScp(DetTxtScp)
+			, DetTxtLsr(DetTxtLsr)
+			, DetTxtLar(DetTxtLar)
+			, DetTxtLst(DetTxtLst)
+			, DetTxtLex(DetTxtLex)
 		{
-	this->numFSge = numFSge;
-	this->DetTxtSip = DetTxtSip;
-	this->DetTxtScp = DetTxtScp;
-	this->DetTxtLsr = DetTxtLsr;
-	this->DetTxtLar = DetTxtLar;
-	this->DetTxtLst = DetTxtLst;
-	this->DetTxtLex = DetTxtLex;
-
 	mask = {NUMFSGE, DETTXTSIP, DETTXTSCP, DETTXTLSR, DETTXTLAR, DETTXTLST, DETTXTLEX};
 };
 
@@ -226,7 +224,7 @@ void DlgWznmNavMnglic::ContInf::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFSge"] = numFSge;
+	me["numFSge"] = (Json::Value::UInt) numFSge;
 	me["DetTxtSip"] = DetTxtSip;
 	me["DetTxtScp"] = DetTxtScp;
 	me["DetTxtLsr"] = DetTxtLsr;
@@ -302,7 +300,7 @@ void DlgWznmNavMnglic::StatApp::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["shortMenu"] = shortMenu;
-	me["DetLstLcsNumFirstdisp"] = DetLstLcsNumFirstdisp;
+	me["DetLstLcsNumFirstdisp"] = (Json::Value::UInt) DetLstLcsNumFirstdisp;
 };
 
 void DlgWznmNavMnglic::StatApp::writeXML(
@@ -332,9 +330,8 @@ DlgWznmNavMnglic::StatShr::StatShr(
 			const bool DetButActActive
 		) :
 			Block()
+			, DetButActActive(DetButActActive)
 		{
-	this->DetButActActive = DetButActActive;
-
 	mask = {DETBUTACTACTIVE};
 };
 

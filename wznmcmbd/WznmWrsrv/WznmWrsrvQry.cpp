@@ -1933,6 +1933,8 @@ void WznmWrsrvQry::writeQry(
 
 	WznmAMQueryClause* qac = NULL;
 
+	vector<string> ss;
+
 	string prjshort = StrMod::lc(Prjshort);
 
 	if (hasbras) {
@@ -1979,7 +1981,17 @@ void WznmWrsrvQry::writeQry(
 	if ( ((qry->ixVBasetype == VecWznmVMQueryBasetype::STD) || (qry->ixVBasetype == VecWznmVMQueryBasetype::MULTBRA)) && (qaos.nodes.size() > 1) ) {
 		outfile << id << "rerun_orderSQL(sqlstr, preIxOrd);" << endl;
 	} else {
-		if (qaos.nodes.size() == 1) outfile << id << "sqlstr += \" ORDER BY " << qaos.nodes[0]->srefsWznmMTablecol << " ASC\";" << endl;
+		if (qaos.nodes.size() == 1) {
+			outfile << id << "sqlstr += \" ORDER BY";
+
+			StrMod::srefsToVector(qaos.nodes[0]->srefsWznmMTablecol, ss);
+			for (unsigned int j = 0; j < ss.size(); j++) {
+				if (j != 0) outfile << ",";
+				outfile << " " << ss[j] << " ASC";
+			};
+
+			outfile << "\";" << endl;
+		};
 	};
 
 	if (qry->Limofs) {
@@ -2310,7 +2322,7 @@ void WznmWrsrvQry::showQry(
 			qco = qcos.nodes[i];
 
 			if (i != 0) cout << ",";
-			cout << qco->Short;
+			cout << ((qco->Short != "") ? qco->Short : qco->sref);
 		};
 
 		cout << endl;

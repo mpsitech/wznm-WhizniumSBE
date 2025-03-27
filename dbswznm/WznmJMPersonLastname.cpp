@@ -21,12 +21,12 @@ WznmJMPersonLastname::WznmJMPersonLastname(
 			, const ubigint refWznmMPerson
 			, const uint x1Startd
 			, const string Lastname
-		) {
-
-	this->ref = ref;
-	this->refWznmMPerson = refWznmMPerson;
-	this->x1Startd = x1Startd;
-	this->Lastname = Lastname;
+		) :
+			ref(ref)
+			, refWznmMPerson(refWznmMPerson)
+			, x1Startd(x1Startd)
+			, Lastname(Lastname)
+		{
 };
 
 bool WznmJMPersonLastname::operator==(

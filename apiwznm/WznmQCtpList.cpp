@@ -24,13 +24,14 @@ WznmQCtpList::WznmQCtpList(
 			, const string stubRefWznmMVersion
 			, const string srefsIxWArtefact
 			, const string titsIxWArtefact
-		) {
-	this->jnum = jnum;
-	this->sref = sref;
-	this->Title = Title;
-	this->stubRefWznmMVersion = stubRefWznmMVersion;
-	this->srefsIxWArtefact = srefsIxWArtefact;
-	this->titsIxWArtefact = titsIxWArtefact;
+		) :
+			jnum(jnum)
+			, sref(sref)
+			, Title(Title)
+			, stubRefWznmMVersion(stubRefWznmMVersion)
+			, srefsIxWArtefact(srefsIxWArtefact)
+			, titsIxWArtefact(titsIxWArtefact)
+		{
 };
 
 bool WznmQCtpList::readXML(

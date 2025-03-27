@@ -21,10 +21,11 @@ WznmQVecMNTable::WznmQVecMNTable(
 			const uint jnum
 			, const string stubMref
 			, const string stubRefWznmMSubset
-		) {
-	this->jnum = jnum;
-	this->stubMref = stubMref;
-	this->stubRefWznmMSubset = stubRefWznmMSubset;
+		) :
+			jnum(jnum)
+			, stubMref(stubMref)
+			, stubRefWznmMSubset(stubRefWznmMSubset)
+		{
 };
 
 bool WznmQVecMNTable::readXML(

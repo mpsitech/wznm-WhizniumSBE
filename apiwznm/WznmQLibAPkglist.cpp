@@ -21,10 +21,11 @@ WznmQLibAPkglist::WznmQLibAPkglist(
 			const uint jnum
 			, const string stubX1RefWznmMMachine
 			, const string Pkglist
-		) {
-	this->jnum = jnum;
-	this->stubX1RefWznmMMachine = stubX1RefWznmMMachine;
-	this->Pkglist = Pkglist;
+		) :
+			jnum(jnum)
+			, stubX1RefWznmMMachine(stubX1RefWznmMMachine)
+			, Pkglist(Pkglist)
+		{
 };
 
 bool WznmQLibAPkglist::readXML(

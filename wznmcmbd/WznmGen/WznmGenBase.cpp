@@ -87,7 +87,7 @@ void WznmGenBase::genCrdnav(
 	dbswznm->tblwznmmmodule->insertNewRec(&mdl, ver->ref, 1, "Mdl" + Prjshort + "Nav", 0, "", "");
 
 	// module title: from tag 'nav'
-	Wznm::getTagtits(dbswznm, "nav", "", "", {}, ver->refWznmMLocale, refsLcl, tagTits, false);
+	Wznm::getTagtits(dbswznm, 0, "nav", "", "", {}, ver->refWznmMLocale, refsLcl, tagTits, false);
 
 	if (!tagTits.empty()) {
 		for (unsigned int i = 0; i < refsLcl.size(); i++) {
@@ -204,8 +204,8 @@ void WznmGenBase::genStdVecs(
 
 	string s;
 
-	Wznm::getTagtits(dbswznm, "void", "", "", {}, ver->refWznmMLocale, refsLcl, voidTits, false);
-	Wznm::getTagtits(dbswznm, "card", "stdvec", "", {}, ver->refWznmMLocale, refsLcl, cardTits, false);
+	Wznm::getTagtits(dbswznm, 0, "void", "", "", {}, ver->refWznmMLocale, refsLcl, voidTits, false);
+	Wznm::getTagtits(dbswznm, 0, "card", "stdvec", "", {}, ver->refWznmMLocale, refsLcl, cardTits, false);
 
 	// -- vectors for filling lateron
 
@@ -311,25 +311,25 @@ void WznmGenBase::genStdVecs(
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::VOID, Prjshort, "error", "filfed", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "error", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "error", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxVExpstate
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::JOB, Prjshort, "expstate", "noloc;notit", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "expstate", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "expstate", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxVIop
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::VOID, Prjshort, "iop", "filfed", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "iop", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "iop", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxVLat
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::TBL, Prjshort, "lat", "noloc;notit", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "lat", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "lat", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxVLocale
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::TBL, Prjshort, "locale", "filfed", refsLcl);
@@ -341,43 +341,43 @@ void WznmGenBase::genStdVecs(
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::TBL, Prjshort, "lop", "noloc;notit", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "lop", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "lop", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxVOolop
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::TBL, Prjshort, "oolop", "noloc;notit", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "oolop", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "oolop", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxVQrystate
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::VOID, Prjshort, "qrystate", "filfed", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "qrystate", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "qrystate", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxVRecaccess
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::TBL, Prjshort, "recaccess", "filfed", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "recaccess", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "recaccess", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxVReqitmode
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::JOB, Prjshort, "reqitmode", "noloc;notit", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "reqitmode", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "reqitmode", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxVUserlevel
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::LIN, ver, VecWznmVMVectorHkTbl::TBL, Prjshort, "userlevel", "filfed", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "userlevel", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "userlevel", ver->refWznmMLocale, refsLcl);
 
 	// - VecXxxxWAccess
 	vec = genStdvecEmpty(dbswznm, VecWznmVMVectorBasetype::OR, ver, VecWznmVMVectorHkTbl::TBL, Prjshort, "access", "filfed", refsLcl);
 	vecs.nodes.push_back(vec);
 
-	Wznm::fillVecFromTaggrp(dbswznm, vec, "access", ver->refWznmMLocale, refsLcl);
+	Wznm::fillVecFromTaggrp(dbswznm, vec, 0, "access", ver->refWznmMLocale, refsLcl);
 };
 
 WznmMVector* WznmGenBase::genStdvecEmpty(
@@ -400,7 +400,7 @@ WznmMVector* WznmGenBase::genStdvecEmpty(
 		dbswznm->tblwznmmvector->insertNewRec(&vec, ixVBasetype, ver->ref, hkIxVTbl, 0, 0, "Vec" + Prjshort + "W" + StrMod::cap(osrefWznmKTaggrp), osrefWznmKTaggrp, srefsKOption);
 	};
 
-	Wznm::getTagtits(dbswznm, osrefWznmKTaggrp, "stdvec", "", {}, ver->refWznmMLocale, refsLcl, tagTits, false);
+	Wznm::getTagtits(dbswznm, 0, osrefWznmKTaggrp, "stdvec", "", {}, ver->refWznmMLocale, refsLcl, tagTits, false);
 
 	if (!tagTits.empty()) {
 		for (unsigned int i = 0; i < refsLcl.size(); i++) {

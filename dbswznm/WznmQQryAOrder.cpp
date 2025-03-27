@@ -24,13 +24,14 @@ WznmQQryAOrder::WznmQQryAOrder(
 			, const ubigint ref
 			, const string Short
 			, const string srefsWznmMTablecol
-		) {
-	this->qref = qref;
-	this->jref = jref;
-	this->jnum = jnum;
-	this->ref = ref;
-	this->Short = Short;
-	this->srefsWznmMTablecol = srefsWznmMTablecol;
+		) :
+			qref(qref)
+			, jref(jref)
+			, jnum(jnum)
+			, ref(ref)
+			, Short(Short)
+			, srefsWznmMTablecol(srefsWznmMTablecol)
+		{
 };
 
 void WznmQQryAOrder::writeJSON(

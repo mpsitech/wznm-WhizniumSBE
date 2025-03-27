@@ -43,9 +43,8 @@ PnlWznmLocDetail::ContIac::ContIac(
 			const uint numFPupJti
 		) :
 			Block()
+			, numFPupJti(numFPupJti)
 		{
-	this->numFPupJti = numFPupJti;
-
 	mask = {NUMFPUPJTI};
 };
 
@@ -99,7 +98,7 @@ void PnlWznmLocDetail::ContIac::writeJSON(
 
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
-	me["numFPupJti"] = numFPupJti;
+	me["numFPupJti"] = (Json::Value::UInt) numFPupJti;
 };
 
 void PnlWznmLocDetail::ContIac::writeXML(
@@ -151,10 +150,9 @@ PnlWznmLocDetail::ContInf::ContInf(
 			, const string& TxtTit
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtTit(TxtTit)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtTit = TxtTit;
-
 	mask = {TXTSRF, TXTTIT};
 };
 
@@ -258,14 +256,13 @@ PnlWznmLocDetail::StatShr::StatShr(
 			, const bool TxtTitActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, PupJtiActive(PupJtiActive)
+			, ButJtiEditAvail(ButJtiEditAvail)
+			, TxtTitActive(TxtTitActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->PupJtiActive = PupJtiActive;
-	this->ButJtiEditAvail = ButJtiEditAvail;
-	this->TxtTitActive = TxtTitActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, PUPJTIACTIVE, BUTJTIEDITAVAIL, TXTTITACTIVE};
 };
 

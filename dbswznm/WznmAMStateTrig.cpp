@@ -30,19 +30,19 @@ WznmAMStateTrig::WznmAMStateTrig(
 			, const ubigint refWznmMRtdpch
 			, const string srefsMask
 			, const string Cond
-		) {
-
-	this->ref = ref;
-	this->refWznmMState = refWznmMState;
-	this->sref = sref;
-	this->ixVType = ixVType;
-	this->refWznmMEvent = refWznmMEvent;
-	this->refWznmMRtjob = refWznmMRtjob;
-	this->refWznmMVectoritem = refWznmMVectoritem;
-	this->xsref = xsref;
-	this->refWznmMRtdpch = refWznmMRtdpch;
-	this->srefsMask = srefsMask;
-	this->Cond = Cond;
+		) :
+			ref(ref)
+			, refWznmMState(refWznmMState)
+			, sref(sref)
+			, ixVType(ixVType)
+			, refWznmMEvent(refWznmMEvent)
+			, refWznmMRtjob(refWznmMRtjob)
+			, refWznmMVectoritem(refWznmMVectoritem)
+			, xsref(xsref)
+			, refWznmMRtdpch(refWznmMRtdpch)
+			, srefsMask(srefsMask)
+			, Cond(Cond)
+		{
 };
 
 bool WznmAMStateTrig::operator==(

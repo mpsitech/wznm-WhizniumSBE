@@ -43,9 +43,8 @@ PnlWznmVerRec::ContInf::ContInf(
 			const string& TxtRef
 		) :
 			Block()
+			, TxtRef(TxtRef)
 		{
-	this->TxtRef = TxtRef;
-
 	mask = {TXTREF};
 };
 
@@ -108,6 +107,7 @@ void PnlWznmVerRec::StatApp::writeJSON(
 			Json::Value& sup
 			, string difftag
 			, const bool initdoneDetail
+			, const bool initdoneVer1NVisual
 			, const bool initdoneVer1NError
 			, const bool initdoneVer1NApp
 			, const bool initdone1NCapability
@@ -132,6 +132,7 @@ void PnlWznmVerRec::StatApp::writeJSON(
 	Json::Value& me = sup[difftag] = Json::Value(Json::objectValue);
 
 	me["initdoneDetail"] = initdoneDetail;
+	me["initdoneVer1NVisual"] = initdoneVer1NVisual;
 	me["initdoneVer1NError"] = initdoneVer1NError;
 	me["initdoneVer1NApp"] = initdoneVer1NApp;
 	me["initdone1NCapability"] = initdone1NCapability;
@@ -157,6 +158,7 @@ void PnlWznmVerRec::StatApp::writeXML(
 			, string difftag
 			, bool shorttags
 			, const bool initdoneDetail
+			, const bool initdoneVer1NVisual
 			, const bool initdoneVer1NError
 			, const bool initdoneVer1NApp
 			, const bool initdone1NCapability
@@ -184,6 +186,7 @@ void PnlWznmVerRec::StatApp::writeXML(
 
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeBoolAttr(wr, itemtag, "sref", "initdoneDetail", initdoneDetail);
+		writeBoolAttr(wr, itemtag, "sref", "initdoneVer1NVisual", initdoneVer1NVisual);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneVer1NError", initdoneVer1NError);
 		writeBoolAttr(wr, itemtag, "sref", "initdoneVer1NApp", initdoneVer1NApp);
 		writeBoolAttr(wr, itemtag, "sref", "initdone1NCapability", initdone1NCapability);
@@ -212,6 +215,7 @@ void PnlWznmVerRec::StatApp::writeXML(
 PnlWznmVerRec::StatShr::StatShr(
 			const uint ixWznmVExpstate
 			, const ubigint jrefDetail
+			, const ubigint jrefVer1NVisual
 			, const ubigint jrefVer1NError
 			, const ubigint jrefVer1NApp
 			, const ubigint jref1NCapability
@@ -233,30 +237,30 @@ PnlWznmVerRec::StatShr::StatShr(
 			, const bool ButRegularizeActive
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, jrefDetail(jrefDetail)
+			, jrefVer1NVisual(jrefVer1NVisual)
+			, jrefVer1NError(jrefVer1NError)
+			, jrefVer1NApp(jrefVer1NApp)
+			, jref1NCapability(jref1NCapability)
+			, jref1NVector(jref1NVector)
+			, jref1NTable(jref1NTable)
+			, jref1NRelation(jref1NRelation)
+			, jref1NQuery(jref1NQuery)
+			, jref1NPreset(jref1NPreset)
+			, jrefVer1NModule(jrefVer1NModule)
+			, jref1NOppack(jref1NOppack)
+			, jref1NJob(jref1NJob)
+			, jref1NImpexpcplx(jref1NImpexpcplx)
+			, jref1NCall(jref1NCall)
+			, jref1NComponent(jref1NComponent)
+			, jrefBvr1NVersion(jrefBvr1NVersion)
+			, jref1NBlock(jref1NBlock)
+			, jrefRef1NFile(jrefRef1NFile)
+			, jrefMNLocale(jrefMNLocale)
+			, ButRegularizeActive(ButRegularizeActive)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->jrefDetail = jrefDetail;
-	this->jrefVer1NError = jrefVer1NError;
-	this->jrefVer1NApp = jrefVer1NApp;
-	this->jref1NCapability = jref1NCapability;
-	this->jref1NVector = jref1NVector;
-	this->jref1NTable = jref1NTable;
-	this->jref1NRelation = jref1NRelation;
-	this->jref1NQuery = jref1NQuery;
-	this->jref1NPreset = jref1NPreset;
-	this->jrefVer1NModule = jrefVer1NModule;
-	this->jref1NOppack = jref1NOppack;
-	this->jref1NJob = jref1NJob;
-	this->jref1NImpexpcplx = jref1NImpexpcplx;
-	this->jref1NCall = jref1NCall;
-	this->jref1NComponent = jref1NComponent;
-	this->jrefBvr1NVersion = jrefBvr1NVersion;
-	this->jref1NBlock = jref1NBlock;
-	this->jrefRef1NFile = jrefRef1NFile;
-	this->jrefMNLocale = jrefMNLocale;
-	this->ButRegularizeActive = ButRegularizeActive;
-
-	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFVER1NERROR, JREFVER1NAPP, JREF1NCAPABILITY, JREF1NVECTOR, JREF1NTABLE, JREF1NRELATION, JREF1NQUERY, JREF1NPRESET, JREFVER1NMODULE, JREF1NOPPACK, JREF1NJOB, JREF1NIMPEXPCPLX, JREF1NCALL, JREF1NCOMPONENT, JREFBVR1NVERSION, JREF1NBLOCK, JREFREF1NFILE, JREFMNLOCALE, BUTREGULARIZEACTIVE};
+	mask = {IXWZNMVEXPSTATE, JREFDETAIL, JREFVER1NVISUAL, JREFVER1NERROR, JREFVER1NAPP, JREF1NCAPABILITY, JREF1NVECTOR, JREF1NTABLE, JREF1NRELATION, JREF1NQUERY, JREF1NPRESET, JREFVER1NMODULE, JREF1NOPPACK, JREF1NJOB, JREF1NIMPEXPCPLX, JREF1NCALL, JREF1NCOMPONENT, JREFBVR1NVERSION, JREF1NBLOCK, JREFREF1NFILE, JREFMNLOCALE, BUTREGULARIZEACTIVE};
 };
 
 void PnlWznmVerRec::StatShr::writeJSON(
@@ -269,6 +273,7 @@ void PnlWznmVerRec::StatShr::writeJSON(
 
 	me["srefIxWznmVExpstate"] = VecWznmVExpstate::getSref(ixWznmVExpstate);
 	me["scrJrefDetail"] = Scr::scramble(jrefDetail);
+	me["scrJrefVer1NVisual"] = Scr::scramble(jrefVer1NVisual);
 	me["scrJrefVer1NError"] = Scr::scramble(jrefVer1NError);
 	me["scrJrefVer1NApp"] = Scr::scramble(jrefVer1NApp);
 	me["scrJref1NCapability"] = Scr::scramble(jref1NCapability);
@@ -304,6 +309,7 @@ void PnlWznmVerRec::StatShr::writeXML(
 	xmlTextWriterStartElement(wr, BAD_CAST difftag.c_str());
 		writeStringAttr(wr, itemtag, "sref", "srefIxWznmVExpstate", VecWznmVExpstate::getSref(ixWznmVExpstate));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefDetail", Scr::scramble(jrefDetail));
+		writeStringAttr(wr, itemtag, "sref", "scrJrefVer1NVisual", Scr::scramble(jrefVer1NVisual));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefVer1NError", Scr::scramble(jrefVer1NError));
 		writeStringAttr(wr, itemtag, "sref", "scrJrefVer1NApp", Scr::scramble(jrefVer1NApp));
 		writeStringAttr(wr, itemtag, "sref", "scrJref1NCapability", Scr::scramble(jref1NCapability));
@@ -333,6 +339,7 @@ set<uint> PnlWznmVerRec::StatShr::comm(
 
 	if (ixWznmVExpstate == comp->ixWznmVExpstate) insert(items, IXWZNMVEXPSTATE);
 	if (jrefDetail == comp->jrefDetail) insert(items, JREFDETAIL);
+	if (jrefVer1NVisual == comp->jrefVer1NVisual) insert(items, JREFVER1NVISUAL);
 	if (jrefVer1NError == comp->jrefVer1NError) insert(items, JREFVER1NERROR);
 	if (jrefVer1NApp == comp->jrefVer1NApp) insert(items, JREFVER1NAPP);
 	if (jref1NCapability == comp->jref1NCapability) insert(items, JREF1NCAPABILITY);
@@ -364,7 +371,7 @@ set<uint> PnlWznmVerRec::StatShr::diff(
 
 	commitems = comm(comp);
 
-	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFVER1NERROR, JREFVER1NAPP, JREF1NCAPABILITY, JREF1NVECTOR, JREF1NTABLE, JREF1NRELATION, JREF1NQUERY, JREF1NPRESET, JREFVER1NMODULE, JREF1NOPPACK, JREF1NJOB, JREF1NIMPEXPCPLX, JREF1NCALL, JREF1NCOMPONENT, JREFBVR1NVERSION, JREF1NBLOCK, JREFREF1NFILE, JREFMNLOCALE, BUTREGULARIZEACTIVE};
+	diffitems = {IXWZNMVEXPSTATE, JREFDETAIL, JREFVER1NVISUAL, JREFVER1NERROR, JREFVER1NAPP, JREF1NCAPABILITY, JREF1NVECTOR, JREF1NTABLE, JREF1NRELATION, JREF1NQUERY, JREF1NPRESET, JREFVER1NMODULE, JREF1NOPPACK, JREF1NJOB, JREF1NIMPEXPCPLX, JREF1NCALL, JREF1NCOMPONENT, JREFBVR1NVERSION, JREF1NBLOCK, JREFREF1NFILE, JREFMNLOCALE, BUTREGULARIZEACTIVE};
 	for (auto it = commitems.begin(); it != commitems.end(); it++) diffitems.erase(*it);
 
 	return(diffitems);

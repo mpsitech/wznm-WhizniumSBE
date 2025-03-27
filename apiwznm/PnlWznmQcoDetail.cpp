@@ -49,11 +49,10 @@ PnlWznmQcoDetail::ContIac::ContIac(
 			, const vector<uint>& numsFLstOcc
 		) :
 			Block()
+			, TxfSho(TxfSho)
+			, numFPupTyp(numFPupTyp)
+			, numsFLstOcc(numsFLstOcc)
 		{
-	this->TxfSho = TxfSho;
-	this->numFPupTyp = numFPupTyp;
-	this->numsFLstOcc = numsFLstOcc;
-
 	mask = {TXFSHO, NUMFPUPTYP, NUMSFLSTOCC};
 };
 
@@ -138,13 +137,12 @@ PnlWznmQcoDetail::ContInf::ContInf(
 			, const string& TxtStb
 		) :
 			Block()
+			, TxtSrf(TxtSrf)
+			, TxtOcc(TxtOcc)
+			, TxtQry(TxtQry)
+			, TxtTco(TxtTco)
+			, TxtStb(TxtStb)
 		{
-	this->TxtSrf = TxtSrf;
-	this->TxtOcc = TxtOcc;
-	this->TxtQry = TxtQry;
-	this->TxtTco = TxtTco;
-	this->TxtStb = TxtStb;
-
 	mask = {TXTSRF, TXTOCC, TXTQRY, TXTTCO, TXTSTB};
 };
 
@@ -213,11 +211,10 @@ PnlWznmQcoDetail::StatApp::StatApp(
 			, const uint LstOccNumFirstdisp
 		) :
 			Block()
+			, ixWznmVExpstate(ixWznmVExpstate)
+			, LstOccAlt(LstOccAlt)
+			, LstOccNumFirstdisp(LstOccNumFirstdisp)
 		{
-	this->ixWznmVExpstate = ixWznmVExpstate;
-	this->LstOccAlt = LstOccAlt;
-	this->LstOccNumFirstdisp = LstOccNumFirstdisp;
-
 	mask = {IXWZNMVEXPSTATE, LSTOCCALT, LSTOCCNUMFIRSTDISP};
 };
 
@@ -297,21 +294,20 @@ PnlWznmQcoDetail::StatShr::StatShr(
 			, const bool ButStbViewActive
 		) :
 			Block()
+			, ButSaveAvail(ButSaveAvail)
+			, ButSaveActive(ButSaveActive)
+			, TxtSrfActive(TxtSrfActive)
+			, TxfShoActive(TxfShoActive)
+			, PupTypActive(PupTypActive)
+			, LstOccActive(LstOccActive)
+			, TxtQryActive(TxtQryActive)
+			, ButQryViewAvail(ButQryViewAvail)
+			, ButQryViewActive(ButQryViewActive)
+			, TxtTcoActive(TxtTcoActive)
+			, TxtStbActive(TxtStbActive)
+			, ButStbViewAvail(ButStbViewAvail)
+			, ButStbViewActive(ButStbViewActive)
 		{
-	this->ButSaveAvail = ButSaveAvail;
-	this->ButSaveActive = ButSaveActive;
-	this->TxtSrfActive = TxtSrfActive;
-	this->TxfShoActive = TxfShoActive;
-	this->PupTypActive = PupTypActive;
-	this->LstOccActive = LstOccActive;
-	this->TxtQryActive = TxtQryActive;
-	this->ButQryViewAvail = ButQryViewAvail;
-	this->ButQryViewActive = ButQryViewActive;
-	this->TxtTcoActive = TxtTcoActive;
-	this->TxtStbActive = TxtStbActive;
-	this->ButStbViewAvail = ButStbViewAvail;
-	this->ButStbViewActive = ButStbViewActive;
-
 	mask = {BUTSAVEAVAIL, BUTSAVEACTIVE, TXTSRFACTIVE, TXFSHOACTIVE, PUPTYPACTIVE, LSTOCCACTIVE, TXTQRYACTIVE, BUTQRYVIEWAVAIL, BUTQRYVIEWACTIVE, TXTTCOACTIVE, TXTSTBACTIVE, BUTSTBVIEWAVAIL, BUTSTBVIEWACTIVE};
 };
 
@@ -401,16 +397,15 @@ PnlWznmQcoDetail::Tag::Tag(
 			, const string& CptStb
 		) :
 			Block()
+			, Cpt(Cpt)
+			, CptSrf(CptSrf)
+			, CptSho(CptSho)
+			, CptTyp(CptTyp)
+			, CptOcc(CptOcc)
+			, CptQry(CptQry)
+			, CptTco(CptTco)
+			, CptStb(CptStb)
 		{
-	this->Cpt = Cpt;
-	this->CptSrf = CptSrf;
-	this->CptSho = CptSho;
-	this->CptTyp = CptTyp;
-	this->CptOcc = CptOcc;
-	this->CptQry = CptQry;
-	this->CptTco = CptTco;
-	this->CptStb = CptStb;
-
 	mask = {CPT, CPTSRF, CPTSHO, CPTTYP, CPTOCC, CPTQRY, CPTTCO, CPTSTB};
 };
 
@@ -493,11 +488,11 @@ PnlWznmQcoDetail::DpchAppDo::DpchAppDo(
 			, const set<uint>& mask
 		) :
 			DpchAppWznm(VecWznmVDpch::DPCHAPPWZNMQCODETAILDO, scrJref)
+			, ixVDo(ixVDo)
 		{
 	if (find(mask, ALL)) this->mask = {SCRJREF, IXVDO};
 	else this->mask = mask;
 
-	this->ixVDo = ixVDo;
 };
 
 string PnlWznmQcoDetail::DpchAppDo::getSrefsMask() {

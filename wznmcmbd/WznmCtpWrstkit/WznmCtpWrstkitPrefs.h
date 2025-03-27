@@ -17,7 +17,10 @@
 namespace WznmCtpWrstkitPrefs {
 
 	DpchRetWznm* run(XchgWznm* xchg, DbsWznm* dbswznm, DpchInvWznmCtpWrstkit* dpchinv);
-	// IP cust --- INSERT
+	// IP cust --- IBEGIN
+
+	void writeIexBui(DbsWznm* dbswznm, WznmMCapability* cpb, const std::string& Prjshort, const std::string& outfolder, const Sbecore::ubigint refLcl, std::vector<Sbecore::ubigint>& refsLcl, ListWznmMLocale& lcls);
+	// IP cust --- IEND
 };
 
 #endif

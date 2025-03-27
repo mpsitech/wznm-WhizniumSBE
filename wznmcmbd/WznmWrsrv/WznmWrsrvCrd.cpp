@@ -636,7 +636,7 @@ void WznmWrsrvCrd::writeCrdCpp(
 		outfile << "\t*dpcheng = new DpchEng" << Prjshort << "Confirm(true, jref, \"\");" << endl;
 		outfile << endl;
 
-		outfile << "\tif (xchg->stg" << prjshort << "appearance.suspsess) xchg->triggerCall(dbs" << prjshort << ", Vec" << Prjshort << "VCall::CALL" << PRJSHORT << "SUSPSESS, xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "JREFSESS, jref));" << endl;
+		outfile << "\tif (xchg->stg" << prjshort << "behavior.suspsess) xchg->triggerCall(dbs" << prjshort << ", Vec" << Prjshort << "VCall::CALL" << PRJSHORT << "SUSPSESS, xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "JREFSESS, jref));" << endl;
 		outfile << "\telse xchg->triggerBoolvalCall(dbs" << prjshort << ", Vec" << Prjshort << "VCall::CALL" << PRJSHORT << "LOGOUT, xchg->getRefPreset(Vec" << Prjshort << "VPreset::PRE" << PRJSHORT << "JREFSESS, jref), false);" << endl;
 		outfile << "// IP handleDpchAppDoClose --- IEND" << endl;
 

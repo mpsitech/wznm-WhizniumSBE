@@ -219,9 +219,9 @@ void QryWznmRlsList::rerun_orderSQL(
 			string& sqlstr
 			, const uint preIxOrd
 		) {
-	if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMRelease.sref ASC";
+	if (preIxOrd == VecVOrd::MCH) sqlstr += " ORDER BY TblWznmMRelease.refWznmMMachine ASC";
 	else if (preIxOrd == VecVOrd::CMP) sqlstr += " ORDER BY TblWznmMRelease.refWznmMComponent ASC";
-	else if (preIxOrd == VecVOrd::MCH) sqlstr += " ORDER BY TblWznmMRelease.refWznmMMachine ASC";
+	else if (preIxOrd == VecVOrd::SRF) sqlstr += " ORDER BY TblWznmMRelease.sref ASC";
 };
 
 void QryWznmRlsList::fetch(

@@ -147,21 +147,21 @@ namespace PnlWznmVecDetail {
 	class StatShr : public Sbecore::Block {
 
 	public:
-		static const Sbecore::uint TXFTGRVALID = 1;
-		static const Sbecore::uint TXFOPTVALID = 2;
-		static const Sbecore::uint BUTSAVEAVAIL = 3;
-		static const Sbecore::uint BUTSAVEACTIVE = 4;
-		static const Sbecore::uint TXTSRFACTIVE = 5;
-		static const Sbecore::uint PUPTYPACTIVE = 6;
-		static const Sbecore::uint TXTVERACTIVE = 7;
-		static const Sbecore::uint BUTVERVIEWAVAIL = 8;
-		static const Sbecore::uint BUTVERVIEWACTIVE = 9;
-		static const Sbecore::uint TXTHKUACTIVE = 10;
-		static const Sbecore::uint BUTHKUVIEWAVAIL = 11;
-		static const Sbecore::uint BUTHKUVIEWACTIVE = 12;
-		static const Sbecore::uint PUPTGRACTIVE = 13;
-		static const Sbecore::uint BUTTGREDITAVAIL = 14;
-		static const Sbecore::uint LSTOPTACTIVE = 15;
+		static const Sbecore::uint BUTSAVEAVAIL = 1;
+		static const Sbecore::uint BUTSAVEACTIVE = 2;
+		static const Sbecore::uint TXTSRFACTIVE = 3;
+		static const Sbecore::uint PUPTYPACTIVE = 4;
+		static const Sbecore::uint TXTVERACTIVE = 5;
+		static const Sbecore::uint BUTVERVIEWAVAIL = 6;
+		static const Sbecore::uint BUTVERVIEWACTIVE = 7;
+		static const Sbecore::uint TXTHKUACTIVE = 8;
+		static const Sbecore::uint BUTHKUVIEWAVAIL = 9;
+		static const Sbecore::uint BUTHKUVIEWACTIVE = 10;
+		static const Sbecore::uint PUPTGRACTIVE = 11;
+		static const Sbecore::uint TXFTGRVALID = 12;
+		static const Sbecore::uint BUTTGREDITAVAIL = 13;
+		static const Sbecore::uint LSTOPTACTIVE = 14;
+		static const Sbecore::uint TXFOPTVALID = 15;
 		static const Sbecore::uint BUTOPTEDITAVAIL = 16;
 		static const Sbecore::uint BUTPSTNEWAVAIL = 17;
 		static const Sbecore::uint BUTPSTDELETEAVAIL = 18;
@@ -182,11 +182,9 @@ namespace PnlWznmVecDetail {
 		static const Sbecore::uint PUPPSTATYACTIVE = 33;
 
 	public:
-		StatShr(const bool TxfTgrValid = false, const bool TxfOptValid = false, const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool PupTypActive = true, const bool TxtVerActive = true, const bool ButVerViewAvail = true, const bool ButVerViewActive = true, const bool TxtHkuActive = true, const bool ButHkuViewAvail = true, const bool ButHkuViewActive = true, const bool PupTgrActive = true, const bool ButTgrEditAvail = true, const bool LstOptActive = true, const bool ButOptEditAvail = true, const bool ButPstNewAvail = true, const bool ButPstDeleteAvail = true, const bool TxtPstSrfAvail = true, const bool TxtPstSrfActive = true, const bool PupPstJtiAvail = true, const bool PupPstJtiActive = true, const bool ButPstJtiEditAvail = true, const bool TxtPstTitAvail = true, const bool TxtPstTitActive = true, const bool TxtPstVerAvail = true, const bool TxtPstVerActive = true, const bool ButPstVerViewAvail = true, const bool ButPstVerViewActive = true, const bool PupPstScoAvail = true, const bool PupPstScoActive = true, const bool PupPstAtyAvail = true, const bool PupPstAtyActive = true);
+		StatShr(const bool ButSaveAvail = true, const bool ButSaveActive = true, const bool TxtSrfActive = true, const bool PupTypActive = true, const bool TxtVerActive = true, const bool ButVerViewAvail = true, const bool ButVerViewActive = true, const bool TxtHkuActive = true, const bool ButHkuViewAvail = true, const bool ButHkuViewActive = true, const bool PupTgrActive = true, const bool TxfTgrValid = false, const bool ButTgrEditAvail = true, const bool LstOptActive = true, const bool TxfOptValid = false, const bool ButOptEditAvail = true, const bool ButPstNewAvail = true, const bool ButPstDeleteAvail = true, const bool TxtPstSrfAvail = true, const bool TxtPstSrfActive = true, const bool PupPstJtiAvail = true, const bool PupPstJtiActive = true, const bool ButPstJtiEditAvail = true, const bool TxtPstTitAvail = true, const bool TxtPstTitActive = true, const bool TxtPstVerAvail = true, const bool TxtPstVerActive = true, const bool ButPstVerViewAvail = true, const bool ButPstVerViewActive = true, const bool PupPstScoAvail = true, const bool PupPstScoActive = true, const bool PupPstAtyAvail = true, const bool PupPstAtyActive = true);
 
 	public:
-		bool TxfTgrValid;
-		bool TxfOptValid;
 		bool ButSaveAvail;
 		bool ButSaveActive;
 		bool TxtSrfActive;
@@ -198,8 +196,10 @@ namespace PnlWznmVecDetail {
 		bool ButHkuViewAvail;
 		bool ButHkuViewActive;
 		bool PupTgrActive;
+		bool TxfTgrValid;
 		bool ButTgrEditAvail;
 		bool LstOptActive;
+		bool TxfOptValid;
 		bool ButOptEditAvail;
 		bool ButPstNewAvail;
 		bool ButPstDeleteAvail;
