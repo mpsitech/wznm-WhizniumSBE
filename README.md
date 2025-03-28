@@ -17,7 +17,7 @@ Besides being model-based, software development with WhizniumSBE rests on the fo
 
 To prepare your system for use with Whiznium and to learn how to make your first steps, please visit this [separate Git repository](https://github.com/mpsitech/The-Whiznium-Documentation).
 
-Also included is a full [WhizniumSBE model file reference](https://github.com/mpsitech/The-Whiznium-Documentation/blob/main/sbemdl.md).
+The primary source for all WhizniumSBE-related information is the [WhizniumSBE reference](https://mpsitech.github.io/The-WhizniumSBE-Reference).
 
 To streamline the everyday WhizniumSBE-enhanced development workflow, the [WhizniumSBE .pdf cheat sheet](https://content.mpsitech.cloud/cheatsheet_wznm.pdf), packed with useful information, might come in handy. A paper copy (size A2) can be ordered free of charge [here](https://content.mpsitech.cloud/cheatsheet.html).
 
